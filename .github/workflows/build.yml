@@ -1,0 +1,43 @@
+name: FireRed baseline
+on:
+  push:
+    branches: [main, 'setup/**']
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: baseline-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  baseline:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Install upstream Linux dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends build-essential binutils-arm-none-eabi git libpng-dev
+          gcc --version
+          arm-none-eabi-as --version
+          dpkg-query -W build-essential binutils-arm-none-eabi git libpng-dev
+      - name: Reject tracked ROMs
+        run: |
+          if git ls-files | grep -Ei '\.(gba|gbc|gb|nds|zip|7z)$'; then
+            echo 'ROMs and ROM archives must not be committed.' >&2
+            exit 1
+          fi
+      - name: Prepare pinned upstream build inputs and compiler
+        run: scripts/prepare-baseline.sh
+      - name: Build and compare clean FireRed baseline
+        run: make -j2 compare
+      - name: Rebuild from clean and compare again
+        run: |
+          make clean
+          make -j2 compare
+          sha1sum -c firered.sha1
+          git diff --exit-code
+      # Deliberately no upload-artifact: generated ROMs stay on the runner.
