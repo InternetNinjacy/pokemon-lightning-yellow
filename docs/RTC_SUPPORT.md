@@ -15,7 +15,9 @@ with cartridge RTC support enabled. Raw RTC time depends on that device's setup.
 
 Run `python3 tests/run_rtc_tests.py`. Executed host tests cover all 24 hours and
 60 minutes in both clock formats, invalid BCD, out-of-range time and common absent
-hardware responses. This validates decoding, NOT the GPIO wire protocol. No
+hardware responses. Host serial tests also execute the production RtcRead loop against stubbed pin
+I/O, checking LSB-first command bytes and response bytes. This validates logical
+serialization, NOT physical GPIO timing or an actual emulator transaction. No
 emulator is installed here; physical RTC and emulator transaction testing remain
 outstanding. Review and validate those before accepting this dependency. No clock
 reset fallback or fabricated time is used.
