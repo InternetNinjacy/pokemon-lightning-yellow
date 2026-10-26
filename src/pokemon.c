@@ -1,6 +1,7 @@
 #define IS_POKEMON_C
 
 #include "global.h"
+#include "rtc.h"
 #include "gflib.h"
 #include "random.h"
 #include "text.h"
@@ -5047,6 +5048,12 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 type, u16 evolutionItem)
     u8 beauty = GetMonData(mon, MON_DATA_BEAUTY, NULL);
     u16 upperPersonality = personality >> 16;
     u8 holdEffect;
+    u8 hour = 0;
+    bool8 timeRead = FALSE;
+    bool8 validTime = FALSE;
+
+    if (species >= NUM_SPECIES || GetMonData(mon, MON_DATA_IS_EGG, NULL))
+        return SPECIES_NONE;
 
     if (heldItem == ITEM_ENIGMA_BERRY)
         holdEffect = gSaveBlock1Ptr->enigmaBerry.holdEffect;
@@ -5071,20 +5078,20 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 type, u16 evolutionItem)
                 if (friendship >= 220)
                     targetSpecies = gEvolutionTable[species][i].targetSpecies;
                 break;
-            // FR/LG removed the time of day evolutions due to having no RTC.
             case EVO_FRIENDSHIP_DAY:
-                /*
-                RtcCalcLocalTime();
-                if (gLocalTime.hours >= 12 && gLocalTime.hours < 24 && friendship >= 220)
-                    targetSpecies = gEvolutionTable[species][i].targetSpecies;
-                */
-                break;
             case EVO_FRIENDSHIP_NIGHT:
-                /*
-                RtcCalcLocalTime();
-                if (gLocalTime.hours >= 0 && gLocalTime.hours < 12 && friendship >= 220)
-                    targetSpecies = gEvolutionTable[species][i].targetSpecies;
-                */
+                if (friendship >= 220)
+                {
+                    if (!timeRead)
+                    {
+                        validTime = RtcGetHour(&hour);
+                        timeRead = TRUE;
+                    }
+                    // Preserve the original disabled FR/LG condition boundaries.
+                    if (validTime && ((gEvolutionTable[species][i].method == EVO_FRIENDSHIP_DAY && hour >= 12)
+                                  || (gEvolutionTable[species][i].method == EVO_FRIENDSHIP_NIGHT && hour < 12)))
+                        targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                }
                 break;
             case EVO_LEVEL:
                 if (gEvolutionTable[species][i].param <= level)
@@ -5153,7 +5160,8 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 type, u16 evolutionItem)
     case EVO_MODE_ITEM_CHECK:
         for (i = 0; i < EVOS_PER_MON; i++)
         {
-            if (gEvolutionTable[species][i].method == EVO_ITEM
+            if ((gEvolutionTable[species][i].method == EVO_ITEM
+              || gEvolutionTable[species][i].method == EVO_TRADE_ITEM)
              && gEvolutionTable[species][i].param == evolutionItem)
             {
                 targetSpecies = gEvolutionTable[species][i].targetSpecies;
