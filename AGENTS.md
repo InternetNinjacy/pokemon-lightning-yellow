@@ -48,3 +48,12 @@ peers or physical cartridges. Preserve the guarded test RAM and target-generated
 ABI checks; never disable assertions to make the suite pass. No proprietary BIOS,
 ROM or save-state artifacts may be committed/uploaded. Passing CI does not authorize
 merging or enabling auto-merge.
+
+The newer evolution-mechanics specification supersedes PR #4 for this branch.
+Read docs/EVOLUTION_MECHANICS.md. Only six direct trade-item combinations are now
+approved; Clamperl direct-use alternatives are excluded. Keep excluded families'
+original data and preserve all unrelated behavior. Tyrogue uses the level-choice
+table at >=15 with Hitmonchan/Hitmonlee/Hitmontop in that order. Do not bypass
+National-Dex gates or claim custom-Dex integration until that feature is supplied.
+Run all host suites and mGBA integration tests after scene/menu changes. Keep this
+work separately reviewable on feature/evolution-mechanics; never merge dependencies.

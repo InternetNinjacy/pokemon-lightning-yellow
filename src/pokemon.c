@@ -5097,6 +5097,12 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 type, u16 evolutionItem)
                 if (gEvolutionTable[species][i].param <= level)
                     targetSpecies = gEvolutionTable[species][i].targetSpecies;
                 break;
+            case EVO_LEVEL_CHOICE:
+                // Return the first eligible candidate to launch the scene. The
+                // scene requests the player's choice before announcing a target.
+                if (gEvolutionTable[species][i].param <= level && targetSpecies == SPECIES_NONE)
+                    targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                break;
             case EVO_LEVEL_ATK_GT_DEF:
                 if (gEvolutionTable[species][i].param <= level)
                     if (GetMonData(mon, MON_DATA_ATK, NULL) > GetMonData(mon, MON_DATA_DEF, NULL))
@@ -5158,10 +5164,12 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 type, u16 evolutionItem)
         break;
     case EVO_MODE_ITEM_USE:
     case EVO_MODE_ITEM_CHECK:
+        // Clamperl is explicitly outside the approved roster. Preserve its
+        // original trade behavior without enabling direct Bag item use.
         for (i = 0; i < EVOS_PER_MON; i++)
         {
             if ((gEvolutionTable[species][i].method == EVO_ITEM
-              || gEvolutionTable[species][i].method == EVO_TRADE_ITEM)
+              || (species != SPECIES_CLAMPERL && gEvolutionTable[species][i].method == EVO_TRADE_ITEM))
              && gEvolutionTable[species][i].param == evolutionItem)
             {
                 targetSpecies = gEvolutionTable[species][i].targetSpecies;
