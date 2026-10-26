@@ -19,9 +19,9 @@ expressions = {
     'TASK_SIZE': 'sizeof(struct Task)',
     'TASK_DATA': 'offsetof(struct Task, data)',
 }
-for name in ['SPECIES','HELD_ITEM','LEVEL','FRIENDSHIP','IS_EGG']:
+for name in ['SPECIES','HELD_ITEM','LEVEL','FRIENDSHIP','IS_EGG','ATK','DEF']:
     expressions['DATA_'+name] = 'MON_DATA_'+name
-required = ['RtcGetHour','gPlayerParty','CreateMon','SetMonData','GetMonData3',
+required = ['EvolutionScene','Menu_GetCursorPos','Menu_MoveCursorNoWrapAround','SpeciesToNationalPokedexNum','GetSetPokedexFlag','TrySavingData','LoadGameSave','gFlashMemoryPresent','gPokemonStoragePtr','gPokemonStorage','Save_ResetSaveCounters','RtcGetHour','gPlayerParty','CreateMon','SetMonData','GetMonData3',
             'GetEvolutionTargetSpecies','gSaveBlock1Ptr','gSaveBlock2Ptr','gSaveBlock1','gSaveBlock2',
             'SetBagPocketsPointers','ClearBag','EnableNationalPokedex','DisableNationalPokedex','AddBagItem','BagGetQuantityByItemId',
             'BeginItemEvolution','CB2_FinishItemEvolution','gMain','gCB2_AfterEvolution',

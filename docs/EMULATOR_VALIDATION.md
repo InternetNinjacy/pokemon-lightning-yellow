@@ -28,7 +28,10 @@ Routine injection preserves the paused CPU's registers, flags, prefetch and bank
 state, and uses guarded unused EWRAM for a short test stack/return marker. ELF checks
 fail if future globals occupy that space; runtime checks fail if the test stack
 would collide. No game heap is reserved for the harness, so evolution graphics keep
-their normal memory budget. Input uses emulated A/B button presses. The test-only
+their normal memory budget. Input uses emulated direction/A/B button presses. Flash save/load injection
+allows the game's timer IRQ and uses a larger bounded step budget; other isolated
+calls mask IRQs. The initial save test timed out with IRQs masked; correcting
+that test fixture made the real save routine complete without game-code changes. The test-only
 return destination is a `bx lr` marker in unused RAM, not a game logic replacement.
 
 The suite checks:
@@ -37,13 +40,24 @@ The suite checks:
 - Real ROM GPIO reads of all 24 hours against mGBA's fixed 24-hour RTC (UTC fixtures).
 - Eevee friendship 219/220 and both stone alternatives with real Pokémon data.
 - Absent emulated RTC: no invented timed evolution; stone fallback remains valid.
-- All eight held-item trade targets, removal of the traded held item, wrong item
+- All six approved held-item trade targets, removal of the traded held item, wrong item
   rejection and Everstone behavior through actual target lookup.
 - All four level-40 alternatives, level-39 rejection and retained trade lookup.
-- **21 actual scene scenarios:** success and B cancellation for each of the eight
-  trade-item combinations and both new Eevee stones (20), plus one automatic
-  National-Dex cancellation. Species must match the outcome; a bag count of three
+- **20 item-scene scenarios:** success and B cancellation for each of the six
+  approved trade-item combinations and both new Eevee stones (16), one automatic
+  National-Dex cancellation, and successful evolution for all three original
+  Eevee stones. Species must match the outcome; a bag count of three
   must remain three on cancellation/blocking and become two only on success.
+- **18 level-scene scenarios:** seven baby/Feebas thresholds, nine Tyrogue
+  successes (all three options at Attack greater/equal/less than Defense), menu B
+  and animation B. Tyrogue has exactly three cursor positions and can qualify
+  again at a later level after cancellation. Level 14 does not qualify.
+- All successful level scenes verify seen/caught registration and round-trip
+  through the game's actual flash save/reload functions. Both save blocks and
+  party species are cleared in RAM before reload. This checks the serialized
+  data against in-memory emulated flash, not a process-restart/Continue-menu flow.
+- Direct Clamperl item alternatives are rejected under the latest exclusions;
+  its original trade data and held effects are unchanged.
 - Post-evolution move-learning prompts encountered by the fixtures are handled via
   normal buttons by declining replacement and confirming stop-learning. Evolution
   and item consumption must still finish correctly.
@@ -79,5 +93,7 @@ not a physical device or a 12-hour emulator fixture.
 
 ROMs, save states, snapshots and generated runner binaries are not committed or
 uploaded as artifacts. The bootstrap snapshot exists only in the runner's memory;
-helper build files are temporary. Read the PR/Actions logs for the results of the
+helper build files are temporary. Optional `LIGHTNING_MENU_CAPTURE=/tmp/menu.ppm`
+writes one local menu screenshot for visual inspection; CI does not set it or
+upload any screenshots. Read the PR/Actions logs for the results of the
 current revision. No merge or auto-merge is authorized by passing these checks.

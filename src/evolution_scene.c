@@ -27,7 +27,7 @@
 #include "constants/pokemon.h"
 #include "constants/items.h"
 
-extern struct Evolution gEvolutionTable[][EVOS_PER_MON];
+extern const struct Evolution gEvolutionTable[][EVOS_PER_MON];
 
 struct EvoInfo
 {
@@ -165,6 +165,8 @@ static void CB2_BeginEvolutionScene(void)
 #define tLearnMoveNoState   data[8]
 #define tEvoWasStopped      data[9]
 #define tPartyId            data[10]
+#define tChoiceOffered      data[11]
+#define tChoiceWindow       data[12]
 
 #define TASK_BIT_CAN_STOP       (1 << 0)
 #define TASK_BIT_LEARN_MOVE     (1 << 7)
@@ -205,6 +207,29 @@ void BeginEvolutionScene(struct Pokemon* mon, u16 postEvoSpecies, bool8 canStopE
     gTasks[taskId].tCanStop = canStopEvo;
     gTasks[taskId].tPartyId = partyId;
     SetMainCallback2(CB2_BeginEvolutionScene);
+}
+
+// Reuse the normal sprite loader when a level-choice target is selected.
+static void LoadEvolutionTargetSprite(struct Pokemon *mon, u16 postEvoSpecies)
+{
+    const struct CompressedSpritePalette *pokePal;
+    u32 trainerId = GetMonData(mon, MON_DATA_OT_ID);
+    u32 personality = GetMonData(mon, MON_DATA_PERSONALITY);
+    u8 id;
+
+    // postEvo sprite
+    DecompressPicFromTable(&gMonFrontPicTable[postEvoSpecies],
+                             gMonSpritesGfxPtr->sprites[B_POSITION_OPPONENT_RIGHT],
+                             postEvoSpecies);
+    pokePal = GetMonSpritePalStructFromOtIdPersonality(postEvoSpecies, trainerId, personality);
+    LoadCompressedPalette(pokePal->data, OBJ_PLTT_ID(2), PLTT_SIZE_4BPP);
+
+    SetMultiuseSpriteTemplateToPokemon(postEvoSpecies, B_POSITION_OPPONENT_RIGHT);
+    gMultiuseSpriteTemplate.affineAnims = gDummySpriteAffineAnimTable;
+    sEvoStructPtr->postEvoSpriteId = id = CreateSprite(&gMultiuseSpriteTemplate, 120, 64, 30);
+    gSprites[id].callback = SpriteCallbackDummy_2;
+    gSprites[id].oam.paletteNum = 2;
+    gSprites[id].invisible = TRUE;
 }
 
 void EvolutionScene(struct Pokemon* mon, u16 postEvoSpecies, bool8 canStopEvo, u8 partyId)
@@ -274,19 +299,7 @@ void EvolutionScene(struct Pokemon* mon, u16 postEvoSpecies, bool8 canStopEvo, u
     gSprites[id].oam.paletteNum = 1;
     gSprites[id].invisible = TRUE;
 
-    // postEvo sprite
-    DecompressPicFromTable(&gMonFrontPicTable[postEvoSpecies],
-                             gMonSpritesGfxPtr->sprites[B_POSITION_OPPONENT_RIGHT],
-                             postEvoSpecies);
-    pokePal = GetMonSpritePalStructFromOtIdPersonality(postEvoSpecies, trainerId, personality);
-    LoadCompressedPalette(pokePal->data, OBJ_PLTT_ID(2), PLTT_SIZE_4BPP);
-
-    SetMultiuseSpriteTemplateToPokemon(postEvoSpecies, B_POSITION_OPPONENT_RIGHT);
-    gMultiuseSpriteTemplate.affineAnims = gDummySpriteAffineAnimTable;
-    sEvoStructPtr->postEvoSpriteId = id = CreateSprite(&gMultiuseSpriteTemplate, 120, 64, 30);
-    gSprites[id].callback = SpriteCallbackDummy_2;
-    gSprites[id].oam.paletteNum = 2;
-    gSprites[id].invisible = TRUE;
+    LoadEvolutionTargetSprite(mon, postEvoSpecies);
 
     LoadEvoSparkleSpriteAndPal();
 
@@ -609,6 +622,7 @@ enum {
     EVOSTATE_LEARNED_MOVE,
     EVOSTATE_TRY_LEARN_ANOTHER_MOVE,
     EVOSTATE_REPLACE_MOVE,
+    EVOSTATE_CHOOSE_TARGET,
 };
 
 // States for the switch in EVOSTATE_REPLACE_MOVE
@@ -631,9 +645,42 @@ enum {
 // Task data from CycleEvolutionMonSprite
 #define tEvoStopped data[8]
 
+// A normal FireRed multichoice window. Names and order come from the
+// evolution table, not a second target list. No persistent choice/save field.
+static bool8 ShowEvolutionChoice(u8 taskId)
+{
+    struct MenuAction choices[EVOS_PER_MON];
+    const struct Evolution *evos = gEvolutionTable[gTasks[taskId].tPreEvoSpecies];
+    u8 level = GetMonData(&gPlayerParty[gTasks[taskId].tPartyId], MON_DATA_LEVEL);
+    u8 i, count = 0;
+    struct WindowTemplate window = {0, 18, 2, 10, 6, 14, 0x300};
+
+    for (i = 0; i < EVOS_PER_MON; i++)
+    {
+        if (evos[i].method == EVO_LEVEL_CHOICE && level >= evos[i].param)
+        {
+            choices[count].text = gSpeciesNames[evos[i].targetSpecies];
+            choices[count++].func.void_u8 = NULL;
+        }
+    }
+    if (count == 0)
+        return FALSE;
+
+    gTasks[taskId].tChoiceWindow = AddWindow(&window);
+    LoadUserWindowGfx2(0, 0x2E0, BG_PLTT_ID(14));
+    DrawStdFrameWithCustomTileAndPalette(gTasks[taskId].tChoiceWindow, FALSE, 0x2E0, 14);
+    PrintTextArray(gTasks[taskId].tChoiceWindow, FONT_NORMAL_COPY_2, 8, 0, 16, count, choices);
+    Menu_InitCursor(gTasks[taskId].tChoiceWindow, FONT_NORMAL_COPY_2, 0, 0, 16, count, 0);
+    PutWindowTilemap(gTasks[taskId].tChoiceWindow);
+    CopyWindowToVram(gTasks[taskId].tChoiceWindow, COPYWIN_FULL);
+    return TRUE;
+}
+
 static void Task_EvolutionScene(u8 taskId)
 {
     u32 var;
+    s8 choice;
+    u8 i;
     struct Pokemon* mon = &gPlayerParty[gTasks[taskId].tPartyId];
 
     // Automatically cancel if the Pokemon would evolve into a species you have not
@@ -675,10 +722,48 @@ static void Task_EvolutionScene(u8 taskId)
     case EVOSTATE_INTRO_MSG:
         if (!gPaletteFade.active)
         {
+            if (!gTasks[taskId].tChoiceOffered)
+            {
+                gTasks[taskId].tChoiceOffered = TRUE;
+                if (ShowEvolutionChoice(taskId))
+                {
+                    gTasks[taskId].tState = EVOSTATE_CHOOSE_TARGET;
+                    break;
+                }
+            }
             StringExpandPlaceholders(gStringVar4, gText_PkmnIsEvolving);
             BattlePutTextOnWindow(gStringVar4, B_WIN_MSG);
             gTasks[taskId].tState++;
         }
+        break;
+    case EVOSTATE_CHOOSE_TARGET:
+        choice = Menu_ProcessInputNoWrapAround();
+        if (choice == MENU_NOTHING_CHOSEN)
+            break;
+        ClearStdWindowAndFrameToTransparent(gTasks[taskId].tChoiceWindow, TRUE);
+        RemoveWindow(gTasks[taskId].tChoiceWindow);
+        if (choice == MENU_B_PRESSED)
+        {
+            // No animation has started. Return through the normal cleanup path;
+            // never treat B as index zero or mark the Pokemon as evolved.
+            gTasks[taskId].tEvoWasStopped = TRUE;
+            BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 0x10, RGB_BLACK);
+            gTasks[taskId].tState = EVOSTATE_END;
+            break;
+        }
+        for (i = 0; i < EVOS_PER_MON; i++)
+        {
+            const struct Evolution *evo = &gEvolutionTable[gTasks[taskId].tPreEvoSpecies][i];
+            if (evo->method == EVO_LEVEL_CHOICE && GetMonData(mon, MON_DATA_LEVEL) >= evo->param && choice-- == 0)
+            {
+                gTasks[taskId].tPostEvoSpecies = evo->targetSpecies;
+                DestroySprite(&gSprites[sEvoStructPtr->postEvoSpriteId]);
+                LoadEvolutionTargetSprite(mon, evo->targetSpecies);
+                StringCopy(gStringVar2, gSpeciesNames[evo->targetSpecies]);
+                break;
+            }
+        }
+        gTasks[taskId].tState = EVOSTATE_INTRO_MSG;
         break;
     case EVOSTATE_INTRO_MON_ANIM:
         if (!IsTextPrinterActive(0))
