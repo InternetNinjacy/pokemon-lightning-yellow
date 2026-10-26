@@ -31,10 +31,10 @@ static void RtcRead(u8 command, u8 *bytes, u32 count)
     RTC_DIRECTION = RTC_CLK | RTC_SIO | RTC_CS;
     RtcWritePins(RTC_CLK);
     RtcWritePins(RTC_CS | RTC_CLK);
-    // Command and response bytes are transferred LSB first.
+    // Command bytes are MSB first; response bytes are LSB first.
     for (i = 0; i < 8; i++)
     {
-        u16 data = command & (1 << i) ? RTC_SIO : 0;
+        u16 data = command & (0x80 >> i) ? RTC_SIO : 0;
         RtcWritePins(RTC_CS | data);
         RtcWritePins(RTC_CS | data | RTC_CLK);
     }
