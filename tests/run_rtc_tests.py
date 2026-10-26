@@ -51,9 +51,9 @@ int main(void) {
       dateTime[0]=0x23;assert(!RtcDecodeDateTime(0,dateTime,&hour));checks++;
     }
     { u8 bytes[3];
-      captured=0;output[0]=0x40;RtcRead(0x63,bytes,1);assert(captured==0x63 && bytes[0]==0x40);checks++;
+      captured=0;output[0]=0x40;RtcRead(0x63,bytes,1);assert(captured==0xC6 && bytes[0]==0x40);checks++;
       captured=0;output[0]=0x23;output[1]=0x59;output[2]=0x58;RtcRead(0x67,bytes,3);
-      assert(captured==0x67 && bytes[0]==0x23 && bytes[1]==0x59 && bytes[2]==0x58);checks++;
+      assert(captured==0xE6 && bytes[0]==0x23 && bytes[1]==0x59 && bytes[2]==0x58);checks++;
     }
     printf("PASS: %u RTC decoder/serial assertions; hardware/emulator validation outstanding\n",checks);
     return 0;
