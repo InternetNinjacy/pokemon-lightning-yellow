@@ -12,6 +12,7 @@
 #include "easy_chat.h"
 #include "event_data.h"
 #include "evolution_scene.h"
+#include "evolution_items.h"
 #include "field_effect.h"
 #include "field_player_avatar.h"
 #include "field_fadetransition.h"
@@ -5295,7 +5296,7 @@ void ItemUseCB_EvolutionStone(u8 taskId, TaskFunc func)
     bool8 noEffect;
 
     PlaySE(SE_SELECT);
-    noEffect = PokemonItemUseNoEffect(&gPlayerParty[gPartyMenu.slotId], gSpecialVar_ItemId, gPartyMenu.slotId, 0);
+    noEffect = GetEvolutionTargetSpecies(&gPlayerParty[gPartyMenu.slotId], EVO_MODE_ITEM_USE, gSpecialVar_ItemId) == SPECIES_NONE;
     if (noEffect)
     {
         gPartyMenuUseExitCallback = FALSE;
@@ -5309,10 +5310,13 @@ void ItemUseCB_EvolutionStone(u8 taskId, TaskFunc func)
 
 static void CB2_UseEvolutionStone(void)
 {
-    gCB2_AfterEvolution = gPartyMenu.exitCallback;
-    ExecuteTableBasedItemEffect_(gPartyMenu.slotId, gSpecialVar_ItemId, 0);
-    ItemUse_SetQuestLogEvent(QL_EVENT_USED_ITEM, &gPlayerParty[gPartyMenu.slotId], gSpecialVar_ItemId, 0xFFFF);
-    RemoveBagItem(gSpecialVar_ItemId, 1);
+    struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
+    u16 targetSpecies = GetEvolutionTargetSpecies(mon, EVO_MODE_ITEM_USE, gSpecialVar_ItemId);
+
+    if (targetSpecies != SPECIES_NONE)
+        BeginItemEvolution(mon, targetSpecies, gPartyMenu.slotId, gSpecialVar_ItemId, gPartyMenu.exitCallback);
+    else
+        SetMainCallback2(gPartyMenu.exitCallback);
 }
 
 static bool8 MonCanEvolve(void)

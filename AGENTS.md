@@ -33,3 +33,10 @@ Use the existing isolated checkout in cloud tasks; do not create worktrees unles
 explicitly requested. Build with `scripts/prepare-baseline.sh`, then
 `make -j2`; run `python3 tests/run_split_tests.py` and use `make clean` before
 repeatability validation. The independent upstream job still uses `make compare`.
+
+The evolution overhaul is separately authorized: four level-40 trade alternatives,
+direct use of existing trade-held evolution items, and Eevee stones/timed friendship.
+Read docs/EVOLUTION_OVERHAUL.md and docs/RTC_SUPPORT.md. PRs are stacked on the split
+and RTC work; do not merge dependencies or retarget without reviewing the stack.
+Run all three test runners, including run_evolution_tests.py and run_rtc_tests.py.
+Do not change National-Dex gating, other evolution data or balance without approval.

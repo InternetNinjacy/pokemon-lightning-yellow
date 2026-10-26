@@ -3,7 +3,8 @@
 A planned FireRed-based project using [pret/pokefirered](https://github.com/pret/pokefirered).
 This branch implements the approved Generation IV-style Physical/Special/Status
 split on the English FireRed revision 0 base. See the [split implementation,
-testing, and compatibility notes](docs/PHYSICAL_SPECIAL_SPLIT.md). Other planned
+testing, and compatibility notes](docs/PHYSICAL_SPECIAL_SPLIT.md). The evolution branch also adds the approved [evolution methods](docs/EVOLUTION_OVERHAUL.md)
+with a separately reviewed [RTC dependency](docs/RTC_SUPPORT.md). Other planned
 features remain unimplemented; [AGENTS.md](AGENTS.md) requires design approval.
 
 ## Build entirely on GitHub
@@ -32,6 +33,8 @@ sudo apt-get install -y build-essential binutils-arm-none-eabi git libpng-dev
 # From this repository root:
 scripts/prepare-baseline.sh
 python3 tests/run_split_tests.py
+python3 tests/run_rtc_tests.py
+python3 tests/run_evolution_tests.py
 make -j2
 make clean
 make -j2
