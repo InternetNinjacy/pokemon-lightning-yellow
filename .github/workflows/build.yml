@@ -64,6 +64,15 @@ jobs:
           make -j2
           sha256sum -c /tmp/modified.sha256
           git diff --exit-code
+      - name: Install headless mGBA core
+        if: matrix.target == 'modified'
+        run: |
+          sudo apt-get install -y --no-install-recommends libmgba-dev
+          dpkg-query -W libmgba-dev
+      - name: Execute ROM integration tests in mGBA
+        if: matrix.target == 'modified'
+        timeout-minutes: 10
+        run: python3 tests/emulator/run.py
       - name: Verify original upstream SHA-1 twice from clean
         if: matrix.target == 'upstream-baseline'
         working-directory: vanilla

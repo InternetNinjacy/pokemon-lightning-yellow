@@ -112,8 +112,8 @@ preservation, not successful battle-script execution. The untouched OHKO, Bide,
 Beat Up, Future Sight, SonicBoom and Dragon Rage end-to-end script paths are not
 emulated by these tests. Neither are Hustle accuracy rolls, thaw animations,
 full AI script execution/scoring, live type-effectiveness processing, UI rendering,
-or link battles. No emulator is installed in this cloud machine, and **emulator
-gameplay testing remains outstanding**. Compilation alone is not acceptance.
+or link battles. The separate evolution-focused mGBA suite does not run full battles or approve
+this split UI visually; **battle gameplay and visual acceptance remain outstanding**. Compilation alone is not acceptance.
 
 Actions runs `modified` (tests, compilation, clean rebuild with the first build's
 SHA-256) and `upstream-baseline` (separate pinned upstream checkout, original SHA-1

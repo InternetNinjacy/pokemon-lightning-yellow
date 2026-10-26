@@ -81,8 +81,10 @@ hours at friendship 0/219/220, failed clock reads and unchanged Eevee stones.
 Separate static audits check Use-menu routing and unchanged item/held-effect data.
 These are not animation, live menu, encrypted save-Pokémon, physical RTC or trade
 network tests. RTC tests validate decoding/logical serial IO with simulated pins,
-not real cartridge/emulator clock transactions. Emulator gameplay testing remains
-outstanding because no emulator is installed. Compilation is not gameplay proof.
+not real cartridge/emulator clock transactions. Automated mGBA ROM integration now covers real GPIO reads, encrypted Pokémon
+and bag methods, and the actual evolution scenes described in
+[EMULATOR_VALIDATION.md](EMULATOR_VALIDATION.md). Full playthrough, visual UI,
+physical RTC and link-peer acceptance remain outstanding. Compilation is not gameplay proof.
 
 Actions retains modified-game tests/clean reproducibility and the independent
 unchanged upstream checksum job. No ROM artifacts are uploaded. Tests/build/CI
@@ -94,6 +96,7 @@ payloads are removed from the cloud checkout after verification.
 Revert the evolution commit via a reviewed PR to restore original methods, item
 Use metadata and consumption path while preserving PR #2 and the separately
 reviewed RTC dependency. Revert RTC separately only after removing its consumer.
-Never force-push main. Required acceptance work: live bag use/highlighting,
-cancel/success inventory behavior, trade evolutions, RTC presence/absence and
-clock-boundary behavior on an authorized emulator or RTC-capable cartridge.
+Never force-push main. Remaining acceptance work: overworld bag navigation/highlighting, manual visual
+checks, link-trade networking and physical RTC-capable cartridges. Automated mGBA
+coverage now includes scene success/cancellation, inventory, RTC absence and hourly
+friendship boundaries; see the emulator validation document for precise limits.

@@ -14,7 +14,8 @@ No local Python, compiler, or development tools are required. Open this reposito
 requests trigger it; **Run workflow** starts a manual run once the workflow is on
 the default branch. For a feature PR, use its Checks tab or the feature branch's run.
 Click **modified** for regression tests and game builds, or **upstream-baseline**
-for the unchanged upstream SHA-1 comparison. Both require a clean rebuild. A green
+for the unchanged upstream SHA-1 comparison. The modified job also runs
+[headless mGBA integration tests](docs/EMULATOR_VALIDATION.md). Both require a clean rebuild. A green
 run confirms automated checks, not emulator gameplay or visual acceptance.
 
 Actions installs all Linux dependencies, builds pinned agbcc, obtains upstream
@@ -29,13 +30,14 @@ Follow the unchanged upstream [INSTALL.md](INSTALL.md). On Debian/Ubuntu:
 
 ```sh
 sudo apt-get update
-sudo apt-get install -y build-essential binutils-arm-none-eabi git libpng-dev
+sudo apt-get install -y build-essential binutils-arm-none-eabi git libpng-dev python3 libmgba-dev
 # From this repository root:
 scripts/prepare-baseline.sh
 python3 tests/run_split_tests.py
 python3 tests/run_rtc_tests.py
 python3 tests/run_evolution_tests.py
 make -j2
+python3 tests/emulator/run.py
 make clean
 make -j2
 ```

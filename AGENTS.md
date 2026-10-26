@@ -40,3 +40,11 @@ Read docs/EVOLUTION_OVERHAUL.md and docs/RTC_SUPPORT.md. PRs are stacked on the 
 and RTC work; do not merge dependencies or retarget without reviewing the stack.
 Run all three test runners, including run_evolution_tests.py and run_rtc_tests.py.
 Do not change National-Dex gating, other evolution data or balance without approval.
+
+For emulator validation, read docs/EMULATOR_VALIDATION.md. After building the ROM,
+run python3 tests/emulator/run.py (requires packaged libmgba-dev). It executes real
+ROM code and evolution scenes but does not certify full battles, visual UI, link
+peers or physical cartridges. Preserve the guarded test RAM and target-generated
+ABI checks; never disable assertions to make the suite pass. No proprietary BIOS,
+ROM or save-state artifacts may be committed/uploaded. Passing CI does not authorize
+merging or enabling auto-merge.
