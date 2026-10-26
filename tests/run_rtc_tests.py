@@ -27,7 +27,7 @@ static void RtcWritePins(u16 pins) {
 }
 '''
 program += extract_function(source, 'RtcRead')
-program += extract_function(source, 'RtcDecodeBcd') + extract_function(source, 'RtcDecodeHour')
+program += extract_function(source, 'RtcDecodeBcd') + extract_function(source, 'RtcDecodeHour') + extract_function(source, 'RtcDecodeDateTime')
 program += r'''
 int main(void) {
     unsigned h, m, checks = 0;
@@ -35,15 +35,21 @@ int main(void) {
     for (h=0; h<24; h++) for (m=0; m<60; m++) {
         time[0]=(h/10)*16+h%10; time[1]=(m/10)*16+m%10; time[2]=0x59;
         assert(RtcDecodeHour(0x40,time,&hour) && hour==h); checks++;
-        { unsigned twelve=h%12; if (!twelve) twelve=12;
+        { unsigned twelve=h%12;
           time[0]=(twelve/10)*16+twelve%10; if (h>=12) time[0]|=0x80;
           assert(RtcDecodeHour(0,time,&hour) && hour==h); checks++; }
     }
-    time[0]=time[1]=time[2]=0; assert(!RtcDecodeHour(0,time,&hour)); checks++;
+    time[0]=time[1]=time[2]=0; assert(RtcDecodeHour(0,time,&hour) && hour==0); checks++;
     time[0]=time[1]=time[2]=255; assert(!RtcDecodeHour(255,time,&hour)); checks++;
     time[0]=0x24;time[1]=time[2]=0;assert(!RtcDecodeHour(0x40,time,&hour));checks++;
     time[0]=0x1a;assert(!RtcDecodeHour(0x40,time,&hour));checks++;
     time[0]=0x12;time[1]=0x60;assert(!RtcDecodeHour(0x40,time,&hour));checks++;
+    { u8 dateTime[7]={0};
+      assert(!RtcDecodeDateTime(0,dateTime,&hour));checks++;
+      dateTime[0]=0x24;dateTime[1]=0x02;dateTime[2]=0x29;
+      assert(RtcDecodeDateTime(0,dateTime,&hour) && hour==0);checks++;
+      dateTime[0]=0x23;assert(!RtcDecodeDateTime(0,dateTime,&hour));checks++;
+    }
     { u8 bytes[3];
       captured=0;output[0]=0x40;RtcRead(0x63,bytes,1);assert(captured==0x63 && bytes[0]==0x40);checks++;
       captured=0;output[0]=0x23;output[1]=0x59;output[2]=0x58;RtcRead(0x67,bytes,3);

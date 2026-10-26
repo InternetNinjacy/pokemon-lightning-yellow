@@ -75,23 +75,40 @@ static bool8 RtcDecodeHour(u8 status, const u8 *time, u8 *hour)
     }
     else // 12-hour mode, bit 7 = PM
     {
-        if (!RtcDecodeBcd(time[0] & 0x7F, 12, &rawHour) || rawHour == 0)
+        if (!RtcDecodeBcd(time[0] & 0x7F, 11, &rawHour))
             return FALSE;
-        *hour = rawHour % 12 + ((time[0] & 0x80) ? 12 : 0);
+        *hour = rawHour + ((time[0] & 0x80) ? 12 : 0);
     }
     return TRUE;
 }
 
+static bool8 RtcDecodeDateTime(u8 status, const u8 *dateTime, u8 *hour)
+{
+    u8 year, month, day, weekday;
+    u8 days;
+    if (!RtcDecodeBcd(dateTime[0], 99, &year)
+     || !RtcDecodeBcd(dateTime[1], 12, &month) || month == 0
+     || !RtcDecodeBcd(dateTime[2], 31, &day) || day == 0
+     || !RtcDecodeBcd(dateTime[3], 6, &weekday))
+        return FALSE;
+    days = month == 2 ? (year % 4 == 0 ? 29 : 28)
+         : (month == 4 || month == 6 || month == 9 || month == 11) ? 30 : 31;
+    if (day > days)
+        return FALSE;
+    return RtcDecodeHour(status, dateTime + 4, hour);
+}
+
 bool8 RtcGetHour(u8 *hour)
 {
-    u8 status, time[3];
+    u8 status, dateTime[7];
     u16 ime = REG_IME;
     // Bound the bit-banged transaction; preserve the caller's interrupt state.
     REG_IME = 0;
     RTC_CONTROL = 1;
     RtcRead(0x63, &status, 1);
-    RtcRead(0x67, time, 3);
+    RtcRead(0x65, dateTime, 7);
     RTC_CONTROL = 0;
     REG_IME = ime;
-    return RtcDecodeHour(status, time, hour);
+    // A valid calendar distinguishes midnight from absent all-zero hardware.
+    return RtcDecodeDateTime(status, dateTime, hour);
 }
