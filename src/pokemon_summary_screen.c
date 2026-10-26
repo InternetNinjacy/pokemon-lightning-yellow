@@ -1,4 +1,5 @@
 #include "global.h"
+#include "move_categories.h"
 #include "gflib.h"
 #include "pokemon.h"
 #include "pokemon_summary_screen.h"
@@ -2869,6 +2870,10 @@ static void PokeSum_PrintSelectedMoveStats(void)
                                      sLevelNickTextColors[0], TEXT_SKIP_DRAW,
                                      sMonSummaryScreen->summary.moveAccuracyStrBufs[sMoveSelectionCursorPos]);
 
+        AddTextPrinterParameterized3(sMonSummaryScreen->windowIds[POKESUM_WIN_TRAINER_MEMO], FONT_SMALL,
+                                     7, 29, sLevelNickTextColors[0], TEXT_SKIP_DRAW,
+                                     GetMoveCategoryName(sMonSummaryScreen->moveIds[sMoveSelectionCursorPos]));
+
         AddTextPrinterParameterized4(sMonSummaryScreen->windowIds[POKESUM_WIN_TRAINER_MEMO], FONT_NORMAL,
                                      7, 42,
                                      0, 0,
@@ -2920,10 +2925,18 @@ static void PokeSum_DrawMoveTypeIcons(void)
             continue;
 
         BlitMenuInfoIcon(sMonSummaryScreen->windowIds[5], sMonSummaryScreen->moveTypes[i] + 1, 3, GetMoveNamePrinterYpos(i));
+        AddTextPrinterParameterized3(sMonSummaryScreen->windowIds[5], FONT_SMALL,
+                                     3, GetMovePpPrinterYpos(i) + 2, sLevelNickTextColors[0], TEXT_SKIP_DRAW,
+                                     GetMoveCategoryShortName(sMonSummaryScreen->moveIds[i]));
     }
 
     if (sMonSummaryScreen->mode == PSS_MODE_SELECT_MOVE)
+    {
         BlitMenuInfoIcon(sMonSummaryScreen->windowIds[5], sMonSummaryScreen->moveTypes[4] + 1, 3, GetMoveNamePrinterYpos(4));
+        AddTextPrinterParameterized3(sMonSummaryScreen->windowIds[5], FONT_SMALL,
+                                     3, GetMovePpPrinterYpos(4) + 2, sLevelNickTextColors[0], TEXT_SKIP_DRAW,
+                                     GetMoveCategoryShortName(sMonSummaryScreen->moveIds[4]));
+    }
 }
 
 static void PokeSum_PrintPageHeaderText(u8 curPageIndex)

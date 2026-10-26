@@ -1,4 +1,5 @@
 #include "global.h"
+#include "move_categories.h"
 #include "gflib.h"
 #include "data.h"
 #include "item.h"
@@ -1407,15 +1408,14 @@ static void MoveSelectionDisplayPpNumber(void)
 
 static void MoveSelectionDisplayMoveType(void)
 {
+    static const u8 separator[] = _("/");
     u8 *txtPtr;
     struct ChooseMoveStruct *moveInfo = (struct ChooseMoveStruct *)(&gBattleBufferA[gActiveBattler][4]);
 
-    txtPtr = StringCopy(gDisplayedStringBattle, gText_MoveInterfaceType);
-    *txtPtr++ = EXT_CTRL_CODE_BEGIN;
-    *txtPtr++ = 6;
-    *txtPtr++ = 1;
-    txtPtr = StringCopy(txtPtr, gText_MoveInterfaceDynamicColors);
-    StringCopy(txtPtr, gTypeNames[gBattleMoves[moveInfo->moves[gMoveSelectionCursor[gActiveBattler]]].type]);
+    // Compact labels share the existing 64px type window; PP stays unchanged.
+    txtPtr = StringCopy(gDisplayedStringBattle, gTypeNames[gBattleMoves[moveInfo->moves[gMoveSelectionCursor[gActiveBattler]]].type]);
+    txtPtr = StringCopy(txtPtr, separator);
+    StringCopy(txtPtr, GetMoveCategoryShortName(moveInfo->moves[gMoveSelectionCursor[gActiveBattler]]));
     BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_MOVE_TYPE);
 }
 

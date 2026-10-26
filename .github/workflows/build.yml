@@ -1,43 +1,73 @@
-name: FireRed baseline
+name: Battle split validation
 on:
   push:
-    branches: [main, 'setup/**']
+    branches: [main, 'feature/**', 'setup/**']
   pull_request:
   workflow_dispatch:
 permissions:
   contents: read
 concurrency:
-  group: baseline-${{ github.ref }}
+  group: split-${{ github.ref }}
   cancel-in-progress: true
 jobs:
-  baseline:
+  verify:
+    name: ${{ matrix.target }}
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [modified, upstream-baseline]
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           persist-credentials: false
-      - name: Install upstream Linux dependencies
+      - name: Install upstream Linux dependencies and test runner
         run: |
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends build-essential binutils-arm-none-eabi git libpng-dev
+          sudo apt-get install -y --no-install-recommends build-essential binutils-arm-none-eabi git libpng-dev python3
           gcc --version
           arm-none-eabi-as --version
-          dpkg-query -W build-essential binutils-arm-none-eabi git libpng-dev
+          dpkg-query -W build-essential binutils-arm-none-eabi git libpng-dev python3
       - name: Reject tracked ROMs
         run: |
           if git ls-files | grep -Ei '\.(gba|gbc|gb|nds|zip|7z)$'; then
             echo 'ROMs and ROM archives must not be committed.' >&2
             exit 1
           fi
-      - name: Prepare pinned upstream build inputs and compiler
-        run: scripts/prepare-baseline.sh
-      - name: Build and compare clean FireRed baseline
-        run: make -j2 compare
-      - name: Rebuild from clean and compare again
+      - name: Run production-routine regression tests and data/UI audits
+        if: matrix.target == 'modified'
+        run: python3 tests/run_split_tests.py
+      - name: Check out independent unchanged upstream baseline
+        if: matrix.target == 'upstream-baseline'
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          repository: pret/pokefirered
+          ref: ce6406d8c2eaf46d543c8a2606de0c3cb1951982
+          path: vanilla
+          persist-credentials: false
+      - name: Prepare pinned compiler and inputs
+        env:
+          TARGET: ${{ matrix.target }}
         run: |
+          if [ "$TARGET" = upstream-baseline ]; then cd vanilla; fi
+          "$GITHUB_WORKSPACE/scripts/prepare-baseline.sh"
+      - name: Build modified game and verify clean reproducibility
+        if: matrix.target == 'modified'
+        run: |
+          make -j2
+          sha256sum pokefirered.gba > /tmp/modified.sha256
+          make clean
+          make -j2
+          sha256sum -c /tmp/modified.sha256
+          git diff --exit-code
+      - name: Verify original upstream SHA-1 twice from clean
+        if: matrix.target == 'upstream-baseline'
+        working-directory: vanilla
+        run: |
+          make -j2 compare
           make clean
           make -j2 compare
           sha1sum -c firered.sha1
           git diff --exit-code
-      # Deliberately no upload-artifact: generated ROMs stay on the runner.
+      # Deliberately no artifact upload: ROMs remain ephemeral runner outputs.

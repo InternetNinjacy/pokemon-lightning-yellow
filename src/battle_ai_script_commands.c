@@ -124,8 +124,8 @@ static void Cmd_get_move_type_from_result(void);
 static void Cmd_get_move_power_from_result(void);
 static void Cmd_get_move_effect_from_result(void);
 static void Cmd_get_protect_count(void);
-static void Cmd_nullsub_52(void);
-static void Cmd_nullsub_53(void);
+static void Cmd_get_move_category_from_result(void);
+static void Cmd_has_move_category(void);
 static void Cmd_nullsub_54(void);
 static void Cmd_nullsub_55(void);
 static void Cmd_nullsub_56(void);
@@ -228,8 +228,8 @@ static const BattleAICmdFunc sBattleAICmdTable[] =
     Cmd_get_move_power_from_result,       // 0x4F
     Cmd_get_move_effect_from_result,      // 0x50
     Cmd_get_protect_count,                // 0x51
-    Cmd_nullsub_52,                       // 0x52
-    Cmd_nullsub_53,                       // 0x53
+    Cmd_get_move_category_from_result,                       // 0x52
+    Cmd_has_move_category,                       // 0x53
     Cmd_nullsub_54,                       // 0x54
     Cmd_nullsub_55,                       // 0x55
     Cmd_nullsub_56,                       // 0x56
@@ -1954,12 +1954,37 @@ static void Cmd_get_protect_count(void)
     sAIScriptPtr += 2;
 }
 
-static void Cmd_nullsub_52(void)
+static void Cmd_get_move_category_from_result(void)
 {
+    u32 move = AI_THINKING_STRUCT->funcResult;
+    AI_THINKING_STRUCT->funcResult = move < MOVES_COUNT ? gBattleMoves[move].category : MOVE_CATEGORY_STATUS;
+    sAIScriptPtr++;
 }
 
-static void Cmd_nullsub_53(void)
+static void Cmd_has_move_category(void)
 {
+    u32 i;
+    u16 move;
+    u8 battler = sAIScriptPtr[1] == AI_USER ? gBattlerAttacker : gBattlerTarget;
+
+    AI_THINKING_STRUCT->funcResult = FALSE;
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        // Preserve the AI's information boundary: only observed enemy moves.
+        if (battler == gBattlerAttacker)
+            move = gBattleMons[battler].moves[i];
+        else
+        {
+#ifdef BUGFIX
+            move = BATTLE_HISTORY->usedMoves[battler].moves[i];
+#else
+            move = BATTLE_HISTORY->usedMoves[battler >> 1].moves[i];
+#endif
+        }
+        if (move != MOVE_NONE && move < MOVES_COUNT && gBattleMoves[move].category == sAIScriptPtr[2])
+            AI_THINKING_STRUCT->funcResult = TRUE;
+    }
+    sAIScriptPtr += 3;
 }
 
 static void Cmd_nullsub_54(void)
