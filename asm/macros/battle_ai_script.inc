@@ -599,3 +599,15 @@
 	.macro if_any_move_encored battler:req, ptr:req
 	if_any_move_disabled_or_encored \battler, 1, \ptr
 	.endm
+
+	@ Category commands occupy previously unused opcodes; type commands stay intact.
+	.macro get_move_category_from_result
+	.byte 0x52
+	.endm
+
+	.macro if_has_move_category battler:req, category:req, ptr:req
+	.byte 0x53
+	.byte \battler
+	.byte \category
+	if_equal 1, \ptr
+	.endm
