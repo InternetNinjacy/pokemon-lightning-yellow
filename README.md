@@ -8,6 +8,9 @@ with a separately reviewed [RTC dependency](docs/RTC_SUPPORT.md). This branch ex
 that work with the approved [evolution mechanics and Tyrogue menu](docs/EVOLUTION_MECHANICS.md). Other planned
 features remain unimplemented; [AGENTS.md](AGENTS.md) requires design approval.
 
+This branch also implements the approved [252-species custom Pokédex](docs/CUSTOM_POKEDEX.md),
+including Castform at #233. Trainer placement is pending finalized design.
+
 ## Build entirely on GitHub
 
 No local Python, compiler, or development tools are required. Open this repository's
@@ -37,6 +40,7 @@ scripts/prepare-baseline.sh
 python3 tests/run_split_tests.py
 python3 tests/run_rtc_tests.py
 python3 tests/run_evolution_tests.py
+python3 tests/run_pokedex_tests.py
 make -j2
 python3 tests/emulator/run.py
 make clean

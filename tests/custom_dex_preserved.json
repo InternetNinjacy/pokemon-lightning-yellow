@@ -1,0 +1,8 @@
+{
+  "src/data/pokemon/species_info.h": "9c2da1284f7859700b315abda0499334c422f2c6776d576c788fcd1e4050f71e",
+  "src/battle_util.c": "87cf810eb2d58361d1beb1537b3bd71c9160a77c2a17d703399f6ed373bb5720",
+  "src/data/trainers.h": "b2105a3b1d1baec02d8f6a89f44bcdf6a05cbaac1d6d8872766eec49aa8555bc",
+  "src/data/trainer_parties.h": "cb135d9cbdfc52c87066374d582506830a8c93561eab2033d847331c2de00299",
+  "src/data/pokemon/evolution.h": "75051423dce1b407cca12254788eb925faca011a5e2055be0d7e94157f38cad4",
+  "include/global.h": "044325b90e7c79146cc0cf73d31b6be3e4840059e2e778b63d9b5448fe538429"
+}

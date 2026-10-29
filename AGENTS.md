@@ -57,3 +57,12 @@ table at >=15 with Hitmonchan/Hitmonlee/Hitmontop in that order. Do not bypass
 National-Dex gates or claim custom-Dex integration until that feature is supplied.
 Run all host suites and mGBA integration tests after scene/menu changes. Keep this
 work separately reviewable on feature/evolution-mechanics; never merge dependencies.
+
+Standing owner authorization supersedes older blanket preparation-only restrictions:
+implement finalized specifications on reviewable feature branches without repeated
+permission requests. Do not invent pending designs, merge PRs, or enable auto-merge.
+The roster is now 252: insert Castform at #233 and shift old #233–251 by one.
+Read docs/CUSTOM_POKEDEX.md. Preserve canonical IDs and save flags. Castform keeps
+Generation III Normal typing, Forecast and original forms. Its exactly-one Celadon
+Gym trainer assignment is pending trainer/level/moveset details; do not choose them.
+Run tests/run_pokedex_tests.py as well as existing suites and mGBA after Dex changes.
