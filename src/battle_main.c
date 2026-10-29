@@ -1,4 +1,5 @@
 #include "global.h"
+#include "wild_double_battle.h"
 #include "gflib.h"
 #include "battle.h"
 #include "battle_anim.h"
@@ -3017,6 +3018,8 @@ u8 IsRunningFromBattleImpossible(void)
     side = GetBattlerSide(gActiveBattler);
     for (i = 0; i < gBattlersCount; i++)
     {
+        if (IsWildDoubleBattle() && (!gBattleMons[i].hp || (gAbsentBattlerFlags & gBitTable[i])))
+            continue;
         if (side != GetBattlerSide(i)
          && gBattleMons[i].ability == ABILITY_SHADOW_TAG)
         {
@@ -3036,7 +3039,17 @@ u8 IsRunningFromBattleImpossible(void)
             return BATTLE_RUN_FAILURE;
         }
     }
-    i = AbilityBattleEffects(ABILITYEFFECT_CHECK_FIELD_EXCEPT_BATTLER, gActiveBattler, ABILITY_MAGNET_PULL, 0, 0);
+    if (IsWildDoubleBattle())
+    {
+        i = 0;
+        for (side = 0; side < gBattlersCount; side++)
+            if (GetBattlerSide(side) != GetBattlerSide(gActiveBattler)
+             && gBattleMons[side].hp && !(gAbsentBattlerFlags & gBitTable[side])
+             && gBattleMons[side].ability == ABILITY_MAGNET_PULL)
+                i = side + 1;
+    }
+    else
+        i = AbilityBattleEffects(ABILITYEFFECT_CHECK_FIELD_EXCEPT_BATTLER, gActiveBattler, ABILITY_MAGNET_PULL, 0, 0);
     if (i != 0 && IS_BATTLER_OF_TYPE(gActiveBattler, TYPE_STEEL))
     {
         gBattleScripting.battler = i - 1;
@@ -4231,6 +4244,7 @@ bool8 TryRunFromBattle(u8 battler)
     bool8 effect = FALSE;
     u8 holdEffect;
     u8 speedVar;
+    u8 opponent = IsWildDoubleBattle() ? GetWildEscapeOpponent() : BATTLE_OPPOSITE(battler);
 
     if (gBattleMons[battler].item == ITEM_ENIGMA_BERRY)
         holdEffect = gEnigmaBerries[battler].holdEffect;
@@ -4256,11 +4270,11 @@ bool8 TryRunFromBattle(u8 battler)
     }
     else
     {
-        if (!(gBattleTypeFlags & BATTLE_TYPE_DOUBLE))
+        if (!(gBattleTypeFlags & BATTLE_TYPE_DOUBLE) || IsWildDoubleBattle())
         {
-            if (gBattleMons[battler].speed < gBattleMons[BATTLE_OPPOSITE(battler)].speed)
+            if (gBattleMons[battler].speed < gBattleMons[opponent].speed)
             {
-                speedVar = (gBattleMons[battler].speed * 128) / (gBattleMons[BATTLE_OPPOSITE(battler)].speed) + (gBattleStruct->runTries * 30);
+                speedVar = (gBattleMons[battler].speed * 128) / (gBattleMons[opponent].speed) + (gBattleStruct->runTries * 30);
                 if (speedVar > (Random() & 0xFF))
                     effect++;
             }

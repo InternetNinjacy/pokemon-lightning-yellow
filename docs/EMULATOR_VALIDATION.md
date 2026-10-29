@@ -97,3 +97,14 @@ helper build files are temporary. Optional `LIGHTNING_MENU_CAPTURE=/tmp/menu.ppm
 writes one local menu screenshot for visual inspection; CI does not set it or
 upload any screenshots. Read the PR/Actions logs for the results of the
 current revision. No merge or auto-merge is authorized by passing these checks.
+
+
+## Wild double battle capability
+
+The complete default run also includes `tests/emulator/wild_double.c`. See
+[the capability report](WILD_DOUBLE_BATTLES.md) for the exact generated-pair,
+walking, battle, Bag/capture, escape, PC transfer, weather, roamer and flash-save
+scenarios and their limits. `LIGHTNING_WILD_ONLY=1` is a focused diagnostic;
+GitHub Actions runs the complete suite. The harness resolves the player input
+functions within their actual ELF controller range, since tutorial controllers
+have similarly named local functions. No game assertions are disabled.

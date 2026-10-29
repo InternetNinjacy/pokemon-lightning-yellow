@@ -60,7 +60,7 @@ struct TrainerBattleParameter
 
 static void DoSafariBattle(void);
 static void DoGhostBattle(void);
-static void DoStandardWildBattle(void);
+static void DoStandardWildBattle(bool8 isDouble);
 static void CB2_EndWildBattle(void);
 static u8 GetWildBattleTransition(void);
 static u8 GetTrainerBattleTransition(void);
@@ -241,16 +241,21 @@ void StartWildBattle(void)
     else if (CheckSilphScopeInPokemonTower(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum))
         DoGhostBattle();
     else
-        DoStandardWildBattle();
+        DoStandardWildBattle(FALSE);
 }
 
-static void DoStandardWildBattle(void)
+void StartDoubleWildBattle(void)
+{
+    DoStandardWildBattle(TRUE);
+}
+
+static void DoStandardWildBattle(bool8 isDouble)
 {
     LockPlayerFieldControls();
     FreezeObjectEvents();
     StopPlayerAvatar();
     gMain.savedCallback = CB2_EndWildBattle;
-    gBattleTypeFlags = 0;
+    gBattleTypeFlags = isDouble ? BATTLE_TYPE_DOUBLE : 0;
     CreateBattleStartTask(GetWildBattleTransition(), 0);
     IncrementGameStat(GAME_STAT_TOTAL_BATTLES);
     IncrementGameStat(GAME_STAT_WILD_BATTLES);
