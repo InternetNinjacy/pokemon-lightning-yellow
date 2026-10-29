@@ -320,6 +320,8 @@ static void dexTests(void) {
     printf("PASS: real custom Dex screen opened, sorted lists filtered, Castform selected/displayed and B returned\n");
 }
 
+#include "wild_double.c"
+
 int main(int argc,char **argv) {
     setvbuf(stdout,NULL,_IONBF,0);
     printf("mGBA core version: %s\n",projectVersion);
@@ -339,6 +341,7 @@ int main(int argc,char **argv) {
     printf("RTC autodetected: %s\n",(gba->memory.hw.devices&HW_RTC)?"yes":"no");
     CHECK(gba->memory.hw.devices&HW_RTC);
     bootState=malloc(core->stateSize(core));CHECK(bootState && core->saveState(core,bootState));
+    if(getenv("LIGHTNING_WILD_ONLY")){wildTests();printf("PASS: %u focused wild assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_DEX_ONLY")){dexTests();printf("PASS: focused Dex diagnostic\n");core->deinit(core);free(pixels);free(bootState);return 0;}
     initSave();
     for(unsigned h=0;h<24;h++) {
@@ -407,6 +410,7 @@ int main(int argc,char **argv) {
     levelScene(SPECIES_TYROGUE,15,SPECIES_HITMONCHAN,0,1,100,100);
     levelScene(SPECIES_TYROGUE,16,SPECIES_HITMONTOP,2,2,100,100);
     dexTests();
+    wildTests();
     printf("PASS: %u mGBA assertions (includes API/register safety checks)\n",checks);
     core->deinit(core);free(pixels);free(bootState);
     return 0;

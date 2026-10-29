@@ -1,4 +1,5 @@
 #include "global.h"
+#include "wild_double_battle.h"
 #include "gflib.h"
 #include "battle.h"
 #include "battle_anim.h"
@@ -411,7 +412,7 @@ static void Task_DoPokeballSendOutAnim(u8 taskId)
         gSprites[ballSpriteId].callback = SpriteCB_OpponentMonSendOut;
         break;
     default:
-        gBattlerTarget = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
+        gBattlerTarget = GetWildCatchTarget();
         notSendOut = TRUE;
         break;
     }

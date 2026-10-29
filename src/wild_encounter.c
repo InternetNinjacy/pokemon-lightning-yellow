@@ -1,6 +1,7 @@
 #include "global.h"
 #include "random.h"
 #include "wild_encounter.h"
+#include "wild_double_battle.h"
 #include "event_data.h"
 #include "fieldmap.h"
 #include "random.h"
@@ -223,21 +224,27 @@ static bool8 UnlockedTanobyOrAreNotInTanoby(void)
     return FALSE;
 }
 
-static void GenerateWildMon(u16 species, u8 level, u8 slot)
+static void GenerateWildMonAt(u16 species, u8 level, u8 slot, u8 partySlot)
 {
     u32 personality;
     s8 chamber;
-    ZeroEnemyPartyMons();
     if (species != SPECIES_UNOWN)
     {
-        CreateMonWithNature(&gEnemyParty[0], species, level, USE_RANDOM_IVS, Random() % NUM_NATURES);
+        CreateMonWithNature(&gEnemyParty[partySlot], species, level, USE_RANDOM_IVS, Random() % NUM_NATURES);
     }
     else
     {
         chamber = gSaveBlock1Ptr->location.mapNum - MAP_NUM(MAP_SEVEN_ISLAND_TANOBY_RUINS_MONEAN_CHAMBER);
         personality = GenerateUnownPersonalityByLetter(sUnownLetterSlots[chamber][slot]);
-        CreateMon(&gEnemyParty[0], species, level, USE_RANDOM_IVS, TRUE, personality, FALSE, 0);
+        CreateMon(&gEnemyParty[partySlot], species, level, USE_RANDOM_IVS, TRUE, personality, FALSE, 0);
     }
+}
+
+// Preserve the original single-encounter clearing contract.
+static void GenerateWildMon(u16 species, u8 level, u8 slot)
+{
+    ZeroEnemyPartyMons();
+    GenerateWildMonAt(species, level, slot, 0);
 }
 
 static u32 GenerateUnownPersonalityByLetter(u8 letter)
@@ -288,6 +295,43 @@ static bool8 TryGenerateWildMon(const struct WildPokemonInfo * info, u8 area, u8
         return FALSE;
     }
     GenerateWildMon(info->wildPokemon[slot].species, level, slot);
+    return TRUE;
+}
+
+// Called only after the normal encounter-trigger and roamer checks. Repel tests
+// the first level exactly as in a single encounter; the second draw is unfiltered
+// (no rejection/redraw that would distort its table weights).
+static bool8 TryStartLandEncounter(const struct WildPokemonInfo *info, u8 flags)
+{
+    u8 slot[2];
+    u8 level[2];
+    u16 species[2];
+    u32 i;
+    s16 pair;
+    const struct WildDoubleMap *map;
+
+    if (!TryDoDoubleWildBattle())
+    {
+        if (!TryGenerateWildMon(info, WILD_AREA_LAND, flags))
+            return FALSE;
+        StartWildBattle();
+        return TRUE;
+    }
+    slot[0] = ChooseWildMonIndex_Land();
+    level[0] = ChooseWildMonLevel(&info->wildPokemon[slot[0]]);
+    if ((flags & WILD_CHECK_REPEL) && !IsWildLevelAllowedByRepel(level[0]))
+        return FALSE;
+    slot[1] = ChooseWildMonIndex_Land();
+    level[1] = ChooseWildMonLevel(&info->wildPokemon[slot[1]]);
+    map = GetWildDoubleMap();
+    pair = ChooseWildDoubleSpecialPair(map);
+    ZeroEnemyPartyMons();
+    for (i = 0; i < 2; i++)
+    {
+        species[i] = pair >= 0 ? map->pairs[pair].species[i] : info->wildPokemon[slot[i]].species;
+        GenerateWildMonAt(species[i], level[i], slot[i], i);
+    }
+    StartDoubleWildBattle();
     return TRUE;
 }
 
@@ -390,9 +434,8 @@ bool8 StandardWildEncounter(u32 currMetatileAttrs, u16 previousMetatileBehavior)
             {
 
                 // try a regular wild land encounter
-                if (TryGenerateWildMon(gWildMonHeaders[headerId].landMonsInfo, WILD_AREA_LAND, WILD_CHECK_REPEL) == TRUE)
+                if (TryStartLandEncounter(gWildMonHeaders[headerId].landMonsInfo, WILD_CHECK_REPEL) == TRUE)
                 {
-                    StartWildBattle();
                     return TRUE;
                 }
                 else
@@ -481,10 +524,7 @@ bool8 SweetScentWildEncounter(void)
             if (gWildMonHeaders[headerId].landMonsInfo == NULL)
                 return FALSE;
 
-            TryGenerateWildMon(gWildMonHeaders[headerId].landMonsInfo, WILD_AREA_LAND, 0);
-
-            StartWildBattle();
-            return TRUE;
+            return TryStartLandEncounter(gWildMonHeaders[headerId].landMonsInfo, 0);
         }
         else if (MapGridGetMetatileAttributeAt(x, y, METATILE_ATTRIBUTE_ENCOUNTER_TYPE) == TILE_ENCOUNTER_WATER)
         {

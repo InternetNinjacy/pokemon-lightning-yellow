@@ -43,8 +43,8 @@ Do not change National-Dex gating, other evolution data or balance without appro
 
 For emulator validation, read docs/EMULATOR_VALIDATION.md. After building the ROM,
 run python3 tests/emulator/run.py (requires packaged libmgba-dev). It executes real
-ROM code and evolution scenes but does not certify full battles, visual UI, link
-peers or physical cartridges. Preserve the guarded test RAM and target-generated
+ROM code, evolution/Dex scenes and selected wild-battle scenarios. It does not
+certify every battle mechanic, full playthroughs, link peers or physical cartridges. Preserve the guarded test RAM and target-generated
 ABI checks; never disable assertions to make the suite pass. No proprietary BIOS,
 ROM or save-state artifacts may be committed/uploaded. Passing CI does not authorize
 merging or enabling auto-merge.
@@ -66,3 +66,11 @@ Read docs/CUSTOM_POKEDEX.md. Preserve canonical IDs and save flags. Castform kee
 Generation III Normal typing, Forecast and original forms. Its exactly-one Celadon
 Gym trainer assignment is pending trainer/level/moveset details; do not choose them.
 Run tests/run_pokedex_tests.py as well as existing suites and mGBA after Dex changes.
+
+The owner authorized the wild-double capability test. Read docs/WILD_DOUBLE_BATTLES.md.
+Work on feature/wild-double-battle-capability stacked on PR #6. Route 1 and Mt. Moon
+1F are experimental test maps, not finalized production placements. Preserve the
+first-draw Repel policy, independent second draw, 5% weighted pair, single fallback,
+roamer priority and survivor-based captures. Run tests/run_wild_double_tests.py and
+all earlier suites, including full mGBA, after encounter/battle changes. Do not
+claim compatibility with unfinished dynamic weather or every battle move. No merges.

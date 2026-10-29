@@ -1,4 +1,5 @@
 #include "global.h"
+#include "wild_double_battle.h"
 #include "gflib.h"
 #include "battle.h"
 #include "battle_anim.h"
@@ -1890,7 +1891,7 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
                 toCpy = text;
                 break;
             case B_TXT_OPPONENT_MON1_NAME: // first enemy poke name
-                GetMonData(&gEnemyParty[gBattlerPartyIndexes[GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT)]],
+                GetMonData(&gEnemyParty[gBattlerPartyIndexes[GetWildCatchTarget()]],
                            MON_DATA_NICKNAME, text);
                 StringGet_Nickname(text);
                 toCpy = text;

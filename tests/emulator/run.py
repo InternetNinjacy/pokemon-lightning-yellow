@@ -38,14 +38,51 @@ for key,expr in {
  'BMON_HP':'offsetof(struct BattlePokemon,hp)',
  'BMON_TYPE1':'offsetof(struct BattlePokemon,type1)',
  'BMON_TYPE2':'offsetof(struct BattlePokemon,type2)',
+ 'BUFFER_STRIDE':'sizeof(gBattleBufferA[0])',
+ 'MOVEINFO_MOVES':'offsetof(struct ChooseMoveStruct,moves)',
+ 'META_ALL':'METATILE_ATTRIBUTES_ALL',
+ 'META_BEHAVIOR':'METATILE_ATTRIBUTE_BEHAVIOR',
+ 'META_ENCOUNTER':'METATILE_ATTRIBUTE_ENCOUNTER_TYPE',
+ 'TILE_LAND':'TILE_ENCOUNTER_LAND',
+ 'SAVE2_PLAYER_NAME':'offsetof(struct SaveBlock2,playerName)',
+ 'BAG_POCKET':'offsetof(struct BagStruct,pocket)',
+ 'SAVE1_LOCATION':'offsetof(struct SaveBlock1,location)',
+ 'WILD_HEADER_SIZE':'sizeof(struct WildPokemonHeader)',
+ 'WILD_HEADER_LAND':'offsetof(struct WildPokemonHeader,landMonsInfo)',
+ 'BMON_SPEED':'offsetof(struct BattlePokemon,speed)',
+ 'BMON_LEVEL':'offsetof(struct BattlePokemon,level)',
+ 'BMON_STATUS1':'offsetof(struct BattlePokemon,status1)',
+ 'BMON_STATUS2':'offsetof(struct BattlePokemon,status2)',
+ 'BMON_ITEM':'offsetof(struct BattlePokemon,item)',
+ 'BMON_MOVES':'offsetof(struct BattlePokemon,moves)',
+ 'BMON_PP':'offsetof(struct BattlePokemon,pp)',
+ 'BATTLESTRUCT_MOVETARGET':'offsetof(struct BattleStruct,moveTarget)',
+ 'RESULT_CAUGHT':'offsetof(struct BattleResults,caughtMonSpecies)',
 }.items(): expressions[key]=expr
-for name in ['SPECIES','HELD_ITEM','LEVEL','FRIENDSHIP','IS_EGG','ATK','DEF']:
+for name in ['SPECIES','HELD_ITEM','LEVEL','FRIENDSHIP','IS_EGG','ATK','DEF','HP','MAX_HP','MOVE1','MOVE2','MOVE3','MOVE4','PP1','PP2','PP3','PP4']:
     expressions['DATA_'+name] = 'MON_DATA_'+name
-required = ['ListMenuGetScrollAndRow','CustomPokedexNumToSpecies','SpeciesToCustomPokedexNum','GetCustomPokedexCount','HasAllCustomPokedexSpecies','HasAllMons','SpeciesToPokedexNum','CastformDataTypeChange','GetMonAbility','gBattleMons','gBattleWeather','gBattlersCount','CB2_OpenPokedexFromStartMenu','sPokedexScreenData','DexScreen_CountMonsInOrderedList','EvolutionScene','Menu_GetCursorPos','Menu_MoveCursorNoWrapAround','SpeciesToNationalPokedexNum','GetSetPokedexFlag','TrySavingData','LoadGameSave','gFlashMemoryPresent','gPokemonStoragePtr','gPokemonStorage','Save_ResetSaveCounters','RtcGetHour','gPlayerParty','CreateMon','SetMonData','GetMonData3',
-            'GetEvolutionTargetSpecies','gSaveBlock1Ptr','gSaveBlock2Ptr','gSaveBlock1','gSaveBlock2',
-            'SetBagPocketsPointers','ClearBag','EnableNationalPokedex','DisableNationalPokedex','AddBagItem','BagGetQuantityByItemId',
-            'BeginItemEvolution','CB2_FinishItemEvolution','gMain','gCB2_AfterEvolution',
-            'gEvolutionTable','Task_EvolutionScene','gTasks','sEvoStructPtr','gPlayerPartyCount','gHeap','ResetTasks','gPaletteFade','sPlttBufferTransferPending']
+required = [
+    'AddBagItem', 'BagGetQuantityByItemId', 'BeginItemEvolution', 'CB2_LoadMap', 'CB2_OpenPokedexFromStartMenu',
+    'CB2_Overworld', 'CastformDataTypeChange', 'ClearBag', 'CreateMon', 'CustomPokedexNumToSpecies',
+    'DexScreen_CountMonsInOrderedList', 'DisableNationalPokedex', 'EnableNationalPokedex', 'EvolutionScene', 'FlagSet',
+    'GetBoxMonDataAt', 'GetBoxNamePtr', 'GetCurrentMapWildMonHeaderId', 'GetCustomPokedexCount', 'GetEvolutionTargetSpecies',
+    'GetMonAbility', 'GetMonData3', 'GetSav1Weather', 'GetSetPokedexFlag', 'GetWildCatchTarget',
+    'GetWildOpponentCount', 'HandleInputChooseAction', 'HandleInputChooseMove', 'HandleInputChooseTarget', 'HasAllCustomPokedexSpecies',
+    'HasAllMons', 'InitRoamer', 'IsRunningFromBattleImpossible', 'ListMenuGetScrollAndRow', 'LoadGameSave',
+    'MapGridGetMetatileAttributeAt', 'Menu_GetCursorPos', 'Menu_MoveCursorNoWrapAround', 'OpponentHandleChooseMove', 'PlayerGetDestCoords',
+    'ResetInitialPlayerAvatarState', 'ResetTasks', 'RtcGetHour', 'Save_ResetSaveCounters', 'SetBagPocketsPointers',
+    'SetControllerToOpponent', 'SetControllerToPlayer', 'SetMonData', 'SetWarpDestination', 'SetWeather',
+    'SpeciesToCustomPokedexNum', 'SpeciesToNationalPokedexNum', 'SpeciesToPokedexNum', 'StandardWildEncounter', 'SweetScentWildEncounter',
+    'TryDoDoubleWildBattle', 'TrySavingData', 'TryStartLandEncounter', 'VarSet', 'WarpIntoMap',
+    'ZeroPlayerPartyMons', 'gActionSelectionCursor', 'gActiveBattler', 'gBagMenuState', 'gBattleBufferA',
+    'gBattleBufferB', 'gBattleMons', 'gBattleOutcome', 'gBattleResults', 'gBattleTypeFlags',
+    'gBattleWeather', 'gBattlerControllerFuncs', 'gBattlersCount', 'gBattlescriptCurrInstr', 'gCB2_AfterEvolution',
+    'gEnemyParty', 'gFlashMemoryPresent', 'gMain', 'gMoveSelectionCursor', 'gMultiUsePlayerCursor',
+    'gPaletteFade', 'gPlayerParty', 'gPlayerPartyCount', 'gPokemonStorage', 'gPokemonStoragePtr',
+    'gRngValue', 'gSaveBlock1', 'gSaveBlock1Ptr', 'gSaveBlock2', 'gSaveBlock2Ptr',
+    'gTasks', 'gWildMonHeaders', 'sEvoStructPtr', 'sPlttBufferTransferPending', 'sPokedexScreenData',
+    'sRoamerLocation',
+]
 symbols={}
 end_ewram=0
 for line in subprocess.check_output(['arm-none-eabi-nm','-S','pokefirered.elf'],text=True).splitlines():
@@ -56,12 +93,16 @@ assert end_ewram<0x0203FD00, 'No safe test-stack space at end of EWRAM'
 for line in subprocess.check_output(['arm-none-eabi-nm','-n','pokefirered.elf'],text=True).splitlines():
     fields=line.split()
     if len(fields)==3 and fields[2] in required:
-        symbols[fields[2]]=int(fields[0],16)
+        symbols.setdefault(fields[2],int(fields[0],16)) # first matching local symbol (player controller precedes tutorial controllers)
 assert set(required)<=symbols.keys(), set(required)-symbols.keys()
+# Private input function names also exist in tutorial controllers. Verify the
+# selected local symbols belong to the actual player controller's address range.
+for name in ['HandleInputChooseAction','HandleInputChooseMove','HandleInputChooseTarget']:
+    assert symbols['SetControllerToPlayer'] < symbols[name] < symbols['SetControllerToOpponent'], name
 with tempfile.TemporaryDirectory(prefix='lightning-emulator-') as temp:
     temp=Path(temp)
     source='#include <stddef.h>\n#include "global.h"\n#include "pokemon.h"\n#include "main.h"\n#include "task.h"\n'
-    source+='#include "list_menu.h"\n'+screen_struct+'\n'
+    source+='#include "battle_controllers.h"\n#include "item_menu.h"\n#include "wild_encounter.h"\n#include "battle.h"\n#include "list_menu.h"\n'+screen_struct+'\n'
     source+='const unsigned long abi[] = {'+', '.join(expressions.values())+'};\n'
     (temp/'abi.c').write_text(source)
     with (temp/'abi.i').open('w') as out:
