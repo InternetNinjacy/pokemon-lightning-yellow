@@ -14,6 +14,9 @@
 #include "constants/species.h"
 #include "constants/items.h"
 #include "constants/pokemon.h"
+#include "constants/abilities.h"
+#include "constants/battle.h"
+#include "constants/pokedex.h"
 #include "symbols.h"
 
 static struct mCore *core;
@@ -232,6 +235,91 @@ static void levelScene(unsigned species,unsigned level,unsigned evolved,unsigned
     printf("PASS: level scene species=%u level=%u choice=%u %s target=%u in %u frames\n",species,level,selection,cancel==1?"menu B":cancel==2?"animation B":"success and flash save/load",evolved,frame);
 }
 
+static void frames(unsigned count,unsigned keys) {
+    core->setKeys(core,keys);while(count--)core->runFrame(core);core->setKeys(core,0);
+}
+static void dexTests(void) {
+    CHECK(core->loadState(core,bootState));initSave();CALL(DisableNationalPokedex);
+    unsigned castDex=CALL(SpeciesToNationalPokedexNum,SPECIES_CASTFORM);
+    CHECK(castDex==NATIONAL_DEX_CASTFORM);
+    CHECK(CALL(SpeciesToCustomPokedexNum,SPECIES_CASTFORM)==233);
+    CHECK(CALL(SpeciesToCustomPokedexNum,SPECIES_KECLEON)==234);
+    CHECK(CALL(SpeciesToCustomPokedexNum,SPECIES_MEW)==252);
+    CHECK(CALL(CustomPokedexNumToSpecies,253)==SPECIES_NONE);
+    for(unsigned number=1;number<=252;number++) {
+        unsigned species=CALL(CustomPokedexNumToSpecies,number);
+        CHECK(species!=SPECIES_NONE);CHECK(CALL(SpeciesToCustomPokedexNum,species)==number);
+        CHECK(CALL(SpeciesToPokedexNum,species)==number);
+        unsigned national=CALL(SpeciesToNationalPokedexNum,species);
+        CALL(GetSetPokedexFlag,national,2);CALL(GetSetPokedexFlag,national,3);
+    }
+    // External excluded species retain their canonical flags without entering
+    // the custom roster or inflating its counts. Test with a real excluded mon.
+    unsigned excluded=CALL(SpeciesToNationalPokedexNum,SPECIES_CLAMPERL);
+    CALL(GetSetPokedexFlag,excluded,2);CALL(GetSetPokedexFlag,excluded,3);
+    CHECK(CALL(GetCustomPokedexCount,0)==252);CHECK(CALL(GetCustomPokedexCount,1)==252);
+    CHECK(CALL(HasAllMons));CHECK(CALL(HasAllCustomPokedexSpecies));
+    create(SPECIES_CASTFORM,30);CHECK(CALL(GetMonAbility,SYM_gPlayerParty)==ABILITY_FORECAST);
+    core->busWrite8(core,SYM_gPlayerPartyCount,1);
+    CHECK(CALL(TrySavingData,0)==1);
+    for(unsigned i=0;i<ABI_SAVE1_SIZE;i+=4)core->busWrite32(core,SYM_gSaveBlock1+i,0);
+    for(unsigned i=0;i<ABI_SAVE2_SIZE;i+=4)core->busWrite32(core,SYM_gSaveBlock2+i,0);
+    put(ABI_DATA_SPECIES,SPECIES_BULBASAUR);
+    CHECK(CALL(LoadGameSave,0)==1);CHECK(get(ABI_DATA_SPECIES)==SPECIES_CASTFORM);
+    CHECK(CALL(GetCustomPokedexCount,1)==252);CHECK(CALL(GetSetPokedexFlag,excluded,1));
+    CHECK(CALL(SpeciesToCustomPokedexNum,SPECIES_CASTFORM)==233);
+    // Production Forecast helper in real ARM ROM. No new weather mechanics.
+    unsigned mon=SYM_gBattleMons;
+    core->busWrite8(core,SYM_gBattlersCount,1);
+    core->busWrite16(core,mon+ABI_BMON_SPECIES,SPECIES_CASTFORM);
+    core->busWrite16(core,mon+ABI_BMON_HP,100);
+    core->busWrite8(core,mon+ABI_BMON_ABILITY,ABILITY_FORECAST);
+    core->busWrite8(core,mon+ABI_BMON_TYPE1,TYPE_NORMAL);core->busWrite8(core,mon+ABI_BMON_TYPE2,TYPE_NORMAL);
+    const unsigned weather[]={B_WEATHER_SUN,B_WEATHER_RAIN,B_WEATHER_HAIL,0};
+    const unsigned types[]={TYPE_FIRE,TYPE_WATER,TYPE_ICE,TYPE_NORMAL};
+    for(unsigned i=0;i<4;i++) {
+        core->busWrite16(core,SYM_gBattleWeather,weather[i]);CHECK(CALL(CastformDataTypeChange,0)!=0);
+        CHECK(core->busRead8(core,mon+ABI_BMON_TYPE1)==types[i]);CHECK(core->busRead8(core,mon+ABI_BMON_TYPE2)==types[i]);
+        CHECK(CALL(CastformDataTypeChange,0)==0);
+    }
+    printf("PASS: all 252 real ROM mappings, canonical flags/counts, Castform save/load, Forecast forms and ability\n");
+    // Exercise actual pre-National-Dex screen and list code, then normal A/DOWN
+    // navigation to Castform and its entry. One-count layout also survives unlock.
+    core->busWrite32(core,SYM_gMain,0);CALL(ResetTasks);CALL(CB2_OpenPokedexFromStartMenu);
+    frames(100,0);
+    unsigned screen=core->busRead32(core,SYM_sPokedexScreenData);
+    CHECK(screen>=0x02000000 && screen<0x02040000);
+    for(unsigned order=0;order<6;order++)CHECK(CALL(DexScreen_CountMonsInOrderedList,order)==252);
+    // Return list to custom numerical order (enum order zero).
+    CHECK(CALL(DexScreen_CountMonsInOrderedList,0)==252);
+    unsigned list=core->busRead32(core,screen+ABI_SCREEN_LIST);
+    for(unsigned i=0;i<252;i++)CHECK((core->busRead32(core,list+i*ABI_LIST_SIZE+ABI_LIST_INDEX)&65535)==CALL(CustomPokedexNumToSpecies,i+1));
+    frames(1,1);frames(80,0); // A: numerical mode
+    CHECK(core->busRead16(core,screen+ABI_SCREEN_COUNT)==252);
+    unsigned menu=core->busRead8(core,screen+ABI_SCREEN_ORDERED_MENU),position=0,presses;
+    for(presses=0;presses<300 && position<232;presses++) {
+        // Let normal input processing observe short holds even when a graphics
+        // frame spans several hardware frames. Query the game's real cursor.
+        frames(3,128);frames(3,0);
+        CALL(ListMenuGetScrollAndRow,menu,scratch,scratch+2);
+        position=core->busRead16(core,scratch)+core->busRead16(core,scratch+2);
+    }
+    CHECK(position==232);
+    frames(3,1);frames(100,0); // A: Castform entry
+    fprintf(stderr,"Dex selection: species=%u state=%u\n",core->busRead16(core,screen+ABI_SCREEN_DEX_SPECIES),core->busRead8(core,screen+ABI_SCREEN_STATE));
+    // Optional local capture. CI never uploads ROM or screenshot artifacts.
+    const char *capture=getenv("LIGHTNING_DEX_CAPTURE");
+    if(capture) {
+        const void *video;size_t stride;core->getPixels(core,&video,&stride);
+        FILE *file=fopen(capture,"wb");CHECK(file);fprintf(file,"P6\n240 160\n255\n");
+        for(unsigned y=0;y<160;y++)for(unsigned x=0;x<240;x++) {color_t pixel=((const color_t*)video)[y*stride+x];fputc(pixel&255,file);fputc((pixel>>8)&255,file);fputc((pixel>>16)&255,file);}
+        fclose(file);
+    }
+    CHECK(core->busRead16(core,screen+ABI_SCREEN_DEX_SPECIES)==SPECIES_CASTFORM);
+    frames(1,2);frames(80,0); // B: return to numerical list
+    printf("PASS: real custom Dex screen opened, sorted lists filtered, Castform selected/displayed and B returned\n");
+}
+
 int main(int argc,char **argv) {
     setvbuf(stdout,NULL,_IONBF,0);
     printf("mGBA core version: %s\n",projectVersion);
@@ -251,6 +339,7 @@ int main(int argc,char **argv) {
     printf("RTC autodetected: %s\n",(gba->memory.hw.devices&HW_RTC)?"yes":"no");
     CHECK(gba->memory.hw.devices&HW_RTC);
     bootState=malloc(core->stateSize(core));CHECK(bootState && core->saveState(core,bootState));
+    if(getenv("LIGHTNING_DEX_ONLY")){dexTests();printf("PASS: focused Dex diagnostic\n");core->deinit(core);free(pixels);free(bootState);return 0;}
     initSave();
     for(unsigned h=0;h<24;h++) {
         clockAt(h);core->busWrite8(core,scratch,255);
@@ -317,6 +406,7 @@ int main(int argc,char **argv) {
         levelScene(SPECIES_TYROGUE,15,choices[i],i,0,stats==0?200:10,stats==2?200:10);
     levelScene(SPECIES_TYROGUE,15,SPECIES_HITMONCHAN,0,1,100,100);
     levelScene(SPECIES_TYROGUE,16,SPECIES_HITMONTOP,2,2,100,100);
+    dexTests();
     printf("PASS: %u mGBA assertions (includes API/register safety checks)\n",checks);
     core->deinit(core);free(pixels);free(bootState);
     return 0;

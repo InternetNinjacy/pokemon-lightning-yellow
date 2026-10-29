@@ -11,6 +11,7 @@
 #include "strings.h"
 #include "trainer_card.h"
 #include "pokedex.h"
+#include "custom_pokedex.h"
 #include "pokemon_icon.h"
 #include "graphics.h"
 #include "help_system.h"
@@ -1167,9 +1168,9 @@ static void PrintMoneyOnCard(void)
 static u16 GetCaughtMonsCount(void)
 {
     if (IsNationalPokedexEnabled())
-        return GetNationalPokedexCount(FLAG_GET_CAUGHT);
+        return GetCustomPokedexCount(FLAG_GET_CAUGHT);
     else
-        return GetKantoPokedexCount(FLAG_GET_CAUGHT);
+        return GetCustomPokedexCount(FLAG_GET_CAUGHT);
 }
 
 static void PrintPokedexOnCard(void)

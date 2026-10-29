@@ -19,9 +19,29 @@ expressions = {
     'TASK_SIZE': 'sizeof(struct Task)',
     'TASK_DATA': 'offsetof(struct Task, data)',
 }
+# Private screen layout is read from the same source compiled into this ROM.
+screen_text=Path('src/pokedex_screen.c').read_text()
+screen_struct=screen_text[screen_text.index('struct PokedexScreenData\n'):]
+screen_struct=screen_struct[:screen_struct.index('\n};')+3]
+for key,expr in {
+ 'SCREEN_ORDERED_MENU':'offsetof(struct PokedexScreenData,orderedListMenuTaskId)',
+ 'SCREEN_LIST':'offsetof(struct PokedexScreenData,listItems)',
+ 'SCREEN_COUNT':'offsetof(struct PokedexScreenData,orderedDexCount)',
+ 'SCREEN_STATE':'offsetof(struct PokedexScreenData,state)',
+ 'SCREEN_TASK':'offsetof(struct PokedexScreenData,taskId)',
+ 'SCREEN_DEX_SPECIES':'offsetof(struct PokedexScreenData,dexSpecies)',
+ 'LIST_SIZE':'sizeof(struct ListMenuItem)',
+ 'LIST_INDEX':'offsetof(struct ListMenuItem,index)',
+ 'BMON_SIZE':'sizeof(struct BattlePokemon)',
+ 'BMON_SPECIES':'offsetof(struct BattlePokemon,species)',
+ 'BMON_ABILITY':'offsetof(struct BattlePokemon,ability)',
+ 'BMON_HP':'offsetof(struct BattlePokemon,hp)',
+ 'BMON_TYPE1':'offsetof(struct BattlePokemon,type1)',
+ 'BMON_TYPE2':'offsetof(struct BattlePokemon,type2)',
+}.items(): expressions[key]=expr
 for name in ['SPECIES','HELD_ITEM','LEVEL','FRIENDSHIP','IS_EGG','ATK','DEF']:
     expressions['DATA_'+name] = 'MON_DATA_'+name
-required = ['EvolutionScene','Menu_GetCursorPos','Menu_MoveCursorNoWrapAround','SpeciesToNationalPokedexNum','GetSetPokedexFlag','TrySavingData','LoadGameSave','gFlashMemoryPresent','gPokemonStoragePtr','gPokemonStorage','Save_ResetSaveCounters','RtcGetHour','gPlayerParty','CreateMon','SetMonData','GetMonData3',
+required = ['ListMenuGetScrollAndRow','CustomPokedexNumToSpecies','SpeciesToCustomPokedexNum','GetCustomPokedexCount','HasAllCustomPokedexSpecies','HasAllMons','SpeciesToPokedexNum','CastformDataTypeChange','GetMonAbility','gBattleMons','gBattleWeather','gBattlersCount','CB2_OpenPokedexFromStartMenu','sPokedexScreenData','DexScreen_CountMonsInOrderedList','EvolutionScene','Menu_GetCursorPos','Menu_MoveCursorNoWrapAround','SpeciesToNationalPokedexNum','GetSetPokedexFlag','TrySavingData','LoadGameSave','gFlashMemoryPresent','gPokemonStoragePtr','gPokemonStorage','Save_ResetSaveCounters','RtcGetHour','gPlayerParty','CreateMon','SetMonData','GetMonData3',
             'GetEvolutionTargetSpecies','gSaveBlock1Ptr','gSaveBlock2Ptr','gSaveBlock1','gSaveBlock2',
             'SetBagPocketsPointers','ClearBag','EnableNationalPokedex','DisableNationalPokedex','AddBagItem','BagGetQuantityByItemId',
             'BeginItemEvolution','CB2_FinishItemEvolution','gMain','gCB2_AfterEvolution',
@@ -41,6 +61,7 @@ assert set(required)<=symbols.keys(), set(required)-symbols.keys()
 with tempfile.TemporaryDirectory(prefix='lightning-emulator-') as temp:
     temp=Path(temp)
     source='#include <stddef.h>\n#include "global.h"\n#include "pokemon.h"\n#include "main.h"\n#include "task.h"\n'
+    source+='#include "list_menu.h"\n'+screen_struct+'\n'
     source+='const unsigned long abi[] = {'+', '.join(expressions.values())+'};\n'
     (temp/'abi.c').write_text(source)
     with (temp/'abi.i').open('w') as out:
