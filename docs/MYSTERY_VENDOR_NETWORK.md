@@ -52,3 +52,16 @@ Current status: handoff read; base/source starter conflict investigated; owner
 boundary approved; branch created. Vendor code NOT implemented, built or tested;
 no vendor PR yet. Existing PR #11 results do not validate this future feature.
 No merge, auto-merge or ROM release is authorized.
+
+## Additional supplied documents — November 2
+
+Read all five subsequent uploads: vendor pool CSV; two byte-identical Poké Ball
+rules CSVs; DOCUMENT_CHECKLIST.md; FEATURE_STATUS_AND_AUTHORITY.md. The vendor
+CSV independently confirms all ten species, level5, price700,90% and OT Mystery.
+The status document explicitly confirms starter exclusivity is an integration
+dependency, not a vendor implementation blocker. Gyarados remains unresolved;
+the special-overworld subsystem has an explicit separate implementation hold.
+Poké Ball work follows the current vendor task and remains isolated. The file
+checklist describes source exports; those described TXT exports were not among
+these five attached files and are not claimed read. A checklist is not evidence
+that its listed files are accessible. No merge/release authorization is added.
