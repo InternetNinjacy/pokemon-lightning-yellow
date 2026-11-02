@@ -61,6 +61,9 @@ static unsigned pickEgg(unsigned route5) {
 static void flashRoundTrip(void) {
  CHECK(CALL(TrySavingData,0)==1);
  clearBytes(careSave1(),ABI_SAVE1_SIZE);clearBytes(careSave2(),ABI_SAVE2_SIZE);
+ // Force party Eggs/hatched data to come back from flash, never leftover RAM.
+ clearBytes(SYM_gPlayerParty,PARTY_SIZE*ABI_MON_SIZE);
+ core->busWrite8(core,SYM_gPlayerPartyCount,0);
  CHECK(CALL(LoadGameSave,0)==1);
 }
 static void migrationTests(void) {
