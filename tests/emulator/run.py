@@ -71,6 +71,9 @@ for key,expr in {
  'BMON_STAGES_COUNT':'NUM_BATTLE_STATS',
  'BATTLESTRUCT_DYNAMIC_TYPE':'offsetof(struct BattleStruct,dynamicMoveType)',
  'SCRIPTING_MULTIPLIER':'offsetof(struct BattleScripting,dmgMultiplier)',
+ 'SCRIPT_PTR':'offsetof(struct ScriptContext,scriptPtr)',
+ 'SAVE1_MONEY':'offsetof(struct SaveBlock1,money)',
+ 'PLAYER_PREVENT_STEP':'offsetof(struct PlayerAvatar,preventStep)',
  'CARE_SIZE':'sizeof(struct DayCare)',
  'CARE_MON_SIZE':'sizeof(struct DaycareMon)',
  'BOX_SIZE':'sizeof(struct BoxPokemon)',
@@ -115,6 +118,9 @@ required = [
     'gPaletteFade', 'gPlayerParty', 'gPlayerPartyCount', 'gPokemonStorage', 'gPokemonStoragePtr',
     'gRngValue', 'gSaveBlock1', 'gSaveBlock1Ptr', 'gSaveBlock2', 'gSaveBlock2Ptr',
     'gTasks', 'gWildMonHeaders', 'sEvoStructPtr', 'sPlttBufferTransferPending', 'sPokedexScreenData',
+    'sEggHatchData', 'sGlobalScriptContext', 'sGlobalScriptContextStatus', 'EggHatch', 'CB2_EggHatch_0', 'CB2_EggHatch_1',
+    'CB2_UpdatePartyMenu', 'SetMoney', 'GetMoney', 'GetGameStat', 'SetGameStat',
+    'ArePlayerFieldControlsLocked', 'gPlayerAvatar', 'gQuestLogState',
     'GetRoute5Daycare', 'GetActiveDaycare', 'IsRoute5DaycareReady', 'TriggerPendingDaycareEgg',
     'SetRoute5PendingEgg', 'GiveEggFromDaycare', 'RejectEggFromDayCare', 'ShouldEggHatch',
     'StoreSelectedPokemonInDaycare', 'StorePokemonInDaycare', 'TakePokemonFromDaycare',
@@ -149,7 +155,7 @@ for name in ['HandleInputChooseAction','HandleInputChooseMove','HandleInputChoos
 with tempfile.TemporaryDirectory(prefix='lightning-emulator-') as temp:
     temp=Path(temp)
     source='#include <stddef.h>\n#include "global.h"\n#include "pokemon.h"\n#include "main.h"\n#include "task.h"\n'
-    source+='#include "battle_controllers.h"\n#include "item_menu.h"\n#include "wild_encounter.h"\n#include "battle.h"\n#include "list_menu.h"\n#include "party_menu.h"\n'+screen_struct+'\n'+summary_struct+'\n'
+    source+='#include "battle_controllers.h"\n#include "item_menu.h"\n#include "wild_encounter.h"\n#include "battle.h"\n#include "list_menu.h"\n#include "party_menu.h"\n#include "script.h"\n#include "field_player_avatar.h"\n'+screen_struct+'\n'+summary_struct+'\n'
     source+='const unsigned long abi[] = {'+', '.join(expressions.values())+'};\n'
     (temp/'abi.c').write_text(source)
     with (temp/'abi.i').open('w') as out:

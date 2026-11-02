@@ -1,5 +1,6 @@
 // Compiled-ROM daycare/crypto/hatching fixtures, sharing guarded ARM invocation.
 #include "constants/daycare.h"
+#include "constants/game_stat.h"
 static uint32_t careSave1(void) {return core->busRead32(core,SYM_gSaveBlock1Ptr);}
 static uint32_t careSave2(void) {return core->busRead32(core,SYM_gSaveBlock2Ptr);}
 static uint32_t r5save(void) {return careSave1()+ABI_SAVE1_ROUTE5;}
@@ -131,6 +132,8 @@ static void compatibilityTests(void) {
  CHECK(core->busRead16(core,care+ABI_CARE_PENDING));CHECK(core->busRead16(core,fourCare()+ABI_CARE_PENDING));
  unsigned char pending[400],island[ABI_CARE_SIZE];readBytes(r5save(),pending,400);readBytes(fourCare(),island,sizeof(island));
  flashRoundTrip();sameBytes(r5save(),pending,400);sameBytes(fourCare(),island,sizeof(island));
+ careLocation(1);core->busWrite32(core,SYM_gRngValue,0xBAC0FFEE);CALL(TriggerPendingDaycareEgg);
+ sameBytes(r5save(),pending,400);sameBytes(fourCare(),island,sizeof(island));
  // Failed pickup while party full retains the identity and both pending eggs.
  for(unsigned i=4;i<6;i++)CALL(CreateMon,player(i),SPECIES_PIKACHU,20,31,1,255,0,0);
  core->busWrite8(core,SYM_gPlayerPartyCount,6);careLocation(1);CALL(GiveEggFromDaycare);
@@ -150,13 +153,14 @@ static void hatchScene(unsigned slot) {
  CALL(ScriptContext_SetupScript,SYM_EventScript_EggHatch);
  unsigned f,started=0;
  for(f=0;f<3600;f++) {
-  // A advances the initial field message; B there can cancel walkaway text.
-  // Only after the actual hatch callback starts do we decline nickname with B.
-  if((core->busRead32(core,SYM_gMain+ABI_MAIN_CB2)&~1U)!=SYM_CB2_Overworld)started=1;
+  uint32_t cb=core->busRead32(core,SYM_gMain+ABI_MAIN_CB2)&~1U;
+  if(cb==SYM_CB2_EggHatch_0 || cb==SYM_CB2_EggHatch_1)started=1;
   frames(1,(f%12)<3?(started?2:1):0);
-  if(!monget(player(slot),ABI_DATA_IS_EGG)
-   && (core->busRead32(core,SYM_gMain+ABI_MAIN_CB2)&~1U)==SYM_CB2_Overworld
-   && !CALL(ScriptContext_IsEnabled))break;
+  // Never reenter GetMonData while the live callback may be between decrypt
+  // and re-encrypt. Observe only raw controller/script completion, then inspect
+  // the finished mon once the ordinary field has resumed.
+  if(started && (core->busRead32(core,SYM_gMain+ABI_MAIN_CB2)&~1U)==SYM_CB2_Overworld
+   && core->busRead8(core,SYM_sGlobalScriptContextStatus)==2)break;
  }
  if(f==3600){fprintf(stderr,"Hatch timeout egg=%u cb1=%08x cb2=%08x script=%u specialslot=%u\n",monget(player(slot),ABI_DATA_IS_EGG),core->busRead32(core,SYM_gMain),core->busRead32(core,SYM_gMain+ABI_MAIN_CB2),CALL(ScriptContext_IsEnabled),core->busRead16(core,SYM_gSpecialVar_0x8004));screenshot("/tmp/daycare-hatch-timeout.ppm");}
  CHECK(f<3600);CHECK(!monget(player(slot),ABI_DATA_IS_EGG));
@@ -286,7 +290,150 @@ static void statisticalEggTests(void) {
  printf("PASS: control10000 actual Four Island Eggs: %u Shiny, no Route5 marker/transformation (normal odds, not a precise rate proof)\n",islandShiny);
 }
 
+static unsigned fieldScriptDone(void) {
+ return (core->busRead32(core,SYM_gMain+ABI_MAIN_CB2)&~1U)==SYM_CB2_Overworld
+     && core->busRead8(core,SYM_sGlobalScriptContextStatus)==2;
+}
+static void closeCareService(unsigned key) {
+ unsigned f;
+ for(f=0;f<1800;f++) {
+  frames(1,(f%12)<3?key:0);
+  if(f>20 && fieldScriptDone())break;
+ }
+ if(f==1800){fprintf(stderr,"CARE timeout pc%08x lr%08x sp%08x callback%08x\n",((struct ARMCore*)core->cpu)->gprs[15],((struct ARMCore*)core->cpu)->gprs[14],((struct ARMCore*)core->cpu)->gprs[13],core->busRead32(core,SYM_gMain+ABI_MAIN_CB2));screenshot("/tmp/daycare-service-timeout.ppm");}
+ CHECK(f<1800);frames(6,0);
+}
+static void walkCare(unsigned x,unsigned y,unsigned route5) {
+ // BFS over actual ROM collision tiles; no warp past furniture to reach an NPC.
+ int from[108],queue[108],head=0,tail=0;
+ for(unsigned i=0;i<108;i++)from[i]=-2;
+ CALL(PlayerGetDestCoords,scratch,scratch+2);
+ unsigned sx=core->busRead16(core,scratch)-7,sy=core->busRead16(core,scratch+2)-7,start=sy*12+sx,goal=y*12+x;
+ CHECK(sx<12&&sy<9);queue[tail++]=start;from[start]=-1;
+ const int dx[]={0,0,-1,1},dy[]={-1,1,0,0};
+ while(head<tail && from[goal]==-2) {
+  int p=queue[head++],px=p%12,py=p/12;
+  for(unsigned d=0;d<4;d++) {
+   int nx=px+dx[d],ny=py+dy[d];
+   if(nx<0||nx>=12||ny<0||ny>=7)continue;
+   if(route5?((ny==4)&&(nx==2||nx==4)):(nx==2&&ny==2))continue;
+   int n=ny*12+nx;if(from[n]!=-2 || CALL(MapGridGetCollisionAt,nx+7,ny+7))continue;
+   from[n]=p;queue[tail++]=n;
+  }
+ }
+ CHECK(from[goal]!=-2);
+ unsigned path[108],n=0;for(int p=goal;p!=(int)start;p=from[p])path[n++]=p;
+ int pos=start;
+ while(n) {
+  int next=path[--n],diff=next-pos;unsigned key=diff==-12?64:diff==12?128:diff==-1?32:16;
+  unsigned ticks;
+  for(ticks=0;ticks<80;ticks++) {
+   frames(1,key);CALL(PlayerGetDestCoords,scratch,scratch+2);
+   if(core->busRead16(core,scratch)==(unsigned)(next%12+7)
+    && core->busRead16(core,scratch+2)==(unsigned)(next/12+7))break;
+  }
+  CHECK(ticks<80);frames(20,0);CALL(PlayerGetDestCoords,scratch,scratch+2);
+  if(core->busRead16(core,scratch)!=(unsigned)(next%12+7)||core->busRead16(core,scratch+2)!=(unsigned)(next/12+7))fprintf(stderr,"WALK from%d,%d want%d,%d got%u,%u key%u\n",pos%12,pos/12,next%12,next/12,core->busRead16(core,scratch)-7,core->busRead16(core,scratch+2)-7,key);
+  CHECK(core->busRead16(core,scratch)==(unsigned)(next%12+7));
+  CHECK(core->busRead16(core,scratch+2)==(unsigned)(next/12+7));pos=next;
+ }
+ press(64); // face the caretaker immediately north; actor collision stops movement
+}
+static void talkCare(void) {
+ press(1);CHECK(core->busRead8(core,SYM_sGlobalScriptContextStatus)!=2);
+}
+static void openCareParty(void) {
+ talkCare();unsigned f;
+ for(f=0;f<1800;f++) {
+  frames(1,(f%12)<3?1:0);
+  if((core->busRead32(core,SYM_gMain+ABI_MAIN_CB2)&~1U)==SYM_CB2_UpdatePartyMenu)break;
+ }
+ if(f==1800)screenshot("/tmp/daycare-party-timeout.ppm");
+ CHECK(f<1800);frames(24,0);
+}
+static void depositCareUi(void) {
+ unsigned before=core->busRead8(core,SYM_gPlayerPartyCount);
+ openCareParty();CHECK(CALL(GetCursorSelectionMonId)==0);press(1);
+ unsigned f;
+ for(f=0;f<1800 && core->busRead8(core,SYM_gPlayerPartyCount)==before;f++)frames(1,(f%12)<3?1:0);
+ if(f==1800)screenshot("/tmp/daycare-deposit-timeout.ppm");
+ CHECK(f<1800);CHECK(core->busRead8(core,SYM_gPlayerPartyCount)==before-1);
+ closeCareService(2);
+}
+static void daycareUiTests(void) {
+ daycareFixture(1);CALL(SetGameStat,GAME_STAT_USED_DAYCARE,0);
+ CHECK(!CALL(MapGridGetCollisionAt,2+7,4+7));CHECK(!CALL(MapGridGetCollisionAt,4+7,4+7));
+ CHECK(CALL(MapGridGetElevationAt,2+7,4+7)==CALL(MapGridGetElevationAt,4+7,4+7));
+ walkCare(2,5,1);talkCare();closeCareService(1);
+ CHECK(CALL(GetDaycareState)==DAYCARE_NO_MONS);
+ walkCare(4,5,1);openCareParty();press(2);closeCareService(1);
+ CHECK(core->busRead8(core,SYM_gPlayerPartyCount)==3);CHECK(CALL(GetDaycarePokemonCount)==0);
+ CALL(SetMoney,careSave1()+ABI_SAVE1_MONEY,10000);
+ depositCareUi();CHECK(CALL(GetDaycarePokemonCount)==1);
+ depositCareUi();CHECK(CALL(GetDaycarePokemonCount)==2);
+ CHECK(core->busRead8(core,SYM_gPlayerPartyCount)==1);
+ uint32_t care=CALL(GetRoute5Daycare);
+ CHECK(core->busRead32(core,care)==0);CHECK(core->busRead32(core,care+ABI_CARE_MON_SIZE)==255);
+ CHECK(CALL(GetGameStat,GAME_STAT_USED_DAYCARE)==2);
+ // Both sexes were accepted through the same caretaker and same two slots.
+ core->busWrite32(core,care+ABI_CARE_STEPS,10000);
+ core->busWrite32(core,care+ABI_CARE_MON_SIZE+ABI_CARE_STEPS,20000);
+ unsigned cost=0;
+ for(unsigned i=0;i<2;i++){core->busWrite16(core,SYM_gSpecialVar_0x8004,i);CALL(GetDaycareCost);cost+=core->busRead16(core,SYM_gSpecialVar_0x8005);}
+ CHECK(cost>200 && cost<10000);
+ CALL(SetMoney,careSave1()+ABI_SAVE1_MONEY,0);
+ talkCare();closeCareService(1);
+ CHECK(CALL(GetDaycarePokemonCount)==2);CHECK(core->busRead8(core,SYM_gPlayerPartyCount)==1);
+ CHECK(CALL(GetMoney,careSave1()+ABI_SAVE1_MONEY)==0);
+ CALL(SetMoney,careSave1()+ABI_SAVE1_MONEY,10000);
+ talkCare();closeCareService(1); // select both parents, approve standard fees
+ CHECK(CALL(GetDaycarePokemonCount)==0);
+ CHECK(core->busRead8(core,SYM_gPlayerPartyCount)==3);
+ CHECK(CALL(GetMoney,careSave1()+ABI_SAVE1_MONEY)==10000-cost);
+ CHECK(monget(player(1),ABI_DATA_LEVEL)>20 && monget(player(2),ABI_DATA_LEVEL)>20);
+ printf("PASS: actual walking/NPC scripts, deposit menu cancellation, both-sex two-slot deposits, quest usage stat, experience and %u paid withdrawal cost\n",cost);
+
+ daycareFixture(1);clearBytes(player(1),5*ABI_MON_SIZE);core->busWrite8(core,SYM_gPlayerPartyCount,1);
+ walkCare(4,5,1);talkCare();closeCareService(1);
+ CHECK(CALL(GetDaycarePokemonCount)==0);CHECK(core->busRead8(core,SYM_gPlayerPartyCount)==1);
+ printf("PASS: actual Route5 caretaker refuses last usable Pokemon\n");
+ daycareFixture(1);monput(player(1),ABI_DATA_HP,0);monput(player(2),ABI_DATA_HP,0);
+ walkCare(4,5,1);openCareParty();press(1);closeCareService(1);
+ CHECK(CALL(GetDaycarePokemonCount)==0);CHECK(core->busRead8(core,SYM_gPlayerPartyCount)==3);
+ printf("PASS: actual Route5 caretaker rejects depositing the last healthy mon with other fainted party members\n");
+
+ daycareFixture(1);care=CALL(GetRoute5Daycare);carePair(care,SPECIES_PIKACHU,SPECIES_DITTO);pendingEgg(1);
+ walkCare(2,5,1);unsigned char pending[400];readBytes(r5save(),pending,400);
+ for(unsigned i=3;i<6;i++)CALL(CreateMon,player(i),SPECIES_PIKACHU,20,31,1,255,0,0);
+ core->busWrite8(core,SYM_gPlayerPartyCount,6);
+ talkCare();closeCareService(1);sameBytes(r5save(),pending,400);
+ CHECK(core->busRead8(core,SYM_gPlayerPartyCount)==6);
+ clearBytes(player(3),3*ABI_MON_SIZE);core->busWrite8(core,SYM_gPlayerPartyCount,3);
+ talkCare();closeCareService(2);sameBytes(r5save(),pending,400);
+ talkCare();closeCareService(1);
+ CHECK(core->busRead8(core,SYM_gPlayerPartyCount)==4);CHECK(monget(player(3),ABI_DATA_IS_EGG));
+ CHECK(CALL(IsMonShiny,player(3))==pending[ABI_R5_SHINY]);CHECK(!core->busRead16(core,CALL(GetRoute5Daycare)+ABI_CARE_PENDING));
+ printf("PASS: actual egg-caretaker full-party rejection, refusal keeps pending identity, acceptance yields the same genuine Egg\n");
+ screenshot(getenv("LIGHTNING_DAYCARE_CAPTURE"));
+
+ daycareFixture(0);walkCare(2,4,0);depositCareUi();CHECK(CALL(GetDaycarePokemonCount)==1);
+ unsigned char route5[400];readBytes(r5save(),route5,400);
+ core->busWrite16(core,SYM_gSpecialVar_0x8004,0);CHECK(CALL(TakePokemonFromDaycare)==SPECIES_PIKACHU);
+ sameBytes(r5save(),route5,400);CHECK(CALL(GetDaycarePokemonCount)==0);
+ printf("PASS: actual original Four Island map/NPC deposit and native withdrawal remain independent from Route5\n");
+}
+
+static void hatchTimingTests(void) {
+ daycareFixture(1);uint32_t care=CALL(GetRoute5Daycare);
+ CALL(CreateEgg,player(3),SPECIES_PICHU,0);core->busWrite8(core,SYM_gPlayerPartyCount,4);
+ monput(player(3),ABI_DATA_FRIENDSHIP,1);
+ core->busWrite8(core,care+ABI_CARE_COUNTER,254);core->busWrite8(core,fourCare()+ABI_CARE_COUNTER,254);
+ CHECK(!CALL(ShouldEggHatch));CHECK(monget(player(3),ABI_DATA_FRIENDSHIP)==0);
+ for(unsigned i=0;i<255;i++)CHECK(!CALL(ShouldEggHatch));
+ CHECK(CALL(ShouldEggHatch));CHECK(core->busRead16(core,SYM_gSpecialVar_0x8004)==3);
+ printf("PASS: original256-step hatch-cycle spacing retained; zero friendship selects the correct party Egg once\n");
+}
 static void daycareTests(void) {
  CHECK(ABI_SAVE1_SIZE==0x3D68 && ABI_SAVE1_ROUTE5==0x348C && ABI_SAVE1_CARE==0x2F80 && ABI_SAVE1_LEGACY_CARE==0x3C98);
- migrationTests();compatibilityTests();offspringTests();identityAndHatchTests();statisticalEggTests();
+ migrationTests();compatibilityTests();offspringTests();identityAndHatchTests();hatchTimingTests();statisticalEggTests();daycareUiTests();
 }

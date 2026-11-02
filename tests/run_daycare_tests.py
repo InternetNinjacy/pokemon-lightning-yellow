@@ -129,3 +129,7 @@ hatch_tail=source.split('    // Hatch Egg',1)[1].split('\nbool8 ShouldEggHatch',
 assert hashlib.sha256(hatch_tail.encode()).hexdigest()==snapshot['hatch_tail_sha256']
 assert extract_function(source,'ShouldEggHatch').count('TryProduceOrHatchEgg(')==1
 print('PASS: static original breeding/offspring/incense/IV/move/fees/mail/hatch code, FourIsland maps/scripts, save checksums, wild data and global Shiny routines preserved')
+
+assert 'strcpy(' not in extract_function(source,'DaycarePrintMonLvl')
+assert 'StringCopy(lvlText, gText_Lv);' in extract_function(source,'DaycarePrintMonLvl')
+print('PASS: static daycare level label uses EOS-aware StringCopy, not rev0 C strcpy')
