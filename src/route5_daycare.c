@@ -2,6 +2,7 @@
 #include "global.h"
 #include "route5_daycare.h"
 #include "pokemon.h"
+#include "overworld.h"
 #include "random.h"
 #include "constants/maps.h"
 
@@ -118,4 +119,19 @@ void SetRoute5PendingEgg(struct DayCare *daycare, bool8 forceMale)
     save->eggOtId = otId;
     save->eggPersonality = Route5EggPersonality(original, otId, save->eggShiny);
     daycare->offspringPersonality = save->eggPersonality;
+}
+
+// Continue restores old saved object templates, not the new map's NPC roster.
+// Refresh only this changed room when a legacy template is detected.
+bool8 Route5DaycareNeedsMapRefresh(void)
+{
+    u32 i;
+    if (gSaveBlock1Ptr->location.mapGroup != MAP_GROUP(MAP_ROUTE5_POKEMON_DAY_CARE)
+     || gSaveBlock1Ptr->location.mapNum != MAP_NUM(MAP_ROUTE5_POKEMON_DAY_CARE))
+        return FALSE;
+    for (i = 0; i < gMapHeader.events->objectEventCount; i++)
+        if (gSaveBlock1Ptr->objectEventTemplates[i].localId != gMapHeader.events->objectEvents[i].localId
+         || gSaveBlock1Ptr->objectEventTemplates[i].graphicsId != gMapHeader.events->objectEvents[i].graphicsId)
+            return TRUE;
+    return FALSE;
 }

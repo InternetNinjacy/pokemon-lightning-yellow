@@ -71,3 +71,24 @@ Direct Drive synchronization remains unavailable. Physical cartridges, real two-
 Final clean rebuild, full combined regression and GitHub Actions conclusions will be recorded in the PR and canonical ledger. Real two-peer link traffic, hardware power interruption and a full progression playthrough are not established by these fixtures.
 
 The final save helper clears both in-RAM save blocks **and the separate global party/count** before reload, so party-egg and post-hatch checks require serialized flash restoration rather than leftover Pokemon RAM. Excluded-species cases (for example Illumise or incense families) occur only in isolated original-engine test fixtures; this patch adds no species, encounters or Dex entries. Standard breeding of externally imported eligible species is not silently replaced with a roster filter.
+
+## Legacy saves made inside the room
+
+Continue normally restores saved NPC templates and active objects. A pre-upgrade
+save inside Route5 contains only the original caretaker and can miss the new egg
+caretaker. `Route5DaycareNeedsMapRefresh` detects mismatching saved IDs/graphics
+only for this room. The Continue path then performs a normal full room load;
+other maps and explicit continue-warps keep their original paths. If the saved
+player stands on the new caretaker's old empty floor tile, the player starts one
+tile south on the verified accessible floor. Existing upgraded saves do not take
+this migration path again. No parent, mail or pending-egg data is reset.
+
+The native Continue fixture constructs that legacy saved layout, removes the
+second actor, retains an old deposited Pokemon and places the saved player on
+its future NPC tile. Actual flash load and `CB2_ContinueSavedGame` spawn both
+caretakers, preserve the deposit and safely place the player. Subsequent upgraded
+Continue and ordinary FourIsland Continue also pass (199 focused assertions).
+This is separate from the earlier isolated flash round trips. The same helper
+clears global party/count and both save blocks before reload, proving party data
+comes from flash. An initial host-only constant spelling in that stronger helper
+was corrected; no production data or checksum was changed to pass it.

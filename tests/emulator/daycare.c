@@ -1,6 +1,7 @@
 // Compiled-ROM daycare/crypto/hatching fixtures, sharing guarded ARM invocation.
 #include "constants/daycare.h"
 #include "constants/game_stat.h"
+#include "constants/event_objects.h"
 static uint32_t careSave1(void) {return core->busRead32(core,SYM_gSaveBlock1Ptr);}
 static uint32_t careSave2(void) {return core->busRead32(core,SYM_gSaveBlock2Ptr);}
 static uint32_t r5save(void) {return careSave1()+ABI_SAVE1_ROUTE5;}
@@ -62,7 +63,7 @@ static void flashRoundTrip(void) {
  CHECK(CALL(TrySavingData,0)==1);
  clearBytes(careSave1(),ABI_SAVE1_SIZE);clearBytes(careSave2(),ABI_SAVE2_SIZE);
  // Force party Eggs/hatched data to come back from flash, never leftover RAM.
- clearBytes(SYM_gPlayerParty,PARTY_SIZE*ABI_MON_SIZE);
+ clearBytes(SYM_gPlayerParty,6*ABI_MON_SIZE);
  core->busWrite8(core,SYM_gPlayerPartyCount,0);
  CHECK(CALL(LoadGameSave,0)==1);
 }
@@ -436,7 +437,44 @@ static void hatchTimingTests(void) {
  CHECK(CALL(ShouldEggHatch));CHECK(core->busRead16(core,SYM_gSpecialVar_0x8004)==3);
  printf("PASS: original256-step hatch-cycle spacing retained; zero friendship selects the correct party Egg once\n");
 }
+static void continueMigrationTests(void) {
+ daycareFixture(1);
+ // Model an old save made on the former empty floor tile now occupied by NPC2.
+ CALL(SetWarpDestination,MAP_GROUP(MAP_ROUTE5_POKEMON_DAY_CARE),MAP_NUM(MAP_ROUTE5_POKEMON_DAY_CARE),0xFFFFFFFF,2,4);
+ CALL(WarpIntoMap);CALL(ResetInitialPlayerAvatarState);CALL(CB2_LoadMap);frames(360,0);
+ CALL(RemoveObjectEventByLocalIdAndMap,2,MAP_NUM(MAP_ROUTE5_POKEMON_DAY_CARE),MAP_GROUP(MAP_ROUTE5_POKEMON_DAY_CARE));
+ uint32_t templates=careSave1()+ABI_SAVE1_OBJECT_TEMPLATES;
+ clearBytes(templates+ABI_TEMPLATE_SIZE,ABI_TEMPLATE_SIZE);
+ core->busWrite8(core,templates+ABI_TEMPLATE_GRAPHICS,OBJ_EVENT_GFX_GENTLEMAN);
+ uint32_t legacy=careSave1()+ABI_SAVE1_LEGACY_CARE;
+ clearBytes(legacy,ABI_CARE_MON_SIZE);copyBytes(legacy,player(0),ABI_BOX_SIZE);
+ core->busWrite32(core,legacy+ABI_CARE_STEPS,456);
+ unsigned char mon[ABI_BOX_SIZE];readBytes(legacy,mon,sizeof(mon));
+ clearBytes(r5save(),400);flashRoundTrip();
+ CHECK(CALL(Route5DaycareNeedsMapRefresh));
+ CALL(CB2_ContinueSavedGame);frames(480,0);
+ CHECK((core->busRead32(core,SYM_gMain+ABI_MAIN_CB2)&~1U)==SYM_CB2_Overworld);
+ CHECK(!CALL(Route5DaycareNeedsMapRefresh));
+ CHECK(CALL(GetObjectEventIdByLocalIdAndMap,1,MAP_NUM(MAP_ROUTE5_POKEMON_DAY_CARE),MAP_GROUP(MAP_ROUTE5_POKEMON_DAY_CARE))<ABI_OBJECT_COUNT);
+ CHECK(CALL(GetObjectEventIdByLocalIdAndMap,2,MAP_NUM(MAP_ROUTE5_POKEMON_DAY_CARE),MAP_GROUP(MAP_ROUTE5_POKEMON_DAY_CARE))<ABI_OBJECT_COUNT);
+ CALL(PlayerGetDestCoords,scratch,scratch+2);
+ CHECK(core->busRead16(core,scratch)==2+7);CHECK(core->busRead16(core,scratch+2)==5+7);
+ uint32_t care=CALL(GetRoute5Daycare);CHECK(care);sameBytes(care,mon,sizeof(mon));
+ CHECK(core->busRead32(core,care+ABI_CARE_STEPS)>=456);
+ // Already upgraded saves take the normal Continue branch on subsequent loads.
+ flashRoundTrip();CHECK(!CALL(Route5DaycareNeedsMapRefresh));
+ CALL(CB2_ContinueSavedGame);frames(360,0);CHECK(!CALL(Route5DaycareNeedsMapRefresh));
+ CHECK(CALL(GetObjectEventIdByLocalIdAndMap,2,MAP_NUM(MAP_ROUTE5_POKEMON_DAY_CARE),MAP_GROUP(MAP_ROUTE5_POKEMON_DAY_CARE))<ABI_OBJECT_COUNT);
+ sameBytes(CALL(GetRoute5Daycare),mon,sizeof(mon));
+ printf("PASS: actual Continue upgrades legacy inside-room NPC templates/player overlap without losing deposit; upgraded Continue retains both caretakers\n");
+ daycareFixture(0);CHECK(!CALL(Route5DaycareNeedsMapRefresh));flashRoundTrip();
+ CALL(CB2_ContinueSavedGame);frames(360,0);
+ CHECK((core->busRead32(core,SYM_gMain+ABI_MAIN_CB2)&~1U)==SYM_CB2_Overworld);
+ CHECK(!CALL(Route5DaycareNeedsMapRefresh));
+ printf("PASS: actual Four Island Continue follows unchanged ordinary map path\n");
+}
+
 static void daycareTests(void) {
  CHECK(ABI_SAVE1_SIZE==0x3D68 && ABI_SAVE1_ROUTE5==0x348C && ABI_SAVE1_CARE==0x2F80 && ABI_SAVE1_LEGACY_CARE==0x3C98);
- migrationTests();compatibilityTests();offspringTests();identityAndHatchTests();hatchTimingTests();statisticalEggTests();daycareUiTests();
+ migrationTests();continueMigrationTests();compatibilityTests();offspringTests();identityAndHatchTests();hatchTimingTests();statisticalEggTests();daycareUiTests();
 }

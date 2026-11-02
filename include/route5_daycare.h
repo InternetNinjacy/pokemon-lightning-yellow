@@ -12,6 +12,7 @@
 struct DayCare *GetRoute5Daycare(void); // NULL means recover, never reset occupied data
 struct DayCare *GetActiveDaycare(void);
 bool8 IsRoute5DaycareReady(void);
+bool8 Route5DaycareNeedsMapRefresh(void);
 bool8 IsRoute5Daycare(const struct DayCare *daycare);
 u32 Route5EggPersonality(u32 original, u32 otId, bool8 shiny);
 void SetRoute5PendingEgg(struct DayCare *daycare, bool8 forceMale);
