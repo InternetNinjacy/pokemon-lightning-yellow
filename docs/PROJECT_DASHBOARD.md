@@ -2,11 +2,11 @@
 
 Canonical branch: `docs/project-coordination`. Updated 2026-11-02.
 
-Overall tracked scope: `[###-------]` **26.51% complete / 73.49% remaining** (123 earned + 341 remaining planning points).
+Overall tracked scope: `[###-------]` **33.05% complete / 66.95% remaining** (154 earned + 312 remaining planning points).
 
 All estimates are provisional relative effort, not measured hours or a claim the game is 17% release-ready. Design approval alone earns no implementation credit. Shared infrastructure is counted only under INT; feature tests stay with their feature. Adding scope changes the denominator without erasing completed work. Merging is recorded separately from implementation and requires owner approval.
 
-Current focus: owner review of tested [stabilization PR #9](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/9). [Coordination PR #8](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/8) is open and its CI passed. Route 5 waits for its complete register; unrelated eligible work continues. No PR will be merged or have auto-merge enabled.
+Current focus: final acceptance for [Route5 PR#10](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/10). The complete owner handoff resolved the former register blocker. Ditto rate/levels remain a separate encounter task.
 
 | Area | Progress | Complete / remaining | Earned / remaining effort |
 |---|---|---|---|
@@ -14,9 +14,9 @@ Current focus: owner review of tested [stabilization PR #9](https://github.com/I
 | BTL — Moves, types and battle mechanics | `[###-------]` | 28% / 72% | 33 / 87 |
 | TIM — RTC, time of day and lighting | `[###-------]` | 33% / 67% | 16 / 32 |
 | WTH — Overworld and battle weather | `[----------]` | 0% / 100% | 0 / 64 |
-| DAY — Daycare, breeding and Shiny eggs | `[----------]` | 0% / 100% | 0 / 32 |
+| DAY — Daycare, breeding and Shiny eggs | `[##########]` | 97% / 3% | 31 / 1 |
 | GYM — Gyms, trainers and important battles | `[----------]` | 0% / 100% | 0 / 40 |
-| WRL — Maps, encounters, items and story | `[----------]` | 0% / 100% | 0 / 56 |
+| WRL — Maps, encounters, items and story | `[----------]` | 0% / 100% | 0 / 58 |
 | INT — Integration, testing and release readiness | `[######----]` | 56% / 44% | 36 / 28 |
 
 ## Verified repository and dependency stack
@@ -69,10 +69,10 @@ Status dimensions (design/code/automated/emulator/PR/merge), exact refs, depende
 
 | Task | State / next action | Dependencies | Remaining effort | Evidence or blocker |
 |---|---|---|---|---|
-| DAY-001 Independent Route 5 storage and legacy migration | not started; Obtain missing specification | — | 14 | Dedicated Route 5 register contents unavailable; need owner-supplied export or supported authenticated access. |
-| DAY-002 Persistent independent 50% Route 5 Shiny eggs | not started; Obtain missing specification | DAY-001 | 8 | Dedicated Route 5 register contents unavailable; need owner-supplied export or supported authenticated access. |
-| DAY-003 Caretakers and pre-Elite Four access | not started; Obtain missing specification | DAY-001 | 4 | Dedicated Route 5 register contents unavailable; need owner-supplied export or supported authenticated access. |
-| DAY-004 Breeding, save/load and 10,000-egg tests | not started; Obtain missing specification | DAY-001, DAY-002, DAY-003 | 6 | Dedicated Route 5 register contents unavailable; need owner-supplied export or supported authenticated access. |
+| DAY-001 Independent Route 5 storage and legacy migration | implemented on unmerged branch; final combined/CI acceptance ongoing | — | 0 | [PR#10](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/10); complete supplied Nov2 handoff; focused ROM tests pass |
+| DAY-002 Persistent independent 50% Route 5 Shiny eggs | implemented on unmerged branch; final combined/CI acceptance ongoing | DAY-001 | 0 | [PR#10](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/10); complete supplied Nov2 handoff; focused ROM tests pass |
+| DAY-003 Caretakers and pre-Elite Four access | implemented on unmerged branch; final combined/CI acceptance ongoing | DAY-001 | 0 | [PR#10](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/10); complete supplied Nov2 handoff; focused ROM tests pass |
+| DAY-004 Breeding, save/load and 10,000-egg tests | implemented on unmerged branch; final combined/CI acceptance ongoing | DAY-001, DAY-002, DAY-003 | 1 | [PR#10](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/10); complete supplied Nov2 handoff; focused ROM tests pass |
 
 ### GYM — Gyms, trainers and important battles
 
@@ -90,6 +90,8 @@ Status dimensions (design/code/automated/emulator/PR/merge), exact refs, depende
 | WRL-002 Final encounters and map policies | not started; Obtain missing specification | — | 20 | Exact finalized feature specifications/distribution unavailable; do not infer Phase Two choices. |
 | WRL-003 Approved evolution-shop framework | not started; Obtain missing specification | — | 8 | Exact finalized feature specifications/distribution unavailable; do not infer Phase Two choices. |
 | WRL-004 Item placements and events | not started; Obtain missing specification | — | 16 | Exact finalized feature specifications/distribution unavailable; do not infer Phase Two choices. |
+
+| WRL-005 Route5 wild Ditto existence | Existence approved; rate/levels pending | — | 2 | Owner Nov2 handoff section7; no encounter values invented |
 
 ### INT — Integration, testing and release readiness
 
@@ -132,3 +134,11 @@ Runtime evidence includes pre-National evolution success/cancellation/registrati
 Remaining acceptance: full overworld Bag evolution navigation, actual link peer, physical RTC/other cores/full progression, complete AI strategies, all-ball successful catches, nickname acceptance, faint/replacement/whiteout, forced-end/spread moves and unfinished weather interactions. These are coverage gaps, not claimed test passes. The wild-double release verdict remains CONDITIONAL.
 
 Next design input: export the complete [Route5 register](https://docs.google.com/document/d/1Zkw2u8vky8UMmIJeky7AHq8epdNTrUcQBNHq7GKTueM/edit); do not reconstruct it from the high-level request. Move redesign, weather/visual exceptions/colors and final Phase Two placements remain separately blocked. No merge, auto-merge, release or Drive synchronization has occurred.
+
+## Route5 milestone — supplied November2 handoff
+
+The full owner handoff resolves the former DAY specification blocker. [PR#10](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/10) is stacked on #9, current head `a1dbe8a323a180f4365cb80c6c149663ef7b8e8d`; no parents merged or rewritten. Target save-layout checks pass; exactly400 unused bytes hold independent versioned storage. Complete legacy mail/steps migration and real flash round trips pass. Host460161 policy assertions plus preservation audits pass. Actual native10,000 Route5 eggs produce5066 Shiny; FourIsland10,000 controls produce1 Shiny with no Route5 marker. Actual care menus, both-sex deposits, cancellation/refusal/full-party/experience and1800 payment pass. A rev0 C-string/EOS formatter bug was repaired and the formerly stalled withdrawal scenario passes. Final full suite and CI are still pending at this milestone.
+
+An initial Actions run failed because the new host test expected a generated map header before Make; a1dbe8a3 generates only temporary map constants from authoritative map JSON and retries CI. No ROM/data checksum was fabricated. Save/hatch fixture corrections are documented separately from the actual game formatter fix.
+
+DAY progress:31/32 provisional points (97%/3%); remaining external link/hardware/progression acceptance retained. Adding WRL-005 increases total scope464→466 points; completed work stays complete. Overall154/466 (33.05%) reflects new verified work and the slightly larger denominator, not a release-readiness certification. Direct Drive sync remains pending.

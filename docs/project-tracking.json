@@ -3,7 +3,7 @@
   "updated": "2026-11-02",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "docs/project-coordination",
-  "current_focus": "Stabilization PR#9 ready for owner review; canonical tracking PR#8 open. Next independent queue entries await missing finalized specs; remaining acceptance gaps are retained.",
+  "current_focus": "DAY-001..004: complete final combined/CI acceptance for PR#10. Former missing-register blocker resolved by owner handoff; WRL-005 tracks pending Ditto values.",
   "main_sha": "e04252ea0783510000e634486c0f2526a736f506",
   "drive_sync": {
     "status": "pending: no direct Drive writing tool available",
@@ -716,8 +716,8 @@
       "title": "Independent Route 5 storage and legacy migration",
       "aliases": [],
       "effort": {
-        "earned": 0,
-        "remaining": 14,
+        "earned": 14,
+        "remaining": 0,
         "unit": "provisional relative planning point",
         "confidence": "low",
         "history": [
@@ -726,26 +726,32 @@
             "earned": 0,
             "remaining": 14,
             "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          },
+          {
+            "date": "2026-11-02",
+            "earned": 14,
+            "remaining": 0,
+            "reason": "Complete Nov2 handoff supplied; implementation, host policy, target ABI, focused real-ROM eggs/migration/UI passed; final combined/CI and external acceptance tracked separately."
           }
         ]
       },
       "dependencies": [],
       "status": {
-        "design": "requires source reconciliation",
-        "implementation": "not started",
-        "automated": "not executed for new work",
-        "emulator": "not executed",
-        "pull_request": "not created",
+        "design": "owner approved; complete supplied handoff available",
+        "implementation": "implemented on unmerged branch",
+        "automated": "six host suites PASS; target ABI assertions PASS; clean rebuild identical",
+        "emulator": "focused core103114 and UI1359 assertions PASS; actual10000 Route5 eggs5066 Shiny; final combined run pending",
+        "pull_request": "#10 draft during final validation",
         "merge": "not merged"
       },
-      "branch": null,
-      "commit": null,
-      "pr_url": null,
-      "ci_url": null,
-      "blocker": "Dedicated Route 5 register contents unavailable; need owner-supplied export or supported authenticated access.",
-      "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
-      "next_action": "Obtain missing specification",
-      "checkpoint": "2026-11-02 initial audit"
+      "branch": "feature/route5-daycare-breeding",
+      "commit": "a1dbe8a323a180f4365cb80c6c149663ef7b8e8d",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/10",
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41447962744",
+      "blocker": null,
+      "design_authority": "Owner-supplied complete Route5 Daycare Breeding handoff consolidated November2,2026; supplied text authoritative, Drive originals not directly accessed.",
+      "next_action": "Finish combined suite/CI; owner review of technical NPC layout and scoped hatch marker; no merge without separate approval",
+      "checkpoint": "2026-11-02: PR#10 draft; clean rebuild identical; six host suites and focused core/UI pass; final combined suite/CI pending."
     },
     {
       "id": "DAY-002",
@@ -753,8 +759,8 @@
       "title": "Persistent independent 50% Route 5 Shiny eggs",
       "aliases": [],
       "effort": {
-        "earned": 0,
-        "remaining": 8,
+        "earned": 8,
+        "remaining": 0,
         "unit": "provisional relative planning point",
         "confidence": "low",
         "history": [
@@ -763,6 +769,12 @@
             "earned": 0,
             "remaining": 8,
             "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          },
+          {
+            "date": "2026-11-02",
+            "earned": 8,
+            "remaining": 0,
+            "reason": "Complete Nov2 handoff supplied; implementation, host policy, target ABI, focused real-ROM eggs/migration/UI passed; final combined/CI and external acceptance tracked separately."
           }
         ]
       },
@@ -770,21 +782,21 @@
         "DAY-001"
       ],
       "status": {
-        "design": "requires source reconciliation",
-        "implementation": "not started",
-        "automated": "not executed for new work",
-        "emulator": "not executed",
-        "pull_request": "not created",
+        "design": "owner approved; complete supplied handoff available",
+        "implementation": "implemented on unmerged branch",
+        "automated": "six host suites PASS; target ABI assertions PASS; clean rebuild identical",
+        "emulator": "focused core103114 and UI1359 assertions PASS; actual10000 Route5 eggs5066 Shiny; final combined run pending",
+        "pull_request": "#10 draft during final validation",
         "merge": "not merged"
       },
-      "branch": null,
-      "commit": null,
-      "pr_url": null,
-      "ci_url": null,
-      "blocker": "Dedicated Route 5 register contents unavailable; need owner-supplied export or supported authenticated access.",
-      "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
-      "next_action": "Obtain missing specification",
-      "checkpoint": "2026-11-02 initial audit"
+      "branch": "feature/route5-daycare-breeding",
+      "commit": "a1dbe8a323a180f4365cb80c6c149663ef7b8e8d",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/10",
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41447962744",
+      "blocker": null,
+      "design_authority": "Owner-supplied complete Route5 Daycare Breeding handoff consolidated November2,2026; supplied text authoritative, Drive originals not directly accessed.",
+      "next_action": "Finish combined suite/CI; owner review of technical NPC layout and scoped hatch marker; no merge without separate approval",
+      "checkpoint": "2026-11-02: PR#10 draft; clean rebuild identical; six host suites and focused core/UI pass; final combined suite/CI pending."
     },
     {
       "id": "DAY-003",
@@ -792,8 +804,8 @@
       "title": "Caretakers and pre-Elite Four access",
       "aliases": [],
       "effort": {
-        "earned": 0,
-        "remaining": 4,
+        "earned": 4,
+        "remaining": 0,
         "unit": "provisional relative planning point",
         "confidence": "low",
         "history": [
@@ -802,6 +814,12 @@
             "earned": 0,
             "remaining": 4,
             "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          },
+          {
+            "date": "2026-11-02",
+            "earned": 4,
+            "remaining": 0,
+            "reason": "Complete Nov2 handoff supplied; implementation, host policy, target ABI, focused real-ROM eggs/migration/UI passed; final combined/CI and external acceptance tracked separately."
           }
         ]
       },
@@ -809,21 +827,21 @@
         "DAY-001"
       ],
       "status": {
-        "design": "requires source reconciliation",
-        "implementation": "not started",
-        "automated": "not executed for new work",
-        "emulator": "not executed",
-        "pull_request": "not created",
+        "design": "owner approved; complete supplied handoff available",
+        "implementation": "implemented on unmerged branch",
+        "automated": "six host suites PASS; target ABI assertions PASS; clean rebuild identical",
+        "emulator": "focused core103114 and UI1359 assertions PASS; actual10000 Route5 eggs5066 Shiny; final combined run pending",
+        "pull_request": "#10 draft during final validation",
         "merge": "not merged"
       },
-      "branch": null,
-      "commit": null,
-      "pr_url": null,
-      "ci_url": null,
-      "blocker": "Dedicated Route 5 register contents unavailable; need owner-supplied export or supported authenticated access.",
-      "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
-      "next_action": "Obtain missing specification",
-      "checkpoint": "2026-11-02 initial audit"
+      "branch": "feature/route5-daycare-breeding",
+      "commit": "a1dbe8a323a180f4365cb80c6c149663ef7b8e8d",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/10",
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41447962744",
+      "blocker": null,
+      "design_authority": "Owner-supplied complete Route5 Daycare Breeding handoff consolidated November2,2026; supplied text authoritative, Drive originals not directly accessed.",
+      "next_action": "Finish combined suite/CI; owner review of technical NPC layout and scoped hatch marker; no merge without separate approval",
+      "checkpoint": "2026-11-02: PR#10 draft; clean rebuild identical; six host suites and focused core/UI pass; final combined suite/CI pending."
     },
     {
       "id": "DAY-004",
@@ -831,8 +849,8 @@
       "title": "Breeding, save/load and 10,000-egg tests",
       "aliases": [],
       "effort": {
-        "earned": 0,
-        "remaining": 6,
+        "earned": 5,
+        "remaining": 1,
         "unit": "provisional relative planning point",
         "confidence": "low",
         "history": [
@@ -841,6 +859,12 @@
             "earned": 0,
             "remaining": 6,
             "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          },
+          {
+            "date": "2026-11-02",
+            "earned": 5,
+            "remaining": 1,
+            "reason": "Complete Nov2 handoff supplied; implementation, host policy, target ABI, focused real-ROM eggs/migration/UI passed; final combined/CI and external acceptance tracked separately."
           }
         ]
       },
@@ -850,21 +874,22 @@
         "DAY-003"
       ],
       "status": {
-        "design": "requires source reconciliation",
-        "implementation": "not started",
-        "automated": "not executed for new work",
-        "emulator": "not executed",
-        "pull_request": "not created",
+        "design": "owner approved; complete supplied handoff available",
+        "implementation": "implemented on unmerged branch",
+        "automated": "six host suites PASS; target ABI assertions PASS; clean rebuild identical",
+        "emulator": "focused core103114 and UI1359 assertions PASS; actual10000 Route5 eggs5066 Shiny; final combined run pending",
+        "pull_request": "#10 draft during final validation",
         "merge": "not merged"
       },
-      "branch": null,
-      "commit": null,
-      "pr_url": null,
-      "ci_url": null,
-      "blocker": "Dedicated Route 5 register contents unavailable; need owner-supplied export or supported authenticated access.",
-      "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
-      "next_action": "Obtain missing specification",
-      "checkpoint": "2026-11-02 initial audit"
+      "branch": "feature/route5-daycare-breeding",
+      "commit": "a1dbe8a323a180f4365cb80c6c149663ef7b8e8d",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/10",
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41447962744",
+      "blocker": null,
+      "design_authority": "Owner-supplied complete Route5 Daycare Breeding handoff consolidated November2,2026; supplied text authoritative, Drive originals not directly accessed.",
+      "next_action": "Finish combined suite/CI; owner review of technical NPC layout and scoped hatch marker; no merge without separate approval",
+      "checkpoint": "2026-11-02: PR#10 draft; clean rebuild identical; six host suites and focused core/UI pass; final combined suite/CI pending.",
+      "coverage_gap": "Real two-peer trade handshake, hardware/power interruption, full quest-log playback/progression and old-ROM reverse migration unverified. Matching-build ownership-data and hatch tests passed."
     },
     {
       "id": "GYM-001",
@@ -1333,6 +1358,43 @@
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
       "next_action": "Execute approved stabilization plan",
       "checkpoint": "2026-11-02 initial audit"
+    },
+    {
+      "id": "WRL-005",
+      "area": "WRL",
+      "title": "Route5 wild Ditto encounter existence",
+      "aliases": [],
+      "effort": {
+        "earned": 0,
+        "remaining": 2,
+        "unit": "provisional relative planning point",
+        "confidence": "low",
+        "history": [
+          {
+            "date": "2026-11-02",
+            "earned": 0,
+            "remaining": 2,
+            "reason": "New approved encounter-existence dependency expands scope; values still pending."
+          }
+        ]
+      },
+      "dependencies": [],
+      "status": {
+        "design": "existence approved; rate/levels pending",
+        "implementation": "not started",
+        "automated": "not executed",
+        "emulator": "not executed",
+        "pull_request": "not created",
+        "merge": "not merged"
+      },
+      "branch": null,
+      "commit": null,
+      "pr_url": null,
+      "ci_url": null,
+      "blocker": "Existence approved; exact encounter rate and level range are not approved. Do not invent the remaining Route5 encounter table.",
+      "design_authority": "Owner complete Route5 handoff November2 section7, later approved Ditto existence.",
+      "next_action": "Obtain finalized Ditto rate/levels through encounter workstream; independent daycare engine work continues.",
+      "checkpoint": "2026-11-02: new dependency added without resetting existing work."
     }
   ],
   "legacy_crosswalk": {
