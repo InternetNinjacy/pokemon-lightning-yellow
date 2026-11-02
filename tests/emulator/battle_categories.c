@@ -150,3 +150,29 @@ static void categoryTests(void) {
     // Do not resume this deliberately modified fixture as a gameplay battle.
     CHECK(core->loadState(core,battle));free(battle);
 }
+
+static void summaryTests(void) {
+    wildFixture(MAP_GROUP(MAP_ROUTE1),MAP_NUM(MAP_ROUTE1),1);
+    const unsigned moves[]={MOVE_FIRE_PUNCH,MOVE_SHADOW_BALL,MOVE_CALM_MIND,MOVE_THUNDERBOLT};
+    for(unsigned i=0;i<4;i++)monput(player(0),ABI_DATA_MOVE1+i,moves[i]);
+    core->busWrite16(core,returned,0x4770);
+    CALL(ShowPokemonSummaryScreen,player(0),0,1,returned|1,0);
+    frames(180,0);
+    uint32_t summary=core->busRead32(core,SYM_sMonSummaryScreen);
+    CHECK(summary>=0x02000000 && summary<0x02040000);
+    CHECK(core->busRead8(core,summary+ABI_SUMMARY_PAGE)==0);
+    press(16);frames(90,0);press(16);frames(90,0);
+    CHECK(core->busRead8(core,summary+ABI_SUMMARY_PAGE)==2);
+    CHECK(core->busRead8(core,summary+ABI_SUMMARY_MOVE_COUNT)==4);
+    for(unsigned i=0;i<4;i++)CHECK(core->busRead16(core,summary+ABI_SUMMARY_MOVES+2*i)==moves[i]);
+    screenshot(getenv("LIGHTNING_SUMMARY_LIST_CAPTURE"));
+    press(1);frames(90,0);
+    CHECK(core->busRead8(core,summary+ABI_SUMMARY_PAGE)==3);
+    for(unsigned i=0;i<3;i++) {
+        CHECK(core->busRead8(core,SYM_sMoveSelectionCursorPos)==i);
+        const char *path=i==0?getenv("LIGHTNING_SUMMARY_PHYSICAL_CAPTURE"):i==1?getenv("LIGHTNING_SUMMARY_SPECIAL_CAPTURE"):getenv("LIGHTNING_SUMMARY_STATUS_CAPTURE");
+        screenshot(path);
+        if(i<2){press(128);frames(60,0);}
+    }
+    printf("PASS: real summary list/detail navigation selected physical, special and status moves\n");
+}

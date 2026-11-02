@@ -147,6 +147,8 @@ static void scene(unsigned species,unsigned item,unsigned evolved,int cancel) {
     }
     CHECK(frame<3600);
     CHECK(get(ABI_DATA_SPECIES)==(cancel?species:evolved));
+    CHECK(!CALL(IsNationalPokedexEnabled));
+    CHECK(CALL(GetCustomPokedexCount,1)==(cancel?0:1));
     CHECK(CALL(BagGetQuantityByItemId,item)==(cancel?3:2));
     unsigned dex=CALL(SpeciesToNationalPokedexNum,evolved);
     CHECK(CALL(GetSetPokedexFlag,dex,0)==(cancel?0:1));
@@ -158,7 +160,9 @@ static void scene(unsigned species,unsigned item,unsigned evolved,int cancel) {
 // cancel: 1 = B in menu, 2 = B during animation, 0 = complete.
 static void levelScene(unsigned species,unsigned level,unsigned evolved,unsigned selection,int cancel,unsigned attack,unsigned defense) {
     CHECK(core->loadState(core,bootState));
-    initSave();CALL(DisableNationalPokedex);create(species,level);put(ABI_DATA_ATK,attack);put(ABI_DATA_DEF,defense);
+    initSave();CALL(DisableNationalPokedex);create(species,level);
+    if(species==SPECIES_GOLBAT || species==SPECIES_CHANSEY)put(ABI_DATA_FRIENDSHIP,220);
+    put(ABI_DATA_ATK,attack);put(ABI_DATA_DEF,defense);
     core->busWrite8(core,SYM_gPlayerPartyCount,1);
     core->busWrite32(core,SYM_gMain,0);
     core->busWrite16(core,returned,0x4770);
@@ -216,6 +220,8 @@ static void levelScene(unsigned species,unsigned level,unsigned evolved,unsigned
     if(frame==3600)fprintf(stderr,"Level scene timeout species=%u choice=%u cancel=%d menuFrames=%u\n",species,selection,cancel,menuFrames);
     CHECK(frame<3600);CHECK(menuSeen==(species==SPECIES_TYROGUE));
     CHECK(get(ABI_DATA_SPECIES)==(cancel?species:evolved));
+    CHECK(!CALL(IsNationalPokedexEnabled));
+    CHECK(CALL(GetCustomPokedexCount,1)==(cancel?0:1));
     if(!cancel) {
         unsigned dex=CALL(SpeciesToNationalPokedexNum,evolved);
         CHECK(CALL(GetSetPokedexFlag,dex,0));CHECK(CALL(GetSetPokedexFlag,dex,1));
@@ -229,6 +235,8 @@ static void levelScene(unsigned species,unsigned level,unsigned evolved,unsigned
         for(unsigned i=0;i<ABI_SAVE2_SIZE;i+=4)core->busWrite32(core,SYM_gSaveBlock2+i,0);
         CHECK(CALL(LoadGameSave,0)==1);
         CHECK(get(ABI_DATA_SPECIES)==evolved);
+        CHECK(!CALL(IsNationalPokedexEnabled));
+        CHECK(CALL(GetCustomPokedexCount,1)==1);
         CHECK(CALL(GetSetPokedexFlag,dex,0));CHECK(CALL(GetSetPokedexFlag,dex,1));
     } else {
         put(ABI_DATA_LEVEL,level+1);CHECK(target(EVO_MODE_NORMAL,0)!=SPECIES_NONE);
@@ -343,6 +351,8 @@ int main(int argc,char **argv) {
     printf("RTC autodetected: %s\n",(gba->memory.hw.devices&HW_RTC)?"yes":"no");
     CHECK(gba->memory.hw.devices&HW_RTC);
     bootState=malloc(core->stateSize(core));CHECK(bootState && core->saveState(core,bootState));
+    if(getenv("LIGHTNING_WILD_HARDENING_ONLY")){wildHardeningTests();printf("PASS: %u focused wild hardening assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_SUMMARY_ONLY")){summaryTests();printf("PASS: %u focused summary assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_BATTLE_ONLY")){categoryTests();printf("PASS: %u focused battle assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_WILD_ONLY")){wildTests();printf("PASS: %u focused wild assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_DEX_ONLY")){dexTests();printf("PASS: focused Dex diagnostic\n");core->deinit(core);free(pixels);free(bootState);return 0;}
@@ -423,6 +433,8 @@ int main(int argc,char **argv) {
         CHECK(target(EVO_MODE_NORMAL,0)==babies[i][2]);
         levelScene(babies[i][0],babies[i][1],babies[i][2],0,0,100,100);
     }
+    levelScene(SPECIES_GOLBAT,30,SPECIES_CROBAT,0,0,100,100);
+    levelScene(SPECIES_CHANSEY,30,SPECIES_BLISSEY,0,0,100,100);
     create(SPECIES_TYROGUE,14);CHECK(target(EVO_MODE_NORMAL,0)==SPECIES_NONE);
     const unsigned choices[]={SPECIES_HITMONCHAN,SPECIES_HITMONLEE,SPECIES_HITMONTOP};
     for(unsigned i=0;i<3;i++)for(unsigned stats=0;stats<3;stats++)
@@ -431,7 +443,9 @@ int main(int argc,char **argv) {
     levelScene(SPECIES_TYROGUE,16,SPECIES_HITMONTOP,2,2,100,100);
     dexTests();
     categoryTests();
+    summaryTests();
     wildTests();
+    wildHardeningTests();
     printf("PASS: %u mGBA assertions (includes API/register safety checks)\n",checks);
     core->deinit(core);free(pixels);free(bootState);
     return 0;

@@ -30,3 +30,23 @@ Direct Drive synchronization and the complete Route 5 register remain blocked. T
 Save structure, move IDs and canonical Dex flags are unchanged. Existing saved parties retain species; types load from the updated species data. Vanilla or differently modified link peers cannot be certified compatible with the custom split/types/evolution rules. A real two-peer link handshake, physical RTC timing, other emulator cores, a sustained playthrough, every trainer-AI strategy and visual approval of summary screens remain external/remaining acceptance work. EWRAM is already tight and future save/runtime additions require ABI and memory-budget checks.
 
 Rollback: before integration, close this PR or leave its branch unused. After a separately approved merge, revert only this stabilization series through a new reviewed PR, preserving #2–#7. Reverting code restores old typings/gates/noon policy; it does not undo already completed evolutions or remove caught flags from saves. No migration is introduced by this patch.
+
+## Runtime defects and additional hardening
+
+Real summary list/detail navigation exposed a pre-existing split UI defect: the
+full category at x=7 overlapped the existing EFFECT heading. The label now uses
+x=57 beside that heading. A placement/width audit and actual Physical/Special/Status
+screen navigation cover the correction; a local capture confirmed that power,
+accuracy, category and description remain readable. Existing graphics are reused.
+An initial audit trial missed a Python helper import; that test setup error was
+corrected and the complete split host suite rerun successfully.
+
+Additional actual mGBA scenarios cover all eleven ordinary Bag ball types rejecting
+two surviving opponents without consumption; partner B cancellation refunding a
+selected ball exactly once followed by successful retry; and a legitimate failed
+Poke Ball throw consuming once, retaining the survivor, leaving its caught flag
+unset and returning to action selection. Safari Ball belongs to unchanged Safari
+mode and is explicitly excluded from the ordinary-Bag test. These add evidence;
+all-ball successful captures, nickname acceptance/rename, player replacement and
+whiteout, unusual forced-end/spread moves, complete weather and link testing remain
+unverified. The wild-double release verdict remains conditional.

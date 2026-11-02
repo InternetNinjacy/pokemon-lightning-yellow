@@ -23,6 +23,9 @@ expressions = {
 screen_text=Path('src/pokedex_screen.c').read_text()
 screen_struct=screen_text[screen_text.index('struct PokedexScreenData\n'):]
 screen_struct=screen_struct[:screen_struct.index('\n};')+3]
+summary_text=Path('src/pokemon_summary_screen.c').read_text()
+summary_struct=summary_text[summary_text.index('struct PokemonSummaryScreenData\n'):]
+summary_struct=summary_struct[:summary_struct.index('\n};')+3]
 for key,expr in {
  'SCREEN_ORDERED_MENU':'offsetof(struct PokedexScreenData,orderedListMenuTaskId)',
  'SCREEN_LIST':'offsetof(struct PokedexScreenData,listItems)',
@@ -57,6 +60,9 @@ for key,expr in {
  'BMON_MOVES':'offsetof(struct BattlePokemon,moves)',
  'BMON_PP':'offsetof(struct BattlePokemon,pp)',
  'BATTLESTRUCT_MOVETARGET':'offsetof(struct BattleStruct,moveTarget)',
+ 'SUMMARY_PAGE':'offsetof(struct PokemonSummaryScreenData,curPageIndex)',
+ 'SUMMARY_MOVE_COUNT':'offsetof(struct PokemonSummaryScreenData,numMoves)',
+ 'SUMMARY_MOVES':'offsetof(struct PokemonSummaryScreenData,moveIds)',
  'BMON_ATTACK':'offsetof(struct BattlePokemon,attack)',
  'BMON_DEFENSE':'offsetof(struct BattlePokemon,defense)',
  'BMON_SPATTACK':'offsetof(struct BattlePokemon,spAttack)',
@@ -89,10 +95,10 @@ required = [
     'gPaletteFade', 'gPlayerParty', 'gPlayerPartyCount', 'gPokemonStorage', 'gPokemonStoragePtr',
     'gRngValue', 'gSaveBlock1', 'gSaveBlock1Ptr', 'gSaveBlock2', 'gSaveBlock2Ptr',
     'gTasks', 'gWildMonHeaders', 'sEvoStructPtr', 'sPlttBufferTransferPending', 'sPokedexScreenData',
-    'sRoamerLocation', 'CopyPlayerPartyMonToBattleData', 'CalculateBaseDamage', 'AI_CalcDmg', 'Cmd_dmgtolevel',
+    'sRoamerLocation', 'IsNationalPokedexEnabled', 'CopyPlayerPartyMonToBattleData', 'CalculateBaseDamage', 'AI_CalcDmg', 'Cmd_dmgtolevel',
     'GetMoveCategoryName', 'GetMoveCategoryShortName', 'MoveSelectionDisplayMoveType',
     'gCurrentMove', 'gCritMultiplier', 'gDynamicBasePower', 'gBattlerAttacker', 'gBattlerTarget',
-    'gSideStatuses', 'gBattleStruct', 'gBattleScripting', 'gBattleMoveDamage', 'gDisplayedStringBattle',
+    'ShowPokemonSummaryScreen', 'sMonSummaryScreen', 'sMoveSelectionCursorPos', 'gSideStatuses', 'gBattleStruct', 'gBattleScripting', 'gBattleMoveDamage', 'gDisplayedStringBattle',
 ]
 symbols={}
 end_ewram=0
@@ -113,7 +119,7 @@ for name in ['HandleInputChooseAction','HandleInputChooseMove','HandleInputChoos
 with tempfile.TemporaryDirectory(prefix='lightning-emulator-') as temp:
     temp=Path(temp)
     source='#include <stddef.h>\n#include "global.h"\n#include "pokemon.h"\n#include "main.h"\n#include "task.h"\n'
-    source+='#include "battle_controllers.h"\n#include "item_menu.h"\n#include "wild_encounter.h"\n#include "battle.h"\n#include "list_menu.h"\n'+screen_struct+'\n'
+    source+='#include "battle_controllers.h"\n#include "item_menu.h"\n#include "wild_encounter.h"\n#include "battle.h"\n#include "list_menu.h"\n'+screen_struct+'\n'+summary_struct+'\n'
     source+='const unsigned long abi[] = {'+', '.join(expressions.values())+'};\n'
     (temp/'abi.c').write_text(source)
     with (temp/'abi.i').open('w') as out:

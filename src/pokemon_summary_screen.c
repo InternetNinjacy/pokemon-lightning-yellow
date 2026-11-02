@@ -2871,7 +2871,7 @@ static void PokeSum_PrintSelectedMoveStats(void)
                                      sMonSummaryScreen->summary.moveAccuracyStrBufs[sMoveSelectionCursorPos]);
 
         AddTextPrinterParameterized3(sMonSummaryScreen->windowIds[POKESUM_WIN_TRAINER_MEMO], FONT_SMALL,
-                                     7, 29, sLevelNickTextColors[0], TEXT_SKIP_DRAW,
+                                     57, 29, sLevelNickTextColors[0], TEXT_SKIP_DRAW,
                                      GetMoveCategoryName(sMonSummaryScreen->moveIds[sMoveSelectionCursorPos]));
 
         AddTextPrinterParameterized4(sMonSummaryScreen->windowIds[POKESUM_WIN_TRAINER_MEMO], FONT_NORMAL,
