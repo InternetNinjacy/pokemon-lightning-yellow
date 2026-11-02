@@ -10,10 +10,10 @@ Git history is the authoritative technical record. Historical entries below are 
 | System / tasks | Newest available approved design | Implemented on main | Implemented on open stack / remaining |
 |---|---|---|---|
 | Baseline / INT-001 | FireRed English rev0, pret commit ce6406d8c2eaf46d543c8a2606de0c3cb1951982 | e04252ea, original SHA-1 41cb23d8dccc8ebd7c649cd8fbb58eeace6e2fdc | Independently retained CI baseline |
-| Dex / PKM-001,003,005 | Owner Castform expansion:252, Castform#233, preserve relative order; October28 handoff typing overrides | Original FireRed | PR#6 has252/canonical save flags; twelve typing overrides implemented in PR#9; expanded acceptance ongoing |
+| Dex / PKM-001,003,005 | Owner Castform expansion:252, Castform#233, preserve relative order; October28 handoff typing overrides | Original FireRed | PR#6 has252/canonical save flags; twelve typing overrides implemented in PR#9; expanded acceptance in PR#9 passed for documented scenarios; remaining coverage gaps retained |
 | Evolution / PKM-002,004 | Latest evolution mechanics overrides older eight direct-use pairs: six pairs, no Clamperl additions; Tyrogue choice>=15; roster-aware National gate removal approved by October28 supplied handoff | Original FireRed | PR#5 methods/menu implemented; roster-aware access implemented in PR#9 |
-| Categories / BTL-001,003 | GenIV per-move assignments; owner explicitly chose Shadow Ball SPECIAL | Type-based split | PR#2 split implemented; stronger acceptance pending |
-| Wild doubles / BTL-002,004 | Owner capability assignment: designated maps, independent draws, weighted5% Onix+Cloyster | Singles | PR#7 proof of concept on experimental Route1/MtMoon1F, conditional acceptance; release hardening remains |
+| Categories / BTL-001,003 | GenIV per-move assignments; owner explicitly chose Shadow Ball SPECIAL | Type-based split | PR#2 split implemented; PR#9 adds actual ROM damage/AI/UI acceptance and repairs summary overlap; complete gameplay strategies remain unverified |
+| Wild doubles / BTL-002,004 | Owner capability assignment: designated maps, independent draws, weighted5% Onix+Cloyster | Singles | PR#7 proof of concept on experimental Route1/MtMoon1F; PR#9 hardens ball guards/refund/failed throws; release verdict remains conditional |
 | Move redesign / BTL-005 | Owner October31 audit handoff; complete authoritative values not available | Original354 | No410-move implementation; audit outputs are not implementation |
 | RTC / TIM-001,002 | Read-only RTC; functional DAY[06:00,18:00), NIGHT otherwise, invalid timed friendship unavailable | No RTC | PR#3 clock implemented; PR#9 replaces consumer noon policy with approved06–18 helper |
 | Visuals / TIM-003 | Four outdoor/two covered periods; Lavender and Mansion exceptions in supplied October28 handoff | Original appearance | No visual implementation; transitions/map exceptions/colors unresolved |
@@ -199,3 +199,31 @@ Append meaningful changes, failed validations and fixes, actual test outputs, ex
 ### 2026-11-02 — INT-003 — coordination publication checkpoint
 
 [PR #8](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/8) opened from docs/project-coordination, initial commit626c6ad2. [Actions41375601930](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41375601930) completed SUCCESS. Both docs and gameplay PRs remain unmerged. Drive sync remains pending. Permanent task progress updated by actual scoped work, not by design approval.
+
+### 2026-11-02 — BTL-003 / BTL-004 / PKM-005 — runtime UI repair and acceptance expansion
+
+- Previous → new: full category text overlapped FireRed's EFFECT heading at x=7; it now occupies x=57 beside the heading. A runtime screen inspection exposed the issue; it was not detected by the earlier width-only audit.
+- Design authority: approved split readable Physical/Special/Status summary indicators; the owner-approved stabilization plan authorizes demonstrated defect fixes. No new artwork or move balance.
+- Source files: src/pokemon_summary_screen.c; tests/audit_split.py; tests/emulator/battle_categories.c; tests/emulator/run.py; tests/emulator/runner.c; tests/emulator/wild_double.c; docs/PHASE_ONE_STABILIZATION.md.
+- Branch/commit/PR: feature/phase-one-stabilization, `6ff574dc205a007a93a4724fd6eda867eeff8fdf`, [PR#9](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/9), now ready for review and unmerged.
+- Automated/emulator: actual summary list/detail navigation selects physical/special/status moves; local final captures of all three inspected and legible. Eleven ordinary Bag ball types reject two live foes without consumption; partner B cancellation refunds exactly once and a retry catches/consumes once; legitimate failed Poke Ball throw consumes once, retains survivor, does not set caught flag and resumes battle. Safari Ball is explicitly outside the ordinary Bag fixture.
+- Additional evolution acceptance: Crobat/Blissey and earlier item/level/Tyrogue scenes run before National Dex; assert the National flag stays disabled and custom caught count/flags survive real flash reload.
+- Test-development corrections: a host evolution fixture initially retained its egg flag and a new static audit initially missed an import. Corrected fixtures/import and reran; these were not game bugs and no failed run is counted as passing.
+- Save/dependency effects: no layout, species/move ID, trainer, encounter-policy or item-mechanics change. Parent #2–#7 remain unchanged. New typing behavior was separately approved, not silently imported from another project.
+- Unverified: full overworld Bag navigation, actual two-peer link/trade scene handshake, physical RTC/other cores/full progression, complete AI strategy, nickname acceptance/rename, successful catches with every ball, faint/replacement/whiteout, forced-end/spread moves and unfinished weather. Wild-double release verdict remains CONDITIONAL. No known failed scenario is waived.
+- Supersedes only the overlapping category placement; other split behavior preserved.
+
+### 2026-11-02 — INT-004 — final combined stabilization verification
+
+- Branch/head: feature/phase-one-stabilization `6ff574dc205a007a93a4724fd6eda867eeff8fdf`; #9 stacked on #7. No merge/auto-merge/release.
+- All five local host suites PASS: split1,299 +6 separate static audits; RTC3,011; evolution755 +separate data/wiring audits; Dex6,300 +strict type/other-data preservation; wild1,246,873 (including200,000 draws). Static evidence is not represented as emulator execution.
+- Complete local mGBA0.10.5 PASS: **8,715 assertions**, including API/guard safety checks, not that many whole battles. Actual ROM boot, scenes, controlled ARM battle/AI routines, summary and move-selection UI, wild battles, saves and clock are exercised by the default suite. Focused diagnostics do not substitute for this complete run.
+- Build and clean rebuild PASS; SHA-256 `d17d2e6206496b9e48fe578872f91df9658d31a61b3ec8ccf33b0adcc5b9e069` identical. Linker EWRAM261,052/262,144; IWRAM29,824/32,768; ROM15,407,440/33,554,432 bytes. No runtime RAM increase from these helpers; budget remains tight.
+- [GitHub Actions41376878452](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41376878452) **SUCCESS** for exact head above. API confirms modified host tests, clean reproducibility and mGBA steps SUCCESS; separate upstream-baseline original SHA-1 twice-from-clean step SUCCESS. Assertion counts above are local execution evidence; API step conclusions are CI evidence. Inaccessible Actions log downloads are not claimed as read.
+- Current main remains `e04252ea0783510000e634486c0f2526a736f506`. Working tree diff checks and no tracked ROM/save/archive checks pass. ROMs, proprietary BIOS, save snapshots and screenshots were not uploaded/committed.
+- Remaining integrated feature tests wait for absent Route5 register, final move/weather/lighting specifications and later implementation. Scoped current-stack acceptance does not mean Phase One or the whole game is complete.
+- Rollback: before merge leave/close #9; after separate integration approval revert only this five-commit series in a reviewed PR, preserving parents. Saved completed evolutions/caught flags are not undone by code rollback.
+
+### 2026-11-02 — INT-003 — final session checkpoint
+
+The canonical dashboard, JSON registry and this ledger now record final #9 evidence and remaining gaps. Provisional tracked effort is123 earned /341 remaining (26.51%); the same464-point denominator is retained. INT-004 credits combined build/repeatability/stack checks, while per-feature test work stays with its task. Existing completed work is not reset or counted again. Drive sync remains pending; no Google Drive tool is exposed and network configuration alone is not an authenticated connector. Next required design input is the full Route5 register export. Other missing specs remain independent blockers. All PRs remain unmerged.

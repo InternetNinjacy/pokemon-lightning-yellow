@@ -3,7 +3,7 @@
   "updated": "2026-11-02",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "docs/project-coordination",
-  "current_focus": "PKM-005 / BTL-003 / BTL-004 / INT-004 final stabilization acceptance; DAY waiting for dedicated register",
+  "current_focus": "Stabilization PR#9 ready for owner review; canonical tracking PR#8 open. Next independent queue entries await missing finalized specs; remaining acceptance gaps are retained.",
   "main_sha": "e04252ea0783510000e634486c0f2526a736f506",
   "drive_sync": {
     "status": "pending: no direct Drive writing tool available",
@@ -146,20 +146,20 @@
       "dependencies": [],
       "status": {
         "design": "approved scoped implementation",
-        "implementation": "implemented on stabilization branch",
-        "automated": "all five host suites pass",
-        "emulator": "pre-National scenes and exact RTC boundaries pass; focused ROM category suite 147 checks pass",
-        "pull_request": "#9 draft; final CI pending",
+        "implementation": "implemented; scoped automated acceptance passed",
+        "automated": "all five host suites PASS; clean rebuild identical; GitHub both jobs SUCCESS",
+        "emulator": "full local mGBA0.10.5 PASS:8715 assertions; selected scenes/battles only",
+        "pull_request": "#9 open and ready for review",
         "merge": "not merged"
       },
       "branch": "feature/phase-one-stabilization",
-      "commit": "69522141",
+      "commit": "6ff574dc205a007a93a4724fd6eda867eeff8fdf",
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/9",
-      "ci_url": null,
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41376878452",
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
-      "next_action": "Complete final clean-build/full mGBA and Actions validation",
-      "checkpoint": "2026-11-02 milestone: #8 tracking established, #9 stabilization draft and final tests underway"
+      "next_action": "Owner review; do not merge without separate approval",
+      "checkpoint": "2026-11-02 final stabilization: commit6ff574dc205a007a93a4724fd6eda867eeff8fdf; local8715; Actions41376878452 SUCCESS"
     },
     {
       "id": "PKM-004",
@@ -191,20 +191,20 @@
       ],
       "status": {
         "design": "approved scoped implementation",
-        "implementation": "implemented on stabilization branch",
-        "automated": "all five host suites pass",
-        "emulator": "pre-National scenes and exact RTC boundaries pass; focused ROM category suite 147 checks pass",
-        "pull_request": "#9 draft; final CI pending",
+        "implementation": "implemented; scoped automated acceptance passed",
+        "automated": "all five host suites PASS; clean rebuild identical; GitHub both jobs SUCCESS",
+        "emulator": "full local mGBA0.10.5 PASS:8715 assertions; selected scenes/battles only",
+        "pull_request": "#9 open and ready for review",
         "merge": "not merged"
       },
       "branch": "feature/phase-one-stabilization",
-      "commit": "69522141",
+      "commit": "6ff574dc205a007a93a4724fd6eda867eeff8fdf",
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/9",
-      "ci_url": null,
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41376878452",
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
-      "next_action": "Complete final clean-build/full mGBA and Actions validation",
-      "checkpoint": "2026-11-02 milestone: #8 tracking established, #9 stabilization draft and final tests underway"
+      "next_action": "Owner review; do not merge without separate approval",
+      "checkpoint": "2026-11-02 final stabilization: commit6ff574dc205a007a93a4724fd6eda867eeff8fdf; local8715; Actions41376878452 SUCCESS"
     },
     {
       "id": "PKM-005",
@@ -212,8 +212,8 @@
       "title": "Expanded Dex/evolution acceptance",
       "aliases": [],
       "effort": {
-        "earned": 4,
-        "remaining": 4,
+        "earned": 6,
+        "remaining": 2,
         "unit": "provisional relative planning point",
         "confidence": "low",
         "history": [
@@ -228,6 +228,12 @@
             "earned": 4,
             "remaining": 4,
             "reason": "Implemented approved stabilization and focused acceptance; remaining scope and external checks recorded separately."
+          },
+          {
+            "date": "2026-11-02",
+            "earned": 6,
+            "remaining": 2,
+            "reason": "Final clean build, full local mGBA8715 and GitHub modified/upstream jobs passed. Only executed scoped work earns credit; remaining acceptance retained."
           }
         ]
       },
@@ -238,20 +244,21 @@
       ],
       "status": {
         "design": "approved scoped implementation",
-        "implementation": "partially verified on stabilization branch",
-        "automated": "all five host suites pass",
-        "emulator": "pre-National scenes and exact RTC boundaries pass; focused ROM category suite 147 checks pass",
-        "pull_request": "#9 draft; final CI pending",
+        "implementation": "partial acceptance; remaining coverage explicitly recorded",
+        "automated": "all five host suites PASS; clean rebuild identical; GitHub both jobs SUCCESS",
+        "emulator": "full local mGBA0.10.5 PASS:8715 assertions; selected scenes/battles only",
+        "pull_request": "#9 open and ready for review",
         "merge": "not merged"
       },
       "branch": "feature/phase-one-stabilization",
-      "commit": "69522141",
+      "commit": "6ff574dc205a007a93a4724fd6eda867eeff8fdf",
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/9",
-      "ci_url": null,
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41376878452",
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
-      "next_action": "Complete final clean-build/full mGBA and Actions validation",
-      "checkpoint": "2026-11-02 milestone: #8 tracking established, #9 stabilization draft and final tests underway"
+      "next_action": "Full overworld Bag evolution navigation and a real link-trade peer remain unverified.",
+      "checkpoint": "2026-11-02 final stabilization: commit6ff574dc205a007a93a4724fd6eda867eeff8fdf; local8715; Actions41376878452 SUCCESS",
+      "coverage_gap": "Full overworld Bag evolution navigation and a real link-trade peer remain unverified."
     },
     {
       "id": "BTL-001",
@@ -333,8 +340,8 @@
       "title": "Split, AI and category UI acceptance",
       "aliases": [],
       "effort": {
-        "earned": 3,
-        "remaining": 3,
+        "earned": 5,
+        "remaining": 1,
         "unit": "provisional relative planning point",
         "confidence": "low",
         "history": [
@@ -349,6 +356,12 @@
             "earned": 3,
             "remaining": 3,
             "reason": "Implemented approved stabilization and focused acceptance; remaining scope and external checks recorded separately."
+          },
+          {
+            "date": "2026-11-02",
+            "earned": 5,
+            "remaining": 1,
+            "reason": "Final clean build, full local mGBA8715 and GitHub modified/upstream jobs passed. Only executed scoped work earns credit; remaining acceptance retained."
           }
         ]
       },
@@ -357,20 +370,21 @@
       ],
       "status": {
         "design": "approved scoped implementation",
-        "implementation": "partially verified on stabilization branch",
-        "automated": "all five host suites pass",
-        "emulator": "pre-National scenes and exact RTC boundaries pass; focused ROM category suite 147 checks pass",
-        "pull_request": "#9 draft; final CI pending",
+        "implementation": "partial acceptance; remaining coverage explicitly recorded",
+        "automated": "all five host suites PASS; clean rebuild identical; GitHub both jobs SUCCESS",
+        "emulator": "full local mGBA0.10.5 PASS:8715 assertions; selected scenes/battles only",
+        "pull_request": "#9 open and ready for review",
         "merge": "not merged"
       },
       "branch": "feature/phase-one-stabilization",
-      "commit": "69522141",
+      "commit": "6ff574dc205a007a93a4724fd6eda867eeff8fdf",
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/9",
-      "ci_url": null,
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41376878452",
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
-      "next_action": "Complete final clean-build/full mGBA and Actions validation",
-      "checkpoint": "2026-11-02 milestone: #8 tracking established, #9 stabilization draft and final tests underway"
+      "next_action": "Complete trainer-AI strategy/gameplay coverage remains unverified; selected ROM damage/AI/UI tests pass.",
+      "checkpoint": "2026-11-02 final stabilization: commit6ff574dc205a007a93a4724fd6eda867eeff8fdf; local8715; Actions41376878452 SUCCESS",
+      "coverage_gap": "Complete trainer-AI strategy/gameplay coverage remains unverified; selected ROM damage/AI/UI tests pass."
     },
     {
       "id": "BTL-004",
@@ -378,8 +392,8 @@
       "title": "Wild double battle hardening",
       "aliases": [],
       "effort": {
-        "earned": 0,
-        "remaining": 10,
+        "earned": 4,
+        "remaining": 6,
         "unit": "provisional relative planning point",
         "confidence": "low",
         "history": [
@@ -388,6 +402,12 @@
             "earned": 0,
             "remaining": 10,
             "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          },
+          {
+            "date": "2026-11-02",
+            "earned": 4,
+            "remaining": 6,
+            "reason": "Final clean build, full local mGBA8715 and GitHub modified/upstream jobs passed. Only executed scoped work earns credit; remaining acceptance retained."
           }
         ]
       },
@@ -396,20 +416,21 @@
       ],
       "status": {
         "design": "approved scoped implementation",
-        "implementation": "not started",
-        "automated": "not executed for new work",
-        "emulator": "not executed",
-        "pull_request": "not created",
+        "implementation": "partial acceptance; remaining coverage explicitly recorded",
+        "automated": "all five host suites PASS; clean rebuild identical; GitHub both jobs SUCCESS",
+        "emulator": "full local mGBA0.10.5 PASS:8715 assertions; selected scenes/battles only",
+        "pull_request": "#9 open and ready for review",
         "merge": "not merged"
       },
-      "branch": null,
-      "commit": null,
-      "pr_url": null,
-      "ci_url": null,
+      "branch": "feature/phase-one-stabilization",
+      "commit": "6ff574dc205a007a93a4724fd6eda867eeff8fdf",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/9",
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41376878452",
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
-      "next_action": "Execute approved stabilization plan",
-      "checkpoint": "2026-11-02 initial audit"
+      "next_action": "Nickname acceptance/rename, successful captures with every ball, faint/replacement/whiteout, forced-end/spread moves and complete weather interactions remain unverified.",
+      "checkpoint": "2026-11-02 final stabilization: commit6ff574dc205a007a93a4724fd6eda867eeff8fdf; local8715; Actions41376878452 SUCCESS",
+      "coverage_gap": "Nickname acceptance/rename, successful captures with every ball, faint/replacement/whiteout, forced-end/spread moves and complete weather interactions remain unverified."
     },
     {
       "id": "BTL-005",
@@ -517,20 +538,20 @@
       ],
       "status": {
         "design": "approved scoped implementation",
-        "implementation": "implemented on stabilization branch",
-        "automated": "all five host suites pass",
-        "emulator": "pre-National scenes and exact RTC boundaries pass; focused ROM category suite 147 checks pass",
-        "pull_request": "#9 draft; final CI pending",
+        "implementation": "implemented; scoped automated acceptance passed",
+        "automated": "all five host suites PASS; clean rebuild identical; GitHub both jobs SUCCESS",
+        "emulator": "full local mGBA0.10.5 PASS:8715 assertions; selected scenes/battles only",
+        "pull_request": "#9 open and ready for review",
         "merge": "not merged"
       },
       "branch": "feature/phase-one-stabilization",
-      "commit": "69522141",
+      "commit": "6ff574dc205a007a93a4724fd6eda867eeff8fdf",
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/9",
-      "ci_url": null,
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41376878452",
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
-      "next_action": "Complete final clean-build/full mGBA and Actions validation",
-      "checkpoint": "2026-11-02 milestone: #8 tracking established, #9 stabilization draft and final tests underway"
+      "next_action": "Owner review; do not merge without separate approval",
+      "checkpoint": "2026-11-02 final stabilization: commit6ff574dc205a007a93a4724fd6eda867eeff8fdf; local8715; Actions41376878452 SUCCESS"
     },
     {
       "id": "TIM-003",
@@ -1210,19 +1231,19 @@
       "dependencies": [],
       "status": {
         "design": "approved scoped implementation",
-        "implementation": "dashboard and ledger established; Drive sync pending",
-        "automated": "JSON/IDs/effort validation passed; docs PR CI success",
+        "implementation": "canonical dashboard and append-only ledger published in #8; Drive sync pending",
+        "automated": "JSON uniqueness, effort totals, refs and diff validated; prior docs CI SUCCESS",
         "emulator": "not executed",
-        "pull_request": "#8 open",
+        "pull_request": "#8 open and ready for review",
         "merge": "not merged"
       },
       "branch": "docs/project-coordination",
       "commit": null,
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/8",
       "ci_url": null,
-      "blocker": null,
+      "blocker": "Drive reader/writer absent. API domain settings do not authenticate Drive.",
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
-      "next_action": "Record final stabilization evidence; synchronize Drive when supported access exists",
+      "next_action": "Keep updating this branch; synchronize when a supported Drive writer is available",
       "checkpoint": "2026-11-02 milestone: #8 tracking established, #9 stabilization draft and final tests underway"
     },
     {
@@ -1231,8 +1252,8 @@
       "title": "Combined integration acceptance",
       "aliases": [],
       "effort": {
-        "earned": 0,
-        "remaining": 24,
+        "earned": 8,
+        "remaining": 16,
         "unit": "provisional relative planning point",
         "confidence": "low",
         "history": [
@@ -1241,6 +1262,12 @@
             "earned": 0,
             "remaining": 24,
             "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          },
+          {
+            "date": "2026-11-02",
+            "earned": 8,
+            "remaining": 16,
+            "reason": "Final clean build, full local mGBA8715 and GitHub modified/upstream jobs passed. Only executed scoped work earns credit; remaining acceptance retained."
           }
         ]
       },
@@ -1252,20 +1279,21 @@
       ],
       "status": {
         "design": "approved scoped implementation",
-        "implementation": "not started",
-        "automated": "not executed for new work",
-        "emulator": "not executed",
-        "pull_request": "not created",
+        "implementation": "partial acceptance; remaining coverage explicitly recorded",
+        "automated": "all five host suites PASS; clean rebuild identical; GitHub both jobs SUCCESS",
+        "emulator": "full local mGBA0.10.5 PASS:8715 assertions; selected scenes/battles only",
+        "pull_request": "#9 open and ready for review",
         "merge": "not merged"
       },
-      "branch": null,
-      "commit": null,
-      "pr_url": null,
-      "ci_url": null,
+      "branch": "feature/phase-one-stabilization",
+      "commit": "6ff574dc205a007a93a4724fd6eda867eeff8fdf",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/9",
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41376878452",
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
-      "next_action": "Execute approved stabilization plan",
-      "checkpoint": "2026-11-02 initial audit"
+      "next_action": "Current #2\u2013#7 plus stabilization builds/tests pass. Final integration with unimplemented weather/lighting/daycare depends on their specs and implementation.",
+      "checkpoint": "2026-11-02 final stabilization: commit6ff574dc205a007a93a4724fd6eda867eeff8fdf; local8715; Actions41376878452 SUCCESS",
+      "coverage_gap": "Current #2\u2013#7 plus stabilization builds/tests pass. Final integration with unimplemented weather/lighting/daycare depends on their specs and implementation."
     },
     {
       "id": "INT-005",
@@ -1362,5 +1390,12 @@
       "INT-005"
     ]
   },
-  "queue_crosswalk": "Q01\u2013Q08 unavailable; do not invent titles or mappings."
+  "queue_crosswalk": "Q01\u2013Q08 unavailable; do not invent titles or mappings.",
+  "acceptance_limits": {
+    "PKM-005": "Full overworld Bag evolution navigation and a real link-trade peer remain unverified.",
+    "BTL-003": "Complete trainer-AI strategy/gameplay coverage remains unverified; selected ROM damage/AI/UI tests pass.",
+    "BTL-004": "Nickname acceptance/rename, successful captures with every ball, faint/replacement/whiteout, forced-end/spread moves and complete weather interactions remain unverified.",
+    "INT-004": "Current #2\u2013#7 plus stabilization builds/tests pass. Final integration with unimplemented weather/lighting/daycare depends on their specs and implementation."
+  },
+  "effort_rules": "Provisional tracked scope. INT-004 credits combined build/repeatability/stack compatibility only; feature-specific scene/mechanics testing is counted under each feature. No double credit for parent merges. No merge/release authorization inferred."
 }
