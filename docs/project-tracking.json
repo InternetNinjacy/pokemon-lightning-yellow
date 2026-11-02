@@ -3,7 +3,7 @@
   "updated": "2026-11-02",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "docs/project-coordination",
-  "current_focus": "DAY-001..004: complete final combined/CI acceptance for PR#10. Former missing-register blocker resolved by owner handoff; WRL-005 tracks pending Ditto values.",
+  "current_focus": "DAY-001..004 implemented and scoped acceptance passed; PR#10 ready for owner review, unmerged. WRL-005 remains blocked only on Ditto rate/levels. Preserve all existing areas and coverage gaps.",
   "main_sha": "e04252ea0783510000e634486c0f2526a736f506",
   "drive_sync": {
     "status": "pending: no direct Drive writing tool available",
@@ -738,20 +738,20 @@
       "dependencies": [],
       "status": {
         "design": "owner approved; complete supplied handoff available",
-        "implementation": "implemented on unmerged branch",
-        "automated": "six host suites PASS; target ABI assertions PASS; clean rebuild identical",
-        "emulator": "focused core103114 and UI1359 assertions PASS; actual10000 Route5 eggs5066 Shiny; final combined run pending",
-        "pull_request": "#10 draft during final validation",
+        "implementation": "implemented on unmerged branch; scoped acceptance passed",
+        "automated": "six host suites PASS; daycare460161 assertions + preservation audits; target ABI and identical clean rebuild PASS; Actions41451641953 both jobs SUCCESS",
+        "emulator": "complete local libmGBA0.10.5 suite114313 assertions PASS; actual10000 Route5 eggs5066 Shiny; actual UI/flash/Continue/hatch scenarios PASS; external gaps retained",
+        "pull_request": "#10 open and ready for review",
         "merge": "not merged"
       },
       "branch": "feature/route5-daycare-breeding",
-      "commit": "a1dbe8a323a180f4365cb80c6c149663ef7b8e8d",
+      "commit": "596265d41f92fd3e42ee6b0a08d2cb8e0ed62e5d",
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/10",
-      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41447962744",
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41451641953",
       "blocker": null,
       "design_authority": "Owner-supplied complete Route5 Daycare Breeding handoff consolidated November2,2026; supplied text authoritative, Drive originals not directly accessed.",
-      "next_action": "Finish combined suite/CI; owner review of technical NPC layout and scoped hatch marker; no merge without separate approval",
-      "checkpoint": "2026-11-02: PR#10 draft; clean rebuild identical; six host suites and focused core/UI pass; final combined suite/CI pending."
+      "next_action": "Owner code review; external peer/hardware/full-playthrough acceptance remains separately tracked; no merge without explicit approval",
+      "checkpoint": "2026-11-02 final: commit596265d41f92fd3e42ee6b0a08d2cb8e0ed62e5d; full mGBA114313 PASS; all six hosts PASS; clean SHA256 0d719dc65d697e9df0ca82596c14a829fa4d179f95be1dad7cfbc09265e8dcfe; Actions41451641953 and41451631233 SUCCESS; main unchanged."
     },
     {
       "id": "DAY-002",
@@ -783,20 +783,20 @@
       ],
       "status": {
         "design": "owner approved; complete supplied handoff available",
-        "implementation": "implemented on unmerged branch",
-        "automated": "six host suites PASS; target ABI assertions PASS; clean rebuild identical",
-        "emulator": "focused core103114 and UI1359 assertions PASS; actual10000 Route5 eggs5066 Shiny; final combined run pending",
-        "pull_request": "#10 draft during final validation",
+        "implementation": "implemented on unmerged branch; scoped acceptance passed",
+        "automated": "six host suites PASS; daycare460161 assertions + preservation audits; target ABI and identical clean rebuild PASS; Actions41451641953 both jobs SUCCESS",
+        "emulator": "complete local libmGBA0.10.5 suite114313 assertions PASS; actual10000 Route5 eggs5066 Shiny; actual UI/flash/Continue/hatch scenarios PASS; external gaps retained",
+        "pull_request": "#10 open and ready for review",
         "merge": "not merged"
       },
       "branch": "feature/route5-daycare-breeding",
-      "commit": "a1dbe8a323a180f4365cb80c6c149663ef7b8e8d",
+      "commit": "596265d41f92fd3e42ee6b0a08d2cb8e0ed62e5d",
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/10",
-      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41447962744",
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41451641953",
       "blocker": null,
       "design_authority": "Owner-supplied complete Route5 Daycare Breeding handoff consolidated November2,2026; supplied text authoritative, Drive originals not directly accessed.",
-      "next_action": "Finish combined suite/CI; owner review of technical NPC layout and scoped hatch marker; no merge without separate approval",
-      "checkpoint": "2026-11-02: PR#10 draft; clean rebuild identical; six host suites and focused core/UI pass; final combined suite/CI pending."
+      "next_action": "Owner code review; external peer/hardware/full-playthrough acceptance remains separately tracked; no merge without explicit approval",
+      "checkpoint": "2026-11-02 final: commit596265d41f92fd3e42ee6b0a08d2cb8e0ed62e5d; full mGBA114313 PASS; all six hosts PASS; clean SHA256 0d719dc65d697e9df0ca82596c14a829fa4d179f95be1dad7cfbc09265e8dcfe; Actions41451641953 and41451631233 SUCCESS; main unchanged."
     },
     {
       "id": "DAY-003",
@@ -828,20 +828,20 @@
       ],
       "status": {
         "design": "owner approved; complete supplied handoff available",
-        "implementation": "implemented on unmerged branch",
-        "automated": "six host suites PASS; target ABI assertions PASS; clean rebuild identical",
-        "emulator": "focused core103114 and UI1359 assertions PASS; actual10000 Route5 eggs5066 Shiny; final combined run pending",
-        "pull_request": "#10 draft during final validation",
+        "implementation": "implemented on unmerged branch; scoped acceptance passed",
+        "automated": "six host suites PASS; daycare460161 assertions + preservation audits; target ABI and identical clean rebuild PASS; Actions41451641953 both jobs SUCCESS",
+        "emulator": "complete local libmGBA0.10.5 suite114313 assertions PASS; actual10000 Route5 eggs5066 Shiny; actual UI/flash/Continue/hatch scenarios PASS; external gaps retained",
+        "pull_request": "#10 open and ready for review",
         "merge": "not merged"
       },
       "branch": "feature/route5-daycare-breeding",
-      "commit": "a1dbe8a323a180f4365cb80c6c149663ef7b8e8d",
+      "commit": "596265d41f92fd3e42ee6b0a08d2cb8e0ed62e5d",
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/10",
-      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41447962744",
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41451641953",
       "blocker": null,
       "design_authority": "Owner-supplied complete Route5 Daycare Breeding handoff consolidated November2,2026; supplied text authoritative, Drive originals not directly accessed.",
-      "next_action": "Finish combined suite/CI; owner review of technical NPC layout and scoped hatch marker; no merge without separate approval",
-      "checkpoint": "2026-11-02: PR#10 draft; clean rebuild identical; six host suites and focused core/UI pass; final combined suite/CI pending."
+      "next_action": "Owner code review; external peer/hardware/full-playthrough acceptance remains separately tracked; no merge without explicit approval",
+      "checkpoint": "2026-11-02 final: commit596265d41f92fd3e42ee6b0a08d2cb8e0ed62e5d; full mGBA114313 PASS; all six hosts PASS; clean SHA256 0d719dc65d697e9df0ca82596c14a829fa4d179f95be1dad7cfbc09265e8dcfe; Actions41451641953 and41451631233 SUCCESS; main unchanged."
     },
     {
       "id": "DAY-004",
@@ -875,20 +875,20 @@
       ],
       "status": {
         "design": "owner approved; complete supplied handoff available",
-        "implementation": "implemented on unmerged branch",
-        "automated": "six host suites PASS; target ABI assertions PASS; clean rebuild identical",
-        "emulator": "focused core103114 and UI1359 assertions PASS; actual10000 Route5 eggs5066 Shiny; final combined run pending",
-        "pull_request": "#10 draft during final validation",
+        "implementation": "scoped automated/emulator acceptance passed; external acceptance incomplete",
+        "automated": "six host suites PASS; daycare460161 assertions + preservation audits; target ABI and identical clean rebuild PASS; Actions41451641953 both jobs SUCCESS",
+        "emulator": "complete local libmGBA0.10.5 suite114313 assertions PASS; actual10000 Route5 eggs5066 Shiny; actual UI/flash/Continue/hatch scenarios PASS; external gaps retained",
+        "pull_request": "#10 open and ready for review",
         "merge": "not merged"
       },
       "branch": "feature/route5-daycare-breeding",
-      "commit": "a1dbe8a323a180f4365cb80c6c149663ef7b8e8d",
+      "commit": "596265d41f92fd3e42ee6b0a08d2cb8e0ed62e5d",
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/10",
-      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41447962744",
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41451641953",
       "blocker": null,
       "design_authority": "Owner-supplied complete Route5 Daycare Breeding handoff consolidated November2,2026; supplied text authoritative, Drive originals not directly accessed.",
-      "next_action": "Finish combined suite/CI; owner review of technical NPC layout and scoped hatch marker; no merge without separate approval",
-      "checkpoint": "2026-11-02: PR#10 draft; clean rebuild identical; six host suites and focused core/UI pass; final combined suite/CI pending.",
+      "next_action": "Owner code review; external peer/hardware/full-playthrough acceptance remains separately tracked; no merge without explicit approval",
+      "checkpoint": "2026-11-02 final: commit596265d41f92fd3e42ee6b0a08d2cb8e0ed62e5d; full mGBA114313 PASS; all six hosts PASS; clean SHA256 0d719dc65d697e9df0ca82596c14a829fa4d179f95be1dad7cfbc09265e8dcfe; Actions41451641953 and41451631233 SUCCESS; main unchanged.",
       "coverage_gap": "Real two-peer trade handshake, hardware/power interruption, full quest-log playback/progression and old-ROM reverse migration unverified. Matching-build ownership-data and hatch tests passed."
     },
     {
@@ -1305,20 +1305,20 @@
       "status": {
         "design": "approved scoped implementation",
         "implementation": "partial acceptance; remaining coverage explicitly recorded",
-        "automated": "all five host suites PASS; clean rebuild identical; GitHub both jobs SUCCESS",
-        "emulator": "full local mGBA0.10.5 PASS:8715 assertions; selected scenes/battles only",
-        "pull_request": "#9 open and ready for review",
+        "automated": "all six host suites PASS; identical clean rebuild; Actions41451641953 modified/upstream jobs SUCCESS",
+        "emulator": "full local libmGBA0.10.5 PASS:114313 assertions; selected scenarios only, external gaps retained",
+        "pull_request": "#10 open and ready for review; #9 unchanged",
         "merge": "not merged"
       },
-      "branch": "feature/phase-one-stabilization",
-      "commit": "6ff574dc205a007a93a4724fd6eda867eeff8fdf",
-      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/9",
-      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41376878452",
+      "branch": "feature/route5-daycare-breeding",
+      "commit": "596265d41f92fd3e42ee6b0a08d2cb8e0ed62e5d",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/10",
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41451641953",
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
-      "next_action": "Current #2\u2013#7 plus stabilization builds/tests pass. Final integration with unimplemented weather/lighting/daycare depends on their specs and implementation.",
-      "checkpoint": "2026-11-02 final stabilization: commit6ff574dc205a007a93a4724fd6eda867eeff8fdf; local8715; Actions41376878452 SUCCESS",
-      "coverage_gap": "Current #2\u2013#7 plus stabilization builds/tests pass. Final integration with unimplemented weather/lighting/daycare depends on their specs and implementation."
+      "next_action": "Current #2\u2013#7 plus stabilization and Route5 compile, clean-repeatability and scoped combined tests pass on #10. Final integration with unimplemented weather/lighting/move redesign and full release acceptance remains outstanding. Feature-specific daycare assertions earn no duplicate INT credit.",
+      "checkpoint": "2026-11-02 final Route5 combined regression; earned/remaining effort unchanged to avoid duplicate credit.",
+      "coverage_gap": "Current #2\u2013#7 plus stabilization and Route5 compile, clean-repeatability and scoped combined tests pass on #10. Final integration with unimplemented weather/lighting/move redesign and full release acceptance remains outstanding. Feature-specific daycare assertions earn no duplicate INT credit."
     },
     {
       "id": "INT-005",
@@ -1457,7 +1457,8 @@
     "PKM-005": "Full overworld Bag evolution navigation and a real link-trade peer remain unverified.",
     "BTL-003": "Complete trainer-AI strategy/gameplay coverage remains unverified; selected ROM damage/AI/UI tests pass.",
     "BTL-004": "Nickname acceptance/rename, successful captures with every ball, faint/replacement/whiteout, forced-end/spread moves and complete weather interactions remain unverified.",
-    "INT-004": "Current #2\u2013#7 plus stabilization builds/tests pass. Final integration with unimplemented weather/lighting/daycare depends on their specs and implementation."
+    "INT-004": "Current #2\u2013#7 plus stabilization and Route5 compile, clean-repeatability and scoped combined tests pass on #10. Final integration with unimplemented weather/lighting/move redesign and full release acceptance remains outstanding. Feature-specific daycare assertions earn no duplicate INT credit.",
+    "DAY-004": "Real two-peer trade handshake, hardware/power interruption, full quest-log playback/progression and old-ROM reverse migration unverified. Matching-build ownership-data and hatch tests passed."
   },
   "effort_rules": "Provisional tracked scope. INT-004 credits combined build/repeatability/stack compatibility only; feature-specific scene/mechanics testing is counted under each feature. No double credit for parent merges. No merge/release authorization inferred."
 }
