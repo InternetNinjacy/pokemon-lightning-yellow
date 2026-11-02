@@ -110,8 +110,22 @@ with tempfile.TemporaryDirectory() as temp:
  p=Path(temp)/'pokedex.c';p.write_text(program)
  subprocess.run(['gcc','-std=gnu11','-D__INTELLISENSE__','-iquote','.','-iquote','include','-iquote','src',str(p),'-o',temp+'/pokedex'],check=True)
  subprocess.run([temp+'/pokedex'],check=True)
-# Separate preservation evidence: whole systems stay byte-identical to PR5.
+# Independent approved override fixture: validate each exact change, then restore
+# ONLY those twelve type pairs and compare the original whole-file digest.
+# This detects changed stats, abilities, forms, extra types, or missing overrides.
+fixture=json.loads(Path('tests/specifications/approved_type_overrides.json').read_text())['species']
+assert len(fixture)==12
+species_info=Path('src/data/pokemon/species_info.h').read_text()
+for name,types in fixture.items():
+ pattern=r'(\[SPECIES_'+name+r'\]\s*=\s*\{.*?\.types = \{)(TYPE_\w+), (TYPE_\w+)(\},)'
+ match=re.search(pattern,species_info,re.S)
+ assert match and [match[2][5:],match[3][5:]]==types['approved'],name
+ species_info,count=re.subn(pattern,lambda m:m[1]+'TYPE_'+types['original'][0]+', TYPE_'+types['original'][1]+m[4],species_info,count=1,flags=re.S)
+ assert count==1
+# Separate preservation evidence: all other bytes stay identical to PR5.
+
 preserved=json.loads(Path('tests/custom_dex_preserved.json').read_text())
 for path,expected_hash in preserved.items():
- assert hashlib.sha256(Path(path).read_bytes()).hexdigest()==expected_hash,path
-print('PASS: static preservation of species/types/abilities, Forecast implementation, trainers, evolution data and save layout')
+ actual=species_info.encode() if path=='src/data/pokemon/species_info.h' else Path(path).read_bytes()
+ assert hashlib.sha256(actual).hexdigest()==expected_hash,path
+print('PASS: twelve approved type pairs; all other species fields/types/abilities, Forecast, trainers, evolution data and save layout preserved (static audit)')
