@@ -71,9 +71,29 @@ for key,expr in {
  'BMON_STAGES_COUNT':'NUM_BATTLE_STATS',
  'BATTLESTRUCT_DYNAMIC_TYPE':'offsetof(struct BattleStruct,dynamicMoveType)',
  'SCRIPTING_MULTIPLIER':'offsetof(struct BattleScripting,dmgMultiplier)',
+ 'CARE_SIZE':'sizeof(struct DayCare)',
+ 'CARE_MON_SIZE':'sizeof(struct DaycareMon)',
+ 'BOX_SIZE':'sizeof(struct BoxPokemon)',
+ 'CARE_STEPS':'offsetof(struct DaycareMon,steps)',
+ 'CARE_MAIL':'offsetof(struct DaycareMon,mail)',
+ 'CARE_PENDING':'offsetof(struct DayCare,offspringPersonality)',
+ 'CARE_COUNTER':'offsetof(struct DayCare,stepCounter)',
+ 'SAVE1_CARE':'offsetof(struct SaveBlock1,daycare)',
+ 'SAVE1_ROUTE5':'offsetof(struct SaveBlock1,route5Daycare)',
+ 'SAVE1_LEGACY_CARE':'offsetof(struct SaveBlock1,route5DayCareMon)',
+ 'R5_CARE':'offsetof(struct Route5DaycareSave,daycare)',
+ 'R5_PID':'offsetof(struct Route5DaycareSave,eggPersonality)',
+ 'R5_OT':'offsetof(struct Route5DaycareSave,eggOtId)',
+ 'R5_SHINY':'offsetof(struct Route5DaycareSave,eggShiny)',
+ 'SAVE2_OTID':'offsetof(struct SaveBlock2,playerTrainerId)',
+ 'PARTY_MENU_SLOT':'offsetof(struct PartyMenu,slotId)',
+ 'MAIL_SIZE':'sizeof(struct Mail)',
+ 'SAVE1_MAIL':'offsetof(struct SaveBlock1,mail)',
+ 'MAIL_ITEM':'offsetof(struct Mail,itemId)',
+ 'MAIL_WORDS':'offsetof(struct Mail,words)',
  'RESULT_CAUGHT':'offsetof(struct BattleResults,caughtMonSpecies)',
 }.items(): expressions[key]=expr
-for name in ['SPECIES','HELD_ITEM','LEVEL','FRIENDSHIP','IS_EGG','ATK','DEF','HP','MAX_HP','MOVE1','MOVE2','MOVE3','MOVE4','PP1','PP2','PP3','PP4']:
+for name in ['SPECIES','HELD_ITEM','LEVEL','FRIENDSHIP','IS_EGG','ATK','DEF','HP','MAX_HP','MOVE1','MOVE2','MOVE3','MOVE4','PP1','PP2','PP3','PP4','PERSONALITY','OT_ID','HP_IV','SANITY_IS_BAD_EGG','ABILITY_NUM','MAIL','UNUSED_RIBBONS']:
     expressions['DATA_'+name] = 'MON_DATA_'+name
 required = [
     'AddBagItem', 'BagGetQuantityByItemId', 'BeginItemEvolution', 'CB2_LoadMap', 'CB2_OpenPokedexFromStartMenu',
@@ -95,6 +115,16 @@ required = [
     'gPaletteFade', 'gPlayerParty', 'gPlayerPartyCount', 'gPokemonStorage', 'gPokemonStoragePtr',
     'gRngValue', 'gSaveBlock1', 'gSaveBlock1Ptr', 'gSaveBlock2', 'gSaveBlock2Ptr',
     'gTasks', 'gWildMonHeaders', 'sEvoStructPtr', 'sPlttBufferTransferPending', 'sPokedexScreenData',
+    'GetRoute5Daycare', 'GetActiveDaycare', 'IsRoute5DaycareReady', 'TriggerPendingDaycareEgg',
+    'SetRoute5PendingEgg', 'GiveEggFromDaycare', 'RejectEggFromDayCare', 'ShouldEggHatch',
+    'StoreSelectedPokemonInDaycare', 'StorePokemonInDaycare', 'TakePokemonFromDaycare',
+    'GetDaycareCost', 'GetNumLevelsGainedFromDaycare', 'GetDaycareState', 'GetDaycarePokemonCount',
+    'GetDaycareCompatibilityScore', 'GiveMailToMon', 'GetCursorSelectionMonId', 'GetMonGender',
+    'IsMonShiny', 'ScriptHatchMon', 'CreateEgg', 'MapGridGetCollisionAt', 'MapGridGetElevationAt',
+    'ScriptContext_SetupScript', 'ScriptContext_IsEnabled', 'EventScript_EggHatch',
+    'Route5_PokemonDayCare_EventScript_DaycareWoman', 'Route5_PokemonDayCare_Egg_DaycareMan',
+    'FourIsland_PokemonDayCare_EventScript_DaycareWoman', 'FourIsland_EventScript_DaycareMan',
+    'gSpecialVar_0x8004', 'gSpecialVar_0x8005', 'gSpecialVar_Result', 'gPartyMenu', 'gSelectedObjectEvent',
     'sRoamerLocation', 'IsNationalPokedexEnabled', 'CopyPlayerPartyMonToBattleData', 'CalculateBaseDamage', 'AI_CalcDmg', 'Cmd_dmgtolevel',
     'GetMoveCategoryName', 'GetMoveCategoryShortName', 'MoveSelectionDisplayMoveType',
     'gCurrentMove', 'gCritMultiplier', 'gDynamicBasePower', 'gBattlerAttacker', 'gBattlerTarget',
@@ -119,7 +149,7 @@ for name in ['HandleInputChooseAction','HandleInputChooseMove','HandleInputChoos
 with tempfile.TemporaryDirectory(prefix='lightning-emulator-') as temp:
     temp=Path(temp)
     source='#include <stddef.h>\n#include "global.h"\n#include "pokemon.h"\n#include "main.h"\n#include "task.h"\n'
-    source+='#include "battle_controllers.h"\n#include "item_menu.h"\n#include "wild_encounter.h"\n#include "battle.h"\n#include "list_menu.h"\n'+screen_struct+'\n'+summary_struct+'\n'
+    source+='#include "battle_controllers.h"\n#include "item_menu.h"\n#include "wild_encounter.h"\n#include "battle.h"\n#include "list_menu.h"\n#include "party_menu.h"\n'+screen_struct+'\n'+summary_struct+'\n'
     source+='const unsigned long abi[] = {'+', '.join(expressions.values())+'};\n'
     (temp/'abi.c').write_text(source)
     with (temp/'abi.i').open('w') as out:

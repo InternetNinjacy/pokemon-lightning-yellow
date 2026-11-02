@@ -4,6 +4,7 @@
 #include <stdint.h>
 #include <string.h>
 #include <time.h>
+#include <mgba/flags.h> // match the installed library ABI, including debugger vtable slots
 #include <mgba/core/core.h>
 #include <mgba/core/config.h>
 #include <mgba/core/log.h>
@@ -331,6 +332,7 @@ static void dexTests(void) {
 
 #include "wild_double.c"
 #include "battle_categories.c"
+#include "daycare.c"
 
 int main(int argc,char **argv) {
     setvbuf(stdout,NULL,_IONBF,0);
@@ -351,6 +353,7 @@ int main(int argc,char **argv) {
     printf("RTC autodetected: %s\n",(gba->memory.hw.devices&HW_RTC)?"yes":"no");
     CHECK(gba->memory.hw.devices&HW_RTC);
     bootState=malloc(core->stateSize(core));CHECK(bootState && core->saveState(core,bootState));
+    if(getenv("LIGHTNING_DAYCARE_ONLY")){daycareTests();printf("PASS: %u focused daycare assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_WILD_HARDENING_ONLY")){wildHardeningTests();printf("PASS: %u focused wild hardening assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_SUMMARY_ONLY")){summaryTests();printf("PASS: %u focused summary assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_BATTLE_ONLY")){categoryTests();printf("PASS: %u focused battle assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
@@ -446,6 +449,7 @@ int main(int argc,char **argv) {
     summaryTests();
     wildTests();
     wildHardeningTests();
+    daycareTests();
     printf("PASS: %u mGBA assertions (includes API/register safety checks)\n",checks);
     core->deinit(core);free(pixels);free(bootState);
     return 0;

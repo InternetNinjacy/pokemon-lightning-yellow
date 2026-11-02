@@ -131,5 +131,12 @@ for name,types in fixture.items():
 preserved=json.loads(Path('tests/custom_dex_preserved.json').read_text())
 for path,expected_hash in preserved.items():
  actual=species_info.encode() if path=='src/data/pokemon/species_info.h' else Path(path).read_bytes()
+ if path=='include/global.h':
+  # Only the reviewed 400-byte padding substitution is allowed; target ABI tests
+  # separately prove that this does not change existing save offsets/size.
+  original=actual.decode()
+  original=re.sub(r'// Versioned use of exactly 400 formerly unused save bytes\..*?\n};\n\n','',original,flags=re.S)
+  original=original.replace('/*0x348C*/ struct Route5DaycareSave route5Daycare;','/*0x348C*/ u8 unused_348C[400];')
+  actual=original.encode()
  assert hashlib.sha256(actual).hexdigest()==expected_hash,path
 print('PASS: twelve approved type pairs; all other species fields/types/abilities, Forecast, trainers, evolution data and save layout preserved (static audit)')

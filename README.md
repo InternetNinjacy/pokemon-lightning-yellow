@@ -23,6 +23,8 @@ preserving the existing unmerged feature stack. The canonical [project dashboard
 and [implementation ledger](https://github.com/InternetNinjacy/pokemon-lightning-yellow/blob/docs/project-coordination/docs/MASTER_IMPLEMENTATION_CHANGE_LEDGER.md)
 live on the independent coordination branch; Drive synchronization remains pending.
 
+[Route5 daycare breeding](docs/ROUTE5_DAYCARE.md) is implemented on this stacked branch: independent two-parent storage, safe legacy migration and persistent50% Shiny eggs. Read its validation status and rollback limitations before using old saves.
+
 ## Build entirely on GitHub
 
 No local Python, compiler, or development tools are required. Open this repository's
@@ -55,6 +57,7 @@ python3 tests/run_rtc_tests.py
 python3 tests/run_evolution_tests.py
 python3 tests/run_pokedex_tests.py
 python3 tests/run_wild_double_tests.py
+python3 tests/run_daycare_tests.py
 make -j2
 python3 tests/emulator/run.py
 make clean

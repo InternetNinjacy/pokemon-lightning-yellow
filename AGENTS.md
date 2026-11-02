@@ -86,3 +86,13 @@ Canonical project tracking lives separately on `docs/project-coordination` in
 `docs/project-tracking.json`. Update it at milestones/focus switches/session end;
 Drive synchronization is pending, not completed. Do not invent unavailable Route 5,
 move redesign, weather, visual or Phase Two details. No merges or auto-merge.
+
+The complete owner-supplied November2 Route5 handoff authorizes DAY-001..004.
+Read docs/ROUTE5_DAYCARE.md. Use versioned400-byte reserved storage without moving
+existing save fields; never erase unknown/corrupt daycare data or re-import the
+read-only legacy recovery copy after migration. Preserve independent Four Island
+parents/pending state, one party hatch clock, ordinary breeding and untagged eggs.
+Only Route5 eggs carry their persistent Shiny intention through matching-build
+ownership changes. Run all host suites including run_daycare_tests.py and the
+complete mGBA suite. Do not invent Route5 Ditto rate/levels or claim a real link
+handshake from ownership-data fixtures. No merges, auto-merge or ROM release.
