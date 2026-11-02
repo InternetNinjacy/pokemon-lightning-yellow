@@ -3,7 +3,7 @@
 Real breeding/crypto/hatching/scenes run separately in the compiled-ROM mGBA suite.
 """
 from pathlib import Path
-import subprocess, tempfile
+import subprocess, tempfile, json
 from run_split_tests import extract_function
 policy=Path('src/route5_daycare.c').read_text()
 # Host pointer widths differ from the GBA. Production target ABI assertions stay
@@ -112,8 +112,16 @@ int main(void) {
 }
 '''
 with tempfile.TemporaryDirectory(prefix='lightning-daycare-') as temp:
+    # Fresh CI runs host tests before Make generates map_groups.h. Derive map
+    # IDs from the same authoritative JSON into a temporary include directory.
+    groups=json.loads(Path('data/maps/map_groups.json').read_text());header=''
+    for gi,group in enumerate(groups['group_order']):
+        for mi,name in enumerate(groups[group]):
+            map_id=json.loads((Path('data/maps')/name/'map.json').read_text())['id']
+            header+=f'#define {map_id} ({mi} | ({gi} << 8))\n'
+    inc=Path(temp)/'constants';inc.mkdir();(inc/'map_groups.h').write_text(header)
     source=Path(temp)/'daycare.c';source.write_text(program)
-    subprocess.run(['gcc','-std=gnu11','-O2','-D__INTELLISENSE__','-iquote','include',str(source),'-o',temp+'/daycare'],check=True)
+    subprocess.run(['gcc','-std=gnu11','-O2','-D__INTELLISENSE__','-iquote',temp,'-iquote','include',str(source),'-o',temp+'/daycare'],check=True)
     subprocess.run([temp+'/daycare'],check=True)
 
 # Independent preservation audit: these mechanics and FourIsland scripts are
