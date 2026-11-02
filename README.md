@@ -25,6 +25,8 @@ live on the independent coordination branch; Drive synchronization remains pendi
 
 [Route5 daycare breeding](docs/ROUTE5_DAYCARE.md) is implemented on this stacked branch: independent two-parent storage, safe legacy migration and persistent50% Shiny eggs. Read its validation status and rollback limitations before using old saves.
 
+[Fossil rewards and species audit](docs/FOSSIL_REWARDS_AND_SPECIES_AUDIT.md) extend the existing aide/lab scripts and report unresolved off-Dex assignments. Blaine and Poké Ball dependencies remain explicitly documented.
+
 ## Build entirely on GitHub
 
 No local Python, compiler, or development tools are required. Open this repository's
@@ -58,6 +60,7 @@ python3 tests/run_evolution_tests.py
 python3 tests/run_pokedex_tests.py
 python3 tests/run_wild_double_tests.py
 python3 tests/run_daycare_tests.py
+python3 tests/run_world_reward_tests.py
 make -j2
 python3 tests/emulator/run.py
 make clean

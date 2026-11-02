@@ -9,6 +9,18 @@ import tempfile
 
 # Generate ABI constants with the game's ARM compiler, never host offsetof.
 expressions = {
+    'SCRIPT_MODE': 'offsetof(struct ScriptContext,mode)',
+    'SCRIPT_NATIVE': 'offsetof(struct ScriptContext,nativePtr)',
+    'TEXT_COUNT': 'NUM_TEXT_PRINTERS',
+    'TEXT_SIZE': 'sizeof(struct TextPrinter)',
+    'TEXT_ACTIVE': 'offsetof(struct TextPrinter,active)',
+    'TEXT_STATE': 'offsetof(struct TextPrinter,state)',
+    'TEXT_CLEAR': 'RENDER_STATE_CLEAR',
+    'TEXT_SCROLL_START': 'RENDER_STATE_SCROLL_START',
+    'TEXT_WAIT': 'RENDER_STATE_WAIT',
+    'FLAG_SET_SEEN': 'FLAG_SET_SEEN',
+    'FLAG_SET_CAUGHT': 'FLAG_SET_CAUGHT',
+    'FLAG_GET_CAUGHT': 'FLAG_GET_CAUGHT',
     'MON_SIZE': 'sizeof(struct Pokemon)',
     'SAVE1_SIZE': 'sizeof(struct SaveBlock1)',
     'SAVE2_SIZE': 'sizeof(struct SaveBlock2)',
@@ -103,6 +115,10 @@ for key,expr in {
 for name in ['SPECIES','HELD_ITEM','LEVEL','FRIENDSHIP','IS_EGG','ATK','DEF','HP','MAX_HP','MOVE1','MOVE2','MOVE3','MOVE4','PP1','PP2','PP3','PP4','PERSONALITY','OT_ID','HP_IV','SANITY_IS_BAD_EGG','ABILITY_NUM','MAIL','UNUSED_RIBBONS']:
     expressions['DATA_'+name] = 'MON_DATA_'+name
 required = [
+    'IsSpeciesInCustomPokedex', 'WaitForAorBPress', 'sTextPrinters', 'gSpecialVar_0x8006', 'FlagGet', 'VarGet', 'FuncIsActiveTask', 'CheckBagHasSpace', 'ItemId_GetPocket',
+    'Task_MultichoiceMenu_HandleInput', 'Task_YesNoMenu_HandleInput',
+    'Route10_PokemonCenter_1F_EventScript_Aide',
+    'CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_FossilScientist',
     'AddBagItem', 'BagGetQuantityByItemId', 'BeginItemEvolution', 'CB2_LoadMap', 'CB2_OpenPokedexFromStartMenu',
     'CB2_Overworld', 'CastformDataTypeChange', 'ClearBag', 'CreateMon', 'CustomPokedexNumToSpecies',
     'DexScreen_CountMonsInOrderedList', 'DisableNationalPokedex', 'EnableNationalPokedex', 'EvolutionScene', 'FlagSet',
@@ -160,7 +176,7 @@ for name in ['HandleInputChooseAction','HandleInputChooseMove','HandleInputChoos
 with tempfile.TemporaryDirectory(prefix='lightning-emulator-') as temp:
     temp=Path(temp)
     source='#include <stddef.h>\n#include "global.h"\n#include "pokemon.h"\n#include "main.h"\n#include "task.h"\n'
-    source+='#include "battle_controllers.h"\n#include "item_menu.h"\n#include "wild_encounter.h"\n#include "battle.h"\n#include "list_menu.h"\n#include "party_menu.h"\n#include "script.h"\n#include "field_player_avatar.h"\n'+screen_struct+'\n'+summary_struct+'\n'
+    source+='#include "text.h"\n#include "pokedex.h"\n#include "battle_controllers.h"\n#include "item_menu.h"\n#include "wild_encounter.h"\n#include "battle.h"\n#include "list_menu.h"\n#include "party_menu.h"\n#include "script.h"\n#include "field_player_avatar.h"\n'+screen_struct+'\n'+summary_struct+'\n'
     source+='const unsigned long abi[] = {'+', '.join(expressions.values())+'};\n'
     (temp/'abi.c').write_text(source)
     with (temp/'abi.i').open('w') as out:

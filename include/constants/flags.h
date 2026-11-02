@@ -765,8 +765,8 @@
 #define FLAG_GOT_NUGGET_FROM_DUNSPARCE_TUNNEL            0x2E2
 #define FLAG_USED_CUT_ON_RUIN_VALLEY_BRAILLE             0x2E3
 #define FLAG_FOUGHT_DEOXYS                               0x2E4
-#define FLAG_0x2E5                                       0x2E5
-#define FLAG_0x2E6                                       0x2E6
+#define FLAG_GOT_UNCHOSEN_MT_MOON_FOSSIL                  0x2E5
+#define FLAG_REVIVED_CLAW                                0x2E6
 #define FLAG_0x2E7                                       0x2E7
 #define FLAG_0x2E8                                       0x2E8
 #define FLAG_0x2E9                                       0x2E9
@@ -786,7 +786,9 @@
 #define FLAG_DEOXYS_FLEW_AWAY                            0x2F7
 #define FLAG_TALKED_TO_TEA_LADY_AFTER_HOF                0x2F8
 #define FLAG_TALKED_TO_OAKS_AIDE_IN_VERMILION            0x2F9
-#define FLAG_GOT_EVERSTONE_FROM_OAKS_AIDE                0x2FA
+#define FLAG_GOT_CLAW_FOSSIL_FROM_OAKS_AIDE              0x2FA
+// Preserve the original saved reward bit and historical source name.
+#define FLAG_GOT_EVERSTONE_FROM_OAKS_AIDE FLAG_GOT_CLAW_FOSSIL_FROM_OAKS_AIDE
 #define FLAG_GOT_MOON_STONE_FROM_JOYFUL_GAME_CORNER      0x2FB
 #define FLAG_GOT_FULL_RESTORE_FROM_THREE_ISLAND_DEFENDER 0x2FC
 #define FLAG_GOT_AMULET_COIN_FROM_OAKS_AIDE              0x2FD

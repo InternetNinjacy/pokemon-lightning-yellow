@@ -96,3 +96,13 @@ Only Route5 eggs carry their persistent Shiny intention through matching-build
 ownership changes. Run all host suites including run_daycare_tests.py and the
 complete mGBA suite. Do not invent Route5 Ditto rate/levels or claim a real link
 handshake from ownership-data fixtures. No merges, auto-merge or ROM release.
+
+The November2 world/fossil update authorizes the Route10 Claw reward and Cinnabar
+unchosen fossil/revival extension. Read docs/FOSSIL_REWARDS_AND_SPECIES_AUDIT.md.
+Preserve immutable MtMoon choice flags, existing reward bit0x2FA and independent
+daycare/save layout. Run tests/run_world_reward_tests.py plus all prior suites
+and complete mGBA. Species audit findings are unresolved conflicts, never approved
+off-Dex exceptions; --check prevents new findings while --strict still fails.
+Do not invent Blaine levels/moves or revert Gyarados Water/Dragon without resolving
+the explicit Water/Flying strategy conflict. Missing ZIP/Poke Ball specifications
+and draft encounter values are not inferred. No merges, auto-merge or ROM release.
