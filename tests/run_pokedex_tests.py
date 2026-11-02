@@ -29,6 +29,8 @@ program=r'''
 #include "pokedex.h"
 #include "pokedex_screen.h"
 #include "custom_pokedex.h"
+#include "event_data.h"
+bool32 IsNationalPokedexEnabled(void) {return FALSE;}
 #include "constants/pokedex.h"
 #define SPECIES_TO_NATIONAL(name) [SPECIES_##name - 1] = NATIONAL_DEX_##name
 struct ListMenuItem {const u8 *label; s32 index;};
@@ -69,6 +71,7 @@ int main(void) {
  for(i=0;i<252;i++) {
   CHECK(CustomPokedexNumToSpecies(i+1)==expected[i]);
   CHECK(SpeciesToCustomPokedexNum(expected[i])==i+1);
+  CHECK(IsEvolutionSpeciesAllowed(expected[i]));
   CHECK(SpeciesToPokedexNum(expected[i])==i+1);
   CHECK(DexScreen_CanShowMonInDex(expected[i]));
   ndex=SpeciesToNationalPokedexNum(expected[i]);
@@ -79,6 +82,7 @@ int main(void) {
   CHECK(HasAllCustomPokedexSpecies()==(i==251));
  }
  for(i=1;i<NUM_SPECIES;i++)if(!IsSpeciesInCustomPokedex(i)) {
+  CHECK(IsEvolutionSpeciesAllowed(i)==(i<=SPECIES_MEW));
   CHECK(SpeciesToPokedexNum(i)==0xFFFF);CHECK(!DexScreen_CanShowMonInDex(i));
   ndex=SpeciesToNationalPokedexNum(i);
   if(ndex>=1 && ndex<=386) {GetSetPokedexFlag(ndex,FLAG_SET_SEEN);GetSetPokedexFlag(ndex,FLAG_SET_CAUGHT);}

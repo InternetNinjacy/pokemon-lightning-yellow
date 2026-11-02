@@ -112,7 +112,7 @@ static void initSave(void) {
 static void scene(unsigned species,unsigned item,unsigned evolved,int cancel) {
     CHECK(core->loadState(core,bootState));
     initSave();create(species,30);
-    if(cancel==2)CALL(DisableNationalPokedex);
+    CALL(DisableNationalPokedex); // all approved item scenes must work pre-National
     core->busWrite8(core,SYM_gPlayerPartyCount,1);
     core->busWrite32(core,SYM_gMain,0); // no title-screen callback1 during scene
     core->busWrite16(core,returned,0x4770); // test return destination: bx lr
@@ -157,7 +157,7 @@ static void scene(unsigned species,unsigned item,unsigned evolved,int cancel) {
 // cancel: 1 = B in menu, 2 = B during animation, 0 = complete.
 static void levelScene(unsigned species,unsigned level,unsigned evolved,unsigned selection,int cancel,unsigned attack,unsigned defense) {
     CHECK(core->loadState(core,bootState));
-    initSave();create(species,level);put(ABI_DATA_ATK,attack);put(ABI_DATA_DEF,defense);
+    initSave();CALL(DisableNationalPokedex);create(species,level);put(ABI_DATA_ATK,attack);put(ABI_DATA_DEF,defense);
     core->busWrite8(core,SYM_gPlayerPartyCount,1);
     core->busWrite32(core,SYM_gMain,0);
     core->busWrite16(core,returned,0x4770);
@@ -363,6 +363,7 @@ int main(int argc,char **argv) {
     CHECK(target(EVO_MODE_ITEM_USE,ITEM_SUN_STONE)==SPECIES_ESPEON);
     printf("PASS: absent emulated RTC fails safely; stones remain usable\n");
     GBAHardwareInitRTC(&gba->memory.hw);
+    CALL(DisableNationalPokedex);
     const unsigned pairs[][3]={{SPECIES_POLIWHIRL,ITEM_KINGS_ROCK,SPECIES_POLITOED},{SPECIES_SLOWPOKE,ITEM_KINGS_ROCK,SPECIES_SLOWKING},{SPECIES_ONIX,ITEM_METAL_COAT,SPECIES_STEELIX},{SPECIES_SCYTHER,ITEM_METAL_COAT,SPECIES_SCIZOR},{SPECIES_SEADRA,ITEM_DRAGON_SCALE,SPECIES_KINGDRA},{SPECIES_PORYGON,ITEM_UP_GRADE,SPECIES_PORYGON2}};
     for(unsigned i=0;i<6;i++) {
         create(pairs[i][0],30);CHECK(get(ABI_DATA_SPECIES)==pairs[i][0]);
@@ -384,7 +385,8 @@ int main(int argc,char **argv) {
         scene(pairs[i][0],pairs[i][1],pairs[i][2],1);
         scene(pairs[i][0],pairs[i][1],pairs[i][2],0);
     }
-    scene(SPECIES_POLIWHIRL,ITEM_KINGS_ROCK,SPECIES_POLITOED,2);
+    // Isolated scene guard fixture: Clamperl direct Bag use remains disabled.
+    scene(SPECIES_CLAMPERL,ITEM_DEEP_SEA_TOOTH,SPECIES_HUNTAIL,2);
     scene(SPECIES_EEVEE,ITEM_SUN_STONE,SPECIES_ESPEON,1);
     scene(SPECIES_EEVEE,ITEM_SUN_STONE,SPECIES_ESPEON,0);
     scene(SPECIES_EEVEE,ITEM_MOON_STONE,SPECIES_UMBREON,1);

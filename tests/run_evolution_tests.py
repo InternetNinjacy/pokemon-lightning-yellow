@@ -17,6 +17,7 @@ support = r'''
 #include "pokemon.h"
 #include "item.h"
 #include "event_data.h"
+#include "custom_pokedex.h"
 #include "main.h"
 #include "evolution_scene.h"
 #include "constants/items.h"
@@ -26,6 +27,12 @@ struct Pokemon gPlayerParty[PARTY_SIZE];
 static struct SaveBlock1 saveBlock;
 struct SaveBlock1 *gSaveBlock1Ptr = &saveBlock;
 static u16 species, held, friendship, level, egg;
+static bool32 national = TRUE;
+static const u16 sSpeciesToCustomDex[NUM_SPECIES] = {
+#define CUSTOM_DEX_ENTRY(number, name) [SPECIES_##name] = number,
+#include "src/data/pokemon/custom_pokedex.h"
+#undef CUSTOM_DEX_ENTRY
+};
 static u8 clockHour, clockValid, clockReads;
 static unsigned removals, events, begins, bagCount, returnCalls;
 static MainCallback mainCallback;
@@ -41,7 +48,7 @@ u32 GetMonData3(struct Pokemon *mon, s32 field, u8 *data) {
 }
 void SetMonData(struct Pokemon *mon,s32 field,const void *data) { assert(field==MON_DATA_HELD_ITEM);held=*(const u16 *)data; }
 u8 ItemId_GetHoldEffect(u16 item) { return item==ITEM_EVERSTONE ? HOLD_EFFECT_PREVENT_EVOLVE : 0; }
-bool32 IsNationalPokedexEnabled(void) {return TRUE;}
+bool32 IsNationalPokedexEnabled(void) {return national;}
 bool8 RtcGetHour(u8 *hour) {clockReads++;*hour=clockHour;return clockValid;}
 bool8 RemoveBagItem(u16 item,u16 count) {assert(item!=ITEM_NONE && count==1 && bagCount);bagCount--;removals++;return TRUE;}
 void ItemUse_SetQuestLogEvent(u8 id,struct Pokemon *mon,u16 item,u16 param) {events++;}
@@ -49,7 +56,10 @@ void SetMainCallback2(MainCallback cb) {mainCallback=cb;}
 void BeginEvolutionScene(struct Pokemon *mon,u16 target,u8 canStop,u8 slot) {assert(slot==0 && target!=species);lastCanStop=canStop;begins++;}
 static void Return(void) {returnCalls++;}
 '''
-program = support + extract_function(Path('src/pokemon.c').read_text(), 'GetEvolutionTargetSpecies')
+program = support
+for name in ['SpeciesToCustomPokedexNum','IsSpeciesInCustomPokedex','IsEvolutionSpeciesAllowed']:
+    program += extract_function(Path('src/custom_pokedex.c').read_text(),name)
+program += extract_function(Path('src/pokemon.c').read_text(), 'GetEvolutionTargetSpecies')
 program += Path('src/evolution_items.c').read_text()
 program += r'''
 static unsigned checks;
@@ -65,6 +75,7 @@ int main(void) {
   level=5;CHECK(Target(EVO_MODE_TRADE,0)==trades[i][1]);CHECK(Target(EVO_MODE_ITEM_USE,ITEM_MOON_STONE)==SPECIES_NONE);
   held=ITEM_EVERSTONE;CHECK(Target(EVO_MODE_NORMAL,0)==SPECIES_NONE);CHECK(Target(EVO_MODE_TRADE,0)==SPECIES_NONE);held=0;
  }
+ national=FALSE;
  for(i=0;i<6;i++) {
   species=items[i][0];held=ITEM_NONE;CHECK(Target(EVO_MODE_TRADE,0)==SPECIES_NONE);
   CHECK(Target(EVO_MODE_ITEM_USE,items[i][1])==items[i][2]);CHECK(held==ITEM_NONE);
@@ -103,6 +114,7 @@ int main(void) {
   level++;CHECK(Target(EVO_MODE_NORMAL,0)==levels[i][2]);
   held=ITEM_EVERSTONE;CHECK(Target(EVO_MODE_NORMAL,0)==SPECIES_NONE);held=0;
  }
+ national=TRUE;
  species=SPECIES_CLAMPERL;
  CHECK(Target(EVO_MODE_ITEM_USE,ITEM_DEEP_SEA_TOOTH)==SPECIES_NONE);
  CHECK(Target(EVO_MODE_ITEM_USE,ITEM_DEEP_SEA_SCALE)==SPECIES_NONE);
@@ -126,6 +138,12 @@ int main(void) {
  gCB2_AfterEvolution();
  species=SPECIES_PIKACHU;CHECK(Target(EVO_MODE_ITEM_USE,ITEM_KINGS_ROCK)==SPECIES_NONE);
  species=SPECIES_EEVEE;egg=1;CHECK(Target(EVO_MODE_NORMAL,0)==SPECIES_NONE);CHECK(Target(EVO_MODE_ITEM_USE,ITEM_SUN_STONE)==SPECIES_NONE);
+ // Excluded targets retain the original pre-National restriction and held item.
+ national=FALSE;egg=0;species=SPECIES_CLAMPERL;held=ITEM_DEEP_SEA_TOOTH;
+ CHECK(!IsEvolutionSpeciesAllowed(SPECIES_HUNTAIL));
+ CHECK(Target(EVO_MODE_TRADE,0)==SPECIES_HUNTAIL);CHECK(held==ITEM_DEEP_SEA_TOOTH);
+ national=TRUE;CHECK(IsEvolutionSpeciesAllowed(SPECIES_HUNTAIL));
+ CHECK(Target(EVO_MODE_TRADE,0)==SPECIES_HUNTAIL);CHECK(held==ITEM_NONE);
  CHECK(sizeof(struct Evolution)==6 && EVOS_PER_MON==7);
  printf("PASS: %u evolution lookup/consumption assertions (production routines, stubbed state/scene)\n",checks);
  return 0;
@@ -184,3 +202,10 @@ for item in items:
     if item['itemId'] in {'ITEM_DEEP_SEA_TOOTH','ITEM_DEEP_SEA_SCALE'}:
         assert item['fieldUseFunc']=='FieldUseFunc_OakStopsYou' and item['type']=='ITEM_TYPE_BAG_MENU'
 print('PASS: approved evolution table, choice order, excluded item routing, and all unchanged evolution rows (static audit)')
+
+# Gate wiring is a static audit, not a claim of executed party-menu/trade scenes.
+assert 'IsEvolutionSpeciesAllowed(' in extract_function(party,'MonCanEvolve')
+scene=Path('src/evolution_scene.c').read_text()
+for name in ['Task_EvolutionScene','Task_TradeEvolutionScene']:
+    assert 'IsEvolutionSpeciesAllowed(' in extract_function(scene,name)
+print('PASS: static shared gate wiring in item warning and both evolution scenes')

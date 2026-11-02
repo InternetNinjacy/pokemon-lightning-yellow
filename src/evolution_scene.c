@@ -16,6 +16,7 @@
 #include "menu.h"
 #include "overworld.h"
 #include "pokedex.h"
+#include "custom_pokedex.h"
 #include "pokemon_summary_screen.h"
 #include "scanline_effect.h"
 #include "strings.h"
@@ -683,11 +684,10 @@ static void Task_EvolutionScene(u8 taskId)
     u8 i;
     struct Pokemon* mon = &gPlayerParty[gTasks[taskId].tPartyId];
 
-    // Automatically cancel if the Pokemon would evolve into a species you have not
-    // yet unlocked, such as Crobat.
-    if (!IsNationalPokedexEnabled()
-        && gTasks[taskId].tState == EVOSTATE_WAIT_CYCLE_MON_SPRITE
-        && gTasks[taskId].tPostEvoSpecies > SPECIES_MEW)
+    // Approved custom-roster targets are available before the National Dex.
+    // Preserve the original restriction for excluded targets.
+    if (!IsEvolutionSpeciesAllowed(gTasks[taskId].tPostEvoSpecies)
+        && gTasks[taskId].tState == EVOSTATE_WAIT_CYCLE_MON_SPRITE)
     {
         gTasks[taskId].tState = EVOSTATE_CANCEL;
         gTasks[taskId].tEvoWasStopped = TRUE;
@@ -1179,11 +1179,10 @@ static void Task_TradeEvolutionScene(u8 taskId)
     u32 var = 0;
     struct Pokemon* mon = &gPlayerParty[gTasks[taskId].tPartyId];
 
-    // Automatically cancel if the Pokemon would evolve into a species you have not
-    // yet unlocked, such as Crobat.
-    if (!IsNationalPokedexEnabled()
-        && gTasks[taskId].tState == T_EVOSTATE_WAIT_CYCLE_MON_SPRITE
-        && gTasks[taskId].tPostEvoSpecies > SPECIES_MEW)
+    // Approved custom-roster targets are available before the National Dex.
+    // Preserve the original restriction for excluded targets.
+    if (!IsEvolutionSpeciesAllowed(gTasks[taskId].tPostEvoSpecies)
+        && gTasks[taskId].tState == T_EVOSTATE_WAIT_CYCLE_MON_SPRITE)
     {
         gTasks[taskId].tState = EVOSTATE_TRY_LEARN_MOVE;
         gTasks[taskId].tEvoWasStopped = TRUE;
