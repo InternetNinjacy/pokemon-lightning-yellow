@@ -57,6 +57,14 @@ for key,expr in {
  'BMON_MOVES':'offsetof(struct BattlePokemon,moves)',
  'BMON_PP':'offsetof(struct BattlePokemon,pp)',
  'BATTLESTRUCT_MOVETARGET':'offsetof(struct BattleStruct,moveTarget)',
+ 'BMON_ATTACK':'offsetof(struct BattlePokemon,attack)',
+ 'BMON_DEFENSE':'offsetof(struct BattlePokemon,defense)',
+ 'BMON_SPATTACK':'offsetof(struct BattlePokemon,spAttack)',
+ 'BMON_SPDEFENSE':'offsetof(struct BattlePokemon,spDefense)',
+ 'BMON_STAGES':'offsetof(struct BattlePokemon,statStages)',
+ 'BMON_STAGES_COUNT':'NUM_BATTLE_STATS',
+ 'BATTLESTRUCT_DYNAMIC_TYPE':'offsetof(struct BattleStruct,dynamicMoveType)',
+ 'SCRIPTING_MULTIPLIER':'offsetof(struct BattleScripting,dmgMultiplier)',
  'RESULT_CAUGHT':'offsetof(struct BattleResults,caughtMonSpecies)',
 }.items(): expressions[key]=expr
 for name in ['SPECIES','HELD_ITEM','LEVEL','FRIENDSHIP','IS_EGG','ATK','DEF','HP','MAX_HP','MOVE1','MOVE2','MOVE3','MOVE4','PP1','PP2','PP3','PP4']:
@@ -81,7 +89,10 @@ required = [
     'gPaletteFade', 'gPlayerParty', 'gPlayerPartyCount', 'gPokemonStorage', 'gPokemonStoragePtr',
     'gRngValue', 'gSaveBlock1', 'gSaveBlock1Ptr', 'gSaveBlock2', 'gSaveBlock2Ptr',
     'gTasks', 'gWildMonHeaders', 'sEvoStructPtr', 'sPlttBufferTransferPending', 'sPokedexScreenData',
-    'sRoamerLocation',
+    'sRoamerLocation', 'CopyPlayerPartyMonToBattleData', 'CalculateBaseDamage', 'AI_CalcDmg', 'Cmd_dmgtolevel',
+    'GetMoveCategoryName', 'GetMoveCategoryShortName', 'MoveSelectionDisplayMoveType',
+    'gCurrentMove', 'gCritMultiplier', 'gDynamicBasePower', 'gBattlerAttacker', 'gBattlerTarget',
+    'gSideStatuses', 'gBattleStruct', 'gBattleScripting', 'gBattleMoveDamage', 'gDisplayedStringBattle',
 ]
 symbols={}
 end_ewram=0

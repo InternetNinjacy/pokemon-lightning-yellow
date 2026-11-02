@@ -74,3 +74,15 @@ first-draw Repel policy, independent second draw, 5% weighted pair, single fallb
 roamer priority and survivor-based captures. Run tests/run_wild_double_tests.py and
 all earlier suites, including full mGBA, after encounter/battle changes. Do not
 claim compatibility with unfinished dynamic weather or every battle move. No merges.
+
+The approved consolidated stabilization plan supersedes older instructions to retain
+National-Dex evolution gates and noon-based friendship boundaries. Read
+`docs/PHASE_ONE_STABILIZATION.md`: twelve approved typing overrides, roster-aware
+pre-National evolution access and functional DAY [06:00,18:00) are authorized.
+Keep excluded-species gates, timed-evolution failure on invalid RTC, and all parent
+features intact. Run every host suite and the full compiled-ROM mGBA suite.
+Canonical project tracking lives separately on `docs/project-coordination` in
+`docs/PROJECT_DASHBOARD.md`, `docs/MASTER_IMPLEMENTATION_CHANGE_LEDGER.md` and
+`docs/project-tracking.json`. Update it at milestones/focus switches/session end;
+Drive synchronization is pending, not completed. Do not invent unavailable Route 5,
+move redesign, weather, visual or Phase Two details. No merges or auto-merge.

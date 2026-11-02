@@ -16,6 +16,13 @@ land/cave doubles on Route 1 and Mt. Moon 1F, with a 5% Onix/Cloyster special pa
 These are experimental test locations on a separate branch; see the report for
 party/Repel/capture rules, executed evidence and remaining release checks.
 
+This branch adds [approved Phase One stabilization](docs/PHASE_ONE_STABILIZATION.md):
+twelve custom typings, roster-aware evolution access before National Dex, and the
+06:00–18:00 functional day/night boundary. It extends acceptance tests while
+preserving the existing unmerged feature stack. The canonical [project dashboard](https://github.com/InternetNinjacy/pokemon-lightning-yellow/blob/docs/project-coordination/docs/PROJECT_DASHBOARD.md)
+and [implementation ledger](https://github.com/InternetNinjacy/pokemon-lightning-yellow/blob/docs/project-coordination/docs/MASTER_IMPLEMENTATION_CHANGE_LEDGER.md)
+live on the independent coordination branch; Drive synchronization remains pending.
+
 ## Build entirely on GitHub
 
 No local Python, compiler, or development tools are required. Open this repository's
