@@ -1,0 +1,1330 @@
+{
+  "schema_version": 1,
+  "updated": "2026-11-02",
+  "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
+  "canonical_branch": "docs/project-coordination",
+  "current_focus": "INT-003 coordination, then PKM/TIM/BTL stabilization",
+  "main_sha": "e04252ea0783510000e634486c0f2526a736f506",
+  "drive_sync": {
+    "status": "pending: no direct Drive writing tool available",
+    "folder": "https://drive.google.com/drive/folders/1N_n0Ke48jBbdhUWSZWzwR6rpPFqpDUpl"
+  },
+  "areas": [
+    {
+      "id": "PKM",
+      "title": "Pok\u00e9dex, species and evolution"
+    },
+    {
+      "id": "BTL",
+      "title": "Moves, types and battle mechanics"
+    },
+    {
+      "id": "TIM",
+      "title": "RTC, time of day and lighting"
+    },
+    {
+      "id": "WTH",
+      "title": "Overworld and battle weather"
+    },
+    {
+      "id": "DAY",
+      "title": "Daycare, breeding and Shiny eggs"
+    },
+    {
+      "id": "GYM",
+      "title": "Gyms, trainers and important battles"
+    },
+    {
+      "id": "WRL",
+      "title": "Maps, encounters, items and story"
+    },
+    {
+      "id": "INT",
+      "title": "Integration, testing and release readiness"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "PKM-001",
+      "area": "PKM",
+      "title": "Custom 252-species Dex",
+      "aliases": [],
+      "effort": {
+        "earned": 14,
+        "remaining": 0,
+        "unit": "provisional relative planning point",
+        "confidence": "low",
+        "history": [
+          {
+            "date": "2026-11-02",
+            "earned": 14,
+            "remaining": 0,
+            "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          }
+        ]
+      },
+      "dependencies": [],
+      "status": {
+        "design": "approved scoped implementation",
+        "implementation": "implemented on unmerged stack",
+        "automated": "prior suites/CI pass; rerun after changes",
+        "emulator": "selected scenarios only",
+        "pull_request": "#6",
+        "merge": "not merged"
+      },
+      "branch": "feature/custom-252-pokedex",
+      "commit": "13c0ca04dd3505533a066a1f23ee0fefb960dc16",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/6",
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/40968372595",
+      "blocker": null,
+      "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
+      "next_action": "Preserve and rerun relevant regression tests",
+      "checkpoint": "2026-11-02 initial audit"
+    },
+    {
+      "id": "PKM-002",
+      "area": "PKM",
+      "title": "Approved evolution alternatives and Tyrogue menu",
+      "aliases": [],
+      "effort": {
+        "earned": 10,
+        "remaining": 0,
+        "unit": "provisional relative planning point",
+        "confidence": "low",
+        "history": [
+          {
+            "date": "2026-11-02",
+            "earned": 10,
+            "remaining": 0,
+            "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          }
+        ]
+      },
+      "dependencies": [],
+      "status": {
+        "design": "approved scoped implementation",
+        "implementation": "implemented on unmerged stack",
+        "automated": "prior suites/CI pass; rerun after changes",
+        "emulator": "selected scenarios only",
+        "pull_request": "#5",
+        "merge": "not merged"
+      },
+      "branch": "feature/evolution-mechanics",
+      "commit": "851c76c94ac5bbcfda5a48a34bdb9a9521ab202f",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/5",
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/40422457155",
+      "blocker": null,
+      "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
+      "next_action": "Preserve and rerun relevant regression tests",
+      "checkpoint": "2026-11-02 initial audit"
+    },
+    {
+      "id": "PKM-003",
+      "area": "PKM",
+      "title": "Twelve approved species typing overrides",
+      "aliases": [],
+      "effort": {
+        "earned": 0,
+        "remaining": 4,
+        "unit": "provisional relative planning point",
+        "confidence": "low",
+        "history": [
+          {
+            "date": "2026-11-02",
+            "earned": 0,
+            "remaining": 4,
+            "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          }
+        ]
+      },
+      "dependencies": [],
+      "status": {
+        "design": "approved scoped implementation",
+        "implementation": "not started",
+        "automated": "not executed for new work",
+        "emulator": "not executed",
+        "pull_request": "not created",
+        "merge": "not merged"
+      },
+      "branch": null,
+      "commit": null,
+      "pr_url": null,
+      "ci_url": null,
+      "blocker": null,
+      "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
+      "next_action": "Execute approved stabilization plan",
+      "checkpoint": "2026-11-02 initial audit"
+    },
+    {
+      "id": "PKM-004",
+      "area": "PKM",
+      "title": "Roster-aware pre-National evolution access",
+      "aliases": [],
+      "effort": {
+        "earned": 0,
+        "remaining": 4,
+        "unit": "provisional relative planning point",
+        "confidence": "low",
+        "history": [
+          {
+            "date": "2026-11-02",
+            "earned": 0,
+            "remaining": 4,
+            "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          }
+        ]
+      },
+      "dependencies": [
+        "PKM-001"
+      ],
+      "status": {
+        "design": "approved scoped implementation",
+        "implementation": "not started",
+        "automated": "not executed for new work",
+        "emulator": "not executed",
+        "pull_request": "not created",
+        "merge": "not merged"
+      },
+      "branch": null,
+      "commit": null,
+      "pr_url": null,
+      "ci_url": null,
+      "blocker": null,
+      "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
+      "next_action": "Execute approved stabilization plan",
+      "checkpoint": "2026-11-02 initial audit"
+    },
+    {
+      "id": "PKM-005",
+      "area": "PKM",
+      "title": "Expanded Dex/evolution acceptance",
+      "aliases": [],
+      "effort": {
+        "earned": 0,
+        "remaining": 8,
+        "unit": "provisional relative planning point",
+        "confidence": "low",
+        "history": [
+          {
+            "date": "2026-11-02",
+            "earned": 0,
+            "remaining": 8,
+            "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          }
+        ]
+      },
+      "dependencies": [
+        "PKM-003",
+        "PKM-004",
+        "TIM-002"
+      ],
+      "status": {
+        "design": "approved scoped implementation",
+        "implementation": "not started",
+        "automated": "not executed for new work",
+        "emulator": "not executed",
+        "pull_request": "not created",
+        "merge": "not merged"
+      },
+      "branch": null,
+      "commit": null,
+      "pr_url": null,
+      "ci_url": null,
+      "blocker": null,
+      "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
+      "next_action": "Execute approved stabilization plan",
+      "checkpoint": "2026-11-02 initial audit"
+    },
+    {
+      "id": "BTL-001",
+      "area": "BTL",
+      "title": "Per-move Physical/Special/Status split",
+      "aliases": [],
+      "effort": {
+        "earned": 14,
+        "remaining": 0,
+        "unit": "provisional relative planning point",
+        "confidence": "low",
+        "history": [
+          {
+            "date": "2026-11-02",
+            "earned": 14,
+            "remaining": 0,
+            "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          }
+        ]
+      },
+      "dependencies": [],
+      "status": {
+        "design": "approved scoped implementation",
+        "implementation": "implemented on unmerged stack",
+        "automated": "prior suites/CI pass; rerun after changes",
+        "emulator": "selected scenarios only",
+        "pull_request": "#2",
+        "merge": "not merged"
+      },
+      "branch": "feature/physical-special-split",
+      "commit": "e265bcf3efa07531a4419fd471f6157fb0980cad",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/2",
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/40252575233",
+      "blocker": null,
+      "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
+      "next_action": "Preserve and rerun relevant regression tests",
+      "checkpoint": "2026-11-02 initial audit"
+    },
+    {
+      "id": "BTL-002",
+      "area": "BTL",
+      "title": "Wild double battle capability proof of concept",
+      "aliases": [],
+      "effort": {
+        "earned": 10,
+        "remaining": 0,
+        "unit": "provisional relative planning point",
+        "confidence": "low",
+        "history": [
+          {
+            "date": "2026-11-02",
+            "earned": 10,
+            "remaining": 0,
+            "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          }
+        ]
+      },
+      "dependencies": [],
+      "status": {
+        "design": "approved scoped implementation",
+        "implementation": "implemented on unmerged stack",
+        "automated": "prior suites/CI pass; rerun after changes",
+        "emulator": "selected scenarios only",
+        "pull_request": "#7",
+        "merge": "not merged"
+      },
+      "branch": "feature/wild-double-battle-capability",
+      "commit": "bbb0459d95ed3d9b053304290961f4fff2de23eb",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/7",
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/40976362014",
+      "blocker": null,
+      "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
+      "next_action": "Preserve and rerun relevant regression tests",
+      "checkpoint": "2026-11-02 initial audit"
+    },
+    {
+      "id": "BTL-003",
+      "area": "BTL",
+      "title": "Split, AI and category UI acceptance",
+      "aliases": [],
+      "effort": {
+        "earned": 0,
+        "remaining": 6,
+        "unit": "provisional relative planning point",
+        "confidence": "low",
+        "history": [
+          {
+            "date": "2026-11-02",
+            "earned": 0,
+            "remaining": 6,
+            "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          }
+        ]
+      },
+      "dependencies": [
+        "BTL-001"
+      ],
+      "status": {
+        "design": "approved scoped implementation",
+        "implementation": "not started",
+        "automated": "not executed for new work",
+        "emulator": "not executed",
+        "pull_request": "not created",
+        "merge": "not merged"
+      },
+      "branch": null,
+      "commit": null,
+      "pr_url": null,
+      "ci_url": null,
+      "blocker": null,
+      "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
+      "next_action": "Execute approved stabilization plan",
+      "checkpoint": "2026-11-02 initial audit"
+    },
+    {
+      "id": "BTL-004",
+      "area": "BTL",
+      "title": "Wild double battle hardening",
+      "aliases": [],
+      "effort": {
+        "earned": 0,
+        "remaining": 10,
+        "unit": "provisional relative planning point",
+        "confidence": "low",
+        "history": [
+          {
+            "date": "2026-11-02",
+            "earned": 0,
+            "remaining": 10,
+            "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          }
+        ]
+      },
+      "dependencies": [
+        "BTL-002"
+      ],
+      "status": {
+        "design": "approved scoped implementation",
+        "implementation": "not started",
+        "automated": "not executed for new work",
+        "emulator": "not executed",
+        "pull_request": "not created",
+        "merge": "not merged"
+      },
+      "branch": null,
+      "commit": null,
+      "pr_url": null,
+      "ci_url": null,
+      "blocker": null,
+      "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
+      "next_action": "Execute approved stabilization plan",
+      "checkpoint": "2026-11-02 initial audit"
+    },
+    {
+      "id": "BTL-005",
+      "area": "BTL",
+      "title": "410-move redesign",
+      "aliases": [],
+      "effort": {
+        "earned": 0,
+        "remaining": 80,
+        "unit": "provisional relative planning point",
+        "confidence": "low",
+        "history": [
+          {
+            "date": "2026-11-02",
+            "earned": 0,
+            "remaining": 80,
+            "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          }
+        ]
+      },
+      "dependencies": [
+        "BTL-001"
+      ],
+      "status": {
+        "design": "requires source reconciliation",
+        "implementation": "not started",
+        "automated": "not executed for new work",
+        "emulator": "not executed",
+        "pull_request": "not created",
+        "merge": "not merged"
+      },
+      "branch": null,
+      "commit": null,
+      "pr_url": null,
+      "ci_url": null,
+      "blocker": "Full approved move register, change ledger, distributions and animation decisions are not locally available; prior audit is not implementation.",
+      "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
+      "next_action": "Obtain missing specification",
+      "checkpoint": "2026-11-02 initial audit"
+    },
+    {
+      "id": "TIM-001",
+      "area": "TIM",
+      "title": "Read-only cartridge RTC",
+      "aliases": [],
+      "effort": {
+        "earned": 8,
+        "remaining": 0,
+        "unit": "provisional relative planning point",
+        "confidence": "low",
+        "history": [
+          {
+            "date": "2026-11-02",
+            "earned": 8,
+            "remaining": 0,
+            "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          }
+        ]
+      },
+      "dependencies": [],
+      "status": {
+        "design": "approved scoped implementation",
+        "implementation": "implemented on unmerged stack",
+        "automated": "prior suites/CI pass; rerun after changes",
+        "emulator": "selected scenarios only",
+        "pull_request": "#3",
+        "merge": "not merged"
+      },
+      "branch": "feature/rtc-support",
+      "commit": "ce126c5c7c7f9bf3a052f58dc536a2a32e2580bd",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/3",
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/40390936433",
+      "blocker": null,
+      "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
+      "next_action": "Preserve and rerun relevant regression tests",
+      "checkpoint": "2026-11-02 initial audit"
+    },
+    {
+      "id": "TIM-002",
+      "area": "TIM",
+      "title": "Functional day/night foundation",
+      "aliases": [],
+      "effort": {
+        "earned": 0,
+        "remaining": 8,
+        "unit": "provisional relative planning point",
+        "confidence": "low",
+        "history": [
+          {
+            "date": "2026-11-02",
+            "earned": 0,
+            "remaining": 8,
+            "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          }
+        ]
+      },
+      "dependencies": [
+        "TIM-001"
+      ],
+      "status": {
+        "design": "approved scoped implementation",
+        "implementation": "not started",
+        "automated": "not executed for new work",
+        "emulator": "not executed",
+        "pull_request": "not created",
+        "merge": "not merged"
+      },
+      "branch": null,
+      "commit": null,
+      "pr_url": null,
+      "ci_url": null,
+      "blocker": null,
+      "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
+      "next_action": "Execute approved stabilization plan",
+      "checkpoint": "2026-11-02 initial audit"
+    },
+    {
+      "id": "TIM-003",
+      "area": "TIM",
+      "title": "Approved visual periods and lighting",
+      "aliases": [],
+      "effort": {
+        "earned": 0,
+        "remaining": 32,
+        "unit": "provisional relative planning point",
+        "confidence": "low",
+        "history": [
+          {
+            "date": "2026-11-02",
+            "earned": 0,
+            "remaining": 32,
+            "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          }
+        ]
+      },
+      "dependencies": [
+        "TIM-002"
+      ],
+      "status": {
+        "design": "requires source reconciliation",
+        "implementation": "not started",
+        "automated": "not executed for new work",
+        "emulator": "not executed",
+        "pull_request": "not created",
+        "merge": "not merged"
+      },
+      "branch": null,
+      "commit": null,
+      "pr_url": null,
+      "ci_url": null,
+      "blocker": "Unanswered map classification/transition precedence and final palette approval.",
+      "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
+      "next_action": "Obtain missing specification",
+      "checkpoint": "2026-11-02 initial audit"
+    },
+    {
+      "id": "WTH-001",
+      "area": "WTH",
+      "title": "Map weather selection and persistent state",
+      "aliases": [],
+      "effort": {
+        "earned": 0,
+        "remaining": 28,
+        "unit": "provisional relative planning point",
+        "confidence": "low",
+        "history": [
+          {
+            "date": "2026-11-02",
+            "earned": 0,
+            "remaining": 28,
+            "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          }
+        ]
+      },
+      "dependencies": [
+        "TIM-002"
+      ],
+      "status": {
+        "design": "requires source reconciliation",
+        "implementation": "not started",
+        "automated": "not executed for new work",
+        "emulator": "not executed",
+        "pull_request": "not created",
+        "merge": "not merged"
+      },
+      "branch": null,
+      "commit": null,
+      "pr_url": null,
+      "ci_url": null,
+      "blocker": "Final map exceptions and cave/nested-interior/RTC transition answers missing.",
+      "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
+      "next_action": "Obtain missing specification",
+      "checkpoint": "2026-11-02 initial audit"
+    },
+    {
+      "id": "WTH-002",
+      "area": "WTH",
+      "title": "Weather rendering repairs and conflicts",
+      "aliases": [],
+      "effort": {
+        "earned": 0,
+        "remaining": 16,
+        "unit": "provisional relative planning point",
+        "confidence": "low",
+        "history": [
+          {
+            "date": "2026-11-02",
+            "earned": 0,
+            "remaining": 16,
+            "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          }
+        ]
+      },
+      "dependencies": [
+        "WTH-001",
+        "TIM-003"
+      ],
+      "status": {
+        "design": "requires source reconciliation",
+        "implementation": "not started",
+        "automated": "not executed for new work",
+        "emulator": "not executed",
+        "pull_request": "not created",
+        "merge": "not merged"
+      },
+      "branch": null,
+      "commit": null,
+      "pr_url": null,
+      "ci_url": null,
+      "blocker": "Depends on weather and visual policy reconciliation.",
+      "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
+      "next_action": "Obtain missing specification",
+      "checkpoint": "2026-11-02 initial audit"
+    },
+    {
+      "id": "WTH-003",
+      "area": "WTH",
+      "title": "Field-to-battle weather bridge",
+      "aliases": [],
+      "effort": {
+        "earned": 0,
+        "remaining": 20,
+        "unit": "provisional relative planning point",
+        "confidence": "low",
+        "history": [
+          {
+            "date": "2026-11-02",
+            "earned": 0,
+            "remaining": 20,
+            "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          }
+        ]
+      },
+      "dependencies": [
+        "WTH-001"
+      ],
+      "status": {
+        "design": "requires source reconciliation",
+        "implementation": "not started",
+        "automated": "not executed for new work",
+        "emulator": "not executed",
+        "pull_request": "not created",
+        "merge": "not merged"
+      },
+      "branch": null,
+      "commit": null,
+      "pr_url": null,
+      "ci_url": null,
+      "blocker": "Field Hail duration and active-battle weather precedence unspecified.",
+      "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
+      "next_action": "Obtain missing specification",
+      "checkpoint": "2026-11-02 initial audit"
+    },
+    {
+      "id": "DAY-001",
+      "area": "DAY",
+      "title": "Independent Route 5 storage and legacy migration",
+      "aliases": [],
+      "effort": {
+        "earned": 0,
+        "remaining": 14,
+        "unit": "provisional relative planning point",
+        "confidence": "low",
+        "history": [
+          {
+            "date": "2026-11-02",
+            "earned": 0,
+            "remaining": 14,
+            "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          }
+        ]
+      },
+      "dependencies": [],
+      "status": {
+        "design": "requires source reconciliation",
+        "implementation": "not started",
+        "automated": "not executed for new work",
+        "emulator": "not executed",
+        "pull_request": "not created",
+        "merge": "not merged"
+      },
+      "branch": null,
+      "commit": null,
+      "pr_url": null,
+      "ci_url": null,
+      "blocker": "Dedicated Route 5 register contents unavailable; need owner-supplied export or supported authenticated access.",
+      "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
+      "next_action": "Obtain missing specification",
+      "checkpoint": "2026-11-02 initial audit"
+    },
+    {
+      "id": "DAY-002",
+      "area": "DAY",
+      "title": "Persistent independent 50% Route 5 Shiny eggs",
+      "aliases": [],
+      "effort": {
+        "earned": 0,
+        "remaining": 8,
+        "unit": "provisional relative planning point",
+        "confidence": "low",
+        "history": [
+          {
+            "date": "2026-11-02",
+            "earned": 0,
+            "remaining": 8,
+            "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          }
+        ]
+      },
+      "dependencies": [
+        "DAY-001"
+      ],
+      "status": {
+        "design": "requires source reconciliation",
+        "implementation": "not started",
+        "automated": "not executed for new work",
+        "emulator": "not executed",
+        "pull_request": "not created",
+        "merge": "not merged"
+      },
+      "branch": null,
+      "commit": null,
+      "pr_url": null,
+      "ci_url": null,
+      "blocker": "Dedicated Route 5 register contents unavailable; need owner-supplied export or supported authenticated access.",
+      "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
+      "next_action": "Obtain missing specification",
+      "checkpoint": "2026-11-02 initial audit"
+    },
+    {
+      "id": "DAY-003",
+      "area": "DAY",
+      "title": "Caretakers and pre-Elite Four access",
+      "aliases": [],
+      "effort": {
+        "earned": 0,
+        "remaining": 4,
+        "unit": "provisional relative planning point",
+        "confidence": "low",
+        "history": [
+          {
+            "date": "2026-11-02",
+            "earned": 0,
+            "remaining": 4,
+            "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          }
+        ]
+      },
+      "dependencies": [
+        "DAY-001"
+      ],
+      "status": {
+        "design": "requires source reconciliation",
+        "implementation": "not started",
+        "automated": "not executed for new work",
+        "emulator": "not executed",
+        "pull_request": "not created",
+        "merge": "not merged"
+      },
+      "branch": null,
+      "commit": null,
+      "pr_url": null,
+      "ci_url": null,
+      "blocker": "Dedicated Route 5 register contents unavailable; need owner-supplied export or supported authenticated access.",
+      "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
+      "next_action": "Obtain missing specification",
+      "checkpoint": "2026-11-02 initial audit"
+    },
+    {
+      "id": "DAY-004",
+      "area": "DAY",
+      "title": "Breeding, save/load and 10,000-egg tests",
+      "aliases": [],
+      "effort": {
+        "earned": 0,
+        "remaining": 6,
+        "unit": "provisional relative planning point",
+        "confidence": "low",
+        "history": [
+          {
+            "date": "2026-11-02",
+            "earned": 0,
+            "remaining": 6,
+            "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          }
+        ]
+      },
+      "dependencies": [
+        "DAY-001",
+        "DAY-002",
+        "DAY-003"
+      ],
+      "status": {
+        "design": "requires source reconciliation",
+        "implementation": "not started",
+        "automated": "not executed for new work",
+        "emulator": "not executed",
+        "pull_request": "not created",
+        "merge": "not merged"
+      },
+      "branch": null,
+      "commit": null,
+      "pr_url": null,
+      "ci_url": null,
+      "blocker": "Dedicated Route 5 register contents unavailable; need owner-supplied export or supported authenticated access.",
+      "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
+      "next_action": "Obtain missing specification",
+      "checkpoint": "2026-11-02 initial audit"
+    },
+    {
+      "id": "GYM-001",
+      "area": "GYM",
+      "title": "Approved gyms and trainers",
+      "aliases": [],
+      "effort": {
+        "earned": 0,
+        "remaining": 20,
+        "unit": "provisional relative planning point",
+        "confidence": "low",
+        "history": [
+          {
+            "date": "2026-11-02",
+            "earned": 0,
+            "remaining": 20,
+            "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          }
+        ]
+      },
+      "dependencies": [],
+      "status": {
+        "design": "requires source reconciliation",
+        "implementation": "not started",
+        "automated": "not executed for new work",
+        "emulator": "not executed",
+        "pull_request": "not created",
+        "merge": "not merged"
+      },
+      "branch": null,
+      "commit": null,
+      "pr_url": null,
+      "ci_url": null,
+      "blocker": "Exact finalized feature specifications/distribution unavailable; do not infer Phase Two choices.",
+      "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
+      "next_action": "Obtain missing specification",
+      "checkpoint": "2026-11-02 initial audit"
+    },
+    {
+      "id": "GYM-002",
+      "area": "GYM",
+      "title": "Leaders, rivals and important battles",
+      "aliases": [],
+      "effort": {
+        "earned": 0,
+        "remaining": 18,
+        "unit": "provisional relative planning point",
+        "confidence": "low",
+        "history": [
+          {
+            "date": "2026-11-02",
+            "earned": 0,
+            "remaining": 18,
+            "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          }
+        ]
+      },
+      "dependencies": [],
+      "status": {
+        "design": "requires source reconciliation",
+        "implementation": "not started",
+        "automated": "not executed for new work",
+        "emulator": "not executed",
+        "pull_request": "not created",
+        "merge": "not merged"
+      },
+      "branch": null,
+      "commit": null,
+      "pr_url": null,
+      "ci_url": null,
+      "blocker": "Exact finalized feature specifications/distribution unavailable; do not infer Phase Two choices.",
+      "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
+      "next_action": "Obtain missing specification",
+      "checkpoint": "2026-11-02 initial audit"
+    },
+    {
+      "id": "GYM-003",
+      "area": "GYM",
+      "title": "Exactly one Celadon trainer Castform assignment",
+      "aliases": [
+        "CASTFORM-TEAM-01"
+      ],
+      "effort": {
+        "earned": 0,
+        "remaining": 2,
+        "unit": "provisional relative planning point",
+        "confidence": "low",
+        "history": [
+          {
+            "date": "2026-11-02",
+            "earned": 0,
+            "remaining": 2,
+            "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          }
+        ]
+      },
+      "dependencies": [
+        "PKM-001"
+      ],
+      "status": {
+        "design": "requires source reconciliation",
+        "implementation": "not started",
+        "automated": "not executed for new work",
+        "emulator": "not executed",
+        "pull_request": "not created",
+        "merge": "not merged"
+      },
+      "branch": null,
+      "commit": null,
+      "pr_url": null,
+      "ci_url": null,
+      "blocker": "Specific trainer, level and moveset not finalized.",
+      "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
+      "next_action": "Obtain missing specification",
+      "checkpoint": "2026-11-02 initial audit"
+    },
+    {
+      "id": "WRL-001",
+      "area": "WRL",
+      "title": "Pikachu starter and story",
+      "aliases": [],
+      "effort": {
+        "earned": 0,
+        "remaining": 12,
+        "unit": "provisional relative planning point",
+        "confidence": "low",
+        "history": [
+          {
+            "date": "2026-11-02",
+            "earned": 0,
+            "remaining": 12,
+            "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          }
+        ]
+      },
+      "dependencies": [],
+      "status": {
+        "design": "requires source reconciliation",
+        "implementation": "not started",
+        "automated": "not executed for new work",
+        "emulator": "not executed",
+        "pull_request": "not created",
+        "merge": "not merged"
+      },
+      "branch": null,
+      "commit": null,
+      "pr_url": null,
+      "ci_url": null,
+      "blocker": "Exact finalized feature specifications/distribution unavailable; do not infer Phase Two choices.",
+      "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
+      "next_action": "Obtain missing specification",
+      "checkpoint": "2026-11-02 initial audit"
+    },
+    {
+      "id": "WRL-002",
+      "area": "WRL",
+      "title": "Final encounters and map policies",
+      "aliases": [],
+      "effort": {
+        "earned": 0,
+        "remaining": 20,
+        "unit": "provisional relative planning point",
+        "confidence": "low",
+        "history": [
+          {
+            "date": "2026-11-02",
+            "earned": 0,
+            "remaining": 20,
+            "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          }
+        ]
+      },
+      "dependencies": [],
+      "status": {
+        "design": "requires source reconciliation",
+        "implementation": "not started",
+        "automated": "not executed for new work",
+        "emulator": "not executed",
+        "pull_request": "not created",
+        "merge": "not merged"
+      },
+      "branch": null,
+      "commit": null,
+      "pr_url": null,
+      "ci_url": null,
+      "blocker": "Exact finalized feature specifications/distribution unavailable; do not infer Phase Two choices.",
+      "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
+      "next_action": "Obtain missing specification",
+      "checkpoint": "2026-11-02 initial audit"
+    },
+    {
+      "id": "WRL-003",
+      "area": "WRL",
+      "title": "Approved evolution-shop framework",
+      "aliases": [],
+      "effort": {
+        "earned": 0,
+        "remaining": 8,
+        "unit": "provisional relative planning point",
+        "confidence": "low",
+        "history": [
+          {
+            "date": "2026-11-02",
+            "earned": 0,
+            "remaining": 8,
+            "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          }
+        ]
+      },
+      "dependencies": [],
+      "status": {
+        "design": "requires source reconciliation",
+        "implementation": "not started",
+        "automated": "not executed for new work",
+        "emulator": "not executed",
+        "pull_request": "not created",
+        "merge": "not merged"
+      },
+      "branch": null,
+      "commit": null,
+      "pr_url": null,
+      "ci_url": null,
+      "blocker": "Exact finalized feature specifications/distribution unavailable; do not infer Phase Two choices.",
+      "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
+      "next_action": "Obtain missing specification",
+      "checkpoint": "2026-11-02 initial audit"
+    },
+    {
+      "id": "WRL-004",
+      "area": "WRL",
+      "title": "Item placements and events",
+      "aliases": [],
+      "effort": {
+        "earned": 0,
+        "remaining": 16,
+        "unit": "provisional relative planning point",
+        "confidence": "low",
+        "history": [
+          {
+            "date": "2026-11-02",
+            "earned": 0,
+            "remaining": 16,
+            "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          }
+        ]
+      },
+      "dependencies": [],
+      "status": {
+        "design": "requires source reconciliation",
+        "implementation": "not started",
+        "automated": "not executed for new work",
+        "emulator": "not executed",
+        "pull_request": "not created",
+        "merge": "not merged"
+      },
+      "branch": null,
+      "commit": null,
+      "pr_url": null,
+      "ci_url": null,
+      "blocker": "Exact finalized feature specifications/distribution unavailable; do not infer Phase Two choices.",
+      "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
+      "next_action": "Obtain missing specification",
+      "checkpoint": "2026-11-02 initial audit"
+    },
+    {
+      "id": "INT-001",
+      "area": "INT",
+      "title": "Pinned unchanged FireRed baseline",
+      "aliases": [],
+      "effort": {
+        "earned": 8,
+        "remaining": 0,
+        "unit": "provisional relative planning point",
+        "confidence": "low",
+        "history": [
+          {
+            "date": "2026-11-02",
+            "earned": 8,
+            "remaining": 0,
+            "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          }
+        ]
+      },
+      "dependencies": [],
+      "status": {
+        "design": "approved scoped implementation",
+        "implementation": "implemented in baseline",
+        "automated": "prior suites/CI pass; rerun after changes",
+        "emulator": "not applicable",
+        "pull_request": "#1",
+        "merge": "merged"
+      },
+      "branch": "setup/firered-baseline",
+      "commit": "e04252ea0783510000e634486c0f2526a736f506",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/1",
+      "ci_url": null,
+      "blocker": null,
+      "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
+      "next_action": "Preserve and rerun relevant regression tests",
+      "checkpoint": "2026-11-02 initial audit"
+    },
+    {
+      "id": "INT-002",
+      "area": "INT",
+      "title": "Shared Actions and mGBA infrastructure",
+      "aliases": [],
+      "effort": {
+        "earned": 8,
+        "remaining": 0,
+        "unit": "provisional relative planning point",
+        "confidence": "low",
+        "history": [
+          {
+            "date": "2026-11-02",
+            "earned": 8,
+            "remaining": 0,
+            "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          }
+        ]
+      },
+      "dependencies": [],
+      "status": {
+        "design": "approved scoped implementation",
+        "implementation": "implemented on unmerged stack",
+        "automated": "prior suites/CI pass; rerun after changes",
+        "emulator": "selected scenarios only",
+        "pull_request": "#4",
+        "merge": "not merged"
+      },
+      "branch": "feature/evolution-system-overhaul",
+      "commit": "426415d853e141960a5ecfc60eb8798fdd3cb2dd",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/4",
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/40392817403",
+      "blocker": null,
+      "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
+      "next_action": "Preserve and rerun relevant regression tests",
+      "checkpoint": "2026-11-02 initial audit"
+    },
+    {
+      "id": "INT-003",
+      "area": "INT",
+      "title": "Audits, durable dashboard, ledger and Drive sync",
+      "aliases": [],
+      "effort": {
+        "earned": 8,
+        "remaining": 8,
+        "unit": "provisional relative planning point",
+        "confidence": "low",
+        "history": [
+          {
+            "date": "2026-11-02",
+            "earned": 8,
+            "remaining": 8,
+            "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          }
+        ]
+      },
+      "dependencies": [],
+      "status": {
+        "design": "approved scoped implementation",
+        "implementation": "not started",
+        "automated": "not executed for new work",
+        "emulator": "not executed",
+        "pull_request": "not created",
+        "merge": "not merged"
+      },
+      "branch": null,
+      "commit": null,
+      "pr_url": null,
+      "ci_url": null,
+      "blocker": null,
+      "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
+      "next_action": "Execute approved stabilization plan",
+      "checkpoint": "2026-11-02 initial audit"
+    },
+    {
+      "id": "INT-004",
+      "area": "INT",
+      "title": "Combined integration acceptance",
+      "aliases": [],
+      "effort": {
+        "earned": 0,
+        "remaining": 24,
+        "unit": "provisional relative planning point",
+        "confidence": "low",
+        "history": [
+          {
+            "date": "2026-11-02",
+            "earned": 0,
+            "remaining": 24,
+            "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          }
+        ]
+      },
+      "dependencies": [
+        "PKM-005",
+        "BTL-003",
+        "BTL-004",
+        "TIM-002"
+      ],
+      "status": {
+        "design": "approved scoped implementation",
+        "implementation": "not started",
+        "automated": "not executed for new work",
+        "emulator": "not executed",
+        "pull_request": "not created",
+        "merge": "not merged"
+      },
+      "branch": null,
+      "commit": null,
+      "pr_url": null,
+      "ci_url": null,
+      "blocker": null,
+      "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
+      "next_action": "Execute approved stabilization plan",
+      "checkpoint": "2026-11-02 initial audit"
+    },
+    {
+      "id": "INT-005",
+      "area": "INT",
+      "title": "Review evidence and external release checks",
+      "aliases": [],
+      "effort": {
+        "earned": 0,
+        "remaining": 8,
+        "unit": "provisional relative planning point",
+        "confidence": "low",
+        "history": [
+          {
+            "date": "2026-11-02",
+            "earned": 0,
+            "remaining": 8,
+            "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          }
+        ]
+      },
+      "dependencies": [
+        "INT-004"
+      ],
+      "status": {
+        "design": "requires source reconciliation",
+        "implementation": "not started",
+        "automated": "not executed for new work",
+        "emulator": "not executed",
+        "pull_request": "not created",
+        "merge": "not merged"
+      },
+      "branch": null,
+      "commit": null,
+      "pr_url": null,
+      "ci_url": null,
+      "blocker": null,
+      "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
+      "next_action": "Execute approved stabilization plan",
+      "checkpoint": "2026-11-02 initial audit"
+    }
+  ],
+  "legacy_crosswalk": {
+    "P1-00": [
+      "INT-003"
+    ],
+    "P1-01": [
+      "INT-004"
+    ],
+    "P1-02": [
+      "BTL-001",
+      "BTL-003"
+    ],
+    "P1-03": [
+      "PKM-001",
+      "PKM-003"
+    ],
+    "P1-04": [
+      "PKM-001",
+      "PKM-005"
+    ],
+    "P1-05": [
+      "INT-004"
+    ],
+    "P1-06": [
+      "TIM-001",
+      "TIM-002",
+      "TIM-003"
+    ],
+    "P1-07": [
+      "PKM-002",
+      "PKM-004"
+    ],
+    "P1-08": [
+      "WRL-003",
+      "WRL-004"
+    ],
+    "P1-09": [
+      "TIM-003"
+    ],
+    "P1-10": [
+      "WTH-001"
+    ],
+    "P1-11": [
+      "WTH-002"
+    ],
+    "P1-12": [
+      "WTH-003"
+    ],
+    "P1-13": [
+      "INT-002",
+      "INT-004"
+    ],
+    "P1-14": [
+      "INT-005"
+    ]
+  },
+  "queue_crosswalk": "Q01\u2013Q08 unavailable; do not invent titles or mappings."
+}
