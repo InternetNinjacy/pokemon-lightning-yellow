@@ -18,6 +18,7 @@ support = r'''
 #include "item.h"
 #include "event_data.h"
 #include "custom_pokedex.h"
+#include "time_of_day.h"
 #include "main.h"
 #include "evolution_scene.h"
 #include "constants/items.h"
@@ -56,7 +57,7 @@ void SetMainCallback2(MainCallback cb) {mainCallback=cb;}
 void BeginEvolutionScene(struct Pokemon *mon,u16 target,u8 canStop,u8 slot) {assert(slot==0 && target!=species);lastCanStop=canStop;begins++;}
 static void Return(void) {returnCalls++;}
 '''
-program = support
+program = support + Path('src/time_of_day.c').read_text()
 for name in ['SpeciesToCustomPokedexNum','IsSpeciesInCustomPokedex','IsEvolutionSpeciesAllowed']:
     program += extract_function(Path('src/custom_pokedex.c').read_text(),name)
 program += extract_function(Path('src/pokemon.c').read_text(), 'GetEvolutionTargetSpecies')
@@ -96,7 +97,7 @@ int main(void) {
  species=SPECIES_EEVEE;held=0;level=30;
  for(h=0;h<24;h++) for(f=0;f<3;f++) {
   clockHour=h;friendship=f==0?0:f==1?219:220;clockValid=1;clockReads=0;
-  CHECK(Target(EVO_MODE_NORMAL,0)==(friendship<220?SPECIES_NONE:h>=12?SPECIES_ESPEON:SPECIES_UMBREON));
+  CHECK(Target(EVO_MODE_NORMAL,0)==(friendship<220?SPECIES_NONE:(h>=6 && h<18)?SPECIES_ESPEON:SPECIES_UMBREON));
   CHECK(clockReads==(friendship>=220?1:0));
   clockValid=0;CHECK(Target(EVO_MODE_NORMAL,0)==SPECIES_NONE);
   CHECK(Target(EVO_MODE_ITEM_USE,ITEM_SUN_STONE)==SPECIES_ESPEON);

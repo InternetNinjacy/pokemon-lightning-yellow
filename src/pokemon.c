@@ -2,7 +2,7 @@
 
 #include "global.h"
 #include "wild_double_battle.h"
-#include "rtc.h"
+#include "time_of_day.h"
 #include "custom_pokedex.h"
 #include "gflib.h"
 #include "random.h"
@@ -5050,7 +5050,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 type, u16 evolutionItem)
     u8 beauty = GetMonData(mon, MON_DATA_BEAUTY, NULL);
     u16 upperPersonality = personality >> 16;
     u8 holdEffect;
-    u8 hour = 0;
+    u8 timeOfDay = TIME_OF_DAY_DAY;
     bool8 timeRead = FALSE;
     bool8 validTime = FALSE;
 
@@ -5086,12 +5086,12 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 type, u16 evolutionItem)
                 {
                     if (!timeRead)
                     {
-                        validTime = RtcGetHour(&hour);
+                        validTime = TryGetTimeOfDay(&timeOfDay);
                         timeRead = TRUE;
                     }
-                    // Preserve the original disabled FR/LG condition boundaries.
-                    if (validTime && ((gEvolutionTable[species][i].method == EVO_FRIENDSHIP_DAY && hour >= 12)
-                                  || (gEvolutionTable[species][i].method == EVO_FRIENDSHIP_NIGHT && hour < 12)))
+                    // Functional DAY is [06:00,18:00); never use fallback time for friendship.
+                    if (validTime && ((gEvolutionTable[species][i].method == EVO_FRIENDSHIP_DAY && timeOfDay == TIME_OF_DAY_DAY)
+                                  || (gEvolutionTable[species][i].method == EVO_FRIENDSHIP_NIGHT && timeOfDay == TIME_OF_DAY_NIGHT)))
                         targetSpecies = gEvolutionTable[species][i].targetSpecies;
                 }
                 break;

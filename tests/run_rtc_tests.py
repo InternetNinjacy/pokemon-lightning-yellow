@@ -29,6 +29,13 @@ static void RtcWritePins(u16 pins) {
 program += extract_function(source, 'RtcRead')
 program += extract_function(source, 'RtcDecodeBcd') + extract_function(source, 'RtcDecodeHour') + extract_function(source, 'RtcDecodeDateTime')
 program += r'''
+static u8 testHour;
+static bool8 testValid;
+static unsigned reads;
+bool8 RtcGetHour(u8 *hour) {reads++; *hour=testHour; return testValid;}
+'''
+program += Path('src/time_of_day.c').read_text()
+program += r'''
 int main(void) {
     unsigned h, m, checks = 0;
     u8 hour, time[3];
@@ -55,7 +62,19 @@ int main(void) {
       captured=0;output[0]=0x23;output[1]=0x59;output[2]=0x58;RtcRead(0x67,bytes,3);
       assert(captured==0xE6 && bytes[0]==0x23 && bytes[1]==0x59 && bytes[2]==0x58);checks++;
     }
-    printf("PASS: %u RTC decoder/serial assertions; hardware/emulator validation outstanding\n",checks);
+    // Execute the shared production policy with a controlled clock source.
+    for(h=0;h<24;h++) {
+      u8 period=255;testHour=h;testValid=TRUE;reads=0;
+      assert(TryGetTimeOfDay(&period) && reads==1);checks++;
+      assert(period==(h>=6 && h<18 ? TIME_OF_DAY_DAY:TIME_OF_DAY_NIGHT));checks++;
+      assert(GetTimeOfDay()==period);checks++;
+      testValid=FALSE;period=255;
+      assert(!TryGetTimeOfDay(&period) && period==255);checks++;
+      assert(GetTimeOfDay()==TIME_OF_DAY_DAY);checks++;
+    }
+    testValid=TRUE;testHour=24;
+    assert(GetTimeOfDay()==TIME_OF_DAY_DAY);checks++;
+    printf("PASS: %u RTC decoder/serial/time-policy assertions (stubbed GPIO/clock; physical hardware unverified)\n",checks);
     return 0;
 }
 '''

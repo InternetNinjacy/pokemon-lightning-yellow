@@ -70,7 +70,7 @@ required = [
     'GetWildOpponentCount', 'HandleInputChooseAction', 'HandleInputChooseMove', 'HandleInputChooseTarget', 'HasAllCustomPokedexSpecies',
     'HasAllMons', 'InitRoamer', 'IsRunningFromBattleImpossible', 'ListMenuGetScrollAndRow', 'LoadGameSave',
     'MapGridGetMetatileAttributeAt', 'Menu_GetCursorPos', 'Menu_MoveCursorNoWrapAround', 'OpponentHandleChooseMove', 'PlayerGetDestCoords',
-    'ResetInitialPlayerAvatarState', 'ResetTasks', 'RtcGetHour', 'Save_ResetSaveCounters', 'SetBagPocketsPointers',
+    'ResetInitialPlayerAvatarState', 'ResetTasks', 'GetTimeOfDay', 'TryGetTimeOfDay', 'RtcGetHour', 'Save_ResetSaveCounters', 'SetBagPocketsPointers',
     'SetControllerToOpponent', 'SetControllerToPlayer', 'SetMonData', 'SetWarpDestination', 'SetWeather',
     'SpeciesToCustomPokedexNum', 'SpeciesToNationalPokedexNum', 'SpeciesToPokedexNum', 'StandardWildEncounter', 'SweetScentWildEncounter',
     'TryDoDoubleWildBattle', 'TrySavingData', 'TryStartLandEncounter', 'VarSet', 'WarpIntoMap',

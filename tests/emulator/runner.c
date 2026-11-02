@@ -17,6 +17,7 @@
 #include "constants/abilities.h"
 #include "constants/battle.h"
 #include "constants/pokedex.h"
+#include "constants/time_of_day.h"
 #include "symbols.h"
 
 static struct mCore *core;
@@ -350,14 +351,29 @@ int main(int argc,char **argv) {
         if(!ok || core->busRead8(core,scratch)!=h)fprintf(stderr,"RTC hour %u: ok=%u read=%u\n",h,ok,core->busRead8(core,scratch));
         CHECK(ok && core->busRead8(core,scratch)==h);
         create(SPECIES_EEVEE,30);put(ABI_DATA_FRIENDSHIP,220);
-        CHECK(target(EVO_MODE_NORMAL,0)==(h>=12?SPECIES_ESPEON:SPECIES_UMBREON));
+        CHECK(target(EVO_MODE_NORMAL,0)==((h>=6 && h<18)?SPECIES_ESPEON:SPECIES_UMBREON));
         put(ABI_DATA_FRIENDSHIP,219);CHECK(target(EVO_MODE_NORMAL,0)==SPECIES_NONE);
         put(ABI_DATA_FRIENDSHIP,0);CHECK(target(EVO_MODE_ITEM_USE,ITEM_SUN_STONE)==SPECIES_ESPEON);
         CHECK(target(EVO_MODE_ITEM_USE,ITEM_MOON_STONE)==SPECIES_UMBREON);
     }
     printf("PASS: real ARM RTC GPIO reads and encrypted Eevee lookups at all 24 hours\n");
+    const unsigned boundaries[]={0,6*3600-1,6*3600,18*3600-1,18*3600,24*3600-1};
+    for(unsigned i=0;i<sizeof(boundaries)/sizeof(*boundaries);i++) {
+        unsigned seconds=boundaries[i], day=seconds>=6*3600 && seconds<18*3600;
+        core->rtc.value=(1704067200LL+seconds)*1000;
+        core->busWrite8(core,scratch,255);
+        CHECK(CALL(TryGetTimeOfDay,scratch));
+        CHECK(core->busRead8(core,scratch)==(day?TIME_OF_DAY_DAY:TIME_OF_DAY_NIGHT));
+        CHECK(CALL(GetTimeOfDay)==(day?TIME_OF_DAY_DAY:TIME_OF_DAY_NIGHT));
+        create(SPECIES_EEVEE,30);put(ABI_DATA_FRIENDSHIP,220);
+        CHECK(target(EVO_MODE_NORMAL,0)==(day?SPECIES_ESPEON:SPECIES_UMBREON));
+    }
+    printf("PASS: actual ROM functional day/night and Eevee at exact second boundaries\n");
     gba->memory.hw.devices&=~HW_RTC;
     CHECK(!CALL(RtcGetHour,scratch));
+    core->busWrite8(core,scratch,255);
+    CHECK(!CALL(TryGetTimeOfDay,scratch) && core->busRead8(core,scratch)==255);
+    CHECK(CALL(GetTimeOfDay)==TIME_OF_DAY_DAY);
     create(SPECIES_EEVEE,30);put(ABI_DATA_FRIENDSHIP,220);
     CHECK(target(EVO_MODE_NORMAL,0)==SPECIES_NONE);
     CHECK(target(EVO_MODE_ITEM_USE,ITEM_SUN_STONE)==SPECIES_ESPEON);
