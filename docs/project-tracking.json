@@ -3,7 +3,7 @@
   "updated": "2026-11-02",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "docs/project-coordination",
-  "current_focus": "DAY-001..004 implemented and scoped acceptance passed; PR#10 ready for owner review, unmerged. WRL-005 remains blocked only on Ditto rate/levels. Preserve all existing areas and coverage gaps.",
+  "current_focus": "Fossil rewards/native restoration completed on PR#11, ready for scoped review. Global roster conflicts/Blaine configuration/Gyarados typing and missing Pok\u00e9 Ball ZIP remain separate blockers; preserve all prior progress.",
   "main_sha": "e04252ea0783510000e634486c0f2526a736f506",
   "drive_sync": {
     "status": "pending: no direct Drive writing tool available",
@@ -898,7 +898,7 @@
       "aliases": [],
       "effort": {
         "earned": 0,
-        "remaining": 20,
+        "remaining": 17,
         "unit": "provisional relative planning point",
         "confidence": "low",
         "history": [
@@ -907,6 +907,12 @@
             "earned": 0,
             "remaining": 20,
             "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          },
+          {
+            "date": "2026-11-02",
+            "earned": 0,
+            "remaining": 17,
+            "reason": "Move3 pending planning points into new GYM-004 Blaine correction; no duplicate Gym credit or lost completed work."
           }
         ]
       },
@@ -926,7 +932,8 @@
       "blocker": "Exact finalized feature specifications/distribution unavailable; do not infer Phase Two choices.",
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
       "next_action": "Obtain missing specification",
-      "checkpoint": "2026-11-02 initial audit"
+      "checkpoint": "2026-11-02 initial audit",
+      "scope_note": "Excludes Blaine correction now tracked as GYM-004; other Gym/trainer designs still unavailable."
     },
     {
       "id": "GYM-002",
@@ -1152,7 +1159,8 @@
       "blocker": "Exact finalized feature specifications/distribution unavailable; do not infer Phase Two choices.",
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
       "next_action": "Obtain missing specification",
-      "checkpoint": "2026-11-02 initial audit"
+      "checkpoint": "2026-11-02 initial audit",
+      "scope_note": "Other unresolved item/story placements; excludes separately detailed fossil tasks WRL-006/007. No duplicate fossil implementation credit."
     },
     {
       "id": "INT-001",
@@ -1305,20 +1313,20 @@
       "status": {
         "design": "approved scoped implementation",
         "implementation": "partial acceptance; remaining coverage explicitly recorded",
-        "automated": "all six host suites PASS; identical clean rebuild; Actions41451641953 modified/upstream jobs SUCCESS",
-        "emulator": "full local libmGBA0.10.5 PASS:114313 assertions; selected scenarios only, external gaps retained",
-        "pull_request": "#10 open and ready for review; #9 unchanged",
+        "automated": "seven host suites PASS; clean repeatability PASS; final Actions modified/upstream SUCCESS",
+        "emulator": "full local libmGBA0.10.5 PASS:114706 assertions; selected native scenes, external gaps retained",
+        "pull_request": "#11 open and ready for scoped review; parents unchanged",
         "merge": "not merged"
       },
-      "branch": "feature/route5-daycare-breeding",
-      "commit": "596265d41f92fd3e42ee6b0a08d2cb8e0ed62e5d",
-      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/10",
-      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41451641953",
+      "branch": "feature/fossil-rewards-and-roster-audit",
+      "commit": "b0bd3b86f4e03dd3f540f0776a5de87f207e84e4",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/11",
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41529505085",
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
-      "next_action": "Current #2\u2013#7 plus stabilization and Route5 compile, clean-repeatability and scoped combined tests pass on #10. Final integration with unimplemented weather/lighting/move redesign and full release acceptance remains outstanding. Feature-specific daycare assertions earn no duplicate INT credit.",
-      "checkpoint": "2026-11-02 final Route5 combined regression; earned/remaining effort unchanged to avoid duplicate credit.",
-      "coverage_gap": "Current #2\u2013#7 plus stabilization and Route5 compile, clean-repeatability and scoped combined tests pass on #10. Final integration with unimplemented weather/lighting/move redesign and full release acceptance remains outstanding. Feature-specific daycare assertions earn no duplicate INT credit."
+      "next_action": "Current stack through PR#11 passes scoped build/tests. Global eligibility, final weather/lighting/move redesign and full release/hardware/link/progression acceptance remain outstanding; no duplicate feature credit.",
+      "checkpoint": "2026-11-02 fossil combined regression; effort unchanged to avoid duplicate feature-test credit.",
+      "coverage_gap": "Current stack through PR#11 passes scoped build/tests. Global eligibility, final weather/lighting/move redesign and full release/hardware/link/progression acceptance remain outstanding; no duplicate feature credit."
     },
     {
       "id": "INT-005",
@@ -1395,6 +1403,201 @@
       "design_authority": "Owner complete Route5 handoff November2 section7, later approved Ditto existence.",
       "next_action": "Obtain finalized Ditto rate/levels through encounter workstream; independent daycare engine work continues.",
       "checkpoint": "2026-11-02: new dependency added without resetting existing work."
+    },
+    {
+      "id": "WRL-006",
+      "area": "WRL",
+      "title": "Route10 Claw Fossil reward and Anorith revival",
+      "aliases": [],
+      "effort": {
+        "earned": 8,
+        "remaining": 0,
+        "unit": "provisional relative planning point",
+        "confidence": "low",
+        "history": [
+          {
+            "date": "2026-11-02",
+            "earned": 8,
+            "remaining": 0,
+            "reason": "Newly detailed approved scope/intake; not elapsed hours. Existing work retained and overlap excluded."
+          }
+        ]
+      },
+      "dependencies": [
+        "PKM-001"
+      ],
+      "status": {
+        "design": "owner approved supplied update",
+        "implementation": "implemented; scoped source/native acceptance passed",
+        "automated": "seven host suites/static audits PASS; identical clean rebuild; final Actions SUCCESS",
+        "emulator": "full local libmGBA0.10.5 PASS:114706 assertions; native rewards/menus/restoration/flash scenes",
+        "pull_request": "#11 open and ready for scoped review",
+        "merge": "not merged"
+      },
+      "branch": "feature/fossil-rewards-and-roster-audit",
+      "commit": "b0bd3b86f4e03dd3f540f0776a5de87f207e84e4",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/11",
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41529505085",
+      "blocker": null,
+      "design_authority": "Owner supplied November2 Wild Encounters, Gym Roster, Fossils and Pokedex Compliance update; linked Drive originals401, not claimed read.",
+      "next_action": "Owner review; retain old reward bit and no invented Everstone placement",
+      "checkpoint": "2026-11-02 fossil/source audit atb0bd3b86f4e03dd3f540f0776a5de87f207e84e4; exact tests/known limits in ledger."
+    },
+    {
+      "id": "WRL-007",
+      "area": "WRL",
+      "title": "One-time unchosen MtMoon fossil gift",
+      "aliases": [],
+      "effort": {
+        "earned": 8,
+        "remaining": 0,
+        "unit": "provisional relative planning point",
+        "confidence": "low",
+        "history": [
+          {
+            "date": "2026-11-02",
+            "earned": 8,
+            "remaining": 0,
+            "reason": "Newly detailed approved scope/intake; not elapsed hours. Existing work retained and overlap excluded."
+          }
+        ]
+      },
+      "dependencies": [
+        "WRL-006"
+      ],
+      "status": {
+        "design": "owner approved supplied update",
+        "implementation": "implemented; scoped source/native acceptance passed",
+        "automated": "seven host suites/static audits PASS; identical clean rebuild; final Actions SUCCESS",
+        "emulator": "full local libmGBA0.10.5 PASS:114706 assertions; native rewards/menus/restoration/flash scenes",
+        "pull_request": "#11 open and ready for scoped review",
+        "merge": "not merged"
+      },
+      "branch": "feature/fossil-rewards-and-roster-audit",
+      "commit": "b0bd3b86f4e03dd3f540f0776a5de87f207e84e4",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/11",
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41529505085",
+      "blocker": null,
+      "design_authority": "Owner supplied November2 Wild Encounters, Gym Roster, Fossils and Pokedex Compliance update; linked Drive originals401, not claimed read.",
+      "next_action": "Owner review; preserve immutable choice flags and normal lab services",
+      "checkpoint": "2026-11-02 fossil/source audit atb0bd3b86f4e03dd3f540f0776a5de87f207e84e4; exact tests/known limits in ledger."
+    },
+    {
+      "id": "PKM-006",
+      "area": "PKM",
+      "title": "Global world roster eligibility audit and guard",
+      "aliases": [],
+      "effort": {
+        "earned": 4,
+        "remaining": 2,
+        "unit": "provisional relative planning point",
+        "confidence": "low",
+        "history": [
+          {
+            "date": "2026-11-02",
+            "earned": 4,
+            "remaining": 2,
+            "reason": "Newly detailed approved scope/intake; not elapsed hours. Existing work retained and overlap excluded."
+          }
+        ]
+      },
+      "dependencies": [
+        "PKM-001",
+        "WRL-002",
+        "GYM-001"
+      ],
+      "status": {
+        "design": "global252 eligibility rule approved; conflict replacements not supplied",
+        "implementation": "audit/CI no-new-findings guard implemented; global compliance BLOCKED",
+        "automated": "seven host suites/static audits PASS; identical clean rebuild; final Actions SUCCESS",
+        "emulator": "full local libmGBA0.10.5 PASS:114706 assertions; native rewards/menus/restoration/flash scenes",
+        "pull_request": "#11 open and ready for scoped review",
+        "merge": "not merged"
+      },
+      "branch": "feature/fossil-rewards-and-roster-audit",
+      "commit": "b0bd3b86f4e03dd3f540f0776a5de87f207e84e4",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/11",
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41529505085",
+      "blocker": "Strict audit FAIL:281 authored off-Dex occurrences;279 legacy references and12 variable/C candidates need role review. Approved replacements/removals and locked stationary specification unavailable.",
+      "design_authority": "Owner supplied November2 Wild Encounters, Gym Roster, Fossils and Pokedex Compliance update; linked Drive originals401, not claimed read.",
+      "next_action": "Resolve reference roles and coordinate approved encounter/trainer/gift replacements under their own tasks; do not invent or add species",
+      "checkpoint": "2026-11-02 fossil/source audit atb0bd3b86f4e03dd3f540f0776a5de87f207e84e4; exact tests/known limits in ledger."
+    },
+    {
+      "id": "GYM-004",
+      "area": "GYM",
+      "title": "Blaine corrected five-member Double Battle",
+      "aliases": [],
+      "effort": {
+        "earned": 0,
+        "remaining": 3,
+        "unit": "provisional relative planning point",
+        "confidence": "low",
+        "history": [
+          {
+            "date": "2026-11-02",
+            "earned": 0,
+            "remaining": 3,
+            "reason": "Newly detailed approved scope/intake; not elapsed hours. Existing work retained and overlap excluded."
+          }
+        ]
+      },
+      "dependencies": [
+        "PKM-001"
+      ],
+      "status": {
+        "design": "five roster names/opening pair approved; configuration unavailable",
+        "implementation": "not implemented; actual source still original FireRed four-member Single Battle",
+        "automated": "source audit only; no implementation test claim",
+        "emulator": "not implemented/tested",
+        "pull_request": "blocked; no feature implementation PR",
+        "merge": "not merged"
+      },
+      "branch": null,
+      "commit": null,
+      "pr_url": null,
+      "ci_url": null,
+      "blocker": "Approved levels/moves/items/full Gym register missing; implemented Gyarados Water/Dragon conflicts with update Water/Flying strategy. Clarification pending.",
+      "design_authority": "Owner supplied November2 Wild Encounters, Gym Roster, Fossils and Pokedex Compliance update; linked Drive originals401, not claimed read.",
+      "next_action": "Obtain exact existing approved battle configuration and resolve typing conflict; preserve seven ordinary teams",
+      "checkpoint": "2026-11-02 fossil/source audit atb0bd3b86f4e03dd3f540f0776a5de87f207e84e4; exact tests/known limits in ledger."
+    },
+    {
+      "id": "BTL-006",
+      "area": "BTL",
+      "title": "Queued Pok\u00e9 Ball redesign specification intake",
+      "aliases": [],
+      "effort": {
+        "earned": 0,
+        "remaining": 16,
+        "unit": "provisional relative planning point",
+        "confidence": "low",
+        "history": [
+          {
+            "date": "2026-11-02",
+            "earned": 0,
+            "remaining": 16,
+            "reason": "Newly detailed approved scope/intake; not elapsed hours. Existing work retained and overlap excluded."
+          }
+        ]
+      },
+      "dependencies": [],
+      "status": {
+        "design": "queued by uploaded prompt; actual approved mechanics/authorization file not supplied",
+        "implementation": "not started; missing package",
+        "automated": "source audit only; no implementation test claim",
+        "emulator": "not implemented/tested",
+        "pull_request": "blocked; no feature implementation PR",
+        "merge": "not merged"
+      },
+      "branch": null,
+      "commit": null,
+      "pr_url": null,
+      "ci_url": null,
+      "blocker": "Pokemon_Lightning_Yellow_Codex_Package_2026-11-02.zip not attached. Need governance/16_pokeball_explicit_codex_authorization.txt and sources/15_pokeball_approved_design.txt plus package governance.",
+      "design_authority": "Uploaded Codex Start Prompt queues Pok\u00e9 Ball work; actual ZIP/approved mechanics/explicit directive files unavailable. Do not infer contents or approval details.",
+      "next_action": "Read complete package and effective decisions when supplied; no guessed mechanics or routine reauthorization request",
+      "checkpoint": "2026-11-02 fossil/source audit atb0bd3b86f4e03dd3f540f0776a5de87f207e84e4; exact tests/known limits in ledger."
     }
   ],
   "legacy_crosswalk": {
@@ -1457,8 +1660,11 @@
     "PKM-005": "Full overworld Bag evolution navigation and a real link-trade peer remain unverified.",
     "BTL-003": "Complete trainer-AI strategy/gameplay coverage remains unverified; selected ROM damage/AI/UI tests pass.",
     "BTL-004": "Nickname acceptance/rename, successful captures with every ball, faint/replacement/whiteout, forced-end/spread moves and complete weather interactions remain unverified.",
-    "INT-004": "Current #2\u2013#7 plus stabilization and Route5 compile, clean-repeatability and scoped combined tests pass on #10. Final integration with unimplemented weather/lighting/move redesign and full release acceptance remains outstanding. Feature-specific daycare assertions earn no duplicate INT credit.",
-    "DAY-004": "Real two-peer trade handshake, hardware/power interruption, full quest-log playback/progression and old-ROM reverse migration unverified. Matching-build ownership-data and hatch tests passed."
+    "INT-004": "Current stack through PR#11 passes scoped build/tests. Global eligibility, final weather/lighting/move redesign and full release/hardware/link/progression acceptance remain outstanding; no duplicate feature credit.",
+    "DAY-004": "Real two-peer trade handshake, hardware/power interruption, full quest-log playback/progression and old-ROM reverse migration unverified. Matching-build ownership-data and hatch tests passed.",
+    "PKM-006": "Strict global eligibility FAIL remains explicit. No-new-findings CI PASS is not compliance; unused/data-reference roles are not inferred as live encounters.",
+    "WRL-006": "Native party delivery/save/registration tested for all four fossils in one save. Full-PC failure and nickname acceptance not newly exercised; original blocks fingerprinted unchanged. Historical claimed Everstone reward does not grant retroactive Claw.",
+    "WRL-007": "Existing NPC script entry points run on actual maps; no manual full progression or actual MtMoon selection walk claimed. Original MtMoon choice script fingerprinted unchanged; native saved choice flags drive both gift cases."
   },
   "effort_rules": "Provisional tracked scope. INT-004 credits combined build/repeatability/stack compatibility only; feature-specific scene/mechanics testing is counted under each feature. No double credit for parent merges. No merge/release authorization inferred."
 }
