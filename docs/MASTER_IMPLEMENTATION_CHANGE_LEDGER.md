@@ -10,12 +10,12 @@ Git history is the authoritative technical record. Historical entries below are 
 | System / tasks | Newest available approved design | Implemented on main | Implemented on open stack / remaining |
 |---|---|---|---|
 | Baseline / INT-001 | FireRed English rev0, pret commit ce6406d8c2eaf46d543c8a2606de0c3cb1951982 | e04252ea, original SHA-1 41cb23d8dccc8ebd7c649cd8fbb58eeace6e2fdc | Independently retained CI baseline |
-| Dex / PKM-001,003,005 | Owner Castform expansion:252, Castform#233, preserve relative order; October28 handoff typing overrides | Original FireRed | PR#6 has252/canonical save flags; twelve typing overrides and expanded acceptance pending |
-| Evolution / PKM-002,004 | Latest evolution mechanics overrides older eight direct-use pairs: six pairs, no Clamperl additions; Tyrogue choice>=15; roster-aware National gate removal approved by October28 supplied handoff | Original FireRed | PR#5 methods/menu implemented; roster-aware access pending |
+| Dex / PKM-001,003,005 | Owner Castform expansion:252, Castform#233, preserve relative order; October28 handoff typing overrides | Original FireRed | PR#6 has252/canonical save flags; twelve typing overrides implemented in PR#9; expanded acceptance ongoing |
+| Evolution / PKM-002,004 | Latest evolution mechanics overrides older eight direct-use pairs: six pairs, no Clamperl additions; Tyrogue choice>=15; roster-aware National gate removal approved by October28 supplied handoff | Original FireRed | PR#5 methods/menu implemented; roster-aware access implemented in PR#9 |
 | Categories / BTL-001,003 | GenIV per-move assignments; owner explicitly chose Shadow Ball SPECIAL | Type-based split | PR#2 split implemented; stronger acceptance pending |
 | Wild doubles / BTL-002,004 | Owner capability assignment: designated maps, independent draws, weighted5% Onix+Cloyster | Singles | PR#7 proof of concept on experimental Route1/MtMoon1F, conditional acceptance; release hardening remains |
 | Move redesign / BTL-005 | Owner October31 audit handoff; complete authoritative values not available | Original354 | No410-move implementation; audit outputs are not implementation |
-| RTC / TIM-001,002 | Read-only RTC; functional DAY[06:00,18:00), NIGHT otherwise, invalid timed friendship unavailable | No RTC | PR#3 clock implemented; consumer still noon-based, correction pending |
+| RTC / TIM-001,002 | Read-only RTC; functional DAY[06:00,18:00), NIGHT otherwise, invalid timed friendship unavailable | No RTC | PR#3 clock implemented; PR#9 replaces consumer noon policy with approved06–18 helper |
 | Visuals / TIM-003 | Four outdoor/two covered periods; Lavender and Mansion exceptions in supplied October28 handoff | Original appearance | No visual implementation; transitions/map exceptions/colors unresolved |
 | Weather / WTH | October28 supplied handoff distributions/transition rules; final unanswered exceptions retained | Original weather | No dynamic implementation; Hail duration/active battle precedence and maps unresolved |
 | Route5 / DAY | Owner consolidated execution request; dedicated register link supplied but contents unavailable | Original single deposit daycare | Planned independent storage/50%Shiny; no implementation; full register required |
@@ -45,7 +45,7 @@ Git history is the authoritative technical record. Historical entries below are 
 
 - Previous → new: Type-based damage categories → explicit per-move Physical/Special/Status, including Shadow Ball Special.
 - Design authority/version: Owner approved split assignment and explicit Shadow Ball Special correction.
-- Source files: include/pokemon.h, include/battle.h, include/constants/battle.h, src/data/battle_moves.h, src/pokemon.c, src/battle_script_commands.c, src/battle_ai_script_commands.c, src/battle_ai_switch_items.c, src/battle_controller_player.c, src/pokemon_summary_screen.c, tests/run_split_tests.py, docs/PHYSICAL_SPECIAL_SPLIT.md (consult commit for complete list).
+- Source files: include/pokemon.h, include/battle.h, include/constants/move_categories.h, src/data/battle_moves.h, src/pokemon.c, src/battle_script_commands.c, src/battle_ai_script_commands.c, src/battle_controller_player.c, src/pokemon_summary_screen.c, tests/run_split_tests.py, docs/PHYSICAL_SPECIAL_SPLIT.md (consult commit for complete list).
 - References: branch `feature/physical-special-split`, [commit](https://github.com/InternetNinjacy/pokemon-lightning-yellow/commit/e265bcf3efa07531a4419fd471f6157fb0980cad), [PR#2](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/2).
 - Implementation status: implemented on unmerged dependency stack.
 - Automated / emulator evidence: Host numeric production-routine tests and static audits; prior CI green. Full emulator UI/AI acceptance not established by this historical commit.
@@ -176,3 +176,26 @@ Git history is the authoritative technical record. Historical entries below are 
 ## Resume requirements
 
 Append meaningful changes, failed validations and fixes, actual test outputs, exact commit/PR/CI links and remaining limitations. Update Current Effective Version and task status together. Never equate green compilation with acceptance. Keep each system's design, implemented code, automated results, emulator evidence, review and merge state separate.
+
+### 2026-11-02 — PKM-003 / PKM-004 / TIM-002 — stabilization implementation
+
+- Previous → new: twelve original type pairs become the exact approved custom pairs; pre-National approved roster evolutions no longer auto-cancel; timed friendship changes from noon split to DAY[06:00,18:00).
+- Design authority: DES-001/002 and owner-approved consolidated execution plan. No unseen Drive version claimed.
+- Files: src/data/pokemon/species_info.h; src/custom_pokedex.c/include/custom_pokedex.h; src/pokemon.c; src/evolution_scene.c; src/party_menu.c; new include/constants/time_of_day.h, include/time_of_day.h and src/time_of_day.c; corresponding host fixtures/tests.
+- Branch: feature/phase-one-stabilization, stacked on bbb0459d. Commits: 95fd5870 (types), 672c5376 (shared gate), add8c5a1 (time). [PR #9](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/9), draft while final verification proceeds.
+- Automated: all five host suites pass (split1299 +6 static audits; RTC3011; evolution755 +static audits; Dex6300 +preservation; wild1246873). Build passes; focused compiled-ROM battle suite147 checks passes. Full final run/clean repeatability/Actions still pending at this milestone.
+- Emulator: actual pre-National item scenes success/cancel, excluded-target guard and Tyrogue/level scenes pass; exact RTC seconds pass. No physical RTC/link claim.
+- Save/dependency: unchanged layouts, IDs, canonical flags and parent PRs. Excluded targets retain gates; no National story flag enabled; no Clamperl Bag route added.
+- Supersedes: old effective type pairs, retained gates for roster targets and noon policy only. Historical PR reports remain valid for their original commits.
+
+### 2026-11-02 — BTL-003 / PKM-005 — stronger compiled-ROM acceptance
+
+- Previous → new: host-only split numeric evidence supplemented with actual ARM damage/AI/item/screen/burn fixtures, twelve real party-to-battle typing loads and actual move-selection text checks.
+- Commit: 69522141; branch/PR #9 above. Files: tests/emulator/battle_categories.c, tests/emulator/run.py, tests/emulator/runner.c, docs/PHASE_ONE_STABILIZATION.md, README.md, AGENTS.md.
+- Tests: focused147 checks passed, local screenshot inspected for type/category/PP legibility. Summary runtime acceptance remains outstanding at this checkpoint.
+- Failed trial: initial text assertion expected PSYCHIC; source and runtime use unchanged FireRed abbreviation PSYCHC. Corrected test expectation, reran successfully; no game text changed. No failed run counted as passing.
+- Compatibility: isolated controlled battle fixtures do not certify every AI strategy, complete gameplay or links. No new gameplay balance/effect in this acceptance commit.
+
+### 2026-11-02 — INT-003 — coordination publication checkpoint
+
+[PR #8](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/8) opened from docs/project-coordination, initial commit626c6ad2. [Actions41375601930](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41375601930) completed SUCCESS. Both docs and gameplay PRs remain unmerged. Drive sync remains pending. Permanent task progress updated by actual scoped work, not by design approval.

@@ -3,7 +3,7 @@
   "updated": "2026-11-02",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "docs/project-coordination",
-  "current_focus": "INT-003 coordination, then PKM/TIM/BTL stabilization",
+  "current_focus": "PKM-005 / BTL-003 / BTL-004 / INT-004 final stabilization acceptance; DAY waiting for dedicated register",
   "main_sha": "e04252ea0783510000e634486c0f2526a736f506",
   "drive_sync": {
     "status": "pending: no direct Drive writing tool available",
@@ -124,8 +124,8 @@
       "title": "Twelve approved species typing overrides",
       "aliases": [],
       "effort": {
-        "earned": 0,
-        "remaining": 4,
+        "earned": 4,
+        "remaining": 0,
         "unit": "provisional relative planning point",
         "confidence": "low",
         "history": [
@@ -134,26 +134,32 @@
             "earned": 0,
             "remaining": 4,
             "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          },
+          {
+            "date": "2026-11-02",
+            "earned": 4,
+            "remaining": 0,
+            "reason": "Implemented approved stabilization and focused acceptance; remaining scope and external checks recorded separately."
           }
         ]
       },
       "dependencies": [],
       "status": {
         "design": "approved scoped implementation",
-        "implementation": "not started",
-        "automated": "not executed for new work",
-        "emulator": "not executed",
-        "pull_request": "not created",
+        "implementation": "implemented on stabilization branch",
+        "automated": "all five host suites pass",
+        "emulator": "pre-National scenes and exact RTC boundaries pass; focused ROM category suite 147 checks pass",
+        "pull_request": "#9 draft; final CI pending",
         "merge": "not merged"
       },
-      "branch": null,
-      "commit": null,
-      "pr_url": null,
+      "branch": "feature/phase-one-stabilization",
+      "commit": "69522141",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/9",
       "ci_url": null,
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
-      "next_action": "Execute approved stabilization plan",
-      "checkpoint": "2026-11-02 initial audit"
+      "next_action": "Complete final clean-build/full mGBA and Actions validation",
+      "checkpoint": "2026-11-02 milestone: #8 tracking established, #9 stabilization draft and final tests underway"
     },
     {
       "id": "PKM-004",
@@ -161,8 +167,8 @@
       "title": "Roster-aware pre-National evolution access",
       "aliases": [],
       "effort": {
-        "earned": 0,
-        "remaining": 4,
+        "earned": 4,
+        "remaining": 0,
         "unit": "provisional relative planning point",
         "confidence": "low",
         "history": [
@@ -171,6 +177,12 @@
             "earned": 0,
             "remaining": 4,
             "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          },
+          {
+            "date": "2026-11-02",
+            "earned": 4,
+            "remaining": 0,
+            "reason": "Implemented approved stabilization and focused acceptance; remaining scope and external checks recorded separately."
           }
         ]
       },
@@ -179,20 +191,20 @@
       ],
       "status": {
         "design": "approved scoped implementation",
-        "implementation": "not started",
-        "automated": "not executed for new work",
-        "emulator": "not executed",
-        "pull_request": "not created",
+        "implementation": "implemented on stabilization branch",
+        "automated": "all five host suites pass",
+        "emulator": "pre-National scenes and exact RTC boundaries pass; focused ROM category suite 147 checks pass",
+        "pull_request": "#9 draft; final CI pending",
         "merge": "not merged"
       },
-      "branch": null,
-      "commit": null,
-      "pr_url": null,
+      "branch": "feature/phase-one-stabilization",
+      "commit": "69522141",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/9",
       "ci_url": null,
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
-      "next_action": "Execute approved stabilization plan",
-      "checkpoint": "2026-11-02 initial audit"
+      "next_action": "Complete final clean-build/full mGBA and Actions validation",
+      "checkpoint": "2026-11-02 milestone: #8 tracking established, #9 stabilization draft and final tests underway"
     },
     {
       "id": "PKM-005",
@@ -200,8 +212,8 @@
       "title": "Expanded Dex/evolution acceptance",
       "aliases": [],
       "effort": {
-        "earned": 0,
-        "remaining": 8,
+        "earned": 4,
+        "remaining": 4,
         "unit": "provisional relative planning point",
         "confidence": "low",
         "history": [
@@ -210,6 +222,12 @@
             "earned": 0,
             "remaining": 8,
             "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          },
+          {
+            "date": "2026-11-02",
+            "earned": 4,
+            "remaining": 4,
+            "reason": "Implemented approved stabilization and focused acceptance; remaining scope and external checks recorded separately."
           }
         ]
       },
@@ -220,20 +238,20 @@
       ],
       "status": {
         "design": "approved scoped implementation",
-        "implementation": "not started",
-        "automated": "not executed for new work",
-        "emulator": "not executed",
-        "pull_request": "not created",
+        "implementation": "partially verified on stabilization branch",
+        "automated": "all five host suites pass",
+        "emulator": "pre-National scenes and exact RTC boundaries pass; focused ROM category suite 147 checks pass",
+        "pull_request": "#9 draft; final CI pending",
         "merge": "not merged"
       },
-      "branch": null,
-      "commit": null,
-      "pr_url": null,
+      "branch": "feature/phase-one-stabilization",
+      "commit": "69522141",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/9",
       "ci_url": null,
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
-      "next_action": "Execute approved stabilization plan",
-      "checkpoint": "2026-11-02 initial audit"
+      "next_action": "Complete final clean-build/full mGBA and Actions validation",
+      "checkpoint": "2026-11-02 milestone: #8 tracking established, #9 stabilization draft and final tests underway"
     },
     {
       "id": "BTL-001",
@@ -315,8 +333,8 @@
       "title": "Split, AI and category UI acceptance",
       "aliases": [],
       "effort": {
-        "earned": 0,
-        "remaining": 6,
+        "earned": 3,
+        "remaining": 3,
         "unit": "provisional relative planning point",
         "confidence": "low",
         "history": [
@@ -325,6 +343,12 @@
             "earned": 0,
             "remaining": 6,
             "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          },
+          {
+            "date": "2026-11-02",
+            "earned": 3,
+            "remaining": 3,
+            "reason": "Implemented approved stabilization and focused acceptance; remaining scope and external checks recorded separately."
           }
         ]
       },
@@ -333,20 +357,20 @@
       ],
       "status": {
         "design": "approved scoped implementation",
-        "implementation": "not started",
-        "automated": "not executed for new work",
-        "emulator": "not executed",
-        "pull_request": "not created",
+        "implementation": "partially verified on stabilization branch",
+        "automated": "all five host suites pass",
+        "emulator": "pre-National scenes and exact RTC boundaries pass; focused ROM category suite 147 checks pass",
+        "pull_request": "#9 draft; final CI pending",
         "merge": "not merged"
       },
-      "branch": null,
-      "commit": null,
-      "pr_url": null,
+      "branch": "feature/phase-one-stabilization",
+      "commit": "69522141",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/9",
       "ci_url": null,
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
-      "next_action": "Execute approved stabilization plan",
-      "checkpoint": "2026-11-02 initial audit"
+      "next_action": "Complete final clean-build/full mGBA and Actions validation",
+      "checkpoint": "2026-11-02 milestone: #8 tracking established, #9 stabilization draft and final tests underway"
     },
     {
       "id": "BTL-004",
@@ -469,8 +493,8 @@
       "title": "Functional day/night foundation",
       "aliases": [],
       "effort": {
-        "earned": 0,
-        "remaining": 8,
+        "earned": 8,
+        "remaining": 0,
         "unit": "provisional relative planning point",
         "confidence": "low",
         "history": [
@@ -479,6 +503,12 @@
             "earned": 0,
             "remaining": 8,
             "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          },
+          {
+            "date": "2026-11-02",
+            "earned": 8,
+            "remaining": 0,
+            "reason": "Implemented approved stabilization and focused acceptance; remaining scope and external checks recorded separately."
           }
         ]
       },
@@ -487,20 +517,20 @@
       ],
       "status": {
         "design": "approved scoped implementation",
-        "implementation": "not started",
-        "automated": "not executed for new work",
-        "emulator": "not executed",
-        "pull_request": "not created",
+        "implementation": "implemented on stabilization branch",
+        "automated": "all five host suites pass",
+        "emulator": "pre-National scenes and exact RTC boundaries pass; focused ROM category suite 147 checks pass",
+        "pull_request": "#9 draft; final CI pending",
         "merge": "not merged"
       },
-      "branch": null,
-      "commit": null,
-      "pr_url": null,
+      "branch": "feature/phase-one-stabilization",
+      "commit": "69522141",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/9",
       "ci_url": null,
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
-      "next_action": "Execute approved stabilization plan",
-      "checkpoint": "2026-11-02 initial audit"
+      "next_action": "Complete final clean-build/full mGBA and Actions validation",
+      "checkpoint": "2026-11-02 milestone: #8 tracking established, #9 stabilization draft and final tests underway"
     },
     {
       "id": "TIM-003",
@@ -1158,8 +1188,8 @@
       "title": "Audits, durable dashboard, ledger and Drive sync",
       "aliases": [],
       "effort": {
-        "earned": 8,
-        "remaining": 8,
+        "earned": 12,
+        "remaining": 4,
         "unit": "provisional relative planning point",
         "confidence": "low",
         "history": [
@@ -1168,26 +1198,32 @@
             "earned": 8,
             "remaining": 8,
             "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          },
+          {
+            "date": "2026-11-02",
+            "earned": 12,
+            "remaining": 4,
+            "reason": "Implemented approved stabilization and focused acceptance; remaining scope and external checks recorded separately."
           }
         ]
       },
       "dependencies": [],
       "status": {
         "design": "approved scoped implementation",
-        "implementation": "not started",
-        "automated": "not executed for new work",
+        "implementation": "dashboard and ledger established; Drive sync pending",
+        "automated": "JSON/IDs/effort validation passed; docs PR CI success",
         "emulator": "not executed",
-        "pull_request": "not created",
+        "pull_request": "#8 open",
         "merge": "not merged"
       },
-      "branch": null,
+      "branch": "docs/project-coordination",
       "commit": null,
-      "pr_url": null,
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/8",
       "ci_url": null,
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
-      "next_action": "Execute approved stabilization plan",
-      "checkpoint": "2026-11-02 initial audit"
+      "next_action": "Record final stabilization evidence; synchronize Drive when supported access exists",
+      "checkpoint": "2026-11-02 milestone: #8 tracking established, #9 stabilization draft and final tests underway"
     },
     {
       "id": "INT-004",

@@ -2,28 +2,28 @@
 
 Canonical branch: `docs/project-coordination`. Updated 2026-11-02.
 
-Overall tracked scope: `[##--------]` **17.24% complete / 82.76% remaining** (80 earned + 384 remaining planning points).
+Overall tracked scope: `[##--------]` **23.06% complete / 76.94% remaining** (107 earned + 357 remaining planning points).
 
 All estimates are provisional relative effort, not measured hours or a claim the game is 17% release-ready. Design approval alone earns no implementation credit. Shared infrastructure is counted only under INT; feature tests stay with their feature. Adding scope changes the denominator without erasing completed work. Merging is recorded separately from implementation and requires owner approval.
 
-Current focus: create durable tracking, then stabilize the unmerged #2–#7 stack. Route 5 waits for its complete register; unrelated eligible work continues. No PR will be merged or have auto-merge enabled.
+Current focus: finish acceptance for [stabilization PR #9](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/9). [Coordination PR #8](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/8) is open and its CI passed. Route 5 waits for its complete register; unrelated eligible work continues. No PR will be merged or have auto-merge enabled.
 
 | Area | Progress | Complete / remaining | Earned / remaining effort |
 |---|---|---|---|
-| PKM — Pokédex, species and evolution | `[######----]` | 60% / 40% | 24 / 16 |
-| BTL — Moves, types and battle mechanics | `[##--------]` | 20% / 80% | 24 / 96 |
-| TIM — RTC, time of day and lighting | `[##--------]` | 17% / 83% | 8 / 40 |
+| PKM — Pokédex, species and evolution | `[#########-]` | 90% / 10% | 36 / 4 |
+| BTL — Moves, types and battle mechanics | `[##--------]` | 22% / 78% | 27 / 93 |
+| TIM — RTC, time of day and lighting | `[###-------]` | 33% / 67% | 16 / 32 |
 | WTH — Overworld and battle weather | `[----------]` | 0% / 100% | 0 / 64 |
 | DAY — Daycare, breeding and Shiny eggs | `[----------]` | 0% / 100% | 0 / 32 |
 | GYM — Gyms, trainers and important battles | `[----------]` | 0% / 100% | 0 / 40 |
 | WRL — Maps, encounters, items and story | `[----------]` | 0% / 100% | 0 / 56 |
-| INT — Integration, testing and release readiness | `[####------]` | 38% / 62% | 24 / 40 |
+| INT — Integration, testing and release readiness | `[####------]` | 44% / 56% | 28 / 36 |
 
 ## Verified repository and dependency stack
 
 Main remains the baseline at `e04252ea0783510000e634486c0f2526a736f506`. PR #1 is merged; #2–#7 are open. #3–#5 are drafts. Stack: main → #2 split → #3 RTC → #4 evolution → #5 evolution mechanics → #6 custom252 → #7 wild doubles. These branches contain internal merge commits; that does not mean their GitHub PRs were merged. Prior green CI is evidence for its exact commit, not certification of future combinations.
 
-The coordination PR targets main and contains no gameplay. `feature/phase-one-stabilization` will start at #7, target #7, and preserve all dependency PRs. Route 5 will remain separate once its design register is available.
+The coordination PR targets main and contains no gameplay. `feature/phase-one-stabilization` starts at #7 and PR #9 targets #7, and preserve all dependency PRs. Route 5 will remain separate once its design register is available.
 
 ## Task inventory
 
@@ -35,9 +35,9 @@ Status dimensions (design/code/automated/emulator/PR/merge), exact refs, depende
 |---|---|---|---|---|
 | PKM-001 Custom 252-species Dex | implemented on unmerged stack; Preserve and rerun relevant regression tests | — | 0 | [PR #6](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/6); [prior CI](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/40968372595) |
 | PKM-002 Approved evolution alternatives and Tyrogue menu | implemented on unmerged stack; Preserve and rerun relevant regression tests | — | 0 | [PR #5](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/5); [prior CI](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/40422457155) |
-| PKM-003 Twelve approved species typing overrides | not started; Execute approved stabilization plan | — | 4 | Approved run: pending implementation and tests |
-| PKM-004 Roster-aware pre-National evolution access | not started; Execute approved stabilization plan | PKM-001 | 4 | Approved run: pending implementation and tests |
-| PKM-005 Expanded Dex/evolution acceptance | not started; Execute approved stabilization plan | PKM-003, PKM-004, TIM-002 | 8 | Approved run: pending implementation and tests |
+| PKM-003 Twelve approved species typing overrides | implemented on stabilization branch; Complete final clean-build/full mGBA and Actions validation | — | 0 | [PR](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/9); all five host suites pass; pre-National scenes and exact RTC boundaries pass; focused ROM category suite 147 checks pass |
+| PKM-004 Roster-aware pre-National evolution access | implemented on stabilization branch; Complete final clean-build/full mGBA and Actions validation | PKM-001 | 0 | [PR](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/9); all five host suites pass; pre-National scenes and exact RTC boundaries pass; focused ROM category suite 147 checks pass |
+| PKM-005 Expanded Dex/evolution acceptance | partially verified on stabilization branch; Complete final clean-build/full mGBA and Actions validation | PKM-003, PKM-004, TIM-002 | 4 | [PR](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/9); all five host suites pass; pre-National scenes and exact RTC boundaries pass; focused ROM category suite 147 checks pass |
 
 ### BTL — Moves, types and battle mechanics
 
@@ -45,7 +45,7 @@ Status dimensions (design/code/automated/emulator/PR/merge), exact refs, depende
 |---|---|---|---|---|
 | BTL-001 Per-move Physical/Special/Status split | implemented on unmerged stack; Preserve and rerun relevant regression tests | — | 0 | [PR #2](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/2); [prior CI](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/40252575233) |
 | BTL-002 Wild double battle capability proof of concept | implemented on unmerged stack; Preserve and rerun relevant regression tests | — | 0 | [PR #7](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/7); [prior CI](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/40976362014) |
-| BTL-003 Split, AI and category UI acceptance | not started; Execute approved stabilization plan | BTL-001 | 6 | Approved run: pending implementation and tests |
+| BTL-003 Split, AI and category UI acceptance | partially verified on stabilization branch; Complete final clean-build/full mGBA and Actions validation | BTL-001 | 3 | [PR](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/9); all five host suites pass; pre-National scenes and exact RTC boundaries pass; focused ROM category suite 147 checks pass |
 | BTL-004 Wild double battle hardening | not started; Execute approved stabilization plan | BTL-002 | 10 | Approved run: pending implementation and tests |
 | BTL-005 410-move redesign | not started; Obtain missing specification | BTL-001 | 80 | Full approved move register, change ledger, distributions and animation decisions are not locally available; prior audit is not implementation. |
 
@@ -54,14 +54,14 @@ Status dimensions (design/code/automated/emulator/PR/merge), exact refs, depende
 | Task | State / next action | Dependencies | Remaining effort | Evidence or blocker |
 |---|---|---|---|---|
 | TIM-001 Read-only cartridge RTC | implemented on unmerged stack; Preserve and rerun relevant regression tests | — | 0 | [PR #3](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/3); [prior CI](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/40390936433) |
-| TIM-002 Functional day/night foundation | not started; Execute approved stabilization plan | TIM-001 | 8 | Approved run: pending implementation and tests |
-| TIM-003 Approved visual periods and lighting | not started; Obtain missing specification | TIM-002 | 32 | Unanswered map classification/transition precedence and final palette approval. |
+| TIM-002 Functional day/night foundation | implemented on stabilization branch; Complete final clean-build/full mGBA and Actions validation | TIM-001 | 0 | [PR](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/9); all five host suites pass; pre-National scenes and exact RTC boundaries pass; focused ROM category suite 147 checks pass |
+| TIM-003 Approved visual periods and lighting | not started; Obtain missing specification | TIM-002 Functional day/night foundation | implemented on stabilization branch; Complete final clean-build/full mGBA and Actions validation | TIM-001 | 0 | [PR](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/9); all five host suites pass; pre-National scenes and exact RTC boundaries pass; focused ROM category suite 147 checks pass |
 
 ### WTH — Overworld and battle weather
 
 | Task | State / next action | Dependencies | Remaining effort | Evidence or blocker |
 |---|---|---|---|---|
-| WTH-001 Map weather selection and persistent state | not started; Obtain missing specification | TIM-002 | 28 | Final map exceptions and cave/nested-interior/RTC transition answers missing. |
+| WTH-001 Map weather selection and persistent state | not started; Obtain missing specification | TIM-002 Functional day/night foundation | implemented on stabilization branch; Complete final clean-build/full mGBA and Actions validation | TIM-001 | 0 | [PR](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/9); all five host suites pass; pre-National scenes and exact RTC boundaries pass; focused ROM category suite 147 checks pass |
 | WTH-002 Weather rendering repairs and conflicts | not started; Obtain missing specification | WTH-001, TIM-003 | 16 | Depends on weather and visual policy reconciliation. |
 | WTH-003 Field-to-battle weather bridge | not started; Obtain missing specification | WTH-001 | 20 | Field Hail duration and active-battle weather precedence unspecified. |
 
@@ -97,7 +97,7 @@ Status dimensions (design/code/automated/emulator/PR/merge), exact refs, depende
 |---|---|---|---|---|
 | INT-001 Pinned unchanged FireRed baseline | implemented in baseline; Preserve and rerun relevant regression tests | — | 0 | [PR #1](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/1) |
 | INT-002 Shared Actions and mGBA infrastructure | implemented on unmerged stack; Preserve and rerun relevant regression tests | — | 0 | [PR #4](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/4); [prior CI](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/40392817403) |
-| INT-003 Audits, durable dashboard, ledger and Drive sync | not started; Execute approved stabilization plan | — | 8 | Approved run: pending implementation and tests |
+| INT-003 Audits, durable dashboard, ledger and Drive sync | dashboard and ledger established; Drive sync pending; Record final stabilization evidence; synchronize Drive when supported access exists | — | 4 | [PR](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/8); JSON/IDs/effort validation passed; docs PR CI success; not executed |
 | INT-004 Combined integration acceptance | not started; Execute approved stabilization plan | PKM-005, BTL-003, BTL-004, TIM-002 | 24 | Approved run: pending implementation and tests |
 | INT-005 Review evidence and external release checks | not started; Execute approved stabilization plan | INT-004 | 8 | Approved run: pending implementation and tests |
 
