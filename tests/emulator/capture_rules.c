@@ -40,16 +40,20 @@ static void captureWeatherTests(void) {
  }
  for(unsigned turn=0;turn<6;turn++){chooseMove(0,1,1);chooseMove(2,1,1);waitAction();CHECK(core->busRead16(core,SYM_gBattleWeather)&B_WEATHER_HAIL_PERMANENT);}
  // Native opcode replaces field Hail; current catch rule sees the changed flag.
+ unsigned savedScript=core->busRead32(core,SYM_gBattlescriptCurrInstr);
  core->busWrite32(core,SYM_gBattlescriptCurrInstr,SYM_gSpeciesNames);CALL(Cmd_setsunny);
  CHECK(core->busRead16(core,SYM_gBattleWeather)&B_WEATHER_SUN);CHECK(!(core->busRead16(core,SYM_gBattleWeather)&B_WEATHER_HAIL));
  CALL(Cmd_sethail);CHECK(core->busRead16(core,SYM_gBattleWeather)==B_WEATHER_HAIL_TEMPORARY);
  CHECK(core->busRead8(core,SYM_gWishFutureKnock+ABI_WEATHER_DURATION)==5);
+ core->busWrite32(core,SYM_gBattlescriptCurrInstr,savedScript);
+ for(unsigned turn=0;turn<5;turn++){chooseMove(0,1,1);chooseMove(2,1,1);waitAction();}
+ CHECK(!(core->busRead16(core,SYM_gBattleWeather)&B_WEATHER_HAIL));
  const unsigned abilities[]={ABILITY_DRIZZLE,ABILITY_DROUGHT,ABILITY_SAND_STREAM};
  const unsigned masks[]={B_WEATHER_RAIN_PERMANENT,B_WEATHER_SUN_PERMANENT,B_WEATHER_SANDSTORM_PERMANENT};
  void *weatherState=malloc(core->stateSize(core));CHECK(weatherState && core->saveState(core,weatherState));
  for(unsigned i=0;i<3;i++) {
   CHECK(core->loadState(core,weatherState));core->busWrite16(core,SYM_gBattleWeather,0);
-  CHECK(CALL(AbilityBattleEffects,0,0,abilities[i],0,0));CHECK(core->busRead16(core,SYM_gBattleWeather)&masks[i]);
+  CHECK(CALL(AbilityBattleEffects,0,0,0,abilities[i],0));CHECK(core->busRead16(core,SYM_gBattleWeather)&masks[i]);
  }
  CHECK(core->loadState(core,weatherState));free(weatherState);
  core->busWrite16(core,SYM_gBattleWeather,0);CALL(Cmd_setrain);CHECK(core->busRead16(core,SYM_gBattleWeather)&B_WEATHER_RAIN_TEMPORARY);
@@ -58,7 +62,7 @@ static void captureWeatherTests(void) {
  core->busWrite16(core,SYM_gBattleWeather,B_WEATHER_HAIL_PERMANENT);CALL(CastformDataTypeChange,0);
  CHECK(core->busRead8(core,bmon(0)+ABI_BMON_TYPE1)==TYPE_ICE);CHECK(core->busRead8(core,bmon(0)+ABI_BMON_TYPE2)==TYPE_ICE);
  printf("PASS: native Drizzle/Drought/Sand Stream, Rain Dance/Sandstorm opcodes and Forecast Ice typing under natural Hail (controlled calls, not all animation scenes)\n");
- printf("PASS: natural field Snow enters actual permanent Hail and survives six full turns; native Sunny Day replacement and temporary Hail duration5\n");
+ printf("PASS: natural field Snow enters actual permanent Hail and survives six full turns; native Sunny Day replacement and temporary Hail expiry after five actual turns\n");
 }
 static void captureTests(void) {
  vendorFixture();
@@ -102,8 +106,14 @@ static void captureTests(void) {
  CHECK(CALL(AddBagItem,ITEM_PREMIER_BALL,999));CHECK(!CALL(TryBuyBallsWithPremierBonus,ITEM_SNOW_BALL,10));CHECK(!CALL(CheckBagHasItem,ITEM_SNOW_BALL,1));
  printf("PASS: native ball weather/origin/cave matrix, whitelist, original Nest/Timer, all13 capture codes, Snow/Potion flash persistence, purchase bonuses/overflow and no mixed pooling\n");
  // Real Snow bag guard, throw/capture and four-bit identity on both survivor sides.
- for(unsigned killed=1;killed<=3;killed+=2) {
+ for(unsigned variant=0;variant<3;variant++) {
+  unsigned killed=variant==1?3:1;
   wildFixture(MAP_GROUP(MAP_MT_MOON_1F),MAP_NUM(MAP_MT_MOON_1F),1);
+  if(variant==2) {
+   CALL(ResetPokemonStorageSystem);
+   for(unsigned slot=2;slot<6;slot++)CALL(CreateMon,player(slot),SPECIES_PIKACHU,20,31,1,slot,0,0);
+   core->busWrite8(core,SYM_gPlayerPartyCount,6);
+  }
   CHECK(CALL(AddBagItem,ITEM_SNOW_BALL,2));startSpecial();waitAction();openBagUse();
   CHECK(CALL(BagGetQuantityByItemId,ITEM_SNOW_BALL)==2);
   for(unsigned n=0;n<80 && controller(0)!=SYM_HandleInputChooseAction;n++){press(2);frames(6,0);}
@@ -124,10 +134,13 @@ static void captureTests(void) {
    openBagUse();
   }
   chooseMove(2,1,target);waitOverworld(2);
-  CHECK(core->busRead8(core,SYM_gBattleOutcome)==B_OUTCOME_CAUGHT);CHECK(monget(player(2),ABI_DATA_POKEBALL)==13);
-  CHECK(CALL(BagGetQuantityByItemId,ITEM_SNOW_BALL)==1);flashRoundTrip();CHECK(monget(player(2),ABI_DATA_POKEBALL)==13);
+  CHECK(core->busRead8(core,SYM_gBattleOutcome)==B_OUTCOME_CAUGHT);
+  if(variant<2)CHECK(monget(player(2),ABI_DATA_POKEBALL)==13);
+  else {CHECK(CALL(GetBoxMonDataAt,0,0,ABI_DATA_POKEBALL)==13);CHECK(CALL(GetBoxMonDataAt,0,0,ABI_DATA_SPECIES)==SPECIES_CLOYSTER);}
+  CHECK(CALL(BagGetQuantityByItemId,ITEM_SNOW_BALL)==1);flashRoundTrip();
+  if(variant<2)CHECK(monget(player(2),ABI_DATA_POKEBALL)==13);else CHECK(CALL(GetBoxMonDataAt,0,0,ABI_DATA_POKEBALL)==13);
  }
- printf("PASS: real Snow guard/throw/shared animation, both survivor captures, exact consumption, stored code13 and flash reload\n");
+ printf("PASS: real Snow guard/throw/shared animation, both survivor captures and full-party PC delivery, exact consumption, stored code13 and flash reload\n");
  captureShopTests();
  captureWeatherTests();
  // Exercise real Oak gift helper with a full Nest stack, then one-time retry.
