@@ -3,7 +3,7 @@
   "updated": "2026-11-03",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "docs/project-coordination",
-  "current_focus": "WRL-008 Mystery Vendor Network implemented and tested in separate PR#12; pending review and starter-integration acceptance. Pok\u00e9 Ball task next: actual40-file authority exports received; read full governance/register before coding. Gyarados Water/Dragon resolved. Special overworld HOLD remains. No merge/release.",
+  "current_focus": "BTL-006 Pok\u00e9 Ball readiness complete: approved exports read, current92a0600d source audited, save-safe capture-code/graphics/transaction/weather/gift plan recorded. Ready for separate implementation; latest owner request stops this step at readiness. Vendor PR#12 remains ready, unmerged.",
   "main_sha": "e04252ea0783510000e634486c0f2526a736f506",
   "drive_sync": {
     "status": "pending: no direct Drive writing tool available",
@@ -1583,10 +1583,10 @@
       },
       "dependencies": [],
       "status": {
-        "design": "actual40-file authority export received; effective governance/primary Pok\u00e9 Ball register reading pending",
-        "implementation": "not started; queued after vendor checkpoint",
-        "automated": "source audit only; no implementation test claim",
-        "emulator": "not implemented/tested",
+        "design": "approved final register and explicit task authorization read in full",
+        "implementation": "ready to implement; no production changes in readiness step",
+        "automated": "source audit/readiness only; existing baseline CI PASS is not new-mechanic testing",
+        "emulator": "new mechanics not executed; existing baseline mGBA273355 PASS",
         "pull_request": "not created",
         "merge": "not merged"
       },
@@ -1595,9 +1595,9 @@
       "pr_url": null,
       "ci_url": null,
       "blocker": null,
-      "design_authority": "November3 actual authority export archive, START_HERE and deferred task authorization; primary register/source parity must be read in full before implementation. Existing CSV also supplied.",
-      "next_action": "Read full supplied governance and Pok\u00e9 Ball register, reconcile current source, then implement on separate branch; no invented rules or repeated generic approval.",
-      "checkpoint": "2026-11-03 correct stale missing-package status; no code/testing credit earned from document receipt."
+      "design_authority": "November3 source exports: all three primary Pok\u00e9 Ball documents read in full; relevant Master/Queue amendments and START HERE/intake reviewed. November2 task-specific owner authorization supersedes older design-only text.",
+      "next_action": "Use docs/POKE_BALL_IMPLEMENTATION_READINESS.md milestones M01..M06 on proposed feature/poke-ball-redesign based on92a0600d; preserve exceptional retailer progression and separate starter/weather scope.",
+      "checkpoint": "2026-11-03 readiness complete; no production edits/new feature PR or runtime test claim; earned/remaining effort unchanged."
     },
     {
       "id": "WRL-008",
