@@ -65,3 +65,34 @@ Poké Ball work follows the current vendor task and remains isolated. The file
 checklist describes source exports; those described TXT exports were not among
 these five attached files and are not claimed read. A checklist is not evidence
 that its listed files are accessible. No merge/release authorization is added.
+
+## First implementation checkpoint
+
+Core C transaction and all ten script entry points now implemented. Initial build
+passes without RAM allocation growth. Native focused test150262 assertions PASS:
+ten unique purchases including party/PC delivery, foreign OT even for player
+named Mystery, exact payment, real flash reload, legacy Magikarp reservation,
+and10000 actual purchases with8989 genuinely Shiny. Species chi-square18.434;
+joint species/Shiny chi-square27.442. Seeds mix32(0x705A9D13+i); separate unbiased
+remaining-pool and10-way draws, rejecting the incomplete16-bit RNG interval.
+These are focused transaction tests, NOT full T01–T17 completion.
+
+Native GiveMonToPlayer overwrites the original trainer. SetBoxMonData(OT_ID)
+changes only the header and does not re-encrypt secure data. Generation therefore
+uses player-keyed temporary data with the final network-compatible PID; after
+native delivery, XOR each secure word with oldOT xor newOT, then set the final
+foreign OT header/name/gender before returning. Plaintext/PID/checksum/IV/moves
+remain intact. Initial naive OT assignment failed the runtime data test; fixed
+without changing global trade/delivery routines or disabling checks.
+
+Persistent allocation: seller01 reuses original FLAG_BOUGHT_MAGIKARP0x249;
+sellers02–10 use0x300–308; species00–09 use0x309–312. All19 newly consumed bits
+were unused in current source. Historical bought-Magikarp saves reserve that
+species and seller without modifying existing Pokemon or retroactive pricing/OT.
+This preserves the equal seller/species depletion invariant. Corrupt mismatched
+counts fail closed. New-save results are not assigned from the Pokedex flags.
+
+Still in progress: ten NPC interaction/UI tests, actual party/PC nickname
+acceptance, capacity failures, boosted EXP and badge obedience, original NPC
+preservation, full regression/clean builds/Actions and separate review PR.
+No full feature completion, runtime visual validation or merge is claimed.

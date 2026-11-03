@@ -112,9 +112,12 @@ for key,expr in {
  'MAIL_WORDS':'offsetof(struct Mail,words)',
  'RESULT_CAUGHT':'offsetof(struct BattleResults,caughtMonSpecies)',
 }.items(): expressions[key]=expr
-for name in ['SPECIES','HELD_ITEM','LEVEL','FRIENDSHIP','IS_EGG','ATK','DEF','HP','MAX_HP','MOVE1','MOVE2','MOVE3','MOVE4','PP1','PP2','PP3','PP4','PERSONALITY','OT_ID','HP_IV','SANITY_IS_BAD_EGG','ABILITY_NUM','MAIL','UNUSED_RIBBONS']:
+for name in ['SPECIES','HELD_ITEM','LEVEL','FRIENDSHIP','IS_EGG','ATK','DEF','HP','MAX_HP','MOVE1','MOVE2','MOVE3','MOVE4','PP1','PP2','PP3','PP4','PERSONALITY','OT_NAME','OT_ID','HP_IV','SANITY_IS_BAD_EGG','ABILITY_NUM','MAIL','UNUSED_RIBBONS']:
     expressions['DATA_'+name] = 'MON_DATA_'+name
 required = [
+    'BoxMonToMon', 'GetBoxedMonPtr', 'PurchaseMysteryPokemon', 'MysteryVendorStatus', 'MysteryRandomBelow', 'gSpecialVar_0x8009',
+    'IsTradedMon', 'FlagClear', 'ResetPokemonStorageSystem', 'GetAndCopyBoxMonDataAt',
+    'gSpecialVar_MonBoxId', 'gSpecialVar_MonBoxPos',
     'IsSpeciesInCustomPokedex', 'WaitForAorBPress', 'sTextPrinters', 'gSpecialVar_0x8006', 'FlagGet', 'VarGet', 'FuncIsActiveTask', 'CheckBagHasSpace', 'ItemId_GetPocket',
     'Task_MultichoiceMenu_HandleInput', 'Task_YesNoMenu_HandleInput',
     'Route10_PokemonCenter_1F_EventScript_Aide',

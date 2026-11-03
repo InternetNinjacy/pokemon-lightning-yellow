@@ -21,8 +21,8 @@ FuchsiaCity_EventScript_LittleBoy::
 	end
 
 FuchsiaCity_EventScript_OldMan::
-	msgbox FuchsiaCity_Text_SafariZoneZooInFront, MSGBOX_NPC
-	end
+	setvar VAR_0x8009, 6
+	goto MysteryVendor_Start
 
 FuchsiaCity_EventScript_Erik::
 	msgbox FuchsiaCity_Text_WheresSara, MSGBOX_NPC

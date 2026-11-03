@@ -334,6 +334,7 @@ static void dexTests(void) {
 #include "battle_categories.c"
 #include "daycare.c"
 #include "fossils.c"
+#include "mystery_vendor.c"
 
 int main(int argc,char **argv) {
     setvbuf(stdout,NULL,_IONBF,0);
@@ -354,6 +355,7 @@ int main(int argc,char **argv) {
     printf("RTC autodetected: %s\n",(gba->memory.hw.devices&HW_RTC)?"yes":"no");
     CHECK(gba->memory.hw.devices&HW_RTC);
     bootState=malloc(core->stateSize(core));CHECK(bootState && core->saveState(core,bootState));
+    if(getenv("LIGHTNING_VENDORS_ONLY")){vendorTests();printf("PASS: %u focused vendor assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_FOSSILS_ONLY")){fossilTests();printf("PASS: %u focused fossil assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_DAYCARE_CONTINUE_ONLY")){continueMigrationTests();printf("PASS: %u focused Continue assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_DAYCARE_UI_ONLY")){daycareUiTests();printf("PASS: %u focused daycare UI assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
@@ -455,6 +457,7 @@ int main(int argc,char **argv) {
     wildHardeningTests();
     daycareTests();
     fossilTests();
+    vendorTests();
     printf("PASS: %u mGBA assertions (includes API/register safety checks)\n",checks);
     core->deinit(core);free(pixels);free(bootState);
     return 0;

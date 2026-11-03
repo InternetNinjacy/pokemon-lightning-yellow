@@ -18,8 +18,8 @@ Route10_PokemonCenter_1F_EventScript_Nurse::
 	end
 
 Route10_PokemonCenter_1F_EventScript_FatMan::
-	msgbox Route10_PokemonCenter_1F_Text_NuggetUselessSoldFor5000, MSGBOX_NPC
-	end
+	setvar VAR_0x8009, 3
+	goto MysteryVendor_Start
 
 Route10_PokemonCenter_1F_EventScript_Gentleman::
 	msgbox Route10_PokemonCenter_1F_Text_EveryTypeStrongerThanOthers, MSGBOX_NPC

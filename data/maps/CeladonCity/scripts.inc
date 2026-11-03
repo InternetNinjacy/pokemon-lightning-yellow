@@ -21,8 +21,8 @@ CeladonCity_EventScript_Woman::
 	end
 
 CeladonCity_EventScript_OldMan2::
-	msgbox CeladonCity_Text_BlewItAllAtSlots, MSGBOX_NPC
-	end
+	setvar VAR_0x8009, 5
+	goto MysteryVendor_Start
 
 CeladonCity_EventScript_SoftboiledTutor::
 	goto EventScript_SoftboiledTutor

@@ -333,8 +333,8 @@ CinnabarIsland_EventScript_Woman::
 	end
 
 CinnabarIsland_EventScript_OldMan::
-	msgbox CinnabarIsland_Text_ScientistsExperimentInMansion, MSGBOX_NPC
-	end
+	setvar VAR_0x8009, 8
+	goto MysteryVendor_Start
 
 CinnabarIsland_EventScript_IslandSign::
 	msgbox CinnabarIsland_Text_IslandSign, MSGBOX_SIGN
