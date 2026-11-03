@@ -1,3 +1,8 @@
+> Historical readiness checkpoint, superseded by the owner’s subsequent explicit
+> instruction to continue implementation beyond readiness. PR#13 now contains
+> the implementation; see the dashboard and append-only ledger for final evidence.
+> The original audit below is retained as history, not a current coding stop.
+
 # Poké Ball redesign — implementation readiness
 
 Task **BTL-006**. Audit date:2026-11-03. **READY for scoped implementation**;

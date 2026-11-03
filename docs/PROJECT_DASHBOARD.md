@@ -2,7 +2,7 @@
 
 Canonical branch: `docs/project-coordination`. Updated 2026-11-03.
 
-Overall tracked scope: `[####------]` **36.83% complete / 63.17% remaining** (193 earned + 331 remaining provisional planning points).
+Overall tracked scope: `[####------]` **39.69% complete / 60.31% remaining** (208 earned + 316 remaining provisional planning points).
 
 These are effort-weighted estimates of tracked work, not elapsed hours or release certification. Design, code, automated tests, emulator checks, review and merge are separate dimensions in [project-tracking.json](project-tracking.json). Adding scope changes the denominator without erasing earned work. Shared work is counted once; another regression run does not earn duplicate feature or integration credit.
 
@@ -11,7 +11,7 @@ Previous checkpoint: [PR #11](https://github.com/InternetNinjacy/pokemon-lightni
 | Area | Progress | Complete / remaining | Earned / remaining effort |
 |---|---|---|---|
 | PKM — Pokédex, species and evolution | `[#########-]` | 91% / 9% | 42 / 4 |
-| BTL — Moves, types and battle mechanics | `[##--------]` | 24% / 76% | 33 / 103 |
+| BTL — Moves, types and battle mechanics | `[####------]` | 35% / 65% | 48 / 88 |
 | TIM — RTC, time of day and lighting | `[###-------]` | 33% / 67% | 16 / 32 |
 | WTH — Overworld and battle weather | `[----------]` | 0% / 100% | 0 / 64 |
 | DAY — Daycare, breeding and Shiny eggs | `[##########]` | 97% / 3% | 31 / 1 |
@@ -51,7 +51,7 @@ Stable IDs, aliases, authorities, refs, acceptance dimensions and estimate histo
 | BTL-003 Split, AI and category UI acceptance | partial acceptance; remaining coverage explicitly recorded; Complete trainer-AI strategy/gameplay coverage remains unverified; selected ROM damage/AI/UI tests pass. | BTL-001 | 1 | [PR](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/9); [CI](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41376878452) |
 | BTL-004 Wild double battle hardening | partial acceptance; remaining coverage explicitly recorded; Nickname acceptance/rename, successful captures with every ball, faint/replacement/whiteout, forced-end/spread moves and complete weather interactions remain unverified. | BTL-002 | 6 | [PR](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/9); [CI](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41376878452) |
 | BTL-005 410-move redesign | not started; Obtain missing specification | BTL-001 | 80 | Full approved move register, change ledger, distributions and animation decisions are not locally available; prior audit is not implementation. |
-| BTL-006 Queued Poké Ball redesign specification intake | ready for separate implementation; scoped primary documents/source audit completed | — | 16 | [Readiness plan](POKE_BALL_IMPLEMENTATION_READINESS.md); no missing package or core blocking permission; new mechanics not implemented/tested |
+| BTL-006 Poké Ball capture, items and shop redesign | implemented/scoped tests PASS; extended acceptance retained | #12 base preserved | 1 | [PR#13](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/13); [CI](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41688991039); see ledger/report |
 
 ### TIM — RTC, time of day and lighting
 
@@ -107,7 +107,7 @@ Stable IDs, aliases, authorities, refs, acceptance dimensions and estimate histo
 | INT-001 Pinned unchanged FireRed baseline | implemented in baseline; Preserve and rerun relevant regression tests | — | 0 | [PR](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/1) |
 | INT-002 Shared Actions and mGBA infrastructure | implemented on unmerged stack; Preserve and rerun relevant regression tests | — | 0 | [PR](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/4); [CI](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/40392817403) |
 | INT-003 Audits, durable dashboard, ledger and Drive sync | canonical dashboard and append-only ledger published in #8; Drive sync pending; Keep updating this branch; synchronize when a supported Drive writer is available | — | 4 | [PR](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/8); Drive reader/writer absent. API domain settings do not authenticate Drive. |
-| INT-004 Combined integration acceptance | partial; current combined host/clean/mGBA/CI PASS; external release gaps retained | PKM-005, BTL-003, BTL-004, TIM-002 | 16 | [PR#12](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/12); [CI](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41673840642); no duplicate credit |
+| INT-004 Combined integration acceptance | current nine-host/clean/full mGBA/CI PASS; external gates retained | PKM-005, BTL-003, BTL-004, TIM-002 | 16 | [PR#13](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/13); no duplicate credit |
 | INT-005 Review evidence and external release checks | not started; Execute approved stabilization plan | INT-004 | 8 | 2026-11-02 initial audit |
 
 ## Fossil and compliance checkpoint — November 2
@@ -181,3 +181,9 @@ The received40-file authority export resolves the stale missing-ZIP intake claim
 ## Poké Ball implementation readiness — BTL-006
 
 **READY for scoped implementation.** All three Poké Ball exports read fully and current92a0600d capture/item/shop/Oak/visual code audited. [Readiness report](POKE_BALL_IMPLEMENTATION_READINESS.md) records approved requirements, four-bit capture-code solution, current-weather/Snow bridge, atomic Premier rewards,11 stock lists/exception boundary, Oak full-bag retry, branch and acceptance plan. Latest owner request stops this step at readiness; no production code or new feature PR created. Existing vendor PR#12 and main remain unchanged. No new earned effort or test claims; overall36.83% is retained.
+
+## Poké Ball implementation checkpoint — BTL-006
+
+Owner explicitly superseded the earlier readiness stop: implement finalized approved features without repeated generic approval; ask on genuine missing information/conflicts. [PR#13](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/13) at `ad86d58b0c0dec7117ffa524ae4a66926b92cd88` contains Wet/Dust/Snow/Premier effects, save-safe code13/new item375, native asset reuse, atomic purchase bonuses,11 stock lists, narrow Snow→Hail bridge and Oak five-Nest pending retry. No merged parents/main changes. Nine host suites, full mGBA 274675, clean repeatability and [Actions41688991039 SUCCESS](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41688991039). Exact evidence/limits in ledger and feature report.
+
+BTL-006 `[#########-]` **93.75% complete /6.25% remaining** (15 earned/1 extended acceptance point), provisional engineering estimate. All39 IDs/history preserved; denominator524 unchanged,208 earned/316 remaining =39.69%. No duplicate integration credit. No full game/release readiness, real link/hardware or all13-ball presentation claim. Drive sync pending; no merge/auto-merge/release.

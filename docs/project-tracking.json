@@ -3,7 +3,7 @@
   "updated": "2026-11-03",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "docs/project-coordination",
-  "current_focus": "BTL-006 Pok\u00e9 Ball readiness complete: approved exports read, current92a0600d source audited, save-safe capture-code/graphics/transaction/weather/gift plan recorded. Ready for separate implementation; latest owner request stops this step at readiness. Vendor PR#12 remains ready, unmerged.",
+  "current_focus": "BTL-006 approved Pok\u00e9 Ball redesign implemented in separate PR#13, final scoped validation passed; review unmerged. Owner explicitly removed readiness stop: continue finalized approved work autonomously, ask only genuine missing information/conflicts. Other queues retain dependencies/HOLDs; no merge/release.",
   "main_sha": "e04252ea0783510000e634486c0f2526a736f506",
   "drive_sync": {
     "status": "pending: no direct Drive writing tool available",
@@ -1313,20 +1313,20 @@
       "status": {
         "design": "approved scoped implementation",
         "implementation": "partial acceptance; remaining coverage explicitly recorded",
-        "automated": "eight host suites/clean reproducibility PASS; final Actions modified/upstream SUCCESS",
-        "emulator": "full local mGBA PASS including vendor and unchanged stack; exact count in ledger; selected scenarios only",
-        "pull_request": "#12 reviewable on #11; parents unchanged",
+        "automated": "nine host suites/clean reproducibility and final Actions PASS",
+        "emulator": "full default mGBA PASS; exact count in ledger, scoped fixtures not full playthrough",
+        "pull_request": "#13 ready on unchanged#12",
         "merge": "not merged"
       },
-      "branch": "feature/mystery-vendor-network",
-      "commit": "92a0600d819fe818f948e8d72bd1591531b4a07c",
-      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/12",
-      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41673840642",
+      "branch": "feature/poke-ball-redesign",
+      "commit": "ad86d58b0c0dec7117ffa524ae4a66926b92cd88",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/13",
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41688991039",
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Linked Drive originals unavailable.",
-      "next_action": "Current stack through PR#12 passes scoped build/tests. Global eligibility, final weather/lighting/move redesign and full release/hardware/link/progression acceptance remain outstanding; no duplicate feature credit.",
-      "checkpoint": "2026-11-03 vendor combined regression; effort unchanged to avoid duplicate feature credit.",
-      "coverage_gap": "Current stack through PR#12 passes scoped build/tests. Global eligibility, final weather/lighting/move redesign and full release/hardware/link/progression acceptance remain outstanding; no duplicate feature credit."
+      "next_action": "Current stack through PR#13 passes scoped build/tests. Global eligibility, final weather/lighting/move redesign and full release/hardware/link/progression acceptance remain outstanding; no duplicate feature credit.",
+      "checkpoint": "2026-11-03 combined ball regression; no duplicated integration effort credit.",
+      "coverage_gap": "Current stack through PR#13 passes scoped build/tests. Global eligibility, final weather/lighting/move redesign and full release/hardware/link/progression acceptance remain outstanding; no duplicate feature credit."
     },
     {
       "id": "INT-005",
@@ -1565,11 +1565,13 @@
     {
       "id": "BTL-006",
       "area": "BTL",
-      "title": "Queued Pok\u00e9 Ball redesign specification intake",
-      "aliases": [],
+      "title": "Pok\u00e9 Ball capture, items and shop redesign",
+      "aliases": [
+        "Queued Pok\u00e9 Ball redesign specification intake"
+      ],
       "effort": {
-        "earned": 0,
-        "remaining": 16,
+        "earned": 15,
+        "remaining": 1,
         "unit": "provisional relative planning point",
         "confidence": "low",
         "history": [
@@ -1578,26 +1580,33 @@
             "earned": 0,
             "remaining": 16,
             "reason": "Newly detailed approved scope/intake; not elapsed hours. Existing work retained and overlap excluded."
+          },
+          {
+            "date": "2026-11-03",
+            "earned": 15,
+            "remaining": 1,
+            "reason": "Approved16-point scope: production implementation and scoped host/native/build/CI evidence completed. One point remains for extended presentation/progression/external acceptance; design approval alone not counted and no duplicate INT-004 credit."
           }
         ]
       },
       "dependencies": [],
       "status": {
         "design": "approved final register and explicit task authorization read in full",
-        "implementation": "ready to implement; no production changes in readiness step",
-        "automated": "source audit/readiness only; existing baseline CI PASS is not new-mechanic testing",
-        "emulator": "new mechanics not executed; existing baseline mGBA273355 PASS",
-        "pull_request": "not created",
+        "implementation": "implemented on separate unmerged PR#13; scoped automated acceptance passed",
+        "automated": "nine host suites/clean reproducibility/final Actions modified and upstream PASS",
+        "emulator": "full default mGBA PASS; exact count and controlled/native distinctions in ledger",
+        "pull_request": "#13 ready for review, stacked on #12",
         "merge": "not merged"
       },
-      "branch": null,
-      "commit": null,
-      "pr_url": null,
-      "ci_url": null,
+      "branch": "feature/poke-ball-redesign",
+      "commit": "ad86d58b0c0dec7117ffa524ae4a66926b92cd88",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/13",
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41688991039",
       "blocker": null,
       "design_authority": "November3 source exports: all three primary Pok\u00e9 Ball documents read in full; relevant Master/Queue amendments and START HERE/intake reviewed. November2 task-specific owner authorization supersedes older design-only text.",
-      "next_action": "Use docs/POKE_BALL_IMPLEMENTATION_READINESS.md milestones M01..M06 on proposed feature/poke-ball-redesign based on92a0600d; preserve exceptional retailer progression and separate starter/weather scope.",
-      "checkpoint": "2026-11-03 readiness complete; no production edits/new feature PR or runtime test claim; earned/remaining effort unchanged."
+      "next_action": "Owner review without merge; extended capture/PC/summary presentation, full parcel progression and hardware/link acceptance remain recorded. Continue independent approved work without generic reapproval.",
+      "checkpoint": "2026-11-03 implementation replaces earlier readiness-only status; no source/merge change to parents.",
+      "coverage_gap": "No manual full-game progression, actual two-peer/hardware/power interruption or exhaustive quest-log replay; not every13-ball success/failure/presentation is independently exercised. TwoIsland/TrainerTower stock scope and natural-Hail lifetime are explicit technical review boundaries."
     },
     {
       "id": "WRL-008",
@@ -1698,12 +1707,13 @@
     "PKM-005": "Full overworld Bag evolution navigation and a real link-trade peer remain unverified.",
     "BTL-003": "Complete trainer-AI strategy/gameplay coverage remains unverified; selected ROM damage/AI/UI tests pass.",
     "BTL-004": "Nickname acceptance/rename, successful captures with every ball, faint/replacement/whiteout, forced-end/spread moves and complete weather interactions remain unverified.",
-    "INT-004": "Current stack through PR#12 passes scoped build/tests. Global eligibility, final weather/lighting/move redesign and full release/hardware/link/progression acceptance remain outstanding; no duplicate feature credit.",
+    "INT-004": "Current stack through PR#13 passes scoped build/tests. Global eligibility, final weather/lighting/move redesign and full release/hardware/link/progression acceptance remain outstanding; no duplicate feature credit.",
     "DAY-004": "Real two-peer trade handshake, hardware/power interruption, full quest-log playback/progression and old-ROM reverse migration unverified. Matching-build ownership-data and hatch tests passed.",
     "PKM-006": "Strict global eligibility FAIL remains explicit. No-new-findings CI PASS is not compliance; unused/data-reference roles are not inferred as live encounters.",
     "WRL-006": "Native party delivery/save/registration tested for all four fossils in one save. Full-PC failure and nickname acceptance not newly exercised; original blocks fingerprinted unchanged. Historical claimed Everstone reward does not grant retroactive Claw.",
     "WRL-007": "Existing NPC script entry points run on actual maps; no manual full progression or actual MtMoon selection walk claimed. Original MtMoon choice script fingerprinted unchanged; native saved choice flags drive both gift cases.",
-    "WRL-008": "Manual full progression, actual two-peer trade/hardware, flash power-loss injection, exhaustive quest-log replay and independent Shiny-summary visual approval unverified. Starter exclusivity awaits WRL-001; source preservation is not runtime story acceptance."
+    "WRL-008": "Manual full progression, actual two-peer trade/hardware, flash power-loss injection, exhaustive quest-log replay and independent Shiny-summary visual approval unverified. Starter exclusivity awaits WRL-001; source preservation is not runtime story acceptance.",
+    "BTL-006": "No manual full-game progression, actual two-peer/hardware/power interruption or exhaustive quest-log replay; not every13-ball success/failure/presentation is independently exercised. TwoIsland/TrainerTower stock scope and natural-Hail lifetime are explicit technical review boundaries."
   },
   "effort_rules": "Provisional tracked scope. INT-004 credits combined build/repeatability/stack compatibility only; feature-specific scene/mechanics testing is counted under each feature. No double credit for parent merges. No merge/release authorization inferred."
 }
