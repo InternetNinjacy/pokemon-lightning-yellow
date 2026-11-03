@@ -106,3 +106,12 @@ off-Dex exceptions; --check prevents new findings while --strict still fails.
 Do not invent Blaine levels/moves or revert Gyarados Water/Dragon without resolving
 the explicit Water/Flying strategy conflict. Missing ZIP/Poke Ball specifications
 and draft encounter values are not inferred. No merges, auto-merge or ROM release.
+
+Mystery Vendor Network is authorized independently of pending starter changes.
+Read docs/MYSTERY_VENDOR_NETWORK.md. Keep the exact approved ten NPC objects,
+level5/700/uniform-without-replacement pool and90% genuine Shiny policy.
+Preserve foreign Mystery identity with correctly rekeyed secure data, ordinary
+traded EXP/obedience, existing flags/save layout and legacy Magikarp reservation.
+Run tests/run_vendor_tests.py and all preceding suites, plus full mGBA.
+The new specials must stay inside gSpecials..gSpecialsEnd; never disable ABI or
+assertion guards. Do not mix starter/Poke Ball work into this PR. No merges.

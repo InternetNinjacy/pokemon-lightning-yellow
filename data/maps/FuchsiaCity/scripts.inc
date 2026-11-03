@@ -21,6 +21,7 @@ FuchsiaCity_EventScript_LittleBoy::
 	end
 
 FuchsiaCity_EventScript_OldMan::
+	textcolor NPC_TEXT_COLOR_MALE
 	setvar VAR_0x8009, 6
 	goto MysteryVendor_Start
 

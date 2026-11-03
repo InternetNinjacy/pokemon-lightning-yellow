@@ -333,6 +333,7 @@ CinnabarIsland_EventScript_Woman::
 	end
 
 CinnabarIsland_EventScript_OldMan::
+	textcolor NPC_TEXT_COLOR_MALE
 	setvar VAR_0x8009, 8
 	goto MysteryVendor_Start
 

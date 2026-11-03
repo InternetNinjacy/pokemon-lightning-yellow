@@ -2,6 +2,7 @@ CeruleanCity_House1_MapScripts::
 	.byte 0
 
 CeruleanCity_House1_EventScript_BadgeGuy::
+	textcolor NPC_TEXT_COLOR_MALE
 	setvar VAR_0x8009, 1
 	goto MysteryVendor_Start
 

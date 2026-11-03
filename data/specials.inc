@@ -453,7 +453,6 @@ gSpecials::
 	def_special LoopWingFlapSound
 	def_special CreateEnemyEventMon
 	def_special IsRoute5DaycareReady
-gSpecialsEnd::
-
 	def_special MysteryVendorStatus
 	def_special PurchaseMysteryPokemon
+gSpecialsEnd::

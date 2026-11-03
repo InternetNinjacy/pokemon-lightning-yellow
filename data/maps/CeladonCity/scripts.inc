@@ -21,6 +21,7 @@ CeladonCity_EventScript_Woman::
 	end
 
 CeladonCity_EventScript_OldMan2::
+	textcolor NPC_TEXT_COLOR_MALE
 	setvar VAR_0x8009, 5
 	goto MysteryVendor_Start
 

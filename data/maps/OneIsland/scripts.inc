@@ -94,6 +94,7 @@ OneIsland_EventScript_OldManLinkHoenn::
 	end
 
 OneIsland_EventScript_BaldingMan::
+	textcolor NPC_TEXT_COLOR_MALE
 	setvar VAR_0x8009, 9
 	goto MysteryVendor_Start
 

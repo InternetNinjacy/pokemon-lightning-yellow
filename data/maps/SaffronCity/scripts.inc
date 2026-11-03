@@ -55,6 +55,7 @@ SaffronCity_EventScript_DoorGuardAsleep::
 	end
 
 SaffronCity_EventScript_WorkerM::
+	textcolor NPC_TEXT_COLOR_MALE
 	setvar VAR_0x8009, 7
 	goto MysteryVendor_Start
 

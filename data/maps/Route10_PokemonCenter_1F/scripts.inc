@@ -18,6 +18,7 @@ Route10_PokemonCenter_1F_EventScript_Nurse::
 	end
 
 Route10_PokemonCenter_1F_EventScript_FatMan::
+	textcolor NPC_TEXT_COLOR_MALE
 	setvar VAR_0x8009, 3
 	goto MysteryVendor_Start
 

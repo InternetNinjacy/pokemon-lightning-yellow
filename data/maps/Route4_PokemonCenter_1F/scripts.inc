@@ -19,6 +19,7 @@ Route4_PokemonCenter_1F_EventScript_Gentleman::
 	end
 
 Route4_PokemonCenter_1F_EventScript_MagikarpSalesman::
+	textcolor NPC_TEXT_COLOR_MALE
 	setvar VAR_0x8009, 0
 	goto MysteryVendor_Start
 

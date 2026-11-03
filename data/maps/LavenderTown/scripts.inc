@@ -23,6 +23,7 @@ LavenderTown_EventScript_LittleGirlBelieve::
 	end
 
 LavenderTown_EventScript_WorkerM::
+	textcolor NPC_TEXT_COLOR_MALE
 	setvar VAR_0x8009, 4
 	goto MysteryVendor_Start
 

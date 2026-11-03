@@ -27,6 +27,8 @@ live on the independent coordination branch; Drive synchronization remains pendi
 
 [Fossil rewards and species audit](docs/FOSSIL_REWARDS_AND_SPECIES_AUDIT.md) extend the existing aide/lab scripts and report unresolved off-Dex assignments. Blaine and Poké Ball dependencies remain explicitly documented.
 
+The [Mystery Pokémon Vendor Network](docs/MYSTERY_VENDOR_NETWORK.md) implements ten existing sellers, a unique ten-species pool, foreign OT Mystery and genuine90% Shiny purchases. It remains separate from pending starter integration.
+
 ## Build entirely on GitHub
 
 No local Python, compiler, or development tools are required. Open this repository's
@@ -61,6 +63,7 @@ python3 tests/run_pokedex_tests.py
 python3 tests/run_wild_double_tests.py
 python3 tests/run_daycare_tests.py
 python3 tests/run_world_reward_tests.py
+python3 tests/run_vendor_tests.py
 make -j2
 python3 tests/emulator/run.py
 make clean

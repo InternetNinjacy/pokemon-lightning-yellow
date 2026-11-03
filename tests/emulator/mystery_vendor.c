@@ -37,7 +37,120 @@ static void vendorIdentity(unsigned result,unsigned before,unsigned *species,uns
  CHECK(CALL(IsSpeciesInCustomPokedex,*species));
  CHECK(CALL(GetSetPokedexFlag,CALL(SpeciesToNationalPokedexNum,*species),ABI_FLAG_GET_CAUGHT));
 }
+static void vendorFillCapacity(void) {
+ for(unsigned i=0;i<6;i++)CALL(CreateMon,player(i),SPECIES_PIKACHU,20,31,1,i,0,0);
+ core->busWrite8(core,SYM_gPlayerPartyCount,6);
+ for(unsigned box=0;box<14;box++)for(unsigned pos=0;pos<30;pos++)copyBytes(CALL(GetBoxedMonPtr,box,pos),player(0),ABI_BOX_SIZE);
+}
+static void vendorCapacityTests(void) {
+ vendorFixture();
+ vendorFillCapacity();
+ CALL(SetMoney,careSave1()+ABI_SAVE1_MONEY,700);
+ unsigned seed=core->busRead32(core,SYM_gRngValue);
+ CHECK(CALL(PurchaseMysteryPokemon)==2);CHECK(CALL(GetMoney,careSave1()+ABI_SAVE1_MONEY)==700);
+ CHECK(core->busRead32(core,SYM_gRngValue)==seed);CHECK(!CALL(MysteryVendorStatus));
+ CALL(ZeroBoxMonAt,3,7);CHECK(CALL(PurchaseMysteryPokemon)==1);
+ CHECK(core->busRead16(core,SYM_gSpecialVar_MonBoxId)==3 && core->busRead16(core,SYM_gSpecialVar_MonBoxPos)==7);
+ unsigned species,shiny;vendorIdentity(1,6,&species,&shiny);
+ CHECK(CALL(GetMoney,careSave1()+ABI_SAVE1_MONEY)==0);
+ printf("PASS: full party plus420 occupied PC slots preserves money/flags/RNG; freeing box3 slot7 delivers there exactly once\n");
+}
+#include "constants/battle_script_commands.h"
+#include "constants/battle_string_ids.h"
+static unsigned vendorExp(unsigned slot,unsigned value) {
+ uint32_t bs=core->busRead32(core,SYM_gBattleStruct);
+ core->busWrite8(core,SYM_gBattleScripting+ABI_SCRIPT_EXP_STATE,2);
+ core->busWrite8(core,bs+ABI_BATTLESTRUCT_EXP_GETTER,slot);
+ core->busWrite8(core,bs+ABI_BATTLESTRUCT_SENT_IN,1);
+ core->busWrite8(core,bs+ABI_BATTLESTRUCT_WILD_SONG,1);
+ core->busWrite16(core,bs+ABI_BATTLESTRUCT_EXP_VALUE,value);
+ core->busWrite32(core,SYM_gBattleControllerExecFlags,0);
+ core->busWrite8(core,scratch,0);core->busWrite8(core,scratch+1,BS_OPPONENT1);
+ core->busWrite32(core,SYM_gBattlescriptCurrInstr,scratch);
+ CALL(Cmd_getexp);
+ return core->busRead32(core,SYM_gBattleMoveDamage);
+}
+static void vendorBattleTests(void) {
+ wildFixture(MAP_GROUP(MAP_ROUTE1),MAP_NUM(MAP_ROUTE1),1);
+ CALL(SetMoney,careSave1()+ABI_SAVE1_MONEY,700);
+ core->busWrite16(core,SYM_gSpecialVar_0x8009,0);
+ CHECK(CALL(PurchaseMysteryPokemon)==0);
+ unsigned char purchased[ABI_MON_SIZE];readBytes(player(2),purchased,sizeof(purchased));
+ startSpecial();waitAction();
+ // Compare the actual engine's EXP calculation/text path for an ordinary
+ // recipient and the delivered foreign recipient, including a switched slot.
+ unsigned a=vendorExp(0,100);CHECK(a==100);
+ copyBytes(player(1),player(2),ABI_MON_SIZE);
+ unsigned b=vendorExp(1,100);CHECK(b==150);
+ CHECK(core->busRead16(core,SYM_gBattleTextBuff2+2)==STRINGID_ABOOSTED);
+ CALL(BufferStringBattle,STRINGID_PKMNGAINEDEXP);
+ unsigned found=0;
+ for(unsigned i=0;i<240;i++) {
+  const char *word="boosted";unsigned k;
+  for(k=0;word[k] && core->busRead8(core,SYM_gDisplayedStringBattle+i+k)==encoded(word[k]);k++);
+  if(!word[k]){found=1;break;}
+ }
+ CHECK(found);
+ core->busWrite32(core,SYM_gBattleTypeFlags,BATTLE_TYPE_TRAINER);
+ CHECK(vendorExp(0,100)==150);CHECK(vendorExp(1,100)==225);
+ for(unsigned i=0;i<ABI_MON_SIZE;i++)core->busWrite8(core,player(0)+i,purchased[i]);
+ CALL(CopyPlayerPartyMonToBattleData,0,0);
+ core->busWrite8(core,SYM_gBattlerPartyIndexes,0);
+ core->busWrite8(core,SYM_gBattlerAttacker,0);core->busWrite8(core,SYM_gBattlerTarget,1);
+ core->busWrite16(core,SYM_gCurrentMove,MOVE_POUND);core->busWrite8(core,SYM_gCurrMovePos,0);
+ core->busWrite32(core,SYM_gBattleTypeFlags,0);
+ for(unsigned i=0;i<4;i++){core->busWrite16(core,bmon(0)+ABI_BMON_MOVES+2*i,i?0:MOVE_POUND);core->busWrite8(core,bmon(0)+ABI_BMON_PP+i,i?0:35);}
+ const unsigned flags[]={0,FLAG_BADGE02_GET,FLAG_BADGE04_GET,FLAG_BADGE06_GET,FLAG_BADGE08_GET};
+ const unsigned bounds[]={10,30,50,70,100};
+ for(unsigned stage=0;stage<5;stage++) {
+  if(flags[stage])CALL(FlagSet,flags[stage]);
+  core->busWrite8(core,bmon(0)+ABI_BMON_LEVEL,bounds[stage]);
+  for(unsigned n=0;n<32;n++)CHECK(CALL(IsMonDisobedient)==0);
+  if(stage<4) {
+   core->busWrite8(core,bmon(0)+ABI_BMON_LEVEL,bounds[stage]+1);
+   unsigned disobey=0;
+   for(unsigned n=0;n<128;n++)disobey+=CALL(IsMonDisobedient)!=0;
+   CHECK(disobey>0);
+  }
+ }
+ for(unsigned stage=1;stage<5;stage++)CALL(FlagClear,flags[stage]);
+ CALL(CreateMon,player(0),SPECIES_PIKACHU,99,31,1,123,0,0);CALL(CopyPlayerPartyMonToBattleData,0,0);
+ for(unsigned n=0;n<128;n++)CHECK(CALL(IsMonDisobedient)==0);
+ printf("PASS: actual Cmd_getexp100/150 including switched recipient, boosted engine text, native badge10/30/50/70/all obedience and own level99 control\n");
+}
+static void vendorOrderAndReloadTests(void) {
+ vendorFixture();
+ for(unsigned order=0;order<10;order++) {
+  vendorResetFlags();CALL(ResetPokemonStorageSystem);CALL(SetMoney,careSave1()+ABI_SAVE1_MONEY,7000);
+  for(unsigned i=1;i<6;i++)clearBytes(player(i),ABI_MON_SIZE);
+  core->busWrite8(core,SYM_gPlayerPartyCount,1);
+  unsigned seen=0;
+  unsigned permutation[10],shuffle=0x1AD73093U+order;
+  for(unsigned i=0;i<10;i++)permutation[i]=i;
+  for(unsigned i=9;i>0;i--){shuffle=1664525U*shuffle+1013904223U;unsigned j=shuffle%(i+1),tmp=permutation[i];permutation[i]=permutation[j];permutation[j]=tmp;}
+  // Seeded Fisher-Yates fixture orders, separate from the game RNG algorithm.
+  for(unsigned n=0;n<10;n++) {
+   unsigned v=permutation[n];
+   core->busWrite16(core,SYM_gSpecialVar_0x8009,v);
+   unsigned before=core->busRead8(core,SYM_gPlayerPartyCount),species,shiny;
+   unsigned r=CALL(PurchaseMysteryPokemon);vendorIdentity(r,before,&species,&shiny);
+   unsigned bit=1U<<vendorIndex(species);CHECK(!(seen&bit));seen|=bit;
+  }
+  CHECK(seen==1023);CHECK(!CALL(GetMoney,careSave1()+ABI_SAVE1_MONEY));
+ }
+ vendorFixture();CALL(SetMoney,careSave1()+ABI_SAVE1_MONEY,700);CHECK(CALL(TrySavingData,0)==1);
+ CHECK(CALL(PurchaseMysteryPokemon)==0);unsigned first=monget(player(3),ABI_DATA_PERSONALITY);
+ clearBytes(careSave1(),ABI_SAVE1_SIZE);clearBytes(careSave2(),ABI_SAVE2_SIZE);
+ clearBytes(SYM_gPlayerParty,6*ABI_MON_SIZE);core->busWrite8(core,SYM_gPlayerPartyCount,0);
+ CHECK(CALL(LoadGameSave,0)==1);
+ CHECK(!CALL(MysteryVendorStatus));CHECK(CALL(GetMoney,careSave1()+ABI_SAVE1_MONEY)==700);
+ CHECK(core->busRead8(core,SYM_gPlayerPartyCount)==3);
+ core->busWrite32(core,SYM_gRngValue,0x90AD17E3);CHECK(CALL(PurchaseMysteryPokemon)==0);
+ CHECK(monget(player(3),ABI_DATA_PERSONALITY)!=first);
+ printf("PASS: ten varied seller orders yield exact pool; pre-sale flash reload restores unsold/money/party and allows a fresh identity\n");
+}
 static void vendorTests(void) {
+ vendorCapacityTests();vendorBattleTests();vendorOrderAndReloadTests();
  vendorFixture();
  const unsigned char playerName[]={0xC7,0xED,0xE7,0xE8,0xD9,0xE6,0xED,0xFF};
  for(unsigned i=0;i<8;i++)core->busWrite8(core,careSave2()+ABI_SAVE2_PLAYER_NAME+i,playerName[i]);

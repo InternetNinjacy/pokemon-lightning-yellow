@@ -30,6 +30,7 @@ VermilionCity_EventScript_HideOaksAide::
 	return
 
 VermilionCity_EventScript_Woman::
+	textcolor NPC_TEXT_COLOR_FEMALE
 	setvar VAR_0x8009, 2
 	goto MysteryVendor_Start
 
