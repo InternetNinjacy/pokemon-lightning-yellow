@@ -815,7 +815,7 @@
 #define FLAG_MYSTERY_SPECIES_07               0x310
 #define FLAG_MYSTERY_SPECIES_08               0x311
 #define FLAG_MYSTERY_SPECIES_09               0x312
-#define FLAG_0x313               0x313
+#define FLAG_OAK_NEST_BALLS_PENDING 0x313
 #define FLAG_0x314               0x314
 #define FLAG_0x315               0x315
 #define FLAG_0x316               0x316

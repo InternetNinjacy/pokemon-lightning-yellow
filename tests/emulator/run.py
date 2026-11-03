@@ -9,6 +9,7 @@ import tempfile
 
 # Generate ABI constants with the game's ARM compiler, never host offsetof.
 expressions = {
+    "WEATHER_DURATION": "offsetof(struct WishFutureKnock,weatherDuration)",
     'SCRIPT_EXP_STATE': 'offsetof(struct BattleScripting,getexpState)',
     'BATTLESTRUCT_EXP_VALUE': 'offsetof(struct BattleStruct,expValue)',
     'BATTLESTRUCT_EXP_GETTER': 'offsetof(struct BattleStruct,expGetterMonId)',
@@ -119,9 +120,12 @@ for key,expr in {
  'MAIL_WORDS':'offsetof(struct Mail,words)',
  'RESULT_CAUGHT':'offsetof(struct BattleResults,caughtMonSpecies)',
 }.items(): expressions[key]=expr
-for name in ['SPECIES','HELD_ITEM','LEVEL','FRIENDSHIP','IS_EGG','ATK','DEF','HP','MAX_HP','MOVE1','MOVE2','MOVE3','MOVE4','PP1','PP2','PP3','PP4','NICKNAME','PERSONALITY','OT_NAME','OT_ID','HP_IV','SANITY_IS_BAD_EGG','ABILITY_NUM','MAIL','UNUSED_RIBBONS']:
+for name in ['POKEBALL','SPECIES','HELD_ITEM','LEVEL','FRIENDSHIP','IS_EGG','ATK','DEF','HP','MAX_HP','MOVE1','MOVE2','MOVE3','MOVE4','PP1','PP2','PP3','PP4','NICKNAME','PERSONALITY','OT_NAME','OT_ID','HP_IV','SANITY_IS_BAD_EGG','ABILITY_NUM','MAIL','UNUSED_RIBBONS']:
     expressions['DATA_'+name] = 'MON_DATA_'+name
 required = [
+    "CheckBagHasItem", "RemoveBagItem", "Task_ShopMenu", "Task_BuyMenu", "Task_BuyHowManyDialogueHandleInput", "Task_CallYesOrNoCallback", "FindTaskIdByFunc", "VermilionCity_Mart_EventScript_Clerk", "gWishFutureKnock", "Cmd_setrain", "Cmd_setsandstorm", "AbilityBattleEffects", "CastformDataTypeChange", "Cmd_sethail", "Cmd_setsunny", "GetBallCatchMultiplier", "IsPokeBallItem", "BallItemToCaptureCode", "CaptureCodeToBallItem", "TryBuyBallsWithPremierBonus", "ItemIdToBallId", "gCaptureOrigin",
+    "PalletTown_ProfessorOaksLab_EventScript_ProfOak", "PalletTown_ProfessorOaksLab_EventScript_TryGiveNestBalls",
+
     'gSpeciesNames',
     'gStringVar4',
     'MysteryVendor_Text_Intro10',

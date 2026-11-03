@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from approved_ball_changes import prior_ball_source
 """Executable production RNG mapping and separate static scope checks.
 
 These are not emulator or battle tests. Native transaction/UI evidence comes
@@ -41,7 +42,7 @@ with tempfile.TemporaryDirectory(prefix='lightning-vendor-') as temp:
 
 fixture=json.loads(Path('tests/specifications/mystery_vendor_preserved.json').read_text())
 for path,digest in fixture['files'].items():
-    assert hashlib.sha256(Path(path).read_bytes()).hexdigest()==digest,path
+    assert hashlib.sha256(prior_ball_source(path)).hexdigest()==digest,path
 blocks=lambda s:dict(re.findall(r'^(\w+)::\n(.*?)(?=^\w+::|\Z)',s,re.M|re.S))
 for path,items in fixture['blocks'].items():
     current=blocks(Path(path).read_text())

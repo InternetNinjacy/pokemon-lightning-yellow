@@ -115,3 +115,13 @@ traded EXP/obedience, existing flags/save layout and legacy Magikarp reservation
 Run tests/run_vendor_tests.py and all preceding suites, plus full mGBA.
 The new specials must stay inside gSpecials..gSpecialsEnd; never disable ABI or
 assertion guards. Do not mix starter/Poke Ball work into this PR. No merges.
+
+BTL-006 Poké Ball implementation is explicitly authorized beyond readiness.
+Read docs/POKE_BALL_REDESIGN.md. Preserve old item IDs, four-bit capture codes and
+all artwork; Snow item375 uses separate stored code13. Do not widen save fields
+or assume every ball is <=Premier. Keep exact current-weather/origin/cave rules,
+nonstacking bonuses, eight-species Premier whitelist, atomic purchase bonuses,
+Oak pending gift and unchanged emergency refill. New capture tests join all old
+host/full mGBA suites; old feature preservation hashes remain with only frozen
+approved deltas normalized. No unrelated trainer/starter/weather redesign, merges,
+auto-merge or ROM release. Owner's latest instruction supersedes readiness stop.
