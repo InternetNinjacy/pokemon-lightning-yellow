@@ -4,6 +4,8 @@ Canonical branch: `docs/project-coordination`. Updated 2026-11-03.
 
 Overall tracked scope: `[####------]` **39.69% complete / 60.31% remaining** (208 earned + 316 remaining provisional planning points).
 
+Current execution checkpoint: [PR#13](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/13) implements the approved Poké Ball system at `ad86d58b0c0dec7117ffa524ae4a66926b92cd88`; nine host suites/full mGBA274675/clean rebuild/Actions PASS. The owner's DES-009 instruction removes readiness stops for finalized work. No merge or release; exact scope/limits below and in ledger.
+
 These are effort-weighted estimates of tracked work, not elapsed hours or release certification. Design, code, automated tests, emulator checks, review and merge are separate dimensions in [project-tracking.json](project-tracking.json). Adding scope changes the denominator without erasing earned work. Shared work is counted once; another regression run does not earn duplicate feature or integration credit.
 
 Previous checkpoint: [PR #11](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/11) is ready for scoped fossil review at `b0bd3b86f4e03dd3f540f0776a5de87f207e84e4`; all seven host suites/full mGBA114706/clean rebuild/final Actions PASS. Blaine/global compliance/Poké Ball dependencies remain blocked separately. PR #10 and its parents are unchanged.
@@ -19,11 +21,11 @@ Previous checkpoint: [PR #11](https://github.com/InternetNinjacy/pokemon-lightni
 | WRL — Maps, encounters, items and story | `[####------]` | 37% / 63% | 35 / 59 |
 | INT — Integration, testing and release readiness | `[######----]` | 56% / 44% | 36 / 28 |
 
-Current checkpoint: [PR#12](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/12) implements the Mystery Vendor Network at `92a0600d819fe818f948e8d72bd1591531b4a07c`, stacked on unchanged#11. Eight host suites, full mGBA273355, clean repeatability and final Actions PASS (exact evidence below/in ledger). Separate review; no merge. Vendor adds20 provisional points:19 earned,1 pending starter integration. Denominator504→524, existing174 earned retained→193; repeated regression earns no duplicate integration credit. These estimates are not whole-game completion.
+Historical vendor checkpoint: [PR#12](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/12) implements the Mystery Vendor Network at `92a0600d819fe818f948e8d72bd1591531b4a07c`, stacked on unchanged#11. Eight host suites, full mGBA273355, clean repeatability and final Actions PASS (exact evidence below/in ledger). Separate review; no merge. Vendor adds20 provisional points:19 earned,1 pending starter integration. Denominator504→524, existing174 earned retained→193; repeated regression earns no duplicate integration credit. These estimates are not whole-game completion.
 
 ## Verified repository and dependency stack
 
-Main remains `e04252ea0783510000e634486c0f2526a736f506`. Only PR #1 is merged. Stack: main → #2 split → #3 RTC → #4 evolution → #5 evolution mechanics → #6 custom252 → #7 wild doubles → #9 stabilization → #10 Route 5 → #11 fossils/audit → #12 vendors. PRs #3–#5 remain drafts; #2, #6, #7, #9, #10 and #11 are open for review. No parent was merged, retargeted or rewritten. Existing internal merge commits do not mean their GitHub PRs were merged.
+Main remains `e04252ea0783510000e634486c0f2526a736f506`. Only PR #1 is merged. Stack: main → #2 split → #3 RTC → #4 evolution → #5 evolution mechanics → #6 custom252 → #7 wild doubles → #9 stabilization → #10 Route 5 → #11 fossils/audit → #12 vendors → #13 Poké Balls. PRs #3–#5 remain drafts; #2, #6, #7, #9, #10 and #11 are open for review. No parent was merged, retargeted or rewritten. Existing internal merge commits do not mean their GitHub PRs were merged.
 
 [PR #8](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/8) independently targets main and holds only coordination documents. Gameplay and canonical tracking are on separate branches. Prior CI results certify their exact heads, not future combinations.
 
@@ -178,9 +180,9 @@ WRL-008: `[#########-]` **95% complete /5% remaining** (19 earned/1 pending inte
 
 The received40-file authority export resolves the stale missing-ZIP intake claim. Workstream-specific primary registers still require full reading/reconciliation; receipt is not implementation credit. Poké Ball work follows on its own branch. Special overworld HOLD remains. Canonical Drive sync is still pending because no direct Drive writer is exposed.
 
-## Poké Ball implementation readiness — BTL-006
+## Historical Poké Ball readiness — BTL-006 (superseded)
 
-**READY for scoped implementation.** All three Poké Ball exports read fully and current92a0600d capture/item/shop/Oak/visual code audited. [Readiness report](POKE_BALL_IMPLEMENTATION_READINESS.md) records approved requirements, four-bit capture-code solution, current-weather/Snow bridge, atomic Premier rewards,11 stock lists/exception boundary, Oak full-bag retry, branch and acceptance plan. Latest owner request stops this step at readiness; no production code or new feature PR created. Existing vendor PR#12 and main remain unchanged. No new earned effort or test claims; overall36.83% is retained.
+**READY for scoped implementation.** All three Poké Ball exports read fully and current92a0600d capture/item/shop/Oak/visual code audited. [Readiness report](POKE_BALL_IMPLEMENTATION_READINESS.md) records approved requirements, four-bit capture-code solution, current-weather/Snow bridge, atomic Premier rewards,11 stock lists/exception boundary, Oak full-bag retry, branch and acceptance plan. At that historical checkpoint the owner requested a readiness stop; DES-009 below explicitly supersedes it. No production code or new feature PR existed at that checkpoint. Existing vendor PR#12 and main remain unchanged. No new earned effort or test claims; overall36.83% is retained.
 
 ## Poké Ball implementation checkpoint — BTL-006
 
