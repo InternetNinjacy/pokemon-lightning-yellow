@@ -3,7 +3,7 @@
   "updated": "2026-11-02",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "docs/project-coordination",
-  "current_focus": "Fossil rewards/native restoration completed on PR#11, ready for scoped review. Global roster conflicts/Blaine configuration/Gyarados typing and missing Pok\u00e9 Ball ZIP remain separate blockers; preserve all prior progress.",
+  "current_focus": "Mystery Vendor Network active on feature/mystery-vendor-network. Authority export package received and checksums verified. Gyarados Water/Dragon confirmed November3; fossil PR#11 ready and unmerged. Other scope-specific gaps remain.",
   "main_sha": "e04252ea0783510000e634486c0f2526a736f506",
   "drive_sync": {
     "status": "pending: no direct Drive writing tool available",
@@ -1546,7 +1546,7 @@
         "PKM-001"
       ],
       "status": {
-        "design": "five roster names/opening pair approved; configuration unavailable",
+        "design": "five roster names/opening pair approved; owner confirms Gyarados Water/Dragon November3; remaining configuration incomplete",
         "implementation": "not implemented; actual source still original FireRed four-member Single Battle",
         "automated": "source audit only; no implementation test claim",
         "emulator": "not implemented/tested",
@@ -1557,10 +1557,10 @@
       "commit": null,
       "pr_url": null,
       "ci_url": null,
-      "blocker": "Approved levels/moves/items/full Gym register missing; implemented Gyarados Water/Dragon conflicts with update Water/Flying strategy. Clarification pending.",
+      "blocker": "Typing resolved: Gyarados remains Water/Dragon and has no Flying-type Ground immunity. Final approved battle configuration and any required strategy revision remain outstanding; exported Gym register is now available for reconciliation.",
       "design_authority": "Owner supplied November2 Wild Encounters, Gym Roster, Fossils and Pokedex Compliance update; linked Drive originals401, not claimed read.",
-      "next_action": "Obtain exact existing approved battle configuration and resolve typing conflict; preserve seven ordinary teams",
-      "checkpoint": "2026-11-02 fossil/source audit atb0bd3b86f4e03dd3f540f0776a5de87f207e84e4; exact tests/known limits in ledger."
+      "next_action": "Read supplied Gym exports for finalized configuration; preserve approved Water/Dragon, five species and seven ordinary teams; do not invent a replacement immunity mechanism.",
+      "checkpoint": "2026-11-03 owner explicitly confirmed Gyarados Water/Dragon. Existing implementation matches; no gameplay code or earned progress changed."
     },
     {
       "id": "BTL-006",

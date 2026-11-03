@@ -83,7 +83,7 @@ Stable IDs, aliases, authorities, refs, acceptance dimensions and estimate histo
 | GYM-001 Approved gyms and trainers | not started; Obtain missing specification | — | 17 | Exact finalized feature specifications/distribution unavailable; do not infer Phase Two choices. |
 | GYM-002 Leaders, rivals and important battles | not started; Obtain missing specification | — | 18 | Exact finalized feature specifications/distribution unavailable; do not infer Phase Two choices. |
 | GYM-003 Exactly one Celadon trainer Castform assignment | not started; Obtain missing specification | PKM-001 | 2 | Specific trainer, level and moveset not finalized. |
-| GYM-004 Blaine corrected five-member Double Battle | not implemented; actual source still original FireRed four-member Single Battle; Obtain exact existing approved battle configuration and resolve typing conflict; preserve seven ordinary teams | PKM-001 | 3 | Approved levels/moves/items/full Gym register missing; implemented Gyarados Water/Dragon conflicts with update Water/Flying strategy. Clarification pending. |
+| GYM-004 Blaine corrected five-member Double Battle | Not implemented; reconcile newly supplied Gym exports. Gyarados Water/Dragon confirmed by owner; no Flying-type Ground immunity. | PKM-001 | 3 | Type decision resolved November3; final battle configuration/strategy still requires source reconciliation; no invented workaround |
 
 ### WRL — Maps, encounters, items and story
 
@@ -162,3 +162,9 @@ Runtime evidence includes pre-National evolution success/cancellation/registrati
 Remaining acceptance: full overworld Bag evolution navigation, actual link peer, physical RTC/other cores/full progression, complete AI strategies, all-ball successful catches, nickname acceptance, faint/replacement/whiteout, forced-end/spread moves and unfinished weather interactions. These are coverage gaps, not claimed test passes. The wild-double release verdict remains CONDITIONAL.
 
 The former Route 5 source-export blocker in that historical checkpoint was superseded by the complete November 2 handoff and the final implementation above. Historical ledger entries are preserved. Nothing has been merged or released, no ROM/save/BIOS/screenshot has been uploaded, and Drive sync remains pending.
+
+## November 3 owner clarification — Gyarados
+
+Owner explicitly confirms **Water/Dragon**. This matches existing code and supersedes the contradictory Water/Flying rationale in Blaine's addendum. Gyarados has no Ground immunity from Flying typing. Do not choose a new partner, ability, item or move to recreate that immunity without an approved specification. Historical pending-type statements above are superseded by this clarification. No code/test/merge status or earned planning credit changes.
+
+The actual authority-export ZIP has now been received:40 source checksums verified. Its primary exports still require workstream-specific reading; older missing-export statements are historical. Mystery Vendor Network remains the active implementation task.

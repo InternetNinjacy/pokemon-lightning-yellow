@@ -306,3 +306,11 @@ Owner supplied the complete Wild Encounters, Gym Roster, Fossils and Pokedex Com
 ### 2026-11-02 — INT-003 — queue/dashboard continuity
 
 Preserved all33 permanent prior IDs/aliases/history and added WRL-006, WRL-007, PKM-006, GYM-004, BTL-006 (38 total). New detailed scope adds38 points,466→504; earned174/remain330 =34.52%/65.48%. Existing earned154 is retained, with16 fossil points and4 audit points added. GYM-004's3 pending points are carved from GYM-00120→17, not duplicated. Other placement estimates exclude these fossils; feature tests are not counted again under shared integration. DAY remains31/32 (97%/3%). Estimates remain low-confidence planning effort, not release certification. Canonical docs remain in PR#8; Drive sync pending. No merge/auto-merge/release.
+
+### 2026-11-03 — DES-007 / GYM-004 — Gyarados typing confirmed
+
+- Exact owner decision: “Gyarados is Water Dragon, confirmed.”
+- Effective design: Gyarados remains Water/Dragon, matching PR#9's existing approved implementation. The Water/Flying and resulting Ground-immunity rationale in the later Blaine addendum is superseded. Five-member roster/opening-pair approval is not otherwise changed.
+- No gameplay code, typing table, ability, item, move, partner, price or battle mechanic changed. No new build/emulator result is claimed for this documentation-only decision; no implementation credit added. No merge/auto-merge/release.
+- Next: reconcile supplied complete Gym exports for actual finalized levels/moves/items. Any strategy revision must follow approved design; do not silently manufacture immunity.
+- Authority package intake: Pokemon_Lightning_Yellow_Codex_Authority_Exports_2026-11-03.zip received; archive integrity and all40 listed source SHA256 values verified. START_HERE and conflict register read; full-domain exports not yet all read. This supersedes the missing-export access blocker, not unfinished designs or the special-overworld hold.
