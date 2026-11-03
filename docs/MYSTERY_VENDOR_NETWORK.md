@@ -88,6 +88,13 @@ the pool without changing the existing Pokémon, old price, ownership or Shiny
 status. It consequently has nine new offers left, not ten replacement gifts.
 Seller/species depletion counts must agree; inconsistent state fails closed.
 
+Vendor species is carried in script-only VAR_0x8008. It never overwrites
+VAR_TEMP_1: that map variable controls Cinnabar Gym locking. Native PC transfer
+message leaves are reused after buffering the species directly, rather than
+using the generic wrapper which assumes VAR_TEMP_1. Source review caught this
+progression risk; new native checks cover lock state before/after purchases and
+PC nickname/save/load both with and without the Secret Key.
+
 Both new special helpers are appended before `gSpecialsEnd`, preserving every
 old special index. Actual script execution caught and corrected an early version
 which placed them after that dispatch-table boundary. Existing test RAM/ABI guards
@@ -113,7 +120,9 @@ These controlled emulator scenarios are distinct from a manual full playthrough.
 |Save/load|Real flash save/load preserves purchases, flags, money, named party/PC records. Pre-sale reload restores unsold status/money/party and permits a fresh identity. Historical Magikarp migration tested.|
 |Story / engine regression|Static fingerprints preserve unrelated script blocks, starter/battle/daycare/save/species/world tables and original objects. Full existing native suite is required separately; fingerprints are not executed story progression.|
 
-Focused native result:152,183 transaction assertions and6,283 UI assertions PASS.
+Focused native transaction result:152,183 assertions PASS. The earlier UI run
+passed6,283 assertions; expanded Cinnabar map-state checks are included in the
+final full regression result recorded in the PR.
 Full regression, clean rebuild and GitHub Actions results are recorded in the PR;
 focused passes alone are not a claim of complete release acceptance.
 

@@ -28,7 +28,7 @@ MysteryVendor_TryPurchase::
 
 MysteryVendor_Reveal::
 	updatemoneybox
-	bufferspeciesname STR_VAR_1, VAR_TEMP_1
+	bufferspeciesname STR_VAR_1, VAR_0x8008
 	playfanfare MUS_LEVEL_UP
 	message MysteryVendor_Text_Reveal
 	waitmessage
@@ -54,7 +54,10 @@ MysteryVendor_PC::
 	goto_if_eq VAR_RESULT, NO, MysteryVendor_Transfer
 	call EventScript_NameReceivedBoxMon
 MysteryVendor_Transfer::
-	call EventScript_TransferredToPC
+	bufferboxname STR_VAR_1, VAR_PC_BOX_TO_SEND_MON
+	bufferspeciesname STR_VAR_2, VAR_0x8008
+	call_if_unset FLAG_SYS_NOT_SOMEONES_PC, EventScript_TransferredSomeonesPC
+	call_if_set FLAG_SYS_NOT_SOMEONES_PC, EventScript_TransferredBillsPC
 	goto MysteryVendor_End
 
 MysteryVendor_Declined::

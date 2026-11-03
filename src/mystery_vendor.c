@@ -142,6 +142,6 @@ u16 PurchaseMysteryPokemon(void)
     dex = SpeciesToNationalPokedexNum(species);
     GetSetPokedexFlag(dex, FLAG_SET_SEEN);
     GetSetPokedexFlag(dex, FLAG_SET_CAUGHT);
-    VarSet(VAR_TEMP_1, species);
+    gSpecialVar_0x8008 = species;
     return result;
 }

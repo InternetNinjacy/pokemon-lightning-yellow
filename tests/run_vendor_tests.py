@@ -85,7 +85,9 @@ shared={'Declined':'No problem. The offer stands!', 'Poor':"Sorry, you'll need �
 'NoRoom':"You don't have room for another POKéMON. Make some space and come back!",
 'Reveal':"Surprise! It's {STR_VAR_1}!",'Nickname':'Would you like to give {STR_VAR_1} a nickname?',
 'AlreadySold':'I hope you and your new POKéMON get along!'}
-texts=blocks(Path('data/scripts/mystery_vendor.inc').read_text())
+script=Path('data/scripts/mystery_vendor.inc').read_text()
+assert 'VAR_TEMP_' not in source and 'VAR_TEMP_' not in script, 'Never clobber Cinnabar Gym/map state for a gift species'
+texts=blocks(script)
 encoding={c:int(h,16) for c,h in re.findall(r"^'(.)'\s*=\s*([0-9A-F]{2})\s*$",Path('charmap.txt').read_text(),re.M)}
 encoding["'"]=encoding['’']
 widths=list(map(int,re.findall(r'\d+',re.search(r'sFontNormalLatinGlyphWidths\[\]\s*=\s*\{(.*?)\};',Path('src/text.c').read_text(),re.S)[1])))

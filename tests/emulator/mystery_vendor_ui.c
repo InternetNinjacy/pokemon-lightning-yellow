@@ -65,7 +65,7 @@ static void vendorRename(void) {
 }
 static void vendorUiTests(void) {
  for(unsigned v=0;v<10;v++) {
-  vendorMap(v);CALL(SetMoney,careSave1()+ABI_SAVE1_MONEY,700);
+  vendorMap(v);unsigned mapTemp=CALL(VarGet,VAR_TEMP_1);CALL(SetMoney,careSave1()+ABI_SAVE1_MONEY,700);
   vendorPrompt(v);press(2);fossilClose(1);vendorMoneyClosed();vendorTextMatches(SYM_MysteryVendor_Text_Declined);
   CHECK(CALL(GetMoney,careSave1()+ABI_SAVE1_MONEY)==700);CHECK(core->busRead8(core,SYM_gPlayerPartyCount)==3);CHECK(!CALL(MysteryVendorStatus));
   CALL(SetMoney,careSave1()+ABI_SAVE1_MONEY,699);vendorPrompt(v);press(1);fossilClose(1);vendorMoneyClosed();vendorTextMatches(SYM_MysteryVendor_Text_Poor);
@@ -80,11 +80,14 @@ static void vendorUiTests(void) {
   } else {press(2);fossilClose(1);vendorMoneyClosed();}
   fossilStart(vendorSites[v].entry);fossilClose(1);vendorTextMatches(SYM_MysteryVendor_Text_AlreadySold);
   CHECK(CALL(GetMoney,careSave1()+ABI_SAVE1_MONEY)==0);CHECK(core->busRead8(core,SYM_gPlayerPartyCount)==4);
+  CHECK(CALL(VarGet,VAR_TEMP_1)==mapTemp);
   printf("PASS: actual vendor%u map/object, unique intro, No/699/700, post-commit nickname prompt, repeat and money-window cleanup\n",v+1);
  }
  // PC nickname callbacks must update the actual delivered box, not an unrelated
  // party slot; use outdoor Cinnabar to exercise return-to-map integration too.
- vendorMap(8);CALL(FlagSet,FLAG_HIDE_POKEMON_MANSION_B1F_SECRET_KEY);
+ for(unsigned key=0;key<2;key++) {
+ vendorMap(8);if(key)CALL(FlagSet,FLAG_HIDE_POKEMON_MANSION_B1F_SECRET_KEY);
+ CALL(VarSet,VAR_TEMP_1,key);
  for(unsigned i=0;i<6;i++)CALL(CreateMon,player(i),SPECIES_PIKACHU,20,31,1,i,0,0);
  core->busWrite8(core,SYM_gPlayerPartyCount,6);CALL(SetMoney,careSave1()+ABI_SAVE1_MONEY,700);
  vendorPrompt(8);press(1);fossilWaitMenu(SYM_Task_YesNoMenu_HandleInput);
@@ -97,6 +100,9 @@ static void vendorUiTests(void) {
   vendorMessageContains(SYM_gSpeciesNames+species*(POKEMON_NAME_LENGTH+1));
   vendorMessageContains(CALL(GetBoxNamePtr,box));
  flashRoundTrip();CALL(GetAndCopyBoxMonDataAt,box,pos,ABI_DATA_NICKNAME,testStack);CHECK(core->busRead8(core,testStack)==0xBB);
+ CHECK(CALL(VarGet,VAR_TEMP_1)==key);
+ }
+ unsigned box,pos,species;
   vendorMap(0);vendorFillCapacity();CALL(SetMoney,careSave1()+ABI_SAVE1_MONEY,700);
   vendorPrompt(0);press(1);fossilClose(1);vendorMoneyClosed();vendorTextMatches(SYM_MysteryVendor_Text_NoRoom);
   CHECK(CALL(GetMoney,careSave1()+ABI_SAVE1_MONEY)==700);CHECK(!CALL(MysteryVendorStatus));
