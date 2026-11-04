@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
 """Owner data, scene/PC structure and preservation audits; runtime uses real mGBA."""
 from pathlib import Path
-import json,re,hashlib,subprocess,struct
+import json,re,hashlib,struct
 from approved_ranger_changes import prior_ranger_source
 f=json.loads(Path('tests/specifications/approved_ranger_base_camp.json').read_text())
 preserved=json.loads(Path('tests/specifications/approved_ranger_delta.json').read_text())
 for path in preserved['hunks']:
     actual=prior_ranger_source(path).encode()
-    expected=subprocess.check_output(['git','show',preserved['base']+':'+path])
-    assert actual==expected,path
+    assert hashlib.sha256(actual).hexdigest()==preserved['before_sha256'][path],path
 for path,snapshot in preserved['binary'].items():
     a=bytearray(Path(path).read_bytes());assert hashlib.sha256(a).hexdigest()==snapshot['after_sha256']
     for offset,before,after in snapshot['changes']:assert a[offset]==after;a[offset]=before

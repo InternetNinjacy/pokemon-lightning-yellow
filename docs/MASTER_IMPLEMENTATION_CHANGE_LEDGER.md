@@ -609,3 +609,36 @@ Blaine victory/badge/TM38/revisit, strict world roster cleanup and future approv
 weather/lighting/move-engine tasks. Repository auto-merge remains true. The
 source recovery tag and ordinary revert paths preserve history; no release,
 force-push or destructive save operation occurred.
+
+## 2026-11-04 — GYM-005 Ranger Base Camp implementation
+
+Authority: final `implementation/saffron-ranger-base-camp.md` (merged spec#21).
+Baseline main700587a8; gameplay commit7b7ba6af on
+`feature/saffron-ranger-base-camp`. This entry supersedes the historical
+“not implemented” status for Ranger; it does not claim a main merge.
+
+Old Dojo becomes four any-order Singles, gated Park Double, exactly one of three
+foreign PARK Lv30 gifts, and a native PC. Trainer data/abilities/friendship,
+scripts/dialogue/map objects, PC tile, appended IDs/flags, gift helper and legacy
+Continue refresh are changed. Full details/files/rollback in
+`docs/RANGER_BASE_CAMP.md`. No new artwork/save-layout fields/AI/balance system.
+Old trainer IDs and legacy flags retained; no unrelated source changes hidden
+by snapshot replacement. Exact reverse-hunk plus original SHA256 tests preserve
+all other source bytes and work in shallow CI.
+
+All13 host suites plus Museum static PASS. Focused actual mGBA0.10.5 data368,
+UI3276 and battles458 assertions PASS. Includes nickname YES/NO, actual PC
+six-to-five deposit, legacy flash Continue, actual four Singles in3/1/4/2 order,
+Park loss/blackout/rechallenge and all four opponents/replacements/victory.
+Unmodified opponents face controlled level100 player fixtures, not a claimed
+manual balance/progression playthrough. Local PC screenshot visually inspected.
+Final clean/full-native/Actions outcomes will be appended when executed.
+
+One added nickname test initially reused a vendor helper containing an unrelated
+money-window postcondition; isolated Ranger keyboard helper fixed that fixture.
+No gameplay assertion was removed or disabled. Earlier battle/PC input timing
+fixture corrections preserve native gameplay and guards.
+
+GYM-005 now15earned/1remaining; total237/548=43.25%, other task credit unchanged.
+Repository auto-merge remains enabled; Ranger implementation PR must stay unmerged
+for explicit review. Direct Drive synchronization remains unavailable/pending.

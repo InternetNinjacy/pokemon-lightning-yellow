@@ -59,7 +59,7 @@ static void press(unsigned key){frames(3,key);frames(3,0);}
 static void waitController(unsigned b,unsigned function){
  unsigned i;
  for(i=0;i<600;i++){if(controller(b)==function)break;frames(1,0);}
- if(i==600)fprintf(stderr,"controller %u waiting for %08x found %08x\n",b,function,controller(b));
+ if(i==600)fprintf(stderr,"controller %u waiting for %08x found %08x cb%08x action%u move%u exec%08x flags%08x outcome%u\n",b,function,controller(b),core->busRead32(core,SYM_gMain+ABI_MAIN_CB2),core->busRead8(core,SYM_gActionSelectionCursor+b),core->busRead8(core,SYM_gMoveSelectionCursor+b),core->busRead32(core,SYM_gBattleControllerExecFlags),core->busRead32(core,SYM_gBattleTypeFlags),core->busRead8(core,SYM_gBattleOutcome));
  CHECK(i<600);
 }
 static void chooseMove(unsigned b,unsigned moveIndex,unsigned target){

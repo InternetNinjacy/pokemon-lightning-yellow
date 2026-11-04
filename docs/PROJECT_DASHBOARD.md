@@ -1,10 +1,10 @@
 # Pokémon Lightning Yellow — Project Dashboard
 
-Canonical branch: `main`. Updated 2026-11-04. Audited gameplay revision: `7284dc0aac833f751882826e339273a97694ce9e`.
+Canonical branch: `main`. Updated 2026-11-04. Audited gameplay revision: `700587a805e9f67cedec10d8778f64ade3d3f3b8`.
 
-Overall: `[####------]` **40.51% complete /59.49% remaining** (222 earned +326 remaining;548 provisional effort points).
+Overall: `[####------]` **43.25% complete /56.75% remaining** (237 earned +311 remaining;548 provisional effort points).
 
-All audited PRs and PKM-008 Ponyta Lv30 are merged and tested. Next eligible feature: GYM-005 Ranger Base Camp (approved contract, implementation not started). Rival handoff remains explicitly BLOCKED; independent engine/weather/move and release tasks remain.
+GYM-005 Ranger Base Camp implemented on feature/saffron-ranger-base-camp; focused native data/UI/actual battles pass. Final clean/full-suite/CI and unmerged review PR preparation underway. Rival remains explicitly BLOCKED; other independent tracked work retained.
 
 These are estimates of tracked work, not elapsed hours or release certification. Every permanent ID and earned-history entry is retained. The original530-point scope gained2 Ponyta and16 Ranger points; adding scope changes the denominator without erasing completed work. Repeated regression is not duplicate implementation credit.
 
@@ -19,7 +19,7 @@ These are estimates of tracked work, not elapsed hours or release certification.
 | TIM — RTC, time of day and lighting | `[###-------]` | 33.3% /66.7% | 16 /32 |
 | WTH — Overworld and battle weather | `[----------]` | 0.0% /100.0% | 0 /64 |
 | DAY — Daycare, breeding and Shiny eggs | `[##########]` | 96.9% /3.1% | 31 /1 |
-| GYM — Gyms, trainers and important battles | `[----------]` | 3.6% /96.4% | 2 /54 |
+| GYM — Gyms, trainers and important battles | `[###-------]` | 30.4% /69.6% | 17 /39 |
 | WRL — Maps, encounters, items and story | `[####------]` | 41.5% /58.5% | 39 /55 |
 | INT — Integration, testing and release readiness | `[######----]` | 56.2% /43.8% | 36 /28 |
 
@@ -80,7 +80,7 @@ These are estimates of tracked work, not elapsed hours or release certification.
 | GYM-002 Leaders, rivals and important battles | Design: Leader/Rocket/Giovanni species progressions supplied; rivals/Elite Four exact teams separate; code: not started | Automated: not executed for new work; emulator: not executed | not created; not merged | 18 points; no task dependency | Blocker: Rival spec implementation/main-rival-eight-battles.md is available and merged but explicitly BLOCKED: conditional TM/learnset choices, exact late held items and starter routing remain; no implementation inferred from document receipt.; Preserve latest cumulative Giovanni roster; reconcile detailed earlier leaders and pending specific battle configurations. |
 | GYM-003 Exactly one Celadon trainer Castform assignment | Design: Celadon ordinary Trainer7 Cacnea+Castform approved; exactly one there; code: not started | Automated: not executed for new work; emulator: not executed | not created; not merged | 2 points; PKM-001 | Blocker: Castform level/moves and ordinary trainer balancing remain unassigned; the Celadon trainer slot is already approved, not missing.; Map approved seventh Celadon trainer slot to source ID and await its actual level/moves; retain Forecast/GenIII forms. |
 | GYM-004 Blaine corrected five-member Double Battle | Design: External PR#15 cites newer finalized Donphan/Pidgeot five-member design; reconcile its linked handoff against historical Gyarados roster before integration.; code: implemented on main | Automated: Blaine host audit and full combined Actions PASS; emulator: 46 focused native assertions plus full combined276132 PASS; no full victory/badge/TM38/revisit certification | #15 merged and consolidated; merged into main | 1 points; PKM-001 | [PR](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/15); [CI](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41765403411); Blocker: No remaining known compile/typing conflict; full battle victory, badge/TM38/revisit and comprehensive battle strategy testing outstanding.; Merge approved integration after combined CI; retain unexecuted full battle/victory coverage. |
-| GYM-005 Saffron Ranger Base Camp replacement for Fighting Dojo | Design: approved; final specification merged in#21, supersedes#20 filename; code: not started | Automated: not executed; emulator: not executed | spec#21 merged; implementation PR not created; spec only; gameplay not implemented | 16 points; PKM-001, PKM-007, BTL-001 | [PR](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/21); Implement separately after existing stabilization: inspect actual dojo/PC/Trainer ability/friendship paths, retain exact dialogue, bag items, gift identity and approved layouts. No rival gameplay while blocked. |
+| GYM-005 Saffron Ranger Base Camp replacement for Fighting Dojo | Design: approved; final specification merged in#21, supersedes#20 filename; code: implemented | Automated: all13 host suites PASS; full regression/CI pending; emulator: focused native data368/UI3276/battles458 PASS; full regression pending | implementation PR preparation; unmerged; contract requires owner review | 1 points; PKM-001, PKM-007, BTL-001 | Complete clean reproducibility, full native regression and final CI, prepare unmerged review PR. |
 
 ## WRL — Maps, encounters, items and story
 

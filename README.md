@@ -99,3 +99,7 @@ Run `python3 tests/run_typing_tests.py` alongside the other regression suites.
 [Ponyta’s approved level-30 evolution](docs/PONYTA_LEVEL30_EVOLUTION.md) is tracked
 as PKM-008. Canonical tracking now lives on main following the owner-authorized
 feature-stack consolidation; the old coordination branch is historical.
+
+Ranger Base Camp implementation and scoped native acceptance:
+[GYM-005 technical notes](docs/RANGER_BASE_CAMP.md). The implementation PR remains
+subject to owner review; compilation alone is not gameplay acceptance.

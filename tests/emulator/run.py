@@ -2,6 +2,7 @@
 """Build a headless mGBA runner for the actual ROM/ELF; no copyrighted BIOS."""
 from pathlib import Path
 import os
+import json
 import re
 import struct
 import subprocess
@@ -9,6 +10,13 @@ import tempfile
 
 # Generate ABI constants with the game's ARM compiler, never host offsetof.
 expressions = {
+    'BMOVE_SIZE': 'sizeof(struct BattleMove)',
+    'BMOVE_PP': 'offsetof(struct BattleMove,pp)',
+    'BMON_FRIENDSHIP': 'offsetof(struct BattlePokemon,friendship)',
+    'BRES_HISTORY': 'offsetof(struct BattleResources,battleHistory)',
+    'HISTORY_ITEMS': 'offsetof(struct BattleHistory,trainerItems)',
+    'HISTORY_COUNT': 'offsetof(struct BattleHistory,itemsNo)',
+
     "WEATHER_DURATION": "offsetof(struct WishFutureKnock,weatherDuration)",
     'SCRIPT_EXP_STATE': 'offsetof(struct BattleScripting,getexpState)',
     'BATTLESTRUCT_EXP_VALUE': 'offsetof(struct BattleStruct,expValue)',
@@ -124,6 +132,18 @@ for key,expr in {
 for name in ['POKEBALL','SPECIES','HELD_ITEM','LEVEL','FRIENDSHIP','IS_EGG','ATK','DEF','HP','MAX_HP','MOVE1','MOVE2','MOVE3','MOVE4','PP1','PP2','PP3','PP4','NICKNAME','PERSONALITY','OT_NAME','OT_ID','HP_IV','SANITY_IS_BAD_EGG','ABILITY_NUM','MAIL','UNUSED_RIBBONS']:
     expressions['DATA_'+name] = 'MON_DATA_'+name
 required = [
+    'BattleMainCB2', 'gBattleMoves', 'gTrainerBattleOpponent_A', 'CreateNPCTrainerParty', 'ApplyRangerTrainerData', 'RangerGiveGift', 'RangerNeedsMapRefresh',
+    'SaffronCity_Dojo_EventScript_Ranger1', 'SaffronCity_Dojo_EventScript_Ranger2',
+    'SaffronCity_Dojo_EventScript_Ranger3', 'SaffronCity_Dojo_EventScript_Ranger4',
+    'SaffronCity_Dojo_EventScript_RangerPark', 'SaffronCity_Dojo_EventScript_RangerGift0',
+    'SaffronCity_Dojo_EventScript_RangerGift1', 'SaffronCity_Dojo_EventScript_RangerGift2',
+    'SaffronCity_Dojo_Text_ParkLocked', 'SaffronCity_Dojo_Text_ParkNo',
+    'SaffronCity_Dojo_Text_ParkBeforeGift', 'SaffronCity_Dojo_Text_ParkAfterGift',
+    'SaffronCity_Dojo_Text_GiftLocked', 'SaffronCity_Dojo_Text_GiftFull',
+    'SaffronCity_Dojo_Text_GiftTaken', 'Cmd_friendshiptodamagecalculation', 'gBattleResources',
+    'Task_PCMainMenu', 'Task_PokeStorageMain', 'Task_OnSelectedMon', 'Task_DepositMenu', 'Task_OnBPressed',
+    'SetLastHealLocationWarp',
+
     "CheckBagHasItem", "RemoveBagItem", "Task_ShopMenu", "Task_BuyMenu", "Task_BuyHowManyDialogueHandleInput", "Task_CallYesOrNoCallback", "FindTaskIdByFunc", "VermilionCity_Mart_EventScript_Clerk", "gWishFutureKnock", "Cmd_setrain", "Cmd_setsandstorm", "AbilityBattleEffects", "CastformDataTypeChange", "Cmd_sethail", "Cmd_setsunny", "GetBallCatchMultiplier", "IsPokeBallItem", "BallItemToCaptureCode", "CaptureCodeToBallItem", "TryBuyBallsWithPremierBonus", "ItemIdToBallId", "gCaptureOrigin",
     "PalletTown_ProfessorOaksLab_EventScript_ProfOak", "PalletTown_ProfessorOaksLab_EventScript_TryGiveNestBalls",
 
@@ -243,6 +263,13 @@ with tempfile.TemporaryDirectory(prefix='lightning-emulator-') as temp:
     header+='\n'.join('#define SYM_'+name+' 0x%08xU'%value for name,value in symbols.items())+'\n'
     header+='#define ABI_EWRAM_END 0x%08xU\n'%end_ewram
     (temp/'symbols.h').write_text(header)
+    approved_rangers=json.loads(Path('tests/specifications/approved_ranger_base_camp.json').read_text())
+    expected='static const unsigned rangerExpectedMoves[5][4][4] = {\n'
+    for trainer in approved_rangers['trainers']:
+        expected+=' {'+','.join('{'+','.join('MOVE_'+m for m in mon['moves'])+'}' for mon in trainer['party'])+'},\n'
+    expected+='};\n'
+    (temp/'ranger_expected.h').write_text(expected)
+
     command=['gcc','-std=gnu11','-O2','-Wall','-Wextra','-I',str(temp),'-iquote','include',
              'tests/emulator/runner.c','-o',str(temp/'runner')]
     # Local workspace dependency extraction; Actions installs libmgba-dev normally.
