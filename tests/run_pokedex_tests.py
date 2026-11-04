@@ -137,15 +137,8 @@ assert n==1
 # Separate preservation evidence: all other bytes stay identical to PR5.
 
 preserved=json.loads(Path('tests/custom_dex_preserved.json').read_text())
-blaine_delta=json.loads(Path('tests/specifications/approved_blaine_delta.json').read_text())['hunks']
 for path,expected_hash in preserved.items():
  actual=species_info.encode() if path=='src/data/pokemon/species_info.h' else prior_ball_source(path)
- if path in blaine_delta:
-  original=actual.decode()
-  for hunk in blaine_delta[path]:
-   assert original.count(hunk['after'])==1, 'Unreviewed Blaine source hunk: '+path
-   original=original.replace(hunk['after'],hunk['before'],1)
-  actual=original.encode()
  if path=='include/global.h':
   # Only the reviewed 400-byte padding substitution is allowed; target ABI tests
   # separately prove that this does not change existing save offsets/size.
