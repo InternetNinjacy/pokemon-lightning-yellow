@@ -22,7 +22,7 @@
     "data/maps/CinnabarIsland_Gym/text.inc": [
       {
         "before": "CinnabarIsland_Gym_Text_BlaineDefeat::",
-        "after": "CinnabarIsland_Gym_Text_BlaineNeedTwoPokemon::\n    .string \"Hah! You need two POKéMON ready\\\\n\"\n    .string \"to battle me!$\"\n\nCinnabarIsland_Gym_Text_BlaineDefeat::"
+        "after": "CinnabarIsland_Gym_Text_BlaineNeedTwoPokemon::\n    .string \"Hah! You need two POKéMON ready\\n\"\n    .string \"to battle me!$\"\n\nCinnabarIsland_Gym_Text_BlaineDefeat::"
       }
     ],
     "src/data/pokemon/species_info.h": [
