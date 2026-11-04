@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 from approved_typing_changes import prior_typing_source
+from approved_museum_changes import prior_museum_source
 """Executable production RNG mapping and separate static scope checks.
 
 These are not emulator or battle tests. Native transaction/UI evidence comes
@@ -48,7 +49,7 @@ for path,items in fixture['blocks'].items():
     current=blocks(Path(path).read_text())
     for label,digest in items.items():
         assert hashlib.sha256(current[label].strip().encode()).hexdigest()==digest,(path,label)
-specials=Path('data/specials.inc').read_text()
+specials=prior_museum_source('data/specials.inc')
 assert re.findall(r'\bdef_special\s+(\w+)',specials)==fixture['specials']+['MysteryVendorStatus','PurchaseMysteryPokemon']
 assert specials.index('def_special PurchaseMysteryPokemon') < specials.index('gSpecialsEnd::')
 sites=json.loads(Path('tests/specifications/mystery_vendor_sites.json').read_text())['vendors']

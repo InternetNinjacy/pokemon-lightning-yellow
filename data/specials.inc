@@ -455,4 +455,5 @@ gSpecials::
 	def_special IsRoute5DaycareReady
 	def_special MysteryVendorStatus
 	def_special PurchaseMysteryPokemon
+	def_special ScriptGiveShinyFeebasEgg
 gSpecialsEnd::
