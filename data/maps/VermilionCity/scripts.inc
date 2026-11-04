@@ -30,8 +30,9 @@ VermilionCity_EventScript_HideOaksAide::
 	return
 
 VermilionCity_EventScript_Woman::
-	msgbox VermilionCity_Text_GrimerMultipliesInSludge, MSGBOX_NPC
-	end
+	textcolor NPC_TEXT_COLOR_FEMALE
+	setvar VAR_0x8009, 2
+	goto MysteryVendor_Start
 
 VermilionCity_EventScript_OldMan1::
 	lock

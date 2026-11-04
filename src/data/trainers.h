@@ -4188,7 +4188,7 @@ const struct Trainer gTrainers[] = {
         .trainerPic = TRAINER_PIC_LEADER_BLAINE,
         .trainerName = _("BLAINE"),
         .items = {ITEM_HYPER_POTION, ITEM_HYPER_POTION, ITEM_FULL_HEAL},
-        .doubleBattle = FALSE,
+        .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
         .party = NO_ITEM_CUSTOM_MOVES(sParty_LeaderBlaine),
     },
