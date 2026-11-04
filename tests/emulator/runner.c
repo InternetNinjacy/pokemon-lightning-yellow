@@ -4,6 +4,7 @@
 #include <stdint.h>
 #include <string.h>
 #include <time.h>
+#include <mgba/flags.h> // match the installed library ABI, including debugger vtable slots
 #include <mgba/core/core.h>
 #include <mgba/core/config.h>
 #include <mgba/core/log.h>
@@ -331,6 +332,13 @@ static void dexTests(void) {
 
 #include "wild_double.c"
 #include "battle_categories.c"
+#include "daycare.c"
+#include "fossils.c"
+#include "mystery_vendor.c"
+#include "mystery_vendor_ui.c"
+#include "capture_rules.c"
+#include "museum.c"
+#include "blaine.c"
 
 int main(int argc,char **argv) {
     setvbuf(stdout,NULL,_IONBF,0);
@@ -351,11 +359,22 @@ int main(int argc,char **argv) {
     printf("RTC autodetected: %s\n",(gba->memory.hw.devices&HW_RTC)?"yes":"no");
     CHECK(gba->memory.hw.devices&HW_RTC);
     bootState=malloc(core->stateSize(core));CHECK(bootState && core->saveState(core,bootState));
+    if(getenv("LIGHTNING_BALL_WEATHER_ONLY")){captureWeatherTests();printf("PASS: %u focused weather assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_BALL_SHOP_ONLY")){captureShopTests();printf("PASS: %u focused shop assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_BALLS_ONLY")){captureTests();printf("PASS: %u focused capture assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_VENDOR_UI_ONLY")){vendorUiTests();printf("PASS: %u focused vendor UI assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_VENDORS_ONLY")){vendorTests();printf("PASS: %u focused vendor assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_FOSSILS_ONLY")){fossilTests();printf("PASS: %u focused fossil assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_DAYCARE_CONTINUE_ONLY")){continueMigrationTests();printf("PASS: %u focused Continue assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_DAYCARE_UI_ONLY")){daycareUiTests();printf("PASS: %u focused daycare UI assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_DAYCARE_ONLY")){daycareTests();printf("PASS: %u focused daycare assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_WILD_HARDENING_ONLY")){wildHardeningTests();printf("PASS: %u focused wild hardening assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_SUMMARY_ONLY")){summaryTests();printf("PASS: %u focused summary assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_BATTLE_ONLY")){categoryTests();printf("PASS: %u focused battle assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_WILD_ONLY")){wildTests();printf("PASS: %u focused wild assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_DEX_ONLY")){dexTests();printf("PASS: focused Dex diagnostic\n");core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_BLAINE_ONLY")){blaineTests();printf("PASS: %u focused Blaine assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_MUSEUM_ONLY")){museumTests();printf("PASS: %u focused Museum assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     initSave();
     for(unsigned h=0;h<24;h++) {
         clockAt(h);core->busWrite8(core,scratch,255);
@@ -446,6 +465,13 @@ int main(int argc,char **argv) {
     summaryTests();
     wildTests();
     wildHardeningTests();
+    daycareTests();
+    fossilTests();
+    vendorTests();
+    vendorUiTests();
+    captureTests();
+    museumTests();
+    blaineTests();
     printf("PASS: %u mGBA assertions (includes API/register safety checks)\n",checks);
     core->deinit(core);free(pixels);free(bootState);
     return 0;

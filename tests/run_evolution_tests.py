@@ -170,7 +170,8 @@ print('PASS: static item routing, deferred consumption and unchanged cancellatio
 
 # Restore only the approved Use-menu metadata changes and compare every other
 # item property (including all held effects) to the split branch baseline.
-normalized = json.loads(Path('src/data/items.json').read_text())
+from approved_ball_changes import prior_ball_source
+normalized = json.loads(prior_ball_source('src/data/items.json'))
 for item in normalized['items']:
     if item['itemId'] in ids:
         item['type'] = 'ITEM_TYPE_BAG_MENU'

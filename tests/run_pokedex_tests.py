@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from approved_ball_changes import prior_ball_source
 """Execute current mapping/count/list/flag code. UI drawing is not host-emulated."""
 from pathlib import Path
 import csv, hashlib, json, re, subprocess, tempfile
@@ -115,10 +116,10 @@ with tempfile.TemporaryDirectory() as temp:
  subprocess.run(['gcc','-std=gnu11','-D__INTELLISENSE__','-iquote','.','-iquote','include','-iquote','src',str(p),'-o',temp+'/pokedex'],check=True)
  subprocess.run([temp+'/pokedex'],check=True)
 # Independent approved override fixture: validate each exact change, then restore
-# ONLY those twelve type pairs and compare the original whole-file digest.
+# ONLY those35 approved type pairs and compare the original whole-file digest.
 # This detects changed stats, abilities, forms, extra types, or missing overrides.
 fixture=json.loads(Path('tests/specifications/approved_type_overrides.json').read_text())['species']
-assert len(fixture)==12
+assert len(fixture)==35
 species_info=Path('src/data/pokemon/species_info.h').read_text()
 for name,types in fixture.items():
  pattern=r'(\[SPECIES_'+name+r'\]\s*=\s*\{.*?\.types = \{)(TYPE_\w+), (TYPE_\w+)(\},)'
@@ -130,6 +131,13 @@ for name,types in fixture.items():
 
 preserved=json.loads(Path('tests/custom_dex_preserved.json').read_text())
 for path,expected_hash in preserved.items():
- actual=species_info.encode() if path=='src/data/pokemon/species_info.h' else Path(path).read_bytes()
+ actual=species_info.encode() if path=='src/data/pokemon/species_info.h' else prior_ball_source(path)
+ if path=='include/global.h':
+  # Only the reviewed 400-byte padding substitution is allowed; target ABI tests
+  # separately prove that this does not change existing save offsets/size.
+  original=actual.decode()
+  original=re.sub(r'// Versioned use of exactly 400 formerly unused save bytes\..*?\n};\n\n','',original,flags=re.S)
+  original=original.replace('/*0x348C*/ struct Route5DaycareSave route5Daycare;','/*0x348C*/ u8 unused_348C[400];')
+  actual=original.encode()
  assert hashlib.sha256(actual).hexdigest()==expected_hash,path
-print('PASS: twelve approved type pairs; all other species fields/types/abilities, Forecast, trainers, evolution data and save layout preserved (static audit)')
+print('PASS: 35 effective approved type pairs; all other species fields/types/abilities, Forecast, trainers, evolution data and save layout preserved (static audit)')

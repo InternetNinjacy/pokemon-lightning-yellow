@@ -1,4 +1,5 @@
 #include "global.h"
+#include "capture_rules.h"
 #include "task.h"
 #include "help_system.h"
 #include "overworld.h"
@@ -213,6 +214,8 @@ static void Task_BattleStart(u8 taskId)
 static void CreateBattleStartTask(u8 transition, u16 song) // song == 0 means default music for current map
 {
     u8 taskId = CreateTask(Task_BattleStart, 1);
+
+    gCaptureOrigin = TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_SURFING) ? CAPTURE_ORIGIN_SURFING : 0;
 
     gTasks[taskId].tTransition = transition;
     PlayMapChosenOrBattleBGM(song);

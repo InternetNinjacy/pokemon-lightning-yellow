@@ -55,8 +55,9 @@ SaffronCity_EventScript_DoorGuardAsleep::
 	end
 
 SaffronCity_EventScript_WorkerM::
-	msgbox SaffronCity_Text_YouBeatTeamRocket, MSGBOX_NPC
-	end
+	textcolor NPC_TEXT_COLOR_MALE
+	setvar VAR_0x8009, 7
+	goto MysteryVendor_Start
 
 SaffronCity_EventScript_Youngster::
 	msgbox SaffronCity_Text_SafeToGoOutAgain, MSGBOX_NPC

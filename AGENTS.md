@@ -86,3 +86,67 @@ Canonical project tracking lives separately on `docs/project-coordination` in
 `docs/project-tracking.json`. Update it at milestones/focus switches/session end;
 Drive synchronization is pending, not completed. Do not invent unavailable Route 5,
 move redesign, weather, visual or Phase Two details. No merges or auto-merge.
+
+The complete owner-supplied November2 Route5 handoff authorizes DAY-001..004.
+Read docs/ROUTE5_DAYCARE.md. Use versioned400-byte reserved storage without moving
+existing save fields; never erase unknown/corrupt daycare data or re-import the
+read-only legacy recovery copy after migration. Preserve independent Four Island
+parents/pending state, one party hatch clock, ordinary breeding and untagged eggs.
+Only Route5 eggs carry their persistent Shiny intention through matching-build
+ownership changes. Run all host suites including run_daycare_tests.py and the
+complete mGBA suite. Do not invent Route5 Ditto rate/levels or claim a real link
+handshake from ownership-data fixtures. No merges, auto-merge or ROM release.
+
+The November2 world/fossil update authorizes the Route10 Claw reward and Cinnabar
+unchosen fossil/revival extension. Read docs/FOSSIL_REWARDS_AND_SPECIES_AUDIT.md.
+Preserve immutable MtMoon choice flags, existing reward bit0x2FA and independent
+daycare/save layout. Run tests/run_world_reward_tests.py plus all prior suites
+and complete mGBA. Species audit findings are unresolved conflicts, never approved
+off-Dex exceptions; --check prevents new findings while --strict still fails.
+Do not invent Blaine levels/moves or revert Gyarados Water/Dragon without resolving
+the explicit Water/Flying strategy conflict. Missing ZIP/Poke Ball specifications
+and draft encounter values are not inferred. No merges, auto-merge or ROM release.
+
+Mystery Vendor Network is authorized independently of pending starter changes.
+Read docs/MYSTERY_VENDOR_NETWORK.md. Keep the exact approved ten NPC objects,
+level5/700/uniform-without-replacement pool and90% genuine Shiny policy.
+Preserve foreign Mystery identity with correctly rekeyed secure data, ordinary
+traded EXP/obedience, existing flags/save layout and legacy Magikarp reservation.
+Run tests/run_vendor_tests.py and all preceding suites, plus full mGBA.
+The new specials must stay inside gSpecials..gSpecialsEnd; never disable ABI or
+assertion guards. Do not mix starter/Poke Ball work into this PR. No merges.
+
+BTL-006 Poké Ball implementation is explicitly authorized beyond readiness.
+Read docs/POKE_BALL_REDESIGN.md. Preserve old item IDs, four-bit capture codes and
+all artwork; Snow item375 uses separate stored code13. Do not widen save fields
+or assume every ball is <=Premier. Keep exact current-weather/origin/cave rules,
+nonstacking bonuses, eight-species Premier whitelist, atomic purchase bonuses,
+Oak pending gift and unchanged emergency refill. New capture tests join all old
+host/full mGBA suites; old feature preservation hashes remain with only frozen
+approved deltas normalized. No unrelated trainer/starter/weather redesign, merges,
+auto-merge or ROM release. Owner's latest instruction supersedes readiness stop.
+
+PKM-007 supersedes the older twelve-rule typing snapshot: use all35 explicit
+rules in tests/specifications/approved_type_overrides.json, preserving the other
+species fields. Read docs/TYPING_CORRECTIONS.md. The supplied authority exports
+are available; unavailable direct Drive writing does not mean missing designs.
+Pure Bug Pinsir supersedes Bug/Steel; Gyarados stays Water/Dragon. Run the new
+run_typing_tests.py, all host suites and full mGBA. Keep the24-pair delta isolated
+from pending stats/ability/learnset, encounter and weather redesigns. Preserve
+historical hashes via the explicit approved normalization. No merges/auto-merge.
+The independent upstream job retains `make compare`; modified builds use the
+regression suites and reproducibility checks.
+
+## Approved feature implementation handoffs
+
+Use `implementation/README.md` for the approved-feature workflow and `implementation/TEMPLATE.md` when creating new handoffs. An implementation file is authoritative for Codex only when its exact scope is fully approved, its status is `Ready for implementation`, and its review is complete. Do not treat a draft, merely suggested behavior, or an unmerged handoff as permission to implement gameplay. If requirements conflict or are missing, stop and report the blocker.
+
+Read the referenced handoff from the repository before changing code. Google Drive source links document provenance but are not prerequisites for Codex to execute an implementation task. Work in a separate topic branch, open a PR, document verification, and never auto-merge.
+
+For the November4 consolidation, the owner explicitly authorized merging all
+existing project PRs and continuing approved unfinished work. This supersedes
+older merge prohibitions for that consolidation only. Keep the repository
+auto-merge setting enabled, validate integrated heads, preserve recovery history
+and do not invent missing feature designs. Future unreviewed releases remain
+unauthorized. Approved-feature handoffs supplement, rather than erase, supplied
+exports and explicit owner approvals.
