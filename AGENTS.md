@@ -150,3 +150,14 @@ auto-merge setting enabled, validate integrated heads, preserve recovery history
 and do not invent missing feature designs. Future unreviewed releases remain
 unauthorized. Approved-feature handoffs supplement, rather than erase, supplied
 exports and explicit owner approvals.
+
+PKM-008 implements the separately approved Ponyta Lv30 threshold from the supplied
+November2 source-parity export, section3. Read docs/PONYTA_LEVEL30_EVOLUTION.md.
+Preserve every other evolution-table byte; run run_ponyta_tests.py, all prior host
+suites, Museum static checks and full mGBA. The exact delta normalizer protects
+old snapshots without replacing expected hashes. No other Ponyta stats/moves or
+unapproved balance changes. After the owner-authorized consolidation, main holds
+the canonical dashboard/ledger; docs/project-coordination is historical. Keep
+repository auto-merge enabled; owner approval for this consolidation supersedes
+older no-merge notes, not explicit feature design HOLDs. Ranger's current contract
+is implementation/saffron-ranger-base-camp.md; the rival handoff stays BLOCKED.

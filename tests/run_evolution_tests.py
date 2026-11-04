@@ -108,8 +108,8 @@ int main(void) {
  }
  // New level thresholds replace only the explicitly approved methods.
  {
- const u16 levels[][3]={{SPECIES_PICHU,20,SPECIES_PIKACHU},{SPECIES_CLEFFA,15,SPECIES_CLEFAIRY},{SPECIES_IGGLYBUFF,15,SPECIES_JIGGLYPUFF},{SPECIES_SMOOCHUM,30,SPECIES_JYNX},{SPECIES_ELEKID,25,SPECIES_ELECTABUZZ},{SPECIES_MAGBY,25,SPECIES_MAGMAR},{SPECIES_FEEBAS,20,SPECIES_MILOTIC},{SPECIES_TYROGUE,15,SPECIES_HITMONCHAN}};
- for(i=0;i<8;i++) {
+ const u16 levels[][3]={{SPECIES_PICHU,20,SPECIES_PIKACHU},{SPECIES_CLEFFA,15,SPECIES_CLEFAIRY},{SPECIES_IGGLYBUFF,15,SPECIES_JIGGLYPUFF},{SPECIES_SMOOCHUM,30,SPECIES_JYNX},{SPECIES_ELEKID,25,SPECIES_ELECTABUZZ},{SPECIES_MAGBY,25,SPECIES_MAGMAR},{SPECIES_FEEBAS,20,SPECIES_MILOTIC},{SPECIES_TYROGUE,15,SPECIES_HITMONCHAN},{SPECIES_PONYTA,30,SPECIES_RAPIDASH}};
+ for(i=0;i<sizeof(levels)/sizeof(*levels);i++) {
   species=levels[i][0];held=0;friendship=255;level=levels[i][1]-1;CHECK(Target(EVO_MODE_NORMAL,0)==SPECIES_NONE);
   friendship=0;level++;CHECK(Target(EVO_MODE_NORMAL,0)==levels[i][2]);
   level++;CHECK(Target(EVO_MODE_NORMAL,0)==levels[i][2]);
@@ -195,6 +195,9 @@ approved = {
              ('EVO_LEVEL_CHOICE','15','SPECIES_HITMONLEE'),
              ('EVO_LEVEL_CHOICE','15','SPECIES_HITMONTOP')],
 }
+assert rows['PONYTA']==[('EVO_LEVEL','30','SPECIES_RAPIDASH')]
+# Restore only the separately approved threshold for the frozen old-row digest.
+rows['PONYTA']=[('EVO_LEVEL','40','SPECIES_RAPIDASH')]
 for species, expected in approved.items():
     assert rows.pop(species) == expected, species
 # All other rows, including Smoochum, Golbat/Chansey, stones and excluded

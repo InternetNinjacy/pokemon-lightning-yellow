@@ -7,6 +7,7 @@ from pathlib import Path
 import json
 from approved_blaine_changes import prior_blaine_source
 from approved_museum_changes import prior_museum_source
+from approved_ponyta_changes import prior_ponyta_source
 
 def prior_ball_source(path):
     text=prior_museum_source(path)
@@ -14,4 +15,4 @@ def prior_ball_source(path):
     for hunk in data['hunks'].get(str(path),[]):
         assert text.count(hunk['after'])==1, 'Unreviewed change to approved ball delta: '+str(path)
         text=text.replace(hunk['after'],hunk['before'],1)
-    return prior_blaine_source(str(path), text).encode()
+    return prior_ponyta_source(path, prior_blaine_source(str(path), text)).encode()

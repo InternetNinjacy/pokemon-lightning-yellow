@@ -1,0 +1,10 @@
+{
+  "base": "93b62d6837e61a483f67d00e2a055f559dc33d53",
+  "authority": "Owner-approved Lv30 recorded in supplied Evolution & Item Supply Source Parity, November2, section3; current standing implementation authorization",
+  "source_export": "04_SPECIES_EVOLUTION_WORLD/Pok\u00e9mon Lightning Yellow \u2014 Evolution & Item Supply Source Parity \u2014 2026-11-02.txt",
+  "source_sha256": "6a39563906572b3ab6870e754473a5a4daef593c3783c92d80a0eaf02322b237",
+  "path": "src/data/pokemon/evolution.h",
+  "before": "[SPECIES_PONYTA]     = {{EVO_LEVEL, 40, SPECIES_RAPIDASH}}",
+  "after": "[SPECIES_PONYTA]     = {{EVO_LEVEL, 30, SPECIES_RAPIDASH}}",
+  "before_file_sha256": "75051423dce1b407cca12254788eb925faca011a5e2055be0d7e94157f38cad4"
+}

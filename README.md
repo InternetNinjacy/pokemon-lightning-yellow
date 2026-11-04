@@ -19,8 +19,8 @@ party/Repel/capture rules, executed evidence and remaining release checks.
 This branch adds [approved Phase One stabilization](docs/PHASE_ONE_STABILIZATION.md):
 the original twelve-rule typing snapshot, roster-aware evolution access before National Dex, and the
 06:00–18:00 functional day/night boundary. It extends acceptance tests while
-preserving the existing unmerged feature stack. The canonical [project dashboard](https://github.com/InternetNinjacy/pokemon-lightning-yellow/blob/docs/project-coordination/docs/PROJECT_DASHBOARD.md)
-and [implementation ledger](https://github.com/InternetNinjacy/pokemon-lightning-yellow/blob/docs/project-coordination/docs/MASTER_IMPLEMENTATION_CHANGE_LEDGER.md)
+preserving the existing unmerged feature stack. The canonical [project dashboard](https://github.com/InternetNinjacy/pokemon-lightning-yellow/blob/main/docs/PROJECT_DASHBOARD.md)
+and [implementation ledger](https://github.com/InternetNinjacy/pokemon-lightning-yellow/blob/main/docs/MASTER_IMPLEMENTATION_CHANGE_LEDGER.md)
 live on the independent coordination branch; Drive synchronization remains pending.
 
 [Route5 daycare breeding](docs/ROUTE5_DAYCARE.md) is implemented on this stacked branch: independent two-parent storage, safe legacy migration and persistent50% Shiny eggs. Read its validation status and rollback limitations before using old saves.
@@ -95,3 +95,7 @@ make an unexplained failure pass.
 The [current typing reconciliation](docs/TYPING_CORRECTIONS.md) implements 24
 remaining approved type pairs and validates all 35 effective explicit typing rules.
 Run `python3 tests/run_typing_tests.py` alongside the other regression suites.
+
+[Ponyta’s approved level-30 evolution](docs/PONYTA_LEVEL30_EVOLUTION.md) is tracked
+as PKM-008. Canonical tracking now lives on main following the owner-authorized
+feature-stack consolidation; the old coordination branch is historical.
