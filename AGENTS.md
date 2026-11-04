@@ -30,3 +30,9 @@ Do not upload ROM artifacts to Actions. Do not download a reference ROM.
 Use the existing isolated checkout in cloud tasks; do not create worktrees unless
 explicitly requested. Build with `scripts/prepare-baseline.sh`, then
 `make -j2 compare`; use `make clean` before repeatability validation.
+
+## Approved feature implementation handoffs
+
+Use `implementation/README.md` for the approved-feature workflow and `implementation/TEMPLATE.md` when creating new handoffs. An implementation file is authoritative for Codex only when its exact scope is fully approved, its status is `Ready for implementation`, and its review is complete. Do not treat a draft, merely suggested behavior, or an unmerged handoff as permission to implement gameplay. If requirements conflict or are missing, stop and report the blocker.
+
+Read the referenced handoff from the repository before changing code. Google Drive source links document provenance but are not prerequisites for Codex to execute an implementation task. Work in a separate topic branch, open a PR, document verification, and never auto-merge.
