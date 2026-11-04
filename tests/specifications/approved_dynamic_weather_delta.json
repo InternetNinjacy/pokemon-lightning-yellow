@@ -1,0 +1,82 @@
+{
+  "base": "c960642ddbdacc1cf608d8c5081ee0ecd7cca6e9",
+  "hunks": {
+    "src/field_weather_util.c": [
+      {
+        "before": "#include \"global.h\"\n#include \"field_weather.h\"\n#include \"overworld.h\"\n#include \"constants/weather.h\"\n",
+        "after": "#include \"global.h\"\n#include \"dynamic_weather.h\"\n#include \"field_weather.h\"\n#include \"overworld.h\"\n#include \"constants/weather.h\"\n"
+      },
+      {
+        "before": "void SetSavedWeatherFromCurrMapHeader(void)\n{\n    u8 oldWeather = gSaveBlock1Ptr->weather;\n    gSaveBlock1Ptr->weather = TranslateWeatherNum(gMapHeader.weather);\n    UpdateRainCounter(gSaveBlock1Ptr->weather, oldWeather);\n}\n\n",
+        "after": "void SetSavedWeatherFromCurrMapHeader(void)\n{\n    u8 oldWeather = gSaveBlock1Ptr->weather;\n    gSaveBlock1Ptr->weather = DynamicWeatherForMap(TranslateWeatherNum(gMapHeader.weather));\n    UpdateRainCounter(gSaveBlock1Ptr->weather, oldWeather);\n}\n\n"
+      }
+    ],
+    "src/overworld.c": [
+      {
+        "before": "#include \"global.h\"\n#include \"gflib.h\"\n#include \"bg_regs.h\"\n#include \"cable_club.h\"\n",
+        "after": "#include \"global.h\"\n#include \"dynamic_weather.h\"\n#include \"gflib.h\"\n#include \"bg_regs.h\"\n#include \"cable_club.h\"\n"
+      },
+      {
+        "before": "\nstatic void OverworldBasic(void)\n{\n    ScriptContext_RunScript();\n    RunTasks();\n    AnimateSprites();\n",
+        "after": "\nstatic void OverworldBasic(void)\n{\n    DynamicWeatherUpdate();\n    ScriptContext_RunScript();\n    RunTasks();\n    AnimateSprites();\n"
+      }
+    ],
+    "src/battle_util.c": [
+      {
+        "before": "#include \"global.h\"\n#include \"item.h\"\n#include \"text.h\"\n#include \"util.h\"\n",
+        "after": "#include \"global.h\"\n#include \"dynamic_weather.h\"\n#include \"item.h\"\n#include \"text.h\"\n#include \"util.h\"\n"
+      },
+      {
+        "before": "            switch (gLastUsedAbility)\n            {\n            case ABILITYEFFECT_SWITCH_IN_WEATHER:\n                switch (GetCurrentWeather())\n                {\n                case WEATHER_RAIN:\n                case WEATHER_RAIN_THUNDERSTORM:\n",
+        "after": "            switch (gLastUsedAbility)\n            {\n            case ABILITYEFFECT_SWITCH_IN_WEATHER:\n                switch (DynamicWeatherForBattle())\n                {\n                case WEATHER_RAIN:\n                case WEATHER_RAIN_THUNDERSTORM:\n"
+      },
+      {
+        "before": "                }\n                if (effect != 0)\n                {\n                    gBattleCommunication[MULTISTRING_CHOOSER] = GetCurrentWeather();\n                    BattleScriptPushCursorAndCallback(BattleScript_OverworldWeatherStarts);\n                }\n                break;\n",
+        "after": "                }\n                if (effect != 0)\n                {\n                    gBattleCommunication[MULTISTRING_CHOOSER] = DynamicWeatherForBattle();\n                    BattleScriptPushCursorAndCallback(BattleScript_OverworldWeatherStarts);\n                }\n                break;\n"
+      }
+    ],
+    "src/battle_setup.c": [
+      {
+        "before": "#include \"global.h\"\n#include \"capture_rules.h\"\n#include \"task.h\"\n#include \"help_system.h\"\n",
+        "after": "#include \"global.h\"\n#include \"dynamic_weather.h\"\n#include \"capture_rules.h\"\n#include \"task.h\"\n#include \"help_system.h\"\n"
+      },
+      {
+        "before": "\nstatic void CB2_EndWildBattle(void)\n{\n    CpuFill16(0, (void *)BG_PLTT, BG_PLTT_SIZE);\n    ResetOamRange(0, 128);\n    if (IsPlayerDefeated(gBattleOutcome) == TRUE)\n",
+        "after": "\nstatic void CB2_EndWildBattle(void)\n{\n    DynamicWeatherAfterBattle();\n    CpuFill16(0, (void *)BG_PLTT, BG_PLTT_SIZE);\n    ResetOamRange(0, 128);\n    if (IsPlayerDefeated(gBattleOutcome) == TRUE)\n"
+      },
+      {
+        "before": "\nstatic void CB2_EndScriptedWildBattle(void)\n{\n    CpuFill16(0, (void *)BG_PLTT, BG_PLTT_SIZE);\n    ResetOamRange(0, 128);\n    if (IsPlayerDefeated(gBattleOutcome) == TRUE)\n",
+        "after": "\nstatic void CB2_EndScriptedWildBattle(void)\n{\n    DynamicWeatherAfterBattle();\n    CpuFill16(0, (void *)BG_PLTT, BG_PLTT_SIZE);\n    ResetOamRange(0, 128);\n    if (IsPlayerDefeated(gBattleOutcome) == TRUE)\n"
+      },
+      {
+        "before": "\nstatic void CB2_EndTrainerBattle(void)\n{\n    if (sTrainerBattleMode == TRAINER_BATTLE_EARLY_RIVAL)\n    {\n        if (IsPlayerDefeated(gBattleOutcome) == TRUE)\n",
+        "after": "\nstatic void CB2_EndTrainerBattle(void)\n{\n    DynamicWeatherAfterBattle();\n    if (sTrainerBattleMode == TRAINER_BATTLE_EARLY_RIVAL)\n    {\n        if (IsPlayerDefeated(gBattleOutcome) == TRUE)\n"
+      },
+      {
+        "before": "\nstatic void CB2_EndRematchBattle(void)\n{\n    if (gTrainerBattleOpponent_A == TRAINER_SECRET_BASE)\n    {\n        SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);\n",
+        "after": "\nstatic void CB2_EndRematchBattle(void)\n{\n    DynamicWeatherAfterBattle();\n    if (gTrainerBattleOpponent_A == TRAINER_SECRET_BASE)\n    {\n        SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);\n"
+      }
+    ],
+    "src/field_weather.c": [
+      {
+        "before": "    {FogDiagonal_InitVars, FogDiagonal_Main, FogDiagonal_InitAll, FogDiagonal_Finish},\n    {FogHorizontal_InitVars, FogHorizontal_Main, FogHorizontal_InitAll, FogHorizontal_Finish},\n    {Shade_InitVars, Shade_Main, Shade_InitAll, Shade_Finish},\n    {Drought_InitVars, Drought_Main, Drought_InitAll, Drought_Finish},\n    {Downpour_InitVars, Thunderstorm_Main, Downpour_InitAll, Thunderstorm_Finish},\n    {Bubbles_InitVars, Bubbles_Main, Bubbles_InitAll, Bubbles_Finish},\n};\n",
+        "after": "    {FogDiagonal_InitVars, FogDiagonal_Main, FogDiagonal_InitAll, FogDiagonal_Finish},\n    {FogHorizontal_InitVars, FogHorizontal_Main, FogHorizontal_InitAll, FogHorizontal_Finish},\n    {Shade_InitVars, Shade_Main, Shade_InitAll, Shade_Finish},\n    // FR drought palette loader is stubbed: use existing clear renderer,\n    // retaining WEATHER_DROUGHT as the mechanical sunlight ID.\n    {Sunny_InitVars, Sunny_Main, Sunny_InitAll, Sunny_Finish},\n    {Downpour_InitVars, Thunderstorm_Main, Downpour_InitAll, Thunderstorm_Finish},\n    {Bubbles_InitVars, Bubbles_Main, Bubbles_InitAll, Bubbles_Finish},\n};\n"
+      },
+      {
+        "before": "    case WEATHER_DROUGHT:\n        if (FadeInScreen_Drought() == FALSE)\n        {\n            gWeatherPtr->gammaIndex = -6;\n            gWeatherPtr->palProcessingState = WEATHER_PAL_STATE_IDLE;\n        }\n        break;\n",
+        "after": "    case WEATHER_DROUGHT:\n        if (FadeInScreen_Drought() == FALSE)\n        {\n            gWeatherPtr->gammaIndex = 0;\n            gWeatherPtr->palProcessingState = WEATHER_PAL_STATE_IDLE;\n        }\n        break;\n"
+      },
+      {
+        "before": "\n    if (++gWeatherPtr->fadeScreenCounter >= 16)\n    {\n        ApplyGammaShift(0, 32, -6);\n        gWeatherPtr->fadeScreenCounter = 16;\n        return FALSE;\n    }\n",
+        "after": "\n    if (++gWeatherPtr->fadeScreenCounter >= 16)\n    {\n        ApplyGammaShift(0, 32, 0);\n        gWeatherPtr->fadeScreenCounter = 16;\n        return FALSE;\n    }\n"
+      }
+    ]
+  },
+  "before_sha256": {
+    "src/field_weather_util.c": "a1fe626560a3baca43fd48ffa5ea8ec652d6f82e64b4df5467f052c00be6d08a",
+    "src/overworld.c": "2d76d05d4a1f194460bcd5108be328222193b48c2661a74114cc0f252b3e6e7f",
+    "src/battle_util.c": "f26ab5a3821c83d2371fe25671cc3f17ba54f3e520c7cd84f786178d127cf378",
+    "src/battle_setup.c": "57316754e544969fc7980dc7c150ec0db4dc8e1187904c35f0259bd0f066c774",
+    "src/field_weather.c": "935ed0d0d83ff91bd8fdb52883c8223a816a66a40ec44b2b61c3e68fedc52672"
+  }
+}

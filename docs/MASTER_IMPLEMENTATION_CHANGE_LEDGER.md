@@ -731,3 +731,15 @@ story/manual balance/loss event progression/Pikachu starter integration and
 hardware/link acceptance remain explicitly separate/unverified. Existing beaten
 flags are preserved; no forced story reset. Source rollback uses ordinary revert
 of feature commits; preserve user saves and canonical move/species IDs.
+
+## 2026-11-04 — WTH-001/003 in-progress checkpoint; owner switches to rival
+
+Weather work is safely checkpointed on its separate feature branch. Builds and
+10880936 host weather assertions pass; focused native83 policies/Sun/RTC phase
+pass, later map fixture fieldScriptDone fails. Not a full regression/CI pass.
+No new completion credit, no production-complete claim or weather PR. Full resume
+notes: docs/WEATHER_WORK_CHECKPOINT.md. No source/design decisions invented for
+unassigned boarding/prototype exteriors; lighting/tints/fog remain separate.
+Owner explicitly requests the main rival contract; verify existing ready PR27
+rather than duplicate implementation. Preserve this weather branch unchanged
+while returning to feature/main-rival-eight-battles. No merge/auto-merge action.

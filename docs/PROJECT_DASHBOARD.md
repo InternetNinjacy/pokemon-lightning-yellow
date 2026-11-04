@@ -4,7 +4,7 @@ Canonical branch: `main`. Updated 2026-11-04. Audited gameplay revision: `c96064
 
 Overall: `[#####-----]` **45.07% complete /54.93% remaining** (247 earned +301 remaining;548 provisional effort points).
 
-GYM-006 eight rival teams/global Dratini-family learnsets implemented in separate PR27. All14 host suites, clean reproducibility, native1525 data/52741 battle assertions PASS. Full CI conclusions and review status are live in PR27. Ranger26/spec25 merged; other queued approved work preserved.
+Owner requests rival contract implementation verification; existing ready PR27 already implements it. Weather work safely checkpointed separately on feature/dynamic-map-weather, incomplete validation. No weather changes in rival PR.
 
 These are estimates of tracked work, not elapsed hours or release certification. Every permanent ID and earned-history entry is retained. The original530-point scope gained2 Ponyta and16 Ranger points; adding scope changes the denominator without erasing completed work. Repeated regression is not duplicate implementation credit.
 
@@ -59,7 +59,7 @@ These are estimates of tracked work, not elapsed hours or release certification.
 
 | Permanent task | Approval and implementation | Automated /emulator acceptance | PR /merge | Remaining /dependencies | Evidence, blocker and next action |
 |---|---|---|---|---|---|
-| WTH-001 Map weather selection and persistent state | Design: Weighted maps/entry/reentry/night conversion/RTC recovery supplied and approved; code: not started | Automated: not executed for new work; emulator: not executed | not created; not merged | 28 points; TIM-002 | Map supplied approved groups/exceptions onto actual source IDs and implement eligible base weather. Kindle Road/Trainer Tower/Tanoby/harbors are resolved by later appendices; SOW overrides remain held. |
+| WTH-001 Map weather selection and persistent state | Design: Weighted maps/entry/reentry/night conversion/RTC recovery supplied and approved; code: in progress on separate branch;83 policies/state/RTC/hooks implemented, not production-complete | Automated: weather host10880936 assertions PASS; full regression/clean/CI not completed; emulator: 83 policy samples and Sun/RTC phase PASS; later indoor/map fixture fails, remaining tests unexecuted | not created; not merged | 28 points; TIM-002 | Resume focused map fixture investigation, then required complete host/native/clean/CI; do not claim completion or mix into PR27. |
 | WTH-002 Weather rendering repairs and conflicts | Design: Weather rendering/fog scope supplied; implementation validation pending; code: not started | Automated: not executed for new work; emulator: not executed | not created; not merged | 16 points; WTH-001, TIM-003 | Blocker: Technical rendering/fade/fog/lighting interaction validation remains; final visual palette choices are separate, not missing-export blockers.; Inspect/render approved effects and compatible map transitions; preserve existing assets and pending visual approval. |
 | WTH-003 Field-to-battle weather bridge | Design: Field Snow bridge/lifetime implemented in#13; wider regional integration pending; code: partial: narrow Snow-to-Hail bridge in merged#13/vendor stack; regional policy/restoration not implemented | Automated: not executed for new work; emulator: not executed | not created; not merged | 20 points; WTH-001 | Preserve verified Snow-to-natural-Hail bridge and five-turn move Hail. Integrate regional selection/restoration later; do not count this existing BTL-006 work twice. |
 
