@@ -5195,33 +5195,15 @@ static const struct TrainerMonNoItemCustomMoves sParty_CooltrainerWarren[] = {
 static const struct TrainerMonNoItemCustomMoves sParty_CooltrainerMary[] = {
     {
         .iv = 100,
-        .lvl = 22,
-        .species = SPECIES_BELLSPROUT,
-        .moves = {MOVE_WRAP, MOVE_STUN_SPORE, MOVE_POISON_POWDER, MOVE_GROWTH},
+        .lvl = 27,
+        .species = SPECIES_CACNEA,
+        .moves = {MOVE_PIN_MISSILE, MOVE_LEECH_SEED, MOVE_GROWTH, MOVE_INGRAIN},
     },
     {
         .iv = 100,
-        .lvl = 22,
-        .species = SPECIES_ODDISH,
-        .moves = {MOVE_POISON_POWDER, MOVE_STUN_SPORE, MOVE_ABSORB, MOVE_SWEET_SCENT},
-    },
-    {
-        .iv = 100,
-        .lvl = 22,
-        .species = SPECIES_WEEPINBELL,
-        .moves = {MOVE_VINE_WHIP, MOVE_STUN_SPORE, MOVE_POISON_POWDER, MOVE_GROWTH},
-    },
-    {
-        .iv = 100,
-        .lvl = 22,
-        .species = SPECIES_GLOOM,
-        .moves = {MOVE_ABSORB, MOVE_STUN_SPORE, MOVE_POISON_POWDER, MOVE_SWEET_SCENT},
-    },
-    {
-        .iv = 100,
-        .lvl = 22,
-        .species = SPECIES_IVYSAUR,
-        .moves = {MOVE_RAZOR_LEAF, MOVE_SLEEP_POWDER, MOVE_VINE_WHIP, MOVE_LEECH_SEED},
+        .lvl = 27,
+        .species = SPECIES_CASTFORM,
+        .moves = {MOVE_WEATHER_BALL, MOVE_EMBER, MOVE_WATER_GUN, MOVE_TACKLE},
     },
 };
 
