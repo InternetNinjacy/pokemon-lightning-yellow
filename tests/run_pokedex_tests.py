@@ -129,7 +129,7 @@ for name,types in fixture.items():
  assert count==1
 # Blaine depends on the separately approved pure-Flying Pidgeot retyping.
 # Verify precisely that species pair, then undo it for whole-file SHA comparison.
-pidgeot_pattern=r'(\\[SPECIES_PIDGEOT\\]\\s*=\\s*\\{.*?\\.types = \\{)(TYPE_\\w+), (TYPE_\\w+)(\\},)'
+pidgeot_pattern=r'(\[SPECIES_PIDGEOT\]\s*=\s*\{.*?\.types = \{)(TYPE_\w+), (TYPE_\w+)(\},)'
 pidgeot=re.search(pidgeot_pattern,species_info,re.S)
 assert pidgeot and (pidgeot[2],pidgeot[3])==('TYPE_FLYING','TYPE_FLYING')
 species_info,n=re.subn(pidgeot_pattern,lambda m:m[1]+'TYPE_NORMAL, TYPE_FLYING'+m[4],species_info,count=1,flags=re.S)
