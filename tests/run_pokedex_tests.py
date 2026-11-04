@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from approved_ball_changes import prior_ball_source
 """Execute current mapping/count/list/flag code. UI drawing is not host-emulated."""
 from pathlib import Path
 import csv, hashlib, json, re, subprocess, tempfile
@@ -29,6 +30,8 @@ program=r'''
 #include "pokedex.h"
 #include "pokedex_screen.h"
 #include "custom_pokedex.h"
+#include "event_data.h"
+bool32 IsNationalPokedexEnabled(void) {return FALSE;}
 #include "constants/pokedex.h"
 #define SPECIES_TO_NATIONAL(name) [SPECIES_##name - 1] = NATIONAL_DEX_##name
 struct ListMenuItem {const u8 *label; s32 index;};
@@ -69,6 +72,7 @@ int main(void) {
  for(i=0;i<252;i++) {
   CHECK(CustomPokedexNumToSpecies(i+1)==expected[i]);
   CHECK(SpeciesToCustomPokedexNum(expected[i])==i+1);
+  CHECK(IsEvolutionSpeciesAllowed(expected[i]));
   CHECK(SpeciesToPokedexNum(expected[i])==i+1);
   CHECK(DexScreen_CanShowMonInDex(expected[i]));
   ndex=SpeciesToNationalPokedexNum(expected[i]);
@@ -79,6 +83,7 @@ int main(void) {
   CHECK(HasAllCustomPokedexSpecies()==(i==251));
  }
  for(i=1;i<NUM_SPECIES;i++)if(!IsSpeciesInCustomPokedex(i)) {
+  CHECK(IsEvolutionSpeciesAllowed(i)==(i<=SPECIES_MEW));
   CHECK(SpeciesToPokedexNum(i)==0xFFFF);CHECK(!DexScreen_CanShowMonInDex(i));
   ndex=SpeciesToNationalPokedexNum(i);
   if(ndex>=1 && ndex<=386) {GetSetPokedexFlag(ndex,FLAG_SET_SEEN);GetSetPokedexFlag(ndex,FLAG_SET_CAUGHT);}
@@ -110,8 +115,29 @@ with tempfile.TemporaryDirectory() as temp:
  p=Path(temp)/'pokedex.c';p.write_text(program)
  subprocess.run(['gcc','-std=gnu11','-D__INTELLISENSE__','-iquote','.','-iquote','include','-iquote','src',str(p),'-o',temp+'/pokedex'],check=True)
  subprocess.run([temp+'/pokedex'],check=True)
-# Separate preservation evidence: whole systems stay byte-identical to PR5.
+# Independent approved override fixture: validate each exact change, then restore
+# ONLY those35 approved type pairs and compare the original whole-file digest.
+# This detects changed stats, abilities, forms, extra types, or missing overrides.
+fixture=json.loads(Path('tests/specifications/approved_type_overrides.json').read_text())['species']
+assert len(fixture)==35
+species_info=Path('src/data/pokemon/species_info.h').read_text()
+for name,types in fixture.items():
+ pattern=r'(\[SPECIES_'+name+r'\]\s*=\s*\{.*?\.types = \{)(TYPE_\w+), (TYPE_\w+)(\},)'
+ match=re.search(pattern,species_info,re.S)
+ assert match and [match[2][5:],match[3][5:]]==types['approved'],name
+ species_info,count=re.subn(pattern,lambda m:m[1]+'TYPE_'+types['original'][0]+', TYPE_'+types['original'][1]+m[4],species_info,count=1,flags=re.S)
+ assert count==1
+# Separate preservation evidence: all other bytes stay identical to PR5.
+
 preserved=json.loads(Path('tests/custom_dex_preserved.json').read_text())
 for path,expected_hash in preserved.items():
- assert hashlib.sha256(Path(path).read_bytes()).hexdigest()==expected_hash,path
-print('PASS: static preservation of species/types/abilities, Forecast implementation, trainers, evolution data and save layout')
+ actual=species_info.encode() if path=='src/data/pokemon/species_info.h' else prior_ball_source(path)
+ if path=='include/global.h':
+  # Only the reviewed 400-byte padding substitution is allowed; target ABI tests
+  # separately prove that this does not change existing save offsets/size.
+  original=actual.decode()
+  original=re.sub(r'// Versioned use of exactly 400 formerly unused save bytes\..*?\n};\n\n','',original,flags=re.S)
+  original=original.replace('/*0x348C*/ struct Route5DaycareSave route5Daycare;','/*0x348C*/ u8 unused_348C[400];')
+  actual=original.encode()
+ assert hashlib.sha256(actual).hexdigest()==expected_hash,path
+print('PASS: 35 effective approved type pairs; all other species fields/types/abilities, Forecast, trainers, evolution data and save layout preserved (static audit)')

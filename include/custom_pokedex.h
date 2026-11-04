@@ -8,6 +8,8 @@
 u16 CustomPokedexNumToSpecies(u16 number);
 u16 SpeciesToCustomPokedexNum(u16 species);
 bool8 IsSpeciesInCustomPokedex(u16 species);
+// Keep original Kanto/National access and additionally allow approved roster targets.
+bool8 IsEvolutionSpeciesAllowed(u16 species);
 u16 GetCustomPokedexCount(u8 flag);
 bool16 HasAllCustomPokedexSpecies(void);
 #endif

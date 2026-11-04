@@ -50,6 +50,7 @@ static void waitAction(void){
   if(controller(0)==SYM_HandleInputChooseAction)break;
   frames(1,(i%12)<3?1:0);
  }
+ if(i==2400)fprintf(stderr,"Script=%08x exec=%08x move=%u\n",core->busRead32(core,SYM_gBattlescriptCurrInstr),core->busRead32(core,SYM_gBattleControllerExecFlags),core->busRead16(core,SYM_gCurrentMove));
  if(i==2400)fprintf(stderr,"Battle action timeout cb=%08x battleflags=%08x ctrl=%08x/%08x/%08x/%08x battlers=%u outcome=%u\n",core->busRead32(core,SYM_gMain+ABI_MAIN_CB2),core->busRead32(core,SYM_gBattleTypeFlags),controller(0),controller(1),controller(2),controller(3),core->busRead8(core,SYM_gBattlersCount),core->busRead8(core,SYM_gBattleOutcome));
  CHECK(i<2400);frames(3,0);
 }
@@ -311,4 +312,60 @@ static void wildTests(void){
  chooseMove(0,1,1);waitOverworld(1);
  CHECK(core->busRead8(core,SYM_gBattleOutcome)==B_OUTCOME_MON_FLED);
  printf("PASS: roaming Pokemon preempted double policy, entered single battle and fled normally\n");
+}
+
+static void wildHardeningTests(void) {
+ // All ordinary Bag ball types share the two-live-opponent guard. Safari Ball
+ // remains part of the separate unchanged Safari mode, not a normal Bag item.
+ wildFixture(MAP_GROUP(MAP_ROUTE1),MAP_NUM(MAP_ROUTE1),1);
+ startSpecial();waitAction();
+ void *battle=malloc(core->stateSize(core));CHECK(battle && core->saveState(core,battle));
+ for(unsigned ball=ITEM_MASTER_BALL;ball<=ITEM_PREMIER_BALL;ball++) {
+  if(ball==ITEM_SAFARI_BALL)continue;
+  CHECK(core->loadState(core,battle));CHECK(CALL(AddBagItem,ball,2));
+  openBagUse();
+  CHECK(CALL(BagGetQuantityByItemId,ball)==2);
+  CHECK(core->busRead8(core,SYM_gBattleOutcome)==0);
+  CHECK(CALL(GetWildOpponentCount)==2);
+ }
+ free(battle);
+ printf("PASS: all eleven ordinary Bag ball types reject two live opponents without consumption\n");
+
+ wildFixture(MAP_GROUP(MAP_ROUTE1),MAP_NUM(MAP_ROUTE1),1);
+ CHECK(CALL(AddBagItem,ITEM_MASTER_BALL,2));startSpecial();waitAction();killOne(1);
+ openBagUse();waitController(2,SYM_HandleInputChooseAction);
+ CHECK(CALL(BagGetQuantityByItemId,ITEM_MASTER_BALL)==1);
+ press(2);waitController(0,SYM_HandleInputChooseAction);
+ CHECK(CALL(BagGetQuantityByItemId,ITEM_MASTER_BALL)==2);
+ CHECK(CALL(GetWildOpponentCount)==1);
+ if(core->busRead8(core,SYM_gActionSelectionCursor)&1)press(32);
+ openBagUse();chooseMove(2,1,3);waitOverworld(2);
+ CHECK(core->busRead8(core,SYM_gBattleOutcome)==B_OUTCOME_CAUGHT);
+ CHECK(CALL(BagGetQuantityByItemId,ITEM_MASTER_BALL)==1);
+ printf("PASS: partner B canceled ball choice and refunded once; retry captured and consumed once\n");
+
+ wildFixture(MAP_GROUP(MAP_ROUTE1),MAP_NUM(MAP_ROUTE1),1);
+ CHECK(CALL(AddBagItem,ITEM_POKE_BALL,2));startSpecial();waitAction();killOne(1);
+ battle=malloc(core->stateSize(core));CHECK(battle && core->saveState(core,battle));
+ unsigned failed=0;
+ // Legitimate catch randomness can succeed. Restore an isolated fixture and try
+ // bounded different deterministic RNG states; never replace the catch routine.
+ for(unsigned attempt=0;attempt<10 && !failed;attempt++) {
+  CHECK(core->loadState(core,battle));
+  core->busWrite32(core,SYM_gRngValue,0x13579BDF+0x10001*attempt);
+  openBagUse();chooseMove(2,1,3);
+  unsigned f;
+  for(f=0;f<2400;f++) {
+   frames(1,(f%12)<3?2:0);
+   if(core->busRead8(core,SYM_gBattleOutcome)==B_OUTCOME_CAUGHT)break;
+   if(f>60 && controller(0)==SYM_HandleInputChooseAction) {failed=1;break;}
+  }
+  CHECK(f<2400);
+  CHECK(CALL(BagGetQuantityByItemId,ITEM_POKE_BALL)==1);
+ }
+ CHECK(failed);CHECK(core->busRead8(core,SYM_gBattleOutcome)==0);
+ CHECK(CALL(GetWildOpponentCount)==1);
+ CHECK(!CALL(GetSetPokedexFlag,CALL(SpeciesToNationalPokedexNum,SPECIES_CLOYSTER),1));
+ free(battle);
+ printf("PASS: actual failed Poke Ball throw consumed once, retained survivor and resumed battle without caught registration\n");
 }

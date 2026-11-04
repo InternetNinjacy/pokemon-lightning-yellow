@@ -2,6 +2,7 @@
 #include "pokemon.h"
 #include "pokedex.h"
 #include "custom_pokedex.h"
+#include "event_data.h"
 
 static const u16 sCustomDexSpecies[CUSTOM_DEX_COUNT + 1] =
 {
@@ -50,4 +51,11 @@ u16 GetCustomPokedexCount(u8 flag)
 bool16 HasAllCustomPokedexSpecies(void)
 {
     return GetCustomPokedexCount(FLAG_GET_CAUGHT) == CUSTOM_DEX_COUNT;
+}
+
+bool8 IsEvolutionSpeciesAllowed(u16 species)
+{
+    return species <= SPECIES_MEW
+        || IsSpeciesInCustomPokedex(species)
+        || IsNationalPokedexEnabled();
 }

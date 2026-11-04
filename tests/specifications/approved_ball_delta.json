@@ -1,0 +1,108 @@
+{
+  "base": "92a0600d819fe818f948e8d72bd1591531b4a07c",
+  "purpose": "Explicit approved ball delta only; reverse these exact context hunks before old baseline preservation hashes. Not runtime proof.",
+  "hunks": {
+    "src/battle_script_commands.c": [
+      {
+        "before": "#include \"global.h\"\n#include \"wild_double_battle.h\"\n#include \"gflib.h\"\n#include \"item.h\"\n",
+        "after": "#include \"global.h\"\n#include \"capture_rules.h\"\n#include \"wild_double_battle.h\"\n#include \"gflib.h\"\n#include \"item.h\"\n"
+      },
+      {
+        "before": "        else\n            catchRate = gSpeciesInfo[gBattleMons[gBattlerTarget].species].catchRate;\n\n        if (gLastUsedItem > ITEM_SAFARI_BALL)\n        {\n            switch (gLastUsedItem)\n            {\n            case ITEM_NET_BALL:\n                if (IS_BATTLER_OF_TYPE(gBattlerTarget, TYPE_WATER) || IS_BATTLER_OF_TYPE(gBattlerTarget, TYPE_BUG))\n                    ballMultiplier = 30;\n                else\n                    ballMultiplier = 10;\n                break;\n            case ITEM_DIVE_BALL:\n                if (GetCurrentMapType() == MAP_TYPE_UNDERWATER)\n                    ballMultiplier = 35;\n                else\n                    ballMultiplier = 10;\n                break;\n            case ITEM_NEST_BALL:\n                if (gBattleMons[gBattlerTarget].level < 40)\n                {\n                    ballMultiplier = 40 - gBattleMons[gBattlerTarget].level;\n                    if (ballMultiplier <= 9)\n                        ballMultiplier = 10;\n                }\n                else\n                {\n                    ballMultiplier = 10;\n                }\n                break;\n            case ITEM_REPEAT_BALL:\n                if (GetSetPokedexFlag(SpeciesToNationalPokedexNum(gBattleMons[gBattlerTarget].species), FLAG_GET_CAUGHT))\n                    ballMultiplier = 30;\n                else\n                    ballMultiplier = 10;\n                break;\n            case ITEM_TIMER_BALL:\n                ballMultiplier = gBattleResults.battleTurnCounter + 10;\n                if (ballMultiplier > 40)\n                    ballMultiplier = 40;\n                break;\n            case ITEM_LUXURY_BALL:\n            case ITEM_PREMIER_BALL:\n                ballMultiplier = 10;\n                break;\n            }\n        }\n        else\n            ballMultiplier = sBallCatchBonuses[gLastUsedItem - ITEM_ULTRA_BALL];\n\n        odds = (catchRate * ballMultiplier / 10)\n            * (gBattleMons[gBattlerTarget].maxHP * 3 - gBattleMons[gBattlerTarget].hp * 2)\n",
+        "after": "        else\n            catchRate = gSpeciesInfo[gBattleMons[gBattlerTarget].species].catchRate;\n\n        ballMultiplier = GetBallCatchMultiplier(gLastUsedItem,\n            gBattleMons[gBattlerTarget].species, gBattleMons[gBattlerTarget].level,\n            gBattleResults.battleTurnCounter,\n            GetSetPokedexFlag(SpeciesToNationalPokedexNum(gBattleMons[gBattlerTarget].species), FLAG_GET_CAUGHT),\n            gBattleWeather, gCaptureOrigin != 0, GetCurrentMapType() == MAP_TYPE_UNDERGROUND);\n\n        odds = (catchRate * ballMultiplier / 10)\n            * (gBattleMons[gBattlerTarget].maxHP * 3 - gBattleMons[gBattlerTarget].hp * 2)\n"
+      },
+      {
+        "before": "            }\n            else\n            {\n                if (gBattleResults.catchAttempts[gLastUsedItem - ITEM_ULTRA_BALL] < 255)\n                    gBattleResults.catchAttempts[gLastUsedItem - ITEM_ULTRA_BALL]++;\n            }\n        }\n",
+        "after": "            }\n            else\n            {\n                if (gLastUsedItem >= ITEM_ULTRA_BALL && gLastUsedItem <= ITEM_PREMIER_BALL\n                 && gBattleResults.catchAttempts[gLastUsedItem - ITEM_ULTRA_BALL] < 255)\n                    gBattleResults.catchAttempts[gLastUsedItem - ITEM_ULTRA_BALL]++;\n            }\n        }\n"
+      },
+      {
+        "before": "            BtlController_EmitBallThrowAnim(BUFFER_A, BALL_3_SHAKES_SUCCESS);\n            MarkBattlerForControllerExec(gActiveBattler);\n            gBattlescriptCurrInstr = BattleScript_SuccessBallThrow;\n            SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_POKEBALL, &gLastUsedItem);\n\n            if (CalculatePlayerPartyCount() == PARTY_SIZE)\n                gBattleCommunication[MULTISTRING_CHOOSER] = 0;\n",
+        "after": "            BtlController_EmitBallThrowAnim(BUFFER_A, BALL_3_SHAKES_SUCCESS);\n            MarkBattlerForControllerExec(gActiveBattler);\n            gBattlescriptCurrInstr = BattleScript_SuccessBallThrow;\n            {\n                u16 code = BallItemToCaptureCode(gLastUsedItem);\n                SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_POKEBALL, &code);\n            }\n\n            if (CalculatePlayerPartyCount() == PARTY_SIZE)\n                gBattleCommunication[MULTISTRING_CHOOSER] = 0;\n"
+      },
+      {
+        "before": "            if (shakes == BALL_3_SHAKES_SUCCESS) // mon caught, copy of the code above\n            {\n                gBattlescriptCurrInstr = BattleScript_SuccessBallThrow;\n                SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_POKEBALL, &gLastUsedItem);\n\n                if (CalculatePlayerPartyCount() == PARTY_SIZE)\n                    gBattleCommunication[MULTISTRING_CHOOSER] = 0;\n",
+        "after": "            if (shakes == BALL_3_SHAKES_SUCCESS) // mon caught, copy of the code above\n            {\n                gBattlescriptCurrInstr = BattleScript_SuccessBallThrow;\n                {\n                u16 code = BallItemToCaptureCode(gLastUsedItem);\n                SetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattlerTarget]], MON_DATA_POKEBALL, &code);\n            }\n\n                if (CalculatePlayerPartyCount() == PARTY_SIZE)\n                    gBattleCommunication[MULTISTRING_CHOOSER] = 0;\n"
+      }
+    ],
+    "src/battle_util.c": [
+      {
+        "before": "        case ENDTURN_HAIL:\n            if (gBattleWeather & B_WEATHER_HAIL)\n            {\n                if (--gWishFutureKnock.weatherDuration == 0)\n                {\n                    gBattleWeather &= ~B_WEATHER_HAIL_TEMPORARY;\n                    gBattlescriptCurrInstr = BattleScript_SandStormHailEnds;\n",
+        "after": "        case ENDTURN_HAIL:\n            if (gBattleWeather & B_WEATHER_HAIL)\n            {\n                if (!(gBattleWeather & B_WEATHER_HAIL_PERMANENT) && --gWishFutureKnock.weatherDuration == 0)\n                {\n                    gBattleWeather &= ~B_WEATHER_HAIL_TEMPORARY;\n                    gBattlescriptCurrInstr = BattleScript_SandStormHailEnds;\n"
+      },
+      {
+        "before": "                    {\n                        gBattleWeather = (B_WEATHER_RAIN_TEMPORARY | B_WEATHER_RAIN_PERMANENT);\n                        gBattleScripting.animArg1 = B_ANIM_RAIN_CONTINUES;\n                        gBattleScripting.battler = battler;\n                        effect++;\n                    }\n",
+        "after": "                    {\n                        gBattleWeather = (B_WEATHER_RAIN_TEMPORARY | B_WEATHER_RAIN_PERMANENT);\n                        gBattleScripting.animArg1 = B_ANIM_RAIN_CONTINUES;\n                        gBattleScripting.battler = battler;\n                        effect++;\n                    }\n                    break;\n                case WEATHER_SNOW:\n                    if (!(gBattleWeather & B_WEATHER_HAIL))\n                    {\n                        gBattleWeather = B_WEATHER_HAIL_PERMANENT;\n                        gBattleScripting.animArg1 = B_ANIM_HAIL_CONTINUES;\n                        gBattleScripting.battler = battler;\n                        effect++;\n                    }\n"
+      }
+    ],
+    "src/wild_encounter.c": [
+      {
+        "before": "#include \"global.h\"\n#include \"random.h\"\n#include \"wild_encounter.h\"\n#include \"wild_double_battle.h\"\n",
+        "after": "#include \"global.h\"\n#include \"capture_rules.h\"\n#include \"random.h\"\n#include \"wild_encounter.h\"\n#include \"wild_double_battle.h\"\n"
+      },
+      {
+        "before": "    GenerateFishingEncounter(gWildMonHeaders[GetCurrentMapWildMonHeaderId()].fishingMonsInfo, rod);\n    IncrementGameStat(GAME_STAT_FISHING_CAPTURES);\n    StartWildBattle();\n}\n\nu16 GetLocalWildMon(bool8 *isWaterMon)\n",
+        "after": "    GenerateFishingEncounter(gWildMonHeaders[GetCurrentMapWildMonHeaderId()].fishingMonsInfo, rod);\n    IncrementGameStat(GAME_STAT_FISHING_CAPTURES);\n    StartWildBattle();\n    gCaptureOrigin |= CAPTURE_ORIGIN_FISHING;\n}\n\nu16 GetLocalWildMon(bool8 *isWaterMon)\n"
+      }
+    ],
+    "data/maps/PalletTown_ProfessorOaksLab/scripts.inc": [
+      {
+        "before": "PalletTown_ProfessorOaksLab_EventScript_ProfOak::\n\tlock\n\tfaceplayer\n\tgoto_if_set SHOWED_OAK_COMPLETE_DEX, PalletTown_ProfessorOaksLab_EventScript_OakJustShownCompleteDex\n\tgoto_if_eq VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 9, PalletTown_ProfessorOaksLab_EventScript_RatePokedex\n\tgoto_if_eq VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 8, PalletTown_ProfessorOaksLab_EventScript_MonsAroundWorldWait\n",
+        "after": "PalletTown_ProfessorOaksLab_EventScript_ProfOak::\n\tlock\n\tfaceplayer\n\tgoto_if_set FLAG_OAK_NEST_BALLS_PENDING, PalletTown_ProfessorOaksLab_EventScript_RetryNestBalls\n\tgoto_if_set SHOWED_OAK_COMPLETE_DEX, PalletTown_ProfessorOaksLab_EventScript_OakJustShownCompleteDex\n\tgoto_if_eq VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 9, PalletTown_ProfessorOaksLab_EventScript_RatePokedex\n\tgoto_if_eq VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 8, PalletTown_ProfessorOaksLab_EventScript_MonsAroundWorldWait\n"
+      },
+      {
+        "before": "\tspecial SetUnlockedPokedexFlags\n\tsetvar VAR_MAP_SCENE_POKEMON_CENTER_TEALA, 1\n\tmsgbox PalletTown_ProfessorOaksLab_Text_OakCatchMonsForDataTakeThese\n\tgiveitem_msg PalletTown_ProfessorOaksLab_Text_ReceivedFivePokeBalls, ITEM_POKE_BALL, 5\n\tmsgbox PalletTown_ProfessorOaksLab_Text_OakExplainCatching\n\tfamechecker FAMECHECKER_OAK, 1\n\tmsgbox PalletTown_ProfessorOaksLab_Text_OakCompleteMonGuideWasMyDream\n",
+        "after": "\tspecial SetUnlockedPokedexFlags\n\tsetvar VAR_MAP_SCENE_POKEMON_CENTER_TEALA, 1\n\tmsgbox PalletTown_ProfessorOaksLab_Text_OakCatchMonsForDataTakeThese\n\tsetflag FLAG_OAK_NEST_BALLS_PENDING\n\tcall PalletTown_ProfessorOaksLab_EventScript_TryGiveNestBalls\n\tmsgbox PalletTown_ProfessorOaksLab_Text_OakExplainCatching\n\tfamechecker FAMECHECKER_OAK, 1\n\tmsgbox PalletTown_ProfessorOaksLab_Text_OakCompleteMonGuideWasMyDream\n"
+      },
+      {
+        "before": "\tmsgbox PalletTown_ProfessorOaksLab_Text_AllMonTypesHaveStrongAndWeakPoints\n\treleaseall\n\tend\n",
+        "after": "\tmsgbox PalletTown_ProfessorOaksLab_Text_AllMonTypesHaveStrongAndWeakPoints\n\treleaseall\n\tend\n\nPalletTown_ProfessorOaksLab_EventScript_RetryNestBalls::\n    call PalletTown_ProfessorOaksLab_EventScript_TryGiveNestBalls\n    release\n    end\n\nPalletTown_ProfessorOaksLab_EventScript_TryGiveNestBalls::\n    additem ITEM_NEST_BALL, 5\n    goto_if_eq VAR_RESULT, FALSE, PalletTown_ProfessorOaksLab_EventScript_NestBallsFull\n    msgreceiveditem PalletTown_ProfessorOaksLab_Text_ReceivedFiveNestBalls, ITEM_NEST_BALL, 5\n    clearflag FLAG_OAK_NEST_BALLS_PENDING\nPalletTown_ProfessorOaksLab_EventScript_NestBallsDone::\n    return\n\nPalletTown_ProfessorOaksLab_EventScript_NestBallsFull::\n    msgbox Text_TooBadBagFull\n    return\n"
+      }
+    ],
+    "src/data/items.json": [
+      {
+        "before": "      \"secondaryId\": 2\n    },\n    {\n      \"english\": \"POK\\u00e9 BALL\",\n      \"itemId\": \"ITEM_POKE_BALL\",\n      \"price\": 200,\n      \"holdEffect\": \"HOLD_EFFECT_NONE\",\n",
+        "after": "      \"secondaryId\": 2\n    },\n    {\n      \"english\": \"POK\u00e9 BALL\",\n      \"itemId\": \"ITEM_POKE_BALL\",\n      \"price\": 200,\n      \"holdEffect\": \"HOLD_EFFECT_NONE\",\n"
+      },
+      {
+        "before": "      \"secondaryId\": 4\n    },\n    {\n      \"english\": \"NET BALL\",\n      \"itemId\": \"ITEM_NET_BALL\",\n      \"price\": 1000,\n      \"holdEffect\": \"HOLD_EFFECT_NONE\",\n      \"holdEffectParam\": 0,\n      \"description_english\": \"A somewhat different BALL that\\\\nworks especially well on WATER- and\\\\nBUG-type POK\u00e9MON.\",\n      \"importance\": 0,\n      \"registrability\": 0,\n      \"pocket\": \"POCKET_POKE_BALLS\",\n",
+        "after": "      \"secondaryId\": 4\n    },\n    {\n      \"english\": \"DUST BALL\",\n      \"itemId\": \"ITEM_NET_BALL\",\n      \"price\": 1200,\n      \"holdEffect\": \"HOLD_EFFECT_NONE\",\n      \"holdEffectParam\": 0,\n      \"description_english\": \"A BALL that works especially well\\\\nin battle sandstorms or\\\\nharsh sunlight.\",\n      \"importance\": 0,\n      \"registrability\": 0,\n      \"pocket\": \"POCKET_POKE_BALLS\",\n"
+      },
+      {
+        "before": "      \"secondaryId\": 5\n    },\n    {\n      \"english\": \"DIVE BALL\",\n      \"itemId\": \"ITEM_DIVE_BALL\",\n      \"price\": 1000,\n      \"holdEffect\": \"HOLD_EFFECT_NONE\",\n      \"holdEffectParam\": 0,\n      \"description_english\": \"A somewhat different BALL that\\\\nworks especially well on POK\u00e9MON\\\\ndeep in the sea.\",\n      \"importance\": 0,\n      \"registrability\": 0,\n      \"pocket\": \"POCKET_POKE_BALLS\",\n",
+        "after": "      \"secondaryId\": 5\n    },\n    {\n      \"english\": \"WET BALL\",\n      \"itemId\": \"ITEM_DIVE_BALL\",\n      \"price\": 1200,\n      \"holdEffect\": \"HOLD_EFFECT_NONE\",\n      \"holdEffectParam\": 0,\n      \"description_english\": \"A BALL that works well while\\\\nSurfing, fishing, or in battle\\\\nrain or hail.\",\n      \"importance\": 0,\n      \"registrability\": 0,\n      \"pocket\": \"POCKET_POKE_BALLS\",\n"
+      },
+      {
+        "before": "    {\n      \"english\": \"NEST BALL\",\n      \"itemId\": \"ITEM_NEST_BALL\",\n      \"price\": 1000,\n      \"holdEffect\": \"HOLD_EFFECT_NONE\",\n      \"holdEffectParam\": 0,\n      \"description_english\": \"A somewhat different BALL that\\\\nworks especially well on weaker\\\\nPOK\u00e9MON.\",\n",
+        "after": "    {\n      \"english\": \"NEST BALL\",\n      \"itemId\": \"ITEM_NEST_BALL\",\n      \"price\": 1200,\n      \"holdEffect\": \"HOLD_EFFECT_NONE\",\n      \"holdEffectParam\": 0,\n      \"description_english\": \"A somewhat different BALL that\\\\nworks especially well on weaker\\\\nPOK\u00e9MON.\",\n"
+      },
+      {
+        "before": "    {\n      \"english\": \"REPEAT BALL\",\n      \"itemId\": \"ITEM_REPEAT_BALL\",\n      \"price\": 1000,\n      \"holdEffect\": \"HOLD_EFFECT_NONE\",\n      \"holdEffectParam\": 0,\n      \"description_english\": \"A somewhat different BALL that\\\\nworks especially well on POK\u00e9MON\\\\ncaught before.\",\n",
+        "after": "    {\n      \"english\": \"REPEAT BALL\",\n      \"itemId\": \"ITEM_REPEAT_BALL\",\n      \"price\": 1200,\n      \"holdEffect\": \"HOLD_EFFECT_NONE\",\n      \"holdEffectParam\": 0,\n      \"description_english\": \"A somewhat different BALL that\\\\nworks especially well on POK\u00e9MON\\\\ncaught before.\",\n"
+      },
+      {
+        "before": "    {\n      \"english\": \"TIMER BALL\",\n      \"itemId\": \"ITEM_TIMER_BALL\",\n      \"price\": 1000,\n      \"holdEffect\": \"HOLD_EFFECT_NONE\",\n      \"holdEffectParam\": 0,\n      \"description_english\": \"A somewhat different BALL that\\\\nbecomes progressively better the\\\\nmore turns there are in a battle.\",\n",
+        "after": "    {\n      \"english\": \"TIMER BALL\",\n      \"itemId\": \"ITEM_TIMER_BALL\",\n      \"price\": 1200,\n      \"holdEffect\": \"HOLD_EFFECT_NONE\",\n      \"holdEffectParam\": 0,\n      \"description_english\": \"A somewhat different BALL that\\\\nbecomes progressively better the\\\\nmore turns there are in a battle.\",\n"
+      },
+      {
+        "before": "    {\n      \"english\": \"LUXURY BALL\",\n      \"itemId\": \"ITEM_LUXURY_BALL\",\n      \"price\": 1000,\n      \"holdEffect\": \"HOLD_EFFECT_NONE\",\n      \"holdEffectParam\": 0,\n      \"description_english\": \"A comfortable BALL that makes a\\\\ncaptured wild POK\u00e9MON quickly grow\\\\nfriendly.\",\n",
+        "after": "    {\n      \"english\": \"LUXURY BALL\",\n      \"itemId\": \"ITEM_LUXURY_BALL\",\n      \"price\": 1200,\n      \"holdEffect\": \"HOLD_EFFECT_NONE\",\n      \"holdEffectParam\": 0,\n      \"description_english\": \"A comfortable BALL that makes a\\\\ncaptured wild POK\u00e9MON quickly grow\\\\nfriendly.\",\n"
+      },
+      {
+        "before": "      \"price\": 200,\n      \"holdEffect\": \"HOLD_EFFECT_NONE\",\n      \"holdEffectParam\": 0,\n      \"description_english\": \"A rare BALL that has been\\\\nspecially made to commemorate an\\\\nevent of some sort.\",\n      \"importance\": 0,\n      \"registrability\": 0,\n      \"pocket\": \"POCKET_POKE_BALLS\",\n",
+        "after": "      \"price\": 200,\n      \"holdEffect\": \"HOLD_EFFECT_NONE\",\n      \"holdEffectParam\": 0,\n      \"description_english\": \"A special BALL that works well\\\\non eight rare legendary\\\\nPOK\u00e9MON.\",\n      \"importance\": 0,\n      \"registrability\": 0,\n      \"pocket\": \"POCKET_POKE_BALLS\",\n"
+      },
+      {
+        "before": "      \"secondaryId\": 0\n    },\n    {\n      \"english\": \"POK\\u00e9 DOLL\",\n      \"itemId\": \"ITEM_POKE_DOLL\",\n      \"price\": 1000,\n      \"holdEffect\": \"HOLD_EFFECT_NONE\",\n",
+        "after": "      \"secondaryId\": 0\n    },\n    {\n      \"english\": \"POK\u00e9 DOLL\",\n      \"itemId\": \"ITEM_POKE_DOLL\",\n      \"price\": 1000,\n      \"holdEffect\": \"HOLD_EFFECT_NONE\",\n"
+      },
+      {
+        "before": "      \"secondaryId\": 0\n    },\n    {\n      \"english\": \"POK\\u00e9 FLUTE\",\n      \"itemId\": \"ITEM_POKE_FLUTE\",\n      \"price\": 0,\n      \"holdEffect\": \"HOLD_EFFECT_NONE\",\n",
+        "after": "      \"secondaryId\": 0\n    },\n    {\n      \"english\": \"POK\u00e9 FLUTE\",\n      \"itemId\": \"ITEM_POKE_FLUTE\",\n      \"price\": 0,\n      \"holdEffect\": \"HOLD_EFFECT_NONE\",\n"
+      },
+      {
+        "before": "      \"battleUsage\": 0,\n      \"battleUseFunc\": \"NULL\",\n      \"secondaryId\": 0\n    }\n  ]\n}\n",
+        "after": "      \"battleUsage\": 0,\n      \"battleUseFunc\": \"NULL\",\n      \"secondaryId\": 0\n    },\n    {\n      \"english\": \"SNOW BALL\",\n      \"itemId\": \"ITEM_SNOW_BALL\",\n      \"price\": 1200,\n      \"holdEffect\": \"HOLD_EFFECT_NONE\",\n      \"holdEffectParam\": 0,\n      \"description_english\": \"A BALL that works especially well\\\\nin caves or during battle hail.\",\n      \"importance\": 0,\n      \"registrability\": 0,\n      \"pocket\": \"POCKET_POKE_BALLS\",\n      \"type\": 6,\n      \"fieldUseFunc\": \"NULL\",\n      \"battleUsage\": 2,\n      \"battleUseFunc\": \"BattleUseFunc_PokeBallEtc\",\n      \"secondaryId\": 6\n    }\n  ]\n}\n"
+      }
+    ]
+  }
+}

@@ -1,0 +1,270 @@
+{
+  "base": "d54f7a8e85d38b8fa304399dcb4d14778396d5cd",
+  "authority": "PKM-007 current owner request and effective35-rule fixture",
+  "species": {
+    "PIDGEY": {
+      "before": [
+        "NORMAL",
+        "FLYING"
+      ],
+      "approved": [
+        "FLYING",
+        "FLYING"
+      ],
+      "regional_number": 16
+    },
+    "PIDGEOTTO": {
+      "before": [
+        "NORMAL",
+        "FLYING"
+      ],
+      "approved": [
+        "FLYING",
+        "FLYING"
+      ],
+      "regional_number": 17
+    },
+    "PIDGEOT": {
+      "before": [
+        "NORMAL",
+        "FLYING"
+      ],
+      "approved": [
+        "FLYING",
+        "FLYING"
+      ],
+      "regional_number": 18
+    },
+    "SPEAROW": {
+      "before": [
+        "NORMAL",
+        "FLYING"
+      ],
+      "approved": [
+        "FLYING",
+        "FLYING"
+      ],
+      "regional_number": 21
+    },
+    "FEAROW": {
+      "before": [
+        "NORMAL",
+        "FLYING"
+      ],
+      "approved": [
+        "FLYING",
+        "FLYING"
+      ],
+      "regional_number": 22
+    },
+    "VULPIX": {
+      "before": [
+        "FIRE",
+        "FIRE"
+      ],
+      "approved": [
+        "FIRE",
+        "GHOST"
+      ],
+      "regional_number": 39
+    },
+    "NINETALES": {
+      "before": [
+        "FIRE",
+        "FIRE"
+      ],
+      "approved": [
+        "FIRE",
+        "GHOST"
+      ],
+      "regional_number": 40
+    },
+    "GEODUDE": {
+      "before": [
+        "ROCK",
+        "GROUND"
+      ],
+      "approved": [
+        "ROCK",
+        "ROCK"
+      ],
+      "regional_number": 80
+    },
+    "GRAVELER": {
+      "before": [
+        "ROCK",
+        "GROUND"
+      ],
+      "approved": [
+        "ROCK",
+        "ROCK"
+      ],
+      "regional_number": 81
+    },
+    "GOLEM": {
+      "before": [
+        "ROCK",
+        "GROUND"
+      ],
+      "approved": [
+        "ROCK",
+        "ROCK"
+      ],
+      "regional_number": 82
+    },
+    "FARFETCHD": {
+      "before": [
+        "NORMAL",
+        "FLYING"
+      ],
+      "approved": [
+        "FLYING",
+        "FLYING"
+      ],
+      "regional_number": 90
+    },
+    "DODUO": {
+      "before": [
+        "NORMAL",
+        "FLYING"
+      ],
+      "approved": [
+        "FLYING",
+        "FLYING"
+      ],
+      "regional_number": 91
+    },
+    "DODRIO": {
+      "before": [
+        "NORMAL",
+        "FLYING"
+      ],
+      "approved": [
+        "FLYING",
+        "FLYING"
+      ],
+      "regional_number": 92
+    },
+    "ONIX": {
+      "before": [
+        "ROCK",
+        "GROUND"
+      ],
+      "approved": [
+        "ROCK",
+        "ROCK"
+      ],
+      "regional_number": 102
+    },
+    "STEELIX": {
+      "before": [
+        "STEEL",
+        "GROUND"
+      ],
+      "approved": [
+        "STEEL",
+        "STEEL"
+      ],
+      "regional_number": 103
+    },
+    "RHYHORN": {
+      "before": [
+        "GROUND",
+        "ROCK"
+      ],
+      "approved": [
+        "ROCK",
+        "ROCK"
+      ],
+      "regional_number": 121
+    },
+    "RHYDON": {
+      "before": [
+        "GROUND",
+        "ROCK"
+      ],
+      "approved": [
+        "ROCK",
+        "ROCK"
+      ],
+      "regional_number": 122
+    },
+    "PINSIR": {
+      "before": [
+        "BUG",
+        "STEEL"
+      ],
+      "approved": [
+        "BUG",
+        "BUG"
+      ],
+      "regional_number": 143
+    },
+    "HOOTHOOT": {
+      "before": [
+        "NORMAL",
+        "FLYING"
+      ],
+      "approved": [
+        "FLYING",
+        "PSYCHIC"
+      ],
+      "regional_number": 166
+    },
+    "NOCTOWL": {
+      "before": [
+        "NORMAL",
+        "FLYING"
+      ],
+      "approved": [
+        "FLYING",
+        "PSYCHIC"
+      ],
+      "regional_number": 167
+    },
+    "LARVITAR": {
+      "before": [
+        "ROCK",
+        "GROUND"
+      ],
+      "approved": [
+        "ROCK",
+        "ROCK"
+      ],
+      "regional_number": 196
+    },
+    "PUPITAR": {
+      "before": [
+        "ROCK",
+        "GROUND"
+      ],
+      "approved": [
+        "ROCK",
+        "ROCK"
+      ],
+      "regional_number": 197
+    },
+    "TAILLOW": {
+      "before": [
+        "NORMAL",
+        "FLYING"
+      ],
+      "approved": [
+        "FLYING",
+        "FLYING"
+      ],
+      "regional_number": 202
+    },
+    "SWELLOW": {
+      "before": [
+        "NORMAL",
+        "FLYING"
+      ],
+      "approved": [
+        "FLYING",
+        "FLYING"
+      ],
+      "regional_number": 203
+    }
+  }
+}

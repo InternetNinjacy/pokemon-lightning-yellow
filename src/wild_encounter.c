@@ -1,4 +1,5 @@
 #include "global.h"
+#include "capture_rules.h"
 #include "random.h"
 #include "wild_encounter.h"
 #include "wild_double_battle.h"
@@ -561,6 +562,7 @@ void FishingWildEncounter(u8 rod)
     GenerateFishingEncounter(gWildMonHeaders[GetCurrentMapWildMonHeaderId()].fishingMonsInfo, rod);
     IncrementGameStat(GAME_STAT_FISHING_CAPTURES);
     StartWildBattle();
+    gCaptureOrigin |= CAPTURE_ORIGIN_FISHING;
 }
 
 u16 GetLocalWildMon(bool8 *isWaterMon)

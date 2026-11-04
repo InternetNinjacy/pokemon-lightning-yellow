@@ -1,4 +1,5 @@
 #include "global.h"
+#include "capture_rules.h"
 #include "gflib.h"
 #include "task.h"
 #include "pokeball.h"
@@ -259,7 +260,7 @@ static void HandleInputChooseAction(void)
             if (gBattleBufferA[gActiveBattler][1] == B_ACTION_USE_ITEM)
             {
                 // Add item to bag if it is a ball
-                if (itemId <= ITEM_PREMIER_BALL)
+                if (IsPokeBallItem(itemId))
                     AddBagItem(itemId, 1);
                 else
                     return;
