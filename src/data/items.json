@@ -65,7 +65,7 @@
       "secondaryId": 2
     },
     {
-      "english": "POK\u00e9 BALL",
+      "english": "POKé BALL",
       "itemId": "ITEM_POKE_BALL",
       "price": 200,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -97,12 +97,12 @@
       "secondaryId": 4
     },
     {
-      "english": "NET BALL",
+      "english": "DUST BALL",
       "itemId": "ITEM_NET_BALL",
-      "price": 1000,
+      "price": 1200,
       "holdEffect": "HOLD_EFFECT_NONE",
       "holdEffectParam": 0,
-      "description_english": "A somewhat different BALL that\\nworks especially well on WATER- and\\nBUG-type POKéMON.",
+      "description_english": "A BALL that works especially well\\nin battle sandstorms or\\nharsh sunlight.",
       "importance": 0,
       "registrability": 0,
       "pocket": "POCKET_POKE_BALLS",
@@ -113,12 +113,12 @@
       "secondaryId": 5
     },
     {
-      "english": "DIVE BALL",
+      "english": "WET BALL",
       "itemId": "ITEM_DIVE_BALL",
-      "price": 1000,
+      "price": 1200,
       "holdEffect": "HOLD_EFFECT_NONE",
       "holdEffectParam": 0,
-      "description_english": "A somewhat different BALL that\\nworks especially well on POKéMON\\ndeep in the sea.",
+      "description_english": "A BALL that works well while\\nSurfing, fishing, or in battle\\nrain or hail.",
       "importance": 0,
       "registrability": 0,
       "pocket": "POCKET_POKE_BALLS",
@@ -131,7 +131,7 @@
     {
       "english": "NEST BALL",
       "itemId": "ITEM_NEST_BALL",
-      "price": 1000,
+      "price": 1200,
       "holdEffect": "HOLD_EFFECT_NONE",
       "holdEffectParam": 0,
       "description_english": "A somewhat different BALL that\\nworks especially well on weaker\\nPOKéMON.",
@@ -147,7 +147,7 @@
     {
       "english": "REPEAT BALL",
       "itemId": "ITEM_REPEAT_BALL",
-      "price": 1000,
+      "price": 1200,
       "holdEffect": "HOLD_EFFECT_NONE",
       "holdEffectParam": 0,
       "description_english": "A somewhat different BALL that\\nworks especially well on POKéMON\\ncaught before.",
@@ -163,7 +163,7 @@
     {
       "english": "TIMER BALL",
       "itemId": "ITEM_TIMER_BALL",
-      "price": 1000,
+      "price": 1200,
       "holdEffect": "HOLD_EFFECT_NONE",
       "holdEffectParam": 0,
       "description_english": "A somewhat different BALL that\\nbecomes progressively better the\\nmore turns there are in a battle.",
@@ -179,7 +179,7 @@
     {
       "english": "LUXURY BALL",
       "itemId": "ITEM_LUXURY_BALL",
-      "price": 1000,
+      "price": 1200,
       "holdEffect": "HOLD_EFFECT_NONE",
       "holdEffectParam": 0,
       "description_english": "A comfortable BALL that makes a\\ncaptured wild POKéMON quickly grow\\nfriendly.",
@@ -198,7 +198,7 @@
       "price": 200,
       "holdEffect": "HOLD_EFFECT_NONE",
       "holdEffectParam": 0,
-      "description_english": "A rare BALL that has been\\nspecially made to commemorate an\\nevent of some sort.",
+      "description_english": "A special BALL that works well\\non eight rare legendary\\nPOKéMON.",
       "importance": 0,
       "registrability": 0,
       "pocket": "POCKET_POKE_BALLS",
@@ -1281,7 +1281,7 @@
       "secondaryId": 0
     },
     {
-      "english": "POK\u00e9 DOLL",
+      "english": "POKé DOLL",
       "itemId": "ITEM_POKE_DOLL",
       "price": 1000,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -3002,8 +3002,8 @@
       "importance": 0,
       "registrability": 0,
       "pocket": "POCKET_ITEMS",
-      "type": "ITEM_TYPE_BAG_MENU",
-      "fieldUseFunc": "FieldUseFunc_OakStopsYou",
+      "type": "ITEM_TYPE_PARTY_MENU",
+      "fieldUseFunc": "FieldUseFunc_EvoItem",
       "battleUsage": 0,
       "battleUseFunc": "NULL",
       "secondaryId": 0
@@ -3194,8 +3194,8 @@
       "importance": 0,
       "registrability": 0,
       "pocket": "POCKET_ITEMS",
-      "type": "ITEM_TYPE_BAG_MENU",
-      "fieldUseFunc": "FieldUseFunc_OakStopsYou",
+      "type": "ITEM_TYPE_PARTY_MENU",
+      "fieldUseFunc": "FieldUseFunc_EvoItem",
       "battleUsage": 0,
       "battleUseFunc": "NULL",
       "secondaryId": 0
@@ -3226,8 +3226,8 @@
       "importance": 0,
       "registrability": 0,
       "pocket": "POCKET_ITEMS",
-      "type": "ITEM_TYPE_BAG_MENU",
-      "fieldUseFunc": "FieldUseFunc_OakStopsYou",
+      "type": "ITEM_TYPE_PARTY_MENU",
+      "fieldUseFunc": "FieldUseFunc_EvoItem",
       "battleUsage": 0,
       "battleUseFunc": "NULL",
       "secondaryId": 0
@@ -3498,8 +3498,8 @@
       "importance": 0,
       "registrability": 0,
       "pocket": "POCKET_ITEMS",
-      "type": "ITEM_TYPE_BAG_MENU",
-      "fieldUseFunc": "FieldUseFunc_OakStopsYou",
+      "type": "ITEM_TYPE_PARTY_MENU",
+      "fieldUseFunc": "FieldUseFunc_EvoItem",
       "battleUsage": 0,
       "battleUseFunc": "NULL",
       "secondaryId": 0
@@ -5659,7 +5659,7 @@
       "secondaryId": 0
     },
     {
-      "english": "POK\u00e9 FLUTE",
+      "english": "POKé FLUTE",
       "itemId": "ITEM_POKE_FLUTE",
       "price": 0,
       "holdEffect": "HOLD_EFFECT_NONE",
@@ -6057,6 +6057,22 @@
       "battleUsage": 0,
       "battleUseFunc": "NULL",
       "secondaryId": 0
+    },
+    {
+      "english": "SNOW BALL",
+      "itemId": "ITEM_SNOW_BALL",
+      "price": 1200,
+      "holdEffect": "HOLD_EFFECT_NONE",
+      "holdEffectParam": 0,
+      "description_english": "A BALL that works especially well\\nin caves or during battle hail.",
+      "importance": 0,
+      "registrability": 0,
+      "pocket": "POCKET_POKE_BALLS",
+      "type": 6,
+      "fieldUseFunc": "NULL",
+      "battleUsage": 2,
+      "battleUseFunc": "BattleUseFunc_PokeBallEtc",
+      "secondaryId": 6
     }
   ]
 }

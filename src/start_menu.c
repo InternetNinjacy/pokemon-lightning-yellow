@@ -4,6 +4,7 @@
 #include "overworld.h"
 #include "link.h"
 #include "pokedex.h"
+#include "custom_pokedex.h"
 #include "item_menu.h"
 #include "party_menu.h"
 #include "save.h"
@@ -457,7 +458,7 @@ static void StartMenu_FadeScreenIfLeavingOverworld(void)
 
 static bool8 StartMenuPokedexSanityCheck(void)
 {
-    if (sStartMenuActionTable[sStartMenuOrder[sStartMenuCursorPos]].func.u8_void == StartMenuPokedexCallback && GetNationalPokedexCount(0) == 0)
+    if (sStartMenuActionTable[sStartMenuOrder[sStartMenuCursorPos]].func.u8_void == StartMenuPokedexCallback && GetCustomPokedexCount(FLAG_GET_SEEN) == 0)
         return FALSE;
     return TRUE;
 }

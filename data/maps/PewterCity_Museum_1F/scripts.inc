@@ -187,3 +187,57 @@ PewterCity_Museum_1F_EventScript_KabutopsFossil::
 	special CloseMuseumFossilPic
 	releaseall
 	end
+
+@ Free three-question anime trivia, available as soon as the museum admission is paid.
+@ Winning is persisted independently of reward collection to support a full party.
+PewterCity_Museum_1F_EventScript_TriviaEmployee::
+	lock
+	faceplayer
+	goto_if_set FLAG_PEWTER_MUSEUM_SHINY_EGG_RECEIVED, PewterCity_Museum_1F_TriviaAlreadyCollected
+	goto_if_set FLAG_PEWTER_MUSEUM_TRIVIA_WON, PewterCity_Museum_1F_TriviaTryReward
+	msgbox PewterCity_Museum_1F_Text_TriviaOffer, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, PewterCity_Museum_1F_TriviaDecline
+	msgbox PewterCity_Museum_1F_Text_TriviaQuestion1, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, YES, PewterCity_Museum_1F_TriviaWrong
+	msgbox PewterCity_Museum_1F_Text_TriviaCorrect1
+	msgbox PewterCity_Museum_1F_Text_TriviaQuestion2, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, PewterCity_Museum_1F_TriviaWrong
+	msgbox PewterCity_Museum_1F_Text_TriviaCorrect2
+	msgbox PewterCity_Museum_1F_Text_TriviaQuestion3, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, YES, PewterCity_Museum_1F_TriviaWrong
+	msgbox PewterCity_Museum_1F_Text_TriviaCorrect3
+	setflag FLAG_PEWTER_MUSEUM_TRIVIA_WON
+	msgbox PewterCity_Museum_1F_Text_TriviaVictory
+	goto PewterCity_Museum_1F_TriviaTryReward
+
+PewterCity_Museum_1F_TriviaDecline::
+	msgbox PewterCity_Museum_1F_Text_TriviaDeclined
+	release
+	end
+
+PewterCity_Museum_1F_TriviaWrong::
+	msgbox PewterCity_Museum_1F_Text_TriviaWrong
+	release
+	end
+
+PewterCity_Museum_1F_TriviaTryReward::
+	specialvar VAR_RESULT, CalculatePlayerPartyCount
+	goto_if_eq VAR_RESULT, PARTY_SIZE, PewterCity_Museum_1F_TriviaPartyFull
+	specialvar VAR_RESULT, ScriptGiveShinyFeebasEgg
+	goto_if_ne VAR_RESULT, MON_GIVEN_TO_PARTY, PewterCity_Museum_1F_TriviaPartyFull
+	setflag FLAG_PEWTER_MUSEUM_SHINY_EGG_RECEIVED
+	playfanfare MUS_OBTAIN_ITEM
+	msgbox PewterCity_Museum_1F_Text_TriviaEggReceived
+	waitfanfare
+	release
+	end
+
+PewterCity_Museum_1F_TriviaPartyFull::
+	msgbox PewterCity_Museum_1F_Text_TriviaPartyFull
+	release
+	end
+
+PewterCity_Museum_1F_TriviaAlreadyCollected::
+	msgbox PewterCity_Museum_1F_Text_TriviaAfterward
+	release
+	end

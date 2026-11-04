@@ -75,3 +75,18 @@ CinnabarIsland_PokemonLab_ExperimentRoom_Text_YouComeAgain::
     .string "Aiyah!\n"
     .string "You come again!$"
 
+
+CinnabarIsland_PokemonLab_ExperimentRoom_Text_OfferUnchosenFossil::
+    .string "Hiya! I have the {STR_VAR_1}\n"
+    .string "left behind in MT. MOON.\p"
+    .string "I want to study its revival, but\n"
+    .string "I cannot raise the POKéMON.\p"
+    .string "You! Will you take care of it?$"
+
+CinnabarIsland_PokemonLab_ExperimentRoom_Text_ReviveUnchosenFossil::
+    .string "Good! Bring that fossil to me.\n"
+    .string "We will make it live again!$"
+
+CinnabarIsland_PokemonLab_ExperimentRoom_Text_UnavailableFossil::
+    .string "You need that fossil, and I can\n"
+    .string "revive each kind only once.$"

@@ -461,3 +461,47 @@ external Pidgeot credit. Rollback: revert the two topic commits (or eventual mer
 while preserving the vendor/ball parent; no save conversion needs reversal.
 
 Final-head Actions native result: **274791 mGBA assertions PASS**, including all six new summary screens in the full run. Local full274765 and focused46 above are separate executed results, not added together as a CI count.
+
+
+## 2026-11-04 — DES-010 consolidation approval / WRL-004-MUSEUM and GYM-004 acceptance
+
+The owner explicitly instructs: merge all existing project PRs and continue the
+next approved unfinished feature. Repository `allow_auto_merge` was already true
+and remains true. The prior statement about disabled auto-merge described the
+absence of a request on PR16, not a change to the repository setting. This
+consolidation authorization supersedes older no-merge notes for existing work;
+it does not approve invented designs, failed checks, ROM release or destructive
+history rewrites. Recovery tag `recovery/pre-consolidated-merge-20261104` retains
+b1ff74d0; original feature histories are preserved.
+
+Documentation PR8 and18 merged to main. Blaine15 had already merged into vendor;
+its source now passes integration with all35 typing rules. The shared Pidgeot
+change must be normalized once, not twice. Historical hash expectations remain
+unchanged; frozen approved Blaine/Museum deltas protect unrelated source bytes.
+
+Museum14 is the next unfinished feature, not a new invented gameplay system.
+The original NPC23,6 was in the isolated back room; source collision analysis
+and actual admission-path checks proved it inaccessible from the paid exhibit.
+It now stands11,4 in the approved paid exhibit. No new artwork, ticket rule,
+quiz wording/answers, prize, fee, badge check, hatch timing or other NPC changed.
+All previous script-special indices are preserved; the Museum special is
+appended after vendor entries and before gSpecialsEnd. The formerly ineffective
+label regex is repaired. The redundant compile-only feature workflow is replaced
+by the existing stronger modified/upstream matrix, including Museum static and
+full ROM tests; no checksum gate is applied to modified ROMs.
+
+Executed local acceptance: eleven host suites plus Museum static placement/state
+checks PASS. Museum1307 focused mGBA assertions PASS:32 diverse OT/RNG true-Shiny
+fixtures, actual50 admission, pre-badge collision-path walking/A interaction,
+decline, each wrong answer/retry, correct NO/YES/NO, saved full-party pending
+reward, exactly-one Egg receipt without a quiz fee, stored identity/flash,
+ordinary hatch and controlled-level evolution to Shiny Milotic/flash reload.
+Blaine46 focused assertions PASS: one usable Pokémon refusal, actual trainer
+Double battle entry, all five species/levels, Donphan/Pidgeot leads and native
+Earthquake ally immunity. This does not certify Blaine battle victory, badge/TM38
+or revisit flow, full progression, physical cartridges or link peers.
+
+Combined full-suite CI and remaining merges are pending at this checkpoint.
+No additional earned points yet; current214/530 retained until combined acceptance.
+Drive synchronization remains pending; supplied exports are available. Current
+feature details and test commands are in docs/PEWTER_MUSEUM_TRIVIA.md.

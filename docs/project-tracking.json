@@ -3,7 +3,7 @@
   "updated": "2026-11-04",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "docs/project-coordination",
-  "current_focus": "PKM-007 completed for scoped review in PR#16; source exports reconciled and available. Drive synchronization, external PR14/15 integration and genuine unfinished designs remain separately tracked. No new merge/auto-merge.",
+  "current_focus": "Owner authorized consolidation of all existing PRs; #8/#18 merged, Museum#14 repaired and native-tested on complete typing/Blaine stack; final combined CI and remaining merges pending.",
   "main_sha": "e04252ea0783510000e634486c0f2526a736f506",
   "drive_sync": {
     "status": "pending: no direct Drive writing tool available",
@@ -1228,19 +1228,19 @@
       "dependencies": [],
       "status": {
         "design": "World/item/event approvals available individually; reconcile exact effective versions",
-        "implementation": "not started",
-        "automated": "not executed for new work",
-        "emulator": "not executed",
-        "pull_request": "not created",
-        "merge": "not merged"
+        "implementation": "partial: Museum reward implemented/repaired; other item/events remain separately incomplete",
+        "automated": "all11 host suites plus Museum static audit PASS; combined CI pending",
+        "emulator": "Museum1307 focused native assertions PASS; full combined CI pending",
+        "pull_request": "#14 integrated topic branch; awaiting combined CI",
+        "merge": "Museum not yet merged"
       },
       "branch": null,
       "commit": null,
       "pr_url": null,
       "ci_url": null,
-      "blocker": "Unfinished individual item/quest placement details and special-overworld HOLD remain. Museum PR#14 is an independent draft with failing baseline check and unverified integration; no claim it is ready.",
+      "blocker": "No Museum design blocker; its paid-exhibit placement corrected. Other unresolved item/quest details and SOW HOLD remain.",
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Implement eligible exact events independently; inspect external Museum draft compatibility before any integration; do not rewrite unrelated PR#14.",
+      "next_action": "Complete combined CI and merge owner-authorized Museum scope; retain other item/event dependencies and SOW HOLD.",
       "checkpoint": "2026-11-04 supplied-export reconciliation; old unavailable-document claims superseded; no implementation/test credit from availability.",
       "scope_note": "Other unresolved item/story placements; excludes separately detailed fossil tasks WRL-006/007. No duplicate fossil implementation credit.",
       "source_exports": [
@@ -1666,19 +1666,19 @@
       ],
       "status": {
         "design": "External PR#15 cites newer finalized Donphan/Pidgeot five-member design; reconcile its linked handoff against historical Gyarados roster before integration.",
-        "implementation": "external PR#15 implements newer Donphan/Pidgeot Double Battle; not integrated here",
-        "automated": "external modified CI run41760575099 FAILURE: Cinnabar Gym text.inc:12 backslash mapping; not this typing branch",
-        "emulator": "combined branch and interactive Cinnabar acceptance unverified",
-        "pull_request": "#15 open, independently maintained",
-        "merge": "not merged"
+        "implementation": "implemented in owner-merged#15; combined typing compatibility repaired",
+        "automated": "Blaine static/combined host checks PASS",
+        "emulator": "46 focused native assertions PASS: single-usable refusal, actual Double entry, five correct species/levels, Donphan/Pidgeot leads and Earthquake ally immunity; victory/revisit acceptance outstanding",
+        "pull_request": "#15 merged into vendor",
+        "merge": "merged into vendor, not yet main"
       },
       "branch": null,
       "commit": null,
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/15",
       "ci_url": null,
-      "blocker": "Shared Pidgeot/workflow/Pokedex test edits with#16; approved trainer-delta preservation and combined runtime checks remain. Historical unavailable-document/Gyarados-immunity blocker is superseded by newer separate PR; Gyarados Water/Dragon stays unchanged.",
+      "blocker": "No remaining known compile/typing conflict; full battle victory, badge/TM38/revisit and comprehensive battle strategy testing outstanding.",
       "design_authority": "Owner supplied November2 Wild Encounters, Gym Roster, Fossils and Pokedex Compliance update; historical direct Drive401 did not prevent reading the supplied exports; latest concurrent PR15 requires version reconciliation.",
-      "next_action": "Inspect latest linked Blaine handoff and exact external PR#15 tests; integrate only by separate owner-approved merge. Do not edit unrelated PR in PKM-007.",
+      "next_action": "Merge approved integration after combined CI; retain unexecuted full battle/victory coverage.",
       "checkpoint": "2026-11-04 supplied-export reconciliation; old unavailable-document claims superseded; no implementation/test credit from availability.",
       "source_exports": [
         "04_SPECIES_EVOLUTION_WORLD/Pokémon Lightning Yellow — All 252 Species Typing & 67 Move Source Matrix — 2026-11-02.txt",

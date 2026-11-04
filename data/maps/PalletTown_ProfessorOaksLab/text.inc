@@ -355,3 +355,6 @@ PalletTown_ProfessorOaksLab_Text_RivalIllCompleteThePokedex::
     .string "ONE ISLAND first…\p"
     .string "Anyways, I'm outta here!$"
 
+
+PalletTown_ProfessorOaksLab_Text_ReceivedFiveNestBalls::
+    .string "{PLAYER} received five NEST BALLS.$"

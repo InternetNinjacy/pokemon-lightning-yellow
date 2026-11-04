@@ -1,4 +1,5 @@
 #include "constants/battle.h"
+#include "constants/move_categories.h"
 #include "constants/battle_ai.h"
 #include "constants/abilities.h"
 #include "constants/items.h"
@@ -945,8 +946,8 @@ AI_CV_DefenseUp4::
 	get_move_power_from_result
 	if_equal 0, AI_CV_DefenseUp5
 	get_last_used_move AI_TARGET
-	get_move_type_from_result
-	if_not_in_bytes AI_CV_DefenseUp_PhysicalTypes, AI_CV_DefenseUp_ScoreDown2
+	get_move_category_from_result
+	if_not_equal MOVE_CATEGORY_PHYSICAL, AI_CV_DefenseUp_ScoreDown2
 	if_random_less_than 60, AI_CV_DefenseUp_End
 
 AI_CV_DefenseUp5::
@@ -958,17 +959,6 @@ AI_CV_DefenseUp_ScoreDown2::
 AI_CV_DefenseUp_End::
 	end
 
-AI_CV_DefenseUp_PhysicalTypes::
-	.byte TYPE_NORMAL
-	.byte TYPE_FIGHTING
-	.byte TYPE_POISON
-	.byte TYPE_GROUND
-	.byte TYPE_FLYING
-	.byte TYPE_ROCK
-	.byte TYPE_BUG
-	.byte TYPE_GHOST
-	.byte TYPE_STEEL
-	.byte -1
 
 AI_CV_SpeedUp::
 	if_target_faster AI_CV_SpeedUp2
@@ -1025,8 +1015,8 @@ AI_CV_SpDefUp4::
 	get_move_power_from_result
 	if_equal 0, AI_CV_SpDefUp5
 	get_last_used_move AI_TARGET
-	get_move_type_from_result
-	if_in_bytes AI_CV_SpDefUp_PhysicalTypes, AI_CV_SpDefUp_ScoreDown2
+	get_move_category_from_result
+	if_not_equal MOVE_CATEGORY_SPECIAL, AI_CV_SpDefUp_ScoreDown2
 	if_random_less_than 60, AI_CV_SpDefUp_End
 
 AI_CV_SpDefUp5::
@@ -1038,17 +1028,6 @@ AI_CV_SpDefUp_ScoreDown2::
 AI_CV_SpDefUp_End::
 	end
 
-AI_CV_SpDefUp_PhysicalTypes::
-	.byte TYPE_NORMAL
-	.byte TYPE_FIGHTING
-	.byte TYPE_POISON
-	.byte TYPE_GROUND
-	.byte TYPE_FLYING
-	.byte TYPE_ROCK
-	.byte TYPE_BUG
-	.byte TYPE_GHOST
-	.byte TYPE_STEEL
-	.byte -1
 
 AI_CV_AccuracyUp::
 	if_stat_level_less_than AI_USER, STAT_ACC, 9, AI_CV_AccuracyUp2
@@ -1142,25 +1121,13 @@ AI_CV_AttackDown3::
 	score -2
 
 AI_CV_AttackDown4::
-	get_target_type1
-	if_in_bytes AI_CV_AttackDown_PhysicalTypeList, AI_CV_AttackDown_End
-	get_target_type2
-	if_in_bytes AI_CV_AttackDown_PhysicalTypeList, AI_CV_AttackDown_End
+	if_has_move_category AI_TARGET, MOVE_CATEGORY_PHYSICAL, AI_CV_AttackDown_End
 	if_random_less_than 50, AI_CV_AttackDown_End
 	score -2
 
 AI_CV_AttackDown_End::
 	end
 
-@ Missing Poison, Flying, and Ghost for unknown reason
-AI_CV_AttackDown_PhysicalTypeList::
-	.byte TYPE_NORMAL
-	.byte TYPE_FIGHTING
-	.byte TYPE_GROUND
-	.byte TYPE_ROCK
-	.byte TYPE_BUG
-	.byte TYPE_STEEL
-	.byte -1
 
 AI_CV_DefenseDown::
 	if_hp_less_than AI_USER, 70, AI_CV_DefenseDown2
@@ -1211,26 +1178,13 @@ AI_CV_SpAtkDown3::
 	score -2
 
 AI_CV_SpAtkDown4::
-	get_target_type1
-	if_in_bytes AI_CV_SpAtkDown_SpecialTypeList, AI_CV_SpAtkDown_End
-	get_target_type2
-	if_in_bytes AI_CV_SpAtkDown_SpecialTypeList, AI_CV_SpAtkDown_End
+	if_has_move_category AI_TARGET, MOVE_CATEGORY_SPECIAL, AI_CV_SpAtkDown_End
 	if_random_less_than 50, AI_CV_SpAtkDown_End
 	score -2
 
 AI_CV_SpAtkDown_End::
 	end
 
-AI_CV_SpAtkDown_SpecialTypeList::
-	.byte TYPE_FIRE
-	.byte TYPE_WATER
-	.byte TYPE_GRASS
-	.byte TYPE_ELECTRIC
-	.byte TYPE_PSYCHIC
-	.byte TYPE_ICE
-	.byte TYPE_DRAGON
-	.byte TYPE_DARK
-	.byte -1
 
 AI_CV_SpDefDown::
 	if_hp_less_than AI_USER, 70, AI_CV_SpDefDown2
@@ -1450,10 +1404,7 @@ AI_CV_Toxic_End::
 
 AI_CV_LightScreen::
 	if_hp_less_than AI_USER, 50, AI_CV_LightScreen_ScoreDown2
-	get_target_type1
-	if_in_bytes AI_CV_LightScreen_SpecialTypeList, AI_CV_LightScreen_End
-	get_target_type2
-	if_in_bytes AI_CV_LightScreen_SpecialTypeList, AI_CV_LightScreen_End
+	if_has_move_category AI_TARGET, MOVE_CATEGORY_SPECIAL, AI_CV_LightScreen_End
 	if_random_less_than 50, AI_CV_LightScreen_End
 
 AI_CV_LightScreen_ScoreDown2::
@@ -1462,16 +1413,6 @@ AI_CV_LightScreen_ScoreDown2::
 AI_CV_LightScreen_End::
 	end
 
-AI_CV_LightScreen_SpecialTypeList::
-	.byte TYPE_FIRE
-	.byte TYPE_WATER
-	.byte TYPE_GRASS
-	.byte TYPE_ELECTRIC
-	.byte TYPE_PSYCHIC
-	.byte TYPE_ICE
-	.byte TYPE_DRAGON
-	.byte TYPE_DARK
-	.byte -1
 
 AI_CV_Rest::
 	if_target_faster AI_CV_Rest4
@@ -1585,10 +1526,7 @@ AI_CV_Confuse_End::
 
 AI_CV_Reflect::
 	if_hp_less_than AI_USER, 50, AI_CV_Reflect_ScoreDown2
-	get_target_type1
-	if_in_bytes AI_CV_Reflect_PhysicalTypeList, AI_CV_Reflect_End
-	get_target_type2
-	if_in_bytes AI_CV_Reflect_PhysicalTypeList, AI_CV_Reflect_End
+	if_has_move_category AI_TARGET, MOVE_CATEGORY_PHYSICAL, AI_CV_Reflect_End
 	if_random_less_than 50, AI_CV_Reflect_End
 
 AI_CV_Reflect_ScoreDown2::
@@ -1597,17 +1535,6 @@ AI_CV_Reflect_ScoreDown2::
 AI_CV_Reflect_End::
 	end
 
-AI_CV_Reflect_PhysicalTypeList::
-	.byte TYPE_NORMAL
-	.byte TYPE_FIGHTING
-	.byte TYPE_FLYING
-	.byte TYPE_POISON
-	.byte TYPE_GROUND
-	.byte TYPE_ROCK
-	.byte TYPE_BUG
-	.byte TYPE_GHOST
-	.byte TYPE_STEEL
-	.byte -1
 
 AI_CV_Poison::
 	if_hp_less_than AI_USER, 50, AI_CV_Poison_ScoreDown1
@@ -1746,8 +1673,8 @@ AI_CV_Counter3::
 
 AI_CV_Counter4::
 	get_last_used_move AI_TARGET
-	get_move_type_from_result
-	if_not_in_bytes AI_CV_Counter_PhysicalTypeList, AI_CV_Counter_ScoreDown1
+	get_move_category_from_result
+	if_not_equal MOVE_CATEGORY_PHYSICAL, AI_CV_Counter_ScoreDown1
 	if_random_less_than 100, AI_CV_Counter_End
 	score +1
 	goto AI_CV_Counter_End
@@ -1758,10 +1685,7 @@ AI_CV_Counter5::
 	score +1
 
 AI_CV_Counter6::
-	get_target_type1
-	if_in_bytes AI_CV_Counter_PhysicalTypeList, AI_CV_Counter_End
-	get_target_type2
-	if_in_bytes AI_CV_Counter_PhysicalTypeList, AI_CV_Counter_End
+	if_has_move_category AI_TARGET, MOVE_CATEGORY_PHYSICAL, AI_CV_Counter_End
 	if_random_less_than 50, AI_CV_Counter_End
 
 @ Improvement in Emerald
@@ -1778,17 +1702,6 @@ AI_CV_Counter_ScoreDown1::
 AI_CV_Counter_End::
 	end
 
-AI_CV_Counter_PhysicalTypeList::
-	.byte TYPE_NORMAL
-	.byte TYPE_FIGHTING
-	.byte TYPE_FLYING
-	.byte TYPE_POISON
-	.byte TYPE_GROUND
-	.byte TYPE_ROCK
-	.byte TYPE_BUG
-	.byte TYPE_GHOST
-	.byte TYPE_STEEL
-	.byte -1
 
 AI_CV_Encore::
 	if_any_move_disabled AI_TARGET, AI_CV_Encore2
@@ -2264,8 +2177,8 @@ AI_CV_MirrorCoat3::
 
 AI_CV_MirrorCoat4::
 	get_last_used_move AI_TARGET
-	get_move_type_from_result
-	if_not_in_bytes AI_CV_MirrorCoat_SpecialTypeList, AI_CV_MirrorCoat_ScoreDown1
+	get_move_category_from_result
+	if_not_equal MOVE_CATEGORY_SPECIAL, AI_CV_MirrorCoat_ScoreDown1
 	if_random_less_than 100, AI_CV_MirrorCoat_End
 	score +1
 	goto AI_CV_MirrorCoat_End
@@ -2276,10 +2189,7 @@ AI_CV_MirrorCoat5::
 	score +1
 
 AI_CV_MirrorCoat6::
-	get_target_type1
-	if_in_bytes AI_CV_MirrorCoat_SpecialTypeList, AI_CV_MirrorCoat_End
-	get_target_type2
-	if_in_bytes AI_CV_MirrorCoat_SpecialTypeList, AI_CV_MirrorCoat_End
+	if_has_move_category AI_TARGET, MOVE_CATEGORY_SPECIAL, AI_CV_MirrorCoat_End
 	if_random_less_than 50, AI_CV_MirrorCoat_End
 
 @ Improvement in Emerald
@@ -2296,16 +2206,6 @@ AI_CV_MirrorCoat_ScoreDown1::
 AI_CV_MirrorCoat_End::
 	end
 
-AI_CV_MirrorCoat_SpecialTypeList::
-	.byte TYPE_FIRE
-	.byte TYPE_WATER
-	.byte TYPE_GRASS
-	.byte TYPE_ELECTRIC
-	.byte TYPE_PSYCHIC
-	.byte TYPE_ICE
-	.byte TYPE_DRAGON
-	.byte TYPE_DARK
-	.byte -1
 
 AI_CV_ChargeUpMove::
 	if_type_effectiveness AI_EFFECTIVENESS_x0_25, AI_CV_ChargeUpMove_ScoreDown2

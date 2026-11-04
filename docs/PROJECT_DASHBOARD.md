@@ -206,3 +206,13 @@ Next authorized work: PKM-007,24 fully approved type corrections on vendor head 
 Latest checkpoint supersedes the earlier “next PKM-007” line and historical missing-export notes. The archive is supplied and verified; remaining palette, distribution, held-feature and integration gaps are stated explicitly in current task records.
 
 Final-head Actions additionally confirms **274791 full mGBA assertions PASS**, including the six summary screens; local274765 +46 focused counts above remain separately reported.
+
+
+## Active consolidation — DES-010
+
+The owner explicitly authorized merging all existing PRs, then continuing approved
+unfinished work. Repository auto-merge remains enabled. Docs#8/#18 are merged;
+Museum#14's paid-area placement is repaired and native1307 acceptance passed.
+Blaine actual battle-entry/immunity46 checks also pass. Combined full CI and
+remaining merges are underway; no extra effort credit recorded before that gate.
+Older no-merge/unintegrated statements above are historical checkpoints.
