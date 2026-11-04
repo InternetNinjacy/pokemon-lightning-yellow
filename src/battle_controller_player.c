@@ -1,4 +1,6 @@
 #include "global.h"
+#include "capture_rules.h"
+#include "wild_double_battle.h"
 #include "move_categories.h"
 #include "gflib.h"
 #include "data.h"
@@ -294,7 +296,7 @@ static void HandleInputChooseAction(void)
             if (gBattleBufferA[gActiveBattler][1] == B_ACTION_USE_ITEM)
             {
                 // Add item to bag if it is a ball
-                if (itemId <= ITEM_PREMIER_BALL)
+                if (IsPokeBallItem(itemId))
                     AddBagItem(itemId, 1);
                 else
                     return;
@@ -368,7 +370,7 @@ static void HandleInputChooseTarget(void)
             do
             {
                 if (--i < 0)
-                    i = MAX_BATTLERS_COUNT; // UB: array out of range
+                    i = MAX_BATTLERS_COUNT - 1; // wrap to the last valid target
                 gMultiUsePlayerCursor = GetBattlerAtPosition(identities[i]);
             }
             while (gMultiUsePlayerCursor == gBattlersCount);
@@ -2279,7 +2281,7 @@ static void PlayerHandleSuccessBallThrowAnim(void)
 {
     gBattleSpritesDataPtr->animationData->ballThrowCaseId = BALL_3_SHAKES_SUCCESS;
     gDoingBattleAnim = TRUE;
-    InitAndLaunchSpecialAnimation(gActiveBattler, gActiveBattler, GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT), B_ANIM_BALL_THROW);
+    InitAndLaunchSpecialAnimation(gActiveBattler, gActiveBattler, GetWildCatchTarget(), B_ANIM_BALL_THROW);
     gBattlerControllerFuncs[gActiveBattler] = CompleteOnSpecialAnimDone;
 }
 
@@ -2289,7 +2291,7 @@ static void PlayerHandleBallThrowAnim(void)
 
     gBattleSpritesDataPtr->animationData->ballThrowCaseId = ballThrowCaseId;
     gDoingBattleAnim = TRUE;
-    InitAndLaunchSpecialAnimation(gActiveBattler, gActiveBattler, GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT), B_ANIM_BALL_THROW);
+    InitAndLaunchSpecialAnimation(gActiveBattler, gActiveBattler, GetWildCatchTarget(), B_ANIM_BALL_THROW);
     gBattlerControllerFuncs[gActiveBattler] = CompleteOnSpecialAnimDone;
 }
 

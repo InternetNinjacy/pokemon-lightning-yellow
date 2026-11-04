@@ -1,0 +1,392 @@
+{
+  "authority": "Latest owner-approved Master Plan81/878/1208/1211 and supplied252 typing matrix PartA; Gyarados Water/Dragon direct owner confirmation. All other species/type fields preserved.",
+  "source_file": "04_SPECIES_EVOLUTION_WORLD/Pok\u00e9mon Lightning Yellow \u2014 All 252 Species Typing & 67 Move Source Matrix \u2014 2026-11-02.txt",
+  "source_sha256": "fbd5d414bc21e120bc0238fccfbbdf65ac5211119d7dc3432a2c2e3e339da800",
+  "species": {
+    "CHARIZARD": {
+      "regional_number": 6,
+      "original": [
+        "FIRE",
+        "FLYING"
+      ],
+      "approved": [
+        "FIRE",
+        "DRAGON"
+      ]
+    },
+    "PIDGEY": {
+      "regional_number": 16,
+      "original": [
+        "NORMAL",
+        "FLYING"
+      ],
+      "approved": [
+        "FLYING",
+        "FLYING"
+      ]
+    },
+    "PIDGEOTTO": {
+      "regional_number": 17,
+      "original": [
+        "NORMAL",
+        "FLYING"
+      ],
+      "approved": [
+        "FLYING",
+        "FLYING"
+      ]
+    },
+    "PIDGEOT": {
+      "regional_number": 18,
+      "original": [
+        "NORMAL",
+        "FLYING"
+      ],
+      "approved": [
+        "FLYING",
+        "FLYING"
+      ]
+    },
+    "RATTATA": {
+      "regional_number": 19,
+      "original": [
+        "NORMAL",
+        "NORMAL"
+      ],
+      "approved": [
+        "DARK",
+        "DARK"
+      ]
+    },
+    "RATICATE": {
+      "regional_number": 20,
+      "original": [
+        "NORMAL",
+        "NORMAL"
+      ],
+      "approved": [
+        "DARK",
+        "DARK"
+      ]
+    },
+    "SPEAROW": {
+      "regional_number": 21,
+      "original": [
+        "NORMAL",
+        "FLYING"
+      ],
+      "approved": [
+        "FLYING",
+        "FLYING"
+      ]
+    },
+    "FEAROW": {
+      "regional_number": 22,
+      "original": [
+        "NORMAL",
+        "FLYING"
+      ],
+      "approved": [
+        "FLYING",
+        "FLYING"
+      ]
+    },
+    "ARBOK": {
+      "regional_number": 24,
+      "original": [
+        "POISON",
+        "POISON"
+      ],
+      "approved": [
+        "POISON",
+        "DARK"
+      ]
+    },
+    "SANDSLASH": {
+      "regional_number": 29,
+      "original": [
+        "GROUND",
+        "GROUND"
+      ],
+      "approved": [
+        "GROUND",
+        "STEEL"
+      ]
+    },
+    "VULPIX": {
+      "regional_number": 39,
+      "original": [
+        "FIRE",
+        "FIRE"
+      ],
+      "approved": [
+        "FIRE",
+        "GHOST"
+      ]
+    },
+    "NINETALES": {
+      "regional_number": 40,
+      "original": [
+        "FIRE",
+        "FIRE"
+      ],
+      "approved": [
+        "FIRE",
+        "GHOST"
+      ]
+    },
+    "PERSIAN": {
+      "regional_number": 58,
+      "original": [
+        "NORMAL",
+        "NORMAL"
+      ],
+      "approved": [
+        "NORMAL",
+        "DARK"
+      ]
+    },
+    "PSYDUCK": {
+      "regional_number": 59,
+      "original": [
+        "WATER",
+        "WATER"
+      ],
+      "approved": [
+        "WATER",
+        "PSYCHIC"
+      ]
+    },
+    "GOLDUCK": {
+      "regional_number": 60,
+      "original": [
+        "WATER",
+        "WATER"
+      ],
+      "approved": [
+        "WATER",
+        "PSYCHIC"
+      ]
+    },
+    "GEODUDE": {
+      "regional_number": 80,
+      "original": [
+        "ROCK",
+        "GROUND"
+      ],
+      "approved": [
+        "ROCK",
+        "ROCK"
+      ]
+    },
+    "GRAVELER": {
+      "regional_number": 81,
+      "original": [
+        "ROCK",
+        "GROUND"
+      ],
+      "approved": [
+        "ROCK",
+        "ROCK"
+      ]
+    },
+    "GOLEM": {
+      "regional_number": 82,
+      "original": [
+        "ROCK",
+        "GROUND"
+      ],
+      "approved": [
+        "ROCK",
+        "ROCK"
+      ]
+    },
+    "FARFETCHD": {
+      "regional_number": 90,
+      "original": [
+        "NORMAL",
+        "FLYING"
+      ],
+      "approved": [
+        "FLYING",
+        "FLYING"
+      ]
+    },
+    "DODUO": {
+      "regional_number": 91,
+      "original": [
+        "NORMAL",
+        "FLYING"
+      ],
+      "approved": [
+        "FLYING",
+        "FLYING"
+      ]
+    },
+    "DODRIO": {
+      "regional_number": 92,
+      "original": [
+        "NORMAL",
+        "FLYING"
+      ],
+      "approved": [
+        "FLYING",
+        "FLYING"
+      ]
+    },
+    "ONIX": {
+      "regional_number": 102,
+      "original": [
+        "ROCK",
+        "GROUND"
+      ],
+      "approved": [
+        "ROCK",
+        "ROCK"
+      ]
+    },
+    "STEELIX": {
+      "regional_number": 103,
+      "original": [
+        "STEEL",
+        "GROUND"
+      ],
+      "approved": [
+        "STEEL",
+        "STEEL"
+      ]
+    },
+    "LICKITUNG": {
+      "regional_number": 118,
+      "original": [
+        "NORMAL",
+        "NORMAL"
+      ],
+      "approved": [
+        "NORMAL",
+        "GHOST"
+      ]
+    },
+    "RHYHORN": {
+      "regional_number": 121,
+      "original": [
+        "GROUND",
+        "ROCK"
+      ],
+      "approved": [
+        "ROCK",
+        "ROCK"
+      ]
+    },
+    "RHYDON": {
+      "regional_number": 122,
+      "original": [
+        "GROUND",
+        "ROCK"
+      ],
+      "approved": [
+        "ROCK",
+        "ROCK"
+      ]
+    },
+    "PINSIR": {
+      "regional_number": 143,
+      "original": [
+        "BUG",
+        "BUG"
+      ],
+      "approved": [
+        "BUG",
+        "BUG"
+      ]
+    },
+    "GYARADOS": {
+      "regional_number": 146,
+      "original": [
+        "WATER",
+        "FLYING"
+      ],
+      "approved": [
+        "WATER",
+        "DRAGON"
+      ]
+    },
+    "HOOTHOOT": {
+      "regional_number": 166,
+      "original": [
+        "NORMAL",
+        "FLYING"
+      ],
+      "approved": [
+        "FLYING",
+        "PSYCHIC"
+      ]
+    },
+    "NOCTOWL": {
+      "regional_number": 167,
+      "original": [
+        "NORMAL",
+        "FLYING"
+      ],
+      "approved": [
+        "FLYING",
+        "PSYCHIC"
+      ]
+    },
+    "AMPHAROS": {
+      "regional_number": 174,
+      "original": [
+        "ELECTRIC",
+        "ELECTRIC"
+      ],
+      "approved": [
+        "ELECTRIC",
+        "DRAGON"
+      ]
+    },
+    "LARVITAR": {
+      "regional_number": 196,
+      "original": [
+        "ROCK",
+        "GROUND"
+      ],
+      "approved": [
+        "ROCK",
+        "ROCK"
+      ]
+    },
+    "PUPITAR": {
+      "regional_number": 197,
+      "original": [
+        "ROCK",
+        "GROUND"
+      ],
+      "approved": [
+        "ROCK",
+        "ROCK"
+      ]
+    },
+    "TAILLOW": {
+      "regional_number": 202,
+      "original": [
+        "NORMAL",
+        "FLYING"
+      ],
+      "approved": [
+        "FLYING",
+        "FLYING"
+      ]
+    },
+    "SWELLOW": {
+      "regional_number": 203,
+      "original": [
+        "NORMAL",
+        "FLYING"
+      ],
+      "approved": [
+        "FLYING",
+        "FLYING"
+      ]
+    }
+  }
+}

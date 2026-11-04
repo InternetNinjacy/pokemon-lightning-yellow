@@ -23,8 +23,9 @@ LavenderTown_EventScript_LittleGirlBelieve::
 	end
 
 LavenderTown_EventScript_WorkerM::
-	msgbox LavenderTown_Text_TownKnownAsMonGraveSite, MSGBOX_NPC
-	end
+	textcolor NPC_TEXT_COLOR_MALE
+	setvar VAR_0x8009, 4
+	goto MysteryVendor_Start
 
 LavenderTown_EventScript_Boy::
 	msgbox LavenderTown_Text_GhostsAppearedInTower, MSGBOX_NPC

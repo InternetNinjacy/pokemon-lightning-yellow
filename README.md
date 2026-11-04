@@ -11,6 +11,26 @@ features remain unimplemented; [AGENTS.md](AGENTS.md) requires design approval.
 This branch also implements the approved [252-species custom Pokédex](docs/CUSTOM_POKEDEX.md),
 including Castform at #233. Trainer placement is pending finalized design.
 
+The [wild double battle capability test](docs/WILD_DOUBLE_BATTLES.md) enables ordinary
+land/cave doubles on Route 1 and Mt. Moon 1F, with a 5% Onix/Cloyster special pair.
+These are experimental test locations on a separate branch; see the report for
+party/Repel/capture rules, executed evidence and remaining release checks.
+
+This branch adds [approved Phase One stabilization](docs/PHASE_ONE_STABILIZATION.md):
+the original twelve-rule typing snapshot, roster-aware evolution access before National Dex, and the
+06:00–18:00 functional day/night boundary. It extends acceptance tests while
+preserving the existing unmerged feature stack. The canonical [project dashboard](https://github.com/InternetNinjacy/pokemon-lightning-yellow/blob/docs/project-coordination/docs/PROJECT_DASHBOARD.md)
+and [implementation ledger](https://github.com/InternetNinjacy/pokemon-lightning-yellow/blob/docs/project-coordination/docs/MASTER_IMPLEMENTATION_CHANGE_LEDGER.md)
+live on the independent coordination branch; Drive synchronization remains pending.
+
+[Route5 daycare breeding](docs/ROUTE5_DAYCARE.md) is implemented on this stacked branch: independent two-parent storage, safe legacy migration and persistent50% Shiny eggs. Read its validation status and rollback limitations before using old saves.
+
+[Fossil rewards and species audit](docs/FOSSIL_REWARDS_AND_SPECIES_AUDIT.md) extend the existing aide/lab scripts and report unresolved off-Dex assignments. Blaine and Poké Ball dependencies remain explicitly documented.
+
+The [Mystery Pokémon Vendor Network](docs/MYSTERY_VENDOR_NETWORK.md) implements ten existing sellers, a unique ten-species pool, foreign OT Mystery and genuine90% Shiny purchases. It remains separate from pending starter integration.
+
+The approved [Poké Ball redesign](docs/POKE_BALL_REDESIGN.md) adds Wet/Dust/Snow capture conditions, Premier purchase rewards and Oak's initial Nest gift while preserving existing item IDs and shared artwork.
+
 ## Build entirely on GitHub
 
 No local Python, compiler, or development tools are required. Open this repository's
@@ -20,7 +40,8 @@ the default branch. For a feature PR, use its Checks tab or the feature branch's
 Click **modified** for regression tests and game builds, or **upstream-baseline**
 for the unchanged upstream SHA-1 comparison. The modified job also runs
 [headless mGBA integration tests](docs/EMULATOR_VALIDATION.md). Both require a clean rebuild. A green
-run confirms automated checks, not emulator gameplay or visual acceptance.
+run confirms the automated scenarios that actually ran; it does not certify a full
+playthrough or visual acceptance.
 
 Actions installs all Linux dependencies, builds pinned agbcc, obtains upstream
 build inputs, and compiles on the runner. ROMs are neither committed nor uploaded;
@@ -41,6 +62,11 @@ python3 tests/run_split_tests.py
 python3 tests/run_rtc_tests.py
 python3 tests/run_evolution_tests.py
 python3 tests/run_pokedex_tests.py
+python3 tests/run_wild_double_tests.py
+python3 tests/run_daycare_tests.py
+python3 tests/run_world_reward_tests.py
+python3 tests/run_vendor_tests.py
+python3 tests/run_capture_tests.py
 make -j2
 python3 tests/emulator/run.py
 make clean
@@ -65,3 +91,7 @@ branch protection with required review and the **modified** and **upstream-basel
 do not enforce branch protection themselves). Gameplay implementation requires
 approved design specifications first. Do not change the baseline hash just to
 make an unexplained failure pass.
+
+The [current typing reconciliation](docs/TYPING_CORRECTIONS.md) implements 24
+remaining approved type pairs and validates all 35 effective explicit typing rules.
+Run `python3 tests/run_typing_tests.py` alongside the other regression suites.

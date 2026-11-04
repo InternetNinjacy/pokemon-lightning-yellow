@@ -1,4 +1,5 @@
 #include "constants/global.h"
+#include "constants/mystery_vendor.h"
 #include "constants/flags.h"
 #include "constants/event_objects.h"
 #include "constants/event_object_movement.h"
@@ -1360,3 +1361,5 @@ Text_TestMsg::
 	.include "data/text/save.inc"
 	.include "data/text/new_game_intro.inc"
 	.include "data/text/pokedude.inc"
+
+	.include "data/scripts/mystery_vendor.inc"
