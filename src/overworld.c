@@ -36,6 +36,7 @@
 #include "quest_log_objects.h"
 #include "random.h"
 #include "renewable_hidden_items.h"
+#include "route5_daycare.h"
 #include "roamer.h"
 #include "safari_zone.h"
 #include "save_location.h"
@@ -1690,10 +1691,12 @@ static void FieldCB_ShowMapNameOnContinue(void)
 
 void CB2_ContinueSavedGame(void)
 {
+    bool8 refreshRoute5;
     FieldClearVBlankHBlankCallbacks();
     StopMapMusic();
     ResetSafariZoneFlag_();
     LoadSaveblockMapHeader();
+    refreshRoute5 = Route5DaycareNeedsMapRefresh();
     LoadSaveblockObjEventScripts();
     UnfreezeObjectEvents();
     Overworld_ResetStateOnContinue();
@@ -1708,6 +1711,20 @@ void CB2_ContinueSavedGame(void)
         ClearContinueGameWarpStatus();
         SetWarpDestinationToContinueGameWarp();
         WarpIntoMap();
+        SetMainCallback2(CB2_LoadMap);
+    }
+    else if (refreshRoute5)
+    {
+        s16 x = gSaveBlock1Ptr->pos.x;
+        s16 y = gSaveBlock1Ptr->pos.y;
+        const struct ObjectEventTemplate *newCaretaker = &gMapHeader.events->objectEvents[1];
+        // The old floor tile was valid for a saved player. Avoid spawning the
+        // new stationary caretaker on top of that player after the upgrade.
+        if (x == newCaretaker->x && y == newCaretaker->y)
+            y++;
+        SetWarpDestination(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum, -1, x, y);
+        WarpIntoMap();
+        gFieldCallback = FieldCB_DefaultWarpExit;
         SetMainCallback2(CB2_LoadMap);
     }
     else

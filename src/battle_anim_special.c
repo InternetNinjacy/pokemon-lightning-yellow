@@ -1,4 +1,5 @@
 #include "global.h"
+#include "capture_rules.h"
 #include "gflib.h"
 #include "battle.h"
 #include "battle_anim.h"
@@ -645,7 +646,7 @@ void AnimTask_SwitchOutBallEffect(u8 taskId)
     else
         ball = GetMonData(&gEnemyParty[gBattlerPartyIndexes[gBattleAnimAttacker]], MON_DATA_POKEBALL);
 
-    ballId = ItemIdToBallId(ball);
+    ballId = ItemIdToBallId(CaptureCodeToBallItem(ball));
     switch (gTasks[taskId].data[0])
     {
     case 0:
@@ -714,6 +715,7 @@ u8 ItemIdToBallId(u16 ballItem)
     case ITEM_NET_BALL:
         return BALL_NET;
     case ITEM_DIVE_BALL:
+    case ITEM_SNOW_BALL:
         return BALL_DIVE;
     case ITEM_NEST_BALL:
         return BALL_NEST;

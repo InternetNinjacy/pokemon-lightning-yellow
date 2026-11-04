@@ -28,6 +28,13 @@ FuchsiaCity_Mart_Items::
 	.2byte ITEM_REVIVE
 	.2byte ITEM_FULL_HEAL
 	.2byte ITEM_MAX_REPEL
+	.2byte ITEM_DIVE_BALL
+	.2byte ITEM_NET_BALL
+	.2byte ITEM_NEST_BALL
+	.2byte ITEM_REPEAT_BALL
+	.2byte ITEM_TIMER_BALL
+	.2byte ITEM_LUXURY_BALL
+	.2byte ITEM_SNOW_BALL
 	.2byte ITEM_NONE
 	release
 	end

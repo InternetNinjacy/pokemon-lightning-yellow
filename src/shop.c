@@ -1,4 +1,5 @@
 #include "global.h"
+#include "capture_rules.h"
 #include "gflib.h"
 #include "shop.h"
 #include "menu.h"
@@ -29,6 +30,9 @@
 #include "constants/items.h"
 #include "constants/game_stat.h"
 #include "constants/field_weather.h"
+
+static const u8 sText_BonusPluralSuffix[] = _("S");
+static const u8 sText_PremierPurchaseBonus[] = _("Bonus: {STR_VAR_1} {STR_VAR_2}!");
 
 #define tItemCount data[1]
 #define tItemId data[5]
@@ -980,7 +984,7 @@ static void BuyMenuTryMakePurchase(u8 taskId)
     s16 *data = gTasks[taskId].data;
 
     PutWindowTilemap(4);
-    if (AddBagItem(tItemId, tItemCount) == TRUE)
+    if (TryBuyBallsWithPremierBonus(tItemId, tItemCount) == TRUE)
     {
         BuyMenuDisplayMessage(taskId, gText_HereYouGoThankYou, BuyMenuSubtractMoney);
         DebugFunc_PrintPurchaseDetails(taskId);
@@ -994,11 +998,22 @@ static void BuyMenuTryMakePurchase(u8 taskId)
 
 static void BuyMenuSubtractMoney(u8 taskId)
 {
+    s16 *data = gTasks[taskId].data;
     IncrementGameStat(GAME_STAT_SHOPPED);
     RemoveMoney(&gSaveBlock1Ptr->money, sShopData.itemPrice);
     PlaySE(SE_SHOP);
     PrintMoneyAmountInMoneyBox(0, GetMoney(&gSaveBlock1Ptr->money), 0);
-    gTasks[taskId].func = Task_ReturnToItemListAfterItemPurchase;
+    if (IsPokeBallItem(tItemId) && tItemId != ITEM_MASTER_BALL
+     && tItemId != ITEM_SAFARI_BALL && tItemId != ITEM_PREMIER_BALL && tItemCount >= 10)
+    {
+        ConvertIntToDecimalStringN(gStringVar1, tItemCount / 10, STR_CONV_MODE_LEFT_ALIGN, 2);
+        CopyItemName(ITEM_PREMIER_BALL, gStringVar2);
+        if (tItemCount / 10 != 1)
+            StringAppend(gStringVar2, sText_BonusPluralSuffix);
+        BuyMenuDisplayMessage(taskId, sText_PremierPurchaseBonus, Task_ReturnToItemListAfterItemPurchase);
+    }
+    else
+        gTasks[taskId].func = Task_ReturnToItemListAfterItemPurchase;
 }
 
 static void Task_ReturnToItemListAfterItemPurchase(u8 taskId)

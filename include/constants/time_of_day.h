@@ -1,0 +1,9 @@
+#ifndef GUARD_CONSTANTS_TIME_OF_DAY_H
+#define GUARD_CONSTANTS_TIME_OF_DAY_H
+
+#define TIME_OF_DAY_DAY   0
+#define TIME_OF_DAY_NIGHT 1
+#define DAY_START_HOUR    6
+#define NIGHT_START_HOUR 18
+
+#endif
