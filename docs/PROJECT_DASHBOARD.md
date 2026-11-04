@@ -1,10 +1,10 @@
 # Pokémon Lightning Yellow — Project Dashboard
 
-Canonical branch: `docs/project-coordination`. Updated 2026-11-03.
+Canonical branch: `docs/project-coordination`. Updated 2026-11-04.
 
-Overall tracked scope: `[####------]` **39.69% complete / 60.31% remaining** (208 earned + 316 remaining provisional planning points).
+Overall tracked scope: `[####------]` **39.25% complete /60.75% remaining** (208 earned +322 remaining provisional points;530 total).
 
-Current execution checkpoint: [PR#13](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/13) implements the approved Poké Ball system at `ad86d58b0c0dec7117ffa524ae4a66926b92cd88`; nine host suites/full mGBA274675/clean rebuild/Actions PASS. The owner's DES-009 instruction removes readiness stops for finalized work. No merge or release; exact scope/limits below and in ledger.
+Previous execution checkpoint: [PR#13](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/13) implements the approved Poké Ball system at `ad86d58b0c0dec7117ffa524ae4a66926b92cd88`; nine host suites/full mGBA274675/clean rebuild/Actions PASS. The owner's DES-009 instruction removes readiness stops for finalized work. No merge or release; exact scope/limits below and in ledger.
 
 These are effort-weighted estimates of tracked work, not elapsed hours or release certification. Design, code, automated tests, emulator checks, review and merge are separate dimensions in [project-tracking.json](project-tracking.json). Adding scope changes the denominator without erasing earned work. Shared work is counted once; another regression run does not earn duplicate feature or integration credit.
 
@@ -12,14 +12,14 @@ Previous checkpoint: [PR #11](https://github.com/InternetNinjacy/pokemon-lightni
 
 | Area | Progress | Complete / remaining | Earned / remaining effort |
 |---|---|---|---|
-| PKM — Pokédex, species and evolution | `[#########-]` | 91% / 9% | 42 / 4 |
-| BTL — Moves, types and battle mechanics | `[####------]` | 35% / 65% | 48 / 88 |
-| TIM — RTC, time of day and lighting | `[###-------]` | 33% / 67% | 16 / 32 |
-| WTH — Overworld and battle weather | `[----------]` | 0% / 100% | 0 / 64 |
-| DAY — Daycare, breeding and Shiny eggs | `[##########]` | 97% / 3% | 31 / 1 |
-| GYM — Gyms, trainers and important battles | `[----------]` | 0% / 100% | 0 / 40 |
-| WRL — Maps, encounters, items and story | `[####------]` | 37% / 63% | 35 / 59 |
-| INT — Integration, testing and release readiness | `[######----]` | 56% / 44% | 36 / 28 |
+| PKM — Pokédex, species and evolution | `[########--]` | 81% /19% | 42 /10 |
+| BTL — Moves, types and battle mechanics | `[####------]` | 35% /65% | 48 /88 |
+| TIM — RTC, time of day and lighting | `[###-------]` | 33% /67% | 16 /32 |
+| WTH — Overworld and battle weather | `[----------]` | 0% /100% | 0 /64 |
+| DAY — Daycare, breeding and Shiny eggs | `[##########]` | 97% /3% | 31 /1 |
+| GYM — Gyms, trainers and important battles | `[----------]` | 0% /100% | 0 /40 |
+| WRL — Maps, encounters, items and story | `[####------]` | 37% /63% | 35 /59 |
+| INT — Integration, testing and release readiness | `[######----]` | 56% /44% | 36 /28 |
 
 Historical vendor checkpoint: [PR#12](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/12) implements the Mystery Vendor Network at `92a0600d819fe818f948e8d72bd1591531b4a07c`, stacked on unchanged#11. Eight host suites, full mGBA273355, clean repeatability and final Actions PASS (exact evidence below/in ledger). Separate review; no merge. Vendor adds20 provisional points:19 earned,1 pending starter integration. Denominator504→524, existing174 earned retained→193; repeated regression earns no duplicate integration credit. These estimates are not whole-game completion.
 
@@ -42,7 +42,8 @@ Stable IDs, aliases, authorities, refs, acceptance dimensions and estimate histo
 | PKM-003 Twelve approved species typing overrides | implemented; scoped automated acceptance passed; Owner review; do not merge without separate approval | — | 0 | [PR](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/9); [CI](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41376878452) |
 | PKM-004 Roster-aware pre-National evolution access | implemented; scoped automated acceptance passed; Owner review; do not merge without separate approval | PKM-001 | 0 | [PR](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/9); [CI](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41376878452) |
 | PKM-005 Expanded Dex/evolution acceptance | partial acceptance; remaining coverage explicitly recorded; Full overworld Bag evolution navigation and a real link-trade peer remain unverified. | PKM-003, PKM-004, TIM-002 | 2 | [PR](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/9); [CI](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41376878452) |
-| PKM-006 Global world roster eligibility audit and guard | audit/CI no-new-findings guard implemented; global compliance BLOCKED; Resolve reference roles and coordinate approved encounter/trainer/gift replacements under their own tasks; do not invent or add species | PKM-001, WRL-002, GYM-001 | 2 | [PR](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/11); [CI](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41529505085); Strict audit FAIL:281 authored off-Dex occurrences;279 legacy references and12 variable/C candidates need role review. Approved replacements/removals and locked stationary specification unavailable. |
+| PKM-006 Global world roster eligibility audit and guard | audit/CI no-new-findings guard implemented; global compliance BLOCKED; Audit reference roles and use approved substitutions only; no invented253rd species/off-Dex exemption; preserve SOW HOLD. | PKM-001, WRL-002, GYM-001 | 2 | [Source reconciliation](SPECIFICATION_RECONCILIATION_2026-11-04.md); Strict audit retains281 authored off-Dex occurrences plus reference-role review. Exact approved replacements/balancing need reconciliation; stationary specifications are available but explicitly held. |
+| PKM-007 Remaining approved species typing corrections | ready; begins after reconciliation checkpoint; Create isolated branch on owner-merged vendor head d54f7a8e; change only24 type pairs, preserve all other species fields; run host/native/full regression/build/CI and unmerged PR. | PKM-003 | 6 | [Source reconciliation](SPECIFICATION_RECONCILIATION_2026-11-04.md); No missing-export blocker |
 
 ### BTL — Moves, types and battle mechanics
 
@@ -52,7 +53,7 @@ Stable IDs, aliases, authorities, refs, acceptance dimensions and estimate histo
 | BTL-002 Wild double battle capability proof of concept | implemented on unmerged stack; Preserve and rerun relevant regression tests | — | 0 | [PR](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/7); [CI](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/40976362014) |
 | BTL-003 Split, AI and category UI acceptance | partial acceptance; remaining coverage explicitly recorded; Complete trainer-AI strategy/gameplay coverage remains unverified; selected ROM damage/AI/UI tests pass. | BTL-001 | 1 | [PR](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/9); [CI](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41376878452) |
 | BTL-004 Wild double battle hardening | partial acceptance; remaining coverage explicitly recorded; Nickname acceptance/rename, successful captures with every ball, faint/replacement/whiteout, forced-end/spread moves and complete weather interactions remain unverified. | BTL-002 | 6 | [PR](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/9); [CI](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41376878452) |
-| BTL-005 410-move redesign | not started; Obtain missing specification | BTL-001 | 80 | Full approved move register, change ledger, distributions and animation decisions are not locally available; prior audit is not implementation. |
+| BTL-005 410-move redesign | not started; Read/reconcile supplied move register, all-type tracker and change ledger; do not reopen locked type reviews or guess per-species learners. | BTL-001 | 80 | [Source reconciliation](SPECIFICATION_RECONCILIATION_2026-11-04.md); Engineering reconciliation pending: assemble authoritative354+56 overlay, safe move/TM IDs, effects and viable existing-art reuse. Candidate composites and unassigned per-species distributions are separate dependencies; documents are available. |
 | BTL-006 Poké Ball capture, items and shop redesign | implemented/scoped tests PASS; extended acceptance retained | #12 base preserved | 1 | [PR#13](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/13); [CI](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41688991039); see ledger/report |
 
 ### TIM — RTC, time of day and lighting
@@ -61,15 +62,15 @@ Stable IDs, aliases, authorities, refs, acceptance dimensions and estimate histo
 |---|---|---|---|---|
 | TIM-001 Read-only cartridge RTC | implemented on unmerged stack; Preserve and rerun relevant regression tests | — | 0 | [PR](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/3); [CI](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/40390936433) |
 | TIM-002 Functional day/night foundation | implemented; scoped automated acceptance passed; Owner review; do not merge without separate approval | TIM-001 | 0 | [PR](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/9); [CI](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41376878452) |
-| TIM-003 Approved visual periods and lighting | not started; Obtain missing specification | TIM-002 | 32 | Unanswered map classification/transition precedence and final palette approval. |
+| TIM-003 Approved visual periods and lighting | not started; Prepare palette reuse/visual prototypes under current authority; final values need visual approval; preserve ordinary interiors/caves. | TIM-002 | 32 | [Source reconciliation](SPECIFICATION_RECONCILIATION_2026-11-04.md); Exact palette/tint values and visual approval remain pending. Viridian Forest/Lavender/Mansion classification and RTC fallback/recovery are supplied, not missing documents. |
 
 ### WTH — Overworld and battle weather
 
 | Task | State / next action | Dependencies | Remaining effort | Evidence or blocker |
 |---|---|---|---|---|
-| WTH-001 Map weather selection and persistent state | not started; Obtain missing specification | TIM-002 | 28 | Final map exceptions and cave/nested-interior/RTC transition answers missing. |
-| WTH-002 Weather rendering repairs and conflicts | not started; Obtain missing specification | WTH-001, TIM-003 | 16 | Depends on weather and visual policy reconciliation. |
-| WTH-003 Field-to-battle weather bridge | not started; Obtain missing specification | WTH-001 | 20 | Field Hail duration and active-battle weather precedence unspecified. |
+| WTH-001 Map weather selection and persistent state | not started; Map supplied approved groups/exceptions onto actual source IDs and implement eligible base weather. Kindle Road/Trainer Tower/Tanoby/harbors are resolved by later appendices; SOW overrides remain held. | TIM-002 | 28 | [Source reconciliation](SPECIFICATION_RECONCILIATION_2026-11-04.md); No missing-export blocker |
+| WTH-002 Weather rendering repairs and conflicts | not started; Inspect/render approved effects and compatible map transitions; preserve existing assets and pending visual approval. | WTH-001, TIM-003 | 16 | [Source reconciliation](SPECIFICATION_RECONCILIATION_2026-11-04.md); Technical rendering/fade/fog/lighting interaction validation remains; final visual palette choices are separate, not missing-export blockers. |
+| WTH-003 Field-to-battle weather bridge | partial: narrow Snow-to-Hail bridge in merged#13/vendor stack; regional policy/restoration not implemented; Preserve verified Snow-to-natural-Hail bridge and five-turn move Hail. Integrate regional selection/restoration later; do not count this existing BTL-006 work twice. | WTH-001 | 20 | [Source reconciliation](SPECIFICATION_RECONCILIATION_2026-11-04.md); No missing-export blocker |
 
 ### DAY — Daycare, breeding and Shiny eggs
 
@@ -84,20 +85,20 @@ Stable IDs, aliases, authorities, refs, acceptance dimensions and estimate histo
 
 | Task | State / next action | Dependencies | Remaining effort | Evidence or blocker |
 |---|---|---|---|---|
-| GYM-001 Approved gyms and trainers | not started; Obtain missing specification | — | 17 | Exact finalized feature specifications/distribution unavailable; do not infer Phase Two choices. |
-| GYM-002 Leaders, rivals and important battles | not started; Obtain missing specification | — | 18 | Exact finalized feature specifications/distribution unavailable; do not infer Phase Two choices. |
-| GYM-003 Exactly one Celadon trainer Castform assignment | not started; Obtain missing specification | PKM-001 | 2 | Specific trainer, level and moveset not finalized. |
-| GYM-004 Blaine corrected five-member Double Battle | Not implemented; reconcile newly supplied Gym exports. Gyarados Water/Dragon confirmed by owner; no Flying-type Ground immunity. | PKM-001 | 3 | Type decision resolved November3; final battle configuration/strategy still requires source reconciliation; no invented workaround |
+| GYM-001 Approved gyms and trainers | not started; Use final Gym handoff and41-class final handoff; implement only exact complete battle sets after their engine dependencies; no invented teams. | — | 17 | [Source reconciliation](SPECIFICATION_RECONCILIATION_2026-11-04.md); Final individual levels/moves for many trainers remain unassigned; Castform replacements supersede Swinub/Staryu. Eligibility pools do not assign510 non-Gym parties. Exports are available. |
+| GYM-002 Leaders, rivals and important battles | not started; Preserve latest cumulative Giovanni roster; reconcile detailed earlier leaders and pending specific battle configurations. | — | 18 | [Source reconciliation](SPECIFICATION_RECONCILIATION_2026-11-04.md); Some late-leader/rival/Elite Four exact levels/moves/items are not finalized. Giovanni4/5/6 cumulative Tyranitar-ace parties are locked; trainer revival AI needs technical implementation, not an invented substitute. |
+| GYM-003 Exactly one Celadon trainer Castform assignment | not started; Map approved seventh Celadon trainer slot to source ID and await its actual level/moves; retain Forecast/GenIII forms. | PKM-001 | 2 | [Source reconciliation](SPECIFICATION_RECONCILIATION_2026-11-04.md); Castform level/moves and ordinary trainer balancing remain unassigned; the Celadon trainer slot is already approved, not missing. |
+| GYM-004 Blaine corrected five-member Double Battle | not implemented; actual source still original FireRed four-member Single Battle; Preserve five approved species and seven ordinary Singles teams; reconcile exact battle configuration without changing confirmed Gyarados typing. | PKM-001 | 3 | [Source reconciliation](SPECIFICATION_RECONCILIATION_2026-11-04.md); Exact levels/moves/items and any requirement for Ground-immune Gyarados are not finalized. Water/Dragon is settled and provides no Flying immunity; no substitute ability/item invented. |
 
 ### WRL — Maps, encounters, items and story
 
 | Task | State / next action | Dependencies | Remaining effort | Evidence or blocker |
 |---|---|---|---|---|
-| WRL-001 Pikachu starter and story | not started; Obtain missing specification | — | 12 | Exact finalized feature specifications/distribution unavailable; do not infer Phase Two choices. |
-| WRL-002 Final encounters and map policies | not started; Obtain missing specification | — | 20 | Exact finalized feature specifications/distribution unavailable; do not infer Phase Two choices. |
-| WRL-003 Approved evolution-shop framework | not started; Obtain missing specification | — | 8 | Exact finalized feature specifications/distribution unavailable; do not infer Phase Two choices. |
-| WRL-004 Item placements and events | not started; Obtain missing specification | — | 16 | Exact finalized feature specifications/distribution unavailable; do not infer Phase Two choices. |
-| WRL-005 Route5 wild Ditto encounter existence | not started; Obtain finalized Ditto rate/levels through encounter workstream; independent daycare engine work continues. | — | 2 | Existence approved; exact encounter rate and level range are not approved. Do not invent the remaining Route5 encounter table. |
+| WRL-001 Pikachu starter and story | not started; Reconcile Pikachu starter/rival/story code and approved one-time Oak Eevee gift against existing five-Nest reward. Eevee exact level/traits are not inferred; separate early stone placements remain pending. | — | 12 | [Source reconciliation](SPECIFICATION_RECONCILIATION_2026-11-04.md); No missing-export blocker |
+| WRL-002 Final encounters and map policies | not started; Use dated living ecology approvals, source tile/rod access audit and later balancing; retain legal252-only policy. | — | 20 | [Source reconciliation](SPECIFICATION_RECONCILIATION_2026-11-04.md); Rates, levels, rod/Surf tables and some physical slot access remain unapproved/unverified. Draft capacity matrices are not executable encounter tables; SOW implementation HOLD remains. |
+| WRL-003 Approved evolution-shop framework | not started; Use ordinary stones2100 and four trade items3000 as approved; separate framework from unfinished exact placements/badge gates. | — | 8 | [Source reconciliation](SPECIFICATION_RECONCILIATION_2026-11-04.md); Final early stone/Gym1-2 gate identities, placements/quests and unassigned shop-counter policy need design/technical reconciliation; not missing documents. |
+| WRL-004 Item placements and events | not started; Implement eligible exact events independently; inspect external Museum draft compatibility before any integration; do not rewrite unrelated PR#14. | — | 16 | [Source reconciliation](SPECIFICATION_RECONCILIATION_2026-11-04.md); Unfinished individual item/quest placement details and special-overworld HOLD remain. Museum PR#14 is an independent draft with failing baseline check and unverified integration; no claim it is ready. |
+| WRL-005 Route5 wild Ditto encounter existence | not started; Obtain balancing values through encounter workstream; do not ask again for already supplied species/exports. | — | 2 | [Source reconciliation](SPECIFICATION_RECONCILIATION_2026-11-04.md); Exact level ranges, rates/weights and detailed grass allocations remain unapproved. The three-species roster itself is supplied and locked. |
 | WRL-006 Route10 Claw Fossil reward and Anorith revival | implemented; scoped source/native acceptance passed; Owner review; retain old reward bit and no invented Everstone placement | PKM-001 | 0 | [PR](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/11); [CI](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41529505085) |
 | WRL-007 One-time unchosen MtMoon fossil gift | implemented; scoped source/native acceptance passed; Owner review; preserve immutable choice flags and normal lab services | WRL-006 | 0 | [PR](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/11); [CI](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41529505085) |
 | WRL-008 Mystery Pokémon Vendor Network | scoped implementation/test complete; starter integration pending | future WRL-001 acceptance | 1 | [PR#12](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/12); native transactions/UI/10000 draws, EXP/obedience and flash PASS; see feature report |
@@ -189,3 +190,9 @@ The received40-file authority export resolves the stale missing-ZIP intake claim
 Owner explicitly superseded the earlier readiness stop: implement finalized approved features without repeated generic approval; ask on genuine missing information/conflicts. [PR#13](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/13) at `ad86d58b0c0dec7117ffa524ae4a66926b92cd88` contains Wet/Dust/Snow/Premier effects, save-safe code13/new item375, native asset reuse, atomic purchase bonuses,11 stock lists, narrow Snow→Hail bridge and Oak five-Nest pending retry. No merged parents/main changes. Nine host suites, full mGBA 274675, clean repeatability and [Actions41688991039 SUCCESS](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41688991039). Exact evidence/limits in ledger and feature report.
 
 BTL-006 `[#########-]` **93.75% complete /6.25% remaining** (15 earned/1 extended acceptance point), provisional engineering estimate. All39 IDs/history preserved; denominator524 unchanged,208 earned/316 remaining =39.69%. No duplicate integration credit. No full game/release readiness, real link/hardware or all13-ball presentation claim. Drive sync pending; no merge/auto-merge/release.
+
+## November4 source reconciliation — current focus
+
+[Reconciliation report](SPECIFICATION_RECONCILIATION_2026-11-04.md) replaces unavailable-document blockers with verified source availability, actual design gaps or engineering dependencies. All40 source checksums verified; [manifest](SUPPLIED_SPECIFICATION_MANIFEST.json). PR#13 is merged only into vendor#12 by explicit owner approval; main remains unchanged. Independent Museum#14 is draft/unintegrated with baseline failure, tracked under WRL-004.
+
+Next authorized work: PKM-007,24 fully approved type corrections on vendor head d54f7a8e, preserving all other data. All39 prior IDs/208 earned retained; one new6-point task makes40 tasks/530 points,208 earned322 remaining=39.25%. Added scope changes the denominator; availability alone is not implementation credit. No other merges or auto-merge authorized.
