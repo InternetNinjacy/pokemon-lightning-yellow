@@ -1,0 +1,40 @@
+# Pewter Museum anime trivia: shiny Feebas Egg
+
+Status: owner-approved gameplay; implementation in this feature branch; build and emulator acceptance pending.
+Project: Pokémon Lightning Yellow only. Do not import unrelated Pokémon project decisions.
+
+## Player experience
+- Location: first-floor paid exhibition area of Pewter Museum, on the far side of the ¥50 admission attendant. No Gym-badge check.
+- Added stationary NPC reuses the existing admissions clerk's `OBJ_EVENT_GFX_WORKER_M` overworld graphic (existing male-coded asset; character dialogue does not specify gender).
+- Free optional challenge, Yes/No entry, fixed three questions in order. Wrong answer immediately exits; unlimited retries restart at question one.
+- Q1: "Was Rattata the first Pokémon Ash ever caught in the anime?" NO. Correct explanation: Caterpie was first.
+- Q2: "Have we ever seen Brock's eyes open in the Pokémon anime?" YES. Correct explanation: they have opened a few times.
+- Q3: "Does Misty have exactly two sisters?" NO. Correct explanation: Daisy, Violet, Lily are her three sisters.
+- Answer sequence NO / YES / NO.
+- Completing all three stores a permanent quiz-win flag immediately.
+- A full party leaves the reward pending, without rerunning the questions; player must return with an empty party position.
+- One Shiny Feebas Egg per save file, ever. Once awarded, a separate permanent received flag prevents duplication.
+- The NPC refers to a mysterious Egg and never reveals its species or Shiny status.
+- Standard species egg cycles and standard hatch process; no customized hatch distance. Existing Feebas level-20 evolution remains unchanged.
+- Winning/receiving independently persist through save/load and map exits.
+
+## Technical design
+- Two persistent flags allocated from previously unnamed slots 0x0AF and 0x0B0 on this branch; check stacked project PRs before integration.
+- New `CreateShinyEgg` creates a standard egg with fixed personality PID whose upper/lower halves produce true Gen III shiny calculation against player OT. Preserve egg cycles, nickname, ball, language, original special-egg met location and hatch system. No change to normal gift/daycare/Four Island/Route 5 Shiny odds.
+- `ScriptGiveShinyFeebasEgg` rejects full parties rather than sending to PC, and uses ordinary `GiveMonToPlayer`.
+- Existing museum clerk admission fee, original Old Amber event, map scripts, and other visitors must remain intact.
+
+## Acceptance checklist
+1. Entry is gated only by the existing ¥50 admission flow; NPC is reachable before the Pewter Gym.
+2. "No" to the initial participation prompt exits without changing flags.
+3. Wrong answer at each of Q1, Q2 and Q3 ends immediately; retalking begins at Q1, indefinitely.
+4. Correct NO/YES/NO displays correct explanation after every answer, then victory.
+5. Full party at victory: win flag set, received flag unset; saving/reloading and changing maps retains pending reward.
+6. Empty party slot: an already-won challenge awards exactly one Egg without rerunning questions; further conversations never award more.
+7. Save/reload before hatch: exact stored OT/personality verify as truly Shiny using engine predicate; egg is Feebas, standard egg cycles/hatch level.
+8. Hatch yields Shiny Feebas; evolution yields Shiny Milotic. Normal eggs, bred eggs and wild Shiny odds unchanged.
+9. Validate NPC tile accessibility and text-window overflow in emulator; sprite intentionally matches existing admission clerk.
+10. Build using existing GitHub workflow and perform emulator acceptance. No merge without owner approval.
+
+## Integration warning
+This branch starts from `main`. Other feature PRs are independently open. Reconcile flag allocations, sprite/event placement and C script specials against the integration branch before merging. No ROM file, release patch, emulator capture, or passing build is claimed by the existence of this document.
