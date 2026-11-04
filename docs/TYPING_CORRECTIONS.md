@@ -41,7 +41,9 @@ approved delta; their expected baseline hashes are not replaced.
 
 The compiled-ROM mGBA suite loads all 35 rules through real party-to-battle code,
 tests 17 controlled type-effectiveness cases in both battle and AI routines, and
-nine STAB cases. These invoke production routines; they are not a damage simulator.
+nine STAB cases. Six actual summary screens additionally load the approved
+mono/dual type icon data (Vulpix, Ninetales, Pidgey, Noctowl, Pinsir, Steelix).
+These invoke production routines; they are not a damage simulator.
 Existing category, daycare, vendor, Poké Ball, evolution and save tests also run.
 A successful routine-level emulator test does not certify full progression,
 every summary-screen rendering, link peers or physical cartridges.

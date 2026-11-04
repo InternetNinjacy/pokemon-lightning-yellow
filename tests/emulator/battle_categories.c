@@ -216,6 +216,24 @@ static void categoryTests(void) {
 
 static void summaryTests(void) {
     wildFixture(MAP_GROUP(MAP_ROUTE1),MAP_NUM(MAP_ROUTE1),1);
+    void *before=malloc(core->stateSize(core)); CHECK(before && core->saveState(core,before));
+    const unsigned summaryTypes[][3]={
+        {SPECIES_VULPIX,TYPE_FIRE,TYPE_GHOST}, {SPECIES_NINETALES,TYPE_FIRE,TYPE_GHOST},
+        {SPECIES_PIDGEY,TYPE_FLYING,TYPE_FLYING}, {SPECIES_NOCTOWL,TYPE_FLYING,TYPE_PSYCHIC},
+        {SPECIES_PINSIR,TYPE_BUG,TYPE_BUG}, {SPECIES_STEELIX,TYPE_STEEL,TYPE_STEEL}
+    };
+    for(unsigned i=0;i<sizeof(summaryTypes)/sizeof(*summaryTypes);i++) {
+        CHECK(core->loadState(core,before)); create(summaryTypes[i][0],50);
+        core->busWrite16(core,returned,0x4770);
+        CALL(ShowPokemonSummaryScreen,player(0),0,1,returned|1,0); frames(180,0);
+        uint32_t screen=core->busRead32(core,SYM_sMonSummaryScreen);
+        CHECK(screen>=0x02000000 && screen<0x02040000);
+        CHECK(core->busRead8(core,screen+ABI_SUMMARY_TYPES)==summaryTypes[i][1]);
+        CHECK(core->busRead8(core,screen+ABI_SUMMARY_TYPES+1)==summaryTypes[i][2]);
+    }
+    CHECK(core->loadState(core,before)); free(before);
+    printf("PASS: six real summary screens loaded approved mono/dual type icon data\n");
+
     const unsigned moves[]={MOVE_FIRE_PUNCH,MOVE_SHADOW_BALL,MOVE_CALM_MIND,MOVE_THUNDERBOLT};
     for(unsigned i=0;i<4;i++)monput(player(0),ABI_DATA_MOVE1+i,moves[i]);
     core->busWrite16(core,returned,0x4770);

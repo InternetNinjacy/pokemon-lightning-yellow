@@ -80,6 +80,7 @@ for key,expr in {
  'BMON_MOVES':'offsetof(struct BattlePokemon,moves)',
  'BMON_PP':'offsetof(struct BattlePokemon,pp)',
  'BATTLESTRUCT_MOVETARGET':'offsetof(struct BattleStruct,moveTarget)',
+ 'SUMMARY_TYPES':'offsetof(struct PokemonSummaryScreenData,monTypes)',
  'SUMMARY_PAGE':'offsetof(struct PokemonSummaryScreenData,curPageIndex)',
  'SUMMARY_MOVE_COUNT':'offsetof(struct PokemonSummaryScreenData,numMoves)',
  'SUMMARY_MOVES':'offsetof(struct PokemonSummaryScreenData,moveIds)',
