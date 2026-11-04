@@ -1,12 +1,12 @@
 # Main rival: eight main-story battles
 
 Project: Pokémon Lightning Yellow
-Status: BLOCKED, OWNER-APPROVED DESIGN INCLUDING ITEMS, NOT IMPLEMENTATION-READY
+Status: READY FOR IMPLEMENTATION (after review and merge of this specification); owner-approved exact scope. Implement on separate PR, do not merge automatically.
 Approval: November 3, 2026
-Handoff revision: 2026-11-03 v1
+Handoff revision: 2026-11-04 v2 (technical implementation contract)
 
 ## Goal
-Implement exactly eight approved main-story rival parties at Oak's Lab, optional early Route 22, Cerulean City, S.S. Anne, Pokémon Tower, Silph Co., late Route 22, and first Champion battle. Battles 1–4 target moderate difficulty; 5–8 hard. Do not alter encounter scripts or postgame rematches.
+Implement exactly eight approved main-story rival parties at Oak's Lab, optional early Route 22, Cerulean City, S.S. Anne, Pokémon Tower, Silph Co., late Route 22, and first Champion battle. Battles 1–4 target moderate difficulty; 5–8 hard. Preserve original battle triggers, sequencing and rematch behavior. Minimal encounter-script routing changes are allowed only when required for the approved Pikachu-player route; do not alter postgame rematches.
 
 ## Approved parties
 Order is the trainer-party table order; slash separates move slots. Empty fourth slots remain empty.
@@ -20,7 +20,7 @@ Order is the trainer-party table order; slash separates move slots. Empty fourth
 7. Late Route 22: Manectric Lv50 [Thunder / Bite / Quick Attack / Thunder Wave]; Scyther Lv50 [Wing Attack / Slash / Swords Dance / Agility]; Ninetales Lv50 [Flamethrower* / Confuse Ray / Quick Attack / Fire Spin]; Milotic Lv51 [Hydro Pump / Recover / Water Pulse / Safeguard]; Pupitar Lv53 [Crunch / Rock Slide / Thrash / Scary Face]; Dragonair Lv54 [Dragon Breath / Slam / Thunder Wave / Agility].
 8. Champion: Magneton Lv56 [Spark / Thunder Wave / Tri Attack / Supersonic]; Ninetales Lv56 [Flamethrower* / Confuse Ray / Fire Spin / Quick Attack]; Heracross Lv57 [Megahorn / Brick Break / Counter / Reversal]; Milotic Lv57 [Hydro Pump / Recover / Water Pulse / Safeguard]; Tyranitar Lv58 [Crunch / Rock Slide / Earthquake* / Thrash]; Dragonite Lv60 [Dragon Claw* / Wing Attack / Thunder Wave / Earthquake*].
 
-Asterisk: move conditional on final approved Lightning Yellow TM/learnset authority. No substitution without approval. All three Dratini family species, globally: add Tackle Lv1, move ordinary Twister from Lv15 to Lv12 (retain evolved-form Lv1 Twister), replace Lv22 Dragon Rage with Dragon Breath. Do not change other approved moves, stats, typing or evolution methods. The Dragon family is always the final party slot.
+Asterisk: move previously flagged for TM compatibility. The dedicated Lightning Yellow TM register and existing TM compatibility were reviewed: TM02 Dragon Claw, TM26 Earthquake, TM35 Flamethrower and TM36 Sludge Bomb remain approved. Implement these exact moves without substitution. If current main contains a later contrary approval, report the conflict and halt the affected scope rather than guessing. All three Dratini family species, globally: add Tackle Lv1, move ordinary Twister from Lv15 to Lv12 (retain evolved-form Lv1 Twister), replace Lv22 Dragon Rage with Dragon Breath. Do not change other approved moves, stats, typing or evolution methods. The Dragon family is always the final party slot.
 
 ## Approved held items (all other held slots ITEM_NONE)
 
@@ -43,24 +43,30 @@ Exact rival register: https://docs.google.com/document/d/1Z6FYsfy606zc18eDcVSKJz
 Change log: https://docs.google.com/document/d/1NpCjx3uboBMdBVqoFpMwXEyVkDquD37Kcp-FJBbYWnc/edit
 Source files: src/data/trainer_parties.h, src/data/trainers.h, src/data/pokemon/level_up_learnsets.h, src/data/pokemon/tmhm_learnsets.h. Current code still uses starter-dependent Kanto rival teams. Implementer must locate event script branching.
 
-## Blockers
-1. SPECIFIC TM ASSIGNMENTS RECONCILED (read-only): Lightning Yellow Complete TM & Move Register v1 confirms TM02 Dragon Claw, TM26 Earthquake, TM35 Flamethrower and TM36 Sludge Bomb remain assigned as in default-branch source; default-branch species TM compatibility covers all four species and five marked move occurrences. Remaining dependency: confirm no later approved exceptions supersede those baseline-first register entries and that final TM/move distribution is implemented; do not independently redesign the TM system.
-2. Held items are approved above; confirm conversion of original no-item rival data into item-capable Trainer party definitions where necessary.
-3. Preserve existing AI flags until separately approved; do not add new AI functionality.
-4. Confirm final species move timing and special balance rules, including Dragonite Dragon Claw, Tyranitar Earthquake, Fire/Ghost Ninetales, and physical/special split.
-5. Confirm Pikachu starter selection and all eight event flags; preserve optional early Route 22 and unchanged postgame. Read-only verified branch scripts: data/maps/PalletTown_ProfessorOaksLab/scripts.inc, data/maps/Route22/scripts.inc, data/maps/CeruleanCity/scripts.inc, data/maps/PokemonTower_2F/scripts.inc and data/maps/SilphCo_7F/scripts.inc still branch on VAR_STARTER_MON values 0/1/2 to the three Kanto rival trainers. Replacing teams alone cannot guarantee Pikachu route compatibility. Identify remaining three events and confirm single correct Pikachu routing without breaking flag conditions.
-6. Determine project-approved gameplay CI/build gate transition. No source code or game implementation authorized by this blocked spec.
+## Implementation decisions and bounded technical work
+
+1. Exact team species, levels, party-slot order, moves and all held items are owner-approved, as are the eight encounter locations and difficulty goals. No design selection remains for these fields.
+2. Preserve the existing rival AI flags and existing trainer-use bag-item inventory (empty for existing rival definitions). No new healing bag items, abilities, IV targets, EV adjustments, AI features, special weather, dialogue or story changes. Existing default source values for unrelated fields remain unchanged.
+3. To prevent Pikachu starter routing from blocking team work, update each of the **three original starter-dependent rival Trainer IDs per approved encounter** to resolve to the exact same approved Lightning Yellow party. Where this requires distinct party data structures or three identical references, do so without altering unrelated trainers. Keep original event triggers, optional early Route 22, battle tutorials, victory/loss handling, and save flags. If the future Pikachu-player starter implementation uses a new value of VAR_STARTER_MON other than 0/1/2, an approved minimal dispatch fallback may be added, but DO NOT implement a separate player Pikachu starter feature under this handoff. Report if cannot route safely.
+4. First Champion uses only `TRAINER_CHAMPION_FIRST_*` parties; the distinct `TRAINER_CHAMPION_REMATCH_*` parties MUST remain unchanged. Locate Champion battle event script and ensure initial Champion uses an approved party. Source symbols verified in `src/data/trainer_parties.h` and `src/data/trainers.h`.
+5. Apply previously owner-approved global learnset edits for Dratini, Dragonair and Dragonite ONLY as specified above. Ensure no loss of evolved-form Lv1 Twister or other existing separately approved stage changes. Do not implement an entire species-balance redesign as a side effect.
+6. The approved four TM assignments match source compatibility for all marked rival move occurrences. Their implementation requires no new TM system. Retain all current lawful source definitions unless superseded by an already-approved change; don't import older or other-project proposals.
+7. The battle source supports `TrainerMonItemCustomMoves` / `.heldItem` for trainer parties and all required `ITEM_*` constants exist. Convert rival data structures only where necessary. Unmentioned Pokémon explicitly hold `ITEM_NONE`.
+8. The source currently includes original FireRed level-up data and rival teams, so these are intentional implementation changes, not already delivered functionality. Do not require unrelated unreleased Fire/Ghost Ninetales, Milotic stat/type changes, full 252-Dex, or broader physical/special work to be newly implemented here. When an approved separate dependency is present, preserve it and test the rival against it; when absent, report expected future integration and do not invent substitutes.
+9. Use current `AGENTS.md` validation instructions for modified builds, independent upstream baseline and host/emulator tests. Never weaken the upstream checksum or change CI acceptance to conceal gameplay changes. A normal approved gameplay build should use the modified-build workflow, not require the old unmodified checksum.
+10. No separate approval is needed to locate file paths, select existing supported trainer party structures, reuse original Trainer IDs, or add in-scope deterministic tests. These are engineering choices, not gameplay design decisions.
+
+**Stop conditions:** A source conflict with an explicit later approved rival team/move/item decision, inability to preserve event and Champion rematch behavior, or a requirement for unapproved gameplay mechanics. Escalate only the affected conflict; do not silently improvise.
 
 TM source of truth: https://docs.google.com/document/d/1EHByhspPMrn_H0ard-wbdZLRqInZVschQqXTWSiP5fY/edit
-
 
 ## Additional read-only source-parity findings (2026-11-04)
 
 All seven pre-Champion original rival locations have verified event script paths: `data/maps/PalletTown_ProfessorOaksLab/scripts.inc`, `data/maps/Route22/scripts.inc` (early and late), `data/maps/CeruleanCity/scripts.inc`, `data/maps/SSAnne_2F_Corridor/scripts.inc`, `data/maps/PokemonTower_2F/scripts.inc`, and `data/maps/SilphCo_7F/scripts.inc`. All contain `VAR_STARTER_MON` conditional branches into Kanto-starter trainer IDs; preserving the correct battle execution, optionality, and event flags requires explicitly mapping the Pikachu starter path. The final Champion event-script path remains to be located; `src/data/trainer_parties.h` confirms separate `sParty_ChampionFirst*` and `sParty_ChampionRematch*` families and `src/data/trainers.h` confirms distinct `TRAINER_CHAMPION_FIRST_*` and `TRAINER_CHAMPION_REMATCH_*` IDs. Only the first Champion is approved.
 
-Reviewed the canonical TM & Move Register: TM02 Dragon Claw, TM26 Earthquake, TM35 Flamethrower, and TM36 Sludge Bomb are preserved, matching source TM eligibility for the approved rival party moves. Final reconciliation still needs any later approved overrides and game implementation status. Held-item sets are owner-frozen; do not infer Trainer bag healing items. No source code/build/emulator tests performed. This spec stays BLOCKED for technical dependencies, not incomplete rival roster choices.
+Reviewed the canonical TM & Move Register: TM02 Dragon Claw, TM26 Earthquake, TM35 Flamethrower, and TM36 Sludge Bomb are preserved, matching source TM eligibility for the approved rival party moves. Final reconciliation still needs any later approved overrides and game implementation status. Held-item sets are owner-frozen; do not infer Trainer bag healing items. No source code/build/emulator tests performed. These prior technical dependencies are now scoped as implementation checks with explicit stop conditions. A documentation PR is not evidence that game code is implemented or validated.
 
-## Validation before Ready
+## Acceptance checks for implementation PR
 Check exact encounter party, order, level and moves; Pikachu story route; wild/player Dratini family learnsets; ordinary Lv55 final evolutions; legal TM/abilities; event/save/regressions; and emulator-test the moderate first four and hard final four. Do not weaken baseline checks. Follow AGENTS.md and implementation/README.md.
 
-This draft is intentionally BLOCKED. Do not hand it to Codex for gameplay implementation until the unresolved decisions and source conflicts are reconciled and the reviewed specification is merged as Ready.
+This specification is READY FOR IMPLEMENTATION once this documentation PR is reviewed and merged. Codex must implement on a separate topic branch and open its own PR; do not merge automatically. Any explicit stop condition above still blocks the affected code change, not the entire approved design package.
