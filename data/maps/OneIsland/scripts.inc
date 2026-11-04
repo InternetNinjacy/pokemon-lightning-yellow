@@ -94,8 +94,9 @@ OneIsland_EventScript_OldManLinkHoenn::
 	end
 
 OneIsland_EventScript_BaldingMan::
-	msgbox OneIsland_Text_IsntWarmClimateHereGreat, MSGBOX_NPC
-	end
+	textcolor NPC_TEXT_COLOR_MALE
+	setvar VAR_0x8009, 9
+	goto MysteryVendor_Start
 
 OneIsland_EventScript_IslandSign::
 	msgbox OneIsland_Text_IslandSign, MSGBOX_SIGN

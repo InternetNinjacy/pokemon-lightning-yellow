@@ -1,0 +1,16 @@
+{
+  "move_data_sha256": "54e08c749547afaf73eb2f1e4f4e3023f4d8e186d2f608c29bd6419c291b5384",
+  "files": {
+    "data/battle_scripts_1.s": "27e9c39f3147b05e5ba2ed36ca0c89fcdc9b26718778083bd362c582de800034"
+  },
+  "functions": {
+    "Cmd_dmgtolevel": "86ce79db842d3b76df642e8f7cb5b7f5cdca659803a050b94aed81552f1d2895",
+    "Cmd_damagetohalftargethp": "9c535a69a9f2181a9e52957c0a5ad3b48e2e7af4030743fa1ff8f48939ecf106",
+    "Cmd_psywavedamageeffect": "2ad659b7e4bb26763317fcf50a3fe2c33ac02b1eca1719765a72a49ceaa20ad8",
+    "Cmd_counterdamagecalculator": "371d11c28110656f297d281294a76edd300a004ded848e24475ed65122c8764d",
+    "Cmd_mirrorcoatdamagecalculator": "ef1097049565606e959b6701702e8c23405551f50014dbdd225a1dab71ca6d51",
+    "Cmd_trydobeatup": "fd0d65645cd50bd19674eac64e80281ac20ae60238e80b6b51b8cd71e62a71cd",
+    "Cmd_trysetfutureattack": "cb32c58d9380aca62d70c8c00566bbc992b5015e8d75e07987507cd68061b6ee",
+    "Cmd_tryKO": "e57a5c8a5842d6b3d330d0196bfd8d12bfcb72eaee6f161f6727f3306668eab1"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "base_commit": "6ff574dc205a007a93a4724fd6eda867eeff8fdf",
+  "functions": {
+    "GetDaycareCompatibilityScore": "f2985ef27f036a82b8d4a1911860bf486f3bfc516d428082463c6efc15ea6b29",
+    "EggGroupsOverlap": "667d68e313d03a82107187a59ce522d8836898eeb6fdbe2d21eec5fc06ed156a",
+    "GetEggSpecies": "81070cb12a655dfc79e8cb4ad84933cae41217dcae96595624db79d32daf51ae",
+    "DetermineEggSpeciesAndParentSlots": "ec9b7620e7ac11e4d3803dd72976c27dbe80a3fff86fb7a674eaa446d984862e",
+    "AlterEggSpeciesWithIncenseItem": "3d685f23f6fb7317ea26b551fef4e9df3a2b41298519e6dd878197f2a0887f7a",
+    "InheritIVs": "21b352a5d4aeaf73facb43430d75856a0c53dd49d4985628c49a50bfdc81c7fb",
+    "BuildEggMoveset": "f9a479e25ef554429641b1a4debd80b0f0352e00ade690d85454c2c3ef29594b",
+    "ApplyDaycareExperience": "5d7f1ef3ef471accf5c6e2a66a5e2d44c5bece6009e1559edd3fa7ae8aef2988",
+    "GetDaycareCostForSelectedMon": "d57911d24504daf077ec15a2a7a3a2854dcc939d35c02610252037029444112b",
+    "TakeSelectedPokemonFromDaycare": "0c9cf63ddfbe56964cf4de360a5252f284aab9c1380513e459d19c8ff7a9925f",
+    "StorePokemonInDaycare": "2ffdfb581746664bd4c0f5bcc259c2b84e66eb41299997e1978bf2ef96def856"
+  },
+  "files": {
+    "src/pokemon.c": "d313165478094c84b4acfe68e22f739baa3c772f6b65c48644a9b6ee1e34876a",
+    "src/data/pokemon/species_info.h": "10021c12ed42a009e6a7a9d75a7439a9ff802f23c972559757bbbd989e4db3d6",
+    "src/data/pokemon/egg_moves.h": "dbc39729ba62ae2b70c9dded2c32b18f55c9ea409a867c0720c30617008da758",
+    "src/data/pokemon/evolution.h": "75051423dce1b407cca12254788eb925faca011a5e2055be0d7e94157f38cad4",
+    "src/wild_encounter.c": "d3c59bc3d99a5e644bff836677037bcb447eb36680589be0691effda6fcb46e4",
+    "src/data/wild_encounters.json": "a6399199987e1bdf8502e9bfdcfc9d8ad57d74df206d22ba20f020492bd3bf7c",
+    "src/save.c": "24f0b70d72cc83c50f7b2d6d73cb211c9b1272ab5fa40dc1d553ad48d1f4511c",
+    "src/load_save.c": "b6a07136288f9330cf2b56f3a101fb62fd99fb23d76c9ab8de81e8cba458c012",
+    "data/maps/FourIsland/scripts.inc": "e9d41ce813c9c853df0ccd4d54dc03f3b0bd2a18f75645f32fa19785372d7e76",
+    "data/maps/FourIsland/map.json": "236e8409df865ad947ada59080cd187e490993d53658b059dc8849d1af66231c",
+    "data/maps/FourIsland_PokemonDayCare/scripts.inc": "422d698fd61cc5283326504d2f180c2e3d7118a2ecb62b76e3b4491818fa4717",
+    "data/maps/FourIsland_PokemonDayCare/map.json": "5d120ae7cf52664a3a73a5c161a5e369167e4488a308b5ec213844fa3c447488"
+  },
+  "hatch_tail_sha256": "b02bae068f769f6de20bc4b05bcfcf16b1f8654c0f716097082c91a3076a5851"
+}

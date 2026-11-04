@@ -73,3 +73,7 @@ compile_commands.json
 /data/mb_berry_fix.gba
 /data/mb_ereader.gba
 /data/mb_colosseum.gba
+
+# Host regression-test caches
+__pycache__/
+*.pyc

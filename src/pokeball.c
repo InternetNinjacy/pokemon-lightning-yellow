@@ -1,4 +1,6 @@
 #include "global.h"
+#include "capture_rules.h"
+#include "wild_double_battle.h"
 #include "gflib.h"
 #include "battle.h"
 #include "battle_anim.h"
@@ -370,7 +372,7 @@ static void Task_DoPokeballSendOutAnim(u8 taskId)
     else
         itemId = GetMonData(&gPlayerParty[gBattlerPartyIndexes[battlerId]], MON_DATA_POKEBALL);
 
-    ballId = ItemIdToBallId(itemId);
+    ballId = ItemIdToBallId(CaptureCodeToBallItem(itemId));
     LoadBallGfx(ballId);
 
     if (gBattleTypeFlags & BATTLE_TYPE_LINK)
@@ -411,7 +413,7 @@ static void Task_DoPokeballSendOutAnim(u8 taskId)
         gSprites[ballSpriteId].callback = SpriteCB_OpponentMonSendOut;
         break;
     default:
-        gBattlerTarget = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
+        gBattlerTarget = GetWildCatchTarget();
         notSendOut = TRUE;
         break;
     }
@@ -1327,8 +1329,8 @@ void FreeBallGfx(u8 ballId)
 static u16 GetBattlerPokeballItemId(u8 battlerId)
 {
     if (GetBattlerSide(battlerId) == B_SIDE_PLAYER)
-        return GetMonData(&gPlayerParty[gBattlerPartyIndexes[battlerId]], MON_DATA_POKEBALL);
+        return CaptureCodeToBallItem(GetMonData(&gPlayerParty[gBattlerPartyIndexes[battlerId]], MON_DATA_POKEBALL));
     else
-        return GetMonData(&gEnemyParty[gBattlerPartyIndexes[battlerId]], MON_DATA_POKEBALL);
+        return CaptureCodeToBallItem(GetMonData(&gEnemyParty[gBattlerPartyIndexes[battlerId]], MON_DATA_POKEBALL));
 }
 

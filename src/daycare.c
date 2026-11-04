@@ -1,4 +1,5 @@
 #include "global.h"
+#include "route5_daycare.h"
 #include "gflib.h"
 #include "data.h"
 #include "battle.h"
@@ -449,13 +450,16 @@ static void StorePokemonInDaycare(struct Pokemon *mon, struct DaycareMon *daycar
 static void StorePokemonInEmptyDaycareSlot(struct Pokemon *mon, struct DayCare *daycare)
 {
     s8 slotId = Daycare_FindEmptySpot(daycare);
-    StorePokemonInDaycare(mon, &daycare->mons[slotId]);
+    if (slotId >= 0)
+        StorePokemonInDaycare(mon, &daycare->mons[slotId]);
 }
 
 void StoreSelectedPokemonInDaycare(void)
 {
+    struct DayCare *daycare = GetActiveDaycare();
     u8 monId = GetCursorSelectionMonId();
-    StorePokemonInEmptyDaycareSlot(&gPlayerParty[monId], &gSaveBlock1Ptr->daycare);
+    if (daycare != NULL && monId < PARTY_SIZE)
+        StorePokemonInEmptyDaycareSlot(&gPlayerParty[monId], daycare);
 }
 
 // Shifts the second daycare pokemon slot into the first slot.
@@ -545,7 +549,12 @@ static u16 TakeSelectedPokemonMonFromDaycareShiftSlots(struct DayCare *daycare, 
 
 u16 TakePokemonFromDaycare(void)
 {
-    return TakeSelectedPokemonMonFromDaycareShiftSlots(&gSaveBlock1Ptr->daycare, gSpecialVar_0x8004);
+    struct DayCare *daycare = GetActiveDaycare();
+    if (daycare == NULL || gSpecialVar_0x8004 >= DAYCARE_MON_COUNT || gPlayerPartyCount >= PARTY_SIZE)
+        return SPECIES_NONE;
+    if (GetBoxMonData(&daycare->mons[gSpecialVar_0x8004].mon, MON_DATA_SPECIES) == SPECIES_NONE)
+        return SPECIES_NONE;
+    return TakeSelectedPokemonMonFromDaycareShiftSlots(daycare, gSpecialVar_0x8004);
 }
 
 static u8 GetLevelAfterDaycareSteps(struct BoxPokemon *mon, u32 steps)
@@ -593,21 +602,29 @@ static u16 GetDaycareCostForMon(struct DayCare *daycare, u8 slotId)
 
 void GetDaycareCost(void)
 {
-    gSpecialVar_0x8005 = GetDaycareCostForMon(&gSaveBlock1Ptr->daycare, gSpecialVar_0x8004);
+    struct DayCare *daycare = GetActiveDaycare();
+    gSpecialVar_0x8005 = daycare != NULL && gSpecialVar_0x8004 < DAYCARE_MON_COUNT
+                      ? GetDaycareCostForMon(daycare, gSpecialVar_0x8004) : 0;
 }
 
 static void Debug_AddDaycareSteps(u16 numSteps)
 {
+    struct DayCare *route5 = GetRoute5Daycare();
     gSaveBlock1Ptr->daycare.mons[0].steps += numSteps;
     gSaveBlock1Ptr->daycare.mons[1].steps += numSteps;
-    gSaveBlock1Ptr->route5DayCareMon.steps += numSteps;
+    if (route5 != NULL)
+    {
+        route5->mons[0].steps += numSteps;
+        route5->mons[1].steps += numSteps;
+    }
 }
 
 u8 GetNumLevelsGainedFromDaycare(void)
 {
-    if (GetBoxMonData(&gSaveBlock1Ptr->daycare.mons[gSpecialVar_0x8004].mon, MON_DATA_SPECIES) != 0)
-        return GetNumLevelsGainedForDaycareMon(&gSaveBlock1Ptr->daycare.mons[gSpecialVar_0x8004]);
-
+    struct DayCare *daycare = GetActiveDaycare();
+    if (daycare != NULL && gSpecialVar_0x8004 < DAYCARE_MON_COUNT
+     && GetBoxMonData(&daycare->mons[gSpecialVar_0x8004].mon, MON_DATA_SPECIES) != SPECIES_NONE)
+        return GetNumLevelsGainedForDaycareMon(&daycare->mons[gSpecialVar_0x8004]);
     return 0;
 }
 
@@ -720,6 +737,11 @@ static u16 GetEggSpecies(u16 species)
 
 static void _TriggerPendingDaycareEgg(struct DayCare *daycare)
 {
+    if (IsRoute5Daycare(daycare))
+    {
+        SetRoute5PendingEgg(daycare, FALSE);
+        return;
+    }
 //    s32 natureSlot;
 //    s32 natureTries = 0;
 //
@@ -753,18 +775,27 @@ static void _TriggerPendingDaycareEgg(struct DayCare *daycare)
 
 static void _TriggerPendingDaycareMaleEgg(struct DayCare *daycare)
 {
+    if (IsRoute5Daycare(daycare))
+    {
+        SetRoute5PendingEgg(daycare, TRUE);
+        return;
+    }
     daycare->offspringPersonality = (Random()) | (EGG_GENDER_MALE);
     FlagSet(FLAG_PENDING_DAYCARE_EGG);
 }
 
 void TriggerPendingDaycareEgg(void)
 {
-    _TriggerPendingDaycareEgg(&gSaveBlock1Ptr->daycare);
+    struct DayCare *daycare = GetActiveDaycare();
+    if (daycare != NULL)
+        _TriggerPendingDaycareEgg(daycare);
 }
 
 static void TriggerPendingDaycareMaleEgg(void)
 {
-    _TriggerPendingDaycareMaleEgg(&gSaveBlock1Ptr->daycare);
+    struct DayCare *daycare = GetActiveDaycare();
+    if (daycare != NULL)
+        _TriggerPendingDaycareMaleEgg(daycare);
 }
 
 // Removes the selected index from the given IV list and shifts the remaining
@@ -981,7 +1012,9 @@ static void RemoveEggFromDayCare(struct DayCare *daycare)
 
 void RejectEggFromDayCare(void)
 {
-    RemoveEggFromDayCare(&gSaveBlock1Ptr->daycare);
+    struct DayCare *daycare = GetActiveDaycare();
+    if (daycare != NULL)
+        RemoveEggFromDayCare(daycare);
 }
 
 static void AlterEggSpeciesWithIncenseItem(u16 *species, struct DayCare *daycare)
@@ -1145,8 +1178,19 @@ static void SetInitialEggData(struct Pokemon *mon, u16 species, struct DayCare *
     u8 metLevel;
     u8 language;
 
-    personality = daycare->offspringPersonality | (Random() << 16);
-    CreateMon(mon, species, EGG_HATCH_LEVEL, USE_RANDOM_IVS, TRUE, personality, OT_ID_PLAYER_ID, 0);
+    if (IsRoute5Daycare(daycare))
+    {
+        struct Route5DaycareSave *save = &gSaveBlock1Ptr->route5Daycare;
+        u8 marker = save->eggShiny ? ROUTE5_EGG_SHINY : ROUTE5_EGG_NORMAL;
+        personality = save->eggPersonality;
+        CreateMon(mon, species, EGG_HATCH_LEVEL, USE_RANDOM_IVS, TRUE, personality, OT_ID_PRESET, save->eggOtId);
+        SetMonData(mon, MON_DATA_UNUSED_RIBBONS, &marker);
+    }
+    else
+    {
+        personality = daycare->offspringPersonality | (Random() << 16);
+        CreateMon(mon, species, EGG_HATCH_LEVEL, USE_RANDOM_IVS, TRUE, personality, OT_ID_PLAYER_ID, 0);
+    }
     metLevel = 0;
     ball = ITEM_POKE_BALL;
     language = LANGUAGE_JAPANESE;
@@ -1159,10 +1203,12 @@ static void SetInitialEggData(struct Pokemon *mon, u16 species, struct DayCare *
 
 void GiveEggFromDaycare(void)
 {
-    _GiveEggFromDaycare(&gSaveBlock1Ptr->daycare);
+    struct DayCare *daycare = GetActiveDaycare();
+    if (daycare != NULL && daycare->offspringPersonality != 0 && gPlayerPartyCount < PARTY_SIZE)
+        _GiveEggFromDaycare(daycare);
 }
 
-static bool8 TryProduceOrHatchEgg(struct DayCare *daycare)
+static void AdvanceDaycareBreeding(struct DayCare *daycare)
 {
     u32 i, validEggs = 0;
 
@@ -1177,9 +1223,15 @@ static bool8 TryProduceOrHatchEgg(struct DayCare *daycare)
     {
         u8 compatibility = GetDaycareCompatibilityScore(daycare);
         if (compatibility > (Random() * 100u) / USHRT_MAX)
-            TriggerPendingDaycareEgg();
+            _TriggerPendingDaycareEgg(daycare);
     }
 
+}
+
+static bool8 TryProduceOrHatchEgg(struct DayCare *daycare)
+{
+    u32 i;
+    AdvanceDaycareBreeding(daycare);
     // Hatch Egg
     if (++daycare->stepCounter == 255)
     {
@@ -1211,8 +1263,13 @@ static bool8 TryProduceOrHatchEgg(struct DayCare *daycare)
 
 bool8 ShouldEggHatch(void)
 {
-    if (GetBoxMonData(&gSaveBlock1Ptr->route5DayCareMon.mon, MON_DATA_SANITY_HAS_SPECIES))
-        gSaveBlock1Ptr->route5DayCareMon.steps++;
+    struct DayCare *route5 = GetRoute5Daycare();
+    if (route5 != NULL)
+    {
+        AdvanceDaycareBreeding(route5);
+        route5->stepCounter++;
+    }
+    // Retain the original global party hatch clock exactly once per step.
     return TryProduceOrHatchEgg(&gSaveBlock1Ptr->daycare);
 }
 
@@ -1248,18 +1305,23 @@ u16 GetSelectedMonNicknameAndSpecies(void)
 
 void GetDaycareMonNicknames(void)
 {
-    _GetDaycareMonNicknames(&gSaveBlock1Ptr->daycare);
+    struct DayCare *daycare = GetActiveDaycare();
+    if (daycare != NULL)
+        _GetDaycareMonNicknames(daycare);
 }
 
 u8 GetDaycareState(void)
 {
     u8 numMons;
-    if (IsEggPending(&gSaveBlock1Ptr->daycare))
+    struct DayCare *daycare = GetActiveDaycare();
+    if (daycare == NULL)
+        return DAYCARE_NO_MONS;
+    if (IsEggPending(daycare))
     {
         return DAYCARE_EGG_WAITING;
     }
 
-    numMons = CountPokemonInDaycare(&gSaveBlock1Ptr->daycare);
+    numMons = CountPokemonInDaycare(daycare);
     if (numMons != 0)
     {
         return numMons + 1; // DAYCARE_ONE_MON or DAYCARE_TWO_MONS
@@ -1270,11 +1332,8 @@ u8 GetDaycareState(void)
 
 u8 GetDaycarePokemonCount(void)
 {
-    u8 ret = CountPokemonInDaycare(&gSaveBlock1Ptr->daycare);
-    if (ret)
-        return ret;
-
-    return 0;
+    struct DayCare *daycare = GetActiveDaycare();
+    return daycare != NULL ? CountPokemonInDaycare(daycare) : 0;
 }
 
 // Determine if the two given egg group lists contain any of the
@@ -1359,7 +1418,8 @@ static u8 GetDaycareCompatibilityScore(struct DayCare *daycare)
 
 static u8 GetDaycareCompatibilityScoreFromSave(void)
 {
-    return GetDaycareCompatibilityScore(&gSaveBlock1Ptr->daycare);
+    struct DayCare *daycare = GetActiveDaycare();
+    return daycare != NULL ? GetDaycareCompatibilityScore(daycare) : PARENTS_INCOMPATIBLE;
 }
 
 void SetDaycareCompatibilityString(void)
@@ -1498,11 +1558,9 @@ static void DaycarePrintMonLvl(struct DayCare *daycare, u8 windowId, u32 daycare
     u8 lvlText[12];
     u8 intText[8];
 
-#if REVISION == 0
-    strcpy((char *)lvlText, (const char *)gText_Lv);
-#else
+    // Game text ends with EOS (0xFF), not a C NUL. The rev0 strcpy path can
+    // overrun lvlText and hang/corrupt the level-selection menu.
     StringCopy(lvlText, gText_Lv);
-#endif
     level = GetLevelAfterDaycareSteps(&daycare->mons[daycareSlotId].mon, daycare->mons[daycareSlotId].steps);
     ConvertIntToDecimalStringN(intText, level, STR_CONV_MODE_LEFT_ALIGN, 3);
     StringAppend(lvlText, intText);
@@ -1512,10 +1570,11 @@ static void DaycarePrintMonLvl(struct DayCare *daycare, u8 windowId, u32 daycare
 
 static void DaycarePrintMonInfo(u8 windowId, u32 daycareSlotId, u8 y)
 {
-    if (daycareSlotId < (unsigned) DAYCARE_MON_COUNT)
+    struct DayCare *daycare = GetActiveDaycare();
+    if (daycare != NULL && daycareSlotId < (unsigned) DAYCARE_MON_COUNT)
     {
-        DaycarePrintMonNickname(&gSaveBlock1Ptr->daycare, windowId, daycareSlotId, y);
-        DaycarePrintMonLvl(&gSaveBlock1Ptr->daycare, windowId, daycareSlotId, y);
+        DaycarePrintMonNickname(daycare, windowId, daycareSlotId, y);
+        DaycarePrintMonLvl(daycare, windowId, daycareSlotId, y);
     }
 }
 
@@ -1589,32 +1648,36 @@ void ChooseSendDaycareMon(void)
 
 void PutMonInRoute5Daycare(void)
 {
+    struct DayCare *daycare = GetRoute5Daycare();
     u8 monIdx = GetCursorSelectionMonId();
-    StorePokemonInDaycare(&gPlayerParty[monIdx], &gSaveBlock1Ptr->route5DayCareMon);
+    if (daycare != NULL && monIdx < PARTY_SIZE)
+        StorePokemonInEmptyDaycareSlot(&gPlayerParty[monIdx], daycare);
 }
 
 void GetCostToWithdrawRoute5DaycareMon(void)
 {
-    u16 cost = GetDaycareCostForSelectedMon(&gSaveBlock1Ptr->route5DayCareMon);
-    gSpecialVar_0x8005 = cost;
+    struct DayCare *daycare = GetRoute5Daycare();
+    gSpecialVar_0x8005 = daycare != NULL ? GetDaycareCostForSelectedMon(&daycare->mons[0]) : 0;
 }
 
 bool8 IsThereMonInRoute5Daycare(void)
 {
-    if (GetBoxMonData(&gSaveBlock1Ptr->route5DayCareMon.mon, MON_DATA_SPECIES) != SPECIES_NONE)
-        return TRUE;
-
-    return FALSE;
+    struct DayCare *daycare = GetRoute5Daycare();
+    return daycare != NULL && CountPokemonInDaycare(daycare) != 0;
 }
 
 u8 GetNumLevelsGainedForRoute5DaycareMon(void)
 {
-    return GetNumLevelsGainedForDaycareMon(&gSaveBlock1Ptr->route5DayCareMon);
+    struct DayCare *daycare = GetRoute5Daycare();
+    return daycare != NULL ? GetNumLevelsGainedForDaycareMon(&daycare->mons[0]) : 0;
 }
 
 u16 TakePokemonFromRoute5Daycare(void)
 {
-    return TakeSelectedPokemonFromDaycare(&gSaveBlock1Ptr->route5DayCareMon);
+    struct DayCare *daycare = GetRoute5Daycare();
+    if (daycare == NULL || gPlayerPartyCount >= PARTY_SIZE || CountPokemonInDaycare(daycare) == 0)
+        return SPECIES_NONE;
+    return TakeSelectedPokemonMonFromDaycareShiftSlots(daycare, 0);
 }
 
 static void CreatedHatchedMon(struct Pokemon *egg, struct Pokemon *temp)
@@ -1642,6 +1705,17 @@ static void CreatedHatchedMon(struct Pokemon *egg, struct Pokemon *temp)
     pokerus = GetMonData(egg, MON_DATA_POKERUS);
     isModernFatefulEncounter = GetMonData(egg, MON_DATA_MODERN_FATEFUL_ENCOUNTER);
 
+    {
+        u8 marker = GetMonData(egg, MON_DATA_UNUSED_RIBBONS);
+        if (marker == ROUTE5_EGG_NORMAL || marker == ROUTE5_EGG_SHINY)
+        {
+            u32 otId = gSaveBlock2Ptr->playerTrainerId[0]
+                     | (gSaveBlock2Ptr->playerTrainerId[1] << 8)
+                     | (gSaveBlock2Ptr->playerTrainerId[2] << 16)
+                     | ((u32)gSaveBlock2Ptr->playerTrainerId[3] << 24);
+            personality = Route5EggPersonality(personality, otId, marker == ROUTE5_EGG_SHINY);
+        }
+    }
     CreateMon(temp, species, EGG_HATCH_LEVEL, USE_RANDOM_IVS, TRUE, personality, OT_ID_PLAYER_ID, 0);
 
     for (i = 0; i < MAX_MON_MOVES; i++)
@@ -1724,7 +1798,9 @@ static bool8 BufferDayCareMonReceivedMail(struct DayCare *daycare, u8 daycareId)
 
 bool8 DaycareMonReceivedMail(void)
 {
-    return BufferDayCareMonReceivedMail(&gSaveBlock1Ptr->daycare, gSpecialVar_0x8004);
+    struct DayCare *daycare = GetActiveDaycare();
+    return daycare != NULL && gSpecialVar_0x8004 < DAYCARE_MON_COUNT
+        ? BufferDayCareMonReceivedMail(daycare, gSpecialVar_0x8004) : FALSE;
 }
 
 extern const struct CompressedSpriteSheet gMonFrontPicTable[];

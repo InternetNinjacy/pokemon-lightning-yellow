@@ -553,6 +553,19 @@ struct DayCare
     u8 stepCounter;
 };
 
+// Versioned use of exactly 400 formerly unused save bytes. Do not resize/move.
+struct Route5DaycareSave
+{
+    u32 magic;
+    u16 version;
+    u8 eggShiny;
+    u8 reserved;
+    struct DayCare daycare;
+    u32 eggPersonality;
+    u32 eggOtId;
+    u8 unused[100];
+};
+
 // Leftover from R/S, referenced in unused function InitDaycareMailRecordMixing
 struct RecordMixingDayCareMail
 {
@@ -806,7 +819,7 @@ struct SaveBlock1
     /*0x30D0*/ struct Roamer roamer;
     /*0x30EC*/ struct EnigmaBerry enigmaBerry;
     /*0x3120*/ struct MysteryGiftSave mysteryGift;
-    /*0x348C*/ u8 unused_348C[400];
+    /*0x348C*/ struct Route5DaycareSave route5Daycare;
     /*0x361C*/ struct RamScript ramScript;
     /*0x3A08*/ struct RecordMixingGift recordMixingGift; // unused
     /*0x3A18*/ u8 seen2[DEX_FLAGS_NO];
