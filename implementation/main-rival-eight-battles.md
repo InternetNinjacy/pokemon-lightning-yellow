@@ -1,7 +1,7 @@
 # Main rival: eight main-story battles
 
 Project: Pokémon Lightning Yellow
-Status: BLOCKED, OWNER-APPROVED DESIGN, NOT IMPLEMENTATION-READY
+Status: BLOCKED, OWNER-APPROVED DESIGN INCLUDING ITEMS, NOT IMPLEMENTATION-READY
 Approval: November 3, 2026
 Handoff revision: 2026-11-03 v1
 
@@ -22,6 +22,19 @@ Order is the trainer-party table order; slash separates move slots. Empty fourth
 
 Asterisk: move conditional on final approved Lightning Yellow TM/learnset authority. No substitution without approval. All three Dratini family species, globally: add Tackle Lv1, move ordinary Twister from Lv15 to Lv12 (retain evolved-form Lv1 Twister), replace Lv22 Dragon Rage with Dragon Breath. Do not change other approved moves, stats, typing or evolution methods. The Dragon family is always the final party slot.
 
+## Approved held items (all other held slots ITEM_NONE)
+
+1. Oak: Dratini none.
+2. Early Route 22: Goldeen none; Dratini Oran Berry.
+3. Cerulean: Goldeen, Slugma, Geodude none; Dratini Oran Berry.
+4. S.S. Anne: Goldeen, Slugma, Geodude none; Dratini Oran Berry.
+5. Tower: Poliwhirl, Beedrill, Slugma, Geodude none; Dratini Sitrus Berry.
+6. Silph: Poliwhirl none; Ariados Poison Barb; Rapidash none; Graveler Hard Stone; Dragonair Lum Berry.
+7. Late Route 22: Manectric Magnet; Scyther Sharp Beak; Ninetales none; Milotic Mystic Water; Pupitar Hard Stone; Dragonair Lum Berry.
+8. Champion: Magneton Magnet; Ninetales Charcoal; Heracross Black Belt; Milotic Mystic Water; Tyranitar Hard Stone; Dragonite Lum Berry.
+
+Approved item counts: 0,1,1,1,1,3,5,6. No trainer bag item approval. Current source verifies all ten item constants and TrainerMonItemCustomMoves supports a heldItem field; original rival party definitions generally use no-item structures. Implementer must apply exact items without introducing other items or unapproved AI.
+
 ## Authority and code
 Master Plan: https://docs.google.com/document/d/1P4TuXViTpB0BycldB1SzRZTRX8sV_Rd0lFuPwyGDJQk/edit
 Approved Pokédex: https://docs.google.com/document/d/1Bv5Ssu_D6AxEDvr6xM3YECPRRAxO9yO3HVSNIos1gQc/edit
@@ -32,7 +45,7 @@ Source files: src/data/trainer_parties.h, src/data/trainers.h, src/data/pokemon/
 
 ## Blockers
 1. Reconcile final TM replacements, availability, and all five marked move occurrences; default-branch TM table supports the source moves but may not reflect approved Lightning Yellow replacements.
-2. Resolve exact item allocations (especially late hard encounters). No individual held items approved. Existing rival tables are generally no-item trainer structures.
+2. Held items are approved above; confirm conversion of original no-item rival data into item-capable Trainer party definitions where necessary.
 3. Preserve existing AI flags until separately approved; do not add new AI functionality.
 4. Confirm final species move timing and special balance rules, including Dragonite Dragon Claw, Tyranitar Earthquake, Fire/Ghost Ninetales, and physical/special split.
 5. Verify Pikachu starter selection and all eight event flags; preserve optional early Route 22 and unchanged postgame.
