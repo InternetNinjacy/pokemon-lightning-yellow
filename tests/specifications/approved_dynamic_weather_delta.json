@@ -28,11 +28,11 @@
       },
       {
         "before": "            switch (gLastUsedAbility)\n            {\n            case ABILITYEFFECT_SWITCH_IN_WEATHER:\n                switch (GetCurrentWeather())\n                {\n                case WEATHER_RAIN:\n                case WEATHER_RAIN_THUNDERSTORM:\n",
-        "after": "            switch (gLastUsedAbility)\n            {\n            case ABILITYEFFECT_SWITCH_IN_WEATHER:\n                switch (DynamicWeatherForBattle())\n                {\n                case WEATHER_RAIN:\n                case WEATHER_RAIN_THUNDERSTORM:\n"
+        "after": "            switch (gLastUsedAbility)\n            {\n            case ABILITYEFFECT_SWITCH_IN_WEATHER:\n            {\n                u8 fieldWeather = DynamicWeatherForBattle();\n                switch (fieldWeather)\n                {\n                case WEATHER_RAIN:\n                case WEATHER_RAIN_THUNDERSTORM:\n"
       },
       {
-        "before": "                }\n                if (effect != 0)\n                {\n                    gBattleCommunication[MULTISTRING_CHOOSER] = GetCurrentWeather();\n                    BattleScriptPushCursorAndCallback(BattleScript_OverworldWeatherStarts);\n                }\n                break;\n",
-        "after": "                }\n                if (effect != 0)\n                {\n                    gBattleCommunication[MULTISTRING_CHOOSER] = DynamicWeatherForBattle();\n                    BattleScriptPushCursorAndCallback(BattleScript_OverworldWeatherStarts);\n                }\n                break;\n"
+        "before": "                }\n                if (effect != 0)\n                {\n                    gBattleCommunication[MULTISTRING_CHOOSER] = GetCurrentWeather();\n                    BattleScriptPushCursorAndCallback(BattleScript_OverworldWeatherStarts);\n                }\n                break;\n            case ABILITY_DRIZZLE:\n                if (!(gBattleWeather & B_WEATHER_RAIN_PERMANENT))\n                {\n",
+        "after": "                }\n                if (effect != 0)\n                {\n                    gBattleCommunication[MULTISTRING_CHOOSER] = fieldWeather;\n                    BattleScriptPushCursorAndCallback(BattleScript_OverworldWeatherStarts);\n                }\n                break;\n            }\n            case ABILITY_DRIZZLE:\n                if (!(gBattleWeather & B_WEATHER_RAIN_PERMANENT))\n                {\n"
       }
     ],
     "src/battle_setup.c": [
