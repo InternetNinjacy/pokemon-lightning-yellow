@@ -3,6 +3,11 @@
 from pathlib import Path
 import json,re,hashlib,subprocess,tempfile
 from approved_dynamic_weather_changes import prior_dynamic_weather_source
+# CI runs host checks before the full ROM build. Generate the real upstream
+# constants with its own tool, not a hand-maintained duplicate mapping.
+if not Path('include/constants/map_groups.h').exists():
+    subprocess.run(['make','-C','tools/mapjson'],check=True)
+    subprocess.run(['tools/mapjson/mapjson','groups','firered','data/maps/map_groups.json','data/maps','include/constants'],check=True)
 f=json.loads(Path('tests/specifications/approved_weather_maps.json').read_text())
 d=json.loads(Path('tests/specifications/approved_dynamic_weather_delta.json').read_text())
 for p,h in d['before_sha256'].items():assert hashlib.sha256(prior_dynamic_weather_source(p).encode()).hexdigest()==h,p
