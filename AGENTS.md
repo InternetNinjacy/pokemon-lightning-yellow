@@ -125,3 +125,12 @@ Oak pending gift and unchanged emergency refill. New capture tests join all old
 host/full mGBA suites; old feature preservation hashes remain with only frozen
 approved deltas normalized. No unrelated trainer/starter/weather redesign, merges,
 auto-merge or ROM release. Owner's latest instruction supersedes readiness stop.
+
+PKM-007 supersedes the older twelve-rule typing snapshot: use all35 explicit
+rules in tests/specifications/approved_type_overrides.json, preserving the other
+species fields. Read docs/TYPING_CORRECTIONS.md. The supplied authority exports
+are available; unavailable direct Drive writing does not mean missing designs.
+Pure Bug Pinsir supersedes Bug/Steel; Gyarados stays Water/Dragon. Run the new
+run_typing_tests.py, all host suites and full mGBA. Keep the24-pair delta isolated
+from pending stats/ability/learnset, encounter and weather redesigns. Preserve
+historical hashes via the explicit approved normalization. No merges/auto-merge.

@@ -17,7 +17,7 @@ These are experimental test locations on a separate branch; see the report for
 party/Repel/capture rules, executed evidence and remaining release checks.
 
 This branch adds [approved Phase One stabilization](docs/PHASE_ONE_STABILIZATION.md):
-twelve custom typings, roster-aware evolution access before National Dex, and the
+the original twelve-rule typing snapshot, roster-aware evolution access before National Dex, and the
 06:00–18:00 functional day/night boundary. It extends acceptance tests while
 preserving the existing unmerged feature stack. The canonical [project dashboard](https://github.com/InternetNinjacy/pokemon-lightning-yellow/blob/docs/project-coordination/docs/PROJECT_DASHBOARD.md)
 and [implementation ledger](https://github.com/InternetNinjacy/pokemon-lightning-yellow/blob/docs/project-coordination/docs/MASTER_IMPLEMENTATION_CHANGE_LEDGER.md)
@@ -91,3 +91,7 @@ branch protection with required review and the **modified** and **upstream-basel
 do not enforce branch protection themselves). Gameplay implementation requires
 approved design specifications first. Do not change the baseline hash just to
 make an unexplained failure pass.
+
+The [current typing reconciliation](docs/TYPING_CORRECTIONS.md) implements 24
+remaining approved type pairs and validates all 35 effective explicit typing rules.
+Run `python3 tests/run_typing_tests.py` alongside the other regression suites.
