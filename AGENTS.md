@@ -160,7 +160,7 @@ unapproved balance changes. After the owner-authorized consolidation, main holds
 the canonical dashboard/ledger; docs/project-coordination is historical. Keep
 repository auto-merge enabled; owner approval for this consolidation supersedes
 older no-merge notes, not explicit feature design HOLDs. Ranger's current contract
-is implementation/saffron-ranger-base-camp.md; the rival handoff stays BLOCKED.
+is implementation/saffron-ranger-base-camp.md. The owner-approved rival contract is implementation/main-rival-eight-battles.md; its exact eight-team and held-item design is Ready for implementation only after the reviewed specification PR is merged. Rival gameplay work must use a separate topic branch/PR, preserve Kanto-starter event progression and postgame rematches, and honor the contract's stop conditions. This authorization is limited to the explicit rival and Dratini-family scope; no unrelated starter, Dex or battle-system changes.
 
 After updating docs/project-tracking.json, run
 `python3 scripts/render-project-dashboard.py` so the live dashboard reflects the
