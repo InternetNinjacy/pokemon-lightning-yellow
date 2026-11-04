@@ -87,6 +87,25 @@ u8 ScriptGiveEgg(u16 species)
     return sentToPc;
 }
 
+// Special event prize. A full party must never send this egg to the PC.
+u16 ScriptGiveShinyFeebasEgg(void)
+{
+    struct Pokemon *mon;
+    u16 result;
+
+    if (gPlayerPartyCount >= PARTY_SIZE)
+        return MON_CANT_GIVE;
+
+    mon = AllocZeroed(sizeof(struct Pokemon));
+    if (mon == NULL)
+        return MON_CANT_GIVE;
+
+    CreateShinyEgg(mon, SPECIES_FEEBAS);
+    result = GiveMonToPlayer(mon);
+    Free(mon);
+    return result;
+}
+
 void HasEnoughMonsForDoubleBattle(void)
 {
     switch (GetMonsStateToDoubles())

@@ -1,0 +1,60 @@
+{
+  "base": "eb4f3d7863766a61660022d2389b629a297b701a",
+  "note": "Exact approved Museum changes; preserve original special IDs and other NPC blocks",
+  "hunks": {
+    "src/daycare.c": [
+      {
+        "before": "    SetMonData(mon, MON_DATA_IS_EGG, &isEgg);\n}\n\nstatic void SetInitialEggData(struct Pokemon *mon, u16 species, struct DayCare *daycare)\n{\n    u32 personality;\n",
+        "after": "    SetMonData(mon, MON_DATA_IS_EGG, &isEgg);\n}\n\n// Museum prize eggs use a fixed shiny personality at creation, not a cosmetic\n// effect or a hatch-time reroll. Normal daycare and gift eggs are unchanged.\nvoid CreateShinyEgg(struct Pokemon *mon, u16 species)\n{\n    u32 otId = (u32)gSaveBlock2Ptr->playerTrainerId[0]\n             | ((u32)gSaveBlock2Ptr->playerTrainerId[1] << 8)\n             | ((u32)gSaveBlock2Ptr->playerTrainerId[2] << 16)\n             | ((u32)gSaveBlock2Ptr->playerTrainerId[3] << 24);\n    u16 pidLow = Random();\n    u16 pidHigh = pidLow ^ (u16)otId ^ (u16)(otId >> 16);\n    u32 personality = ((u32)pidHigh << 16) | pidLow;\n    u8 metLevel = 0;\n    u16 ball = ITEM_POKE_BALL;\n    u8 language = LANGUAGE_JAPANESE;\n    u8 metLocation = METLOC_SPECIAL_EGG;\n    u8 isEgg = TRUE;\n\n    CreateMon(mon, species, EGG_HATCH_LEVEL, USE_RANDOM_IVS, TRUE, personality, OT_ID_PLAYER_ID, 0);\n    SetMonData(mon, MON_DATA_POKEBALL, &ball);\n    SetMonData(mon, MON_DATA_NICKNAME, sJapaneseEggNickname);\n    SetMonData(mon, MON_DATA_FRIENDSHIP, &gSpeciesInfo[species].eggCycles);\n    SetMonData(mon, MON_DATA_MET_LEVEL, &metLevel);\n    SetMonData(mon, MON_DATA_LANGUAGE, &language);\n    SetMonData(mon, MON_DATA_MET_LOCATION, &metLocation);\n    SetMonData(mon, MON_DATA_IS_EGG, &isEgg);\n}\n\nstatic void SetInitialEggData(struct Pokemon *mon, u16 species, struct DayCare *daycare)\n{\n    u32 personality;\n"
+      }
+    ],
+    "src/script_pokemon_util.c": [
+      {
+        "before": "    sentToPc = GiveMonToPlayer(mon);\n    Free(mon);\n    return sentToPc;\n}\n\nvoid HasEnoughMonsForDoubleBattle(void)\n",
+        "after": "    sentToPc = GiveMonToPlayer(mon);\n    Free(mon);\n    return sentToPc;\n}\n\n// Special event prize. A full party must never send this egg to the PC.\nu16 ScriptGiveShinyFeebasEgg(void)\n{\n    struct Pokemon *mon;\n    u16 result;\n\n    if (gPlayerPartyCount >= PARTY_SIZE)\n        return MON_CANT_GIVE;\n\n    mon = AllocZeroed(sizeof(struct Pokemon));\n    if (mon == NULL)\n        return MON_CANT_GIVE;\n\n    CreateShinyEgg(mon, SPECIES_FEEBAS);\n    result = GiveMonToPlayer(mon);\n    Free(mon);\n    return result;\n}\n\nvoid HasEnoughMonsForDoubleBattle(void)\n"
+      }
+    ],
+    "include/constants/flags.h": [
+      {
+        "before": "#define FLAG_HIDE_SAFFRON_CITY_POKECENTER_SABRINA_JOURNALS 0x0AE\n\n// Unused?\n#define FLAG_0x0AF               0x0AF\n#define FLAG_0x0B0               0x0B0\n#define FLAG_0x0B1               0x0B1\n#define FLAG_0x0B2               0x0B2\n#define FLAG_0x0B3               0x0B3\n",
+        "after": "#define FLAG_HIDE_SAFFRON_CITY_POKECENTER_SABRINA_JOURNALS 0x0AE\n\n// Unused?\n#define FLAG_PEWTER_MUSEUM_TRIVIA_WON                   0x0AF\n#define FLAG_PEWTER_MUSEUM_SHINY_EGG_RECEIVED          0x0B0\n#define FLAG_0x0B1               0x0B1\n#define FLAG_0x0B2               0x0B2\n#define FLAG_0x0B3               0x0B3\n"
+      }
+    ],
+    "include/daycare.h": [
+      {
+        "before": "void TriggerPendingDaycareEgg(void);\nvoid RejectEggFromDayCare(void);\nvoid CreateEgg(struct Pokemon *mon, u16 species, bool8 setHotSpringsLocation);\nvoid GiveEggFromDaycare(void);\nbool8 DoEggActions_CheckHatch(void);\nu16 GetSelectedMonNickAndSpecies(void);\n",
+        "after": "void TriggerPendingDaycareEgg(void);\nvoid RejectEggFromDayCare(void);\nvoid CreateEgg(struct Pokemon *mon, u16 species, bool8 setHotSpringsLocation);\nvoid CreateShinyEgg(struct Pokemon *mon, u16 species);\nvoid GiveEggFromDaycare(void);\nbool8 DoEggActions_CheckHatch(void);\nu16 GetSelectedMonNickAndSpecies(void);\n"
+      }
+    ],
+    "include/script_pokemon_util.h": [
+      {
+        "before": "\nbool8 ScriptGiveMon(u16 species, u8 level, u16 item, u32 unk1, u32 unk2, u8 unk3);\nbool8 ScriptGiveEgg(u16 species);\nvoid ScriptSetMonMoveSlot(u8 partyIdx, u16 move, u8 slot);\nvoid HealPlayerParty(void);\nvoid ReducePlayerPartyToThree(void);\n",
+        "after": "\nbool8 ScriptGiveMon(u16 species, u8 level, u16 item, u32 unk1, u32 unk2, u8 unk3);\nbool8 ScriptGiveEgg(u16 species);\nu16 ScriptGiveShinyFeebasEgg(void);\nvoid ScriptSetMonMoveSlot(u8 partyIdx, u16 move, u8 slot);\nvoid HealPlayerParty(void);\nvoid ReducePlayerPartyToThree(void);\n"
+      }
+    ],
+    "data/specials.inc": [
+      {
+        "before": "\tdef_special IsRoute5DaycareReady\n\tdef_special MysteryVendorStatus\n\tdef_special PurchaseMysteryPokemon\ngSpecialsEnd::\n",
+        "after": "\tdef_special IsRoute5DaycareReady\n\tdef_special MysteryVendorStatus\n\tdef_special PurchaseMysteryPokemon\n\tdef_special ScriptGiveShinyFeebasEgg\ngSpecialsEnd::\n"
+      }
+    ],
+    "data/maps/PewterCity_Museum_1F/map.json": [
+      {
+        "before": "      \"trainer_type\": \"TRAINER_TYPE_NONE\",\n      \"trainer_sight_or_berry_tree_id\": \"0\",\n      \"script\": \"PewterCity_Museum_1F_EventScript_SeismicTossTutor\",\n      \"flag\": \"0\"\n    }\n  ],\n",
+        "after": "      \"trainer_type\": \"TRAINER_TYPE_NONE\",\n      \"trainer_sight_or_berry_tree_id\": \"0\",\n      \"script\": \"PewterCity_Museum_1F_EventScript_SeismicTossTutor\",\n      \"flag\": \"0\"\n    },\n    {\n      \"type\": \"object\",\n      \"graphics_id\": \"OBJ_EVENT_GFX_WORKER_M\",\n      \"x\": 11,\n      \"y\": 4,\n      \"elevation\": 3,\n      \"movement_type\": \"MOVEMENT_TYPE_FACE_LEFT\",\n      \"movement_range_x\": 0,\n      \"movement_range_y\": 0,\n      \"trainer_type\": \"TRAINER_TYPE_NONE\",\n      \"trainer_sight_or_berry_tree_id\": \"0\",\n      \"script\": \"PewterCity_Museum_1F_EventScript_TriviaEmployee\",\n      \"flag\": \"0\"\n    }\n  ],\n"
+      }
+    ],
+    "data/maps/PewterCity_Museum_1F/scripts.inc": [
+      {
+        "before": "\tspecial CloseMuseumFossilPic\n\treleaseall\n\tend\n",
+        "after": "\tspecial CloseMuseumFossilPic\n\treleaseall\n\tend\n\n@ Free three-question anime trivia, available as soon as the museum admission is paid.\n@ Winning is persisted independently of reward collection to support a full party.\nPewterCity_Museum_1F_EventScript_TriviaEmployee::\n\tlock\n\tfaceplayer\n\tgoto_if_set FLAG_PEWTER_MUSEUM_SHINY_EGG_RECEIVED, PewterCity_Museum_1F_TriviaAlreadyCollected\n\tgoto_if_set FLAG_PEWTER_MUSEUM_TRIVIA_WON, PewterCity_Museum_1F_TriviaTryReward\n\tmsgbox PewterCity_Museum_1F_Text_TriviaOffer, MSGBOX_YESNO\n\tgoto_if_eq VAR_RESULT, NO, PewterCity_Museum_1F_TriviaDecline\n\tmsgbox PewterCity_Museum_1F_Text_TriviaQuestion1, MSGBOX_YESNO\n\tgoto_if_eq VAR_RESULT, YES, PewterCity_Museum_1F_TriviaWrong\n\tmsgbox PewterCity_Museum_1F_Text_TriviaCorrect1\n\tmsgbox PewterCity_Museum_1F_Text_TriviaQuestion2, MSGBOX_YESNO\n\tgoto_if_eq VAR_RESULT, NO, PewterCity_Museum_1F_TriviaWrong\n\tmsgbox PewterCity_Museum_1F_Text_TriviaCorrect2\n\tmsgbox PewterCity_Museum_1F_Text_TriviaQuestion3, MSGBOX_YESNO\n\tgoto_if_eq VAR_RESULT, YES, PewterCity_Museum_1F_TriviaWrong\n\tmsgbox PewterCity_Museum_1F_Text_TriviaCorrect3\n\tsetflag FLAG_PEWTER_MUSEUM_TRIVIA_WON\n\tmsgbox PewterCity_Museum_1F_Text_TriviaVictory\n\tgoto PewterCity_Museum_1F_TriviaTryReward\n\nPewterCity_Museum_1F_TriviaDecline::\n\tmsgbox PewterCity_Museum_1F_Text_TriviaDeclined\n\trelease\n\tend\n\nPewterCity_Museum_1F_TriviaWrong::\n\tmsgbox PewterCity_Museum_1F_Text_TriviaWrong\n\trelease\n\tend\n\nPewterCity_Museum_1F_TriviaTryReward::\n\tspecialvar VAR_RESULT, CalculatePlayerPartyCount\n\tgoto_if_eq VAR_RESULT, PARTY_SIZE, PewterCity_Museum_1F_TriviaPartyFull\n\tspecialvar VAR_RESULT, ScriptGiveShinyFeebasEgg\n\tgoto_if_ne VAR_RESULT, MON_GIVEN_TO_PARTY, PewterCity_Museum_1F_TriviaPartyFull\n\tsetflag FLAG_PEWTER_MUSEUM_SHINY_EGG_RECEIVED\n\tplayfanfare MUS_OBTAIN_ITEM\n\tmsgbox PewterCity_Museum_1F_Text_TriviaEggReceived\n\twaitfanfare\n\trelease\n\tend\n\nPewterCity_Museum_1F_TriviaPartyFull::\n\tmsgbox PewterCity_Museum_1F_Text_TriviaPartyFull\n\trelease\n\tend\n\nPewterCity_Museum_1F_TriviaAlreadyCollected::\n\tmsgbox PewterCity_Museum_1F_Text_TriviaAfterward\n\trelease\n\tend\n"
+      }
+    ],
+    "data/maps/PewterCity_Museum_1F/text.inc": [
+      {
+        "before": "    .string \"KABUTOPS Fossil\\n\"\n    .string \"A primitive and rare POK\u00e9MON.$\"\n\n",
+        "after": "    .string \"KABUTOPS Fossil\\n\"\n    .string \"A primitive and rare POK\u00e9MON.$\"\n\n\nPewterCity_Museum_1F_Text_TriviaOffer::\n    .string \"Welcome to our POK\u00e9MON anime\\n\"\n    .string \"trivia exhibit!\\p\"\n    .string \"Answer three YES or NO questions\\n\"\n    .string \"to win a special prize.\\p\"\n    .string \"It's free! Would you like to play?$\"\n\nPewterCity_Museum_1F_Text_TriviaDeclined::\n    .string \"All right! Come back any time.$\"\n\nPewterCity_Museum_1F_Text_TriviaQuestion1::\n    .string \"Was RATTATA the first POK\u00e9MON\\n\"\n    .string \"ASH ever caught in the anime?$\"\n\nPewterCity_Museum_1F_Text_TriviaCorrect1::\n    .string \"That's correct! CATERPIE was\\n\"\n    .string \"actually the first he caught!$\"\n\nPewterCity_Museum_1F_Text_TriviaQuestion2::\n    .string \"Have we ever seen BROCK's eyes\\n\"\n    .string \"open in the POK\u00e9MON anime?$\"\n\nPewterCity_Museum_1F_Text_TriviaCorrect2::\n    .string \"That's right! BROCK has opened\\n\"\n    .string \"his eyes a few times!$\"\n\nPewterCity_Museum_1F_Text_TriviaQuestion3::\n    .string \"Does MISTY have exactly two\\n\"\n    .string \"sisters?$\"\n\nPewterCity_Museum_1F_Text_TriviaCorrect3::\n    .string \"Correct! She actually has three:\\n\"\n    .string \"DAISY, VIOLET, and LILY!$\"\n\nPewterCity_Museum_1F_Text_TriviaWrong::\n    .string \"Oh, I'm sorry! That's not quite\\n\"\n    .string \"right. Feel free to try again!$\"\n\nPewterCity_Museum_1F_Text_TriviaVictory::\n    .string \"Wow! All three answers right!\\n\"\n    .string \"You really know your trivia!\\p\"\n    .string \"I'd like to give you an EGG.\\n\"\n    .string \"Nobody knows what's inside!$\"\n\nPewterCity_Museum_1F_Text_TriviaPartyFull::\n    .string \"Oh, your party is full!\\n\"\n    .string \"I'll keep the EGG safe for you.\\p\"\n    .string \"Come back with an open spot.\\n\"\n    .string \"No need to take the quiz again!$\"\n\nPewterCity_Museum_1F_Text_TriviaEggReceived::\n    .string \"{PLAYER} received a mysterious\\n\"\n    .string \"POK\u00e9MON EGG!$\"\n\nPewterCity_Museum_1F_Text_TriviaAfterward::\n    .string \"How is that mysterious EGG?\\n\"\n    .string \"I hope you've found out what's\\l\"\n    .string \"inside!$\"\n"
+      }
+    ]
+  }
+}

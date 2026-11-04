@@ -1144,6 +1144,33 @@ void CreateEgg(struct Pokemon *mon, u16 species, bool8 setHotSpringsLocation)
     SetMonData(mon, MON_DATA_IS_EGG, &isEgg);
 }
 
+// Museum prize eggs use a fixed shiny personality at creation, not a cosmetic
+// effect or a hatch-time reroll. Normal daycare and gift eggs are unchanged.
+void CreateShinyEgg(struct Pokemon *mon, u16 species)
+{
+    u32 otId = (u32)gSaveBlock2Ptr->playerTrainerId[0]
+             | ((u32)gSaveBlock2Ptr->playerTrainerId[1] << 8)
+             | ((u32)gSaveBlock2Ptr->playerTrainerId[2] << 16)
+             | ((u32)gSaveBlock2Ptr->playerTrainerId[3] << 24);
+    u16 pidLow = Random();
+    u16 pidHigh = pidLow ^ (u16)otId ^ (u16)(otId >> 16);
+    u32 personality = ((u32)pidHigh << 16) | pidLow;
+    u8 metLevel = 0;
+    u16 ball = ITEM_POKE_BALL;
+    u8 language = LANGUAGE_JAPANESE;
+    u8 metLocation = METLOC_SPECIAL_EGG;
+    u8 isEgg = TRUE;
+
+    CreateMon(mon, species, EGG_HATCH_LEVEL, USE_RANDOM_IVS, TRUE, personality, OT_ID_PLAYER_ID, 0);
+    SetMonData(mon, MON_DATA_POKEBALL, &ball);
+    SetMonData(mon, MON_DATA_NICKNAME, sJapaneseEggNickname);
+    SetMonData(mon, MON_DATA_FRIENDSHIP, &gSpeciesInfo[species].eggCycles);
+    SetMonData(mon, MON_DATA_MET_LEVEL, &metLevel);
+    SetMonData(mon, MON_DATA_LANGUAGE, &language);
+    SetMonData(mon, MON_DATA_MET_LOCATION, &metLocation);
+    SetMonData(mon, MON_DATA_IS_EGG, &isEgg);
+}
+
 static void SetInitialEggData(struct Pokemon *mon, u16 species, struct DayCare *daycare)
 {
     u32 personality;

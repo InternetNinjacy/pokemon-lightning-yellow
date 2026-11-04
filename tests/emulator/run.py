@@ -9,6 +9,26 @@ import tempfile
 
 # Generate ABI constants with the game's ARM compiler, never host offsetof.
 expressions = {
+    "WEATHER_DURATION": "offsetof(struct WishFutureKnock,weatherDuration)",
+    'SCRIPT_EXP_STATE': 'offsetof(struct BattleScripting,getexpState)',
+    'BATTLESTRUCT_EXP_VALUE': 'offsetof(struct BattleStruct,expValue)',
+    'BATTLESTRUCT_EXP_GETTER': 'offsetof(struct BattleStruct,expGetterMonId)',
+    'BATTLESTRUCT_SENT_IN': 'offsetof(struct BattleStruct,sentInPokes)',
+    'BATTLESTRUCT_WILD_SONG': 'offsetof(struct BattleStruct,wildVictorySong)',
+    'WINDOW_SIZE': 'sizeof(struct Window)',
+    'WINDOW_BG': 'offsetof(struct Window,window.bg)',
+    'SCRIPT_MODE': 'offsetof(struct ScriptContext,mode)',
+    'SCRIPT_NATIVE': 'offsetof(struct ScriptContext,nativePtr)',
+    'TEXT_COUNT': 'NUM_TEXT_PRINTERS',
+    'TEXT_SIZE': 'sizeof(struct TextPrinter)',
+    'TEXT_ACTIVE': 'offsetof(struct TextPrinter,active)',
+    'TEXT_STATE': 'offsetof(struct TextPrinter,state)',
+    'TEXT_CLEAR': 'RENDER_STATE_CLEAR',
+    'TEXT_SCROLL_START': 'RENDER_STATE_SCROLL_START',
+    'TEXT_WAIT': 'RENDER_STATE_WAIT',
+    'FLAG_SET_SEEN': 'FLAG_SET_SEEN',
+    'FLAG_SET_CAUGHT': 'FLAG_SET_CAUGHT',
+    'FLAG_GET_CAUGHT': 'FLAG_GET_CAUGHT',
     'MON_SIZE': 'sizeof(struct Pokemon)',
     'SAVE1_SIZE': 'sizeof(struct SaveBlock1)',
     'SAVE2_SIZE': 'sizeof(struct SaveBlock2)',
@@ -60,6 +80,7 @@ for key,expr in {
  'BMON_MOVES':'offsetof(struct BattlePokemon,moves)',
  'BMON_PP':'offsetof(struct BattlePokemon,pp)',
  'BATTLESTRUCT_MOVETARGET':'offsetof(struct BattleStruct,moveTarget)',
+ 'SUMMARY_TYPES':'offsetof(struct PokemonSummaryScreenData,monTypes)',
  'SUMMARY_PAGE':'offsetof(struct PokemonSummaryScreenData,curPageIndex)',
  'SUMMARY_MOVE_COUNT':'offsetof(struct PokemonSummaryScreenData,numMoves)',
  'SUMMARY_MOVES':'offsetof(struct PokemonSummaryScreenData,moveIds)',
@@ -100,9 +121,50 @@ for key,expr in {
  'MAIL_WORDS':'offsetof(struct Mail,words)',
  'RESULT_CAUGHT':'offsetof(struct BattleResults,caughtMonSpecies)',
 }.items(): expressions[key]=expr
-for name in ['SPECIES','HELD_ITEM','LEVEL','FRIENDSHIP','IS_EGG','ATK','DEF','HP','MAX_HP','MOVE1','MOVE2','MOVE3','MOVE4','PP1','PP2','PP3','PP4','PERSONALITY','OT_ID','HP_IV','SANITY_IS_BAD_EGG','ABILITY_NUM','MAIL','UNUSED_RIBBONS']:
+for name in ['POKEBALL','SPECIES','HELD_ITEM','LEVEL','FRIENDSHIP','IS_EGG','ATK','DEF','HP','MAX_HP','MOVE1','MOVE2','MOVE3','MOVE4','PP1','PP2','PP3','PP4','NICKNAME','PERSONALITY','OT_NAME','OT_ID','HP_IV','SANITY_IS_BAD_EGG','ABILITY_NUM','MAIL','UNUSED_RIBBONS']:
     expressions['DATA_'+name] = 'MON_DATA_'+name
 required = [
+    "CheckBagHasItem", "RemoveBagItem", "Task_ShopMenu", "Task_BuyMenu", "Task_BuyHowManyDialogueHandleInput", "Task_CallYesOrNoCallback", "FindTaskIdByFunc", "VermilionCity_Mart_EventScript_Clerk", "gWishFutureKnock", "Cmd_setrain", "Cmd_setsandstorm", "AbilityBattleEffects", "CastformDataTypeChange", "Cmd_sethail", "Cmd_setsunny", "GetBallCatchMultiplier", "IsPokeBallItem", "BallItemToCaptureCode", "CaptureCodeToBallItem", "TryBuyBallsWithPremierBonus", "ItemIdToBallId", "gCaptureOrigin",
+    "PalletTown_ProfessorOaksLab_EventScript_ProfOak", "PalletTown_ProfessorOaksLab_EventScript_TryGiveNestBalls",
+
+    'gSpeciesNames',
+    'gStringVar4',
+    'MysteryVendor_Text_Intro10',
+    'MysteryVendor_Text_Intro09',
+    'MysteryVendor_Text_Intro08',
+    'MysteryVendor_Text_Intro07',
+    'MysteryVendor_Text_Intro06',
+    'MysteryVendor_Text_Intro05',
+    'MysteryVendor_Text_Intro04',
+    'MysteryVendor_Text_Intro03',
+    'MysteryVendor_Text_Intro02',
+    'MysteryVendor_Text_Intro01',
+    'MysteryVendor_Text_AlreadySold',
+    'MysteryVendor_Text_NoRoom',
+    'MysteryVendor_Text_Poor',
+    'MysteryVendor_Text_Declined',
+    'MysteryVendor_Text_Reveal',
+    'OneIsland_EventScript_BaldingMan',
+    'CinnabarIsland_EventScript_OldMan',
+    'SaffronCity_EventScript_WorkerM',
+    'FuchsiaCity_EventScript_OldMan',
+    'CeladonCity_EventScript_OldMan2',
+    'LavenderTown_EventScript_WorkerM',
+    'Route10_PokemonCenter_1F_EventScript_FatMan',
+    'VermilionCity_EventScript_Woman',
+    'CeruleanCity_House1_EventScript_BadgeGuy',
+    'Route4_PokemonCenter_1F_EventScript_MagikarpSalesman',
+    'CB2_NamingScreen', 'sNamingScreen', 'gWindows', 'sMoneyBoxWindowId',
+    'IsMonDisobedient', 'Cmd_getexp', 'BufferStringBattle', 'gBattleControllerExecFlags',
+    'gBattlerPartyIndexes', 'gBattleTextBuff2', 'gCurrMovePos',
+    'ZeroBoxMonAt',
+    'BoxMonToMon', 'GetBoxedMonPtr', 'PurchaseMysteryPokemon', 'MysteryVendorStatus', 'MysteryRandomBelow', 'gSpecialVar_0x8009',
+    'IsTradedMon', 'FlagClear', 'ResetPokemonStorageSystem', 'GetAndCopyBoxMonDataAt',
+    'gSpecialVar_MonBoxId', 'gSpecialVar_MonBoxPos',
+    'IsSpeciesInCustomPokedex', 'WaitForAorBPress', 'sTextPrinters', 'gSpecialVar_0x8006', 'FlagGet', 'VarGet', 'FuncIsActiveTask', 'CheckBagHasSpace', 'ItemId_GetPocket',
+    'Task_MultichoiceMenu_HandleInput', 'Task_YesNoMenu_HandleInput',
+    'Route10_PokemonCenter_1F_EventScript_Aide',
+    'CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_FossilScientist',
     'AddBagItem', 'BagGetQuantityByItemId', 'BeginItemEvolution', 'CB2_LoadMap', 'CB2_OpenPokedexFromStartMenu',
     'CB2_Overworld', 'CastformDataTypeChange', 'ClearBag', 'CreateMon', 'CustomPokedexNumToSpecies',
     'DexScreen_CountMonsInOrderedList', 'DisableNationalPokedex', 'EnableNationalPokedex', 'EvolutionScene', 'FlagSet',
@@ -136,7 +198,8 @@ required = [
     'Route5_PokemonDayCare_EventScript_DaycareWoman', 'Route5_PokemonDayCare_Egg_DaycareMan',
     'FourIsland_PokemonDayCare_EventScript_DaycareWoman', 'FourIsland_EventScript_DaycareMan',
     'gSpecialVar_0x8004', 'gSpecialVar_0x8005', 'gSpecialVar_Result', 'gPartyMenu', 'gSelectedObjectEvent',
-    'sRoamerLocation', 'IsNationalPokedexEnabled', 'CopyPlayerPartyMonToBattleData', 'CalculateBaseDamage', 'AI_CalcDmg', 'Cmd_dmgtolevel',
+    'sRoamerLocation', 'IsNationalPokedexEnabled', 'CopyPlayerPartyMonToBattleData', 'CalculateBaseDamage', 'TypeCalc', 'AI_TypeCalc', 'AI_CalcDmg', 'Cmd_dmgtolevel',
+    'CinnabarIsland_Gym_EventScript_Blaine', 'CreateShinyEgg', 'ScriptGiveShinyFeebasEgg', 'PewterCity_Museum_1F_EventScript_TriviaEmployee', 'PewterCity_Museum_1F_Text_TriviaOffer',
     'GetMoveCategoryName', 'GetMoveCategoryShortName', 'MoveSelectionDisplayMoveType',
     'gCurrentMove', 'gCritMultiplier', 'gDynamicBasePower', 'gBattlerAttacker', 'gBattlerTarget',
     'ShowPokemonSummaryScreen', 'sMonSummaryScreen', 'sMoveSelectionCursorPos', 'gSideStatuses', 'gBattleStruct', 'gBattleScripting', 'gBattleMoveDamage', 'gDisplayedStringBattle',
@@ -160,7 +223,7 @@ for name in ['HandleInputChooseAction','HandleInputChooseMove','HandleInputChoos
 with tempfile.TemporaryDirectory(prefix='lightning-emulator-') as temp:
     temp=Path(temp)
     source='#include <stddef.h>\n#include "global.h"\n#include "pokemon.h"\n#include "main.h"\n#include "task.h"\n'
-    source+='#include "battle_controllers.h"\n#include "item_menu.h"\n#include "wild_encounter.h"\n#include "battle.h"\n#include "list_menu.h"\n#include "party_menu.h"\n#include "script.h"\n#include "field_player_avatar.h"\n'+screen_struct+'\n'+summary_struct+'\n'
+    source+='#include "text.h"\n#include "pokedex.h"\n#include "battle_controllers.h"\n#include "item_menu.h"\n#include "wild_encounter.h"\n#include "battle.h"\n#include "list_menu.h"\n#include "party_menu.h"\n#include "script.h"\n#include "field_player_avatar.h"\n'+screen_struct+'\n'+summary_struct+'\n'
     source+='const unsigned long abi[] = {'+', '.join(expressions.values())+'};\n'
     (temp/'abi.c').write_text(source)
     with (temp/'abi.i').open('w') as out:
