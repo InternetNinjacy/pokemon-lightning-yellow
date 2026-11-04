@@ -1,6 +1,6 @@
 # Pewter Museum anime trivia: shiny Feebas Egg
 
-Status: owner-approved gameplay; implementation in this feature branch; build and emulator acceptance pending.
+Status: owner-approved gameplay; code on this feature branch; GitHub feature-source-build compile PASSED on November 3, 2026 (workflow run 41757743873); emulator acceptance and merge pending.
 Project: Pokémon Lightning Yellow only. Do not import unrelated Pokémon project decisions.
 
 ## Player experience
@@ -38,3 +38,8 @@ Project: Pokémon Lightning Yellow only. Do not import unrelated Pokémon projec
 
 ## Integration warning
 This branch starts from `main`. Other feature PRs are independently open. Reconcile flag allocations, sprite/event placement and C script specials against the integration branch before merging. No ROM file, release patch, emulator capture, or passing build is claimed by the existence of this document.
+
+## Verified build
+- GitHub Actions Feature source build passed: https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41757743873
+- This compiles the modified FireRed source. It does not prove the map NPC is reachable or the egg survives save/load and hatches Shiny. Emulator acceptance remains required.
+- The separate FireRed baseline workflow compares against unmodified vanilla SHA and is not a feature-build acceptance test.
