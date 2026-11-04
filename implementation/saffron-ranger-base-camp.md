@@ -1,16 +1,18 @@
-# Feature: Saffron City Pokémon Ranger Headquarters
+# Feature: Saffron City Pokémon Ranger Base Camp (Ranger Headquarters)
 
 **Project:** Pokémon Lightning Yellow (FireRed-based; never import another Pokémon project's canon)  
-**Status:** Ready for implementation **after owner review and merge of this specification PR**  
+**Status:** Ready for implementation (owner-approved design; this specification is not the Codex contract until this PR is reviewed and merged)  
 **Approval:** Owner approved the teams, abilities, moves, dialogue, one-time reward selection, mandatory four-Ranger progression, PC, and Trainer-bag items in the November 3, 2026 Ranger Headquarters design conversation. This is approved gameplay **design**, not evidence of code authorization or implementation.  
-**Handoff revision:** 2026-11-03  
+**Handoff revision:** 2026-11-03 (reconciled against main and existing Saffron City dojo source on 2026-11-03)  
 **Dependencies:** Project-wide 252 Pokédex/typing, independent physical/special/status split, approved move effects, repository branch-integration rules.
 
 ## 1. Goal and player-facing behavior
 
-Replace the existing Saffron City Fighting Dojo with **Saffron City Pokémon Ranger Headquarters**, an optional five-Trainer challenge, while preserving the original interior room footprint/layout insofar as physical additions permit. It is **not** an official Gym. It awards no badge. Four regular Pokémon Rangers each offer a one-time Single Battle; all four must be defeated (any order) before Ranger Park, the commander at the rear, offers a one-time four-member Double Battle. Winning against Park unlocks three behind-the-commander Poké Balls; the player may receive exactly one Level 30 Pokémon: Arcanine, Noctowl, or Golduck. Add a usable Pokémon Storage PC by an entrance-side wall so a player with six Pokémon can deposit one. Gift collection requires a vacant party slot; no automatically sent-to-box gift and no lost gift on a full party.
+Replace the existing Saffron City Fighting Dojo with **Saffron City Pokémon Ranger Base Camp**, also called the **Pokémon Ranger Headquarters** in the already approved NPC dialogue, an optional five-Trainer challenge, while preserving the original interior room footprint/layout insofar as physical additions permit. It is **not** an official Gym. It awards no badge. Four regular Pokémon Rangers each offer a one-time Single Battle; all four must be defeated (any order) before Ranger Park, the commander at the rear, offers a one-time four-member Double Battle. Winning against Park unlocks three behind-the-commander Poké Balls; the player may receive exactly one Level 30 Pokémon: Arcanine, Noctowl, or Golduck. Add a usable Pokémon Storage PC by an entrance-side wall so a player with six Pokémon can deposit one. Gift collection requires a vacant party slot; no automatically sent-to-box gift and no lost gift on a full party.
 
 Use existing FireRed Pokémon Ranger overworld and battle graphics, without new art. Existing NPC positions should be reused (four ordinary positions, Park in rear); add third gift ball, PC object/tile with unobstructed walkways. Exact placements must be determined by verifying the map's tileset and events, not guessed from this document.
+
+**Naming and dialogue authority:** “Base Camp” is the feature/handoff name requested for this package. The approved speech calls it “Pokémon Ranger Headquarters”; retain that exact phrasing in the quoted dialogue rather than silently rewriting owner-approved lines. For signage previously saying FIGHTING DOJO, use the Ranger Base Camp/Headquarters identity using existing tiles and text, without inventing additional lore or room graphics.
 
 This is a longstanding Kanto search-and-rescue organization: Rangers locate Trainers who have blacked out in the wild, return them to a Pokémon Center, and charge a sliding-scale rescue fee, typically roughly half a Trainer's cash. **Dialogue is lore; do not change the global blackout money formula** in this feature.
 
@@ -108,6 +110,24 @@ No party auto-box for the claimed gift. Storage PC gives convenient normal depos
 
 ## 5. Source authority and provenance
 
+### Confirmed source baseline on the repository's main branch (November 3, 2026)
+
+Verified paths, not speculative upstream aliases:
+
+- `data/maps/SaffronCity_Dojo/map.json` has map ID `MAP_SAFFRON_CITY_DOJO`, layout `LAYOUT_SAFFRON_CITY_DOJO`, and three exterior warps at (5,14), (6,14), (7,14). **Retain map identity and entrance warps** unless a verified compatibility reason forces a documented change.
+- Four current Black Belt object events at **(11,10), (1,10), (11,8), (1,8)**, all elevation 3, with original normal-trainer object interaction; existing rear master at **(6,5)**, local ID `LOCALID_KARATE_MASTER`, facing down. Reuse these five positions with existing Ranger sprites. Assign four regular Rangers to the four existing slots in a stable documented order; their exact spatial-to-specialty mapping was not separately owner-locked, so deterministic source-conventional assignment is permitted.
+- Two original reward balls at **(5,3)** and **(7,3)** with original hide flags `FLAG_HIDE_DOJO_HITMONLEE_BALL` and `FLAG_HIDE_DOJO_HITMONCHAN_BALL`. Add the third on an actually available appropriate back-row tile (candidate visually at (6,3), but inspect collision and movement before fixing). All three must be interactable and mutually exclusive.
+- Two original master approach **coordinate triggers at (5,5) and (7,5)** use `VAR_MAP_SCENE_SAFFRON_CITY_DOJO`; these currently alter the master's facing behavior. Update or remove these so they do not produce incorrect first-visit/battle-lock interactions. **Do not accidentally trigger a Park battle before all four Ranger victories.**
+- Four original background scripts include signs at **(3,13), (9,13)** and hanging scrolls at **(5,2), (7,2)**. Old `FIGHTING DOJO` and karate-specific messages must not remain. Approved design does **not** specify replacement quotations for each scroll. Use concise factual Ranger identity labels only if the existing interaction requires text; do not invent additional storyline or reward instructions.
+- `data/maps/SaffronCity_Dojo/scripts.inc` contains `trainerbattle_single` for each old Black Belt, `SaffronCity_Dojo_EventScript_MasterKoichi`, legacy Hitmon gift flow, automatic PC boxing branch, and `FLAG_GOT_HITMON_FROM_DOJO`. Replace them with Ranger-specific events. Do not carry over Hitmonlee/Hitmonchan, the original Lv25 reward, the automatic PC boxing branch, or master-flag behavior. Check whether any legacy flag is referenced elsewhere before reusing/removing its namespace.
+- `data/maps/SaffronCity_Dojo/text.inc` contains old dojo speech/scroll/sign text and gift prompts. Replace the relevant player-visible text with this handoff's locked lines and necessary short selection/full-party prompts.
+- `src/data/trainers.h` is confirmed to include `.doubleBattle`, `.items`, `.aiFlags` and explicit party data macro references in Trainer structs. The party definition source exists at `src/data/trainer_parties.h`. Codex must inspect actual definitions and battle-script invocation conventions before editing.
+- A normal source Pokémon Center can be inspected at `data/maps/SaffronCity_PokemonCenter_1F/`. Its center script does **not** alone define the storage PC, so locate the standard PC tile/background interaction elsewhere instead of fabricating a new storage API.
+
+These verified source facts are the source-structure starting point; exact final tile coordinates for the new PC and third gift ball and new Trainer IDs are implementation details subject to collision/flag audits.
+
+
+
 - Project Master Plan (Nov 3 amendments and isolation): https://docs.google.com/document/d/1P4TuXViTpB0BycldB1SzRZTRX8sV_Rd0lFuPwyGDJQk/edit
 - Project START HERE index: https://docs.google.com/document/d/14bV_mRB-IgcyWqGcIH2tgmvNoYLY1Ip_zSqSbdHGYtw/edit
 - Change Intake & Handoff: https://docs.google.com/document/d/1NpCjx3uboBMdBVqoFpMwXEyVkDquD37Kcp-FJBbYWnc/edit
@@ -126,7 +146,25 @@ No party auto-box for the claimed gift. Storage PC gives convenient normal depos
 
 **Preserve:** existing Saffron City map connections and normal visit accessibility; FireRed standard PC/boxes; non-headquarters Trainer battles; game-wide planned weather/day-night rules; non-headquarters gift encounters. Ranger HQ must not imply Gym clearance or affect Sabrina's Gym.
 
-**Source investigation required:** Locate exact existing dojo map scripts/events/map.json, tileset and Poké Ball scripts; trainer flags and battle party/data files; script commands for four victory flags and Trainer double start; gift Pokémon creation API with OT/ID support; PC object/interface support and map tile collisions. Do not guess source paths solely from external pret upstream naming; actual integration branch may differ from main. Read applicable integration dependencies first.
+**Source investigation required:** Begin at the confirmed map, text, scripts and Trainer data paths in §5. Locate unique Trainer IDs and victory flags, native double trainerbattle invocation, bag item AI, gift Pokémon construction with true outsider OT/ID, normal PC tile/background interface, map tileset/collision, and any references to old dojo flags. These source symbol names or locations may differ on integration branches; validate before touching them. Read applicable integration dependencies first.
+
+### Exact event-state machine required
+
+| State | Player action | Required behavior |
+|---|---|---|
+| First visit, 0–3 Rangers won | Speak to any undefeated Ranger | One normal Single Battle; on victory record that Ranger only |
+| Park locked, 0–3 wins | Speak to Park / approach by existing master coord triggers | Exposition as appropriate, approved gate dialogue, **no battle** |
+| 4 Rangers won, Park not defeated | Speak to Park, choose NO | Approved declination line; no victory flag or reward |
+| 4 Rangers won, Park not defeated | Speak to Park, choose YES | One Double Battle; lose does not flag victory, win unlocks rewards |
+| Park won, gift unclaimed | Interact with any reward ball | Preview species, YES/NO confirmation, capacity check |
+| Full party | Confirm gift | Reject without creating a Pokémon or consuming gift; allow PC deposit |
+| Gift accepted | Confirm with open slot | Create exactly approved outsider mon, add to party, set persistent global one-gift flag |
+| Gift already claimed | Interact with any of three | No further gift, including after warp or reload |
+| Any already-defeated Ranger | Speak to same NPC | Approved after-battle line only; no rematch |
+
+**Atomicity:** The one-gift flag may only be recorded after successful creation and delivery to the party. The party-size check occurs before gift creation; there must be no duplicate, orphaned Pokémon, or hidden extra rewards. Persist success across reloads. Use existing event conventions, not a new global gameplay subsystem.
+
+**Movement and overworld behavior:** Preserve four normal line-of-sight Ranger triggers if compatible with the source map; initial placement and facing remain the original positions with Ranger graphics. No extra building floor, outdoor campsite, weather effect, tents, campfire, new artwork, extra NPCs, or added quests are authorized by the phrase “Base Camp.”
 
 ## 7. Acceptance criteria and validation
 
@@ -146,14 +184,16 @@ No party auto-box for the claimed gift. Storage PC gives convenient normal depos
 
 ## 8. Open questions and implementation conditions
 
-**No further owner gameplay choices are required for the above behavior.** These are engineer verifications, not permission to improvise:
+**No further owner gameplay choices are required for the approved behavior.** These are engineer verifications, not permission to improvise:
 1. Determine safe map coordinates for extra reward ball and existing-art PC, and verify tileset support. If original layout cannot be preserved, report deviation for owner review.
 2. Determine local unique Trainer IDs/flags without colliding with existing Trainer or rematch events.
 3. Determine whether the current native Double Battle trainer scripting properly handles player with only one usable Pokémon; use supported behavior or report a blocker, not a silent Single Battle fallback.
 4. Confirm player/OT ID collision handling and legitimate ability/default stat initialization; do not replace approved traded Pokémon requirement with cosmetic name alone.
 5. Confirm text encoding/window capacity and exact dialogue branching for Park's exposition/gate.
 6. Confirm integration dependency branch/commit, as global modified moves and type changes may not be merged into main.
-7. Regular Ranger 1 Persian's ability was not explicitly approved. Use the valid baseline/project-approved species ability; if an exact choice is needed beyond existing normal generation defaults, request approval rather than invent a design exception.
+7. Regular Ranger 1 Persian's ability was not separately owner-locked. Use its valid project-approved or ordinary species ability without adding a custom species ability. Gift ability/nature/IV/sex/friendship values not owner-locked must use normal source generation conventions rather than silently fixed competitive builds.
+8. Verify the four Trainers' approved 1× Super Potion and Park's 1× Full Restore correspond to genuine native Trainer **bag** item slots, not held items. Item selection frequency is native AI-controlled.
+9. If overworld Trainer graphics/source slots allow only one gendered Ranger presentation, use an existing appropriate Ranger option; do not invent new art or NPC names.
 
 ## 9. Codex delivery requirements
 
@@ -161,4 +201,4 @@ Implement only this feature on a separate topic branch **after owner review and 
 
 ## 10. One-line Codex handoff (ONLY after spec PR is merged)
 
-`Implement implementation/saffron-ranger-headquarters.md from main following AGENTS.md. Run applicable tests and open an implementation PR; report blockers without changing approved gameplay decisions.`
+`Implement the complete Saffron City Pokémon Ranger Base Camp feature according to implementation/saffron-ranger-base-camp.md from main following AGENTS.md. Run applicable tests and open an implementation PR; report blockers without changing approved gameplay decisions.`
