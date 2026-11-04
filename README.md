@@ -9,7 +9,7 @@ that work with the approved [evolution mechanics and Tyrogue menu](docs/EVOLUTIO
 features remain unimplemented; [AGENTS.md](AGENTS.md) requires design approval.
 
 This branch also implements the approved [252-species custom Pokédex](docs/CUSTOM_POKEDEX.md),
-including Castform at #233. Celadon Trainer7 species assignment is approved; its level/moves and implementation remain pending.
+including Castform at #233. The three approved Gym Castform parties and scoped Gym weather/Double implementation are documented in [the PR31 implementation record](docs/GYM_CASTFORM_STAGING.md); review and broader Gym work remain separate.
 
 The [wild double battle capability test](docs/WILD_DOUBLE_BATTLES.md) enables ordinary
 land/cave doubles on Route 1 and Mt. Moon 1F, with a 5% Onix/Cloyster special pair.

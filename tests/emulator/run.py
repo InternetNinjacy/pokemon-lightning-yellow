@@ -233,6 +233,7 @@ required = [
     'gCurrentMove', 'gCritMultiplier', 'gDynamicBasePower', 'gBattlerAttacker', 'gBattlerTarget',
     'ShowPokemonSummaryScreen', 'sMonSummaryScreen', 'sMoveSelectionCursorPos', 'gSideStatuses', 'gBattleStruct', 'gBattleScripting', 'gBattleMoveDamage', 'gDisplayedStringBattle',
 ]
+required += ['PewterCity_Gym_EventScript_Liam','CeruleanCity_Gym_EventScript_Diana','CeladonCity_Gym_EventScript_Mary','Cmd_setweatherballtype','gBattleMonForms','SaffronCity_Dojo_Text_NeedTwo']
 symbols={}
 end_ewram=0
 for line in subprocess.check_output(['arm-none-eabi-nm','-S','pokefirered.elf'],text=True).splitlines():
@@ -272,6 +273,18 @@ with tempfile.TemporaryDirectory(prefix='lightning-emulator-') as temp:
     header+='\n'.join('#define SYM_'+name+' 0x%08xU'%value for name,value in symbols.items())+'\n'
     header+='#define ABI_EWRAM_END 0x%08xU\n'%end_ewram
     (temp/'symbols.h').write_text(header)
+    gf=json.loads(Path('tests/specifications/approved_gym_castform.json').read_text())
+    out=''
+    for label,field in [('Species',0),('Levels',1),('Moves',2)]:
+        rows=[]
+        for t in gf['trainers']:
+            vals=[]
+            for mon in t['pokemon']:
+                value=mon[field]
+                vals.append(('{'+','.join('MOVE_'+x for x in value)+'}') if field==2 else ('SPECIES_'+value if field==0 else str(value)))
+            rows.append('{'+','.join(vals)+'}')
+        out+='static const unsigned gymExpected'+label+'[3][2]'+('[4]' if field==2 else '')+'={'+','.join(rows)+'};\n'
+    (temp/'gym_castform_expected.h').write_text(out)
     approved_rangers=json.loads(Path('tests/specifications/approved_ranger_base_camp.json').read_text())
     expected='static const unsigned rangerExpectedMoves[5][4][4] = {\n'
     for trainer in approved_rangers['trainers']:

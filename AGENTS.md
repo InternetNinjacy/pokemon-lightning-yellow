@@ -187,3 +187,13 @@ final palette values, time-exclusive encounters or SOW changes. Run
 Keep the reserved8-byte weather context within the existing16-byte save region.
 Rival gameplay/tests remain separate in PR27; preserve both registrations and
 frozen normalizers when integrating. No automatic merge or ROM release.
+
+GYM-007 completes the three approved Castform trainers on existing PR31, under
+owner's explicit November4 instruction referencing PR30. Read
+implementation/three-gym-castform.md and docs/GYM_CASTFORM_STAGING.md. Preserve
+all six exact parties/levels/moves; no other Gym party, leader, reward, AI or
+learnset changes. Diana requires native mandatory Doubles; Pewter snow/Hail and
+Celadon fixed Sun must coexist with PR29 outdoor weather and old inside saves.
+Remove only Mary's superseded bag item under the approved ordinary-Gym rule.
+Run run_gym_castform_tests.py, every old suite and full guarded native acceptance.
+Leave PR31 open, unmerged and without auto-merge; document its PR29 dependency.

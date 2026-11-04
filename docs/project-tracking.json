@@ -3,7 +3,7 @@
   "updated": "2026-11-04",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "Dynamic weather implemented separately in PR29:83 approved policies/state/RTC/battle hooks,14 host suites, focused native128355 with local captures and clean reproducibility pass. Full local/CI conclusions are live in PR29. Rival27 remains ready/unmerged; no gameplay-source overlap, test/tracker conflicts documented.",
+  "current_focus": "GYM-007 on existing PR31: exact three Castform parties, Diana mandatory Double, fixed Pewter snow/Hail and Celadon Sun reconciled with integrated tested PR29 head061f8780.15 host/Museum and focused359 native assertions pass; final clean/full/CI evidence in PR31. Rival27 and weather29 remain open; no merges.",
   "main_sha": "c960642ddbdacc1cf608d8c5081ee0ecd7cca6e9",
   "drive_sync": {
     "status": "pending: no direct Drive writing tool available",
@@ -1016,7 +1016,7 @@
       "aliases": [],
       "effort": {
         "earned": 0,
-        "remaining": 17,
+        "remaining": 12,
         "unit": "provisional relative planning point",
         "confidence": "low",
         "history": [
@@ -1031,6 +1031,12 @@
             "earned": 0,
             "remaining": 17,
             "reason": "Move3 pending planning points into new GYM-004 Blaine correction; no duplicate Gym credit or lost completed work."
+          },
+          {
+            "date": "2026-11-04",
+            "earned": 0,
+            "remaining": 12,
+            "reason": "Transfer five existing unfinished points to GYM-007 three exact Castform battles/weather; no denominator increase or duplicate Gym credit."
           }
         ]
       },
@@ -1051,7 +1057,7 @@
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
       "next_action": "Use final Gym handoff and41-class final handoff; implement only exact complete battle sets after their engine dependencies; no invented teams.",
       "checkpoint": "2026-11-04 supplied-export reconciliation; old unavailable-document claims superseded; no implementation/test credit from availability.",
-      "scope_note": "All ordinary Gym/class work except separately tracked Blaine GYM-004 and Ranger Base Camp GYM-005; preserve pending ordinary Trainer scope.",
+      "scope_note": "All ordinary Gym/class work except separately tracked Blaine GYM-004 and Ranger Base Camp GYM-005; preserve pending ordinary Trainer scope. Excludes the five points transferred to GYM-007.",
       "source_exports": [
         "02_GYMS/Pokémon Lightning Yellow — Eight-Gym Leader & Trainer Roster — Final Design Handoff (2026-11-01).txt",
         "04_SPECIES_EVOLUTION_WORLD/Pokémon Lightning Yellow — Ordinary Trainer Class & Roster Master Register.txt",
@@ -2122,6 +2128,48 @@
       "design_authority": "implementation/main-rival-eight-battles.md v2 mergedPR25; owner continue/standing implementation instructions",
       "next_action": "Use live PR27 validation evidence for review; retain full natural story/Pikachu starter/manual balance acceptance. No automatic gameplay merge.",
       "checkpoint": "2026-11-04 all8 actual native battle and clean acceptance; live full/CI results in PR27"
+    },
+    {
+      "id": "GYM-007",
+      "area": "GYM",
+      "title": "Three approved Gym Castform battles and fixed Gym weather",
+      "aliases": [],
+      "effort": {
+        "earned": 4,
+        "remaining": 1,
+        "unit": "provisional relative planning point",
+        "confidence": "medium",
+        "history": [
+          {
+            "date": "2026-11-04",
+            "earned": 4,
+            "remaining": 1,
+            "reason": "Five points transferred from GYM-001. Exact six Pokemon/native Double/Gym weather/Continue implemented;15 host and focused359 native assertions passed. Reserve one point for review/remaining integration acceptance; full/CI evidence tracked in PR31."
+          }
+        ]
+      },
+      "dependencies": [
+        "PKM-001",
+        "BTL-001",
+        "WTH-001",
+        "WTH-003"
+      ],
+      "status": {
+        "design": "PR30 exact six-member contract + owner explicit November4 completion instruction",
+        "implementation": "implemented on existing PR31 with exact PR29 source dependency",
+        "automated": "15 host suites/Museum PASS; clean and final CI results maintained in PR31",
+        "emulator": "359 focused actual-ROM assertions PASS: constructors, gate, forms, AI Rain Dance, victories, flags and legacy Continue/outdoor context. Full final evidence in PR31.",
+        "pull_request": "existing implementation PR31; live review/check status on GitHub",
+        "merge": "unmerged; no auto-merge requested"
+      },
+      "branch": "feature/gym-castform-approved-data-20261104",
+      "commit": null,
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/31",
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/31/checks",
+      "blocker": null,
+      "design_authority": "implementation/three-gym-castform.md from PR30 head0d9cb4f5; approved Gym register and explicit owner request",
+      "next_action": "Review tested PR31; reconcile later PR29 changes and combine rival27 tests separately. Other Gym parties/rewards/abilities remain outside scope.",
+      "checkpoint": "2026-11-04 focused scoped acceptance; final build/full/CI live in PR31"
     }
   ],
   "legacy_crosswalk": {
@@ -2195,7 +2243,8 @@
     "GYM-005": "Scoped feature merged and accepted. Controlled player levels are not full balanced progression; hardware/link/power interruption/exhaustive quest-log remain general INT-005 acceptance, not another pending merge.",
     "GYM-006": "All24 constructors/99 mons and8 controlled battle victories/replacements verified. Full natural story/loss sequences, final Pikachu starter integration, manual difficulty, hardware/link and actual player evolution scenes remain unverified; source preservation is not runtime progression. Full-suite conclusions/evidence in PR27.",
     "WTH-001": "83 explicit maps; boarding/prototype weather unassigned. Full manual maps, hardware/power/quest-log and same-head combined PR27 integration remain unverified; no invented coverage.",
-    "WTH-002": "Native clear appearance for mechanical Sun avoids stubbed drought loader; no final Sun tint/pulse, day/night lighting, Lavender or Mansion fog claim. Existing Rain/Snow/Sand screenshots inspected, not full visual approval."
+    "WTH-002": "Native clear appearance for mechanical Sun avoids stubbed drought loader; no final Sun tint/pulse, day/night lighting, Lavender or Mansion fog claim. Existing Rain/Snow/Sand screenshots inspected, not full visual approval.",
+    "GYM-007": "Controlled player fixtures versus unchanged three approved opponents; no manual progression/balance, real link/hardware or combined rival27 acceptance. PR29 exact dependency included; later dependency changes require reconciliation."
   },
   "effort_rules": "Provisional tracked scope. INT-004 credits combined build/repeatability/stack compatibility only; feature-specific scene/mechanics testing is counted under each feature. No double credit for parent merges. No merge/release authorization inferred.",
   "source_access": {
@@ -2225,7 +2274,7 @@
     {
       "pr": 30,
       "url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/30",
-      "status": "unmerged documentation-only three Gym Castform movesets available; explicit no gameplay/merge authorization in PR body; reconcile latest scope at later intake"
+      "status": "Unmerged PR30 exact design available; owner explicitly authorized its limited implementation on existing PR31 November4. Exact approved source preserved locally; no unrelated Gym implementation or spec merge implied."
     }
   ]
 }

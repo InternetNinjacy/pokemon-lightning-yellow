@@ -791,3 +791,47 @@ Source rollback uses ordinary reverts; back up and save in a weatherless buildin
 before downgrading because the original loader can hang on an outdoor Sun Continue
 (source-level risk, no reverse-save runtime claim). No ROM/save/generated artifacts
 uploaded/committed; Drive sync remains pending, repository auto-merge stays enabled.
+
+### 2026-11-04 — GYM-007: three approved Gym Castform battles
+
+Authority: PR30 head0d9cb4f5 exact three parties, November4 owner instruction to
+complete existing branch/PR31, and supplied eight-Gym register's fixed weather
+and ordinary no-item rules. Owner execution instruction supersedes the earlier
+preparation-only status for this specific scope. Historical ce49150b staging
+implemented party data only; it did not implement Doubles or weather.
+
+Previous: Liam/Diana/Mary exact parties staged, but Diana still Single, all three
+Gym headers clear, Mary legacy bag Super Potion retained. Current: Diana native
+mandatory Double with two-usable-mon refusal and original event/flag flow; Liam
+Single under indoor snow/permanent starting Hail; Mary Single under permanent
+starting Sun with no bag item. Six exact levels/parties/move slots retained;
+no general Castform learnset/Forecast, other trainer/leader/AI/IV/reward changes.
+
+Dependency: exact weather PR29 head061f8780 integrated in cd7be97e into PR31 only;
+no other PR or main modified/merged. Fixed indoor headers precede outdoor policy,
+ignore outdoor nighttime Sun conversion, preserve stored outdoor context, and
+refresh legacy inside-Gym clear weather on Continue without save-layout changes.
+No new graphics/palettes; Sun retains PR29 native-clear renderer.
+
+Changed: two Gym map.json weather fields, Cerulean Diana command, Diana Double and
+Mary bag metadata, dynamic_weather.c fixed Gym dispatch/update, scoped tests,
+CI registration, exact delta normalizer, local contract/docs/AGENTS/README/tracking.
+Source manifest freezes all six approved production-file deltas against PR29;
+older audit expectations remain unchanged. Existing party implementation history
+ce49150b and predecessors remains recoverable.
+
+Executed: all15 host suites/Museum PASS; focused native359 assertions PASS using
+mGBA0.10.5: exact constructor data, gate with one/fainted-second, all three actual
+victories/flag flash persistence, Forecast, naturally AI-selected Rain Dance,
+Weather Ball actual opcode typing/multiplier, real old-clear flash/Continue and
+outside Rain context isolation. Controlled player parties only; opponents unchanged.
+Clean/full/CI conclusions and final commit are maintained in live PR31 checks/body,
+not inferred from compiling. No manual full-playthrough, balance, hardware/link
+or combined rival27 coverage claimed. Known seven rival/weather test/tracker
+integration conflicts remain separate; this Gym dependency merge itself was clean.
+
+Tracking: stable GYM-007 takes five points from GYM-001, earns four/reserves one;
+no reset/double credit/denominator increase. Drive synchronization remains pending.
+Rollback only the subsequent scoped Gym implementation delta to retain weather29;
+backup saves first, preserve original defeat flags and indoor-save precaution before
+any rollback to the old drought loader. No merge/auto-merge/release performed.

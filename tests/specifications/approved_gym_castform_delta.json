@@ -1,0 +1,76 @@
+{
+  "baseline": "c960642ddbdacc1cf608d8c5081ee0ecd7cca6e9",
+  "weather_dependency": "061f87805763025a494d55803f9021a6cd7f6325",
+  "hunks": {
+    "src/data/trainer_parties.h": [
+      {
+        "before": "static const struct TrainerMonNoItemCustomMoves sParty_CamperLiam[] = {\n    {\n        .iv = 0,\n        .lvl = 10,\n        .species = SPECIES_GEODUDE,\n        .moves = {MOVE_TACKLE, MOVE_DEFENSE_CURL, MOVE_NONE, MOVE_NONE},\n    },\n    {\n        .iv = 0,\n        .lvl = 11,\n        .species = SPECIES_SANDSHREW,\n        .moves = {MOVE_SCRATCH, MOVE_DEFENSE_CURL, MOVE_SAND_ATTACK, MOVE_NONE},\n    },\n};\n\n",
+        "after": "static const struct TrainerMonNoItemCustomMoves sParty_CamperLiam[] = {\n    {\n        .iv = 0,\n        .lvl = 11,\n        .species = SPECIES_CASTFORM,\n        .moves = {MOVE_WEATHER_BALL, MOVE_POWDER_SNOW, MOVE_TACKLE, MOVE_WATER_GUN},\n    },\n    {\n        .iv = 0,\n        .lvl = 12,\n        .species = SPECIES_GEODUDE,\n        .moves = {MOVE_TACKLE, MOVE_DEFENSE_CURL, MOVE_ROCK_THROW, MOVE_NONE},\n    },\n};\n\n"
+      },
+      {
+        "before": "    },\n};\n\nstatic const struct TrainerMonNoItemDefaultMoves sParty_PicnickerDiana[] = {\n    {\n        .iv = 0,\n        .lvl = 19,\n        .species = SPECIES_GOLDEEN,\n    },\n};\n\n",
+        "after": "    },\n};\n\nstatic const struct TrainerMonNoItemCustomMoves sParty_PicnickerDiana[] = {\n    {\n        .iv = 0,\n        .lvl = 19,\n        .species = SPECIES_CASTFORM,\n        .moves = {MOVE_RAIN_DANCE, MOVE_WEATHER_BALL, MOVE_WATER_GUN, MOVE_TACKLE},\n    },\n    {\n        .iv = 0,\n        .lvl = 19,\n        .species = SPECIES_SLOWPOKE,\n        .moves = {MOVE_WATER_GUN, MOVE_CONFUSION, MOVE_HEADBUTT, MOVE_CURSE},\n    },\n};\n\n"
+      },
+      {
+        "before": "static const struct TrainerMonNoItemCustomMoves sParty_CooltrainerMary[] = {\n    {\n        .iv = 100,\n        .lvl = 22,\n        .species = SPECIES_BELLSPROUT,\n        .moves = {MOVE_WRAP, MOVE_STUN_SPORE, MOVE_POISON_POWDER, MOVE_GROWTH},\n    },\n    {\n        .iv = 100,\n        .lvl = 22,\n        .species = SPECIES_ODDISH,\n        .moves = {MOVE_POISON_POWDER, MOVE_STUN_SPORE, MOVE_ABSORB, MOVE_SWEET_SCENT},\n    },\n    {\n        .iv = 100,\n        .lvl = 22,\n        .species = SPECIES_WEEPINBELL,\n        .moves = {MOVE_VINE_WHIP, MOVE_STUN_SPORE, MOVE_POISON_POWDER, MOVE_GROWTH},\n    },\n    {\n        .iv = 100,\n        .lvl = 22,\n        .species = SPECIES_GLOOM,\n        .moves = {MOVE_ABSORB, MOVE_STUN_SPORE, MOVE_POISON_POWDER, MOVE_SWEET_SCENT},\n    },\n    {\n        .iv = 100,\n        .lvl = 22,\n        .species = SPECIES_IVYSAUR,\n        .moves = {MOVE_RAZOR_LEAF, MOVE_SLEEP_POWDER, MOVE_VINE_WHIP, MOVE_LEECH_SEED},\n    },\n};\n\n",
+        "after": "static const struct TrainerMonNoItemCustomMoves sParty_CooltrainerMary[] = {\n    {\n        .iv = 100,\n        .lvl = 27,\n        .species = SPECIES_CACNEA,\n        .moves = {MOVE_PIN_MISSILE, MOVE_LEECH_SEED, MOVE_GROWTH, MOVE_INGRAIN},\n    },\n    {\n        .iv = 100,\n        .lvl = 27,\n        .species = SPECIES_CASTFORM,\n        .moves = {MOVE_WEATHER_BALL, MOVE_EMBER, MOVE_WATER_GUN, MOVE_TACKLE},\n    },\n};\n\n"
+      }
+    ],
+    "src/data/trainers.h": [
+      {
+        "before": "        .trainerPic = TRAINER_PIC_PICNICKER,\n        .trainerName = _(\"DIANA\"),\n        .items = {},\n        .doubleBattle = FALSE,\n        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,\n        .party = NO_ITEM_DEFAULT_MOVES(sParty_PicnickerDiana),\n    },\n    [TRAINER_PICNICKER_NANCY] = {\n        .trainerClass = TRAINER_CLASS_PICNICKER,\n",
+        "after": "        .trainerPic = TRAINER_PIC_PICNICKER,\n        .trainerName = _(\"DIANA\"),\n        .items = {},\n        .doubleBattle = TRUE,\n        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,\n        .party = NO_ITEM_CUSTOM_MOVES(sParty_PicnickerDiana),\n    },\n    [TRAINER_PICNICKER_NANCY] = {\n        .trainerClass = TRAINER_CLASS_PICNICKER,\n"
+      },
+      {
+        "before": "        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_COOL | F_TRAINER_FEMALE,\n        .trainerPic = TRAINER_PIC_COOLTRAINER_F,\n        .trainerName = _(\"MARY\"),\n        .items = {ITEM_SUPER_POTION},\n        .doubleBattle = FALSE,\n        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,\n        .party = NO_ITEM_CUSTOM_MOVES(sParty_CooltrainerMary),\n",
+        "after": "        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_COOL | F_TRAINER_FEMALE,\n        .trainerPic = TRAINER_PIC_COOLTRAINER_F,\n        .trainerName = _(\"MARY\"),\n        .items = {},\n        .doubleBattle = FALSE,\n        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,\n        .party = NO_ITEM_CUSTOM_MOVES(sParty_CooltrainerMary),\n"
+      }
+    ],
+    "data/maps/CeruleanCity_Gym/scripts.inc": [
+      {
+        "before": "\tend\n\nCeruleanCity_Gym_EventScript_Diana::\n\ttrainerbattle_single TRAINER_PICNICKER_DIANA, CeruleanCity_Gym_Text_DianaIntro, CeruleanCity_Gym_Text_DianaDefeat\n\tmsgbox CeruleanCity_Gym_Text_DianaPostBattle, MSGBOX_AUTOCLOSE\n\tend\n\n",
+        "after": "\tend\n\nCeruleanCity_Gym_EventScript_Diana::\n\ttrainerbattle_double TRAINER_PICNICKER_DIANA, CeruleanCity_Gym_Text_DianaIntro, CeruleanCity_Gym_Text_DianaDefeat, SaffronCity_Dojo_Text_NeedTwo\n\tmsgbox CeruleanCity_Gym_Text_DianaPostBattle, MSGBOX_AUTOCLOSE\n\tend\n\n"
+      }
+    ],
+    "data/maps/PewterCity_Gym/map.json": [
+      {
+        "before": "  \"music\": \"MUS_GYM\",\n  \"region_map_section\": \"MAPSEC_PEWTER_CITY\",\n  \"requires_flash\": false,\n  \"weather\": \"WEATHER_NONE\",\n  \"map_type\": \"MAP_TYPE_INDOOR\",\n  \"allow_cycling\": false,\n  \"allow_escaping\": false,\n",
+        "after": "  \"music\": \"MUS_GYM\",\n  \"region_map_section\": \"MAPSEC_PEWTER_CITY\",\n  \"requires_flash\": false,\n  \"weather\": \"WEATHER_SNOW\",\n  \"map_type\": \"MAP_TYPE_INDOOR\",\n  \"allow_cycling\": false,\n  \"allow_escaping\": false,\n"
+      }
+    ],
+    "data/maps/CeladonCity_Gym/map.json": [
+      {
+        "before": "  \"music\": \"MUS_GYM\",\n  \"region_map_section\": \"MAPSEC_CELADON_CITY\",\n  \"requires_flash\": false,\n  \"weather\": \"WEATHER_NONE\",\n  \"map_type\": \"MAP_TYPE_INDOOR\",\n  \"allow_cycling\": false,\n  \"allow_escaping\": false,\n",
+        "after": "  \"music\": \"MUS_GYM\",\n  \"region_map_section\": \"MAPSEC_CELADON_CITY\",\n  \"requires_flash\": false,\n  \"weather\": \"WEATHER_DROUGHT\",\n  \"map_type\": \"MAP_TYPE_INDOOR\",\n  \"allow_cycling\": false,\n  \"allow_escaping\": false,\n"
+      }
+    ],
+    "src/dynamic_weather.c": [
+      {
+        "before": "    return WEATHER_NONE; // Unreachable for the frozen positive-total policies.\n}\n\nu8 DynamicWeatherForMap(u8 originalWeather)\n{\n    u8 group = gSaveBlock1Ptr->location.mapGroup, map = gSaveBlock1Ptr->location.mapNum;\n",
+        "after": "    return WEATHER_NONE; // Unreachable for the frozen positive-total policies.\n}\n\nstatic bool8 IsFixedWeatherGym(void)\n{\n    return (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_PEWTER_CITY_GYM)\n         && gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_PEWTER_CITY_GYM))\n        || (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_CELADON_CITY_GYM)\n         && gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_CELADON_CITY_GYM));\n}\n\nu8 DynamicWeatherForMap(u8 originalWeather)\n{\n    u8 group = gSaveBlock1Ptr->location.mapGroup, map = gSaveBlock1Ptr->location.mapNum;\n"
+      },
+      {
+        "before": "    // Four RTC polls per second while sunlight is active; no periodic rerolls.\n    // Battle entry separately refreshes time before mechanical benefits apply.\n    if ((gMain.vblankCounter2 & 15) == 0)\n        SynchronizeSun();\n}\n\nu8 DynamicWeatherForBattle(void)\n{\n    if (FindWeatherPolicy(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum))\n    {\n        SynchronizeSun();\n",
+        "after": "    // Four RTC polls per second while sunlight is active; no periodic rerolls.\n    // Battle entry separately refreshes time before mechanical benefits apply.\n    if ((gMain.vblankCounter2 & 15) == 0)\n    {\n        // Old saves can Continue inside a Gym with the former clear weather.\n        // Refresh only this map's field value; keep the outdoor context intact.\n        if (IsFixedWeatherGym() && GetSav1Weather() != gMapHeader.weather)\n        {\n            SetSavedWeather(gMapHeader.weather);\n            SetNextWeather(gMapHeader.weather);\n        }\n        SynchronizeSun();\n    }\n}\n\nu8 DynamicWeatherForBattle(void)\n{\n    // Approved fixed indoor Gym weather is independent of outdoor RTC policy.\n    // Read the logical header so battle entry never races a field fade.\n    if (IsFixedWeatherGym())\n        return gMapHeader.weather;\n\n    if (FindWeatherPolicy(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum))\n    {\n        SynchronizeSun();\n"
+      }
+    ]
+  },
+  "before_sha256": {
+    "src/data/trainer_parties.h": "174b2228046bc21064aa7ef451222d0c230c375a06fee538846f9d30810c4dd3",
+    "src/data/trainers.h": "52181c5105e89ea710ede49712104f6e0debe4a9456de6512114e7477d33ca5f",
+    "data/maps/CeruleanCity_Gym/scripts.inc": "78396fded9695c03277840a5c9f8f1232c8c6d0a5f3e25518cc7584993f752b0",
+    "data/maps/PewterCity_Gym/map.json": "097c4a35212ef28a7fae2974ee4ce5e3d87dbc1f9ad7c3b1aceacacaed65ad10",
+    "data/maps/CeladonCity_Gym/map.json": "eb9eb76fef8c1c6544b3846908a04b6ed7bd21785335b46b08f8aa3c7bca4a5d",
+    "src/dynamic_weather.c": "977c1fbebcd2230a2b43384ab3e4a51e84a6d1bbbdd5563664c31cee58664007"
+  },
+  "unchanged_sha256": {
+    "include/global.h": "23fa42f2fcf687daf2347f45465e828364cc1ad310aef8d91be093f2675f53a1",
+    "include/constants/flags.h": "229b608dfeb9e3de901123daba0372d387cf6449910165172c39f0d186bc4e4e",
+    "include/constants/opponents.h": "441c16dbed910b678e6e0548999fbd3ecdbc1d3bcd493355d73123e1c4cbc81f",
+    "src/data/pokemon/species_info.h": "e37cfe0a03344890eb7c95ddf6193e635eb726e08c7198b7b7062c715ac5f267",
+    "src/data/pokemon/level_up_learnsets.h": "d6563a88fa893d1433a02027cb13ba9574a6828a96b1a730b1d767fd7c5a0cc6",
+    "src/data/pokemon/level_up_learnset_pointers.h": "7a85513797da2a2ebdf7893ce58d94f99aee07deb1aec4f0d7a31422dc8040de",
+    "data/maps/PewterCity_Gym/scripts.inc": "c1e6f14fd5c437d96421b41e88609e637e81fbc5a03a2161bcdadd6c1bc45153",
+    "data/maps/CeladonCity_Gym/scripts.inc": "ded6804f2de529da76ec6daf68e4a2ccbf26a583626620264da42ecfccbdfe3c"
+  }
+}

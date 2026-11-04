@@ -82,6 +82,14 @@ static u8 RollWeather(const struct WeatherPolicy *policy)
     return WEATHER_NONE; // Unreachable for the frozen positive-total policies.
 }
 
+static bool8 IsFixedWeatherGym(void)
+{
+    return (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_PEWTER_CITY_GYM)
+         && gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_PEWTER_CITY_GYM))
+        || (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_CELADON_CITY_GYM)
+         && gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_CELADON_CITY_GYM));
+}
+
 u8 DynamicWeatherForMap(u8 originalWeather)
 {
     u8 group = gSaveBlock1Ptr->location.mapGroup, map = gSaveBlock1Ptr->location.mapNum;
@@ -134,11 +142,25 @@ void DynamicWeatherUpdate(void)
     // Four RTC polls per second while sunlight is active; no periodic rerolls.
     // Battle entry separately refreshes time before mechanical benefits apply.
     if ((gMain.vblankCounter2 & 15) == 0)
+    {
+        // Old saves can Continue inside a Gym with the former clear weather.
+        // Refresh only this map's field value; keep the outdoor context intact.
+        if (IsFixedWeatherGym() && GetSav1Weather() != gMapHeader.weather)
+        {
+            SetSavedWeather(gMapHeader.weather);
+            SetNextWeather(gMapHeader.weather);
+        }
         SynchronizeSun();
+    }
 }
 
 u8 DynamicWeatherForBattle(void)
 {
+    // Approved fixed indoor Gym weather is independent of outdoor RTC policy.
+    // Read the logical header so battle entry never races a field fade.
+    if (IsFixedWeatherGym())
+        return gMapHeader.weather;
+
     if (FindWeatherPolicy(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum))
     {
         SynchronizeSun();

@@ -52,6 +52,7 @@ jobs:
           python3 tests/run_blaine_tests.py
           python3 tests/run_ranger_tests.py
           python3 tests/run_weather_tests.py
+          python3 tests/run_gym_castform_tests.py
           python3 scripts/check-pewter-museum-trivia.py
       - name: Check out independent unchanged upstream baseline
         if: matrix.target == 'upstream-baseline'
