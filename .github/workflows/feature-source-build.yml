@@ -29,7 +29,7 @@ jobs:
           fi
       - name: Prepare pinned upstream build tools
         run: scripts/prepare-baseline.sh
-      - name: Compile modified FireRed source (not vanilla SHA comparison)
+      - name: Validate museum placement and trivia state machine\n        run: python3 scripts/check-pewter-museum-trivia.py\n      - name: Compile modified FireRed source (not vanilla SHA comparison)
         run: make -j2 firered
       - name: Verify no tracked files changed
         run: git diff --exit-code
