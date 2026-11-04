@@ -29,8 +29,8 @@ typedef uint8_t u8;typedef uint16_t u16;typedef uint32_t u32;typedef u8 bool8;
 struct Save {struct {u8 mapGroup,mapNum;} location;u8 unused_3D24[16],weather;} save,*gSaveBlock1Ptr=&save;
 struct {u8 mapType,weather;} gMapHeader;
 struct {u32 vblankCounter2;} gMain;
-static u32 seed=1,reads,draws;static int fixed=-1;static u8 hour=12,valid=1,current;
-static u16 Random(void){draws++;if(fixed>=0)return fixed;seed=seed*1103515245+12345;return seed>>16;}
+static u32 seed=1,reads,draws;static int fixed=-1,reject=-1;static u8 hour=12,valid=1,current;
+static u16 Random(void){draws++;if(reject>=0){u16 v=reject;reject=-1;return v;}if(fixed>=0)return fixed;seed=seed*1103515245+12345;return seed>>16;}
 static bool8 RtcGetHour(u8 *h){reads++;*h=hour;return valid;}
 static bool8 IsMapTypeOutdoors(u8 t){return t==MAP_TYPE_ROUTE||t==MAP_TYPE_TOWN||t==MAP_TYPE_CITY||t==MAP_TYPE_OCEAN_ROUTE;}
 static u8 GetSav1Weather(void){return save.weather;}
@@ -46,6 +46,8 @@ int main(void){unsigned checks=0;const unsigned values[]={WEATHER_NONE,WEATHER_R
   for(unsigned i=0;i<limit;i++){fixed=i;unsigned w=RollWeather(&sWeatherPolicies[p]);assert(w<15);counts[w]++;checks++;}
   unsigned expected[15]={0};for(unsigned i=0;i<5;i++){unsigned w=night&&i==2?WEATHER_NONE:values[i];expected[w]+=sWeatherPolicies[p].weights[i]*(limit/total);}for(unsigned i=0;i<15;i++){assert(counts[i]==expected[i]);checks++;}
  }
+ fixed=0;for(unsigned r=65530;r<65536;r++){reject=r;unsigned before=draws;assert(WeatherRandomBelow(10)==0&&draws==before+2);}
+ reject=65535;unsigned rejectedBefore=draws;assert(WeatherRandomBelow(3)==0&&draws==rejectedBefore+2);
  memset(save.unused_3D24,0xCC,16);fixed=0;hour=12;enter(MAP_ONE_ISLAND,MAP_TYPE_TOWN,WEATHER_SUNNY);assert(WeatherContextValid());
  save.weather=WEATHER_SANDSTORM;enter(MAP_ONE_ISLAND_POKEMON_CENTER_1F,MAP_TYPE_INDOOR,WEATHER_NONE);assert(save.weather==WEATHER_NONE);
  enter(MAP_ONE_ISLAND_POKEMON_CENTER_2F,MAP_TYPE_INDOOR,WEATHER_NONE);assert(WeatherContext()[4]==WEATHER_SANDSTORM);

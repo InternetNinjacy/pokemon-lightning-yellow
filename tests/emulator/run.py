@@ -14,6 +14,8 @@ expressions = {
     "MAPHEADER_WEATHER":"offsetof(struct MapHeader,weather)",
     "MAPHEADER_TYPE":"offsetof(struct MapHeader,mapType)",
     "WEATHER_GAMMA":"offsetof(struct Weather,gammaIndex)",
+    "WEATHER_GFX":"offsetof(struct Weather,weatherGfxLoaded)",
+    "WEATHER_SAND_CREATED":"offsetof(struct Weather,sandstormSpritesCreated)",
     "WEATHER_PAL_STATE":"offsetof(struct Weather,palProcessingState)",
     "WEATHER_COMPLETE":"offsetof(struct Weather,weatherChangeComplete)",
     'BMOVE_SIZE': 'sizeof(struct BattleMove)',
@@ -138,7 +140,7 @@ for key,expr in {
 for name in ['POKEBALL','SPECIES','HELD_ITEM','LEVEL','FRIENDSHIP','IS_EGG','ATK','DEF','HP','MAX_HP','MOVE1','MOVE2','MOVE3','MOVE4','PP1','PP2','PP3','PP4','NICKNAME','PERSONALITY','OT_NAME','OT_ID','HP_IV','SANITY_IS_BAD_EGG','ABILITY_NUM','MAIL','UNUSED_RIBBONS']:
     expressions['DATA_'+name] = 'MON_DATA_'+name
 required = [
-    "DynamicWeatherForMap", "DynamicWeatherForBattle", "DynamicWeatherAfterBattle", "DynamicWeatherUpdate", "WeatherContextValid", "GetCurrentWeather", "gWeatherPtr", "gMapHeader", "StartWildBattle",
+    "SetSavedWeather", "CB2_EndWildBattle", "CB2_EndTrainerBattle", "DynamicWeatherForMap", "DynamicWeatherForBattle", "DynamicWeatherAfterBattle", "DynamicWeatherUpdate", "WeatherContextValid", "GetCurrentWeather", "gWeatherPtr", "gMapHeader", "StartWildBattle",
     'BattleMainCB2', 'gBattleMoves', 'gTrainerBattleOpponent_A', 'CreateNPCTrainerParty', 'ApplyRangerTrainerData', 'RangerGiveGift', 'RangerNeedsMapRefresh',
     'SaffronCity_Dojo_EventScript_Ranger1', 'SaffronCity_Dojo_EventScript_Ranger2',
     'SaffronCity_Dojo_EventScript_Ranger3', 'SaffronCity_Dojo_EventScript_Ranger4',
