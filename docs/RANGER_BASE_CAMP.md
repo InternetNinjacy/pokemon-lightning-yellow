@@ -65,3 +65,16 @@ Baseline is main700587a805e9f67cedec10d8778f64ade3d3f3b8; implementation begins 
 in reverse order to restore source. Existing trainer/flag entries are retained
 for forward compatibility, but downgrading saves containing newly awarded gifts
 is not an independently tested migration. Never overwrite user saves to roll back.
+
+## Recorded acceptance — 2026-11-04
+
+Validated gameplay/test revision7c9e2f5e49dc65ec4b5bb04b6464f050c568713e:
+all13 host suites plus Museum static PASS; full mGBA0.10.5 run **280245**
+assertions PASS, including guarded ABI/register checks. Focused data368, UI3276
+and battle458 assertions PASS. Clean rebuilt ROM SHA256:
+`1386257b114134228fe4b7c285e8ee5f9b53e9f8932a848cc467c59af5db695f`.
+This measured modified output is not an expected vanilla checksum. Local native
+screenshots of the camp and PC were inspected; no binaries uploaded.
+[PR#26](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/26)
+remains unmerged. [Live checks](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/26/checks)
+provide final workflow conclusions separately from these local results.

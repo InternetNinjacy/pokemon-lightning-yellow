@@ -642,3 +642,30 @@ fixture corrections preserve native gameplay and guards.
 GYM-005 now15earned/1remaining; total237/548=43.25%, other task credit unchanged.
 Repository auto-merge remains enabled; Ranger implementation PR must stay unmerged
 for explicit review. Direct Drive synchronization remains unavailable/pending.
+
+### GYM-005 final local acceptance / Current Effective Version
+
+PR#26: https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/26
+Gameplay/test source7c9e2f5e49dc65ec4b5bb04b6464f050c568713e, following
+production7b7ba6af; remaining changes are evidence/tracker documentation only.
+Full local mGBA0.10.5 **280245 assertions PASS** (guarded API/register checks
+included), all13 host suites plus Museum static PASS, clean build/rebuild PASS.
+Measured modified ROM SHA256:
+1386257b114134228fe4b7c285e8ee5f9b53e9f8932a848cc467c59af5db695f.
+Native screenshots of camp/gifts/Rangers and PC were visually inspected locally.
+No binary/artifact distribution. Full manual balance/progression, hardware/link,
+power interruption and exhaustive quest-log remain unverified.
+
+Required independent CI evidence is maintained at
+https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/26/checks ;
+local results are not presented as GitHub conclusions. Initial run41832117816
+independently passed vanilla upstream SHA-1; modified emulator job was still
+running when this evidence entry was written. Final live checks supersede that
+transient status. No source/test changes followed the local full PASS.
+
+Ranger implementation is ready for owner review, not merged. Keep15earned/1
+remaining for review/external acceptance: overall237earned/311remaining=43.25%.
+All41 other task records are byte-equivalent as parsed JSON;42 permanent IDs
+retained. Direct Drive synchronization remains pending. Global auto-merge is
+still enabled; this feature PR has no auto-merge request. No main write, merge,
+release or destructive operation performed for Ranger.
