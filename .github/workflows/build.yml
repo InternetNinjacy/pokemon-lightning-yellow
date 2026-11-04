@@ -48,6 +48,7 @@ jobs:
           python3 tests/run_world_reward_tests.py
           python3 tests/run_vendor_tests.py
           python3 tests/run_capture_tests.py
+          python3 tests/run_blaine_tests.py
       - name: Check out independent unchanged upstream baseline
         if: matrix.target == 'upstream-baseline'
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2

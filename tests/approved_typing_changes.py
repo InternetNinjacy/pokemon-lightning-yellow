@@ -4,10 +4,12 @@ import json,re
 from approved_ball_changes import prior_ball_source
 
 def prior_typing_source(path):
-    data=prior_ball_source(path)
     if str(path)!='src/data/pokemon/species_info.h':
-        return data
-    text=data.decode()
+        return prior_ball_source(path)
+    # Blaine's Pidgeot correction is part of the same approved24-pair set.
+    # Normalize it once here; no ball hunks modify this source file.
+    assert not json.loads(Path('tests/specifications/approved_ball_delta.json').read_text())['hunks'].get(str(path))
+    text=Path(path).read_text()
     for name,entry in json.loads(Path('tests/specifications/approved_typing_delta.json').read_text())['species'].items():
         pattern=r'(\[SPECIES_'+name+r'\]\s*=\s*\{.*?\.types = \{)(TYPE_\w+), (TYPE_\w+)(\},)'
         m=re.search(pattern,text,re.S)
