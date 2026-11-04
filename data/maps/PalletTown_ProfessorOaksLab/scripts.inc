@@ -567,6 +567,7 @@ PalletTown_ProfessorOaksLab_EventScript_RivalChoseStarter::
 PalletTown_ProfessorOaksLab_EventScript_ProfOak::
 	lock
 	faceplayer
+	goto_if_set FLAG_OAK_NEST_BALLS_PENDING, PalletTown_ProfessorOaksLab_EventScript_RetryNestBalls
 	goto_if_set SHOWED_OAK_COMPLETE_DEX, PalletTown_ProfessorOaksLab_EventScript_OakJustShownCompleteDex
 	goto_if_eq VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 9, PalletTown_ProfessorOaksLab_EventScript_RatePokedex
 	goto_if_eq VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 8, PalletTown_ProfessorOaksLab_EventScript_MonsAroundWorldWait
@@ -657,7 +658,8 @@ PalletTown_ProfessorOaksLab_EventScript_ReceiveDexScene::
 	special SetUnlockedPokedexFlags
 	setvar VAR_MAP_SCENE_POKEMON_CENTER_TEALA, 1
 	msgbox PalletTown_ProfessorOaksLab_Text_OakCatchMonsForDataTakeThese
-	giveitem_msg PalletTown_ProfessorOaksLab_Text_ReceivedFivePokeBalls, ITEM_POKE_BALL, 5
+	setflag FLAG_OAK_NEST_BALLS_PENDING
+	call PalletTown_ProfessorOaksLab_EventScript_TryGiveNestBalls
 	msgbox PalletTown_ProfessorOaksLab_Text_OakExplainCatching
 	famechecker FAMECHECKER_OAK, 1
 	msgbox PalletTown_ProfessorOaksLab_Text_OakCompleteMonGuideWasMyDream
@@ -1299,3 +1301,20 @@ PalletTown_ProfessorOaksLab_EventScript_RightSignAlt::
 	msgbox PalletTown_ProfessorOaksLab_Text_AllMonTypesHaveStrongAndWeakPoints
 	releaseall
 	end
+
+PalletTown_ProfessorOaksLab_EventScript_RetryNestBalls::
+    call PalletTown_ProfessorOaksLab_EventScript_TryGiveNestBalls
+    release
+    end
+
+PalletTown_ProfessorOaksLab_EventScript_TryGiveNestBalls::
+    additem ITEM_NEST_BALL, 5
+    goto_if_eq VAR_RESULT, FALSE, PalletTown_ProfessorOaksLab_EventScript_NestBallsFull
+    msgreceiveditem PalletTown_ProfessorOaksLab_Text_ReceivedFiveNestBalls, ITEM_NEST_BALL, 5
+    clearflag FLAG_OAK_NEST_BALLS_PENDING
+PalletTown_ProfessorOaksLab_EventScript_NestBallsDone::
+    return
+
+PalletTown_ProfessorOaksLab_EventScript_NestBallsFull::
+    msgbox Text_TooBadBagFull
+    return

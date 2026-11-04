@@ -1,4 +1,5 @@
 #include "global.h"
+#include "capture_rules.h"
 #include "task.h"
 #include "help_system.h"
 #include "overworld.h"
@@ -60,7 +61,7 @@ struct TrainerBattleParameter
 
 static void DoSafariBattle(void);
 static void DoGhostBattle(void);
-static void DoStandardWildBattle(void);
+static void DoStandardWildBattle(bool8 isDouble);
 static void CB2_EndWildBattle(void);
 static u8 GetWildBattleTransition(void);
 static u8 GetTrainerBattleTransition(void);
@@ -214,6 +215,8 @@ static void CreateBattleStartTask(u8 transition, u16 song) // song == 0 means de
 {
     u8 taskId = CreateTask(Task_BattleStart, 1);
 
+    gCaptureOrigin = TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_SURFING) ? CAPTURE_ORIGIN_SURFING : 0;
+
     gTasks[taskId].tTransition = transition;
     PlayMapChosenOrBattleBGM(song);
 }
@@ -241,16 +244,21 @@ void StartWildBattle(void)
     else if (CheckSilphScopeInPokemonTower(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum))
         DoGhostBattle();
     else
-        DoStandardWildBattle();
+        DoStandardWildBattle(FALSE);
 }
 
-static void DoStandardWildBattle(void)
+void StartDoubleWildBattle(void)
+{
+    DoStandardWildBattle(TRUE);
+}
+
+static void DoStandardWildBattle(bool8 isDouble)
 {
     LockPlayerFieldControls();
     FreezeObjectEvents();
     StopPlayerAvatar();
     gMain.savedCallback = CB2_EndWildBattle;
-    gBattleTypeFlags = 0;
+    gBattleTypeFlags = isDouble ? BATTLE_TYPE_DOUBLE : 0;
     CreateBattleStartTask(GetWildBattleTransition(), 0);
     IncrementGameStat(GAME_STAT_TOTAL_BATTLES);
     IncrementGameStat(GAME_STAT_WILD_BATTLES);

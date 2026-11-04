@@ -13,6 +13,7 @@
 #include "event_data.h"
 #include "evolution_scene.h"
 #include "evolution_items.h"
+#include "custom_pokedex.h"
 #include "field_effect.h"
 #include "field_player_avatar.h"
 #include "field_fadetransition.h"
@@ -5321,11 +5322,7 @@ static void CB2_UseEvolutionStone(void)
 
 static bool8 MonCanEvolve(void)
 {
-    if (!IsNationalPokedexEnabled()
-     && GetEvolutionTargetSpecies(&gPlayerParty[gPartyMenu.slotId], EVO_MODE_ITEM_USE, gSpecialVar_ItemId) > KANTO_DEX_COUNT)
-        return FALSE;
-    else
-        return TRUE;
+    return IsEvolutionSpeciesAllowed(GetEvolutionTargetSpecies(&gPlayerParty[gPartyMenu.slotId], EVO_MODE_ITEM_USE, gSpecialVar_ItemId));
 }
 
 u8 GetItemEffectType(u16 item)

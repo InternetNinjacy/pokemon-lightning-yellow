@@ -1,6 +1,8 @@
 #include "global.h"
 #include "gflib.h"
 #include "menu.h"
+#include "item.h"
+#include "constants/items.h"
 #include "task.h"
 #include "script_menu.h"
 #include "quest_log.h"
@@ -156,6 +158,16 @@ static const struct MenuAction sMultichoiceList_HelixAmber[] = {
 static const struct MenuAction sMultichoiceList_DomeAmber[] = {
     { gText_DomeFossil },
     { gText_OldAmber },
+    { gOtherText_Exit }
+};
+
+// All four supported fossils remain selectable; the service validates actual
+// possession and completion flags before accepting or consuming an item.
+static const struct MenuAction sMultichoiceList_FossilRevival[] = {
+    { gText_HelixFossil },
+    { gText_DomeFossil },
+    { gText_OldAmber },
+    { gItems[ITEM_CLAW_FOSSIL].name },
     { gOtherText_Exit }
 };
 
@@ -524,6 +536,7 @@ static const struct MultichoiceListStruct sMultichoiceLists[] = {
     [MULTICHOICE_YES_NO_INFO_2]                              = MULTICHOICE(sMultichoiceList_YesNoInfo2),
     [MULTICHOICE_CHALLENGE_INFO_EXIT]                        = MULTICHOICE(sMultichoiceList_ChallengeInfoExit),
     [MULTICHOICE_ROOFTOP_B1F]                                = MULTICHOICE(sMultichoiceList_RooftopB1F),
+    [MULTICHOICE_FOSSIL_REVIVAL] = MULTICHOICE(sMultichoiceList_FossilRevival),
     [MULTICHOICE_HELIX]                                      = MULTICHOICE(sMultichoiceList_Helix),
     [MULTICHOICE_DOME]                                       = MULTICHOICE(sMultichoiceList_Dome),
     [MULTICHOICE_AMBER]                                      = MULTICHOICE(sMultichoiceList_Amber),

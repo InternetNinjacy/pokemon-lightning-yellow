@@ -12,7 +12,7 @@ Route10_PokemonCenter_1F_Text_HeardGhostsHauntLavender::
     .string "I heard that ghosts haunt\n"
     .string "LAVENDER TOWN.$"
 
-Route10_PokemonCenter_1F_Text_GiveEverstoneIfCaught20Mons::
+Route10_PokemonCenter_1F_Text_GiveClawFossilIfCaught20Mons::
     .string "Oh… {PLAYER}!\n"
     .string "I've been looking for you!\p"
     .string "It's me, one of the ever-present\n"
@@ -21,7 +21,7 @@ Route10_PokemonCenter_1F_Text_GiveEverstoneIfCaught20Mons::
     .string "on twenty species, I'm supposed to\l"
     .string "give you a reward from PROF. OAK.\p"
     .string "He entrusted me with this\n"
-    .string "EVERSTONE.\p"
+    .string "CLAW FOSSIL.\p"
     .string "So, {PLAYER}, let me ask you.\p"
     .string "Have you gathered data on at least\n"
     .string "twenty kinds of POKéMON?$"
@@ -32,17 +32,12 @@ Route10_PokemonCenter_1F_Text_GreatHereYouGo::
     .string "Congratulations!\n"
     .string "Here you go!$"
 
-Route10_PokemonCenter_1F_Text_ReceivedEverstoneFromAide::
-    .string "{PLAYER} received the EVERSTONE\n"
+Route10_PokemonCenter_1F_Text_ReceivedClawFossilFromAide::
+    .string "{PLAYER} received the CLAW FOSSIL\n"
     .string "from the AIDE.$"
 
-Route10_PokemonCenter_1F_Text_ExplainEverstone::
-    .string "Making POKéMON evolve certainly\n"
-    .string "can add to the POKéDEX.\p"
-    .string "However, at times, you may not\n"
-    .string "want a certain POKéMON to evolve.\p"
-    .string "In that case, give the EVERSTONE\n"
-    .string "to that POKéMON.\p"
-    .string "It will prevent evolution according\n"
-    .string "to the PROFESSOR.$"
-
+Route10_PokemonCenter_1F_Text_ExplainClawFossil::
+    .string "That CLAW FOSSIL is the remains\n"
+    .string "of an ancient POKéMON.\p"
+    .string "The scientists on CINNABAR ISLAND\n"
+    .string "may be able to revive it for you.$"

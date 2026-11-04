@@ -1,0 +1,125 @@
+{
+  "authority": "Owner-supplied October 28, 2026 consolidated handoff; superseded roster count only by Castform252 approval. All unlisted species retain GenIII typing; no Fairy.",
+  "species": {
+    "RATTATA": {
+      "original": [
+        "NORMAL",
+        "NORMAL"
+      ],
+      "approved": [
+        "DARK",
+        "DARK"
+      ]
+    },
+    "RATICATE": {
+      "original": [
+        "NORMAL",
+        "NORMAL"
+      ],
+      "approved": [
+        "DARK",
+        "DARK"
+      ]
+    },
+    "ARBOK": {
+      "original": [
+        "POISON",
+        "POISON"
+      ],
+      "approved": [
+        "POISON",
+        "DARK"
+      ]
+    },
+    "PERSIAN": {
+      "original": [
+        "NORMAL",
+        "NORMAL"
+      ],
+      "approved": [
+        "NORMAL",
+        "DARK"
+      ]
+    },
+    "PSYDUCK": {
+      "original": [
+        "WATER",
+        "WATER"
+      ],
+      "approved": [
+        "WATER",
+        "PSYCHIC"
+      ]
+    },
+    "GOLDUCK": {
+      "original": [
+        "WATER",
+        "WATER"
+      ],
+      "approved": [
+        "WATER",
+        "PSYCHIC"
+      ]
+    },
+    "SANDSLASH": {
+      "original": [
+        "GROUND",
+        "GROUND"
+      ],
+      "approved": [
+        "GROUND",
+        "STEEL"
+      ]
+    },
+    "PINSIR": {
+      "original": [
+        "BUG",
+        "BUG"
+      ],
+      "approved": [
+        "BUG",
+        "STEEL"
+      ]
+    },
+    "CHARIZARD": {
+      "original": [
+        "FIRE",
+        "FLYING"
+      ],
+      "approved": [
+        "FIRE",
+        "DRAGON"
+      ]
+    },
+    "GYARADOS": {
+      "original": [
+        "WATER",
+        "FLYING"
+      ],
+      "approved": [
+        "WATER",
+        "DRAGON"
+      ]
+    },
+    "AMPHAROS": {
+      "original": [
+        "ELECTRIC",
+        "ELECTRIC"
+      ],
+      "approved": [
+        "ELECTRIC",
+        "DRAGON"
+      ]
+    },
+    "LICKITUNG": {
+      "original": [
+        "NORMAL",
+        "NORMAL"
+      ],
+      "approved": [
+        "NORMAL",
+        "GHOST"
+      ]
+    }
+  }
+}
