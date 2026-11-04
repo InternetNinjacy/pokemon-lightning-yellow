@@ -858,15 +858,15 @@ static const struct TrainerMonNoItemDefaultMoves sParty_SailorDwayne[] = {
 static const struct TrainerMonNoItemCustomMoves sParty_CamperLiam[] = {
     {
         .iv = 0,
-        .lvl = 10,
-        .species = SPECIES_GEODUDE,
-        .moves = {MOVE_TACKLE, MOVE_DEFENSE_CURL, MOVE_NONE, MOVE_NONE},
+        .lvl = 11,
+        .species = SPECIES_CASTFORM,
+        .moves = {MOVE_WEATHER_BALL, MOVE_POWDER_SNOW, MOVE_TACKLE, MOVE_WATER_GUN},
     },
     {
         .iv = 0,
-        .lvl = 11,
-        .species = SPECIES_SANDSHREW,
-        .moves = {MOVE_SCRATCH, MOVE_DEFENSE_CURL, MOVE_SAND_ATTACK, MOVE_NONE},
+        .lvl = 12,
+        .species = SPECIES_GEODUDE,
+        .moves = {MOVE_TACKLE, MOVE_DEFENSE_CURL, MOVE_ROCK_THROW, MOVE_NONE},
     },
 };
 
@@ -950,11 +950,18 @@ static const struct TrainerMonNoItemDefaultMoves sParty_CamperDrew[] = {
     },
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_PicnickerDiana[] = {
+static const struct TrainerMonNoItemCustomMoves sParty_PicnickerDiana[] = {
     {
         .iv = 0,
         .lvl = 19,
-        .species = SPECIES_GOLDEEN,
+        .species = SPECIES_CASTFORM,
+        .moves = {MOVE_RAIN_DANCE, MOVE_WEATHER_BALL, MOVE_WATER_GUN, MOVE_TACKLE},
+    },
+    {
+        .iv = 0,
+        .lvl = 19,
+        .species = SPECIES_SLOWPOKE,
+        .moves = {MOVE_WATER_GUN, MOVE_CONFUSION, MOVE_HEADBUTT, MOVE_CURSE},
     },
 };
 
