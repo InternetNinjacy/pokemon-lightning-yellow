@@ -87,60 +87,60 @@ PewterCity_Museum_1F_Text_KabutopsFossil::
 
 
 PewterCity_Museum_1F_Text_TriviaOffer::
-    .string "Welcome to our POKéMON anime\\n"
-    .string "trivia exhibit!\\p"
-    .string "Answer three YES or NO questions\\n"
-    .string "to win a special prize.\\p"
+    .string "Welcome to our POKéMON anime\n"
+    .string "trivia exhibit!\p"
+    .string "Answer three YES or NO questions\n"
+    .string "to win a special prize.\p"
     .string "It's free! Would you like to play?$"
 
 PewterCity_Museum_1F_Text_TriviaDeclined::
     .string "All right! Come back any time.$"
 
 PewterCity_Museum_1F_Text_TriviaQuestion1::
-    .string "Was RATTATA the first POKéMON\\n"
+    .string "Was RATTATA the first POKéMON\n"
     .string "ASH ever caught in the anime?$"
 
 PewterCity_Museum_1F_Text_TriviaCorrect1::
-    .string "That's correct! CATERPIE was\\n"
+    .string "That's correct! CATERPIE was\n"
     .string "actually the first he caught!$"
 
 PewterCity_Museum_1F_Text_TriviaQuestion2::
-    .string "Have we ever seen BROCK's eyes\\n"
+    .string "Have we ever seen BROCK's eyes\n"
     .string "open in the POKéMON anime?$"
 
 PewterCity_Museum_1F_Text_TriviaCorrect2::
-    .string "That's right! BROCK has opened\\n"
+    .string "That's right! BROCK has opened\n"
     .string "his eyes a few times!$"
 
 PewterCity_Museum_1F_Text_TriviaQuestion3::
-    .string "Does MISTY have exactly two\\n"
+    .string "Does MISTY have exactly two\n"
     .string "sisters?$"
 
 PewterCity_Museum_1F_Text_TriviaCorrect3::
-    .string "Correct! She actually has three:\\n"
+    .string "Correct! She actually has three:\n"
     .string "DAISY, VIOLET, and LILY!$"
 
 PewterCity_Museum_1F_Text_TriviaWrong::
-    .string "Oh, I'm sorry! That's not quite\\n"
+    .string "Oh, I'm sorry! That's not quite\n"
     .string "right. Feel free to try again!$"
 
 PewterCity_Museum_1F_Text_TriviaVictory::
-    .string "Wow! All three answers right!\\n"
-    .string "You really know your trivia!\\p"
-    .string "I'd like to give you an EGG.\\n"
+    .string "Wow! All three answers right!\n"
+    .string "You really know your trivia!\p"
+    .string "I'd like to give you an EGG.\n"
     .string "Nobody knows what's inside!$"
 
 PewterCity_Museum_1F_Text_TriviaPartyFull::
-    .string "Oh, your party is full!\\n"
-    .string "I'll keep the EGG safe for you.\\p"
-    .string "Come back with an open spot.\\n"
+    .string "Oh, your party is full!\n"
+    .string "I'll keep the EGG safe for you.\p"
+    .string "Come back with an open spot.\n"
     .string "No need to take the quiz again!$"
 
 PewterCity_Museum_1F_Text_TriviaEggReceived::
-    .string "{PLAYER} received a mysterious\\n"
+    .string "{PLAYER} received a mysterious\n"
     .string "POKéMON EGG!$"
 
 PewterCity_Museum_1F_Text_TriviaAfterward::
-    .string "How is that mysterious EGG?\\n"
-    .string "I hope you've found out what's\\l"
+    .string "How is that mysterious EGG?\n"
+    .string "I hope you've found out what's\l"
     .string "inside!$"
