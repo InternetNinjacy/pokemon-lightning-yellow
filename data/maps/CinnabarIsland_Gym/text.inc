@@ -8,6 +8,10 @@ CinnabarIsland_Gym_Text_BlaineIntro::
     .string "Hah!\n"
     .string "You better have BURN HEAL!{PLAY_BGM}{MUS_ENCOUNTER_GYM_LEADER}$"
 
+CinnabarIsland_Gym_Text_BlaineNeedTwoPokemon::
+    .string "Hah! You need two POKéMON ready\\n"
+    .string "to battle me!$"
+
 CinnabarIsland_Gym_Text_BlaineDefeat::
     .string "I have burned down to nothing!\n"
     .string "Not even ashes remain!\p"
