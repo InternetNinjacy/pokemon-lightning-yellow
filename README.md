@@ -1,6 +1,6 @@
 # Pokémon Lightning Yellow
 
-A planned FireRed-based project using [pret/pokefirered](https://github.com/pret/pokefirered).
+A FireRed-based project in active development using [pret/pokefirered](https://github.com/pret/pokefirered).
 This branch implements the approved Generation IV-style Physical/Special/Status
 split on the English FireRed revision 0 base. See the [split implementation,
 testing, and compatibility notes](docs/PHYSICAL_SPECIAL_SPLIT.md). The evolution branch also adds the approved [evolution methods](docs/EVOLUTION_OVERHAUL.md)
@@ -9,11 +9,11 @@ that work with the approved [evolution mechanics and Tyrogue menu](docs/EVOLUTIO
 features remain unimplemented; [AGENTS.md](AGENTS.md) requires design approval.
 
 This branch also implements the approved [252-species custom Pokédex](docs/CUSTOM_POKEDEX.md),
-including Castform at #233. Trainer placement is pending finalized design.
+including Castform at #233. Celadon Trainer7 species assignment is approved; its level/moves and implementation remain pending.
 
 The [wild double battle capability test](docs/WILD_DOUBLE_BATTLES.md) enables ordinary
 land/cave doubles on Route 1 and Mt. Moon 1F, with a 5% Onix/Cloyster special pair.
-These are experimental test locations on a separate branch; see the report for
+These remain experimental test locations; see the report for
 party/Repel/capture rules, executed evidence and remaining release checks.
 
 This branch adds [approved Phase One stabilization](docs/PHASE_ONE_STABILIZATION.md):

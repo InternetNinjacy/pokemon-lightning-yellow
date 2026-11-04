@@ -75,3 +75,5 @@ normalization in older preservation fixtures when integrated; do not silently
 replace hashes. This branch neither imports nor alters that PR. Combined runtime
 validation remains outstanding. PR #14's independent Museum work also remains
 outside this patch and unmodified.
+
+Resolved November4: PR15 and16 are merged into main. Pidgeot is normalized once; current combined builds/tests pass. The concurrent-PR failure notes above describe historical inspected heads, not current blockers.

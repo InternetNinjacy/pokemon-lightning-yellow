@@ -3,8 +3,8 @@
   "updated": "2026-11-04",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "All audited existing feature PRs merged to main with combined276132 native assertions PASS; PKM-008 Ponyta Lv30 implemented with local acceptance, final CI pending. Ranger Base Camp spec merged as a distinct approved queue item; rival remains BLOCKED.",
-  "main_sha": "7eaf900fa31782ebdcbc804e1f4800deed7b56f7",
+  "current_focus": "All audited PRs and PKM-008 Ponyta Lv30 are merged and tested. Next eligible feature: GYM-005 Ranger Base Camp (approved contract, implementation not started). Rival handoff remains explicitly BLOCKED; independent engine/weather/move and release tasks remain.",
+  "main_sha": "7284dc0aac833f751882826e339273a97694ce9e",
   "drive_sync": {
     "status": "pending: no direct Drive writing tool available",
     "folder": "https://drive.google.com/drive/folders/1N_n0Ke48jBbdhUWSZWzwR6rpPFqpDUpl"
@@ -66,20 +66,24 @@
       "dependencies": [],
       "status": {
         "design": "approved scoped implementation",
-        "implementation": "implemented on unmerged stack",
+        "implementation": "implemented on main",
         "automated": "prior suites/CI pass; rerun after changes",
         "emulator": "selected scenarios only",
         "pull_request": "merged; implementation history retained",
         "merge": "merged into main via owner-authorized consolidation"
       },
-      "branch": "feature/custom-252-pokedex",
+      "branch": "main",
       "commit": "13c0ca04dd3505533a066a1f23ee0fefb960dc16",
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/6",
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/40968372595",
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
       "next_action": "Preserve and rerun relevant regression tests",
-      "checkpoint": "2026-11-02 initial audit"
+      "checkpoint": "2026-11-02 initial audit",
+      "implementation_ref": {
+        "branch": "feature/custom-252-pokedex",
+        "commit": "13c0ca04dd3505533a066a1f23ee0fefb960dc16"
+      }
     },
     {
       "id": "PKM-002",
@@ -103,20 +107,24 @@
       "dependencies": [],
       "status": {
         "design": "approved scoped implementation",
-        "implementation": "implemented on unmerged stack",
+        "implementation": "implemented on main",
         "automated": "prior suites/CI pass; rerun after changes",
         "emulator": "selected scenarios only",
         "pull_request": "merged; implementation history retained",
         "merge": "merged into main via owner-authorized consolidation"
       },
-      "branch": "feature/evolution-mechanics",
+      "branch": "main",
       "commit": "851c76c94ac5bbcfda5a48a34bdb9a9521ab202f",
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/5",
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/40422457155",
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
       "next_action": "Preserve and rerun relevant regression tests",
-      "checkpoint": "2026-11-02 initial audit"
+      "checkpoint": "2026-11-02 initial audit",
+      "implementation_ref": {
+        "branch": "feature/evolution-mechanics",
+        "commit": "851c76c94ac5bbcfda5a48a34bdb9a9521ab202f"
+      }
     },
     {
       "id": "PKM-003",
@@ -152,15 +160,19 @@
         "pull_request": "merged; implementation history retained",
         "merge": "merged into main via owner-authorized consolidation"
       },
-      "branch": "feature/phase-one-stabilization",
+      "branch": "main",
       "commit": "6ff574dc205a007a93a4724fd6eda867eeff8fdf",
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/9",
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41376878452",
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Owner review; do not merge without separate approval",
+      "next_action": "Preserve implemented scoped behavior on main; remaining expanded acceptance is tracked separately.",
       "checkpoint": "2026-11-02 final stabilization: commit6ff574dc205a007a93a4724fd6eda867eeff8fdf; local8715; Actions41376878452 SUCCESS",
-      "coverage_gap": "Historical#9 implemented its then-scoped twelve rows; later owner Pinsir correction supersedes Bug/Steel and remaining24 typing mismatches are tracked separately in PKM-007. Preserve earned history."
+      "coverage_gap": "Historical#9 implemented its then-scoped twelve rows; later owner Pinsir correction supersedes Bug/Steel and remaining24 typing mismatches are tracked separately in PKM-007. Preserve earned history.",
+      "implementation_ref": {
+        "branch": "feature/phase-one-stabilization",
+        "commit": "6ff574dc205a007a93a4724fd6eda867eeff8fdf"
+      }
     },
     {
       "id": "PKM-004",
@@ -198,14 +210,18 @@
         "pull_request": "merged; implementation history retained",
         "merge": "merged into main via owner-authorized consolidation"
       },
-      "branch": "feature/phase-one-stabilization",
+      "branch": "main",
       "commit": "6ff574dc205a007a93a4724fd6eda867eeff8fdf",
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/9",
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41376878452",
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Owner review; do not merge without separate approval",
-      "checkpoint": "2026-11-02 final stabilization: commit6ff574dc205a007a93a4724fd6eda867eeff8fdf; local8715; Actions41376878452 SUCCESS"
+      "next_action": "Preserve implemented scoped behavior on main; remaining expanded acceptance is tracked separately.",
+      "checkpoint": "2026-11-02 final stabilization: commit6ff574dc205a007a93a4724fd6eda867eeff8fdf; local8715; Actions41376878452 SUCCESS",
+      "implementation_ref": {
+        "branch": "feature/phase-one-stabilization",
+        "commit": "6ff574dc205a007a93a4724fd6eda867eeff8fdf"
+      }
     },
     {
       "id": "PKM-005",
@@ -251,7 +267,7 @@
         "pull_request": "merged; implementation history retained",
         "merge": "merged into main via owner-authorized consolidation"
       },
-      "branch": "feature/phase-one-stabilization",
+      "branch": "main",
       "commit": "6ff574dc205a007a93a4724fd6eda867eeff8fdf",
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/9",
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41376878452",
@@ -259,7 +275,11 @@
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
       "next_action": "Full overworld Bag evolution navigation and a real link-trade peer remain unverified.",
       "checkpoint": "2026-11-02 final stabilization: commit6ff574dc205a007a93a4724fd6eda867eeff8fdf; local8715; Actions41376878452 SUCCESS",
-      "coverage_gap": "Full overworld Bag evolution navigation and a real link-trade peer remain unverified."
+      "coverage_gap": "Full overworld Bag evolution navigation and a real link-trade peer remain unverified.",
+      "implementation_ref": {
+        "branch": "feature/phase-one-stabilization",
+        "commit": "6ff574dc205a007a93a4724fd6eda867eeff8fdf"
+      }
     },
     {
       "id": "BTL-001",
@@ -283,20 +303,24 @@
       "dependencies": [],
       "status": {
         "design": "approved scoped implementation",
-        "implementation": "implemented on unmerged stack",
+        "implementation": "implemented on main",
         "automated": "prior suites/CI pass; rerun after changes",
         "emulator": "selected scenarios only",
         "pull_request": "merged; implementation history retained",
         "merge": "merged into main via owner-authorized consolidation"
       },
-      "branch": "feature/physical-special-split",
+      "branch": "main",
       "commit": "e265bcf3efa07531a4419fd471f6157fb0980cad",
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/2",
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/40252575233",
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
       "next_action": "Preserve and rerun relevant regression tests",
-      "checkpoint": "2026-11-02 initial audit"
+      "checkpoint": "2026-11-02 initial audit",
+      "implementation_ref": {
+        "branch": "feature/physical-special-split",
+        "commit": "e265bcf3efa07531a4419fd471f6157fb0980cad"
+      }
     },
     {
       "id": "BTL-002",
@@ -320,20 +344,24 @@
       "dependencies": [],
       "status": {
         "design": "approved scoped implementation",
-        "implementation": "implemented on unmerged stack",
+        "implementation": "implemented on main",
         "automated": "prior suites/CI pass; rerun after changes",
         "emulator": "selected scenarios only",
         "pull_request": "merged; implementation history retained",
         "merge": "merged into main via owner-authorized consolidation"
       },
-      "branch": "feature/wild-double-battle-capability",
+      "branch": "main",
       "commit": "bbb0459d95ed3d9b053304290961f4fff2de23eb",
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/7",
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/40976362014",
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
       "next_action": "Preserve and rerun relevant regression tests",
-      "checkpoint": "2026-11-02 initial audit"
+      "checkpoint": "2026-11-02 initial audit",
+      "implementation_ref": {
+        "branch": "feature/wild-double-battle-capability",
+        "commit": "bbb0459d95ed3d9b053304290961f4fff2de23eb"
+      }
     },
     {
       "id": "BTL-003",
@@ -377,7 +405,7 @@
         "pull_request": "merged; implementation history retained",
         "merge": "merged into main via owner-authorized consolidation"
       },
-      "branch": "feature/phase-one-stabilization",
+      "branch": "main",
       "commit": "6ff574dc205a007a93a4724fd6eda867eeff8fdf",
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/9",
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41376878452",
@@ -385,7 +413,11 @@
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
       "next_action": "Complete trainer-AI strategy/gameplay coverage remains unverified; selected ROM damage/AI/UI tests pass.",
       "checkpoint": "2026-11-02 final stabilization: commit6ff574dc205a007a93a4724fd6eda867eeff8fdf; local8715; Actions41376878452 SUCCESS",
-      "coverage_gap": "Complete trainer-AI strategy/gameplay coverage remains unverified; selected ROM damage/AI/UI tests pass."
+      "coverage_gap": "Complete trainer-AI strategy/gameplay coverage remains unverified; selected ROM damage/AI/UI tests pass.",
+      "implementation_ref": {
+        "branch": "feature/phase-one-stabilization",
+        "commit": "6ff574dc205a007a93a4724fd6eda867eeff8fdf"
+      }
     },
     {
       "id": "BTL-004",
@@ -423,7 +455,7 @@
         "pull_request": "merged; implementation history retained",
         "merge": "merged into main via owner-authorized consolidation"
       },
-      "branch": "feature/phase-one-stabilization",
+      "branch": "main",
       "commit": "6ff574dc205a007a93a4724fd6eda867eeff8fdf",
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/9",
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41376878452",
@@ -431,7 +463,11 @@
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
       "next_action": "Nickname acceptance/rename, successful captures with every ball, faint/replacement/whiteout, forced-end/spread moves and complete weather interactions remain unverified.",
       "checkpoint": "2026-11-02 final stabilization: commit6ff574dc205a007a93a4724fd6eda867eeff8fdf; local8715; Actions41376878452 SUCCESS",
-      "coverage_gap": "Nickname acceptance/rename, successful captures with every ball, faint/replacement/whiteout, forced-end/spread moves and complete weather interactions remain unverified."
+      "coverage_gap": "Nickname acceptance/rename, successful captures with every ball, faint/replacement/whiteout, forced-end/spread moves and complete weather interactions remain unverified.",
+      "implementation_ref": {
+        "branch": "feature/phase-one-stabilization",
+        "commit": "6ff574dc205a007a93a4724fd6eda867eeff8fdf"
+      }
     },
     {
       "id": "BTL-005",
@@ -502,20 +538,24 @@
       "dependencies": [],
       "status": {
         "design": "approved scoped implementation",
-        "implementation": "implemented on unmerged stack",
+        "implementation": "implemented on main",
         "automated": "prior suites/CI pass; rerun after changes",
         "emulator": "selected scenarios only",
         "pull_request": "merged; implementation history retained",
         "merge": "merged into main via owner-authorized consolidation"
       },
-      "branch": "feature/rtc-support",
+      "branch": "main",
       "commit": "ce126c5c7c7f9bf3a052f58dc536a2a32e2580bd",
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/3",
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/40390936433",
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
       "next_action": "Preserve and rerun relevant regression tests",
-      "checkpoint": "2026-11-02 initial audit"
+      "checkpoint": "2026-11-02 initial audit",
+      "implementation_ref": {
+        "branch": "feature/rtc-support",
+        "commit": "ce126c5c7c7f9bf3a052f58dc536a2a32e2580bd"
+      }
     },
     {
       "id": "TIM-002",
@@ -553,14 +593,18 @@
         "pull_request": "merged; implementation history retained",
         "merge": "merged into main via owner-authorized consolidation"
       },
-      "branch": "feature/phase-one-stabilization",
+      "branch": "main",
       "commit": "6ff574dc205a007a93a4724fd6eda867eeff8fdf",
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/9",
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41376878452",
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Owner review; do not merge without separate approval",
-      "checkpoint": "2026-11-02 final stabilization: commit6ff574dc205a007a93a4724fd6eda867eeff8fdf; local8715; Actions41376878452 SUCCESS"
+      "next_action": "Preserve implemented scoped behavior on main; remaining expanded acceptance is tracked separately.",
+      "checkpoint": "2026-11-02 final stabilization: commit6ff574dc205a007a93a4724fd6eda867eeff8fdf; local8715; Actions41376878452 SUCCESS",
+      "implementation_ref": {
+        "branch": "feature/phase-one-stabilization",
+        "commit": "6ff574dc205a007a93a4724fd6eda867eeff8fdf"
+      }
     },
     {
       "id": "TIM-003",
@@ -784,14 +828,18 @@
         "pull_request": "merged; implementation history retained",
         "merge": "merged into main via owner-authorized consolidation"
       },
-      "branch": "feature/route5-daycare-breeding",
+      "branch": "main",
       "commit": "596265d41f92fd3e42ee6b0a08d2cb8e0ed62e5d",
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/10",
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41451641953",
       "blocker": null,
       "design_authority": "Owner-supplied complete Route5 Daycare Breeding handoff consolidated November2,2026; supplied text authoritative, Drive originals not directly accessed.",
       "next_action": "Owner code review; external peer/hardware/full-playthrough acceptance remains separately tracked; no merge without explicit approval",
-      "checkpoint": "2026-11-02 final: commit596265d41f92fd3e42ee6b0a08d2cb8e0ed62e5d; full mGBA114313 PASS; all six hosts PASS; clean SHA256 0d719dc65d697e9df0ca82596c14a829fa4d179f95be1dad7cfbc09265e8dcfe; Actions41451641953 and41451631233 SUCCESS; main unchanged."
+      "checkpoint": "2026-11-02 final: commit596265d41f92fd3e42ee6b0a08d2cb8e0ed62e5d; full mGBA114313 PASS; all six hosts PASS; clean SHA256 0d719dc65d697e9df0ca82596c14a829fa4d179f95be1dad7cfbc09265e8dcfe; Actions41451641953 and41451631233 SUCCESS; main unchanged.",
+      "implementation_ref": {
+        "branch": "feature/route5-daycare-breeding",
+        "commit": "596265d41f92fd3e42ee6b0a08d2cb8e0ed62e5d"
+      }
     },
     {
       "id": "DAY-002",
@@ -829,14 +877,18 @@
         "pull_request": "merged; implementation history retained",
         "merge": "merged into main via owner-authorized consolidation"
       },
-      "branch": "feature/route5-daycare-breeding",
+      "branch": "main",
       "commit": "596265d41f92fd3e42ee6b0a08d2cb8e0ed62e5d",
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/10",
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41451641953",
       "blocker": null,
       "design_authority": "Owner-supplied complete Route5 Daycare Breeding handoff consolidated November2,2026; supplied text authoritative, Drive originals not directly accessed.",
       "next_action": "Owner code review; external peer/hardware/full-playthrough acceptance remains separately tracked; no merge without explicit approval",
-      "checkpoint": "2026-11-02 final: commit596265d41f92fd3e42ee6b0a08d2cb8e0ed62e5d; full mGBA114313 PASS; all six hosts PASS; clean SHA256 0d719dc65d697e9df0ca82596c14a829fa4d179f95be1dad7cfbc09265e8dcfe; Actions41451641953 and41451631233 SUCCESS; main unchanged."
+      "checkpoint": "2026-11-02 final: commit596265d41f92fd3e42ee6b0a08d2cb8e0ed62e5d; full mGBA114313 PASS; all six hosts PASS; clean SHA256 0d719dc65d697e9df0ca82596c14a829fa4d179f95be1dad7cfbc09265e8dcfe; Actions41451641953 and41451631233 SUCCESS; main unchanged.",
+      "implementation_ref": {
+        "branch": "feature/route5-daycare-breeding",
+        "commit": "596265d41f92fd3e42ee6b0a08d2cb8e0ed62e5d"
+      }
     },
     {
       "id": "DAY-003",
@@ -874,14 +926,18 @@
         "pull_request": "merged; implementation history retained",
         "merge": "merged into main via owner-authorized consolidation"
       },
-      "branch": "feature/route5-daycare-breeding",
+      "branch": "main",
       "commit": "596265d41f92fd3e42ee6b0a08d2cb8e0ed62e5d",
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/10",
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41451641953",
       "blocker": null,
       "design_authority": "Owner-supplied complete Route5 Daycare Breeding handoff consolidated November2,2026; supplied text authoritative, Drive originals not directly accessed.",
       "next_action": "Owner code review; external peer/hardware/full-playthrough acceptance remains separately tracked; no merge without explicit approval",
-      "checkpoint": "2026-11-02 final: commit596265d41f92fd3e42ee6b0a08d2cb8e0ed62e5d; full mGBA114313 PASS; all six hosts PASS; clean SHA256 0d719dc65d697e9df0ca82596c14a829fa4d179f95be1dad7cfbc09265e8dcfe; Actions41451641953 and41451631233 SUCCESS; main unchanged."
+      "checkpoint": "2026-11-02 final: commit596265d41f92fd3e42ee6b0a08d2cb8e0ed62e5d; full mGBA114313 PASS; all six hosts PASS; clean SHA256 0d719dc65d697e9df0ca82596c14a829fa4d179f95be1dad7cfbc09265e8dcfe; Actions41451641953 and41451631233 SUCCESS; main unchanged.",
+      "implementation_ref": {
+        "branch": "feature/route5-daycare-breeding",
+        "commit": "596265d41f92fd3e42ee6b0a08d2cb8e0ed62e5d"
+      }
     },
     {
       "id": "DAY-004",
@@ -921,7 +977,7 @@
         "pull_request": "merged; implementation history retained",
         "merge": "merged into main via owner-authorized consolidation"
       },
-      "branch": "feature/route5-daycare-breeding",
+      "branch": "main",
       "commit": "596265d41f92fd3e42ee6b0a08d2cb8e0ed62e5d",
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/10",
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41451641953",
@@ -929,7 +985,11 @@
       "design_authority": "Owner-supplied complete Route5 Daycare Breeding handoff consolidated November2,2026; supplied text authoritative, Drive originals not directly accessed.",
       "next_action": "Owner code review; external peer/hardware/full-playthrough acceptance remains separately tracked; no merge without explicit approval",
       "checkpoint": "2026-11-02 final: commit596265d41f92fd3e42ee6b0a08d2cb8e0ed62e5d; full mGBA114313 PASS; all six hosts PASS; clean SHA256 0d719dc65d697e9df0ca82596c14a829fa4d179f95be1dad7cfbc09265e8dcfe; Actions41451641953 and41451631233 SUCCESS; main unchanged.",
-      "coverage_gap": "Real two-peer trade handshake, hardware/power interruption, full quest-log playback/progression and old-ROM reverse migration unverified. Matching-build ownership-data and hatch tests passed."
+      "coverage_gap": "Real two-peer trade handshake, hardware/power interruption, full quest-log playback/progression and old-ROM reverse migration unverified. Matching-build ownership-data and hatch tests passed.",
+      "implementation_ref": {
+        "branch": "feature/route5-daycare-breeding",
+        "commit": "596265d41f92fd3e42ee6b0a08d2cb8e0ed62e5d"
+      }
     },
     {
       "id": "GYM-001",
@@ -1302,14 +1362,18 @@
         "pull_request": "merged; implementation history retained",
         "merge": "merged into main via owner-authorized consolidation"
       },
-      "branch": "setup/firered-baseline",
+      "branch": "main",
       "commit": "e04252ea0783510000e634486c0f2526a736f506",
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/1",
       "ci_url": null,
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
       "next_action": "Preserve and rerun relevant regression tests",
-      "checkpoint": "2026-11-02 initial audit"
+      "checkpoint": "2026-11-02 initial audit",
+      "implementation_ref": {
+        "branch": "setup/firered-baseline",
+        "commit": "e04252ea0783510000e634486c0f2526a736f506"
+      }
     },
     {
       "id": "INT-002",
@@ -1333,20 +1397,24 @@
       "dependencies": [],
       "status": {
         "design": "approved scoped implementation",
-        "implementation": "implemented on unmerged stack",
+        "implementation": "implemented on main",
         "automated": "prior suites/CI pass; rerun after changes",
         "emulator": "selected scenarios only",
         "pull_request": "merged; implementation history retained",
         "merge": "merged into main via owner-authorized consolidation"
       },
-      "branch": "feature/evolution-system-overhaul",
+      "branch": "main",
       "commit": "426415d853e141960a5ecfc60eb8798fdd3cb2dd",
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/4",
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/40392817403",
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
       "next_action": "Preserve and rerun relevant regression tests",
-      "checkpoint": "2026-11-02 initial audit"
+      "checkpoint": "2026-11-02 initial audit",
+      "implementation_ref": {
+        "branch": "feature/evolution-system-overhaul",
+        "commit": "426415d853e141960a5ecfc60eb8798fdd3cb2dd"
+      }
     },
     {
       "id": "INT-003",
@@ -1382,14 +1450,18 @@
         "pull_request": "merged; implementation history retained",
         "merge": "merged into main via owner-authorized consolidation"
       },
-      "branch": "docs/project-coordination",
+      "branch": "main",
       "commit": null,
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/8",
       "ci_url": null,
       "blocker": "Drive reader/writer absent. API domain settings do not authenticate Drive.",
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
       "next_action": "Keep updating this branch; synchronize when a supported Drive writer is available",
-      "checkpoint": "2026-11-02 milestone: #8 tracking established, #9 stabilization draft and final tests underway"
+      "checkpoint": "2026-11-02 milestone: #8 tracking established, #9 stabilization draft and final tests underway",
+      "implementation_ref": {
+        "branch": "docs/project-coordination",
+        "commit": null
+      }
     },
     {
       "id": "INT-004",
@@ -1425,20 +1497,20 @@
       "status": {
         "design": "approved scoped implementation",
         "implementation": "scoped combined acceptance passed on main; broader release work remains",
-        "automated": "11 host suites/Museum static/clean reproducibility/final Actions PASS",
-        "emulator": "combined276132 mGBA assertions PASS; Museum1307 and Blaine46 focused PASS",
-        "pull_request": "#2 consolidated all audited feature PRs",
+        "automated": "12 host suites/Museum static/clean repeatability/final Actions PASS",
+        "emulator": "full native276161 assertions plus Ponyta35/Museum1307/Blaine46 focused PASS",
+        "pull_request": "#2 consolidated stack, #22 Ponyta merged",
         "merge": "merged into main"
       },
       "branch": "main",
-      "commit": "93b62d6837e61a483f67d00e2a055f559dc33d53",
+      "commit": "7284dc0aac833f751882826e339273a97694ce9e",
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/2",
-      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41765403411",
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41767198787",
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Retain full progression, hardware/link, global roster, new weather/lighting/move-engine and untested Blaine victory work; no duplicate regression credit.",
+      "next_action": "Retain global roster, full gameplay/hardware/link and new feature/weather/move/lighting validation; no duplicate integration points.",
       "checkpoint": "2026-11-04 combined typing regression; no duplicated integration effort credit.",
-      "coverage_gap": "Stack through vendor/ball plus typing#16 passes scoped tests. External Museum#14/Blaine#15 combined acceptance, global eligibility, final weather/lighting/moves and full release/hardware/link/progression checks remain outstanding."
+      "coverage_gap": "No complete playthrough, physical hardware or matching-peer link certification. Blaine victory/badge/TM38/revisit and future approved engine/weather/move systems remain outstanding; prior#14/#15 integration is resolved."
     },
     {
       "id": "INT-005",
@@ -1551,14 +1623,18 @@
         "pull_request": "merged; implementation history retained",
         "merge": "merged into main via owner-authorized consolidation"
       },
-      "branch": "feature/fossil-rewards-and-roster-audit",
+      "branch": "main",
       "commit": "b0bd3b86f4e03dd3f540f0776a5de87f207e84e4",
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/11",
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41529505085",
       "blocker": null,
       "design_authority": "Owner supplied November2 Wild Encounters, Gym Roster, Fossils and Pokedex Compliance update; historical direct Drive401 did not prevent reading the supplied exports; latest concurrent PR15 requires version reconciliation.",
-      "next_action": "Owner review; retain old reward bit and no invented Everstone placement",
-      "checkpoint": "2026-11-02 fossil/source audit atb0bd3b86f4e03dd3f540f0776a5de87f207e84e4; exact tests/known limits in ledger."
+      "next_action": "Preserve implemented scoped behavior on main; remaining expanded acceptance is tracked separately.",
+      "checkpoint": "2026-11-02 fossil/source audit atb0bd3b86f4e03dd3f540f0776a5de87f207e84e4; exact tests/known limits in ledger.",
+      "implementation_ref": {
+        "branch": "feature/fossil-rewards-and-roster-audit",
+        "commit": "b0bd3b86f4e03dd3f540f0776a5de87f207e84e4"
+      }
     },
     {
       "id": "WRL-007",
@@ -1590,14 +1666,18 @@
         "pull_request": "merged; implementation history retained",
         "merge": "merged into main via owner-authorized consolidation"
       },
-      "branch": "feature/fossil-rewards-and-roster-audit",
+      "branch": "main",
       "commit": "b0bd3b86f4e03dd3f540f0776a5de87f207e84e4",
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/11",
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41529505085",
       "blocker": null,
       "design_authority": "Owner supplied November2 Wild Encounters, Gym Roster, Fossils and Pokedex Compliance update; historical direct Drive401 did not prevent reading the supplied exports; latest concurrent PR15 requires version reconciliation.",
-      "next_action": "Owner review; preserve immutable choice flags and normal lab services",
-      "checkpoint": "2026-11-02 fossil/source audit atb0bd3b86f4e03dd3f540f0776a5de87f207e84e4; exact tests/known limits in ledger."
+      "next_action": "Preserve implemented scoped behavior on main; remaining expanded acceptance is tracked separately.",
+      "checkpoint": "2026-11-02 fossil/source audit atb0bd3b86f4e03dd3f540f0776a5de87f207e84e4; exact tests/known limits in ledger.",
+      "implementation_ref": {
+        "branch": "feature/fossil-rewards-and-roster-audit",
+        "commit": "b0bd3b86f4e03dd3f540f0776a5de87f207e84e4"
+      }
     },
     {
       "id": "PKM-006",
@@ -1631,7 +1711,7 @@
         "pull_request": "merged; implementation history retained",
         "merge": "merged into main via owner-authorized consolidation"
       },
-      "branch": "feature/fossil-rewards-and-roster-audit",
+      "branch": "main",
       "commit": "b0bd3b86f4e03dd3f540f0776a5de87f207e84e4",
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/11",
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41529505085",
@@ -1646,7 +1726,11 @@
         "04_SPECIES_EVOLUTION_WORLD/Pokémon Lightning Yellow — Special Overworld Pokémon & Environmental Events Register.txt",
         "06_ENCOUNTERS_PHASE_TWO/Pokémon Lightning Yellow — Wild Encounter Ecology — 252-Species Proposed Placement Matrix — 2026-11-02.txt"
       ],
-      "source_status": "available locally; checksums verified; precise approvals/read scope in reconciliation report"
+      "source_status": "available locally; checksums verified; precise approvals/read scope in reconciliation report",
+      "implementation_ref": {
+        "branch": "feature/fossil-rewards-and-roster-audit",
+        "commit": "b0bd3b86f4e03dd3f540f0776a5de87f207e84e4"
+      }
     },
     {
       "id": "GYM-004",
@@ -1701,13 +1785,18 @@
         {
           "number": 15,
           "branch": "feature/blaine-donphan-pidgeot-double",
-          "head": "9b6563a258330461eef9adabd7d134af8a357a9e",
+          "head": "93e1a1ed77bf9d6e53a5bb16736410f84a048032",
           "base": "feature/mystery-vendor-network",
-          "state": "open",
-          "integration": "not included in#16; same approved Pidgeot type pair, shared workflow/Pokedex test edits; trainer preservation needs explicit approved delta",
-          "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41760575099",
-          "checks": "modified FAILURE: CinnabarIsland_Gym/text.inc:12 no mapping exists for backslash",
-          "effort": "existing GYM-004 budget; no duplicate Pidgeot typing credit"
+          "state": "merged into main",
+          "integration": "resolved; Pidgeot normalized once; no current build blocker",
+          "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41767198787",
+          "checks": "combined modified/upstream Actions PASS; full native tests include actual Blaine entry/immunity",
+          "effort": "existing GYM-004 budget; no duplicate Pidgeot typing credit",
+          "historical_failure": {
+            "head": "9b6563a258330461eef9adabd7d134af8a357a9e",
+            "checks": "modified FAILURE: CinnabarIsland_Gym/text.inc:12 no mapping exists for backslash",
+            "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41760575099"
+          }
         }
       ]
     },
@@ -1747,7 +1836,7 @@
         "pull_request": "merged; implementation history retained",
         "merge": "merged into main via owner-authorized consolidation"
       },
-      "branch": "feature/poke-ball-redesign",
+      "branch": "main",
       "commit": "ad86d58b0c0dec7117ffa524ae4a66926b92cd88",
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/13",
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41688991039",
@@ -1756,7 +1845,11 @@
       "next_action": "Preserve merged feature; extended presentation/progression/external acceptance remains. Further merges/auto-merge require their own authorization.",
       "checkpoint": "2026-11-03 implementation replaces earlier readiness-only status; no source/merge change to parents.",
       "coverage_gap": "No manual full-game progression, actual two-peer/hardware/power interruption or exhaustive quest-log replay; not every13-ball success/failure/presentation is independently exercised. TwoIsland/TrainerTower stock scope and natural-Hail lifetime are explicit technical review boundaries.",
-      "merge_commit": "d54f7a8e85d38b8fa304399dcb4d14778396d5cd"
+      "merge_commit": "d54f7a8e85d38b8fa304399dcb4d14778396d5cd",
+      "implementation_ref": {
+        "branch": "feature/poke-ball-redesign",
+        "commit": "ad86d58b0c0dec7117ffa524ae4a66926b92cd88"
+      }
     },
     {
       "id": "WRL-008",
@@ -1786,15 +1879,19 @@
         "pull_request": "merged; implementation history retained",
         "merge": "merged into main via owner-authorized consolidation"
       },
-      "branch": "feature/mystery-vendor-network",
+      "branch": "main",
       "commit": "d54f7a8e85d38b8fa304399dcb4d14778396d5cd",
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/12",
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41673840642",
       "blocker": null,
       "design_authority": "DES-008 owner supplied Mystery Vendor Codex Implementation Handoff v1.0, approved pool CSV, explicit independent starter boundary. Approved700/level5/90%/OT Mystery; no new design inferred.",
-      "next_action": "Owner review; complete future starter exclusivity integration under WRL-001. Do not merge without separate approval.",
+      "next_action": "Preserve implemented scoped behavior on main; remaining expanded acceptance is tracked separately.",
       "checkpoint": "2026-11-04 PR#12 head includes owner-authorized#13 merge; vendor itself remains open, not main.",
-      "coverage_gap": "Manual full progression, actual two-peer trade/hardware, flash power-loss injection, exhaustive quest-log replay and independent Shiny-summary visual approval unverified. Starter exclusivity awaits WRL-001; source preservation is not runtime story acceptance."
+      "coverage_gap": "Manual full progression, actual two-peer trade/hardware, flash power-loss injection, exhaustive quest-log replay and independent Shiny-summary visual approval unverified. Starter exclusivity awaits WRL-001; source preservation is not runtime story acceptance.",
+      "implementation_ref": {
+        "branch": "feature/mystery-vendor-network",
+        "commit": "d54f7a8e85d38b8fa304399dcb4d14778396d5cd"
+      }
     },
     {
       "id": "PKM-007",
@@ -1832,7 +1929,7 @@
         "pull_request": "merged; implementation history retained",
         "merge": "merged into main via owner-authorized consolidation"
       },
-      "branch": "feature/approved-typing-corrections",
+      "branch": "main",
       "commit": "b1ff74d0e129815baf45633d54073f24af4087d0",
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/16",
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41760396005",
@@ -1843,9 +1940,13 @@
         "04_SPECIES_EVOLUTION_WORLD/Pokémon Lightning Yellow — All 252 Species Typing & 67 Move Source Matrix — 2026-11-02.txt",
         "04_SPECIES_EVOLUTION_WORLD/Pokémon Lightning Yellow — Approved 252-Species Pokédex.txt"
       ],
-      "next_action": "Owner review of scoped typing PR#16; reconcile shared Pidgeot/workflow/test edits with external#15 before any authorized integration. No merge or auto-merge.",
+      "next_action": "Preserve all35 effective typing rules on main; Blaine/shared Pidgeot integration is resolved. Other species stats/abilities/learnsets are separate.",
       "checkpoint": "2026-11-04 completed PKM-007 scoped implementation/validation",
-      "coverage_gap": "No full progression, physical cartridge or matching-peer link certification; no old-build ROM/save emulator comparison. Existing save layout unchanged; full existing save regressions pass. Other stats/abilities/learnsets/weather changes remain separately tracked."
+      "coverage_gap": "No full progression, physical cartridge or matching-peer link certification; no old-build ROM/save emulator comparison. Existing save layout unchanged; full existing save regressions pass. Other stats/abilities/learnsets/weather changes remain separately tracked.",
+      "implementation_ref": {
+        "branch": "feature/approved-typing-corrections",
+        "commit": "b1ff74d0e129815baf45633d54073f24af4087d0"
+      }
     },
     {
       "id": "PKM-008",
@@ -1853,8 +1954,8 @@
       "title": "Ponyta approved level30 evolution threshold",
       "aliases": [],
       "effort": {
-        "earned": 1,
-        "remaining": 1,
+        "earned": 2,
+        "remaining": 0,
         "unit": "provisional relative planning point",
         "confidence": "high",
         "history": [
@@ -1863,6 +1964,12 @@
             "earned": 1,
             "remaining": 1,
             "reason": "Newly reconciled exact approved source gap: one production threshold, host/native acceptance completed; full final Actions pending. Adds2 distinct points without erasing old work."
+          },
+          {
+            "date": "2026-11-04",
+            "earned": 2,
+            "remaining": 0,
+            "reason": "Final12 host suites, clean reproducible build,35 focused and full native276161 assertions plus independent modified/upstream Actions PASS; owner-authorized merge completed."
           }
         ]
       },
@@ -1871,20 +1978,20 @@
       ],
       "status": {
         "design": "approved Lv30; supplied source-parity section3",
-        "implementation": "implemented on feature branch",
-        "automated": "12 host suites/Museum static checks and build PASS; final Actions pending",
-        "emulator": "35 focused native Ponyta assertions PASS; full final CI pending",
-        "pull_request": "feature branch; PR follows checkpoint",
-        "merge": "not yet merged"
+        "implementation": "implemented on main",
+        "automated": "12 host suites plus Museum static/clean reproducibility/final Actions PASS",
+        "emulator": "35 focused and full native276161 assertions PASS; no full progression/hardware/link certification",
+        "pull_request": "#22 merged",
+        "merge": "merged into main at 7284dc0aac833f751882826e339273a97694ce9e"
       },
-      "branch": "feature/ponyta-level30-evolution",
+      "branch": "main",
       "commit": "eb18e7808e026c32e9c7289dc4e4e3a2be6ea025",
-      "pr_url": null,
-      "ci_url": null,
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/22",
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41767198787",
       "blocker": null,
       "design_authority": "Supplied November2 Evolution & Item Supply Source Parity section3, SHA2566a39563906572b3ab6870e754473a5a4daef593c3783c92d80a0eaf02322b237; standing owner implementation authorization",
-      "next_action": "Run final combined Actions and merge under owner-authorized continuation; no other species balance changes.",
-      "checkpoint": "2026-11-04 implementation/local acceptance"
+      "next_action": "Preserve approved Lv30 rule; broader Ponyta species stats/abilities/learnsets remain separate. Scoped task complete.",
+      "checkpoint": "2026-11-04 final acceptance and actual merge"
     },
     {
       "id": "GYM-005",

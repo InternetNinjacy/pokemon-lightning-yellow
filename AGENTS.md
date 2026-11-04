@@ -161,3 +161,8 @@ the canonical dashboard/ledger; docs/project-coordination is historical. Keep
 repository auto-merge enabled; owner approval for this consolidation supersedes
 older no-merge notes, not explicit feature design HOLDs. Ranger's current contract
 is implementation/saffron-ranger-base-camp.md; the rival handoff stays BLOCKED.
+
+After updating docs/project-tracking.json, run
+`python3 scripts/render-project-dashboard.py` so the live dashboard reflects the
+same current approval/code/test/merge states. Keep historical milestones in the
+append-only ledger and Git rather than mixing obsolete blockers into live tables.

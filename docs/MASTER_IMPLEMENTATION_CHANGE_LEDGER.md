@@ -566,3 +566,46 @@ by its own incomplete-design handoff. No questions are reopened from older expor
 221 earned/327 remaining =40.33% at the local-acceptance checkpoint; Ponyta retains
 1 final-CI point. All previous earned work remains; denominator growth explains
 the provisional percentage change. No duplicate integration credit.
+
+
+## 2026-11-04 — PKM-008 final acceptance and merge / current effective source
+
+Ponyta ordinary evolution is now Lv30 on main, implementation eb18e780,
+[PR22](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/22), actual merge
+7284dc0aac833f751882826e339273a97694ce9e. Every other evolution-table byte, save layout,
+species stat/ability/learnset and ID remains unchanged. Existing eligible Ponyta
+need a normal level-up; no load-time species conversion is added.
+
+Executed12 host suites plus Museum static checks PASS.35 focused native
+assertions cover29/30, Everstone, actual animation B cancellation, success,
+pre-National Rapidash registration and flash reload. Full local native276161
+assertions PASS. [Final-head Actions](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41767198787)
+SUCCESS at083edbbf: modified/clean/reproducible build, all host/full native and
+unchanged pinned-upstream clean SHA-1 jobs PASS. ROM SHA256
+6f230066210635d5f5e3fa77d7ad8a50d1521482caeb52ad71c4eb09d6935f32
+matches before/after make clean. This is a measured result, not a replacement
+vanilla checksum. No ROM/save/generated artifacts uploaded or committed.
+
+One initial local full-suite launch failed before ROM initialization because
+make clean temporarily removed its ROM input; this was a test-launch race, not
+a gameplay assertion failure. It was rerun only after clean rebuild completed;
+the final full run above passed. GitHub's independent run was unaffected.
+Redundant intermediate-merge workflow runs were cancelled only for the exact
+already-validated Git trees; they are not claimed as passes. Main and final
+Ponyta validation remained enabled. No assertion or protection was disabled.
+
+Canonical live dashboard is regenerated from42 permanent task records by
+scripts/render-project-dashboard.py; stale pre-merge/current-table mixtures are
+removed from its live view. Historical snapshots remain in Git and this complete
+append-only ledger. Existing source unavailable claims remain superseded by
+supplied exports/repo handoffs. Direct Drive synchronization remains pending.
+All earlier task effort remains unchanged; PKM-008 earns its final1 point:
+222 earned/326 remaining of548=40.51%. Ranger's new16 pending points remain
+separate from completed ordinary tasks, with no implementation claim. Rival is
+still BLOCKED. Next eligible feature is GYM-005 Ranger Base Camp, not yet coded.
+
+Remaining acceptance includes full-world progression, hardware/link peers,
+Blaine victory/badge/TM38/revisit, strict world roster cleanup and future approved
+weather/lighting/move-engine tasks. Repository auto-merge remains true. The
+source recovery tag and ordinary revert paths preserve history; no release,
+force-push or destructive save operation occurred.

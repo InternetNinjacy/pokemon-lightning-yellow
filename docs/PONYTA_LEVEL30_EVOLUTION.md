@@ -18,8 +18,9 @@ threshold lookups, actual animation cancellation, successful Rapidash evolution,
 Dex registration and flash save/load before National Dex. Exact whole-file
 normalization preserves every other evolution-table byte and historical hashes.
 
-Local build/all twelve host suites/Museum static checks and35 focused native
-assertions passed. Full final-head Actions must pass before merging. Broader
+Local and final Actions builds/all twelve host suites/Museum static checks,35
+focused and full native276161 assertions passed; clean rebuilds match.
+PR22 is merged into main. Exact code/merge and CI references are in the ledger. Broader
 Ponyta species stat/ability/learnset design is not implemented by this threshold
 correction. Full progression, physical hardware and peer link tests remain outside
 this focused acceptance. Rollback is an ordinary revert; no save migration.

@@ -1,6 +1,6 @@
 # Pewter Museum anime trivia: shiny Feebas Egg
 
-Status: owner-approved gameplay; code on this feature branch; GitHub feature-source-build compile PASSED on November 3, 2026 (workflow run 41757743873); emulator acceptance and merge pending.
+Status: implemented and merged through owner-authorized consolidation; actual native admission/quiz/save/Shiny hatch/evolution tests PASS. See latest integration/ledger evidence.
 Project: Pokémon Lightning Yellow only. Do not import unrelated Pokémon project decisions.
 
 ## Player experience
