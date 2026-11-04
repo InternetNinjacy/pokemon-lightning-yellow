@@ -17,7 +17,7 @@
   "object_events": [
     {
       "type": "object",
-      "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
+      "graphics_id": "OBJ_EVENT_GFX_CAMPER",
       "x": 11,
       "y": 10,
       "elevation": 3,
@@ -25,13 +25,13 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NORMAL",
-      "trainer_sight_or_berry_tree_id": "7",
-      "script": "SaffronCity_Dojo_EventScript_Hitoshi",
+      "trainer_sight_or_berry_tree_id": "1",
+      "script": "SaffronCity_Dojo_EventScript_Ranger1",
       "flag": "0"
     },
     {
       "type": "object",
-      "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
+      "graphics_id": "OBJ_EVENT_GFX_CAMPER",
       "x": 1,
       "y": 10,
       "elevation": 3,
@@ -39,13 +39,13 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NORMAL",
-      "trainer_sight_or_berry_tree_id": "7",
-      "script": "SaffronCity_Dojo_EventScript_Hideki",
+      "trainer_sight_or_berry_tree_id": "1",
+      "script": "SaffronCity_Dojo_EventScript_Ranger2",
       "flag": "0"
     },
     {
       "type": "object",
-      "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
+      "graphics_id": "OBJ_EVENT_GFX_CAMPER",
       "x": 11,
       "y": 8,
       "elevation": 3,
@@ -53,13 +53,13 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NORMAL",
-      "trainer_sight_or_berry_tree_id": "7",
-      "script": "SaffronCity_Dojo_EventScript_Aaron",
+      "trainer_sight_or_berry_tree_id": "1",
+      "script": "SaffronCity_Dojo_EventScript_Ranger3",
       "flag": "0"
     },
     {
       "type": "object",
-      "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
+      "graphics_id": "OBJ_EVENT_GFX_CAMPER",
       "x": 1,
       "y": 8,
       "elevation": 3,
@@ -67,23 +67,23 @@
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NORMAL",
-      "trainer_sight_or_berry_tree_id": "7",
-      "script": "SaffronCity_Dojo_EventScript_Mike",
+      "trainer_sight_or_berry_tree_id": "1",
+      "script": "SaffronCity_Dojo_EventScript_Ranger4",
       "flag": "0"
     },
     {
       "local_id": "LOCALID_KARATE_MASTER",
       "type": "object",
-      "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
+      "graphics_id": "OBJ_EVENT_GFX_CAMPER",
       "x": 6,
       "y": 5,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 1,
       "movement_range_y": 1,
-      "trainer_type": "TRAINER_TYPE_NORMAL",
-      "trainer_sight_or_berry_tree_id": "2",
-      "script": "SaffronCity_Dojo_EventScript_MasterKoichi",
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "SaffronCity_Dojo_EventScript_RangerPark",
       "flag": "0"
     },
     {
@@ -97,8 +97,8 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SaffronCity_Dojo_EventScript_HitmonleeBall",
-      "flag": "FLAG_HIDE_DOJO_HITMONLEE_BALL"
+      "script": "SaffronCity_Dojo_EventScript_RangerGift0",
+      "flag": "FLAG_RANGER_CAMP_GIFT_RECEIVED"
     },
     {
       "type": "object",
@@ -111,8 +111,22 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "SaffronCity_Dojo_EventScript_HitmonchanBall",
-      "flag": "FLAG_HIDE_DOJO_HITMONCHAN_BALL"
+      "script": "SaffronCity_Dojo_EventScript_RangerGift1",
+      "flag": "FLAG_RANGER_CAMP_GIFT_RECEIVED"
+    },
+    {
+      "type": "object",
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 6,
+      "y": 3,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "SaffronCity_Dojo_EventScript_RangerGift2",
+      "flag": "FLAG_RANGER_CAMP_GIFT_RECEIVED"
     }
   ],
   "warp_events": [
@@ -138,26 +152,7 @@
       "dest_warp_id": "2"
     }
   ],
-  "coord_events": [
-    {
-      "type": "trigger",
-      "x": 5,
-      "y": 5,
-      "elevation": 3,
-      "var": "VAR_MAP_SCENE_SAFFRON_CITY_DOJO",
-      "var_value": "0",
-      "script": "SaffronCity_Dojo_EventScript_TriggerMasterBattleLeft"
-    },
-    {
-      "type": "trigger",
-      "x": 7,
-      "y": 5,
-      "elevation": 3,
-      "var": "VAR_MAP_SCENE_SAFFRON_CITY_DOJO",
-      "var_value": "0",
-      "script": "SaffronCity_Dojo_EventScript_TriggerMasterBattleRight"
-    }
-  ],
+  "coord_events": [],
   "bg_events": [
     {
       "type": "sign",

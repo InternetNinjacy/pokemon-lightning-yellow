@@ -609,3 +609,63 @@ Blaine victory/badge/TM38/revisit, strict world roster cleanup and future approv
 weather/lighting/move-engine tasks. Repository auto-merge remains true. The
 source recovery tag and ordinary revert paths preserve history; no release,
 force-push or destructive save operation occurred.
+
+## 2026-11-04 — GYM-005 Ranger Base Camp implementation
+
+Authority: final `implementation/saffron-ranger-base-camp.md` (merged spec#21).
+Baseline main700587a8; gameplay commit7b7ba6af on
+`feature/saffron-ranger-base-camp`. This entry supersedes the historical
+“not implemented” status for Ranger; it does not claim a main merge.
+
+Old Dojo becomes four any-order Singles, gated Park Double, exactly one of three
+foreign PARK Lv30 gifts, and a native PC. Trainer data/abilities/friendship,
+scripts/dialogue/map objects, PC tile, appended IDs/flags, gift helper and legacy
+Continue refresh are changed. Full details/files/rollback in
+`docs/RANGER_BASE_CAMP.md`. No new artwork/save-layout fields/AI/balance system.
+Old trainer IDs and legacy flags retained; no unrelated source changes hidden
+by snapshot replacement. Exact reverse-hunk plus original SHA256 tests preserve
+all other source bytes and work in shallow CI.
+
+All13 host suites plus Museum static PASS. Focused actual mGBA0.10.5 data368,
+UI3276 and battles458 assertions PASS. Includes nickname YES/NO, actual PC
+six-to-five deposit, legacy flash Continue, actual four Singles in3/1/4/2 order,
+Park loss/blackout/rechallenge and all four opponents/replacements/victory.
+Unmodified opponents face controlled level100 player fixtures, not a claimed
+manual balance/progression playthrough. Local PC screenshot visually inspected.
+Final clean/full-native/Actions outcomes will be appended when executed.
+
+One added nickname test initially reused a vendor helper containing an unrelated
+money-window postcondition; isolated Ranger keyboard helper fixed that fixture.
+No gameplay assertion was removed or disabled. Earlier battle/PC input timing
+fixture corrections preserve native gameplay and guards.
+
+GYM-005 now15earned/1remaining; total237/548=43.25%, other task credit unchanged.
+Repository auto-merge remains enabled; Ranger implementation PR must stay unmerged
+for explicit review. Direct Drive synchronization remains unavailable/pending.
+
+### GYM-005 final local acceptance / Current Effective Version
+
+PR#26: https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/26
+Gameplay/test source7c9e2f5e49dc65ec4b5bb04b6464f050c568713e, following
+production7b7ba6af; remaining changes are evidence/tracker documentation only.
+Full local mGBA0.10.5 **280245 assertions PASS** (guarded API/register checks
+included), all13 host suites plus Museum static PASS, clean build/rebuild PASS.
+Measured modified ROM SHA256:
+1386257b114134228fe4b7c285e8ee5f9b53e9f8932a848cc467c59af5db695f.
+Native screenshots of camp/gifts/Rangers and PC were visually inspected locally.
+No binary/artifact distribution. Full manual balance/progression, hardware/link,
+power interruption and exhaustive quest-log remain unverified.
+
+Required independent CI evidence is maintained at
+https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/26/checks ;
+local results are not presented as GitHub conclusions. Initial run41832117816
+independently passed vanilla upstream SHA-1; modified emulator job was still
+running when this evidence entry was written. Final live checks supersede that
+transient status. No source/test changes followed the local full PASS.
+
+Ranger implementation is ready for owner review, not merged. Keep15earned/1
+remaining for review/external acceptance: overall237earned/311remaining=43.25%.
+All41 other task records are byte-equivalent as parsed JSON;42 permanent IDs
+retained. Direct Drive synchronization remains pending. Global auto-merge is
+still enabled; this feature PR has no auto-merge request. No main write, merge,
+release or destructive operation performed for Ranger.

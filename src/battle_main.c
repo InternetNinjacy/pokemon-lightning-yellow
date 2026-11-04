@@ -8,6 +8,7 @@
 #include "battle_controllers.h"
 #include "battle_interface.h"
 #include "battle_main.h"
+#include "ranger_base_camp.h"
 #include "battle_message.h"
 #include "battle_scripts.h"
 #include "battle_setup.h"
@@ -1631,6 +1632,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum)
                 break;
             }
             }
+            ApplyRangerTrainerData(&party[i], trainerNum, i);
         }
 
         gBattleTypeFlags |= gTrainers[trainerNum].doubleBattle;

@@ -37,6 +37,7 @@
 #include "random.h"
 #include "renewable_hidden_items.h"
 #include "route5_daycare.h"
+#include "ranger_base_camp.h"
 #include "roamer.h"
 #include "safari_zone.h"
 #include "save_location.h"
@@ -1691,12 +1692,13 @@ static void FieldCB_ShowMapNameOnContinue(void)
 
 void CB2_ContinueSavedGame(void)
 {
-    bool8 refreshRoute5;
+    bool8 refreshRoute5, refreshRanger;
     FieldClearVBlankHBlankCallbacks();
     StopMapMusic();
     ResetSafariZoneFlag_();
     LoadSaveblockMapHeader();
     refreshRoute5 = Route5DaycareNeedsMapRefresh();
+    refreshRanger = RangerNeedsMapRefresh();
     LoadSaveblockObjEventScripts();
     UnfreezeObjectEvents();
     Overworld_ResetStateOnContinue();
@@ -1721,6 +1723,18 @@ void CB2_ContinueSavedGame(void)
         // The old floor tile was valid for a saved player. Avoid spawning the
         // new stationary caretaker on top of that player after the upgrade.
         if (x == newCaretaker->x && y == newCaretaker->y)
+            y++;
+        SetWarpDestination(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum, -1, x, y);
+        WarpIntoMap();
+        gFieldCallback = FieldCB_DefaultWarpExit;
+        SetMainCallback2(CB2_LoadMap);
+    }
+    else if (refreshRanger)
+    {
+        s16 x = gSaveBlock1Ptr->pos.x;
+        s16 y = gSaveBlock1Ptr->pos.y;
+        // Legacy saves may stand on the newly added PC or third reward ball.
+        if ((x == 1 && y == 12) || (x == 6 && y == 3))
             y++;
         SetWarpDestination(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum, -1, x, y);
         WarpIntoMap();

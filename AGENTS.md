@@ -166,3 +166,8 @@ After updating docs/project-tracking.json, run
 `python3 scripts/render-project-dashboard.py` so the live dashboard reflects the
 same current approval/code/test/merge states. Keep historical milestones in the
 append-only ledger and Git rather than mixing obsolete blockers into live tables.
+
+GYM-005 Ranger Base Camp uses the final `implementation/saffron-ranger-base-camp.md`
+contract. Preserve original trainer IDs/save flags and exact dialogue; run
+`tests/run_ranger_tests.py` and the native Ranger acceptance in addition to the
+existing suites. Keep its implementation PR unmerged until separately approved.

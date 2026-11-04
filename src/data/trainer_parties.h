@@ -10866,3 +10866,87 @@ static const struct TrainerMonNoItemDefaultMoves sParty_CueBallPaxton[] = {
         .species = SPECIES_MUK,
     },
 };
+
+// Owner-approved Ranger Base Camp: native IV convention from the former dojo.
+static const struct TrainerMonNoItemCustomMoves sParty_RangerCamp1[] = {
+    {
+        .iv = 100,
+        .lvl = 34,
+        .species = SPECIES_PERSIAN,
+        .moves = {MOVE_RETURN, MOVE_FAINT_ATTACK, MOVE_SCREECH, MOVE_BITE},
+    },
+    {
+        .iv = 100,
+        .lvl = 35,
+        .species = SPECIES_ARCANINE,
+        .moves = {MOVE_FLAME_WHEEL, MOVE_TAKE_DOWN, MOVE_BITE, MOVE_DIG},
+    },
+};
+static const struct TrainerMonNoItemCustomMoves sParty_RangerCamp2[] = {
+    {
+        .iv = 100,
+        .lvl = 35,
+        .species = SPECIES_FEAROW,
+        .moves = {MOVE_AERIAL_ACE, MOVE_STEEL_WING, MOVE_RETURN, MOVE_PURSUIT},
+    },
+    {
+        .iv = 100,
+        .lvl = 36,
+        .species = SPECIES_NOCTOWL,
+        .moves = {MOVE_CONFUSION, MOVE_HYPNOSIS, MOVE_REFLECT, MOVE_AERIAL_ACE},
+    },
+};
+static const struct TrainerMonNoItemCustomMoves sParty_RangerCamp3[] = {
+    {
+        .iv = 100,
+        .lvl = 36,
+        .species = SPECIES_GOLDUCK,
+        .moves = {MOVE_SURF, MOVE_CONFUSION, MOVE_CALM_MIND, MOVE_DISABLE},
+    },
+    {
+        .iv = 100,
+        .lvl = 37,
+        .species = SPECIES_MANECTRIC,
+        .moves = {MOVE_THUNDERBOLT, MOVE_THUNDER_WAVE, MOVE_BITE, MOVE_QUICK_ATTACK},
+    },
+};
+static const struct TrainerMonNoItemCustomMoves sParty_RangerCamp4[] = {
+    {
+        .iv = 100,
+        .lvl = 37,
+        .species = SPECIES_HOUNDOOM,
+        .moves = {MOVE_SUNNY_DAY, MOVE_FLAMETHROWER, MOVE_SOLAR_BEAM, MOVE_BITE},
+    },
+    {
+        .iv = 100,
+        .lvl = 38,
+        .species = SPECIES_ARCANINE,
+        .moves = {MOVE_FLAME_WHEEL, MOVE_TAKE_DOWN, MOVE_DIG, MOVE_IRON_TAIL},
+    },
+};
+static const struct TrainerMonNoItemCustomMoves sParty_RangerCampPark[] = {
+    {
+        .iv = 100,
+        .lvl = 39,
+        .species = SPECIES_NOCTOWL,
+        .moves = {MOVE_REFLECT, MOVE_HYPNOSIS, MOVE_PSYCHIC, MOVE_AERIAL_ACE},
+    },
+    {
+        .iv = 100,
+        .lvl = 39,
+        .species = SPECIES_MANECTRIC,
+        .moves = {MOVE_THUNDERBOLT, MOVE_BITE, MOVE_QUICK_ATTACK, MOVE_PROTECT},
+    },
+    {
+        .iv = 100,
+        .lvl = 40,
+        .species = SPECIES_GOLDUCK,
+        .moves = {MOVE_SURF, MOVE_ICE_BEAM, MOVE_CONFUSION, MOVE_PROTECT},
+    },
+    {
+        .iv = 100,
+        .lvl = 41,
+        .species = SPECIES_ARCANINE,
+        .moves = {MOVE_FLAME_WHEEL, MOVE_TAKE_DOWN, MOVE_HELPING_HAND, MOVE_PROTECT},
+    },
+};

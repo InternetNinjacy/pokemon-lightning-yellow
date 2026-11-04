@@ -50,6 +50,7 @@ jobs:
           python3 tests/run_vendor_tests.py
           python3 tests/run_capture_tests.py
           python3 tests/run_blaine_tests.py
+          python3 tests/run_ranger_tests.py
           python3 scripts/check-pewter-museum-trivia.py
       - name: Check out independent unchanged upstream baseline
         if: matrix.target == 'upstream-baseline'
@@ -81,7 +82,7 @@ jobs:
           dpkg-query -W libmgba-dev
       - name: Execute ROM integration tests in mGBA
         if: matrix.target == 'modified'
-        timeout-minutes: 10
+        timeout-minutes: 15
         run: python3 tests/emulator/run.py
       - name: Verify original upstream SHA-1 twice from clean
         if: matrix.target == 'upstream-baseline'

@@ -1,0 +1,265 @@
+{
+  "authority": "implementation/saffron-ranger-base-camp.md merged#21; November3 owner approvals",
+  "base": "700587a805e9f67cedec10d8778f64ade3d3f3b8",
+  "trainers": [
+    {
+      "id": 743,
+      "constant": "TRAINER_RANGER_CAMP_1",
+      "name": "1",
+      "double": false,
+      "bag": [
+        "SUPER_POTION"
+      ],
+      "party": [
+        {
+          "species": "PERSIAN",
+          "level": 34,
+          "moves": [
+            "RETURN",
+            "FAINT_ATTACK",
+            "SCREECH",
+            "BITE"
+          ],
+          "ability": "DEFAULT"
+        },
+        {
+          "species": "ARCANINE",
+          "level": 35,
+          "moves": [
+            "FLAME_WHEEL",
+            "TAKE_DOWN",
+            "BITE",
+            "DIG"
+          ],
+          "ability": "INTIMIDATE"
+        }
+      ]
+    },
+    {
+      "id": 744,
+      "constant": "TRAINER_RANGER_CAMP_2",
+      "name": "2",
+      "double": false,
+      "bag": [
+        "SUPER_POTION"
+      ],
+      "party": [
+        {
+          "species": "FEAROW",
+          "level": 35,
+          "moves": [
+            "AERIAL_ACE",
+            "STEEL_WING",
+            "RETURN",
+            "PURSUIT"
+          ],
+          "ability": "KEEN_EYE"
+        },
+        {
+          "species": "NOCTOWL",
+          "level": 36,
+          "moves": [
+            "CONFUSION",
+            "HYPNOSIS",
+            "REFLECT",
+            "AERIAL_ACE"
+          ],
+          "ability": "INSOMNIA"
+        }
+      ]
+    },
+    {
+      "id": 745,
+      "constant": "TRAINER_RANGER_CAMP_3",
+      "name": "3",
+      "double": false,
+      "bag": [
+        "SUPER_POTION"
+      ],
+      "party": [
+        {
+          "species": "GOLDUCK",
+          "level": 36,
+          "moves": [
+            "SURF",
+            "CONFUSION",
+            "CALM_MIND",
+            "DISABLE"
+          ],
+          "ability": "CLOUD_NINE"
+        },
+        {
+          "species": "MANECTRIC",
+          "level": 37,
+          "moves": [
+            "THUNDERBOLT",
+            "THUNDER_WAVE",
+            "BITE",
+            "QUICK_ATTACK"
+          ],
+          "ability": "STATIC"
+        }
+      ]
+    },
+    {
+      "id": 746,
+      "constant": "TRAINER_RANGER_CAMP_4",
+      "name": "4",
+      "double": false,
+      "bag": [
+        "SUPER_POTION"
+      ],
+      "party": [
+        {
+          "species": "HOUNDOOM",
+          "level": 37,
+          "moves": [
+            "SUNNY_DAY",
+            "FLAMETHROWER",
+            "SOLAR_BEAM",
+            "BITE"
+          ],
+          "ability": "FLASH_FIRE"
+        },
+        {
+          "species": "ARCANINE",
+          "level": 38,
+          "moves": [
+            "FLAME_WHEEL",
+            "TAKE_DOWN",
+            "DIG",
+            "IRON_TAIL"
+          ],
+          "ability": "INTIMIDATE"
+        }
+      ]
+    },
+    {
+      "id": 747,
+      "constant": "TRAINER_RANGER_PARK",
+      "name": "PARK",
+      "double": true,
+      "bag": [
+        "FULL_RESTORE"
+      ],
+      "party": [
+        {
+          "species": "NOCTOWL",
+          "level": 39,
+          "moves": [
+            "REFLECT",
+            "HYPNOSIS",
+            "PSYCHIC",
+            "AERIAL_ACE"
+          ],
+          "ability": "INSOMNIA"
+        },
+        {
+          "species": "MANECTRIC",
+          "level": 39,
+          "moves": [
+            "THUNDERBOLT",
+            "BITE",
+            "QUICK_ATTACK",
+            "PROTECT"
+          ],
+          "ability": "STATIC"
+        },
+        {
+          "species": "GOLDUCK",
+          "level": 40,
+          "moves": [
+            "SURF",
+            "ICE_BEAM",
+            "CONFUSION",
+            "PROTECT"
+          ],
+          "ability": "CLOUD_NINE"
+        },
+        {
+          "species": "ARCANINE",
+          "level": 41,
+          "moves": [
+            "FLAME_WHEEL",
+            "TAKE_DOWN",
+            "HELPING_HAND",
+            "PROTECT"
+          ],
+          "ability": "INTIMIDATE"
+        }
+      ]
+    }
+  ],
+  "gifts": [
+    {
+      "species": "ARCANINE",
+      "level": 30,
+      "moves": [
+        "BLAZE_KICK",
+        "BITE",
+        "TAKE_DOWN",
+        "ODOR_SLEUTH"
+      ],
+      "ot": "PARK"
+    },
+    {
+      "species": "NOCTOWL",
+      "level": 30,
+      "moves": [
+        "EXTRASENSORY",
+        "HYPNOSIS",
+        "REFLECT",
+        "AERIAL_ACE"
+      ],
+      "ot": "PARK"
+    },
+    {
+      "species": "GOLDUCK",
+      "level": 30,
+      "moves": [
+        "MUDDY_WATER",
+        "CONFUSION",
+        "CALM_MIND",
+        "DISABLE"
+      ],
+      "ot": "PARK"
+    }
+  ],
+  "pc": {
+    "x": 1,
+    "y": 12,
+    "before": 13020,
+    "after": 13410
+  },
+  "dialogue": {
+    "Ranger1Intro": "We're Pok\u00e9mon Rangers! When Trainers get stranded in the wild, we're the ones who find them!\n\nLet's see how well you handle a rescue team!",
+    "Ranger1Defeat": "You've got some good instincts!",
+    "Ranger1After": "Arcanine can track a missing Trainer by scent, even through rough terrain. It's one of our most dependable rescue Pok\u00e9mon!",
+    "Ranger2Intro": "Our Flying Pok\u00e9mon patrol the skies, looking for Trainers who need help.\n\nThink you can handle an aerial rescue team?",
+    "Ranger2Defeat": "You spotted every opening!",
+    "Ranger2After": "Fearow covers enormous distances during the day. Noctowl takes over at night.\n\nSomeone's always watching out for Trainers!",
+    "Ranger3Intro": "Rivers, lakes, oceans... Trainers can get into trouble anywhere!\n\nOur Pok\u00e9mon train to handle even the toughest rescues!",
+    "Ranger3Defeat": "You're a strong Trainer!",
+    "Ranger3After": "Golduck is an incredible swimmer. It can reach stranded Trainers before anyone else.\n\nManectric helps us search along the shoreline!",
+    "Ranger4Intro": "Rangers have been protecting Trainers for generations!\n\nWe've earned our reputation by going where others can't. Show me what you've got!",
+    "Ranger4Defeat": "You've earned my respect!",
+    "Ranger4After": "Caves, mountains, storms... No matter where a Trainer falls, we do our best to bring them home.\n\nThat's what being a Ranger means!",
+    "ParkLore": "Welcome to the Pok\u00e9mon Ranger Headquarters!\n\nI'm Ranger Park. I've spent many years helping Trainers across Kanto.\n\nYou know, when a Trainer blacks out in the wild, they don't just wake up at a Pok\u00e9mon Center by magic!\n\nThat's our job! We find them, get them to safety, and make sure their Pok\u00e9mon receive treatment.\n\nWe do charge a rescue fee, but we work on a sliding scale. Usually, it's about half the money a Trainer has on hand.\n\nNobody gets left behind just because they're short on cash!",
+    "ParkChallenge": "Now, I've heard some impressive things about your journey.\n\nYou've got the makings of a fine Ranger yourself!\n\nHow about a battle? Show me what you've learned!",
+    "ParkLocked": "You've got potential, but I'd like you to train with my four Rangers first. Come back after you've defeated them all!",
+    "ParkDefeat": "Outstanding! You've got the courage and judgment of a true Ranger!",
+    "ParkBeforeGift": "That was an impressive battle!\n\nYou've got a real talent for working with Pok\u00e9mon.\n\nI think you'd make a fine Ranger someday!\n\nTake a look behind me. Those three Pok\u00e9 Balls contain Pok\u00e9mon we've trained for rescue work.\n\nI'd like you to take one along on your journey. Consider it a gift from all of us!",
+    "ParkAfterGift": "Excellent choice! That Pok\u00e9mon has helped us through countless rescue exercises.\n\nTake good care of it, and it'll take good care of you!\n\nRemember, a Ranger's greatest strength isn't power. It's knowing when someone needs help!",
+    "ParkNo": "No pressure! A good Ranger knows when they're ready.",
+    "ParkYes": "Excellent! Let's see how you handle a real rescue team!"
+  },
+  "technical_prompts": {
+    "NeedTwo": "Please bring two Pok\u00e9mon ready to battle.",
+    "GiftPrompt": "Would you like this {STR_VAR_1}?",
+    "GiftFull": "Your party is full. Use the PC to make room, then come back.",
+    "GiftLocked": "These Pok\u00e9mon are reserved until you defeat Ranger Park.",
+    "GiftTaken": "You have already received your Pok\u00e9mon.",
+    "GiftReceived": "Received {STR_VAR_1} from Ranger Park!",
+    "Identity": "Pok\u00e9mon Ranger Base Camp"
+  }
+}

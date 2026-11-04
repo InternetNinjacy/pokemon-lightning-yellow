@@ -3,8 +3,8 @@
   "updated": "2026-11-04",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "All audited PRs and PKM-008 Ponyta Lv30 are merged and tested. Next eligible feature: GYM-005 Ranger Base Camp (approved contract, implementation not started). Rival handoff remains explicitly BLOCKED; independent engine/weather/move and release tasks remain.",
-  "main_sha": "7284dc0aac833f751882826e339273a97694ce9e",
+  "current_focus": "GYM-005 Ranger Base Camp implemented and ready for review in unmerged PR#26. All13 host suites, Museum static, clean reproducibility and full native280245 assertions PASS. Required CI conclusions are linked from PR checks. Rival remains explicitly BLOCKED; all other tracked work and credit preserved.",
+  "main_sha": "700587a805e9f67cedec10d8778f64ade3d3f3b8",
   "drive_sync": {
     "status": "pending: no direct Drive writing tool available",
     "folder": "https://drive.google.com/drive/folders/1N_n0Ke48jBbdhUWSZWzwR6rpPFqpDUpl"
@@ -1999,16 +1999,28 @@
       "title": "Saffron Ranger Base Camp replacement for Fighting Dojo",
       "aliases": [],
       "effort": {
-        "earned": 0,
-        "remaining": 16,
+        "earned": 15,
+        "remaining": 1,
         "unit": "provisional relative planning point",
-        "confidence": "low",
+        "confidence": "medium",
         "history": [
           {
             "date": "2026-11-04",
             "earned": 0,
             "remaining": 16,
             "reason": "New explicit self-contained approved Ranger feature, separate from ordinary Gym teams and other item/events: four Singles/Park Double, three foreign gifts/PC, map/save/native acceptance. Provisional new workload; no duplicate prior work."
+          },
+          {
+            "date": "2026-11-04",
+            "earned": 15,
+            "remaining": 1,
+            "reason": "Implemented locked feature; all13 host suites and scoped native data368/UI3276/battles458 pass. Final full regression/CI/review evidence pending; no duplicate integration credit."
+          },
+          {
+            "date": "2026-11-04",
+            "earned": 15,
+            "remaining": 1,
+            "reason": "Full actual-ROM280245 assertions and clean reproducibility PASS; remaining point reserved for review/external acceptance. No other task credit changed."
           }
         ]
       },
@@ -2019,20 +2031,20 @@
       ],
       "status": {
         "design": "approved; final specification merged in#21, supersedes#20 filename",
-        "implementation": "not started",
-        "automated": "not executed",
-        "emulator": "not executed",
-        "pull_request": "spec#21 merged; implementation PR not created",
-        "merge": "spec only; gameplay not implemented"
+        "implementation": "implemented",
+        "automated": "all13 host suites, Museum static and clean SHA256 reproducibility PASS; required CI linked from PR checks",
+        "emulator": "full actual-ROM mGBA0.10.5 suite280245 assertions PASS; focused data368/UI3276/battles458 PASS",
+        "pull_request": "PR#26 open, ready for owner review",
+        "merge": "unmerged; explicit owner review required"
       },
-      "branch": null,
-      "commit": null,
-      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/21",
-      "ci_url": null,
+      "branch": "feature/saffron-ranger-base-camp",
+      "commit": "7c9e2f5e49dc65ec4b5bb04b6464f050c568713e",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/26",
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/26/checks",
       "blocker": null,
       "design_authority": "implementation/saffron-ranger-base-camp.md, final owner-approved November3 handoff; no design details invented",
-      "next_action": "Implement separately after existing stabilization: inspect actual dojo/PC/Trainer ability/friendship paths, retain exact dialogue, bag items, gift identity and approved layouts. No rival gameplay while blocked.",
-      "checkpoint": "2026-11-04 final handoff intake; no implementation credit"
+      "next_action": "Owner review of unmerged PR#26; preserve remaining1 point for review/external acceptance, not automatic merge.",
+      "checkpoint": "2026-11-04 complete local full-native acceptance; PR checks retain independent CI evidence"
     }
   ],
   "legacy_crosswalk": {
@@ -2102,7 +2114,8 @@
     "WRL-007": "Existing NPC script entry points run on actual maps; no manual full progression or actual MtMoon selection walk claimed. Original MtMoon choice script fingerprinted unchanged; native saved choice flags drive both gift cases.",
     "WRL-008": "Manual full progression, actual two-peer trade/hardware, flash power-loss injection, exhaustive quest-log replay and independent Shiny-summary visual approval unverified. Starter exclusivity awaits WRL-001; source preservation is not runtime story acceptance.",
     "BTL-006": "No manual full-game progression, actual two-peer/hardware/power interruption or exhaustive quest-log replay; not every13-ball success/failure/presentation is independently exercised. TwoIsland/TrainerTower stock scope and natural-Hail lifetime are explicit technical review boundaries.",
-    "WTH-003": "Narrow verified Snow bridge already counted under BTL-006; wider regional integration/restoration remains here, no duplicate completion claim."
+    "WTH-003": "Narrow verified Snow bridge already counted under BTL-006; wider regional integration/restoration remains here, no duplicate completion claim.",
+    "GYM-005": "Full native280245 suite and focused data/UI/battles PASS. Controlled player levels; no full manual balanced progression. Hardware/link peers, power interruption and exhaustive quest-log remain unverified. Owner review/merge pending; live CI evidence at PR#26 checks."
   },
   "effort_rules": "Provisional tracked scope. INT-004 credits combined build/repeatability/stack compatibility only; feature-specific scene/mechanics testing is counted under each feature. No double credit for parent merges. No merge/release authorization inferred.",
   "source_access": {
