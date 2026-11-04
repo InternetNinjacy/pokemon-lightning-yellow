@@ -41,6 +41,7 @@ jobs:
           python3 tests/run_split_tests.py
           python3 tests/run_rtc_tests.py
           python3 tests/run_evolution_tests.py
+          python3 tests/run_ponyta_tests.py
           python3 tests/run_pokedex_tests.py
           python3 tests/run_typing_tests.py
           python3 tests/run_wild_double_tests.py
