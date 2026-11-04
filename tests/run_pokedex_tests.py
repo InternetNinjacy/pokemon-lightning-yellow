@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from approved_ball_changes import prior_ball_source
 """Execute current mapping/count/list/flag code. UI drawing is not host-emulated."""
 from pathlib import Path
 import csv, hashlib, json, re, subprocess, tempfile
@@ -130,7 +131,7 @@ for name,types in fixture.items():
 
 preserved=json.loads(Path('tests/custom_dex_preserved.json').read_text())
 for path,expected_hash in preserved.items():
- actual=species_info.encode() if path=='src/data/pokemon/species_info.h' else Path(path).read_bytes()
+ actual=species_info.encode() if path=='src/data/pokemon/species_info.h' else prior_ball_source(path)
  if path=='include/global.h':
   # Only the reviewed 400-byte padding substitution is allowed; target ABI tests
   # separately prove that this does not change existing save offsets/size.

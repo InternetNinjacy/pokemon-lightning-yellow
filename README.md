@@ -29,6 +29,8 @@ live on the independent coordination branch; Drive synchronization remains pendi
 
 The [Mystery Pokémon Vendor Network](docs/MYSTERY_VENDOR_NETWORK.md) implements ten existing sellers, a unique ten-species pool, foreign OT Mystery and genuine90% Shiny purchases. It remains separate from pending starter integration.
 
+The approved [Poké Ball redesign](docs/POKE_BALL_REDESIGN.md) adds Wet/Dust/Snow capture conditions, Premier purchase rewards and Oak's initial Nest gift while preserving existing item IDs and shared artwork.
+
 ## Build entirely on GitHub
 
 No local Python, compiler, or development tools are required. Open this repository's
@@ -64,6 +66,7 @@ python3 tests/run_wild_double_tests.py
 python3 tests/run_daycare_tests.py
 python3 tests/run_world_reward_tests.py
 python3 tests/run_vendor_tests.py
+python3 tests/run_capture_tests.py
 make -j2
 python3 tests/emulator/run.py
 make clean

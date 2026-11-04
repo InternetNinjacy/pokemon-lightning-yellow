@@ -50,6 +50,7 @@ static void waitAction(void){
   if(controller(0)==SYM_HandleInputChooseAction)break;
   frames(1,(i%12)<3?1:0);
  }
+ if(i==2400)fprintf(stderr,"Script=%08x exec=%08x move=%u\n",core->busRead32(core,SYM_gBattlescriptCurrInstr),core->busRead32(core,SYM_gBattleControllerExecFlags),core->busRead16(core,SYM_gCurrentMove));
  if(i==2400)fprintf(stderr,"Battle action timeout cb=%08x battleflags=%08x ctrl=%08x/%08x/%08x/%08x battlers=%u outcome=%u\n",core->busRead32(core,SYM_gMain+ABI_MAIN_CB2),core->busRead32(core,SYM_gBattleTypeFlags),controller(0),controller(1),controller(2),controller(3),core->busRead8(core,SYM_gBattlersCount),core->busRead8(core,SYM_gBattleOutcome));
  CHECK(i<2400);frames(3,0);
 }

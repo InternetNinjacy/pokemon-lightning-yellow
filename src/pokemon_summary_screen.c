@@ -1,4 +1,5 @@
 #include "global.h"
+#include "capture_rules.h"
 #include "move_categories.h"
 #include "gflib.h"
 #include "pokemon.h"
@@ -4128,7 +4129,7 @@ static void CreateBallIconObj(void)
     else
         ballItemId = 0;
 
-    ballId = ItemIdToBallId(ballItemId);
+    ballId = ItemIdToBallId(CaptureCodeToBallItem(ballItemId));
     LoadBallGfx(ballId);
 
     sMonSummaryScreen->ballIconSpriteId = CreateSprite(&gBallSpriteTemplates[ballId], 106, 88, 0);
