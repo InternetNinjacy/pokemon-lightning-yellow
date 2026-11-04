@@ -1,10 +1,10 @@
 # Pokémon Lightning Yellow — Project Dashboard
 
-Canonical branch: `docs/project-coordination`. Updated 2026-11-04.
+Canonical branch: `main` (old coordination branch is historical). Updated 2026-11-04.
 
-Overall tracked scope: `[####------]` **40.38% complete /59.62% remaining** (214 earned +316 remaining provisional points;530 total).
+Overall tracked scope: `[####------]` **40.33% complete /59.67% remaining** (221 earned +327 remaining provisional points;548 total).
 
-Latest execution checkpoint: PR#16 finishes the approved typing corrections; source/test/CI evidence is below. PR#13 was previously owner-approved and merged only into vendor#12, not main. No new merge, auto-merge or release occurred.
+Latest checkpoint: all audited PRs merged to main via [#2](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/2), `93b62d6837e61a483f67d00e2a055f559dc33d53`. Full local/Actions276132 native assertions, eleven host suites and clean baseline/rebuild PASS. Museum reward repaired/tested; Ponyta Lv30 PKM-008 now has12 host suites/35 focused native PASS with final CI pending. Auto-merge remains enabled. New Ranger16-point workload and Ponyta2-point gap increase total530→548; all old earned work retained.
 
 These are effort-weighted estimates of tracked work, not elapsed hours or release certification. Design, code, automated tests, emulator checks, review and merge are separate dimensions in [project-tracking.json](project-tracking.json). Adding scope changes the denominator without erasing earned work. Shared work is counted once; another regression run does not earn duplicate feature or integration credit.
 
@@ -12,13 +12,13 @@ Previous checkpoint: [PR #11](https://github.com/InternetNinjacy/pokemon-lightni
 
 | Area | Progress | Complete / remaining | Earned / remaining effort |
 |---|---|---|---|
-| PKM — Pokédex, species and evolution | `[#########-]` | 92% /8% | 48 /4 |
+| PKM — Pokédex, species and evolution | `[#########-]` | 91% /9% | 49 /5 |
 | BTL — Moves, types and battle mechanics | `[####------]` | 35% /65% | 48 /88 |
 | TIM — RTC, time of day and lighting | `[###-------]` | 33% /67% | 16 /32 |
 | WTH — Overworld and battle weather | `[----------]` | 0% /100% | 0 /64 |
 | DAY — Daycare, breeding and Shiny eggs | `[##########]` | 97% /3% | 31 /1 |
-| GYM — Gyms, trainers and important battles | `[----------]` | 0% /100% | 0 /40 |
-| WRL — Maps, encounters, items and story | `[####------]` | 37% /63% | 35 /59 |
+| GYM — Gyms, trainers and important battles | `[----------]` | 4% /96% | 2 /54 |
+| WRL — Maps, encounters, items and story | `[####------]` | 41% /59% | 39 /55 |
 | INT — Integration, testing and release readiness | `[######----]` | 56% /44% | 36 /28 |
 
 Historical vendor checkpoint: [PR#12](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/12) implements the Mystery Vendor Network at `92a0600d819fe818f948e8d72bd1591531b4a07c`, stacked on unchanged#11. Eight host suites, full mGBA273355, clean repeatability and final Actions PASS (exact evidence below/in ledger). Separate review; no merge. Vendor adds20 provisional points:19 earned,1 pending starter integration. Denominator504→524, existing174 earned retained→193; repeated regression earns no duplicate integration credit. These estimates are not whole-game completion.
@@ -216,3 +216,22 @@ Museum#14's paid-area placement is repaired and native1307 acceptance passed.
 Blaine actual battle-entry/immunity46 checks also pass. Combined full CI and
 remaining merges are underway; no extra effort credit recorded before that gate.
 Older no-merge/unintegrated statements above are historical checkpoints.
+
+
+## Current effective consolidation / next work
+
+All audited feature/document PRs are merged; the original split PR2 is the final
+consolidation into main. [Actions41765403411](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41765403411) PASS; native276132, Museum1307 and Blaine46 focused assertions. Recovery tag `recovery/main-before-consolidation-20261104` is pushed. Older “unmerged” statements above are retained historical snapshots, not current blockers.
+
+| Task | Current effective status | Remaining effort | Authority |
+|---|---|---|---|
+| WRL-004-MUSEUM | merged; actual paid exhibit11,4 and full quiz/save/Shiny hatch/evolution acceptance PASS | 0 for Museum;12 other WRL-004 points retained | PR14 / docs/PEWTER_MUSEUM_TRIVIA.md |
+| GYM-004 | merged; native refusal/Double entry/leads/immunity PASS; full victory/badge/TM38/revisit still outstanding | 1 | PR15; integration Actions above |
+| PKM-008 | approved Ponyta Lv30 implemented;12 host suites/35 native PASS; final CI pending | 1 | docs/PONYTA_LEVEL30_EVOLUTION.md |
+| GYM-005 | approved Ranger Base Camp spec merged; gameplay not implemented | 16 provisional | implementation/saffron-ranger-base-camp.md, PR21 supersedes20 |
+| GYM-002 rival | spec supplied/merged but explicitly BLOCKED; no gameplay implementation | within existing budget | implementation/main-rival-eight-battles.md |
+
+42 stable tasks,221 earned/327 remaining=548 points. The new denominator reflects
+new approved Ranger work plus the reconciled Ponyta gap, not lost progress.
+Direct Drive writing remains pending; specification exports and repo handoffs are
+available. All further feature work stays on topic branches.

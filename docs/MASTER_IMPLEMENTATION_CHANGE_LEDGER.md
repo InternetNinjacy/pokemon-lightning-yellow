@@ -505,3 +505,64 @@ Combined full-suite CI and remaining merges are pending at this checkpoint.
 No additional earned points yet; current214/530 retained until combined acceptance.
 Drive synchronization remains pending; supplied exports are available. Current
 feature details and test commands are in docs/PEWTER_MUSEUM_TRIVIA.md.
+
+
+## 2026-11-04 — DES-010 executed consolidation / current effective main
+
+All audited open PRs were merged under the owner's explicit instruction. Docs8,
+18,19,20,21 are merged; rival19 retains BLOCKED, Ranger21 supersedes the20
+filename with implementation/saffron-ranger-base-camp.md (specified, not implemented).
+Typing16 merged into vendor, Museum14 then merged into that stack. PRs12,11,10,
+9,7,6,5,4,3 were merged in dependency order, validating every intermediate Git
+tree matched the tested8daf2568 source. Final PR2 merged to main at
+93b62d6837e61a483f67d00e2a055f559dc33d53; its preview tree exactly matched the
+validated gameplay plus reviewed documentation. Source history is retained.
+Repository allow_auto_merge remained true throughout; absent per-PR requests
+were never a repository-setting change. Recovery tag
+recovery/main-before-consolidation-20261104 was pushed before gameplay integration.
+
+Current effective gameplay includes the split/RTC/evolutions/custom252/Doubles,
+independent daycare, fossils, vendors, Poké Balls,35-rule species typings, Blaine
+and repaired Museum reward. All11 host suites plus Museum static checks, local
+and [Actions41765403411](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41765403411)
+full276132 native assertions PASS. Modified clean repeatability and unchanged
+pinned-upstream SHA-1 jobs both PASS. Measured combined ROM SHA256:
+2c8a61840cd4a0bafc21d60d90395c1756509e494a9197a08c5e9b2840f9e9bb.
+No binary artifacts committed/uploaded. Museum1307 and Blaine46 focused checks
+are separate results, not added into the full assertion count. Full-world,
+physical hardware/link and Blaine victory/badge/TM38/revisit remain outstanding.
+
+Canonical tracker/ledger now live on main; the former coordination branch is
+historical. Direct Drive synchronization remains pending, not specification
+availability. Museum earns4 of WRL-004's existing16 points (12 other points
+retained); Blaine earns2 of its3 (1 extended test point retained). No double
+credit for repeated regression, Pidgeot or existing integrations. Prior214 earned
+points survive, now220 before the separately new Ponyta/Ranger tasks.
+
+## 2026-11-04 — PKM-008 Ponyta / GYM-005 Ranger intake
+
+Approved Ponyta Lv30 was explicitly identified in supplied November2 Evolution
+& Item Supply Source Parity section3 (SHA2566a39563906572b3ab6870e754473a5a4daef593c3783c92d80a0eaf02322b237).
+Actual main still used40. Implemented only that threshold in
+src/data/pokemon/evolution.h on feature/ponyta-level30-evolution, code commit
+eb18e780. No other evolution, species stat/ability/learnset or save-layout change.
+Exact before/after and base-table digest live in approved_ponyta_delta.json;
+prior_ponyta_source reverses that single delta for older frozen hashes. Host
+boundary/Everstone checks join run_evolution_tests.py; dedicated static exact-file
+check run_ponyta_tests.py joins Actions. Native ponyta.c uses actual target lookup,
+B cancellation and successful evolution/Dex/flash scenes before National Dex.
+Build,12 host suites/Museum static and35 focused native assertions PASS. Full
+final Actions pending before merge. Source rollback: revert threshold/test commit;
+no save migration. Existing eligible Ponyta evolve on a later normal level-up,
+not forcibly on save loading. Broader Ponyta balancing remains separate.
+
+Ranger final contract21 adds distinct GYM-005 with16 provisional pending points:
+four regular Singles, Park Double, three exact foreign PARK gifts and PC/map/save
+acceptance. It excludes ordinary Gym/class work and other WRL-004 events; no
+implementation or test credit from merging a spec. Rival remains explicitly held
+by its own incomplete-design handoff. No questions are reopened from older exports.
+
+42 permanent tasks: prior530-point denominator +2 Ponyta +16 Ranger =548.
+221 earned/327 remaining =40.33% at the local-acceptance checkpoint; Ponyta retains
+1 final-CI point. All previous earned work remains; denominator growth explains
+the provisional percentage change. No duplicate integration credit.
