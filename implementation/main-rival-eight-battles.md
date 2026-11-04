@@ -53,6 +53,13 @@ Source files: src/data/trainer_parties.h, src/data/trainers.h, src/data/pokemon/
 
 TM source of truth: https://docs.google.com/document/d/1EHByhspPMrn_H0ard-wbdZLRqInZVschQqXTWSiP5fY/edit
 
+
+## Additional read-only source-parity findings (2026-11-04)
+
+All seven pre-Champion original rival locations have verified event script paths: `data/maps/PalletTown_ProfessorOaksLab/scripts.inc`, `data/maps/Route22/scripts.inc` (early and late), `data/maps/CeruleanCity/scripts.inc`, `data/maps/SSAnne_2F_Corridor/scripts.inc`, `data/maps/PokemonTower_2F/scripts.inc`, and `data/maps/SilphCo_7F/scripts.inc`. All contain `VAR_STARTER_MON` conditional branches into Kanto-starter trainer IDs; preserving the correct battle execution, optionality, and event flags requires explicitly mapping the Pikachu starter path. The final Champion event-script path remains to be located; `src/data/trainer_parties.h` confirms separate `sParty_ChampionFirst*` and `sParty_ChampionRematch*` families and `src/data/trainers.h` confirms distinct `TRAINER_CHAMPION_FIRST_*` and `TRAINER_CHAMPION_REMATCH_*` IDs. Only the first Champion is approved.
+
+Reviewed the canonical TM & Move Register: TM02 Dragon Claw, TM26 Earthquake, TM35 Flamethrower, and TM36 Sludge Bomb are preserved, matching source TM eligibility for the approved rival party moves. Final reconciliation still needs any later approved overrides and game implementation status. Held-item sets are owner-frozen; do not infer Trainer bag healing items. No source code/build/emulator tests performed. This spec stays BLOCKED for technical dependencies, not incomplete rival roster choices.
+
 ## Validation before Ready
 Check exact encounter party, order, level and moves; Pikachu story route; wild/player Dratini family learnsets; ordinary Lv55 final evolutions; legal TM/abilities; event/save/regressions; and emulator-test the moderate first four and hard final four. Do not weaken baseline checks. Follow AGENTS.md and implementation/README.md.
 
