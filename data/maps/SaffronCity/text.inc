@@ -67,7 +67,7 @@ SaffronCity_Text_CitySign::
     .string "Shining, Golden Land of Commerce$"
 
 SaffronCity_Text_FightingDojo::
-    .string "FIGHTING DOJO$"
+    .string "POKéMON RANGER BASE CAMP$"
 
 SaffronCity_Text_GymSign::
     .string "SAFFRON CITY POKéMON GYM\n"

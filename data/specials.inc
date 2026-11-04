@@ -456,4 +456,5 @@ gSpecials::
 	def_special MysteryVendorStatus
 	def_special PurchaseMysteryPokemon
 	def_special ScriptGiveShinyFeebasEgg
+	def_special RangerGiveGift
 gSpecialsEnd::

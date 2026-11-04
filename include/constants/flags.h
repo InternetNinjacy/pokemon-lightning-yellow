@@ -816,8 +816,8 @@
 #define FLAG_MYSTERY_SPECIES_08               0x311
 #define FLAG_MYSTERY_SPECIES_09               0x312
 #define FLAG_OAK_NEST_BALLS_PENDING 0x313
-#define FLAG_0x314               0x314
-#define FLAG_0x315               0x315
+#define FLAG_RANGER_CAMP_GIFT_RECEIVED                  0x314
+#define FLAG_RANGER_PARK_INTRO_SEEN                     0x315
 #define FLAG_0x316               0x316
 #define FLAG_0x317               0x317
 #define FLAG_0x318               0x318
