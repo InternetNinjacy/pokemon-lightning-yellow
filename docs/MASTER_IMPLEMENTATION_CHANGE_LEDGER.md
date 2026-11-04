@@ -370,3 +370,94 @@ Preserved all33 permanent prior IDs/aliases/history and added WRL-006, WRL-007, 
 - Later appendices resolve weather inheritance/harbors/RTC fallback, Celadon Trainer7 Castform slot, Route5 Ditto/Skitty/Rattata roster,41/41 class pools and Giovanni cumulative4/5/6. Precise palette colors, individual battle/encounter balancing, some shop/gift details and SOW implementation HOLD remain distinct. No invented settings.
 - Recorded owner-authorized PR#13 merge d54f7a8e into vendor#12 only; historical unmerged#13 notes superseded, main/other PRs unchanged. Museum#14 independent main-based draft, feature build passes/baseline fails and combined integration is unverified; only read its source diff, no change made to that PR.
 - Existing39 stable tasks and208 earned points preserved; add PKM-0070 earned/6 pending for newly reconciled24-row correction/test scope.40 tasks530 points,208/530=39.25%; no completion credit from source availability or duplicated existing bridge work. Drive sync remains pending. Next: isolated typing implementation/verification/unmerged PR on d54f7a8e. No merge/auto-merge/release authority for this task.
+
+
+## 2026-11-04 — PKM-007 approved typing corrections; source/tracker reconciliation
+
+**Current Effective Version — species typing:** supplied November2 252-species
+matrix PartA plus later Master Plan approvals (lines81/878/1208/1211) and the
+owner's explicit Gyarados Water/Dragon confirmation.35 explicit rules are effective;
+24 differed from the actual owner-merged vendor/ball source. Historical PKM-003's
+twelve-rule snapshot is retained; Pinsir Bug/Steel is superseded by pure Bug.
+This version is implemented on PR#16, not main. Other approved species stats,
+abilities and learnsets are separately scoped and not silently implemented.
+
+**Before → after:** Rock/Ground Geodude/Graveler/Golem/Onix/Rhyhorn/Rhydon/Larvitar/
+Pupitar → pure Rock; Steel/Ground Steelix → pure Steel; Bug/Steel Pinsir → pure Bug;
+pure Fire Vulpix/Ninetales → Fire/Ghost; Normal/Flying Pidgey/Pidgeotto/Pidgeot,
+Spearow/Fearow, Farfetch'd, Doduo/Dodrio, Taillow/Swellow → pure Flying;
+Normal/Flying Hoothoot/Noctowl → Flying/Psychic. Eleven already-correct rules,
+including Gyarados Water/Dragon, remain unchanged. No elemental-chart, move,
+trainer, encounter, ability, stat, learnset, evolution, roster-number or ID change.
+
+**References/status:** `feature/approved-typing-corrections`, commits
+`dfd3b2bc9eeee719b254e60f3f4afbb4b9015824` and `b1ff74d0e129815baf45633d54073f24af4087d0`;
+[PR#16](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/16)
+targets `feature/mystery-vendor-network` at d54f7a8e85d38b8fa304399dcb4d14778396d5cd.
+Main remains e04252ea0783510000e634486c0f2526a736f506. Existing owner-approved
+PR#13 merge into vendor is preserved. This task does not merge, auto-merge,
+retarget or edit other feature PRs. PR#16 is ready for scoped review.
+
+**Files/systems:** sole production file `src/data/pokemon/species_info.h` (24 type
+pairs). Fixture `tests/specifications/approved_type_overrides.json` expands to35;
+`historical_type_overrides_pr9.json` preserves its original snapshot;
+`approved_typing_delta.json` records all24 before/after pairs;
+`typing_preserved.json` freezes parent full-file/non-type digests.
+`tests/approved_typing_changes.py` explicitly reverses only this approved delta
+when older daycare/vendor preservation tests run; expected historical hashes stay
+unchanged. Updated `run_pokedex_tests.py`, `run_daycare_tests.py`,
+`run_vendor_tests.py`; new `run_typing_tests.py`; native
+`tests/emulator/battle_categories.c`/`run.py`; CI, AGENTS, README and
+`docs/TYPING_CORRECTIONS.md`. Canonical tracking/reconciliation lives separately
+on this documentation branch with the verbatim40-file source manifest.
+
+**Executed tests:** all10 `tests/run_*tests.py` PASS (capture, daycare, evolution,
+Pokédex, RTC, split, typing, vendor, wild-double, world-reward).35 authoritative
+pairs and exact24-delta whole-file reversal PASS; all other species fields are
+byte-preserved. Full local mGBA0.10.5 routine/UI/scene/save regression PASS,
+274765 assertions on the modified ROM; final test-harness addition separately
+PASS,46 focused summary assertions. New runtime coverage: all35 real
+party→battle types;17 controlled battle/AI effectiveness checks;9 STAB checks;
+six actual summary screens load approved mono/dual type icon data. Existing
+native evolution, RTC, wild captures, independent daycare, vendor, fossils,
+Poké Ball/UI/weather and flash save/load tests remain passing. Route5 native
+10000-egg sample5066 Shiny/4934 non-Shiny remains unchanged. No fabricated
+probability or runtime result is substituted for a static audit.
+
+**Build/CI:** `make -j2`, `make clean`, `make -j2`, and
+`sha256sum --check /tmp/typing-first-build.sha256` PASS. Both builds produced
+`35c18c2c45f305691e3523724e6a7a7bc10a43c373db0cf993b8566d58fbc0c0`;
+this measured reproducibility result is not a new expected vanilla checksum.
+[Final-head Actions](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41760396005) SUCCESS: modified build/host/full-ROM mGBA and unchanged
+pinned-upstream clean SHA-1 comparison. Earlier intermediate-head runs were
+superseded/cancelled, not represented as successes. EWRAM261052/262144 and
+IWRAM29824/32768 bytes are unchanged; no new RAM/save fields or artwork.
+No ROM/save/generated binary is committed or uploaded as an artifact.
+
+**Compatibility/limits:** types are derived from species data, so saved Pokémon
+need no layout migration; identity/moves and existing encrypted save structures
+are preserved. Existing full flash regressions pass; this is not an old-ROM
+cross-version save comparison or full-world progression certification. Real link
+peers/physical cartridges and every visual state remain unverified. Matching game
+data is required for link battles. Separate Sandstorm residual policy and future
+stats/abilities/learnsets remain unfinished, not imported into this data-only patch.
+Strict global species audit still has281 authored off-Dex findings; no claim of
+global compliance. External Museum#14 and Blaine#15 are not integrated/tested in
+combination here. PR15 duplicates Pidgeot's approved pair, touches shared tests/
+workflow and currently fails compiling CinnabarIsland_Gym/text.inc:12 (backslash
+mapping) at inspected head9b6563a2/run41760575099; older tracker claims that no
+Blaine implementation exists are superseded. No changes made to that PR.
+
+**Source/tracker reconciliation:** all40 TXT export checksums verified; no new
+copy requested. Corrected stale unavailable-document authority/blocker notes;
+actual unresolved palette, encounter-distribution, held-feature and integration
+gaps are retained. Direct Drive synchronization still pending; availability of
+snapshot specifications is not authenticated live Drive writing.
+
+**Progress/recovery:** PKM-007 six pending points → six earned; all39 previous
+IDs/208 earned retained.40 tasks,214 earned+316 remaining=530 provisional points,
+40.38% overall. PKM area48 earned/4 remaining=92.31%. No duplicated integration or
+external Pidgeot credit. Rollback: revert the two topic commits (or eventual merge)
+while preserving the vendor/ball parent; no save conversion needs reversal.
+
+Final-head Actions native result: **274791 mGBA assertions PASS**, including all six new summary screens in the full run. Local full274765 and focused46 above are separate executed results, not added together as a CI count.

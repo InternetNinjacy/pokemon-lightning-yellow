@@ -2,9 +2,9 @@
 
 Canonical branch: `docs/project-coordination`. Updated 2026-11-04.
 
-Overall tracked scope: `[####------]` **39.25% complete /60.75% remaining** (208 earned +322 remaining provisional points;530 total).
+Overall tracked scope: `[####------]` **40.38% complete /59.62% remaining** (214 earned +316 remaining provisional points;530 total).
 
-Previous execution checkpoint: [PR#13](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/13) implements the approved Poké Ball system at `ad86d58b0c0dec7117ffa524ae4a66926b92cd88`; nine host suites/full mGBA274675/clean rebuild/Actions PASS. The owner's DES-009 instruction removes readiness stops for finalized work. No merge or release; exact scope/limits below and in ledger.
+Latest execution checkpoint: PR#16 finishes the approved typing corrections; source/test/CI evidence is below. PR#13 was previously owner-approved and merged only into vendor#12, not main. No new merge, auto-merge or release occurred.
 
 These are effort-weighted estimates of tracked work, not elapsed hours or release certification. Design, code, automated tests, emulator checks, review and merge are separate dimensions in [project-tracking.json](project-tracking.json). Adding scope changes the denominator without erasing earned work. Shared work is counted once; another regression run does not earn duplicate feature or integration credit.
 
@@ -12,7 +12,7 @@ Previous checkpoint: [PR #11](https://github.com/InternetNinjacy/pokemon-lightni
 
 | Area | Progress | Complete / remaining | Earned / remaining effort |
 |---|---|---|---|
-| PKM — Pokédex, species and evolution | `[########--]` | 81% /19% | 42 /10 |
+| PKM — Pokédex, species and evolution | `[#########-]` | 92% /8% | 48 /4 |
 | BTL — Moves, types and battle mechanics | `[####------]` | 35% /65% | 48 /88 |
 | TIM — RTC, time of day and lighting | `[###-------]` | 33% /67% | 16 /32 |
 | WTH — Overworld and battle weather | `[----------]` | 0% /100% | 0 /64 |
@@ -25,13 +25,19 @@ Historical vendor checkpoint: [PR#12](https://github.com/InternetNinjacy/pokemon
 
 ## Verified repository and dependency stack
 
-Main remains `e04252ea0783510000e634486c0f2526a736f506`. Only PR #1 is merged. Stack: main → #2 split → #3 RTC → #4 evolution → #5 evolution mechanics → #6 custom252 → #7 wild doubles → #9 stabilization → #10 Route 5 → #11 fossils/audit → #12 vendors → #13 Poké Balls. PRs #3–#5 remain drafts; #2, #6, #7, #9, #10 and #11 are open for review. No parent was merged, retargeted or rewritten. Existing internal merge commits do not mean their GitHub PRs were merged.
+Main remains `e04252ea0783510000e634486c0f2526a736f506`. PR#1 is merged into main; PR#13 is separately owner-approved and merged only into vendor#12 (d54f7a8e), not main. Current stack: main → #2 split → #3 RTC → #4 evolution → #5 mechanics → #6 custom252 → #7 doubles → #9 stabilization → #10 daycare → #11 fossils → #12 vendors (including #13 balls) → #16 typing. Independent #14 Museum targets main; #15 Blaine targets vendor#12. Neither is integrated here. No new merge, retarget or rewrite occurred in this task.
 
 [PR #8](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/8) independently targets main and holds only coordination documents. Gameplay and canonical tracking are on separate branches. Prior CI results certify their exact heads, not future combinations.
 
+## Current verified checkpoint — PKM-007
+
+[PR#16](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/16), `feature/approved-typing-corrections` at `b1ff74d0e129815baf45633d54073f24af4087d0`: exactly24 type pairs corrected; all35 effective explicit rules validated. Ten host suites, full mGBA274765 assertions,46 focused summary assertions, repeatable clean ROM hash and [final Actions](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41760396005) PASS. Types-only production scope; no merge/auto-merge. [Source reconciliation](SPECIFICATION_RECONCILIATION_2026-11-04.md) and manifest distinguish supplied specifications from pending live Drive sync. Historical entries below are retained snapshots and superseded by this checkpoint where they conflict.
+
+PKM-007 `[##########]` **100% scoped implementation/automated acceptance /0% remaining**; merge is separately unapproved. Six earned points replace six pending points; all previous earned work is retained, no duplicated integration credit. Overall214/530=40.38%; full-game release certification is not implied.
+
 ## Task inventory
 
-Stable IDs, aliases, authorities, refs, acceptance dimensions and estimate histories remain in [project-tracking.json](project-tracking.json). All38 previous IDs survive; WRL-008 brings the registry to39. Q01–Q08 mapping awaits reading/reconciliation of the supplied Work Queue export.
+Stable IDs, aliases, authorities, refs, acceptance dimensions and estimate histories remain in [project-tracking.json](project-tracking.json). All39 previous IDs survive; PKM-007 brings the registry to40. Q01–Q08 mapping awaits reading/reconciliation of the supplied Work Queue export.
 
 ### PKM — Pokédex, species and evolution
 
@@ -43,7 +49,7 @@ Stable IDs, aliases, authorities, refs, acceptance dimensions and estimate histo
 | PKM-004 Roster-aware pre-National evolution access | implemented; scoped automated acceptance passed; Owner review; do not merge without separate approval | PKM-001 | 0 | [PR](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/9); [CI](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41376878452) |
 | PKM-005 Expanded Dex/evolution acceptance | partial acceptance; remaining coverage explicitly recorded; Full overworld Bag evolution navigation and a real link-trade peer remain unverified. | PKM-003, PKM-004, TIM-002 | 2 | [PR](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/9); [CI](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41376878452) |
 | PKM-006 Global world roster eligibility audit and guard | audit/CI no-new-findings guard implemented; global compliance BLOCKED; Audit reference roles and use approved substitutions only; no invented253rd species/off-Dex exemption; preserve SOW HOLD. | PKM-001, WRL-002, GYM-001 | 2 | [Source reconciliation](SPECIFICATION_RECONCILIATION_2026-11-04.md); Strict audit retains281 authored off-Dex occurrences plus reference-role review. Exact approved replacements/balancing need reconciliation; stationary specifications are available but explicitly held. |
-| PKM-007 Remaining approved species typing corrections | ready; begins after reconciliation checkpoint; Create isolated branch on owner-merged vendor head d54f7a8e; change only24 type pairs, preserve all other species fields; run host/native/full regression/build/CI and unmerged PR. | PKM-003 | 6 | [Source reconciliation](SPECIFICATION_RECONCILIATION_2026-11-04.md); No missing-export blocker |
+| PKM-007 Remaining approved species typing corrections | implemented; scoped tests PASS; owner review, no merge | PKM-003 | 0 | [PR#16](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/16); [CI](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41760396005);24 changes/35 effective rules, all other fields preserved |
 
 ### BTL — Moves, types and battle mechanics
 
@@ -88,7 +94,7 @@ Stable IDs, aliases, authorities, refs, acceptance dimensions and estimate histo
 | GYM-001 Approved gyms and trainers | not started; Use final Gym handoff and41-class final handoff; implement only exact complete battle sets after their engine dependencies; no invented teams. | — | 17 | [Source reconciliation](SPECIFICATION_RECONCILIATION_2026-11-04.md); Final individual levels/moves for many trainers remain unassigned; Castform replacements supersede Swinub/Staryu. Eligibility pools do not assign510 non-Gym parties. Exports are available. |
 | GYM-002 Leaders, rivals and important battles | not started; Preserve latest cumulative Giovanni roster; reconcile detailed earlier leaders and pending specific battle configurations. | — | 18 | [Source reconciliation](SPECIFICATION_RECONCILIATION_2026-11-04.md); Some late-leader/rival/Elite Four exact levels/moves/items are not finalized. Giovanni4/5/6 cumulative Tyranitar-ace parties are locked; trainer revival AI needs technical implementation, not an invented substitute. |
 | GYM-003 Exactly one Celadon trainer Castform assignment | not started; Map approved seventh Celadon trainer slot to source ID and await its actual level/moves; retain Forecast/GenIII forms. | PKM-001 | 2 | [Source reconciliation](SPECIFICATION_RECONCILIATION_2026-11-04.md); Castform level/moves and ordinary trainer balancing remain unassigned; the Celadon trainer slot is already approved, not missing. |
-| GYM-004 Blaine corrected five-member Double Battle | not implemented; actual source still original FireRed four-member Single Battle; Preserve five approved species and seven ordinary Singles teams; reconcile exact battle configuration without changing confirmed Gyarados typing. | PKM-001 | 3 | [Source reconciliation](SPECIFICATION_RECONCILIATION_2026-11-04.md); Exact levels/moves/items and any requirement for Ground-immune Gyarados are not finalized. Water/Dragon is settled and provides no Flying immunity; no substitute ability/item invented. |
+| GYM-004 Blaine Double Battle | external PR#15 implements newer Donphan/Pidgeot roster; not included here; reconcile latest handoff and combined tests | PKM-001, PKM-007 shared Pidgeot change | 3 | [PR#15](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/15); shared workflow/Pokedex tests and trainer preservation require integration; no duplicate typing credit |
 
 ### WRL — Maps, encounters, items and story
 
@@ -110,7 +116,7 @@ Stable IDs, aliases, authorities, refs, acceptance dimensions and estimate histo
 | INT-001 Pinned unchanged FireRed baseline | implemented in baseline; Preserve and rerun relevant regression tests | — | 0 | [PR](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/1) |
 | INT-002 Shared Actions and mGBA infrastructure | implemented on unmerged stack; Preserve and rerun relevant regression tests | — | 0 | [PR](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/4); [CI](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/40392817403) |
 | INT-003 Audits, durable dashboard, ledger and Drive sync | canonical dashboard and append-only ledger published in #8; Drive sync pending; Keep updating this branch; synchronize when a supported Drive writer is available | — | 4 | [PR](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/8); Drive reader/writer absent. API domain settings do not authenticate Drive. |
-| INT-004 Combined integration acceptance | current nine-host/clean/full mGBA/CI PASS; external gates retained | PKM-005, BTL-003, BTL-004, TIM-002 | 16 | [PR#13](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/13); no duplicate credit |
+| INT-004 Combined integration acceptance | scoped stack+typing PASS; external#14/#15 and full release acceptance outstanding | PKM-005, BTL-003, BTL-004, TIM-002 | 16 | [PR#16](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/16); [CI](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41760396005); no duplicate effort credit |
 | INT-005 Review evidence and external release checks | not started; Execute approved stabilization plan | INT-004 | 8 | 2026-11-02 initial audit |
 
 ## Fossil and compliance checkpoint — November 2
@@ -196,3 +202,7 @@ BTL-006 `[#########-]` **93.75% complete /6.25% remaining** (15 earned/1 extende
 [Reconciliation report](SPECIFICATION_RECONCILIATION_2026-11-04.md) replaces unavailable-document blockers with verified source availability, actual design gaps or engineering dependencies. All40 source checksums verified; [manifest](SUPPLIED_SPECIFICATION_MANIFEST.json). PR#13 is merged only into vendor#12 by explicit owner approval; main remains unchanged. Independent Museum#14 is draft/unintegrated with baseline failure, tracked under WRL-004.
 
 Next authorized work: PKM-007,24 fully approved type corrections on vendor head d54f7a8e, preserving all other data. All39 prior IDs/208 earned retained; one new6-point task makes40 tasks/530 points,208 earned322 remaining=39.25%. Added scope changes the denominator; availability alone is not implementation credit. No other merges or auto-merge authorized.
+
+Latest checkpoint supersedes the earlier “next PKM-007” line and historical missing-export notes. The archive is supplied and verified; remaining palette, distribution, held-feature and integration gaps are stated explicitly in current task records.
+
+Final-head Actions additionally confirms **274791 full mGBA assertions PASS**, including the six summary screens; local274765 +46 focused counts above remain separately reported.

@@ -103,3 +103,13 @@ provisional points for newly reconciled24-row implementation/testing.40 tasks,
 reflects added tracked scope, not erased work. Metadata/source access alone earns
 no new implementation credit. Museum integration remains within WRL-004, with
 stable subreference WRL-004-MUSEUM and no duplicated budget.
+
+## Completion checkpoint (supersedes pre-edit source status above)
+
+PKM-007 is implemented at `b1ff74d0e129815baf45633d54073f24af4087d0`, [PR#16](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/16), on the unchanged owner-merged vendor/ball base. Exactly24 type pairs changed;35 effective rules and every non-type species field validated. Ten host suites, full native mGBA274765 assertions plus46 focused summary assertions PASS; clean rebuild matches SHA-256 `35c18c2c45f305691e3523724e6a7a7bc10a43c373db0cf993b8566d58fbc0c0`; [final Actions](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41760396005) PASS. No new merge or auto-merge. General old-build save comparison, full progression/hardware/link and other approved systems remain outside scoped certification.
+
+Concurrent PR#15 (latest inspected head9b6563a2; earlier source diff4d3b1dd5) now implements a newer claimed finalized Blaine Donphan/Pidgeot roster and the identical pure-Flying Pidgeot pair. It edits shared workflow/Pokedex tests; its latest design handoff and trainer-preservation delta must be reconciled during later integration. This supersedes the historical claim that no Blaine implementation PR exists, without importing that unrelated feature or reverting Gyarados Water/Dragon. Its modified CI run41760575099 fails CinnabarIsland_Gym/text.inc:12 (no mapping exists for backslash); this unrelated source is absent from the typing patch. Museum#14 remains independent (latest inspected head62e51fdf, feature-build SUCCESS/baseline FAILURE). Neither combined runtime acceptance is claimed.
+
+PKM-007 earns six scoped points:214 earned/316 remaining of530=40.38%. All39 prior IDs and208 earned points survive; no duplicate integration/Pidgeot feature credit.
+
+Final-head Actions additionally confirms **274791 full mGBA assertions PASS**, including the six summary screens; local274765 +46 focused counts above remain separately reported.
