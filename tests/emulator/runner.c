@@ -341,6 +341,7 @@ static void dexTests(void) {
 #include "blaine.c"
 #include "ponyta.c"
 #include "ranger.c"
+#include "rival.c"
 
 int main(int argc,char **argv) {
     setvbuf(stdout,NULL,_IONBF,0);
@@ -375,6 +376,8 @@ int main(int argc,char **argv) {
     if(getenv("LIGHTNING_BATTLE_ONLY")){categoryTests();printf("PASS: %u focused battle assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_WILD_ONLY")){wildTests();printf("PASS: %u focused wild assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_DEX_ONLY")){dexTests();printf("PASS: focused Dex diagnostic\n");core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_RIVAL_DATA_ONLY")){rivalDataTests();printf("PASS: %u focused rival data assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_RIVAL_BATTLES_ONLY")){rivalBattleTests();printf("PASS: %u focused rival battle assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_RANGER_ONLY")){rangerTests();printf("PASS: %u focused Ranger assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_RANGER_DATA_ONLY")){rangerDataTests();rangerGiftIdentityTests();printf("PASS: %u focused Ranger data assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_RANGER_UI_ONLY")){rangerGateTests();rangerGiftUiTests();rangerPcTests();rangerContinueTests();printf("PASS: %u focused Ranger UI assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
@@ -481,6 +484,7 @@ int main(int argc,char **argv) {
     blaineTests();
     ponytaTests();
     rangerTests();
+    rivalTests();
     printf("PASS: %u mGBA assertions (includes API/register safety checks)\n",checks);
     core->deinit(core);free(pixels);free(bootState);
     return 0;

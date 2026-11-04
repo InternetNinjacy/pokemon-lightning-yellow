@@ -10,6 +10,7 @@ import tempfile
 
 # Generate ABI constants with the game's ARM compiler, never host offsetof.
 expressions = {
+    "SAVE1_RIVAL_NAME": "offsetof(struct SaveBlock1,rivalName)",
     'BMOVE_SIZE': 'sizeof(struct BattleMove)',
     'BMOVE_PP': 'offsetof(struct BattleMove,pp)',
     'BMON_FRIENDSHIP': 'offsetof(struct BattlePokemon,friendship)',
@@ -132,6 +133,12 @@ for key,expr in {
 for name in ['POKEBALL','SPECIES','HELD_ITEM','LEVEL','FRIENDSHIP','IS_EGG','ATK','DEF','HP','MAX_HP','MOVE1','MOVE2','MOVE3','MOVE4','PP1','PP2','PP3','PP4','NICKNAME','PERSONALITY','OT_NAME','OT_ID','HP_IV','SANITY_IS_BAD_EGG','ABILITY_NUM','MAIL','UNUSED_RIBBONS']:
     expressions['DATA_'+name] = 'MON_DATA_'+name
 required = [
+    "gLevelUpLearnsets", "OakOldManHandleInputChooseMove",
+    "PalletTown_ProfessorOaksLab_EventScript_RivalBattleSquirtle",
+    "Route22_EventScript_EarlyRivalSquirtle", "Route22_EventScript_LateRivalSquirtle",
+    "CeruleanCity_EventScript_RivalSquirtle", "SSAnne_2F_Corridor_EventScript_RivalSquirtle",
+    "PokemonTower_2F_EventScript_RivalSquirtle", "SilphCo_7F_EventScript_RivalSquirtle",
+    "PokemonLeague_ChampionsRoom_EventScript_BattleSquirtle",
     'BattleMainCB2', 'gBattleMoves', 'gTrainerBattleOpponent_A', 'CreateNPCTrainerParty', 'ApplyRangerTrainerData', 'RangerGiveGift', 'RangerNeedsMapRefresh',
     'SaffronCity_Dojo_EventScript_Ranger1', 'SaffronCity_Dojo_EventScript_Ranger2',
     'SaffronCity_Dojo_EventScript_Ranger3', 'SaffronCity_Dojo_EventScript_Ranger4',
@@ -269,6 +276,16 @@ with tempfile.TemporaryDirectory(prefix='lightning-emulator-') as temp:
         expected+=' {'+','.join('{'+','.join('MOVE_'+m for m in mon['moves'])+'}' for mon in trainer['party'])+'},\n'
     expected+='};\n'
     (temp/'ranger_expected.h').write_text(expected)
+
+    rivals=json.loads(Path('tests/specifications/approved_rival_parties.json').read_text())
+    expected='static const unsigned rivalSizes[8]={'+','.join(str(len(e['party'])) for e in rivals['encounters'])+'};\n'
+    expected+='static const unsigned rivalIds[8][3]={'+','.join('{'+','.join(v['trainer'] for v in e['variants'])+'}' for e in rivals['encounters'])+'};\n'
+    expected+='struct RivalExpected {unsigned species,level,item,iv,moves[4];};\nstatic const struct RivalExpected rivalMons[8][6]={\n'
+    for e in rivals['encounters']:
+        expected+=' {'+','.join('{SPECIES_'+m['species']+','+str(m['level'])+',ITEM_'+m['held_item']+','+str(e['variants'][0]['iv'][i])+',{'+','.join('MOVE_'+v for v in m['moves'])+'}}' for i,m in enumerate(e['party']))+'},\n'
+    expected+='};\n'
+    (temp/'rival_expected.h').write_text(expected)
+
 
     command=['gcc','-std=gnu11','-O2','-Wall','-Wextra','-I',str(temp),'-iquote','include',
              'tests/emulator/runner.c','-o',str(temp/'runner')]
