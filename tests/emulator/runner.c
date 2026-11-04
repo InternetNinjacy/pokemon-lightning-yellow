@@ -337,6 +337,7 @@ static void dexTests(void) {
 #include "mystery_vendor.c"
 #include "mystery_vendor_ui.c"
 #include "capture_rules.c"
+#include "museum.c"
 
 int main(int argc,char **argv) {
     setvbuf(stdout,NULL,_IONBF,0);
@@ -371,6 +372,7 @@ int main(int argc,char **argv) {
     if(getenv("LIGHTNING_BATTLE_ONLY")){categoryTests();printf("PASS: %u focused battle assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_WILD_ONLY")){wildTests();printf("PASS: %u focused wild assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_DEX_ONLY")){dexTests();printf("PASS: focused Dex diagnostic\n");core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_MUSEUM_ONLY")){museumTests();printf("PASS: %u focused Museum assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     initSave();
     for(unsigned h=0;h<24;h++) {
         clockAt(h);core->busWrite8(core,scratch,255);
@@ -466,6 +468,7 @@ int main(int argc,char **argv) {
     vendorTests();
     vendorUiTests();
     captureTests();
+    museumTests();
     printf("PASS: %u mGBA assertions (includes API/register safety checks)\n",checks);
     core->deinit(core);free(pixels);free(bootState);
     return 0;

@@ -6,9 +6,10 @@ its explicitly recorded approved delta instead of weakening unrelated old hashes
 from pathlib import Path
 import json
 from approved_blaine_changes import prior_blaine_source
+from approved_museum_changes import prior_museum_source
 
 def prior_ball_source(path):
-    text=Path(path).read_text()
+    text=prior_museum_source(path)
     data=json.loads(Path('tests/specifications/approved_ball_delta.json').read_text())
     for hunk in data['hunks'].get(str(path),[]):
         assert text.count(hunk['after'])==1, 'Unreviewed change to approved ball delta: '+str(path)

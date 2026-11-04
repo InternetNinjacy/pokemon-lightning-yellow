@@ -6,10 +6,11 @@ import json
 import re
 import subprocess
 from approved_blaine_changes import prior_blaine_source
+from approved_museum_changes import prior_museum_source
 
 data = json.loads(Path('tests/specifications/world_reward_preserved.json').read_text())
 for path, digest in data['files'].items():
-    assert hashlib.sha256(prior_blaine_source(path).encode()).hexdigest() == digest, path
+    assert hashlib.sha256(prior_blaine_source(path, prior_museum_source(path)).encode()).hexdigest() == digest, path
 lab = Path('data/maps/CinnabarIsland_PokemonLab_ExperimentRoom/scripts.inc').read_text()
 for label, digest in data['lab_blocks'].items():
     m = re.search('^' + re.escape(label) + r'::\n(.*?)(?=^\w+::|\Z)', lab, re.S | re.M)

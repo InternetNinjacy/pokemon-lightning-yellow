@@ -21,7 +21,7 @@ assert len(npcs) == 1, "Expected exactly one trivia employee"
 npc = npcs[0]
 assert npc["graphics_id"] == "OBJ_EVENT_GFX_WORKER_M"
 assert (npc["x"], npc["y"]) != (16, 5), "Must not overwrite ticket attendant"
-assert 16 <= npc["x"] < 28, "NPC must be on paid exhibit side"
+assert 0 <= npc["x"] < 15 and npc["y"] < 5, "NPC must be inside paid exhibition, not the separate back room"
 assert 0 <= npc["y"] < 11
 width, height = 28, 11
 block_data = layout_path.read_bytes()
@@ -44,7 +44,7 @@ txt = text_path.read_text()
 assert all(q in txt for q in ("RATTATA", "CATERPIE", "BROCK", "MISTY", "DAISY", "VIOLET", "LILY"))
 wrong = re.findall(r"goto_if_eq VAR_RESULT, (YES|NO), PewterCity_Museum_1F_TriviaWrong",s)
 assert wrong == ["YES", "NO", "YES"], wrong
-labels = set(re.findall(r"PewterCity_Museum_1F_Text_Trivia\\w+", s))
+labels = set(re.findall(r"PewterCity_Museum_1F_Text_Trivia\w+", s))
 missing = [l for l in labels if l + "::" not in txt]
 assert not missing, missing
 flags = flags_path.read_text()

@@ -48,3 +48,26 @@ This branch starts from `main`. Other feature PRs are independently open. Reconc
 - Added scripts/check-pewter-museum-trivia.py and invoked it in GitHub Actions. Map-data collision and adjacency assertions, trivia answer branches, text label references, state flags and ordering passed on workflow run 41758818297.
 - Compared flag definitions 0x0AF and 0x0B0 with active feature branches 5, 7, 9, 10, 11 and 12; no competing allocations in their flag headers at review time. Other changes still require re-audit before integration.
 - True in-game sprite tile reachability and dialogue display still require emulator acceptance. Static checks alone are insufficient.
+
+## November 4 integration repair and native acceptance
+
+The original `(23,6)` placement was in the isolated back room, not the paid
+exhibition. Collision-path inspection and actual admission/walking tests identified
+and fixed that error: the existing worker now stands at `(11,4)`, reachable from
+the paid exhibit at `(11,5)` after the unchanged50 ticket. No badge requirement,
+new artwork, alternate entrance or museum reward changes were introduced.
+
+The feature is now stacked on the complete approved typing/Blaine/vendor/ball,
+fossil/daycare/evolution/RTC/split stack. Existing specials retain their indices;
+`ScriptGiveShinyFeebasEgg` is appended after them and before `gSpecialsEnd`.
+Older preservation hashes remain frozen, with only exact reviewed Museum hunks
+normalized. The prior empty label-validation regex now checks real script labels.
+
+Native mGBA tests execute paid admission and real walking/A interaction, decline,
+each wrong answer and retry, all correct answers, full-party deferral, pending
+flash save/load, exactly-one receipt with no quiz fee, stored true-Shiny identity,
+ordinary hatch animation and controlled-level evolution to Shiny Milotic followed
+by flash reload.32 varied OT/RNG fixtures additionally verify actual encrypted
+Shiny Eggs. Run `LIGHTNING_MUSEUM_ONLY=1 python3 tests/emulator/run.py` for focused
+coverage or the complete default suite. Host assertions remain source-level
+checks; no full-world playthrough, link peer or physical cartridge is claimed.
