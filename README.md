@@ -21,7 +21,7 @@ the original twelve-rule typing snapshot, roster-aware evolution access before N
 06:00–18:00 functional day/night boundary. It extends acceptance tests while
 preserving the existing unmerged feature stack. The canonical [project dashboard](https://github.com/InternetNinjacy/pokemon-lightning-yellow/blob/main/docs/PROJECT_DASHBOARD.md)
 and [implementation ledger](https://github.com/InternetNinjacy/pokemon-lightning-yellow/blob/main/docs/MASTER_IMPLEMENTATION_CHANGE_LEDGER.md)
-live on the independent coordination branch; Drive synchronization remains pending.
+live on main; the old coordination branch is historical. Drive synchronization remains pending.
 
 [Route5 daycare breeding](docs/ROUTE5_DAYCARE.md) is implemented on this stacked branch: independent two-parent storage, safe legacy migration and persistent50% Shiny eggs. Read its validation status and rollback limitations before using old saves.
 
@@ -101,5 +101,8 @@ as PKM-008. Canonical tracking now lives on main following the owner-authorized
 feature-stack consolidation; the old coordination branch is historical.
 
 Ranger Base Camp implementation and scoped native acceptance:
-[GYM-005 technical notes](docs/RANGER_BASE_CAMP.md). The implementation PR remains
-subject to owner review; compilation alone is not gameplay acceptance.
+[GYM-005 technical notes](docs/RANGER_BASE_CAMP.md). PR26 is merged on owner approval; compilation alone is not gameplay acceptance.
+
+The approved [eight-rival implementation](docs/MAIN_RIVAL_BATTLES.md) preserves
+original event scripts and postgame rematches; its separate gameplay PR provides
+current verification and review status.
