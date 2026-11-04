@@ -41,18 +41,41 @@ static void categoryTests(void) {
     startSpecial();waitAction();
     void *battle=malloc(core->stateSize(core));CHECK(battle && core->saveState(core,battle));
     const unsigned typings[][3]={
+        {SPECIES_CHARIZARD, TYPE_FIRE, TYPE_DRAGON},
+        {SPECIES_PIDGEY, TYPE_FLYING, TYPE_FLYING},
+        {SPECIES_PIDGEOTTO, TYPE_FLYING, TYPE_FLYING},
+        {SPECIES_PIDGEOT, TYPE_FLYING, TYPE_FLYING},
         {SPECIES_RATTATA, TYPE_DARK, TYPE_DARK},
         {SPECIES_RATICATE, TYPE_DARK, TYPE_DARK},
+        {SPECIES_SPEAROW, TYPE_FLYING, TYPE_FLYING},
+        {SPECIES_FEAROW, TYPE_FLYING, TYPE_FLYING},
         {SPECIES_ARBOK, TYPE_POISON, TYPE_DARK},
+        {SPECIES_SANDSLASH, TYPE_GROUND, TYPE_STEEL},
+        {SPECIES_VULPIX, TYPE_FIRE, TYPE_GHOST},
+        {SPECIES_NINETALES, TYPE_FIRE, TYPE_GHOST},
         {SPECIES_PERSIAN, TYPE_NORMAL, TYPE_DARK},
         {SPECIES_PSYDUCK, TYPE_WATER, TYPE_PSYCHIC},
         {SPECIES_GOLDUCK, TYPE_WATER, TYPE_PSYCHIC},
-        {SPECIES_SANDSLASH, TYPE_GROUND, TYPE_STEEL},
-        {SPECIES_PINSIR, TYPE_BUG, TYPE_STEEL},
-        {SPECIES_CHARIZARD, TYPE_FIRE, TYPE_DRAGON},
+        {SPECIES_GEODUDE, TYPE_ROCK, TYPE_ROCK},
+        {SPECIES_GRAVELER, TYPE_ROCK, TYPE_ROCK},
+        {SPECIES_GOLEM, TYPE_ROCK, TYPE_ROCK},
+        {SPECIES_FARFETCHD, TYPE_FLYING, TYPE_FLYING},
+        {SPECIES_DODUO, TYPE_FLYING, TYPE_FLYING},
+        {SPECIES_DODRIO, TYPE_FLYING, TYPE_FLYING},
+        {SPECIES_ONIX, TYPE_ROCK, TYPE_ROCK},
+        {SPECIES_STEELIX, TYPE_STEEL, TYPE_STEEL},
+        {SPECIES_LICKITUNG, TYPE_NORMAL, TYPE_GHOST},
+        {SPECIES_RHYHORN, TYPE_ROCK, TYPE_ROCK},
+        {SPECIES_RHYDON, TYPE_ROCK, TYPE_ROCK},
+        {SPECIES_PINSIR, TYPE_BUG, TYPE_BUG},
         {SPECIES_GYARADOS, TYPE_WATER, TYPE_DRAGON},
+        {SPECIES_HOOTHOOT, TYPE_FLYING, TYPE_PSYCHIC},
+        {SPECIES_NOCTOWL, TYPE_FLYING, TYPE_PSYCHIC},
         {SPECIES_AMPHAROS, TYPE_ELECTRIC, TYPE_DRAGON},
-        {SPECIES_LICKITUNG, TYPE_NORMAL, TYPE_GHOST}
+        {SPECIES_LARVITAR, TYPE_ROCK, TYPE_ROCK},
+        {SPECIES_PUPITAR, TYPE_ROCK, TYPE_ROCK},
+        {SPECIES_TAILLOW, TYPE_FLYING, TYPE_FLYING},
+        {SPECIES_SWELLOW, TYPE_FLYING, TYPE_FLYING},
     };
     for(unsigned i=0;i<sizeof(typings)/sizeof(*typings);i++) {
         create(typings[i][0],50);CALL(CopyPlayerPartyMonToBattleData,0,0);
@@ -60,7 +83,47 @@ static void categoryTests(void) {
         CHECK(core->busRead8(core,bmon(0)+ABI_BMON_TYPE2)==typings[i][2]);
     }
     CHECK(core->loadState(core,battle));
-    printf("PASS: all twelve approved typing overrides loaded through real party-to-battle code\n");
+    printf("PASS: all35 effective owner-approved typing rules loaded through real party-to-battle code\n");
+    // Actual elemental routines, using species-loaded battle types rather than a model.
+    const unsigned elemental[][3]={
+        {SPECIES_GEODUDE,MOVE_THUNDERBOLT,100}, {SPECIES_GEODUDE,MOVE_WATER_GUN,200},
+        {SPECIES_ONIX,MOVE_THUNDERBOLT,100}, {SPECIES_ONIX,MOVE_WATER_GUN,200},
+        {SPECIES_PINSIR,MOVE_FLAMETHROWER,200}, {SPECIES_PINSIR,MOVE_EARTHQUAKE,50},
+        {SPECIES_STEELIX,MOVE_WATER_GUN,100}, {SPECIES_STEELIX,MOVE_EARTHQUAKE,200},
+        {SPECIES_VULPIX,MOVE_TACKLE,0}, {SPECIES_VULPIX,MOVE_SHADOW_BALL,200},
+        {SPECIES_VULPIX,MOVE_LOW_KICK,0}, {SPECIES_PIDGEY,MOVE_SHADOW_BALL,100},
+        {SPECIES_PIDGEY,MOVE_EARTHQUAKE,0}, {SPECIES_HOOTHOOT,MOVE_PSYCHIC,50},
+        {SPECIES_NOCTOWL,MOVE_SHADOW_BALL,200}, {SPECIES_GYARADOS,MOVE_EARTHQUAKE,100},
+        {SPECIES_GYARADOS,MOVE_THUNDERBOLT,100}
+    };
+    for(unsigned i=0;i<sizeof(elemental)/sizeof(*elemental);i++) {
+        create(SPECIES_KECLEON,50); CALL(CopyPlayerPartyMonToBattleData,0,0);
+        create(elemental[i][0],50); CALL(CopyPlayerPartyMonToBattleData,1,0);
+        damageStats(); core->busWrite32(core,bmon(1)+ABI_BMON_STATUS2,0);
+        core->busWrite32(core,SYM_gBattleMoveDamage,100);
+        CALL(TypeCalc,elemental[i][1],0,1);
+        CHECK(core->busRead32(core,SYM_gBattleMoveDamage)==elemental[i][2]);
+        core->busWrite32(core,SYM_gBattleMoveDamage,100);
+        CALL(AI_TypeCalc,elemental[i][1],elemental[i][0],ABILITY_NONE);
+        CHECK(core->busRead32(core,SYM_gBattleMoveDamage)==elemental[i][2]);
+    }
+    const unsigned stab[][3]={
+        {SPECIES_GEODUDE,MOVE_ROCK_THROW,150}, {SPECIES_PINSIR,MOVE_SIGNAL_BEAM,150},
+        {SPECIES_PINSIR,MOVE_METAL_CLAW,100}, {SPECIES_HOOTHOOT,MOVE_CONFUSION,150},
+        {SPECIES_HOOTHOOT,MOVE_GUST,150}, {SPECIES_PIDGEY,MOVE_TACKLE,100},
+        {SPECIES_VULPIX,MOVE_SHADOW_BALL,150}, {SPECIES_VULPIX,MOVE_FLAMETHROWER,150},
+        {SPECIES_STEELIX,MOVE_EARTHQUAKE,100}
+    };
+    for(unsigned i=0;i<sizeof(stab)/sizeof(*stab);i++) {
+        create(stab[i][0],50); CALL(CopyPlayerPartyMonToBattleData,0,0);
+        create(stab[i][1]==MOVE_SHADOW_BALL ? SPECIES_PIKACHU : SPECIES_KECLEON,50); CALL(CopyPlayerPartyMonToBattleData,1,0);
+        damageStats(); core->busWrite32(core,bmon(1)+ABI_BMON_STATUS2,0);
+        core->busWrite32(core,SYM_gBattleMoveDamage,100);
+        CALL(TypeCalc,stab[i][1],0,1);
+        CHECK(core->busRead32(core,SYM_gBattleMoveDamage)==stab[i][2]);
+    }
+    CHECK(core->loadState(core,battle));
+    printf("PASS: compiled type chart/AI17 cases and STAB9 cases for approved typing corrections\n");
     damageStats();
     CHECK(baseDamage(MOVE_FIRE_PUNCH,0,0,0)==68);
     CHECK(baseDamage(MOVE_FLAMETHROWER,0,0,0)==12);

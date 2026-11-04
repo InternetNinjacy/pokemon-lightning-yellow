@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from approved_ball_changes import prior_ball_source
+from approved_typing_changes import prior_typing_source
 """Production save migration and Shiny identity policy; stubbed save/RNG state.
 Real breeding/crypto/hatching/scenes run separately in the compiled-ROM mGBA suite.
 """
@@ -130,7 +130,7 @@ with tempfile.TemporaryDirectory(prefix='lightning-daycare-') as temp:
 import json, hashlib
 snapshot=json.loads(Path('tests/specifications/daycare_preserved.json').read_text())
 for path,expected in snapshot['files'].items():
-    assert hashlib.sha256(prior_ball_source(path)).hexdigest()==expected,path
+    assert hashlib.sha256(prior_typing_source(path)).hexdigest()==expected,path
 source=Path('src/daycare.c').read_text()
 for name,expected in snapshot['functions'].items():
     assert hashlib.sha256(extract_function(source,name).encode()).hexdigest()==expected,name

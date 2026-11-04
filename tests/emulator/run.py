@@ -197,7 +197,7 @@ required = [
     'Route5_PokemonDayCare_EventScript_DaycareWoman', 'Route5_PokemonDayCare_Egg_DaycareMan',
     'FourIsland_PokemonDayCare_EventScript_DaycareWoman', 'FourIsland_EventScript_DaycareMan',
     'gSpecialVar_0x8004', 'gSpecialVar_0x8005', 'gSpecialVar_Result', 'gPartyMenu', 'gSelectedObjectEvent',
-    'sRoamerLocation', 'IsNationalPokedexEnabled', 'CopyPlayerPartyMonToBattleData', 'CalculateBaseDamage', 'AI_CalcDmg', 'Cmd_dmgtolevel',
+    'sRoamerLocation', 'IsNationalPokedexEnabled', 'CopyPlayerPartyMonToBattleData', 'CalculateBaseDamage', 'TypeCalc', 'AI_TypeCalc', 'AI_CalcDmg', 'Cmd_dmgtolevel',
     'GetMoveCategoryName', 'GetMoveCategoryShortName', 'MoveSelectionDisplayMoveType',
     'gCurrentMove', 'gCritMultiplier', 'gDynamicBasePower', 'gBattlerAttacker', 'gBattlerTarget',
     'ShowPokemonSummaryScreen', 'sMonSummaryScreen', 'sMoveSelectionCursorPos', 'gSideStatuses', 'gBattleStruct', 'gBattleScripting', 'gBattleMoveDamage', 'gDisplayedStringBattle',
