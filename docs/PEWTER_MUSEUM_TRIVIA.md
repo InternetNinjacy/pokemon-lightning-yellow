@@ -43,3 +43,8 @@ This branch starts from `main`. Other feature PRs are independently open. Reconc
 - GitHub Actions Feature source build passed: https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41757743873
 - This compiles the modified FireRed source. It does not prove the map NPC is reachable or the egg survives save/load and hatches Shiny. Emulator acceptance remains required.
 - The separate FireRed baseline workflow compares against unmodified vanilla SHA and is not a feature-build acceptance test.
+
+## November 3 static acceptance progress
+- Added scripts/check-pewter-museum-trivia.py and invoked it in GitHub Actions. Map-data collision and adjacency assertions, trivia answer branches, text label references, state flags and ordering passed on workflow run 41758818297.
+- Compared flag definitions 0x0AF and 0x0B0 with active feature branches 5, 7, 9, 10, 11 and 12; no competing allocations in their flag headers at review time. Other changes still require re-audit before integration.
+- True in-game sprite tile reachability and dialogue display still require emulator acceptance. Static checks alone are insufficient.
