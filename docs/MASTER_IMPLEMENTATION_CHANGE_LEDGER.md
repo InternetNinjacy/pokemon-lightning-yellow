@@ -1,0 +1,507 @@
+# Pokémon Lightning Yellow — Master Implementation Change Ledger
+
+Canonical branch: `docs/project-coordination`. Established 2026-11-02.
+Drive synchronization: **pending**. No document has been created on Drive. Intended destination: [existing project folder](https://drive.google.com/drive/folders/1N_n0Ke48jBbdhUWSZWzwR6rpPFqpDUpl).
+
+Git history is the authoritative technical record. Historical entries below are backfilled from commits and their committed reports; they are not fresh executions. Commit dates are Git dates, not inferred design-approval dates. Design approval and code implementation are separate events. Preserve these entries and append corrections/supersessions.
+
+## Current Effective Version
+
+| System / tasks | Newest available approved design | Implemented on main | Implemented on open stack / remaining |
+|---|---|---|---|
+| Baseline / INT-001 | FireRed English rev0, pret commit ce6406d8c2eaf46d543c8a2606de0c3cb1951982 | e04252ea, original SHA-1 41cb23d8dccc8ebd7c649cd8fbb58eeace6e2fdc | Independently retained CI baseline |
+| Dex / PKM-001,003,005 | Owner Castform expansion:252, Castform#233, preserve relative order; October28 handoff typing overrides | Original FireRed | PR#6 has252/canonical save flags; twelve typing overrides implemented in PR#9; expanded acceptance in PR#9 passed for documented scenarios; remaining coverage gaps retained |
+| Evolution / PKM-002,004 | Latest evolution mechanics overrides older eight direct-use pairs: six pairs, no Clamperl additions; Tyrogue choice>=15; roster-aware National gate removal approved by October28 supplied handoff | Original FireRed | PR#5 methods/menu implemented; roster-aware access implemented in PR#9 |
+| Categories / BTL-001,003 | GenIV per-move assignments; owner explicitly chose Shadow Ball SPECIAL | Type-based split | PR#2 split implemented; PR#9 adds actual ROM damage/AI/UI acceptance and repairs summary overlap; complete gameplay strategies remain unverified |
+| Wild doubles / BTL-002,004 | Owner capability assignment: designated maps, independent draws, weighted5% Onix+Cloyster | Singles | PR#7 proof of concept on experimental Route1/MtMoon1F; PR#9 hardens ball guards/refund/failed throws; release verdict remains conditional |
+| Move redesign / BTL-005 | Owner October31 audit handoff; complete authoritative values not available | Original354 | No410-move implementation; audit outputs are not implementation |
+| RTC / TIM-001,002 | Read-only RTC; functional DAY[06:00,18:00), NIGHT otherwise, invalid timed friendship unavailable | No RTC | PR#3 clock implemented; PR#9 replaces consumer noon policy with approved06–18 helper |
+| Visuals / TIM-003 | Four outdoor/two covered periods; Lavender and Mansion exceptions in supplied October28 handoff | Original appearance | No visual implementation; transitions/map exceptions/colors unresolved |
+| Weather / WTH | October28 supplied handoff distributions/transition rules; final unanswered exceptions retained | Original weather | No dynamic implementation; Hail duration/active battle precedence and maps unresolved |
+| Route5 / DAY | DES-005 complete owner handoff supplied November2 | Original single deposit daycare | PR#10 head596265d4 implements independent breeding/migration/50%Shiny and legacy Continue; six host suites/full mGBA114313/clean rebuild/final Actions PASS; ready for review, unmerged, external acceptance remains |
+| Gyms/world / GYM,WRL | Project direction and partial approved framework; exact new designs not supplied | Original trainers/maps/items | No invented placements; Castform trainer/level/moveset pending |
+| Fossils / WRL-006,007 | DES-006 owner supplied November2 world/fossil update | Original Everstone aide and exclusive MtMoon revival | PR#11 `b0bd3b86` implements Claw reward, opposite fossil gift and all four revivals; full native/host/clean/CI PASS, unmerged |
+| World eligibility / PKM-006 | Global252 assignment rule; no off-Dex exceptions | Original conflicts retained | PR#11 source audit/no-new guard; strict compliance BLOCKED on approved replacements and role review |
+| Mystery vendors / WRL-008 | DES-008 approved v1.0, ten NPCs/pool, level5/700/90%, OT Mystery; separate starter boundary | Original optional NPCs and500 Magikarp | PR#12 final92a0600d implemented; eight host/full mGBA273355/clean rebuild/Actions PASS; starter integration and external acceptance retained |
+| Poké Balls / BTL-006 | Final November2 register; owner removed readiness stop DES-009 | Original FireRed | PR#13 ad86d58b implements approved effects/items/shops/gift; nine host/full mGBA274675/clean/Actions PASS; extended acceptance retained |
+
+## Design and authority history
+
+- **DES-001** — Supplied October28 coordinator handoff establishes exact historical251 roster, twelve typing overrides, roster-aware evolution access and functional06–18 clock. Linked Drive originals were not independently read. The local reconciliation transcription preserves the rules. Approval to execute is supplied separately by the owner, most recently “Implement the proposed plan.”
+- **DES-002** — Owner explicitly expands251→252 with Castform#233; supersedes DES-001 only for roster size/order insertion. All existing species/order preserved. Castform Normal/Forecast/forms unchanged; exactly one future Celadon trainer pending details.
+- **DES-003** — Latest evolution mechanics specification supersedes older direct Clamperl item alternatives. Six direct-use trade-item pairs remain; original trade methods stay. Do not reintroduce excluded methods from PR#4.
+- **DES-004** — Owner's latest consolidated execution/dashboard/ledger request and subsequent approval authorize this execution plan. They preserve separate approval for merging, auto-merge, releases and destructive actions. Unknown finalized design values must be obtained, not invented.
+
+## Implementation history
+
+### 2026-10-25 — INT-001 — e04252ea (historical backfill)
+
+- Previous → new: Empty project → pinned upstream FireRed source, retained licenses/build structure and server-side baseline verification.
+- Design authority/version: Owner repository-setup request; upstream ce6406d8c2eaf46d543c8a2606de0c3cb1951982.
+- Source files: README.md, AGENTS.md, docs/UPSTREAM.md, scripts/prepare-baseline.sh, .github/workflows/build.yml; upstream source import.
+- References: branch `setup/firered-baseline`, [commit](https://github.com/InternetNinjacy/pokemon-lightning-yellow/commit/e04252ea0783510000e634486c0f2526a736f506), [PR#1](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/1).
+- Implementation status: merged baseline.
+- Automated / emulator evidence: Committed baseline/build documentation; original SHA-1 retained independently. No new reference ROM.
+- Save compatibility, dependencies and unresolved issues: No custom save changes; only merged PR in current stack.
+- Supersession: only explicit changes above supersede earlier behavior; no whole-feature replacement implied.
+
+### 2026-10-26 — BTL-001 — e265bcf3 (historical backfill)
+
+- Previous → new: Type-based damage categories → explicit per-move Physical/Special/Status, including Shadow Ball Special.
+- Design authority/version: Owner approved split assignment and explicit Shadow Ball Special correction.
+- Source files: include/pokemon.h, include/battle.h, include/constants/move_categories.h, src/data/battle_moves.h, src/pokemon.c, src/battle_script_commands.c, src/battle_ai_script_commands.c, src/battle_controller_player.c, src/pokemon_summary_screen.c, tests/run_split_tests.py, docs/PHYSICAL_SPECIAL_SPLIT.md (consult commit for complete list).
+- References: branch `feature/physical-special-split`, [commit](https://github.com/InternetNinjacy/pokemon-lightning-yellow/commit/e265bcf3efa07531a4419fd471f6157fb0980cad), [PR#2](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/2).
+- Implementation status: implemented on unmerged dependency stack.
+- Automated / emulator evidence: Host numeric production-routine tests and static audits; prior CI green. Full emulator UI/AI acceptance not established by this historical commit.
+- Save compatibility, dependencies and unresolved issues: Move IDs preserved; modified ROM intentionally differs from vanilla. PR open.
+- Supersession: only explicit changes above supersede earlier behavior; no whole-feature replacement implied.
+
+### 2026-10-26 — TIM-001 — a5b98e9b (historical backfill)
+
+- Previous → new: No clock → read-only cartridge GPIO RTC with validity return.
+- Design authority/version: Owner separately reviewed RTC dependency choice.
+- Source files: src/rtc.c, include/rtc.h, tests/run_rtc_tests.py, docs/RTC_SUPPORT.md.
+- References: branch `feature/rtc-support`, [commit](https://github.com/InternetNinjacy/pokemon-lightning-yellow/commit/a5b98e9b), [PR#3](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/3).
+- Implementation status: implemented on unmerged dependency stack.
+- Automated / emulator evidence: Initial host tests; later actual emulator exposed wire-order defect, corrected below.
+- Save compatibility, dependencies and unresolved issues: No save offset/clock writes; physical hardware unverified.
+- Supersession: only explicit changes above supersede earlier behavior; no whole-feature replacement implied.
+
+### 2026-10-26 — TIM-001 — 472cbba3 (historical backfill)
+
+- Previous → new: RTC tests not in CI → automated RTC validation in build workflow.
+- Design authority/version: Same RTC dependency approval.
+- Source files: .github/workflows/build.yml, tests/run_rtc_tests.py.
+- References: branch `feature/rtc-support`, [commit](https://github.com/InternetNinjacy/pokemon-lightning-yellow/commit/472cbba3), [PR#3](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/3).
+- Implementation status: implemented on unmerged dependency stack.
+- Automated / emulator evidence: Historical CI coverage added; not physical GPIO proof.
+- Save compatibility, dependencies and unresolved issues: Superseded only where later decoder/serial corrections apply.
+- Supersession: only explicit changes above supersede earlier behavior; no whole-feature replacement implied.
+
+### 2026-10-26 — TIM-001 — f94b21e1 (historical backfill)
+
+- Previous → new: Decoder-only checks → serial-loop validation.
+- Design authority/version: Same RTC approval.
+- Source files: tests/run_rtc_tests.py, src/rtc.c.
+- References: branch `feature/rtc-support`, [commit](https://github.com/InternetNinjacy/pokemon-lightning-yellow/commit/f94b21e1), [PR#3](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/3).
+- Implementation status: implemented on unmerged dependency stack.
+- Automated / emulator evidence: Stubbed GPIO serialization tests; later corrected command expectation.
+- Save compatibility, dependencies and unresolved issues: No runtime hardware claim.
+- Supersession: only explicit changes above supersede earlier behavior; no whole-feature replacement implied.
+
+### 2026-10-26 — TIM-001 — 91f3bce4 (historical backfill)
+
+- Previous → new: Insufficient presence/12h checks → calendar validation and correct12h decoding.
+- Design authority/version: Same RTC approval.
+- Source files: src/rtc.c, tests/run_rtc_tests.py.
+- References: branch `feature/rtc-support`, [commit](https://github.com/InternetNinjacy/pokemon-lightning-yellow/commit/91f3bce4), [PR#3](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/3).
+- Implementation status: implemented on unmerged dependency stack.
+- Automated / emulator evidence: Production decoder calendar/leap/absent input cases executed historically.
+- Save compatibility, dependencies and unresolved issues: All-zero device rejected; valid midnight retained.
+- Supersession: only explicit changes above supersede earlier behavior; no whole-feature replacement implied.
+
+### 2026-10-26 — PKM-002 — 548cc10b (historical backfill)
+
+- Previous → new: Trade-only targets → level40 alternatives, item-use alternatives and independent Eevee stones/timed friendship; defer consumption until successful scene.
+- Design authority/version: Original evolution overhaul owner request; later DES-003 narrows item pairs.
+- Source files: src/pokemon.c, src/evolution_scene.c, src/party_menu.c, src/item_use.c, src/data/pokemon/evolution.h, tests/run_evolution_tests.py, docs/EVOLUTION_OVERHAUL.md (full list in commit).
+- References: branch `feature/evolution-system-overhaul`, [commit](https://github.com/InternetNinjacy/pokemon-lightning-yellow/commit/548cc10b), [PR#4](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/4).
+- Implementation status: implemented on unmerged dependency stack.
+- Automated / emulator evidence: Host target/consumption tests; initial scene coverage incomplete.
+- Save compatibility, dependencies and unresolved issues: Original trade retained; cancellation preserves item. Clamperl direct use later superseded by851c76c9.
+- Supersession: only explicit changes above supersede earlier behavior; no whole-feature replacement implied.
+
+### 2026-10-26 — TIM-001 — ce126c5c (historical backfill)
+
+- Previous → new: RTC commands LSB-first → MSB-first commands, LSB-first responses.
+- Design authority/version: Same RTC approval; concrete mGBA-discovered defect repair.
+- Source files: src/rtc.c, tests/run_rtc_tests.py, docs/RTC_SUPPORT.md.
+- References: branch `feature/rtc-support`, [commit](https://github.com/InternetNinjacy/pokemon-lightning-yellow/commit/ce126c5c7c7f9bf3a052f58dc536a2a32e2580bd), [PR#3](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/3).
+- Implementation status: implemented on unmerged dependency stack.
+- Automated / emulator evidence: Actual stable mGBA GPIO exercise confirmed correction; companion ancestry commit296b78e4 contains equivalent correction.
+- Save compatibility, dependencies and unresolved issues: Count as one behavior repair, not two features. Physical timing remains unverified.
+- Supersession: only explicit changes above supersede earlier behavior; no whole-feature replacement implied.
+
+### 2026-10-26 — INT-002 — 426415d8 (historical backfill)
+
+- Previous → new: Host-only evolution validation → compiled-ROM headless mGBA scenes, clock, encrypted party/bag and flash save/load tests in Actions.
+- Design authority/version: Owner emulator setup/testing request.
+- Source files: tests/emulator/run.py, tests/emulator/runner.c, .github/workflows/build.yml, docs/EMULATOR_VALIDATION.md.
+- References: branch `feature/evolution-system-overhaul`, [commit](https://github.com/InternetNinjacy/pokemon-lightning-yellow/commit/426415d853e141960a5ecfc60eb8798fdd3cb2dd), [PR#4](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/4).
+- Implementation status: implemented on unmerged dependency stack.
+- Automated / emulator evidence: Real scene/normal button loop execution documented; not full playthrough/link hardware.
+- Save compatibility, dependencies and unresolved issues: Harness guard RAM/ABI assertions retained. No copyrighted BIOS or ROM artifacts uploaded.
+- Supersession: only explicit changes above supersede earlier behavior; no whole-feature replacement implied.
+
+### 2026-10-26 — PKM-002 — 851c76c9 (historical backfill)
+
+- Previous → new: Older evolution table → approved baby/Feebas levels, Tyrogue>=15 choice menu, six direct item pairs and Clamperl rollback.
+- Design authority/version: Latest owner supplied Evolution Mechanics Implementation specification, DES-003.
+- Source files: src/data/pokemon/evolution.h, src/evolution_scene.c, src/pokemon.c, tests/run_evolution_tests.py, tests/emulator/runner.c, docs/EVOLUTION_MECHANICS.md.
+- References: branch `feature/evolution-mechanics`, [commit](https://github.com/InternetNinjacy/pokemon-lightning-yellow/commit/851c76c94ac5bbcfda5a48a34bdb9a9521ab202f), [PR#5](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/5).
+- Implementation status: implemented on unmerged dependency stack.
+- Automated / emulator evidence: Host tests plus actual scene/menu/stat-independent choices and flash reload. National gates/time correction still pending.
+- Save compatibility, dependencies and unresolved issues: Save layout and IDs preserved. Supersedes PR#4 only for specifically changed methods.
+- Supersession: only explicit changes above supersede earlier behavior; no whole-feature replacement implied.
+
+### 2026-10-29 — PKM-001 — 13c0ca04 (historical backfill)
+
+- Previous → new: National/Kanto views → approved custom252 ordering/counts/completion using canonical species/seen/caught IDs, Castform#233.
+- Design authority/version: Supplied historical roster fixture plus owner252 expansion DES-002.
+- Source files: src/custom_pokedex.c, include/custom_pokedex.h, src/data/pokemon/custom_pokedex.h, src/pokedex.c, src/pokedex_screen.c, src/pokemon.c, tests/run_pokedex_tests.py, tests/specifications/approved_251_roster.csv, docs/CUSTOM_POKEDEX.md.
+- References: branch `feature/custom-252-pokedex`, [commit](https://github.com/InternetNinjacy/pokemon-lightning-yellow/commit/13c0ca04dd3505533a066a1f23ee0fefb960dc16), [PR#6](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/6).
+- Implementation status: implemented on unmerged dependency stack.
+- Automated / emulator evidence: Host mapping/list/flag tests, real pre-National Dex UI/Forecast/save tests; prior CI green.
+- Save compatibility, dependencies and unresolved issues: No species removed from internal engine or save fields. Twelve custom types not part of this commit; excluded roster handling documented.
+- Supersession: only explicit changes above supersede earlier behavior; no whole-feature replacement implied.
+
+### 2026-10-29 — BTL-002 — bbb0459d (historical backfill)
+
+- Previous → new: Ordinary wild singles → configurable experimental land/cave doubles, independent second draw and5% Onix+Cloyster pair; survivor-based capture.
+- Design authority/version: Owner Wild Double Battle Capability Test request.
+- Source files: src/wild_encounter.c, src/battle_setup.c, src/battle_script_commands.c, src/battle_util.c, tests/run_wild_double_tests.py, tests/emulator/wild_double.c, docs/WILD_DOUBLE_BATTLES.md (complete file list in commit).
+- References: branch `feature/wild-double-battle-capability`, [commit](https://github.com/InternetNinjacy/pokemon-lightning-yellow/commit/bbb0459d95ed3d9b053304290961f4fff2de23eb), [PR#7](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/7).
+- Implementation status: implemented on unmerged dependency stack.
+- Automated / emulator evidence: Host statistical/production checks and actual walking/battle/capture/run/save mGBA scenarios; prior CI green. Conditional acceptance.
+- Save compatibility, dependencies and unresolved issues: Route1/MtMoon1F are test locations; not final encounter placements. All balls/replacements/forced ending/complete weather/link coverage outstanding.
+- Supersession: only explicit changes above supersede earlier behavior; no whole-feature replacement implied.
+
+### 2026-11-02 — INT-003 — canonical coordination established
+
+- Previous: reports were scattered across external session artifacts; no repository dashboard/ledger.
+- New: permanent task registry, effort-weighted dashboard and append-only ledger on independent docs branch. Drive synchronization remains pending.
+- Design authority: latest owner consolidated dashboard/ledger request, followed by “Implement the proposed plan.”
+- Files: docs/PROJECT_DASHBOARD.md, docs/MASTER_IMPLEMENTATION_CHANGE_LEDGER.md, docs/project-tracking.json.
+- References: docs/project-coordination; commit and PR resolved by branch history and next milestone entry.
+- Status: documentation prepared; no gameplay changed in this entry.
+- Tests: JSON parsing, stable task-ID uniqueness, effort totals and git diff validation; no game/emulator tests applicable to this docs-only change.
+- Dependencies/risks: direct Drive access and missing specification exports remain external blockers. Documentation progress is not gameplay completion. No superseded historical entries removed.
+
+## Resume requirements
+
+Append meaningful changes, failed validations and fixes, actual test outputs, exact commit/PR/CI links and remaining limitations. Update Current Effective Version and task status together. Never equate green compilation with acceptance. Keep each system's design, implemented code, automated results, emulator evidence, review and merge state separate.
+
+### 2026-11-02 — PKM-003 / PKM-004 / TIM-002 — stabilization implementation
+
+- Previous → new: twelve original type pairs become the exact approved custom pairs; pre-National approved roster evolutions no longer auto-cancel; timed friendship changes from noon split to DAY[06:00,18:00).
+- Design authority: DES-001/002 and owner-approved consolidated execution plan. No unseen Drive version claimed.
+- Files: src/data/pokemon/species_info.h; src/custom_pokedex.c/include/custom_pokedex.h; src/pokemon.c; src/evolution_scene.c; src/party_menu.c; new include/constants/time_of_day.h, include/time_of_day.h and src/time_of_day.c; corresponding host fixtures/tests.
+- Branch: feature/phase-one-stabilization, stacked on bbb0459d. Commits: 95fd5870 (types), 672c5376 (shared gate), add8c5a1 (time). [PR #9](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/9), draft while final verification proceeds.
+- Automated: all five host suites pass (split1299 +6 static audits; RTC3011; evolution755 +static audits; Dex6300 +preservation; wild1246873). Build passes; focused compiled-ROM battle suite147 checks passes. Full final run/clean repeatability/Actions still pending at this milestone.
+- Emulator: actual pre-National item scenes success/cancel, excluded-target guard and Tyrogue/level scenes pass; exact RTC seconds pass. No physical RTC/link claim.
+- Save/dependency: unchanged layouts, IDs, canonical flags and parent PRs. Excluded targets retain gates; no National story flag enabled; no Clamperl Bag route added.
+- Supersedes: old effective type pairs, retained gates for roster targets and noon policy only. Historical PR reports remain valid for their original commits.
+
+### 2026-11-02 — BTL-003 / PKM-005 — stronger compiled-ROM acceptance
+
+- Previous → new: host-only split numeric evidence supplemented with actual ARM damage/AI/item/screen/burn fixtures, twelve real party-to-battle typing loads and actual move-selection text checks.
+- Commit: 69522141; branch/PR #9 above. Files: tests/emulator/battle_categories.c, tests/emulator/run.py, tests/emulator/runner.c, docs/PHASE_ONE_STABILIZATION.md, README.md, AGENTS.md.
+- Tests: focused147 checks passed, local screenshot inspected for type/category/PP legibility. Summary runtime acceptance remains outstanding at this checkpoint.
+- Failed trial: initial text assertion expected PSYCHIC; source and runtime use unchanged FireRed abbreviation PSYCHC. Corrected test expectation, reran successfully; no game text changed. No failed run counted as passing.
+- Compatibility: isolated controlled battle fixtures do not certify every AI strategy, complete gameplay or links. No new gameplay balance/effect in this acceptance commit.
+
+### 2026-11-02 — INT-003 — coordination publication checkpoint
+
+[PR #8](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/8) opened from docs/project-coordination, initial commit626c6ad2. [Actions41375601930](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41375601930) completed SUCCESS. Both docs and gameplay PRs remain unmerged. Drive sync remains pending. Permanent task progress updated by actual scoped work, not by design approval.
+
+### 2026-11-02 — BTL-003 / BTL-004 / PKM-005 — runtime UI repair and acceptance expansion
+
+- Previous → new: full category text overlapped FireRed's EFFECT heading at x=7; it now occupies x=57 beside the heading. A runtime screen inspection exposed the issue; it was not detected by the earlier width-only audit.
+- Design authority: approved split readable Physical/Special/Status summary indicators; the owner-approved stabilization plan authorizes demonstrated defect fixes. No new artwork or move balance.
+- Source files: src/pokemon_summary_screen.c; tests/audit_split.py; tests/emulator/battle_categories.c; tests/emulator/run.py; tests/emulator/runner.c; tests/emulator/wild_double.c; docs/PHASE_ONE_STABILIZATION.md.
+- Branch/commit/PR: feature/phase-one-stabilization, `6ff574dc205a007a93a4724fd6eda867eeff8fdf`, [PR#9](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/9), now ready for review and unmerged.
+- Automated/emulator: actual summary list/detail navigation selects physical/special/status moves; local final captures of all three inspected and legible. Eleven ordinary Bag ball types reject two live foes without consumption; partner B cancellation refunds exactly once and a retry catches/consumes once; legitimate failed Poke Ball throw consumes once, retains survivor, does not set caught flag and resumes battle. Safari Ball is explicitly outside the ordinary Bag fixture.
+- Additional evolution acceptance: Crobat/Blissey and earlier item/level/Tyrogue scenes run before National Dex; assert the National flag stays disabled and custom caught count/flags survive real flash reload.
+- Test-development corrections: a host evolution fixture initially retained its egg flag and a new static audit initially missed an import. Corrected fixtures/import and reran; these were not game bugs and no failed run is counted as passing.
+- Save/dependency effects: no layout, species/move ID, trainer, encounter-policy or item-mechanics change. Parent #2–#7 remain unchanged. New typing behavior was separately approved, not silently imported from another project.
+- Unverified: full overworld Bag navigation, actual two-peer link/trade scene handshake, physical RTC/other cores/full progression, complete AI strategy, nickname acceptance/rename, successful catches with every ball, faint/replacement/whiteout, forced-end/spread moves and unfinished weather. Wild-double release verdict remains CONDITIONAL. No known failed scenario is waived.
+- Supersedes only the overlapping category placement; other split behavior preserved.
+
+### 2026-11-02 — INT-004 — final combined stabilization verification
+
+- Branch/head: feature/phase-one-stabilization `6ff574dc205a007a93a4724fd6eda867eeff8fdf`; #9 stacked on #7. No merge/auto-merge/release.
+- All five local host suites PASS: split1,299 +6 separate static audits; RTC3,011; evolution755 +separate data/wiring audits; Dex6,300 +strict type/other-data preservation; wild1,246,873 (including200,000 draws). Static evidence is not represented as emulator execution.
+- Complete local mGBA0.10.5 PASS: **8,715 assertions**, including API/guard safety checks, not that many whole battles. Actual ROM boot, scenes, controlled ARM battle/AI routines, summary and move-selection UI, wild battles, saves and clock are exercised by the default suite. Focused diagnostics do not substitute for this complete run.
+- Build and clean rebuild PASS; SHA-256 `d17d2e6206496b9e48fe578872f91df9658d31a61b3ec8ccf33b0adcc5b9e069` identical. Linker EWRAM261,052/262,144; IWRAM29,824/32,768; ROM15,407,440/33,554,432 bytes. No runtime RAM increase from these helpers; budget remains tight.
+- [GitHub Actions41376878452](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41376878452) **SUCCESS** for exact head above. API confirms modified host tests, clean reproducibility and mGBA steps SUCCESS; separate upstream-baseline original SHA-1 twice-from-clean step SUCCESS. Assertion counts above are local execution evidence; API step conclusions are CI evidence. Inaccessible Actions log downloads are not claimed as read.
+- Current main remains `e04252ea0783510000e634486c0f2526a736f506`. Working tree diff checks and no tracked ROM/save/archive checks pass. ROMs, proprietary BIOS, save snapshots and screenshots were not uploaded/committed.
+- Remaining integrated feature tests wait for absent Route5 register, final move/weather/lighting specifications and later implementation. Scoped current-stack acceptance does not mean Phase One or the whole game is complete.
+- Rollback: before merge leave/close #9; after separate integration approval revert only this five-commit series in a reviewed PR, preserving parents. Saved completed evolutions/caught flags are not undone by code rollback.
+
+### 2026-11-02 — INT-003 — final session checkpoint
+
+The canonical dashboard, JSON registry and this ledger now record final #9 evidence and remaining gaps. Provisional tracked effort is123 earned /341 remaining (26.51%); the same464-point denominator is retained. INT-004 credits combined build/repeatability/stack checks, while per-feature test work stays with its task. Existing completed work is not reset or counted again. Drive sync remains pending; no Google Drive tool is exposed and network configuration alone is not an authenticated connector. Next required design input is the full Route5 register export. Other missing specs remain independent blockers. All PRs remain unmerged.
+
+### 2026-11-02 — DES-005 — Route5 handoff supplied; former blocker resolved
+
+Owner supplied the complete Route5 Daycare Breeding handoff, consolidated November2,2026. This is approved design and explicit implementation authorization, not runtime evidence. DAY-001..004 retain their permanent IDs and now have complete supplied requirements. Linked Drive originals remain unavailable; their contents are not claimed as read. Added WRL-005 for separately approved local Ditto existence, blocked on unapproved rate/levels. No new encounter values chosen. Exact coordinates/dialogue remain reviewable technical implementation choices using the approved reliable/default-or-both-inside criterion.
+
+### 2026-11-02 — DAY-001 / DAY-002 / DAY-003 — implementation checkpoint
+
+- Previous → new: Route5 single deposit/no breeding → independent two-parent facility with original GenIII compatibility/inheritance/XP/fees, persistent genuine50% Shiny eggs and two existing sprites inside the existing room. No time/encounter/battle balance changes.
+- Base audited: feature/phase-one-stabilization `6ff574dc205a007a93a4724fd6eda867eeff8fdf`. Recoverable ref recovery/pre-route5-daycare-2026-11-02. Branch feature/route5-daycare-breeding; [PR#10](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/10), draft pending final validation.
+- Commits: f4deb0df376c9d11186dce0bbf88f8510cdd9fa9 (storage/context/identity/scripts/tests);5fae1a90741d8ee79a591b4ba7d42b4b4920ead4 (expanded runtime/UI evidence and real rev0 formatter fix);a1dbe8a323a180f4365cb80c6c149663ef7b8e8d (fresh-checkout host-test setup).
+- Authority: DES-005 owner complete handoff. No generic coding reapproval needed; merges/releases remain separate.
+- Material files: include/global.h, include/route5_daycare.h, src/route5_daycare.c, src/daycare.c, data/scripts/day_care.inc, data/maps/Route5_PokemonDayCare/map.json, data/specials.inc; workflow; host/ABI/emulator tests and preservation fixtures; docs/ROUTE5_DAYCARE.md, README.md, AGENTS.md.
+- Storage: exact400 bytes at0x348C, DaycareMon0x8C, DayCare0x11C, SaveBlock1 unchanged0x3D68. FourIsland0x2F80, legacy0x3C98 and following ramScript0x361C unchanged. Native target assertions pass. Original full legacy record copied byte-for-byte into slot0; archived record stays untouched and never re-imported after migration. Unknown/corrupt/versioned occupied storage fails closed, never silently resets or redirects into FourIsland. Existing sector checksum/save layout unchanged.
+- Identity: one fresh RNG coin at generation; save full PID/OT/outcome before pickup. Force both actual XOR outcomes; preserve nature, gender/ability low bits and Nidoran/Illumise branch. Mark only Route5 eggs using encrypted/checksummed unused ribbon nibble A/B. Matching-build hatch preserves intention across receiving OT reassignment; marker clears after hatch. Untagged eggs and global Shiny threshold remain unchanged. Native ownership-data fixture is not a link handshake.
+- NPCs: existing deposit object becomes OLD_WOMAN at4,4; GENTLEMAN egg service at2,4, both stationary inside on existing floor tiles. Real walking proves both reachable. Existing FourIsland text reused; its furniture-specific movement omitted on Route5. Route5 refusal keeps the same pending Egg; FourIsland rejection behavior unchanged.
+- Tests: six host suites pass; new460161 policy assertions and separate preservation audits. Focused core103114 and native UI1359 assertions pass; actual10000 Route5 eggs5066 Shiny/4934 normal; actual10000 FourIsland controls1 Shiny/no marker. Host independent varied seeds also5066; continuous unreseeded control4998. Mail/1234-step migration, both pending/flash, compatibility/offspring/incense/inherited moves+IVs, ownership/hatch/flash, real menu/cancellation/both sexes/last healthy/full party/payment1800 pass. Clean rebuild identical SHA25641bf9004f6500692fd69ab93fa62640777bcb874eb7045e48ebcacde76246ca3. Final combined suite/Actions pending at checkpoint.
+- Real defect: rev0 DaycarePrintMonLvl used C strcpy on EOS0xFF text; level menu stalled/corrupted. Replace with StringCopy as later upstream revisions do. Shared formatter fix also necessarily benefits FourIsland; breeding/state rules and FourIsland map/scripts remain preserved. Runtime failing withdrawal case now passes.
+- Failed development trials: host pointer widths required separate target ABI proof; linearly reseeded RNG fixture introduced artificial serial correlation and was replaced with standard mixed varied seeds plus an independent unreseeded stream; emulator save pointers must follow game relocation; installed mGBA flags must match optional vtable ABI; flash fixtures explicitly verified blank; live Pokemon crypto must not be reentered while inspecting animation; field text/turn timing and encrypted game-stat initialization corrected. These fixture fixes are separate from the real formatter repair; failed trials are not passes.
+- CI issue: initial modified run failed at host test because Make had not generated map_groups.h. a1dbe8a3 generates temporary constants from authoritative map JSON before compiling its host fixture. Final run pending; failure not hidden.
+- Rollback/save risk: old ROMs do not understand migrated deposits or egg markers. Code revert is not safe reverse migration; stale archived legacy data can duplicate/resurrect an old deposit and hide new deposits. Retain pre-upgrade backups, return/recover deposits on the new build or use a reviewed reverse migration. Never erase unknown data. No ROM/save/BIOS/screenshot upload.
+- Remaining: final combined/CI checks, real peer link/hardware/power interruption, full quest-log replay/progression, review of technical coordinates/dialogue, Ditto rate/levels. No production-complete claim or merge authorization.
+
+### 2026-11-02 — DAY-001 / DAY-003 — legacy Continue safety and stronger flash proof
+
+- Authority: DES-005, owner complete November 2 daycare handoff; preserving old deposited Pokémon and existing-save functionality requires this technical migration, with no new gameplay design.
+- Previous → new: a save made inside the old room restored its one saved NPC template, so the new egg caretaker could remain missing until re-entry; Continue now detects the legacy Route5 template layout, performs the normal full room load and safely moves a player standing on the new NPC tile one tile south. No other room is refreshed; original explicit continue-warps retain priority. Upgraded Route5 and ordinary FourIsland Continue paths pass unchanged.
+- Commits: f6b5a10acc4458113296e4b98226c8898f38922e strengthens flash evidence by clearing both save blocks plus global party/count before reload; 596265d41f92fd3e42ee6b0a08d2cb8e0ed62e5d corrects its host constant and implements the Continue fix/tests.
+- Material files added to the previous change set: src/overworld.c; updated include/route5_daycare.h, src/route5_daycare.c, tests/emulator/daycare.c, tests/emulator/run.py, docs/ROUTE5_DAYCARE.md. Full modified-file inventory is in PR#10.
+- Focused actual Continue fixture PASS199 assertions: legacy saved template/active actor and player overlap, old deposit456 steps, real flash load and CB2_ContinueSavedGame, both NPCs respawn, deposit preserved; subsequent upgraded Continue and FourIsland Continue pass. Final full run below repeats these cases, not merely the focused shortcut.
+- Failed trial disclosed: f6b5a10a's stronger host C helper referenced undefined PARTY_SIZE. Actions41449787513/41449767556 failed emulator compilation. Corrected only the host fixture constant in596265d4; production assertions/checks were not disabled. Prior a1dbe8a3 had full-suite114120 and Actions41447962744 SUCCESS, but neither that earlier green head nor focused passes substitute for final-head verification.
+
+### 2026-11-02 — DAY-004 / INT-004 — final combined Route5 verification
+
+- Final branch/head: feature/route5-daycare-breeding `596265d41f92fd3e42ee6b0a08d2cb8e0ed62e5d`; [PR#10](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/10) open and ready for review, targeting feature/phase-one-stabilization at6ff574dc205a007a93a4724fd6eda867eeff8fdf. Main remains e04252ea0783510000e634486c0f2526a736f506. Parent PRs #2–#7 and #9 are unchanged; no merges, auto-merge or release.
+- Build/clean rebuild PASS: make -j2; sha256sum capture; make clean; make -j2; sha256sum -c. Identical measured SHA-256 `0d719dc65d697e9df0ca82596c14a829fa4d179f95be1dad7cfbc09265e8dcfe`. This is repeatability evidence, not a fabricated replacement expected checksum. Linker EWRAM261052/262144, IWRAM29824/32768 unchanged; ROM15408256/33554432. RAM remains tight. Target ABI assertions preserve400-byte use and all established save offsets/sizes; original checksum/sector code remains unchanged.
+- Six host commands PASS: python3 tests/run_split_tests.py (1299 plus6 audits); tests/run_rtc_tests.py (3011); tests/run_evolution_tests.py (755 plus preservation/routing audits); tests/run_pokedex_tests.py (6300 plus preservation); tests/run_wild_double_tests.py (1246873); tests/run_daycare_tests.py (460161 plus static preservation). Execute each tests path with python3. Host/stubbed/static evidence is separate from ROM runtime evidence.
+- Full default `python3 tests/emulator/run.py` on compiled ROM/ELF and libmGBA0.10.5 **PASS114313 assertions**, including API/register/fixture safety assertions rather than that many whole gameplay scenarios. Includes prior split/RTC/evolution/Dex/wild battles; actual legacy/current/FourIsland Continue, service menus/walking/deposits/refusals/experience/payment1800, independent parents/pending/flash, old full deposit/mail/1234-step migration, compatibility/offspring/incense/IV+move inheritance, one hatch clock, full-party/refusal identity retention, actual744-frame Shiny hatch and return to field, receiving-OT trait preservation and pending/party/hatched flash states. The separate global party/count and both save blocks are cleared before reload; no leftover RAM is used as proof of persistence.
+- Actual ARM-generated Route5 statistical log: `PASS: 10000 FULL actual ARM-generated Route5 Eggs: 5066 Shiny/4934 non-Shiny, IsMonShiny on encrypted stored data; seed=mix32(0x2A551701+i); transitions=2474/2460/2459/2606`. Every egg goes through native pickup/data creation. Exact mix transform xor16/mul7FEB352D/xor15/mul846CA68B/xor16 is checked in. Observed50.66% lies within4700–5300 tolerance; one fresh coin, both true XOR outcomes, pending no-reroll and reduced128-block nature reachability are independently deterministic-checked.
+- Actual FourIsland control log: `PASS: control10000 actual Four Island Eggs: 1 Shiny, no Route5 marker/transformation (normal odds, not a precise rate proof)`. Host additional unreseeded10000 stream from0x51E832A9:4998 Shiny; transitions2491/2511/2510/2487. No wild/global Shiny odds or unrelated egg policy changed. Full baseline compatibility includes isolated excluded-species fixtures, not additions to the252 roster.
+- [Actions41451641953](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41451641953) **SUCCESS**, exact final head: modified job host/clean reproducibility/mGBA steps SUCCESS; upstream-baseline job original SHA-1 twice from clean SUCCESS. [Actions41451631233](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41451631233) also SUCCESS. Independent pinned upstream SHA-1 remains41cb23d8dccc8ebd7c649cd8fbb58eeace6e2fdc. CI conclusions are obtained through the GitHub API; inaccessible detailed log downloads were not read. Assertion counts/statistical output are local executed logs retained here and in tests; no false CI-log attribution.
+- Working-tree/diff checks and no new tracked ROM/save/archive/screenshot checks PASS. No proprietary BIOS/reference ROM was downloaded and no binary artifact was uploaded. The gh pr edit command encountered a deprecated Projects(classic) query; the identical prepared PR body was successfully saved through the supported REST PATCH endpoint. This was a client command failure, not a code/test failure.
+- Unverified: actual two-peer link handshake, foreign-ROM marker semantics, hardware/physical power interruption, other emulator cores, full quest-log playback and progression. Receiving-OT fixture+hatch is not link traffic. No old-ROM reverse migration. NPC coordinates/reused dialogue are technical choices presented for review, not separately finalized narrative design. No production-complete claim.
+- Rollback: preserve recoverable base recovery/pre-route5-daycare-2026-11-02; decline/close unmerged PR or revert only its five commits through separate review after authorized integration. Code rollback alone is unsafe for upgraded saves: old ROMs cannot see new parents/eggs/markers and stale archived legacy data may resurrect withdrawn Pokémon. Retain a private pre-upgrade save backup, recover parents with the new build or use a separately reviewed reverse migration. Never erase unknown storage.
+- Supersedes the prior checkpoint's pending combined/CI status and stale hash, not its historical evidence. All approved breeding behavior, independent FourIsland storage, existing roster/types and parent features remain intact. WRL-005 stays blocked on owner-approved Ditto rate/levels; no values invented.
+
+### 2026-11-02 — INT-003 — durable final Route5 checkpoint
+
+Updated Current Effective Version, all four permanent DAY tasks, combined integration evidence and the feature dashboard. Repaired malformed dashboard table rows by rendering the task registry without changing other tasks' status/effort. DAY stays31 earned/1 remaining (97%/3%); overall154 earned/312 remaining, total466 (33.05%/66.95%). No duplicate credit for repeated verification; WRL-005's two-point scope expansion remains explicit. All33 task IDs, aliases, histories and outstanding unrelated blockers survive. Google Drive sync is still pending; no Drive document was created. PR#10 is ready for review, #8 holds this documentation, and no merge/auto-merge/release is authorized.
+
+### 2026-11-02 — DES-006 / INT-003 — new supplied update and missing package
+
+Owner supplied the complete Wild Encounters, Gym Roster, Fossils and Pokedex Compliance update and subsequently instructed Continue. It authorizes fully specified implementation without routine reapproval, with no merge/auto-merge/release. The queued Codex Start Prompt was read completely; its named ZIP was not uploaded. Seven linked Drive exports returned401 even with unrestricted HTTP and no exposed Drive reader/writer. No source documents/package mechanics are claimed read. Poké Ball implementation stays blocked on the actual governance/16 and sources/15 files, not a request for generic coding approval.
+
+### 2026-11-02 — WRL-006 / WRL-007 — approved fossil implementation
+
+- Previous → new: Route10 aide's one Everstone at20 caught → one Claw Fossil at the same threshold/location and reward bit0x2FA. New dialogue names Claw; other aides unchanged. Historical claimed rewards stay claimed; no retroactive second reward, Everstone replacement or Rock Tunnel dig site. Old-save Anorith availability after a previously claimed Everstone is not solved by inventing another location.
+- Previous → new: MtMoon choice excluded the other fossil → original saved choice remains immutable and existing experimental-room scientist offers the opposite fossil once, only after a valid completed choice. Refusal/full bag retains availability; gift flag publishes only after success. No new NPC/map asset, original lab services preserved and pending revival takes priority.
+- Previous → new: old lab assumed one MtMoon fossil and stopped after it+Amber → four-option existing-style menu with possession/completion checks, both fossils and Claw→Anorith through original level5/pending/entrance/party/PC/nickname flow. New event flags0x2E5/0x2E6 verified unused; menu65 appended. Save/item/species IDs/layout remain unchanged. Original service blocks fingerprinted.
+- Branch/commit: feature/fossil-rewards-and-roster-audit `b0bd3b86f4e03dd3f540f0776a5de87f207e84e4`, [PR#11](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/11), stacked on unchanged PR#10 at596265d41f92fd3e42ee6b0a08d2cb8e0ed62e5d. Main remains e04252ea0783510000e634486c0f2526a736f506; parent PRs unchanged and unmerged.
+- Files: data/maps/Route10_PokemonCenter_1F/scripts.inc,text.inc; data/maps/CinnabarIsland_PokemonLab_ExperimentRoom/scripts.inc,text.inc; include/constants/flags.h,menu.h; src/script_menu.c; scripts/audit_species_assignments.py; tests/emulator/fossils.c,run.py,runner.c; tests/run_world_reward_tests.py; tests/specifications/world_reward_preserved.json,unresolved_species_assignments.json; workflow, README, AGENTS and docs/FOSSIL_REWARDS_AND_SPECIES_AUDIT.md. No map objects, trainer parties, wild data, daycare or global typing modified.
+- Actual native scenarios PASS:19/20 caught/full bag/one-time and historical reward bit; both opposite gifts/no choice/both-choice corruption/refusal/full bag/retry/save; all FOUR fossil revivals in ONE SAVE including cancellation, exact-once consumption, pending/ready flash, actual original entrance transition, level5 correct species, custom membership/seen+caught registration and repeat rejection. Native script entry points are invoked on actual maps with normal messages/menus/buttons; not a claimed manual full playthrough or MtMoon fossil-choice walk.
+- New production defect discovered and fixed: full-bag scientist used common aide text containing STR_VAR_2 without initializing it, causing unbounded text expansion and a native crash. Buffer the gift fossil name before that message. Same native failing case now passes. This was a new implementation error, not an upstream defect. Separate fixture corrections target actual key-item pocket, both seen/caught anticheat copies, Thumb task pointers and final text native waits; longer existing aide dialogue needs a longer harness completion budget. No inventory/save/assertion requirement waived. Focused pre-cleanup run395 assertions is historical; final complete result below is authoritative.
+- Seven host suites PASS: split1299+6 audits, RTC3011, evolution755+audits, Dex6300+preservation, wild1246873, daycare460161+preservation, world static19-file/13-block preservation plus flag/roster/no-new-conflict checks. Static checks are not runtime tests.
+- Final full default python3 tests/emulator/run.py on libmGBA0.10.5: **114706 assertions PASS** including safety checks. Prior daycare10000 actual eggs5066/4934 and ordinary FourIsland control1/10000 are retained. No actual link/hardware/full-PC failure/nickname acceptance/full quest-log or full progression claim; original unmodified delivery blocks are source preservation, not those unexecuted scenarios.
+- Build and clean rebuild PASS: make -j2; hash; make clean; make -j2; sha256sum -c. Identical measured SHA256 `80f96e1945b11519841ed1bc869dcc0aad13614e11f043d2dab18f880529c9ad`; no replacement expected ROM hash. [Actions41529505085](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41529505085) SUCCESS: modified hosts/clean/mGBA and separate pinned upstream checksum twice from clean. Local assertion counts are execution logs; CI job/step conclusions are API evidence.
+- Rollback: decline/close unmerged PR or review-revert only this commit, preserving parents. Code revert does not undo collected items, restored Pokemon or event flags. Resolve Claw restorations on the new build before downgrade; old builds do not understand fossil kind4. Keep private pre-upgrade backups and original daycare rollback precautions. No ROM/save/BIOS/screenshot upload or release.
+
+### 2026-11-02 — PKM-006 / GYM-004 / WRL-005 — explicit remaining conflicts
+
+- Reproducible strict species audit FAIL remains recorded:4913 assignments/review candidates;281 authored off-Dex occurrences (199 wild,24 ordinary trainer,54 Trainer Tower,4 direct events). Additional279 legacy battle-tower records and12 variable/C references require role review, not inferred live encounters.572 findings across93 distinct excluded names overall; not572 gameplay failures. Snapshot is UNRESOLVED inventory, not approved exceptions. CI --check passes only no-new-findings; strict noncompliance is not hidden or waived. Full context/path/line inventory is checked in. Internal canonical data remains available without adding253rd roster species.
+- Direct conflicts include Togepi Water Labyrinth egg and Deoxys/Lugia/Ho-Oh events; approved locked stationary spec is unavailable. Ordinary team conflicts include Marill, Hoppip/Skiploom, Smeargle, Qwilfish, Chinchou/Lanturn, Girafarig and Snubbull. Do not invent replacements, delete locked events or silently apply draft ecology. Coordination of replacements remains in encounter/trainer tasks; audit closure earns no duplicate implementation credit.
+- Blaine approved design: Donphan/Gyarados opening, Sandslash, Aerodactyl, Flygon ace, Double Battle. All names are in252. Actual source remains Growlithe/Ponyta/Rapidash/Arcanine, doubleBattle FALSE and single event; there is no Skarmory entry to replace. Full approved levels/moves/items/seven ordinary teams unavailable. Implemented Gyarados Water/Dragon conflicts with new Water/Flying Ground-immunity rationale; asynchronous owner question pending. No species-type or trainer configuration invented.
+- Ditto Route5 existence remains approved under WRL-005, rate/levels/table pending. No draft wild tables or final double-map/pair placements implemented. Full ZIP/approved Poké Ball mechanics required next; routine implementation permission is not requested again.
+
+### 2026-11-02 — INT-003 — queue/dashboard continuity
+
+Preserved all33 permanent prior IDs/aliases/history and added WRL-006, WRL-007, PKM-006, GYM-004, BTL-006 (38 total). New detailed scope adds38 points,466→504; earned174/remain330 =34.52%/65.48%. Existing earned154 is retained, with16 fossil points and4 audit points added. GYM-004's3 pending points are carved from GYM-00120→17, not duplicated. Other placement estimates exclude these fossils; feature tests are not counted again under shared integration. DAY remains31/32 (97%/3%). Estimates remain low-confidence planning effort, not release certification. Canonical docs remain in PR#8; Drive sync pending. No merge/auto-merge/release.
+
+### 2026-11-03 — DES-007 / GYM-004 — Gyarados typing confirmed
+
+- Exact owner decision: “Gyarados is Water Dragon, confirmed.”
+- Effective design: Gyarados remains Water/Dragon, matching PR#9's existing approved implementation. The Water/Flying and resulting Ground-immunity rationale in the later Blaine addendum is superseded. Five-member roster/opening-pair approval is not otherwise changed.
+- No gameplay code, typing table, ability, item, move, partner, price or battle mechanic changed. No new build/emulator result is claimed for this documentation-only decision; no implementation credit added. No merge/auto-merge/release.
+- Next: reconcile supplied complete Gym exports for actual finalized levels/moves/items. Any strategy revision must follow approved design; do not silently manufacture immunity.
+- Authority package intake: Pokemon_Lightning_Yellow_Codex_Authority_Exports_2026-11-03.zip received; archive integrity and all40 listed source SHA256 values verified. START_HERE and conflict register read; full-domain exports not yet all read. This supersedes the missing-export access blocker, not unfinished designs or the special-overworld hold.
+
+### 2026-11-03 — DES-008 / WRL-008 — approved Mystery Vendor Network
+
+- Design authority: owner-supplied Mystery Vendor Codex Implementation Handoff v1.0, read in full; approved vendor pool CSV; owner explicitly approved implementing independently of unfinished starter work. The40-file November3 authority archive is received, checksums verified; it supplies future domain registers, not a claim that all have been read or implemented. Owner Gyarados Water/Dragon confirmation remains DES-007; special-overworld HOLD remains in force.
+- Previous → new: ten existing optional NPC interactions (including the500 fixed Magikarp sale) → exactly one700 purchase per original seller, level5 ten-species uniform pool without replacement, independent90% real Shiny draw, stable foreign Mystery OT with ordinary traded EXP/badge obedience. Other caught/seen/evolved/released/traded acquisition does not deplete offers. Exact approved dialogue, money box, party/actual-PC nickname and correct-box messages; No/699/full storage/cancellation safeguard money and depletion.
+- Recoverable base: fossil#11 `b0bd3b86f4e03dd3f540f0776a5de87f207e84e4`. Separate branch `feature/mystery-vendor-network`; [PR#12](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/12) targets feature/fossil-rewards-and-roster-audit. Main and parents unchanged. Commits a7bacdb5 (scope boundary),8601d1b0 (supplied CSV intake),b9efabb2 (core/scripts),fda17676 (UI/dispatch/regression), final `92a0600d819fe818f948e8d72bd1591531b4a07c` (map-state safety). No merge, auto-merge or release.
+- Material source files: src/mystery_vendor.c, include/mystery_vendor.h, include/constants/mystery_vendor.h, include/constants/flags.h, data/scripts/mystery_vendor.inc, data/event_scripts.s, data/specials.inc; existing scripts for Route4_PokemonCenter_1F (and old sale text),CeruleanCity_House1,VermilionCity,Route10_PokemonCenter_1F,LavenderTown,CeladonCity,FuchsiaCity,SaffronCity,CinnabarIsland,OneIsland. Tests: tests/run_vendor_tests.py, tests/specifications/mystery_vendor_{sites,preserved}.json, tests/emulator/mystery_vendor{,_ui}.c plus runner/run.py; required workflow, species-audit C scan, README/AGENTS and docs/MYSTERY_VENDOR_NETWORK.md. Original NPC map.json files are unchanged; all30 changed paths are visible in the PR.
+- Ownership correction: GiveMonToPlayer overwrites OT. Setting OT_ID alone does not re-encrypt secure data; first native tests caught invalid data. The delivered record is rekeyed with oldOT xor newOT before setting the final header/name, preserving decrypted data/checksum/PID. No global Pokémon/trade/EXP/obedience routines changed. Final identity tests include player named Mystery and native PC-to-party conversion.
+- Dispatch correction: append new specials before gSpecialsEnd, preserving old indices. Initial direct function tests did not catch the early outside-table placement; actual NPC script execution did. Corrected without weakening assertions or ABI guards.
+- Map-state correction: source review after the first full fda17676 test pass found VAR_TEMP_1 also controls Cinnabar Gym locking. Final92a0600d uses script-only VAR_0x8008 and native PC message leaves without that generic gift wrapper. Expanded native UI checks preserve the map variable on all ten maps and through Cinnabar PC naming/save/load with and without the Secret Key. Previous passing tests did not prove this missing case; it is not concealed as original coverage.
+- Save compatibility: no save/Pokémon structure changes;19 previously unused flag bits0x300..312 plus original Route4 bought-Magikarp bit0x249. A legacy purchased Magikarp reserves that seller/species, without overwriting the old Pokémon, retroactive pricing/OT or another sale. Corrupt mismatched depletion counts fail closed. No filesystem save artifacts committed.
+- Host commands: python3 tests/run_split_tests.py (1299 plus audits), run_rtc_tests.py (3011), run_evolution_tests.py (755 plus audits), run_pokedex_tests.py (6300 plus preservation), run_wild_double_tests.py (1246873), run_daycare_tests.py (460161 plus audits), run_world_reward_tests.py (19files/13lab blocks plus no-new-species guard), run_vendor_tests.py (655425 executed production RNG mapping assertions plus static preservation/dialogue/font/dispatch/flag/map-state checks). All PASS. Execute each tests path with python3; host/static evidence is distinct from ROM runtime.
+- Clean build: make -j2; SHA capture; make clean; make -j2; sha256sum -c PASS. Measured identical ROM SHA-256 `a2bb356cfbf0e989cd550fc945af10b377033d3dba3d297dda8eb805476b935e`, not a fabricated expected gameplay checksum. EWRAM261052/262144 and IWRAM29824/32768 unchanged; ROM15409424/33554432; temporary100-byte transaction allocation, no new graphics.
+- Emulator: python3 tests/emulator/run.py with packaged libmGBA0.10.5, no commercial reference ROM or supplied BIOS, **273355 assertions PASS** (includes fixture/API/register checks, not that many whole-game scenarios). Full prior split/RTC/evolution/Dex/wild/daycare/fossil scenarios rerun with vendor source. Focused final UI6478 PASS; transaction152183 PASS. Actual ten-map NPC entry scripts cover exact intro/No/699/700/repeat, party and outdoor-PC keyboard A, PC No/default naming, correct species/box transfer text, full420-slot rejection/retry, exact charge, Saffron visibility, Cinnabar map state, real flash persistence and pre-sale reload. Ten complete varied seller-order pools yield all ten once. Source fingerprints protect original other NPC/story blocks but do not prove full progression.
+- Statistical native evidence:10000 actual delivered purchases;8989 Shiny/1011 non-Shiny according to native decrypted stored identity and IsMonShiny; seeds mix32(0x705A9D13+i). Species chi-square18.434, joint species/Shiny27.442, fixed thresholds40/60; Shiny interval8800..9200. Host exhausts complete16-bit accepted intervals for n1..10 and rejected tails plus0; this proves mapping rather than abstract PRNG independence. Normal wild/FourIsland/gift Shiny routines unchanged.
+- Battle evidence: controlled actual Cmd_getexp values wild100/150 and trainer150/225, switched recipient and actual boosted text; native disobedience at badge thresholds10/30/50/70/all plus above-threshold and player-owned level99 controls. This is not a full victory/level-up playthrough or two-peer link test.
+- Final Actions: [41673840642](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41673840642) **SUCCESS**, exact head92a0600d: modified host/clean reproducibility/full mGBA and independent upstream original SHA-1 twice from clean PASS. Earlier fda17676 runs41672984256/41673094089 were superseded/cancelled (not failures or final acceptance); earlier b9ef raw transaction green does not certify later UI. No ROM/BIOS/save artifacts uploaded.
+- Remaining: explicit future starter exclusivity integration under WRL-001, manual full-world progression, hardware/two-peer link, abrupt flash power-loss, exhaustive quest-log replay and independent Shiny-summary visual approval. Unrelated281 authored off-Dex assignments remain unresolved; no-new-findings is not global compliance. Poké Ball primary register/governance intake next, on another branch. No fabricated missing-ZIP blocker now that actual exports exist.
+- Rollback: revert only this topic's commits together against b0bd3b86, preserving unrelated work. Keep pre-feature save backups; consumed sale bits remain after a code revert and cannot be cleared to duplicate offers. Ordinary purchased Pokémon format needs no migration. Full progression reversal requires restoring a pre-feature save, not deleting Pokémon or resetting main.
+- Progress: new permanent WRL-00820-point scope,19 earned/1 remaining starter integration acceptance; all38 prior IDs/history/174 earned preserved. Registry39 tasks, total504→524,193 earned/331 remaining =36.83%. Vendor95%/5%; WRL area35/94=37%; repeated combined tests earn no duplicate INT-004 credit. Canonical Drive synchronization still pending; no Drive write tools exposed. No production release-complete claim.
+
+### 2026-11-03 — BTL-006 — Poké Ball readiness audit, no production changes
+
+- Authority: all three supplied Poké Ball exports read fully; final November2 explicit owner coding authorization supersedes older design-only headings. Relevant Master/Queue amendments, canonical START HERE/intake and Snow/Hail passages reviewed; no claim every unrelated source register was read. Latest owner instruction: continue until ready to implement.
+- Source audited: vendor branch92a0600d819fe818f948e8d72bd1591531b4a07c; GitHub#12 still open/ready, both exact-head Actions checks PASS, main/parents unchanged. These baseline passes do not test future ball changes.
+- Deliverable: docs/POKE_BALL_IMPLEMENTATION_READINESS.md, permanent milestones BTL-006-M01..M06 within existing BTL-006 budget (not separately double-counted). Appended Snow item375 plus separate capture code13 proposed to preserve four-bit Pokémon storage, native byte controllers and old item IDs. Existing13-slot bag supports thirteen varieties; all art reuses Dive. Audited unsafe dispatch/cancellation/statistic indices, actual weather/field-Snow gap, fishing context,11 stock lists and native full-bag/Oak-gift paths.
+- Recommended technical safeguards: atomic purchased quantity+Premier bonus or no charge, map-independent capture state, narrow natural Snow→Hail bridge following existing field-weather lifetime, initial Oak five-Nest pending retry without changing emergency refill. Preserve TwoIsland staged vendor and TrainerTower special stock; universal purchase bonuses still apply there. Explicit review boundaries, not invented new ball designs.
+- Status: READY for core scoped implementation; no essential missing source/permission. Proposed branch feature/poke-ball-redesign based on#12, not created in this step. No production code, build, new-mechanic emulator execution or feature PR performed. No merge/auto-merge/release. Existing vendor/fossil/daycare code retained.
+- Tracker: BTL-006 design/source readiness updated; existing earned0/remaining16 retained, overall193/524=36.83% unchanged. Direct Drive sync pending. Runtime proof of encoding, weather lifetime, stock boundaries, transaction/gift edge cases and full regression required before implementation completion.
+
+### 2026-11-03 — DES-009 / BTL-006 — approved Poké Ball implementation
+
+- **Authority supersession:** owner explicitly states Codex must no longer stop at readiness; fully implement finalized specifications, asking only on genuinely incomplete information/conflicts. This supersedes the prior readiness stopping point, not merge/auto-merge/release gates or specific special-overworld HOLDs. Final November2 ball register and express task authorization remain the gameplay authority; no new ball designs or unrelated balancing inferred.
+- **Previous → new:** original Net type bonus/Dive underwater bonus/Premier1x/no purchase bonus/initial five Poké gift → approved Wet/Dust weather/origin conditions, fixed eight-species Premier3.5x, unique Snow item with shared Dive art, per-ten identical-purchase Premier rewards, eleven1200 late specialty stocks, initial five Nest with persistent full-bag retry. Standard Master/Safari/Poké/Great/Ultra/Nest/Repeat/Timer/Luxury mechanics and separate Route22 refill preserved.
+- **References/recoverability:** branch feature/poke-ball-redesign based on unchanged vendor#12 `92a0600d819fe818f948e8d72bd1591531b4a07c`; commits `3512a7d32e4dba7bfecf43459a16e28bb5d3ea23` (production/tests), final `ad86d58b0c0dec7117ffa524ae4a66926b92cd88` (stronger native weather/PC tests and correct ability argument order). [PR#13](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/13) targets feature/mystery-vendor-network. Main/parents unchanged; no worktree, merge, auto-merge or release.
+- **Material files/systems:** new src/capture_rules.c and include/capture_rules.h; include/constants/items.h,battle.h,flags.h; src/data/items.json,item_icon_table.h; capture dispatch/handler, player/tutorial cancellation controllers, battle setup/encounter origin, battle weather/messages, ball animations/send-out/summary decoding, shop; eleven Mart stock scripts and Oak scripts/text. Tests add tests/run_capture_tests.py, tests/emulator/capture_rules.c plus ABI/runner hooks and one diagnostic in wild_double.c. Prior evolution/Dex/daycare/vendor preservation suites use tests/approved_ball_changes.py and frozen approved context hunks while retaining their original baseline hashes. All47 changed paths visible in PR; original art assets/save structures remain unchanged.
+- **Storage safety:** Snow bag item375 does not renumber any old item, Potion remains13. Captured Snow uses separately mapped four-bit code13, with explicit decoding only in ball visual contexts; native byte controllers and old codes1..12 retained. Existing13-slot ball pocket and12 visual arrays unchanged; exact Dive icon/palette/particles/animation pointers reused. Bounded legacy throw-script/statistics/refund paths avoid indexing375. New pending Oak flag0x313 was unused; no SaveBlock/Pokémon layout migration or erased deposits.
+- **Weather/shop technical choices:** current battle masks at throw, nonstacking OR; field Snow now enters natural permanent Hail via existing16-bit state and native animation/message. Natural lifetime follows original field Rain/Sand/Sun conventions; move Hail still expires after five actual turns. No broader weather/lighting or modern Snow stat mechanic. Purchase+bonus simulated in one encrypted pocket then committed together; a full/999 bonus stack rejects the whole transaction, no bonus debt or lost reward. TwoIsland staged vendor/TrainerTower exceptional stock preserved, but eligible purchases there earn universal bonuses. These explicit boundaries remain visible for review, not invented new distribution design.
+- **Host commands/results:** python3 tests/run_split_tests.py1299+audits; run_rtc_tests.py3011; run_evolution_tests.py755+preservation; run_pokedex_tests.py6300+preservation; run_wild_double_tests.py1246873; run_daycare_tests.py460161+preservation; run_world_reward_tests.py19files/13lab blocks/no-new-species; run_vendor_tests.py655425+static; new run_capture_tests.py**7315 executed production-helper assertions** plus item/price/eleven-stock/art audits. All nine PASS. Execute each tests path with python3. Static/host/stubbed evidence is separate from native gameplay execution.
+- **Build/reproducibility:** make -j2; SHA capture; make clean; make -j2; sha256sum -c PASS. Measured identical ROM SHA-256 `28e43f8fdd0eb815413cec515d644946362d04fe60c96b729989764f3d3bdb19`; not a fabricated expected gameplay hash. EWRAM261052/262144, IWRAM29824/32768 unchanged; ROM15410000/33554432. Existing cloud toolchain/mGBA used, no local owner installation or proprietary BIOS/reference ROM required.
+- **Final native integration:** python3 tests/emulator/run.py with libmGBA0.10.5 **274675 assertions PASS** (includes fixture/API/register guards, not that many whole-game scenarios). Repeats entire prior split/RTC/evolution/Dex/wild/daycare/fossil/vendor stack. New cases execute policy/weather/origin/cave/whitelist and all13 code roundtrips, actual encrypted Snow/Potion flash persistence, all purchasable types with quantities1/9/10/19/20/30/99, bonus overflow/mixed nonpooling, real Snow Bag two-foe rejection, both survivor captures/animations, partner cancellation refund, exact consumption, full-party PC capture and saved code13. Actual Mart quantity10/confirm/return gives10 Poké+1 Premier, charges2000 once and survives flash. Actual Oak NPC rejects full999 Nest stack with pending flag, persists it, retries exactly five and clears/saves flag.
+- **Weather evidence distinction:** focused114 assertions PASS: actual field Snow battle entry, six full permanent-Hail turns, native Sunny Day replacement, five actual temporary-Hail turns to expiry, controlled native Drizzle/Drought/Sand Stream and Rain Dance/Sandstorm opcodes, Forecast Ice typing. These controlled calls are not every complete ability/move animation scene. Separate four-Growl/Hail stress completed in3480 frames under bounded12000-frame diagnostic; earlier general2400-frame wait timed out because the combined spread animations took longer. Splash-controlled duration tests pass independently; no gameplay workaround or disabled assertions.
+- **Failures/corrections:** initial C89 declaration placement and declared-but-absent plural-name function prevented compilation; corrected. Snow capture fixture originally relied on fainting a Cloyster with native Protect; controlled Growl opponent choices isolate capture logic. Shop tests initially pressed during fade/text; corrected task readiness/timing. [Actions41682653644](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41682653644) at3512a7d3 failed modified emulator test (native ability override passed in the wrong argument); corrected in ad86d58b. It is not hidden or used as final validation. Original upstream job passed even in that earlier run.
+- **Final Actions:** [41688991039](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41688991039) **SUCCESS** at exact ad86d58b: modified host/clean reproducibility/full mGBA and independent upstream-original SHA-1 twice from clean PASS. Original SHA-1 remains41cb23d8dccc8ebd7c649cd8fbb58eeace6e2fdc. No ROM/BIOS/save/build artifact uploaded.
+- **Remaining acceptance:** no actual two-peer/hardware/power-interruption, manual full progression, exhaustive quest-log replay, every13-ball success/failure/presentation, whole parcel ceremony or complete field rod/Surfing UI test. Native condition matrix/source hooks do not prove all those interactions. Summary/send-out reuse is source/mapper verified, not independent visual approval of every new-code path. Future full dynamic weather/starter/Eevee/type/move/world work is separate; existing off-Dex findings remain unresolved, no new-findings guard is not global compliance.
+- **Rollback:** revert only topic commits against92a0600d, keeping unrelated source and all parents. Back up/restoring pre-feature saves is required for complete reverse progression/new item semantics; do not renumber old IDs, erase Pokémon or reset main. No old-ROM/new-feature interoperability promise.
+- **Progress/ledger:** permanent BTL-006 retained and retitled from queued intake to implemented ball system; original16-point budget now15 earned/1 extended acceptance. All39 permanent tasks/history retained, other effort unchanged; total524,208 earned/316 remaining =39.69%. BTL area48/136=35.29%; feature93.75%. Combined INT-004 test reruns receive no duplicate credit. Canonical docs on PR#8, Drive sync pending. No release-complete or merge claim.
+
+### 2026-11-04 — INT-003 / PKM-007 — supplied-source reconciliation before typing edits
+
+- Owner explicitly requests reconciling old missing-document notes, then implementing remaining approved types. Verified all40 source checksums and primary final handoffs/passage precedence; exact read scope and true gaps in docs/SPECIFICATION_RECONCILIATION_2026-11-04.md and verbatim manifest. Tracker15 workstreams now reference available exports rather than asking for the same package. Full35 effective type rule set confirmed,24 actual source mismatches. No production code changed at this checkpoint.
+- Later appendices resolve weather inheritance/harbors/RTC fallback, Celadon Trainer7 Castform slot, Route5 Ditto/Skitty/Rattata roster,41/41 class pools and Giovanni cumulative4/5/6. Precise palette colors, individual battle/encounter balancing, some shop/gift details and SOW implementation HOLD remain distinct. No invented settings.
+- Recorded owner-authorized PR#13 merge d54f7a8e into vendor#12 only; historical unmerged#13 notes superseded, main/other PRs unchanged. Museum#14 independent main-based draft, feature build passes/baseline fails and combined integration is unverified; only read its source diff, no change made to that PR.
+- Existing39 stable tasks and208 earned points preserved; add PKM-0070 earned/6 pending for newly reconciled24-row correction/test scope.40 tasks530 points,208/530=39.25%; no completion credit from source availability or duplicated existing bridge work. Drive sync remains pending. Next: isolated typing implementation/verification/unmerged PR on d54f7a8e. No merge/auto-merge/release authority for this task.
+
+
+## 2026-11-04 — PKM-007 approved typing corrections; source/tracker reconciliation
+
+**Current Effective Version — species typing:** supplied November2 252-species
+matrix PartA plus later Master Plan approvals (lines81/878/1208/1211) and the
+owner's explicit Gyarados Water/Dragon confirmation.35 explicit rules are effective;
+24 differed from the actual owner-merged vendor/ball source. Historical PKM-003's
+twelve-rule snapshot is retained; Pinsir Bug/Steel is superseded by pure Bug.
+This version is implemented on PR#16, not main. Other approved species stats,
+abilities and learnsets are separately scoped and not silently implemented.
+
+**Before → after:** Rock/Ground Geodude/Graveler/Golem/Onix/Rhyhorn/Rhydon/Larvitar/
+Pupitar → pure Rock; Steel/Ground Steelix → pure Steel; Bug/Steel Pinsir → pure Bug;
+pure Fire Vulpix/Ninetales → Fire/Ghost; Normal/Flying Pidgey/Pidgeotto/Pidgeot,
+Spearow/Fearow, Farfetch'd, Doduo/Dodrio, Taillow/Swellow → pure Flying;
+Normal/Flying Hoothoot/Noctowl → Flying/Psychic. Eleven already-correct rules,
+including Gyarados Water/Dragon, remain unchanged. No elemental-chart, move,
+trainer, encounter, ability, stat, learnset, evolution, roster-number or ID change.
+
+**References/status:** `feature/approved-typing-corrections`, commits
+`dfd3b2bc9eeee719b254e60f3f4afbb4b9015824` and `b1ff74d0e129815baf45633d54073f24af4087d0`;
+[PR#16](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/16)
+targets `feature/mystery-vendor-network` at d54f7a8e85d38b8fa304399dcb4d14778396d5cd.
+Main remains e04252ea0783510000e634486c0f2526a736f506. Existing owner-approved
+PR#13 merge into vendor is preserved. This task does not merge, auto-merge,
+retarget or edit other feature PRs. PR#16 is ready for scoped review.
+
+**Files/systems:** sole production file `src/data/pokemon/species_info.h` (24 type
+pairs). Fixture `tests/specifications/approved_type_overrides.json` expands to35;
+`historical_type_overrides_pr9.json` preserves its original snapshot;
+`approved_typing_delta.json` records all24 before/after pairs;
+`typing_preserved.json` freezes parent full-file/non-type digests.
+`tests/approved_typing_changes.py` explicitly reverses only this approved delta
+when older daycare/vendor preservation tests run; expected historical hashes stay
+unchanged. Updated `run_pokedex_tests.py`, `run_daycare_tests.py`,
+`run_vendor_tests.py`; new `run_typing_tests.py`; native
+`tests/emulator/battle_categories.c`/`run.py`; CI, AGENTS, README and
+`docs/TYPING_CORRECTIONS.md`. Canonical tracking/reconciliation lives separately
+on this documentation branch with the verbatim40-file source manifest.
+
+**Executed tests:** all10 `tests/run_*tests.py` PASS (capture, daycare, evolution,
+Pokédex, RTC, split, typing, vendor, wild-double, world-reward).35 authoritative
+pairs and exact24-delta whole-file reversal PASS; all other species fields are
+byte-preserved. Full local mGBA0.10.5 routine/UI/scene/save regression PASS,
+274765 assertions on the modified ROM; final test-harness addition separately
+PASS,46 focused summary assertions. New runtime coverage: all35 real
+party→battle types;17 controlled battle/AI effectiveness checks;9 STAB checks;
+six actual summary screens load approved mono/dual type icon data. Existing
+native evolution, RTC, wild captures, independent daycare, vendor, fossils,
+Poké Ball/UI/weather and flash save/load tests remain passing. Route5 native
+10000-egg sample5066 Shiny/4934 non-Shiny remains unchanged. No fabricated
+probability or runtime result is substituted for a static audit.
+
+**Build/CI:** `make -j2`, `make clean`, `make -j2`, and
+`sha256sum --check /tmp/typing-first-build.sha256` PASS. Both builds produced
+`35c18c2c45f305691e3523724e6a7a7bc10a43c373db0cf993b8566d58fbc0c0`;
+this measured reproducibility result is not a new expected vanilla checksum.
+[Final-head Actions](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41760396005) SUCCESS: modified build/host/full-ROM mGBA and unchanged
+pinned-upstream clean SHA-1 comparison. Earlier intermediate-head runs were
+superseded/cancelled, not represented as successes. EWRAM261052/262144 and
+IWRAM29824/32768 bytes are unchanged; no new RAM/save fields or artwork.
+No ROM/save/generated binary is committed or uploaded as an artifact.
+
+**Compatibility/limits:** types are derived from species data, so saved Pokémon
+need no layout migration; identity/moves and existing encrypted save structures
+are preserved. Existing full flash regressions pass; this is not an old-ROM
+cross-version save comparison or full-world progression certification. Real link
+peers/physical cartridges and every visual state remain unverified. Matching game
+data is required for link battles. Separate Sandstorm residual policy and future
+stats/abilities/learnsets remain unfinished, not imported into this data-only patch.
+Strict global species audit still has281 authored off-Dex findings; no claim of
+global compliance. External Museum#14 and Blaine#15 are not integrated/tested in
+combination here. PR15 duplicates Pidgeot's approved pair, touches shared tests/
+workflow and currently fails compiling CinnabarIsland_Gym/text.inc:12 (backslash
+mapping) at inspected head9b6563a2/run41760575099; older tracker claims that no
+Blaine implementation exists are superseded. No changes made to that PR.
+
+**Source/tracker reconciliation:** all40 TXT export checksums verified; no new
+copy requested. Corrected stale unavailable-document authority/blocker notes;
+actual unresolved palette, encounter-distribution, held-feature and integration
+gaps are retained. Direct Drive synchronization still pending; availability of
+snapshot specifications is not authenticated live Drive writing.
+
+**Progress/recovery:** PKM-007 six pending points → six earned; all39 previous
+IDs/208 earned retained.40 tasks,214 earned+316 remaining=530 provisional points,
+40.38% overall. PKM area48 earned/4 remaining=92.31%. No duplicated integration or
+external Pidgeot credit. Rollback: revert the two topic commits (or eventual merge)
+while preserving the vendor/ball parent; no save conversion needs reversal.
+
+Final-head Actions native result: **274791 mGBA assertions PASS**, including all six new summary screens in the full run. Local full274765 and focused46 above are separate executed results, not added together as a CI count.
+
+
+## 2026-11-04 — DES-010 consolidation approval / WRL-004-MUSEUM and GYM-004 acceptance
+
+The owner explicitly instructs: merge all existing project PRs and continue the
+next approved unfinished feature. Repository `allow_auto_merge` was already true
+and remains true. The prior statement about disabled auto-merge described the
+absence of a request on PR16, not a change to the repository setting. This
+consolidation authorization supersedes older no-merge notes for existing work;
+it does not approve invented designs, failed checks, ROM release or destructive
+history rewrites. Recovery tag `recovery/pre-consolidated-merge-20261104` retains
+b1ff74d0; original feature histories are preserved.
+
+Documentation PR8 and18 merged to main. Blaine15 had already merged into vendor;
+its source now passes integration with all35 typing rules. The shared Pidgeot
+change must be normalized once, not twice. Historical hash expectations remain
+unchanged; frozen approved Blaine/Museum deltas protect unrelated source bytes.
+
+Museum14 is the next unfinished feature, not a new invented gameplay system.
+The original NPC23,6 was in the isolated back room; source collision analysis
+and actual admission-path checks proved it inaccessible from the paid exhibit.
+It now stands11,4 in the approved paid exhibit. No new artwork, ticket rule,
+quiz wording/answers, prize, fee, badge check, hatch timing or other NPC changed.
+All previous script-special indices are preserved; the Museum special is
+appended after vendor entries and before gSpecialsEnd. The formerly ineffective
+label regex is repaired. The redundant compile-only feature workflow is replaced
+by the existing stronger modified/upstream matrix, including Museum static and
+full ROM tests; no checksum gate is applied to modified ROMs.
+
+Executed local acceptance: eleven host suites plus Museum static placement/state
+checks PASS. Museum1307 focused mGBA assertions PASS:32 diverse OT/RNG true-Shiny
+fixtures, actual50 admission, pre-badge collision-path walking/A interaction,
+decline, each wrong answer/retry, correct NO/YES/NO, saved full-party pending
+reward, exactly-one Egg receipt without a quiz fee, stored identity/flash,
+ordinary hatch and controlled-level evolution to Shiny Milotic/flash reload.
+Blaine46 focused assertions PASS: one usable Pokémon refusal, actual trainer
+Double battle entry, all five species/levels, Donphan/Pidgeot leads and native
+Earthquake ally immunity. This does not certify Blaine battle victory, badge/TM38
+or revisit flow, full progression, physical cartridges or link peers.
+
+Combined full-suite CI and remaining merges are pending at this checkpoint.
+No additional earned points yet; current214/530 retained until combined acceptance.
+Drive synchronization remains pending; supplied exports are available. Current
+feature details and test commands are in docs/PEWTER_MUSEUM_TRIVIA.md.

@@ -190,8 +190,8 @@
 #define FLAG_HIDE_SAFFRON_CITY_POKECENTER_SABRINA_JOURNALS 0x0AE
 
 // Unused?
-#define FLAG_0x0AF               0x0AF
-#define FLAG_0x0B0               0x0B0
+#define FLAG_PEWTER_MUSEUM_TRIVIA_WON                   0x0AF
+#define FLAG_PEWTER_MUSEUM_SHINY_EGG_RECEIVED          0x0B0
 #define FLAG_0x0B1               0x0B1
 #define FLAG_0x0B2               0x0B2
 #define FLAG_0x0B3               0x0B3
@@ -796,26 +796,26 @@
 #define FLAG_OAKS_RATING_IS_VIA_PC                       0x2FF
 
 // Unused?
-#define FLAG_0x300               0x300
-#define FLAG_0x301               0x301
-#define FLAG_0x302               0x302
-#define FLAG_0x303               0x303
-#define FLAG_0x304               0x304
-#define FLAG_0x305               0x305
-#define FLAG_0x306               0x306
-#define FLAG_0x307               0x307
-#define FLAG_0x308               0x308
-#define FLAG_0x309               0x309
-#define FLAG_0x30A               0x30A
-#define FLAG_0x30B               0x30B
-#define FLAG_0x30C               0x30C
-#define FLAG_0x30D               0x30D
-#define FLAG_0x30E               0x30E
-#define FLAG_0x30F               0x30F
-#define FLAG_0x310               0x310
-#define FLAG_0x311               0x311
-#define FLAG_0x312               0x312
-#define FLAG_0x313               0x313
+#define FLAG_MYSTERY_VENDOR_02               0x300
+#define FLAG_MYSTERY_VENDOR_03               0x301
+#define FLAG_MYSTERY_VENDOR_04               0x302
+#define FLAG_MYSTERY_VENDOR_05               0x303
+#define FLAG_MYSTERY_VENDOR_06               0x304
+#define FLAG_MYSTERY_VENDOR_07               0x305
+#define FLAG_MYSTERY_VENDOR_08               0x306
+#define FLAG_MYSTERY_VENDOR_09               0x307
+#define FLAG_MYSTERY_VENDOR_10               0x308
+#define FLAG_MYSTERY_SPECIES_00               0x309
+#define FLAG_MYSTERY_SPECIES_01               0x30A
+#define FLAG_MYSTERY_SPECIES_02               0x30B
+#define FLAG_MYSTERY_SPECIES_03               0x30C
+#define FLAG_MYSTERY_SPECIES_04               0x30D
+#define FLAG_MYSTERY_SPECIES_05               0x30E
+#define FLAG_MYSTERY_SPECIES_06               0x30F
+#define FLAG_MYSTERY_SPECIES_07               0x310
+#define FLAG_MYSTERY_SPECIES_08               0x311
+#define FLAG_MYSTERY_SPECIES_09               0x312
+#define FLAG_OAK_NEST_BALLS_PENDING 0x313
 #define FLAG_0x314               0x314
 #define FLAG_0x315               0x315
 #define FLAG_0x316               0x316
@@ -1535,3 +1535,6 @@
 #define SPECIAL_FLAGS_END             (SPECIAL_FLAGS_START + 0x7F)
 
 #endif // GUARD_CONSTANTS_FLAGS_H
+
+// Original fixed Magikarp purchase is migrated into the shared network.
+#define FLAG_MYSTERY_VENDOR_01 FLAG_BOUGHT_MAGIKARP

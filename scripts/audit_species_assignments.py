@@ -74,7 +74,7 @@ def audit():
     # Include C-authored special pairs and starter choices. These references
     # require review when excluded; do not scan species/evolution/learnset data
     # that deliberately retain canonical engine IDs outside the custom roster.
-    for path in [Path('src/wild_double_battle.c'), Path('src/wild_encounter.c'), Path('src/roamer.c'), Path('src/battle_setup.c'), Path('src/field_specials.c')]:
+    for path in [Path('src/mystery_vendor.c'), Path('src/wild_double_battle.c'), Path('src/wild_encounter.c'), Path('src/roamer.c'), Path('src/battle_setup.c'), Path('src/field_specials.c')]:
         if not (ROOT / path).exists():
             continue
         for line_no, line in enumerate((ROOT / path).read_text().splitlines(), 1):
