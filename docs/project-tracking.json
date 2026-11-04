@@ -3,7 +3,7 @@
   "updated": "2026-11-04",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "Owner requests rival contract implementation verification; existing ready PR27 already implements it. Weather work safely checkpointed separately on feature/dynamic-map-weather, incomplete validation. No weather changes in rival PR.",
+  "current_focus": "Dynamic weather implemented separately in PR29:83 approved policies/state/RTC/battle hooks,14 host suites, focused native128355 with local captures and clean reproducibility pass. Full local/CI conclusions are live in PR29. Rival27 remains ready/unmerged; no gameplay-source overlap, test/tracker conflicts documented.",
   "main_sha": "c960642ddbdacc1cf608d8c5081ee0ecd7cca6e9",
   "drive_sync": {
     "status": "pending: no direct Drive writing tool available",
@@ -658,16 +658,22 @@
       "title": "Map weather selection and persistent state",
       "aliases": [],
       "effort": {
-        "earned": 0,
-        "remaining": 28,
+        "earned": 24,
+        "remaining": 4,
         "unit": "provisional relative planning point",
-        "confidence": "low",
+        "confidence": "medium",
         "history": [
           {
             "date": "2026-11-02",
             "earned": 0,
             "remaining": 28,
             "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          },
+          {
+            "date": "2026-11-04",
+            "earned": 24,
+            "remaining": 4,
+            "reason": "Scoped weather core/native callback/render stability acceptance in PR29; independent task scopes, no new credit for pre-existing Snow/Hail bridge. Final broad integration/review/remaining rendering retained."
           }
         ]
       },
@@ -676,20 +682,20 @@
       ],
       "status": {
         "design": "Weighted maps/entry/reentry/night conversion/RTC recovery supplied and approved",
-        "implementation": "in progress on separate branch;83 policies/state/RTC/hooks implemented, not production-complete",
-        "automated": "weather host10880936 assertions PASS; full regression/clean/CI not completed",
-        "emulator": "83 policy samples and Sun/RTC phase PASS; later indoor/map fixture fails, remaining tests unexecuted",
-        "pull_request": "not created",
-        "merge": "not merged"
+        "implementation": "implemented83 explicit policy/context/RTC core; scoped acceptance passed",
+        "automated": "14 host suites/Museum PASS;10880936 exhaustive accepted-roll plus state/rejection checks; clean reproducibility PASS; live CI inPR29",
+        "emulator": "focused128355 PASS with6 local captures; full default evidence/results maintained inPR29",
+        "pull_request": "separate gameplayPR29 prepared; live check/review status onGitHub",
+        "merge": "unmerged weather gameplay"
       },
       "branch": "feature/dynamic-map-weather",
-      "commit": null,
-      "pr_url": null,
-      "ci_url": null,
+      "commit": "e04a7bc6369e47fa363631208547d6724629f9bc",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/29",
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/29/checks",
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Resume focused map fixture investigation, then required complete host/native/clean/CI; do not claim completion or mix into PR27.",
-      "checkpoint": "2026-11-04 safely paused for owner rival request; docs/WEATHER_WORK_CHECKPOINT.md",
+      "next_action": "Review scoped PR29 after full checks; preserve remaining rendering/lighting/fog and broader regional/manual/integration acceptance. Resolve known test/tracker registration conflicts when combining withPR27.",
+      "checkpoint": "2026-11-04 resumed scoped acceptance; full results/live checks inPR29",
       "source_exports": [
         "05_WEATHER_LIGHTING/Pokémon Lightning Yellow — Lighting & Weather Decision Handoff and Next Steps — 2026-10-28.txt",
         "05_WEATHER_LIGHTING/Pokémon Lightning Yellow — Lighting & Weather Decision Register — 2026-10-28.txt",
@@ -704,16 +710,22 @@
       "title": "Weather rendering repairs and conflicts",
       "aliases": [],
       "effort": {
-        "earned": 0,
-        "remaining": 16,
+        "earned": 1,
+        "remaining": 15,
         "unit": "provisional relative planning point",
-        "confidence": "low",
+        "confidence": "medium",
         "history": [
           {
             "date": "2026-11-02",
             "earned": 0,
             "remaining": 16,
             "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          },
+          {
+            "date": "2026-11-04",
+            "earned": 1,
+            "remaining": 15,
+            "reason": "Scoped weather core/native callback/render stability acceptance in PR29; independent task scopes, no new credit for pre-existing Snow/Hail bridge. Final broad integration/review/remaining rendering retained."
           }
         ]
       },
@@ -723,20 +735,20 @@
       ],
       "status": {
         "design": "Weather rendering/fog scope supplied; implementation validation pending",
-        "implementation": "not started",
-        "automated": "not executed for new work",
-        "emulator": "not executed",
-        "pull_request": "not created",
-        "merge": "not merged"
+        "implementation": "partial: necessary drought-loader clear-render/fade stability fix; custom visuals/fog remain",
+        "automated": "14 host suites/Museum PASS;10880936 exhaustive accepted-roll plus state/rejection checks; clean reproducibility PASS; live CI inPR29",
+        "emulator": "focused128355 PASS with6 local captures; full default evidence/results maintained inPR29",
+        "pull_request": "separate gameplayPR29 prepared; live check/review status onGitHub",
+        "merge": "unmerged weather gameplay"
       },
-      "branch": null,
-      "commit": null,
-      "pr_url": null,
-      "ci_url": null,
+      "branch": "feature/dynamic-map-weather",
+      "commit": "e04a7bc6369e47fa363631208547d6724629f9bc",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/29",
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/29/checks",
       "blocker": "Technical rendering/fade/fog/lighting interaction validation remains; final visual palette choices are separate, not missing-export blockers.",
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Inspect/render approved effects and compatible map transitions; preserve existing assets and pending visual approval.",
-      "checkpoint": "2026-11-04 supplied-export reconciliation; old unavailable-document claims superseded; no implementation/test credit from availability.",
+      "next_action": "Review scoped PR29 after full checks; preserve remaining rendering/lighting/fog and broader regional/manual/integration acceptance. Resolve known test/tracker registration conflicts when combining withPR27.",
+      "checkpoint": "2026-11-04 resumed scoped acceptance; full results/live checks inPR29",
       "source_exports": [
         "05_WEATHER_LIGHTING/Pokémon Lightning Yellow — Lighting & Weather Decision Handoff and Next Steps — 2026-10-28.txt",
         "05_WEATHER_LIGHTING/Pokémon Lightning Yellow — Lighting & Weather Decision Register — 2026-10-28.txt",
@@ -751,16 +763,22 @@
       "title": "Field-to-battle weather bridge",
       "aliases": [],
       "effort": {
-        "earned": 0,
-        "remaining": 20,
+        "earned": 14,
+        "remaining": 6,
         "unit": "provisional relative planning point",
-        "confidence": "low",
+        "confidence": "medium",
         "history": [
           {
             "date": "2026-11-02",
             "earned": 0,
             "remaining": 20,
             "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          },
+          {
+            "date": "2026-11-04",
+            "earned": 14,
+            "remaining": 6,
+            "reason": "Scoped weather core/native callback/render stability acceptance in PR29; independent task scopes, no new credit for pre-existing Snow/Hail bridge. Final broad integration/review/remaining rendering retained."
           }
         ]
       },
@@ -769,20 +787,20 @@
       ],
       "status": {
         "design": "Field Snow bridge/lifetime implemented in#13; wider regional integration pending",
-        "implementation": "partial: narrow Snow-to-Hail bridge in merged#13/vendor stack; regional policy/restoration not implemented",
-        "automated": "not executed for new work",
-        "emulator": "not executed",
-        "pull_request": "not created",
-        "merge": "not merged"
+        "implementation": "implemented logical regional field-to-battle initialization and Cycling return hooks; existing Snow bridge retained without duplicate credit",
+        "automated": "14 host suites/Museum PASS;10880936 exhaustive accepted-roll plus state/rejection checks; clean reproducibility PASS; live CI inPR29",
+        "emulator": "focused128355 PASS with6 local captures; full default evidence/results maintained inPR29",
+        "pull_request": "separate gameplayPR29 prepared; live check/review status onGitHub",
+        "merge": "unmerged weather gameplay"
       },
-      "branch": null,
-      "commit": null,
-      "pr_url": null,
-      "ci_url": null,
+      "branch": "feature/dynamic-map-weather",
+      "commit": "e04a7bc6369e47fa363631208547d6724629f9bc",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/29",
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/29/checks",
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Preserve verified Snow-to-natural-Hail bridge and five-turn move Hail. Integrate regional selection/restoration later; do not count this existing BTL-006 work twice.",
-      "checkpoint": "2026-11-04 supplied-export reconciliation; old unavailable-document claims superseded; no implementation/test credit from availability.",
+      "next_action": "Review scoped PR29 after full checks; preserve remaining rendering/lighting/fog and broader regional/manual/integration acceptance. Resolve known test/tracker registration conflicts when combining withPR27.",
+      "checkpoint": "2026-11-04 resumed scoped acceptance; full results/live checks inPR29",
       "source_exports": [
         "01_POKE_BALLS/Pokémon Lightning Yellow — Codex Deferred Poké Ball Task Brief — 2026-11-02.txt",
         "05_WEATHER_LIGHTING/Pokémon Lightning Yellow — Lighting & Weather Decision Handoff and Next Steps — 2026-10-28.txt",
@@ -2173,9 +2191,11 @@
     "WRL-007": "Existing NPC script entry points run on actual maps; no manual full progression or actual MtMoon selection walk claimed. Original MtMoon choice script fingerprinted unchanged; native saved choice flags drive both gift cases.",
     "WRL-008": "Manual full progression, actual two-peer trade/hardware, flash power-loss injection, exhaustive quest-log replay and independent Shiny-summary visual approval unverified. Starter exclusivity awaits WRL-001; source preservation is not runtime story acceptance.",
     "BTL-006": "No manual full-game progression, actual two-peer/hardware/power interruption or exhaustive quest-log replay; not every13-ball success/failure/presentation is independently exercised. TwoIsland/TrainerTower stock scope and natural-Hail lifetime are explicit technical review boundaries.",
-    "WTH-003": "Narrow verified Snow bridge already counted under BTL-006; wider regional integration/restoration remains here, no duplicate completion claim.",
+    "WTH-003": "Native SunnyDay field isolation and exact one-draw Cycling wild/trainer callbacks tested. Existing natural Snow-to-Hail bridge remains credited under BTL-006; full combined/strategy/map coverage separate.",
     "GYM-005": "Scoped feature merged and accepted. Controlled player levels are not full balanced progression; hardware/link/power interruption/exhaustive quest-log remain general INT-005 acceptance, not another pending merge.",
-    "GYM-006": "All24 constructors/99 mons and8 controlled battle victories/replacements verified. Full natural story/loss sequences, final Pikachu starter integration, manual difficulty, hardware/link and actual player evolution scenes remain unverified; source preservation is not runtime progression. Full-suite conclusions/evidence in PR27."
+    "GYM-006": "All24 constructors/99 mons and8 controlled battle victories/replacements verified. Full natural story/loss sequences, final Pikachu starter integration, manual difficulty, hardware/link and actual player evolution scenes remain unverified; source preservation is not runtime progression. Full-suite conclusions/evidence in PR27.",
+    "WTH-001": "83 explicit maps; boarding/prototype weather unassigned. Full manual maps, hardware/power/quest-log and same-head combined PR27 integration remain unverified; no invented coverage.",
+    "WTH-002": "Native clear appearance for mechanical Sun avoids stubbed drought loader; no final Sun tint/pulse, day/night lighting, Lavender or Mansion fog claim. Existing Rain/Snow/Sand screenshots inspected, not full visual approval."
   },
   "effort_rules": "Provisional tracked scope. INT-004 credits combined build/repeatability/stack compatibility only; feature-specific scene/mechanics testing is counted under each feature. No double credit for parent merges. No merge/release authorization inferred.",
   "source_access": {
@@ -2195,5 +2215,17 @@
     "native_assertions": 276132,
     "recovery_tag": "recovery/main-before-consolidation-20261104",
     "repository_auto_merge": "enabled; never disabled by this task"
-  }
+  },
+  "handoff_intake": [
+    {
+      "pr": 28,
+      "url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/28",
+      "status": "unmerged documentation-only Viridian Trainer Tips handoff available; full implementation intake/review separate, not missing source or implemented gameplay"
+    },
+    {
+      "pr": 30,
+      "url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/30",
+      "status": "unmerged documentation-only three Gym Castform movesets available; explicit no gameplay/merge authorization in PR body; reconcile latest scope at later intake"
+    }
+  ]
 }

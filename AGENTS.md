@@ -178,3 +178,12 @@ original event script, AI/IV/bag field and Champion rematch. Run
 `tests/run_rival_tests.py`, all prior host suites and native rival/full acceptance.
 Keep the gameplay PR separate from its merged specPR25. No unrelated starter
 feature or automatic implementation merge is implied.
+
+WTH-001/003 uses the supplied finalized weather Specification and later recovered
+map/group corrections under standing owner implementation authorization. Read
+`docs/DYNAMIC_WEATHER.md` and the83-map catalog; do not invent unassigned weather,
+final palette values, time-exclusive encounters or SOW changes. Run
+`tests/run_weather_tests.py`, all prior suites and full guarded native acceptance.
+Keep the reserved8-byte weather context within the existing16-byte save region.
+Rival gameplay/tests remain separate in PR27; preserve both registrations and
+frozen normalizers when integrating. No automatic merge or ROM release.

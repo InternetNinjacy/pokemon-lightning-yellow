@@ -743,3 +743,51 @@ unassigned boarding/prototype exteriors; lighting/tints/fog remain separate.
 Owner explicitly requests the main rival contract; verify existing ready PR27
 rather than duplicate implementation. Preserve this weather branch unchanged
 while returning to feature/main-rival-eight-battles. No merge/auto-merge action.
+
+## 2026-11-04 — WTH-001/002/003 scoped implementation and PR29
+
+Resumed weather checkpoint. OneIsland/Celio automatic story scene was a blank-save
+fixture issue; set fixture-only scene variables, no story source changes. Native
+same-weather complete flag is not a graphics-ready predicate; rendering tests now
+check actual current ID, graphics readiness and palette idle, with timeouts intact.
+Native Sandstorm particles are visible in inspected successive captures.
+
+Source core e04a7bc6369e47fa363631208547d6724629f9bc; branch
+feature/dynamic-map-weather; PR29 separate from ready rivalPR27.83 explicit approved
+maps, exact relative weights/night conversion,8-byte state within existing unused16,
+outdoor and nested indoor behavior, same-map preservation, Sun/RTC fallback/recovery,
+logical battle weather and Cycling end hooks implemented. Native drought's stubbed
+loader bypasses to existing clear renderer; no new tint/art. Final color/lighting,
+Lavender/Mansion fog, unassigned boarding/prototype settings and SOW remain separate.
+A single battle weather read supplies effect and text at clock boundaries.
+
+All14 host suites/Museum static PASS;10880936 accepted-roll assertions plus genuine
+rejection/state tests. Focused native128355 with6 local captures PASS:83 native
+day/night policy samples, actual map loads/interiors/flash/tail retention, GPIO
+absence/recovery, native SunnyDay/field-Rain isolation, real wild Run and trainer
+victory with callback instruction observation proving exactly one RNG draw and
+predicted output. Initial full wild capture assertion assumed one-turn faint;
+Cloyster can legitimately Protect. Bounded retries preserve its moves/stats and
+all target-faint assertions; focused wild6589 PASS. No safety guard disabled.
+
+Final modified clean rebuild SHA256 reproducible:
+8e2273f6494139cca4716d9ce081e50c1592797a27dc8eb245ec8dfcb2981768.
+Full local/CI in progress at this checkpoint; final live evidence/results:
+https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/29/checks .
+No result from an unfinished run is counted as a full PASS.
+
+Read-only merge-tree with rival62c99419: seven conflicts in CI, test registration,
+normalizer and live tracker files, none in gameplay source. This is not combined
+runtime proof; preserve both registrations/ABI headers/normalizers and rerun combined
+acceptance when integrating. No other PR modified, merged or auto-merge requested.
+New documentation-only PR28 sign/PR30 Castform handoffs noted as available, not yet
+implemented or treated as missing designs; their review/intake stays separate.
+
+Provisional non-overlapping credit: WTH-00124/4, WTH-0021/15 for essential drought
+stability only, WTH-00314/6; no duplicate credit for earlier Snow/Hail. All43 IDs and
+previous earned work retained. Total286earned/262remaining of548=52.19%. Review,
+full manual/integration/hardware/quest-log/power-interruption and final visuals remain.
+Source rollback uses ordinary reverts; back up and save in a weatherless building
+before downgrading because the original loader can hang on an outdoor Sun Continue
+(source-level risk, no reverse-save runtime claim). No ROM/save/generated artifacts
+uploaded/committed; Drive sync remains pending, repository auto-merge stays enabled.

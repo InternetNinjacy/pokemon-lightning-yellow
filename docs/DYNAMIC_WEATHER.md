@@ -71,7 +71,10 @@ Static source preservation is not a claim of full story/hardware verification.
 Full manual world progression, all83 rendered-map screenshots, exhaustive quest-log
 playback, physical RTC/cartridges, link peers and interrupted flash remain external
 acceptance. Save backward downgrade can discard new weather metadata; preserve
-user saves and do not claim tested reverse migrations. Source rollback: revert
+user saves and do not claim tested reverse migrations. Before downgrading, back up
+the save and save inside an ordinary weatherless building: an outdoor Sun save
+can reach the original broken drought loader on old-ROM Continue (source-level
+risk; reverse migration not executed). Source rollback: revert
 weather commits back to baseline mainc960642d. Rival PR27 remains separate.
 
 ## Integration with PR27
@@ -82,3 +85,14 @@ snapshot normalizer, and live tracking. A combined integration must preserve bot
 sets of tests/ABI/header generation and both frozen normalizers before the Ranger
 normalizer, then run full combined acceptance. Do not overwrite either PR or
 interpret a standalone build as combined integration proof.
+
+Read-only merge-tree analysis against rival head62c99419 found seven conflicts:
+`.github/workflows/build.yml`, the three live tracker/ledger files,
+`tests/approved_ranger_changes.py`, `tests/emulator/run.py` and `runner.c`.
+No gameplay-source conflict was reported. This is conflict analysis, not a
+successful combined build/runtime test. Resolve both feature registrations and
+normalizers explicitly; never drop either suite to make integration pass.
+
+Ongoing battles retain native entry-time weather; field Sun synchronizes on return
+and before new battle benefits. A single logical weather snapshot supplies both
+the initial battle effect and message, avoiding inconsistent RTC boundary reads.

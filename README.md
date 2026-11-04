@@ -106,3 +106,8 @@ Ranger Base Camp implementation and scoped native acceptance:
 The approved [eight-rival implementation](docs/MAIN_RIVAL_BATTLES.md) preserves
 original event scripts and postgame rematches; its separate gameplay PR provides
 current verification and review status.
+
+[Dynamic map weather](docs/DYNAMIC_WEATHER.md) implements the approved83-map
+selection/state/clock/battle-return rules in separate PR29. It reuses native field
+assets; final day/night tinting and Mansion fog remain separate. Rival gameplay
+lives independently in PR27 and is not included in this weather branch.

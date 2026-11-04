@@ -1,4 +1,9 @@
-# Dynamic weather work checkpoint — 2026-11-04
+# Historical dynamic-weather checkpoint — 2026-11-04
+
+Resumed: the One Island fixture scene state is corrected; the focused83-map,
+interior/RTC/render/flash/SunnyDay and exact wild/trainer callback tests now pass.
+This old checkpoint is history, not a current blocker. Current scope/evidence:
+[Dynamic weather](DYNAMIC_WEATHER.md) and [PR29](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/29).
 
 Paused on owner instruction to verify the already implemented rival contract.
 Branch: feature/dynamic-map-weather; baseline mainc960642d. Rival gameplay remains
