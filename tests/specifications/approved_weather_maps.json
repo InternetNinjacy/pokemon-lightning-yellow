@@ -1,0 +1,1181 @@
+{
+  "authority": "October28 consolidated Lighting & Weather Specification, recovered maps and later owner corrections; standing owner implementation authorization",
+  "categories": [
+    "NEUTRAL",
+    "RAIN",
+    "SUN",
+    "SAND",
+    "SNOW"
+  ],
+  "maps": [
+    {
+      "name": "BirthIsland_Exterior",
+      "map": "MAP_BIRTH_ISLAND_EXTERIOR",
+      "map_type": "MAP_TYPE_ROUTE",
+      "weights": [
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_NONE"
+    },
+    {
+      "name": "BirthIsland_Harbor",
+      "map": "MAP_BIRTH_ISLAND_HARBOR",
+      "map_type": "MAP_TYPE_INDOOR",
+      "weights": [
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_NONE"
+    },
+    {
+      "name": "CeladonCity",
+      "map": "MAP_CELADON_CITY",
+      "map_type": "MAP_TYPE_TOWN",
+      "weights": [
+        6,
+        1,
+        1,
+        1,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "CeruleanCity",
+      "map": "MAP_CERULEAN_CITY",
+      "map_type": "MAP_TYPE_TOWN",
+      "weights": [
+        1,
+        1,
+        1,
+        1,
+        0
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "CinnabarIsland",
+      "map": "MAP_CINNABAR_ISLAND",
+      "map_type": "MAP_TYPE_TOWN",
+      "weights": [
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "FiveIsland",
+      "map": "MAP_FIVE_ISLAND",
+      "map_type": "MAP_TYPE_TOWN",
+      "weights": [
+        6,
+        1,
+        1,
+        1,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "FiveIsland_Harbor",
+      "map": "MAP_FIVE_ISLAND_HARBOR",
+      "map_type": "MAP_TYPE_INDOOR",
+      "weights": [
+        6,
+        1,
+        1,
+        1,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_NONE"
+    },
+    {
+      "name": "FiveIsland_Meadow",
+      "map": "MAP_FIVE_ISLAND_MEADOW",
+      "map_type": "MAP_TYPE_ROUTE",
+      "weights": [
+        6,
+        1,
+        1,
+        1,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "FiveIsland_MemorialPillar",
+      "map": "MAP_FIVE_ISLAND_MEMORIAL_PILLAR",
+      "map_type": "MAP_TYPE_ROUTE",
+      "weights": [
+        6,
+        1,
+        1,
+        1,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "FiveIsland_ResortGorgeous",
+      "map": "MAP_FIVE_ISLAND_RESORT_GORGEOUS",
+      "map_type": "MAP_TYPE_ROUTE",
+      "weights": [
+        6,
+        1,
+        1,
+        1,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "FiveIsland_WaterLabyrinth",
+      "map": "MAP_FIVE_ISLAND_WATER_LABYRINTH",
+      "map_type": "MAP_TYPE_ROUTE",
+      "weights": [
+        6,
+        1,
+        1,
+        1,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "FourIsland",
+      "map": "MAP_FOUR_ISLAND",
+      "map_type": "MAP_TYPE_TOWN",
+      "weights": [
+        6,
+        1,
+        1,
+        1,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "FourIsland_Harbor",
+      "map": "MAP_FOUR_ISLAND_HARBOR",
+      "map_type": "MAP_TYPE_INDOOR",
+      "weights": [
+        6,
+        1,
+        1,
+        1,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_NONE"
+    },
+    {
+      "name": "FuchsiaCity",
+      "map": "MAP_FUCHSIA_CITY",
+      "map_type": "MAP_TYPE_TOWN",
+      "weights": [
+        1,
+        0,
+        0,
+        1,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "IndigoPlateau_Exterior",
+      "map": "MAP_INDIGO_PLATEAU_EXTERIOR",
+      "map_type": "MAP_TYPE_TOWN",
+      "weights": [
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "LavenderTown",
+      "map": "MAP_LAVENDER_TOWN",
+      "map_type": "MAP_TYPE_TOWN",
+      "weights": [
+        0,
+        1,
+        0,
+        0,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "MtEmber_Exterior",
+      "map": "MAP_MT_EMBER_EXTERIOR",
+      "map_type": "MAP_TYPE_ROUTE",
+      "weights": [
+        0,
+        0,
+        1,
+        1,
+        0
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_NONE"
+    },
+    {
+      "name": "MtEmber_Summit",
+      "map": "MAP_MT_EMBER_SUMMIT",
+      "map_type": "MAP_TYPE_UNDERGROUND",
+      "weights": [
+        0,
+        0,
+        1,
+        1,
+        0
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_NONE"
+    },
+    {
+      "name": "NavelRock_Exterior",
+      "map": "MAP_NAVEL_ROCK_EXTERIOR",
+      "map_type": "MAP_TYPE_ROUTE",
+      "weights": [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_NONE"
+    },
+    {
+      "name": "NavelRock_Harbor",
+      "map": "MAP_NAVEL_ROCK_HARBOR",
+      "map_type": "MAP_TYPE_INDOOR",
+      "weights": [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_NONE"
+    },
+    {
+      "name": "OneIsland",
+      "map": "MAP_ONE_ISLAND",
+      "map_type": "MAP_TYPE_TOWN",
+      "weights": [
+        6,
+        1,
+        1,
+        1,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "OneIsland_Harbor",
+      "map": "MAP_ONE_ISLAND_HARBOR",
+      "map_type": "MAP_TYPE_INDOOR",
+      "weights": [
+        6,
+        1,
+        1,
+        1,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_NONE"
+    },
+    {
+      "name": "OneIsland_KindleRoad",
+      "map": "MAP_ONE_ISLAND_KINDLE_ROAD",
+      "map_type": "MAP_TYPE_ROUTE",
+      "weights": [
+        6,
+        1,
+        1,
+        1,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "OneIsland_TreasureBeach",
+      "map": "MAP_ONE_ISLAND_TREASURE_BEACH",
+      "map_type": "MAP_TYPE_ROUTE",
+      "weights": [
+        6,
+        1,
+        1,
+        1,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "PalletTown",
+      "map": "MAP_PALLET_TOWN",
+      "map_type": "MAP_TYPE_TOWN",
+      "weights": [
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "PewterCity",
+      "map": "MAP_PEWTER_CITY",
+      "map_type": "MAP_TYPE_TOWN",
+      "weights": [
+        1,
+        1,
+        0,
+        0,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "Route1",
+      "map": "MAP_ROUTE1",
+      "map_type": "MAP_TYPE_ROUTE",
+      "weights": [
+        1,
+        1,
+        0,
+        0,
+        0
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "Route10",
+      "map": "MAP_ROUTE10",
+      "map_type": "MAP_TYPE_ROUTE",
+      "weights": [
+        0,
+        0,
+        1,
+        3,
+        0
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "Route11",
+      "map": "MAP_ROUTE11",
+      "map_type": "MAP_TYPE_ROUTE",
+      "weights": [
+        6,
+        1,
+        1,
+        1,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "Route12",
+      "map": "MAP_ROUTE12",
+      "map_type": "MAP_TYPE_ROUTE",
+      "weights": [
+        0,
+        1,
+        0,
+        0,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "Route13",
+      "map": "MAP_ROUTE13",
+      "map_type": "MAP_TYPE_ROUTE",
+      "weights": [
+        6,
+        1,
+        1,
+        1,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "Route14",
+      "map": "MAP_ROUTE14",
+      "map_type": "MAP_TYPE_ROUTE",
+      "weights": [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "Route15",
+      "map": "MAP_ROUTE15",
+      "map_type": "MAP_TYPE_ROUTE",
+      "weights": [
+        0,
+        1,
+        0,
+        1,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "Route16",
+      "map": "MAP_ROUTE16",
+      "map_type": "MAP_TYPE_ROUTE",
+      "weights": [
+        0,
+        1,
+        1,
+        1,
+        1
+      ],
+      "cycling": true,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "Route17",
+      "map": "MAP_ROUTE17",
+      "map_type": "MAP_TYPE_ROUTE",
+      "weights": [
+        0,
+        1,
+        1,
+        1,
+        1
+      ],
+      "cycling": true,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "Route18",
+      "map": "MAP_ROUTE18",
+      "map_type": "MAP_TYPE_ROUTE",
+      "weights": [
+        0,
+        1,
+        1,
+        1,
+        1
+      ],
+      "cycling": true,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "Route19",
+      "map": "MAP_ROUTE19",
+      "map_type": "MAP_TYPE_ROUTE",
+      "weights": [
+        0,
+        1,
+        1,
+        0,
+        0
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "Route2",
+      "map": "MAP_ROUTE2",
+      "map_type": "MAP_TYPE_ROUTE",
+      "weights": [
+        1,
+        1,
+        1,
+        0,
+        0
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "Route20",
+      "map": "MAP_ROUTE20",
+      "map_type": "MAP_TYPE_ROUTE",
+      "weights": [
+        1,
+        0,
+        1,
+        0,
+        0
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "Route21_North",
+      "map": "MAP_ROUTE21_NORTH",
+      "map_type": "MAP_TYPE_ROUTE",
+      "weights": [
+        0,
+        1,
+        1,
+        0,
+        0
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "Route21_South",
+      "map": "MAP_ROUTE21_SOUTH",
+      "map_type": "MAP_TYPE_ROUTE",
+      "weights": [
+        0,
+        1,
+        1,
+        0,
+        0
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "Route22",
+      "map": "MAP_ROUTE22",
+      "map_type": "MAP_TYPE_ROUTE",
+      "weights": [
+        0,
+        1,
+        1,
+        1,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "Route23",
+      "map": "MAP_ROUTE23",
+      "map_type": "MAP_TYPE_ROUTE",
+      "weights": [
+        0,
+        1,
+        1,
+        1,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "Route24",
+      "map": "MAP_ROUTE24",
+      "map_type": "MAP_TYPE_ROUTE",
+      "weights": [
+        1,
+        1,
+        1,
+        1,
+        0
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "Route25",
+      "map": "MAP_ROUTE25",
+      "map_type": "MAP_TYPE_ROUTE",
+      "weights": [
+        1,
+        1,
+        1,
+        1,
+        0
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "Route3",
+      "map": "MAP_ROUTE3",
+      "map_type": "MAP_TYPE_ROUTE",
+      "weights": [
+        0,
+        1,
+        0,
+        0,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "Route4",
+      "map": "MAP_ROUTE4",
+      "map_type": "MAP_TYPE_ROUTE",
+      "weights": [
+        0,
+        1,
+        0,
+        0,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "Route5",
+      "map": "MAP_ROUTE5",
+      "map_type": "MAP_TYPE_ROUTE",
+      "weights": [
+        0,
+        0,
+        1,
+        1,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "Route6",
+      "map": "MAP_ROUTE6",
+      "map_type": "MAP_TYPE_ROUTE",
+      "weights": [
+        1,
+        0,
+        1,
+        1,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "Route7",
+      "map": "MAP_ROUTE7",
+      "map_type": "MAP_TYPE_ROUTE",
+      "weights": [
+        6,
+        1,
+        1,
+        1,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "Route8",
+      "map": "MAP_ROUTE8",
+      "map_type": "MAP_TYPE_ROUTE",
+      "weights": [
+        1,
+        0,
+        1,
+        0,
+        0
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "Route9",
+      "map": "MAP_ROUTE9",
+      "map_type": "MAP_TYPE_ROUTE",
+      "weights": [
+        1,
+        0,
+        1,
+        2,
+        0
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "SSAnne_Deck",
+      "map": "MAP_SSANNE_DECK",
+      "map_type": "MAP_TYPE_INDOOR",
+      "weights": [
+        1,
+        0,
+        1,
+        0,
+        0
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_NONE"
+    },
+    {
+      "name": "SafariZone_Center",
+      "map": "MAP_SAFARI_ZONE_CENTER",
+      "map_type": "MAP_TYPE_ROUTE",
+      "weights": [
+        6,
+        1,
+        1,
+        1,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_NONE"
+    },
+    {
+      "name": "SafariZone_East",
+      "map": "MAP_SAFARI_ZONE_EAST",
+      "map_type": "MAP_TYPE_ROUTE",
+      "weights": [
+        6,
+        1,
+        1,
+        1,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_NONE"
+    },
+    {
+      "name": "SafariZone_North",
+      "map": "MAP_SAFARI_ZONE_NORTH",
+      "map_type": "MAP_TYPE_ROUTE",
+      "weights": [
+        6,
+        1,
+        1,
+        1,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_NONE"
+    },
+    {
+      "name": "SafariZone_West",
+      "map": "MAP_SAFARI_ZONE_WEST",
+      "map_type": "MAP_TYPE_ROUTE",
+      "weights": [
+        6,
+        1,
+        1,
+        1,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_NONE"
+    },
+    {
+      "name": "SaffronCity",
+      "map": "MAP_SAFFRON_CITY",
+      "map_type": "MAP_TYPE_TOWN",
+      "weights": [
+        6,
+        1,
+        1,
+        1,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "SaffronCity_Connection",
+      "map": "MAP_SAFFRON_CITY_CONNECTION",
+      "map_type": "MAP_TYPE_TOWN",
+      "weights": [
+        6,
+        1,
+        1,
+        1,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "SevenIsland",
+      "map": "MAP_SEVEN_ISLAND",
+      "map_type": "MAP_TYPE_TOWN",
+      "weights": [
+        6,
+        1,
+        1,
+        1,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "SevenIsland_Harbor",
+      "map": "MAP_SEVEN_ISLAND_HARBOR",
+      "map_type": "MAP_TYPE_INDOOR",
+      "weights": [
+        6,
+        1,
+        1,
+        1,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_NONE"
+    },
+    {
+      "name": "SevenIsland_SevaultCanyon",
+      "map": "MAP_SEVEN_ISLAND_SEVAULT_CANYON",
+      "map_type": "MAP_TYPE_ROUTE",
+      "weights": [
+        6,
+        1,
+        1,
+        1,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "SevenIsland_SevaultCanyon_Entrance",
+      "map": "MAP_SEVEN_ISLAND_SEVAULT_CANYON_ENTRANCE",
+      "map_type": "MAP_TYPE_ROUTE",
+      "weights": [
+        6,
+        1,
+        1,
+        1,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "SevenIsland_TanobyRuins",
+      "map": "MAP_SEVEN_ISLAND_TANOBY_RUINS",
+      "map_type": "MAP_TYPE_ROUTE",
+      "weights": [
+        6,
+        1,
+        1,
+        1,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "SevenIsland_TrainerTower",
+      "map": "MAP_SEVEN_ISLAND_TRAINER_TOWER",
+      "map_type": "MAP_TYPE_ROUTE",
+      "weights": [
+        6,
+        1,
+        1,
+        1,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "SixIsland",
+      "map": "MAP_SIX_ISLAND",
+      "map_type": "MAP_TYPE_TOWN",
+      "weights": [
+        6,
+        1,
+        1,
+        1,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "SixIsland_GreenPath",
+      "map": "MAP_SIX_ISLAND_GREEN_PATH",
+      "map_type": "MAP_TYPE_ROUTE",
+      "weights": [
+        6,
+        1,
+        1,
+        1,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "SixIsland_Harbor",
+      "map": "MAP_SIX_ISLAND_HARBOR",
+      "map_type": "MAP_TYPE_INDOOR",
+      "weights": [
+        6,
+        1,
+        1,
+        1,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_NONE"
+    },
+    {
+      "name": "SixIsland_OutcastIsland",
+      "map": "MAP_SIX_ISLAND_OUTCAST_ISLAND",
+      "map_type": "MAP_TYPE_ROUTE",
+      "weights": [
+        6,
+        1,
+        1,
+        1,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "SixIsland_PatternBush",
+      "map": "MAP_SIX_ISLAND_PATTERN_BUSH",
+      "map_type": "MAP_TYPE_ROUTE",
+      "weights": [
+        6,
+        1,
+        1,
+        1,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_NONE"
+    },
+    {
+      "name": "SixIsland_RuinValley",
+      "map": "MAP_SIX_ISLAND_RUIN_VALLEY",
+      "map_type": "MAP_TYPE_ROUTE",
+      "weights": [
+        6,
+        1,
+        1,
+        1,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "SixIsland_WaterPath",
+      "map": "MAP_SIX_ISLAND_WATER_PATH",
+      "map_type": "MAP_TYPE_ROUTE",
+      "weights": [
+        6,
+        1,
+        1,
+        1,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "ThreeIsland",
+      "map": "MAP_THREE_ISLAND",
+      "map_type": "MAP_TYPE_TOWN",
+      "weights": [
+        6,
+        1,
+        1,
+        1,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "ThreeIsland_BerryForest",
+      "map": "MAP_THREE_ISLAND_BERRY_FOREST",
+      "map_type": "MAP_TYPE_ROUTE",
+      "weights": [
+        6,
+        1,
+        1,
+        1,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SHADE"
+    },
+    {
+      "name": "ThreeIsland_BondBridge",
+      "map": "MAP_THREE_ISLAND_BOND_BRIDGE",
+      "map_type": "MAP_TYPE_ROUTE",
+      "weights": [
+        6,
+        1,
+        1,
+        1,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "ThreeIsland_Harbor",
+      "map": "MAP_THREE_ISLAND_HARBOR",
+      "map_type": "MAP_TYPE_INDOOR",
+      "weights": [
+        6,
+        1,
+        1,
+        1,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_NONE"
+    },
+    {
+      "name": "ThreeIsland_Port",
+      "map": "MAP_THREE_ISLAND_PORT",
+      "map_type": "MAP_TYPE_ROUTE",
+      "weights": [
+        6,
+        1,
+        1,
+        1,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "TwoIsland",
+      "map": "MAP_TWO_ISLAND",
+      "map_type": "MAP_TYPE_TOWN",
+      "weights": [
+        6,
+        1,
+        1,
+        1,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "TwoIsland_CapeBrink",
+      "map": "MAP_TWO_ISLAND_CAPE_BRINK",
+      "map_type": "MAP_TYPE_ROUTE",
+      "weights": [
+        6,
+        1,
+        1,
+        1,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "TwoIsland_Harbor",
+      "map": "MAP_TWO_ISLAND_HARBOR",
+      "map_type": "MAP_TYPE_INDOOR",
+      "weights": [
+        6,
+        1,
+        1,
+        1,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_NONE"
+    },
+    {
+      "name": "VermilionCity",
+      "map": "MAP_VERMILION_CITY",
+      "map_type": "MAP_TYPE_TOWN",
+      "weights": [
+        2,
+        1,
+        1,
+        0,
+        0
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "ViridianCity",
+      "map": "MAP_VIRIDIAN_CITY",
+      "map_type": "MAP_TYPE_TOWN",
+      "weights": [
+        1,
+        1,
+        1,
+        0,
+        0
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SUNNY"
+    },
+    {
+      "name": "ViridianForest",
+      "map": "MAP_VIRIDIAN_FOREST",
+      "map_type": "MAP_TYPE_ROUTE",
+      "weights": [
+        1,
+        1,
+        0,
+        0,
+        1
+      ],
+      "cycling": false,
+      "native_weather": "WEATHER_SHADE"
+    }
+  ],
+  "unassigned_exterior": [
+    "SSAnne_Exterior",
+    "Prototype_SeviiIsle_6",
+    "Prototype_SeviiIsle_7",
+    "Prototype_SeviiIsle_8",
+    "Prototype_SeviiIsle_9"
+  ]
+}

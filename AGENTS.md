@@ -5,7 +5,7 @@ its base. The unchanged checksum baseline is preserved independently in Actions.
 Physical/Special/Status split is authorized and implemented on this feature branch;
 see docs/PHYSICAL_SPECIAL_SPLIT.md for its approved scope and validation limits.
 
-Project direction (only the approved move-category split is implemented):
+Project direction (see the canonical dashboard for current implementation status):
 - Pikachu as the starter.
 - A custom Pokédex drawn from Generations I–III.
 - Redesigned wild encounters and trainer teams.
@@ -170,4 +170,20 @@ append-only ledger and Git rather than mixing obsolete blockers into live tables
 GYM-005 Ranger Base Camp uses the final `implementation/saffron-ranger-base-camp.md`
 contract. Preserve original trainer IDs/save flags and exact dialogue; run
 `tests/run_ranger_tests.py` and the native Ranger acceptance in addition to the
-existing suites. Keep its implementation PR unmerged until separately approved.
+existing suites. Its implementation PR26 was merged on the owner’s explicit instruction; preserve the accepted feature.
+
+GYM-006 implements the merged v2 rival contract, including all24 original main-story
+Trainer IDs and only three specified global family learnsets. Preserve every
+original event script, AI/IV/bag field and Champion rematch. Run
+`tests/run_rival_tests.py`, all prior host suites and native rival/full acceptance.
+Keep the gameplay PR separate from its merged specPR25. No unrelated starter
+feature or automatic implementation merge is implied.
+
+WTH-001/003 uses the supplied finalized weather Specification and later recovered
+map/group corrections under standing owner implementation authorization. Read
+`docs/DYNAMIC_WEATHER.md` and the83-map catalog; do not invent unassigned weather,
+final palette values, time-exclusive encounters or SOW changes. Run
+`tests/run_weather_tests.py`, all prior suites and full guarded native acceptance.
+Keep the reserved8-byte weather context within the existing16-byte save region.
+Rival gameplay/tests remain separate in PR27; preserve both registrations and
+frozen normalizers when integrating. No automatic merge or ROM release.

@@ -10,6 +10,14 @@ import tempfile
 
 # Generate ABI constants with the game's ARM compiler, never host offsetof.
 expressions = {
+    "SAVE1_WEATHER_CONTEXT":"offsetof(struct SaveBlock1,unused_3D24)",
+    "MAPHEADER_WEATHER":"offsetof(struct MapHeader,weather)",
+    "MAPHEADER_TYPE":"offsetof(struct MapHeader,mapType)",
+    "WEATHER_GAMMA":"offsetof(struct Weather,gammaIndex)",
+    "WEATHER_GFX":"offsetof(struct Weather,weatherGfxLoaded)",
+    "WEATHER_SAND_CREATED":"offsetof(struct Weather,sandstormSpritesCreated)",
+    "WEATHER_PAL_STATE":"offsetof(struct Weather,palProcessingState)",
+    "WEATHER_COMPLETE":"offsetof(struct Weather,weatherChangeComplete)",
     'BMOVE_SIZE': 'sizeof(struct BattleMove)',
     'BMOVE_PP': 'offsetof(struct BattleMove,pp)',
     'BMON_FRIENDSHIP': 'offsetof(struct BattlePokemon,friendship)',
@@ -132,6 +140,7 @@ for key,expr in {
 for name in ['POKEBALL','SPECIES','HELD_ITEM','LEVEL','FRIENDSHIP','IS_EGG','ATK','DEF','HP','MAX_HP','MOVE1','MOVE2','MOVE3','MOVE4','PP1','PP2','PP3','PP4','NICKNAME','PERSONALITY','OT_NAME','OT_ID','HP_IV','SANITY_IS_BAD_EGG','ABILITY_NUM','MAIL','UNUSED_RIBBONS']:
     expressions['DATA_'+name] = 'MON_DATA_'+name
 required = [
+    "SetSavedWeather", "CB2_EndWildBattle", "CB2_EndTrainerBattle", "DynamicWeatherForMap", "DynamicWeatherForBattle", "DynamicWeatherAfterBattle", "DynamicWeatherUpdate", "WeatherContextValid", "GetCurrentWeather", "gWeatherPtr", "gMapHeader", "StartWildBattle",
     'BattleMainCB2', 'gBattleMoves', 'gTrainerBattleOpponent_A', 'CreateNPCTrainerParty', 'ApplyRangerTrainerData', 'RangerGiveGift', 'RangerNeedsMapRefresh',
     'SaffronCity_Dojo_EventScript_Ranger1', 'SaffronCity_Dojo_EventScript_Ranger2',
     'SaffronCity_Dojo_EventScript_Ranger3', 'SaffronCity_Dojo_EventScript_Ranger4',
@@ -242,7 +251,7 @@ for name in ['HandleInputChooseAction','HandleInputChooseMove','HandleInputChoos
     assert symbols['SetControllerToPlayer'] < symbols[name] < symbols['SetControllerToOpponent'], name
 with tempfile.TemporaryDirectory(prefix='lightning-emulator-') as temp:
     temp=Path(temp)
-    source='#include <stddef.h>\n#include "global.h"\n#include "pokemon.h"\n#include "main.h"\n#include "task.h"\n'
+    source='#include "field_weather.h"\n#include <stddef.h>\n#include "global.h"\n#include "pokemon.h"\n#include "main.h"\n#include "task.h"\n'
     source+='#include "text.h"\n#include "pokedex.h"\n#include "battle_controllers.h"\n#include "item_menu.h"\n#include "wild_encounter.h"\n#include "battle.h"\n#include "list_menu.h"\n#include "party_menu.h"\n#include "script.h"\n#include "field_player_avatar.h"\n'+screen_struct+'\n'+summary_struct+'\n'
     source+='const unsigned long abi[] = {'+', '.join(expressions.values())+'};\n'
     (temp/'abi.c').write_text(source)
@@ -269,6 +278,14 @@ with tempfile.TemporaryDirectory(prefix='lightning-emulator-') as temp:
         expected+=' {'+','.join('{'+','.join('MOVE_'+m for m in mon['moves'])+'}' for mon in trainer['party'])+'},\n'
     expected+='};\n'
     (temp/'ranger_expected.h').write_text(expected)
+
+    wf=json.loads(Path('tests/specifications/approved_weather_maps.json').read_text())
+    expected='struct WeatherExpected {unsigned map,original,weights[5];};\nstatic const struct WeatherExpected weatherExpected[]={\n'
+    for row in wf['maps']:
+        expected+=' {'+row['map']+','+row['native_weather']+',{'+','.join(map(str,row['weights']))+'}},\n'
+    expected+='};\n'
+    (temp/'weather_expected.h').write_text(expected)
+
 
     command=['gcc','-std=gnu11','-O2','-Wall','-Wextra','-I',str(temp),'-iquote','include',
              'tests/emulator/runner.c','-o',str(temp/'runner')]

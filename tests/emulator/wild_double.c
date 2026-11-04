@@ -79,7 +79,13 @@ static void chooseMove(unsigned b,unsigned moveIndex,unsigned target){
  }
 }
 static void killOne(unsigned target){
- chooseMove(0,0,target);chooseMove(2,1,target);waitAction();
+ unsigned attempts;
+ // Naturally generated Cloyster can use priority Protect; new map weather draws
+ // advance RNG. Preserve real opponent moves and require the intended faint.
+ for(attempts=0;attempts<8 && core->busRead16(core,bmon(target)+ABI_BMON_HP);attempts++){
+  chooseMove(0,0,target);chooseMove(2,1,target);waitAction();
+ }
+ if(attempts>1)printf("INFO: controlled target%u required%u real turns (Protect/misses are allowed, opponent unchanged)\n",target,attempts);
  CHECK(core->busRead16(core,bmon(target)+ABI_BMON_HP)==0);
  CHECK(CALL(GetWildOpponentCount)==1);
  printf("PASS: selected opposing battler %u, played damage/faint animations; other opponent remains\n",target);

@@ -1,4 +1,5 @@
 #include "global.h"
+#include "dynamic_weather.h"
 #include "item.h"
 #include "text.h"
 #include "util.h"
@@ -1707,7 +1708,9 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveA
             switch (gLastUsedAbility)
             {
             case ABILITYEFFECT_SWITCH_IN_WEATHER:
-                switch (GetCurrentWeather())
+            {
+                u8 fieldWeather = DynamicWeatherForBattle();
+                switch (fieldWeather)
                 {
                 case WEATHER_RAIN:
                 case WEATHER_RAIN_THUNDERSTORM:
@@ -1750,10 +1753,11 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveA
                 }
                 if (effect != 0)
                 {
-                    gBattleCommunication[MULTISTRING_CHOOSER] = GetCurrentWeather();
+                    gBattleCommunication[MULTISTRING_CHOOSER] = fieldWeather;
                     BattleScriptPushCursorAndCallback(BattleScript_OverworldWeatherStarts);
                 }
                 break;
+            }
             case ABILITY_DRIZZLE:
                 if (!(gBattleWeather & B_WEATHER_RAIN_PERMANENT))
                 {
