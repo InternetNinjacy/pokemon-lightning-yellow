@@ -134,7 +134,8 @@ Pure Bug Pinsir supersedes Bug/Steel; Gyarados stays Water/Dragon. Run the new
 run_typing_tests.py, all host suites and full mGBA. Keep the24-pair delta isolated
 from pending stats/ability/learnset, encounter and weather redesigns. Preserve
 historical hashes via the explicit approved normalization. No merges/auto-merge.
-`make -j2 compare`; use `make clean` before repeatability validation.
+The independent upstream job retains `make compare`; modified builds use the
+regression suites and reproducibility checks.
 
 ## Approved feature implementation handoffs
 

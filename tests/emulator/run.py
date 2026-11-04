@@ -199,7 +199,7 @@ required = [
     'FourIsland_PokemonDayCare_EventScript_DaycareWoman', 'FourIsland_EventScript_DaycareMan',
     'gSpecialVar_0x8004', 'gSpecialVar_0x8005', 'gSpecialVar_Result', 'gPartyMenu', 'gSelectedObjectEvent',
     'sRoamerLocation', 'IsNationalPokedexEnabled', 'CopyPlayerPartyMonToBattleData', 'CalculateBaseDamage', 'TypeCalc', 'AI_TypeCalc', 'AI_CalcDmg', 'Cmd_dmgtolevel',
-    'CreateShinyEgg', 'ScriptGiveShinyFeebasEgg', 'PewterCity_Museum_1F_EventScript_TriviaEmployee', 'PewterCity_Museum_1F_Text_TriviaOffer',
+    'CinnabarIsland_Gym_EventScript_Blaine', 'CreateShinyEgg', 'ScriptGiveShinyFeebasEgg', 'PewterCity_Museum_1F_EventScript_TriviaEmployee', 'PewterCity_Museum_1F_Text_TriviaOffer',
     'GetMoveCategoryName', 'GetMoveCategoryShortName', 'MoveSelectionDisplayMoveType',
     'gCurrentMove', 'gCritMultiplier', 'gDynamicBasePower', 'gBattlerAttacker', 'gBattlerTarget',
     'ShowPokemonSummaryScreen', 'sMonSummaryScreen', 'sMoveSelectionCursorPos', 'gSideStatuses', 'gBattleStruct', 'gBattleScripting', 'gBattleMoveDamage', 'gDisplayedStringBattle',
