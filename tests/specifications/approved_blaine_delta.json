@@ -1,0 +1,17 @@
+{
+  "note": "Exact owner-approved Blaine trainer data modifications, reversed for global preservation SHA audits.",
+  "hunks": {
+    "src/data/trainers.h": [
+      {
+        "before": "[TRAINER_LEADER_BLAINE] = {\n        .trainerClass = TRAINER_CLASS_LEADER,\n        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,\n        .trainerPic = TRAINER_PIC_LEADER_BLAINE,\n        .trainerName = _(\"BLAINE\"),\n        .items = {ITEM_HYPER_POTION, ITEM_HYPER_POTION, ITEM_FULL_HEAL},\n        .doubleBattle = FALSE,\n        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,\n        .party = NO_ITEM_CUSTOM_MOVES(sParty_LeaderBlaine),\n    },",
+        "after": "[TRAINER_LEADER_BLAINE] = {\n        .trainerClass = TRAINER_CLASS_LEADER,\n        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,\n        .trainerPic = TRAINER_PIC_LEADER_BLAINE,\n        .trainerName = _(\"BLAINE\"),\n        .items = {ITEM_HYPER_POTION, ITEM_HYPER_POTION, ITEM_FULL_HEAL},\n        .doubleBattle = TRUE,\n        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,\n        .party = NO_ITEM_CUSTOM_MOVES(sParty_LeaderBlaine),\n    },"
+      }
+    ],
+    "src/data/trainer_parties.h": [
+      {
+        "before": "static const struct TrainerMonNoItemCustomMoves sParty_LeaderBlaine[] = {\n    {\n        .iv = 0,\n        .lvl = 42,\n        .species = SPECIES_GROWLITHE,\n        .moves = {MOVE_BITE, MOVE_ROAR, MOVE_TAKE_DOWN, MOVE_FIRE_BLAST},\n    },\n    {\n        .iv = 0,\n        .lvl = 40,\n        .species = SPECIES_PONYTA,\n        .moves = {MOVE_STOMP, MOVE_BOUNCE, MOVE_FIRE_SPIN, MOVE_FIRE_BLAST},\n    },\n    {\n        .iv = 0,\n        .lvl = 42,\n        .species = SPECIES_RAPIDASH,\n        .moves = {MOVE_STOMP, MOVE_BOUNCE, MOVE_FIRE_SPIN, MOVE_FIRE_BLAST},\n    },\n    {\n        .iv = 0,\n        .lvl = 47,\n        .species = SPECIES_ARCANINE,\n        .moves = {MOVE_BITE, MOVE_ROAR, MOVE_TAKE_DOWN, MOVE_FIRE_BLAST},\n    },\n};",
+        "after": "static const struct TrainerMonNoItemCustomMoves sParty_LeaderBlaine[] = {\n    {\n        .iv = 0,\n        .lvl = 42,\n        .species = SPECIES_DONPHAN,\n        .moves = {MOVE_EARTHQUAKE, MOVE_ROCK_TOMB, MOVE_ROLLOUT, MOVE_DEFENSE_CURL},\n    },\n    {\n        .iv = 0,\n        .lvl = 42,\n        .species = SPECIES_PIDGEOT,\n        .moves = {MOVE_AERIAL_ACE, MOVE_QUICK_ATTACK, MOVE_FEATHER_DANCE, MOVE_SAND_ATTACK},\n    },\n    {\n        .iv = 0,\n        .lvl = 43,\n        .species = SPECIES_SANDSLASH,\n        .moves = {MOVE_EARTHQUAKE, MOVE_SLASH, MOVE_DIG, MOVE_SAND_ATTACK},\n    },\n    {\n        .iv = 0,\n        .lvl = 44,\n        .species = SPECIES_AERODACTYL,\n        .moves = {MOVE_AERIAL_ACE, MOVE_ANCIENT_POWER, MOVE_BITE, MOVE_SCARY_FACE},\n    },\n    {\n        .iv = 0,\n        .lvl = 47,\n        .species = SPECIES_FLYGON,\n        .moves = {MOVE_EARTHQUAKE, MOVE_DRAGON_CLAW, MOVE_CRUNCH, MOVE_SCREECH},\n    },\n};"
+      }
+    ]
+  }
+}
