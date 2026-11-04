@@ -44,12 +44,14 @@ Change log: https://docs.google.com/document/d/1NpCjx3uboBMdBVqoFpMwXEyVkDquD37K
 Source files: src/data/trainer_parties.h, src/data/trainers.h, src/data/pokemon/level_up_learnsets.h, src/data/pokemon/tmhm_learnsets.h. Current code still uses starter-dependent Kanto rival teams. Implementer must locate event script branching.
 
 ## Blockers
-1. Reconcile final TM replacements, availability, and all five marked move occurrences; default-branch TM table supports the source moves but may not reflect approved Lightning Yellow replacements.
+1. SPECIFIC TM ASSIGNMENTS RECONCILED (read-only): Lightning Yellow Complete TM & Move Register v1 confirms TM02 Dragon Claw, TM26 Earthquake, TM35 Flamethrower and TM36 Sludge Bomb remain assigned as in default-branch source; default-branch species TM compatibility covers all four species and five marked move occurrences. Remaining dependency: confirm no later approved exceptions supersede those baseline-first register entries and that final TM/move distribution is implemented; do not independently redesign the TM system.
 2. Held items are approved above; confirm conversion of original no-item rival data into item-capable Trainer party definitions where necessary.
 3. Preserve existing AI flags until separately approved; do not add new AI functionality.
 4. Confirm final species move timing and special balance rules, including Dragonite Dragon Claw, Tyranitar Earthquake, Fire/Ghost Ninetales, and physical/special split.
-5. Verify Pikachu starter selection and all eight event flags; preserve optional early Route 22 and unchanged postgame.
+5. Confirm Pikachu starter selection and all eight event flags; preserve optional early Route 22 and unchanged postgame. Read-only verified branch scripts: data/maps/PalletTown_ProfessorOaksLab/scripts.inc, data/maps/Route22/scripts.inc, data/maps/CeruleanCity/scripts.inc, data/maps/PokemonTower_2F/scripts.inc and data/maps/SilphCo_7F/scripts.inc still branch on VAR_STARTER_MON values 0/1/2 to the three Kanto rival trainers. Replacing teams alone cannot guarantee Pikachu route compatibility. Identify remaining three events and confirm single correct Pikachu routing without breaking flag conditions.
 6. Determine project-approved gameplay CI/build gate transition. No source code or game implementation authorized by this blocked spec.
+
+TM source of truth: https://docs.google.com/document/d/1EHByhspPMrn_H0ard-wbdZLRqInZVschQqXTWSiP5fY/edit
 
 ## Validation before Ready
 Check exact encounter party, order, level and moves; Pikachu story route; wild/player Dratini family learnsets; ordinary Lv55 final evolutions; legal TM/abilities; event/save/regressions; and emulator-test the moderate first four and hard final four. Do not weaken baseline checks. Follow AGENTS.md and implementation/README.md.
