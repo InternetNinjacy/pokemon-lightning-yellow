@@ -12,6 +12,24 @@
         "before": "static const struct TrainerMonNoItemCustomMoves sParty_LeaderBlaine[] = {\n    {\n        .iv = 0,\n        .lvl = 42,\n        .species = SPECIES_GROWLITHE,\n        .moves = {MOVE_BITE, MOVE_ROAR, MOVE_TAKE_DOWN, MOVE_FIRE_BLAST},\n    },\n    {\n        .iv = 0,\n        .lvl = 40,\n        .species = SPECIES_PONYTA,\n        .moves = {MOVE_STOMP, MOVE_BOUNCE, MOVE_FIRE_SPIN, MOVE_FIRE_BLAST},\n    },\n    {\n        .iv = 0,\n        .lvl = 42,\n        .species = SPECIES_RAPIDASH,\n        .moves = {MOVE_STOMP, MOVE_BOUNCE, MOVE_FIRE_SPIN, MOVE_FIRE_BLAST},\n    },\n    {\n        .iv = 0,\n        .lvl = 47,\n        .species = SPECIES_ARCANINE,\n        .moves = {MOVE_BITE, MOVE_ROAR, MOVE_TAKE_DOWN, MOVE_FIRE_BLAST},\n    },\n};",
         "after": "static const struct TrainerMonNoItemCustomMoves sParty_LeaderBlaine[] = {\n    {\n        .iv = 0,\n        .lvl = 42,\n        .species = SPECIES_DONPHAN,\n        .moves = {MOVE_EARTHQUAKE, MOVE_ROCK_TOMB, MOVE_ROLLOUT, MOVE_DEFENSE_CURL},\n    },\n    {\n        .iv = 0,\n        .lvl = 42,\n        .species = SPECIES_PIDGEOT,\n        .moves = {MOVE_AERIAL_ACE, MOVE_QUICK_ATTACK, MOVE_FEATHER_DANCE, MOVE_SAND_ATTACK},\n    },\n    {\n        .iv = 0,\n        .lvl = 43,\n        .species = SPECIES_SANDSLASH,\n        .moves = {MOVE_EARTHQUAKE, MOVE_SLASH, MOVE_DIG, MOVE_SAND_ATTACK},\n    },\n    {\n        .iv = 0,\n        .lvl = 44,\n        .species = SPECIES_AERODACTYL,\n        .moves = {MOVE_AERIAL_ACE, MOVE_ANCIENT_POWER, MOVE_BITE, MOVE_SCARY_FACE},\n    },\n    {\n        .iv = 0,\n        .lvl = 47,\n        .species = SPECIES_FLYGON,\n        .moves = {MOVE_EARTHQUAKE, MOVE_DRAGON_CLAW, MOVE_CRUNCH, MOVE_SCREECH},\n    },\n};"
       }
+    ],
+    "data/maps/CinnabarIsland_Gym/scripts.inc": [
+      {
+        "before": "\ttrainerbattle_single TRAINER_LEADER_BLAINE, CinnabarIsland_Gym_Text_BlaineIntro, CinnabarIsland_Gym_Text_BlaineDefeat, CinnabarIsland_Gym_EventScript_DefeatedBlaine, NO_MUSIC",
+        "after": "\ttrainerbattle_double TRAINER_LEADER_BLAINE, CinnabarIsland_Gym_Text_BlaineIntro, CinnabarIsland_Gym_Text_BlaineDefeat, CinnabarIsland_Gym_Text_BlaineNeedTwoPokemon, CinnabarIsland_Gym_EventScript_DefeatedBlaine, NO_MUSIC"
+      }
+    ],
+    "data/maps/CinnabarIsland_Gym/text.inc": [
+      {
+        "before": "CinnabarIsland_Gym_Text_BlaineDefeat::",
+        "after": "CinnabarIsland_Gym_Text_BlaineNeedTwoPokemon::\n    .string \"Hah! You need two POKéMON ready\\\\n\"\n    .string \"to battle me!$\"\n\nCinnabarIsland_Gym_Text_BlaineDefeat::"
+      }
+    ],
+    "src/data/pokemon/species_info.h": [
+      {
+        "before": "[SPECIES_PIDGEOT] =\n    {\n        .baseHP = 83,\n        .baseAttack = 80,\n        .baseDefense = 75,\n        .baseSpeed = 91,\n        .baseSpAttack = 70,\n        .baseSpDefense = 70,\n        .types = {TYPE_NORMAL, TYPE_FLYING},\n        .catchRate = 45,\n        .expYield = 172,\n        .evYield_HP = 0,\n        .evYield_Attack = 0,\n        .evYield_Defense = 0,\n        .evYield_Speed = 3,\n        .evYield_SpAttack = 0,\n        .evYield_SpDefense = 0,\n        .itemCommon = ITEM_NONE,\n        .itemRare = ITEM_NONE,\n        .genderRatio = PERCENT_FEMALE(50),\n        .eggCycles = 15,\n        .friendship = 70,\n        .growthRate = GROWTH_MEDIUM_SLOW,\n        .eggGroups = {EGG_GROUP_FLYING, EGG_GROUP_FLYING},\n        .abilities = {ABILITY_KEEN_EYE, ABILITY_NONE},\n        .safariZoneFleeRate = 0,\n        .bodyColor = BODY_COLOR_BROWN,\n        .noFlip = FALSE,\n    },",
+        "after": "[SPECIES_PIDGEOT] =\n    {\n        .baseHP = 83,\n        .baseAttack = 80,\n        .baseDefense = 75,\n        .baseSpeed = 91,\n        .baseSpAttack = 70,\n        .baseSpDefense = 70,\n        .types = {TYPE_FLYING, TYPE_FLYING},\n        .catchRate = 45,\n        .expYield = 172,\n        .evYield_HP = 0,\n        .evYield_Attack = 0,\n        .evYield_Defense = 0,\n        .evYield_Speed = 3,\n        .evYield_SpAttack = 0,\n        .evYield_SpDefense = 0,\n        .itemCommon = ITEM_NONE,\n        .itemRare = ITEM_NONE,\n        .genderRatio = PERCENT_FEMALE(50),\n        .eggCycles = 15,\n        .friendship = 70,\n        .growthRate = GROWTH_MEDIUM_SLOW,\n        .eggGroups = {EGG_GROUP_FLYING, EGG_GROUP_FLYING},\n        .abilities = {ABILITY_KEEN_EYE, ABILITY_NONE},\n        .safariZoneFleeRate = 0,\n        .bodyColor = BODY_COLOR_BROWN,\n        .noFlip = FALSE,\n    },"
+      }
     ]
   }
 }
