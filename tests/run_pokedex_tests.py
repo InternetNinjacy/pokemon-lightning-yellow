@@ -127,6 +127,13 @@ for name,types in fixture.items():
  assert match and [match[2][5:],match[3][5:]]==types['approved'],name
  species_info,count=re.subn(pattern,lambda m:m[1]+'TYPE_'+types['original'][0]+', TYPE_'+types['original'][1]+m[4],species_info,count=1,flags=re.S)
  assert count==1
+# Blaine depends on the separately approved pure-Flying Pidgeot retyping.
+# Verify precisely that species pair, then undo it for whole-file SHA comparison.
+pidgeot_pattern=r'(\[SPECIES_PIDGEOT\]\s*=\s*\{.*?\.types = \{)(TYPE_\w+), (TYPE_\w+)(\},)'
+pidgeot=re.search(pidgeot_pattern,species_info,re.S)
+assert pidgeot and (pidgeot[2],pidgeot[3])==('TYPE_FLYING','TYPE_FLYING')
+species_info,n=re.subn(pidgeot_pattern,lambda m:m[1]+'TYPE_NORMAL, TYPE_FLYING'+m[4],species_info,count=1,flags=re.S)
+assert n==1
 # Separate preservation evidence: all other bytes stay identical to PR5.
 
 preserved=json.loads(Path('tests/custom_dex_preserved.json').read_text())
@@ -140,4 +147,4 @@ for path,expected_hash in preserved.items():
   original=original.replace('/*0x348C*/ struct Route5DaycareSave route5Daycare;','/*0x348C*/ u8 unused_348C[400];')
   actual=original.encode()
  assert hashlib.sha256(actual).hexdigest()==expected_hash,path
-print('PASS: twelve approved type pairs; all other species fields/types/abilities, Forecast, trainers, evolution data and save layout preserved (static audit)')
+print('PASS: twelve baseline approved type pairs plus Blaine Pidgeot; all other species fields/types/abilities, Forecast, trainers, evolution data and save layout preserved (static audit)')
