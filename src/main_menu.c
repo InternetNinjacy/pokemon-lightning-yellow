@@ -14,6 +14,7 @@
 #include "title_screen.h"
 #include "help_system.h"
 #include "pokedex.h"
+#include "custom_pokedex.h"
 #include "text_window.h"
 #include "text_window_graphics.h"
 #include "constants/songs.h"
@@ -648,9 +649,9 @@ static void PrintDexCount(void)
     if (FlagGet(FLAG_SYS_POKEDEX_GET) == TRUE)
     {
         if (IsNationalPokedexEnabled())
-            dexcount = GetNationalPokedexCount(FLAG_GET_CAUGHT);
+            dexcount = GetCustomPokedexCount(FLAG_GET_CAUGHT);
         else
-            dexcount = GetKantoPokedexCount(FLAG_GET_CAUGHT);
+            dexcount = GetCustomPokedexCount(FLAG_GET_CAUGHT);
         AddTextPrinterParameterized3(MAIN_MENU_WINDOW_CONTINUE, FONT_NORMAL, 2, 50, sTextColor2, -1, gText_Pokedex);
         ptr = ConvertIntToDecimalStringN(strbuf, dexcount, STR_CONV_MODE_LEFT_ALIGN, 3);
         StringAppend(ptr, gTextJPDummy_Hiki);

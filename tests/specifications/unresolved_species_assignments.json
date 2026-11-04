@@ -1,0 +1,4012 @@
+{
+  "assignments_and_review_candidates": 4913,
+  "confirmed_assignment_findings": 281,
+  "findings": [
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsMoneanChamber_FireRed/land_mons/0",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsMoneanChamber_FireRed/land_mons/1",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsMoneanChamber_FireRed/land_mons/2",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsMoneanChamber_FireRed/land_mons/3",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsMoneanChamber_FireRed/land_mons/4",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsMoneanChamber_FireRed/land_mons/5",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsMoneanChamber_FireRed/land_mons/6",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsMoneanChamber_FireRed/land_mons/7",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsMoneanChamber_FireRed/land_mons/8",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsMoneanChamber_FireRed/land_mons/9",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsMoneanChamber_FireRed/land_mons/10",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsMoneanChamber_FireRed/land_mons/11",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsLiptooChamber_FireRed/land_mons/0",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsLiptooChamber_FireRed/land_mons/1",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsLiptooChamber_FireRed/land_mons/2",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsLiptooChamber_FireRed/land_mons/3",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsLiptooChamber_FireRed/land_mons/4",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsLiptooChamber_FireRed/land_mons/5",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsLiptooChamber_FireRed/land_mons/6",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsLiptooChamber_FireRed/land_mons/7",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsLiptooChamber_FireRed/land_mons/8",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsLiptooChamber_FireRed/land_mons/9",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsLiptooChamber_FireRed/land_mons/10",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsLiptooChamber_FireRed/land_mons/11",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsWeepthChamber_FireRed/land_mons/0",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsWeepthChamber_FireRed/land_mons/1",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsWeepthChamber_FireRed/land_mons/2",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsWeepthChamber_FireRed/land_mons/3",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsWeepthChamber_FireRed/land_mons/4",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsWeepthChamber_FireRed/land_mons/5",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsWeepthChamber_FireRed/land_mons/6",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsWeepthChamber_FireRed/land_mons/7",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsWeepthChamber_FireRed/land_mons/8",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsWeepthChamber_FireRed/land_mons/9",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsWeepthChamber_FireRed/land_mons/10",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsWeepthChamber_FireRed/land_mons/11",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsDilfordChamber_FireRed/land_mons/0",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsDilfordChamber_FireRed/land_mons/1",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsDilfordChamber_FireRed/land_mons/2",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsDilfordChamber_FireRed/land_mons/3",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsDilfordChamber_FireRed/land_mons/4",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsDilfordChamber_FireRed/land_mons/5",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsDilfordChamber_FireRed/land_mons/6",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsDilfordChamber_FireRed/land_mons/7",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsDilfordChamber_FireRed/land_mons/8",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsDilfordChamber_FireRed/land_mons/9",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsDilfordChamber_FireRed/land_mons/10",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsDilfordChamber_FireRed/land_mons/11",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsScufibChamber_FireRed/land_mons/0",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsScufibChamber_FireRed/land_mons/1",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsScufibChamber_FireRed/land_mons/2",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsScufibChamber_FireRed/land_mons/3",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsScufibChamber_FireRed/land_mons/4",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsScufibChamber_FireRed/land_mons/5",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsScufibChamber_FireRed/land_mons/6",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsScufibChamber_FireRed/land_mons/7",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsScufibChamber_FireRed/land_mons/8",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsScufibChamber_FireRed/land_mons/9",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsScufibChamber_FireRed/land_mons/10",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsScufibChamber_FireRed/land_mons/11",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsRixyChamber_FireRed/land_mons/0",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsRixyChamber_FireRed/land_mons/1",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsRixyChamber_FireRed/land_mons/2",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsRixyChamber_FireRed/land_mons/3",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsRixyChamber_FireRed/land_mons/4",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsRixyChamber_FireRed/land_mons/5",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsRixyChamber_FireRed/land_mons/6",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsRixyChamber_FireRed/land_mons/7",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsRixyChamber_FireRed/land_mons/8",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsRixyChamber_FireRed/land_mons/9",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsRixyChamber_FireRed/land_mons/10",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsRixyChamber_FireRed/land_mons/11",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsViapoisChamber_FireRed/land_mons/0",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsViapoisChamber_FireRed/land_mons/1",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsViapoisChamber_FireRed/land_mons/2",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsViapoisChamber_FireRed/land_mons/3",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsViapoisChamber_FireRed/land_mons/4",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsViapoisChamber_FireRed/land_mons/5",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsViapoisChamber_FireRed/land_mons/6",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsViapoisChamber_FireRed/land_mons/7",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsViapoisChamber_FireRed/land_mons/8",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsViapoisChamber_FireRed/land_mons/9",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsViapoisChamber_FireRed/land_mons/10",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuinsViapoisChamber_FireRed/land_mons/11",
+      "kind": "wild",
+      "species": "UNOWN",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sCeruleanCave1F_FireRed/land_mons/9",
+      "kind": "wild",
+      "species": "WOBBUFFET",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sCeruleanCave2F_FireRed/land_mons/7",
+      "kind": "wild",
+      "species": "WOBBUFFET",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sCeruleanCaveB1F_FireRed/land_mons/11",
+      "kind": "wild",
+      "species": "WOBBUFFET",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sFourIslandIcefallCaveEntrance_FireRed/water_mons/3",
+      "kind": "wild",
+      "species": "WOOPER",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sFourIslandIcefallCaveEntrance_FireRed/water_mons/4",
+      "kind": "wild",
+      "species": "WOOPER",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sFourIslandIcefallCave1F_FireRed/land_mons/6",
+      "kind": "wild",
+      "species": "DELIBIRD",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sFourIslandIcefallCaveB1F_FireRed/land_mons/6",
+      "kind": "wild",
+      "species": "DELIBIRD",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandPatternBush_FireRed/land_mons/8",
+      "kind": "wild",
+      "species": "LEDYBA",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandPatternBush_FireRed/land_mons/10",
+      "kind": "wild",
+      "species": "LEDYBA",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sThreeIslandPort_FireRed/land_mons/0",
+      "kind": "wild",
+      "species": "DUNSPARCE",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sThreeIslandPort_FireRed/land_mons/1",
+      "kind": "wild",
+      "species": "DUNSPARCE",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sThreeIslandPort_FireRed/land_mons/2",
+      "kind": "wild",
+      "species": "DUNSPARCE",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sThreeIslandPort_FireRed/land_mons/3",
+      "kind": "wild",
+      "species": "DUNSPARCE",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sThreeIslandPort_FireRed/land_mons/4",
+      "kind": "wild",
+      "species": "DUNSPARCE",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sThreeIslandPort_FireRed/land_mons/5",
+      "kind": "wild",
+      "species": "DUNSPARCE",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sThreeIslandPort_FireRed/land_mons/6",
+      "kind": "wild",
+      "species": "DUNSPARCE",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sThreeIslandPort_FireRed/land_mons/7",
+      "kind": "wild",
+      "species": "DUNSPARCE",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sThreeIslandPort_FireRed/land_mons/8",
+      "kind": "wild",
+      "species": "DUNSPARCE",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sThreeIslandPort_FireRed/land_mons/9",
+      "kind": "wild",
+      "species": "DUNSPARCE",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sThreeIslandPort_FireRed/land_mons/10",
+      "kind": "wild",
+      "species": "DUNSPARCE",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sThreeIslandPort_FireRed/land_mons/11",
+      "kind": "wild",
+      "species": "DUNSPARCE",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sFiveIslandResortGorgeous_FireRed/water_mons/1",
+      "kind": "wild",
+      "species": "HOPPIP",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sFiveIslandResortGorgeous_FireRed/fishing_mons/6",
+      "kind": "wild",
+      "species": "QWILFISH",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sFiveIslandWaterLabyrinth_FireRed/water_mons/1",
+      "kind": "wild",
+      "species": "HOPPIP",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sFiveIslandWaterLabyrinth_FireRed/fishing_mons/6",
+      "kind": "wild",
+      "species": "QWILFISH",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sFiveIslandMeadow_FireRed/land_mons/1",
+      "kind": "wild",
+      "species": "SENTRET",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sFiveIslandMeadow_FireRed/land_mons/3",
+      "kind": "wild",
+      "species": "HOPPIP",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sFiveIslandMeadow_FireRed/land_mons/4",
+      "kind": "wild",
+      "species": "SENTRET",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sFiveIslandMeadow_FireRed/land_mons/6",
+      "kind": "wild",
+      "species": "HOPPIP",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sFiveIslandMeadow_FireRed/water_mons/1",
+      "kind": "wild",
+      "species": "HOPPIP",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sFiveIslandMeadow_FireRed/fishing_mons/6",
+      "kind": "wild",
+      "species": "QWILFISH",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sFiveIslandMemorialPillar_FireRed/land_mons/0",
+      "kind": "wild",
+      "species": "HOPPIP",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sFiveIslandMemorialPillar_FireRed/land_mons/1",
+      "kind": "wild",
+      "species": "HOPPIP",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sFiveIslandMemorialPillar_FireRed/land_mons/2",
+      "kind": "wild",
+      "species": "HOPPIP",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sFiveIslandMemorialPillar_FireRed/land_mons/3",
+      "kind": "wild",
+      "species": "HOPPIP",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sFiveIslandMemorialPillar_FireRed/land_mons/4",
+      "kind": "wild",
+      "species": "HOPPIP",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sFiveIslandMemorialPillar_FireRed/land_mons/5",
+      "kind": "wild",
+      "species": "HOPPIP",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sFiveIslandMemorialPillar_FireRed/land_mons/6",
+      "kind": "wild",
+      "species": "HOPPIP",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sFiveIslandMemorialPillar_FireRed/land_mons/7",
+      "kind": "wild",
+      "species": "HOPPIP",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sFiveIslandMemorialPillar_FireRed/land_mons/8",
+      "kind": "wild",
+      "species": "HOPPIP",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sFiveIslandMemorialPillar_FireRed/land_mons/9",
+      "kind": "wild",
+      "species": "HOPPIP",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sFiveIslandMemorialPillar_FireRed/land_mons/10",
+      "kind": "wild",
+      "species": "HOPPIP",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sFiveIslandMemorialPillar_FireRed/land_mons/11",
+      "kind": "wild",
+      "species": "HOPPIP",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sFiveIslandMemorialPillar_FireRed/water_mons/1",
+      "kind": "wild",
+      "species": "HOPPIP",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sFiveIslandMemorialPillar_FireRed/fishing_mons/6",
+      "kind": "wild",
+      "species": "QWILFISH",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandOutcastIsland_FireRed/fishing_mons/6",
+      "kind": "wild",
+      "species": "QWILFISH",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandGreenPath_FireRed/fishing_mons/6",
+      "kind": "wild",
+      "species": "QWILFISH",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandWaterPath_FireRed/land_mons/1",
+      "kind": "wild",
+      "species": "SENTRET",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandWaterPath_FireRed/land_mons/4",
+      "kind": "wild",
+      "species": "SENTRET",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandWaterPath_FireRed/fishing_mons/6",
+      "kind": "wild",
+      "species": "QWILFISH",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandRuinValley_FireRed/land_mons/3",
+      "kind": "wild",
+      "species": "WOOPER",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandRuinValley_FireRed/land_mons/6",
+      "kind": "wild",
+      "species": "WOBBUFFET",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandRuinValley_FireRed/water_mons/0",
+      "kind": "wild",
+      "species": "WOOPER",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandRuinValley_FireRed/water_mons/1",
+      "kind": "wild",
+      "species": "WOOPER",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandRuinValley_FireRed/water_mons/2",
+      "kind": "wild",
+      "species": "WOOPER",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandRuinValley_FireRed/water_mons/3",
+      "kind": "wild",
+      "species": "WOOPER",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandRuinValley_FireRed/water_mons/4",
+      "kind": "wild",
+      "species": "WOOPER",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTrainerTower_FireRed/fishing_mons/6",
+      "kind": "wild",
+      "species": "QWILFISH",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandSevaultCanyonEntrance_FireRed/land_mons/1",
+      "kind": "wild",
+      "species": "SENTRET",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandSevaultCanyonEntrance_FireRed/land_mons/4",
+      "kind": "wild",
+      "species": "SENTRET",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandSevaultCanyon_FireRed/land_mons/7",
+      "kind": "wild",
+      "species": "SKARMORY",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSevenIslandTanobyRuins_FireRed/fishing_mons/6",
+      "kind": "wild",
+      "species": "QWILFISH",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sFourIsland_FireRed/water_mons/0",
+      "kind": "wild",
+      "species": "WOOPER",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sFourIsland_FireRed/water_mons/2",
+      "kind": "wild",
+      "species": "WOOPER",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sFourIsland_FireRed/water_mons/3",
+      "kind": "wild",
+      "species": "WOOPER",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sFourIsland_FireRed/water_mons/4",
+      "kind": "wild",
+      "species": "WOOPER",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sFiveIsland_FireRed/water_mons/1",
+      "kind": "wild",
+      "species": "HOPPIP",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandAlteringCave_6_FireRed/land_mons/0",
+      "kind": "wild",
+      "species": "AIPOM",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandAlteringCave_6_FireRed/land_mons/1",
+      "kind": "wild",
+      "species": "AIPOM",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandAlteringCave_6_FireRed/land_mons/2",
+      "kind": "wild",
+      "species": "AIPOM",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandAlteringCave_6_FireRed/land_mons/3",
+      "kind": "wild",
+      "species": "AIPOM",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandAlteringCave_6_FireRed/land_mons/4",
+      "kind": "wild",
+      "species": "AIPOM",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandAlteringCave_6_FireRed/land_mons/5",
+      "kind": "wild",
+      "species": "AIPOM",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandAlteringCave_6_FireRed/land_mons/6",
+      "kind": "wild",
+      "species": "AIPOM",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandAlteringCave_6_FireRed/land_mons/7",
+      "kind": "wild",
+      "species": "AIPOM",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandAlteringCave_6_FireRed/land_mons/8",
+      "kind": "wild",
+      "species": "AIPOM",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandAlteringCave_6_FireRed/land_mons/9",
+      "kind": "wild",
+      "species": "AIPOM",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandAlteringCave_6_FireRed/land_mons/10",
+      "kind": "wild",
+      "species": "AIPOM",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandAlteringCave_6_FireRed/land_mons/11",
+      "kind": "wild",
+      "species": "AIPOM",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandAlteringCave_7_FireRed/land_mons/0",
+      "kind": "wild",
+      "species": "SHUCKLE",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandAlteringCave_7_FireRed/land_mons/1",
+      "kind": "wild",
+      "species": "SHUCKLE",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandAlteringCave_7_FireRed/land_mons/2",
+      "kind": "wild",
+      "species": "SHUCKLE",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandAlteringCave_7_FireRed/land_mons/3",
+      "kind": "wild",
+      "species": "SHUCKLE",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandAlteringCave_7_FireRed/land_mons/4",
+      "kind": "wild",
+      "species": "SHUCKLE",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandAlteringCave_7_FireRed/land_mons/5",
+      "kind": "wild",
+      "species": "SHUCKLE",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandAlteringCave_7_FireRed/land_mons/6",
+      "kind": "wild",
+      "species": "SHUCKLE",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandAlteringCave_7_FireRed/land_mons/7",
+      "kind": "wild",
+      "species": "SHUCKLE",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandAlteringCave_7_FireRed/land_mons/8",
+      "kind": "wild",
+      "species": "SHUCKLE",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandAlteringCave_7_FireRed/land_mons/9",
+      "kind": "wild",
+      "species": "SHUCKLE",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandAlteringCave_7_FireRed/land_mons/10",
+      "kind": "wild",
+      "species": "SHUCKLE",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandAlteringCave_7_FireRed/land_mons/11",
+      "kind": "wild",
+      "species": "SHUCKLE",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandAlteringCave_8_FireRed/land_mons/0",
+      "kind": "wild",
+      "species": "STANTLER",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandAlteringCave_8_FireRed/land_mons/1",
+      "kind": "wild",
+      "species": "STANTLER",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandAlteringCave_8_FireRed/land_mons/2",
+      "kind": "wild",
+      "species": "STANTLER",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandAlteringCave_8_FireRed/land_mons/3",
+      "kind": "wild",
+      "species": "STANTLER",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandAlteringCave_8_FireRed/land_mons/4",
+      "kind": "wild",
+      "species": "STANTLER",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandAlteringCave_8_FireRed/land_mons/5",
+      "kind": "wild",
+      "species": "STANTLER",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandAlteringCave_8_FireRed/land_mons/6",
+      "kind": "wild",
+      "species": "STANTLER",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandAlteringCave_8_FireRed/land_mons/7",
+      "kind": "wild",
+      "species": "STANTLER",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandAlteringCave_8_FireRed/land_mons/8",
+      "kind": "wild",
+      "species": "STANTLER",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandAlteringCave_8_FireRed/land_mons/9",
+      "kind": "wild",
+      "species": "STANTLER",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandAlteringCave_8_FireRed/land_mons/10",
+      "kind": "wild",
+      "species": "STANTLER",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandAlteringCave_8_FireRed/land_mons/11",
+      "kind": "wild",
+      "species": "STANTLER",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandAlteringCave_9_FireRed/land_mons/0",
+      "kind": "wild",
+      "species": "SMEARGLE",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandAlteringCave_9_FireRed/land_mons/1",
+      "kind": "wild",
+      "species": "SMEARGLE",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandAlteringCave_9_FireRed/land_mons/2",
+      "kind": "wild",
+      "species": "SMEARGLE",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandAlteringCave_9_FireRed/land_mons/3",
+      "kind": "wild",
+      "species": "SMEARGLE",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandAlteringCave_9_FireRed/land_mons/4",
+      "kind": "wild",
+      "species": "SMEARGLE",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandAlteringCave_9_FireRed/land_mons/5",
+      "kind": "wild",
+      "species": "SMEARGLE",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandAlteringCave_9_FireRed/land_mons/6",
+      "kind": "wild",
+      "species": "SMEARGLE",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandAlteringCave_9_FireRed/land_mons/7",
+      "kind": "wild",
+      "species": "SMEARGLE",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandAlteringCave_9_FireRed/land_mons/8",
+      "kind": "wild",
+      "species": "SMEARGLE",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandAlteringCave_9_FireRed/land_mons/9",
+      "kind": "wild",
+      "species": "SMEARGLE",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandAlteringCave_9_FireRed/land_mons/10",
+      "kind": "wild",
+      "species": "SMEARGLE",
+      "line": null
+    },
+    {
+      "path": "src/data/wild_encounters.json",
+      "context": "sSixIslandAlteringCave_9_FireRed/land_mons/11",
+      "kind": "wild",
+      "species": "SMEARGLE",
+      "line": null
+    },
+    {
+      "path": "src/data/trainer_parties.h",
+      "context": "sParty_PkmnBreederAlize",
+      "kind": "trainer",
+      "species": "MARILL",
+      "line": 7224
+    },
+    {
+      "path": "src/data/trainer_parties.h",
+      "context": "sParty_LadyJacki",
+      "kind": "trainer",
+      "species": "HOPPIP",
+      "line": 7293
+    },
+    {
+      "path": "src/data/trainer_parties.h",
+      "context": "sParty_LadyJacki",
+      "kind": "trainer",
+      "species": "SKIPLOOM",
+      "line": 7299
+    },
+    {
+      "path": "src/data/trainer_parties.h",
+      "context": "sParty_PainterDaisy",
+      "kind": "trainer",
+      "species": "SMEARGLE",
+      "line": 7308
+    },
+    {
+      "path": "src/data/trainer_parties.h",
+      "context": "sParty_PainterCelina",
+      "kind": "trainer",
+      "species": "SMEARGLE",
+      "line": 7891
+    },
+    {
+      "path": "src/data/trainer_parties.h",
+      "context": "sParty_PainterRayna",
+      "kind": "trainer",
+      "species": "SMEARGLE",
+      "line": 7900
+    },
+    {
+      "path": "src/data/trainer_parties.h",
+      "context": "sParty_FishermanTylor",
+      "kind": "trainer",
+      "species": "QWILFISH",
+      "line": 8051
+    },
+    {
+      "path": "src/data/trainer_parties.h",
+      "context": "sParty_FishermanTylor",
+      "kind": "trainer",
+      "species": "QWILFISH",
+      "line": 8056
+    },
+    {
+      "path": "src/data/trainer_parties.h",
+      "context": "sParty_SwimmerFemaleNicole",
+      "kind": "trainer",
+      "species": "MARILL",
+      "line": 8077
+    },
+    {
+      "path": "src/data/trainer_parties.h",
+      "context": "sParty_SwimmerFemaleDenise",
+      "kind": "trainer",
+      "species": "CHINCHOU",
+      "line": 8119
+    },
+    {
+      "path": "src/data/trainer_parties.h",
+      "context": "sParty_SwimmerFemaleDenise",
+      "kind": "trainer",
+      "species": "LANTURN",
+      "line": 8124
+    },
+    {
+      "path": "src/data/trainer_parties.h",
+      "context": "sParty_PsychicDario",
+      "kind": "trainer",
+      "species": "GIRAFARIG",
+      "line": 8200
+    },
+    {
+      "path": "src/data/trainer_parties.h",
+      "context": "sParty_CooltrainerMichelle",
+      "kind": "trainer",
+      "species": "GIRAFARIG",
+      "line": 8470
+    },
+    {
+      "path": "src/data/trainer_parties.h",
+      "context": "sParty_PainterEdna",
+      "kind": "trainer",
+      "species": "SMEARGLE",
+      "line": 8523
+    },
+    {
+      "path": "src/data/trainer_parties.h",
+      "context": "sParty_LassDalia",
+      "kind": "trainer",
+      "species": "HOPPIP",
+      "line": 8699
+    },
+    {
+      "path": "src/data/trainer_parties.h",
+      "context": "sParty_LassDalia",
+      "kind": "trainer",
+      "species": "HOPPIP",
+      "line": 8704
+    },
+    {
+      "path": "src/data/trainer_parties.h",
+      "context": "sParty_LassDalia",
+      "kind": "trainer",
+      "species": "SKIPLOOM",
+      "line": 8709
+    },
+    {
+      "path": "src/data/trainer_parties.h",
+      "context": "sParty_LassDalia",
+      "kind": "trainer",
+      "species": "SKIPLOOM",
+      "line": 8714
+    },
+    {
+      "path": "src/data/trainer_parties.h",
+      "context": "sParty_LassJoana",
+      "kind": "trainer",
+      "species": "SNUBBULL",
+      "line": 8722
+    },
+    {
+      "path": "src/data/trainer_parties.h",
+      "context": "sParty_PainterRayna2",
+      "kind": "trainer",
+      "species": "SMEARGLE",
+      "line": 10061
+    },
+    {
+      "path": "src/data/trainer_parties.h",
+      "context": "sParty_PkmnBreederAlize2",
+      "kind": "trainer",
+      "species": "MARILL",
+      "line": 10093
+    },
+    {
+      "path": "src/data/trainer_parties.h",
+      "context": "sParty_SwimmerFemaleNicole2",
+      "kind": "trainer",
+      "species": "MARILL",
+      "line": 10166
+    },
+    {
+      "path": "src/data/trainer_parties.h",
+      "context": "sParty_PsychicDario2",
+      "kind": "trainer",
+      "species": "GIRAFARIG",
+      "line": 10242
+    },
+    {
+      "path": "src/data/trainer_parties.h",
+      "context": "sParty_CooltrainerMichelle2",
+      "kind": "trainer",
+      "species": "GIRAFARIG",
+      "line": 10451
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "TOGETIC",
+      "line": 385
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "TOGETIC",
+      "line": 407
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "TOGETIC",
+      "line": 859
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "FURRET",
+      "line": 980
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "GIRAFARIG",
+      "line": 1156
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "TOGEPI",
+      "line": 1475
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "TOGEPI",
+      "line": 1574
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "TOGEPI",
+      "line": 1695
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "TOGEPI",
+      "line": 2442
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "SNUBBULL",
+      "line": 2530
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "SHUCKLE",
+      "line": 2663
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "GLIGAR",
+      "line": 3346
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "QUAGSIRE",
+      "line": 3368
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "SKARMORY",
+      "line": 3467
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "MANTINE",
+      "line": 3489
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "JUMPLUFF",
+      "line": 3511
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "LEDIAN",
+      "line": 3731
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "MEGANIUM",
+      "line": 4313
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "TOGETIC",
+      "line": 4434
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "DUNSPARCE",
+      "line": 4609
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "QUAGSIRE",
+      "line": 4720
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "FERALIGATR",
+      "line": 4809
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "GRANBULL",
+      "line": 4919
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "QUAGSIRE",
+      "line": 5030
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "CORSOLA",
+      "line": 5052
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "FURRET",
+      "line": 5107
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "AZUMARILL",
+      "line": 5129
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "QUAGSIRE",
+      "line": 5195
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "GIRAFARIG",
+      "line": 5371
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "CHINCHOU",
+      "line": 5602
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "WOOPER",
+      "line": 5701
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "SNUBBULL",
+      "line": 5745
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "TOTODILE",
+      "line": 5811
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "LANTURN",
+      "line": 5899
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "LANTURN",
+      "line": 5921
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "OCTILLERY",
+      "line": 5998
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "QWILFISH",
+      "line": 6020
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "REMORAID",
+      "line": 6042
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "REMORAID",
+      "line": 6064
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "OCTILLERY",
+      "line": 6086
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "QWILFISH",
+      "line": 6108
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "MANTINE",
+      "line": 6141
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "MANTINE",
+      "line": 6185
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "CHINCHOU",
+      "line": 6437
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "AZUMARILL",
+      "line": 6690
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "GIRAFARIG",
+      "line": 7131
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "LANTURN",
+      "line": 7495
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "MANTINE",
+      "line": 7517
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "QUAGSIRE",
+      "line": 7814
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "TOGETIC",
+      "line": 7880
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "TOGEPI",
+      "line": 7979
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "WOOPER",
+      "line": 8045
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "LANTURN",
+      "line": 8133
+    },
+    {
+      "path": "src/trainer_tower_sets.c",
+      "context": "unclassified",
+      "kind": "trainer_tower",
+      "species": "GRANBULL",
+      "line": 8232
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "LINOONE",
+      "line": 4
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "MIGHTYENA",
+      "line": 17
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "BEAUTIFLY",
+      "line": 30
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "DUSTOX",
+      "line": 43
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "LOMBRE",
+      "line": 56
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "PELIPPER",
+      "line": 95
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "NINJASK",
+      "line": 121
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "MAWILE",
+      "line": 147
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "NOSEPASS",
+      "line": 160
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SPINDA",
+      "line": 225
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "WHISCASH",
+      "line": 238
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "MARILL",
+      "line": 277
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "LUVDISC",
+      "line": 394
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "LANTURN",
+      "line": 407
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "CORSOLA",
+      "line": 420
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "WAILMER",
+      "line": 433
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "TROPIUS",
+      "line": 498
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SABLEYE",
+      "line": 511
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "CLAYDOL",
+      "line": 550
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "GRUMPIG",
+      "line": 563
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SEVIPER",
+      "line": 589
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "ZANGOOSE",
+      "line": 602
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "ALTARIA",
+      "line": 615
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "ROSELIA",
+      "line": 628
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "VOLBEAT",
+      "line": 641
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "ILLUMISE",
+      "line": 654
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "MAWILE",
+      "line": 680
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "HARIYAMA",
+      "line": 693
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SKARMORY",
+      "line": 706
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "TORKOAL",
+      "line": 719
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "MIGHTYENA",
+      "line": 745
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "LINOONE",
+      "line": 758
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "MASQUERAIN",
+      "line": 771
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SCEPTILE",
+      "line": 784
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "BLAZIKEN",
+      "line": 797
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SWAMPERT",
+      "line": 810
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SALAMENCE",
+      "line": 823
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "CORSOLA",
+      "line": 849
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "GIRAFARIG",
+      "line": 888
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "LUNATONE",
+      "line": 1057
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SOLROCK",
+      "line": 1070
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "BALTOY",
+      "line": 1083
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "WHISCASH",
+      "line": 1109
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SEVIPER",
+      "line": 1122
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SWALOT",
+      "line": 1161
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SCEPTILE",
+      "line": 1174
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "BLAZIKEN",
+      "line": 1187
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SWAMPERT",
+      "line": 1200
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "MIGHTYENA",
+      "line": 1213
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "LINOONE",
+      "line": 1226
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "BEAUTIFLY",
+      "line": 1239
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "DUSTOX",
+      "line": 1252
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "LUDICOLO",
+      "line": 1265
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "VIGOROTH",
+      "line": 1330
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "NINJASK",
+      "line": 1343
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SHEDINJA",
+      "line": 1356
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "LOUDRED",
+      "line": 1369
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "HARIYAMA",
+      "line": 1382
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "MAWILE",
+      "line": 1421
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "VOLBEAT",
+      "line": 1473
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "ILLUMISE",
+      "line": 1486
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "MASQUERAIN",
+      "line": 1499
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "ROSELIA",
+      "line": 1512
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SWALOT",
+      "line": 1564
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SPINDA",
+      "line": 1603
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "ALTARIA",
+      "line": 1616
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "ZANGOOSE",
+      "line": 1629
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SEVIPER",
+      "line": 1642
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "GRUMPIG",
+      "line": 1655
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "CLAYDOL",
+      "line": 1681
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "AZUMARILL",
+      "line": 1720
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "RELICANTH",
+      "line": 1876
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "CRADILY",
+      "line": 1902
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "METAGROSS",
+      "line": 1928
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SALAMENCE",
+      "line": 1941
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "MIGHTYENA",
+      "line": 1954
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "LINOONE",
+      "line": 1967
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "LUDICOLO",
+      "line": 1980
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "EXPLOUD",
+      "line": 1993
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "PELIPPER",
+      "line": 2019
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SHEDINJA",
+      "line": 2045
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "EXPLOUD",
+      "line": 2058
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "HARIYAMA",
+      "line": 2071
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SABLEYE",
+      "line": 2110
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "MAWILE",
+      "line": 2123
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "NOSEPASS",
+      "line": 2162
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "ROSELIA",
+      "line": 2188
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "TROPIUS",
+      "line": 2214
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SWALOT",
+      "line": 2227
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SPINDA",
+      "line": 2292
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SKARMORY",
+      "line": 2305
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "ALTARIA",
+      "line": 2318
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "GRUMPIG",
+      "line": 2331
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "CLAYDOL",
+      "line": 2357
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "HARIYAMA",
+      "line": 2370
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "NOSEPASS",
+      "line": 2383
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "LANTURN",
+      "line": 2435
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "WHISCASH",
+      "line": 2461
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "WAILORD",
+      "line": 2526
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SABLEYE",
+      "line": 2552
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "WOBBUFFET",
+      "line": 2565
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SCEPTILE",
+      "line": 2604
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "BLAZIKEN",
+      "line": 2617
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SWAMPERT",
+      "line": 2630
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "HARIYAMA",
+      "line": 2682
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SALAMENCE",
+      "line": 2877
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "METAGROSS",
+      "line": 2890
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "REGIROCK",
+      "line": 2903
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "REGICE",
+      "line": 2916
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "REGISTEEL",
+      "line": 2929
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "LATIAS",
+      "line": 2942
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "LATIOS",
+      "line": 2955
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SLAKING",
+      "line": 2981
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SCEPTILE",
+      "line": 2994
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "BLAZIKEN",
+      "line": 3007
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SWAMPERT",
+      "line": 3020
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "HARIYAMA",
+      "line": 3072
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SALAMENCE",
+      "line": 3267
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "METAGROSS",
+      "line": 3280
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "REGIROCK",
+      "line": 3293
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "REGICE",
+      "line": 3306
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "REGISTEEL",
+      "line": 3319
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "LATIAS",
+      "line": 3332
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "LATIOS",
+      "line": 3345
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SLAKING",
+      "line": 3371
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SCEPTILE",
+      "line": 3384
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "BLAZIKEN",
+      "line": 3397
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SWAMPERT",
+      "line": 3410
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "HARIYAMA",
+      "line": 3462
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "LUDICOLO",
+      "line": 3475
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "LUDICOLO",
+      "line": 3579
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SKARMORY",
+      "line": 3592
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SALAMENCE",
+      "line": 3657
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "METAGROSS",
+      "line": 3670
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "REGIROCK",
+      "line": 3683
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "REGICE",
+      "line": 3696
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "REGISTEEL",
+      "line": 3709
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "LATIAS",
+      "line": 3722
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "LATIOS",
+      "line": 3735
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "ALTARIA",
+      "line": 3761
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SCEPTILE",
+      "line": 3774
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "BLAZIKEN",
+      "line": 3787
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SWAMPERT",
+      "line": 3800
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SHEDINJA",
+      "line": 3813
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "METAGROSS",
+      "line": 3826
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "LATIAS",
+      "line": 3852
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "LATIOS",
+      "line": 3865
+    },
+    {
+      "path": "src/data/battle_tower/level_100_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SALAMENCE",
+      "line": 3878
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "BEAUTIFLY",
+      "line": 17
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "TORCHIC",
+      "line": 69
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "MASQUERAIN",
+      "line": 82
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "ILLUMISE",
+      "line": 95
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "MIGHTYENA",
+      "line": 134
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SLAKING",
+      "line": 147
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "ZIGZAGOON",
+      "line": 199
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "WHISCASH",
+      "line": 225
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "NINJASK",
+      "line": 238
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SPINDA",
+      "line": 277
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SEVIPER",
+      "line": 290
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "AZUMARILL",
+      "line": 316
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "ZANGOOSE",
+      "line": 329
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "ROSELIA",
+      "line": 355
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SWALOT",
+      "line": 368
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "RELICANTH",
+      "line": 407
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "GIRAFARIG",
+      "line": 446
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "PELIPPER",
+      "line": 459
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SABLEYE",
+      "line": 472
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "LUNATONE",
+      "line": 485
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "LUDICOLO",
+      "line": 498
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "GRUMPIG",
+      "line": 511
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "WAILORD",
+      "line": 537
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "LOUDRED",
+      "line": 615
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SOLROCK",
+      "line": 628
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "CLAYDOL",
+      "line": 641
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "NOSEPASS",
+      "line": 706
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "DUSTOX",
+      "line": 758
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SKARMORY",
+      "line": 797
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "TORKOAL",
+      "line": 810
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "WOBBUFFET",
+      "line": 862
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "TROPIUS",
+      "line": 888
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "MAWILE",
+      "line": 901
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "LINOONE",
+      "line": 940
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "CORSOLA",
+      "line": 1005
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "EXPLOUD",
+      "line": 1031
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "VIGOROTH",
+      "line": 1083
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "LANTURN",
+      "line": 1109
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "HARIYAMA",
+      "line": 1122
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SWAMPERT",
+      "line": 1213
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SCEPTILE",
+      "line": 1226
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "BLAZIKEN",
+      "line": 1239
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "ALTARIA",
+      "line": 1252
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "LUDICOLO",
+      "line": 1265
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SABLEYE",
+      "line": 1278
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "ZANGOOSE",
+      "line": 1291
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "LINOONE",
+      "line": 1304
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "WHISCASH",
+      "line": 1317
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SOLROCK",
+      "line": 1330
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "METANG",
+      "line": 1421
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "CLAYDOL",
+      "line": 1434
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "MASQUERAIN",
+      "line": 1447
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "RELICANTH",
+      "line": 1460
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "WAILORD",
+      "line": 1486
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "GIRAFARIG",
+      "line": 1499
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "TROPIUS",
+      "line": 1525
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "NINJASK",
+      "line": 1538
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SEVIPER",
+      "line": 1590
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "CRADILY",
+      "line": 1603
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "LANTURN",
+      "line": 1642
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SWALOT",
+      "line": 1655
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SKARMORY",
+      "line": 1668
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "GRUMPIG",
+      "line": 1746
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "TORKOAL",
+      "line": 1798
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "EXPLOUD",
+      "line": 1889
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SLAKING",
+      "line": 1967
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "HARIYAMA",
+      "line": 1993
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "ALTARIA",
+      "line": 2019
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "BLAZIKEN",
+      "line": 2058
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "HUNTAIL",
+      "line": 2084
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "GOREBYSS",
+      "line": 2110
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SCEPTILE",
+      "line": 2123
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SWAMPERT",
+      "line": 2136
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "CRADILY",
+      "line": 2162
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "LUDICOLO",
+      "line": 2201
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "TROPIUS",
+      "line": 2227
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "GRUMPIG",
+      "line": 2240
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "TORKOAL",
+      "line": 2253
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "REGICE",
+      "line": 2357
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "REGISTEEL",
+      "line": 2370
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "REGIROCK",
+      "line": 2383
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "LANTURN",
+      "line": 2435
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "WHISCASH",
+      "line": 2461
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "WAILORD",
+      "line": 2526
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "LUDICOLO",
+      "line": 2552
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "WOBBUFFET",
+      "line": 2565
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SCEPTILE",
+      "line": 2604
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "BLAZIKEN",
+      "line": 2617
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SWAMPERT",
+      "line": 2630
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "HARIYAMA",
+      "line": 2695
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SALAMENCE",
+      "line": 2877
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "METAGROSS",
+      "line": 2890
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "REGIROCK",
+      "line": 2903
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "REGICE",
+      "line": 2916
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "REGISTEEL",
+      "line": 2929
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "LATIAS",
+      "line": 2942
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "LATIOS",
+      "line": 2955
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SLAKING",
+      "line": 2981
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SCEPTILE",
+      "line": 2994
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "BLAZIKEN",
+      "line": 3007
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SWAMPERT",
+      "line": 3020
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "HARIYAMA",
+      "line": 3072
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SALAMENCE",
+      "line": 3267
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "METAGROSS",
+      "line": 3280
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "REGIROCK",
+      "line": 3293
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "REGICE",
+      "line": 3306
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "REGISTEEL",
+      "line": 3319
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "LATIAS",
+      "line": 3332
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "LATIOS",
+      "line": 3345
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SCEPTILE",
+      "line": 3384
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "BLAZIKEN",
+      "line": 3397
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SWAMPERT",
+      "line": 3410
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "HARIYAMA",
+      "line": 3462
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "LUDICOLO",
+      "line": 3475
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "LUDICOLO",
+      "line": 3579
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SALAMENCE",
+      "line": 3657
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "METAGROSS",
+      "line": 3670
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "REGIROCK",
+      "line": 3683
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "REGICE",
+      "line": 3696
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "REGISTEEL",
+      "line": 3709
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "LATIAS",
+      "line": 3722
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "LATIOS",
+      "line": 3735
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SLAKING",
+      "line": 3761
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SCEPTILE",
+      "line": 3774
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "BLAZIKEN",
+      "line": 3787
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SWAMPERT",
+      "line": 3800
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "SHEDINJA",
+      "line": 3813
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "METAGROSS",
+      "line": 3826
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "GRUMPIG",
+      "line": 3839
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "LATIAS",
+      "line": 3852
+    },
+    {
+      "path": "src/data/battle_tower/level_50_mons.h",
+      "context": "unclassified",
+      "kind": "legacy_battle_tower_reference",
+      "species": "LATIOS",
+      "line": 3865
+    },
+    {
+      "path": "data/maps/BirthIsland_Exterior/scripts.inc",
+      "context": "BirthIsland_Exterior_EventScript_Deoxys",
+      "kind": "script_assignment",
+      "species": "DEOXYS",
+      "line": 83
+    },
+    {
+      "path": "data/maps/BirthIsland_Exterior/scripts.inc",
+      "context": "BirthIsland_Exterior_EventScript_DefeatedDeoxys",
+      "kind": "script_species_variable_review",
+      "species": "DEOXYS",
+      "line": 98
+    },
+    {
+      "path": "data/maps/BirthIsland_Exterior/scripts.inc",
+      "context": "BirthIsland_Exterior_EventScript_RanFromDeoxys",
+      "kind": "script_species_variable_review",
+      "species": "DEOXYS",
+      "line": 103
+    },
+    {
+      "path": "data/maps/FiveIsland_WaterLabyrinth/scripts.inc",
+      "context": "FiveIsland_WaterLabyrinth_EventScript_TryGiveEgg",
+      "kind": "script_assignment",
+      "species": "TOGEPI",
+      "line": 33
+    },
+    {
+      "path": "data/maps/FiveIsland_WaterLabyrinth/scripts.inc",
+      "context": "FiveIsland_WaterLabyrinth_EventScript_PostEggComment",
+      "kind": "script_species_variable_review",
+      "species": "TOGEPI",
+      "line": 47
+    },
+    {
+      "path": "data/maps/FiveIsland_WaterLabyrinth/scripts.inc",
+      "context": "FiveIsland_WaterLabyrinth_EventScript_PostEggComment",
+      "kind": "script_species_variable_review",
+      "species": "TOGETIC",
+      "line": 51
+    },
+    {
+      "path": "data/maps/NavelRock_Base/scripts.inc",
+      "context": "NavelRock_Base_EventScript_Lugia",
+      "kind": "script_assignment",
+      "species": "LUGIA",
+      "line": 56
+    },
+    {
+      "path": "data/maps/NavelRock_Base/scripts.inc",
+      "context": "NavelRock_Base_EventScript_DefeatedLugia",
+      "kind": "script_species_variable_review",
+      "species": "LUGIA",
+      "line": 71
+    },
+    {
+      "path": "data/maps/NavelRock_Base/scripts.inc",
+      "context": "NavelRock_Base_EventScript_RanFromLugia",
+      "kind": "script_species_variable_review",
+      "species": "LUGIA",
+      "line": 76
+    },
+    {
+      "path": "data/maps/NavelRock_Summit/scripts.inc",
+      "context": "NavelRock_Summit_EventScript_HoOh",
+      "kind": "script_assignment",
+      "species": "HO_OH",
+      "line": 60
+    },
+    {
+      "path": "data/maps/NavelRock_Summit/scripts.inc",
+      "context": "NavelRock_Summit_EventScript_DefeatedHoOh",
+      "kind": "script_species_variable_review",
+      "species": "HO_OH",
+      "line": 76
+    },
+    {
+      "path": "data/maps/NavelRock_Summit/scripts.inc",
+      "context": "NavelRock_Summit_EventScript_RanFromHoOh",
+      "kind": "script_species_variable_review",
+      "species": "HO_OH",
+      "line": 81
+    },
+    {
+      "path": "src/wild_encounter.c",
+      "context": "C species reference; inspect role",
+      "kind": "c_species_reference_review",
+      "species": "UNOWN",
+      "line": 231
+    },
+    {
+      "path": "src/battle_setup.c",
+      "context": "C species reference; inspect role",
+      "kind": "c_species_reference_review",
+      "species": "DEOXYS",
+      "line": 367
+    },
+    {
+      "path": "src/battle_setup.c",
+      "context": "C species reference; inspect role",
+      "kind": "c_species_reference_review",
+      "species": "HO_OH",
+      "line": 373
+    },
+    {
+      "path": "src/battle_setup.c",
+      "context": "C species reference; inspect role",
+      "kind": "c_species_reference_review",
+      "species": "LUGIA",
+      "line": 374
+    }
+  ],
+  "authority": "Owner November2 Wild Encounters, Gym Roster, Fossils, and Pokedex Compliance update; UNRESOLVED inventory, NOT approved off-Dex exceptions.",
+  "audited_base": "596265d41f92fd3e42ee6b0a08d2cb8e0ed62e5d"
+}

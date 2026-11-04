@@ -1,4 +1,5 @@
 #include "global.h"
+#include "wild_double_battle.h"
 #include "gflib.h"
 #include "battle.h"
 #include "berry_pouch.h"
@@ -734,9 +735,13 @@ void Task_ItemUse_CloseMessageBoxAndReturnToField_VsSeeker(u8 taskId)
     Task_ItemUse_CloseMessageBoxAndReturnToField(taskId);
 }
 
+static const u8 sText_TwoWildMons[] = _("Two wild POKéMON remain!\nDefeat one to throw a BALL.");
+
 void BattleUseFunc_PokeBallEtc(u8 taskId)
 {
-    if (!IsPlayerPartyAndPokemonStorageFull())
+    if (IsWildDoubleBattle() && GetWildOpponentCount() > 1)
+        DisplayItemMessageInBag(taskId, FONT_NORMAL, sText_TwoWildMons, Task_ReturnToBagFromContextMenu);
+    else if (!IsPlayerPartyAndPokemonStorageFull())
     {
         RemoveBagItem(gSpecialVar_ItemId, 1);
         Bag_BeginCloseWin0Animation();

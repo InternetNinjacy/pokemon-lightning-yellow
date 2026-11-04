@@ -1,7 +1,9 @@
 #define IS_POKEMON_C
 
 #include "global.h"
-#include "rtc.h"
+#include "wild_double_battle.h"
+#include "time_of_day.h"
+#include "custom_pokedex.h"
 #include "gflib.h"
 #include "random.h"
 #include "text.h"
@@ -5048,7 +5050,7 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 type, u16 evolutionItem)
     u8 beauty = GetMonData(mon, MON_DATA_BEAUTY, NULL);
     u16 upperPersonality = personality >> 16;
     u8 holdEffect;
-    u8 hour = 0;
+    u8 timeOfDay = TIME_OF_DAY_DAY;
     bool8 timeRead = FALSE;
     bool8 validTime = FALSE;
 
@@ -5084,17 +5086,23 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 type, u16 evolutionItem)
                 {
                     if (!timeRead)
                     {
-                        validTime = RtcGetHour(&hour);
+                        validTime = TryGetTimeOfDay(&timeOfDay);
                         timeRead = TRUE;
                     }
-                    // Preserve the original disabled FR/LG condition boundaries.
-                    if (validTime && ((gEvolutionTable[species][i].method == EVO_FRIENDSHIP_DAY && hour >= 12)
-                                  || (gEvolutionTable[species][i].method == EVO_FRIENDSHIP_NIGHT && hour < 12)))
+                    // Functional DAY is [06:00,18:00); never use fallback time for friendship.
+                    if (validTime && ((gEvolutionTable[species][i].method == EVO_FRIENDSHIP_DAY && timeOfDay == TIME_OF_DAY_DAY)
+                                  || (gEvolutionTable[species][i].method == EVO_FRIENDSHIP_NIGHT && timeOfDay == TIME_OF_DAY_NIGHT)))
                         targetSpecies = gEvolutionTable[species][i].targetSpecies;
                 }
                 break;
             case EVO_LEVEL:
                 if (gEvolutionTable[species][i].param <= level)
+                    targetSpecies = gEvolutionTable[species][i].targetSpecies;
+                break;
+            case EVO_LEVEL_CHOICE:
+                // Return the first eligible candidate to launch the scene. The
+                // scene requests the player's choice before announcing a target.
+                if (gEvolutionTable[species][i].param <= level && targetSpecies == SPECIES_NONE)
                     targetSpecies = gEvolutionTable[species][i].targetSpecies;
                 break;
             case EVO_LEVEL_ATK_GT_DEF:
@@ -5144,8 +5152,8 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 type, u16 evolutionItem)
                 {
                     targetSpecies = gEvolutionTable[species][i].targetSpecies;
                     
-                    // Prevent cross-generational evolutions like Scizor and Steelix until the National Pokedex is obtained
-                    if (IsNationalPokedexEnabled() || targetSpecies <= KANTO_SPECIES_END)
+                    // Consume the traded item only when its target is permitted.
+                    if (IsEvolutionSpeciesAllowed(targetSpecies))
                     {
                         heldItem = ITEM_NONE;
                         SetMonData(mon, MON_DATA_HELD_ITEM, &heldItem);
@@ -5158,10 +5166,12 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, u8 type, u16 evolutionItem)
         break;
     case EVO_MODE_ITEM_USE:
     case EVO_MODE_ITEM_CHECK:
+        // Clamperl is explicitly outside the approved roster. Preserve its
+        // original trade behavior without enabling direct Bag item use.
         for (i = 0; i < EVOS_PER_MON; i++)
         {
             if ((gEvolutionTable[species][i].method == EVO_ITEM
-              || gEvolutionTable[species][i].method == EVO_TRADE_ITEM)
+              || (species != SPECIES_CLAMPERL && gEvolutionTable[species][i].method == EVO_TRADE_ITEM))
              && gEvolutionTable[species][i].param == evolutionItem)
             {
                 targetSpecies = gEvolutionTable[species][i].targetSpecies;
@@ -5854,11 +5864,8 @@ u8 GetNumberOfRelearnableMoves(struct Pokemon *mon)
 
 u16 SpeciesToPokedexNum(u16 species)
 {
-    species = SpeciesToNationalPokedexNum(species);
-
-    if (!IsNationalPokedexEnabled() && species > KANTO_SPECIES_END)
-        return 0xFFFF;
-    return species;
+    u16 number = SpeciesToCustomPokedexNum(species);
+    return number != 0 ? number : 0xFFFF;
 }
 
 void ClearBattleMonForms(void)
@@ -6052,23 +6059,24 @@ void SetMonPreventsSwitchingString(void)
 
 void SetWildMonHeldItem(void)
 {
+    u32 i;
     if (!(gBattleTypeFlags & (BATTLE_TYPE_POKEDUDE | BATTLE_TYPE_LEGENDARY | BATTLE_TYPE_TRAINER)))
     {
-        u16 rnd = Random() % 100;
-        u16 species = GetMonData(&gEnemyParty[0], MON_DATA_SPECIES, NULL);
-        if (gSpeciesInfo[species].itemCommon == gSpeciesInfo[species].itemRare)
+        for (i = 0; i < (IsWildDoubleBattle() ? 2 : 1); i++)
         {
-            // Both held items are the same, 100% chance to hold item   
-            SetMonData(&gEnemyParty[0], MON_DATA_HELD_ITEM, &gSpeciesInfo[species].itemCommon);
-            return;
-        }
-
-        if (rnd > 44)
-        {
-            if (rnd <= 94)
-                SetMonData(&gEnemyParty[0], MON_DATA_HELD_ITEM, &gSpeciesInfo[species].itemCommon);
-            else
-                SetMonData(&gEnemyParty[0], MON_DATA_HELD_ITEM, &gSpeciesInfo[species].itemRare);
+            u16 rnd = Random() % 100;
+            u16 species = GetMonData(&gEnemyParty[i], MON_DATA_SPECIES, NULL);
+            if (gSpeciesInfo[species].itemCommon == gSpeciesInfo[species].itemRare)
+            {
+                SetMonData(&gEnemyParty[i], MON_DATA_HELD_ITEM, &gSpeciesInfo[species].itemCommon);
+            }
+            else if (rnd > 44)
+            {
+                if (rnd <= 94)
+                    SetMonData(&gEnemyParty[i], MON_DATA_HELD_ITEM, &gSpeciesInfo[species].itemCommon);
+                else
+                    SetMonData(&gEnemyParty[i], MON_DATA_HELD_ITEM, &gSpeciesInfo[species].itemRare);
+            }
         }
     }
 }

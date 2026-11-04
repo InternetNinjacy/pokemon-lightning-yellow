@@ -4,6 +4,7 @@
 #include <stdint.h>
 #include <string.h>
 #include <time.h>
+#include <mgba/flags.h> // match the installed library ABI, including debugger vtable slots
 #include <mgba/core/core.h>
 #include <mgba/core/config.h>
 #include <mgba/core/log.h>
@@ -14,6 +15,10 @@
 #include "constants/species.h"
 #include "constants/items.h"
 #include "constants/pokemon.h"
+#include "constants/abilities.h"
+#include "constants/battle.h"
+#include "constants/pokedex.h"
+#include "constants/time_of_day.h"
 #include "symbols.h"
 
 static struct mCore *core;
@@ -46,7 +51,10 @@ static uint32_t invoke(uint32_t function, const uint32_t *args, unsigned n) {
     uint32_t saved[16], prefetch[2], cpsr=cpu->cpsr.packed;
     memcpy(saved,cpu->gprs,sizeof(saved));
     memcpy(prefetch,cpu->prefetch,sizeof(prefetch));
-    setreg("cpsr",0xBF); // system Thumb, IRQ masked during isolated calls
+    // Flash writes require their original timer IRQ for timeouts/progress.
+    int flashCall=function==SYM_TrySavingData || function==SYM_LoadGameSave;
+    unsigned limit=flashCall?100000000:4000000;
+    setreg("cpsr",flashCall?0x3F:0xBF); // system Thumb
     setreg("sp",testStack);
     setreg("lr",sentinel|1);
     core->busWrite16(core,sentinel,0xE7FE);
@@ -56,7 +64,7 @@ static uint32_t invoke(uint32_t function, const uint32_t *args, unsigned n) {
     }
     setreg("pc",function&~1U);
     unsigned steps;
-    for(steps=0;steps<4000000;steps++) {
+    for(steps=0;steps<limit;steps++) {
         uint32_t pc=(uint32_t)cpu->gprs[15];
         if(pc>=sentinel && pc<sentinel+8) break;
         core->step(core);
@@ -65,7 +73,7 @@ static uint32_t invoke(uint32_t function, const uint32_t *args, unsigned n) {
             fprintf(stderr,"Injected call exhausted reserved test stack: SP=%08x end=%08x\n",sp,ABI_EWRAM_END);exit(1);
         }
     }
-    if(steps==4000000) {fprintf(stderr,"ROM call timeout: %08x PC=%08x\n",function,(uint32_t)cpu->gprs[15]);exit(1);}
+    if(steps==limit) {fprintf(stderr,"ROM call timeout: %08x PC=%08x\n",function,(uint32_t)cpu->gprs[15]);exit(1);}
     uint32_t result=cpu->gprs[0];
     setreg("cpsr",cpsr);
     cpu->memory.setActiveRegion(cpu,saved[15]);
@@ -96,6 +104,8 @@ static void initSave(void) {
     core->busWrite32(core,SYM_gSaveBlock1Ptr,SYM_gSaveBlock1);
     core->busWrite32(core,SYM_gSaveBlock2Ptr,SYM_gSaveBlock2);
     core->busWrite32(core,SYM_gSaveBlock2+ABI_SAVE2_KEY,0x31415926);
+    core->busWrite32(core,SYM_gPokemonStoragePtr,SYM_gPokemonStorage);
+    CALL(Save_ResetSaveCounters);
     CALL(SetBagPocketsPointers);
     CALL(ClearBag);
     CALL(EnableNationalPokedex);
@@ -104,7 +114,7 @@ static void initSave(void) {
 static void scene(unsigned species,unsigned item,unsigned evolved,int cancel) {
     CHECK(core->loadState(core,bootState));
     initSave();create(species,30);
-    if(cancel==2)CALL(DisableNationalPokedex);
+    CALL(DisableNationalPokedex); // all approved item scenes must work pre-National
     core->busWrite8(core,SYM_gPlayerPartyCount,1);
     core->busWrite32(core,SYM_gMain,0); // no title-screen callback1 during scene
     core->busWrite16(core,returned,0x4770); // test return destination: bx lr
@@ -138,9 +148,197 @@ static void scene(unsigned species,unsigned item,unsigned evolved,int cancel) {
     }
     CHECK(frame<3600);
     CHECK(get(ABI_DATA_SPECIES)==(cancel?species:evolved));
+    CHECK(!CALL(IsNationalPokedexEnabled));
+    CHECK(CALL(GetCustomPokedexCount,1)==(cancel?0:1));
     CHECK(CALL(BagGetQuantityByItemId,item)==(cancel?3:2));
+    unsigned dex=CALL(SpeciesToNationalPokedexNum,evolved);
+    CHECK(CALL(GetSetPokedexFlag,dex,0)==(cancel?0:1));
+    CHECK(CALL(GetSetPokedexFlag,dex,1)==(cancel?0:1));
     printf("PASS: actual evolution scene species=%u item=%u %s in %u frames; bag=%u\n",species,item,cancel==2?"National-Dex blocked":cancel?"canceled":"completed",frame,CALL(BagGetQuantityByItemId,item));
 }
+
+// Real level-evolution scene, including the new menu, all names/targets from ROM.
+// cancel: 1 = B in menu, 2 = B during animation, 0 = complete.
+static void levelScene(unsigned species,unsigned level,unsigned evolved,unsigned selection,int cancel,unsigned attack,unsigned defense) {
+    CHECK(core->loadState(core,bootState));
+    initSave();CALL(DisableNationalPokedex);create(species,level);
+    if(species==SPECIES_GOLBAT || species==SPECIES_CHANSEY)put(ABI_DATA_FRIENDSHIP,220);
+    put(ABI_DATA_ATK,attack);put(ABI_DATA_DEF,defense);
+    core->busWrite8(core,SYM_gPlayerPartyCount,1);
+    core->busWrite32(core,SYM_gMain,0);
+    core->busWrite16(core,returned,0x4770);
+    core->busWrite32(core,SYM_gCB2_AfterEvolution,returned|1);
+    CALL(ResetTasks);
+    unsigned pending=target(EVO_MODE_NORMAL,0);CHECK(pending!=SPECIES_NONE);
+    CALL(EvolutionScene,SYM_gPlayerParty,pending,1,0);
+    unsigned frame, menuFrames=0;int menuSeen=0,cancelSeen=0,rejectMove=0;
+    for(frame=0;frame<3600;frame++) {
+        uint32_t info=core->busRead32(core,SYM_sEvoStructPtr);
+        unsigned state=999;
+        if(info>=0x02000000 && info<0x02040000) {
+            unsigned task=core->busRead8(core,info+2);
+            if(task<16) {
+                unsigned data=SYM_gTasks+task*ABI_TASK_SIZE+ABI_TASK_DATA;
+                state=core->busRead16(core,data);
+                if(state>=E_EVOSTATE_CANCEL && state<=E_EVOSTATE_CANCEL_MSG)cancelSeen=1;
+                unsigned sub=core->busRead16(core,data+12), yes=core->busRead16(core,data+14);
+                rejectMove=state==E_EVOSTATE_REPLACE_MOVE && sub==E_MVSTATE_HANDLE_YES_NO && yes==E_MVSTATE_SHOW_MOVE_SELECT;
+            }
+        }
+        unsigned keys=0;
+        if(state==E_EVOSTATE_CHOOSE_TARGET) {
+            if(!menuSeen) {
+                CHECK(species==SPECIES_TYROGUE);menuSeen=1;
+                CHECK(CALL(Menu_GetCursorPos)==0);
+                CHECK(CALL(Menu_MoveCursorNoWrapAround,2)==2);
+                CHECK(CALL(Menu_MoveCursorNoWrapAround,1)==2); // no fourth option
+                CHECK(CALL(Menu_MoveCursorNoWrapAround,(uint32_t)-2)==0);
+            }
+            // Normal key presses, one DOWN per option then A; B backs out.
+            if(cancel==1)keys=menuFrames==8?2:0;
+            else if(menuFrames>=8 && (menuFrames-8)%8==0 && (menuFrames-8)/8<selection)keys=128;
+            else if(menuFrames==8+8*selection)keys=1;
+            // Optional local-only diagnostic; never an Actions artifact.
+            static int captured=0;
+            const char *capture=getenv("LIGHTNING_MENU_CAPTURE");
+            if(!captured && capture && menuFrames==4) {
+                const void *video;size_t stride;core->getPixels(core,&video,&stride);
+                FILE *image=fopen(capture,"wb");CHECK(image);
+                fprintf(image,"P6\n240 160\n255\n");
+                for(unsigned y=0;y<160;y++)for(unsigned x=0;x<240;x++) {
+                    color_t pixel=((const color_t*)video)[y*stride+x];
+                    fputc(pixel&255,image);fputc((pixel>>8)&255,image);fputc((pixel>>16)&255,image);
+                }
+                fclose(image);captured=1;
+            }
+            menuFrames++;
+        } else if(cancel==2 && !cancelSeen)keys=2;
+        else keys=(frame%12)<2?(rejectMove?2:1):0;
+        core->setKeys(core,keys);core->runFrame(core);
+        if(core->busRead32(core,SYM_gMain+ABI_MAIN_CB2)==(returned|1))break;
+    }
+    core->setKeys(core,0);
+    if(frame==3600)fprintf(stderr,"Level scene timeout species=%u choice=%u cancel=%d menuFrames=%u\n",species,selection,cancel,menuFrames);
+    CHECK(frame<3600);CHECK(menuSeen==(species==SPECIES_TYROGUE));
+    CHECK(get(ABI_DATA_SPECIES)==(cancel?species:evolved));
+    CHECK(!CALL(IsNationalPokedexEnabled));
+    CHECK(CALL(GetCustomPokedexCount,1)==(cancel?0:1));
+    if(!cancel) {
+        unsigned dex=CALL(SpeciesToNationalPokedexNum,evolved);
+        CHECK(CALL(GetSetPokedexFlag,dex,0));CHECK(CALL(GetSetPokedexFlag,dex,1));
+        // Exercise real flash serialization/reload, not an emulator snapshot.
+        CHECK(core->busRead8(core,SYM_gFlashMemoryPresent)==1);
+        CHECK(CALL(TrySavingData,0)==1);
+        // Clear in-RAM Pokemon and both save blocks so only flash can restore
+        // the evolved species and registration flags, not leftover RAM.
+        put(ABI_DATA_SPECIES,SPECIES_BULBASAUR);
+        for(unsigned i=0;i<ABI_SAVE1_SIZE;i+=4)core->busWrite32(core,SYM_gSaveBlock1+i,0);
+        for(unsigned i=0;i<ABI_SAVE2_SIZE;i+=4)core->busWrite32(core,SYM_gSaveBlock2+i,0);
+        CHECK(CALL(LoadGameSave,0)==1);
+        CHECK(get(ABI_DATA_SPECIES)==evolved);
+        CHECK(!CALL(IsNationalPokedexEnabled));
+        CHECK(CALL(GetCustomPokedexCount,1)==1);
+        CHECK(CALL(GetSetPokedexFlag,dex,0));CHECK(CALL(GetSetPokedexFlag,dex,1));
+    } else {
+        put(ABI_DATA_LEVEL,level+1);CHECK(target(EVO_MODE_NORMAL,0)!=SPECIES_NONE);
+    }
+    printf("PASS: level scene species=%u level=%u choice=%u %s target=%u in %u frames\n",species,level,selection,cancel==1?"menu B":cancel==2?"animation B":"success and flash save/load",evolved,frame);
+}
+
+static void frames(unsigned count,unsigned keys) {
+    core->setKeys(core,keys);while(count--)core->runFrame(core);core->setKeys(core,0);
+}
+static void dexTests(void) {
+    CHECK(core->loadState(core,bootState));initSave();CALL(DisableNationalPokedex);
+    unsigned castDex=CALL(SpeciesToNationalPokedexNum,SPECIES_CASTFORM);
+    CHECK(castDex==NATIONAL_DEX_CASTFORM);
+    CHECK(CALL(SpeciesToCustomPokedexNum,SPECIES_CASTFORM)==233);
+    CHECK(CALL(SpeciesToCustomPokedexNum,SPECIES_KECLEON)==234);
+    CHECK(CALL(SpeciesToCustomPokedexNum,SPECIES_MEW)==252);
+    CHECK(CALL(CustomPokedexNumToSpecies,253)==SPECIES_NONE);
+    for(unsigned number=1;number<=252;number++) {
+        unsigned species=CALL(CustomPokedexNumToSpecies,number);
+        CHECK(species!=SPECIES_NONE);CHECK(CALL(SpeciesToCustomPokedexNum,species)==number);
+        CHECK(CALL(SpeciesToPokedexNum,species)==number);
+        unsigned national=CALL(SpeciesToNationalPokedexNum,species);
+        CALL(GetSetPokedexFlag,national,2);CALL(GetSetPokedexFlag,national,3);
+    }
+    // External excluded species retain their canonical flags without entering
+    // the custom roster or inflating its counts. Test with a real excluded mon.
+    unsigned excluded=CALL(SpeciesToNationalPokedexNum,SPECIES_CLAMPERL);
+    CALL(GetSetPokedexFlag,excluded,2);CALL(GetSetPokedexFlag,excluded,3);
+    CHECK(CALL(GetCustomPokedexCount,0)==252);CHECK(CALL(GetCustomPokedexCount,1)==252);
+    CHECK(CALL(HasAllMons));CHECK(CALL(HasAllCustomPokedexSpecies));
+    create(SPECIES_CASTFORM,30);CHECK(CALL(GetMonAbility,SYM_gPlayerParty)==ABILITY_FORECAST);
+    core->busWrite8(core,SYM_gPlayerPartyCount,1);
+    CHECK(CALL(TrySavingData,0)==1);
+    for(unsigned i=0;i<ABI_SAVE1_SIZE;i+=4)core->busWrite32(core,SYM_gSaveBlock1+i,0);
+    for(unsigned i=0;i<ABI_SAVE2_SIZE;i+=4)core->busWrite32(core,SYM_gSaveBlock2+i,0);
+    put(ABI_DATA_SPECIES,SPECIES_BULBASAUR);
+    CHECK(CALL(LoadGameSave,0)==1);CHECK(get(ABI_DATA_SPECIES)==SPECIES_CASTFORM);
+    CHECK(CALL(GetCustomPokedexCount,1)==252);CHECK(CALL(GetSetPokedexFlag,excluded,1));
+    CHECK(CALL(SpeciesToCustomPokedexNum,SPECIES_CASTFORM)==233);
+    // Production Forecast helper in real ARM ROM. No new weather mechanics.
+    unsigned mon=SYM_gBattleMons;
+    core->busWrite8(core,SYM_gBattlersCount,1);
+    core->busWrite16(core,mon+ABI_BMON_SPECIES,SPECIES_CASTFORM);
+    core->busWrite16(core,mon+ABI_BMON_HP,100);
+    core->busWrite8(core,mon+ABI_BMON_ABILITY,ABILITY_FORECAST);
+    core->busWrite8(core,mon+ABI_BMON_TYPE1,TYPE_NORMAL);core->busWrite8(core,mon+ABI_BMON_TYPE2,TYPE_NORMAL);
+    const unsigned weather[]={B_WEATHER_SUN,B_WEATHER_RAIN,B_WEATHER_HAIL,0};
+    const unsigned types[]={TYPE_FIRE,TYPE_WATER,TYPE_ICE,TYPE_NORMAL};
+    for(unsigned i=0;i<4;i++) {
+        core->busWrite16(core,SYM_gBattleWeather,weather[i]);CHECK(CALL(CastformDataTypeChange,0)!=0);
+        CHECK(core->busRead8(core,mon+ABI_BMON_TYPE1)==types[i]);CHECK(core->busRead8(core,mon+ABI_BMON_TYPE2)==types[i]);
+        CHECK(CALL(CastformDataTypeChange,0)==0);
+    }
+    printf("PASS: all 252 real ROM mappings, canonical flags/counts, Castform save/load, Forecast forms and ability\n");
+    // Exercise actual pre-National-Dex screen and list code, then normal A/DOWN
+    // navigation to Castform and its entry. One-count layout also survives unlock.
+    core->busWrite32(core,SYM_gMain,0);CALL(ResetTasks);CALL(CB2_OpenPokedexFromStartMenu);
+    frames(100,0);
+    unsigned screen=core->busRead32(core,SYM_sPokedexScreenData);
+    CHECK(screen>=0x02000000 && screen<0x02040000);
+    for(unsigned order=0;order<6;order++)CHECK(CALL(DexScreen_CountMonsInOrderedList,order)==252);
+    // Return list to custom numerical order (enum order zero).
+    CHECK(CALL(DexScreen_CountMonsInOrderedList,0)==252);
+    unsigned list=core->busRead32(core,screen+ABI_SCREEN_LIST);
+    for(unsigned i=0;i<252;i++)CHECK((core->busRead32(core,list+i*ABI_LIST_SIZE+ABI_LIST_INDEX)&65535)==CALL(CustomPokedexNumToSpecies,i+1));
+    frames(1,1);frames(80,0); // A: numerical mode
+    CHECK(core->busRead16(core,screen+ABI_SCREEN_COUNT)==252);
+    unsigned menu=core->busRead8(core,screen+ABI_SCREEN_ORDERED_MENU),position=0,presses;
+    for(presses=0;presses<300 && position<232;presses++) {
+        // Let normal input processing observe short holds even when a graphics
+        // frame spans several hardware frames. Query the game's real cursor.
+        frames(3,128);frames(3,0);
+        CALL(ListMenuGetScrollAndRow,menu,scratch,scratch+2);
+        position=core->busRead16(core,scratch)+core->busRead16(core,scratch+2);
+    }
+    CHECK(position==232);
+    frames(3,1);frames(100,0); // A: Castform entry
+    fprintf(stderr,"Dex selection: species=%u state=%u\n",core->busRead16(core,screen+ABI_SCREEN_DEX_SPECIES),core->busRead8(core,screen+ABI_SCREEN_STATE));
+    // Optional local capture. CI never uploads ROM or screenshot artifacts.
+    const char *capture=getenv("LIGHTNING_DEX_CAPTURE");
+    if(capture) {
+        const void *video;size_t stride;core->getPixels(core,&video,&stride);
+        FILE *file=fopen(capture,"wb");CHECK(file);fprintf(file,"P6\n240 160\n255\n");
+        for(unsigned y=0;y<160;y++)for(unsigned x=0;x<240;x++) {color_t pixel=((const color_t*)video)[y*stride+x];fputc(pixel&255,file);fputc((pixel>>8)&255,file);fputc((pixel>>16)&255,file);}
+        fclose(file);
+    }
+    CHECK(core->busRead16(core,screen+ABI_SCREEN_DEX_SPECIES)==SPECIES_CASTFORM);
+    frames(1,2);frames(80,0); // B: return to numerical list
+    printf("PASS: real custom Dex screen opened, sorted lists filtered, Castform selected/displayed and B returned\n");
+}
+
+#include "wild_double.c"
+#include "battle_categories.c"
+#include "daycare.c"
+#include "fossils.c"
+#include "mystery_vendor.c"
+#include "mystery_vendor_ui.c"
+#include "capture_rules.c"
+#include "museum.c"
+#include "blaine.c"
 
 int main(int argc,char **argv) {
     setvbuf(stdout,NULL,_IONBF,0);
@@ -161,6 +359,22 @@ int main(int argc,char **argv) {
     printf("RTC autodetected: %s\n",(gba->memory.hw.devices&HW_RTC)?"yes":"no");
     CHECK(gba->memory.hw.devices&HW_RTC);
     bootState=malloc(core->stateSize(core));CHECK(bootState && core->saveState(core,bootState));
+    if(getenv("LIGHTNING_BALL_WEATHER_ONLY")){captureWeatherTests();printf("PASS: %u focused weather assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_BALL_SHOP_ONLY")){captureShopTests();printf("PASS: %u focused shop assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_BALLS_ONLY")){captureTests();printf("PASS: %u focused capture assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_VENDOR_UI_ONLY")){vendorUiTests();printf("PASS: %u focused vendor UI assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_VENDORS_ONLY")){vendorTests();printf("PASS: %u focused vendor assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_FOSSILS_ONLY")){fossilTests();printf("PASS: %u focused fossil assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_DAYCARE_CONTINUE_ONLY")){continueMigrationTests();printf("PASS: %u focused Continue assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_DAYCARE_UI_ONLY")){daycareUiTests();printf("PASS: %u focused daycare UI assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_DAYCARE_ONLY")){daycareTests();printf("PASS: %u focused daycare assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_WILD_HARDENING_ONLY")){wildHardeningTests();printf("PASS: %u focused wild hardening assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_SUMMARY_ONLY")){summaryTests();printf("PASS: %u focused summary assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_BATTLE_ONLY")){categoryTests();printf("PASS: %u focused battle assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_WILD_ONLY")){wildTests();printf("PASS: %u focused wild assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_DEX_ONLY")){dexTests();printf("PASS: focused Dex diagnostic\n");core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_BLAINE_ONLY")){blaineTests();printf("PASS: %u focused Blaine assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_MUSEUM_ONLY")){museumTests();printf("PASS: %u focused Museum assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     initSave();
     for(unsigned h=0;h<24;h++) {
         clockAt(h);core->busWrite8(core,scratch,255);
@@ -168,21 +382,37 @@ int main(int argc,char **argv) {
         if(!ok || core->busRead8(core,scratch)!=h)fprintf(stderr,"RTC hour %u: ok=%u read=%u\n",h,ok,core->busRead8(core,scratch));
         CHECK(ok && core->busRead8(core,scratch)==h);
         create(SPECIES_EEVEE,30);put(ABI_DATA_FRIENDSHIP,220);
-        CHECK(target(EVO_MODE_NORMAL,0)==(h>=12?SPECIES_ESPEON:SPECIES_UMBREON));
+        CHECK(target(EVO_MODE_NORMAL,0)==((h>=6 && h<18)?SPECIES_ESPEON:SPECIES_UMBREON));
         put(ABI_DATA_FRIENDSHIP,219);CHECK(target(EVO_MODE_NORMAL,0)==SPECIES_NONE);
         put(ABI_DATA_FRIENDSHIP,0);CHECK(target(EVO_MODE_ITEM_USE,ITEM_SUN_STONE)==SPECIES_ESPEON);
         CHECK(target(EVO_MODE_ITEM_USE,ITEM_MOON_STONE)==SPECIES_UMBREON);
     }
     printf("PASS: real ARM RTC GPIO reads and encrypted Eevee lookups at all 24 hours\n");
+    const unsigned boundaries[]={0,6*3600-1,6*3600,18*3600-1,18*3600,24*3600-1};
+    for(unsigned i=0;i<sizeof(boundaries)/sizeof(*boundaries);i++) {
+        unsigned seconds=boundaries[i], day=seconds>=6*3600 && seconds<18*3600;
+        core->rtc.value=(1704067200LL+seconds)*1000;
+        core->busWrite8(core,scratch,255);
+        CHECK(CALL(TryGetTimeOfDay,scratch));
+        CHECK(core->busRead8(core,scratch)==(day?TIME_OF_DAY_DAY:TIME_OF_DAY_NIGHT));
+        CHECK(CALL(GetTimeOfDay)==(day?TIME_OF_DAY_DAY:TIME_OF_DAY_NIGHT));
+        create(SPECIES_EEVEE,30);put(ABI_DATA_FRIENDSHIP,220);
+        CHECK(target(EVO_MODE_NORMAL,0)==(day?SPECIES_ESPEON:SPECIES_UMBREON));
+    }
+    printf("PASS: actual ROM functional day/night and Eevee at exact second boundaries\n");
     gba->memory.hw.devices&=~HW_RTC;
     CHECK(!CALL(RtcGetHour,scratch));
+    core->busWrite8(core,scratch,255);
+    CHECK(!CALL(TryGetTimeOfDay,scratch) && core->busRead8(core,scratch)==255);
+    CHECK(CALL(GetTimeOfDay)==TIME_OF_DAY_DAY);
     create(SPECIES_EEVEE,30);put(ABI_DATA_FRIENDSHIP,220);
     CHECK(target(EVO_MODE_NORMAL,0)==SPECIES_NONE);
     CHECK(target(EVO_MODE_ITEM_USE,ITEM_SUN_STONE)==SPECIES_ESPEON);
     printf("PASS: absent emulated RTC fails safely; stones remain usable\n");
     GBAHardwareInitRTC(&gba->memory.hw);
-    const unsigned pairs[][3]={{SPECIES_POLIWHIRL,ITEM_KINGS_ROCK,SPECIES_POLITOED},{SPECIES_SLOWPOKE,ITEM_KINGS_ROCK,SPECIES_SLOWKING},{SPECIES_ONIX,ITEM_METAL_COAT,SPECIES_STEELIX},{SPECIES_SCYTHER,ITEM_METAL_COAT,SPECIES_SCIZOR},{SPECIES_SEADRA,ITEM_DRAGON_SCALE,SPECIES_KINGDRA},{SPECIES_PORYGON,ITEM_UP_GRADE,SPECIES_PORYGON2},{SPECIES_CLAMPERL,ITEM_DEEP_SEA_TOOTH,SPECIES_HUNTAIL},{SPECIES_CLAMPERL,ITEM_DEEP_SEA_SCALE,SPECIES_GOREBYSS}};
-    for(unsigned i=0;i<8;i++) {
+    CALL(DisableNationalPokedex);
+    const unsigned pairs[][3]={{SPECIES_POLIWHIRL,ITEM_KINGS_ROCK,SPECIES_POLITOED},{SPECIES_SLOWPOKE,ITEM_KINGS_ROCK,SPECIES_SLOWKING},{SPECIES_ONIX,ITEM_METAL_COAT,SPECIES_STEELIX},{SPECIES_SCYTHER,ITEM_METAL_COAT,SPECIES_SCIZOR},{SPECIES_SEADRA,ITEM_DRAGON_SCALE,SPECIES_KINGDRA},{SPECIES_PORYGON,ITEM_UP_GRADE,SPECIES_PORYGON2}};
+    for(unsigned i=0;i<6;i++) {
         create(pairs[i][0],30);CHECK(get(ABI_DATA_SPECIES)==pairs[i][0]);
         CHECK(target(EVO_MODE_ITEM_USE,pairs[i][1])==pairs[i][2]);
         CHECK(target(EVO_MODE_ITEM_USE,ITEM_POTION)==SPECIES_NONE);
@@ -198,15 +428,50 @@ int main(int argc,char **argv) {
     }
     printf("PASS: all trade-item and level-40 alternatives with real ROM Pokémon data\n");
     // Full production animation/task sequence, B cancellation and real inventory.
-    for(unsigned i=0;i<8;i++) {
+    for(unsigned i=0;i<6;i++) {
         scene(pairs[i][0],pairs[i][1],pairs[i][2],1);
         scene(pairs[i][0],pairs[i][1],pairs[i][2],0);
     }
-    scene(SPECIES_POLIWHIRL,ITEM_KINGS_ROCK,SPECIES_POLITOED,2);
+    // Isolated scene guard fixture: Clamperl direct Bag use remains disabled.
+    scene(SPECIES_CLAMPERL,ITEM_DEEP_SEA_TOOTH,SPECIES_HUNTAIL,2);
     scene(SPECIES_EEVEE,ITEM_SUN_STONE,SPECIES_ESPEON,1);
     scene(SPECIES_EEVEE,ITEM_SUN_STONE,SPECIES_ESPEON,0);
     scene(SPECIES_EEVEE,ITEM_MOON_STONE,SPECIES_UMBREON,1);
     scene(SPECIES_EEVEE,ITEM_MOON_STONE,SPECIES_UMBREON,0);
+    scene(SPECIES_EEVEE,ITEM_WATER_STONE,SPECIES_VAPOREON,0);
+    scene(SPECIES_EEVEE,ITEM_THUNDER_STONE,SPECIES_JOLTEON,0);
+    scene(SPECIES_EEVEE,ITEM_FIRE_STONE,SPECIES_FLAREON,0);
+    create(SPECIES_CLAMPERL,30);
+    CHECK(target(EVO_MODE_ITEM_USE,ITEM_DEEP_SEA_TOOTH)==SPECIES_NONE);
+    CHECK(target(EVO_MODE_ITEM_USE,ITEM_DEEP_SEA_SCALE)==SPECIES_NONE);
+    const unsigned babies[][3]={{SPECIES_PICHU,20,SPECIES_PIKACHU},{SPECIES_CLEFFA,15,SPECIES_CLEFAIRY},{SPECIES_IGGLYBUFF,15,SPECIES_JIGGLYPUFF},{SPECIES_SMOOCHUM,30,SPECIES_JYNX},{SPECIES_ELEKID,25,SPECIES_ELECTABUZZ},{SPECIES_MAGBY,25,SPECIES_MAGMAR},{SPECIES_FEEBAS,20,SPECIES_MILOTIC}};
+    for(unsigned i=0;i<7;i++) {
+        create(babies[i][0],babies[i][1]-1);put(ABI_DATA_FRIENDSHIP,255);
+        CHECK(target(EVO_MODE_NORMAL,0)==SPECIES_NONE);
+        put(ABI_DATA_LEVEL,babies[i][1]);put(ABI_DATA_FRIENDSHIP,0);
+        CHECK(target(EVO_MODE_NORMAL,0)==babies[i][2]);
+        levelScene(babies[i][0],babies[i][1],babies[i][2],0,0,100,100);
+    }
+    levelScene(SPECIES_GOLBAT,30,SPECIES_CROBAT,0,0,100,100);
+    levelScene(SPECIES_CHANSEY,30,SPECIES_BLISSEY,0,0,100,100);
+    create(SPECIES_TYROGUE,14);CHECK(target(EVO_MODE_NORMAL,0)==SPECIES_NONE);
+    const unsigned choices[]={SPECIES_HITMONCHAN,SPECIES_HITMONLEE,SPECIES_HITMONTOP};
+    for(unsigned i=0;i<3;i++)for(unsigned stats=0;stats<3;stats++)
+        levelScene(SPECIES_TYROGUE,15,choices[i],i,0,stats==0?200:10,stats==2?200:10);
+    levelScene(SPECIES_TYROGUE,15,SPECIES_HITMONCHAN,0,1,100,100);
+    levelScene(SPECIES_TYROGUE,16,SPECIES_HITMONTOP,2,2,100,100);
+    dexTests();
+    categoryTests();
+    summaryTests();
+    wildTests();
+    wildHardeningTests();
+    daycareTests();
+    fossilTests();
+    vendorTests();
+    vendorUiTests();
+    captureTests();
+    museumTests();
+    blaineTests();
     printf("PASS: %u mGBA assertions (includes API/register safety checks)\n",checks);
     core->deinit(core);free(pixels);free(bootState);
     return 0;

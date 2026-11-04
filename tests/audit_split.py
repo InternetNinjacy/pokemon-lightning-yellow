@@ -72,6 +72,12 @@ class SplitAudits(unittest.TestCase):
         # Geometry bounds: category list row fits before next icon; fifth fits pane.
         self.assertLessEqual(18 + 13, 28 + 5)
         self.assertLessEqual(4 * 28 + 18 + 13, 18 * 8)
+        for category in ('Physical', 'Special', 'Status'):
+            self.assertLessEqual(57 + width(category), 14 * 8)
+        # Keep the full detail label clear of the existing EFFECT heading.
+        from run_split_tests import extract_function
+        detail = extract_function(source('src/pokemon_summary_screen.c'), 'PokeSum_PrintSelectedMoveStats')
+        self.assertRegex(detail, r'FONT_SMALL,\s*57, 29,')
         self.assertLessEqual(29 + 13, 42)  # detail category vs description
 
     def test_ai_strategy_no_longer_infers_categories_from_types(self):

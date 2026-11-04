@@ -1,3 +1,7 @@
+> Historical PR #4 scope: this branch's newer specification is in
+> [EVOLUTION_MECHANICS.md](EVOLUTION_MECHANICS.md). It excludes Clamperl direct-item
+> alternatives and adds the approved level and Tyrogue menu changes.
+
 # Evolution methods and inventory safety
 
 ## Review stack
