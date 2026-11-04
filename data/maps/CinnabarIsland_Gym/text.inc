@@ -9,7 +9,7 @@ CinnabarIsland_Gym_Text_BlaineIntro::
     .string "You better have BURN HEAL!{PLAY_BGM}{MUS_ENCOUNTER_GYM_LEADER}$"
 
 CinnabarIsland_Gym_Text_BlaineNeedTwoPokemon::
-    .string "Hah! You need two POKéMON ready\\n"
+    .string "Hah! You need two POKéMON ready\n"
     .string "to battle me!$"
 
 CinnabarIsland_Gym_Text_BlaineDefeat::
