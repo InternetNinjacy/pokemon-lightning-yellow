@@ -1,4 +1,5 @@
 #include "global.h"
+#include "battle_bg.h"
 #include "wild_double_battle.h"
 #include "gflib.h"
 #include "battle.h"
@@ -2444,7 +2445,7 @@ static const struct BattleWindowText sTextOnWindowsInfo_Normal[] = {
     [B_WIN_MOVE_NAME_1] = {
         .fillValue = PIXEL_FILL(0xe),
         .fontId = FONT_SMALL,
-        .x = 0,
+        .x = BATTLE_MOVE_NAME_X,
         .y = 1,
         .letterSpacing = 0,
         .lineSpacing = 0,
@@ -2456,7 +2457,7 @@ static const struct BattleWindowText sTextOnWindowsInfo_Normal[] = {
     [B_WIN_MOVE_NAME_2] = {
         .fillValue = PIXEL_FILL(0xe),
         .fontId = FONT_SMALL,
-        .x = 0,
+        .x = BATTLE_MOVE_NAME_X + BATTLE_MOVE_COLUMN_WIDTH,
         .y = 1,
         .letterSpacing = 0,
         .lineSpacing = 0,
@@ -2468,8 +2469,8 @@ static const struct BattleWindowText sTextOnWindowsInfo_Normal[] = {
     [B_WIN_MOVE_NAME_3] = {
         .fillValue = PIXEL_FILL(0xe),
         .fontId = FONT_SMALL,
-        .x = 0,
-        .y = 1,
+        .x = BATTLE_MOVE_NAME_X,
+        .y = 1 + BATTLE_MOVE_ROW_HEIGHT,
         .letterSpacing = 0,
         .lineSpacing = 0,
         .speed = 0,
@@ -2480,8 +2481,8 @@ static const struct BattleWindowText sTextOnWindowsInfo_Normal[] = {
     [B_WIN_MOVE_NAME_4] = {
         .fillValue = PIXEL_FILL(0xe),
         .fontId = FONT_SMALL,
-        .x = 0,
-        .y = 1,
+        .x = BATTLE_MOVE_NAME_X + BATTLE_MOVE_COLUMN_WIDTH,
+        .y = 1 + BATTLE_MOVE_ROW_HEIGHT,
         .letterSpacing = 0,
         .lineSpacing = 0,
         .speed = 0,
@@ -2493,7 +2494,7 @@ static const struct BattleWindowText sTextOnWindowsInfo_Normal[] = {
         .fillValue = PIXEL_FILL(0xe),
         .fontId = FONT_SMALL,
         .x = 0,
-        .y = 2,
+        .y = 1,
         .letterSpacing = 0,
         .lineSpacing = 0,
         .speed = 0,
@@ -2515,11 +2516,11 @@ static const struct BattleWindowText sTextOnWindowsInfo_Normal[] = {
     },
     [B_WIN_PP_REMAINING] = {
         .fillValue = PIXEL_FILL(0xe),
-        .fontId = FONT_NORMAL_COPY_1,
-        .x = 10,
-        .y = 2,
+        .fontId = FONT_SMALL,
+        .x = 12,
+        .y = 1,
         .letterSpacing = 0,
-        .lineSpacing = 2,
+        .lineSpacing = 0,
         .speed = 0,
         .fgColor = 12,
         .bgColor = 14,
@@ -2539,11 +2540,11 @@ static const struct BattleWindowText sTextOnWindowsInfo_Normal[] = {
     },
     [B_WIN_SWITCH_PROMPT] = {
         .fillValue = PIXEL_FILL(0xe),
-        .fontId = FONT_NORMAL_COPY_1,
+        .fontId = FONT_SMALL,
         .x = 0,
-        .y = 2,
+        .y = 1,
         .letterSpacing = 0,
-        .lineSpacing = 2,
+        .lineSpacing = 0,
         .speed = 0,
         .fgColor = 13,
         .bgColor = 14,
@@ -2724,11 +2725,22 @@ void BattlePutTextOnWindow(const u8 *text, u8 windowId) {
     u8 speed;
     int x;
     u8 color;
+    u8 targetWindowId;
+    bool8 moveName;
 
     u8 textFlags = windowId & 0xC0;
     windowId &= 0x3F;
+    moveName = windowId >= B_WIN_MOVE_NAME_1 && windowId <= B_WIN_MOVE_NAME_4;
+    targetWindowId = moveName ? B_WIN_MOVE_NAME_1 : windowId;
+    if (windowId == B_WIN_PP_REMAINING)
+        targetWindowId = B_WIN_PP;
     if (!(textFlags & 0x80))
-        FillWindowPixelBuffer(windowId, sTextOnWindowsInfo_Normal[windowId].fillValue);
+    {
+        if (windowId == B_WIN_PP_REMAINING)
+            FillWindowPixelRect(targetWindowId, sTextOnWindowsInfo_Normal[windowId].fillValue, 12, 0, 28, 16);
+        else if (!moveName || windowId == B_WIN_MOVE_NAME_1)
+            FillWindowPixelBuffer(targetWindowId, sTextOnWindowsInfo_Normal[windowId].fillValue);
+    }
     if (textFlags & 0x40) {
         color = ContextNpcGetTextColor();
         printerTemplate.fontId = sNpcTextColorToFont[color];
@@ -2760,7 +2772,7 @@ void BattlePutTextOnWindow(const u8 *text, u8 windowId) {
     if (x < 0)
         x = 0;
     printerTemplate.currentChar = text;
-    printerTemplate.windowId = windowId;
+    printerTemplate.windowId = targetWindowId;
     printerTemplate.x = x;
     printerTemplate.y = sTextOnWindowsInfo_Normal[windowId].y;
     printerTemplate.currentX = printerTemplate.x;
@@ -2798,8 +2810,8 @@ void BattlePutTextOnWindow(const u8 *text, u8 windowId) {
     AddTextPrinter(&printerTemplate, speed, NULL);
     if (!(textFlags & 0x80))
     {
-        PutWindowTilemap(windowId);
-        CopyWindowToVram(windowId, COPYWIN_FULL);
+        PutWindowTilemap(targetWindowId);
+        CopyWindowToVram(targetWindowId, COPYWIN_FULL);
     }
 }
 

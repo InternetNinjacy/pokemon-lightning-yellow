@@ -11,6 +11,14 @@ import shutil
 
 # Generate ABI constants with the game's ARM compiler, never host offsetof.
 expressions = {
+ 'WIN_WIDTH':'WINDOW_WIDTH',
+ 'WIN_HEIGHT':'WINDOW_HEIGHT',
+ 'WIN_LEFT':'WINDOW_TILEMAP_LEFT',
+ 'MOVE_WINDOW':'B_WIN_MOVE_NAME_1',
+ 'PP_WINDOW':'B_WIN_PP',
+ 'TYPE_WINDOW':'B_WIN_MOVE_TYPE',
+ 'MOVEINFO_CUR_PP':'offsetof(struct ChooseMoveStruct,currentPp)',
+ 'MOVEINFO_MAX_PP':'offsetof(struct ChooseMoveStruct,maxPp)',
  'RELEARNER_BG':'offsetof(struct LearnMoveGfxResources,bg1TilemapBuffer)',
  'RELEARNER_INDEX':'offsetof(struct LearnMoveGfxResources,selectedIndex)',
  'SUMMARY_NAME_BUFFERS':'offsetof(struct PokemonSummaryScreenData,summary.moveNameStrBufs)',
@@ -261,6 +269,7 @@ required = [
     'ShowPokemonSummaryScreen', 'sMonSummaryScreen', 'sMoveSelectionCursorPos', 'gSideStatuses', 'gBattleStruct', 'gBattleScripting', 'gBattleMoveDamage', 'gDisplayedStringBattle',
 ]
 required += ['PewterCity_Gym_EventScript_Liam','CeruleanCity_Gym_EventScript_Diana','CeladonCity_Gym_EventScript_Mary','Cmd_setweatherballtype','gBattleMonForms','SaffronCity_Dojo_Text_NeedTwo']
+required += ['GetWindowAttribute','MoveSelectionDisplayMoveNames','MoveSelectionDisplayPpString','MoveSelectionDisplayPpNumber','GetMoveTypeShortName','HandleMoveSwitching']
 required += ['TeachMoveRelearnerMove','CB2_MoveRelearner','GetBgTilemapBuffer']
 required += ['gMoveNames','GetStringWidth','StringCopy','AllocPSA','Free','AllocZeroed','sMoveRelearner','MoveRelearnerInitListMenuBuffersEtc','BufferStringBattle','gBattleTextBuff2','gBattleTextBuff3']
 required += ['Task_StartMenuHandleInput','sStartMenuCursorPos','sStartMenuOrder','Task_BagMenu_HandleInput','Task_HandleChooseMonInput','Task_EvolutionScene']
@@ -278,7 +287,7 @@ for line in subprocess.check_output(['arm-none-eabi-nm','-n','pokefirered.elf'],
 assert set(required)<=symbols.keys(), set(required)-symbols.keys()
 # Private input function names also exist in tutorial controllers. Verify the
 # selected local symbols belong to the actual player controller's address range.
-for name in ['HandleInputChooseAction','HandleInputChooseMove','HandleInputChooseTarget']:
+for name in ['HandleInputChooseAction','HandleInputChooseMove','HandleInputChooseTarget','MoveSelectionDisplayMoveNames','MoveSelectionDisplayMoveType','MoveSelectionDisplayPpNumber','HandleMoveSwitching']:
     assert symbols['SetControllerToPlayer'] < symbols[name] < symbols['SetControllerToOpponent'], name
 with tempfile.TemporaryDirectory(prefix='lightning-emulator-') as temp:
     temp=Path(temp)
