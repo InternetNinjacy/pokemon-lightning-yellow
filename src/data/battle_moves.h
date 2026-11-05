@@ -580,7 +580,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     {
         .category = MOVE_CATEGORY_PHYSICAL,
         .effect = EFFECT_TWINEEDLE,
-        .power = 25,
+        .power = 40,
         .type = TYPE_BUG,
         .accuracy = 100,
         .pp = 20,
@@ -1714,7 +1714,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     {
         .category = MOVE_CATEGORY_PHYSICAL,
         .effect = EFFECT_PARALYZE_HIT,
-        .power = 20,
+        .power = 40,
         .type = TYPE_GHOST,
         .accuracy = 100,
         .pp = 30,
@@ -2806,7 +2806,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     {
         .category = MOVE_CATEGORY_PHYSICAL,
         .effect = EFFECT_RAMPAGE,
-        .power = 90,
+        .power = 120,
         .type = TYPE_DRAGON,
         .accuracy = 100,
         .pp = 15,
@@ -2975,7 +2975,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .category = MOVE_CATEGORY_STATUS,
         .effect = EFFECT_MEAN_LOOK,
         .power = 0,
-        .type = TYPE_NORMAL,
+        .type = TYPE_GHOST,
         .accuracy = 100,
         .pp = 5,
         .secondaryEffectChance = 0,
@@ -4344,9 +4344,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_ASTONISH] =
     {
-        .category = MOVE_CATEGORY_PHYSICAL,
+        .category = MOVE_CATEGORY_SPECIAL,
         .effect = EFFECT_FLINCH_MINIMIZE_HIT,
-        .power = 30,
+        .power = 50,
         .type = TYPE_GHOST,
         .accuracy = 100,
         .pp = 15,
@@ -4444,9 +4444,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     {
         .category = MOVE_CATEGORY_PHYSICAL,
         .effect = EFFECT_SPEED_DOWN_HIT,
-        .power = 50,
+        .power = 65,
         .type = TYPE_ROCK,
-        .accuracy = 80,
+        .accuracy = 90,
         .pp = 10,
         .secondaryEffectChance = 100,
         .target = MOVE_TARGET_SELECTED,
@@ -4461,7 +4461,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .power = 60,
         .type = TYPE_BUG,
         .accuracy = 100,
-        .pp = 5,
+        .pp = 10,
         .secondaryEffectChance = 10,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
@@ -4668,7 +4668,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     {
         .category = MOVE_CATEGORY_PHYSICAL,
         .effect = EFFECT_MULTI_HIT,
-        .power = 10,
+        .power = 25,
         .type = TYPE_ICE,
         .accuracy = 100,
         .pp = 30,

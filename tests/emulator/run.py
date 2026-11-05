@@ -11,6 +11,10 @@ import shutil
 
 # Generate ABI constants with the game's ARM compiler, never host offsetof.
 expressions = {
+ 'BMOVE_POWER':'offsetof(struct BattleMove,power)',
+ 'BMOVE_TYPE':'offsetof(struct BattleMove,type)',
+ 'BMOVE_CATEGORY':'offsetof(struct BattleMove,category)',
+ 'BMOVE_ACCURACY':'offsetof(struct BattleMove,accuracy)',
  'WIN_WIDTH':'WINDOW_WIDTH',
  'WIN_HEIGHT':'WINDOW_HEIGHT',
  'WIN_LEFT':'WINDOW_TILEMAP_LEFT',
@@ -269,6 +273,7 @@ required = [
     'ShowPokemonSummaryScreen', 'sMonSummaryScreen', 'sMoveSelectionCursorPos', 'gSideStatuses', 'gBattleStruct', 'gBattleScripting', 'gBattleMoveDamage', 'gDisplayedStringBattle',
 ]
 required += ['PewterCity_Gym_EventScript_Liam','CeruleanCity_Gym_EventScript_Diana','CeladonCity_Gym_EventScript_Mary','Cmd_setweatherballtype','gBattleMonForms','SaffronCity_Dojo_Text_NeedTwo']
+required += ['CalculatePPWithBonus','SetMonMoveSlot']
 required += ['GetWindowAttribute','MoveSelectionDisplayMoveNames','MoveSelectionDisplayPpString','MoveSelectionDisplayPpNumber','GetMoveTypeShortName','HandleMoveSwitching']
 required += ['TeachMoveRelearnerMove','CB2_MoveRelearner','GetBgTilemapBuffer']
 required += ['gMoveNames','GetStringWidth','StringCopy','AllocPSA','Free','AllocZeroed','sMoveRelearner','MoveRelearnerInitListMenuBuffersEtc','BufferStringBattle','gBattleTextBuff2','gBattleTextBuff3']
