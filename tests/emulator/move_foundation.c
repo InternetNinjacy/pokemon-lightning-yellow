@@ -27,7 +27,8 @@ static void moveFoundationTests(void){
  core->busWrite8(core,SYM_gBattleTextBuff3+16,0xA5);
  CALL(BufferStringBattle,4); // STRINGID_USEDMOVE
  moveNameEquals(SYM_gBattleTextBuff2,"SCORCHING SANDS!");
- CHECK(core->busRead8(core,SYM_gBattleTextBuff3)==255);CHECK(core->busRead8(core,SYM_gBattleTextBuff3+16)==0xA5);
+ CHECK(core->busRead8(core,SYM_gBattleTextBuff3)==255);CHECK(core->busRead8(core,SYM_gBattleTextBuff3+16)==255);
+ for(unsigned i=1;i<16;i++)CHECK(core->busRead8(core,SYM_gBattleTextBuff3+i)==0);
  CHECK(core->loadState(core,field));
  CALL(CreateMon,player(0),SPECIES_PIKACHU,100,31,1,7,0,0);
  uint32_t psa=CALL(AllocPSA,0,ITEM_TM24,0);CHECK(psa>=0x02000000 && psa+ABI_PSA_SIZE<0x02040000);

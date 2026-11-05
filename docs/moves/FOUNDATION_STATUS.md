@@ -17,6 +17,8 @@ existing rival/weather/Gym feature PRs are unchanged. No merge or auto-merge.
   local arrays explicitly retain four-byte alignment for ARM halfword consumers. The
   controller wire payload remains16 bytes per text buffer, BattleMsgData64 bytes;
   raw name/ID transport and sizeof-based controller transfers are unchanged.
+  BufferStringBattle reconstructs EOS at the expanded tail after copying the
+  wire payload, so a full16-byte text payload cannot become unterminated.
 - Summary names that exceed the pane's normal-font width use the existing small
   font. Native screenshots of all four long-name fixtures were visually inspected:
   complete names, PP and category labels remain legible, with no new artwork.
@@ -26,13 +28,13 @@ existing rival/weather/Gym feature PRs are unchanged. No merge or auto-merge.
 
 ## Verification and honest limits
 
-`python3 tests/run_move_foundation_tests.py` audits seven precise source changes,
+`python3 tests/run_move_foundation_tests.py` audits eight precise source changes,
 unchanged original IDs/names/save definitions and current owner provenance. It
 normalizes only the frozen approved delta for historical checks; no prior expected
 hash is replaced. All16 original host suites are retained alongside this17th.
 
 `LIGHTNING_MOVE_FOUNDATION_ONLY=1 python3 tests/emulator/run.py`: native mGBA0.10.5
-PASS299 guarded assertions after alignment refinement; focused vendor battle309 PASS. Final full results in PR40. Test-only ROM-copy substitutions exercise13–15-char
+PASS314 guarded assertions after alignment/termination refinement; focused vendor battle309 PASS. Final full results in PR40. Test-only ROM-copy substitutions exercise13–15-char
 names in real ARM StringCopy, used-move message expansion, actual TM allocation,
 relearner list construction and summary buffers. Adjacent fields/canaries and all
 original patched ROM bytes are checked/restored. No new moves are added as fixtures.
@@ -64,3 +66,7 @@ been introduced. Preserve all parent feature commits. Drive sync remains pending
 The generated reconciliation now records the live battle-data SHA separately
 from its historical baseline commit; the implemented Curse type is attributed
 to the current source, not backdated to the old baseline.
+
+Pre-tail-reconstruction full integration run: PASS513067 guarded assertions.
+Final tail-reconstruction source has focused314/vendor309 PASS and all17 host
+suites/3 checkers PASS; its separate full native/clean CI conclusions are in PR40.

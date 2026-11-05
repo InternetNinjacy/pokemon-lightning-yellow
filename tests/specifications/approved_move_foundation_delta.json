@@ -72,5 +72,15 @@
         "after": "    // Keep complete approved names; use the existing small font when needed.\n    {\n        u8 windowId = sMonSummaryScreen->windowIds[POKESUM_WIN_RIGHT_PANE];\n        u8 font = FONT_NORMAL;\n        const u8 *name = sMonSummaryScreen->summary.moveNameStrBufs[i];\n        if (GetStringWidth(font, name, 0) > GetWindowAttribute(windowId, WINDOW_WIDTH) * 8 - 3)\n            font = FONT_SMALL;\n        AddTextPrinterParameterized3(windowId, font, 3, GetMoveNamePrinterYpos(i), sPrintMoveTextColors[0], TEXT_SKIP_DRAW, name);\n    }\n"
       }
     ]
+  },
+  "src/battle_message.c": {
+    "before_sha256": "2de9418304dea0bff90a067fdebb0ed9895db21ce9d1dbf54ac9275a927f2237",
+    "after_sha256": "9322b305ac3c34c84d0ab6c003bd429146c279f13c9e5521a5b0e6a1f3fa0267",
+    "hunks": [
+      {
+        "before": "        gBattleTextBuff3[i] = sBattleMsgDataPtr->textBuffs[2][i];\n    }\n",
+        "after": "        gBattleTextBuff3[i] = sBattleMsgDataPtr->textBuffs[2][i];\n    }\n    // The wire payload stays16 bytes. Terminate the expanded local buffers,\n    // including a full15-char name plus punctuation received without its EOS.\n    gBattleTextBuff1[TEXT_BUFF_ARRAY_COUNT] = EOS;\n    gBattleTextBuff2[TEXT_BUFF_ARRAY_COUNT] = EOS;\n    gBattleTextBuff3[TEXT_BUFF_ARRAY_COUNT] = EOS;\n"
+      }
+    ]
   }
 }

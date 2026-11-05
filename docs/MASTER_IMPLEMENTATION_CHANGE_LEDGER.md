@@ -1000,9 +1000,9 @@ No other move fields, original IDs, battle scripts, save fields or artwork chang
 The16-byte wire text record and64-byte BattleMsgData remain unchanged. No claim
 of vanilla/foreign peer compatibility follows; matching-build testing remains.
 
-Frozen seven-file source delta and old expected hashes protect all unrelated
+Frozen eight-file source delta and old expected hashes protect all unrelated
 bytes. Files: constants/global.h, battle_message.h, pokemon_special_anim_internal.h,
-battle_main.c, battle_moves.h, learn_move.c, pokemon_summary_screen.c plus tests,
+battle_main.c, battle_message.c, battle_moves.h, learn_move.c, pokemon_summary_screen.c plus tests,
 owner/design artifacts, workflow registration and tracking. New native group20
 and host suite17 retain every original group. Focused mGBA298 PASS tests temporary
 ROM-copy names13–15 chars, actual StringCopy/message/TM allocation/relearner and
@@ -1031,3 +1031,14 @@ M1a alignment refinement: focused foundation299 PASS; focused vendor battle309
 PASS retains the original boosted-EXP/obedience assertions. Final aligned ROM
 SHA2560cdab88878218a366909aa87f601447c8e1308b57538fbf038270303efb83ba3;
 clean/full final conclusions are recorded in PR40 checks and description.
+
+M1a additionally reconstructs EOS in each expanded local text-buffer tail after
+the unchanged16-byte wire copy. This prevents stale unterminated text while
+retaining64-byte controller framing; native guards cover the reconstructed tail
+and every copied adjacent-buffer byte. No protocol or gameplay design changes.
+
+M1a final tail refinement focused314/vendor309 PASS; all17 host suites/3 checkers
+PASS. Pre-tail full integration run513067 PASS. Final source ROM SHA256
+9a6e4fd94ee6ef9f12e2696a81c8f4da6c9e9cbfdfaa42534a7c8826ebc6c1a9;
+its own clean/full final evidence is linked in PR40, not backdated to the earlier
+full pass. No new move namespace/effects or broad runtime claims are introduced.

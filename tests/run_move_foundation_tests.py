@@ -21,7 +21,7 @@ for p in ['include/constants/moves.h','include/global.h','src/data/text/move_nam
 rows=json.loads(Path('docs/moves/move-specification.json').read_text())['moves']
 assert next(r for r in rows if r['key']=='CURSE')['current']['type']=='GHOST'
 assert all(len(r['name'])<=15 for r in rows)
-print('PASS: seven exact approved source deltas,15-char capacity,17-byte used-move buffer, original16-byte wire payload, existing move IDs/names/save definitions preserved (static).')
+print('PASS: eight exact approved source deltas,15-char capacity,17-byte used-move buffer, original16-byte wire payload, existing move IDs/names/save definitions preserved (static).')
 print('LIMIT: battle64px/relearner80px layouts still require adaptation before long-name move entries are enabled; no new move IDs/effects are live.')
 
 owner=Path('docs/moves/OWNER_DECISIONS_2026-11-05.md')
@@ -33,3 +33,5 @@ for key in ['PAYBACK','DRAGON_RUSH']:
 print('PASS: effective owner decision provenance and Generation IV reference recorded; imported mechanics are not runtime implemented.')
 
 assert all("u8 ALIGNED(4) gBattleTextBuff"+str(i) in Path("src/battle_main.c").read_text() for i in [1,2,3])
+
+assert all("gBattleTextBuff"+str(i)+"[TEXT_BUFF_ARRAY_COUNT] = EOS;" in Path("src/battle_message.c").read_text() for i in [1,2,3])

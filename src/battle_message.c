@@ -1545,6 +1545,11 @@ void BufferStringBattle(u16 stringId)
         gBattleTextBuff2[i] = sBattleMsgDataPtr->textBuffs[1][i];
         gBattleTextBuff3[i] = sBattleMsgDataPtr->textBuffs[2][i];
     }
+    // The wire payload stays16 bytes. Terminate the expanded local buffers,
+    // including a full15-char name plus punctuation received without its EOS.
+    gBattleTextBuff1[TEXT_BUFF_ARRAY_COUNT] = EOS;
+    gBattleTextBuff2[TEXT_BUFF_ARRAY_COUNT] = EOS;
+    gBattleTextBuff3[TEXT_BUFF_ARRAY_COUNT] = EOS;
 
     switch (stringId)
     {
