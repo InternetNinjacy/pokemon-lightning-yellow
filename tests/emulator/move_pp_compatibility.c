@@ -79,6 +79,7 @@ static void ppSaveSites(void){
  copyBytes(enemy(1),enemy(0),ABI_BOX_SIZE);ppBoxSet(enemy(1),ABI_DATA_PP2,10);unsigned char migrated[ABI_CARE_MON_SIZE];memcpy(migrated,old,sizeof(old));readBytes(enemy(1),migrated,ABI_BOX_SIZE);
  r=CALL(GetRoute5Daycare);CHECK(r);sameBytes(r,migrated,sizeof(migrated));sameBytes(legacy,old,sizeof(old));flashRoundTrip();sameBytes(CALL(GetRoute5Daycare),migrated,sizeof(migrated));sameBytes(legacy,old,sizeof(old));
  // Unknown and inconsistent recognized Route5 saves are never rewritten.
+ ppBoxSet(r5save()+ABI_R5_CARE,ABI_DATA_PP2,15); // A cap would change this if validation were bypassed.
  core->busWrite8(core,r5save()+ABI_R5_VERSION,99);unsigned char unknown[400];readBytes(r5save(),unknown,sizeof(unknown));flashRoundTrip();sameBytes(r5save(),unknown,sizeof(unknown));CHECK(!CALL(GetRoute5Daycare));sameBytes(legacy,old,sizeof(old));
  core->busWrite8(core,r5save()+ABI_R5_VERSION,1);core->busWrite8(core,r5save()+ABI_R5_SHINY,2);readBytes(r5save(),unknown,sizeof(unknown));flashRoundTrip();sameBytes(r5save(),unknown,sizeof(unknown));CHECK(!CALL(GetRoute5Daycare));
  printf("PASS: actual flash load caps live/saved party, first/last PC and both independent pending daycares; lazy legacy import caps active copy only, preserves recovery/mail/steps/egg identity; unknown/corrupt Route5 stays byte-identical\n");
@@ -108,6 +109,10 @@ static void ppBackupRecovery(void){
 static void ppLeechLifeBattles(void){
  wildFixture(MAP_GROUP(MAP_ROUTE1),MAP_NUM(MAP_ROUTE1),1);startSpecial();waitAction();damageStats();
  CHECK(baseDamage(MOVE_LEECH_LIFE,0,0,0)==10);
+ for(unsigned side=0;side<2;side++)core->busWrite16(core,SYM_gSideStatuses+2*side,0);
+ uint32_t aiBattle=core->busRead32(core,SYM_gBattleStruct);core->busWrite8(core,aiBattle+ABI_BATTLESTRUCT_DYNAMIC_TYPE,0);
+ core->busWrite8(core,SYM_gBattleScripting+ABI_SCRIPTING_MULTIPLIER,1);core->busWrite16(core,SYM_gCurrentMove,MOVE_LEECH_LIFE);
+ CALL(AI_CalcDmg,0,1);CHECK(core->busRead32(core,SYM_gBattleMoveDamage)==10);
  core->busWrite16(core,bmon(0)+ABI_BMON_ATTACK,400);CHECK(baseDamage(MOVE_LEECH_LIFE,0,0,0)==10);
  core->busWrite16(core,bmon(0)+ABI_BMON_SPATTACK,100);CHECK(baseDamage(MOVE_LEECH_LIFE,0,0,0)==19);
  damageStats();CHECK(baseDamage(MOVE_LEECH_LIFE,SIDE_STATUS_REFLECT,0,0)==10);CHECK(baseDamage(MOVE_LEECH_LIFE,SIDE_STATUS_LIGHTSCREEN,0,0)==6);
@@ -146,7 +151,7 @@ static void ppLeechLifeBattles(void){
  CHECK(!CALL(ExecuteTableBasedItemEffect,player(0),ITEM_ETHER,0,0));CHECK(monget(player(0),ABI_DATA_PP1)==10);
  CHECK(!CALL(ExecuteTableBasedItemEffect,player(0),ITEM_PP_UP,0,0));CHECK(CALL(CalculatePPWithBonus,MOVE_LEECH_LIFE,monget(player(0),ABI_DATA_PP_BONUSES),0)==12);CHECK(monget(player(0),ABI_DATA_PP1)==12);
  monput(player(0),ABI_DATA_PP1,1);CALL(MonRestorePP,player(0));CHECK(monget(player(0),ABI_DATA_PP1)==12);
- printf("PASS: native Special80 damage/stats/screens/burn and Ether/PP Up/ordinary restore use10/12PP; no Bag UI claim\n");
+ printf("PASS: native Special80 damage/stats/AI/screens/burn and Ether/PP Up/ordinary restore use10/12PP; no Bag UI claim\n");
 }
 static void movePpCompatibilityTests(void){
  ppCapMatrix();ppFullPc();ppSaveSites();ppBackupRecovery();ppLeechLifeBattles();CHECK(core->loadState(core,bootState));
