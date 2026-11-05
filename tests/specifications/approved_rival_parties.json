@@ -1,0 +1,683 @@
+{
+  "authority": "implementation/main-rival-eight-battles.md v2",
+  "base": "c960642ddbdacc1cf608d8c5081ee0ecd7cca6e9",
+  "encounters": [
+    {
+      "location": "Oak's Lab",
+      "party": [
+        {
+          "species": "DRATINI",
+          "level": 5,
+          "moves": [
+            "TACKLE",
+            "WRAP",
+            "LEER",
+            "NONE"
+          ],
+          "held_item": "NONE"
+        }
+      ],
+      "variants": [
+        {
+          "party": "sParty_RivalOaksLabSquirtle",
+          "trainer": "TRAINER_RIVAL_OAKS_LAB_SQUIRTLE",
+          "iv": [
+            0
+          ]
+        },
+        {
+          "party": "sParty_RivalOaksLabBulbasaur",
+          "trainer": "TRAINER_RIVAL_OAKS_LAB_BULBASAUR",
+          "iv": [
+            0
+          ]
+        },
+        {
+          "party": "sParty_RivalOaksLabCharmander",
+          "trainer": "TRAINER_RIVAL_OAKS_LAB_CHARMANDER",
+          "iv": [
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "location": "Early Route 22",
+      "party": [
+        {
+          "species": "GOLDEEN",
+          "level": 9,
+          "moves": [
+            "PECK",
+            "TAIL_WHIP",
+            "WATER_SPORT",
+            "NONE"
+          ],
+          "held_item": "NONE"
+        },
+        {
+          "species": "DRATINI",
+          "level": 9,
+          "moves": [
+            "TACKLE",
+            "WRAP",
+            "LEER",
+            "THUNDER_WAVE"
+          ],
+          "held_item": "ORAN_BERRY"
+        }
+      ],
+      "variants": [
+        {
+          "party": "sParty_RivalRoute22EarlySquirtle",
+          "trainer": "TRAINER_RIVAL_ROUTE22_EARLY_SQUIRTLE",
+          "iv": [
+            50,
+            50
+          ]
+        },
+        {
+          "party": "sParty_RivalRoute22EarlyBulbasaur",
+          "trainer": "TRAINER_RIVAL_ROUTE22_EARLY_BULBASAUR",
+          "iv": [
+            50,
+            50
+          ]
+        },
+        {
+          "party": "sParty_RivalRoute22EarlyCharmander",
+          "trainer": "TRAINER_RIVAL_ROUTE22_EARLY_CHARMANDER",
+          "iv": [
+            50,
+            50
+          ]
+        }
+      ]
+    },
+    {
+      "location": "Cerulean",
+      "party": [
+        {
+          "species": "GOLDEEN",
+          "level": 16,
+          "moves": [
+            "PECK",
+            "HORN_ATTACK",
+            "TAIL_WHIP",
+            "SUPERSONIC"
+          ],
+          "held_item": "NONE"
+        },
+        {
+          "species": "SLUGMA",
+          "level": 17,
+          "moves": [
+            "EMBER",
+            "ROCK_THROW",
+            "SMOG",
+            "YAWN"
+          ],
+          "held_item": "NONE"
+        },
+        {
+          "species": "GEODUDE",
+          "level": 16,
+          "moves": [
+            "TACKLE",
+            "ROCK_THROW",
+            "DEFENSE_CURL",
+            "MAGNITUDE"
+          ],
+          "held_item": "NONE"
+        },
+        {
+          "species": "DRATINI",
+          "level": 18,
+          "moves": [
+            "TACKLE",
+            "TWISTER",
+            "THUNDER_WAVE",
+            "WRAP"
+          ],
+          "held_item": "ORAN_BERRY"
+        }
+      ],
+      "variants": [
+        {
+          "party": "sParty_RivalCeruleanSquirtle",
+          "trainer": "TRAINER_RIVAL_CERULEAN_SQUIRTLE",
+          "iv": [
+            50,
+            50,
+            50,
+            100
+          ]
+        },
+        {
+          "party": "sParty_RivalCeruleanBulbasaur",
+          "trainer": "TRAINER_RIVAL_CERULEAN_BULBASAUR",
+          "iv": [
+            50,
+            50,
+            50,
+            100
+          ]
+        },
+        {
+          "party": "sParty_RivalCeruleanCharmander",
+          "trainer": "TRAINER_RIVAL_CERULEAN_CHARMANDER",
+          "iv": [
+            50,
+            50,
+            50,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "location": "S.S. Anne",
+      "party": [
+        {
+          "species": "GOLDEEN",
+          "level": 19,
+          "moves": [
+            "HORN_ATTACK",
+            "PECK",
+            "SUPERSONIC",
+            "TAIL_WHIP"
+          ],
+          "held_item": "NONE"
+        },
+        {
+          "species": "SLUGMA",
+          "level": 20,
+          "moves": [
+            "EMBER",
+            "ROCK_THROW",
+            "SMOG",
+            "YAWN"
+          ],
+          "held_item": "NONE"
+        },
+        {
+          "species": "GEODUDE",
+          "level": 20,
+          "moves": [
+            "MAGNITUDE",
+            "ROCK_THROW",
+            "TACKLE",
+            "DEFENSE_CURL"
+          ],
+          "held_item": "NONE"
+        },
+        {
+          "species": "DRATINI",
+          "level": 22,
+          "moves": [
+            "DRAGON_BREATH",
+            "TWISTER",
+            "THUNDER_WAVE",
+            "WRAP"
+          ],
+          "held_item": "ORAN_BERRY"
+        }
+      ],
+      "variants": [
+        {
+          "party": "sParty_RivalSsAnneSquirtle",
+          "trainer": "TRAINER_RIVAL_SS_ANNE_SQUIRTLE",
+          "iv": [
+            50,
+            50,
+            50,
+            100
+          ]
+        },
+        {
+          "party": "sParty_RivalSsAnneBulbasaur",
+          "trainer": "TRAINER_RIVAL_SS_ANNE_BULBASAUR",
+          "iv": [
+            50,
+            50,
+            50,
+            100
+          ]
+        },
+        {
+          "party": "sParty_RivalSsAnneCharmander",
+          "trainer": "TRAINER_RIVAL_SS_ANNE_CHARMANDER",
+          "iv": [
+            50,
+            50,
+            50,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "location": "Pokémon Tower",
+      "party": [
+        {
+          "species": "POLIWHIRL",
+          "level": 27,
+          "moves": [
+            "WATER_GUN",
+            "HYPNOSIS",
+            "DOUBLE_SLAP",
+            "RAIN_DANCE"
+          ],
+          "held_item": "NONE"
+        },
+        {
+          "species": "BEEDRILL",
+          "level": 27,
+          "moves": [
+            "TWINEEDLE",
+            "FURY_ATTACK",
+            "FOCUS_ENERGY",
+            "RAGE"
+          ],
+          "held_item": "NONE"
+        },
+        {
+          "species": "SLUGMA",
+          "level": 28,
+          "moves": [
+            "EMBER",
+            "ROCK_THROW",
+            "YAWN",
+            "HARDEN"
+          ],
+          "held_item": "NONE"
+        },
+        {
+          "species": "GEODUDE",
+          "level": 28,
+          "moves": [
+            "MAGNITUDE",
+            "ROCK_THROW",
+            "ROLLOUT",
+            "DEFENSE_CURL"
+          ],
+          "held_item": "NONE"
+        },
+        {
+          "species": "DRATINI",
+          "level": 29,
+          "moves": [
+            "DRAGON_BREATH",
+            "THUNDER_WAVE",
+            "SLAM",
+            "TWISTER"
+          ],
+          "held_item": "SITRUS_BERRY"
+        }
+      ],
+      "variants": [
+        {
+          "party": "sParty_RivalPokemonTowerSquirtle",
+          "trainer": "TRAINER_RIVAL_POKEMON_TOWER_SQUIRTLE",
+          "iv": [
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "party": "sParty_RivalPokemonTowerBulbasaur",
+          "trainer": "TRAINER_RIVAL_POKEMON_TOWER_BULBASAUR",
+          "iv": [
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        },
+        {
+          "party": "sParty_RivalPokemonTowerCharmander",
+          "trainer": "TRAINER_RIVAL_POKEMON_TOWER_CHARMANDER",
+          "iv": [
+            100,
+            100,
+            100,
+            100,
+            100
+          ]
+        }
+      ]
+    },
+    {
+      "location": "Silph Co.",
+      "party": [
+        {
+          "species": "POLIWHIRL",
+          "level": 39,
+          "moves": [
+            "BODY_SLAM",
+            "HYPNOSIS",
+            "WATER_GUN",
+            "RAIN_DANCE"
+          ],
+          "held_item": "NONE"
+        },
+        {
+          "species": "ARIADOS",
+          "level": 39,
+          "moves": [
+            "SLUDGE_BOMB",
+            "NIGHT_SHADE",
+            "LEECH_LIFE",
+            "SCARY_FACE"
+          ],
+          "held_item": "POISON_BARB"
+        },
+        {
+          "species": "RAPIDASH",
+          "level": 40,
+          "moves": [
+            "STOMP",
+            "FIRE_SPIN",
+            "TAKE_DOWN",
+            "AGILITY"
+          ],
+          "held_item": "NONE"
+        },
+        {
+          "species": "GRAVELER",
+          "level": 40,
+          "moves": [
+            "MAGNITUDE",
+            "ROCK_BLAST",
+            "ROLLOUT",
+            "SELF_DESTRUCT"
+          ],
+          "held_item": "HARD_STONE"
+        },
+        {
+          "species": "DRAGONAIR",
+          "level": 42,
+          "moves": [
+            "DRAGON_BREATH",
+            "THUNDER_WAVE",
+            "SLAM",
+            "AGILITY"
+          ],
+          "held_item": "LUM_BERRY"
+        }
+      ],
+      "variants": [
+        {
+          "party": "sParty_RivalSilphSquirtle",
+          "trainer": "TRAINER_RIVAL_SILPH_SQUIRTLE",
+          "iv": [
+            100,
+            100,
+            100,
+            100,
+            150
+          ]
+        },
+        {
+          "party": "sParty_RivalSilphBulbasaur",
+          "trainer": "TRAINER_RIVAL_SILPH_BULBASAUR",
+          "iv": [
+            100,
+            100,
+            100,
+            100,
+            150
+          ]
+        },
+        {
+          "party": "sParty_RivalSilphCharmander",
+          "trainer": "TRAINER_RIVAL_SILPH_CHARMANDER",
+          "iv": [
+            100,
+            100,
+            100,
+            100,
+            150
+          ]
+        }
+      ]
+    },
+    {
+      "location": "Late Route 22",
+      "party": [
+        {
+          "species": "MANECTRIC",
+          "level": 50,
+          "moves": [
+            "THUNDER",
+            "BITE",
+            "QUICK_ATTACK",
+            "THUNDER_WAVE"
+          ],
+          "held_item": "MAGNET"
+        },
+        {
+          "species": "SCYTHER",
+          "level": 50,
+          "moves": [
+            "WING_ATTACK",
+            "SLASH",
+            "SWORDS_DANCE",
+            "AGILITY"
+          ],
+          "held_item": "SHARP_BEAK"
+        },
+        {
+          "species": "NINETALES",
+          "level": 50,
+          "moves": [
+            "FLAMETHROWER",
+            "CONFUSE_RAY",
+            "QUICK_ATTACK",
+            "FIRE_SPIN"
+          ],
+          "held_item": "NONE"
+        },
+        {
+          "species": "MILOTIC",
+          "level": 51,
+          "moves": [
+            "HYDRO_PUMP",
+            "RECOVER",
+            "WATER_PULSE",
+            "SAFEGUARD"
+          ],
+          "held_item": "MYSTIC_WATER"
+        },
+        {
+          "species": "PUPITAR",
+          "level": 53,
+          "moves": [
+            "CRUNCH",
+            "ROCK_SLIDE",
+            "THRASH",
+            "SCARY_FACE"
+          ],
+          "held_item": "HARD_STONE"
+        },
+        {
+          "species": "DRAGONAIR",
+          "level": 54,
+          "moves": [
+            "DRAGON_BREATH",
+            "SLAM",
+            "THUNDER_WAVE",
+            "AGILITY"
+          ],
+          "held_item": "LUM_BERRY"
+        }
+      ],
+      "variants": [
+        {
+          "party": "sParty_RivalRoute22LateSquirtle",
+          "trainer": "TRAINER_RIVAL_ROUTE22_LATE_SQUIRTLE",
+          "iv": [
+            150,
+            150,
+            150,
+            150,
+            150,
+            250
+          ]
+        },
+        {
+          "party": "sParty_RivalRoute22LateBulbasaur",
+          "trainer": "TRAINER_RIVAL_ROUTE22_LATE_BULBASAUR",
+          "iv": [
+            150,
+            150,
+            150,
+            150,
+            150,
+            250
+          ]
+        },
+        {
+          "party": "sParty_RivalRoute22LateCharmander",
+          "trainer": "TRAINER_RIVAL_ROUTE22_LATE_CHARMANDER",
+          "iv": [
+            150,
+            150,
+            150,
+            150,
+            150,
+            250
+          ]
+        }
+      ]
+    },
+    {
+      "location": "Champion",
+      "party": [
+        {
+          "species": "MAGNETON",
+          "level": 56,
+          "moves": [
+            "SPARK",
+            "THUNDER_WAVE",
+            "TRI_ATTACK",
+            "SUPERSONIC"
+          ],
+          "held_item": "MAGNET"
+        },
+        {
+          "species": "NINETALES",
+          "level": 56,
+          "moves": [
+            "FLAMETHROWER",
+            "CONFUSE_RAY",
+            "FIRE_SPIN",
+            "QUICK_ATTACK"
+          ],
+          "held_item": "CHARCOAL"
+        },
+        {
+          "species": "HERACROSS",
+          "level": 57,
+          "moves": [
+            "MEGAHORN",
+            "BRICK_BREAK",
+            "COUNTER",
+            "REVERSAL"
+          ],
+          "held_item": "BLACK_BELT"
+        },
+        {
+          "species": "MILOTIC",
+          "level": 57,
+          "moves": [
+            "HYDRO_PUMP",
+            "RECOVER",
+            "WATER_PULSE",
+            "SAFEGUARD"
+          ],
+          "held_item": "MYSTIC_WATER"
+        },
+        {
+          "species": "TYRANITAR",
+          "level": 58,
+          "moves": [
+            "CRUNCH",
+            "ROCK_SLIDE",
+            "EARTHQUAKE",
+            "THRASH"
+          ],
+          "held_item": "HARD_STONE"
+        },
+        {
+          "species": "DRAGONITE",
+          "level": 60,
+          "moves": [
+            "DRAGON_CLAW",
+            "WING_ATTACK",
+            "THUNDER_WAVE",
+            "EARTHQUAKE"
+          ],
+          "held_item": "LUM_BERRY"
+        }
+      ],
+      "variants": [
+        {
+          "party": "sParty_ChampionFirstSquirtle",
+          "trainer": "TRAINER_CHAMPION_FIRST_SQUIRTLE",
+          "iv": [
+            255,
+            255,
+            255,
+            255,
+            255,
+            255
+          ]
+        },
+        {
+          "party": "sParty_ChampionFirstBulbasaur",
+          "trainer": "TRAINER_CHAMPION_FIRST_BULBASAUR",
+          "iv": [
+            255,
+            255,
+            255,
+            255,
+            255,
+            255
+          ]
+        },
+        {
+          "party": "sParty_ChampionFirstCharmander",
+          "trainer": "TRAINER_CHAMPION_FIRST_CHARMANDER",
+          "iv": [
+            255,
+            255,
+            255,
+            255,
+            255,
+            255
+          ]
+        }
+      ]
+    }
+  ],
+  "unchanged_files": {
+    "include/global.h": "23fa42f2fcf687daf2347f45465e828364cc1ad310aef8d91be093f2675f53a1",
+    "include/constants/opponents.h": "441c16dbed910b678e6e0548999fbd3ecdbc1d3bcd493355d73123e1c4cbc81f",
+    "src/data/pokemon/evolution.h": "71f8cee289005eb90cf16bac5f6bd2576ceb6b492dca1639de3f2af249ae5f2d",
+    "src/data/pokemon/tmhm_learnsets.h": "92bf603f90469ccae0398902db943770e2cb12cb910883b42a552cff07cff31f",
+    "src/battle_setup.c": "57316754e544969fc7980dc7c150ec0db4dc8e1187904c35f0259bd0f066c774",
+    "src/battle_main.c": "bb51d36a61d541c7ea738b9211dc1b7a4323a8964db8896dd9935477431b7277",
+    "data/maps/PalletTown_ProfessorOaksLab/scripts.inc": "c9cfa8983c5cc4b89996f2dce37a5f6f88c1181cb06d169cb692088f9358192c",
+    "data/maps/Route22/scripts.inc": "09015b4472fdd75b7ac1f01501ad76341b177f9b2b5ff94411c0fa6ea2139be2",
+    "data/maps/CeruleanCity/scripts.inc": "d4e99c027ed400707ad2ce259ac0f8efc77ecbb8f5adff118be84b05ed29e49b",
+    "data/maps/SSAnne_2F_Corridor/scripts.inc": "91d88d8000a96abfc7b8a41fd925c11663a0a00a706e56e2bf0784a03e073a6d",
+    "data/maps/PokemonTower_2F/scripts.inc": "8edc9d0878eebd943e76c39d59ee5f20b352d567caf004c93ddf2446feaf1740",
+    "data/maps/SilphCo_7F/scripts.inc": "87760a3d9105e4f441fecd443c67e67fde075a40e4379a5bb2d944fe5b9687c9",
+    "data/maps/PokemonLeague_ChampionsRoom/scripts.inc": "41d2f054b4569798cd3e11e848f3ac3da62781db22320241ef18efb6604f72f3"
+  }
+}

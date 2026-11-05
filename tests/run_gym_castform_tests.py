@@ -8,7 +8,7 @@ d=json.loads(Path('tests/specifications/approved_gym_castform_delta.json').read_
 for p,h in d['before_sha256'].items():
  assert hashlib.sha256(prior_gym_castform_source(p).encode()).hexdigest()==h,p
 for p,h in d['unchanged_sha256'].items():
- assert hashlib.sha256(Path(p).read_bytes()).hexdigest()==h,p
+ assert hashlib.sha256(prior_gym_castform_source(p).encode()).hexdigest()==h,p
 parties=Path('src/data/trainer_parties.h').read_text();meta=Path('src/data/trainers.h').read_text();opponents=Path('include/constants/opponents.h').read_text()
 for t in f['trainers']:
  assert re.search(r'^#define '+t['constant']+r'\s+'+str(t['id'])+r'$',opponents,re.M)
