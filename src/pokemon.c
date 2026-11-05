@@ -1,6 +1,7 @@
 #define IS_POKEMON_C
 
 #include "global.h"
+#include "move_pp_compatibility.h"
 #include "wild_double_battle.h"
 #include "time_of_day.h"
 #include "custom_pokedex.h"
@@ -6016,6 +6017,50 @@ bool8 IsOtherTrainer(u32 otId, u8 *otName)
     }
 
     return TRUE;
+}
+
+// Only approved PP reductions are eligible. Reuse the existing private crypto
+// primitives once per record so a fully occupied PC does not repeatedly decrypt
+// each field. Invalid records and the original encrypted bytes remain untouched.
+bool8 ClampApprovedMovePP(struct BoxPokemon *mon)
+{
+    struct BoxPokemon copy;
+    struct PokemonSubstruct0 *growth;
+    struct PokemonSubstruct1 *attacks;
+    u16 move;
+    u8 slot, maximum;
+    bool8 changed = FALSE;
+
+    if (!mon->hasSpecies || mon->isBadEgg)
+        return FALSE;
+    copy = *mon;
+    DecryptBoxMon(&copy);
+    if (CalculateBoxMonChecksum(&copy) != copy.checksum)
+        return FALSE;
+    growth = &GetSubstruct(&copy, copy.personality, 0)->type0;
+    if (growth->species == SPECIES_NONE || growth->species >= NUM_SPECIES)
+        return FALSE;
+    attacks = &GetSubstruct(&copy, copy.personality, 1)->type1;
+    for (slot = 0; slot < MAX_MON_MOVES; slot++)
+    {
+        move = attacks->moves[slot];
+        // Roar retains its current maximum until its separate damage redesign.
+        if (move != MOVE_LEECH_LIFE && move != MOVE_ROAR)
+            continue;
+        maximum = CalculatePPWithBonus(move, growth->ppBonuses, slot);
+        if (attacks->pp[slot] > maximum)
+        {
+            attacks->pp[slot] = maximum;
+            changed = TRUE;
+        }
+    }
+    if (changed)
+    {
+        copy.checksum = CalculateBoxMonChecksum(&copy);
+        EncryptBoxMon(&copy);
+        *mon = copy;
+    }
+    return changed;
 }
 
 void MonRestorePP(struct Pokemon *mon)

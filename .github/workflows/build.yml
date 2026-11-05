@@ -42,6 +42,7 @@ jobs:
           python3 tests/run_move_foundation_tests.py
           python3 tests/run_move_ui_tests.py
           python3 tests/run_original_move_data_tests.py
+          python3 tests/run_move_pp_tests.py
           python3 tests/run_rtc_tests.py
           python3 tests/run_evolution_tests.py
           python3 tests/run_ponyta_tests.py

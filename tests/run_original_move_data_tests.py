@@ -3,8 +3,9 @@
 from pathlib import Path
 import hashlib,json,re
 from approved_original_move_data_changes import prior_original_move_data_source
+from approved_move_pp_changes import prior_move_pp_source
 m=json.loads(Path('tests/specifications/approved_original_move_data_delta.json').read_text())
-p='src/data/battle_moves.h';current=Path(p).read_text();prior=prior_original_move_data_source(p)
+p='src/data/battle_moves.h';current=prior_move_pp_source(p);prior=prior_original_move_data_source(p)
 assert hashlib.sha256(current.encode()).hexdigest()==m['files'][p]['after_sha256']
 assert hashlib.sha256(prior.encode()).hexdigest()==m['files'][p]['before_sha256']
 def entries(s):
@@ -24,7 +25,7 @@ for k,fields in expected.items():
  for f in ['effect','flags','target','priority','secondaryEffectChance']:assert after[k][f]==before[k][f]
 assert set(actual)=={'TWINEEDLE','LICK','OUTRAGE','MEAN_LOOK','ASTONISH','ROCK_TOMB','SILVER_WIND','ICICLE_SPEAR'}
 # Retain the reviewed GenIV category baseline, allowing only this approved exception.
-p=Path('tests/move_categories.json');cats=json.loads(p.read_text());old=dict(cats);old['MOVE_ASTONISH']='PHYSICAL'
+p=Path('tests/move_categories.json');cats=json.loads(prior_move_pp_source(str(p)));old=dict(cats);old['MOVE_ASTONISH']='PHYSICAL'
 assert hashlib.sha256((json.dumps(old,indent=2)+'\n').encode()).hexdigest()==m['category_manifest_before_sha256']
 assert cats['MOVE_ASTONISH']=='SPECIAL'
 rows=json.loads(Path('docs/moves/move-specification.json').read_text())['moves']

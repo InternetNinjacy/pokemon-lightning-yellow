@@ -1978,12 +1978,12 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_LEECH_LIFE] =
     {
-        .category = MOVE_CATEGORY_PHYSICAL,
+        .category = MOVE_CATEGORY_SPECIAL,
         .effect = EFFECT_ABSORB,
-        .power = 20,
+        .power = 80,
         .type = TYPE_BUG,
         .accuracy = 100,
-        .pp = 15,
+        .pp = 10,
         .secondaryEffectChance = 0,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
