@@ -1,0 +1,76 @@
+{
+  "include/constants/global.h": {
+    "before_sha256": "7ecf4a63c7be65328135a75f8620786e40343bbe7688e7017e6d780526fd6a0c",
+    "after_sha256": "d81974e468a58f94a47a8bf4d3921e3555af239e724ac2870ba7436acfb4b969",
+    "hunks": [
+      {
+        "before": "#define MOVE_NAME_LENGTH 12\n",
+        "after": "#define MOVE_NAME_LENGTH 15\n"
+      }
+    ]
+  },
+  "include/pokemon_special_anim_internal.h": {
+    "before_sha256": "9a75610e5aa820ed914d997ab6866d7515dc3e054b761c4d579de7407bd5364e",
+    "after_sha256": "551ae3150a1fc97e75d2b2ab7b2c598863effcd7268572991ab43033beb48feb",
+    "hunks": [
+      {
+        "before": "    /*0x0077*/ u8 nameOfMoveForgotten[13];\n    /*0x0084*/ u8 nameOfMoveToTeach[13];\n    /*0x0091*/ bool8 cancelDisabled;\n    /*0x0092*/ u16 state;\n    /*0x0094*/ u16 species;\n    /*0x0096*/ u16 itemId;\n    /*0x0098*/ u16 animType;\n    /*0x009a*/ u16 slotId;\n    /*0x009c*/ u16 closeness;\n    /*0x009e*/ u16 delayTimer;\n    /*0x00a0*/ u32 personality;\n    /*0x00a4*/ u32 field_00a4;\n    /*0x00a8*/ struct PokemonSpecialAnimScene sceneResources;\n}; // size=0x28dc\n",
+        "after": "    u8 nameOfMoveForgotten[MOVE_NAME_LENGTH + 1];\n    u8 nameOfMoveToTeach[MOVE_NAME_LENGTH + 1];\n    bool8 cancelDisabled;\n    u16 state;\n    u16 species;\n    u16 itemId;\n    u16 animType;\n    u16 slotId;\n    u16 closeness;\n    u16 delayTimer;\n    u32 personality;\n    u32 field_00a4;\n    struct PokemonSpecialAnimScene sceneResources;\n};\n"
+      }
+    ]
+  },
+  "src/learn_move.c": {
+    "before_sha256": "8a3f0eb4a475633477bda6d65396205dfbb29db04dabb9f5f0d99df9f0c1ef40",
+    "after_sha256": "80d16231b21c6b12765724dcf7ce3b111174e0330d6ea678a95571a215a174d4",
+    "hunks": [
+      {
+        "before": "    u8 listMenuStrbufs[25][13];\n",
+        "after": "    u8 listMenuStrbufs[25][MOVE_NAME_LENGTH + 1];\n"
+      }
+    ]
+  },
+  "include/battle_message.h": {
+    "before_sha256": "61e5c7687b7d9ef63b9b8bc00dab603ece3cdb3011cdfa615e03413a63ca28d0",
+    "after_sha256": "7e33d5cce763aec75315bd6579c20b285d92208de0c75e753ddc4f48162469df",
+    "hunks": [
+      {
+        "before": "#define TEXT_BUFF_ARRAY_COUNT   16\n",
+        "after": "#define TEXT_BUFF_ARRAY_COUNT   16 // BattleMsgData wire payload; keep unchanged.\n// Used-move messages append an exclamation mark and EOS after the move name.\n#define BATTLE_TEXT_BUFFER_SIZE (MOVE_NAME_LENGTH + 2)\n"
+      },
+      {
+        "before": "extern u8 gBattleTextBuff1[TEXT_BUFF_ARRAY_COUNT];\nextern u8 gBattleTextBuff2[TEXT_BUFF_ARRAY_COUNT];\nextern u8 gBattleTextBuff3[TEXT_BUFF_ARRAY_COUNT];\n",
+        "after": "extern u8 gBattleTextBuff1[BATTLE_TEXT_BUFFER_SIZE];\nextern u8 gBattleTextBuff2[BATTLE_TEXT_BUFFER_SIZE];\nextern u8 gBattleTextBuff3[BATTLE_TEXT_BUFFER_SIZE];\n"
+      }
+    ]
+  },
+  "src/battle_main.c": {
+    "before_sha256": "bb51d36a61d541c7ea738b9211dc1b7a4323a8964db8896dd9935477431b7277",
+    "after_sha256": "5532f056713a2853ee26432f723a56fe23c6c71f93244c08a65cd042ac28d30f",
+    "hunks": [
+      {
+        "before": "EWRAM_DATA u8 gBattleTextBuff1[TEXT_BUFF_ARRAY_COUNT] = {0};\nEWRAM_DATA u8 gBattleTextBuff2[TEXT_BUFF_ARRAY_COUNT] = {0};\nEWRAM_DATA u8 gBattleTextBuff3[TEXT_BUFF_ARRAY_COUNT] = {0};\n",
+        "after": "EWRAM_DATA u8 gBattleTextBuff1[BATTLE_TEXT_BUFFER_SIZE] = {0};\nEWRAM_DATA u8 gBattleTextBuff2[BATTLE_TEXT_BUFFER_SIZE] = {0};\nEWRAM_DATA u8 gBattleTextBuff3[BATTLE_TEXT_BUFFER_SIZE] = {0};\n"
+      }
+    ]
+  },
+  "src/data/battle_moves.h": {
+    "before_sha256": "2274cd69bb6ef15014089901e39785391286ce9d006b63cae0f2a4521ab6884f",
+    "after_sha256": "06c4997ade40a090339675d35060aac716b5be1d5cc5e93368cc2339b5c027ac",
+    "hunks": [
+      {
+        "before": "    [MOVE_CURSE] =\n    {\n        .category = MOVE_CATEGORY_STATUS,\n        .effect = EFFECT_CURSE,\n        .power = 0,\n        .type = TYPE_MYSTERY,\n        .accuracy = 0,\n        .pp = 10,\n        .secondaryEffectChance = 0,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = 0,\n        .flags = 0,\n    },",
+        "after": "    [MOVE_CURSE] =\n    {\n        .category = MOVE_CATEGORY_STATUS,\n        .effect = EFFECT_CURSE,\n        .power = 0,\n        .type = TYPE_GHOST,\n        .accuracy = 0,\n        .pp = 10,\n        .secondaryEffectChance = 0,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = 0,\n        .flags = 0,\n    },"
+      }
+    ]
+  },
+  "src/pokemon_summary_screen.c": {
+    "before_sha256": "61a29e0d8ff849d4a9cd5657489512811f1e508eba955b16c3903c0bcec4c299",
+    "after_sha256": "4d2768242def16c85934a69a1a6ec3b0436b540f406c5e4c44428d285d03c1dc",
+    "hunks": [
+      {
+        "before": "    AddTextPrinterParameterized3(sMonSummaryScreen->windowIds[POKESUM_WIN_RIGHT_PANE], FONT_NORMAL, 3, GetMoveNamePrinterYpos(i), sPrintMoveTextColors[0], TEXT_SKIP_DRAW, sMonSummaryScreen->summary.moveNameStrBufs[i]);\n",
+        "after": "    // Keep complete approved names; use the existing small font when needed.\n    {\n        u8 windowId = sMonSummaryScreen->windowIds[POKESUM_WIN_RIGHT_PANE];\n        u8 font = FONT_NORMAL;\n        const u8 *name = sMonSummaryScreen->summary.moveNameStrBufs[i];\n        if (GetStringWidth(font, name, 0) > GetWindowAttribute(windowId, WINDOW_WIDTH) * 8 - 3)\n            font = FONT_SMALL;\n        AddTextPrinterParameterized3(windowId, font, 3, GetMoveNamePrinterYpos(i), sPrintMoveTextColors[0], TEXT_SKIP_DRAW, name);\n    }\n"
+      }
+    ]
+  }
+}

@@ -1,6 +1,6 @@
 # Existing-art animation assignment review
 
-Source identifiers are verified; new/composite playback is **not tested**. “Proposed” is not owner approval. Original moves retain their own animation by default. No new artwork is permitted.
+Source identifiers are verified; new/composite playback is **not tested**. The50 formerly proposed assignments were owner-approved on November5; historical labels below describe their origin, not a pending approval. See OWNER_DECISIONS_2026-11-05.md. Original moves retain their own animation by default. No new artwork is permitted.
 
 | Move | Existing script(s) | Source approval label | Runtime/composition |
 |---|---|---|---|

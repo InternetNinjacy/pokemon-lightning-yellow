@@ -7,9 +7,27 @@ import re
 import struct
 import subprocess
 import tempfile
+import shutil
 
 # Generate ABI constants with the game's ARM compiler, never host offsetof.
 expressions = {
+ 'SUMMARY_NAME_BUFFERS':'offsetof(struct PokemonSummaryScreenData,summary.moveNameStrBufs)',
+ 'MOVE_NAME_CAPACITY':'MOVE_NAME_LENGTH + 1',
+ 'BATTLE_TEXT_CAPACITY':'BATTLE_TEXT_BUFFER_SIZE',
+ 'BMSG_SIZE':'sizeof(struct BattleMsgData)',
+ 'BMSG_MOVE':'offsetof(struct BattleMsgData,currentMove)',
+ 'BMSG_TEXT':'offsetof(struct BattleMsgData,textBuffs)',
+ 'PSA_SIZE':'sizeof(struct PokemonSpecialAnim)',
+ 'PSA_FORGOTTEN':'offsetof(struct PokemonSpecialAnim,nameOfMoveForgotten)',
+ 'PSA_TEACH':'offsetof(struct PokemonSpecialAnim,nameOfMoveToTeach)',
+ 'PSA_CANCEL':'offsetof(struct PokemonSpecialAnim,cancelDisabled)',
+ 'PSA_SPECIES':'offsetof(struct PokemonSpecialAnim,species)',
+ 'RELEARNER_SIZE':'sizeof(struct LearnMoveGfxResources)',
+ 'RELEARNER_NAMES':'offsetof(struct LearnMoveGfxResources,listMenuStrbufs)',
+ 'RELEARNER_MOVES':'offsetof(struct LearnMoveGfxResources,learnableMoves)',
+ 'RELEARNER_COUNT':'offsetof(struct LearnMoveGfxResources,numLearnableMoves)',
+ 'RELEARNER_SLOT':'offsetof(struct LearnMoveGfxResources,selectedPartyMember)',
+
     "SAVE1_WEATHER_CONTEXT":"offsetof(struct SaveBlock1,unused_3D24)",
     "MAPHEADER_WEATHER":"offsetof(struct MapHeader,weather)",
     "MAPHEADER_TYPE":"offsetof(struct MapHeader,mapType)",
@@ -241,6 +259,7 @@ required = [
     'ShowPokemonSummaryScreen', 'sMonSummaryScreen', 'sMoveSelectionCursorPos', 'gSideStatuses', 'gBattleStruct', 'gBattleScripting', 'gBattleMoveDamage', 'gDisplayedStringBattle',
 ]
 required += ['PewterCity_Gym_EventScript_Liam','CeruleanCity_Gym_EventScript_Diana','CeladonCity_Gym_EventScript_Mary','Cmd_setweatherballtype','gBattleMonForms','SaffronCity_Dojo_Text_NeedTwo']
+required += ['gMoveNames','GetStringWidth','StringCopy','AllocPSA','Free','AllocZeroed','sMoveRelearner','MoveRelearnerInitListMenuBuffersEtc','BufferStringBattle','gBattleTextBuff2','gBattleTextBuff3']
 required += ['Task_StartMenuHandleInput','sStartMenuCursorPos','sStartMenuOrder','Task_BagMenu_HandleInput','Task_HandleChooseMonInput','Task_EvolutionScene']
 symbols={}
 end_ewram=0
@@ -262,6 +281,8 @@ with tempfile.TemporaryDirectory(prefix='lightning-emulator-') as temp:
     temp=Path(temp)
     source='#include "field_weather.h"\n#include <stddef.h>\n#include "global.h"\n#include "pokemon.h"\n#include "main.h"\n#include "task.h"\n'
     source+='#include "text.h"\n#include "pokedex.h"\n#include "battle_controllers.h"\n#include "item_menu.h"\n#include "wild_encounter.h"\n#include "battle.h"\n#include "list_menu.h"\n#include "party_menu.h"\n#include "script.h"\n#include "field_player_avatar.h"\n'+screen_struct+'\n'+summary_struct+'\n'
+    learn=Path('src/learn_move.c').read_text();learn=learn[learn.index('struct LearnMoveGfxResources\n'):];learn=learn[:learn.index('\n};')+3]
+    source+='#include "battle_message.h"\n#include "pokemon_special_anim_internal.h"\n'+learn+'\n'
     source+='const unsigned long abi[] = {'+', '.join(expressions.values())+'};\n'
     (temp/'abi.c').write_text(source)
     with (temp/'abi.i').open('w') as out:
@@ -325,4 +346,5 @@ with tempfile.TemporaryDirectory(prefix='lightning-emulator-') as temp:
                   '-Wl,-rpath,'+prefix+'/usr/lib/x86_64-linux-gnu']
     command+=['-lmgba']
     subprocess.run(command,check=True)
-    subprocess.run([str(temp/'runner'),'pokefirered.gba'],check=True,env={**os.environ,'TZ':'UTC'})
+    shutil.copyfile('pokefirered.gba',temp/'test.gba')
+    subprocess.run([str(temp/'runner'),str(temp/'test.gba')],check=True,env={**os.environ,'TZ':'UTC'})

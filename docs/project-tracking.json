@@ -3,7 +3,7 @@
   "updated": "2026-11-05",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "BTL-005 PR37 reconciliation complete as354+56 source/design inventory; CI42032378420 SUCCESS incl463604 existing native assertions. PKM-005-BAG PR39 eleven actual Bag routes PASS49176, full19-group native PASS512774; final clean CI logs at PR39 checks. No new move gameplay or merge claimed; owner choices and external/broader gaps retained.",
+  "current_focus": "BTL-005 move-engine foundations M1a implemented under owner November5 approval. Curse Ghost/Status,50 animation assignments approved, GenIV Payback/Dragon Rush policy recorded. Safe15-char buffers,17-byte punctuation and adaptive summary font; no56 new IDs/effects enabled. Final native/clean CI evidence in foundation PR; continue M1b layouts then namespace/effects. All parent progress retained.",
   "main_sha": "c960642ddbdacc1cf608d8c5081ee0ecd7cca6e9",
   "drive_sync": {
     "status": "pending: no direct Drive writing tool available",
@@ -493,8 +493,8 @@
       "title": "410-move redesign",
       "aliases": [],
       "effort": {
-        "earned": 6,
-        "remaining": 74,
+        "earned": 8,
+        "remaining": 72,
         "unit": "provisional relative planning point",
         "confidence": "low",
         "history": [
@@ -509,6 +509,12 @@
             "earned": 6,
             "remaining": 74,
             "reason": "Reconciled354+56 design/source inventory,20 original redesign policies plus Curse-type ambiguity,67 existing-art candidates, source/evidence and safe capacity/architecture plan. Static audit/preparation credit only; no gameplay/animation-runtime credit."
+          },
+          {
+            "date": "2026-11-05",
+            "earned": 8,
+            "remaining": 72,
+            "reason": "M1a safe15-char storage,17-byte punctuation buffer, adaptive summary font and Ghost/Status Curse implemented; focused native298 and17 host suites passed. Remaining M1–M8 scope retained; no56-move implementation claim."
           }
         ]
       },
@@ -516,21 +522,21 @@
         "BTL-001"
       ],
       "status": {
-        "design": "17/17 type lineups locked; complete410-row reconciliation recorded with explicit remaining decisions",
-        "implementation": "move redesign not implemented; reconciliation/tooling in PR37 only",
-        "automated": "All16 host suites/3 static checks PASS; modified clean rebuild and upstream jobs SUCCESS42032378420",
-        "emulator": "Existing parent gameplay full native463604 PASS in CI; no unimplemented new-move battle/animation proof",
-        "pull_request": "reconciliation PR37 ready for design/technical review; not an implementation PR",
-        "merge": "unmerged"
+        "design": "Owner approved; November5 Curse/animation/GenIV edge choices resolved; PhaseTwo distribution remains separate",
+        "implementation": "M1a partial: Curse Ghost, safe name buffers/summary font; no new IDs/effects enabled",
+        "automated": "All17 host suites/3 static checks PASS; clean rebuild identical; final CI logs in foundation PR",
+        "emulator": "Focused ARM mGBA298 PASS; long summary screenshot inspected; final20-group full run/CI linked in PR",
+        "pull_request": "foundation implementation PR, stacked on PR39; reconciliation PR37 preserved",
+        "merge": "unmerged; no auto-merge"
       },
-      "branch": "docs/move-system-reconciliation-20261105",
+      "branch": "feature/move-engine-foundations",
       "commit": null,
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/37",
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/42032378420",
-      "blocker": "Curse source TYPE_MYSTERY versus Ghost inventory needs explicit type answer (asked);50 animation assignments remain proposals; Payback/Dragon Rush version edge policy needs clarification. Exact species/TM learner distributions remain separate PhaseTwo dependencies, not missing exports.",
+      "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Review docs/moves artifacts; resolve specific recorded choices without reopening17 type designs; implement proposed M1–M8 milestones only against finalized mechanics. Continue old-feature automated acceptance independently.",
-      "checkpoint": "2026-11-05 complete inventory/static reconciliation, no new gameplay",
+      "next_action": "Continue M1b battle/relearner layouts before enabling long-name rows; append355–410 complete entries only with correct effects; preserve parent features.",
+      "checkpoint": "November5 M1a implemented;17 hosts and focused298 PASS; clean rebuild identical; see docs/moves/FOUNDATION_STATUS.md for limits and live PR CI.",
       "source_exports": [
         "03_MOVES/Pokémon Lightning Yellow — Approved Move Change Ledger — Source Verbatim v0.1.txt",
         "03_MOVES/Pokémon Lightning Yellow — Complete TM & Move Register — v1 (2026-10-29).txt",
@@ -538,7 +544,8 @@
         "03_MOVES/Pokémon Lightning Yellow — Physical Special Status Split — All-Type Design Tracker & Handoff — 2026-10-29.txt",
         "03_MOVES/Pokémon Lightning Yellow — Pre-Codex Move & Animation Handoff — Draft v0.1.txt"
       ],
-      "source_status": "available locally; checksums verified; precise approvals/read scope in reconciliation report"
+      "source_status": "available locally; checksums verified; precise approvals/read scope in reconciliation report",
+      "coverage_gap": "Battle/relearner long-name layouts, new namespace/effects/animations/AI/TM integration and M2–M8 runtime acceptance pending; no remaining three owner choices."
     },
     {
       "id": "TIM-001",

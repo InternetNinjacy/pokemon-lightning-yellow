@@ -27,7 +27,7 @@ def render():
   r['delta']={k:{'current':cur[k],'approved':v} for k,v in r['approved'].items() if v!=cur[k]}
   if r['delta'] or r['mechanic_notes']:r['identity']='REWORKED_ORIGINAL'
   r['implementation_status']='PENDING_APPROVED_REDESIGN' if r['identity']=='REWORKED_ORIGINAL' else 'SOURCE_MATCHES_RETAINED_FIELDS'
-  if key=='CURSE':r['identity']='ORIGINAL_REQUIRES_CLARIFICATION';r['implementation_status']='BLOCKED_SPEC_TYPE_AMBIGUITY'
+  if key=='CURSE':r['identity']='REWORKED_ORIGINAL';r['implementation_status']='IMPLEMENTED_APPROVED_TYPE' if not r['delta'] else 'PENDING_APPROVED_REDESIGN'
   rows.append(r)
  assert len(rows)==354 and {r['id'] for r in rows}==set(range(1,355))
  rows+=overlay['new_moves']
@@ -38,11 +38,11 @@ def render():
    if r['current'] is None:r['animation']=cand
    else:r['animation_candidate']=cand
  result={k:overlay[k] for k in ['source_commit','scope','sources']};result={'schema':1,**result,'moves':rows}
- table=io.StringIO();w=csv.writer(table)
+ table=io.StringIO();w=csv.writer(table,lineterminator="\n")
  w.writerow(['source_id','proposed_new_id','name','identity','type','category','power','accuracy','pp','priority','target','effect','status','source_evidence','translation_or_decision_notes'])
  for r in rows:
   a=r['approved'];w.writerow([r['id'],r.get('proposed_id',''),r['name'],r['identity'],*[a[k] for k in ['type','category','power','accuracy','pp','priority','target','effect']],r['implementation_status'],';'.join(str(x['source'])+':L'+str(x['line']) for x in r['evidence']),';'.join(k+':'+v for k,v in r['field_basis'].items() if any(tag in v for tag in ['PROPOSED','REQUIRES','UNRESOLVED']))])
- baseline=io.StringIO();bw=csv.writer(baseline)
+ baseline=io.StringIO();bw=csv.writer(baseline,lineterminator="\n")
  bw.writerow(['id','key','source_line',*fields,'original_animation'])
  for r in rows:
   if r['current'] is not None:bw.writerow([r['id'],r['key'],r['source_line'],*[r['current'][f] for f in fields],r['animation']['assignment']])

@@ -223,3 +223,14 @@ eight cancel/retry cases and original three noncancelable Eevee stone policies.
 Run all16 host suites,3 checkers and default19-group native acceptance; focus
 with LIGHTNING_BAG_EVOLUTION_ONLY=1. No production change, merge/auto-merge,
 real-peer/hardware claim or claim of new-move implementation is implied.
+
+
+BTL-005-M1A begins implementation under the owner's explicit November5 instruction.
+Read docs/moves/OWNER_DECISIONS_2026-11-05.md and FOUNDATION_STATUS.md. These supersede
+old pending Curse/animation/version questions: Curse Ghost/Status,50 former
+proposals approved for implementation/playback, GenIV Payback/Dragon Rush edges.
+Keep M1a15-char RAM capacity,17-byte local punctuation and original16-byte wire
+record distinct. Original IDs/save fields remain unchanged; no new move rows may
+ship with placeholder effects or clipped names. Run all17 host suites/3 checkers
+and20 native groups; focused LIGHTNING_MOVE_FOUNDATION_ONLY=1. Preserve frozen
+source-delta normalizers and immutable test ROM copy. No merge/auto-merge.

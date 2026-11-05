@@ -27,7 +27,8 @@ class SplitAudits(unittest.TestCase):
 
     def test_no_unapproved_move_property_changes(self):
         # Exact upstream move data with only the category include/fields removed.
-        data = source('src/data/battle_moves.h')
+        from approved_move_foundation_changes import prior_move_foundation_source
+        data = prior_move_foundation_source('src/data/battle_moves.h')
         data = data.replace('#include "constants/move_categories.h"\n\n', '')
         data = re.sub(r'        \.category = MOVE_CATEGORY_\w+,\n', '', data)
         expected = json.loads(source('tests/preserved_paths.json'))['move_data_sha256']

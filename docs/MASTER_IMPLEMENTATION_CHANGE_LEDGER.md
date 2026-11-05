@@ -981,3 +981,45 @@ These old-feature tests do not execute the56 unimplemented new moves. New move
 runtime/animation proof, broader capture/AI matrices and external peer/hardware
 remain unverified. Overall provisional301earned/245remaining=55.13% of546 points.
 Review only: PR37 and39 remain open without auto-merge; main unchanged.
+
+
+## 2026-11-05 — BTL-005-M1A — move-engine implementation begins
+
+Owner resolves all three outstanding decisions: Curse Ghost/Status,50 animation
+assignments approved for existing-art implementation/playback, Generation IV
+Payback/switch and Dragon Rush/Minimize reference. Authority recorded in
+`docs/moves/OWNER_DECISIONS_2026-11-05.md`; older question/proposal labels are
+superseded, historical entries retained. Standing implementation authorization
+and explicit “Lets do that now” authorize the foundation branch. No merge.
+
+Before:12-char name capacity, two fixed13-byte TM buffers,25 fixed13-byte
+relearner rows,16-byte used-move buffer, Curse???. After:15-char named capacity,
+16-byte name buffers/rows,17-byte local battle buffer for name+!+EOS, Ghost Curse.
+Summary switches to existing small font only when a full name exceeds the pane.
+No other move fields, original IDs, battle scripts, save fields or artwork change.
+The16-byte wire text record and64-byte BattleMsgData remain unchanged. No claim
+of vanilla/foreign peer compatibility follows; matching-build testing remains.
+
+Frozen seven-file source delta and old expected hashes protect all unrelated
+bytes. Files: constants/global.h, battle_message.h, pokemon_special_anim_internal.h,
+battle_main.c, battle_moves.h, learn_move.c, pokemon_summary_screen.c plus tests,
+owner/design artifacts, workflow registration and tracking. New native group20
+and host suite17 retain every original group. Focused mGBA298 PASS tests temporary
+ROM-copy names13–15 chars, actual StringCopy/message/TM allocation/relearner and
+summary buffers; all patched bytes/canaries restored. Summary screenshot inspected
+and complete. All17 hosts/3 static checks PASS; local clean rebuild identical to
+ee0b18041ba9f042e47b8f3fc27e34862e116480a9391da98b20fb33ea6d40d0.
+
+Initial clean-tool build lacked libpng search variables; retry with the existing
+complete toolchain environment passed. Initial full local execution overlapped
+rewriting its mapped ROM during a summary rebuild and is invalid test evidence;
+the runner now uses an immutable temporary ROM copy. Fresh final full native/CI
+logs are linked in the foundation PR description, never inferred from focus.
+No commercial ROM/BIOS/save files or screenshots uploaded/committed.
+
+M1 remains partial: battle64px and relearner80px/cursor layouts need adaptation
+before exposing long-name move entries. No IDs355–410, fake placeholder effects,
+new mechanics/animation runtime or distribution have been enabled. Two existing
+BTL-005 points earned (8/80 total);72 remain. Do not double-count parent acceptance.
+Rollback reviewed foundation diff restores old name capacity/Curse type without
+save migration; parent integrations/PRs/main stay intact. Drive sync pending.
