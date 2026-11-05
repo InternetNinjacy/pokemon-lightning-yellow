@@ -31,3 +31,5 @@ for key in ['PAYBACK','DRAGON_RUSH']:
     r=next(r for r in rows if r['key']==key)
     assert r['effect_rules']['reference_generation']==4
 print('PASS: effective owner decision provenance and Generation IV reference recorded; imported mechanics are not runtime implemented.')
+
+assert all("u8 ALIGNED(4) gBattleTextBuff"+str(i) in Path("src/battle_main.c").read_text() for i in [1,2,3])

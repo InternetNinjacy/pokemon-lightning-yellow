@@ -8,6 +8,7 @@ static void moveFoundationTests(void){
  const unsigned ids[]={MOVE_FIRE_PUNCH,MOVE_SHADOW_BALL,MOVE_CALM_MIND,MOVE_THUNDERBOLT};
  const char *names[]={"SKITTER SLASH","PETAL BLIZZARD","DUAL WINGBEAT","SCORCHING SANDS"};
  unsigned char saved[4][16];
+ CHECK((SYM_gBattleTextBuff2&3)==0);CHECK((SYM_gBattleTextBuff3&3)==0);
  CHECK(ABI_MOVE_NAME_CAPACITY==16);CHECK(ABI_BATTLE_TEXT_CAPACITY==17);CHECK(ABI_BMSG_SIZE==64);CHECK(ABI_BMOVE_SIZE==12);
  CHECK(core->busRead8(core,SYM_gBattleMoves+MOVE_CURSE*ABI_BMOVE_SIZE+2)==TYPE_GHOST);
  for(unsigned i=0;i<4;i++){

@@ -14,7 +14,7 @@ Git history is the authoritative technical record. Historical entries below are 
 | Evolution / PKM-002,004,008 | Six direct-use trade-item pairs; Tyrogue choice; Eevee; Ponyta30 | Implemented and merged | Preserve exclusions and pending external acceptance |
 | Categories / BTL-001,003 | GenIV move categories; Shadow Ball SPECIAL | Implemented and merged; damage/AI/UI acceptance | Broader trainer-AI strategy testing |
 | Wild doubles / BTL-002,004 | Independent pairs/5% special pair; experimental maps | Implemented and merged proof of concept | Extended capture/faint/forced-end/weather acceptance |
-| Move redesign / BTL-005 | Supplied complete register/ledger/type reviews available | Original354 plus approved split; redesign not implemented | Reconcile354+56/effects/existing-art animations/distribution |
+| Move redesign / BTL-005 | Supplied complete register/ledger/type reviews available | Original354 plus approved split; redesign not implemented | PR40 M1a Curse/name storage/summary implemented; M1b layouts and new IDs/effects/animations/distribution remain |
 | RTC / TIM-001,002 | Read-only RTC; functional06–18 day, invalid-time policy | Implemented and merged | Hardware/platform acceptance |
 | Visuals / TIM-003 | Approved periods/map exceptions/fallback supplied | Original visual appearance | Implement/prototype; final tint visual approval |
 | Weather / WTH | Approved83-map distributions/entry/recovery; fixed Gym exceptions supplied | Original regional weather; narrow Snow-to-Hail bridge | PR29 selection/persistence/RTC/native bridge implemented and CI passed; PR31 fixed Gym scope passed; combined PR35 acceptance; final tints/fog/manual coverage remain |
@@ -1011,10 +1011,13 @@ and complete. All17 hosts/3 static checks PASS; local clean rebuild identical to
 ee0b18041ba9f042e47b8f3fc27e34862e116480a9391da98b20fb33ea6d40d0.
 
 Initial clean-tool build lacked libpng search variables; retry with the existing
-complete toolchain environment passed. Initial full local execution overlapped
-rewriting its mapped ROM during a summary rebuild and is invalid test evidence;
-the runner now uses an immutable temporary ROM copy. Fresh final full native/CI
-logs are linked in the foundation PR description, never inferred from focus.
+complete toolchain environment passed. Initial full local execution failed the foreign EXP text halfword read. An
+overlapping rebuild was initially suspected; a fresh immutable-ROM execution
+reproduced it. Measured gBattleTextBuff2 address02022ac9 was odd after17-byte
+expansion. Explicit ALIGNED(4) preserves prior ARM halfword alignment, and new
+native guards enforce it without weakening the original EXP assertion. The
+runner also uses an immutable temporary ROM copy. Fresh final native/CI results
+are linked in the foundation PR description, never inferred from focus.
 No commercial ROM/BIOS/save files or screenshots uploaded/committed.
 
 M1 remains partial: battle64px and relearner80px/cursor layouts need adaptation
@@ -1023,3 +1026,8 @@ new mechanics/animation runtime or distribution have been enabled. Two existing
 BTL-005 points earned (8/80 total);72 remain. Do not double-count parent acceptance.
 Rollback reviewed foundation diff restores old name capacity/Curse type without
 save migration; parent integrations/PRs/main stay intact. Drive sync pending.
+
+M1a alignment refinement: focused foundation299 PASS; focused vendor battle309
+PASS retains the original boosted-EXP/obedience assertions. Final aligned ROM
+SHA2560cdab88878218a366909aa87f601447c8e1308b57538fbf038270303efb83ba3;
+clean/full final conclusions are recorded in PR40 checks and description.

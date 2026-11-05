@@ -525,7 +525,7 @@
         "design": "Owner approved; November5 Curse/animation/GenIV edge choices resolved; PhaseTwo distribution remains separate",
         "implementation": "M1a partial: Curse Ghost, safe name buffers/summary font; no new IDs/effects enabled",
         "automated": "All17 host suites/3 static checks PASS; clean rebuild identical; final CI logs in foundation PR",
-        "emulator": "Focused ARM mGBA298 PASS; long summary screenshot inspected; final20-group full run/CI linked in PR",
+        "emulator": "Focused foundation299 and vendor battle309 PASS after alignment refinement; summary screenshot inspected; final20-group full/CI in PR40",
         "pull_request": "foundation PR40 open, stacked on PR39; reconciliation PR37 preserved",
         "merge": "unmerged; no auto-merge"
       },
@@ -536,7 +536,7 @@
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
       "next_action": "Continue M1b battle/relearner layouts before enabling long-name rows; append355–410 complete entries only with correct effects; preserve parent features.",
-      "checkpoint": "November5 M1a implemented;17 hosts and focused298 PASS; clean rebuild identical; see docs/moves/FOUNDATION_STATUS.md for limits and live PR CI.",
+      "checkpoint": "M1a source implemented;17 hosts PASS; focused299/vendor309 PASS, final aligned clean/full CI in PR40; source code status remains partial M1.",
       "source_exports": [
         "03_MOVES/Pokémon Lightning Yellow — Approved Move Change Ledger — Source Verbatim v0.1.txt",
         "03_MOVES/Pokémon Lightning Yellow — Complete TM & Move Register — v1 (2026-10-29).txt",

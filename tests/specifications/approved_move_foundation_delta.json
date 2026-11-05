@@ -45,11 +45,11 @@
   },
   "src/battle_main.c": {
     "before_sha256": "bb51d36a61d541c7ea738b9211dc1b7a4323a8964db8896dd9935477431b7277",
-    "after_sha256": "5532f056713a2853ee26432f723a56fe23c6c71f93244c08a65cd042ac28d30f",
+    "after_sha256": "a7f6805cb74e1b29714594387152e254d5a216ce452db142363f22c63861ff6a",
     "hunks": [
       {
         "before": "EWRAM_DATA u8 gBattleTextBuff1[TEXT_BUFF_ARRAY_COUNT] = {0};\nEWRAM_DATA u8 gBattleTextBuff2[TEXT_BUFF_ARRAY_COUNT] = {0};\nEWRAM_DATA u8 gBattleTextBuff3[TEXT_BUFF_ARRAY_COUNT] = {0};\n",
-        "after": "EWRAM_DATA u8 gBattleTextBuff1[BATTLE_TEXT_BUFFER_SIZE] = {0};\nEWRAM_DATA u8 gBattleTextBuff2[BATTLE_TEXT_BUFFER_SIZE] = {0};\nEWRAM_DATA u8 gBattleTextBuff3[BATTLE_TEXT_BUFFER_SIZE] = {0};\n"
+        "after": "EWRAM_DATA u8 ALIGNED(4) gBattleTextBuff1[BATTLE_TEXT_BUFFER_SIZE] = {0};\nEWRAM_DATA u8 ALIGNED(4) gBattleTextBuff2[BATTLE_TEXT_BUFFER_SIZE] = {0};\nEWRAM_DATA u8 ALIGNED(4) gBattleTextBuff3[BATTLE_TEXT_BUFFER_SIZE] = {0};\n"
       }
     ]
   },

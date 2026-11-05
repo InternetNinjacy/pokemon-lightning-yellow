@@ -371,6 +371,7 @@ int main(int argc,char **argv) {
     if(getenv("LIGHTNING_BALL_SHOP_ONLY")){captureShopTests();printf("PASS: %u focused shop assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_BALLS_ONLY")){captureTests();printf("PASS: %u focused capture assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_VENDOR_UI_ONLY")){vendorUiTests();printf("PASS: %u focused vendor UI assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_VENDOR_BATTLE_ONLY")){vendorBattleTests();printf("PASS: %u focused vendor battle assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_VENDORS_ONLY")){vendorTests();printf("PASS: %u focused vendor assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_FOSSILS_ONLY")){fossilTests();printf("PASS: %u focused fossil assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_DAYCARE_CONTINUE_ONLY")){continueMigrationTests();printf("PASS: %u focused Continue assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
