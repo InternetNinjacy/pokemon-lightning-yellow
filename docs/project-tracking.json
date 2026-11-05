@@ -3,7 +3,7 @@
   "updated": "2026-11-05",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "BTL-005 move reconciliation PR37 completed as source/design inventory, no new-move gameplay claimed; PKM-005-BAG PR39 actual Bag acceptance eleven routes PASS49176, full native/clean CI pending. Earlier work and unresolved owner choices retained.",
+  "current_focus": "BTL-005 PR37 reconciliation complete as354+56 source/design inventory; CI42032378420 SUCCESS incl463604 existing native assertions. PKM-005-BAG PR39 eleven actual Bag routes PASS49176, full19-group native PASS512774; final clean CI logs at PR39 checks. No new move gameplay or merge claimed; owner choices and external/broader gaps retained.",
   "main_sha": "c960642ddbdacc1cf608d8c5081ee0ecd7cca6e9",
   "drive_sync": {
     "status": "pending: no direct Drive writing tool available",
@@ -256,7 +256,7 @@
             "date": "2026-11-05",
             "earned": 7,
             "remaining": 1,
-            "reason": "PKM-005-BAG PR39 focused actual START/Bag acceptance eleven routes PASS49176; one existing point credited, real link/hardware remains. Full suite/CI pending."
+            "reason": "PKM-005-BAG PR39 focused actual START/Bag eleven routes PASS49176, full native19 groups PASS512774; one existing point credited, real link/hardware remains."
           }
         ]
       },
@@ -268,8 +268,8 @@
       "status": {
         "design": "approved scoped implementation",
         "implementation": "partial acceptance; remaining coverage explicitly recorded",
-        "automated": "All16 host suites and3 static checkers PASS; new full-suite/CI pending",
-        "emulator": "PR39 focused actual START/Bag evolution eleven routes PASS49176; full suite pending",
+        "automated": "All16 host suites and3 static checkers PASS; clean/upstream CI evidence at PR39 checks",
+        "emulator": "PR39 focused actual Bag eleven routes PASS49176; full19-group mGBA0.10.5 PASS512774",
         "pull_request": "historical implementation merged; acceptance follow-up PR39 open",
         "merge": "merged into main via owner-authorized consolidation"
       },
@@ -279,8 +279,8 @@
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41376878452",
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Real link-trade peer/hardware remain unverified; complete PR39 full native and clean CI evidence.",
-      "checkpoint": "2026-11-05 PR39 a6e179a3 eleven real Bag routes PASS49176; production source unchanged.",
+      "next_action": "Review PR39 including live clean CI evidence; real link-trade peer/hardware remain unverified.",
+      "checkpoint": "2026-11-05 PKM-005-BAG focused49176/full512774 PASS; production source unchanged; final CI evidence linked from PR39.",
       "coverage_gap": "Real link-trade peer/hardware remain unverified; no exhaustive item/menu permutation claim.",
       "implementation_ref": {
         "branch": "feature/phase-one-stabilization",
@@ -518,15 +518,15 @@
       "status": {
         "design": "17/17 type lineups locked; complete410-row reconciliation recorded with explicit remaining decisions",
         "implementation": "move redesign not implemented; reconciliation/tooling in PR37 only",
-        "automated": "410-row/category/approved-exception/provenance/67-script static checks PASS;16 prior host suites and3 static checkers PASS",
-        "emulator": "no new/reworked-move playback or battle implementation tested; existing parent native463604 proof remains separate",
+        "automated": "All16 host suites/3 static checks PASS; modified clean rebuild and upstream jobs SUCCESS42032378420",
+        "emulator": "Existing parent gameplay full native463604 PASS in CI; no unimplemented new-move battle/animation proof",
         "pull_request": "reconciliation PR37 ready for design/technical review; not an implementation PR",
         "merge": "unmerged"
       },
       "branch": "docs/move-system-reconciliation-20261105",
       "commit": null,
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/37",
-      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/37/checks",
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/42032378420",
       "blocker": "Curse source TYPE_MYSTERY versus Ghost inventory needs explicit type answer (asked);50 animation assignments remain proposals; Payback/Dragon Rush version edge policy needs clarification. Exact species/TM learner distributions remain separate PhaseTwo dependencies, not missing exports.",
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
       "next_action": "Review docs/moves artifacts; resolve specific recorded choices without reopening17 type designs; implement proposed M1–M8 milestones only against finalized mechanics. Continue old-feature automated acceptance independently.",

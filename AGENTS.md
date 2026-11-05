@@ -215,3 +215,11 @@ retain actual/proposed/unresolved distinctions, full original IDs and existing-a
 constraint. Curse type answer and proposed animation/version choices must not be
 invented. Keep new gameplay and independent acceptance follow-ups separately
 reviewable; no merge/auto-merge or runtime claims from source identifiers.
+
+
+PKM-005-BAG acceptance follow-up PR39 is stacked on PR37. Read
+`docs/BAG_EVOLUTION_ACCEPTANCE.md`. Preserve all eleven actual Bag UI paths,
+eight cancel/retry cases and original three noncancelable Eevee stone policies.
+Run all16 host suites,3 checkers and default19-group native acceptance; focus
+with LIGHTNING_BAG_EVOLUTION_ONLY=1. No production change, merge/auto-merge,
+real-peer/hardware claim or claim of new-move implementation is implied.

@@ -47,7 +47,9 @@ All16 host suites and the integration, reconciliation and Museum static checkers
 also pass. The native group is registered in the default full suite, not only
 behind the focus selector. The bounded native step budget increases from15 to20
 minutes for eleven additional full UI/animation/save round trips; existing tests
-are retained and the30-minute job limit remains. Full-suite and CI results are recorded below once run.
+are retained and the30-minute job limit remains. Full default suite: **PASS,512,774 guarded assertions across19 groups**.
+Clean CI status/logs are linked from [PR39 checks](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/39/checks);
+final run conclusion is reported in the PR, never inferred from the local pass.
 
 ROM SHA-256: `923fba779dbfdc05529e40abb36ec4f8442172d7b74ff65bb5010a065724bf35`.
 Local execution reuses the matching parent production ROM/ELF because this patch

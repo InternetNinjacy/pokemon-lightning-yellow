@@ -963,3 +963,21 @@ One existing acceptance point earned (7/8 PKM-005), no denominator increase or
 double-counting. Historical merged PR9 references retained; PR39 is follow-up,
 not a false implementation/merge claim. Rollback acceptance PR leaves gameplay
 unchanged; Drive synchronization still pending. No merge or auto-merge.
+
+
+### PKM-005-BAG final local acceptance / BTL-005 CI evidence
+
+Full default local mGBA0.10.5 suite PASS512774 guarded assertions, all19 registered
+groups including all eleven Bag routes. All16 host suites/3 static checkers PASS.
+No old group dropped. Native CI step budget15→20 minutes for added bounded scenes,
+job limit still30 minutes. This does not waive internal scene timeout assertions.
+Source/test revision a6e179a3; subsequent edits only docs/tracking/workflow budget.
+ROM/ELF production SHA unchanged923fba77…bf35; no local new clean rebuild claimed.
+PR39 checks retain actual final clean build/upstream/native logs; final remote
+conclusions are reported in its review description, not inferred from local tests.
+BTL-005 PR37 CI42032378420 SUCCESS: both jobs, reproducible clean modified build,
+independent original upstream checksum and existing463604 native assertions.
+These old-feature tests do not execute the56 unimplemented new moves. New move
+runtime/animation proof, broader capture/AI matrices and external peer/hardware
+remain unverified. Overall provisional301earned/245remaining=55.13% of546 points.
+Review only: PR37 and39 remain open without auto-merge; main unchanged.
