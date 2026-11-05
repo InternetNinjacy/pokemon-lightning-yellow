@@ -3,7 +3,7 @@
 Owner authorized beginning implementation after resolving the three decisions in
 [November5 authority](OWNER_DECISIONS_2026-11-05.md). This is an incremental M1a
 implementation, not completion of the410-move redesign or the whole M1 milestone.
-Branch `feature/move-engine-foundations` is stacked on tested PR39; main and the
+[PR40](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/40), branch `feature/move-engine-foundations`, is stacked on tested PR39; main and the
 existing rival/weather/Gym feature PRs are unchanged. No merge or auto-merge.
 
 ## Implemented
@@ -59,3 +59,7 @@ unchanged wire/save widths do not prove compatibility with vanilla/foreign ROMs.
 Rollback through a reviewed revert of this PR restores12-character capacity and
 Curse???; no save migration is needed because no new move IDs or save fields have
 been introduced. Preserve all parent feature commits. Drive sync remains pending.
+
+The generated reconciliation now records the live battle-data SHA separately
+from its historical baseline commit; the implemented Curse type is attributed
+to the current source, not backdated to the old baseline.

@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """Audit inventory/provenance/approved exceptions; NOT a battle implementation test."""
 from pathlib import Path
-import collections,json,re,subprocess,sys
+import collections,json,re,subprocess,sys,hashlib
 R=Path(__file__).resolve().parents[1]
 subprocess.run([sys.executable,str(R/'scripts/reconcile-move-specification.py'),'--check'],cwd=R,check=True)
 d=json.loads((R/'docs/moves/move-specification.json').read_text());rows=d['moves'];keys={r['key']:r for r in rows}
 assert len(rows)==410 and len(keys)==410
+assert d['current_battle_moves_sha256']==hashlib.sha256((R/'src/data/battle_moves.h').read_bytes()).hexdigest()
 old=[r for r in rows if r['id'] is not None];new=[r for r in rows if r['id'] is None]
 assert len(old)==354 and {r['id'] for r in old}==set(range(1,355))
 assert len(new)==56 and {r['proposed_id'] for r in new}==set(range(355,411))

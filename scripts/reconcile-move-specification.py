@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Rebuild the design/source ledger. Semantic proposals are not game constants."""
 from pathlib import Path
-import argparse,csv,io,json,re
+import argparse,csv,io,json,re,hashlib
 ROOT=Path(__file__).resolve().parents[1]
 D=ROOT/'docs/moves'
 def render():
@@ -37,7 +37,7 @@ def render():
    for s in cand['scripts']:assert labels[s['label']]==s['line']
    if r['current'] is None:r['animation']=cand
    else:r['animation_candidate']=cand
- result={k:overlay[k] for k in ['source_commit','scope','sources']};result={'schema':1,**result,'moves':rows}
+ result={k:overlay[k] for k in ['scope','sources']};result={'schema':1,'baseline_source_commit':overlay['source_commit'],'current_battle_moves_sha256':hashlib.sha256(raw.encode()).hexdigest(),**result,'moves':rows}
  table=io.StringIO();w=csv.writer(table,lineterminator="\n")
  w.writerow(['source_id','proposed_new_id','name','identity','type','category','power','accuracy','pp','priority','target','effect','status','source_evidence','translation_or_decision_notes'])
  for r in rows:

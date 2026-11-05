@@ -526,13 +526,13 @@
         "implementation": "M1a partial: Curse Ghost, safe name buffers/summary font; no new IDs/effects enabled",
         "automated": "All17 host suites/3 static checks PASS; clean rebuild identical; final CI logs in foundation PR",
         "emulator": "Focused ARM mGBA298 PASS; long summary screenshot inspected; final20-group full run/CI linked in PR",
-        "pull_request": "foundation implementation PR, stacked on PR39; reconciliation PR37 preserved",
+        "pull_request": "foundation PR40 open, stacked on PR39; reconciliation PR37 preserved",
         "merge": "unmerged; no auto-merge"
       },
       "branch": "feature/move-engine-foundations",
-      "commit": null,
-      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/37",
-      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/42032378420",
+      "commit": "7738e796",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/40",
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/40/checks",
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
       "next_action": "Continue M1b battle/relearner layouts before enabling long-name rows; append355–410 complete entries only with correct effects; preserve parent features.",
@@ -545,7 +545,8 @@
         "03_MOVES/Pokémon Lightning Yellow — Pre-Codex Move & Animation Handoff — Draft v0.1.txt"
       ],
       "source_status": "available locally; checksums verified; precise approvals/read scope in reconciliation report",
-      "coverage_gap": "Battle/relearner long-name layouts, new namespace/effects/animations/AI/TM integration and M2–M8 runtime acceptance pending; no remaining three owner choices."
+      "coverage_gap": "Battle/relearner long-name layouts, new namespace/effects/animations/AI/TM integration and M2–M8 runtime acceptance pending; no remaining three owner choices.",
+      "reconciliation_pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/37"
     },
     {
       "id": "TIM-001",

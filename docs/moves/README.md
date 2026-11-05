@@ -1,7 +1,7 @@
 # Move-system reconciliation — BTL-005
 
 Status: **inventory reconciled; owner decisions resolved; M1a implementation underway**.
-Source inspected: `92838e5eb64d19942cb5c51cfdef6991503ac3ad`, including the tested
+Historical baseline inspected: `92838e5eb64d19942cb5c51cfdef6991503ac3ad`, including the tested
 rival/weather/Gym integration. Main remains a separate, unmodified review baseline.
 Owner requested this reconciliation and remaining automated acceptance on Nov5.
 The original PR37 reconciliation changed no production code. The current foundation branch implements only the approved Curse type and safe name-buffer/summary capacity; the56 new moves and other original reworks remain unimplemented.
@@ -141,3 +141,7 @@ from this reconciliation PR when available, separately from acceptance follow-up
 The [source baseline CSV](source-baseline.csv) contains the354 actual current
 move records, including the already implemented split; it is not mislabeled as a
 vanilla pre-split category table. The original upstream namespace is unchanged.
+
+Generated records distinguish the historical baseline commit from the current
+source fingerprint (`current_battle_moves_sha256`); current Curse fields are
+not falsely attributed to the original baseline commit.
