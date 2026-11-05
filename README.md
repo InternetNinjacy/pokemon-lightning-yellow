@@ -110,4 +110,4 @@ current verification and review status.
 [Dynamic map weather](docs/DYNAMIC_WEATHER.md) implements the approved83-map
 selection/state/clock/battle-return rules in separate PR29. It reuses native field
 assets; final day/night tinting and Mansion fog remain separate. Rival gameplay
-lives independently in PR27 and is not included in this weather branch.
+is combined with weather/Castform only on the [isolated integration review branch](docs/COMBINED_INTEGRATION_20261105.md); original PRs remain open.

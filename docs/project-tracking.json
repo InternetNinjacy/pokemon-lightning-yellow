@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "updated": "2026-11-04",
+  "updated": "2026-11-05",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "GYM-007 on existing PR31: exact three Castform parties, Diana mandatory Double, fixed Pewter snow/Hail and Celadon Sun reconciled with integrated tested PR29 head061f8780.15 host/Museum and focused359 native assertions pass; final clean/full/CI evidence in PR31. Rival27 and weather29 remain open; no merges.",
+  "current_focus": "INT-004 combined27/29/31 review branch PR35: nine conflicts reconciled preserving both test sets and original hashes;16 host/Museum/registration and focused Blaine75 PASS. Clean/full/CI conclusions live inPR35. GYM-003 duplicate pending scope reconciled under GYM-007; no additional Castform credit. No main or existing PR merge.",
   "main_sha": "c960642ddbdacc1cf608d8c5081ee0ecd7cca6e9",
   "drive_sync": {
     "status": "pending: no direct Drive writing tool available",
@@ -1126,7 +1126,7 @@
       ],
       "effort": {
         "earned": 0,
-        "remaining": 2,
+        "remaining": 0,
         "unit": "provisional relative planning point",
         "confidence": "low",
         "history": [
@@ -1135,6 +1135,12 @@
             "earned": 0,
             "remaining": 2,
             "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          },
+          {
+            "date": "2026-11-05",
+            "earned": 0,
+            "remaining": 0,
+            "reason": "Superseded by GYM-007, which already includes exactly-one Celadon Castform. Remove two duplicate pending points; no added earned credit or lost completed work."
           }
         ]
       },
@@ -1142,26 +1148,27 @@
         "PKM-001"
       ],
       "status": {
-        "design": "Celadon ordinary Trainer7 Cacnea+Castform approved; exactly one there",
-        "implementation": "not started",
-        "automated": "not executed for new work",
-        "emulator": "not executed",
-        "pull_request": "not created",
-        "merge": "not merged"
+        "design": "exact level/moves approved in PR30; old missing-level note superseded",
+        "implementation": "covered by GYM-007/PR31; no independent duplicate work",
+        "automated": "see GYM-007",
+        "emulator": "see GYM-007",
+        "pull_request": "PR31 ready for review",
+        "merge": "unmerged"
       },
       "branch": null,
       "commit": null,
-      "pr_url": null,
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/31",
       "ci_url": null,
-      "blocker": "Castform level/moves and ordinary trainer balancing remain unassigned; the Celadon trainer slot is already approved, not missing.",
+      "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Map approved seventh Celadon trainer slot to source ID and await its actual level/moves; retain Forecast/GenIII forms.",
+      "next_action": "Follow GYM-007; stable historical ID retained with zero duplicate effort.",
       "checkpoint": "2026-11-04 supplied-export reconciliation; old unavailable-document claims superseded; no implementation/test credit from availability.",
       "source_exports": [
         "04_SPECIES_EVOLUTION_WORLD/Pokémon Lightning Yellow — Approved 252-Species Pokédex.txt",
         "02_GYMS/Pokémon Lightning Yellow — Eight-Gym Leader & Trainer Roster — Final Design Handoff (2026-11-01).txt"
       ],
-      "source_status": "available locally; checksums verified; precise approvals/read scope in reconciliation report"
+      "source_status": "available locally; checksums verified; precise approvals/read scope in reconciliation report",
+      "superseded_by": "GYM-007"
     },
     {
       "id": "WRL-001",
@@ -1500,8 +1507,8 @@
       "title": "Combined integration acceptance",
       "aliases": [],
       "effort": {
-        "earned": 8,
-        "remaining": 16,
+        "earned": 10,
+        "remaining": 14,
         "unit": "provisional relative planning point",
         "confidence": "low",
         "history": [
@@ -1516,6 +1523,12 @@
             "earned": 8,
             "remaining": 16,
             "reason": "Final clean build, full local mGBA8715 and GitHub modified/upstream jobs passed. Only executed scoped work earns credit; remaining acceptance retained."
+          },
+          {
+            "date": "2026-11-05",
+            "earned": 10,
+            "remaining": 14,
+            "reason": "Reconciled nine registration/tracker conflicts for27/29/31, exact normalization and all16 host suites pass; two integration-engineering points, no duplicate component implementation credit. Final full/CI live inPR35."
           }
         ]
       },
@@ -1527,21 +1540,21 @@
       ],
       "status": {
         "design": "approved scoped implementation",
-        "implementation": "scoped combined acceptance passed on main; broader release work remains",
-        "automated": "12 host suites/Museum static/clean repeatability/final Actions PASS",
-        "emulator": "full native276161 assertions plus Ponyta35/Museum1307/Blaine46 focused PASS",
-        "pull_request": "#2 consolidated stack, #22 Ponyta merged",
-        "merge": "merged into main"
+        "implementation": "prior acceptance on main; newer combined27/29/31 source and test registration reconciled in PR35",
+        "automated": "16 host suites, Museum and registration guard PASS; clean/full/CI final evidence live in PR35",
+        "emulator": "Blaine75 focused PASS; final complete combined evidence maintained in PR35",
+        "pull_request": "new integration PR35; original feature PRs remain separate/open",
+        "merge": "new integration unmerged; previous main acceptance retained"
       },
-      "branch": "main",
+      "branch": "feature/phase-one-integration-20261105",
       "commit": "7284dc0aac833f751882826e339273a97694ce9e",
-      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/2",
-      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41767198787",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/35",
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/35/checks",
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Retain global roster, full gameplay/hardware/link and new feature/weather/move/lighting validation; no duplicate integration points.",
+      "next_action": "Review combined acceptance PR35 without automatically merging feature PRs; retain broader acceptance scope.",
       "checkpoint": "2026-11-04 combined typing regression; no duplicated integration effort credit.",
-      "coverage_gap": "No complete playthrough, physical hardware or matching-peer link certification. Blaine victory/badge/TM38/revisit and future approved engine/weather/move systems remain outstanding; prior#14/#15 integration is resolved."
+      "coverage_gap": "Full natural playthrough, hardware/link, interrupted saves, full quest-log/weather/lighting/move-redesign acceptance remain. Exact three-feature source combination now tested separately; live full/CI results inPR35."
     },
     {
       "id": "INT-005",
@@ -1769,8 +1782,8 @@
       "title": "Blaine corrected five-member Double Battle",
       "aliases": [],
       "effort": {
-        "earned": 2,
-        "remaining": 1,
+        "earned": 3,
+        "remaining": 0,
         "unit": "provisional relative planning point",
         "confidence": "low",
         "history": [
@@ -1785,6 +1798,12 @@
             "earned": 2,
             "remaining": 1,
             "reason": "Owner-merged approved Blaine party plus combined host/build/native entry/immunity acceptance; full victory/badge/TM38/revisit coverage retains1 point."
+          },
+          {
+            "date": "2026-11-05",
+            "earned": 3,
+            "remaining": 0,
+            "reason": "Focused75 real-ROM assertions now exercise all five native opponents, victory/badge/TM38/flash/Continue/revisit. Scoped acceptance gap closed; no gameplay or other feature credit."
           }
         ]
       },
@@ -1795,17 +1814,17 @@
         "design": "Approved final five-member Donphan/Pidgeot/Sandslash/Aerodactyl/Flygon Double; mergedPR15, preserves current typing authority",
         "implementation": "implemented on main",
         "automated": "Blaine host audit and full combined Actions PASS",
-        "emulator": "46 focused native assertions plus full combined276132 PASS; no full victory/badge/TM38/revisit certification",
-        "pull_request": "#15 merged and consolidated",
+        "emulator": "75 focused mGBA0.10.5 PASS including actual win, badge/TM38/flash/Continue/nonduplicate revisit",
+        "pull_request": "gameplay15 merged; additional acceptance in unmerged PR35",
         "merge": "merged into main"
       },
       "branch": "main",
       "commit": null,
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/15",
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41765403411",
-      "blocker": "No remaining known compile/typing conflict; full battle victory, badge/TM38/revisit and comprehensive battle strategy testing outstanding.",
+      "blocker": null,
       "design_authority": "Owner supplied November2 Wild Encounters, Gym Roster, Fossils and Pokedex Compliance update; historical direct Drive401 did not prevent reading the supplied exports; latest concurrent PR15 requires version reconciliation.",
-      "next_action": "Complete actual full victory, badge/TM38/revisit coverage; no pending merge.",
+      "next_action": "Review added acceptance in PR35; full natural progression/balance/hardware/link remain general release limits.",
       "checkpoint": "2026-11-04 supplied-export reconciliation; old unavailable-document claims superseded; no implementation/test credit from availability.",
       "source_exports": [
         "04_SPECIES_EVOLUTION_WORLD/Pokémon Lightning Yellow — All 252 Species Typing & 67 Move Source Matrix — 2026-11-02.txt",
@@ -1829,7 +1848,8 @@
             "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41760575099"
           }
         }
-      ]
+      ],
+      "coverage_pr": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/35"
     },
     {
       "id": "BTL-006",
@@ -2275,6 +2295,21 @@
       "pr": 30,
       "url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/30",
       "status": "Unmerged PR30 exact design available; owner explicitly authorized its limited implementation on existing PR31 November4. Exact approved source preserved locally; no unrelated Gym implementation or spec merge implied."
+    },
+    {
+      "pr": 32,
+      "url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/32",
+      "status": "new documentation-only League handoff available; explicit review/merge before separate execution instruction; no gameplay implementation claimed"
+    },
+    {
+      "pr": 33,
+      "url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/33",
+      "status": "new documentation-only League handoff available; explicit review/merge before separate execution instruction; no gameplay implementation claimed"
+    },
+    {
+      "pr": 34,
+      "url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/34",
+      "status": "new documentation-only League handoff available; explicit review/merge before separate execution instruction; no gameplay implementation claimed"
     }
   ]
 }

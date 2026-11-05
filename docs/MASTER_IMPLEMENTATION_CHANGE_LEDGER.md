@@ -835,3 +835,40 @@ no reset/double credit/denominator increase. Drive synchronization remains pendi
 Rollback only the subsequent scoped Gym implementation delta to retain weather29;
 backup saves first, preserve original defeat flags and indoor-save precaution before
 any rollback to the old drought loader. No merge/auto-merge/release performed.
+
+### 2026-11-05 — INT-004 / GYM-004: isolated combined acceptance PR35
+
+Standing owner continuation/implementation/testing authorization; no new gameplay
+design. Reviewed exact source heads: rival27/62c99419, weather29/061f8780 and
+Castform31/02c97b7f. New feature/phase-one-integration-20261105 combines their code
+only on a review branch, retaining original source branches, PRs and main intact.
+Nine conflicts resolved in registrations/docs/tracking/normalization; both full
+native feature sets and all16 host runners retained. Expected old hashes remain;
+only frozen approved deltas normalized. Python syntax checking caught a truncated
+first resolution; corrected complete runners and registration guard supersede it.
+No runtime success claimed for that failed checkpoint. Recovery merge51b38c36,
+correction/native test754350e8; future final source/CI evidence maintained inPR35.
+
+GYM-004: actual fresh Blaine battle now wins against all five unmodified opponents,
+then original badge/TM38/flag scripts, flash/Continue and no-duplicate revisit run.
+Focused75 native assertions PASS with controlled player Mewtwo; old gate/type
+fixture discarded before fresh victory. No trainer/event/save production changes.
+Source files: normalizers/host assertions, CI and complete native registrations,
+new Blaine acceptance/registration audit, docs and tracker. Incoming source diffs
+are exactly existing rival learnsets/trainer data plus already included weather/Gym.
+All16 host suites, Museum and registration audit PASS. Clean/full/CI exact final
+conclusions are live inPR35; no emulator/manual/link claims inferred from source.
+
+Current effective source combination is documented in COMBINED_INTEGRATION_20261105.
+Main still has its prior accepted behavior; PR27/29/31/35 remain unmerged.
+GYM-004's one scoped acceptance point earned; INT-004 two reconciliation points
+(not duplicate component credit). GYM-003's obsolete missing-level/moves note is
+superseded by approved PR30/implemented GYM-007; remove its two duplicate pending
+points without adding earned credit or deleting the stable ID/history. Provisional
+tracked workload now546 rather than548; completed work remains completed.
+
+Broader balance/story/hardware/link/quest-log/interrupt and final visual coverage
+remain unverified. New documentation PR32–34 awaits review before its separate
+execution contract; no speculative League or other Gym parties implemented.
+Drive synchronization still pending; rollback can abandon integration branch and
+preserve all original feature heads, with existing weather save-downgrade warning.

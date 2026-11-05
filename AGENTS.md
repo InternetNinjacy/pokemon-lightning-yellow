@@ -63,8 +63,8 @@ implement finalized specifications on reviewable feature branches without repeat
 permission requests. Do not invent pending designs, merge PRs, or enable auto-merge.
 The roster is now 252: insert Castform at #233 and shift old #233–251 by one.
 Read docs/CUSTOM_POKEDEX.md. Preserve canonical IDs and save flags. Castform keeps
-Generation III Normal typing, Forecast and original forms. Its exactly-one Celadon
-Gym trainer assignment is pending trainer/level/moveset details; do not choose them.
+Generation III Normal typing, Forecast and original forms. Its exactly-one Celadon Gym assignment is now implemented under the explicit
+GYM-007/PR30 scope; other unassigned trainer details must not be invented.
 Run tests/run_pokedex_tests.py as well as existing suites and mGBA after Dex changes.
 
 The owner authorized the wild-double capability test. Read docs/WILD_DOUBLE_BATTLES.md.
@@ -197,3 +197,8 @@ Celadon fixed Sun must coexist with PR29 outdoor weather and old inside saves.
 Remove only Mary's superseded bag item under the approved ordinary-Gym rule.
 Run run_gym_castform_tests.py, every old suite and full guarded native acceptance.
 Leave PR31 open, unmerged and without auto-merge; document its PR29 dependency.
+
+INT-004 combined acceptance uses docs/COMBINED_INTEGRATION_20261105.md and PR35.
+Keep both rival and weather/Gym frozen normalizers/ABI/fixture registrations. Run
+all16 host suites, both checker scripts and full native acceptance. No new gameplay
+or main/feature PR merge is authorized by this integration branch.
