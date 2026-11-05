@@ -488,7 +488,9 @@
       "delta": null,
       "effect_rules": {
         "semantic": "FLINCH_20",
-        "secondary_percent": 20
+        "secondary_percent": 20,
+        "burn_percent": 0,
+        "flinch_percent": 20
       }
     },
     {
@@ -583,7 +585,12 @@
       "implementation_status": "NOT_IMPLEMENTED",
       "delta": null,
       "effect_rules": {
-        "semantic": "RECOIL_ONE_QUARTER"
+        "semantic": "RECOIL_ONE_QUARTER",
+        "recoil_fraction": [
+          1,
+          4
+        ],
+        "crash_on_miss": false
       }
     },
     {
@@ -631,7 +638,12 @@
       "implementation_status": "NOT_IMPLEMENTED",
       "delta": null,
       "effect_rules": {
-        "semantic": "DRAIN_HALF_CONTACT"
+        "semantic": "DRAIN_HALF_CONTACT",
+        "drain_fraction": [
+          1,
+          2
+        ],
+        "contact": true
       }
     },
     {
@@ -824,7 +836,17 @@
       "implementation_status": "NOT_IMPLEMENTED",
       "delta": null,
       "effect_rules": {
-        "semantic": "NATIVE_BIND_NO_REFRESH"
+        "semantic": "NATIVE_BIND_NO_REFRESH",
+        "trap_turns": [
+          2,
+          5
+        ],
+        "residual_fraction": [
+          1,
+          16
+        ],
+        "refresh_existing_trap": false,
+        "poison_percent": 0
       }
     },
     {
@@ -873,7 +895,10 @@
       "delta": null,
       "effect_rules": {
         "semantic": "SP_ATTACK_MINUS_1_30",
-        "secondary_percent": 30
+        "secondary_percent": 30,
+        "berry_steal": false,
+        "target_stat": "SP_ATTACK",
+        "stages": -1
       }
     },
     {
@@ -970,7 +995,8 @@
       "implementation_status": "NOT_IMPLEMENTED",
       "delta": null,
       "effect_rules": {
-        "semantic": "HIT_SOUND"
+        "semantic": "HIT_SOUND",
+        "sound": true
       }
     },
     {
@@ -1076,7 +1102,8 @@
       "implementation_status": "NOT_IMPLEMENTED",
       "delta": null,
       "effect_rules": {
-        "semantic": "HIT_SOUND"
+        "semantic": "HIT_SOUND",
+        "sound": true
       }
     },
     {
@@ -1484,7 +1511,7 @@
         "priority": 0,
         "target": "SELECTED",
         "effect": "FLINCH_20_MINIMIZE_REVIEW",
-        "secondaryEffectChance": 0,
+        "secondaryEffectChance": 20,
         "flags": null
       },
       "evidence": [
@@ -1512,7 +1539,8 @@
       "implementation_status": "NOT_IMPLEMENTED",
       "delta": null,
       "effect_rules": {
-        "semantic": "FLINCH_20_MINIMIZE_REVIEW"
+        "semantic": "FLINCH_20_MINIMIZE_REVIEW",
+        "secondary_percent": 20
       }
     },
     {
@@ -1940,7 +1968,8 @@
       "implementation_status": "NOT_IMPLEMENTED",
       "delta": null,
       "effect_rules": {
-        "semantic": "CONFUSION_30_NO_TRAP"
+        "semantic": "CONFUSION_30_NO_TRAP",
+        "traps": false
       }
     },
     {
@@ -1988,7 +2017,17 @@
       "implementation_status": "NOT_IMPLEMENTED",
       "delta": null,
       "effect_rules": {
-        "semantic": "NATIVE_ROLLOUT_INCLUDING_DEFENSE_CURL"
+        "semantic": "NATIVE_ROLLOUT_INCLUDING_DEFENSE_CURL",
+        "power_sequence": [
+          30,
+          60,
+          120,
+          240,
+          480
+        ],
+        "defense_curl_bonus": true,
+        "ends_on_miss": true,
+        "surf_spread_mechanics": false
       }
     },
     {
@@ -2728,7 +2767,7 @@
         "priority": 0,
         "target": "SELECTED",
         "effect": "CONFUSION_30_RAIN_BYPASS_SUN_50",
-        "secondaryEffectChance": 50,
+        "secondaryEffectChance": 30,
         "flags": null
       },
       "evidence": [
@@ -2757,7 +2796,9 @@
       "delta": null,
       "effect_rules": {
         "semantic": "CONFUSION_30_RAIN_BYPASS_SUN_50",
-        "secondary_percent": 50
+        "secondary_percent": 30,
+        "rain_accuracy_bypass": true,
+        "sun_accuracy_percent": 50
       }
     },
     {

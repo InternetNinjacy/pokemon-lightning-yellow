@@ -208,3 +208,10 @@ preserve the real capture/naming/flash paths, protected ARM ABI and all original
 native groups. Run all16 host suites, both checkers and full native suite; focus
 with LIGHTNING_WILD_NICKNAME_ONLY=1. PR36 is stacked on PR35; no production changes,
 merge/retarget/auto-merge or unsupported all-balls/naming coverage claims.
+
+BTL-005 reconciliation lives in docs/moves/README.md and PR37. It is a design/source
+ledger, not implemented410-move gameplay. Run scripts/check-move-reconciliation.py;
+retain actual/proposed/unresolved distinctions, full original IDs and existing-art
+constraint. Curse type answer and proposed animation/version choices must not be
+invented. Keep new gameplay and independent acceptance follow-ups separately
+reviewable; no merge/auto-merge or runtime claims from source identifiers.

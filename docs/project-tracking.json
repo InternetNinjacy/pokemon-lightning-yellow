@@ -3,7 +3,7 @@
   "updated": "2026-11-05",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "BTL-004-NICK acceptance-only PR36, stacked on reviewed integration35: actual keyboard renaming for both Double survivors into party/PC,367 focused assertions/all16 host and registration checks PASS. Production ROM unchanged; full/CI results live inPR36. Original feature PRs and main remain unmerged.",
+  "current_focus": "BTL-005 reconciliation PR37: complete354+56 ledger,20 original redesigns and one Curse-type ambiguity,67 candidates/source identifiers, target ABI/TM/save/name capacity plan. No production changes; existing automated acceptance follow-up remains independent. All previous progress retained.",
   "main_sha": "c960642ddbdacc1cf608d8c5081ee0ecd7cca6e9",
   "drive_sync": {
     "status": "pending: no direct Drive writing tool available",
@@ -481,8 +481,8 @@
       "title": "410-move redesign",
       "aliases": [],
       "effort": {
-        "earned": 0,
-        "remaining": 80,
+        "earned": 6,
+        "remaining": 74,
         "unit": "provisional relative planning point",
         "confidence": "low",
         "history": [
@@ -491,6 +491,12 @@
             "earned": 0,
             "remaining": 80,
             "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          },
+          {
+            "date": "2026-11-05",
+            "earned": 6,
+            "remaining": 74,
+            "reason": "Reconciled354+56 design/source inventory,20 original redesign policies plus Curse-type ambiguity,67 existing-art candidates, source/evidence and safe capacity/architecture plan. Static audit/preparation credit only; no gameplay/animation-runtime credit."
           }
         ]
       },
@@ -498,21 +504,21 @@
         "BTL-001"
       ],
       "status": {
-        "design": "17/17 type design reviews locked; complete registers/change ledger available",
-        "implementation": "not started",
-        "automated": "not executed for new work",
-        "emulator": "not executed",
-        "pull_request": "not created",
-        "merge": "not merged"
+        "design": "17/17 type lineups locked; complete410-row reconciliation recorded with explicit remaining decisions",
+        "implementation": "move redesign not implemented; reconciliation/tooling in PR37 only",
+        "automated": "410-row/category/approved-exception/provenance/67-script static checks PASS;16 prior host suites and3 static checkers PASS",
+        "emulator": "no new/reworked-move playback or battle implementation tested; existing parent native463604 proof remains separate",
+        "pull_request": "reconciliation PR37 ready for design/technical review; not an implementation PR",
+        "merge": "unmerged"
       },
-      "branch": null,
+      "branch": "docs/move-system-reconciliation-20261105",
       "commit": null,
-      "pr_url": null,
-      "ci_url": null,
-      "blocker": "Engineering reconciliation pending: assemble authoritative354+56 overlay, safe move/TM IDs, effects and viable existing-art reuse. Candidate composites and unassigned per-species distributions are separate dependencies; documents are available.",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/37",
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/37/checks",
+      "blocker": "Curse source TYPE_MYSTERY versus Ghost inventory needs explicit type answer (asked);50 animation assignments remain proposals; Payback/Dragon Rush version edge policy needs clarification. Exact species/TM learner distributions remain separate PhaseTwo dependencies, not missing exports.",
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Read/reconcile supplied move register, all-type tracker and change ledger; do not reopen locked type reviews or guess per-species learners.",
-      "checkpoint": "2026-11-04 supplied-export reconciliation; old unavailable-document claims superseded; no implementation/test credit from availability.",
+      "next_action": "Review docs/moves artifacts; resolve specific recorded choices without reopening17 type designs; implement proposed M1–M8 milestones only against finalized mechanics. Continue old-feature automated acceptance independently.",
+      "checkpoint": "2026-11-05 complete inventory/static reconciliation, no new gameplay",
       "source_exports": [
         "03_MOVES/Pokémon Lightning Yellow — Approved Move Change Ledger — Source Verbatim v0.1.txt",
         "03_MOVES/Pokémon Lightning Yellow — Complete TM & Move Register — v1 (2026-10-29).txt",

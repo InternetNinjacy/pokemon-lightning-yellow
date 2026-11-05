@@ -15,6 +15,10 @@ assert all(r['key']=='CURSE' or r['approved']['type'] in ['NORMAL','FIRE','WATER
 assert sum(r['identity']=='REWORKED_ORIGINAL' for r in old)==20
 for key,field,value in [('SHADOW_BALL','category','SPECIAL'),('ASTONISH','category','SPECIAL'),('SPITE','category','SPECIAL'),('GRUDGE','category','SPECIAL'),('LEECH_LIFE','category','SPECIAL'),('LEECH_LIFE','power',80),('PIN_MISSILE','power',55),('TWINEEDLE','power',40),('ROAR','power',70),('ROAR','priority',0),('SANDSTORM','type','GROUND'),('MEAN_LOOK','type','GHOST'),('ROCK_TOMB','accuracy',90),('HEART_STAMP','power',55),('STONE_EDGE','pp',10),('DRAGON_PULSE','power',85),('FLAME_FANG','power',90),('BUG_BITE','power',65)]:
  assert keys[key]['approved'][field]==value,(key,field)
+assert keys['HURRICANE']['approved']['secondaryEffectChance']==30 and keys['DRAGON_RUSH']['approved']['secondaryEffectChance']==20
+assert keys['HURRICANE']['effect_rules']['sun_accuracy_percent']==50
+assert keys['TIDAL_CRASH']['effect_rules']['defense_curl_bonus'] is True
+assert keys['BLAZE_RUSH']['effect_rules']['crash_on_miss'] is False
 assert keys['THUNDERBOLT']['approved']['power']==95 and keys['THUNDER']['approved']['power']==120
 assert keys['THUNDER_WAVE']['approved']['target']=='ALL_OTHERS_IN_DOUBLES'
 assert keys['DISCHARGE']['approved']['target']==keys['PETAL_BLIZZARD']['approved']['target']=='ALL_OTHERS'

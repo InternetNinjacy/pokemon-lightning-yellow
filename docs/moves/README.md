@@ -13,7 +13,7 @@ No production move, species, item, trainer, graphic, save or battle code changes
   overlay, per-field basis, source lines, effects and implementation status.
 - [Authored overlays](approved-design-overlays.json):20 existing redesign/policy
   entries plus one explicitly unresolved Curse-type row and56 new designs.
-- [67-entry animation audit](animation-reuse.json):56 new +11 focused originals.
+- [Readable67-entry animation review](animation-reuse.md) and [machine-readable audit](animation-reuse.json):56 new +11 focused originals.
 - [TM/capacity plan](tm-and-capacity-plan.json): approved assignments, proposed
   stable-ID implementation, saved-pocket and ABI evidence.
 - [Implementation/acceptance plan](IMPLEMENTATION_PLAN.md).

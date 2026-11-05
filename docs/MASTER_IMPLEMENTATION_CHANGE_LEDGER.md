@@ -900,3 +900,40 @@ or duplicate implementation credit. Prior known rival/weather registration confl
 notes now link completed combined native/CI463243 inPR35. Drive sync pending.
 Rollback only this test/docs delta to leave the parent game unchanged. No ROM/save/
 BIOS/capture artifact distribution, merge, retarget or auto-merge performed.
+
+### 2026-11-05 — BTL-005:410-move reconciliation and implementation plan, PR37
+
+Owner explicitly selected move-system reconciliation and remaining automated
+acceptance. Source reference is tested nickname/integration parent92838e5e.
+No production code/data, move IDs, balancing, effects or artwork changed.
+Artifacts docs/moves contain354-source+56-new records,20 approved original
+redesign policies and one explicit Curse type ambiguity, source SHA/line evidence,
+67 existing-art candidates, portable generation/checking, capacity and M1–M8 plan.
+333 originals retain source fields under the existing split; no approved redesign
+is falsely described as implemented. Newly declared custom Bug Bite differs from
+the official berry move. Historical proposals/values are visibly superseded.
+
+Native target ABI executed: BattleMove12/category9/flags8; ELF4260bytes355records.
+Nine-bit level-up IDs support proposed355–410, without saved move-field widening.
+Proposed explicit machine metadata preserves old item IDs and58 saved TM slots:
+51TMs+7obtainableHMs fit; HM08Dive remains defined, old full-pocket handling stays.
+No new SaveBlock1 slot is inserted. Four approved names exceed12; propose15-char
+support with buffer/pixel/runtime review, never silent abbreviations. TM09LeechSeed
+and49SignalBeam later approvals supersede early vanilla inventory rows.
+
+Checks: generator repeatability, complete410 identities/categories/exclusions,
+custom numeric exceptions and67 script-reference existence PASS; all16 earlier
+host suites and3 static checkers PASS. Fifty animation choices remain explicitly
+proposed; no new/composite playback or redesigned battle execution is claimed.
+The existing parent463604 native proof does not cover unimplemented new moves.
+Targeted Curse type question asked: TYPE_MYSTERY source versus Ghost inventory.
+Other recorded version/animation decisions and species distribution are not
+silently guessed. All17 type balance reviews remain locked.
+
+Review branch docs/move-system-reconciliation-20261105, PR37, source/tooling
+commit62853bc4 plus reviewed corrections; no merge or auto-merge. Six planning/
+reconciliation points earned of existing80,74 implementation/acceptance points
+remain. Overall provisional300/546=54.95%; no duplicate old-source test credit.
+Drive sync pending. Further actual Bag/battle acceptance must be a separate test
+change, not confused with this static design inventory. Rollback this docs/tooling
+PR leaves the game unchanged.
