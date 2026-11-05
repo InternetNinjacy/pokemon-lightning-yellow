@@ -55,6 +55,7 @@ jobs:
           python3 tests/run_gym_castform_tests.py
           python3 tests/run_rival_tests.py
           python3 scripts/check-integration-registrations.py
+          python3 scripts/check-move-reconciliation.py
           python3 scripts/check-pewter-museum-trivia.py
       - name: Check out independent unchanged upstream baseline
         if: matrix.target == 'upstream-baseline'

@@ -1,0 +1,36 @@
+#!/usr/bin/env python3
+"""Audit inventory/provenance/approved exceptions; NOT a battle implementation test."""
+from pathlib import Path
+import collections,json,re,subprocess,sys
+R=Path(__file__).resolve().parents[1]
+subprocess.run([sys.executable,str(R/'scripts/reconcile-move-specification.py'),'--check'],cwd=R,check=True)
+d=json.loads((R/'docs/moves/move-specification.json').read_text());rows=d['moves'];keys={r['key']:r for r in rows}
+assert len(rows)==410 and len(keys)==410
+old=[r for r in rows if r['id'] is not None];new=[r for r in rows if r['id'] is None]
+assert len(old)==354 and {r['id'] for r in old}==set(range(1,355))
+assert len(new)==56 and {r['proposed_id'] for r in new}==set(range(355,411))
+assert all(r['approved']['category'] in ['PHYSICAL','SPECIAL','STATUS'] for r in rows)
+assert keys['CURSE']['approved']['type'] is None and keys['CURSE']['current']['type']=='MYSTERY'
+assert all(r['key']=='CURSE' or r['approved']['type'] in ['NORMAL','FIRE','WATER','ELECTRIC','GRASS','ICE','FIGHTING','POISON','GROUND','FLYING','PSYCHIC','BUG','ROCK','GHOST','DRAGON','DARK','STEEL'] for r in rows)
+assert sum(r['identity']=='REWORKED_ORIGINAL' for r in old)==20
+for key,field,value in [('SHADOW_BALL','category','SPECIAL'),('ASTONISH','category','SPECIAL'),('SPITE','category','SPECIAL'),('GRUDGE','category','SPECIAL'),('LEECH_LIFE','category','SPECIAL'),('LEECH_LIFE','power',80),('PIN_MISSILE','power',55),('TWINEEDLE','power',40),('ROAR','power',70),('ROAR','priority',0),('SANDSTORM','type','GROUND'),('MEAN_LOOK','type','GHOST'),('ROCK_TOMB','accuracy',90),('HEART_STAMP','power',55),('STONE_EDGE','pp',10),('DRAGON_PULSE','power',85),('FLAME_FANG','power',90),('BUG_BITE','power',65)]:
+ assert keys[key]['approved'][field]==value,(key,field)
+assert keys['THUNDERBOLT']['approved']['power']==95 and keys['THUNDER']['approved']['power']==120
+assert keys['THUNDER_WAVE']['approved']['target']=='ALL_OTHERS_IN_DOUBLES'
+assert keys['DISCHARGE']['approved']['target']==keys['PETAL_BLIZZARD']['approved']['target']=='ALL_OTHERS'
+assert keys['SNARL']['approved']['target']=='BOTH_OPPONENTS'
+assert all(k not in keys for k in ['NIGHT_TERROR','PHANTOM_GRASP','PSYCHIC_DREAD','DREAD_GLARE','SEISMIC_SURGE','CLOSE_COMBAT','VACUUM_WAVE','PSYCHO_CUT','PSYCHIC_FANGS','AQUA_TAIL','HYPERSPACE_FURY'])
+a=json.loads((R/'docs/moves/animation-reuse.json').read_text())['entries'];asm=(R/'data/battle_anim_scripts.s').read_text();labels=set(re.findall(r'^(Move_\w+)::?',asm,re.M))
+assert len(a)==67 and len({r['key'] for r in a})==67
+assert sum(keys[r['key']]['id'] is None for r in a)==56
+for entry in a:
+ assert not entry['runtime_verified'] and not entry['composition_verified']
+ assert all(s['label'] in labels for s in entry['scripts'])
+assert sum('Proposed' in r['approval_label'] for r in a)==50
+assert all(not r['animation']['runtime_verified'] for r in rows)
+for r in rows:
+ for e in r['evidence']:assert e['source'] in d['sources'] and 1<=e['line']<=d['sources'][e['source']]['lines']
+long=[r['name'] for r in new if len(r['name'])>12]
+assert set(long)=={'Skitter Slash','Scorching Sands','Petal Blizzard','Dual Wingbeat'}
+print('PASS:354 original +56 approved-new inventory,20 original redesign policies, all categories, named custom values, excluded proposals and67 source-present animation candidates.')
+print('PASS:50 animation choices remain labelled proposals; no runtime/new-move implementation claim. Four long names and engine translation fields remain explicitly recorded.')
