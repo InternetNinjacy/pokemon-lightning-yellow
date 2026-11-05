@@ -459,7 +459,7 @@
         "automated": "all16 host suites, Museum and18-group registration guard PASS; final clean/full/CI evidence inPR36",
         "emulator": "367 focused nickname assertions PASS; parent combined463243 PASS; final full new suite inPR36",
         "pull_request": "gameplay9 merged; acceptance PR36 stacked on unmerged integration35",
-        "merge": "merged into main via owner-authorized consolidation"
+        "merge": "original gameplay merged on main; new acceptance PR36 remains unmerged"
       },
       "branch": "feature/wild-capture-nickname-acceptance",
       "commit": "6ff574dc205a007a93a4724fd6eda867eeff8fdf",

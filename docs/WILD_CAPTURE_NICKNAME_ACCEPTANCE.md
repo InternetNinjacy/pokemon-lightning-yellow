@@ -37,7 +37,7 @@ resolved the fixture; no production patch or disabled assertion was used.
 - `LIGHTNING_WILD_NICKNAME_ONLY=1 python3 tests/emulator/run.py`:367 assertions PASS
   on local mGBA0.10.5 (four scenarios, includes invocation/memory safety checks).
 - All16 host suites, Museum and registration check PASS. New native group is added
-  to the complete default suite; all prior18 groups including this one remain.
+  to the complete default suite; all17 prior groups remain, plus the new eighteenth.
 - `python3 tests/emulator/run.py`: full conclusions/counts recorded in live PR36.
 - Existing unchanged production ROM/ELF matches PR35's clean build, SHA256
   `923fba779dbfdc05529e40abb36ec4f8442172d7b74ff65bb5010a065724bf35`.
