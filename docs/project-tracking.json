@@ -3,7 +3,7 @@
   "updated": "2026-11-05",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "BTL-005 reconciliation PR37: complete354+56 ledger,20 original redesigns and one Curse-type ambiguity,67 candidates/source identifiers, target ABI/TM/save/name capacity plan. No production changes; existing automated acceptance follow-up remains independent. All previous progress retained.",
+  "current_focus": "BTL-005 move reconciliation PR37 completed as source/design inventory, no new-move gameplay claimed; PKM-005-BAG PR39 actual Bag acceptance eleven routes PASS49176, full native/clean CI pending. Earlier work and unresolved owner choices retained.",
   "main_sha": "c960642ddbdacc1cf608d8c5081ee0ecd7cca6e9",
   "drive_sync": {
     "status": "pending: no direct Drive writing tool available",
@@ -229,8 +229,8 @@
       "title": "Expanded Dex/evolution acceptance",
       "aliases": [],
       "effort": {
-        "earned": 6,
-        "remaining": 2,
+        "earned": 7,
+        "remaining": 1,
         "unit": "provisional relative planning point",
         "confidence": "low",
         "history": [
@@ -251,6 +251,12 @@
             "earned": 6,
             "remaining": 2,
             "reason": "Final clean build, full local mGBA8715 and GitHub modified/upstream jobs passed. Only executed scoped work earns credit; remaining acceptance retained."
+          },
+          {
+            "date": "2026-11-05",
+            "earned": 7,
+            "remaining": 1,
+            "reason": "PKM-005-BAG PR39 focused actual START/Bag acceptance eleven routes PASS49176; one existing point credited, real link/hardware remains. Full suite/CI pending."
           }
         ]
       },
@@ -262,9 +268,9 @@
       "status": {
         "design": "approved scoped implementation",
         "implementation": "partial acceptance; remaining coverage explicitly recorded",
-        "automated": "all five host suites PASS; clean rebuild identical; GitHub both jobs SUCCESS",
-        "emulator": "full local mGBA0.10.5 PASS:8715 assertions; selected scenes/battles only",
-        "pull_request": "merged; implementation history retained",
+        "automated": "All16 host suites and3 static checkers PASS; new full-suite/CI pending",
+        "emulator": "PR39 focused actual START/Bag evolution eleven routes PASS49176; full suite pending",
+        "pull_request": "historical implementation merged; acceptance follow-up PR39 open",
         "merge": "merged into main via owner-authorized consolidation"
       },
       "branch": "main",
@@ -273,12 +279,18 @@
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41376878452",
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Full overworld Bag evolution navigation and a real link-trade peer remain unverified.",
-      "checkpoint": "2026-11-02 final stabilization: commit6ff574dc205a007a93a4724fd6eda867eeff8fdf; local8715; Actions41376878452 SUCCESS",
-      "coverage_gap": "Full overworld Bag evolution navigation and a real link-trade peer remain unverified.",
+      "next_action": "Real link-trade peer/hardware remain unverified; complete PR39 full native and clean CI evidence.",
+      "checkpoint": "2026-11-05 PR39 a6e179a3 eleven real Bag routes PASS49176; production source unchanged.",
+      "coverage_gap": "Real link-trade peer/hardware remain unverified; no exhaustive item/menu permutation claim.",
       "implementation_ref": {
         "branch": "feature/phase-one-stabilization",
         "commit": "6ff574dc205a007a93a4724fd6eda867eeff8fdf"
+      },
+      "acceptance_ref": {
+        "branch": "feature/bag-evolution-acceptance",
+        "commit": "a6e179a3",
+        "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/39",
+        "report": "docs/BAG_EVOLUTION_ACCEPTANCE.md"
       }
     },
     {
@@ -2265,7 +2277,7 @@
   },
   "queue_crosswalk": "Q01–Q08 mapping awaits full reading/reconciliation of supplied November3 Work Queue export; do not invent mappings.",
   "acceptance_limits": {
-    "PKM-005": "Full overworld Bag evolution navigation and a real link-trade peer remain unverified.",
+    "PKM-005": "Real link-trade peer/hardware remain unverified; no exhaustive item/menu permutation claim.",
     "BTL-003": "Complete trainer-AI strategy/gameplay coverage remains unverified; selected ROM damage/AI/UI tests pass.",
     "BTL-004": "Nickname acceptance/rename, successful captures with every ball, faint/replacement/whiteout, forced-end/spread moves and complete weather interactions remain unverified.",
     "INT-004": "Current stack through PR#13 passes scoped build/tests. Global eligibility, final weather/lighting/move redesign and full release/hardware/link/progression acceptance remain outstanding; no duplicate feature credit.",

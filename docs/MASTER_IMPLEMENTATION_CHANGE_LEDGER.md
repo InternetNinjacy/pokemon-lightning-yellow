@@ -937,3 +937,29 @@ remain. Overall provisional300/546=54.95%; no duplicate old-source test credit.
 Drive sync pending. Further actual Bag/battle acceptance must be a separate test
 change, not confused with this static design inventory. Rollback this docs/tooling
 PR leaves the game unchanged.
+
+
+## 2026-11-05 — PKM-005-BAG — actual Bag evolution acceptance, PR39
+
+Owner requested remaining automated acceptance alongside BTL-005 reconciliation.
+Separate branch feature/bag-evolution-acceptance stacked on37; source test commit
+a6e179a3. No production code, gameplay, artwork or save layout changed. New native
+bag_evolution.c plus runner/ABI symbol registrations exercise actual controller
+START/Bag/USE/party/evolution/Bag/field input for all eleven approved item routes.
+Before: full Bag-navigation gap. Now: focused mGBA49176 PASS including incompatible
+targets, eight cancellation/retry routes, eleven one-item commits and flash
+persistence. Everstone refusal and retained held King's Rock verified. The three
+original Eevee stones retain noncancelable behavior; initial incorrect test
+expectation corrected without source changes. All16 host suites/3 static checks
+PASS; default full native and CI evidence pending at this checkpoint.
+
+Authority unchanged: docs/EVOLUTION_MECHANICS.md, EVOLUTION_OVERHAUL.md and supplied
+final evolution decisions; no Clamperl expansion or other methods invented.
+Files/report: docs/BAG_EVOLUTION_ACCEPTANCE.md, tests/emulator/{bag_evolution.c,
+run.py,runner.c}, integration registration checker and dashboard renderer. Fixes
+two stale renderer summary sentences to match already documented Ranger/rival/
+Blaine evidence. Real link-trade peer/hardware and exhaustive permutations remain.
+One existing acceptance point earned (7/8 PKM-005), no denominator increase or
+double-counting. Historical merged PR9 references retained; PR39 is follow-up,
+not a false implementation/merge claim. Rollback acceptance PR leaves gameplay
+unchanged; Drive synchronization still pending. No merge or auto-merge.
