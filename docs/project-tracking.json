@@ -3,7 +3,7 @@
   "updated": "2026-11-05",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "BTL-005 move-engine foundations M1a implemented under owner November5 approval. Curse Ghost/Status,50 animation assignments approved, GenIV Payback/Dragon Rush policy recorded. Safe15-char buffers,17-byte punctuation and adaptive summary font; no56 new IDs/effects enabled. Final native/clean CI evidence in foundation PR; continue M1b layouts then namespace/effects. All parent progress retained.",
+  "current_focus": "BTL-005 M1b long-name UI complete within its limited scope: PR41 stacked on PR40. Full21-group mGBA513858/focused797 assertions and18 hosts/3 checkers PASS, identical clean rebuild. Actual remote conclusions at PR41 checks. No new IDs/effects enabled; namespace and M2–M8 remain. All parent progress retained.",
   "main_sha": "c960642ddbdacc1cf608d8c5081ee0ecd7cca6e9",
   "drive_sync": {
     "status": "pending: no direct Drive writing tool available",
@@ -493,8 +493,8 @@
       "title": "410-move redesign",
       "aliases": [],
       "effort": {
-        "earned": 8,
-        "remaining": 72,
+        "earned": 10,
+        "remaining": 70,
         "unit": "provisional relative planning point",
         "confidence": "low",
         "history": [
@@ -515,6 +515,12 @@
             "earned": 8,
             "remaining": 72,
             "reason": "M1a safe15-char storage,17-byte punctuation buffer, adaptive summary font and Ghost/Status Curse implemented; focused native298 and17 host suites passed. Remaining M1–M8 scope retained; no56-move implementation claim."
+          },
+          {
+            "date": "2026-11-05",
+            "earned": 10,
+            "remaining": 70,
+            "reason": "M1b long-name battle/relearner layouts implemented and focused797 native assertions plus18 host suites/3 checkers passed. Credit2 within existing80-point move scope; full regression/CI evidence recorded separately, no new-move/effect completion credit."
           }
         ]
       },
@@ -523,20 +529,18 @@
       ],
       "status": {
         "design": "Owner approved; November5 Curse/animation/GenIV edge choices resolved; PhaseTwo distribution remains separate",
-        "implementation": "M1a partial: Curse Ghost, safe name buffers/summary font; no new IDs/effects enabled",
-        "automated": "All17 hosts/3 static checkers PASS; final clean local rebuild identical; independent upstream/modified CI at PR40 checks",
-        "emulator": "Final full20-group mGBA0.10.5 PASS513097; focused330/vendor309 PASS; summary/relearner screenshots inspected; remote CI conclusions linked at PR40",
-        "pull_request": "foundation PR40 open, stacked on PR39; reconciliation PR37 preserved",
+        "implementation": "M1a foundations plus M1b long-name battle/relearner layouts; no new IDs/effects enabled",
+        "automated": "All18 host suites/3 checkers PASS; identical clean rebuild d6b1a818…206a0; actual remote conclusions at PR41 checks",
+        "emulator": "Full21-group mGBA0.10.5 PASS513858; focused797 PASS; Single/Double/reorder/PP/flash/partner/relearner screenshots inspected",
+        "pull_request": "PR41 open, stacked on PR40; parent/reconciliation PRs retained",
         "merge": "unmerged; no auto-merge"
       },
-      "branch": "feature/move-engine-foundations",
-      "commit": "aaf898e413b11a7a0cc63d38c241cded19f6bf36",
-      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/40",
-      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/40/checks",
+      "branch": "feature/move-engine-long-name-ui",
+      "commit": "715e1dff255a6aacaa22498ca5fb62063a26d3dd",
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Continue M1b battle/relearner layouts before enabling long-name rows; append355–410 complete entries only with correct effects; preserve parent features.",
-      "checkpoint": "Production source aaf898e4: full513097/focused330/vendor309 PASS, clean hash e9fe4bd0…68b1e; see PR40 for actual remote conclusions. M1a done; M1b/layout/namespace/effects remain.",
+      "next_action": "Complete namespace/effect wiring and approved original redesigns incrementally, without exposing placeholder moves; preserve all parent acceptance.",
+      "checkpoint": "Production source715e1dff: full513858/focused797 PASS,18 hosts/3 checkers PASS; clean identical d6b1a818…206a0; actual remote conclusions at PR41 checks.",
       "source_exports": [
         "03_MOVES/Pokémon Lightning Yellow — Approved Move Change Ledger — Source Verbatim v0.1.txt",
         "03_MOVES/Pokémon Lightning Yellow — Complete TM & Move Register — v1 (2026-10-29).txt",
@@ -545,10 +549,22 @@
         "03_MOVES/Pokémon Lightning Yellow — Pre-Codex Move & Animation Handoff — Draft v0.1.txt"
       ],
       "source_status": "available locally; checksums verified; precise approvals/read scope in reconciliation report",
-      "coverage_gap": "Battle/relearner long-name layouts, new namespace/effects/animations/AI/TM integration and M2–M8 runtime acceptance pending; no remaining three owner choices.",
+      "coverage_gap": "New namespace/effects/animations/AI/TM integration and M2–M8 runtime acceptance, real peer link and hardware remain. No410-move gameplay completion claim.",
       "reconciliation_pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/37",
       "commit_role": "Latest tested production source; later branch-tip changes may record evidence only",
-      "initial_implementation_commit": "7738e796"
+      "initial_implementation_commit": "7738e796",
+      "foundation_ref": {
+        "branch": "feature/move-engine-foundations",
+        "commit": "aaf898e413b11a7a0cc63d38c241cded19f6bf36",
+        "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/40",
+        "full_native_assertions": 513097
+      },
+      "implementation_milestones": {
+        "BTL-005-M1A": "Foundations PR40, complete within its limited scope; unmerged",
+        "BTL-005-M1B": "PR41: complete within limited UI scope; full513858/focused797,18 hosts/3 checkers and clean reproducibility PASS locally; remote actual conclusions at PR checks; unmerged"
+      },
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/41",
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/41/checks"
     },
     {
       "id": "TIM-001",

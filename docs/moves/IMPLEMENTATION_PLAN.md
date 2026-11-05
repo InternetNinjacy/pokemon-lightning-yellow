@@ -1,6 +1,6 @@
 # Move engine architecture and acceptance milestones
 
-Execution underway: M1a name capacity and approved Curse type in the foundation branch; remaining milestones are not implemented. See FOUNDATION_STATUS.md.
+Execution underway: M1a safe name capacity/Curse type in PR40; M1b battle and relearner layout implementation is its separate child. See FOUNDATION_STATUS.md and LONG_NAME_UI_STATUS.md for executed evidence and remaining namespace/effect work. No new move IDs are enabled yet.
 
 | Milestone | Main changes | Required acceptance |
 |---|---|---|

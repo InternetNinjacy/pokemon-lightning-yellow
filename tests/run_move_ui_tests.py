@@ -37,6 +37,14 @@ for name,body in re.findall(r'\[(B_WIN_\w+)\] = \{(.*?)\}',bg,re.S):
   blocks.append((name,start,start+size))
 assert max(hi for _,_,hi in blocks)<0x400
 print('PASS: battle BG0 window character ranges do not overlap or cross the character bank.')
+new_tiles=sum(hi-lo for _,lo,hi in blocks)
+old=prior_move_ui_source('src/battle_bg.c').split('sStandardBattleWindowTemplates[] = {',1)[1].split('[B_WIN_LEVEL_UP_BOX]',1)[0]
+old_tiles=0
+for body in re.findall(r'\[B_WIN_\w+\] = \{(.*?)\}',old,re.S):
+ old_tiles+=int(re.search(r'\.width = (\d+)',body)[1])*int(re.search(r'\.height = (\d+)',body)[1])
+assert old_tiles==new_tiles==344
+print('PASS: battle BG0 window pixel buffers retain the original344 tiles/11008 bytes in total.')
+
 # Relearner text buffers and the dynamically created yes/no window share BG0.
 learn=Path('src/learn_move.c').read_text()
 main=learn.split('sWindowTemplates[9] = {',1)[1].split('DUMMY_WIN_TEMPLATE',1)[0]

@@ -1,6 +1,6 @@
 # Move-system reconciliation — BTL-005
 
-Status: **inventory reconciled; owner decisions resolved; M1a implementation underway**.
+Status: **inventory reconciled; owner decisions resolved; M1a implemented; M1b UI implemented in PR41 (remote results at Checks)**.
 Historical baseline inspected: `92838e5eb64d19942cb5c51cfdef6991503ac3ad`, including the tested
 rival/weather/Gym integration. Main remains a separate, unmodified review baseline.
 Owner requested this reconciliation and remaining automated acceptance on Nov5.
@@ -122,7 +122,7 @@ from this approval. Distribution remains Phase Two and no learner rows are inven
 
 M1a name-buffer capacity and Curse type are implemented in the foundation branch;
 see [foundation status](FOUNDATION_STATUS.md). No56-move namespace or effects are
-yet enabled. Full battle/relearner layout adaptation precedes exposing long names.
+yet enabled. The separate [M1b UI child](LONG_NAME_UI_STATUS.md) adapts battle/relearner layouts and records its own acceptance. New IDs/effects still require correct implementation before exposure.
 Foul Play modifier research, effect translation, AI and new mechanics remain
 technical implementation work, not requests to reopen17 approved type reviews.
 

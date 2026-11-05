@@ -1062,3 +1062,43 @@ Remote run conclusions in PR40 checks/review description remain distinct from
 local proof. Later evidence-only tip commits do not change the tested production
 source. Final milestone credit remains8/80, overall303/546=55.49% provisional; no
 extra credit for reruns. All remaining M1–M8 work and external coverage retained.
+
+## 2026-11-05 — BTL-005-M1B long-name UI
+
+Owner's continuous approved move-system implementation authorization; authoritative
+410-name inventory and November5 decisions unchanged. Separate child branch
+`feature/move-engine-long-name-ui`, parent PR40/ee3a0e3c; no changes to main or
+other PR heads. Previous64px battle cells/80px relearner list could clip approved
+13–15-character names. New shared168px battle canvas provides76px per name;
+88px relearner list plus compact numeric stats keeps full names and values.
+40px side pane uses unique three-letter type tags and PHYS/SPEC/STAT from the
+same authoritative move data, with PP preserved. Existing frame/cursor/font
+artwork reused; original assets, move data, IDs, save/wire layouts unchanged.
+
+Seven production files and frozen delta/test registrations are listed in
+`docs/moves/LONG_NAME_UI_STATUS.md`. Static audits now detect overlapping battle
+and relearner character allocations. Actual focused mGBA797 guarded assertions
+PASS, Single/Double/menu input/reordering/PP/flash persistence/partner/relearner
+scroll/cancel, all54 type/category combinations. Screenshots inspected locally;
+no binary artifacts uploaded. All18 host suites/3 checkers PASS. Full21-group,
+clean rebuild and remote CI are not inferred from focused success; final evidence
+is appended when executed. Revert child PR only for rollback; parent functionality
+preserved, no migration needed. Real peer link/hardware and full move-effects/
+animations remain separate. Drive synchronization pending.
+
+Current effective move-engine version: original354 playable moves with approved
+Ghost/Status Curse,15-character capacity and M1b full-name layouts;56 new IDs and
+new mechanics are not yet enabled. Provisional BTL-00510 earned/70 remaining,
+overall305/546=55.86%; credit within existing scope, no duplicate regression credit.
+
+### M1b final executed local acceptance / review reference
+
+Production source715e1dff255a6aacaa22498ca5fb62063a26d3dd: full21-group
+mGBA0.10.5 **PASS513858**, focused797, all18 host suites/3 checkers PASS.
+Clean rebuild identical SHA256d6b1a818de5441d399bba63152b3aede8617c9e3a14f6a8314aadbb5176206a0.
+BG0 window buffers retain the original344 tiles/11008 bytes, with disjoint
+allocations. PR41 https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/41
+is open against PR40; no merge/auto-merge. Actual remote CI conclusions belong to
+PR41 Checks/review description; local success is not a remote success claim.
+Later evidence-only commits preserve the production source above. Current earned
+credit remains305/546,55.86%; remaining namespace and M2–M8 are not counted complete.
