@@ -241,6 +241,7 @@ required = [
     'ShowPokemonSummaryScreen', 'sMonSummaryScreen', 'sMoveSelectionCursorPos', 'gSideStatuses', 'gBattleStruct', 'gBattleScripting', 'gBattleMoveDamage', 'gDisplayedStringBattle',
 ]
 required += ['PewterCity_Gym_EventScript_Liam','CeruleanCity_Gym_EventScript_Diana','CeladonCity_Gym_EventScript_Mary','Cmd_setweatherballtype','gBattleMonForms','SaffronCity_Dojo_Text_NeedTwo']
+required += ['Task_StartMenuHandleInput','sStartMenuCursorPos','sStartMenuOrder','Task_BagMenu_HandleInput','Task_HandleChooseMonInput','Task_EvolutionScene']
 symbols={}
 end_ewram=0
 for line in subprocess.check_output(['arm-none-eabi-nm','-S','pokefirered.elf'],text=True).splitlines():
