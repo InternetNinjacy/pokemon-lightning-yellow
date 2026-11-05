@@ -145,3 +145,10 @@ vanilla pre-split category table. The original upstream namespace is unchanged.
 Generated records distinguish the historical baseline commit from the current
 source fingerprint (`current_battle_moves_sha256`); current Curse fields are
 not falsely attributed to the original baseline commit.
+
+## M2a approved original data
+
+[PR42 eight-move data milestone](ORIGINAL_DATA_STATUS.md) implements ten approved
+fields and preserves specialized effects/other rows. Nine original policies now
+have implemented source fields including Curse; twelve policies and all56 new
+moves remain. Source implementation is not exhaustive runtime effect acceptance.

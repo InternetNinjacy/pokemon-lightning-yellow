@@ -242,3 +242,12 @@ existing fonts/frame/cursors only. Retain all18 host suites/3 checkers and21 nat
 groups, including LIGHTNING_LONG_MOVE_UI_ONLY=1. Test-only ROM name substitutions
 are not playable new moves. Preserve all original data/IDs/save/wire/art assets,
 frozen normalizers and parent acceptance. No merge/auto-merge.
+
+BTL-005-M2A implements only eight approved original-move data revisions. Read
+docs/moves/ORIGINAL_DATA_STATUS.md. Retain every effect/flag/target/priority and
+all other rows; Astonish Special is an owner exception, not a new GenIV default.
+Run19 host suites/3 checkers and22 native groups; focus
+LIGHTNING_ORIGINAL_MOVE_DATA_ONLY=1. Preserve frozen category/table baselines via
+the exact normalizer. Leech Life's lower PP and all custom effects remain separate
+technical work; no placeholder new IDs, inferred animation playback, merges or
+auto-merge. Source-field implementation is not every effect's runtime acceptance.
