@@ -77,3 +77,12 @@ after larger name rows; the rendered original-name screen was inspected. This
 is not a claim that future long relearner names fit the unmodified list geometry.
 The prior full513082 pass predates this final DMA alignment safeguard; the final
 code has its own clean/full validation recorded in PR40.
+
+## Final local acceptance — production source aaf898e4
+
+Full default20-group mGBA0.10.5 **PASS513097** guarded assertions. All17 host
+suites/3 static checkers PASS; focused330 and vendor309 PASS. Final clean rebuild
+identical SHA256e9fe4bd0034278dc289eef2a6a61dc1b4f7ef2c9ed32834dc836e4f5d6b68b1e.
+Target ABI measured offsets0x264/0x2AF/0x2B0 for original/expanded/aligned BG.
+This supersedes intermediate local counts above. Remote conclusions for the
+source and any evidence-only tip commit are linked in PR40, not inferred.

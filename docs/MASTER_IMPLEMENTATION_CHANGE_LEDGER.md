@@ -1050,3 +1050,15 @@ to field without changing moves; target BG pointer/alignment and screenshot
 inspection PASS (focused330). Summary buffers precede no affected tilemaps;
 PSA scene alignment follows its pointer-bearing struct. Full513082 before this
 last safeguard passed; final source gets independent clean/full checks in PR40.
+
+### M1a final executed local acceptance
+
+Latest production source aaf898e413b11a7a0cc63d38c241cded19f6bf36: full20-group
+mGBA0.10.5 PASS513097 guarded assertions; focused330, vendor309 and17 host suites/
+3 checkers PASS. Clean rebuild identical e9fe4bd0034278dc289eef2a6a61dc1b4f7ef2c9ed32834dc836e4f5d6b68b1e.
+Measured pinned target ABI offsets original0x264, unaligned expansion0x2AF,
+explicit alignment0x2B0. Both rendered summary/relearner screens inspected.
+Remote run conclusions in PR40 checks/review description remain distinct from
+local proof. Later evidence-only tip commits do not change the tested production
+source. Final milestone credit remains8/80, overall303/546=55.49% provisional; no
+extra credit for reruns. All remaining M1–M8 work and external coverage retained.
