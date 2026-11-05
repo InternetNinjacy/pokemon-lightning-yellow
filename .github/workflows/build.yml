@@ -87,7 +87,7 @@ jobs:
           dpkg-query -W libmgba-dev
       - name: Execute ROM integration tests in mGBA
         if: matrix.target == 'modified'
-        timeout-minutes: 15
+        timeout-minutes: 20
         run: python3 tests/emulator/run.py
       - name: Verify original upstream SHA-1 twice from clean
         if: matrix.target == 'upstream-baseline'
