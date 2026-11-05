@@ -3,7 +3,7 @@
   "updated": "2026-11-05",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "BTL-005: PR41 full-name UI is green in both review/push CI; PR42 implements eight approved original data revisions, full22-group native513952/focused100 and19 hosts/3 checkers PASS locally, clean identical rebuild. Actual PR42 remote conclusions at Checks. Twelve original policies and56 new moves/effects/animations/TM acceptance remain. All parent progress preserved.",
+  "current_focus": "BTL-005-M2B PR43 implements safe saved-PP caps and atomic Special80/10 Leech Life, stacked on green PR42.20 hosts/3 checkers PASS; optimized local full23-group534050, final focused20105, full-PC432 and clean identical8162003f…9822c PASS. Final full latest-fixture remote conclusions at PR43 Checks. Eleven original policies and56 new moves remain; all parent progress retained.",
   "main_sha": "c960642ddbdacc1cf608d8c5081ee0ecd7cca6e9",
   "drive_sync": {
     "status": "pending: no direct Drive writing tool available",
@@ -493,8 +493,8 @@
       "title": "410-move redesign",
       "aliases": [],
       "effort": {
-        "earned": 13,
-        "remaining": 67,
+        "earned": 17,
+        "remaining": 63,
         "unit": "provisional relative planning point",
         "confidence": "low",
         "history": [
@@ -527,6 +527,12 @@
             "earned": 13,
             "remaining": 67,
             "reason": "M2a eight approved original moves/ten fields implemented, focused100/full22-group513952 native and19 host suites/3 checkers PASS, identical clean rebuild. Three additional planning points within existing80-point scope; no56-move or exhaustive specialized-effect/animation credit."
+          },
+          {
+            "date": "2026-11-05",
+            "earned": 17,
+            "remaining": 63,
+            "reason": "M2b saved-PP compatibility and atomic Special80/10 Leech Life implemented, one-decrypt optimization passes420-PC budget,20 hosts/3 checkers PASS, local full23-group534050 and final focus20105 PASS. Four points within existing80-point scope; final full CI covers latest fixture refinements, no new56-move credit."
           }
         ]
       },
@@ -535,18 +541,18 @@
       ],
       "status": {
         "design": "Owner approved; November5 Curse/animation/GenIV edge choices resolved; PhaseTwo distribution remains separate",
-        "implementation": "M1a/M1b foundations/UI plus M2a eight original data revisions; no56 new IDs/effects enabled",
-        "automated": "All19 hosts/3 checkers PASS, identical clean hash11e45726…5e221b; actual PR42 remote conclusions at Checks. PR41 review/push CI both SUCCESS.",
-        "emulator": "Full22-group mGBA0.10.5 PASS513952; focused100; prior UI797/full513858 retained. New effect-script edge cases/real link/hardware remain separate.",
-        "pull_request": "PR42 open, stacked on PR41→PR40; parent/reconciliation PRs preserved",
+        "implementation": "Foundations/full-name UI, eight original revisions plus Special80/10 Leech Life and safe saved-PP normalization; no56 new IDs/effects enabled",
+        "automated": "All20 hosts/3 checkers PASS; clean identical8162003f…9822c; actual PR43 latest-fixture remote conclusions at Checks. Parent PR42 review/push both SUCCESS.",
+        "emulator": "Optimized full23-group local534050 PASS before final AI assertion; latest focus20105 PASS and full-PC432 within original budget. Final latest-fixture full result at PR43 Checks; link/hardware separate.",
+        "pull_request": "PR43 open, stacked on PR42→PR41→PR40; no parent/main changes",
         "merge": "unmerged; no auto-merge"
       },
-      "branch": "feature/approved-original-move-data",
-      "commit": "5a2b96f707806c8a6658dc4ff4e1f3e7bf2fee3b",
+      "branch": "feature/move-pp-compatibility",
+      "commit": "4f7f71d753d7c4840b22617b65095fd56d9b57f5",
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Implement/test saved-PP compatibility for atomic Leech Life/Roar decreases, remaining original effects/targets/weather and56 new moves; never expose placeholder effects or invent distributions.",
-      "checkpoint": "BTL-005-M2A source5a2b96f7: full513952/focused100,19 hosts/3 checkers PASS; clean identical11e45726…5e221b; actual remote PR42 conclusions at Checks.",
+      "next_action": "Implement approved Roar damaging/Attack-drop redesign atomically using the prepared PP safeguard; then remaining original effects/targets/weather and56 new moves without placeholders or invented distributions.",
+      "checkpoint": "Production4f7f71d7, latest tests7c5334d0: local full534050 before final AI assertion, final focus20105,20 hosts/3 checkers and clean identical8162003f…9822c PASS; actual final full CI at PR43 Checks.",
       "source_exports": [
         "03_MOVES/Pokémon Lightning Yellow — Approved Move Change Ledger — Source Verbatim v0.1.txt",
         "03_MOVES/Pokémon Lightning Yellow — Complete TM & Move Register — v1 (2026-10-29).txt",
@@ -555,7 +561,7 @@
         "03_MOVES/Pokémon Lightning Yellow — Pre-Codex Move & Animation Handoff — Draft v0.1.txt"
       ],
       "source_status": "available locally; checksums verified; precise approvals/read scope in reconciliation report",
-      "coverage_gap": "Twelve original redesign policies,56 new moves/namespace/effects/animations/AI/TM integration and M2–M8 edge-case acceptance, real peer link/hardware remain. Silver Wind downgrade PP clamping is not implemented/tested.",
+      "coverage_gap": "Eleven original redesign policies,56 new moves/namespace/effects/animations/AI/TM integration, real peer link/hardware, historic Quest Log-party snapshots and exhaustive drain interactions remain. No auto-refill on rollback; parent Silver Wind downgrade precautions retained.",
       "reconciliation_pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/37",
       "commit_role": "Latest tested production source; later branch-tip changes may record evidence only",
       "initial_implementation_commit": "7738e796",
@@ -568,10 +574,11 @@
       "implementation_milestones": {
         "BTL-005-M1A": "Foundations PR40, complete within its limited scope; unmerged",
         "BTL-005-M1B": "PR41 complete within limited UI scope; local513858/focused797 and both remote runs SUCCESS at3031dcdb, remote mGBA0.10.2; unmerged",
-        "BTL-005-M2A": "PR42 eight original data revisions; full513952/focused100,19 hosts/3 checkers and clean PASS locally; remote actual results at PR checks; unmerged"
+        "BTL-005-M2A": "PR42 complete within eight-data-row scope, full513952/focus100 and both review/push CI SUCCESS at51df94f7; unmerged",
+        "BTL-005-M2B": "PR43 saved PP/atomic Leech Life: optimized full23-group local534050, final focus20105, full-PC432,20 hosts/3 checkers and clean PASS; latest-fixture full remote result at Checks; unmerged"
       },
-      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/42",
-      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/42/checks",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/43",
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/43/checks",
       "ui_ref": {
         "branch": "feature/move-engine-long-name-ui",
         "source_commit": "715e1dff255a6aacaa22498ca5fb62063a26d3dd",
@@ -582,6 +589,17 @@
         "conclusion": "both SUCCESS",
         "remote_mgba": "0.10.2",
         "full_native_assertions": 513858
+      },
+      "original_data_ref": {
+        "branch": "feature/approved-original-move-data",
+        "source_commit": "5a2b96f707806c8a6658dc4ff4e1f3e7bf2fee3b",
+        "head_commit": "51df94f7126fcd5319b0b50319888486cde34aef",
+        "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/42",
+        "review_ci": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/42079507194",
+        "push_ci": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/42079496239",
+        "conclusion": "both SUCCESS",
+        "remote_mgba": "0.10.2",
+        "full_native_assertions": 513952
       }
     },
     {

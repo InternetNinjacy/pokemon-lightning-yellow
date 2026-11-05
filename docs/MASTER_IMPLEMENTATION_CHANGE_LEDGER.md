@@ -1142,3 +1142,61 @@ No merge/auto-merge or binary artifact release. Drive synchronization pending.
 
 Provisional BTL-00513 earned/67 remaining; overall308/546=56.41%. Three points
 within existing scope, no extra credit for reruns or unsupported56-move completion.
+
+## 2026-11-05 — BTL-005-M2B saved-PP compatibility / atomic Leech Life
+
+Production4f7f71d753d7c4840b22617b65095fd56d9b57f5; latest test refinements
+7c5334d0. Branch feature/move-pp-compatibility, PR43:
+https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/43
+Stacked on PR42/51df94f7, main and parent PR heads untouched. Owner standing
+implementation authority and Leech Life's precise OWNER_EXPLICIT Move Register
+fields/evidence in approved-design-overlays.json authorize Special80/10PP.
+
+Previously, old records could retain15/18/21/24 current PP above new10/12/14/16.
+Valid normal/recovered-backup loads now cap only excess Leech Life/Roar PP using
+the authoritative maximum; preserve spent PP, PP Ups, other fields and unrelated
+moves. Roar's current20PP/data behavior stays unchanged pending its separate
+redesign. Live/serialized party,420 PC slots and both daycares covered. Route5
+import remains lazy; only active copied parents capped, read-only recovery
+record preserved. Pending eggs/mail/steps/unknown/corrupt storage unchanged.
+No new save fields/version/offsets, erasure, RNG or immediate flash writes.
+
+src/pokemon.c adds a copy-based one-decrypt/checksum/encrypt helper reusing
+unchanged private primitives. src/move_pp_compatibility.c/header traverse sites;
+src/save.c handles OK and valid-backup ERROR but skips EMPTY/INVALID/NO_FLASH;
+src/route5_daycare.c caps the active legacy copy before publish. Only Leech Life's
+category/power/PP change in battle_moves.h; original drain/contact/flags/target/
+priority/accuracy/animation remain. No other row, ID, learnset, TM, asset, ability
+or trainer data change. Historical hashes/category baselines retained through
+exact frozen normalization; old host policy tests explicitly distinguish their
+normalized migration checks from real native crypto/save tests.
+
+All20 hosts/3 checkers PASS. Final native focus20105 PASS: all slots/PP Ups/
+values/24 block orders/Shiny/tagged Egg identity, encrypted exact-byte preservation,
+full420-PC stress within unchanged budget, real flash and corrupt-newer-slot
+backup recovery, invalid/unknown data protections, nonzero mail/steps and pending
+egg identities. Actual Single/Double Leech Life animation/HP drain and Liquid Ooze
+reversal, one PP consumed, Run/field/flash; numerical Special/stats/AI/screens/burn
+and Ether/PP Up/healing routines PASS. These item calls are not Bag UI proof.
+
+Optimized full23-group local534050 PASS before final one-assertion AI/negative
+fixture refinements; final focus20105 PASS afterward, production identical. Final
+full latest-fixture remote count/conclusions are in PR43 Checks/review description,
+never inferred. Clean identical8162003f6283a46766e453db66283287913bbd778ba171649f734d465689822c.
+Initial repeated-getter full-PC timeout was fixed, not relaxed; superseded full
+run stopped. A CPU-snapshot/flash-isolation test leak was fixed independently.
+
+Current effective source: original354 move IDs, ten source-field policies now
+implemented including Curse/nine original revisions, safe full-name UI and saved
+PP handling. Eleven original policies and all56 new moves/effects/animations/AI/
+TMs remain. Peer link/hardware, historical Quest Log party snapshots and exhaustive
+drain interactions remain unverified. Revert child PR only; capped PP stays below
+restored Leech Life15PP maximum, with no automatic refill or recovery re-import.
+Parent Silver Wind downgrade limitations remain. No merge/auto-merge or ROM release.
+Drive sync pending. Parent PR42 review42079507194/push42079496239 both SUCCESS,
+actual remote mGBA0.10.2 full513952 at51df94f7.
+
+Provisional BTL-00517 earned/63 remaining, overall312/546=57.14%. Four additional
+points within existing scope, not rerun/56-move credit. Dashboard narrative now
+uses the actual summed effort denominator rather than the old inconsistent
+historical arithmetic sentence; no task history or effort totals reset.

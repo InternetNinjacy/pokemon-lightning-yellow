@@ -251,3 +251,13 @@ LIGHTNING_ORIGINAL_MOVE_DATA_ONLY=1. Preserve frozen category/table baselines vi
 the exact normalizer. Leech Life's lower PP and all custom effects remain separate
 technical work; no placeholder new IDs, inferred animation playback, merges or
 auto-merge. Source-field implementation is not every effect's runtime acceptance.
+
+BTL-005-M2B implements saved-PP compatibility and atomic Special80/10PP Leech Life.
+Read docs/moves/PP_COMPATIBILITY_STATUS.md. Preserve one-decrypt/checksum/encrypt
+per record, the unchanged invocation budget, spent PP/PP Ups, unknown/corrupt data,
+read-only Route5 recovery copy and independent pending eggs/mail/steps. Handle OK
+and recovered ERROR loads; skip EMPTY/INVALID/NO_FLASH. Keep lazy migration.
+Roar's data redesign is not enabled; its current maximum remains authoritative.
+Run all20 hosts/3 checkers and23 native groups; focus LIGHTNING_MOVE_PP_ONLY=1,
+full-PC stress LIGHTNING_PP_FULL_PC_ONLY=1. Keep frozen deltas and target ABI guards;
+never normalize runtime ROM data to make tests pass. No merge/auto-merge/release.
