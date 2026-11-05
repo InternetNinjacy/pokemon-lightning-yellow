@@ -872,3 +872,31 @@ remain unverified. New documentation PR32–34 awaits review before its separate
 execution contract; no speculative League or other Gym parties implemented.
 Drive synchronization still pending; rollback can abandon integration branch and
 preserve all original feature heads, with existing weather save-downgrade warning.
+
+### 2026-11-05 — BTL-004-NICK: captured survivor naming and persistence
+
+Standing continuation/testing authorization. No new gameplay design or production
+change. Test branch feature/wild-capture-nickname-acceptance, PR36, stacked on
+integration35/aaa71bb2; parent and original feature PRs remain unmerged/intact.
+Existing capture-name coverage declined nicknames; new test uses the real naming
+keyboard to set A for both surviving Double opponents, with party and full-party
+PC delivery. Verifies actual identity/species/OT, existing party names, valid
+secure data, sole caught-species Dex flag, exactly one Master Ball, field return
+and flash persistence. Opponents unchanged; natural encounter and player attacks
+remain real, including bounded retries for Protect/misses.
+
+Fixed-frame PC confirmation initially timed out; driving native confirmation to
+callback exit resolved the test fixture. No game-code fix, skipped assertion or
+success stub. Source/test commitde3aa2ca; focused367 mGBA0.10.5 PASS; all16 host,
+Museum and18-group registration static checks PASS. Production ROM matches clean
+PR35 SHA923fba77; reused same ELF/ROM locally, CI fresh clean/upstream and full
+final outcomes recorded in PR36 rather than guessed. Files: new native test,
+runner registration/checker, documentation/tracker. No source/save layout changes.
+
+Effective behavior remains the original implemented capture flow. BTL-004 earns
+one narrowly scoped acceptance point; other ball/naming/whiteout/forced-end/weather
+and external matrices remain. Total provisional progress294/546=53.85%; no reset
+or duplicate implementation credit. Prior known rival/weather registration conflict
+notes now link completed combined native/CI463243 inPR35. Drive sync pending.
+Rollback only this test/docs delta to leave the parent game unchanged. No ROM/save/
+BIOS/capture artifact distribution, merge, retarget or auto-merge performed.

@@ -202,3 +202,9 @@ INT-004 combined acceptance uses docs/COMBINED_INTEGRATION_20261105.md and PR35.
 Keep both rival and weather/Gym frozen normalizers/ABI/fixture registrations. Run
 all16 host suites, both checker scripts and full native acceptance. No new gameplay
 or main/feature PR merge is authorized by this integration branch.
+
+BTL-004-NICK expands acceptance only. Read docs/WILD_CAPTURE_NICKNAME_ACCEPTANCE.md;
+preserve the real capture/naming/flash paths, protected ARM ABI and all original
+native groups. Run all16 host suites, both checkers and full native suite; focus
+with LIGHTNING_WILD_NICKNAME_ONLY=1. PR36 is stacked on PR35; no production changes,
+merge/retarget/auto-merge or unsupported all-balls/naming coverage claims.

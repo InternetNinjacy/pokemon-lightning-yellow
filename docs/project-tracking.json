@@ -3,7 +3,7 @@
   "updated": "2026-11-05",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "INT-004 combined27/29/31 review branch PR35: nine conflicts reconciled preserving both test sets and original hashes;16 host/Museum/registration and focused Blaine75 PASS. Clean/full/CI conclusions live inPR35. GYM-003 duplicate pending scope reconciled under GYM-007; no additional Castform credit. No main or existing PR merge.",
+  "current_focus": "BTL-004-NICK acceptance-only PR36, stacked on reviewed integration35: actual keyboard renaming for both Double survivors into party/PC,367 focused assertions/all16 host and registration checks PASS. Production ROM unchanged; full/CI results live inPR36. Original feature PRs and main remain unmerged.",
   "main_sha": "c960642ddbdacc1cf608d8c5081ee0ecd7cca6e9",
   "drive_sync": {
     "status": "pending: no direct Drive writing tool available",
@@ -425,8 +425,8 @@
       "title": "Wild double battle hardening",
       "aliases": [],
       "effort": {
-        "earned": 4,
-        "remaining": 6,
+        "earned": 5,
+        "remaining": 5,
         "unit": "provisional relative planning point",
         "confidence": "low",
         "history": [
@@ -441,6 +441,12 @@
             "earned": 4,
             "remaining": 6,
             "reason": "Final clean build, full local mGBA8715 and GitHub modified/upstream jobs passed. Only executed scoped work earns credit; remaining acceptance retained."
+          },
+          {
+            "date": "2026-11-05",
+            "earned": 5,
+            "remaining": 5,
+            "reason": "One scoped nickname acceptance point:367 actual-ROM assertions, both Double survivors with party/PC keyboard naming and flash persistence; no production change or duplicate prior capture credit."
           }
         ]
       },
@@ -449,21 +455,21 @@
       ],
       "status": {
         "design": "approved scoped implementation",
-        "implementation": "partial acceptance; remaining coverage explicitly recorded",
-        "automated": "all five host suites PASS; clean rebuild identical; GitHub both jobs SUCCESS",
-        "emulator": "full local mGBA0.10.5 PASS:8715 assertions; selected scenes/battles only",
-        "pull_request": "merged; implementation history retained",
+        "implementation": "existing game behavior unchanged; expanded native nickname acceptance in PR36",
+        "automated": "all16 host suites, Museum and18-group registration guard PASS; final clean/full/CI evidence inPR36",
+        "emulator": "367 focused nickname assertions PASS; parent combined463243 PASS; final full new suite inPR36",
+        "pull_request": "gameplay9 merged; acceptance PR36 stacked on unmerged integration35",
         "merge": "merged into main via owner-authorized consolidation"
       },
-      "branch": "main",
+      "branch": "feature/wild-capture-nickname-acceptance",
       "commit": "6ff574dc205a007a93a4724fd6eda867eeff8fdf",
-      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/9",
-      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41376878452",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/36",
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/36/checks",
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Nickname acceptance/rename, successful captures with every ball, faint/replacement/whiteout, forced-end/spread moves and complete weather interactions remain unverified.",
-      "checkpoint": "2026-11-02 final stabilization: commit6ff574dc205a007a93a4724fd6eda867eeff8fdf; local8715; Actions41376878452 SUCCESS",
-      "coverage_gap": "Nickname acceptance/rename, successful captures with every ball, faint/replacement/whiteout, forced-end/spread moves and complete weather interactions remain unverified.",
+      "next_action": "Review four native nickname cases inPR36; retain remaining capture/forced-end/weather and external coverage.",
+      "checkpoint": "2026-11-05 BTL-004-NICK: no new gameplay; four focused scenarios pass, final full/CI inPR36",
+      "coverage_gap": "Successful captures with every ball, naming cancellation/blank/maximum-length/Name Rater, complete faint/replacement/whiteout, forced-end/spread/weather and interrupted-save/link/hardware matrices remain unverified.",
       "implementation_ref": {
         "branch": "feature/phase-one-stabilization",
         "commit": "6ff574dc205a007a93a4724fd6eda867eeff8fdf"
@@ -694,7 +700,7 @@
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/29/checks",
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Review scoped PR29 after full checks; preserve remaining rendering/lighting/fog and broader regional/manual/integration acceptance. Resolve known test/tracker registration conflicts when combining withPR27.",
+      "next_action": "Review scoped PR29 after full checks; preserve remaining rendering/lighting/fog and broader regional/manual/integration acceptance. Reviewed-head registration conflicts resolved in PR35; review combined acceptance and preserve remaining manual/hardware coverage.",
       "checkpoint": "2026-11-04 resumed scoped acceptance; full results/live checks inPR29",
       "source_exports": [
         "05_WEATHER_LIGHTING/Pokémon Lightning Yellow — Lighting & Weather Decision Handoff and Next Steps — 2026-10-28.txt",
@@ -702,7 +708,8 @@
         "05_WEATHER_LIGHTING/Pokémon Lightning Yellow — Lighting & Weather Specification — Approved Rules and Open Gaps — 2026-10-28.txt",
         "05_WEATHER_LIGHTING/Pokémon Lightning Yellow — Weather Map Assignments & Thread Retirement Handoff — 2026-10-28.txt"
       ],
-      "source_status": "available locally; checksums verified; precise approvals/read scope in reconciliation report"
+      "source_status": "available locally; checksums verified; precise approvals/read scope in reconciliation report",
+      "combined_acceptance": "Exact reviewed27/29/31 heads reconciled inPR35;16 hosts/clean/upstream/full local+CI463243 PASS. No main/feature PR merge; future head changes require reconciliation."
     },
     {
       "id": "WTH-002",
@@ -799,7 +806,7 @@
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/29/checks",
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Review scoped PR29 after full checks; preserve remaining rendering/lighting/fog and broader regional/manual/integration acceptance. Resolve known test/tracker registration conflicts when combining withPR27.",
+      "next_action": "Review scoped PR29 after full checks; preserve remaining rendering/lighting/fog and broader regional/manual/integration acceptance. Reviewed-head registration conflicts resolved in PR35; review combined acceptance and preserve remaining manual/hardware coverage.",
       "checkpoint": "2026-11-04 resumed scoped acceptance; full results/live checks inPR29",
       "source_exports": [
         "01_POKE_BALLS/Pokémon Lightning Yellow — Codex Deferred Poké Ball Task Brief — 2026-11-02.txt",
@@ -810,7 +817,8 @@
         "01_POKE_BALLS/Pokémon Lightning Yellow — Poké Ball Design Register & Implementation Specification — 2026-11-02.txt",
         "05_WEATHER_LIGHTING/Pokémon Lightning Yellow — Weather Map Assignments & Thread Retirement Handoff — 2026-10-28.txt"
       ],
-      "source_status": "available locally; checksums verified; precise approvals/read scope in reconciliation report"
+      "source_status": "available locally; checksums verified; precise approvals/read scope in reconciliation report",
+      "combined_acceptance": "Exact reviewed27/29/31 heads reconciled inPR35;16 hosts/clean/upstream/full local+CI463243 PASS. No main/feature PR merge; future head changes require reconciliation."
     },
     {
       "id": "DAY-001",
@@ -2147,7 +2155,8 @@
       "blocker": null,
       "design_authority": "implementation/main-rival-eight-battles.md v2 mergedPR25; owner continue/standing implementation instructions",
       "next_action": "Use live PR27 validation evidence for review; retain full natural story/Pikachu starter/manual balance acceptance. No automatic gameplay merge.",
-      "checkpoint": "2026-11-04 all8 actual native battle and clean acceptance; live full/CI results in PR27"
+      "checkpoint": "2026-11-04 all8 actual native battle and clean acceptance; live full/CI results in PR27",
+      "combined_acceptance": "Exact reviewed27/29/31 heads reconciled inPR35;16 hosts/clean/upstream/full local+CI463243 PASS. No main/feature PR merge; future head changes require reconciliation."
     },
     {
       "id": "GYM-007",
@@ -2188,8 +2197,9 @@
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/31/checks",
       "blocker": null,
       "design_authority": "implementation/three-gym-castform.md from PR30 head0d9cb4f5; approved Gym register and explicit owner request",
-      "next_action": "Review tested PR31; reconcile later PR29 changes and combine rival27 tests separately. Other Gym parties/rewards/abilities remain outside scope.",
-      "checkpoint": "2026-11-04 focused scoped acceptance; final build/full/CI live in PR31"
+      "next_action": "Review tested PR31; review combined463243 native/CI acceptance inPR35 and reconcile any later feature-head changes. Other Gym parties/rewards/abilities remain outside scope.",
+      "checkpoint": "2026-11-04 focused scoped acceptance; final build/full/CI live in PR31",
+      "combined_acceptance": "Exact reviewed27/29/31 heads reconciled inPR35;16 hosts/clean/upstream/full local+CI463243 PASS. No main/feature PR merge; future head changes require reconciliation."
     }
   ],
   "legacy_crosswalk": {
