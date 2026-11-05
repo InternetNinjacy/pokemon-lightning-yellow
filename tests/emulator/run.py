@@ -11,6 +11,8 @@ import shutil
 
 # Generate ABI constants with the game's ARM compiler, never host offsetof.
 expressions = {
+ 'RELEARNER_BG':'offsetof(struct LearnMoveGfxResources,bg1TilemapBuffer)',
+ 'RELEARNER_INDEX':'offsetof(struct LearnMoveGfxResources,selectedIndex)',
  'SUMMARY_NAME_BUFFERS':'offsetof(struct PokemonSummaryScreenData,summary.moveNameStrBufs)',
  'MOVE_NAME_CAPACITY':'MOVE_NAME_LENGTH + 1',
  'BATTLE_TEXT_CAPACITY':'BATTLE_TEXT_BUFFER_SIZE',
@@ -259,6 +261,7 @@ required = [
     'ShowPokemonSummaryScreen', 'sMonSummaryScreen', 'sMoveSelectionCursorPos', 'gSideStatuses', 'gBattleStruct', 'gBattleScripting', 'gBattleMoveDamage', 'gDisplayedStringBattle',
 ]
 required += ['PewterCity_Gym_EventScript_Liam','CeruleanCity_Gym_EventScript_Diana','CeladonCity_Gym_EventScript_Mary','Cmd_setweatherballtype','gBattleMonForms','SaffronCity_Dojo_Text_NeedTwo']
+required += ['TeachMoveRelearnerMove','CB2_MoveRelearner','GetBgTilemapBuffer']
 required += ['gMoveNames','GetStringWidth','StringCopy','AllocPSA','Free','AllocZeroed','sMoveRelearner','MoveRelearnerInitListMenuBuffersEtc','BufferStringBattle','gBattleTextBuff2','gBattleTextBuff3']
 required += ['Task_StartMenuHandleInput','sStartMenuCursorPos','sStartMenuOrder','Task_BagMenu_HandleInput','Task_HandleChooseMonInput','Task_EvolutionScene']
 symbols={}

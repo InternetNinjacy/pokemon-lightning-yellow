@@ -21,11 +21,15 @@
   },
   "src/learn_move.c": {
     "before_sha256": "8a3f0eb4a475633477bda6d65396205dfbb29db04dabb9f5f0d99df9f0c1ef40",
-    "after_sha256": "80d16231b21c6b12765724dcf7ce3b111174e0330d6ea678a95571a215a174d4",
+    "after_sha256": "ede1aa9971ba65711d54a6d52df41dbfcb65416887dcbedb9593ed7d96f52182",
     "hunks": [
       {
         "before": "    u8 listMenuStrbufs[25][13];\n",
         "after": "    u8 listMenuStrbufs[25][MOVE_NAME_LENGTH + 1];\n"
+      },
+      {
+        "before": "    u8 bg1TilemapBuffer[BG_SCREEN_SIZE]; // 264\n",
+        "after": "    u8 ALIGNED(4) bg1TilemapBuffer[BG_SCREEN_SIZE]; // DMA/halfword consumers require alignment.\n"
       }
     ]
   },

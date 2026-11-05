@@ -143,7 +143,7 @@ struct LearnMoveGfxResources
     u8 selectedMoveSlot;
     u8 unk_262;
     u8 listMenuTaskId;
-    u8 bg1TilemapBuffer[BG_SCREEN_SIZE]; // 264
+    u8 ALIGNED(4) bg1TilemapBuffer[BG_SCREEN_SIZE]; // DMA/halfword consumers require alignment.
     u8 textColor[3]; // A64
     u8 selectedIndex;
     u16 listMenuScrollPos;

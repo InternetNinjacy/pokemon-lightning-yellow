@@ -34,7 +34,7 @@ normalizes only the frozen approved delta for historical checks; no prior expect
 hash is replaced. All16 original host suites are retained alongside this17th.
 
 `LIGHTNING_MOVE_FOUNDATION_ONLY=1 python3 tests/emulator/run.py`: native mGBA0.10.5
-PASS314 guarded assertions after alignment/termination refinement; focused vendor battle309 PASS. Final full results in PR40. Test-only ROM-copy substitutions exercise13–15-char
+PASS330 guarded assertions after alignment/termination/DMA refinement; focused vendor battle309 PASS. Final full results in PR40. Test-only ROM-copy substitutions exercise13–15-char
 names in real ARM StringCopy, used-move message expansion, actual TM allocation,
 relearner list construction and summary buffers. Adjacent fields/canaries and all
 original patched ROM bytes are checked/restored. No new moves are added as fixtures.
@@ -70,3 +70,10 @@ to the current source, not backdated to the old baseline.
 Pre-tail-reconstruction full integration run: PASS513067 guarded assertions.
 Final tail-reconstruction source has focused314/vendor309 PASS and all17 host
 suites/3 checkers PASS; its separate full native/clean CI conclusions are in PR40.
+
+Actual relearner public entry now opens, scrolls, cancels and returns to field
+without changing moves. Its BG1 tilemap explicitly retains four-byte alignment
+after larger name rows; the rendered original-name screen was inspected. This
+is not a claim that future long relearner names fit the unmodified list geometry.
+The prior full513082 pass predates this final DMA alignment safeguard; the final
+code has its own clean/full validation recorded in PR40.

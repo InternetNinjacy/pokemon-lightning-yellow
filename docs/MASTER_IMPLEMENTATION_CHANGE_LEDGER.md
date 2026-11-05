@@ -1042,3 +1042,11 @@ PASS. Pre-tail full integration run513067 PASS. Final source ROM SHA256
 9a6e4fd94ee6ef9f12e2696a81c8f4da6c9e9cbfdfaa42534a7c8826ebc6c1a9;
 its own clean/full final evidence is linked in PR40, not backdated to the earlier
 full pass. No new move namespace/effects or broad runtime claims are introduced.
+
+Final M1a consumer audit: the larger relearner name rows moved its u8 BG1 tilemap
+to an odd offset. Explicit ALIGNED(4) preserves tilemap/halfword/DMA alignment.
+The focused test now opens the actual relearner, navigates, cancels and returns
+to field without changing moves; target BG pointer/alignment and screenshot
+inspection PASS (focused330). Summary buffers precede no affected tilemaps;
+PSA scene alignment follows its pointer-bearing struct. Full513082 before this
+last safeguard passed; final source gets independent clean/full checks in PR40.

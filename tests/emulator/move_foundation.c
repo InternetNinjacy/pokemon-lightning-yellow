@@ -52,5 +52,20 @@ static void moveFoundationTests(void){
  screenshot(getenv("LIGHTNING_MOVE_FOUNDATION_SUMMARY_CAPTURE"));
  for(unsigned i=0;i<4;i++)for(unsigned j=0;j<16;j++){uint32_t ptr=SYM_gMoveNames+ids[i]*16+j;core->rawWrite8(core,ptr,-1,saved[i][j]);CHECK(core->busRead8(core,ptr)==saved[i][j]);}
  CHECK(core->loadState(core,bootState));
+ wildFixture(MAP_GROUP(MAP_ROUTE1),MAP_NUM(MAP_ROUTE1),1);
+ CALL(CreateMon,player(0),SPECIES_PIKACHU,100,31,1,7,0,0);
+ for(unsigned i=0;i<4;i++)monput(player(0),ABI_DATA_MOVE1+i,MOVE_SPLASH);
+ core->busWrite16(core,SYM_gSpecialVar_0x8004,0);CALL(TeachMoveRelearnerMove);frames(240,0);
+ CHECK((core->busRead32(core,SYM_gMain+ABI_MAIN_CB2)&~1U)==SYM_CB2_MoveRelearner);
+ rl=core->busRead32(core,SYM_sMoveRelearner);CHECK(rl>=0x02000000 && rl+ABI_RELEARNER_SIZE<0x02040000);
+ CHECK(((rl+ABI_RELEARNER_BG)&3)==0);CHECK(CALL(GetBgTilemapBuffer,1)==rl+ABI_RELEARNER_BG);
+ CHECK(core->busRead8(core,rl+ABI_RELEARNER_INDEX)==0);press(128);frames(30,0);CHECK(core->busRead8(core,rl+ABI_RELEARNER_INDEX)==1);press(64);frames(30,0);
+ screenshot(getenv("LIGHTNING_MOVE_FOUNDATION_RELEARNER_CAPTURE"));
+ press(2);frames(120,0);press(1);
+ unsigned f;for(f=0;f<1500;f++){if((core->busRead32(core,SYM_gMain+ABI_MAIN_CB2)&~1U)==SYM_CB2_Overworld)break;frames(1,(f%12)<3?1:0);}CHECK(f<1500);
+ CHECK(core->busRead16(core,SYM_gSpecialVar_0x8004)==0);
+ for(unsigned i=0;i<4;i++)CHECK(monget(player(0),ABI_DATA_MOVE1+i)==MOVE_SPLASH);
+ CHECK(core->loadState(core,bootState));
+ printf("PASS: actual relearner opens, scrolls and cancels to field without changing moves; BG1 tilemap remains four-byte aligned\n");
  printf("PASS: target15-char buffers,17-byte used-move punctuation without adjacent-buffer damage, unchanged64-byte wire record, actual TM allocation/relearner copies and summary names; all ROM fixture bytes restored\n");
 }

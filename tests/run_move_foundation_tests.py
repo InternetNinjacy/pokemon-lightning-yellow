@@ -35,3 +35,5 @@ print('PASS: effective owner decision provenance and Generation IV reference rec
 assert all("u8 ALIGNED(4) gBattleTextBuff"+str(i) in Path("src/battle_main.c").read_text() for i in [1,2,3])
 
 assert all("gBattleTextBuff"+str(i)+"[TEXT_BUFF_ARRAY_COUNT] = EOS;" in Path("src/battle_message.c").read_text() for i in [1,2,3])
+
+assert "u8 ALIGNED(4) bg1TilemapBuffer[BG_SCREEN_SIZE]" in Path("src/learn_move.c").read_text()
