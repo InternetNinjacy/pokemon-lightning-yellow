@@ -1,0 +1,105 @@
+{
+  "scope": "Issue38 three approved gift revisions; no starter changes",
+  "files": {
+    "src/daycare.c": {
+      "before_sha256": "f60df5921c57b86bdd508f68dff86516533063f0faac1190285094b2c89da082",
+      "after_sha256": "0e440145aa8ba9f7b7bcfaf5417d997d9c3c0fdba202235c8a94412f8c2d03b1",
+      "hunks": [
+        {
+          "before": "\n// Museum prize eggs use a fixed shiny personality at creation, not a cosmetic\n// effect or a hatch-time reroll. Normal daycare and gift eggs are unchanged.\nvoid CreateShinyEgg(struct Pokemon *mon, u16 species)\n{\n    u32 otId = (u32)gSaveBlock2Ptr->playerTrainerId[0]\n             | ((u32)gSaveBlock2Ptr->playerTrainerId[1] << 8)\n             | ((u32)gSaveBlock2Ptr->playerTrainerId[2] << 16)\n             | ((u32)gSaveBlock2Ptr->playerTrainerId[3] << 24);\n    u16 pidLow = Random();\n    u16 pidHigh = pidLow ^ (u16)otId ^ (u16)(otId >> 16);\n    u32 personality = ((u32)pidHigh << 16) | pidLow;\n    u8 metLevel = 0;\n    u16 ball = ITEM_POKE_BALL;\n",
+          "after": "\n// Museum prize eggs use a fixed shiny personality at creation, not a cosmetic\n// effect or a hatch-time reroll. Normal daycare and gift eggs are unchanged.\nstatic void CreateGiftEggWithShininess(struct Pokemon *mon, u16 species, bool8 shiny)\n{\n    u32 otId = (u32)gSaveBlock2Ptr->playerTrainerId[0]\n             | ((u32)gSaveBlock2Ptr->playerTrainerId[1] << 8)\n             | ((u32)gSaveBlock2Ptr->playerTrainerId[2] << 16)\n             | ((u32)gSaveBlock2Ptr->playerTrainerId[3] << 24);\n    u16 pidLow = Random();\n    u16 pidHigh = pidLow ^ (u16)otId ^ (u16)(otId >> 16) ^ (shiny ? 0 : SHINY_ODDS);\n    u32 personality = ((u32)pidHigh << 16) | pidLow;\n    u8 metLevel = 0;\n    u16 ball = ITEM_POKE_BALL;\n"
+        },
+        {
+          "before": "    SetMonData(mon, MON_DATA_LANGUAGE, &language);\n    SetMonData(mon, MON_DATA_MET_LOCATION, &metLocation);\n    SetMonData(mon, MON_DATA_IS_EGG, &isEgg);\n}\n\nstatic void SetInitialEggData(struct Pokemon *mon, u16 species, struct DayCare *daycare)\n",
+          "after": "    SetMonData(mon, MON_DATA_LANGUAGE, &language);\n    SetMonData(mon, MON_DATA_MET_LOCATION, &metLocation);\n    SetMonData(mon, MON_DATA_IS_EGG, &isEgg);\n}\n\n// Preserve the original guaranteed-Shiny helper for other explicit callers.\nvoid CreateShinyEgg(struct Pokemon *mon, u16 species)\n{\n    CreateGiftEggWithShininess(mon, species, TRUE);\n}\n\n// Each eligible gift creation rolls once; stored PID/OT determine the hatch.\nvoid CreateHalfShinyGiftEgg(struct Pokemon *mon, u16 species)\n{\n    CreateGiftEggWithShininess(mon, species, Random() & 1);\n}\n\nstatic void SetInitialEggData(struct Pokemon *mon, u16 species, struct DayCare *daycare)\n"
+        }
+      ]
+    },
+    "include/daycare.h": {
+      "before_sha256": "85e64d1a4a42b2d6bd8e34d0df322bf953238f15f798e26e6b682b72ad0737ae",
+      "after_sha256": "83d73fa1f5633159403eaf18f1b39323bcdfa5022830d9a627648ab90d8ef75a",
+      "hunks": [
+        {
+          "before": "void RejectEggFromDayCare(void);\nvoid CreateEgg(struct Pokemon *mon, u16 species, bool8 setHotSpringsLocation);\nvoid CreateShinyEgg(struct Pokemon *mon, u16 species);\nvoid GiveEggFromDaycare(void);\nbool8 DoEggActions_CheckHatch(void);\nu16 GetSelectedMonNickAndSpecies(void);\n",
+          "after": "void RejectEggFromDayCare(void);\nvoid CreateEgg(struct Pokemon *mon, u16 species, bool8 setHotSpringsLocation);\nvoid CreateShinyEgg(struct Pokemon *mon, u16 species);\nvoid CreateHalfShinyGiftEgg(struct Pokemon *mon, u16 species);\nvoid GiveEggFromDaycare(void);\nbool8 DoEggActions_CheckHatch(void);\nu16 GetSelectedMonNickAndSpecies(void);\n"
+        }
+      ]
+    },
+    "src/script_pokemon_util.c": {
+      "before_sha256": "897429f748187154b2037b13cf6ffc804e11df384bba2e0ba611940276c21ad9",
+      "after_sha256": "98c3cc0aa9a11a5e70d6ceaa1da0913a39bb58241fd8f1c5f3c039002a890b08",
+      "hunks": [
+        {
+          "before": "}\n\n// Special event prize. A full party must never send this egg to the PC.\nu16 ScriptGiveShinyFeebasEgg(void)\n{\n    struct Pokemon *mon;\n    u16 result;\n",
+          "after": "}\n\n// Special event prize. A full party must never send this egg to the PC.\nu16 ScriptGiveMuseumAronEgg(void)\n{\n    struct Pokemon *mon;\n    u16 result;\n"
+        },
+        {
+          "before": "    if (mon == NULL)\n        return MON_CANT_GIVE;\n\n    CreateShinyEgg(mon, SPECIES_FEEBAS);\n    result = GiveMonToPlayer(mon);\n    Free(mon);\n    return result;\n",
+          "after": "    if (mon == NULL)\n        return MON_CANT_GIVE;\n\n    CreateHalfShinyGiftEgg(mon, SPECIES_ARON);\n    result = GiveMonToPlayer(mon);\n    Free(mon);\n    return result;\n"
+        }
+      ]
+    },
+    "data/specials.inc": {
+      "before_sha256": "be358795bb575fe85f9d8576405f2a1e2710c62963442c99ef56447192d28ec4",
+      "after_sha256": "8c36dcc8d6f95a42e917465765c0ac4f1904d0c12aeb5b89f188fc68c4ee8f77",
+      "hunks": [
+        {
+          "before": "\tdef_special IsRoute5DaycareReady\n\tdef_special MysteryVendorStatus\n\tdef_special PurchaseMysteryPokemon\n\tdef_special ScriptGiveShinyFeebasEgg\n\tdef_special RangerGiveGift\ngSpecialsEnd::\n",
+          "after": "\tdef_special IsRoute5DaycareReady\n\tdef_special MysteryVendorStatus\n\tdef_special PurchaseMysteryPokemon\n\tdef_special ScriptGiveMuseumAronEgg\n\tdef_special RangerGiveGift\n\tdef_special ScriptGiveMagbyEgg\n\tdef_special ScriptGiveTangoTangela\ngSpecialsEnd::\n"
+        }
+      ]
+    },
+    "data/maps/PewterCity_Museum_1F/scripts.inc": {
+      "before_sha256": "444ae4454de2072492e892d0b431494b785aa305da30443e3c08948d8b819ebc",
+      "after_sha256": "0472bbbc064bab20b681c5aa05590864f4f0798a345189253159ab64dc0629aa",
+      "hunks": [
+        {
+          "before": "PewterCity_Museum_1F_TriviaTryReward::\n\tspecialvar VAR_RESULT, CalculatePlayerPartyCount\n\tgoto_if_eq VAR_RESULT, PARTY_SIZE, PewterCity_Museum_1F_TriviaPartyFull\n\tspecialvar VAR_RESULT, ScriptGiveShinyFeebasEgg\n\tgoto_if_ne VAR_RESULT, MON_GIVEN_TO_PARTY, PewterCity_Museum_1F_TriviaPartyFull\n\tsetflag FLAG_PEWTER_MUSEUM_SHINY_EGG_RECEIVED\n\tplayfanfare MUS_OBTAIN_ITEM\n",
+          "after": "PewterCity_Museum_1F_TriviaTryReward::\n\tspecialvar VAR_RESULT, CalculatePlayerPartyCount\n\tgoto_if_eq VAR_RESULT, PARTY_SIZE, PewterCity_Museum_1F_TriviaPartyFull\n\tspecialvar VAR_RESULT, ScriptGiveMuseumAronEgg\n\tgoto_if_ne VAR_RESULT, MON_GIVEN_TO_PARTY, PewterCity_Museum_1F_TriviaPartyFull\n\tsetflag FLAG_PEWTER_MUSEUM_SHINY_EGG_RECEIVED\n\tplayfanfare MUS_OBTAIN_ITEM\n"
+        }
+      ]
+    },
+    "data/maps/FiveIsland_WaterLabyrinth/scripts.inc": {
+      "before_sha256": "305b587b2bc52325b9561b64ce6768e73911a1c6422c3c5c2c6fc8c5feafcb15",
+      "after_sha256": "a06dc4c5b6f73f357dc1b32b002cc72e0945fe16e10a861d3c6f1c8adc85d7e9",
+      "hunks": [
+        {
+          "before": "FiveIsland_WaterLabyrinth_EventScript_TryGiveEgg::\n\tgetpartysize\n\tgoto_if_eq VAR_RESULT, PARTY_SIZE, FiveIsland_WaterLabyrinth_EventScript_NoRoomForEgg\n\tsetflag FLAG_GOT_TOGEPI_EGG\n\tgiveegg SPECIES_TOGEPI\n\ttextcolor NPC_TEXT_COLOR_NEUTRAL\n\tplayfanfare MUS_LEVEL_UP\n\tmessage FiveIsland_WaterLabyrinth_Text_ReceivedEggFromMan\n",
+          "after": "FiveIsland_WaterLabyrinth_EventScript_TryGiveEgg::\n\tgetpartysize\n\tgoto_if_eq VAR_RESULT, PARTY_SIZE, FiveIsland_WaterLabyrinth_EventScript_NoRoomForEgg\n\tspecialvar VAR_RESULT, ScriptGiveMagbyEgg\n\tgoto_if_ne VAR_RESULT, 0, FiveIsland_WaterLabyrinth_EventScript_NoRoomForEgg\n\tsetflag FLAG_GOT_TOGEPI_EGG\n\ttextcolor NPC_TEXT_COLOR_NEUTRAL\n\tplayfanfare MUS_LEVEL_UP\n\tmessage FiveIsland_WaterLabyrinth_Text_ReceivedEggFromMan\n"
+        },
+        {
+          "before": "\tgoto FiveIsland_WaterLabyrinth_EventScript_PostEggComment\n\tend\n\n@ If the player has a Togepi/Togetic from this game (assumed to be the one the man gave you) then comment on it\n@ Otherwise make normal comment\nFiveIsland_WaterLabyrinth_EventScript_PostEggComment::\n\tbufferspeciesname STR_VAR_2, SPECIES_TOGEPI\n\tsetvar VAR_0x8004, SPECIES_TOGEPI\n\tspecialvar VAR_RESULT, PlayerPartyContainsSpeciesWithPlayerID\n\tgoto_if_eq VAR_RESULT, TRUE, FiveIsland_WaterLabyrinth_EventScript_MonDaisyComment\n\tbufferspeciesname STR_VAR_2, SPECIES_TOGETIC\n\tsetvar VAR_0x8004, SPECIES_TOGETIC\n\tspecialvar VAR_RESULT, PlayerPartyContainsSpeciesWithPlayerID\n\tgoto_if_eq VAR_RESULT, TRUE, FiveIsland_WaterLabyrinth_EventScript_MonDaisyComment\n\tmsgbox FiveIsland_WaterLabyrinth_Text_GladIMetSomeoneLikeYou\n",
+          "after": "\tgoto FiveIsland_WaterLabyrinth_EventScript_PostEggComment\n\tend\n\n@ If the player has a Magby/Magmar from this game (assumed to be the one the man gave you) then comment on it\n@ Otherwise make normal comment\nFiveIsland_WaterLabyrinth_EventScript_PostEggComment::\n\tbufferspeciesname STR_VAR_2, SPECIES_MAGBY\n\tsetvar VAR_0x8004, SPECIES_MAGBY\n\tspecialvar VAR_RESULT, PlayerPartyContainsSpeciesWithPlayerID\n\tgoto_if_eq VAR_RESULT, TRUE, FiveIsland_WaterLabyrinth_EventScript_MonDaisyComment\n\tbufferspeciesname STR_VAR_2, SPECIES_MAGMAR\n\tsetvar VAR_0x8004, SPECIES_MAGMAR\n\tspecialvar VAR_RESULT, PlayerPartyContainsSpeciesWithPlayerID\n\tgoto_if_eq VAR_RESULT, TRUE, FiveIsland_WaterLabyrinth_EventScript_MonDaisyComment\n\tmsgbox FiveIsland_WaterLabyrinth_Text_GladIMetSomeoneLikeYou\n"
+        }
+      ]
+    },
+    "data/maps/CeladonCity_Condominiums_RoofRoom/scripts.inc": {
+      "before_sha256": "1802931ce27a575f96381a78aa81b25d5d77bfd47beb5addf35bd94c49599b19",
+      "after_sha256": "d1bcd2525f3aa09cc64fc9300276d1ccf576d2a145d985f403d44b1032c42b28",
+      "hunks": [
+        {
+          "before": "CeladonCity_Condominiums_RoofRoom_EventScript_EeveeBall::\n\tlock\n\tfaceplayer\n\tsetvar VAR_TEMP_1, SPECIES_EEVEE\n\tgivemon SPECIES_EEVEE, 25\n\tgoto_if_eq VAR_RESULT, 0, CeladonCity_Condominiums_RoofRoom_EventScript_GetEeveeParty\n\tgoto_if_eq VAR_RESULT, 1, CeladonCity_Condominiums_RoofRoom_EventScript_GetEeveePC\n\tgoto_if_eq VAR_RESULT, 2, EventScript_NoMoreRoomForPokemon\n",
+          "after": "CeladonCity_Condominiums_RoofRoom_EventScript_EeveeBall::\n\tlock\n\tfaceplayer\n\tsetvar VAR_TEMP_1, SPECIES_TANGELA\n\tspecialvar VAR_RESULT, ScriptGiveTangoTangela\n\tgoto_if_eq VAR_RESULT, 0, CeladonCity_Condominiums_RoofRoom_EventScript_GetEeveeParty\n\tgoto_if_eq VAR_RESULT, 1, CeladonCity_Condominiums_RoofRoom_EventScript_GetEeveePC\n\tgoto_if_eq VAR_RESULT, 2, EventScript_NoMoreRoomForPokemon\n"
+        },
+        {
+          "before": "\tmessage CeladonCity_Condominiums_RoofRoom_Text_ObtainedAnEevee\n\twaitmessage\n\twaitfanfare\n\tbufferspeciesname STR_VAR_1, SPECIES_EEVEE\n\tmsgbox Text_GiveNicknameToThisMon, MSGBOX_YESNO\n\tgoto_if_eq VAR_RESULT, NO, CeladonCity_Condominiums_RoofRoom_EventScript_SetGotEevee\n\tcall EventScript_GetGiftMonPartySlot\n\tcall EventScript_ChangePokemonNickname\n\tgoto CeladonCity_Condominiums_RoofRoom_EventScript_SetGotEevee\n\tend\n\n",
+          "after": "\tmessage CeladonCity_Condominiums_RoofRoom_Text_ObtainedAnEevee\n\twaitmessage\n\twaitfanfare\n\tgoto CeladonCity_Condominiums_RoofRoom_EventScript_SetGotEevee\n\tend\n\n"
+        },
+        {
+          "before": "\tmessage CeladonCity_Condominiums_RoofRoom_Text_ObtainedAnEevee\n\twaitmessage\n\twaitfanfare\n\tbufferspeciesname STR_VAR_1, SPECIES_EEVEE\n\tmsgbox Text_GiveNicknameToThisMon, MSGBOX_YESNO\n\tgoto_if_eq VAR_RESULT, NO, CeladonCity_Condominiums_RoofRoom_EventScript_TransferEeveeToPC\n\tcall EventScript_NameReceivedBoxMon\n\tgoto CeladonCity_Condominiums_RoofRoom_EventScript_TransferEeveeToPC\n\tend\n\n",
+          "after": "\tmessage CeladonCity_Condominiums_RoofRoom_Text_ObtainedAnEevee\n\twaitmessage\n\twaitfanfare\n\tgoto CeladonCity_Condominiums_RoofRoom_EventScript_TransferEeveeToPC\n\tend\n\n"
+        }
+      ]
+    },
+    "data/maps/CeladonCity_Condominiums_RoofRoom/text.inc": {
+      "before_sha256": "a01d38ac90676714d30d80c366b0a6757b171410a7bab0299988038a275a0f8e",
+      "after_sha256": "aa8ec48d81a6f7781384154801802d71d4b6a944b46ababd048fbd0a8b3dc010",
+      "hunks": [
+        {
+          "before": "    .string \"enjoy trading POKéMON!$\"\n\nCeladonCity_Condominiums_RoofRoom_Text_ObtainedAnEevee::\n    .string \"{PLAYER} obtained an EEVEE!$\"\n\nCeladonCity_Condominiums_RoofRoom_Text_BoxIsFull::\n    .string \"ポケモンが　いっぱいだ\\n\"\n",
+          "after": "    .string \"enjoy trading POKéMON!$\"\n\nCeladonCity_Condominiums_RoofRoom_Text_ObtainedAnEevee::\n    .string \"{PLAYER} obtained a TANGELA!$\"\n\nCeladonCity_Condominiums_RoofRoom_Text_BoxIsFull::\n    .string \"ポケモンが　いっぱいだ\\n\"\n"
+        }
+      ]
+    }
+  }
+}

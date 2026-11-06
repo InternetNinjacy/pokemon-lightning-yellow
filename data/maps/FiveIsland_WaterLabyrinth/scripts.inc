@@ -29,8 +29,9 @@ FiveIsland_WaterLabyrinth_EventScript_LeadMonMaxFriendship::
 FiveIsland_WaterLabyrinth_EventScript_TryGiveEgg::
 	getpartysize
 	goto_if_eq VAR_RESULT, PARTY_SIZE, FiveIsland_WaterLabyrinth_EventScript_NoRoomForEgg
+	specialvar VAR_RESULT, ScriptGiveMagbyEgg
+	goto_if_ne VAR_RESULT, 0, FiveIsland_WaterLabyrinth_EventScript_NoRoomForEgg
 	setflag FLAG_GOT_TOGEPI_EGG
-	giveegg SPECIES_TOGEPI
 	textcolor NPC_TEXT_COLOR_NEUTRAL
 	playfanfare MUS_LEVEL_UP
 	message FiveIsland_WaterLabyrinth_Text_ReceivedEggFromMan
@@ -40,15 +41,15 @@ FiveIsland_WaterLabyrinth_EventScript_TryGiveEgg::
 	goto FiveIsland_WaterLabyrinth_EventScript_PostEggComment
 	end
 
-@ If the player has a Togepi/Togetic from this game (assumed to be the one the man gave you) then comment on it
+@ If the player has a Magby/Magmar from this game (assumed to be the one the man gave you) then comment on it
 @ Otherwise make normal comment
 FiveIsland_WaterLabyrinth_EventScript_PostEggComment::
-	bufferspeciesname STR_VAR_2, SPECIES_TOGEPI
-	setvar VAR_0x8004, SPECIES_TOGEPI
+	bufferspeciesname STR_VAR_2, SPECIES_MAGBY
+	setvar VAR_0x8004, SPECIES_MAGBY
 	specialvar VAR_RESULT, PlayerPartyContainsSpeciesWithPlayerID
 	goto_if_eq VAR_RESULT, TRUE, FiveIsland_WaterLabyrinth_EventScript_MonDaisyComment
-	bufferspeciesname STR_VAR_2, SPECIES_TOGETIC
-	setvar VAR_0x8004, SPECIES_TOGETIC
+	bufferspeciesname STR_VAR_2, SPECIES_MAGMAR
+	setvar VAR_0x8004, SPECIES_MAGMAR
 	specialvar VAR_RESULT, PlayerPartyContainsSpeciesWithPlayerID
 	goto_if_eq VAR_RESULT, TRUE, FiveIsland_WaterLabyrinth_EventScript_MonDaisyComment
 	msgbox FiveIsland_WaterLabyrinth_Text_GladIMetSomeoneLikeYou

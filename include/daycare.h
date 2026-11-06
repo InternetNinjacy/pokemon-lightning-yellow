@@ -15,6 +15,7 @@ void TriggerPendingDaycareEgg(void);
 void RejectEggFromDayCare(void);
 void CreateEgg(struct Pokemon *mon, u16 species, bool8 setHotSpringsLocation);
 void CreateShinyEgg(struct Pokemon *mon, u16 species);
+void CreateHalfShinyGiftEgg(struct Pokemon *mon, u16 species);
 void GiveEggFromDaycare(void);
 bool8 DoEggActions_CheckHatch(void);
 u16 GetSelectedMonNickAndSpecies(void);
