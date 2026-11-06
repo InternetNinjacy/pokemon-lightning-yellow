@@ -80,7 +80,7 @@ This is a first-pass mechanical table for 132 numeric-suffix variants linked to 
 | `TRAINER_BIRD_KEEPER_MARLON_3` | `TRAINER_BIRD_KEEPER_MARLON` | BIRD KEEPER | Fearow / Dodrio / Fearow | 48/48/48 | `ITEM_SITRUS_BERRY` | Curated family progression; source levels provisional; moves pending |
 | `TRAINER_BEAUTY_GRACE_2` | `TRAINER_BEAUTY_GRACE` | BEAUTY | Gardevoir / Persian | 49/49 | `ITEM_SITRUS_BERRY` | Curated family progression; source levels provisional; moves pending |
 | `TRAINER_BIRD_KEEPER_CHESTER_2` | `TRAINER_BIRD_KEEPER_CHESTER` | BIRD KEEPER | Farfetch'd / Doduo / Doduo | 33/33/33 | `ITEM_ORAN_BERRY` | Curated family progression; source levels provisional; moves pending |
-| `TRAINER_BIRD_KEEPER_CHESTER_3` | `TRAINER_BIRD_KEEPER_CHESTER` | BIRD KEEPER | Dodrio / Dodrio / Dodrio | 48/48/48 | `ITEM_SITRUS_BERRY` | Curated family progression; source levels provisional; moves pending |
+| `TRAINER_BIRD_KEEPER_CHESTER_3` | `TRAINER_BIRD_KEEPER_CHESTER` | BIRD KEEPER | Farfetch'd / Dodrio / Dodrio | 48/48/48 | `ITEM_SITRUS_BERRY` | Curated family progression; source levels provisional; moves pending |
 | `TRAINER_PICNICKER_BECKY_2` | `TRAINER_PICNICKER_BECKY` | PICNICKER | Pikachu / Raichu | 34/34 | `ITEM_ORAN_BERRY` | Curated family progression; source levels provisional; moves pending |
 | `TRAINER_PICNICKER_BECKY_3` | `TRAINER_PICNICKER_BECKY` | PICNICKER | Raichu / Raichu | 49/49 | `ITEM_SITRUS_BERRY` | Curated family progression; source levels provisional; moves pending |
 | `TRAINER_PICNICKER_BECKY_4` | `TRAINER_PICNICKER_BECKY` | PICNICKER | Raichu / Raichu | 54/54 | `ITEM_SITRUS_BERRY` | Curated family progression; source levels provisional; moves pending |
