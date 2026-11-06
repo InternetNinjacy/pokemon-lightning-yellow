@@ -3,8 +3,8 @@
   "updated": "2026-11-06",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "Autonomous execution authorized November6 (AGENTS policy PR55); known prior feature stack merged. BTL-005-M2C Roar implemented with21 hosts/3 checkers, focused197 native and clean reproducibility PASS; full regression/CI pending. WRL-010 follower asset permission remains blocked; continue independent approved backlog.",
-  "main_sha": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c",
+  "current_focus": "Autonomous policy55 and Roar56 merged; sign58 integrated against actual main with all test registrations retained, focused/full validation pending integrated head. Gift59 and six Elite Four60 proceed independently; follower permission/Agatha selector/draft ordinary-Trainer design holds recorded.",
+  "main_sha": "844b450e7b60b7f0699fef348ca8b7acb8d73824",
   "drive_sync": {
     "status": "pending: no direct Drive writing tool available",
     "folder": "https://drive.google.com/drive/folders/1N_n0Ke48jBbdhUWSZWzwR6rpPFqpDUpl"
@@ -538,8 +538,8 @@
       "title": "410-move redesign",
       "aliases": [],
       "effort": {
-        "earned": 17,
-        "remaining": 63,
+        "earned": 19,
+        "remaining": 61,
         "unit": "provisional relative planning point",
         "confidence": "low",
         "history": [
@@ -578,6 +578,12 @@
             "earned": 17,
             "remaining": 63,
             "reason": "M2b saved-PP compatibility and atomic Special80/10 Leech Life implemented, one-decrypt optimization passes420-PC budget,20 hosts/3 checkers PASS, local full23-group534050 and final focus20105 PASS. Four points within existing80-point scope; final full CI covers latest fixture refinements, no new56-move credit."
+          },
+          {
+            "date": "2026-11-06",
+            "earned": 19,
+            "remaining": 61,
+            "reason": "Roar exact source,21 host suites/3 checkers, focused197 and latest remote full534242 PASS, clean reproducibility; PR56 merged. Two points within existing80; no56-new-move credit."
           }
         ]
       },
@@ -588,12 +594,12 @@
         "design": "Owner approved; November5 Curse/animation/GenIV edge choices resolved; PhaseTwo distribution remains separate",
         "implementation": "Merged foundations/UI/eight original data/PP+Leech Life preserved; approved damaging Roar implemented on separate branch, full regression/CI pending",
         "automated": "Roar21 host suites/3 checkers PASS; clean reproducible9cc3d287; no new56 move IDs",
-        "emulator": "Latest focused Roar197 PASS; full regression running, not yet claimed passed",
+        "emulator": "Latest remote full534242 PASS, focused197 PASS; exact-head push CI42215345347 SUCCESS",
         "pull_request": "PR#43 merged; historical branch evidence retained",
-        "merge": "merged to main; remaining feature scope/coverage is not inferred complete"
+        "merge": "Roar PR56 merged844b450e on autonomous authority, parent implementations preserved"
       },
       "branch": "feature/approved-roar-redesign",
-      "commit": "4f7f71d753d7c4840b22617b65095fd56d9b57f5",
+      "commit": "42410891edbeb51d9b9a3ad4ba69eacdc81b7fa7",
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
       "next_action": "Finish Roar full/native CI and merge verified scope; continue remaining originals/new moves without placeholders or invented distribution.",
@@ -622,8 +628,8 @@
         "BTL-005-M2A": "PR42 complete within eight-data-row scope, full513952/focus100 and both review/push CI SUCCESS at51df94f7; merged in owner-authorized Nov6 consolidation",
         "BTL-005-M2B": "PR43 merged through consolidated main; final review/push full534051 PASS,20 hosts/3 checkers, final focus20105 and clean identical8162003f…9822c"
       },
-      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/43",
-      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/43/checks",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/56",
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/42215345347",
       "ui_ref": {
         "branch": "feature/move-engine-long-name-ui",
         "source_commit": "715e1dff255a6aacaa22498ca5fb62063a26d3dd",
@@ -1566,6 +1572,9 @@
         "pr": 14,
         "merge_commit": "9dd56c31b73bc885fb60b491ce8b6f3f39b53efd",
         "verified_main": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c"
+      },
+      "subtasks": {
+        "WRL-004-SIGN": "Approved PR28 tip implemented on standalone feature/viridian-move-category-sign; build/exact-text/focused native463 PASS, full CI pending; no double-counted scope"
       }
     },
     {
