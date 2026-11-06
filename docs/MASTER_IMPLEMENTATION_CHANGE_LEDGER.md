@@ -1256,3 +1256,17 @@ next priority under merged implementation/selectable-following-pokemon.md;
 0/40 points, no follower code/asset coverage claimed. Roar remains queued.
 Follower source/graphics/license/save/opening feasibility gate must precede bulk
 imports or unsafe save migrations. Direct Drive synchronization remains pending.
+
+## 2026-11-06 — WRL-004-SIGN Viridian category tip
+
+- Approved merged contract PR28; standalone feature/viridian-move-category-sign
+  from policy67bdb816, independent of pending Roar. No source behavior erased.
+- Before: north sign recommends catching more Pokémon. After: exact approved type
+  versus per-move Physical/Special tip and team-building message. Only that text
+  block changes production source. Original south PP sign/map/scripts unchanged.
+- Build PASS, exact-word/block-preservation check PASS, mGBA0.10.5 focused463 PASS:
+  actual native north sign script/paging twice, southern text and field return.
+  Full CI/clean/reproducibility pending; no merge/complete progress credit yet.
+- Added native test module/registration/target ABI symbols and technical note
+  docs/VIRIDIAN_MOVE_CATEGORY_SIGN.md. No save/flag/asset changes; revert text-only
+  feature safely. Design authority is not changed by routine line wrapping.

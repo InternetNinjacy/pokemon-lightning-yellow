@@ -104,11 +104,12 @@ ViridianCity_Text_CitySign::
     .string "The Eternally Green Paradise$"
 
 ViridianCity_Text_CatchMonsForEasierBattles::
-    .string "TRAINER TIPS\p"
-    .string "Catch POKéMON and expand your\n"
-    .string "collection.\p"
-    .string "The more you have, the easier it\n"
-    .string "is to battle.$"
+    .string "TRAINER TIPS!\p"
+    .string "A POKéMON's type doesn't always\n"
+    .string "tell you whether its moves are\l"
+    .string "physical or special!\p"
+    .string "Check each move carefully\n"
+    .string "when building your team!$"
 
 ViridianCity_Text_MovesLimitedByPP::
     .string "TRAINER TIPS\p"

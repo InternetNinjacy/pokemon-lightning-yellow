@@ -1563,6 +1563,9 @@
         "pr": 14,
         "merge_commit": "9dd56c31b73bc885fb60b491ce8b6f3f39b53efd",
         "verified_main": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c"
+      },
+      "subtasks": {
+        "WRL-004-SIGN": "Approved PR28 tip implemented on standalone feature/viridian-move-category-sign; build/exact-text/focused native463 PASS, full CI pending; no double-counted scope"
       }
     },
     {
