@@ -3,8 +3,8 @@
   "updated": "2026-11-06",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "Autonomous policy PR55 and fully verified Roar PR56 merged. Independent sign PR58 and gift PR59 await complete integration CI; six Elite Four parties implemented/native constructor verified, actual battle rerun in progress after test-input fix. Two Agatha native-slot choices require scoped conflict resolution; no design substitutions. Followers and draft ordinary-Trainer heuristics remain blocked.",
-  "main_sha": "844b450e7b60b7f0699fef348ca8b7acb8d73824",
+  "current_focus": "Merged policy55/Roar56/sign58; six Elite Four60 now includes pending gift59 for shared acceptance integration, retaining23 hosts/27 native groups. Gift59 must merge first. Two Agatha encounters remain explicitly unimplemented while scoped selector question is pending; no default approval. Weather61 independent fully specified rules under validation; follower/Trainer57 holds persist.",
+  "main_sha": "d97712dc9393b5f98d73df901f8ffa70cc231309",
   "drive_sync": {
     "status": "pending: no direct Drive writing tool available",
     "folder": "https://drive.google.com/drive/folders/1N_n0Ke48jBbdhUWSZWzwR6rpPFqpDUpl"
@@ -538,8 +538,8 @@
       "title": "410-move redesign",
       "aliases": [],
       "effort": {
-        "earned": 17,
-        "remaining": 63,
+        "earned": 19,
+        "remaining": 61,
         "unit": "provisional relative planning point",
         "confidence": "low",
         "history": [
@@ -578,6 +578,12 @@
             "earned": 17,
             "remaining": 63,
             "reason": "M2b saved-PP compatibility and atomic Special80/10 Leech Life implemented, one-decrypt optimization passes420-PC budget,20 hosts/3 checkers PASS, local full23-group534050 and final focus20105 PASS. Four points within existing80-point scope; final full CI covers latest fixture refinements, no new56-move credit."
+          },
+          {
+            "date": "2026-11-06",
+            "earned": 19,
+            "remaining": 61,
+            "reason": "Roar exact source,21 host suites/3 checkers, focused197 and latest remote full534242 PASS, clean reproducibility; PR56 merged. Two points within existing80; no56-new-move credit."
           }
         ]
       },
@@ -586,17 +592,17 @@
       ],
       "status": {
         "design": "Owner approved; November5 Curse/animation/GenIV edge choices resolved; PhaseTwo distribution remains separate",
-        "implementation": "Foundations/full-name UI, eight original revisions plus Special80/10 Leech Life and safe saved-PP normalization; no56 new IDs/effects enabled",
-        "automated": "20 host suites/3 static checkers and clean reproducibility PASS; PR43 review42093060136/push42093048274 both SUCCESS at85032f28",
-        "emulator": "Final full23-group remote mGBA0.10.2 PASS534051; local final focus20105, full-PC432; link/hardware and exhaustive effects remain separate",
+        "implementation": "Merged foundations/UI/eight original data/PP+Leech Life preserved; approved damaging Roar implemented on separate branch, full regression/CI pending",
+        "automated": "Roar21 host suites/3 checkers PASS; clean reproducible9cc3d287; no new56 move IDs",
+        "emulator": "Latest remote full534242 PASS, focused197 PASS; exact-head push CI42215345347 SUCCESS",
         "pull_request": "PR#43 merged; historical branch evidence retained",
-        "merge": "merged to main; remaining feature scope/coverage is not inferred complete"
+        "merge": "Roar PR56 merged844b450e on autonomous authority, parent implementations preserved"
       },
-      "branch": "feature/move-pp-compatibility",
-      "commit": "4f7f71d753d7c4840b22617b65095fd56d9b57f5",
+      "branch": "feature/approved-roar-redesign",
+      "commit": "42410891edbeb51d9b9a3ad4ba69eacdc81b7fa7",
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "After requested follower implementation, continue approved Roar redesign and remaining original/new-move work; no placeholder effects or invented distributions.",
+      "next_action": "Finish Roar full/native CI and merge verified scope; continue remaining originals/new moves without placeholders or invented distribution.",
       "checkpoint": "Merged PP/foundations/UI/original-data chain; production4f7f71d7, final tested head85032f28, remote full534051 PASS; no56 new move IDs enabled",
       "source_exports": [
         "03_MOVES/Pokémon Lightning Yellow — Approved Move Change Ledger — Source Verbatim v0.1.txt",
@@ -622,8 +628,8 @@
         "BTL-005-M2A": "PR42 complete within eight-data-row scope, full513952/focus100 and both review/push CI SUCCESS at51df94f7; merged in owner-authorized Nov6 consolidation",
         "BTL-005-M2B": "PR43 merged through consolidated main; final review/push full534051 PASS,20 hosts/3 checkers, final focus20105 and clean identical8162003f…9822c"
       },
-      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/43",
-      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/43/checks",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/56",
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/42215345347",
       "ui_ref": {
         "branch": "feature/move-engine-long-name-ui",
         "source_commit": "715e1dff255a6aacaa22498ca5fb62063a26d3dd",
@@ -650,6 +656,9 @@
         "pr": 43,
         "merge_commit": "6b444da2b81f6e52ce9f28250e8bce99613d15f9",
         "verified_main": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c"
+      },
+      "subtasks": {
+        "BTL-005-M2C": "Roar implemented; focused197/21 hosts/3 checkers/rebuild PASS; full/CI pending"
       }
     },
     {
@@ -1563,6 +1572,9 @@
         "pr": 14,
         "merge_commit": "9dd56c31b73bc885fb60b491ce8b6f3f39b53efd",
         "verified_main": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c"
+      },
+      "subtasks": {
+        "WRL-004-SIGN": "Approved PR28 tip implemented on standalone feature/viridian-move-category-sign; build/exact-text/focused native463 PASS, full CI pending; no double-counted scope"
       }
     },
     {
@@ -2559,13 +2571,13 @@
         "design": "owner-approved or delegated design recorded in Drive",
         "implementation": "Six Lorelei/Bruno/Lance arrays implemented exactly; two Agatha arrays unchanged pending native alternate-slot restriction resolution",
         "automated": "21 host suites/3 checkers PASS; exact six-array/pinned-spec audit and frozen non-scope source; build PASS",
-        "emulator": "All six native constructors exact32 members/128 moves/abilities/IVs PASS; actual battle rerun ongoing after stale-controller test input fix; full CI pending",
+        "emulator": "Six exact native constructors PASS; Lorelei/Bruno four real victories PASS; latest both Lance victories/field/save PASS, valid EOS rival-name fixture fixed; latest full and integrated CI pending",
         "pull_request": "not merged gameplay",
         "merge": "not merged gameplay"
       },
       "branch": "feature/approved-elite-four-battles",
-      "commit": null,
-      "pr_url": null,
+      "commit": "a2cab5ad",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/60",
       "ci_url": null,
       "blocker": "Agatha requires native Inner Focus slot1 but current constructor always generates even PID/slot0. Contract says report unsupported customization; scoped selector proposal sent to owner, no global abilities altered.",
       "design_authority": "Lightning Yellow canonical Drive specialist registers and November 5 change intake",
@@ -2670,19 +2682,19 @@
       "dependencies": [],
       "status": {
         "design": "owner-approved or delegated design recorded in Drive",
-        "implementation": "not implemented on main; any specs/PRs noted in next action",
-        "automated": "not verified as full feature",
-        "emulator": "not verified as complete feature",
-        "pull_request": "not merged gameplay",
+        "implementation": "Issue38 Aron50%/Magby50% eggs and TangelaLv25 TANGO implemented; Rocket quest remains separate",
+        "automated": "Existing20 hosts/3 checkers and new gift audit PASS; build PASS; clean/full CI pending",
+        "emulator": "Focused80112 (each5030/10000 actual Shiny) and Museum1306 PASS; full latest suite pending",
+        "pull_request": "PR59 three-gift scope open; Rocket separate",
         "merge": "not merged gameplay"
       },
-      "branch": null,
-      "commit": null,
-      "pr_url": null,
+      "branch": "feature/approved-gift-revisions",
+      "commit": "06b57e71",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/59",
       "ci_url": null,
       "blocker": "New approved museum Aron 50% Shiny, Water Labyrinth Magby 50% Shiny, Celadon Tangela TANGO, hideout Ralts/Snorunt return and Rocket executive scripts not in merged code; baseline WRL-004 handles common items/events infrastructure, not these content contracts.",
       "design_authority": "Lightning Yellow canonical Drive specialist registers and November 5 change intake",
-      "next_action": "New approved museum Aron 50% Shiny, Water Labyrinth Magby 50% Shiny, Celadon Tangela TANGO, hideout Ralts/Snorunt return and Rocket executive scripts not in merged code; baseline WRL-004 handles common items/events infrastructure, not these content contracts.",
+      "next_action": "Complete clean/full native/CI, merge verified gift scope; then separate Rocket quest implementation. No invented starter levels/events.",
       "checkpoint": "2026-11-06 fixed-scope intake; no gameplay implementation credit"
     }
   ],

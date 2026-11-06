@@ -1257,6 +1257,67 @@ next priority under merged implementation/selectable-following-pokemon.md;
 Follower source/graphics/license/save/opening feasibility gate must precede bulk
 imports or unsafe save migrations. Direct Drive synchronization remains pending.
 
+## 2026-11-06 — BTL-005-M2C approved damaging Roar
+
+- Standing autonomous implementation/merge authority persisted first in AGENTS
+  commit67bdb816/PR55. Existing stack through43/53 already merged, no duplicate code.
+- Old Roar: Status/forced switch,20PP,-6priority. New approved register behavior:
+  Normal/Special70/100/15/priority0/20% Attack-1, selected target. Source row and
+  description only; native AttackDownHit effect/original animation/flags/access
+  retained; Soundproof AI gate and unrelated Whirlwind unchanged.
+- Source/tests/design translation and exact historical-delta normalization recorded
+  in docs/moves/ROAR_STATUS.md. No save layout/art/new IDs/distribution changes.
+- Executed21 hosts/3 checkers PASS; focused mGBA0.10.5 197 assertions PASS including
+  actual Single/Double turns, outcomes/immunities/Protect and flash legacy cap.
+  Clean reproducibility PASS9cc3d287edb97cb19a74f85bb204df2adcf7e435124a514bbdd166e4f1c48862.
+  Full regression/CI pending initial commit; no merge/readiness claim yet.
+- No additional effort credit until full acceptance. Rollback restores only Roar;
+  prior capped PP is not refilled, save ABI and parent features unchanged.
+
+## 2026-11-06 — WRL-004-SIGN Viridian category tip
+
+- Approved merged contract PR28; standalone feature/viridian-move-category-sign
+  from policy67bdb816, independent of pending Roar. No source behavior erased.
+- Before: north sign recommends catching more Pokémon. After: exact approved type
+  versus per-move Physical/Special tip and team-building message. Only that text
+  block changes production source. Original south PP sign/map/scripts unchanged.
+- Build PASS, exact-word/block-preservation check PASS, mGBA0.10.5 focused463 PASS:
+  actual native north sign script/paging twice, southern text and field return.
+  Full CI/clean/reproducibility pending; no merge/complete progress credit yet.
+- Added native test module/registration/target ABI symbols and technical note
+  docs/VIRIDIAN_MOVE_CATEGORY_SIGN.md. No save/flag/asset changes; revert text-only
+  feature safely. Design authority is not changed by routine line wrapping.
+
+## 2026-11-06 — Autonomous merges / effective Roar acceptance
+
+- Policy PR55 merged b43f92cf1424a107362de2e3daa828548292b292 after both checks PASS.
+- Roar PR56 merged844b450e7b60b7f0699fef348ca8b7acb8d73824 after exact head
+  42410891 push run42215345347 SUCCESS,21 hosts/3 checkers, clean reproducibility
+  and full latest534242 mGBA assertions PASS. Redundant review run still pending
+  at merge; no required protection bypass/security change/auto-merge used.
+- Earlier local full534203 omitted39 added flash/Protect checks; final remote full
+  includes them. Current effective status supersedes initial pending note above.
+- Credit2 within BTL-005's existing80 points (19 earned/61 remaining); total314/712.
+  Main postmerge validation continues separately; no410-move completion claim.
+- Sign PR58 merged main into its branch, retaining both Roar and sign native groups,
+  all21 host registrations and append-only histories; actual integrated CI required.
+
+## 2026-11-06 — WRL-011-GIFTS / issue38 three owner-approved corrections
+
+- Museum guaranteed-Shiny Feebas→Aron50% genuine Shiny; Water Labyrinth Togepi→
+  Magby50%; roof EeveeLv25 nickname prompt→TangelaLv25 fixedTANGO. Existing one-time
+  bits/claimed saves preserved; no owned mon replaced, starter/Parcel untouched.
+- Added final-PID-at-creation binary-outcome helper and safe native gift specials;
+  preserve ordinary daycare/wild/other eggs, cycles, hatch/naming, party/PC and
+  gates. Museum special index unchanged; two specials appended inside table.
+- Exact source/delta/rollback details in docs/APPROVED_GIFT_REVISIONS.md. Historical
+  Museum docs retained with clear superseding effective-version note.
+- Existing20 hosts/3 checkers plus new gift audit PASS; build PASS; mGBA0.10.5
+  focused80112 PASS (Aron5030/10000,Magby5030/10000 stored trueShiny), Museum1306
+  PASS including real trivia, delayed claim, hatch/evolution and flash. Full/clean
+  CI pending initial commit; no completion/merge credit yet. No ROM assets/save
+  changes. New independent branch feature/approved-gift-revisions.
+
 ## 2026-11-06 — GYM-009 independent six Elite Four party implementation
 
 - Issue50/eight exact merged contracts inspected. Only six Lorelei/Bruno/Lance

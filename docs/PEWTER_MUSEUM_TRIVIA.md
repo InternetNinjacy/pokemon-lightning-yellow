@@ -1,6 +1,6 @@
-# Pewter Museum anime trivia: shiny Feebas Egg
+# Pewter Museum anime trivia: current Aron50% Egg
 
-Status: implemented and merged through owner-authorized consolidation; actual native admission/quiz/save/Shiny hatch/evolution tests PASS. See latest integration/ledger evidence.
+Current issue38 revision: Aron50% implemented on feature/approved-gift-revisions; focused native acceptance passed, full CI/merge pending. See APPROVED_GIFT_REVISIONS.md. The historical Feebas design and acceptance below are superseded, retained only as history.
 Project: Pokémon Lightning Yellow only. Do not import unrelated Pokémon project decisions.
 
 ## Player experience
@@ -71,3 +71,11 @@ by flash reload.32 varied OT/RNG fixtures additionally verify actual encrypted
 Shiny Eggs. Run `LIGHTNING_MUSEUM_ONLY=1 python3 tests/emulator/run.py` for focused
 coverage or the complete default suite. Host assertions remain source-level
 checks; no full-world playthrough, link peer or physical cartridge is claimed.
+
+## Current effective revision — November6 / issue38
+
+The owner-approved Aron50% gift supersedes the historical guaranteed-Shiny Feebas
+reward described above. See docs/APPROVED_GIFT_REVISIONS.md for implemented source
+and new acceptance. Historical evidence above remains evidence for the old version
+only; existing Feebas already in a save is not replaced or deleted. Trivia,
+admission, delayed claim and one-time save bits are preserved.
