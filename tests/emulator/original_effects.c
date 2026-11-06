@@ -12,9 +12,10 @@ static void effectBattleFixture(unsigned two,unsigned move){
  }
 }
 static void electricImmunityTests(void){
- for(unsigned electric=0;electric<2;electric++){
+ for(unsigned electric=0;electric<3;electric++){
   effectBattleFixture(0,MOVE_SPLASH);
-  core->busWrite8(core,bmon(0)+ABI_BMON_TYPE2,electric?TYPE_ELECTRIC:TYPE_NORMAL);
+  core->busWrite8(core,bmon(0)+ABI_BMON_TYPE1,electric==1?TYPE_ELECTRIC:TYPE_NORMAL);
+  core->busWrite8(core,bmon(0)+ABI_BMON_TYPE2,electric==2?TYPE_ELECTRIC:TYPE_NORMAL);
   for(unsigned m=0;m<4;m++){
    core->busWrite16(core,bmon(1)+ABI_BMON_MOVES+2*m,MOVE_THUNDER_WAVE);
    core->busWrite8(core,bmon(1)+ABI_BMON_PP+m,20);
@@ -24,7 +25,7 @@ static void electricImmunityTests(void){
   core->busWrite32(core,ai+ABI_AI_FLAGS,1);CALL(BattleAI_ChooseMoveOrAction);
   for(unsigned m=0;m<4;m++)CHECK(core->busRead8(core,ai+ABI_AI_SCORE+m)==(electric?90:100));
  }
- printf("PASS: native bad-move AI evaluates all4 Thunder Wave slots100 normally/90 against Electric second type\n");
+ printf("PASS: native bad-move AI evaluates all4 Thunder Wave slots100 normally/90 against either Electric type slot\n");
  const unsigned moves[]={MOVE_THUNDER_WAVE,MOVE_STUN_SPORE,MOVE_ZAP_CANNON};
  for(unsigned electric=0;electric<2;electric++)for(unsigned m=0;m<3;m++){
   effectBattleFixture(0,moves[m]);

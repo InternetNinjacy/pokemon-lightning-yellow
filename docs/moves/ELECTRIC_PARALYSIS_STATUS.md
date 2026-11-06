@@ -20,8 +20,10 @@ Authority: approved global rule in docs/moves/README.md and
 
 ## Validation
 
-Build PASS;25 host suites/3 checkers PASS. Native focused, full-suite, clean rebuild
-and Actions results are being collected; do not claim final acceptance yet.
+Build PASS;25 host suites/3 checkers PASS; clean rebuild byte-identical SHA256
+`63dc54d61b2f0965de072feb59e8d1026494b4df067b822da952491fa7fab6ee`.
+Native focused/full-suite and Actions results are being collected; do not claim
+final acceptance yet.
 The native tests exercise actual Thunder Wave/Stun Spore primary effects, Rain
 Zap Cannon damage/guaranteed secondary, Static contact effective-recipient behavior,
 existing paralysis preservation and bad-move AI scores. Controlled type overrides,
