@@ -33,3 +33,7 @@ No save migration is required. A matching modified link peer is still required;
 vanilla peers do not know this mechanic. Real link hardware remains untested.
 Rollback the three production hunks together with their exact test manifest and
 normalizer integration; no deposited Pokémon or persistent state is altered.
+
+CI dependency64 is integrated:45-minute overall envelope, unchanged20-minute
+native gate and all tests. Accept/merge64 first; no game source changed by this
+integration, so the immutable-ROM full local run still tests this game content.
