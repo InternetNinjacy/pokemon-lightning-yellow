@@ -27,7 +27,7 @@
 |---|---|---|---|
 | `TRAINER_PICNICKER_ALMA` | Poliwag / Pikachu / Shroomish | 28 / 28 / 28 | Single |
 | `TRAINER_BIRD_KEEPER_SEBASTIAN` | Pidgeotto / Fearow | 29 / 29 | Single |
-| `TRAINER_PICNICKER_SUSIE` | Pidgey / Pikachu / Shroomish / Clefairy / Poliwhirl | 24 / 24 / 24 / 24 / 24 | Single |
+| `TRAINER_PICNICKER_SUSIE` | Pidgey / Pikachu / Shroomish / Clefairy / Poliwag | 24 / 24 / 24 / 24 / 24 | Single |
 | `TRAINER_BEAUTY_SHEILA` | Meowth / Kirlia | 29 / 29 | Single |
 | `TRAINER_BEAUTY_LOLA` | Skitty / Meowth / Kirlia | 27 / 27 / 27 | Single |
 | `TRAINER_PICNICKER_VALERIE` | Poliwag / Poliwhirl | 30 / 30 | Single |
@@ -58,7 +58,7 @@
 |---|---|---|---|
 | `TRAINER_PICNICKER_YAZMIN` | Tangela / Pikachu / Shroomish | 29 / 29 / 29 | Single |
 | `TRAINER_BIRD_KEEPER_EDWIN` | Pidgeotto / Farfetch'd / Doduo / Hoothoot | 26 / 26 / 26 / 26 | Single |
-| `TRAINER_BIRD_KEEPER_CHESTER` | Dodrio / Doduo / Doduo | 28 / 28 / 28 | Single |
+| `TRAINER_BIRD_KEEPER_CHESTER` | Farfetch'd / Doduo / Doduo | 28 / 28 / 28 | Single |
 | `TRAINER_PICNICKER_KINDRA` | Eevee / Vaporeon / Jolteon | 28 / 28 / 28 | Single |
 | `TRAINER_BEAUTY_OLIVIA` | Feebas / Kirlia | 29 / 29 | Single |
 | `TRAINER_BIKER_ALEX` | Koffing / Grimer / Magnemite | 28 / 28 / 28 | Single |
@@ -101,7 +101,7 @@ The 24 numbered rematch variants tied to these routes have now been individually
 | `TRAINER_BIRD_KEEPER_MARLON_2` | Fearow / Doduo / Fearow | 30 / 30 / 30 | `ITEM_ORAN_BERRY` |
 | `TRAINER_BIRD_KEEPER_MARLON_3` | Fearow / Dodrio / Fearow | 48 / 48 / 48 | `ITEM_SITRUS_BERRY` |
 | `TRAINER_BEAUTY_GRACE_2` | Gardevoir / Persian | 49 / 49 | `ITEM_SITRUS_BERRY` |
-| `TRAINER_BIRD_KEEPER_CHESTER_2` | Dodrio / Doduo / Doduo | 30 / 30 / 30 | `ITEM_ORAN_BERRY` |
+| `TRAINER_BIRD_KEEPER_CHESTER_2` | Farfetch'd / Doduo / Doduo | 30 / 30 / 30 | `ITEM_ORAN_BERRY` |
 | `TRAINER_BIRD_KEEPER_CHESTER_3` | Dodrio / Dodrio / Dodrio | 48 / 48 / 48 | `ITEM_SITRUS_BERRY` |
 | `TRAINER_PICNICKER_BECKY_2` | Pikachu / Raichu | 32 / 32 | `ITEM_ORAN_BERRY` |
 | `TRAINER_PICNICKER_BECKY_3` | Raichu / Raichu | 49 / 49 | `ITEM_SITRUS_BERRY` |
@@ -111,3 +111,7 @@ The 24 numbered rematch variants tied to these routes have now been individually
 | `TRAINER_CRUSH_KIN_RON_MYA_4` | Hitmonchan / Hitmonlee | 56 / 56 | `ITEM_LUM_BERRY` |
 | `TRAINER_YOUNG_COUPLE_GIA_JES_2` | Nidorino / Nidorina | 30 / 30 | `ITEM_ORAN_BERRY` |
 | `TRAINER_YOUNG_COUPLE_GIA_JES_3` | Nidoking / Nidoqueen | 55 / 55 | `ITEM_LUM_BERRY` |
+
+## Evolution-timing audit correction
+
+Source evolution thresholds were checked against each delegated team's original level reference. Susie's Lv24 Poliwhirl was adjusted to Poliwag for her base encounter, allowing progression to Poliwhirl and Poliwrath in later rematches. Chester's Lv28 Dodrio was replaced by Farfetch'd in the base party, giving a Farfetch'd/Doduo/Doduo original trio and retaining the Doduo-to-Dodrio family growth for rematches. These corrections do not overwrite any previously owner-approved species teams.
