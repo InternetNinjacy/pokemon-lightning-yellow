@@ -205,7 +205,7 @@ static void categoryTests(void) {
         core->busWrite8(core,SYM_gMoveSelectionCursor,0);
         core->busWrite8(core,SYM_gActiveBattler,0);
         CALL(MoveSelectionDisplayMoveType);
-        textEquals(SYM_gDisplayedStringBattle,i==0?"FIRE/PHYS":i==1?"GHOST/SPEC":"PSYCHC/STAT");
+        textEquals(SYM_gDisplayedStringBattle,i==0?"FIR/PHYS":i==1?"GHO/SPEC":"PSY/STAT");
     }
     frames(3,0); // allow the real VBlank to transfer the updated type window
     screenshot(getenv("LIGHTNING_CATEGORY_CAPTURE"));

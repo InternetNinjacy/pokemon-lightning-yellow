@@ -9,7 +9,7 @@ that work with the approved [evolution mechanics and Tyrogue menu](docs/EVOLUTIO
 features remain unimplemented; [AGENTS.md](AGENTS.md) requires design approval.
 
 This branch also implements the approved [252-species custom Pokédex](docs/CUSTOM_POKEDEX.md),
-including Castform at #233. Celadon Trainer7 species assignment is approved; its level/moves and implementation remain pending.
+including Castform at #233. The three approved Gym Castform parties and scoped Gym weather/Double implementation are documented in [the PR31 implementation record](docs/GYM_CASTFORM_STAGING.md); review and broader Gym work remain separate.
 
 The [wild double battle capability test](docs/WILD_DOUBLE_BATTLES.md) enables ordinary
 land/cave doubles on Route 1 and Mt. Moon 1F, with a 5% Onix/Cloyster special pair.
@@ -21,7 +21,7 @@ the original twelve-rule typing snapshot, roster-aware evolution access before N
 06:00–18:00 functional day/night boundary. It extends acceptance tests while
 preserving the existing unmerged feature stack. The canonical [project dashboard](https://github.com/InternetNinjacy/pokemon-lightning-yellow/blob/main/docs/PROJECT_DASHBOARD.md)
 and [implementation ledger](https://github.com/InternetNinjacy/pokemon-lightning-yellow/blob/main/docs/MASTER_IMPLEMENTATION_CHANGE_LEDGER.md)
-live on the independent coordination branch; Drive synchronization remains pending.
+live on main; the old coordination branch is historical. Drive synchronization remains pending.
 
 [Route5 daycare breeding](docs/ROUTE5_DAYCARE.md) is implemented on this stacked branch: independent two-parent storage, safe legacy migration and persistent50% Shiny eggs. Read its validation status and rollback limitations before using old saves.
 
@@ -101,5 +101,17 @@ as PKM-008. Canonical tracking now lives on main following the owner-authorized
 feature-stack consolidation; the old coordination branch is historical.
 
 Ranger Base Camp implementation and scoped native acceptance:
-[GYM-005 technical notes](docs/RANGER_BASE_CAMP.md). The implementation PR remains
-subject to owner review; compilation alone is not gameplay acceptance.
+[GYM-005 technical notes](docs/RANGER_BASE_CAMP.md). PR26 is merged on owner approval; compilation alone is not gameplay acceptance.
+
+The approved [eight-rival implementation](docs/MAIN_RIVAL_BATTLES.md) preserves
+original event scripts and postgame rematches; its separate gameplay PR provides
+current verification and review status.
+
+[Dynamic map weather](docs/DYNAMIC_WEATHER.md) implements the approved83-map
+selection/state/clock/battle-return rules in separate PR29. It reuses native field
+assets; final day/night tinting and Mansion fog remain separate. Rival gameplay
+is combined with weather/Castform only on the [isolated integration review branch](docs/COMBINED_INTEGRATION_20261105.md); original PRs remain open.
+
+[Move-engine foundation implementation](docs/moves/FOUNDATION_STATUS.md) records
+M1a safe name capacity and approved Curse typing, with remaining M1–M8 work and
+explicit test limits. The56 additional moves are not yet implemented.

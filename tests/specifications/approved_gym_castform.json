@@ -1,0 +1,95 @@
+{
+  "authority": "PR30 exact design + November4 owner implementation instruction",
+  "trainers": [
+    {
+      "constant": "TRAINER_CAMPER_LIAM",
+      "id": 142,
+      "party": "CamperLiam",
+      "double": false,
+      "map": "PewterCity_Gym",
+      "weather": "WEATHER_SNOW",
+      "pokemon": [
+        [
+          "CASTFORM",
+          11,
+          [
+            "WEATHER_BALL",
+            "POWDER_SNOW",
+            "TACKLE",
+            "WATER_GUN"
+          ]
+        ],
+        [
+          "GEODUDE",
+          12,
+          [
+            "TACKLE",
+            "DEFENSE_CURL",
+            "ROCK_THROW",
+            "NONE"
+          ]
+        ]
+      ]
+    },
+    {
+      "constant": "TRAINER_PICNICKER_DIANA",
+      "id": 150,
+      "party": "PicnickerDiana",
+      "double": true,
+      "map": "CeruleanCity_Gym",
+      "weather": "WEATHER_NONE",
+      "pokemon": [
+        [
+          "CASTFORM",
+          19,
+          [
+            "RAIN_DANCE",
+            "WEATHER_BALL",
+            "WATER_GUN",
+            "TACKLE"
+          ]
+        ],
+        [
+          "SLOWPOKE",
+          19,
+          [
+            "WATER_GUN",
+            "CONFUSION",
+            "HEADBUTT",
+            "CURSE"
+          ]
+        ]
+      ]
+    },
+    {
+      "constant": "TRAINER_COOLTRAINER_MARY",
+      "id": 402,
+      "party": "CooltrainerMary",
+      "double": false,
+      "map": "CeladonCity_Gym",
+      "weather": "WEATHER_DROUGHT",
+      "pokemon": [
+        [
+          "CACNEA",
+          27,
+          [
+            "PIN_MISSILE",
+            "LEECH_SEED",
+            "GROWTH",
+            "INGRAIN"
+          ]
+        ],
+        [
+          "CASTFORM",
+          27,
+          [
+            "WEATHER_BALL",
+            "EMBER",
+            "WATER_GUN",
+            "TACKLE"
+          ]
+        ]
+      ]
+    }
+  ]
+}

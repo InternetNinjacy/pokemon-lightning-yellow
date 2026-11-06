@@ -34,7 +34,7 @@ CeruleanCity_Gym_EventScript_NoRoomForTM03::
 	end
 
 CeruleanCity_Gym_EventScript_Diana::
-	trainerbattle_single TRAINER_PICNICKER_DIANA, CeruleanCity_Gym_Text_DianaIntro, CeruleanCity_Gym_Text_DianaDefeat
+	trainerbattle_double TRAINER_PICNICKER_DIANA, CeruleanCity_Gym_Text_DianaIntro, CeruleanCity_Gym_Text_DianaDefeat, SaffronCity_Dojo_Text_NeedTwo
 	msgbox CeruleanCity_Gym_Text_DianaPostBattle, MSGBOX_AUTOCLOSE
 	end
 

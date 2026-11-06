@@ -1,4 +1,5 @@
 #include "global.h"
+#include "dynamic_weather.h"
 #include "gflib.h"
 #include "bg_regs.h"
 #include "cable_club.h"
@@ -1461,6 +1462,7 @@ void CB1_Overworld(void)
 
 static void OverworldBasic(void)
 {
+    DynamicWeatherUpdate();
     ScriptContext_RunScript();
     RunTasks();
     AnimateSprites();

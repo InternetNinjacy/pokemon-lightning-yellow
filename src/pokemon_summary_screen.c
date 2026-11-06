@@ -2542,7 +2542,15 @@ static void PokeSum_PrintMoveName(u8 i)
     if (i == 4)
         curPP = maxPP;
 
-    AddTextPrinterParameterized3(sMonSummaryScreen->windowIds[POKESUM_WIN_RIGHT_PANE], FONT_NORMAL, 3, GetMoveNamePrinterYpos(i), sPrintMoveTextColors[0], TEXT_SKIP_DRAW, sMonSummaryScreen->summary.moveNameStrBufs[i]);
+    // Keep complete approved names; use the existing small font when needed.
+    {
+        u8 windowId = sMonSummaryScreen->windowIds[POKESUM_WIN_RIGHT_PANE];
+        u8 font = FONT_NORMAL;
+        const u8 *name = sMonSummaryScreen->summary.moveNameStrBufs[i];
+        if (GetStringWidth(font, name, 0) > GetWindowAttribute(windowId, WINDOW_WIDTH) * 8 - 3)
+            font = FONT_SMALL;
+        AddTextPrinterParameterized3(windowId, font, 3, GetMoveNamePrinterYpos(i), sPrintMoveTextColors[0], TEXT_SKIP_DRAW, name);
+    }
 
     if (sMonSummaryScreen->moveIds[i] == 0 || (curPP == maxPP))
       colorIdx = 0;

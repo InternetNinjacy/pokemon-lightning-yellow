@@ -1,0 +1,3213 @@
+{
+  "sources": {
+    "register": {
+      "file": "Pokémon Lightning Yellow — Complete TM & Move Register — v1 (2026-10-29).txt",
+      "sha256": "bdd2990c1cd35523d90120844eba36794fdc369e4e014d7eced908958f681597",
+      "lines": 852
+    },
+    "tracker": {
+      "file": "Pokémon Lightning Yellow — Physical Special Status Split — All-Type Design Tracker & Handoff — 2026-10-29.txt",
+      "sha256": "c6d0a3df0a26445219de302677895764dcf874331bb8e4fa08368700229922e3",
+      "lines": 311
+    },
+    "ledger": {
+      "file": "Pokémon Lightning Yellow — Approved Move Change Ledger — Source Verbatim v0.1.txt",
+      "sha256": "ece3a23869f088c7f65dea0a43375e22b31a8e306320d5c1bd7df9fbbc690b21",
+      "lines": 182
+    },
+    "handoff": {
+      "file": "Pokémon Lightning Yellow — Pre-Codex Move & Animation Handoff — Draft v0.1.txt",
+      "sha256": "c192729ab16145ee2e00c46a6f9797e4a25aeb00b0dc4c99fca41573970b4b94",
+      "lines": 128
+    },
+    "closeout": {
+      "file": "Pokémon Lightning Yellow — Move System Design Completion & Main Thread Handoff — 2026-10-31.txt",
+      "sha256": "059f858ed638125a0951a6b9d1823a5792727da42c7ae72dc4145beadf56595a",
+      "lines": 74
+    },
+    "owner_20261105": {
+      "file": "OWNER_DECISIONS_2026-11-05.md",
+      "sha256": "9588cb03407772d91302e519c1609b392e4b999b3d7bb60bc53af7933a71eba0",
+      "lines": 8
+    }
+  },
+  "source_commit": "92838e5eb64d19942cb5c51cfdef6991503ac3ad",
+  "scope": "Reconciliation only, no gameplay edits. Numeric proposed IDs/semantic effects/target values are NOT compiled constants. Runtime_verified false is not a failure claim.",
+  "originals": {
+    "TWINEEDLE": {
+      "fields": {
+        "power": 40
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 664,
+          "excerpt": "2026-10-29 — OWNER-APPROVED BUG PHYSICAL MOVE MECHANIC REVISIONS (SUPERSEDING OLD VALUES)"
+        }
+      ],
+      "mechanic_notes": [
+        "Two hits,40 power each; retain original per-hit poison behavior, accuracy and PP. No automatic learner removal."
+      ],
+      "field_basis": {
+        "power": "OWNER_EXPLICIT"
+      },
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA"
+    },
+    "PIN_MISSILE": {
+      "fields": {
+        "power": 55,
+        "effect": "SINGLE_HIT_POISON_30_PERCENT",
+        "secondaryEffectChance": 30,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 664,
+          "excerpt": "2026-10-29 — OWNER-APPROVED BUG PHYSICAL MOVE MECHANIC REVISIONS (SUPERSEDING OLD VALUES)"
+        }
+      ],
+      "mechanic_notes": [
+        "Single hit replaces2–5 hits; keep85 accuracy/20PP;30% poison."
+      ],
+      "field_basis": {
+        "power": "OWNER_EXPLICIT",
+        "effect": "OWNER_EXPLICIT",
+        "secondaryEffectChance": "OWNER_EXPLICIT",
+        "flags": "REQUIRES_REVIEW_FOR_REPLACED_EFFECT"
+      }
+    },
+    "ROAR": {
+      "fields": {
+        "category": "SPECIAL",
+        "power": 70,
+        "pp": 15,
+        "priority": 0,
+        "effect": "DAMAGE_ATTACK_MINUS_1_20_PERCENT",
+        "secondaryEffectChance": 20,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 707,
+          "excerpt": "2026-10-30 OWNER-APPROVED ROAR REDESIGN (SUPERSEDES ORIGINAL MOVE #046): Roar is now NORMAL-type SPECIAL damaging move with 70 base power, 100% accuracy, 15 PP, normal priority 0, and a 20% chance on successful hit to lower the target's Attack by one stage. Th"
+        }
+      ],
+      "mechanic_notes": [
+        "Replace forced switching entirely with damaging 20% Attack -1; retain TM05/all previous learners and exact original animation."
+      ],
+      "field_basis": {
+        "category": "OWNER_EXPLICIT",
+        "power": "OWNER_EXPLICIT",
+        "accuracy": "OWNER_EXPLICIT",
+        "pp": "OWNER_EXPLICIT",
+        "priority": "OWNER_EXPLICIT",
+        "effect": "OWNER_EXPLICIT",
+        "secondaryEffectChance": "OWNER_EXPLICIT",
+        "flags": "REQUIRES_REVIEW_FOR_REPLACED_EFFECT"
+      }
+    },
+    "DRAGON_RAGE": {
+      "fields": {
+        "effect": "FIXED_DAMAGE_USER_LEVEL"
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 749,
+          "excerpt": "2026-10-30 — OWNER-APPROVED DRAGON RAGE NIGHT SHADE DAMAGE RULE: Existing Dragon Rage (move #082) remains DRAGON-type SPECIAL, 100% accuracy, 10 PP, but REPLACE original fixed-40-HP damage with fixed damage equal to the attacker's current level (same damage fo"
+        }
+      ],
+      "mechanic_notes": [
+        "Fixed damage=current attacker level, preserving applicable immunities; source power1 is a fixed-damage sentinel, not ordinary base power."
+      ],
+      "field_basis": {
+        "effect": "OWNER_EXPLICIT"
+      }
+    },
+    "THUNDER_WAVE": {
+      "fields": {
+        "target": "ALL_OTHERS_IN_DOUBLES"
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 788,
+          "excerpt": "2026-10-30 — ELECTRIC-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly directed 'Let's lock in, update the drive and then tell me what's left.' SPECIAL: keep original ThunderShock 40 BP/100 accuracy/30 PP, Shock Wave 60 BP/never misses/20 PP, Thund"
+        }
+      ],
+      "mechanic_notes": [
+        "Singles opponent; Doubles all other active battlers including ally; independent checks; global Electric paralysis immunity."
+      ],
+      "field_basis": {
+        "target": "OWNER_EXPLICIT"
+      }
+    },
+    "SCREECH": {
+      "fields": {
+        "target": "BOTH_OPPONENTS"
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 86
+        }
+      ],
+      "mechanic_notes": [
+        "Doubles both foes, no ally; independent85% checks; Def -2. Singles original."
+      ],
+      "field_basis": {
+        "target": "OWNER_EXPLICIT"
+      }
+    },
+    "LICK": {
+      "fields": {
+        "power": 40
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 593,
+          "excerpt": "2026-10-29 — LICK POWER INCREASE APPROVED"
+        }
+      ],
+      "mechanic_notes": [],
+      "field_basis": {
+        "power": "OWNER_EXPLICIT"
+      },
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA"
+    },
+    "LEECH_LIFE": {
+      "fields": {
+        "category": "SPECIAL",
+        "power": 80,
+        "pp": 10
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 689,
+          "excerpt": "2026-10-30 LEECH LIFE APPROVED: Move #141 Bug Special in Lightning Yellow. Modern Generation VII power 80 and PP 10 adopted instead of original power 20 and PP 15. Accuracy 100%; original HP drain of half actual damage dealt retained. Category remains owner-ap"
+        }
+      ],
+      "mechanic_notes": [
+        "SPECIAL owner exception, half actual damage drain retained."
+      ],
+      "field_basis": {
+        "category": "OWNER_EXPLICIT",
+        "power": "OWNER_EXPLICIT",
+        "pp": "OWNER_EXPLICIT"
+      },
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA"
+    },
+    "SPITE": {
+      "fields": {
+        "category": "SPECIAL",
+        "power": 30,
+        "effect": "DAMAGE_AND_OPTIONAL_SPITE_PP_DRAIN",
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 581,
+          "excerpt": "2026-10-29 — SPITE DAMAGE EDGE CASE OWNER APPROVED / MOVE FINALIZED"
+        }
+      ],
+      "mechanic_notes": [
+        "Always damage on successful Ghost hit; optional native2–5 PP depletion of eligible last-used move; no damage failure for absent eligibility."
+      ],
+      "field_basis": {
+        "category": "OWNER_EXPLICIT",
+        "power": "OWNER_EXPLICIT",
+        "accuracy": "OWNER_EXPLICIT",
+        "pp": "OWNER_EXPLICIT",
+        "effect": "OWNER_EXPLICIT",
+        "flags": "REQUIRES_REVIEW_FOR_REPLACED_EFFECT"
+      }
+    },
+    "SCARY_FACE": {
+      "fields": {
+        "type": "GHOST",
+        "pp": 15,
+        "target": "BOTH_OPPONENTS"
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 642,
+          "excerpt": "2026-10-29 — SCARY FACE OWNER APPROVAL"
+        }
+      ],
+      "mechanic_notes": [
+        "Doubles both foes only; independent90% checks; existing learners retained; new family learn-levels deferred."
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT",
+        "accuracy": "OWNER_EXPLICIT",
+        "pp": "OWNER_EXPLICIT",
+        "target": "OWNER_EXPLICIT"
+      }
+    },
+    "ZAP_CANNON": {
+      "fields": {},
+      "evidence": [
+        {
+          "source": "register",
+          "line": 788,
+          "excerpt": "2026-10-30 — ELECTRIC-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly directed 'Let's lock in, update the drive and then tell me what's left.' SPECIAL: keep original ThunderShock 40 BP/100 accuracy/30 PP, Shock Wave 60 BP/never misses/20 PP, Thund"
+        }
+      ],
+      "mechanic_notes": [
+        "Guaranteed rain hit under approved rule;50% outside; preserve original power100/PP5 and eligible paralysis. TM51 does not replace TM34."
+      ],
+      "field_basis": {}
+    },
+    "OUTRAGE": {
+      "fields": {
+        "power": 120
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 752,
+          "excerpt": "2026-10-30 — OWNER-APPROVED OUTRAGE POWER INCREASE: Original Outrage (move #200) remains DRAGON-type PHYSICAL under the modern Physical/Special split; increase base power from original Gen III 90 to 120, matching later-generation values. Retain 100% accuracy, "
+        }
+      ],
+      "mechanic_notes": [],
+      "field_basis": {
+        "power": "OWNER_EXPLICIT"
+      },
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA"
+    },
+    "SANDSTORM": {
+      "fields": {
+        "type": "GROUND"
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 713,
+          "excerpt": "2026-10-30 — OWNER-APPROVED GAME-WIDE SANDSTORM RECLASSIFICATION AND IMMUNITY: Sandstorm (original move #201; original TM37) is now GROUND-type STATUS rather than Rock-type Status. TM37 remains Sandstorm with its existing eligibility; no new distribution is gr"
+        }
+      ],
+      "mechanic_notes": [
+        "Only Ground typing grants residual immunity; retain non-type immunities;1/16 max HP/native duration; NO later-gen Rock SpDef boost."
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT"
+      }
+    },
+    "MEAN_LOOK": {
+      "fields": {
+        "type": "GHOST"
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 646,
+          "excerpt": "2026-10-29 — OWNER APPROVAL: MEAN LOOK RECLASSIFICATION"
+        }
+      ],
+      "mechanic_notes": [
+        "Typing only; preserve native accuracy bypass/trap/learners."
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT"
+      },
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA"
+    },
+    "GRUDGE": {
+      "fields": {
+        "category": "SPECIAL",
+        "power": 30,
+        "accuracy": 90,
+        "pp": 10,
+        "effect": "ROLLOUT_WITHOUT_DEFENSE_CURL",
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 573,
+          "excerpt": "2026-10-29 — GRUDGE FINAL ROLLOUT-STYLE MECHANICS APPROVED"
+        }
+      ],
+      "mechanic_notes": [
+        "30/60/120/240/480; five-turn native Rollout lock/miss termination; NO Defense Curl amplification; remove original KO-trigger PP drain."
+      ],
+      "field_basis": {
+        "category": "OWNER_EXPLICIT",
+        "power": "OWNER_EXPLICIT",
+        "accuracy": "OWNER_EXPLICIT",
+        "pp": "OWNER_EXPLICIT",
+        "effect": "OWNER_EXPLICIT",
+        "flags": "REQUIRES_REVIEW_FOR_REPLACED_EFFECT"
+      }
+    },
+    "ASTONISH": {
+      "fields": {
+        "category": "SPECIAL",
+        "power": 50
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 609,
+          "excerpt": "2026-10-29 — ASTONISH FINAL REDESIGN APPROVED"
+        }
+      ],
+      "mechanic_notes": [],
+      "field_basis": {
+        "category": "OWNER_EXPLICIT",
+        "power": "OWNER_EXPLICIT"
+      },
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA"
+    },
+    "FAKE_TEARS": {
+      "fields": {
+        "target": "BOTH_OPPONENTS"
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 87
+        }
+      ],
+      "mechanic_notes": [
+        "Doubles both foes, no ally; independent100% checks; SpDef -2. Singles original."
+      ],
+      "field_basis": {
+        "target": "OWNER_EXPLICIT"
+      }
+    },
+    "ROCK_TOMB": {
+      "fields": {
+        "power": 65,
+        "accuracy": 90
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 719,
+          "excerpt": "2026-10-30 — OWNER-APPROVED ROCK PHYSICAL ATTACK UPDATES: Rock Throw unchanged: ROCK PHYSICAL 50 power, 90% accuracy, 15 PP, no secondary effect. Rock Tomb modified: ROCK PHYSICAL 65 power (previous 50), 90% accuracy (previous 80%), 10 PP unchanged, retains it"
+        }
+      ],
+      "mechanic_notes": [],
+      "field_basis": {
+        "power": "OWNER_EXPLICIT",
+        "accuracy": "OWNER_EXPLICIT"
+      },
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA"
+    },
+    "SILVER_WIND": {
+      "fields": {
+        "pp": 10
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 692,
+          "excerpt": "Silver Wind approval 2026-10-30: Bug Special, 60 power, 100% accuracy, 10 PP, 10% all-stat boost chance."
+        }
+      ],
+      "mechanic_notes": [],
+      "field_basis": {
+        "pp": "OWNER_EXPLICIT"
+      },
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA"
+    },
+    "ICICLE_SPEAR": {
+      "fields": {
+        "power": 25
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 737,
+          "excerpt": "2026-10-30 — OWNER-APPROVED ICICLE SPEAR BUFF: Existing Icicle Spear (#333) remains ICE-type PHYSICAL multi-hit move (2–5 hits) with 100% accuracy and 30 PP, but per-hit base power is INCREASED from original Gen III 10 to 25, matching later-generation official"
+        }
+      ],
+      "mechanic_notes": [
+        "25 power per hit; native2–5 hits;100accuracy/30PP."
+      ],
+      "field_basis": {
+        "power": "OWNER_EXPLICIT"
+      },
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA"
+    },
+    "CURSE": {
+      "fields": {
+        "type": "GHOST"
+      },
+      "evidence": [
+        {
+          "source": "owner_20261105",
+          "line": 3
+        }
+      ],
+      "mechanic_notes": [],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_2026_11_05"
+      }
+    }
+  },
+  "new_moves": [
+    {
+      "id": null,
+      "proposed_id": 355,
+      "key": "FLAME_FANG",
+      "name": "Flame Fang",
+      "identity": "NEW_CUSTOM",
+      "current": null,
+      "approved": {
+        "type": "FIRE",
+        "category": "PHYSICAL",
+        "power": 90,
+        "accuracy": 100,
+        "pp": 15,
+        "priority": 0,
+        "target": "SELECTED",
+        "effect": "FLINCH_20",
+        "secondaryEffectChance": 20,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 529,
+          "excerpt": "2026-10-29 — CUSTOM FIRE MOVE FINAL NAME APPROVED: FLAME FANG"
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "PROPOSED_NATIVE_NORMAL_PRIORITY",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "FLINCH_20",
+        "Normal priority0 is proposed technical translation; source approves the listed custom attack mechanics, not an explicit priority statement."
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "FLINCH_20",
+        "secondary_percent": 20,
+        "burn_percent": 0,
+        "flinch_percent": 20
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 356,
+      "key": "FLASHFIRE",
+      "name": "Flashfire",
+      "identity": "NEW_CUSTOM",
+      "current": null,
+      "approved": {
+        "type": "FIRE",
+        "category": "PHYSICAL",
+        "power": 40,
+        "accuracy": 100,
+        "pp": 30,
+        "priority": 1,
+        "target": "SELECTED",
+        "effect": "HIT",
+        "secondaryEffectChance": 0,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 533,
+          "excerpt": "2026-10-29 — CUSTOM FIRE MOVE FINAL NAME APPROVED: FLASHFIRE"
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "HIT"
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "HIT"
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 357,
+      "key": "BLAZE_RUSH",
+      "name": "Blaze Rush",
+      "identity": "NEW_CUSTOM",
+      "current": null,
+      "approved": {
+        "type": "FIRE",
+        "category": "PHYSICAL",
+        "power": 100,
+        "accuracy": 100,
+        "pp": 10,
+        "priority": 0,
+        "target": "SELECTED",
+        "effect": "RECOIL_ONE_QUARTER",
+        "secondaryEffectChance": 0,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 521,
+          "excerpt": "2026-10-29 — BLAZE RUSH ACCURACY AND PP APPROVED"
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "PROPOSED_NATIVE_NORMAL_PRIORITY",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "RECOIL_ONE_QUARTER",
+        "Normal priority0 is proposed technical translation; source approves the listed custom attack mechanics, not an explicit priority statement."
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "RECOIL_ONE_QUARTER",
+        "recoil_fraction": [
+          1,
+          4
+        ],
+        "crash_on_miss": false
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 358,
+      "key": "SOUL_DRAIN",
+      "name": "Soul Drain",
+      "identity": "NEW_CUSTOM",
+      "current": null,
+      "approved": {
+        "type": "GHOST",
+        "category": "PHYSICAL",
+        "power": 50,
+        "accuracy": 100,
+        "pp": 15,
+        "priority": 0,
+        "target": "SELECTED",
+        "effect": "DRAIN_HALF_CONTACT",
+        "secondaryEffectChance": 0,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 589,
+          "excerpt": "2026-10-29 — SOUL DRAIN COMPLETE MECHANICS APPROVED"
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "PROPOSED_NATIVE_NORMAL_PRIORITY",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "DRAIN_HALF_CONTACT",
+        "Normal priority0 is proposed technical translation; source approves the listed custom attack mechanics, not an explicit priority statement."
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "DRAIN_HALF_CONTACT",
+        "drain_fraction": [
+          1,
+          2
+        ],
+        "contact": true
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 359,
+      "key": "WEARY_TOUCH",
+      "name": "Weary Touch",
+      "identity": "NEW_CUSTOM",
+      "current": null,
+      "approved": {
+        "type": "GHOST",
+        "category": "PHYSICAL",
+        "power": 75,
+        "accuracy": 100,
+        "pp": 15,
+        "priority": 0,
+        "target": "SELECTED",
+        "effect": "SLEEP_22",
+        "secondaryEffectChance": 22,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 601,
+          "excerpt": "2026-10-29 — CUSTOM GHOST MOVE WEARY TOUCH FINAL NAME APPROVED"
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "PROPOSED_NATIVE_NORMAL_PRIORITY",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "SLEEP_22",
+        "Normal priority0 is proposed technical translation; source approves the listed custom attack mechanics, not an explicit priority statement."
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "SLEEP_22",
+        "secondary_percent": 22
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 360,
+      "key": "DREAM_HAUNT",
+      "name": "Dream Haunt",
+      "identity": "NEW_CUSTOM",
+      "current": null,
+      "approved": {
+        "type": "GHOST",
+        "category": "SPECIAL",
+        "power": 55,
+        "accuracy": 100,
+        "pp": 15,
+        "priority": 0,
+        "target": "SELECTED",
+        "effect": "DOUBLE_POWER_AGAINST_SLEEP",
+        "secondaryEffectChance": 0,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 615,
+          "excerpt": "2026-10-29 — DREAM HAUNT FULL DESIGN FINAL APPROVAL"
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "PROPOSED_NATIVE_NORMAL_PRIORITY",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "DOUBLE_POWER_AGAINST_SLEEP",
+        "Normal priority0 is proposed technical translation; source approves the listed custom attack mechanics, not an explicit priority statement."
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "DOUBLE_POWER_AGAINST_SLEEP"
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 361,
+      "key": "SKITTER_SLASH",
+      "name": "Skitter Slash",
+      "identity": "NEW_CUSTOM",
+      "current": null,
+      "approved": {
+        "type": "BUG",
+        "category": "PHYSICAL",
+        "power": 40,
+        "accuracy": 100,
+        "pp": 15,
+        "priority": 0,
+        "target": "SELECTED",
+        "effect": "HIT",
+        "secondaryEffectChance": 0,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 686,
+          "excerpt": "2026-10-30 BUG PHYSICAL FINAL NUMBERS APPROVED: Skitter Slash 40 base power, 100% accuracy, 15 PP, no added effect. Bug Bite 65 base power, 90% accuracy, 15 PP, 30% chance to lower target Special Attack one stage. Venom Web 50 base power now FINAL, 90% accurac"
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "PROPOSED_NATIVE_NORMAL_PRIORITY",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "HIT",
+        "Normal priority0 is proposed technical translation; source approves the listed custom attack mechanics, not an explicit priority statement."
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "HIT"
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 362,
+      "key": "VENOM_WEB",
+      "name": "Venom Web",
+      "identity": "NEW_CUSTOM",
+      "current": null,
+      "approved": {
+        "type": "BUG",
+        "category": "PHYSICAL",
+        "power": 50,
+        "accuracy": 90,
+        "pp": 20,
+        "priority": 0,
+        "target": "SELECTED",
+        "effect": "NATIVE_BIND_NO_REFRESH",
+        "secondaryEffectChance": 0,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 686,
+          "excerpt": "2026-10-30 BUG PHYSICAL FINAL NUMBERS APPROVED: Skitter Slash 40 base power, 100% accuracy, 15 PP, no added effect. Bug Bite 65 base power, 90% accuracy, 15 PP, 30% chance to lower target Special Attack one stage. Venom Web 50 base power now FINAL, 90% accurac"
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "PROPOSED_NATIVE_NORMAL_PRIORITY",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "NATIVE_BIND_NO_REFRESH",
+        "Normal priority0 is proposed technical translation; source approves the listed custom attack mechanics, not an explicit priority statement."
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "NATIVE_BIND_NO_REFRESH",
+        "trap_turns": [
+          2,
+          5
+        ],
+        "residual_fraction": [
+          1,
+          16
+        ],
+        "refresh_existing_trap": false,
+        "poison_percent": 0
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 363,
+      "key": "BUG_BITE",
+      "name": "Bug Bite",
+      "identity": "NEW_CUSTOM",
+      "current": null,
+      "approved": {
+        "type": "BUG",
+        "category": "PHYSICAL",
+        "power": 65,
+        "accuracy": 90,
+        "pp": 15,
+        "priority": 0,
+        "target": "SELECTED",
+        "effect": "SP_ATTACK_MINUS_1_30",
+        "secondaryEffectChance": 30,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 686,
+          "excerpt": "2026-10-30 BUG PHYSICAL FINAL NUMBERS APPROVED: Skitter Slash 40 base power, 100% accuracy, 15 PP, no added effect. Bug Bite 65 base power, 90% accuracy, 15 PP, 30% chance to lower target Special Attack one stage. Venom Web 50 base power now FINAL, 90% accurac"
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "PROPOSED_NATIVE_NORMAL_PRIORITY",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "SP_ATTACK_MINUS_1_30",
+        "Normal priority0 is proposed technical translation; source approves the listed custom attack mechanics, not an explicit priority statement."
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "SP_ATTACK_MINUS_1_30",
+        "secondary_percent": 30,
+        "berry_steal": false,
+        "target_stat": "SP_ATTACK",
+        "stages": -1
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 364,
+      "key": "CHITIN_CRUSH",
+      "name": "Chitin Crush",
+      "identity": "NEW_CUSTOM",
+      "current": null,
+      "approved": {
+        "type": "BUG",
+        "category": "PHYSICAL",
+        "power": 85,
+        "accuracy": 90,
+        "pp": 15,
+        "priority": 0,
+        "target": "SELECTED",
+        "effect": "DEFENSE_MINUS_1_30",
+        "secondaryEffectChance": 30,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 683,
+          "excerpt": "2026-10-30 CHITIN CRUSH APPROVED: New Bug Physical attack, 85 base power, 90% accuracy, 15 PP, and 30% chance on hit to lower target Defense by one stage. Supersedes proposed 80 base power. Distribution and implementation pending."
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "PROPOSED_NATIVE_NORMAL_PRIORITY",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "DEFENSE_MINUS_1_30",
+        "Normal priority0 is proposed technical translation; source approves the listed custom attack mechanics, not an explicit priority statement."
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "DEFENSE_MINUS_1_30",
+        "secondary_percent": 30
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 365,
+      "key": "CHIRP",
+      "name": "Chirp",
+      "identity": "NEW_CUSTOM",
+      "current": null,
+      "approved": {
+        "type": "BUG",
+        "category": "SPECIAL",
+        "power": 40,
+        "accuracy": 100,
+        "pp": 25,
+        "priority": 0,
+        "target": "SELECTED",
+        "effect": "HIT_SOUND",
+        "secondaryEffectChance": 0,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 695,
+          "excerpt": "2026-10-30 CHIRP APPROVED: New Bug-type Special sound attack. Power 40; accuracy 100%; PP 25; no secondary effect. Flavor: sharp insect chirping/stridulation damages target. Intended as basic early-game Special Bug attack. Species distribution and implementati"
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "PROPOSED_NATIVE_NORMAL_PRIORITY",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "HIT_SOUND",
+        "Normal priority0 is proposed technical translation; source approves the listed custom attack mechanics, not an explicit priority statement."
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "HIT_SOUND",
+        "sound": true
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 366,
+      "key": "SWARM_CLOUD",
+      "name": "Swarm Cloud",
+      "identity": "NEW_CUSTOM",
+      "current": null,
+      "approved": {
+        "type": "BUG",
+        "category": "SPECIAL",
+        "power": 90,
+        "accuracy": 90,
+        "pp": 15,
+        "priority": 0,
+        "target": "SELECTED",
+        "effect": "INDEPENDENT_CONFUSE_50_POISON_50",
+        "secondaryEffectChance": null,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 698,
+          "excerpt": "2026-10-30 SWARM CLOUD APPROVED: New Bug-type Special attack, 90 base power, 90% accuracy, 15 PP. On a successful hit, independently roll a 50% chance to confuse and a separate 50% chance to poison; both effects may apply when permitted by status/immunity rule"
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "PROPOSED_NATIVE_NORMAL_PRIORITY",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "INDEPENDENT_CONFUSE_50_POISON_50",
+        "Normal priority0 is proposed technical translation; source approves the listed custom attack mechanics, not an explicit priority statement."
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "INDEPENDENT_CONFUSE_50_POISON_50",
+        "independent_rolls": [
+          {
+            "effect": "CONFUSE",
+            "percent": 50
+          },
+          {
+            "effect": "POISON",
+            "percent": 50
+          }
+        ]
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 367,
+      "key": "BELLOW",
+      "name": "Bellow",
+      "identity": "NEW_CUSTOM",
+      "current": null,
+      "approved": {
+        "type": "NORMAL",
+        "category": "SPECIAL",
+        "power": 40,
+        "accuracy": 100,
+        "pp": 30,
+        "priority": 0,
+        "target": "SELECTED",
+        "effect": "HIT_SOUND",
+        "secondaryEffectChance": 0,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 704,
+          "excerpt": "2026-10-30 OWNER-APPROVED NEW NORMAL MOVE — BELLOW: Normal-type SPECIAL damaging attack, 40 base power, 100% accuracy, 30 PP, no secondary effect. Theme: a short, forceful vocal cry/bellow produces sound waves that damage the target; broadly accessible to voca"
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "PROPOSED_NATIVE_NORMAL_PRIORITY",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "HIT_SOUND",
+        "Normal priority0 is proposed technical translation; source approves the listed custom attack mechanics, not an explicit priority statement."
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "HIT_SOUND",
+        "sound": true
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 368,
+      "key": "POWER_GEM",
+      "name": "Power Gem",
+      "identity": "NEW_IMPORTED",
+      "current": null,
+      "approved": {
+        "type": "ROCK",
+        "category": "SPECIAL",
+        "power": 80,
+        "accuracy": 100,
+        "pp": 20,
+        "priority": 0,
+        "target": "SELECTED",
+        "effect": "HIT",
+        "secondaryEffectChance": 0,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 716,
+          "excerpt": "2026-10-30 — OWNER-APPROVED ROCK SPECIAL MOVE POWER GEM: Introduce the later-generation move Power Gem into Pokémon Lightning Yellow as ROCK-type SPECIAL attack, 80 base power, 100% accuracy, 20 PP, no additional effect. This supplements existing AncientPower "
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "HIT"
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "HIT"
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 369,
+      "key": "STONE_EDGE",
+      "name": "Stone Edge",
+      "identity": "NEW_IMPORTED",
+      "current": null,
+      "approved": {
+        "type": "ROCK",
+        "category": "PHYSICAL",
+        "power": 100,
+        "accuracy": 80,
+        "pp": 10,
+        "priority": 0,
+        "target": "SELECTED",
+        "effect": "HIGH_CRITICAL",
+        "secondaryEffectChance": 0,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 719,
+          "excerpt": "2026-10-30 — OWNER-APPROVED ROCK PHYSICAL ATTACK UPDATES: Rock Throw unchanged: ROCK PHYSICAL 50 power, 90% accuracy, 15 PP, no secondary effect. Rock Tomb modified: ROCK PHYSICAL 65 power (previous 50), 90% accuracy (previous 80%), 10 PP unchanged, retains it"
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "HIGH_CRITICAL"
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "HIGH_CRITICAL"
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 370,
+      "key": "SCORCHING_SANDS",
+      "name": "Scorching Sands",
+      "identity": "NEW_IMPORTED",
+      "current": null,
+      "approved": {
+        "type": "GROUND",
+        "category": "SPECIAL",
+        "power": 70,
+        "accuracy": 100,
+        "pp": 10,
+        "priority": 0,
+        "target": "SELECTED",
+        "effect": "BURN_30",
+        "secondaryEffectChance": 30,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 725,
+          "excerpt": "2026-10-30 OWNER-APPROVED GROUND SPECIAL MOVE — SCORCHING SANDS: Introduce official Generation VIII Scorching Sands as Ground-type SPECIAL damaging attack at its official 70 base power, 100% accuracy, 10 PP, and 30% chance to burn the target when hit. Intended"
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "BURN_30"
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "BURN_30",
+        "secondary_percent": 30
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 371,
+      "key": "EARTH_POWER",
+      "name": "Earth Power",
+      "identity": "NEW_IMPORTED",
+      "current": null,
+      "approved": {
+        "type": "GROUND",
+        "category": "SPECIAL",
+        "power": 90,
+        "accuracy": 100,
+        "pp": 10,
+        "priority": 0,
+        "target": "SELECTED",
+        "effect": "SP_DEFENSE_MINUS_1_10",
+        "secondaryEffectChance": 10,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 728,
+          "excerpt": "2026-10-30 — OWNER-APPROVED GROUND SPECIAL MOVE EARTH POWER: Introduce the established Generation IV move Earth Power as a GROUND-type SPECIAL damaging attack at its official parameters: 90 base power, 100% accuracy, 10 PP, and 10% chance on successful hit to "
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "SP_DEFENSE_MINUS_1_10"
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "SP_DEFENSE_MINUS_1_10",
+        "secondary_percent": 10
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 372,
+      "key": "ICE_FANG",
+      "name": "Ice Fang",
+      "identity": "NEW_IMPORTED",
+      "current": null,
+      "approved": {
+        "type": "ICE",
+        "category": "PHYSICAL",
+        "power": 65,
+        "accuracy": 95,
+        "pp": 15,
+        "priority": 0,
+        "target": "SELECTED",
+        "effect": "INDEPENDENT_FREEZE_10_FLINCH_10",
+        "secondaryEffectChance": null,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 743,
+          "excerpt": "2026-10-30 — ICE-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. PHYSICAL ICE: retain Ice Ball at Gen III baseline and Ice Punch unchanged; buff original Icicle Spear to 25 BP per hit, 2–5 hits, 100% accuracy, 30 PP; add official later-gen Ice Fang 65 BP 95 accura"
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "INDEPENDENT_FREEZE_10_FLINCH_10"
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "INDEPENDENT_FREEZE_10_FLINCH_10",
+        "independent_rolls": [
+          {
+            "effect": "FREEZE",
+            "percent": 10
+          },
+          {
+            "effect": "FLINCH",
+            "percent": 10
+          }
+        ]
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 373,
+      "key": "AVALANCHE",
+      "name": "Avalanche",
+      "identity": "NEW_IMPORTED",
+      "current": null,
+      "approved": {
+        "type": "ICE",
+        "category": "PHYSICAL",
+        "power": 60,
+        "accuracy": 100,
+        "pp": 10,
+        "priority": -4,
+        "target": "SELECTED",
+        "effect": "DOUBLE_IF_DAMAGED_BY_TARGET_THIS_TURN",
+        "secondaryEffectChance": 0,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 743,
+          "excerpt": "2026-10-30 — ICE-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. PHYSICAL ICE: retain Ice Ball at Gen III baseline and Ice Punch unchanged; buff original Icicle Spear to 25 BP per hit, 2–5 hits, 100% accuracy, 30 PP; add official later-gen Ice Fang 65 BP 95 accura"
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "DOUBLE_IF_DAMAGED_BY_TARGET_THIS_TURN"
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "DOUBLE_IF_DAMAGED_BY_TARGET_THIS_TURN"
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 374,
+      "key": "ICICLE_CRASH",
+      "name": "Icicle Crash",
+      "identity": "NEW_IMPORTED",
+      "current": null,
+      "approved": {
+        "type": "ICE",
+        "category": "PHYSICAL",
+        "power": 85,
+        "accuracy": 90,
+        "pp": 10,
+        "priority": 0,
+        "target": "SELECTED",
+        "effect": "FLINCH_30",
+        "secondaryEffectChance": 30,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 743,
+          "excerpt": "2026-10-30 — ICE-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. PHYSICAL ICE: retain Ice Ball at Gen III baseline and Ice Punch unchanged; buff original Icicle Spear to 25 BP per hit, 2–5 hits, 100% accuracy, 30 PP; add official later-gen Ice Fang 65 BP 95 accura"
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "FLINCH_30"
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "FLINCH_30",
+        "secondary_percent": 30
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 375,
+      "key": "DRAGON_PULSE",
+      "name": "Dragon Pulse",
+      "identity": "NEW_IMPORTED",
+      "current": null,
+      "approved": {
+        "type": "DRAGON",
+        "category": "SPECIAL",
+        "power": 85,
+        "accuracy": 100,
+        "pp": 10,
+        "priority": 0,
+        "target": "SELECTED",
+        "effect": "HIT",
+        "secondaryEffectChance": 0,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 755,
+          "excerpt": "2026-10-30 — DRAGON-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. ORIGINAL DRAGON MOVES under modern split: PHYSICAL Dragon Claw 80 BP/100 accuracy/15 PP unchanged; Outrage BUFFED to 120 BP/100 accuracy/15 PP with original 2–3-turn locked attack and subsequent u"
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "HIT"
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "HIT"
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 376,
+      "key": "DRAGON_RUSH",
+      "name": "Dragon Rush",
+      "identity": "NEW_IMPORTED",
+      "current": null,
+      "approved": {
+        "type": "DRAGON",
+        "category": "PHYSICAL",
+        "power": 100,
+        "accuracy": 75,
+        "pp": 10,
+        "priority": 0,
+        "target": "SELECTED",
+        "effect": "FLINCH_20_GEN_IV_NO_MINIMIZE_BONUS",
+        "secondaryEffectChance": 20,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 755,
+          "excerpt": "2026-10-30 — DRAGON-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. ORIGINAL DRAGON MOVES under modern split: PHYSICAL Dragon Claw 80 BP/100 accuracy/15 PP unchanged; Outrage BUFFED to 120 BP/100 accuracy/15 PP with original 2–3-turn locked attack and subsequent u"
+        },
+        {
+          "source": "owner_20261105",
+          "line": 5
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_GENIV_EDGE_CASES_2026_11_05",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "Generation IV flinch20; no later-generation Minimize power/accuracy bonus.",
+        "Owner November5: Generation IV edge cases; retain unrelated GenIII engine rules."
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "FLINCH_20_MINIMIZE_REVIEW",
+        "secondary_percent": 20,
+        "reference_generation": 4,
+        "minimize_power_bonus": false,
+        "minimize_accuracy_bypass": false
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 377,
+      "key": "SNARL",
+      "name": "Snarl",
+      "identity": "NEW_IMPORTED",
+      "current": null,
+      "approved": {
+        "type": "DARK",
+        "category": "SPECIAL",
+        "power": 55,
+        "accuracy": 95,
+        "pp": 15,
+        "priority": 0,
+        "target": "BOTH_OPPONENTS",
+        "effect": "SP_ATTACK_MINUS_1_100",
+        "secondaryEffectChance": 100,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 767,
+          "excerpt": "2026-10-30 — DARK-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Preserve the original Generation III Dark moves under post-split categories unless expressly changed; no buff to Crunch was approved. ADD THREE official later-generation DARK SPECIAL moves: Snarl 55"
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "SP_ATTACK_MINUS_1_100"
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "SP_ATTACK_MINUS_1_100",
+        "secondary_percent": 100
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 378,
+      "key": "DARK_PULSE",
+      "name": "Dark Pulse",
+      "identity": "NEW_IMPORTED",
+      "current": null,
+      "approved": {
+        "type": "DARK",
+        "category": "SPECIAL",
+        "power": 80,
+        "accuracy": 100,
+        "pp": 15,
+        "priority": 0,
+        "target": "SELECTED",
+        "effect": "FLINCH_20",
+        "secondaryEffectChance": 20,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 767,
+          "excerpt": "2026-10-30 — DARK-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Preserve the original Generation III Dark moves under post-split categories unless expressly changed; no buff to Crunch was approved. ADD THREE official later-generation DARK SPECIAL moves: Snarl 55"
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "FLINCH_20"
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "FLINCH_20",
+        "secondary_percent": 20
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 379,
+      "key": "NIGHT_DAZE",
+      "name": "Night Daze",
+      "identity": "NEW_IMPORTED",
+      "current": null,
+      "approved": {
+        "type": "DARK",
+        "category": "SPECIAL",
+        "power": 85,
+        "accuracy": 95,
+        "pp": 10,
+        "priority": 0,
+        "target": "SELECTED",
+        "effect": "ACCURACY_MINUS_1_40",
+        "secondaryEffectChance": 40,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 767,
+          "excerpt": "2026-10-30 — DARK-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Preserve the original Generation III Dark moves under post-split categories unless expressly changed; no buff to Crunch was approved. ADD THREE official later-generation DARK SPECIAL moves: Snarl 55"
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "ACCURACY_MINUS_1_40"
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "ACCURACY_MINUS_1_40",
+        "secondary_percent": 40
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 380,
+      "key": "NIGHT_SLASH",
+      "name": "Night Slash",
+      "identity": "NEW_IMPORTED",
+      "current": null,
+      "approved": {
+        "type": "DARK",
+        "category": "PHYSICAL",
+        "power": 70,
+        "accuracy": 100,
+        "pp": 15,
+        "priority": 0,
+        "target": "SELECTED",
+        "effect": "HIGH_CRITICAL",
+        "secondaryEffectChance": 0,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 767,
+          "excerpt": "2026-10-30 — DARK-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Preserve the original Generation III Dark moves under post-split categories unless expressly changed; no buff to Crunch was approved. ADD THREE official later-generation DARK SPECIAL moves: Snarl 55"
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "HIGH_CRITICAL"
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "HIGH_CRITICAL"
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 381,
+      "key": "PAYBACK",
+      "name": "Payback",
+      "identity": "NEW_IMPORTED",
+      "current": null,
+      "approved": {
+        "type": "DARK",
+        "category": "PHYSICAL",
+        "power": 50,
+        "accuracy": 100,
+        "pp": 10,
+        "priority": 0,
+        "target": "SELECTED",
+        "effect": "DOUBLE_IF_ACTS_AFTER_TARGET_GEN_IV",
+        "secondaryEffectChance": 0,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 767,
+          "excerpt": "2026-10-30 — DARK-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Preserve the original Generation III Dark moves under post-split categories unless expressly changed; no buff to Crunch was approved. ADD THREE official later-generation DARK SPECIAL moves: Snarl 55"
+        },
+        {
+          "source": "owner_20261105",
+          "line": 5
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_GENIV_EDGE_CASES_2026_11_05",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "DOUBLE_IF_ACTS_AFTER_TARGET_VERSION_REVIEW",
+        "Owner November5: Generation IV edge cases; retain unrelated GenIII engine rules."
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "DOUBLE_IF_ACTS_AFTER_TARGET_VERSION_REVIEW",
+        "reference_generation": 4,
+        "switching_target_doubles_power": true
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 382,
+      "key": "FOUL_PLAY",
+      "name": "Foul Play",
+      "identity": "NEW_IMPORTED",
+      "current": null,
+      "approved": {
+        "type": "DARK",
+        "category": "PHYSICAL",
+        "power": 95,
+        "accuracy": 100,
+        "pp": 15,
+        "priority": 0,
+        "target": "SELECTED",
+        "effect": "TARGET_ATTACK_AND_STAGES_MODIFIER_REVIEW",
+        "secondaryEffectChance": 0,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 767,
+          "excerpt": "2026-10-30 — DARK-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Preserve the original Generation III Dark moves under post-split categories unless expressly changed; no buff to Crunch was approved. ADD THREE official later-generation DARK SPECIAL moves: Snarl 55"
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "TARGET_ATTACK_AND_STAGES_MODIFIER_REVIEW"
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "TARGET_ATTACK_AND_STAGES_MODIFIER_REVIEW"
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 383,
+      "key": "AQUA_JET",
+      "name": "Aqua Jet",
+      "identity": "NEW_IMPORTED",
+      "current": null,
+      "approved": {
+        "type": "WATER",
+        "category": "PHYSICAL",
+        "power": 40,
+        "accuracy": 100,
+        "pp": 20,
+        "priority": 1,
+        "target": "SELECTED",
+        "effect": "HIT",
+        "secondaryEffectChance": 0,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 779,
+          "excerpt": "2026-10-30 — WATER-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. PRESERVE original Generation III Water moves under post-split Physical/Special categories without changes to original Water attacks, including TM03 Water Pulse as Misty's reward and HM03 Surf/HM07 "
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "HIT"
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "HIT"
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 384,
+      "key": "LIQUIDATION",
+      "name": "Liquidation",
+      "identity": "NEW_IMPORTED",
+      "current": null,
+      "approved": {
+        "type": "WATER",
+        "category": "PHYSICAL",
+        "power": 85,
+        "accuracy": 100,
+        "pp": 10,
+        "priority": 0,
+        "target": "SELECTED",
+        "effect": "DEFENSE_MINUS_1_20",
+        "secondaryEffectChance": 20,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 779,
+          "excerpt": "2026-10-30 — WATER-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. PRESERVE original Generation III Water moves under post-split Physical/Special categories without changes to original Water attacks, including TM03 Water Pulse as Misty's reward and HM03 Surf/HM07 "
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "DEFENSE_MINUS_1_20"
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "DEFENSE_MINUS_1_20",
+        "secondary_percent": 20
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 385,
+      "key": "VORTEX_SPIN",
+      "name": "Vortex Spin",
+      "identity": "NEW_CUSTOM",
+      "current": null,
+      "approved": {
+        "type": "WATER",
+        "category": "PHYSICAL",
+        "power": 55,
+        "accuracy": 100,
+        "pp": 25,
+        "priority": 0,
+        "target": "SELECTED",
+        "effect": "CONFUSION_30_NO_TRAP",
+        "secondaryEffectChance": 0,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 779,
+          "excerpt": "2026-10-30 — WATER-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. PRESERVE original Generation III Water moves under post-split Physical/Special categories without changes to original Water attacks, including TM03 Water Pulse as Misty's reward and HM03 Surf/HM07 "
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "PROPOSED_NATIVE_NORMAL_PRIORITY",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "CONFUSION_30_NO_TRAP",
+        "Normal priority0 is proposed technical translation; source approves the listed custom attack mechanics, not an explicit priority statement."
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "CONFUSION_30_NO_TRAP",
+        "traps": false
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 386,
+      "key": "TIDAL_CRASH",
+      "name": "Tidal Crash",
+      "identity": "NEW_CUSTOM",
+      "current": null,
+      "approved": {
+        "type": "WATER",
+        "category": "PHYSICAL",
+        "power": 30,
+        "accuracy": 90,
+        "pp": 20,
+        "priority": 0,
+        "target": "SELECTED",
+        "effect": "NATIVE_ROLLOUT_INCLUDING_DEFENSE_CURL",
+        "secondaryEffectChance": 0,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 779,
+          "excerpt": "2026-10-30 — WATER-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. PRESERVE original Generation III Water moves under post-split Physical/Special categories without changes to original Water attacks, including TM03 Water Pulse as Misty's reward and HM03 Surf/HM07 "
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "PROPOSED_NATIVE_NORMAL_PRIORITY",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "NATIVE_ROLLOUT_INCLUDING_DEFENSE_CURL",
+        "Normal priority0 is proposed technical translation; source approves the listed custom attack mechanics, not an explicit priority statement."
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "NATIVE_ROLLOUT_INCLUDING_DEFENSE_CURL",
+        "power_sequence": [
+          30,
+          60,
+          120,
+          240,
+          480
+        ],
+        "defense_curl_bonus": true,
+        "ends_on_miss": true,
+        "surf_spread_mechanics": false
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 387,
+      "key": "DISCHARGE",
+      "name": "Discharge",
+      "identity": "NEW_IMPORTED",
+      "current": null,
+      "approved": {
+        "type": "ELECTRIC",
+        "category": "SPECIAL",
+        "power": 80,
+        "accuracy": 100,
+        "pp": 15,
+        "priority": 0,
+        "target": "ALL_OTHERS",
+        "effect": "PARALYZE_30",
+        "secondaryEffectChance": 30,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 788,
+          "excerpt": "2026-10-30 — ELECTRIC-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly directed 'Let's lock in, update the drive and then tell me what's left.' SPECIAL: keep original ThunderShock 40 BP/100 accuracy/30 PP, Shock Wave 60 BP/never misses/20 PP, Thund"
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "PARALYZE_30"
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "PARALYZE_30",
+        "secondary_percent": 30
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 388,
+      "key": "VOLT_SWITCH",
+      "name": "Volt Switch",
+      "identity": "NEW_IMPORTED",
+      "current": null,
+      "approved": {
+        "type": "ELECTRIC",
+        "category": "SPECIAL",
+        "power": 70,
+        "accuracy": 100,
+        "pp": 20,
+        "priority": 0,
+        "target": "SELECTED",
+        "effect": "SWITCH_AFTER_SUCCESSFUL_DAMAGE",
+        "secondaryEffectChance": 0,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 788,
+          "excerpt": "2026-10-30 — ELECTRIC-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly directed 'Let's lock in, update the drive and then tell me what's left.' SPECIAL: keep original ThunderShock 40 BP/100 accuracy/30 PP, Shock Wave 60 BP/never misses/20 PP, Thund"
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "SWITCH_AFTER_SUCCESSFUL_DAMAGE"
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "SWITCH_AFTER_SUCCESSFUL_DAMAGE"
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 389,
+      "key": "THUNDER_FANG",
+      "name": "Thunder Fang",
+      "identity": "NEW_IMPORTED",
+      "current": null,
+      "approved": {
+        "type": "ELECTRIC",
+        "category": "PHYSICAL",
+        "power": 65,
+        "accuracy": 95,
+        "pp": 15,
+        "priority": 0,
+        "target": "SELECTED",
+        "effect": "INDEPENDENT_PARALYZE_10_FLINCH_10",
+        "secondaryEffectChance": null,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 788,
+          "excerpt": "2026-10-30 — ELECTRIC-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly directed 'Let's lock in, update the drive and then tell me what's left.' SPECIAL: keep original ThunderShock 40 BP/100 accuracy/30 PP, Shock Wave 60 BP/never misses/20 PP, Thund"
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "INDEPENDENT_PARALYZE_10_FLINCH_10"
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "INDEPENDENT_PARALYZE_10_FLINCH_10",
+        "independent_rolls": [
+          {
+            "effect": "PARALYZE",
+            "percent": 10
+          },
+          {
+            "effect": "FLINCH",
+            "percent": 10
+          }
+        ]
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 390,
+      "key": "WILD_CHARGE",
+      "name": "Wild Charge",
+      "identity": "NEW_IMPORTED",
+      "current": null,
+      "approved": {
+        "type": "ELECTRIC",
+        "category": "PHYSICAL",
+        "power": 90,
+        "accuracy": 100,
+        "pp": 15,
+        "priority": 0,
+        "target": "SELECTED",
+        "effect": "RECOIL_ONE_QUARTER",
+        "secondaryEffectChance": 0,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 788,
+          "excerpt": "2026-10-30 — ELECTRIC-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly directed 'Let's lock in, update the drive and then tell me what's left.' SPECIAL: keep original ThunderShock 40 BP/100 accuracy/30 PP, Shock Wave 60 BP/never misses/20 PP, Thund"
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "RECOIL_ONE_QUARTER"
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "RECOIL_ONE_QUARTER"
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 391,
+      "key": "SEED_BOMB",
+      "name": "Seed Bomb",
+      "identity": "NEW_IMPORTED",
+      "current": null,
+      "approved": {
+        "type": "GRASS",
+        "category": "PHYSICAL",
+        "power": 80,
+        "accuracy": 100,
+        "pp": 15,
+        "priority": 0,
+        "target": "SELECTED",
+        "effect": "HIT",
+        "secondaryEffectChance": 0,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 794,
+          "excerpt": "2026-10-30 — GRASS TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly says 'let's go ahead and lock grass and move on.' Special Grass attacking coverage accepted without new changes; preserve original Grass Special attacks and all previously approved"
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "HIT"
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "HIT"
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 392,
+      "key": "PETAL_BLIZZARD",
+      "name": "Petal Blizzard",
+      "identity": "NEW_IMPORTED",
+      "current": null,
+      "approved": {
+        "type": "GRASS",
+        "category": "PHYSICAL",
+        "power": 90,
+        "accuracy": 100,
+        "pp": 15,
+        "priority": 0,
+        "target": "ALL_OTHERS",
+        "effect": "HIT",
+        "secondaryEffectChance": 0,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 794,
+          "excerpt": "2026-10-30 — GRASS TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly says 'let's go ahead and lock grass and move on.' Special Grass attacking coverage accepted without new changes; preserve original Grass Special attacks and all previously approved"
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "HIT"
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "HIT"
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 393,
+      "key": "WOOD_HAMMER",
+      "name": "Wood Hammer",
+      "identity": "NEW_IMPORTED",
+      "current": null,
+      "approved": {
+        "type": "GRASS",
+        "category": "PHYSICAL",
+        "power": 120,
+        "accuracy": 100,
+        "pp": 15,
+        "priority": 0,
+        "target": "SELECTED",
+        "effect": "RECOIL_ONE_THIRD",
+        "secondaryEffectChance": 0,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 794,
+          "excerpt": "2026-10-30 — GRASS TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly says 'let's go ahead and lock grass and move on.' Special Grass attacking coverage accepted without new changes; preserve original Grass Special attacks and all previously approved"
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "RECOIL_ONE_THIRD"
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "RECOIL_ONE_THIRD"
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 394,
+      "key": "AURA_SPHERE",
+      "name": "Aura Sphere",
+      "identity": "NEW_IMPORTED",
+      "current": null,
+      "approved": {
+        "type": "FIGHTING",
+        "category": "SPECIAL",
+        "power": 80,
+        "accuracy": 0,
+        "pp": 20,
+        "priority": 0,
+        "target": "SELECTED",
+        "effect": "BYPASS_ACCURACY",
+        "secondaryEffectChance": 0,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 816,
+          "excerpt": "2026-10-31 — FIGHTING TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly said 'Yeah, let's lock fighting and move on to flying.' EXISTING Gen III FIGHTING moves retain Gen III battle parameters and modern move-based categories; all damaging original "
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "PROPOSED_ZERO_SENTINEL_PLUS_BYPASS_EFFECT",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "BYPASS_ACCURACY"
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "BYPASS_ACCURACY"
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 395,
+      "key": "FOCUS_BLAST",
+      "name": "Focus Blast",
+      "identity": "NEW_IMPORTED",
+      "current": null,
+      "approved": {
+        "type": "FIGHTING",
+        "category": "SPECIAL",
+        "power": 120,
+        "accuracy": 70,
+        "pp": 5,
+        "priority": 0,
+        "target": "SELECTED",
+        "effect": "SP_DEFENSE_MINUS_1_10",
+        "secondaryEffectChance": 10,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 816,
+          "excerpt": "2026-10-31 — FIGHTING TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly said 'Yeah, let's lock fighting and move on to flying.' EXISTING Gen III FIGHTING moves retain Gen III battle parameters and modern move-based categories; all damaging original "
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "SP_DEFENSE_MINUS_1_10"
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "SP_DEFENSE_MINUS_1_10",
+        "secondary_percent": 10
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 396,
+      "key": "DRAIN_PUNCH",
+      "name": "Drain Punch",
+      "identity": "NEW_IMPORTED",
+      "current": null,
+      "approved": {
+        "type": "FIGHTING",
+        "category": "PHYSICAL",
+        "power": 75,
+        "accuracy": 100,
+        "pp": 10,
+        "priority": 0,
+        "target": "SELECTED",
+        "effect": "DRAIN_HALF",
+        "secondaryEffectChance": 0,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 816,
+          "excerpt": "2026-10-31 — FIGHTING TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly said 'Yeah, let's lock fighting and move on to flying.' EXISTING Gen III FIGHTING moves retain Gen III battle parameters and modern move-based categories; all damaging original "
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "DRAIN_HALF"
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "DRAIN_HALF"
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 397,
+      "key": "FLASH_CANNON",
+      "name": "Flash Cannon",
+      "identity": "NEW_IMPORTED",
+      "current": null,
+      "approved": {
+        "type": "STEEL",
+        "category": "SPECIAL",
+        "power": 80,
+        "accuracy": 100,
+        "pp": 10,
+        "priority": 0,
+        "target": "SELECTED",
+        "effect": "SP_DEFENSE_MINUS_1_10",
+        "secondaryEffectChance": 10,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 813,
+          "excerpt": "2026-10-31 — STEEL TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly directed 'let's lock steel and then go back to fighting'. Preserve original Generation III Steel moves and their modern move-based categories: PHYSICAL Metal Claw, Steel Wing, Iron"
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "SP_DEFENSE_MINUS_1_10"
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "SP_DEFENSE_MINUS_1_10",
+        "secondary_percent": 10
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 398,
+      "key": "MIRROR_SHOT",
+      "name": "Mirror Shot",
+      "identity": "NEW_IMPORTED",
+      "current": null,
+      "approved": {
+        "type": "STEEL",
+        "category": "SPECIAL",
+        "power": 65,
+        "accuracy": 85,
+        "pp": 10,
+        "priority": 0,
+        "target": "SELECTED",
+        "effect": "ACCURACY_MINUS_1_30",
+        "secondaryEffectChance": 30,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 813,
+          "excerpt": "2026-10-31 — STEEL TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly directed 'let's lock steel and then go back to fighting'. Preserve original Generation III Steel moves and their modern move-based categories: PHYSICAL Metal Claw, Steel Wing, Iron"
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "ACCURACY_MINUS_1_30"
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "ACCURACY_MINUS_1_30",
+        "secondary_percent": 30
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 399,
+      "key": "IRON_HEAD",
+      "name": "Iron Head",
+      "identity": "NEW_IMPORTED",
+      "current": null,
+      "approved": {
+        "type": "STEEL",
+        "category": "PHYSICAL",
+        "power": 80,
+        "accuracy": 100,
+        "pp": 15,
+        "priority": 0,
+        "target": "SELECTED",
+        "effect": "FLINCH_30",
+        "secondaryEffectChance": 30,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 813,
+          "excerpt": "2026-10-31 — STEEL TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly directed 'let's lock steel and then go back to fighting'. Preserve original Generation III Steel moves and their modern move-based categories: PHYSICAL Metal Claw, Steel Wing, Iron"
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "FLINCH_30"
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "FLINCH_30",
+        "secondary_percent": 30
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 400,
+      "key": "BULLET_PUNCH",
+      "name": "Bullet Punch",
+      "identity": "NEW_IMPORTED",
+      "current": null,
+      "approved": {
+        "type": "STEEL",
+        "category": "PHYSICAL",
+        "power": 40,
+        "accuracy": 100,
+        "pp": 30,
+        "priority": 1,
+        "target": "SELECTED",
+        "effect": "HIT_PUNCH_ANATOMY",
+        "secondaryEffectChance": 0,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 813,
+          "excerpt": "2026-10-31 — STEEL TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly directed 'let's lock steel and then go back to fighting'. Preserve original Generation III Steel moves and their modern move-based categories: PHYSICAL Metal Claw, Steel Wing, Iron"
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "HIT_PUNCH_ANATOMY"
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "HIT_PUNCH_ANATOMY"
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 401,
+      "key": "AIR_SLASH",
+      "name": "Air Slash",
+      "identity": "NEW_IMPORTED",
+      "current": null,
+      "approved": {
+        "type": "FLYING",
+        "category": "SPECIAL",
+        "power": 75,
+        "accuracy": 95,
+        "pp": 15,
+        "priority": 0,
+        "target": "SELECTED",
+        "effect": "FLINCH_30",
+        "secondaryEffectChance": 30,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 825,
+          "excerpt": "2026-10-31 — FLYING TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly directed 'Let's lock and move on to psychic.' Original Generation III Flying moves keep Generation III values and move-based Physical/Special/Status classifications. ADD official "
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "FLINCH_30"
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "FLINCH_30",
+        "secondary_percent": 30
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 402,
+      "key": "HURRICANE",
+      "name": "Hurricane",
+      "identity": "NEW_IMPORTED",
+      "current": null,
+      "approved": {
+        "type": "FLYING",
+        "category": "SPECIAL",
+        "power": 110,
+        "accuracy": 70,
+        "pp": 10,
+        "priority": 0,
+        "target": "SELECTED",
+        "effect": "CONFUSION_30_RAIN_BYPASS_SUN_50",
+        "secondaryEffectChance": 30,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 825,
+          "excerpt": "2026-10-31 — FLYING TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly directed 'Let's lock and move on to psychic.' Original Generation III Flying moves keep Generation III values and move-based Physical/Special/Status classifications. ADD official "
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "CONFUSION_30_RAIN_BYPASS_SUN_50"
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "CONFUSION_30_RAIN_BYPASS_SUN_50",
+        "secondary_percent": 30,
+        "rain_accuracy_bypass": true,
+        "sun_accuracy_percent": 50
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 403,
+      "key": "BRAVE_BIRD",
+      "name": "Brave Bird",
+      "identity": "NEW_IMPORTED",
+      "current": null,
+      "approved": {
+        "type": "FLYING",
+        "category": "PHYSICAL",
+        "power": 120,
+        "accuracy": 100,
+        "pp": 15,
+        "priority": 0,
+        "target": "SELECTED",
+        "effect": "RECOIL_ONE_THIRD",
+        "secondaryEffectChance": 0,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 825,
+          "excerpt": "2026-10-31 — FLYING TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly directed 'Let's lock and move on to psychic.' Original Generation III Flying moves keep Generation III values and move-based Physical/Special/Status classifications. ADD official "
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "RECOIL_ONE_THIRD"
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "RECOIL_ONE_THIRD"
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 404,
+      "key": "ACROBATICS",
+      "name": "Acrobatics",
+      "identity": "NEW_IMPORTED",
+      "current": null,
+      "approved": {
+        "type": "FLYING",
+        "category": "PHYSICAL",
+        "power": 55,
+        "accuracy": 100,
+        "pp": 15,
+        "priority": 0,
+        "target": "SELECTED",
+        "effect": "DOUBLE_WITHOUT_HELD_ITEM",
+        "secondaryEffectChance": 0,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 825,
+          "excerpt": "2026-10-31 — FLYING TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly directed 'Let's lock and move on to psychic.' Original Generation III Flying moves keep Generation III values and move-based Physical/Special/Status classifications. ADD official "
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "DOUBLE_WITHOUT_HELD_ITEM"
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "DOUBLE_WITHOUT_HELD_ITEM"
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 405,
+      "key": "DUAL_WINGBEAT",
+      "name": "Dual Wingbeat",
+      "identity": "NEW_IMPORTED",
+      "current": null,
+      "approved": {
+        "type": "FLYING",
+        "category": "PHYSICAL",
+        "power": 40,
+        "accuracy": 90,
+        "pp": 10,
+        "priority": 0,
+        "target": "SELECTED",
+        "effect": "TWO_HITS_WING_ANATOMY",
+        "secondaryEffectChance": 0,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 825,
+          "excerpt": "2026-10-31 — FLYING TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly directed 'Let's lock and move on to psychic.' Original Generation III Flying moves keep Generation III values and move-based Physical/Special/Status classifications. ADD official "
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "TWO_HITS_WING_ANATOMY"
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "TWO_HITS_WING_ANATOMY"
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 406,
+      "key": "HEART_STAMP",
+      "name": "Heart Stamp",
+      "identity": "NEW_IMPORTED",
+      "current": null,
+      "approved": {
+        "type": "PSYCHIC",
+        "category": "PHYSICAL",
+        "power": 55,
+        "accuracy": 100,
+        "pp": 25,
+        "priority": 0,
+        "target": "SELECTED",
+        "effect": "FLINCH_30",
+        "secondaryEffectChance": 30,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 828,
+          "excerpt": "2026-10-31 — PSYCHIC TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. User's spoken 'hard stamp' is understood as the immediately discussed official HEART STAMP. Add only TWO later-generation PSYCHIC PHYSICAL coverage moves to deliberately preserve Psychic's predom"
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "FLINCH_30"
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "FLINCH_30",
+        "secondary_percent": 30
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 407,
+      "key": "ZEN_HEADBUTT",
+      "name": "Zen Headbutt",
+      "identity": "NEW_IMPORTED",
+      "current": null,
+      "approved": {
+        "type": "PSYCHIC",
+        "category": "PHYSICAL",
+        "power": 80,
+        "accuracy": 90,
+        "pp": 15,
+        "priority": 0,
+        "target": "SELECTED",
+        "effect": "FLINCH_20",
+        "secondaryEffectChance": 20,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 828,
+          "excerpt": "2026-10-31 — PSYCHIC TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. User's spoken 'hard stamp' is understood as the immediately discussed official HEART STAMP. Add only TWO later-generation PSYCHIC PHYSICAL coverage moves to deliberately preserve Psychic's predom"
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "FLINCH_20"
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "FLINCH_20",
+        "secondary_percent": 20
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 408,
+      "key": "CROSS_POISON",
+      "name": "Cross Poison",
+      "identity": "NEW_IMPORTED",
+      "current": null,
+      "approved": {
+        "type": "POISON",
+        "category": "PHYSICAL",
+        "power": 70,
+        "accuracy": 100,
+        "pp": 20,
+        "priority": 0,
+        "target": "SELECTED",
+        "effect": "HIGH_CRITICAL_AND_POISON_10",
+        "secondaryEffectChance": 10,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 834,
+          "excerpt": "2026-10-31 — POISON PHYSICAL ADDITIONS APPROVED; POISON TYPE OWNER-LOCKED; ALL 17 TYPE MOVE REVIEWS CLOSED. Owner explicitly approved ALL THREE official Generation IV physical Poison attacks and instructed 'Lock in'. Add CROSS POISON — POISON PHYSICAL, 70 base"
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "HIGH_CRITICAL_AND_POISON_10"
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "HIGH_CRITICAL_AND_POISON_10",
+        "secondary_percent": 10
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 409,
+      "key": "POISON_JAB",
+      "name": "Poison Jab",
+      "identity": "NEW_IMPORTED",
+      "current": null,
+      "approved": {
+        "type": "POISON",
+        "category": "PHYSICAL",
+        "power": 80,
+        "accuracy": 100,
+        "pp": 20,
+        "priority": 0,
+        "target": "SELECTED",
+        "effect": "POISON_30",
+        "secondaryEffectChance": 30,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 834,
+          "excerpt": "2026-10-31 — POISON PHYSICAL ADDITIONS APPROVED; POISON TYPE OWNER-LOCKED; ALL 17 TYPE MOVE REVIEWS CLOSED. Owner explicitly approved ALL THREE official Generation IV physical Poison attacks and instructed 'Lock in'. Add CROSS POISON — POISON PHYSICAL, 70 base"
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "POISON_30"
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "POISON_30",
+        "secondary_percent": 30
+      }
+    },
+    {
+      "id": null,
+      "proposed_id": 410,
+      "key": "GUNK_SHOT",
+      "name": "Gunk Shot",
+      "identity": "NEW_IMPORTED",
+      "current": null,
+      "approved": {
+        "type": "POISON",
+        "category": "PHYSICAL",
+        "power": 120,
+        "accuracy": 80,
+        "pp": 5,
+        "priority": 0,
+        "target": "SELECTED",
+        "effect": "POISON_30",
+        "secondaryEffectChance": 30,
+        "flags": null
+      },
+      "evidence": [
+        {
+          "source": "register",
+          "line": 834,
+          "excerpt": "2026-10-31 — POISON PHYSICAL ADDITIONS APPROVED; POISON TYPE OWNER-LOCKED; ALL 17 TYPE MOVE REVIEWS CLOSED. Owner explicitly approved ALL THREE official Generation IV physical Poison attacks and instructed 'Lock in'. Add CROSS POISON — POISON PHYSICAL, 70 base"
+        }
+      ],
+      "field_basis": {
+        "type": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "category": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "priority": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
+        "flags": "REQUIRES_ENGINE_TRANSLATION"
+      },
+      "mechanic_notes": [
+        "POISON_30"
+      ],
+      "implementation_status": "NOT_IMPLEMENTED",
+      "delta": null,
+      "effect_rules": {
+        "semantic": "POISON_30",
+        "secondary_percent": 30
+      }
+    }
+  ]
+}
