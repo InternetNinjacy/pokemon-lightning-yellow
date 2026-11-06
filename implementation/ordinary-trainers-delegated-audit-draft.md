@@ -1,6 +1,6 @@
 # Ordinary Trainer source census and delegated design candidates
 
-**Project:** Pokémon Lightning Yellow. **Status: Draft / blocked for Codex, owner-approval reconciliation still incomplete.** 2026-11-06.
+**Project:** Pokémon Lightning Yellow. **Status: Draft / blocked for Codex. The historical 282/257 approval-count discrepancy is resolved; technical review remains incomplete.** 2026-11-06.
 
 ## Scope and provenance
 
@@ -8,8 +8,8 @@
 - Canonical Trainer Master Register: https://docs.google.com/document/d/14FX3eDLXPCYbyxun-3oREFftSdaM25O0NhJaCXP7ZGY/edit
 - Living Change Intake: https://docs.google.com/document/d/1NpCjx3uboBMdBVqoFpMwXEyVkDquD37Kcp-FJBbYWnc/edit
 - Source: src/data/trainers.h, src/data/trainer_parties.h, src/data/pokemon/custom_pokedex.h, src/data/pokemon/evolution.h and all eight original Gym map scripts on repository default branch.
-- Historical owner progress 282/510 approvals; do not overwrite those. Source census gives **510 original ordinary Trainer IDs** after excluding exactly 41 Gym IDs and the five newer separate Ranger Camp/Park records; source now has 515 class-listed non-Gym IDs including those five.
-- Owner-approval reconciliation has confirmed further exact rosters. **Not all historical approved rosters have been reconstructed. Remaining undecoded owner approvals must be checked before code use**. Delegated designs may therefore overlap earlier owner approvals not yet reconstructed and MUST NOT be implemented without reconciliation against all approved dated Drive records. Do not infer approvals from this draft.
+- The historical 282-approved progress count included 257 owner-approved ordinary-class parties and 25 separately approved Team Rocket parties. Effective ordinary-only individual approval is 257/510; do not overwrite those approvals. Source census gives **510 original ordinary Trainer IDs** after excluding exactly 41 Gym IDs and the five newer separate Ranger Camp/Park records; source now has 515 class-listed non-Gym IDs including those five.
+- Historical approval COUNT reconciliation is complete by exact source-ID population: 257 ordinary approval rows plus 25 separately approved Team Rocket IDs give 282. Individual dated owner approvals still take precedence and should be checked before final code handoff. The 121 delegated originals and 132 rematch variants are not independently owner-approved.
 - The 510 species lineups below are **design-stage selections, not certified final battle balance**. They respect the parsed class pool and 252 Dex at the species level, but have not passed trainer-by-trainer progression, rematch, moveset, AI or encounter script verification. These candidates do not supersede ANY original owner approvals.
 
 ## Method
@@ -19,14 +19,14 @@
 3. For clearly variant-suffixed records with existing bases, derive rematch candidates from the same original species families, with a separate rematch level-and-item draft. Higher rematch levels, legal new moves, and modest item upgrades are to be documented in a separately verified final pass, not invented as implemented.
 4. Preserve original classes, NPC dialogue, overworld placement, scripts, access gates, story events and Singles/Double formats unless separately authorized, including named Pattern Bush Ranger class conversions and Route24 Shane exception.
 5. Source move sets may be custom and are **not** legal for newly substituted species automatically. All move legality and item assignment must be verified against source mechanics, learnsets and actual unlock levels before this draft is marked ready.
-6. The 282/510 historical explicit-owner approval milestone is separate from this delegated draft inventory. Do not silently report 510 owner-validated teams until the 25 approval-record discrepancy is resolved.
+6. The historical 282 numerator mixed 257 ordinary and 25 Rocket approvals; this arithmetic discrepancy is resolved. Do not report 510 individually owner-approved teams, as the remaining 121 originals and 132 rematch variants are delegated design candidates.
 
 ## Audit summary
 
 - 510 source IDs, 132 records with numeric suffix matching an original base (a provisional rematch classifier, not proven VS Seeker linkage).
 - Exact current roster state: 257 reconstructed previously owner-approved teams; 121 original-party teams curated under the Nov 6 design delegation; 132 family-preserving rematch teams curated under the same delegation. All 510 species rosters are now represented, but many combat tuning details and technical source event links are not final.
 - Original source party membership is preserved per row for traceability; values use canonical SPECIES symbols.
-- **Blocking step:** reconcile the 25 historical owner approvals missing from the difference between the earlier 282-record tally and the 257 exact reconstructed parties and every scripted rematch source linkage, then run levels/moves/item/AI balance checks. No complete Codex implementation authorization yet.
+- **Current technical blockers:** finish non-VS-Seeker map scene/script coverage, reconcile final approved custom learnsets, TM acquisition timing, trainer-specific levels/held items/AI, Ranger overworld sprite availability, Shane Double battle conversions, then compile/playtest with separately approved implementation. The 25-record historical count mismatch has been resolved and all 130 active VS Seeker variants match their base scripts. No complete gameplay implementation authorization yet.
 
 ## Source-ID ledger
 
