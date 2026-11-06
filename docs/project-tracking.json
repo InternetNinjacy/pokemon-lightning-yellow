@@ -3,8 +3,8 @@
   "updated": "2026-11-06",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "Autonomous policy55 and verified Roar56 merged; gift59 integrated with Roar while preserving all normalizers/test groups. Standalone gift full/clean/local and integrated validation ongoing; sign58 integration pending CI, six Elite Four60 actual battles under test, Agatha native selector question pending. Follower permission and ordinary-Trainer57 design holds retained.",
-  "main_sha": "844b450e7b60b7f0699fef348ca8b7acb8d73824",
+  "current_focus": "Policy55, Roar56 and sign58 merged. Gift59 combines all three plus approved issue38 gifts; standalone full614156/clean1cf74a18 and Roar-integrated CI42218374185 SUCCESS, focused80112+Museum1306. Latest sign-integrated26-group CI pending. Six Elite Four60 verified constructors and both Lance actual victories after valid-name fixture fix, full/CI ongoing; Agatha/follower/Trainer57 holds persist.",
+  "main_sha": "d97712dc9393b5f98d73df901f8ffa70cc231309",
   "drive_sync": {
     "status": "pending: no direct Drive writing tool available",
     "folder": "https://drive.google.com/drive/folders/1N_n0Ke48jBbdhUWSZWzwR6rpPFqpDUpl"
@@ -1572,6 +1572,9 @@
         "pr": 14,
         "merge_commit": "9dd56c31b73bc885fb60b491ce8b6f3f39b53efd",
         "verified_main": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c"
+      },
+      "subtasks": {
+        "WRL-004-SIGN": "Approved PR28 tip implemented on standalone feature/viridian-move-category-sign; build/exact-text/focused native463 PASS, full CI pending; no double-counted scope"
       }
     },
     {

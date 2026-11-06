@@ -352,6 +352,8 @@ static void dexTests(void) {
 #include "move_pp_compatibility.c"
 #include "roar.c"
 
+#include "viridian_sign.c"
+
 #include "approved_gifts.c"
 
 int main(int argc,char **argv) {
@@ -390,6 +392,8 @@ int main(int argc,char **argv) {
     if(getenv("LIGHTNING_DEX_ONLY")){dexTests();printf("PASS: focused Dex diagnostic\n");core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_PP_FULL_PC_ONLY")){ppFullPc();printf("PASS: %u full-PC PP assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_ROAR_ONLY")){roarTests();printf("PASS: %u focused Roar assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+
+    if(getenv("LIGHTNING_VIRIDIAN_SIGN_ONLY")){viridianSignTests();printf("PASS: %u focused sign assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
 
     if(getenv("LIGHTNING_APPROVED_GIFTS_ONLY")){approvedGiftTests();printf("PASS: %u focused approved-gift assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_MOVE_PP_ONLY")){movePpCompatibilityTests();printf("PASS: %u focused move PP assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
@@ -521,6 +525,8 @@ int main(int argc,char **argv) {
     originalMoveDataTests();
     movePpCompatibilityTests();
     roarTests();
+
+    viridianSignTests();
 
     approvedGiftTests();
     printf("PASS: %u mGBA assertions (includes API/register safety checks)\n",checks);

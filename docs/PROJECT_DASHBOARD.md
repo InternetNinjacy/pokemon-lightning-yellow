@@ -1,10 +1,10 @@
 # Pokémon Lightning Yellow — Project Dashboard
 
-Canonical branch: `main`. Updated 2026-11-06. Audited gameplay revision: `844b450e7b60b7f0699fef348ca8b7acb8d73824`.
+Canonical branch: `main`. Updated 2026-11-06. Audited gameplay revision: `d97712dc9393b5f98d73df901f8ffa70cc231309`.
 
 Overall: `[####------]` **44.10% complete /55.90% remaining** (314 earned +398 remaining;712 provisional effort points).
 
-Autonomous policy55 and verified Roar56 merged; gift59 integrated with Roar while preserving all normalizers/test groups. Standalone gift full/clean/local and integrated validation ongoing; sign58 integration pending CI, six Elite Four60 actual battles under test, Agatha native selector question pending. Follower permission and ordinary-Trainer57 design holds retained.
+Policy55, Roar56 and sign58 merged. Gift59 combines all three plus approved issue38 gifts; standalone full614156/clean1cf74a18 and Roar-integrated CI42218374185 SUCCESS, focused80112+Museum1306. Latest sign-integrated26-group CI pending. Six Elite Four60 verified constructors and both Lance actual victories after valid-name fixture fix, full/CI ongoing; Agatha/follower/Trainer57 holds persist.
 
 These are estimates of tracked work, not elapsed hours or release certification. Every permanent ID and earned-history entry is retained. Approved Ponyta and Ranger work expanded the scope; the denominator is the sum of the current task effort estimates. Adding scope changes it without erasing completed work. Repeated regression is not duplicate implementation credit.
 
