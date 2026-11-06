@@ -1257,6 +1257,23 @@ next priority under merged implementation/selectable-following-pokemon.md;
 Follower source/graphics/license/save/opening feasibility gate must precede bulk
 imports or unsafe save migrations. Direct Drive synchronization remains pending.
 
+## 2026-11-06 — BTL-005-M2C approved damaging Roar
+
+- Standing autonomous implementation/merge authority persisted first in AGENTS
+  commit67bdb816/PR55. Existing stack through43/53 already merged, no duplicate code.
+- Old Roar: Status/forced switch,20PP,-6priority. New approved register behavior:
+  Normal/Special70/100/15/priority0/20% Attack-1, selected target. Source row and
+  description only; native AttackDownHit effect/original animation/flags/access
+  retained; Soundproof AI gate and unrelated Whirlwind unchanged.
+- Source/tests/design translation and exact historical-delta normalization recorded
+  in docs/moves/ROAR_STATUS.md. No save layout/art/new IDs/distribution changes.
+- Executed21 hosts/3 checkers PASS; focused mGBA0.10.5 197 assertions PASS including
+  actual Single/Double turns, outcomes/immunities/Protect and flash legacy cap.
+  Clean reproducibility PASS9cc3d287edb97cb19a74f85bb204df2adcf7e435124a514bbdd166e4f1c48862.
+  Full regression/CI pending initial commit; no merge/readiness claim yet.
+- No additional effort credit until full acceptance. Rollback restores only Roar;
+  prior capped PP is not refilled, save ABI and parent features unchanged.
+
 ## 2026-11-06 — WRL-011-GIFTS / issue38 three owner-approved corrections
 
 - Museum guaranteed-Shiny Feebas→Aron50% genuine Shiny; Water Labyrinth Togepi→

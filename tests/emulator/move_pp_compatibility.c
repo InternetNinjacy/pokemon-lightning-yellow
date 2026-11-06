@@ -35,7 +35,7 @@ static void ppCapMatrix(void){
  }
  for(unsigned bonus=0;bonus<4;bonus++){
   ppLegacyMon(0,0,5);CALL(SetMonMoveSlot,enemy(0),MOVE_ROAR,2);monput(enemy(0),ABI_DATA_PP_BONUSES,bonus<<4);monput(enemy(0),ABI_DATA_PP3,255);
-  CHECK(CALL(ClampApprovedMovePP,enemy(0)));CHECK(monget(enemy(0),ABI_DATA_PP3)==20+4*bonus);CHECK(monget(enemy(0),ABI_DATA_PP1)==5);
+  CHECK(CALL(ClampApprovedMovePP,enemy(0)));CHECK(monget(enemy(0),ABI_DATA_PP3)==15+3*bonus);CHECK(monget(enemy(0),ABI_DATA_PP1)==5);
  }
  // An unrelated move's invalid PP is not silently repaired by this feature.
  ppLegacyMon(0,0,5);CALL(SetMonMoveSlot,enemy(0),MOVE_SILVER_WIND,2);monput(enemy(0),ABI_DATA_PP3,255);

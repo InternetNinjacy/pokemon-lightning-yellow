@@ -648,15 +648,15 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_ROAR] =
     {
-        .category = MOVE_CATEGORY_STATUS,
-        .effect = EFFECT_ROAR,
-        .power = 0,
+        .category = MOVE_CATEGORY_SPECIAL,
+        .effect = EFFECT_ATTACK_DOWN_HIT,
+        .power = 70,
         .type = TYPE_NORMAL,
         .accuracy = 100,
-        .pp = 20,
-        .secondaryEffectChance = 0,
+        .pp = 15,
+        .secondaryEffectChance = 20,
         .target = MOVE_TARGET_SELECTED,
-        .priority = -6,
+        .priority = 0,
         .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
     },
 

@@ -106,6 +106,11 @@
         "effect": "OWNER_EXPLICIT",
         "secondaryEffectChance": "OWNER_EXPLICIT",
         "flags": "REQUIRES_REVIEW_FOR_REPLACED_EFFECT"
+      },
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA",
+      "engine_translation": {
+        "effect": "EFFECT_ATTACK_DOWN_HIT",
+        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
       }
     },
     "DRAGON_RAGE": {

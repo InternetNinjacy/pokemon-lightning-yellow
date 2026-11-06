@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "baseline_source_commit": "92838e5eb64d19942cb5c51cfdef6991503ac3ad",
-  "current_battle_moves_sha256": "8eea1b1843edfeb6b54ee16b2917e09c9b46aebef12a2f3fa1b12542e46d2a45",
+  "current_battle_moves_sha256": "d8fbaf018807937d97e4e298e1ac9c411015883a12d315890c74bc7a6b467002",
   "scope": "Reconciliation only, no gameplay edits. Numeric proposed IDs/semantic effects/target values are NOT compiled constants. Runtime_verified false is not a failure claim.",
   "sources": {
     "register": {
@@ -2506,15 +2506,15 @@
       "identity": "REWORKED_ORIGINAL",
       "source_line": 649,
       "current": {
-        "category": "STATUS",
+        "category": "SPECIAL",
         "type": "NORMAL",
-        "power": 0,
+        "power": 70,
         "accuracy": 100,
-        "pp": 20,
-        "priority": -6,
+        "pp": 15,
+        "priority": 0,
         "target": "MOVE_TARGET_SELECTED",
-        "effect": "EFFECT_ROAR",
-        "secondaryEffectChance": 0,
+        "effect": "EFFECT_ATTACK_DOWN_HIT",
+        "secondaryEffectChance": 20,
         "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
       },
       "approved": {
@@ -2558,37 +2558,12 @@
         "source_exists": true,
         "runtime_verified": false
       },
-      "delta": {
-        "category": {
-          "current": "STATUS",
-          "approved": "SPECIAL"
-        },
-        "power": {
-          "current": 0,
-          "approved": 70
-        },
-        "pp": {
-          "current": 20,
-          "approved": 15
-        },
-        "priority": {
-          "current": -6,
-          "approved": 0
-        },
-        "effect": {
-          "current": "EFFECT_ROAR",
-          "approved": "DAMAGE_ATTACK_MINUS_1_20_PERCENT"
-        },
-        "secondaryEffectChance": {
-          "current": 0,
-          "approved": 20
-        },
-        "flags": {
-          "current": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED",
-          "approved": null
-        }
+      "engine_translation": {
+        "effect": "EFFECT_ATTACK_DOWN_HIT",
+        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
       },
-      "implementation_status": "PENDING_APPROVED_REDESIGN",
+      "delta": {},
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA",
       "animation_candidate": {
         "key": "ROAR",
         "name": "Roar",
