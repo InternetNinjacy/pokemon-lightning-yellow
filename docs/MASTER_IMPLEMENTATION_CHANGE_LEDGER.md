@@ -1362,3 +1362,19 @@ imports or unsafe save migrations. Direct Drive synchronization remains pending.
 - Build PASS; clean/full latest CI pending initial commit. No added effort credit
   before full acceptance. Technical scope/evidence/limits/rollback in
   docs/WEATHER_MOVE_COMPLETION.md; no saved-schema migration or binary artifacts.
+
+## 2026-11-06 — BTL-005-M2E Pin Missile and Dragon Rage
+
+- Approved register664/749: Pin Missile2–5×14→one55 hit/30% poison (85acc/20PP
+  retained); Dragon Rage fixed40→current user level (Dragon/Special100acc/10PP/
+  power1 sentinel retained). Native POISON_HIT and LEVEL_DAMAGE scripts reused.
+- Only two move rows/descriptions production delta; existing flags including
+  King's Rock/Protect/Mirror, animations, IDs, all other fields/rows/learners/TMs
+  and PP maxima preserved. Explicit source translation/normalizer retains hashes.
+- Build and25 hosts/3 checkers PASS; focused native314 PASS, Single/Double numeric
+  one-hit and poison/nonpoison/miss outcomes, eight actual fixed-level1/27/50/100
+  turns despite skewed stats/Steel resistance. Native AI Pin50 checked; fixed-move
+  AI stock heuristics retained, not an exhaustive new estimator certification.
+- Full29-group/clean/CI pending initial commit; no added completion/merge credit
+  yet. Branch feature/pin-missile-dragon-rage, details/limits/rollback in
+  docs/moves/ORIGINAL_EFFECT_STATUS.md. No PP migration or binary assets.
