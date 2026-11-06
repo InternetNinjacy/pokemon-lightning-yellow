@@ -20,8 +20,10 @@ migration is necessary. Existing save/wire fields remain unchanged.
 Build and25 hosts/3 checkers PASS. Actual native Single/Double turns show stat-2
 on the appropriate opponents, no ally/user/damage, onePP, and split hit/miss
 outcomes for Scary Face and Screech. Fake Tears hits both controlled opponents.
-Full focused completion, clean repeatability, full regression and Actions pending
-at initial snapshot; do not mark merged/accepted before final outcomes.
+Focused1392 assertions PASS at initial fixture. Clean rebuild byte-identical
+SHA256 `d3c27751c514fb27334812734cef344acc3e40bfaa3c3ad343f8b00651067c77`.
+Latest full regression adds Clear Body/Protect/stat-floor separation controls and
+remains pending with Actions; do not mark merged/accepted before final outcomes.
 
 Magic Coat/Protect/stat-immunity behavior is inherited from unchanged native
 scripts/flags, not exhaustively newly tested. Existing-art animation playback
