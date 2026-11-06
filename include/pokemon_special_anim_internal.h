@@ -27,20 +27,20 @@ struct PokemonSpecialAnim
     /*0x0004*/ MainCallback savedCallback;
     /*0x0008*/ struct Pokemon pokemon;
     /*0x006c*/ u8 nickname[POKEMON_NAME_LENGTH + 1];
-    /*0x0077*/ u8 nameOfMoveForgotten[13];
-    /*0x0084*/ u8 nameOfMoveToTeach[13];
-    /*0x0091*/ bool8 cancelDisabled;
-    /*0x0092*/ u16 state;
-    /*0x0094*/ u16 species;
-    /*0x0096*/ u16 itemId;
-    /*0x0098*/ u16 animType;
-    /*0x009a*/ u16 slotId;
-    /*0x009c*/ u16 closeness;
-    /*0x009e*/ u16 delayTimer;
-    /*0x00a0*/ u32 personality;
-    /*0x00a4*/ u32 field_00a4;
-    /*0x00a8*/ struct PokemonSpecialAnimScene sceneResources;
-}; // size=0x28dc
+    u8 nameOfMoveForgotten[MOVE_NAME_LENGTH + 1];
+    u8 nameOfMoveToTeach[MOVE_NAME_LENGTH + 1];
+    bool8 cancelDisabled;
+    u16 state;
+    u16 species;
+    u16 itemId;
+    u16 animType;
+    u16 slotId;
+    u16 closeness;
+    u16 delayTimer;
+    u32 personality;
+    u32 field_00a4;
+    struct PokemonSpecialAnimScene sceneResources;
+};
 
 struct PokemonSpecialAnim * GetPSAStruct(void);
 struct Pokemon * PSA_GetPokemon(void);

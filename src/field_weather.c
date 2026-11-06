@@ -78,7 +78,9 @@ static const struct WeatherCallbacks sWeatherFuncs[] = {
     {FogDiagonal_InitVars, FogDiagonal_Main, FogDiagonal_InitAll, FogDiagonal_Finish},
     {FogHorizontal_InitVars, FogHorizontal_Main, FogHorizontal_InitAll, FogHorizontal_Finish},
     {Shade_InitVars, Shade_Main, Shade_InitAll, Shade_Finish},
-    {Drought_InitVars, Drought_Main, Drought_InitAll, Drought_Finish},
+    // FR drought palette loader is stubbed: use existing clear renderer,
+    // retaining WEATHER_DROUGHT as the mechanical sunlight ID.
+    {Sunny_InitVars, Sunny_Main, Sunny_InitAll, Sunny_Finish},
     {Downpour_InitVars, Thunderstorm_Main, Downpour_InitAll, Thunderstorm_Finish},
     {Bubbles_InitVars, Bubbles_Main, Bubbles_InitAll, Bubbles_Finish},
 };
@@ -369,7 +371,7 @@ static void FadeInScreenWithWeather(void)
     case WEATHER_DROUGHT:
         if (FadeInScreen_Drought() == FALSE)
         {
-            gWeatherPtr->gammaIndex = -6;
+            gWeatherPtr->gammaIndex = 0;
             gWeatherPtr->palProcessingState = WEATHER_PAL_STATE_IDLE;
         }
         break;
@@ -417,7 +419,7 @@ static bool8 FadeInScreen_Drought(void)
 
     if (++gWeatherPtr->fadeScreenCounter >= 16)
     {
-        ApplyGammaShift(0, 32, -6);
+        ApplyGammaShift(0, 32, 0);
         gWeatherPtr->fadeScreenCounter = 16;
         return FALSE;
     }

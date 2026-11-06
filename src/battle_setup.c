@@ -1,4 +1,5 @@
 #include "global.h"
+#include "dynamic_weather.h"
 #include "capture_rules.h"
 #include "task.h"
 #include "help_system.h"
@@ -429,6 +430,7 @@ static void StartPokedudeBattle(void)
 
 static void CB2_EndWildBattle(void)
 {
+    DynamicWeatherAfterBattle();
     CpuFill16(0, (void *)BG_PLTT, BG_PLTT_SIZE);
     ResetOamRange(0, 128);
     if (IsPlayerDefeated(gBattleOutcome) == TRUE)
@@ -444,6 +446,7 @@ static void CB2_EndWildBattle(void)
 
 static void CB2_EndScriptedWildBattle(void)
 {
+    DynamicWeatherAfterBattle();
     CpuFill16(0, (void *)BG_PLTT, BG_PLTT_SIZE);
     ResetOamRange(0, 128);
     if (IsPlayerDefeated(gBattleOutcome) == TRUE)
@@ -913,6 +916,7 @@ void StartTrainerBattle(void)
 
 static void CB2_EndTrainerBattle(void)
 {
+    DynamicWeatherAfterBattle();
     if (sTrainerBattleMode == TRAINER_BATTLE_EARLY_RIVAL)
     {
         if (IsPlayerDefeated(gBattleOutcome) == TRUE)
@@ -961,6 +965,7 @@ static void CB2_EndTrainerBattle(void)
 
 static void CB2_EndRematchBattle(void)
 {
+    DynamicWeatherAfterBattle();
     if (gTrainerBattleOpponent_A == TRAINER_SECRET_BASE)
     {
         SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);

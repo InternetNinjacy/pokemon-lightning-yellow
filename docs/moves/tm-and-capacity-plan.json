@@ -1,0 +1,124 @@
+{
+  "status": "PROPOSED_ENGINEERING_PLAN_NOT_IMPLEMENTED",
+  "approved_assignments": [
+    {
+      "number": 3,
+      "move": "WATER_PULSE",
+      "scope": "retained; Misty reward"
+    },
+    {
+      "number": 5,
+      "move": "ROAR",
+      "scope": "retain slot and every previous learner despite damaging redesign"
+    },
+    {
+      "number": 7,
+      "move": "HAIL",
+      "scope": "retained; Brock approved reward"
+    },
+    {
+      "number": 9,
+      "move": "LEECH_SEED",
+      "evidence": [
+        "register:L794",
+        "tracker:L257"
+      ],
+      "supersedes": "earlier vanilla Bullet Seed inventory row"
+    },
+    {
+      "number": 34,
+      "move": "SHOCK_WAVE",
+      "scope": "retain; Route6 item ball appears after Misty defeated, normal pickup without badge check; exact safe tile technical selection allowed"
+    },
+    {
+      "number": 37,
+      "move": "SANDSTORM",
+      "scope": "retain slot/eligibility; Ground Status and Ground-only weather immunity"
+    },
+    {
+      "number": 49,
+      "move": "SIGNAL_BEAM",
+      "evidence": [
+        "register:L661",
+        "tracker:L122"
+      ],
+      "supersedes": "earlier vanilla Snatch inventory row"
+    },
+    {
+      "number": 51,
+      "move": "ZAP_CANNON",
+      "scope": "new separate Surge reward, not replacement TM34"
+    }
+  ],
+  "compatibility": {
+    "original_item_ids": "Preserve all existing TM/HM item IDs and save slots.",
+    "new_tm51_item_id_proposal": 376,
+    "current_last_item": "Snow Ball375",
+    "new_move_ids_proposal": {
+      "first": 355,
+      "last": 410,
+      "MOVES_COUNT": 411
+    },
+    "learnset_id_mask": 511,
+    "new_ids_fit_existing_level_up_encoding": true,
+    "current_tm_pocket_slots": 58,
+    "new_machine_definitions": 59,
+    "approved_obtainable_machines": 58,
+    "explanation": "51TMs +7 obtainable HMs fit the existing58 saved slots. Preserve unobtainable Dive/HM08 data; if a legacy/modified save owns all59 definitions, use normal full-pocket handling, do not erase or enlarge SaveBlock1.",
+    "tm_compatibility_bits_proposal": "Keep existing50TM+8HM bit indices0..57; append TM51 at58 (fits existing two u32 ROM masks). Explicit machine metadata separates UI number, item ID, compatibility index and HM flag. No insertion into saved fields.",
+    "phase_two_dependencies": [
+      "Final TM09 Leech Seed and TM49 Signal Beam learner compatibility cannot be inferred from old Bullet Seed/Snatch matrices.",
+      "TM51 learners remain separate approved species review.",
+      "Scary Face Poliwag-family and Helping Hand Abra-family exact learn levels remain unassigned here."
+    ]
+  },
+  "global_rules": [
+    {
+      "rule": "Electric types immune to ordinary paralysis methods",
+      "evidence": "register:L788",
+      "source_status": "NOT_IMPLEMENTED_IN_CURRENT_BASE",
+      "scope": "Thunder Wave, Static, eligible damaging secondary effects, Synchronize-like reflection and status reapplication paths; preserve other immunities."
+    },
+    {
+      "rule": "Sandstorm residual automatic typing immunity Ground only",
+      "evidence": "register:L713",
+      "source_status": "NOT_IMPLEMENTED_IN_CURRENT_BASE",
+      "scope": "Keep Sand Veil/other non-type suppressions and existing underground/underwater behavior;1/16HP minimum1, native durations; no Rock SpDef bonus. Approved Overcoat is a separate ability dependency, not silently introduced here."
+    }
+  ],
+  "name_capacity": {
+    "source_limit": 12,
+    "proposal": 15,
+    "overlength": [
+      {
+        "name": "Skitter Slash",
+        "length": 13
+      },
+      {
+        "name": "Scorching Sands",
+        "length": 15
+      },
+      {
+        "name": "Petal Blizzard",
+        "length": 14
+      },
+      {
+        "name": "Dual Wingbeat",
+        "length": 13
+      }
+    ],
+    "decision": "Preserve full approved names. Audit all buffers/strides/battle text/summary/move-learning/TM/link consumers and test pixel width using existing fonts; do not abbreviate without owner choice."
+  },
+  "target_abi_executed": {
+    "compiler": "pinned pret/agbcc da598c1d",
+    "BattleMove_size": 12,
+    "flags_offset": 8,
+    "category_offset": 9,
+    "gBattleMoves_source_count": 355,
+    "gBattleMoves_symbol_bytes": 4260,
+    "expanded_data_count": 411,
+    "expanded_table_bytes": 4932,
+    "extra_table_bytes": 672,
+    "note": "Measured using target-compiled const offsetof/sizeof array and current ELF nm. Host struct size is not substituted."
+  }
+}

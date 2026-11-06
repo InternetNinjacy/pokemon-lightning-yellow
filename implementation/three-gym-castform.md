@@ -18,3 +18,6 @@ Future engineering must verify source IDs, approved Gym-weather/Double mechanics
 
 Approved source: https://docs.google.com/document/d/18jVindV66zc_2_6xPqZajCiXf-1738lADjShESrDxU0/edit
 Change register: https://docs.google.com/document/d/1NpCjx3uboBMdBVqoFpMwXEyVkDquD37Kcp-FJBbYWnc/edit
+
+## Implementation authorization
+The owner explicitly authorized completing existing PR31 against this named PR30 specification, including Diana mandatory Doubles and the approved Gym weather, on November4. This supersedes the earlier preparation-only status for this limited scope. Other Gym parties, leaders, rewards and dialogue remain outside this PR.

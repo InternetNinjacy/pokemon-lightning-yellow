@@ -7,9 +7,58 @@ import re
 import struct
 import subprocess
 import tempfile
+import shutil
 
 # Generate ABI constants with the game's ARM compiler, never host offsetof.
 expressions = {
+ 'BMON_MAX_HP':'offsetof(struct BattlePokemon,maxHP)',
+ 'BOX_SECURE':'offsetof(struct BoxPokemon,secure)',
+ 'SAVE1_PARTY':'offsetof(struct SaveBlock1,playerParty)',
+ 'R5_VERSION':'offsetof(struct Route5DaycareSave,version)',
+ 'SECTOR_SIZE':'SECTOR_SIZE',
+ 'SECTOR_SIGNATURE':'offsetof(struct SaveSector,signature)',
+ 'SECTOR_CHECKSUM':'offsetof(struct SaveSector,checksum)',
+
+ 'BMOVE_POWER':'offsetof(struct BattleMove,power)',
+ 'BMOVE_TYPE':'offsetof(struct BattleMove,type)',
+ 'BMOVE_CATEGORY':'offsetof(struct BattleMove,category)',
+ 'BMOVE_ACCURACY':'offsetof(struct BattleMove,accuracy)',
+ 'WIN_WIDTH':'WINDOW_WIDTH',
+ 'WIN_HEIGHT':'WINDOW_HEIGHT',
+ 'WIN_LEFT':'WINDOW_TILEMAP_LEFT',
+ 'MOVE_WINDOW':'B_WIN_MOVE_NAME_1',
+ 'PP_WINDOW':'B_WIN_PP',
+ 'TYPE_WINDOW':'B_WIN_MOVE_TYPE',
+ 'MOVEINFO_CUR_PP':'offsetof(struct ChooseMoveStruct,currentPp)',
+ 'MOVEINFO_MAX_PP':'offsetof(struct ChooseMoveStruct,maxPp)',
+ 'RELEARNER_BG':'offsetof(struct LearnMoveGfxResources,bg1TilemapBuffer)',
+ 'RELEARNER_INDEX':'offsetof(struct LearnMoveGfxResources,selectedIndex)',
+ 'SUMMARY_NAME_BUFFERS':'offsetof(struct PokemonSummaryScreenData,summary.moveNameStrBufs)',
+ 'MOVE_NAME_CAPACITY':'MOVE_NAME_LENGTH + 1',
+ 'BATTLE_TEXT_CAPACITY':'BATTLE_TEXT_BUFFER_SIZE',
+ 'BMSG_SIZE':'sizeof(struct BattleMsgData)',
+ 'BMSG_MOVE':'offsetof(struct BattleMsgData,currentMove)',
+ 'BMSG_TEXT':'offsetof(struct BattleMsgData,textBuffs)',
+ 'PSA_SIZE':'sizeof(struct PokemonSpecialAnim)',
+ 'PSA_FORGOTTEN':'offsetof(struct PokemonSpecialAnim,nameOfMoveForgotten)',
+ 'PSA_TEACH':'offsetof(struct PokemonSpecialAnim,nameOfMoveToTeach)',
+ 'PSA_CANCEL':'offsetof(struct PokemonSpecialAnim,cancelDisabled)',
+ 'PSA_SPECIES':'offsetof(struct PokemonSpecialAnim,species)',
+ 'RELEARNER_SIZE':'sizeof(struct LearnMoveGfxResources)',
+ 'RELEARNER_NAMES':'offsetof(struct LearnMoveGfxResources,listMenuStrbufs)',
+ 'RELEARNER_MOVES':'offsetof(struct LearnMoveGfxResources,learnableMoves)',
+ 'RELEARNER_COUNT':'offsetof(struct LearnMoveGfxResources,numLearnableMoves)',
+ 'RELEARNER_SLOT':'offsetof(struct LearnMoveGfxResources,selectedPartyMember)',
+
+    "SAVE1_WEATHER_CONTEXT":"offsetof(struct SaveBlock1,unused_3D24)",
+    "MAPHEADER_WEATHER":"offsetof(struct MapHeader,weather)",
+    "MAPHEADER_TYPE":"offsetof(struct MapHeader,mapType)",
+    "WEATHER_GAMMA":"offsetof(struct Weather,gammaIndex)",
+    "WEATHER_GFX":"offsetof(struct Weather,weatherGfxLoaded)",
+    "WEATHER_SAND_CREATED":"offsetof(struct Weather,sandstormSpritesCreated)",
+    "WEATHER_PAL_STATE":"offsetof(struct Weather,palProcessingState)",
+    "WEATHER_COMPLETE":"offsetof(struct Weather,weatherChangeComplete)",
+    "SAVE1_RIVAL_NAME": "offsetof(struct SaveBlock1,rivalName)",
     'BMOVE_SIZE': 'sizeof(struct BattleMove)',
     'BMOVE_PP': 'offsetof(struct BattleMove,pp)',
     'BMON_FRIENDSHIP': 'offsetof(struct BattlePokemon,friendship)',
@@ -129,9 +178,16 @@ for key,expr in {
  'MAIL_WORDS':'offsetof(struct Mail,words)',
  'RESULT_CAUGHT':'offsetof(struct BattleResults,caughtMonSpecies)',
 }.items(): expressions[key]=expr
-for name in ['POKEBALL','SPECIES','HELD_ITEM','LEVEL','FRIENDSHIP','IS_EGG','ATK','DEF','HP','MAX_HP','MOVE1','MOVE2','MOVE3','MOVE4','PP1','PP2','PP3','PP4','NICKNAME','PERSONALITY','OT_NAME','OT_ID','HP_IV','SANITY_IS_BAD_EGG','ABILITY_NUM','MAIL','UNUSED_RIBBONS']:
+for name in ['STATUS','PP_BONUSES','POKEBALL','SPECIES','HELD_ITEM','LEVEL','FRIENDSHIP','IS_EGG','ATK','DEF','HP','MAX_HP','MOVE1','MOVE2','MOVE3','MOVE4','PP1','PP2','PP3','PP4','NICKNAME','PERSONALITY','OT_NAME','OT_ID','HP_IV','SANITY_IS_BAD_EGG','ABILITY_NUM','MAIL','UNUSED_RIBBONS']:
     expressions['DATA_'+name] = 'MON_DATA_'+name
 required = [
+    "SetSavedWeather", "CB2_EndWildBattle", "CB2_EndTrainerBattle", "DynamicWeatherForMap", "DynamicWeatherForBattle", "DynamicWeatherAfterBattle", "DynamicWeatherUpdate", "WeatherContextValid", "GetCurrentWeather", "gWeatherPtr", "gMapHeader", "StartWildBattle",
+    "gLevelUpLearnsets", "OakOldManHandleInputChooseMove",
+    "PalletTown_ProfessorOaksLab_EventScript_RivalBattleSquirtle",
+    "Route22_EventScript_EarlyRivalSquirtle", "Route22_EventScript_LateRivalSquirtle",
+    "CeruleanCity_EventScript_RivalSquirtle", "SSAnne_2F_Corridor_EventScript_RivalSquirtle",
+    "PokemonTower_2F_EventScript_RivalSquirtle", "SilphCo_7F_EventScript_RivalSquirtle",
+    "PokemonLeague_ChampionsRoom_EventScript_BattleSquirtle",
     'BattleMainCB2', 'gBattleMoves', 'gTrainerBattleOpponent_A', 'CreateNPCTrainerParty', 'ApplyRangerTrainerData', 'RangerGiveGift', 'RangerNeedsMapRefresh',
     'SaffronCity_Dojo_EventScript_Ranger1', 'SaffronCity_Dojo_EventScript_Ranger2',
     'SaffronCity_Dojo_EventScript_Ranger3', 'SaffronCity_Dojo_EventScript_Ranger4',
@@ -224,6 +280,14 @@ required = [
     'gCurrentMove', 'gCritMultiplier', 'gDynamicBasePower', 'gBattlerAttacker', 'gBattlerTarget',
     'ShowPokemonSummaryScreen', 'sMonSummaryScreen', 'sMoveSelectionCursorPos', 'gSideStatuses', 'gBattleStruct', 'gBattleScripting', 'gBattleMoveDamage', 'gDisplayedStringBattle',
 ]
+required += ['PewterCity_Gym_EventScript_Liam','CeruleanCity_Gym_EventScript_Diana','CeladonCity_Gym_EventScript_Mary','Cmd_setweatherballtype','gBattleMonForms','SaffronCity_Dojo_Text_NeedTwo']
+required += ['MonRestorePP','ExecuteTableBasedItemEffect']
+required += ['ClampApprovedMovePP','ClampApprovedDaycarePP','NormalizeLoadedMovePP','GetBoxMonData3','SetBoxMonData','SavePlayerParty','gSaveCounter']
+required += ['CalculatePPWithBonus','SetMonMoveSlot']
+required += ['GetWindowAttribute','MoveSelectionDisplayMoveNames','MoveSelectionDisplayPpString','MoveSelectionDisplayPpNumber','GetMoveTypeShortName','HandleMoveSwitching']
+required += ['TeachMoveRelearnerMove','CB2_MoveRelearner','GetBgTilemapBuffer']
+required += ['gMoveNames','GetStringWidth','StringCopy','AllocPSA','Free','AllocZeroed','sMoveRelearner','MoveRelearnerInitListMenuBuffersEtc','BufferStringBattle','gBattleTextBuff2','gBattleTextBuff3']
+required += ['Task_StartMenuHandleInput','sStartMenuCursorPos','sStartMenuOrder','Task_BagMenu_HandleInput','Task_HandleChooseMonInput','Task_EvolutionScene']
 symbols={}
 end_ewram=0
 for line in subprocess.check_output(['arm-none-eabi-nm','-S','pokefirered.elf'],text=True).splitlines():
@@ -238,12 +302,14 @@ for line in subprocess.check_output(['arm-none-eabi-nm','-n','pokefirered.elf'],
 assert set(required)<=symbols.keys(), set(required)-symbols.keys()
 # Private input function names also exist in tutorial controllers. Verify the
 # selected local symbols belong to the actual player controller's address range.
-for name in ['HandleInputChooseAction','HandleInputChooseMove','HandleInputChooseTarget']:
+for name in ['HandleInputChooseAction','HandleInputChooseMove','HandleInputChooseTarget','MoveSelectionDisplayMoveNames','MoveSelectionDisplayMoveType','MoveSelectionDisplayPpNumber','HandleMoveSwitching']:
     assert symbols['SetControllerToPlayer'] < symbols[name] < symbols['SetControllerToOpponent'], name
 with tempfile.TemporaryDirectory(prefix='lightning-emulator-') as temp:
     temp=Path(temp)
-    source='#include <stddef.h>\n#include "global.h"\n#include "pokemon.h"\n#include "main.h"\n#include "task.h"\n'
+    source='#include "save.h"\n#include "field_weather.h"\n#include <stddef.h>\n#include "global.h"\n#include "pokemon.h"\n#include "main.h"\n#include "task.h"\n'
     source+='#include "text.h"\n#include "pokedex.h"\n#include "battle_controllers.h"\n#include "item_menu.h"\n#include "wild_encounter.h"\n#include "battle.h"\n#include "list_menu.h"\n#include "party_menu.h"\n#include "script.h"\n#include "field_player_avatar.h"\n'+screen_struct+'\n'+summary_struct+'\n'
+    learn=Path('src/learn_move.c').read_text();learn=learn[learn.index('struct LearnMoveGfxResources\n'):];learn=learn[:learn.index('\n};')+3]
+    source+='#include "battle_message.h"\n#include "pokemon_special_anim_internal.h"\n'+learn+'\n'
     source+='const unsigned long abi[] = {'+', '.join(expressions.values())+'};\n'
     (temp/'abi.c').write_text(source)
     with (temp/'abi.i').open('w') as out:
@@ -263,12 +329,40 @@ with tempfile.TemporaryDirectory(prefix='lightning-emulator-') as temp:
     header+='\n'.join('#define SYM_'+name+' 0x%08xU'%value for name,value in symbols.items())+'\n'
     header+='#define ABI_EWRAM_END 0x%08xU\n'%end_ewram
     (temp/'symbols.h').write_text(header)
+    gf=json.loads(Path('tests/specifications/approved_gym_castform.json').read_text())
+    out=''
+    for label,field in [('Species',0),('Levels',1),('Moves',2)]:
+        rows=[]
+        for t in gf['trainers']:
+            vals=[]
+            for mon in t['pokemon']:
+                value=mon[field]
+                vals.append(('{'+','.join('MOVE_'+x for x in value)+'}') if field==2 else ('SPECIES_'+value if field==0 else str(value)))
+            rows.append('{'+','.join(vals)+'}')
+        out+='static const unsigned gymExpected'+label+'[3][2]'+('[4]' if field==2 else '')+'={'+','.join(rows)+'};\n'
+    (temp/'gym_castform_expected.h').write_text(out)
     approved_rangers=json.loads(Path('tests/specifications/approved_ranger_base_camp.json').read_text())
     expected='static const unsigned rangerExpectedMoves[5][4][4] = {\n'
     for trainer in approved_rangers['trainers']:
         expected+=' {'+','.join('{'+','.join('MOVE_'+m for m in mon['moves'])+'}' for mon in trainer['party'])+'},\n'
     expected+='};\n'
     (temp/'ranger_expected.h').write_text(expected)
+
+    wf=json.loads(Path('tests/specifications/approved_weather_maps.json').read_text())
+    expected='struct WeatherExpected {unsigned map,original,weights[5];};\nstatic const struct WeatherExpected weatherExpected[]={\n'
+    for row in wf['maps']:
+        expected+=' {'+row['map']+','+row['native_weather']+',{'+','.join(map(str,row['weights']))+'}},\n'
+    expected+='};\n'
+    (temp/'weather_expected.h').write_text(expected)
+    rivals=json.loads(Path('tests/specifications/approved_rival_parties.json').read_text())
+    expected='static const unsigned rivalSizes[8]={'+','.join(str(len(e['party'])) for e in rivals['encounters'])+'};\n'
+    expected+='static const unsigned rivalIds[8][3]={'+','.join('{'+','.join(v['trainer'] for v in e['variants'])+'}' for e in rivals['encounters'])+'};\n'
+    expected+='struct RivalExpected {unsigned species,level,item,iv,moves[4];};\nstatic const struct RivalExpected rivalMons[8][6]={\n'
+    for e in rivals['encounters']:
+        expected+=' {'+','.join('{SPECIES_'+m['species']+','+str(m['level'])+',ITEM_'+m['held_item']+','+str(e['variants'][0]['iv'][i])+',{'+','.join('MOVE_'+v for v in m['moves'])+'}}' for i,m in enumerate(e['party']))+'},\n'
+    expected+='};\n'
+    (temp/'rival_expected.h').write_text(expected)
+
 
     command=['gcc','-std=gnu11','-O2','-Wall','-Wextra','-I',str(temp),'-iquote','include',
              'tests/emulator/runner.c','-o',str(temp/'runner')]
@@ -279,4 +373,5 @@ with tempfile.TemporaryDirectory(prefix='lightning-emulator-') as temp:
                   '-Wl,-rpath,'+prefix+'/usr/lib/x86_64-linux-gnu']
     command+=['-lmgba']
     subprocess.run(command,check=True)
-    subprocess.run([str(temp/'runner'),'pokefirered.gba'],check=True,env={**os.environ,'TZ':'UTC'})
+    shutil.copyfile('pokefirered.gba',temp/'test.gba')
+    subprocess.run([str(temp/'runner'),str(temp/'test.gba')],check=True,env={**os.environ,'TZ':'UTC'})
