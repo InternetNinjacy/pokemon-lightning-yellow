@@ -669,3 +669,17 @@ All41 other task records are byte-equivalent as parsed JSON;42 permanent IDs
 retained. Direct Drive synchronization remains pending. Global auto-merge is
 still enabled; this feature PR has no auto-merge request. No main write, merge,
 release or destructive operation performed for Ranger.
+
+
+## 2026-11-05 — OWNER-DIRECTED FROZEN-SCOPE REBASELINE (DOCUMENTATION PR, NO GAMEPLAY MERGE)
+
+Owner assumption: no additional Pokemon, no newly invented Trainer records, no new gameplay feature beyond existing approved commitments. Reconciled live Drive approvals and GitHub PR states. Prior ledger remains unchanged above.
+
+- Existing 42 permanent task IDs and all historical earned values preserved; no task points removed. Updated scoped estimates for native-tested OPEN PRs #27, #29, #31, #35, #36, #39, #40-43 and MERGED #26; nonmerged code distinguished from main.
+- All five Elite Four documentation PRs #32/#33/#34/#48/#46 MERGED. Eight specs approved, NO gameplay implementation credit. Codex issue #50.
+- Follower 252 all-party system approved and DOCS-ONLY PR #52 OPEN. No sprite/license/coding credit.
+- Ordinary non-Gym Trainer source records: 251/510 individual species assignments approved; 259 remaining. Party levels, moves and implementation separate.
+- New **incremental only** tasks: PKM-009 28pt, GYM-006 52pt, GYM-007 16pt, WRL-009 20pt, WRL-010 40pt, WRL-011 10pt. Do not count any of these again as original broad tasks, including GYM-001/GYM-002, WRL-001/WRL-002/WRL-004.
+- Museum Shiny Feebas code outdated: approved reward Aron Egg 50% true Shiny. Also approved Magby Egg 50% and Tangela TANGO. Rocket hideout #45 pending source changes.
+- Rebased totals: **300 earned / 414 remaining / 714 all = 42.02% estimated**. Previous237/311/548=43.25% tracker was incomplete-scope historical baseline. New numbers reflect both progress and an explicit larger fixed backlog. Estimates are LOW CONFIDENCE, not time/hours or end-to-end release readiness.
+- No existing PR merged, no code/main edited by this report. Changes published for owner review on branch docs/frozen-scope-progress-audit-20261105. Upon review/merge of this DOCS-ONLY PR, update main dashboard. No automatic merge.
