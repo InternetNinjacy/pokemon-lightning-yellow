@@ -169,66 +169,66 @@ static const struct WindowTemplate sStandardBattleWindowTemplates[] = {
     },
     [B_WIN_MOVE_NAME_1] = {
         .bg = 0,
-        .tilemapLeft = 2,
+        .tilemapLeft = 1,
         .tilemapTop = 55,
-        .width = 8,
-        .height = 2,
+        .width = BATTLE_MOVE_PANEL_TILES,
+        .height = 4,
         .paletteNum = 5,
         .baseBlock = 0x300
     },
     [B_WIN_MOVE_NAME_2] = {
         .bg = 0,
-        .tilemapLeft = 11,
-        .tilemapTop = 55,
-        .width = 8,
-        .height = 2,
+        .tilemapLeft = 31,
+        .tilemapTop = 63,
+        .width = 1,
+        .height = 1,
         .paletteNum = 5,
-        .baseBlock = 0x310
+        .baseBlock = 0x354
     },
     [B_WIN_MOVE_NAME_3] = {
         .bg = 0,
-        .tilemapLeft = 2,
-        .tilemapTop = 57,
-        .width = 8,
-        .height = 2,
+        .tilemapLeft = 31,
+        .tilemapTop = 63,
+        .width = 1,
+        .height = 1,
         .paletteNum = 5,
-        .baseBlock = 0x320
+        .baseBlock = 0x355
     },
     [B_WIN_MOVE_NAME_4] = {
         .bg = 0,
-        .tilemapLeft = 11,
-        .tilemapTop = 57,
-        .width = 8,
-        .height = 2,
+        .tilemapLeft = 31,
+        .tilemapTop = 63,
+        .width = 1,
+        .height = 1,
         .paletteNum = 5,
-        .baseBlock = 0x330
+        .baseBlock = 0x356
     },
     [B_WIN_PP] = {
-        .bg = 0,
-        .tilemapLeft = 21,
-        .tilemapTop = 55,
-        .width = 3,
-        .height = 2,
-        .paletteNum = 5,
-        .baseBlock = 0x290
-    },
-    [B_WIN_MOVE_TYPE] = {
-        .bg = 0,
-        .tilemapLeft = 21,
-        .tilemapTop = 57,
-        .width = 8,
-        .height = 2,
-        .paletteNum = 5,
-        .baseBlock = 0x296
-    },
-    [B_WIN_PP_REMAINING] = {
         .bg = 0,
         .tilemapLeft = 24,
         .tilemapTop = 55,
         .width = 5,
         .height = 2,
         .paletteNum = 5,
-        .baseBlock = 0x2a6
+        .baseBlock = 0x290
+    },
+    [B_WIN_MOVE_TYPE] = {
+        .bg = 0,
+        .tilemapLeft = 24,
+        .tilemapTop = 57,
+        .width = 5,
+        .height = 2,
+        .paletteNum = 5,
+        .baseBlock = 0x29a
+    },
+    [B_WIN_PP_REMAINING] = {
+        .bg = 0,
+        .tilemapLeft = 31,
+        .tilemapTop = 63,
+        .width = 1,
+        .height = 1,
+        .paletteNum = 5,
+        .baseBlock = 0x357
     },
     [B_WIN_DUMMY] = {
         .bg = 0,
@@ -241,9 +241,9 @@ static const struct WindowTemplate sStandardBattleWindowTemplates[] = {
     },
     [B_WIN_SWITCH_PROMPT] = {
         .bg = 0,
-        .tilemapLeft = 21,
+        .tilemapLeft = 24,
         .tilemapTop = 55,
-        .width = 8,
+        .width = 5,
         .height = 4,
         .paletteNum = 5,
         .baseBlock = 0x2b0
@@ -714,10 +714,34 @@ void DrawMainBattleBackground(void)
     LoadBattleTerrainGfx(GetBattleTerrainOverride());
 }
 
+// Reposition only existing frame tiles in RAM; no new graphics or palette.
+static void AdaptMoveMenuFrame(void)
+{
+    u16 *map = GetBgTilemapBuffer(0);
+    u32 y, x;
+    if (map == NULL)
+        return;
+    for (y = 54; y <= 59; y++)
+    {
+        u16 *row = map + y * 32;
+        u16 leftFill = row[1];
+        u16 leftEnd = row[19];
+        u16 rightStart = row[20];
+        u16 rightFill = row[21];
+        for (x = 1; x <= BATTLE_MOVE_PANEL_TILES; x++)
+            row[x] = leftFill;
+        row[22] = leftEnd;
+        row[23] = rightStart;
+        for (x = 24; x <= 28; x++)
+            row[x] = rightFill;
+    }
+}
+
 void LoadBattleTextboxAndBackground(void)
 {
     LZDecompressVram(gBattleInterface_Textbox_Gfx, (void *)BG_CHAR_ADDR(0));
     CopyToBgTilemapBuffer(0, gBattleInterface_Textbox_Tilemap, 0, 0x000);
+    AdaptMoveMenuFrame();
     CopyBgTilemapBufferToVram(0);
     LoadCompressedPalette(gBattleInterface_Textbox_Pal, BG_PLTT_ID(0), 2 * PLTT_SIZE_4BPP);
     LoadBattleMenuWindowGfx();
@@ -1083,6 +1107,7 @@ bool8 LoadChosenBattleElement(u8 caseId)
         break;
     case 1:
         CopyToBgTilemapBuffer(0, gBattleInterface_Textbox_Tilemap, 0, 0x000);
+        AdaptMoveMenuFrame();
         CopyBgTilemapBufferToVram(0);
         break;
     case 2:

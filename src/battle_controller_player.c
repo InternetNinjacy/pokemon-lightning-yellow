@@ -1,4 +1,5 @@
 #include "global.h"
+#include "battle_bg.h"
 #include "capture_rules.h"
 #include "wild_double_battle.h"
 #include "move_categories.h"
@@ -1414,8 +1415,8 @@ static void MoveSelectionDisplayMoveType(void)
     u8 *txtPtr;
     struct ChooseMoveStruct *moveInfo = (struct ChooseMoveStruct *)(&gBattleBufferA[gActiveBattler][4]);
 
-    // Compact labels share the existing 64px type window; PP stays unchanged.
-    txtPtr = StringCopy(gDisplayedStringBattle, gTypeNames[gBattleMoves[moveInfo->moves[gMoveSelectionCursor[gActiveBattler]]].type]);
+    // Compact labels share the compact40px type window; PP stays unchanged.
+    txtPtr = StringCopy(gDisplayedStringBattle, GetMoveTypeShortName(moveInfo->moves[gMoveSelectionCursor[gActiveBattler]]));
     txtPtr = StringCopy(txtPtr, separator);
     StringCopy(txtPtr, GetMoveCategoryShortName(moveInfo->moves[gMoveSelectionCursor[gActiveBattler]]));
     BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_MOVE_TYPE);
@@ -1423,22 +1424,31 @@ static void MoveSelectionDisplayMoveType(void)
 
 void MoveSelectionCreateCursorAt(u8 cursorPosition, u8 arg1)
 {
-    u16 src[2];
-
-    src[0] = arg1 + 1;
-    src[1] = arg1 + 2;
-    CopyToBgTilemapBufferRect_ChangePalette(0, src, 9 * (cursorPosition & 1) + 1, 55 + (cursorPosition & 2), 1, 2, 0x11);
-    CopyBgTilemapBufferToVram(0);
+    u8 cursor[64];
+    const u8 *tiles = (const u8 *)BG_CHAR_ADDR(0) + (arg1 + 1) * TILE_SIZE_4BPP;
+    u32 i;
+    // Reuse both original8x8 cursor tiles, mapping their existing colors to
+    // the unchanged battle text palette. This retains reorder cursor styles.
+    for (i = 0; i < sizeof(cursor); i++)
+    {
+        u8 low = tiles[i] & 15;
+        u8 high = tiles[i] >> 4;
+        low = low == 9 ? 13 : low == 7 ? 15 : 14;
+        high = high == 9 ? 13 : high == 7 ? 15 : 14;
+        cursor[i] = low | (high << 4);
+    }
+    BlitBitmapRectToWindow(B_WIN_MOVE_NAME_1, cursor, 0, 0, 8, 16,
+                          BATTLE_MOVE_COLUMN_WIDTH * (cursorPosition & 1),
+                          BATTLE_MOVE_ROW_HEIGHT * (cursorPosition >> 1), 8, 16);
+    CopyWindowToVram(B_WIN_MOVE_NAME_1, COPYWIN_GFX);
 }
 
 void MoveSelectionDestroyCursorAt(u8 cursorPosition)
 {
-    u16 src[2];
-
-    src[0] = 32;
-    src[1] = 32;
-    CopyToBgTilemapBufferRect_ChangePalette(0, src, 9 * (cursorPosition & 1) + 1, 55 + (cursorPosition & 2), 1, 2, 0x11);
-    CopyBgTilemapBufferToVram(0);
+    FillWindowPixelRect(B_WIN_MOVE_NAME_1, PIXEL_FILL(0xe),
+                        BATTLE_MOVE_COLUMN_WIDTH * (cursorPosition & 1),
+                        BATTLE_MOVE_ROW_HEIGHT * (cursorPosition >> 1), 8, 16);
+    CopyWindowToVram(B_WIN_MOVE_NAME_1, COPYWIN_GFX);
 }
 
 void ActionSelectionCreateCursorAt(u8 cursorPosition, u8 arg1)

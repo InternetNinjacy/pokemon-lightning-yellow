@@ -1,0 +1,15 @@
+{
+  "include/constants/moves.h": "79d5b93423006c25e6ee47355b15f403b2534616fd6b638e1755e5886d378194",
+  "include/constants/global.h": "d81974e468a58f94a47a8bf4d3921e3555af239e724ac2870ba7436acfb4b969",
+  "include/global.h": "23fa42f2fcf687daf2347f45465e828364cc1ad310aef8d91be093f2675f53a1",
+  "src/data/battle_moves.h": "06c4997ade40a090339675d35060aac716b5be1d5cc5e93368cc2339b5c027ac",
+  "src/data/text/move_names.h": "d45a00ae94f33e294dd2fa742db1397fe1559fcf42ae553c8983f92d384b6bef",
+  "src/move_descriptions.c": "1d6227e39ba85d694822a6b3a158c36b8ac3313ccf9e8d3264c67199bebaea0b",
+  "data/battle_anim_scripts.s": "f1566a2d43fad88619f4e3799f995bfd1c53b65fe8de4c4a91d66a440284ea9e",
+  "graphics/battle_interface/textbox.bin": "469a866fe10af029afea67a23f5ab0c0102c675d6a16115089712d1717550d2d",
+  "graphics/battle_interface/textbox.png": "6b8659e01403ef32b55404be32e3aece4b855384352802efc5f718bd5d6e22b9",
+  "graphics/battle_interface/textbox1.pal": "9cd7e2b15a861d988ee5089400282d5cb329391124f1a2b754b98c21962cc7bd",
+  "graphics/battle_interface/textbox2.pal": "b403ca41fd1b4479d555bfc24aa4b4bafbfad049950695aa1a9e9c5430bb47aa",
+  "graphics/interface/learn_move.bin": "ed69f8f3d79f90bd0b9254ef35129b5a5c29c185982195acf1f08d693e17db8e",
+  "graphics/interface/learn_move.png": "a0982bf2b8ffad32da1056112b22174983025856d13bbded667565f9de7c9ea8"
+}

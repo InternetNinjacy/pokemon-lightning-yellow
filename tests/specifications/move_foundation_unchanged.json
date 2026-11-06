@@ -1,0 +1,5 @@
+{
+  "include/constants/moves.h": "79d5b93423006c25e6ee47355b15f403b2534616fd6b638e1755e5886d378194",
+  "include/global.h": "23fa42f2fcf687daf2347f45465e828364cc1ad310aef8d91be093f2675f53a1",
+  "src/data/text/move_names.h": "d45a00ae94f33e294dd2fa742db1397fe1559fcf42ae553c8983f92d384b6bef"
+}

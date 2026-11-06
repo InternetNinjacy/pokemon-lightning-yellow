@@ -100,3 +100,9 @@ does not reverse completed evolutions. Future Dex and day/night changes must ret
 the species-ID contract and review the existing National-Dex gating/time boundary.
 
 No merge or automatic merge is authorized by this implementation or passing CI.
+
+
+November5 follow-up: [PKM-005-BAG acceptance](BAG_EVOLUTION_ACCEPTANCE.md)
+now exercises actual START/Bag/USE navigation for all eleven approved routes,
+including field return and flash persistence. The earlier Bag-coverage limitation
+above describes the historical suite. Real link-peer/hardware remains unverified.
