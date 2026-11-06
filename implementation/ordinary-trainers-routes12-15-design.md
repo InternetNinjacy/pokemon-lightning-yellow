@@ -80,3 +80,34 @@
 - Check final in-game move learnsets and TMs against owner-approved mechanics; physical/special split must be respected.
 - Verify source original levels and any level-stage mismatches, e.g. Lv29 electrode-like outliers; choose final party levels based on adjacent routes and Gym benchmarks rather than silently copying impossible source evolution staging.
 - This is 40 delegated species-team decisions, **not an assertion that all ordinary Trainer work or battle balancing is complete**. Rematch links and a further 25 historical owner approvals still require reconciliation. No gameplay code changes or merge authorization.
+
+## Curated family-preserving rematches for Routes 12-15
+
+The 24 numbered rematch variants tied to these routes have now been individually revised. Their exact source levels remain provisional. Stronger party members are evolutions of the base Trainer's approved species where eligible, not random class replacements. At high levels, a party may retain its species while upgrading moves, AI and ace held item. The lineups are recorded in the separate `implementation/ordinary-trainer-rematch-candidates.md`. These variant source IDs have not been event-link verified, and all final movesets require a later legal learnset check.
+
+| Variant ID | Rematch party | Working source levels | Ace item candidate |
+|---|---|---|---|
+| `TRAINER_FISHERMAN_ELLIOT_2` | Shellder / Goldeen / Horsea / Spheal | 28 / 28 / 28 / 28 | `ITEM_ORAN_BERRY` |
+| `TRAINER_ROCKER_LUCA_2` | Electrode / Magmar | 33 / 33 | `ITEM_ORAN_BERRY` |
+| `TRAINER_BEAUTY_SHEILA_2` | Persian / Gardevoir | 49 / 49 | `ITEM_SITRUS_BERRY` |
+| `TRAINER_BIRD_KEEPER_ROBERT_2` | Pidgeotto / Pidgeotto / Fearow / Fearow | 28 / 28 / 28 / 28 | `ITEM_ORAN_BERRY` |
+| `TRAINER_BIRD_KEEPER_ROBERT_3` | Pidgeot / Pidgeot / Fearow / Fearow | 47 / 47 / 47 / 47 | `ITEM_SITRUS_BERRY` |
+| `TRAINER_PICNICKER_SUSIE_2` | Pidgeotto / Pikachu / Breloom / Clefairy / Poliwhirl | 27 / 27 / 27 / 27 / 27 | `ITEM_ORAN_BERRY` |
+| `TRAINER_PICNICKER_SUSIE_3` | Pidgeot / Raichu / Breloom / Clefable / Poliwrath | 47 / 47 / 47 / 47 / 47 | `ITEM_SITRUS_BERRY` |
+| `TRAINER_PICNICKER_SUSIE_4` | Pidgeot / Raichu / Breloom / Clefable / Poliwrath | 52 / 52 / 52 / 52 / 52 | `ITEM_SITRUS_BERRY` |
+| `TRAINER_BIKER_LUKAS_2` | Weezing / Magneton / Muk / Electrode | 47 / 47 / 47 / 47 | `ITEM_SITRUS_BERRY` |
+| `TRAINER_BIRD_KEEPER_BENNY_2` | Fearow / Fearow | 32 / 32 | `ITEM_ORAN_BERRY` |
+| `TRAINER_BIRD_KEEPER_BENNY_3` | Fearow / Fearow | 49 / 49 | `ITEM_SITRUS_BERRY` |
+| `TRAINER_BIRD_KEEPER_MARLON_2` | Fearow / Doduo / Fearow | 30 / 30 / 30 | `ITEM_ORAN_BERRY` |
+| `TRAINER_BIRD_KEEPER_MARLON_3` | Fearow / Dodrio / Fearow | 48 / 48 / 48 | `ITEM_SITRUS_BERRY` |
+| `TRAINER_BEAUTY_GRACE_2` | Gardevoir / Persian | 49 / 49 | `ITEM_SITRUS_BERRY` |
+| `TRAINER_BIRD_KEEPER_CHESTER_2` | Dodrio / Doduo / Doduo | 30 / 30 / 30 | `ITEM_ORAN_BERRY` |
+| `TRAINER_BIRD_KEEPER_CHESTER_3` | Dodrio / Dodrio / Dodrio | 48 / 48 / 48 | `ITEM_SITRUS_BERRY` |
+| `TRAINER_PICNICKER_BECKY_2` | Pikachu / Raichu | 32 / 32 | `ITEM_ORAN_BERRY` |
+| `TRAINER_PICNICKER_BECKY_3` | Raichu / Raichu | 49 / 49 | `ITEM_SITRUS_BERRY` |
+| `TRAINER_PICNICKER_BECKY_4` | Raichu / Raichu | 54 / 54 | `ITEM_SITRUS_BERRY` |
+| `TRAINER_CRUSH_KIN_RON_MYA_2` | Hitmonchan / Hitmonlee | 33 / 33 | `ITEM_ORAN_BERRY` |
+| `TRAINER_CRUSH_KIN_RON_MYA_3` | Hitmonchan / Hitmonlee | 51 / 51 | `ITEM_SITRUS_BERRY` |
+| `TRAINER_CRUSH_KIN_RON_MYA_4` | Hitmonchan / Hitmonlee | 56 / 56 | `ITEM_LUM_BERRY` |
+| `TRAINER_YOUNG_COUPLE_GIA_JES_2` | Nidorino / Nidorina | 30 / 30 | `ITEM_ORAN_BERRY` |
+| `TRAINER_YOUNG_COUPLE_GIA_JES_3` | Nidoking / Nidoqueen | 55 / 55 | `ITEM_LUM_BERRY` |
