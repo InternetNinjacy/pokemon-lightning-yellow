@@ -3,7 +3,7 @@
   "updated": "2026-11-06",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "Merged policy55/Roar56/sign58; six Elite Four60 now includes pending gift59 for shared acceptance integration, retaining23 hosts/27 native groups. Gift59 must merge first. Two Agatha encounters remain explicitly unimplemented while scoped selector question is pending; no default approval. Weather61 independent fully specified rules under validation; follower/Trainer57 holds persist.",
+  "current_focus": "Policy55, Roar56, sign58 merged. Weather61 integrates pending gift59 and six-battle Elite Four60 for shared24-host/28-native acceptance; merge parents59 then60 before61. Weather scope focused5389/build/repro PASS; full/integrated CI pending. Agatha selector question, followers permission and draft ordinary-Trainer57 remain explicit holds; no invented mappings.",
   "main_sha": "d97712dc9393b5f98d73df901f8ffa70cc231309",
   "drive_sync": {
     "status": "pending: no direct Drive writing tool available",
@@ -658,7 +658,8 @@
         "verified_main": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c"
       },
       "subtasks": {
-        "BTL-005-M2C": "Roar implemented; focused197/21 hosts/3 checkers/rebuild PASS; full/CI pending"
+        "BTL-005-M2C": "Roar implemented; focused197/21 hosts/3 checkers/rebuild PASS; full/CI pending",
+        "BTL-005-M2D": "Ground Sandstorm/type-only residual immunity and guaranteed Rain Zap Cannon implemented;22 hosts/3checkers/focused5389 PASS; full/clean/CI pending"
       }
     },
     {
@@ -2907,5 +2908,6 @@
     "full_native_assertions": 534051,
     "main_before_tracking": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c",
     "source_tree_verified": true
-  }
+  },
+  "current_weather_move_branch": "feature/weather-move-completion"
 }

@@ -30,7 +30,7 @@ def render():
   r['delta']={k:{'current':cur[k],'approved':v} for k,v in r['approved'].items() if translated.get(k,v)!=cur[k]}
   if key in overlay['originals']:r['identity']='REWORKED_ORIGINAL'
   r['implementation_status']='PENDING_APPROVED_REDESIGN' if r['identity']=='REWORKED_ORIGINAL' else 'SOURCE_MATCHES_RETAINED_FIELDS'
-  if key in overlay['originals'] and not r['delta'] and overlay['originals'][key].get('implementation_status')=='IMPLEMENTED_APPROVED_DATA':r['implementation_status']='IMPLEMENTED_APPROVED_DATA'
+  if key in overlay['originals'] and not r['delta'] and overlay['originals'][key].get('implementation_status') in ['IMPLEMENTED_APPROVED_DATA','IMPLEMENTED_APPROVED_MECHANIC']:r['implementation_status']=overlay['originals'][key]['implementation_status']
   if key=='CURSE':r['identity']='REWORKED_ORIGINAL';r['implementation_status']='IMPLEMENTED_APPROVED_TYPE' if not r['delta'] else 'PENDING_APPROVED_REDESIGN'
   rows.append(r)
  assert len(rows)==354 and {r['id'] for r in rows}==set(range(1,355))

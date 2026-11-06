@@ -4,7 +4,7 @@ Canonical branch: `main`. Updated 2026-11-06. Audited gameplay revision: `d97712
 
 Overall: `[####------]` **44.10% complete /55.90% remaining** (314 earned +398 remaining;712 provisional effort points).
 
-Merged policy55/Roar56/sign58; six Elite Four60 now includes pending gift59 for shared acceptance integration, retaining23 hosts/27 native groups. Gift59 must merge first. Two Agatha encounters remain explicitly unimplemented while scoped selector question is pending; no default approval. Weather61 independent fully specified rules under validation; follower/Trainer57 holds persist.
+Policy55, Roar56, sign58 merged. Weather61 integrates pending gift59 and six-battle Elite Four60 for shared24-host/28-native acceptance; merge parents59 then60 before61. Weather scope focused5389/build/repro PASS; full/integrated CI pending. Agatha selector question, followers permission and draft ordinary-Trainer57 remain explicit holds; no invented mappings.
 
 These are estimates of tracked work, not elapsed hours or release certification. Every permanent ID and earned-history entry is retained. Approved Ponyta and Ranger work expanded the scope; the denominator is the sum of the current task effort estimates. Adding scope changes it without erasing completed work. Repeated regression is not duplicate implementation credit.
 

@@ -5,7 +5,8 @@ import hashlib,json,re
 from approved_move_pp_changes import prior_move_pp_source
 from approved_roar_changes import prior_roar_source
 from approved_gift_changes import prior_gift_source
-def before_later_features(path):return prior_roar_source(path,prior_gift_source(path))
+from approved_weather_move_changes import prior_weather_move_source
+def before_later_features(path):return prior_roar_source(path,prior_gift_source(path,prior_weather_move_source(path)))
 m=json.loads(Path('tests/specifications/approved_move_pp_delta.json').read_text())
 for p,v in m['files'].items():
  assert hashlib.sha256(before_later_features(p).encode()).hexdigest()==v['after_sha256'],p
