@@ -344,6 +344,12 @@ static void dexTests(void) {
 #include "dynamic_weather.c"
 #include "gym_castform.c"
 #include "rival.c"
+#include "wild_nickname.c"
+#include "bag_evolution.c"
+#include "move_foundation.c"
+#include "move_long_name_ui.c"
+#include "original_move_data.c"
+#include "move_pp_compatibility.c"
 
 int main(int argc,char **argv) {
     setvbuf(stdout,NULL,_IONBF,0);
@@ -368,6 +374,7 @@ int main(int argc,char **argv) {
     if(getenv("LIGHTNING_BALL_SHOP_ONLY")){captureShopTests();printf("PASS: %u focused shop assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_BALLS_ONLY")){captureTests();printf("PASS: %u focused capture assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_VENDOR_UI_ONLY")){vendorUiTests();printf("PASS: %u focused vendor UI assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_VENDOR_BATTLE_ONLY")){vendorBattleTests();printf("PASS: %u focused vendor battle assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_VENDORS_ONLY")){vendorTests();printf("PASS: %u focused vendor assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_FOSSILS_ONLY")){fossilTests();printf("PASS: %u focused fossil assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_DAYCARE_CONTINUE_ONLY")){continueMigrationTests();printf("PASS: %u focused Continue assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
@@ -378,6 +385,13 @@ int main(int argc,char **argv) {
     if(getenv("LIGHTNING_BATTLE_ONLY")){categoryTests();printf("PASS: %u focused battle assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_WILD_ONLY")){wildTests();printf("PASS: %u focused wild assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_DEX_ONLY")){dexTests();printf("PASS: focused Dex diagnostic\n");core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_PP_FULL_PC_ONLY")){ppFullPc();printf("PASS: %u full-PC PP assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_MOVE_PP_ONLY")){movePpCompatibilityTests();printf("PASS: %u focused move PP assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_ORIGINAL_MOVE_DATA_ONLY")){originalMoveDataTests();printf("PASS: %u focused original move-data assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_LONG_MOVE_UI_ONLY")){moveLongNameUiTests();printf("PASS: %u focused long-name UI assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_MOVE_FOUNDATION_ONLY")){moveFoundationTests();printf("PASS: %u focused move-foundation assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_BAG_EVOLUTION_ONLY")){bagEvolutionTests();printf("PASS: %u focused Bag evolution assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_WILD_NICKNAME_ONLY")){wildNicknameTests();printf("PASS: %u focused capture nickname assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_BLAINE_ONLY")){blaineTests();printf("PASS: %u focused Blaine assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_GYM_CASTFORM_ONLY")){gymCastformTests();printf("PASS: %u focused Gym Castform assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_DYNAMIC_WEATHER_ONLY")){dynamicWeatherTests();printf("PASS: %u focused dynamic weather assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
@@ -388,6 +402,8 @@ int main(int argc,char **argv) {
     if(getenv("LIGHTNING_RANGER_UI_ONLY")){rangerGateTests();rangerGiftUiTests();rangerPcTests();rangerContinueTests();printf("PASS: %u focused Ranger UI assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_RANGER_BATTLES_ONLY")){rangerBattleTests();printf("PASS: %u focused Ranger battle assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_PONYTA_ONLY")){ponytaTests();printf("PASS: %u focused Ponyta assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_BAG_EVOLUTION_ONLY")){bagEvolutionTests();printf("PASS: %u focused Bag evolution assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_WILD_NICKNAME_ONLY")){wildNicknameTests();printf("PASS: %u focused capture nickname assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_BLAINE_ONLY")){blaineTests();printf("PASS: %u focused Blaine assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_MUSEUM_ONLY")){museumTests();printf("PASS: %u focused Museum assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     initSave();
@@ -492,6 +508,12 @@ int main(int argc,char **argv) {
     dynamicWeatherTests();
     gymCastformTests();
     rivalTests();
+    wildNicknameTests();
+    bagEvolutionTests();
+    moveFoundationTests();
+    moveLongNameUiTests();
+    originalMoveDataTests();
+    movePpCompatibilityTests();
     printf("PASS: %u mGBA assertions (includes API/register safety checks)\n",checks);
     core->deinit(core);free(pixels);free(bootState);
     return 0;

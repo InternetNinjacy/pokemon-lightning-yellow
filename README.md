@@ -111,3 +111,7 @@ current verification and review status.
 selection/state/clock/battle-return rules in separate PR29. It reuses native field
 assets; final day/night tinting and Mansion fog remain separate. Rival gameplay
 is combined with weather/Castform only on the [isolated integration review branch](docs/COMBINED_INTEGRATION_20261105.md); original PRs remain open.
+
+[Move-engine foundation implementation](docs/moves/FOUNDATION_STATUS.md) records
+M1a safe name capacity and approved Curse typing, with remaining M1–M8 work and
+explicit test limits. The56 additional moves are not yet implemented.
