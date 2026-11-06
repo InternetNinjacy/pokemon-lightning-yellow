@@ -173,6 +173,10 @@
       ],
       "field_basis": {
         "target": "OWNER_EXPLICIT"
+      },
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA",
+      "engine_translation": {
+        "target": "MOVE_TARGET_BOTH"
       }
     },
     "LICK": {
@@ -262,6 +266,10 @@
         "accuracy": "OWNER_EXPLICIT",
         "pp": "OWNER_EXPLICIT",
         "target": "OWNER_EXPLICIT"
+      },
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA",
+      "engine_translation": {
+        "target": "MOVE_TARGET_BOTH"
       }
     },
     "ZAP_CANNON": {
@@ -412,6 +420,10 @@
       ],
       "field_basis": {
         "target": "OWNER_EXPLICIT"
+      },
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA",
+      "engine_translation": {
+        "target": "MOVE_TARGET_BOTH"
       }
     },
     "ROCK_TOMB": {

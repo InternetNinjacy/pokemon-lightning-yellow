@@ -65,7 +65,31 @@ static void electricImmunityTests(void){
  chooseMove(0,0,1);waitAction();CHECK(core->busRead32(core,bmon(1)+ABI_BMON_STATUS1)==STATUS1_PARALYSIS);
  CHECK(core->loadState(core,bootState));
 }
+static void spreadStatusTests(void){
+ const unsigned moves[]={MOVE_SCARY_FACE,MOVE_SCREECH,MOVE_FAKE_TEARS};
+ const unsigned stats[]={STAT_SPEED,STAT_DEF,STAT_SPDEF};
+ const unsigned pp[]={15,40,20};
+ for(unsigned m=0;m<3;m++)for(unsigned two=0;two<2;two++){
+  effectBattleFixture(two,moves[m]);
+  void *state=malloc(core->stateSize(core));CHECK(state&&core->saveState(core,state));unsigned both=0,split=0;
+  for(unsigned trial=0;trial<50;trial++){
+   CHECK(core->loadState(core,state));core->busWrite32(core,SYM_gRngValue,0x5A7A0000+m*97+trial*7919);
+   chooseMove(0,0,1);if(two)chooseMove(2,0,1);waitAction();
+   unsigned a=core->busRead8(core,bmon(1)+ABI_BMON_STAGES+stats[m]);unsigned b=two?core->busRead8(core,bmon(3)+ABI_BMON_STAGES+stats[m]):a;
+   CHECK((a==4||a==6)&&(b==4||b==6));CHECK(monget(player(0),ABI_DATA_PP1)==pp[m]-1);
+   CHECK(core->busRead8(core,bmon(0)+ABI_BMON_STAGES+stats[m])==6);
+   if(two)CHECK(core->busRead8(core,bmon(2)+ABI_BMON_STAGES+stats[m])==6);
+   for(unsigned bat=0;bat<(two?4:2);bat++)CHECK(core->busRead16(core,bmon(bat)+ABI_BMON_HP)==1000);
+   both+=a==4&&b==4;split+=a!=b;
+   if(both&&(!two||m==2||split))break;
+  }
+  CHECK(both);if(two&&m!=2)CHECK(split);free(state);
+  printf("PASS: actual %s move%u both foes stat-2 independently, no ally/user/damage, onePP; both%u split%u\n",two?"Double":"Single",moves[m],both,split);
+ }
+ CHECK(core->loadState(core,bootState));
+}
 static void originalEffectTests(void){
+ spreadStatusTests();
  electricImmunityTests();
  effectBattleFixture(1,MOVE_PIN_MISSILE);damageStats();CHECK(baseDamage(MOVE_PIN_MISSILE,0,0,0)==50);
  core->busWrite8(core,SYM_gBattleScripting+ABI_SCRIPTING_MULTIPLIER,1);core->busWrite8(core,core->busRead32(core,SYM_gBattleStruct)+ABI_BATTLESTRUCT_DYNAMIC_TYPE,0);core->busWrite16(core,SYM_gCurrentMove,MOVE_PIN_MISSILE);CALL(AI_CalcDmg,0,1);CHECK(core->busRead32(core,SYM_gBattleMoveDamage)==50);
