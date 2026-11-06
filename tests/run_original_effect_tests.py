@@ -1,0 +1,22 @@
+#!/usr/bin/env python3
+"""Exact approved Pin Missile/Dragon Rage source and evidence audit."""
+from pathlib import Path
+import json,re,hashlib
+from approved_original_effect_changes import prior_original_effect_source
+m=json.loads(Path('tests/specifications/approved_original_effect_delta.json').read_text())
+for p,v in m['files'].items():
+ assert hashlib.sha256(Path(p).read_bytes()).hexdigest()==v['after_sha256'],p
+ assert hashlib.sha256(prior_original_effect_source(p).encode()).hexdigest()==v['before_sha256'],p
+source=Path('src/data/battle_moves.h').read_text();old=prior_original_effect_source('src/data/battle_moves.h')
+def rows(s):return {k:dict(re.findall(r'\.(\w+) = (.*?),',b)) for k,b in re.findall(r'\[MOVE_(\w+)\] =\s*\{(.*?)\n    \}',s,re.S)}
+a,b=rows(old),rows(source);assert len(a)==len(b)==355
+changes={k:{f:v for f,v in b[k].items() if v!=a[k][f]} for k in b if a[k]!=b[k]}
+assert changes=={'PIN_MISSILE':{'effect':'EFFECT_POISON_HIT','power':'55','secondaryEffectChance':'30'},'DRAGON_RAGE':{'effect':'EFFECT_LEVEL_DAMAGE'}}
+assert b['PIN_MISSILE']['accuracy']=='85' and b['PIN_MISSILE']['pp']=='20' and b['PIN_MISSILE']['category']=='MOVE_CATEGORY_PHYSICAL'
+assert b['DRAGON_RAGE']['power']=='1' and b['DRAGON_RAGE']['pp']=='10' and b['DRAGON_RAGE']['category']=='MOVE_CATEGORY_SPECIAL'
+approved=json.loads(Path('docs/moves/approved-design-overlays.json').read_text())['originals']
+for k in changes:
+ assert approved[k]['implementation_status']=='IMPLEMENTED_APPROVED_DATA'
+ assert approved[k]['engine_translation']['effect']==b[k]['effect']
+ assert b[k]['flags']==a[k]['flags'] and b[k]['target']==a[k]['target']
+print('PASS: exact owner-approved single55/85/20/30% poison Pin Missile and user-level Dragon Rage; all other fields/353 rows, IDs, PP maxima and existing flags/effect scripts retained (static)')

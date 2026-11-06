@@ -75,6 +75,11 @@
         "effect": "OWNER_EXPLICIT",
         "secondaryEffectChance": "OWNER_EXPLICIT",
         "flags": "REQUIRES_REVIEW_FOR_REPLACED_EFFECT"
+      },
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA",
+      "engine_translation": {
+        "effect": "EFFECT_POISON_HIT",
+        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       }
     },
     "ROAR": {
@@ -129,6 +134,10 @@
       ],
       "field_basis": {
         "effect": "OWNER_EXPLICIT"
+      },
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA",
+      "engine_translation": {
+        "effect": "EFFECT_LEVEL_DAMAGE"
       }
     },
     "THUNDER_WAVE": {

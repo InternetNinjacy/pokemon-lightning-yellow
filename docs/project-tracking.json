@@ -3,8 +3,8 @@
   "updated": "2026-11-06",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "Policy55, Roar56, sign58 merged. Weather61 integrates pending gift59 and six-battle Elite Four60 for shared24-host/28-native acceptance; merge parents59 then60 before61. Weather scope focused5389/build/repro PASS; full/integrated CI pending. Agatha selector question, followers permission and draft ordinary-Trainer57 remain explicit holds; no invented mappings.",
-  "main_sha": "d97712dc9393b5f98d73df901f8ffa70cc231309",
+  "current_focus": "Policy55,Roar56,sign58,gifts59,six Elite Four60,weather61 merged after exact-head successful CI; final main tree equals verified22314c35, local combined753726 native PASS. Next M2E Pin Missile/Dragon Rage source+focused314/25hosts PASS, full/clean/CI pending. PR62 docs CI cancelled during dependency installation before mGBA; investigate package-install stall without weakening checks. Agatha selector question/follower permission/ordinary-Trainer57 design holds persist.",
+  "main_sha": "15dacb95424ffd394113849d10c3aa2f78c343ba",
   "drive_sync": {
     "status": "pending: no direct Drive writing tool available",
     "folder": "https://drive.google.com/drive/folders/1N_n0Ke48jBbdhUWSZWzwR6rpPFqpDUpl"
@@ -602,7 +602,7 @@
       "commit": "42410891edbeb51d9b9a3ad4ba69eacdc81b7fa7",
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Finish Roar full/native CI and merge verified scope; continue remaining originals/new moves without placeholders or invented distribution.",
+      "next_action": "Finish M2E full/clean/native CI; six remaining original policies/global Electric paralysis rule, then56 approved new moves. No invented distributions/placeholders.",
       "checkpoint": "Merged PP/foundations/UI/original-data chain; production4f7f71d7, final tested head85032f28, remote full534051 PASS; no56 new move IDs enabled",
       "source_exports": [
         "03_MOVES/Pokémon Lightning Yellow — Approved Move Change Ledger — Source Verbatim v0.1.txt",
@@ -659,7 +659,8 @@
       },
       "subtasks": {
         "BTL-005-M2C": "Roar implemented; focused197/21 hosts/3 checkers/rebuild PASS; full/CI pending",
-        "BTL-005-M2D": "Ground Sandstorm/type-only residual immunity and guaranteed Rain Zap Cannon implemented;22 hosts/3checkers/focused5389 PASS; full/clean/CI pending"
+        "BTL-005-M2D": "Ground Sandstorm/type-only residual immunity and guaranteed Rain Zap Cannon implemented;22 hosts/3checkers/focused5389 PASS; full/clean/CI pending",
+        "BTL-005-M2E": "Pin Missile single55/30% poison and Dragon Rage user-level damage implemented;25 hosts/3checkers/focused314 PASS, full/clean/CI pending"
       }
     },
     {

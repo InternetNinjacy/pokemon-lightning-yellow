@@ -1,0 +1,42 @@
+// Real native turns for approved single-hit Pin Missile and level-based Dragon Rage.
+static void effectBattleFixture(unsigned two,unsigned move){
+ wildFixture(MAP_GROUP(MAP_ROUTE1),MAP_NUM(MAP_ROUTE1),two);
+ for(unsigned p=0;p<=two;p++)for(unsigned m=0;m<4;m++)CALL(SetMonMoveSlot,player(p),!p&&!m?move:MOVE_SPLASH,m);
+ CHECK(CALL(TryStartLandEncounter,landInfo(),0));waitAction();core->busWrite16(core,SYM_gBattleWeather,0);
+ for(unsigned b=0;b<(two?4:2);b++){
+  core->busWrite8(core,bmon(b)+ABI_BMON_TYPE1,TYPE_NORMAL);core->busWrite8(core,bmon(b)+ABI_BMON_TYPE2,TYPE_NORMAL);
+  core->busWrite8(core,bmon(b)+ABI_BMON_ABILITY,b&1?ABILITY_BATTLE_ARMOR:ABILITY_NONE);core->busWrite16(core,bmon(b)+ABI_BMON_ITEM,ITEM_NONE);
+  core->busWrite16(core,bmon(b)+ABI_BMON_HP,1000);core->busWrite16(core,bmon(b)+ABI_BMON_MAX_HP,1000);monput(b&1?enemy(b>>1):player(b>>1),ABI_DATA_HP,1000);monput(b&1?enemy(b>>1):player(b>>1),ABI_DATA_MAX_HP,1000);
+  for(unsigned s=0;s<ABI_BMON_STAGES_COUNT;s++)core->busWrite8(core,bmon(b)+ABI_BMON_STAGES+s,6);
+  if(b&1)for(unsigned m=0;m<4;m++){core->busWrite16(core,bmon(b)+ABI_BMON_MOVES+2*m,MOVE_SPLASH);core->busWrite8(core,bmon(b)+ABI_BMON_PP+m,40);CALL(SetMonMoveSlot,enemy(b>>1),MOVE_SPLASH,m);}
+ }
+}
+static void originalEffectTests(void){
+ effectBattleFixture(1,MOVE_PIN_MISSILE);damageStats();CHECK(baseDamage(MOVE_PIN_MISSILE,0,0,0)==50);
+ core->busWrite8(core,SYM_gBattleScripting+ABI_SCRIPTING_MULTIPLIER,1);core->busWrite8(core,core->busRead32(core,SYM_gBattleStruct)+ABI_BATTLESTRUCT_DYNAMIC_TYPE,0);core->busWrite16(core,SYM_gCurrentMove,MOVE_PIN_MISSILE);CALL(AI_CalcDmg,0,1);CHECK(core->busRead32(core,SYM_gBattleMoveDamage)==50);
+ for(unsigned two=0;two<2;two++){
+  effectBattleFixture(two,MOVE_PIN_MISSILE);core->busWrite8(core,bmon(0)+ABI_BMON_LEVEL,50);core->busWrite16(core,bmon(0)+ABI_BMON_ATTACK,200);core->busWrite16(core,bmon(1)+ABI_BMON_DEFENSE,100);
+  void *state=malloc(core->stateSize(core));CHECK(state&&core->saveState(core,state));unsigned poison=0,plain=0,miss=0;
+  for(unsigned trial=0;trial<40&&(!poison||!plain||!miss);trial++){
+   CHECK(core->loadState(core,state));core->busWrite32(core,SYM_gRngValue,0x55140000+trial*7919);
+   chooseMove(0,0,1);if(two)chooseMove(2,0,1);waitAction();
+   unsigned poisoned=!!(core->busRead32(core,bmon(1)+ABI_BMON_STATUS1)&STATUS1_POISON);unsigned total=1000-core->busRead16(core,bmon(1)+ABI_BMON_HP);CHECK(monget(player(0),ABI_DATA_PP1)==19);
+   if(!total){miss++;CHECK(!poisoned);}else{unsigned direct=total-(poisoned?125:0);CHECK(direct>=42&&direct<=50);poison+=poisoned;plain+=!poisoned;}
+   if(two){CHECK(core->busRead16(core,bmon(3)+ABI_BMON_HP)==1000);CHECK(core->busRead32(core,bmon(3)+ABI_BMON_STATUS1)==0);}
+  }
+  CHECK(poison&&plain&&miss);free(state);
+  printf("PASS: actual %s Pin Missile native animation/one-hit42..50 direct damage; poison+125 residual, nonpoison and85%%-accuracy miss; onePP, selected target only\n",two?"Double":"Single");
+ }
+ const unsigned levels[]={1,27,50,100};
+ for(unsigned two=0;two<2;two++)for(unsigned i=0;i<4;i++){
+  effectBattleFixture(two,MOVE_DRAGON_RAGE);core->busWrite8(core,bmon(0)+ABI_BMON_LEVEL,levels[i]);
+  core->busWrite16(core,bmon(0)+ABI_BMON_ATTACK,1);core->busWrite16(core,bmon(0)+ABI_BMON_SPATTACK,999);core->busWrite16(core,bmon(1)+ABI_BMON_DEFENSE,999);core->busWrite16(core,bmon(1)+ABI_BMON_SPDEFENSE,999);
+  core->busWrite8(core,bmon(1)+ABI_BMON_TYPE1,TYPE_STEEL);core->busWrite8(core,bmon(1)+ABI_BMON_TYPE2,TYPE_STEEL);
+  chooseMove(0,0,1);if(two)chooseMove(2,0,1);waitAction();
+  CHECK(1000-core->busRead16(core,bmon(1)+ABI_BMON_HP)==levels[i]);CHECK(monget(player(0),ABI_DATA_PP1)==9);
+  if(two)CHECK(core->busRead16(core,bmon(3)+ABI_BMON_HP)==1000);
+  CHECK(core->busRead8(core,SYM_gBattleOutcome)==0);
+ }
+ printf("PASS: actual Single/Double Dragon Rage native animation/eight turns exactly1/27/50/100 damage despite skewed stats/Steel resistance, no spread or forced exit, onePP\n");
+ CHECK(core->loadState(core,bootState));
+}
