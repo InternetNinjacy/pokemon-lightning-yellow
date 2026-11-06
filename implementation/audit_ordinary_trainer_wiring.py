@@ -1,0 +1,153 @@
+#!/usr/bin/env python3
+"""Read-only, standard-library source wiring audit for Lightning Yellow ordinary Trainers.
+
+Run from repository root:
+    python3 implementation/audit_ordinary_trainer_wiring.py
+    python3 implementation/audit_ordinary_trainer_wiring.py --json
+
+No game assets or generated source files are modified.
+"""
+import argparse
+import json
+import re
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+LEDGER = ROOT / "implementation/ordinary-trainers-delegated-audit-draft.md"
+REMATCH = ROOT / "implementation/ordinary-trainer-rematch-candidates.md"
+TRAINER_SOURCE = ROOT / "src/data/trainers.h"
+VS_SEEKER = ROOT / "src/vs_seeker.c"
+SCRIPT_DIR = ROOT / "data/scripts"
+MAP_DIR = ROOT / "data/maps"
+
+ROW = re.compile(r"^\| `(TRAINER_[A-Z0-9_]+)` \|([^|]*)\|([^|]*)\|([^|]*)\| ([A-Z_]+) \|([^|]*)\|([^|]*)\|", re.M)
+RVAR = re.compile(r"^\| `(TRAINER_[A-Z0-9_]+)` \| `(TRAINER_[A-Z0-9_]+)` \|", re.M)
+RE_TRAINER = re.compile(r"\bTRAINER_[A-Z0-9_]+\b")
+RE_SCRIPT = re.compile(r"^([A-Za-z_][A-Za-z_0-9]*)::", re.M)
+RE_BATTLE = re.compile(r"\btrainerbattle_(?:single|double|rematch|rematch_double|two_trainers|continue_script|no_intro|no_intro_double)\s+(TRAINER_[A-Z0-9_]+)")
+RE_INIT = re.compile(r"\[(TRAINER_[A-Z0-9_]+)\]\s*=\s*\{([\s\S]*?)\n    \},")
+RE_CLASS = re.compile(r"\.trainerClass\s*=\s*TRAINER_CLASS_([A-Z0-9_]+)")
+RE_VS = re.compile(r"\{\s*\{([^{}]+)\}\s*,\s*MAP\(MAP_([A-Z0-9_]+)\)\s*\}")
+
+
+def rel(path):
+    return str(path.relative_to(ROOT))
+
+
+def parse_ledger():
+    return {m.group(1): {
+        "class": m.group(2).strip(), "source_party": m.group(3).strip(),
+        "team": m.group(4).strip(), "status": m.group(5), "format": m.group(6).strip(),
+        "flags": m.group(7).strip(),
+    } for m in ROW.finditer(LEDGER.read_text(encoding="utf-8"))}
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--json", action="store_true", help="print machine-readable audit")
+    args = parser.parse_args()
+
+    rows = parse_ledger()
+    source = TRAINER_SOURCE.read_text(encoding="utf-8")
+    source_defs = {m.group(1): m.group(2) for m in RE_INIT.finditer(source)}
+    original = {k: v for k, v in rows.items() if v["status"] != "DELEGATED_REMATCH_FAMILY_LOCKED"}
+    variants = {k: v for k, v in rows.items() if v["status"] == "DELEGATED_REMATCH_FAMILY_LOCKED"}
+
+    # Read both centrally shared and every individual map script. A base ID in
+    # a Trainer definition is not sufficient to prove an encounter is reachable.
+    scripts = list(SCRIPT_DIR.glob("*.inc")) + list(MAP_DIR.glob("*/scripts.inc"))
+    references = {}
+    script_labels = set()
+    for path in scripts:
+        content = path.read_text(encoding="utf-8", errors="replace")
+        script_labels.update(RE_SCRIPT.findall(content))
+        for trainer_id in RE_TRAINER.findall(content):
+            references.setdefault(trainer_id, set()).add(rel(path))
+
+    # Original trainers with no direct script reference need investigation;
+    # a trainer may still be reached through dynamically selected scripts.
+    missing_original = sorted(set(original) - set(references))
+    source_missing = sorted(set(rows) - set(source_defs))
+    source_double_mismatch = []
+    source_class_mismatch = []
+    for trainer_id, row in rows.items():
+        entry = source_defs.get(trainer_id, "")
+        mm = RE_CLASS.search(entry)
+        actual = mm.group(1) if mm else None
+        intended = re.sub(r"[^A-Z0-9]", "", row["class"].upper())
+        if actual and actual.replace("_", "") != intended:
+            source_class_mismatch.append({"id": trainer_id, "source": actual, "design": row["class"]})
+        if bool(re.search(r"\.doubleBattle\s*=\s*TRUE", entry)) != (row["format"].lower() == "double"):
+            source_double_mismatch.append(trainer_id)
+
+    vs = VS_SEEKER.read_text(encoding="utf-8")
+    start = vs.find("static const struct RematchData sRematches[]")
+    stop = vs.find("};", start)
+    rematch_links = {}
+    for m in RE_VS.finditer(vs[start:stop] if start >= 0 and stop >= 0 else ""):
+        entries = RE_TRAINER.findall(m.group(1))
+        if not entries:
+            continue
+        for variant in entries[1:]:
+            if variant != entries[0]:
+                rematch_links[variant] = {"base": entries[0], "map": m.group(2)}
+    declared_links = {m.group(1): m.group(2) for m in RVAR.finditer(REMATCH.read_text(encoding="utf-8"))}
+    missing_vs = sorted(set(variants) - set(rematch_links))
+    incorrect_vs = sorted(k for k in variants
+                          if k in rematch_links and declared_links.get(k) != rematch_links[k]["base"])
+
+    # Confirm that each VS Seeker base has a scripted rematch path. Special
+    # paired battles use trainerbattle_rematch_double rather than the single form.
+    all_script_text = "\n".join(p.read_text(encoding="utf-8", errors="replace") for p in scripts)
+    missing_rematch_script = sorted({
+        link["base"] for key, link in rematch_links.items() if key in variants
+        and not re.search(r"\btrainerbattle_rematch(?:_double)?\s+" + re.escape(link["base"]) + r"\b", all_script_text)
+    })
+
+    # A map object event script label should resolve somewhere in the loaded
+    # script tables. Special and dynamic labels are reported, not auto-fixed.
+    missing_map_labels = []
+    map_count = 0
+    for path in MAP_DIR.glob("*/map.json"):
+        data = json.loads(path.read_text(encoding="utf-8"))
+        map_count += 1
+        for event in data.get("object_events", []):
+            if event.get("trainer_type") in (None, "TRAINER_TYPE_NONE"):
+                continue
+            name = event.get("script", "")
+            if name and name not in script_labels:
+                missing_map_labels.append({"map": path.parent.name, "script": name})
+
+    report = {
+        "ledger_records": len(rows),
+        "original_or_standalone_records": len(original),
+        "numeric_rematch_candidates": len(variants),
+        "source_trainer_definitions_found": len(rows) - len(source_missing),
+        "script_files_scanned": len(scripts),
+        "map_json_files_scanned": map_count,
+        "original_ids_referenced_in_scripts": len(original) - len(missing_original),
+        "unreferenced_original_ids": missing_original,
+        "source_ids_missing": source_missing,
+        "approved_class_conversion_differences": source_class_mismatch,
+        "approved_battle_format_differences": source_double_mismatch,
+        "vs_seeker_rematches_linked": len(variants) - len(missing_vs),
+        "vs_seeker_missing_variant_ids": missing_vs,
+        "vs_seeker_wrong_base_ids": incorrect_vs,
+        "vs_seeker_base_missing_rematch_script": missing_rematch_script,
+        "map_trainer_object_unresolved_script_labels": missing_map_labels,
+    }
+    if args.json:
+        print(json.dumps(report, indent=2))
+    else:
+        for field, value in report.items():
+            if isinstance(value, list):
+                print(f"{field}: {len(value)}")
+                for item in value[:40]:
+                    print(f"  {item}")
+                if len(value) > 40:
+                    print(f"  ... and {len(value)-40} more")
+            else:
+                print(f"{field}: {value}")
+
+if __name__ == "__main__":
+    main()
