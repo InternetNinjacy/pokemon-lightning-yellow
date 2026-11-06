@@ -1373,3 +1373,11 @@ imports or unsafe save migrations. Direct Drive synchronization remains pending.
   host/build/repro/upstream gates, API guards and job/native timeouts retained.
 - No production/security setting change. docs/CI_DEPENDENCY_STALL.md records
   exact evidence/limitations/rollback. Actual maintenance CI pending before merge.
+
+## 2026-11-06 — INT-001-CI measured slow package transfer
+
+- Live job128215173523 proves APT62.7MB/19min7s/54.7kB/s, then build start.
+  Initial idle timeouts cannot prevent slow continuing transfers. Overall Actions
+  job limit30→45min; native20min, instruction guards, clean builds, all checks and
+  upstream comparison unchanged. No gameplay/security/protection changes.
+- Exact-head CI pending; not represented as accepted/merged.
