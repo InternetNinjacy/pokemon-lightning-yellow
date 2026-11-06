@@ -261,3 +261,38 @@ Roar's data redesign is not enabled; its current maximum remains authoritative.
 Run all20 hosts/3 checkers and23 native groups; focus LIGHTNING_MOVE_PP_ONLY=1,
 full-PC stress LIGHTNING_PP_FULL_PC_ONLY=1. Keep frozen deltas and target ABI guards;
 never normalize runtime ROM data to make tests pass. No merge/auto-merge/release.
+
+## Standing autonomous development authorization — 2026-11-06
+
+The owner explicitly authorizes autonomous execution of all currently actionable,
+fully approved Lightning Yellow specifications: prioritize tasks, implement, fix,
+refactor, build/test, manage topic branches and PRs, resolve integration conflicts,
+and merge technically complete, verified work into main without asking for routine
+owner approval. This standing authorization supersedes ALL older blanket bans on
+production changes, routine implementation or merging in this file and historical
+handoffs, including earlier consolidation-only limits. Keep changes reviewable on
+topic branches; never push gameplay changes directly to main.
+
+Gameplay design approval remains mandatory. Do not invent missing teams, move
+values/distributions, ability slots, encounter tables, gift conditions or final
+lighting colors; respect explicit design holds. Specifications/prototypes are not
+completed gameplay. If blocked, record the precise missing decision/permission and
+continue independent approved work. External licensing/asset permission is not
+provided by this authorization.
+
+Before merging, satisfy the documented scope/dependencies and applicable host,
+feature, build, native mGBA, integration/save and reproducibility checks. Preserve
+all test registrations, assertions, ABI guards, upstream provenance, independent
+vanilla checksum verification and frozen regression normalizers. Never weaken a
+check to pass. Honor existing GitHub protections and required checks; do not change
+repository security settings or bypass controls. This does not authorize ROM/BIOS
+or proprietary asset distribution, credentials, destructive operations, releases,
+or selecting unapproved final production lighting. Do not enable automatic merging
+as a shortcut to technical readiness.
+
+Maintain docs/project-tracking.json, regenerate docs/PROJECT_DASHBOARD.md with
+scripts/render-project-dashboard.py, append implementation/test/merge evidence to
+docs/MASTER_IMPLEMENTATION_CHANGE_LEDGER.md, and preserve prior progress. At session
+end update docs/CODEX_EXECUTION_HANDOFF.md with exact refs, commands, test outcomes,
+blockers and the next actionable task. Continue through independent eligible tasks
+rather than stopping after the first PR; report actual execution limits honestly.
