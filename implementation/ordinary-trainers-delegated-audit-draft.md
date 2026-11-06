@@ -558,3 +558,10 @@ Columns: Source ID | class | source Pokémon @ levels | preserved or candidate P
 ## Status boundary
 
 This audit is a reviewable research/design working file, not a ready-to-implement spec. Do not merge it as final authority or ask Codex to implement game code from it until approved rosters have been reconciled and all gameplay-affecting decisions are validated.
+
+
+## November 6 final census and rematch-source reconciliation
+
+The historical 282-approved total mixed 257 distinct owner-approved ordinary IDs and 25 separately approved Team Rocket IDs; the correct owner-reviewed ordinary subset is 257/510. The 121 delegated original candidate records plus 132 numeric-suffix draft records cover all 510 design rows. The 25-count discrepancy is resolved, not 25 missing ordinary approvals. Giovanni remains outside both sets.
+
+Runtime reference audit of main branch `src/vs_seeker.c` finds 130 of 132 numeric-suffix variants correctly linked to the exact base ID/map. The two unlinked IDs are `TRAINER_BIKER_GOON_2` and `TRAINER_BIKER_GOON_3`; they are dormant source-ID candidates, not verified playable VS Seeker rematches. All 510 ledger rows have matching species/order/slot-count move drafts. Current-source level-up legality audit validates 4,801 selected moves after a one-row Nidoran-female Lv15 repair. All 179 proposed TM alternatives are compatible with the corresponding current-source species. These validations do not establish approved final learnsets, TM acquisition chronology, battle AI, encounter-script map coverage, live ROM execution or merge authorization. See `ordinary-trainers-design-qa-status.md` for exact exceptions and limitations.
