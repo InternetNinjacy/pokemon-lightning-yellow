@@ -5,7 +5,7 @@ its base. The unchanged checksum baseline is preserved independently in Actions.
 Physical/Special/Status split is authorized and implemented on this feature branch;
 see docs/PHYSICAL_SPECIAL_SPLIT.md for its approved scope and validation limits.
 
-Project direction (only the approved move-category split is implemented):
+Project direction (see the canonical dashboard for current implementation status):
 - Pikachu as the starter.
 - A custom Pokédex drawn from Generations I–III.
 - Redesigned wild encounters and trainer teams.
@@ -63,8 +63,8 @@ implement finalized specifications on reviewable feature branches without repeat
 permission requests. Do not invent pending designs, merge PRs, or enable auto-merge.
 The roster is now 252: insert Castform at #233 and shift old #233–251 by one.
 Read docs/CUSTOM_POKEDEX.md. Preserve canonical IDs and save flags. Castform keeps
-Generation III Normal typing, Forecast and original forms. Its exactly-one Celadon
-Gym trainer assignment is pending trainer/level/moveset details; do not choose them.
+Generation III Normal typing, Forecast and original forms. Its exactly-one Celadon Gym assignment is now implemented under the explicit
+GYM-007/PR30 scope; other unassigned trainer details must not be invented.
 Run tests/run_pokedex_tests.py as well as existing suites and mGBA after Dex changes.
 
 The owner authorized the wild-double capability test. Read docs/WILD_DOUBLE_BATTLES.md.
@@ -170,4 +170,94 @@ append-only ledger and Git rather than mixing obsolete blockers into live tables
 GYM-005 Ranger Base Camp uses the final `implementation/saffron-ranger-base-camp.md`
 contract. Preserve original trainer IDs/save flags and exact dialogue; run
 `tests/run_ranger_tests.py` and the native Ranger acceptance in addition to the
-existing suites. Keep its implementation PR unmerged until separately approved.
+existing suites. Its implementation PR26 was merged on the owner’s explicit instruction; preserve the accepted feature.
+
+GYM-006 implements the merged v2 rival contract, including all24 original main-story
+Trainer IDs and only three specified global family learnsets. Preserve every
+original event script, AI/IV/bag field and Champion rematch. Run
+`tests/run_rival_tests.py`, all prior host suites and native rival/full acceptance.
+Keep the gameplay PR separate from its merged specPR25. No unrelated starter
+feature or automatic implementation merge is implied.
+
+WTH-001/003 uses the supplied finalized weather Specification and later recovered
+map/group corrections under standing owner implementation authorization. Read
+`docs/DYNAMIC_WEATHER.md` and the83-map catalog; do not invent unassigned weather,
+final palette values, time-exclusive encounters or SOW changes. Run
+`tests/run_weather_tests.py`, all prior suites and full guarded native acceptance.
+Keep the reserved8-byte weather context within the existing16-byte save region.
+Rival gameplay/tests remain separate in PR27; preserve both registrations and
+frozen normalizers when integrating. No automatic merge or ROM release.
+
+GYM-007 completes the three approved Castform trainers on existing PR31, under
+owner's explicit November4 instruction referencing PR30. Read
+implementation/three-gym-castform.md and docs/GYM_CASTFORM_STAGING.md. Preserve
+all six exact parties/levels/moves; no other Gym party, leader, reward, AI or
+learnset changes. Diana requires native mandatory Doubles; Pewter snow/Hail and
+Celadon fixed Sun must coexist with PR29 outdoor weather and old inside saves.
+Remove only Mary's superseded bag item under the approved ordinary-Gym rule.
+Run run_gym_castform_tests.py, every old suite and full guarded native acceptance.
+Leave PR31 open, unmerged and without auto-merge; document its PR29 dependency.
+
+INT-004 combined acceptance uses docs/COMBINED_INTEGRATION_20261105.md and PR35.
+Keep both rival and weather/Gym frozen normalizers/ABI/fixture registrations. Run
+all16 host suites, both checker scripts and full native acceptance. No new gameplay
+or main/feature PR merge is authorized by this integration branch.
+
+BTL-004-NICK expands acceptance only. Read docs/WILD_CAPTURE_NICKNAME_ACCEPTANCE.md;
+preserve the real capture/naming/flash paths, protected ARM ABI and all original
+native groups. Run all16 host suites, both checkers and full native suite; focus
+with LIGHTNING_WILD_NICKNAME_ONLY=1. PR36 is stacked on PR35; no production changes,
+merge/retarget/auto-merge or unsupported all-balls/naming coverage claims.
+
+BTL-005 reconciliation lives in docs/moves/README.md and PR37. It is a design/source
+ledger, not implemented410-move gameplay. Run scripts/check-move-reconciliation.py;
+retain actual/proposed/unresolved distinctions, full original IDs and existing-art
+constraint. Curse type answer and proposed animation/version choices must not be
+invented. Keep new gameplay and independent acceptance follow-ups separately
+reviewable; no merge/auto-merge or runtime claims from source identifiers.
+
+
+PKM-005-BAG acceptance follow-up PR39 is stacked on PR37. Read
+`docs/BAG_EVOLUTION_ACCEPTANCE.md`. Preserve all eleven actual Bag UI paths,
+eight cancel/retry cases and original three noncancelable Eevee stone policies.
+Run all16 host suites,3 checkers and default19-group native acceptance; focus
+with LIGHTNING_BAG_EVOLUTION_ONLY=1. No production change, merge/auto-merge,
+real-peer/hardware claim or claim of new-move implementation is implied.
+
+
+BTL-005-M1A begins implementation under the owner's explicit November5 instruction.
+Read docs/moves/OWNER_DECISIONS_2026-11-05.md and FOUNDATION_STATUS.md. These supersede
+old pending Curse/animation/version questions: Curse Ghost/Status,50 former
+proposals approved for implementation/playback, GenIV Payback/Dragon Rush edges.
+Keep M1a15-char RAM capacity,17-byte local punctuation and original16-byte wire
+record distinct. Original IDs/save fields remain unchanged; no new move rows may
+ship with placeholder effects or clipped names. Run all17 host suites/3 checkers
+and20 native groups; focused LIGHTNING_MOVE_FOUNDATION_ONLY=1. Preserve frozen
+source-delta normalizers and immutable test ROM copy. No merge/auto-merge.
+
+BTL-005-M1B completes battle/relearner long-name layouts on a separate child of
+PR40. Read docs/moves/LONG_NAME_UI_STATUS.md. Keep the shared168px name canvas,
+unique3-letter type/category tags and disjoint BG0 character allocations; reuse
+existing fonts/frame/cursors only. Retain all18 host suites/3 checkers and21 native
+groups, including LIGHTNING_LONG_MOVE_UI_ONLY=1. Test-only ROM name substitutions
+are not playable new moves. Preserve all original data/IDs/save/wire/art assets,
+frozen normalizers and parent acceptance. No merge/auto-merge.
+
+BTL-005-M2A implements only eight approved original-move data revisions. Read
+docs/moves/ORIGINAL_DATA_STATUS.md. Retain every effect/flag/target/priority and
+all other rows; Astonish Special is an owner exception, not a new GenIV default.
+Run19 host suites/3 checkers and22 native groups; focus
+LIGHTNING_ORIGINAL_MOVE_DATA_ONLY=1. Preserve frozen category/table baselines via
+the exact normalizer. Leech Life's lower PP and all custom effects remain separate
+technical work; no placeholder new IDs, inferred animation playback, merges or
+auto-merge. Source-field implementation is not every effect's runtime acceptance.
+
+BTL-005-M2B implements saved-PP compatibility and atomic Special80/10PP Leech Life.
+Read docs/moves/PP_COMPATIBILITY_STATUS.md. Preserve one-decrypt/checksum/encrypt
+per record, the unchanged invocation budget, spent PP/PP Ups, unknown/corrupt data,
+read-only Route5 recovery copy and independent pending eggs/mail/steps. Handle OK
+and recovered ERROR loads; skip EMPTY/INVALID/NO_FLASH. Keep lazy migration.
+Roar's data redesign is not enabled; its current maximum remains authoritative.
+Run all20 hosts/3 checkers and23 native groups; focus LIGHTNING_MOVE_PP_ONLY=1,
+full-PC stress LIGHTNING_PP_FULL_PC_ONLY=1. Keep frozen deltas and target ABI guards;
+never normalize runtime ROM data to make tests pass. No merge/auto-merge/release.

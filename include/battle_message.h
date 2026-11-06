@@ -219,12 +219,14 @@ bool8 BattleStringShouldBeColored(u16);
 
 extern struct BattleMsgData *gBattleMsgDataPtr;
 
-#define TEXT_BUFF_ARRAY_COUNT   16
+#define TEXT_BUFF_ARRAY_COUNT   16 // BattleMsgData wire payload; keep unchanged.
+// Used-move messages append an exclamation mark and EOS after the move name.
+#define BATTLE_TEXT_BUFFER_SIZE (MOVE_NAME_LENGTH + 2)
 
 extern u8 gDisplayedStringBattle[300];
-extern u8 gBattleTextBuff1[TEXT_BUFF_ARRAY_COUNT];
-extern u8 gBattleTextBuff2[TEXT_BUFF_ARRAY_COUNT];
-extern u8 gBattleTextBuff3[TEXT_BUFF_ARRAY_COUNT];
+extern u8 gBattleTextBuff1[BATTLE_TEXT_BUFFER_SIZE];
+extern u8 gBattleTextBuff2[BATTLE_TEXT_BUFFER_SIZE];
+extern u8 gBattleTextBuff3[BATTLE_TEXT_BUFFER_SIZE];
 
 extern const u8 *const gBattleStringsTable[];
 extern const u8 *const gStatNamesTable[];

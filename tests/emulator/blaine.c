@@ -1,10 +1,42 @@
 // Integration acceptance for the separately owner-merged Blaine change.
+#include "constants/heal_locations.h"
 static void blaineFixture(unsigned count) {
  daycareFixture(1);core->busWrite8(core,SYM_gPlayerPartyCount,count);
  for(unsigned i=count;i<6;i++)clearBytes(player(i),ABI_MON_SIZE);
  fossilWarp(MAP_GROUP(MAP_CINNABAR_ISLAND_GYM),MAP_NUM(MAP_CINNABAR_ISLAND_GYM),3,3);
  unsigned object=CALL(GetObjectEventIdByLocalIdAndMap,8,MAP_NUM(MAP_CINNABAR_ISLAND_GYM),MAP_GROUP(MAP_CINNABAR_ISLAND_GYM));
  CHECK(object<ABI_OBJECT_COUNT);core->busWrite8(core,SYM_gSelectedObjectEvent,object);
+}
+static void blaineVictoryTests(void) {
+ blaineFixture(2);CALL(SetLastHealLocationWarp,HEAL_LOCATION_CINNABAR_ISLAND);
+ for(unsigned i=0;i<2;i++){CALL(CreateMon,player(i),SPECIES_MEWTWO,100,31,1,i,0,0);monput(player(i),ABI_DATA_MOVE1,MOVE_SWIFT);monput(player(i),ABI_DATA_PP1,99);}
+ CHECK(CALL(BagGetQuantityByItemId,ITEM_TM38)==0);fossilStart(SYM_CinnabarIsland_Gym_EventScript_Blaine);waitAction();
+ unsigned f,quiet=0,seen=0;const unsigned species[]={SPECIES_DONPHAN,SPECIES_PIDGEOT,SPECIES_SANDSLASH,SPECIES_AERODACTYL,SPECIES_FLYGON};
+ for(f=0;f<40000;f++) {
+  if(fieldScriptDone()){if(++quiet==30)break;frames(1,0);continue;}quiet=0;
+  unsigned key=0;
+  if((core->busRead32(core,SYM_gMain+ABI_MAIN_CB2)&~1U)==SYM_BattleMainCB2){
+   for(unsigned b=1;b<4;b+=2)if(core->busRead16(core,bmon(b)+ABI_BMON_HP))for(unsigned i=0;i<5;i++)if(core->busRead16(core,bmon(b)+ABI_BMON_SPECIES)==species[i])seen|=1U<<i;
+   if(f%8==0){key=2;unsigned exec=core->busRead32(core,SYM_gBattleControllerExecFlags);
+    for(unsigned b=0;b<4;b+=2)if(exec&(1U<<b)){
+     unsigned fn=controller(b),c;
+     if(fn==SYM_HandleInputChooseAction){c=core->busRead8(core,SYM_gActionSelectionCursor+b);key=c&2?64:c&1?32:1;break;}
+     if(fn==SYM_HandleInputChooseMove){c=core->busRead8(core,SYM_gMoveSelectionCursor+b);key=c&2?64:c&1?32:1;break;}
+     if(fn==SYM_HandleInputChooseTarget){key=1;break;}
+    }
+   }
+  }else if(f%8==0)key=2;
+  frames(1,key);
+ }
+ if(f==40000)fprintf(stderr,"Blaine win timeout cb%08x outcome%u flags%u/%u/%u\n",core->busRead32(core,SYM_gMain+ABI_MAIN_CB2),core->busRead8(core,SYM_gBattleOutcome),CALL(FlagGet,FLAG_DEFEATED_BLAINE),CALL(FlagGet,FLAG_BADGE07_GET),CALL(FlagGet,FLAG_GOT_TM38_FROM_BLAINE));
+ CHECK(f<40000);CHECK(seen==31);CHECK(core->busRead8(core,SYM_gBattleOutcome)==B_OUTCOME_WON);
+ CHECK(CALL(FlagGet,TRAINER_FLAGS_START+TRAINER_LEADER_BLAINE));CHECK(CALL(FlagGet,FLAG_DEFEATED_BLAINE));CHECK(CALL(FlagGet,FLAG_BADGE07_GET));CHECK(CALL(FlagGet,FLAG_GOT_TM38_FROM_BLAINE));CHECK(CALL(BagGetQuantityByItemId,ITEM_TM38)==1);
+ flashRoundTrip();CHECK(CALL(FlagGet,FLAG_BADGE07_GET));CHECK(CALL(FlagGet,FLAG_GOT_TM38_FROM_BLAINE));CHECK(CALL(BagGetQuantityByItemId,ITEM_TM38)==1);
+ CALL(CB2_ContinueSavedGame);frames(480,0);CHECK(fieldScriptDone());
+ unsigned obj=CALL(GetObjectEventIdByLocalIdAndMap,8,MAP_NUM(MAP_CINNABAR_ISLAND_GYM),MAP_GROUP(MAP_CINNABAR_ISLAND_GYM));CHECK(obj<ABI_OBJECT_COUNT);core->busWrite8(core,SYM_gSelectedObjectEvent,obj);
+ fossilStart(SYM_CinnabarIsland_Gym_EventScript_Blaine);fossilClose(1);CHECK(CALL(BagGetQuantityByItemId,ITEM_TM38)==1);CHECK(CALL(FlagGet,TRAINER_FLAGS_START+TRAINER_LEADER_BLAINE));
+ printf("PASS: actual Blaine Double victory/all five opponents seen, original badge/TM38/defeat script, flash Continue and nonduplicating revisit in%u frames; controlled players, unchanged opponent party\n",f);
+ CHECK(core->loadState(core,bootState));
 }
 static void blaineTests(void) {
  blaineFixture(1);fossilStart(SYM_CinnabarIsland_Gym_EventScript_Blaine);fossilClose(1);
@@ -24,6 +56,7 @@ static void blaineTests(void) {
  core->busWrite32(core,SYM_gBattleMoveDamage,100);CALL(TypeCalc,MOVE_EARTHQUAKE,1,3);
  CHECK(core->busRead32(core,SYM_gBattleMoveDamage)==0);
  printf("PASS: actual Blaine NPC refuses one usable Pokemon, starts trainer Double with correct five-level party/Donphan-Pidgeot leads and native Earthquake ally immunity\n");
- // Deliberately modified damage fixture is discarded; no victory/return claim.
+ // Discard the modified type-check fixture; victory uses a fresh native battle.
  CHECK(core->loadState(core,bootState));
+ blaineVictoryTests();
 }
