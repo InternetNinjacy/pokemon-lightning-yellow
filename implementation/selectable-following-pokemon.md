@@ -91,3 +91,20 @@ Implement exact owner-approved behavior after spec review/merge. Open an impleme
 ## 10. One-line Codex handoff
 
 `Implement implementation/selectable-following-pokemon.md from main following AGENTS.md. Reuse and audit existing FireRed/Emerald follower code and sprite assets, satisfy all 252 approved species and exact selection/faint/box/opening rules, test, and open a separate PR. Report blockers without guessing.`
+
+
+## Appendix A: Candidate reuse audit and preimplementation decision gate (2026-11-05)
+
+This is a source-verified comparison of candidates, NOT a claim that any can be merged into FireRed unchanged:
+
+| Source | Verified evidence | Engineering consequence |
+| --- | --- | --- |
+| `chale1342/pokefirered` | `src/follower_helper.c`, `data/scripts/follower.inc`, `include/follower_helper.h` and save/load adaptations exist. The inspected `src/data/object_events/object_event_graphics_info_followers.h` defines **nine** Kanto starter/evolution graphics structs, not a verified full Dex. | Strong FireRed behavioral starting point, but NOT independently proven a 252-art source. Trace its transitive dependencies and license. |
+| `EmceeMikey/pokeemerald` | README explicitly describes `followers` for all 386 Gen I-III species and recommends `followers-expanded-id` for expanded overworld graphic IDs and compressed graphics. https://github.com/EmceeMikey/pokeemerald | More promising all-roster artwork/large sprite resource reference; this is Emerald, so port carefully. README statement is not a completed per-252 asset/license audit. |
+| `Kasenn/pokeemerald-expansion-kasen` | Public Emerald Expansion variant; Team Aqua's feature directory describes preferred-follower party-menu selection, but its **existing faint behavior falls back to first conscious party member**. https://github-wiki-see.page/m/TeamAquasHideout/Team-Aquas-Asset-Repo/wiki/Feature-Branches | Reuse UI patterns only with the explicitly approved Lightning Yellow override: faint stays assigned but hidden, NO fallback. |
+
+**Preimplementation gate:** Codex should first create a bounded, read-only feasibility inventory before bulk imports: (a) derive exact approved 252 roster, including edge forms; (b) map 252 expected sprite sets and per-source provenance/permission; (c) evaluate reused FireRed follower engine hooks; (d) check whether 8-bit object graphic IDs, palette and VRAM limits need expanded handling; (e) locate current save allocations and existing PC/party/event hooks; (f) locate current Pikachu gift and post-Parcel Eevee gift scripts and their actual integration status. Record blockers in implementation PR before committing massive graphics or migrating save fields. If the discovered path requires a new gameplay rule, report for owner approval instead of selecting it independently.
+
+**Recommended code implementation increments within the single approved feature:** basic following with Pikachu and persistent instance identity; explicit party-menu assignment and no fallback; opening gift/Parcel-Eevee integration; robust transitions/faint/box/evolution/save; complete 252 graphics mapping; all-species validation. These are engineering milestones, not a reduction of approved final 252 scope.
+
+**Release gate:** Automated tests, real emulator coverage, full 252-art coverage and provenance verification must all be reported separately. A working Pikachu demo is not completion of the all-252 feature.
