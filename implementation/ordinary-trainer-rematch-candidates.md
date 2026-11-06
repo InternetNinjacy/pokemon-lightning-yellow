@@ -65,28 +65,28 @@ This is a first-pass mechanical table for 132 numeric-suffix variants linked to 
 | `TRAINER_SUPER_NERD_GLENN_2` | `TRAINER_SUPER_NERD_GLENN` | SUPER NERD | Grimer / Muk / Koffing | 28/28/28 | `ITEM_ORAN_BERRY` | Same species families, stronger levels |
 | `TRAINER_GAMER_RICH_2` | `TRAINER_GAMER_RICH` | GAMER | Pineco / Ditto | 30/30 | `ITEM_ORAN_BERRY` | Same species families, stronger levels |
 | `TRAINER_BIKER_JAREN_2` | `TRAINER_BIKER_JAREN` | BIKER | Grimer / Voltorb | 29/30 | `ITEM_ORAN_BERRY` | Same species families, stronger levels |
-| `TRAINER_FISHERMAN_ELLIOT_2` | `TRAINER_FISHERMAN_ELLIOT` | FISHERMAN | Shellder / Goldeen / Horsea / Spheal | 28/28/28/28 | `ITEM_ORAN_BERRY` | Same species families, stronger levels |
-| `TRAINER_ROCKER_LUCA_2` | `TRAINER_ROCKER_LUCA` | ROCKER | Voltorb / Electrode | 34/34 | `ITEM_ORAN_BERRY` | Same species families, stronger levels |
-| `TRAINER_BEAUTY_SHEILA_2` | `TRAINER_BEAUTY_SHEILA` | BEAUTY | Persian / Milotic | 49/49 | `ITEM_SITRUS_BERRY` | EVOLUTION_STAGE_RECHECK |
-| `TRAINER_BIRD_KEEPER_ROBERT_2` | `TRAINER_BIRD_KEEPER_ROBERT` | BIRD KEEPER | Pidgey / Pidgeotto / Spearow / Fearow | 31/31/31/31 | `ITEM_ORAN_BERRY` | Same species families, stronger levels |
-| `TRAINER_BIRD_KEEPER_ROBERT_3` | `TRAINER_BIRD_KEEPER_ROBERT` | BIRD KEEPER | Pidgeotto / Pidgeot / Fearow / Fearow | 47/47/47/47 | `ITEM_SITRUS_BERRY` | EVOLUTION_STAGE_RECHECK |
-| `TRAINER_PICNICKER_SUSIE_2` | `TRAINER_PICNICKER_SUSIE` | PICNICKER | Pidgey / Pikachu / Shroomish / Pichu / Poliwhirl | 29/29/29/29/29 | `ITEM_ORAN_BERRY` | Same species families, stronger levels |
-| `TRAINER_PICNICKER_SUSIE_3` | `TRAINER_PICNICKER_SUSIE` | PICNICKER | Pidgeotto / Raichu / Breloom / Pikachu / Poliwrath | 47/47/47/47/47 | `ITEM_SITRUS_BERRY` | EVOLUTION_STAGE_RECHECK |
-| `TRAINER_PICNICKER_SUSIE_4` | `TRAINER_PICNICKER_SUSIE` | PICNICKER | Pidgeotto / Raichu / Breloom / Pikachu / Poliwrath | 52/52/52/52/52 | `ITEM_SITRUS_BERRY` | EVOLUTION_STAGE_RECHECK |
-| `TRAINER_BIKER_LUKAS_2` | `TRAINER_BIKER_LUKAS` | BIKER | Weezing / Weezing / Muk / Weezing | 47/47/47/47 | `ITEM_SITRUS_BERRY` | EVOLUTION_STAGE_RECHECK |
-| `TRAINER_BIRD_KEEPER_BENNY_2` | `TRAINER_BIRD_KEEPER_BENNY` | BIRD KEEPER | Spearow / Fearow | 34/34 | `ITEM_ORAN_BERRY` | Same species families, stronger levels |
-| `TRAINER_BIRD_KEEPER_BENNY_3` | `TRAINER_BIRD_KEEPER_BENNY` | BIRD KEEPER | Fearow / Fearow | 49/49 | `ITEM_SITRUS_BERRY` | EVOLUTION_STAGE_RECHECK |
-| `TRAINER_BIRD_KEEPER_MARLON_2` | `TRAINER_BIRD_KEEPER_MARLON` | BIRD KEEPER | Spearow / Doduo / Fearow | 33/33/33 | `ITEM_ORAN_BERRY` | Same species families, stronger levels |
-| `TRAINER_BIRD_KEEPER_MARLON_3` | `TRAINER_BIRD_KEEPER_MARLON` | BIRD KEEPER | Fearow / Dodrio / Fearow | 48/48/48 | `ITEM_SITRUS_BERRY` | EVOLUTION_STAGE_RECHECK |
-| `TRAINER_BEAUTY_GRACE_2` | `TRAINER_BEAUTY_GRACE` | BEAUTY | Absol / Persian | 49/49 | `ITEM_SITRUS_BERRY` | Same species families, stronger levels |
-| `TRAINER_BIRD_KEEPER_CHESTER_2` | `TRAINER_BIRD_KEEPER_CHESTER` | BIRD KEEPER | Dodrio / Doduo / Doduo | 33/33/33 | `ITEM_ORAN_BERRY` | Same species families, stronger levels |
-| `TRAINER_BIRD_KEEPER_CHESTER_3` | `TRAINER_BIRD_KEEPER_CHESTER` | BIRD KEEPER | Dodrio / Dodrio / Dodrio | 48/48/48 | `ITEM_SITRUS_BERRY` | EVOLUTION_STAGE_RECHECK |
-| `TRAINER_PICNICKER_BECKY_2` | `TRAINER_PICNICKER_BECKY` | PICNICKER | Pikachu / Raichu | 34/34 | `ITEM_ORAN_BERRY` | Same species families, stronger levels |
-| `TRAINER_PICNICKER_BECKY_3` | `TRAINER_PICNICKER_BECKY` | PICNICKER | Raichu / Raichu | 49/49 | `ITEM_SITRUS_BERRY` | EVOLUTION_STAGE_RECHECK |
-| `TRAINER_PICNICKER_BECKY_4` | `TRAINER_PICNICKER_BECKY` | PICNICKER | Raichu / Raichu | 54/54 | `ITEM_SITRUS_BERRY` | EVOLUTION_STAGE_RECHECK |
-| `TRAINER_CRUSH_KIN_RON_MYA_2` | `TRAINER_CRUSH_KIN_RON_MYA` | CRUSH KIN | Hitmonlee / Hitmonchan | 34/34 | `ITEM_ORAN_BERRY` | Same species families, stronger levels |
-| `TRAINER_CRUSH_KIN_RON_MYA_3` | `TRAINER_CRUSH_KIN_RON_MYA` | CRUSH KIN | Hitmonlee / Hitmonchan | 51/51 | `ITEM_SITRUS_BERRY` | Same species families, stronger levels |
-| `TRAINER_CRUSH_KIN_RON_MYA_4` | `TRAINER_CRUSH_KIN_RON_MYA` | CRUSH KIN | Hitmonlee / Hitmonchan | 56/56 | `ITEM_LUM_BERRY` | Same species families, stronger levels |
+| `TRAINER_FISHERMAN_ELLIOT_2` | `TRAINER_FISHERMAN_ELLIOT` | FISHERMAN | Shellder / Goldeen / Horsea / Spheal | 28/28/28/28 | `ITEM_ORAN_BERRY` | Curated family progression; source levels provisional; moves pending |
+| `TRAINER_ROCKER_LUCA_2` | `TRAINER_ROCKER_LUCA` | ROCKER | Electrode / Magmar | 34/34 | `ITEM_ORAN_BERRY` | Curated family progression; source levels provisional; moves pending |
+| `TRAINER_BEAUTY_SHEILA_2` | `TRAINER_BEAUTY_SHEILA` | BEAUTY | Persian / Gardevoir | 49/49 | `ITEM_SITRUS_BERRY` | Curated family progression; source levels provisional; moves pending |
+| `TRAINER_BIRD_KEEPER_ROBERT_2` | `TRAINER_BIRD_KEEPER_ROBERT` | BIRD KEEPER | Pidgeotto / Pidgeotto / Fearow / Fearow | 31/31/31/31 | `ITEM_ORAN_BERRY` | Curated family progression; source levels provisional; moves pending |
+| `TRAINER_BIRD_KEEPER_ROBERT_3` | `TRAINER_BIRD_KEEPER_ROBERT` | BIRD KEEPER | Pidgeot / Pidgeot / Fearow / Fearow | 47/47/47/47 | `ITEM_SITRUS_BERRY` | Curated family progression; source levels provisional; moves pending |
+| `TRAINER_PICNICKER_SUSIE_2` | `TRAINER_PICNICKER_SUSIE` | PICNICKER | Pidgeotto / Pikachu / Breloom / Clefairy / Poliwhirl | 29/29/29/29/29 | `ITEM_ORAN_BERRY` | Curated family progression; source levels provisional; moves pending |
+| `TRAINER_PICNICKER_SUSIE_3` | `TRAINER_PICNICKER_SUSIE` | PICNICKER | Pidgeot / Raichu / Breloom / Clefable / Poliwrath | 47/47/47/47/47 | `ITEM_SITRUS_BERRY` | Curated family progression; source levels provisional; moves pending |
+| `TRAINER_PICNICKER_SUSIE_4` | `TRAINER_PICNICKER_SUSIE` | PICNICKER | Pidgeot / Raichu / Breloom / Clefable / Poliwrath | 52/52/52/52/52 | `ITEM_SITRUS_BERRY` | Curated family progression; source levels provisional; moves pending |
+| `TRAINER_BIKER_LUKAS_2` | `TRAINER_BIKER_LUKAS` | BIKER | Weezing / Magneton / Muk / Electrode | 47/47/47/47 | `ITEM_SITRUS_BERRY` | Curated family progression; source levels provisional; moves pending |
+| `TRAINER_BIRD_KEEPER_BENNY_2` | `TRAINER_BIRD_KEEPER_BENNY` | BIRD KEEPER | Fearow / Fearow | 34/34 | `ITEM_ORAN_BERRY` | Curated family progression; source levels provisional; moves pending |
+| `TRAINER_BIRD_KEEPER_BENNY_3` | `TRAINER_BIRD_KEEPER_BENNY` | BIRD KEEPER | Fearow / Fearow | 49/49 | `ITEM_SITRUS_BERRY` | Curated family progression; source levels provisional; moves pending |
+| `TRAINER_BIRD_KEEPER_MARLON_2` | `TRAINER_BIRD_KEEPER_MARLON` | BIRD KEEPER | Fearow / Doduo / Fearow | 33/33/33 | `ITEM_ORAN_BERRY` | Curated family progression; source levels provisional; moves pending |
+| `TRAINER_BIRD_KEEPER_MARLON_3` | `TRAINER_BIRD_KEEPER_MARLON` | BIRD KEEPER | Fearow / Dodrio / Fearow | 48/48/48 | `ITEM_SITRUS_BERRY` | Curated family progression; source levels provisional; moves pending |
+| `TRAINER_BEAUTY_GRACE_2` | `TRAINER_BEAUTY_GRACE` | BEAUTY | Gardevoir / Persian | 49/49 | `ITEM_SITRUS_BERRY` | Curated family progression; source levels provisional; moves pending |
+| `TRAINER_BIRD_KEEPER_CHESTER_2` | `TRAINER_BIRD_KEEPER_CHESTER` | BIRD KEEPER | Dodrio / Doduo / Doduo | 33/33/33 | `ITEM_ORAN_BERRY` | Curated family progression; source levels provisional; moves pending |
+| `TRAINER_BIRD_KEEPER_CHESTER_3` | `TRAINER_BIRD_KEEPER_CHESTER` | BIRD KEEPER | Dodrio / Dodrio / Dodrio | 48/48/48 | `ITEM_SITRUS_BERRY` | Curated family progression; source levels provisional; moves pending |
+| `TRAINER_PICNICKER_BECKY_2` | `TRAINER_PICNICKER_BECKY` | PICNICKER | Pikachu / Raichu | 34/34 | `ITEM_ORAN_BERRY` | Curated family progression; source levels provisional; moves pending |
+| `TRAINER_PICNICKER_BECKY_3` | `TRAINER_PICNICKER_BECKY` | PICNICKER | Raichu / Raichu | 49/49 | `ITEM_SITRUS_BERRY` | Curated family progression; source levels provisional; moves pending |
+| `TRAINER_PICNICKER_BECKY_4` | `TRAINER_PICNICKER_BECKY` | PICNICKER | Raichu / Raichu | 54/54 | `ITEM_SITRUS_BERRY` | Curated family progression; source levels provisional; moves pending |
+| `TRAINER_CRUSH_KIN_RON_MYA_2` | `TRAINER_CRUSH_KIN_RON_MYA` | CRUSH KIN | Hitmonchan / Hitmonlee | 34/34 | `ITEM_ORAN_BERRY` | Curated family progression; source levels provisional; moves pending |
+| `TRAINER_CRUSH_KIN_RON_MYA_3` | `TRAINER_CRUSH_KIN_RON_MYA` | CRUSH KIN | Hitmonchan / Hitmonlee | 51/51 | `ITEM_SITRUS_BERRY` | Curated family progression; source levels provisional; moves pending |
+| `TRAINER_CRUSH_KIN_RON_MYA_4` | `TRAINER_CRUSH_KIN_RON_MYA` | CRUSH KIN | Hitmonchan / Hitmonlee | 56/56 | `ITEM_LUM_BERRY` | Curated family progression; source levels provisional; moves pending |
 | `TRAINER_BIKER_RUBEN_2` | `TRAINER_BIKER_RUBEN` | BIKER | Weezing / Muk / Weezing | 48/48/48 | `ITEM_SITRUS_BERRY` | EVOLUTION_STAGE_RECHECK |
 | `TRAINER_CUE_BALL_CAMRON_2` | `TRAINER_CUE_BALL_CAMRON` | CUE BALL | Primeape / Sneasel | 49/49 | `ITEM_SITRUS_BERRY` | EVOLUTION_STAGE_RECHECK |
 | `TRAINER_BIKER_JAXON_2` | `TRAINER_BIKER_JAXON` | BIKER | Weezing / Magneton | 49/49 | `ITEM_SITRUS_BERRY` | Same species families, stronger levels |
@@ -118,8 +118,8 @@ This is a first-pass mechanical table for 132 numeric-suffix variants linked to 
 | `TRAINER_PAINTER_RAYNA_2` | `TRAINER_PAINTER_RAYNA` | PAINTER | Castform | 55 | `ITEM_LUM_BERRY` | Same species families, stronger levels |
 | `TRAINER_YOUNGSTER_DESTIN_2` | `TRAINER_YOUNGSTER_DESTIN` | YOUNGSTER | Taillow / Electrike | 53/53 | `ITEM_SITRUS_BERRY` | Same species families, stronger levels |
 | `TRAINER_PKMN_BREEDER_ALIZE_2` | `TRAINER_PKMN_BREEDER_ALIZE` | PKMN BREEDER | Pikachu / Raichu / Raichu | 53/53/53 | `ITEM_SITRUS_BERRY` | EVOLUTION_STAGE_RECHECK, EXACT_COMPLETE_FAMILY_REQUIRED |
-| `TRAINER_YOUNG_COUPLE_GIA_JES_2` | `TRAINER_YOUNG_COUPLE_GIA_JES` | YOUNG COUPLE | Espeon / Umbreon | 30/30 | `ITEM_ORAN_BERRY` | Same species families, stronger levels |
-| `TRAINER_YOUNG_COUPLE_GIA_JES_3` | `TRAINER_YOUNG_COUPLE_GIA_JES` | YOUNG COUPLE | Espeon / Umbreon | 55/55 | `ITEM_LUM_BERRY` | Same species families, stronger levels |
+| `TRAINER_YOUNG_COUPLE_GIA_JES_2` | `TRAINER_YOUNG_COUPLE_GIA_JES` | YOUNG COUPLE | Nidorino / Nidorina | 30/30 | `ITEM_ORAN_BERRY` | Curated family progression; source levels provisional; moves pending |
+| `TRAINER_YOUNG_COUPLE_GIA_JES_3` | `TRAINER_YOUNG_COUPLE_GIA_JES` | YOUNG COUPLE | Nidoking / Nidoqueen | 55/55 | `ITEM_LUM_BERRY` | Curated family progression; source levels provisional; moves pending |
 | `TRAINER_BIRD_KEEPER_MILO_2` | `TRAINER_BIRD_KEEPER_MILO` | BIRD KEEPER | Fearow / Dodrio | 53/55 | `ITEM_LUM_BERRY` | Same species families, stronger levels |
 | `TRAINER_BIRD_KEEPER_CHAZ_2` | `TRAINER_BIRD_KEEPER_CHAZ` | BIRD KEEPER | Swellow / Pidgeot | 53/55 | `ITEM_LUM_BERRY` | Same species families, stronger levels |
 | `TRAINER_BIRD_KEEPER_HAROLD_2` | `TRAINER_BIRD_KEEPER_HAROLD` | BIRD KEEPER | Noctowl / Noctowl | 53/55 | `ITEM_LUM_BERRY` | EVOLUTION_STAGE_RECHECK |
