@@ -1418,3 +1418,10 @@ imports or unsafe save migrations. Direct Drive synchronization remains pending.
 - PR63 merged767bb39c after full29-group754034 guarded mGBA assertions,25 host suites/3 checkers, clean identical rebuild and both exact-head Actions42311654769/42311756718 SUCCESS. Scope/limits remain ORIGINAL_EFFECT_STATUS.md.
 - Two points earned within existing80 move effort; total333/712 (46.77%) provisional. No56-new-move credit.
 - Transient worker GitHub401 recovered without credential changes; repository permissions/protections unchanged. CI64 and tracking62 still pending, not merged based on pending checks.
+## 2026-11-06 — INT-001-CI measured slow package transfer
+
+- Live job128215173523 proves APT62.7MB/19min7s/54.7kB/s, then build start.
+  Initial idle timeouts cannot prevent slow continuing transfers. Overall Actions
+  job limit30→45min; native20min, instruction guards, clean builds, all checks and
+  upstream comparison unchanged. No gameplay/security/protection changes.
+- Exact-head CI pending; not represented as accepted/merged.
