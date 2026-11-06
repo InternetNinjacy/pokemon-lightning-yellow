@@ -1275,3 +1275,9 @@ imports or unsafe save migrations. Direct Drive synchronization remains pending.
 - Standalone feature/approved-elite-four-battles; no effort/completion credit yet.
   Revert six arrays safely, retaining prior histories/flags. New native fixtures
   use deliberately boosted player stats, not balance or complete strategy proof.
+- GYM-009 failure diagnosis correction: stale input and HP changes alone did NOT
+  resolve Lance. His postbattle `{RIVAL}` expanded an unterminated zero-filled name
+  in the synthetic save, corrupting fixture state. Initialize valid EOS name like
+  existing rival tests, clear unused party slots; no game-code fix/guard relaxation.
+  Latest actual initial Lance victory/all6/field/flash PASS. Rematch/full latest
+  acceptance still pending; earlier hypothesized root cause above is superseded.

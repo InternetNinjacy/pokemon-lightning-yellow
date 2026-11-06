@@ -15,9 +15,10 @@ static void eliteFourDataTests(void){
 }
 static void eliteFourBattleTests(void){
  for(unsigned e=getenv("LIGHTNING_ELITE_LANCE_ONLY")?4:0;e<sizeof(eliteIds)/sizeof(*eliteIds);e++){
-  daycareFixture(1);CALL(CreateMon,player(0),SPECIES_MEWTWO,100,31,1,0,0,0);core->busWrite8(core,SYM_gPlayerPartyCount,1);monput(player(0),ABI_DATA_MAX_HP,2000);monput(player(0),ABI_DATA_HP,2000);
+  daycareFixture(1);CALL(ZeroPlayerPartyMons);CALL(CreateMon,player(0),SPECIES_MEWTWO,100,31,1,0,0,0);core->busWrite8(core,SYM_gPlayerPartyCount,1);monput(player(0),ABI_DATA_MAX_HP,2000);monput(player(0),ABI_DATA_HP,2000);
   const unsigned moves[]={MOVE_PSYCHIC,MOVE_SURF,MOVE_ICE_BEAM,MOVE_THUNDERBOLT};
   for(unsigned k=0;k<4;k++){CALL(SetMonMoveSlot,player(0),moves[k],k);monput(player(0),ABI_DATA_PP1+k,99);}
+  core->busWrite8(core,careSave1()+ABI_SAVE1_RIVAL_NAME,0xCC);core->busWrite8(core,careSave1()+ABI_SAVE1_RIVAL_NAME+1,0xFF);
   unsigned rematch=e&1;if(rematch){CALL(FlagSet,FLAG_SYS_CAN_LINK_WITH_RS);CALL(FlagSet,FLAG_SYS_GAME_CLEAR);}
   unsigned stage=e<2?1:e<4?2:4;CALL(VarSet,VAR_MAP_SCENE_POKEMON_LEAGUE,stage);
   // All League rooms share map group1; derive group/number from packed map constant.

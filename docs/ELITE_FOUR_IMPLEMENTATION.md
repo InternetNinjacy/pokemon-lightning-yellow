@@ -45,13 +45,15 @@ are deliberately boosted; opponent source stats/AI are not modified. These are
 progression/engine tests, **not HARD/Very Hard balance certification** or proof that
 all item/status strategies trigger in every fight.
 
-Initial local battle run passed Lorelei/Bruno's four fights and saw all six Lance
-members, but failed at the postbattle text because test inputs used stale battle
-controller pointers after field return. The fixture now gates move controls on
-BattleMainCB2; no production source, assertion or timeout was weakened. Full latest
-six-battle rerun/clean/full CI pending initial commit. Record final results before
-merge. Native ability/item interactions and full campaign/real link/hardware remain
-separate acceptance; no invented custom AI or forced sends.
+Initial local run passed Lorelei/Bruno's four fights and saw all six Lance members,
+but Lance's postbattle text overflowed the invalid fixture's unterminated rival
+name. The original dialogue contains `{RIVAL}`; normal campaign saves initialize
+that name. Initial stale-input/HP hypotheses did not fix it. The fixture now sets
+a valid EOS-terminated rival name (same pattern as existing rival acceptance) and
+clears unused party slots. No game source, assertion or timeout was weakened.
+Lance initial now passes; rematch/full latest six-battle rerun and CI remain pending
+until their actual recorded results. Controlled boosted-player progression tests
+are not balance/complete strategy or real-peer/hardware certification.
 
 Rollback: revert six data arrays only; original saved trainer/League flags and
 Pokémon IDs/layout unchanged. Never clear defeated flags to manufacture a rematch.
