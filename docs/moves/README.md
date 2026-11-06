@@ -1,18 +1,18 @@
 # Move-system reconciliation — BTL-005
 
-Status: **inventory reconciled with explicit blockers; redesign NOT implemented**.
-Source inspected: `92838e5eb64d19942cb5c51cfdef6991503ac3ad`, including the tested
+Status: **inventory reconciled; owner decisions resolved; M1a implemented; M1b UI implemented in PR41 (remote results at Checks)**.
+Historical baseline inspected: `92838e5eb64d19942cb5c51cfdef6991503ac3ad`, including the tested
 rival/weather/Gym integration. Main remains a separate, unmodified review baseline.
 Owner requested this reconciliation and remaining automated acceptance on Nov5.
-No production move, species, item, trainer, graphic, save or battle code changes.
+The original PR37 reconciliation changed no production code. The current foundation branch implements only the approved Curse type and safe name-buffer/summary capacity; the56 new moves and other original reworks remain unimplemented.
 
 ## Review artifacts
 
 - [410-row CSV](move-specification.csv): complete354-source +56-new inventory.
 - [Full source/approved JSON](move-specification.json): existing values, approved
   overlay, per-field basis, source lines, effects and implementation status.
-- [Authored overlays](approved-design-overlays.json):20 existing redesign/policy
-  entries plus one explicitly unresolved Curse-type row and56 new designs.
+- [Authored overlays](approved-design-overlays.json):21 existing redesign/type-policy
+  entries including the owner-approved Curse-type row and56 new designs.
 - [Readable67-entry animation review](animation-reuse.md) and [machine-readable audit](animation-reuse.json):56 new +11 focused originals.
 - [TM/capacity plan](tm-and-capacity-plan.json): approved assignments, proposed
   stable-ID implementation, saved-pocket and ABI evidence.
@@ -25,7 +25,7 @@ not assigned constants. Proposed MOVES_COUNT411 includes NONE; animation count
 would be412 when retaining the extra Move_COUNT sentinel. No IDs are reassigned.
 
 333 original records retain source fields under the existing approved split;
-20 have approved redesign/effect-policy changes; Curse has a type ambiguity.
+21 have approved redesign/effect/type-policy changes, including the November5 Ghost/Status Curse decision.
 All56 additions are damaging (41 named imported moves and15 custom designs,
 including this project's custom Bug Bite). No rejected move is counted.
 The data keeps original GenIII values, including Thunderbolt95/Thunder120 and
@@ -105,39 +105,26 @@ contiguous arithmetic. This is a proposal to implement/test, not a migration cla
 ## Animation findings — no new artwork
 
 All354 original moves resolve to existing same-name scripts. All referenced
-sources for the67 candidate entries exist. Fifty new-move candidates remain
-**PROPOSED**, four concepts are recorded composites, two Water moves have exact
+sources for the67 candidate entries exist. Fifty formerly proposed new-move candidates are now
+**OWNER APPROVED FOR IMPLEMENTATION/PLAYBACK TESTING**, four concepts are recorded composites, two Water moves have exact
 reuse instructions, and Roar has an exact original visual. Label presence is
 SOURCE VERIFIED; no new/composite move playback is claimed. No new sprite,
 particle, background, palette or artwork is proposed. Original moves retain
 original visuals by default, including reworks not in the67-row focused matrix.
 
-## Questions and technical follow-ups
+## Effective owner decisions and remaining technical work
 
-1. **Owner decision — Curse type:** source is TYPE_MYSTERY (???); the design groups
-   it with Ghost moves while the category-only approval preserves other fields.
-   Should final type remain??? or be Ghost? The row is null/blocked pending the
-   answer; the game is unchanged. No power/category debate is reopened.
-2. **Owner decision — new animation assignments:** approve the50 explicitly
-   proposed reuse/composite rows, or specify individual replacements from existing
-   assets. Recommendation: retain candidates initially, substitute simpler single
-   existing scripts if composition fails, and submit actual playback for review.
-   Existing directed Fire/Water/Swarm visuals and zero-new-art rule remain binding.
-3. **Version clarification — Payback/Dragon Rush:** Payback's official reference
-   does not name a generation (switching interaction differs by generation).
-   Dragon Rush explicitly defers later Minimize behavior verification. Recommend
-   a documented GenVI policy for imported effects where adopted, retaining GenIII
-   engine rules elsewhere; confirm the intended exceptions before encoding them.
-4. **Separate Phase Two distribution, not an engine blocker:** provide approved
-   learner matrices for changed TM09/TM49/new TM51, new moves and outstanding
-   family levels when available. Do not transfer Bullet Seed/Snatch compatibility
-   silently or grant new moves merely from species typing.
+[November5 explicit owner decisions](OWNER_DECISIONS_2026-11-05.md) supersede the
+previous three unresolved questions: Curse is Ghost/Status; all50 former proposed
+animation assignments are approved for implementation/playback testing; Payback
+and Dragon Rush use Generation IV edge cases. No runtime animation success follows
+from this approval. Distribution remains Phase Two and no learner rows are invented.
 
-Technical work I can resolve without redesign: effect-script composition, normal
-contact/protection/mirror/sound flag translation, target iteration, name-width
-layout, safe item lookup, AI estimators and native test fixtures. Foul Play's
-borrowed stat/stages versus user modifiers needs an explicit reference/test matrix;
-it is technical research, not permission to invent a different damage rule.
+M1a name-buffer capacity and Curse type are implemented in the foundation branch;
+see [foundation status](FOUNDATION_STATUS.md). No56-move namespace or effects are
+yet enabled. The separate [M1b UI child](LONG_NAME_UI_STATUS.md) adapts battle/relearner layouts and records its own acceptance. New IDs/effects still require correct implementation before exposure.
+Foul Play modifier research, effect translation, AI and new mechanics remain
+technical implementation work, not requests to reopen17 approved type reviews.
 
 ## Executed checks and limits
 
@@ -154,3 +141,21 @@ from this reconciliation PR when available, separately from acceptance follow-up
 The [source baseline CSV](source-baseline.csv) contains the354 actual current
 move records, including the already implemented split; it is not mislabeled as a
 vanilla pre-split category table. The original upstream namespace is unchanged.
+
+Generated records distinguish the historical baseline commit from the current
+source fingerprint (`current_battle_moves_sha256`); current Curse fields are
+not falsely attributed to the original baseline commit.
+
+## M2a approved original data
+
+[PR42 eight-move data milestone](ORIGINAL_DATA_STATUS.md) implements ten approved
+fields and preserves specialized effects/other rows. Nine original policies now
+have implemented source fields including Curse; twelve policies and all56 new
+moves remain. Source implementation is not exhaustive runtime effect acceptance.
+
+## M2b saved PP and Leech Life
+
+[PR43 PP compatibility/Leech Life](PP_COMPATIBILITY_STATUS.md) safely caps old
+records and implements the atomic Special80/10 revision. Ten original policies
+now have implemented source fields including Curse; eleven and all56 new moves
+remain. Full latest-fixture remote acceptance is recorded in PR43 Checks.

@@ -1,6 +1,7 @@
 {
   "schema": 1,
-  "source_commit": "92838e5eb64d19942cb5c51cfdef6991503ac3ad",
+  "baseline_source_commit": "92838e5eb64d19942cb5c51cfdef6991503ac3ad",
+  "current_battle_moves_sha256": "8eea1b1843edfeb6b54ee16b2917e09c9b46aebef12a2f3fa1b12542e46d2a45",
   "scope": "Reconciliation only, no gameplay edits. Numeric proposed IDs/semantic effects/target values are NOT compiled constants. Runtime_verified false is not a failure claim.",
   "sources": {
     "register": {
@@ -27,6 +28,11 @@
       "file": "Pokémon Lightning Yellow — Move System Design Completion & Main Thread Handoff — 2026-10-31.txt",
       "sha256": "059f858ed638125a0951a6b9d1823a5792727da42c7ae72dc4145beadf56595a",
       "lines": 74
+    },
+    "owner_20261105": {
+      "file": "OWNER_DECISIONS_2026-11-05.md",
+      "sha256": "9588cb03407772d91302e519c1609b392e4b999b3d7bb60bc53af7933a71eba0",
+      "lines": 8
     }
   },
   "moves": [
@@ -2199,7 +2205,7 @@
       "current": {
         "category": "PHYSICAL",
         "type": "BUG",
-        "power": 25,
+        "power": 40,
         "accuracy": 100,
         "pp": 20,
         "priority": 0,
@@ -2249,13 +2255,8 @@
         "source_exists": true,
         "runtime_verified": false
       },
-      "delta": {
-        "power": {
-          "current": 25,
-          "approved": 40
-        }
-      },
-      "implementation_status": "PENDING_APPROVED_REDESIGN"
+      "delta": {},
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA"
     },
     {
       "id": 42,
@@ -6722,7 +6723,7 @@
       "current": {
         "category": "PHYSICAL",
         "type": "GHOST",
-        "power": 20,
+        "power": 40,
         "accuracy": 100,
         "pp": 30,
         "priority": 0,
@@ -6770,13 +6771,8 @@
         "source_exists": true,
         "runtime_verified": false
       },
-      "delta": {
-        "power": {
-          "current": 20,
-          "approved": 40
-        }
-      },
-      "implementation_status": "PENDING_APPROVED_REDESIGN",
+      "delta": {},
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA",
       "animation_candidate": {
         "key": "LICK",
         "name": "Lick",
@@ -7775,11 +7771,11 @@
       "identity": "REWORKED_ORIGINAL",
       "source_line": 1979,
       "current": {
-        "category": "PHYSICAL",
+        "category": "SPECIAL",
         "type": "BUG",
-        "power": 20,
+        "power": 80,
         "accuracy": 100,
-        "pp": 15,
+        "pp": 10,
         "priority": 0,
         "target": "MOVE_TARGET_SELECTED",
         "effect": "EFFECT_ABSORB",
@@ -7827,21 +7823,8 @@
         "source_exists": true,
         "runtime_verified": false
       },
-      "delta": {
-        "category": {
-          "current": "PHYSICAL",
-          "approved": "SPECIAL"
-        },
-        "power": {
-          "current": 20,
-          "approved": 80
-        },
-        "pp": {
-          "current": 15,
-          "approved": 10
-        }
-      },
-      "implementation_status": "PENDING_APPROVED_REDESIGN",
+      "delta": {},
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA",
       "animation_candidate": {
         "key": "LEECH_LIFE",
         "name": "Leech Life",
@@ -9593,11 +9576,11 @@
       "id": 174,
       "key": "CURSE",
       "name": "CURSE",
-      "identity": "ORIGINAL_REQUIRES_CLARIFICATION",
+      "identity": "REWORKED_ORIGINAL",
       "source_line": 2441,
       "current": {
         "category": "STATUS",
-        "type": "MYSTERY",
+        "type": "GHOST",
         "power": 0,
         "accuracy": 0,
         "pp": 10,
@@ -9609,7 +9592,7 @@
       },
       "approved": {
         "category": "STATUS",
-        "type": null,
+        "type": "GHOST",
         "power": 0,
         "accuracy": 0,
         "pp": 10,
@@ -9621,16 +9604,14 @@
       },
       "evidence": [
         {
-          "source": "register",
-          "line": 566
+          "source": "owner_20261105",
+          "line": 3
         }
       ],
-      "mechanic_notes": [
-        "SPECIFICATION CONFLICT: GenIII source TYPE_MYSTERY; design calls Curse a Ghost inventory entry but category-only approval explicitly preserves other fields. Retain source in game until owner clarifies final type; no guessed retyping."
-      ],
+      "mechanic_notes": [],
       "field_basis": {
         "category": "APPROVED_GENIV_SPLIT",
-        "type": "UNRESOLVED_CURSE_SOURCE_TYPE_VS_DESIGN_INVENTORY",
+        "type": "OWNER_EXPLICIT_2026_11_05",
         "power": "GENIII_RETAINED",
         "accuracy": "GENIII_RETAINED",
         "pp": "GENIII_RETAINED",
@@ -9647,13 +9628,8 @@
         "source_exists": true,
         "runtime_verified": false
       },
-      "delta": {
-        "type": {
-          "current": "MYSTERY",
-          "approved": null
-        }
-      },
-      "implementation_status": "BLOCKED_SPEC_TYPE_AMBIGUITY"
+      "delta": {},
+      "implementation_status": "IMPLEMENTED_APPROVED_TYPE"
     },
     {
       "id": 175,
@@ -11086,7 +11062,7 @@
       "current": {
         "category": "PHYSICAL",
         "type": "DRAGON",
-        "power": 90,
+        "power": 120,
         "accuracy": 100,
         "pp": 15,
         "priority": 0,
@@ -11134,13 +11110,8 @@
         "source_exists": true,
         "runtime_verified": false
       },
-      "delta": {
-        "power": {
-          "current": 90,
-          "approved": 120
-        }
-      },
-      "implementation_status": "PENDING_APPROVED_REDESIGN",
+      "delta": {},
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA",
       "animation_candidate": {
         "key": "OUTRAGE",
         "name": "Outrage",
@@ -11793,7 +11764,7 @@
       "source_line": 2973,
       "current": {
         "category": "STATUS",
-        "type": "NORMAL",
+        "type": "GHOST",
         "power": 0,
         "accuracy": 100,
         "pp": 5,
@@ -11844,13 +11815,8 @@
         "source_exists": true,
         "runtime_verified": false
       },
-      "delta": {
-        "type": {
-          "current": "NORMAL",
-          "approved": "GHOST"
-        }
-      },
-      "implementation_status": "PENDING_APPROVED_REDESIGN"
+      "delta": {},
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA"
     },
     {
       "id": 213,
@@ -17148,9 +17114,9 @@
       "identity": "REWORKED_ORIGINAL",
       "source_line": 4345,
       "current": {
-        "category": "PHYSICAL",
+        "category": "SPECIAL",
         "type": "GHOST",
-        "power": 30,
+        "power": 50,
         "accuracy": 100,
         "pp": 15,
         "priority": 0,
@@ -17198,17 +17164,8 @@
         "source_exists": true,
         "runtime_verified": false
       },
-      "delta": {
-        "category": {
-          "current": "PHYSICAL",
-          "approved": "SPECIAL"
-        },
-        "power": {
-          "current": 30,
-          "approved": 50
-        }
-      },
-      "implementation_status": "PENDING_APPROVED_REDESIGN",
+      "delta": {},
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA",
       "animation_candidate": {
         "key": "ASTONISH",
         "name": "Astonish",
@@ -17573,8 +17530,8 @@
       "current": {
         "category": "PHYSICAL",
         "type": "ROCK",
-        "power": 50,
-        "accuracy": 80,
+        "power": 65,
+        "accuracy": 90,
         "pp": 10,
         "priority": 0,
         "target": "MOVE_TARGET_SELECTED",
@@ -17621,17 +17578,8 @@
         "source_exists": true,
         "runtime_verified": false
       },
-      "delta": {
-        "power": {
-          "current": 50,
-          "approved": 65
-        },
-        "accuracy": {
-          "current": 80,
-          "approved": 90
-        }
-      },
-      "implementation_status": "PENDING_APPROVED_REDESIGN",
+      "delta": {},
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA",
       "animation_candidate": {
         "key": "ROCK_TOMB",
         "name": "Rock Tomb",
@@ -17662,7 +17610,7 @@
         "type": "BUG",
         "power": 60,
         "accuracy": 100,
-        "pp": 5,
+        "pp": 10,
         "priority": 0,
         "target": "MOVE_TARGET_SELECTED",
         "effect": "EFFECT_ALL_STATS_UP_HIT",
@@ -17708,13 +17656,8 @@
         "source_exists": true,
         "runtime_verified": false
       },
-      "delta": {
-        "pp": {
-          "current": 5,
-          "approved": 10
-        }
-      },
-      "implementation_status": "PENDING_APPROVED_REDESIGN"
+      "delta": {},
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA"
     },
     {
       "id": 319,
@@ -18481,7 +18424,7 @@
       "current": {
         "category": "PHYSICAL",
         "type": "ICE",
-        "power": 10,
+        "power": 25,
         "accuracy": 100,
         "pp": 30,
         "priority": 0,
@@ -18531,13 +18474,8 @@
         "source_exists": true,
         "runtime_verified": false
       },
-      "delta": {
-        "power": {
-          "current": 10,
-          "approved": 25
-        }
-      },
-      "implementation_status": "PENDING_APPROVED_REDESIGN",
+      "delta": {},
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA",
       "animation_candidate": {
         "key": "ICICLE_SPEAR",
         "name": "Icicle Spear",
@@ -19964,7 +19902,7 @@
         "key": "SOUL_DRAIN",
         "name": "Soul Drain",
         "candidate": "LICK + MEGA_DRAIN",
-        "approval_label": "Proposed composite",
+        "approval_label": "Owner approved for implementation/playback testing (2026-11-05)",
         "scripts": [
           {
             "label": "Move_LICK",
@@ -19980,7 +19918,9 @@
           "line": 39
         },
         "runtime_verified": false,
-        "composition_verified": false
+        "composition_verified": false,
+        "historical_approval_label": "Proposed composite",
+        "owner_approval_source": "OWNER_DECISIONS_2026-11-05.md"
       }
     },
     {
@@ -20035,7 +19975,7 @@
         "key": "WEARY_TOUCH",
         "name": "Weary Touch",
         "candidate": "LICK + HYPNOSIS",
-        "approval_label": "Proposed composite",
+        "approval_label": "Owner approved for implementation/playback testing (2026-11-05)",
         "scripts": [
           {
             "label": "Move_LICK",
@@ -20051,7 +19991,9 @@
           "line": 40
         },
         "runtime_verified": false,
-        "composition_verified": false
+        "composition_verified": false,
+        "historical_approval_label": "Proposed composite",
+        "owner_approval_source": "OWNER_DECISIONS_2026-11-05.md"
       }
     },
     {
@@ -20105,7 +20047,7 @@
         "key": "DREAM_HAUNT",
         "name": "Dream Haunt",
         "candidate": "NIGHT_SHADE + DREAM_EATER",
-        "approval_label": "Proposed composite",
+        "approval_label": "Owner approved for implementation/playback testing (2026-11-05)",
         "scripts": [
           {
             "label": "Move_NIGHT_SHADE",
@@ -20121,7 +20063,9 @@
           "line": 41
         },
         "runtime_verified": false,
-        "composition_verified": false
+        "composition_verified": false,
+        "historical_approval_label": "Proposed composite",
+        "owner_approval_source": "OWNER_DECISIONS_2026-11-05.md"
       }
     },
     {
@@ -20175,7 +20119,7 @@
         "key": "SKITTER_SLASH",
         "name": "Skitter Slash",
         "candidate": "FURY_CUTTER",
-        "approval_label": "Proposed",
+        "approval_label": "Owner approved for implementation/playback testing (2026-11-05)",
         "scripts": [
           {
             "label": "Move_FURY_CUTTER",
@@ -20187,7 +20131,9 @@
           "line": 42
         },
         "runtime_verified": false,
-        "composition_verified": false
+        "composition_verified": false,
+        "historical_approval_label": "Proposed",
+        "owner_approval_source": "OWNER_DECISIONS_2026-11-05.md"
       }
     },
     {
@@ -20251,7 +20197,7 @@
         "key": "VENOM_WEB",
         "name": "Venom Web",
         "candidate": "BIND + POISON_POWDER",
-        "approval_label": "Proposed composite",
+        "approval_label": "Owner approved for implementation/playback testing (2026-11-05)",
         "scripts": [
           {
             "label": "Move_BIND",
@@ -20267,7 +20213,9 @@
           "line": 43
         },
         "runtime_verified": false,
-        "composition_verified": false
+        "composition_verified": false,
+        "historical_approval_label": "Proposed composite",
+        "owner_approval_source": "OWNER_DECISIONS_2026-11-05.md"
       }
     },
     {
@@ -20325,7 +20273,7 @@
         "key": "BUG_BITE",
         "name": "Bug Bite",
         "candidate": "BITE",
-        "approval_label": "Proposed",
+        "approval_label": "Owner approved for implementation/playback testing (2026-11-05)",
         "scripts": [
           {
             "label": "Move_BITE",
@@ -20337,7 +20285,9 @@
           "line": 44
         },
         "runtime_verified": false,
-        "composition_verified": false
+        "composition_verified": false,
+        "historical_approval_label": "Proposed",
+        "owner_approval_source": "OWNER_DECISIONS_2026-11-05.md"
       }
     },
     {
@@ -20392,7 +20342,7 @@
         "key": "CHITIN_CRUSH",
         "name": "Chitin Crush",
         "candidate": "VICE_GRIP + ROCK_SMASH",
-        "approval_label": "Proposed composite",
+        "approval_label": "Owner approved for implementation/playback testing (2026-11-05)",
         "scripts": [
           {
             "label": "Move_VICE_GRIP",
@@ -20408,7 +20358,9 @@
           "line": 45
         },
         "runtime_verified": false,
-        "composition_verified": false
+        "composition_verified": false,
+        "historical_approval_label": "Proposed composite",
+        "owner_approval_source": "OWNER_DECISIONS_2026-11-05.md"
       }
     },
     {
@@ -20463,7 +20415,7 @@
         "key": "CHIRP",
         "name": "Chirp",
         "candidate": "GROWL",
-        "approval_label": "Proposed",
+        "approval_label": "Owner approved for implementation/playback testing (2026-11-05)",
         "scripts": [
           {
             "label": "Move_GROWL",
@@ -20475,7 +20427,9 @@
           "line": 46
         },
         "runtime_verified": false,
-        "composition_verified": false
+        "composition_verified": false,
+        "historical_approval_label": "Proposed",
+        "owner_approval_source": "OWNER_DECISIONS_2026-11-05.md"
       }
     },
     {
@@ -20610,7 +20564,7 @@
         "key": "BELLOW",
         "name": "Bellow",
         "candidate": "UPROAR",
-        "approval_label": "Proposed from recorded options",
+        "approval_label": "Owner approved for implementation/playback testing (2026-11-05)",
         "scripts": [
           {
             "label": "Move_UPROAR",
@@ -20622,7 +20576,9 @@
           "line": 49
         },
         "runtime_verified": false,
-        "composition_verified": false
+        "composition_verified": false,
+        "historical_approval_label": "Proposed from recorded options",
+        "owner_approval_source": "OWNER_DECISIONS_2026-11-05.md"
       }
     },
     {
@@ -20675,7 +20631,7 @@
         "key": "POWER_GEM",
         "name": "Power Gem",
         "candidate": "ANCIENT_POWER",
-        "approval_label": "Proposed",
+        "approval_label": "Owner approved for implementation/playback testing (2026-11-05)",
         "scripts": [
           {
             "label": "Move_ANCIENT_POWER",
@@ -20687,7 +20643,9 @@
           "line": 51
         },
         "runtime_verified": false,
-        "composition_verified": false
+        "composition_verified": false,
+        "historical_approval_label": "Proposed",
+        "owner_approval_source": "OWNER_DECISIONS_2026-11-05.md"
       }
     },
     {
@@ -20740,7 +20698,7 @@
         "key": "STONE_EDGE",
         "name": "Stone Edge",
         "candidate": "ROCK_SLIDE",
-        "approval_label": "Proposed",
+        "approval_label": "Owner approved for implementation/playback testing (2026-11-05)",
         "scripts": [
           {
             "label": "Move_ROCK_SLIDE",
@@ -20752,7 +20710,9 @@
           "line": 52
         },
         "runtime_verified": false,
-        "composition_verified": false
+        "composition_verified": false,
+        "historical_approval_label": "Proposed",
+        "owner_approval_source": "OWNER_DECISIONS_2026-11-05.md"
       }
     },
     {
@@ -20806,7 +20766,7 @@
         "key": "SCORCHING_SANDS",
         "name": "Scorching Sands",
         "candidate": "SANDSTORM + EMBER",
-        "approval_label": "Proposed composite",
+        "approval_label": "Owner approved for implementation/playback testing (2026-11-05)",
         "scripts": [
           {
             "label": "Move_SANDSTORM",
@@ -20822,7 +20782,9 @@
           "line": 54
         },
         "runtime_verified": false,
-        "composition_verified": false
+        "composition_verified": false,
+        "historical_approval_label": "Proposed composite",
+        "owner_approval_source": "OWNER_DECISIONS_2026-11-05.md"
       }
     },
     {
@@ -20876,7 +20838,7 @@
         "key": "EARTH_POWER",
         "name": "Earth Power",
         "candidate": "EARTHQUAKE",
-        "approval_label": "Proposed",
+        "approval_label": "Owner approved for implementation/playback testing (2026-11-05)",
         "scripts": [
           {
             "label": "Move_EARTHQUAKE",
@@ -20888,7 +20850,9 @@
           "line": 55
         },
         "runtime_verified": false,
-        "composition_verified": false
+        "composition_verified": false,
+        "historical_approval_label": "Proposed",
+        "owner_approval_source": "OWNER_DECISIONS_2026-11-05.md"
       }
     },
     {
@@ -20951,7 +20915,7 @@
         "key": "ICE_FANG",
         "name": "Ice Fang",
         "candidate": "BITE + ICE_PUNCH",
-        "approval_label": "Proposed composite",
+        "approval_label": "Owner approved for implementation/playback testing (2026-11-05)",
         "scripts": [
           {
             "label": "Move_BITE",
@@ -20967,7 +20931,9 @@
           "line": 57
         },
         "runtime_verified": false,
-        "composition_verified": false
+        "composition_verified": false,
+        "historical_approval_label": "Proposed composite",
+        "owner_approval_source": "OWNER_DECISIONS_2026-11-05.md"
       }
     },
     {
@@ -21020,7 +20986,7 @@
         "key": "AVALANCHE",
         "name": "Avalanche",
         "candidate": "ROCK_SLIDE + ICE_BEAM",
-        "approval_label": "Proposed composite",
+        "approval_label": "Owner approved for implementation/playback testing (2026-11-05)",
         "scripts": [
           {
             "label": "Move_ROCK_SLIDE",
@@ -21036,7 +21002,9 @@
           "line": 58
         },
         "runtime_verified": false,
-        "composition_verified": false
+        "composition_verified": false,
+        "historical_approval_label": "Proposed composite",
+        "owner_approval_source": "OWNER_DECISIONS_2026-11-05.md"
       }
     },
     {
@@ -21090,7 +21058,7 @@
         "key": "ICICLE_CRASH",
         "name": "Icicle Crash",
         "candidate": "ICICLE_SPEAR",
-        "approval_label": "Proposed",
+        "approval_label": "Owner approved for implementation/playback testing (2026-11-05)",
         "scripts": [
           {
             "label": "Move_ICICLE_SPEAR",
@@ -21102,7 +21070,9 @@
           "line": 59
         },
         "runtime_verified": false,
-        "composition_verified": false
+        "composition_verified": false,
+        "historical_approval_label": "Proposed",
+        "owner_approval_source": "OWNER_DECISIONS_2026-11-05.md"
       }
     },
     {
@@ -21155,7 +21125,7 @@
         "key": "DRAGON_PULSE",
         "name": "Dragon Pulse",
         "candidate": "DRAGON_BREATH",
-        "approval_label": "Proposed",
+        "approval_label": "Owner approved for implementation/playback testing (2026-11-05)",
         "scripts": [
           {
             "label": "Move_DRAGON_BREATH",
@@ -21167,7 +21137,9 @@
           "line": 61
         },
         "runtime_verified": false,
-        "composition_verified": false
+        "composition_verified": false,
+        "historical_approval_label": "Proposed",
+        "owner_approval_source": "OWNER_DECISIONS_2026-11-05.md"
       }
     },
     {
@@ -21185,7 +21157,7 @@
         "pp": 10,
         "priority": 0,
         "target": "SELECTED",
-        "effect": "FLINCH_20_MINIMIZE_REVIEW",
+        "effect": "FLINCH_20_GEN_IV_NO_MINIMIZE_BONUS",
         "secondaryEffectChance": 20,
         "flags": null
       },
@@ -21194,6 +21166,10 @@
           "source": "register",
           "line": 755,
           "excerpt": "2026-10-30 — DRAGON-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. ORIGINAL DRAGON MOVES under modern split: PHYSICAL Dragon Claw 80 BP/100 accuracy/15 PP unchanged; Outrage BUFFED to 120 BP/100 accuracy/15 PP with original 2–3-turn locked attack and subsequent u"
+        },
+        {
+          "source": "owner_20261105",
+          "line": 5
         }
       ],
       "field_basis": {
@@ -21204,24 +21180,28 @@
         "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
         "priority": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
         "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
-        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_GENIV_EDGE_CASES_2026_11_05",
         "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
         "flags": "REQUIRES_ENGINE_TRANSLATION"
       },
       "mechanic_notes": [
-        "FLINCH_20_MINIMIZE_REVIEW"
+        "Generation IV flinch20; no later-generation Minimize power/accuracy bonus.",
+        "Owner November5: Generation IV edge cases; retain unrelated GenIII engine rules."
       ],
       "implementation_status": "NOT_IMPLEMENTED",
       "delta": null,
       "effect_rules": {
         "semantic": "FLINCH_20_MINIMIZE_REVIEW",
-        "secondary_percent": 20
+        "secondary_percent": 20,
+        "reference_generation": 4,
+        "minimize_power_bonus": false,
+        "minimize_accuracy_bypass": false
       },
       "animation": {
         "key": "DRAGON_RUSH",
         "name": "Dragon Rush",
         "candidate": "TAKE_DOWN + DRAGON_CLAW",
-        "approval_label": "Proposed composite",
+        "approval_label": "Owner approved for implementation/playback testing (2026-11-05)",
         "scripts": [
           {
             "label": "Move_TAKE_DOWN",
@@ -21237,7 +21217,9 @@
           "line": 62
         },
         "runtime_verified": false,
-        "composition_verified": false
+        "composition_verified": false,
+        "historical_approval_label": "Proposed composite",
+        "owner_approval_source": "OWNER_DECISIONS_2026-11-05.md"
       }
     },
     {
@@ -21291,7 +21273,7 @@
         "key": "SNARL",
         "name": "Snarl",
         "candidate": "UPROAR",
-        "approval_label": "Proposed",
+        "approval_label": "Owner approved for implementation/playback testing (2026-11-05)",
         "scripts": [
           {
             "label": "Move_UPROAR",
@@ -21303,7 +21285,9 @@
           "line": 65
         },
         "runtime_verified": false,
-        "composition_verified": false
+        "composition_verified": false,
+        "historical_approval_label": "Proposed",
+        "owner_approval_source": "OWNER_DECISIONS_2026-11-05.md"
       }
     },
     {
@@ -21357,7 +21341,7 @@
         "key": "DARK_PULSE",
         "name": "Dark Pulse",
         "candidate": "NIGHT_SHADE",
-        "approval_label": "Proposed",
+        "approval_label": "Owner approved for implementation/playback testing (2026-11-05)",
         "scripts": [
           {
             "label": "Move_NIGHT_SHADE",
@@ -21369,7 +21353,9 @@
           "line": 66
         },
         "runtime_verified": false,
-        "composition_verified": false
+        "composition_verified": false,
+        "historical_approval_label": "Proposed",
+        "owner_approval_source": "OWNER_DECISIONS_2026-11-05.md"
       }
     },
     {
@@ -21423,7 +21409,7 @@
         "key": "NIGHT_DAZE",
         "name": "Night Daze",
         "candidate": "FAINT_ATTACK",
-        "approval_label": "Proposed",
+        "approval_label": "Owner approved for implementation/playback testing (2026-11-05)",
         "scripts": [
           {
             "label": "Move_FAINT_ATTACK",
@@ -21435,7 +21421,9 @@
           "line": 67
         },
         "runtime_verified": false,
-        "composition_verified": false
+        "composition_verified": false,
+        "historical_approval_label": "Proposed",
+        "owner_approval_source": "OWNER_DECISIONS_2026-11-05.md"
       }
     },
     {
@@ -21488,7 +21476,7 @@
         "key": "NIGHT_SLASH",
         "name": "Night Slash",
         "candidate": "SLASH",
-        "approval_label": "Proposed",
+        "approval_label": "Owner approved for implementation/playback testing (2026-11-05)",
         "scripts": [
           {
             "label": "Move_SLASH",
@@ -21500,7 +21488,9 @@
           "line": 68
         },
         "runtime_verified": false,
-        "composition_verified": false
+        "composition_verified": false,
+        "historical_approval_label": "Proposed",
+        "owner_approval_source": "OWNER_DECISIONS_2026-11-05.md"
       }
     },
     {
@@ -21518,7 +21508,7 @@
         "pp": 10,
         "priority": 0,
         "target": "SELECTED",
-        "effect": "DOUBLE_IF_ACTS_AFTER_TARGET_VERSION_REVIEW",
+        "effect": "DOUBLE_IF_ACTS_AFTER_TARGET_GEN_IV",
         "secondaryEffectChance": 0,
         "flags": null
       },
@@ -21527,6 +21517,10 @@
           "source": "register",
           "line": 767,
           "excerpt": "2026-10-30 — DARK-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Preserve the original Generation III Dark moves under post-split categories unless expressly changed; no buff to Crunch was approved. ADD THREE official later-generation DARK SPECIAL moves: Snarl 55"
+        },
+        {
+          "source": "owner_20261105",
+          "line": 5
         }
       ],
       "field_basis": {
@@ -21537,23 +21531,26 @@
         "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
         "priority": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
         "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
-        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_GENIV_EDGE_CASES_2026_11_05",
         "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
         "flags": "REQUIRES_ENGINE_TRANSLATION"
       },
       "mechanic_notes": [
-        "DOUBLE_IF_ACTS_AFTER_TARGET_VERSION_REVIEW"
+        "DOUBLE_IF_ACTS_AFTER_TARGET_VERSION_REVIEW",
+        "Owner November5: Generation IV edge cases; retain unrelated GenIII engine rules."
       ],
       "implementation_status": "NOT_IMPLEMENTED",
       "delta": null,
       "effect_rules": {
-        "semantic": "DOUBLE_IF_ACTS_AFTER_TARGET_VERSION_REVIEW"
+        "semantic": "DOUBLE_IF_ACTS_AFTER_TARGET_VERSION_REVIEW",
+        "reference_generation": 4,
+        "switching_target_doubles_power": true
       },
       "animation": {
         "key": "PAYBACK",
         "name": "Payback",
         "candidate": "REVENGE",
-        "approval_label": "Proposed",
+        "approval_label": "Owner approved for implementation/playback testing (2026-11-05)",
         "scripts": [
           {
             "label": "Move_REVENGE",
@@ -21565,7 +21562,9 @@
           "line": 69
         },
         "runtime_verified": false,
-        "composition_verified": false
+        "composition_verified": false,
+        "historical_approval_label": "Proposed",
+        "owner_approval_source": "OWNER_DECISIONS_2026-11-05.md"
       }
     },
     {
@@ -21618,7 +21617,7 @@
         "key": "FOUL_PLAY",
         "name": "Foul Play",
         "candidate": "THIEF",
-        "approval_label": "Proposed",
+        "approval_label": "Owner approved for implementation/playback testing (2026-11-05)",
         "scripts": [
           {
             "label": "Move_THIEF",
@@ -21630,7 +21629,9 @@
           "line": 70
         },
         "runtime_verified": false,
-        "composition_verified": false
+        "composition_verified": false,
+        "historical_approval_label": "Proposed",
+        "owner_approval_source": "OWNER_DECISIONS_2026-11-05.md"
       }
     },
     {
@@ -21683,7 +21684,7 @@
         "key": "AQUA_JET",
         "name": "Aqua Jet",
         "candidate": "QUICK_ATTACK + WATER_GUN",
-        "approval_label": "Proposed composite",
+        "approval_label": "Owner approved for implementation/playback testing (2026-11-05)",
         "scripts": [
           {
             "label": "Move_QUICK_ATTACK",
@@ -21699,7 +21700,9 @@
           "line": 71
         },
         "runtime_verified": false,
-        "composition_verified": false
+        "composition_verified": false,
+        "historical_approval_label": "Proposed composite",
+        "owner_approval_source": "OWNER_DECISIONS_2026-11-05.md"
       }
     },
     {
@@ -21753,7 +21756,7 @@
         "key": "LIQUIDATION",
         "name": "Liquidation",
         "candidate": "WATERFALL",
-        "approval_label": "Proposed",
+        "approval_label": "Owner approved for implementation/playback testing (2026-11-05)",
         "scripts": [
           {
             "label": "Move_WATERFALL",
@@ -21765,7 +21768,9 @@
           "line": 72
         },
         "runtime_verified": false,
-        "composition_verified": false
+        "composition_verified": false,
+        "historical_approval_label": "Proposed",
+        "owner_approval_source": "OWNER_DECISIONS_2026-11-05.md"
       }
     },
     {
@@ -21962,7 +21967,7 @@
         "key": "DISCHARGE",
         "name": "Discharge",
         "candidate": "THUNDERBOLT",
-        "approval_label": "Proposed",
+        "approval_label": "Owner approved for implementation/playback testing (2026-11-05)",
         "scripts": [
           {
             "label": "Move_THUNDERBOLT",
@@ -21974,7 +21979,9 @@
           "line": 75
         },
         "runtime_verified": false,
-        "composition_verified": false
+        "composition_verified": false,
+        "historical_approval_label": "Proposed",
+        "owner_approval_source": "OWNER_DECISIONS_2026-11-05.md"
       }
     },
     {
@@ -22027,7 +22034,7 @@
         "key": "VOLT_SWITCH",
         "name": "Volt Switch",
         "candidate": "SPARK + TELEPORT",
-        "approval_label": "Proposed composite",
+        "approval_label": "Owner approved for implementation/playback testing (2026-11-05)",
         "scripts": [
           {
             "label": "Move_SPARK",
@@ -22043,7 +22050,9 @@
           "line": 76
         },
         "runtime_verified": false,
-        "composition_verified": false
+        "composition_verified": false,
+        "historical_approval_label": "Proposed composite",
+        "owner_approval_source": "OWNER_DECISIONS_2026-11-05.md"
       }
     },
     {
@@ -22106,7 +22115,7 @@
         "key": "THUNDER_FANG",
         "name": "Thunder Fang",
         "candidate": "BITE + THUNDER_PUNCH",
-        "approval_label": "Proposed composite",
+        "approval_label": "Owner approved for implementation/playback testing (2026-11-05)",
         "scripts": [
           {
             "label": "Move_BITE",
@@ -22122,7 +22131,9 @@
           "line": 77
         },
         "runtime_verified": false,
-        "composition_verified": false
+        "composition_verified": false,
+        "historical_approval_label": "Proposed composite",
+        "owner_approval_source": "OWNER_DECISIONS_2026-11-05.md"
       }
     },
     {
@@ -22175,7 +22186,7 @@
         "key": "WILD_CHARGE",
         "name": "Wild Charge",
         "candidate": "VOLT_TACKLE",
-        "approval_label": "Proposed",
+        "approval_label": "Owner approved for implementation/playback testing (2026-11-05)",
         "scripts": [
           {
             "label": "Move_VOLT_TACKLE",
@@ -22187,7 +22198,9 @@
           "line": 78
         },
         "runtime_verified": false,
-        "composition_verified": false
+        "composition_verified": false,
+        "historical_approval_label": "Proposed",
+        "owner_approval_source": "OWNER_DECISIONS_2026-11-05.md"
       }
     },
     {
@@ -22240,7 +22253,7 @@
         "key": "SEED_BOMB",
         "name": "Seed Bomb",
         "candidate": "BULLET_SEED",
-        "approval_label": "Proposed",
+        "approval_label": "Owner approved for implementation/playback testing (2026-11-05)",
         "scripts": [
           {
             "label": "Move_BULLET_SEED",
@@ -22252,7 +22265,9 @@
           "line": 79
         },
         "runtime_verified": false,
-        "composition_verified": false
+        "composition_verified": false,
+        "historical_approval_label": "Proposed",
+        "owner_approval_source": "OWNER_DECISIONS_2026-11-05.md"
       }
     },
     {
@@ -22305,7 +22320,7 @@
         "key": "PETAL_BLIZZARD",
         "name": "Petal Blizzard",
         "candidate": "PETAL_DANCE",
-        "approval_label": "Proposed",
+        "approval_label": "Owner approved for implementation/playback testing (2026-11-05)",
         "scripts": [
           {
             "label": "Move_PETAL_DANCE",
@@ -22317,7 +22332,9 @@
           "line": 80
         },
         "runtime_verified": false,
-        "composition_verified": false
+        "composition_verified": false,
+        "historical_approval_label": "Proposed",
+        "owner_approval_source": "OWNER_DECISIONS_2026-11-05.md"
       }
     },
     {
@@ -22370,7 +22387,7 @@
         "key": "WOOD_HAMMER",
         "name": "Wood Hammer",
         "candidate": "BODY_SLAM + RAZOR_LEAF",
-        "approval_label": "Proposed composite",
+        "approval_label": "Owner approved for implementation/playback testing (2026-11-05)",
         "scripts": [
           {
             "label": "Move_BODY_SLAM",
@@ -22386,7 +22403,9 @@
           "line": 81
         },
         "runtime_verified": false,
-        "composition_verified": false
+        "composition_verified": false,
+        "historical_approval_label": "Proposed composite",
+        "owner_approval_source": "OWNER_DECISIONS_2026-11-05.md"
       }
     },
     {
@@ -22439,7 +22458,7 @@
         "key": "AURA_SPHERE",
         "name": "Aura Sphere",
         "candidate": "PSYCHIC",
-        "approval_label": "Proposed",
+        "approval_label": "Owner approved for implementation/playback testing (2026-11-05)",
         "scripts": [
           {
             "label": "Move_PSYCHIC",
@@ -22451,7 +22470,9 @@
           "line": 82
         },
         "runtime_verified": false,
-        "composition_verified": false
+        "composition_verified": false,
+        "historical_approval_label": "Proposed",
+        "owner_approval_source": "OWNER_DECISIONS_2026-11-05.md"
       }
     },
     {
@@ -22505,7 +22526,7 @@
         "key": "FOCUS_BLAST",
         "name": "Focus Blast",
         "candidate": "HYPER_BEAM",
-        "approval_label": "Proposed",
+        "approval_label": "Owner approved for implementation/playback testing (2026-11-05)",
         "scripts": [
           {
             "label": "Move_HYPER_BEAM",
@@ -22517,7 +22538,9 @@
           "line": 83
         },
         "runtime_verified": false,
-        "composition_verified": false
+        "composition_verified": false,
+        "historical_approval_label": "Proposed",
+        "owner_approval_source": "OWNER_DECISIONS_2026-11-05.md"
       }
     },
     {
@@ -22570,7 +22593,7 @@
         "key": "DRAIN_PUNCH",
         "name": "Drain Punch",
         "candidate": "MEGA_PUNCH + MEGA_DRAIN",
-        "approval_label": "Proposed composite",
+        "approval_label": "Owner approved for implementation/playback testing (2026-11-05)",
         "scripts": [
           {
             "label": "Move_MEGA_PUNCH",
@@ -22586,7 +22609,9 @@
           "line": 84
         },
         "runtime_verified": false,
-        "composition_verified": false
+        "composition_verified": false,
+        "historical_approval_label": "Proposed composite",
+        "owner_approval_source": "OWNER_DECISIONS_2026-11-05.md"
       }
     },
     {
@@ -22640,7 +22665,7 @@
         "key": "FLASH_CANNON",
         "name": "Flash Cannon",
         "candidate": "HYPER_BEAM + METAL_CLAW",
-        "approval_label": "Proposed composite",
+        "approval_label": "Owner approved for implementation/playback testing (2026-11-05)",
         "scripts": [
           {
             "label": "Move_HYPER_BEAM",
@@ -22656,7 +22681,9 @@
           "line": 85
         },
         "runtime_verified": false,
-        "composition_verified": false
+        "composition_verified": false,
+        "historical_approval_label": "Proposed composite",
+        "owner_approval_source": "OWNER_DECISIONS_2026-11-05.md"
       }
     },
     {
@@ -22710,7 +22737,7 @@
         "key": "MIRROR_SHOT",
         "name": "Mirror Shot",
         "candidate": "SWIFT",
-        "approval_label": "Proposed",
+        "approval_label": "Owner approved for implementation/playback testing (2026-11-05)",
         "scripts": [
           {
             "label": "Move_SWIFT",
@@ -22722,7 +22749,9 @@
           "line": 86
         },
         "runtime_verified": false,
-        "composition_verified": false
+        "composition_verified": false,
+        "historical_approval_label": "Proposed",
+        "owner_approval_source": "OWNER_DECISIONS_2026-11-05.md"
       }
     },
     {
@@ -22776,7 +22805,7 @@
         "key": "IRON_HEAD",
         "name": "Iron Head",
         "candidate": "HEADBUTT",
-        "approval_label": "Proposed",
+        "approval_label": "Owner approved for implementation/playback testing (2026-11-05)",
         "scripts": [
           {
             "label": "Move_HEADBUTT",
@@ -22788,7 +22817,9 @@
           "line": 87
         },
         "runtime_verified": false,
-        "composition_verified": false
+        "composition_verified": false,
+        "historical_approval_label": "Proposed",
+        "owner_approval_source": "OWNER_DECISIONS_2026-11-05.md"
       }
     },
     {
@@ -22841,7 +22872,7 @@
         "key": "BULLET_PUNCH",
         "name": "Bullet Punch",
         "candidate": "MACH_PUNCH + METAL_CLAW",
-        "approval_label": "Proposed composite",
+        "approval_label": "Owner approved for implementation/playback testing (2026-11-05)",
         "scripts": [
           {
             "label": "Move_MACH_PUNCH",
@@ -22857,7 +22888,9 @@
           "line": 88
         },
         "runtime_verified": false,
-        "composition_verified": false
+        "composition_verified": false,
+        "historical_approval_label": "Proposed composite",
+        "owner_approval_source": "OWNER_DECISIONS_2026-11-05.md"
       }
     },
     {
@@ -22911,7 +22944,7 @@
         "key": "AIR_SLASH",
         "name": "Air Slash",
         "candidate": "AIR_CUTTER",
-        "approval_label": "Proposed",
+        "approval_label": "Owner approved for implementation/playback testing (2026-11-05)",
         "scripts": [
           {
             "label": "Move_AIR_CUTTER",
@@ -22923,7 +22956,9 @@
           "line": 89
         },
         "runtime_verified": false,
-        "composition_verified": false
+        "composition_verified": false,
+        "historical_approval_label": "Proposed",
+        "owner_approval_source": "OWNER_DECISIONS_2026-11-05.md"
       }
     },
     {
@@ -22979,7 +23014,7 @@
         "key": "HURRICANE",
         "name": "Hurricane",
         "candidate": "GUST + TWISTER",
-        "approval_label": "Proposed composite",
+        "approval_label": "Owner approved for implementation/playback testing (2026-11-05)",
         "scripts": [
           {
             "label": "Move_GUST",
@@ -22995,7 +23030,9 @@
           "line": 90
         },
         "runtime_verified": false,
-        "composition_verified": false
+        "composition_verified": false,
+        "historical_approval_label": "Proposed composite",
+        "owner_approval_source": "OWNER_DECISIONS_2026-11-05.md"
       }
     },
     {
@@ -23048,7 +23085,7 @@
         "key": "BRAVE_BIRD",
         "name": "Brave Bird",
         "candidate": "SKY_ATTACK",
-        "approval_label": "Proposed",
+        "approval_label": "Owner approved for implementation/playback testing (2026-11-05)",
         "scripts": [
           {
             "label": "Move_SKY_ATTACK",
@@ -23060,7 +23097,9 @@
           "line": 91
         },
         "runtime_verified": false,
-        "composition_verified": false
+        "composition_verified": false,
+        "historical_approval_label": "Proposed",
+        "owner_approval_source": "OWNER_DECISIONS_2026-11-05.md"
       }
     },
     {
@@ -23113,7 +23152,7 @@
         "key": "ACROBATICS",
         "name": "Acrobatics",
         "candidate": "AERIAL_ACE",
-        "approval_label": "Proposed",
+        "approval_label": "Owner approved for implementation/playback testing (2026-11-05)",
         "scripts": [
           {
             "label": "Move_AERIAL_ACE",
@@ -23125,7 +23164,9 @@
           "line": 92
         },
         "runtime_verified": false,
-        "composition_verified": false
+        "composition_verified": false,
+        "historical_approval_label": "Proposed",
+        "owner_approval_source": "OWNER_DECISIONS_2026-11-05.md"
       }
     },
     {
@@ -23178,7 +23219,7 @@
         "key": "DUAL_WINGBEAT",
         "name": "Dual Wingbeat",
         "candidate": "WING_ATTACK twice",
-        "approval_label": "Proposed repeated animation",
+        "approval_label": "Owner approved for implementation/playback testing (2026-11-05)",
         "scripts": [
           {
             "label": "Move_WING_ATTACK",
@@ -23190,7 +23231,9 @@
           "line": 93
         },
         "runtime_verified": false,
-        "composition_verified": false
+        "composition_verified": false,
+        "historical_approval_label": "Proposed repeated animation",
+        "owner_approval_source": "OWNER_DECISIONS_2026-11-05.md"
       }
     },
     {
@@ -23244,7 +23287,7 @@
         "key": "HEART_STAMP",
         "name": "Heart Stamp",
         "candidate": "STOMP + CONFUSION",
-        "approval_label": "Proposed composite",
+        "approval_label": "Owner approved for implementation/playback testing (2026-11-05)",
         "scripts": [
           {
             "label": "Move_STOMP",
@@ -23260,7 +23303,9 @@
           "line": 94
         },
         "runtime_verified": false,
-        "composition_verified": false
+        "composition_verified": false,
+        "historical_approval_label": "Proposed composite",
+        "owner_approval_source": "OWNER_DECISIONS_2026-11-05.md"
       }
     },
     {
@@ -23314,7 +23359,7 @@
         "key": "ZEN_HEADBUTT",
         "name": "Zen Headbutt",
         "candidate": "HEADBUTT + CONFUSION",
-        "approval_label": "Proposed composite",
+        "approval_label": "Owner approved for implementation/playback testing (2026-11-05)",
         "scripts": [
           {
             "label": "Move_HEADBUTT",
@@ -23330,7 +23375,9 @@
           "line": 95
         },
         "runtime_verified": false,
-        "composition_verified": false
+        "composition_verified": false,
+        "historical_approval_label": "Proposed composite",
+        "owner_approval_source": "OWNER_DECISIONS_2026-11-05.md"
       }
     },
     {
@@ -23384,7 +23431,7 @@
         "key": "CROSS_POISON",
         "name": "Cross Poison",
         "candidate": "POISON_TAIL",
-        "approval_label": "Proposed",
+        "approval_label": "Owner approved for implementation/playback testing (2026-11-05)",
         "scripts": [
           {
             "label": "Move_POISON_TAIL",
@@ -23396,7 +23443,9 @@
           "line": 96
         },
         "runtime_verified": false,
-        "composition_verified": false
+        "composition_verified": false,
+        "historical_approval_label": "Proposed",
+        "owner_approval_source": "OWNER_DECISIONS_2026-11-05.md"
       }
     },
     {
@@ -23450,7 +23499,7 @@
         "key": "POISON_JAB",
         "name": "Poison Jab",
         "candidate": "POISON_STING",
-        "approval_label": "Proposed",
+        "approval_label": "Owner approved for implementation/playback testing (2026-11-05)",
         "scripts": [
           {
             "label": "Move_POISON_STING",
@@ -23462,7 +23511,9 @@
           "line": 97
         },
         "runtime_verified": false,
-        "composition_verified": false
+        "composition_verified": false,
+        "historical_approval_label": "Proposed",
+        "owner_approval_source": "OWNER_DECISIONS_2026-11-05.md"
       }
     },
     {
@@ -23516,7 +23567,7 @@
         "key": "GUNK_SHOT",
         "name": "Gunk Shot",
         "candidate": "SLUDGE_BOMB",
-        "approval_label": "Proposed",
+        "approval_label": "Owner approved for implementation/playback testing (2026-11-05)",
         "scripts": [
           {
             "label": "Move_SLUDGE_BOMB",
@@ -23528,7 +23579,9 @@
           "line": 98
         },
         "runtime_verified": false,
-        "composition_verified": false
+        "composition_verified": false,
+        "historical_approval_label": "Proposed",
+        "owner_approval_source": "OWNER_DECISIONS_2026-11-05.md"
       }
     }
   ]
