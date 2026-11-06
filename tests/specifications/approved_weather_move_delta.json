@@ -1,0 +1,29 @@
+{
+  "scope": "Issue47 and move register: Ground-only Sandstorm type immunity; Zap Cannon guaranteed Rain accuracy, no ability slot or event changes",
+  "files": {
+    "src/data/battle_moves.h": {
+      "before_sha256": "d8fbaf018807937d97e4e298e1ac9c411015883a12d315890c74bc7a6b467002",
+      "after_sha256": "63b37457e138fa177a70421dcd4af12d1cdb5199404c41edaffc65b26553bc2a",
+      "hunks": [
+        {
+          "before": "    [MOVE_SANDSTORM] =\n    {\n        .category = MOVE_CATEGORY_STATUS,\n        .effect = EFFECT_SANDSTORM,\n        .power = 0,\n        .type = TYPE_ROCK,\n        .accuracy = 0,\n        .pp = 10,\n        .secondaryEffectChance = 0,\n        .target = MOVE_TARGET_USER,\n        .priority = 0,\n        .flags = 0,\n    },",
+          "after": "    [MOVE_SANDSTORM] =\n    {\n        .category = MOVE_CATEGORY_STATUS,\n        .effect = EFFECT_SANDSTORM,\n        .power = 0,\n        .type = TYPE_GROUND,\n        .accuracy = 0,\n        .pp = 10,\n        .secondaryEffectChance = 0,\n        .target = MOVE_TARGET_USER,\n        .priority = 0,\n        .flags = 0,\n    },"
+        }
+      ]
+    },
+    "src/battle_script_commands.c": {
+      "before_sha256": "4246ffdbed9e1f6dbef12da28e49db82299f2b4cfd25e31fc9a5aa99104d8212",
+      "after_sha256": "c92077fb7a0640b6847304b4e5017543937407e25378ae8cd458759494f439ac",
+      "hunks": [
+        {
+          "before": "(WEATHER_HAS_EFFECT && (gBattleWeather & B_WEATHER_RAIN) && gBattleMoves[move].effect == EFFECT_THUNDER)",
+          "after": "(WEATHER_HAS_EFFECT && (gBattleWeather & B_WEATHER_RAIN)\n         && (gBattleMoves[move].effect == EFFECT_THUNDER || move == MOVE_ZAP_CANNON))"
+        },
+        {
+          "before": "            if (gBattleMons[gBattlerAttacker].type1 != TYPE_ROCK\n                && gBattleMons[gBattlerAttacker].type1 != TYPE_STEEL\n                && gBattleMons[gBattlerAttacker].type1 != TYPE_GROUND\n                && gBattleMons[gBattlerAttacker].type2 != TYPE_ROCK\n                && gBattleMons[gBattlerAttacker].type2 != TYPE_STEEL\n                && gBattleMons[gBattlerAttacker].type2 != TYPE_GROUND",
+          "after": "            if (gBattleMons[gBattlerAttacker].type1 != TYPE_GROUND\n                && gBattleMons[gBattlerAttacker].type2 != TYPE_GROUND"
+        }
+      ]
+    }
+  }
+}

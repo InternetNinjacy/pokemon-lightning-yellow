@@ -49,6 +49,6 @@ missing = [l for l in labels if l + "::" not in txt]
 assert not missing, missing
 flags = flags_path.read_text()
 assert "FLAG_PEWTER_MUSEUM_TRIVIA_WON" in flags and "FLAG_PEWTER_MUSEUM_SHINY_EGG_RECEIVED" in flags
-assert s.index("setflag FLAG_PEWTER_MUSEUM_TRIVIA_WON") < s.index("specialvar VAR_RESULT, ScriptGiveShinyFeebasEgg")
-assert s.index("specialvar VAR_RESULT, ScriptGiveShinyFeebasEgg") < s.index("setflag FLAG_PEWTER_MUSEUM_SHINY_EGG_RECEIVED")
+assert s.index("setflag FLAG_PEWTER_MUSEUM_TRIVIA_WON") < s.index("specialvar VAR_RESULT, ScriptGiveMuseumAronEgg")
+assert s.index("specialvar VAR_RESULT, ScriptGiveMuseumAronEgg") < s.index("setflag FLAG_PEWTER_MUSEUM_SHINY_EGG_RECEIVED")
 print("Trivia script, persistent flags, and static placement assertions pass")

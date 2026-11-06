@@ -223,7 +223,7 @@ PewterCity_Museum_1F_TriviaWrong::
 PewterCity_Museum_1F_TriviaTryReward::
 	specialvar VAR_RESULT, CalculatePlayerPartyCount
 	goto_if_eq VAR_RESULT, PARTY_SIZE, PewterCity_Museum_1F_TriviaPartyFull
-	specialvar VAR_RESULT, ScriptGiveShinyFeebasEgg
+	specialvar VAR_RESULT, ScriptGiveMuseumAronEgg
 	goto_if_ne VAR_RESULT, MON_GIVEN_TO_PARTY, PewterCity_Museum_1F_TriviaPartyFull
 	setflag FLAG_PEWTER_MUSEUM_SHINY_EGG_RECEIVED
 	playfanfare MUS_OBTAIN_ITEM

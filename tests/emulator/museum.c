@@ -31,7 +31,7 @@ static void museumTests(void) {
  for(unsigned i=0;i<32;i++) {
   unsigned ot=i*0x9E3779B9U;
   for(unsigned b=0;b<4;b++)core->busWrite8(core,careSave2()+ABI_SAVE2_OTID+b,(ot>>(8*b))&255);
-  core->busWrite32(core,SYM_gRngValue,0xFEEBA500U+i); CALL(CreateShinyEgg,enemy(0),SPECIES_FEEBAS);
+  core->busWrite32(core,SYM_gRngValue,0xFEEBA500U+i); CALL(CreateShinyEgg,enemy(0),SPECIES_ARON);
   CHECK(monget(enemy(0),ABI_DATA_OT_ID)==ot);CHECK(CALL(IsMonShiny,enemy(0)));CHECK(monget(enemy(0),ABI_DATA_IS_EGG));
  }
  printf("PASS: genuine Museum Shiny creation across32 varied trainer IDs and RNG seeds\n");
@@ -50,7 +50,7 @@ static void museumTests(void) {
  }
  for(unsigned i=3;i<6;i++) {CALL(CreateMon,player(i),SPECIES_PIKACHU,20,31,1,i,0,0);}
  core->busWrite8(core,SYM_gPlayerPartyCount,6);
- unsigned seed=core->busRead32(core,SYM_gRngValue);CHECK(CALL(ScriptGiveShinyFeebasEgg)==MON_CANT_GIVE);CHECK(core->busRead32(core,SYM_gRngValue)==seed);
+ unsigned seed=core->busRead32(core,SYM_gRngValue);CHECK(CALL(ScriptGiveMuseumAronEgg)==MON_CANT_GIVE);CHECK(core->busRead32(core,SYM_gRngValue)==seed);
  museumPrompt();museumAnswer(1);for(unsigned q=0;q<3;q++){fossilWaitMenu(SYM_Task_YesNoMenu_HandleInput);museumAnswer(answers[q]);}fossilClose(1);
  CHECK(CALL(FlagGet,FLAG_PEWTER_MUSEUM_TRIVIA_WON));CHECK(!CALL(FlagGet,FLAG_PEWTER_MUSEUM_SHINY_EGG_RECEIVED));
  flashRoundTrip();museumWarp(11,5);CHECK(CALL(FlagGet,FLAG_PEWTER_MUSEUM_TRIVIA_WON));
@@ -58,17 +58,17 @@ static void museumTests(void) {
  core->busWrite8(core,SYM_gSelectedObjectEvent,CALL(GetObjectEventIdByLocalIdAndMap,7,MAP_NUM(MAP_PEWTER_CITY_MUSEUM_1F),MAP_GROUP(MAP_PEWTER_CITY_MUSEUM_1F)));
  fossilStart(SYM_PewterCity_Museum_1F_EventScript_TriviaEmployee);fossilClose(1);
  CHECK(CALL(FlagGet,FLAG_PEWTER_MUSEUM_SHINY_EGG_RECEIVED));CHECK(core->busRead8(core,SYM_gPlayerPartyCount)==6);
- CHECK(monget(player(5),ABI_DATA_SPECIES)==SPECIES_FEEBAS);CHECK(monget(player(5),ABI_DATA_IS_EGG));CHECK(CALL(IsMonShiny,player(5)));
- CHECK(monget(player(5),ABI_DATA_FRIENDSHIP)==20);CHECK(monget(player(5),ABI_DATA_UNUSED_RIBBONS)==0);unsigned pid=monget(player(5),ABI_DATA_PERSONALITY);
+ CHECK(monget(player(5),ABI_DATA_SPECIES)==SPECIES_ARON);CHECK(monget(player(5),ABI_DATA_IS_EGG));unsigned intendedShiny=CALL(IsMonShiny,player(5));
+ CHECK(monget(player(5),ABI_DATA_FRIENDSHIP)==35);CHECK(monget(player(5),ABI_DATA_UNUSED_RIBBONS)==0);unsigned pid=monget(player(5),ABI_DATA_PERSONALITY);
  flashRoundTrip();museumWarp(11,5);fossilStart(SYM_PewterCity_Museum_1F_EventScript_TriviaEmployee);fossilClose(1);
- CHECK(core->busRead8(core,SYM_gPlayerPartyCount)==6);CHECK(monget(player(5),ABI_DATA_PERSONALITY)==pid);CHECK(CALL(IsMonShiny,player(5)));
+ CHECK(core->busRead8(core,SYM_gPlayerPartyCount)==6);CHECK(monget(player(5),ABI_DATA_PERSONALITY)==pid);CHECK(CALL(IsMonShiny,player(5))==intendedShiny);
  CHECK(CALL(GetMoney,careSave1()+ABI_SAVE1_MONEY)==950);
- hatchScene(5);CHECK(monget(player(5),ABI_DATA_SPECIES)==SPECIES_FEEBAS);CHECK(CALL(IsMonShiny,player(5)));
- monput(player(5),ABI_DATA_LEVEL,20);CHECK(CALL(GetEvolutionTargetSpecies,player(5),EVO_MODE_NORMAL,0)==SPECIES_MILOTIC);
+ hatchScene(5);CHECK(monget(player(5),ABI_DATA_SPECIES)==SPECIES_ARON);CHECK(CALL(IsMonShiny,player(5))==intendedShiny);
+ monput(player(5),ABI_DATA_LEVEL,32);CHECK(CALL(GetEvolutionTargetSpecies,player(5),EVO_MODE_NORMAL,0)==SPECIES_LAIRON);
  core->busWrite32(core,SYM_gMain,0);CALL(ResetTasks);core->busWrite16(core,returned,0x4770);core->busWrite32(core,SYM_gCB2_AfterEvolution,returned|1);
- CALL(EvolutionScene,player(5),SPECIES_MILOTIC,1,5);unsigned f;
+ CALL(EvolutionScene,player(5),SPECIES_LAIRON,1,5);unsigned f;
  for(f=0;f<3600;f++){frames(1,(f%12)<2?1:0);if(core->busRead32(core,SYM_gMain+ABI_MAIN_CB2)==(returned|1))break;}
- CHECK(f<3600);CHECK(monget(player(5),ABI_DATA_SPECIES)==SPECIES_MILOTIC);CHECK(monget(player(5),ABI_DATA_PERSONALITY)==pid);CHECK(CALL(IsMonShiny,player(5)));
- flashRoundTrip();CHECK(monget(player(5),ABI_DATA_SPECIES)==SPECIES_MILOTIC);CHECK(CALL(IsMonShiny,player(5)));CHECK(CALL(FlagGet,FLAG_PEWTER_MUSEUM_SHINY_EGG_RECEIVED));
- printf("PASS: actual three wrong-answer exits/retries, saved full-party pending reward, one genuine Shiny Feebas Egg, unchanged money, flash/hatch/evolution to Shiny Milotic\n");
+ CHECK(f<3600);CHECK(monget(player(5),ABI_DATA_SPECIES)==SPECIES_LAIRON);CHECK(monget(player(5),ABI_DATA_PERSONALITY)==pid);CHECK(CALL(IsMonShiny,player(5))==intendedShiny);
+ flashRoundTrip();CHECK(monget(player(5),ABI_DATA_SPECIES)==SPECIES_LAIRON);CHECK(CALL(IsMonShiny,player(5))==intendedShiny);CHECK(CALL(FlagGet,FLAG_PEWTER_MUSEUM_SHINY_EGG_RECEIVED));
+ printf("PASS: actual three wrong-answer exits/retries, saved full-party pending reward, one Aron50%% Egg, unchanged money, flash/hatch/evolution to Lairon with persistent true Shiny outcome\n");
 }

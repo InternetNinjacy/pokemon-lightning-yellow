@@ -4,12 +4,15 @@ from pathlib import Path
 import hashlib,json,re
 from approved_move_pp_changes import prior_move_pp_source
 from approved_roar_changes import prior_roar_source
+from approved_gift_changes import prior_gift_source
+from approved_weather_move_changes import prior_weather_move_source
+def before_later_features(path):return prior_roar_source(path,prior_gift_source(path,prior_weather_move_source(path)))
 m=json.loads(Path('tests/specifications/approved_move_pp_delta.json').read_text())
 for p,v in m['files'].items():
- assert hashlib.sha256(prior_roar_source(p).encode()).hexdigest()==v['after_sha256'],p
+ assert hashlib.sha256(before_later_features(p).encode()).hexdigest()==v['after_sha256'],p
  assert hashlib.sha256(prior_move_pp_source(p).encode()).hexdigest()==v['before_sha256'],p
 for p,sha in m['added_files'].items():assert hashlib.sha256(Path(p).read_bytes()).hexdigest()==sha,p
-p='src/data/battle_moves.h';old=prior_move_pp_source(p);new=prior_roar_source(p)
+p='src/data/battle_moves.h';old=prior_move_pp_source(p);new=before_later_features(p)
 def entries(s):return {k:dict(re.findall(r'\.(\w+) = (.*?),',b)) for k,b in re.findall(r'\[MOVE_(\w+)\] =\s*\{(.*?)\n    \}',s,re.S)}
 a,b=entries(old),entries(new);assert len(a)==len(b)==355
 changes={k:{f:v for f,v in b[k].items() if v!=a[k][f]} for k in b if a[k]!=b[k]}

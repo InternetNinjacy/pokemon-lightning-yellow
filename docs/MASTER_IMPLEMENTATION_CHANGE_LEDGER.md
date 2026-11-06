@@ -1301,3 +1301,99 @@ imports or unsafe save migrations. Direct Drive synchronization remains pending.
   Main postmerge validation continues separately; no410-move completion claim.
 - Sign PR58 merged main into its branch, retaining both Roar and sign native groups,
   all21 host registrations and append-only histories; actual integrated CI required.
+
+## 2026-11-06 — WRL-011-GIFTS / issue38 three owner-approved corrections
+
+- Museum guaranteed-Shiny Feebas→Aron50% genuine Shiny; Water Labyrinth Togepi→
+  Magby50%; roof EeveeLv25 nickname prompt→TangelaLv25 fixedTANGO. Existing one-time
+  bits/claimed saves preserved; no owned mon replaced, starter/Parcel untouched.
+- Added final-PID-at-creation binary-outcome helper and safe native gift specials;
+  preserve ordinary daycare/wild/other eggs, cycles, hatch/naming, party/PC and
+  gates. Museum special index unchanged; two specials appended inside table.
+- Exact source/delta/rollback details in docs/APPROVED_GIFT_REVISIONS.md. Historical
+  Museum docs retained with clear superseding effective-version note.
+- Existing20 hosts/3 checkers plus new gift audit PASS; build PASS; mGBA0.10.5
+  focused80112 PASS (Aron5030/10000,Magby5030/10000 stored trueShiny), Museum1306
+  PASS including real trivia, delayed claim, hatch/evolution and flash. Full/clean
+  CI pending initial commit; no completion/merge credit yet. No ROM assets/save
+  changes. New independent branch feature/approved-gift-revisions.
+
+## 2026-11-06 — GYM-009 independent six Elite Four party implementation
+
+- Issue50/eight exact merged contracts inspected. Only six Lorelei/Bruno/Lance
+  initial/rematch arrays changed; all metadata/scripts/save/Champion/rival and
+  both Agatha arrays preserved. Exact32 Pokémon/128 moves/held items,250/255 IV
+  policy, Lance six-member levels-only rematch, native ability slot0 choices.
+- All21 hosts/3 checkers and build PASS; native constructors verify all32 exact
+  abilities/items/levels/IVs/moves. Initial four actual room battles PASS; Lance
+  saw all6 but postbattle test input used stale battle controller. Fixture fixed
+  to gate battle controls, no assertion/timeout/production workaround. Final six
+  battle rerun/full/clean CI pending initial commit.
+- Both Agatha encounters explicitly not implemented: constructor forces even PID
+  and slot0 Synchronize, approved Inner Focus is slot1. Existing contract requires
+  conflict report; owner asked about narrowly scoped native selector. No global
+  species override or invented substitute. See docs/ELITE_FOUR_IMPLEMENTATION.md.
+- Standalone feature/approved-elite-four-battles; no effort/completion credit yet.
+  Revert six arrays safely, retaining prior histories/flags. New native fixtures
+  use deliberately boosted player stats, not balance or complete strategy proof.
+- GYM-009 failure diagnosis correction: stale input and HP changes alone did NOT
+  resolve Lance. His postbattle `{RIVAL}` expanded an unterminated zero-filled name
+  in the synthetic save, corrupting fixture state. Initialize valid EOS name like
+  existing rival tests, clear unused party slots; no game-code fix/guard relaxation.
+  Latest actual initial Lance victory/all6/field/flash PASS. Rematch/full latest
+  acceptance still pending; earlier hypothesized root cause above is superseded.
+
+## 2026-11-06 — WRL-004-SIGN effective merge / WTH-003 move milestone
+
+- Sign PR58 merged d97712dc9393b5f98d73df901f8ffa70cc231309. Exact integrated head
+  2b98586b review42217742516 SUCCESS,21 hosts/3 checkers, clean rebuild and full
+  native534699 PASS; focused463. Main postmerge checks remain separately visible.
+- WTH-003 / BTL-005-M2D approved issue47/register: Sandstorm typeRock→Ground,
+  remove only Rock/Steel residual typing immunity; add Zap Cannon to native Rain
+  guaranteed-accuracy path. Existing suppressions,1/16minimum1,Ice Hail, Thunder/
+  Forecast/WeatherBall,83 map rules/species slots/state/save/IDs retained.
+- Only src/data/battle_moves.h and src/battle_script_commands.c production hunks.
+  Exact reviewed delta normalizers retain old hashes. No new abilities/Hurricane/
+  TM51, event placements or missing global ability mappings invented.
+-22 host suites/3 checkers PASS; focused mGBA0.10.5 5389 PASS (324 native residual
+  type pairs; normal/Rain/Sun/CloudNine/AirLock accuracy; actual Rain Zap turns
+  damage/paralysis,Ground/Protect/onePP). Native interpreter fixture first failed
+  due unaligned bus writes; corrected operand byte storage, no game/assertion fix.
+- Build PASS; clean/full latest CI pending initial commit. No added effort credit
+  before full acceptance. Technical scope/evidence/limits/rollback in
+  docs/WEATHER_MOVE_COMPLETION.md; no saved-schema migration or binary artifacts.
+
+## 2026-11-06 — INT-001-CI early bounded mGBA dependency installation
+
+- PR62 run42233960801 cancelled at30m18; modified step9 installing libmgba-dev
+  spent24m35 and native step was skipped. This is NOT an emulator assertion failure.
+  Upstream baseline passed; exact network/lock cause not exposed by step metadata.
+- Move dependency into initial modified-only package set, bounded APT transport/
+  retry/lock waits; later mGBA step verifies installed package only. All native/
+  host/build/repro/upstream gates, API guards and job/native timeouts retained.
+- No production/security setting change. docs/CI_DEPENDENCY_STALL.md records
+  exact evidence/limitations/rollback. Actual maintenance CI pending before merge.
+
+## 2026-11-06 — Effective autonomous integration / current versions
+
+-59→708f197a0b3889bc96c1272c6d52f4eb837c727b;60→66117462336bff24fe7ea3115f91db6851e27980;
+ 61→15dacb95424ffd394113849d10c3aa2f78c343ba. Exact-head CI SUCCESS respectively
+ 42220799681/42221063828/42222085136; both modified/upstream jobs passed before
+ direct merges, no admin bypass/security change/auto-merge. Main content tree
+ d6af90108bce62c464aca34297a026378a307419 equals validated61 head22314c35.
+- Combined local24 hosts/3 checkers and full28-group753726 native PASS; clean
+ bba80adbe5de31b285e704f202cdda61e8aa4f4ca2256c1d8762082c73984b77. Individual
+ focus: gifts latest80123/Museum1306, E4 integrated133086, weather5389.
+- Current effective gifts: Aron50%/Magby50%/TANGO, not old Feebas/Togepi/Eevee.
+ Current E4: six exact battles, Agatha two NOT implemented. Current move milestone:
+13 original policies on main; M2E63 two originals tested314 and cleanf8d6d10d...
+ but full/CI pending, no credit;56 new moves/global Electric paralysis still due.
+- Effort: BTL-00521/59 (+2 for weather within80),GYM-00912/4 (six exact battles,
+ two held),WRL-0113/7 (three gifts, Rocket quests remain). No sign/CI/shared-weather
+ duplicate credit or scope reset. Source exports available; follower54 verified
+ audit/permission hold restored to live tracker, not reset to an unstarted audit.
+-62 workflow guide inspected: no authority/gate change. Replace its unverified
+ handoff template with factual <=100-line resume state, refs/commands/limits.
+ Includes CI64 dependency until that verified maintenance PR merges. Main-source
+ docs provenance/diff proof separate from pending new workflow run; no fresh game
+ implementation or source unavailability claim.

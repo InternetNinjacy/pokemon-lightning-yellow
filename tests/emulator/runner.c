@@ -351,8 +351,13 @@ static void dexTests(void) {
 #include "original_move_data.c"
 #include "move_pp_compatibility.c"
 #include "roar.c"
+#include "weather_moves.c"
 
 #include "viridian_sign.c"
+
+#include "approved_gifts.c"
+
+#include "elite_four.c"
 
 int main(int argc,char **argv) {
     setvbuf(stdout,NULL,_IONBF,0);
@@ -389,9 +394,15 @@ int main(int argc,char **argv) {
     if(getenv("LIGHTNING_WILD_ONLY")){wildTests();printf("PASS: %u focused wild assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_DEX_ONLY")){dexTests();printf("PASS: focused Dex diagnostic\n");core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_PP_FULL_PC_ONLY")){ppFullPc();printf("PASS: %u full-PC PP assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_WEATHER_MOVES_ONLY")){weatherMoveTests();printf("PASS: %u focused weather-move assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_ROAR_ONLY")){roarTests();printf("PASS: %u focused Roar assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
 
     if(getenv("LIGHTNING_VIRIDIAN_SIGN_ONLY")){viridianSignTests();printf("PASS: %u focused sign assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+
+    if(getenv("LIGHTNING_APPROVED_GIFTS_ONLY")){approvedGiftTests();printf("PASS: %u focused approved-gift assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+
+    if(getenv("LIGHTNING_ELITE_FOUR_DATA_ONLY")){eliteFourDataTests();printf("PASS: %u focused Elite Four data assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_ELITE_FOUR_ONLY")){eliteFourTests();printf("PASS: %u focused Elite Four assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_MOVE_PP_ONLY")){movePpCompatibilityTests();printf("PASS: %u focused move PP assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_ORIGINAL_MOVE_DATA_ONLY")){originalMoveDataTests();printf("PASS: %u focused original move-data assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_LONG_MOVE_UI_ONLY")){moveLongNameUiTests();printf("PASS: %u focused long-name UI assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
@@ -521,8 +532,13 @@ int main(int argc,char **argv) {
     originalMoveDataTests();
     movePpCompatibilityTests();
     roarTests();
+    weatherMoveTests();
 
     viridianSignTests();
+
+    approvedGiftTests();
+
+    eliteFourTests();
     printf("PASS: %u mGBA assertions (includes API/register safety checks)\n",checks);
     core->deinit(core);free(pixels);free(bootState);
     return 0;

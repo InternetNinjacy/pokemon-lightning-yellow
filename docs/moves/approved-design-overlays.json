@@ -267,7 +267,16 @@
       "mechanic_notes": [
         "Guaranteed rain hit under approved rule;50% outside; preserve original power100/PP5 and eligible paralysis. TM51 does not replace TM34."
       ],
-      "field_basis": {}
+      "field_basis": {},
+      "implementation_status": "IMPLEMENTED_APPROVED_MECHANIC",
+      "engine_implementation": {
+        "files": [
+          "src/data/battle_moves.h",
+          "src/battle_script_commands.c"
+        ],
+        "acceptance": "docs/WEATHER_MOVE_COMPLETION.md",
+        "scope": "Native Rain guaranteed accuracy; outside Rain unchanged; no TM51/distribution change"
+      }
     },
     "OUTRAGE": {
       "fields": {
@@ -302,6 +311,15 @@
       ],
       "field_basis": {
         "type": "OWNER_EXPLICIT"
+      },
+      "implementation_status": "IMPLEMENTED_APPROVED_MECHANIC",
+      "engine_implementation": {
+        "files": [
+          "src/data/battle_moves.h",
+          "src/battle_script_commands.c"
+        ],
+        "acceptance": "docs/WEATHER_MOVE_COMPLETION.md",
+        "scope": "Ground-only type immunity/native residual suppressions"
       }
     },
     "MEAN_LOOK": {
