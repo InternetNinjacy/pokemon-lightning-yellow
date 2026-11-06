@@ -6,7 +6,8 @@ def prior_move_pp_source(path,text=None):
     if text is None:
         from approved_roar_changes import prior_roar_source
         from approved_gift_changes import prior_gift_source
-        text=prior_roar_source(path, prior_gift_source(path))
+        from approved_elite_four_changes import prior_elite_four_source
+        text=prior_roar_source(path, prior_gift_source(path, prior_elite_four_source(path)))
     manifest=json.loads(Path('tests/specifications/approved_move_pp_delta.json').read_text())
     for h in manifest['files'].get(str(path),{}).get('hunks',[]):
         assert text.count(h['after'])==1,'Unreviewed move PP delta: '+str(path)
