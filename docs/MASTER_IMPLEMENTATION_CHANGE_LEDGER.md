@@ -1362,3 +1362,14 @@ imports or unsafe save migrations. Direct Drive synchronization remains pending.
 - Build PASS; clean/full latest CI pending initial commit. No added effort credit
   before full acceptance. Technical scope/evidence/limits/rollback in
   docs/WEATHER_MOVE_COMPLETION.md; no saved-schema migration or binary artifacts.
+
+## 2026-11-06 — INT-001-CI early bounded mGBA dependency installation
+
+- PR62 run42233960801 cancelled at30m18; modified step9 installing libmgba-dev
+  spent24m35 and native step was skipped. This is NOT an emulator assertion failure.
+  Upstream baseline passed; exact network/lock cause not exposed by step metadata.
+- Move dependency into initial modified-only package set, bounded APT transport/
+  retry/lock waits; later mGBA step verifies installed package only. All native/
+  host/build/repro/upstream gates, API guards and job/native timeouts retained.
+- No production/security setting change. docs/CI_DEPENDENCY_STALL.md records
+  exact evidence/limitations/rollback. Actual maintenance CI pending before merge.

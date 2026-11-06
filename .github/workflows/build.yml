@@ -24,8 +24,15 @@ jobs:
           persist-credentials: false
       - name: Install upstream Linux dependencies and test runner
         run: |
-          sudo apt-get update
-          sudo apt-get install -y --no-install-recommends build-essential binutils-arm-none-eabi git libpng-dev python3
+          # Fetch all required packages before either expensive build. Bound
+          # mirror/lock stalls; no compile/native/assertion gate is skipped.
+          lightning_apt_options=(-o Acquire::Retries=3 -o Acquire::http::Timeout=30 -o Acquire::https::Timeout=30 -o DPkg::Lock::Timeout=120)
+          lightning_packages=(build-essential binutils-arm-none-eabi git libpng-dev python3)
+          if [ "${{ matrix.target }}" = modified ]; then
+            lightning_packages+=(libmgba-dev)
+          fi
+          sudo apt-get "${lightning_apt_options[@]}" update
+          sudo apt-get "${lightning_apt_options[@]}" install -y --no-install-recommends "${lightning_packages[@]}"
           gcc --version
           arm-none-eabi-as --version
           dpkg-query -W build-essential binutils-arm-none-eabi git libpng-dev python3
@@ -94,7 +101,8 @@ jobs:
       - name: Install headless mGBA core
         if: matrix.target == 'modified'
         run: |
-          sudo apt-get install -y --no-install-recommends libmgba-dev
+          # Already installed with the initial dependencies; verify it remains
+          # available without starting another late network/package transaction.
           dpkg-query -W libmgba-dev
       - name: Execute ROM integration tests in mGBA
         if: matrix.target == 'modified'
