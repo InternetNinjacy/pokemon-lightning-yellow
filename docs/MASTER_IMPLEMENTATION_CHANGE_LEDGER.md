@@ -1302,6 +1302,47 @@ imports or unsafe save migrations. Direct Drive synchronization remains pending.
 - Sign PR58 merged main into its branch, retaining both Roar and sign native groups,
   all21 host registrations and append-only histories; actual integrated CI required.
 
+## 2026-11-06 — WRL-011-GIFTS / issue38 three owner-approved corrections
+
+- Museum guaranteed-Shiny Feebas→Aron50% genuine Shiny; Water Labyrinth Togepi→
+  Magby50%; roof EeveeLv25 nickname prompt→TangelaLv25 fixedTANGO. Existing one-time
+  bits/claimed saves preserved; no owned mon replaced, starter/Parcel untouched.
+- Added final-PID-at-creation binary-outcome helper and safe native gift specials;
+  preserve ordinary daycare/wild/other eggs, cycles, hatch/naming, party/PC and
+  gates. Museum special index unchanged; two specials appended inside table.
+- Exact source/delta/rollback details in docs/APPROVED_GIFT_REVISIONS.md. Historical
+  Museum docs retained with clear superseding effective-version note.
+- Existing20 hosts/3 checkers plus new gift audit PASS; build PASS; mGBA0.10.5
+  focused80112 PASS (Aron5030/10000,Magby5030/10000 stored trueShiny), Museum1306
+  PASS including real trivia, delayed claim, hatch/evolution and flash. Full/clean
+  CI pending initial commit; no completion/merge credit yet. No ROM assets/save
+  changes. New independent branch feature/approved-gift-revisions.
+
+## 2026-11-06 — GYM-009 independent six Elite Four party implementation
+
+- Issue50/eight exact merged contracts inspected. Only six Lorelei/Bruno/Lance
+  initial/rematch arrays changed; all metadata/scripts/save/Champion/rival and
+  both Agatha arrays preserved. Exact32 Pokémon/128 moves/held items,250/255 IV
+  policy, Lance six-member levels-only rematch, native ability slot0 choices.
+- All21 hosts/3 checkers and build PASS; native constructors verify all32 exact
+  abilities/items/levels/IVs/moves. Initial four actual room battles PASS; Lance
+  saw all6 but postbattle test input used stale battle controller. Fixture fixed
+  to gate battle controls, no assertion/timeout/production workaround. Final six
+  battle rerun/full/clean CI pending initial commit.
+- Both Agatha encounters explicitly not implemented: constructor forces even PID
+  and slot0 Synchronize, approved Inner Focus is slot1. Existing contract requires
+  conflict report; owner asked about narrowly scoped native selector. No global
+  species override or invented substitute. See docs/ELITE_FOUR_IMPLEMENTATION.md.
+- Standalone feature/approved-elite-four-battles; no effort/completion credit yet.
+  Revert six arrays safely, retaining prior histories/flags. New native fixtures
+  use deliberately boosted player stats, not balance or complete strategy proof.
+- GYM-009 failure diagnosis correction: stale input and HP changes alone did NOT
+  resolve Lance. His postbattle `{RIVAL}` expanded an unterminated zero-filled name
+  in the synthetic save, corrupting fixture state. Initialize valid EOS name like
+  existing rival tests, clear unused party slots; no game-code fix/guard relaxation.
+  Latest actual initial Lance victory/all6/field/flash PASS. Rematch/full latest
+  acceptance still pending; earlier hypothesized root cause above is superseded.
+
 ## 2026-11-06 — WRL-004-SIGN effective merge / WTH-003 move milestone
 
 - Sign PR58 merged d97712dc9393b5f98d73df901f8ffa70cc231309. Exact integrated head

@@ -3,7 +3,7 @@
   "updated": "2026-11-06",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "Autonomous policy55, Roar56 and Viridian sign58 merged with exact-head successful CI. Weather Ground Sandstorm/Rain Zap Cannon implemented on independent branch:22 hosts/3 checkers and focused5389 PASS, clean/full pending. Gift59 and six Elite Four60 continue full/integration checks; Agatha selector/follower permission/draft ordinary-Trainer design holds preserved.",
+  "current_focus": "Policy55, Roar56, sign58 merged. Weather61 integrates pending gift59 and six-battle Elite Four60 for shared24-host/28-native acceptance; merge parents59 then60 before61. Weather scope focused5389/build/repro PASS; full/integrated CI pending. Agatha selector question, followers permission and draft ordinary-Trainer57 remain explicit holds; no invented mappings.",
   "main_sha": "d97712dc9393b5f98d73df901f8ffa70cc231309",
   "drive_sync": {
     "status": "pending: no direct Drive writing tool available",
@@ -602,7 +602,7 @@
       "commit": "42410891edbeb51d9b9a3ad4ba69eacdc81b7fa7",
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Complete M2D full/native/clean CI; eight other original policies and56 additional moves remain, no placeholder IDs or invented distribution.",
+      "next_action": "Finish Roar full/native CI and merge verified scope; continue remaining originals/new moves without placeholders or invented distribution.",
       "checkpoint": "Merged PP/foundations/UI/original-data chain; production4f7f71d7, final tested head85032f28, remote full534051 PASS; no56 new move IDs enabled",
       "source_exports": [
         "03_MOVES/Pokémon Lightning Yellow — Approved Move Change Ledger — Source Verbatim v0.1.txt",
@@ -1575,7 +1575,7 @@
         "verified_main": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c"
       },
       "subtasks": {
-        "WRL-004-SIGN": "PR58 merged d97712dc; integrated CI42217742516 SUCCESS/full534699, focused463; no save/state/art changes or duplicate effort credit"
+        "WRL-004-SIGN": "Approved PR28 tip implemented on standalone feature/viridian-move-category-sign; build/exact-text/focused native463 PASS, full CI pending; no double-counted scope"
       }
     },
     {
@@ -2570,19 +2570,19 @@
       "dependencies": [],
       "status": {
         "design": "owner-approved or delegated design recorded in Drive",
-        "implementation": "not implemented on main; any specs/PRs noted in next action",
-        "automated": "not verified as full feature",
-        "emulator": "not verified as complete feature",
+        "implementation": "Six Lorelei/Bruno/Lance arrays implemented exactly; two Agatha arrays unchanged pending native alternate-slot restriction resolution",
+        "automated": "21 host suites/3 checkers PASS; exact six-array/pinned-spec audit and frozen non-scope source; build PASS",
+        "emulator": "Six exact native constructors PASS; Lorelei/Bruno four real victories PASS; latest both Lance victories/field/save PASS, valid EOS rival-name fixture fixed; latest full and integrated CI pending",
         "pull_request": "not merged gameplay",
         "merge": "not merged gameplay"
       },
-      "branch": null,
-      "commit": null,
-      "pr_url": null,
+      "branch": "feature/approved-elite-four-battles",
+      "commit": "a2cab5ad",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/60",
       "ci_url": null,
-      "blocker": "All four initial and four rematch owner-locked specs merged (PRs32/33/34/48/46), issue50 ready, gameplay code not done. Incremental eight-per-battle content beyond generic GYM-002 boss/leader wiring.",
+      "blocker": "Agatha requires native Inner Focus slot1 but current constructor always generates even PID/slot0. Contract says report unsupported customization; scoped selector proposal sent to owner, no global abilities altered.",
       "design_authority": "Lightning Yellow canonical Drive specialist registers and November 5 change intake",
-      "next_action": "All four initial and four rematch owner-locked specs merged (PRs32/33/34/48/46), issue50 ready, gameplay code not done. Incremental eight-per-battle content beyond generic GYM-002 boss/leader wiring.",
+      "next_action": "Finish six real League-room native battles, clean/full CI and merge independent completed subset; add Agatha only after scoped selector restriction resolved.",
       "checkpoint": "2026-11-06 fixed-scope intake; no gameplay implementation credit"
     },
     {
@@ -2683,19 +2683,19 @@
       "dependencies": [],
       "status": {
         "design": "owner-approved or delegated design recorded in Drive",
-        "implementation": "not implemented on main; any specs/PRs noted in next action",
-        "automated": "not verified as full feature",
-        "emulator": "not verified as complete feature",
-        "pull_request": "not merged gameplay",
+        "implementation": "Issue38 Aron50%/Magby50% eggs and TangelaLv25 TANGO implemented; Rocket quest remains separate",
+        "automated": "Existing20 hosts/3 checkers and new gift audit PASS; build PASS; clean/full CI pending",
+        "emulator": "Focused80112 (each5030/10000 actual Shiny) and Museum1306 PASS; full latest suite pending",
+        "pull_request": "PR59 three-gift scope open; Rocket separate",
         "merge": "not merged gameplay"
       },
-      "branch": null,
-      "commit": null,
-      "pr_url": null,
+      "branch": "feature/approved-gift-revisions",
+      "commit": "06b57e71",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/59",
       "ci_url": null,
       "blocker": "New approved museum Aron 50% Shiny, Water Labyrinth Magby 50% Shiny, Celadon Tangela TANGO, hideout Ralts/Snorunt return and Rocket executive scripts not in merged code; baseline WRL-004 handles common items/events infrastructure, not these content contracts.",
       "design_authority": "Lightning Yellow canonical Drive specialist registers and November 5 change intake",
-      "next_action": "New approved museum Aron 50% Shiny, Water Labyrinth Magby 50% Shiny, Celadon Tangela TANGO, hideout Ralts/Snorunt return and Rocket executive scripts not in merged code; baseline WRL-004 handles common items/events infrastructure, not these content contracts.",
+      "next_action": "Complete clean/full native/CI, merge verified gift scope; then separate Rocket quest implementation. No invented starter levels/events.",
       "checkpoint": "2026-11-06 fixed-scope intake; no gameplay implementation credit"
     }
   ],
