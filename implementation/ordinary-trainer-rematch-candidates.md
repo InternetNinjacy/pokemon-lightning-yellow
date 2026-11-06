@@ -42,7 +42,7 @@ This is a first-pass mechanical table for 132 numeric-suffix variants linked to 
 | `TRAINER_CAMPER_JEFF_2` | `TRAINER_CAMPER_JEFF` | CAMPER | Fearow / Nuzleaf | 21/21 | `ITEM_ORAN_BERRY` | Base family preserved; Moves and AI validation pending |
 | `TRAINER_CAMPER_JEFF_3` | `TRAINER_CAMPER_JEFF` | CAMPER | Fearow / Nuzleaf | 29/29 | `ITEM_ORAN_BERRY` | Base family preserved; Moves and AI validation pending |
 | `TRAINER_CAMPER_JEFF_4` | `TRAINER_CAMPER_JEFF` | CAMPER | Fearow / Shiftry | 54/54 | `ITEM_SITRUS_BERRY` | Base family preserved; Moves and AI validation pending |
-| `TRAINER_PICNICKER_ISABELLE_2` | `TRAINER_PICNICKER_ISABELLE` | PICNICKER | Skitty / Clefairy / Pidgeotto | 21/21/19 | `ITEM_ORAN_BERRY` | Base family preserved; Moves and AI validation pending |
+| `TRAINER_PICNICKER_ISABELLE_2` | `TRAINER_PICNICKER_ISABELLE` | PICNICKER | Skitty / Clefairy / Pidgeotto | 21/21/19 | `ITEM_NONE` | Base family preserved; Moves and AI validation pending |
 | `TRAINER_PICNICKER_ISABELLE_3` | `TRAINER_PICNICKER_ISABELLE` | PICNICKER | Skitty / Clefairy / Pidgeotto | 29/29/26 | `ITEM_ORAN_BERRY` | Base family preserved; Moves and AI validation pending |
 | `TRAINER_PICNICKER_ISABELLE_4` | `TRAINER_PICNICKER_ISABELLE` | PICNICKER | Delcatty / Clefable / Pidgeot | 47/47/50 | `ITEM_SITRUS_BERRY` | Base family preserved; Moves and AI validation pending |
 | `TRAINER_YOUNGSTER_YASU_2` | `TRAINER_YOUNGSTER_YASU` | YOUNGSTER | Phanpy / Tyrogue / Electrike | 22/22/22 | `ITEM_ORAN_BERRY` | Base family preserved; Moves and AI validation pending |
