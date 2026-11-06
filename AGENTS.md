@@ -234,3 +234,30 @@ record distinct. Original IDs/save fields remain unchanged; no new move rows may
 ship with placeholder effects or clipped names. Run all17 host suites/3 checkers
 and20 native groups; focused LIGHTNING_MOVE_FOUNDATION_ONLY=1. Preserve frozen
 source-delta normalizers and immutable test ROM copy. No merge/auto-merge.
+
+BTL-005-M1B completes battle/relearner long-name layouts on a separate child of
+PR40. Read docs/moves/LONG_NAME_UI_STATUS.md. Keep the shared168px name canvas,
+unique3-letter type/category tags and disjoint BG0 character allocations; reuse
+existing fonts/frame/cursors only. Retain all18 host suites/3 checkers and21 native
+groups, including LIGHTNING_LONG_MOVE_UI_ONLY=1. Test-only ROM name substitutions
+are not playable new moves. Preserve all original data/IDs/save/wire/art assets,
+frozen normalizers and parent acceptance. No merge/auto-merge.
+
+BTL-005-M2A implements only eight approved original-move data revisions. Read
+docs/moves/ORIGINAL_DATA_STATUS.md. Retain every effect/flag/target/priority and
+all other rows; Astonish Special is an owner exception, not a new GenIV default.
+Run19 host suites/3 checkers and22 native groups; focus
+LIGHTNING_ORIGINAL_MOVE_DATA_ONLY=1. Preserve frozen category/table baselines via
+the exact normalizer. Leech Life's lower PP and all custom effects remain separate
+technical work; no placeholder new IDs, inferred animation playback, merges or
+auto-merge. Source-field implementation is not every effect's runtime acceptance.
+
+BTL-005-M2B implements saved-PP compatibility and atomic Special80/10PP Leech Life.
+Read docs/moves/PP_COMPATIBILITY_STATUS.md. Preserve one-decrypt/checksum/encrypt
+per record, the unchanged invocation budget, spent PP/PP Ups, unknown/corrupt data,
+read-only Route5 recovery copy and independent pending eggs/mail/steps. Handle OK
+and recovered ERROR loads; skip EMPTY/INVALID/NO_FLASH. Keep lazy migration.
+Roar's data redesign is not enabled; its current maximum remains authoritative.
+Run all20 hosts/3 checkers and23 native groups; focus LIGHTNING_MOVE_PP_ONLY=1,
+full-PC stress LIGHTNING_PP_FULL_PC_ONLY=1. Keep frozen deltas and target ABI guards;
+never normalize runtime ROM data to make tests pass. No merge/auto-merge/release.

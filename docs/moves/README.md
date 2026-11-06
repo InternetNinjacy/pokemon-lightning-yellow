@@ -1,6 +1,6 @@
 # Move-system reconciliation — BTL-005
 
-Status: **inventory reconciled; owner decisions resolved; M1a implementation underway**.
+Status: **inventory reconciled; owner decisions resolved; M1a implemented; M1b UI implemented in PR41 (remote results at Checks)**.
 Historical baseline inspected: `92838e5eb64d19942cb5c51cfdef6991503ac3ad`, including the tested
 rival/weather/Gym integration. Main remains a separate, unmodified review baseline.
 Owner requested this reconciliation and remaining automated acceptance on Nov5.
@@ -122,7 +122,7 @@ from this approval. Distribution remains Phase Two and no learner rows are inven
 
 M1a name-buffer capacity and Curse type are implemented in the foundation branch;
 see [foundation status](FOUNDATION_STATUS.md). No56-move namespace or effects are
-yet enabled. Full battle/relearner layout adaptation precedes exposing long names.
+yet enabled. The separate [M1b UI child](LONG_NAME_UI_STATUS.md) adapts battle/relearner layouts and records its own acceptance. New IDs/effects still require correct implementation before exposure.
 Foul Play modifier research, effect translation, AI and new mechanics remain
 technical implementation work, not requests to reopen17 approved type reviews.
 
@@ -145,3 +145,17 @@ vanilla pre-split category table. The original upstream namespace is unchanged.
 Generated records distinguish the historical baseline commit from the current
 source fingerprint (`current_battle_moves_sha256`); current Curse fields are
 not falsely attributed to the original baseline commit.
+
+## M2a approved original data
+
+[PR42 eight-move data milestone](ORIGINAL_DATA_STATUS.md) implements ten approved
+fields and preserves specialized effects/other rows. Nine original policies now
+have implemented source fields including Curse; twelve policies and all56 new
+moves remain. Source implementation is not exhaustive runtime effect acceptance.
+
+## M2b saved PP and Leech Life
+
+[PR43 PP compatibility/Leech Life](PP_COMPATIBILITY_STATUS.md) safely caps old
+records and implements the atomic Special80/10 revision. Ten original policies
+now have implemented source fields including Curse; eleven and all56 new moves
+remain. Full latest-fixture remote acceptance is recorded in PR43 Checks.

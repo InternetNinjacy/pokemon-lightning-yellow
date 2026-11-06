@@ -1062,3 +1062,141 @@ Remote run conclusions in PR40 checks/review description remain distinct from
 local proof. Later evidence-only tip commits do not change the tested production
 source. Final milestone credit remains8/80, overall303/546=55.49% provisional; no
 extra credit for reruns. All remaining M1–M8 work and external coverage retained.
+
+## 2026-11-05 — BTL-005-M1B long-name UI
+
+Owner's continuous approved move-system implementation authorization; authoritative
+410-name inventory and November5 decisions unchanged. Separate child branch
+`feature/move-engine-long-name-ui`, parent PR40/ee3a0e3c; no changes to main or
+other PR heads. Previous64px battle cells/80px relearner list could clip approved
+13–15-character names. New shared168px battle canvas provides76px per name;
+88px relearner list plus compact numeric stats keeps full names and values.
+40px side pane uses unique three-letter type tags and PHYS/SPEC/STAT from the
+same authoritative move data, with PP preserved. Existing frame/cursor/font
+artwork reused; original assets, move data, IDs, save/wire layouts unchanged.
+
+Seven production files and frozen delta/test registrations are listed in
+`docs/moves/LONG_NAME_UI_STATUS.md`. Static audits now detect overlapping battle
+and relearner character allocations. Actual focused mGBA797 guarded assertions
+PASS, Single/Double/menu input/reordering/PP/flash persistence/partner/relearner
+scroll/cancel, all54 type/category combinations. Screenshots inspected locally;
+no binary artifacts uploaded. All18 host suites/3 checkers PASS. Full21-group,
+clean rebuild and remote CI are not inferred from focused success; final evidence
+is appended when executed. Revert child PR only for rollback; parent functionality
+preserved, no migration needed. Real peer link/hardware and full move-effects/
+animations remain separate. Drive synchronization pending.
+
+Current effective move-engine version: original354 playable moves with approved
+Ghost/Status Curse,15-character capacity and M1b full-name layouts;56 new IDs and
+new mechanics are not yet enabled. Provisional BTL-00510 earned/70 remaining,
+overall305/546=55.86%; credit within existing scope, no duplicate regression credit.
+
+### M1b final executed local acceptance / review reference
+
+Production source715e1dff255a6aacaa22498ca5fb62063a26d3dd: full21-group
+mGBA0.10.5 **PASS513858**, focused797, all18 host suites/3 checkers PASS.
+Clean rebuild identical SHA256d6b1a818de5441d399bba63152b3aede8617c9e3a14f6a8314aadbb5176206a0.
+BG0 window buffers retain the original344 tiles/11008 bytes, with disjoint
+allocations. PR41 https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/41
+is open against PR40; no merge/auto-merge. Actual remote CI conclusions belong to
+PR41 Checks/review description; local success is not a remote success claim.
+Later evidence-only commits preserve the production source above. Current earned
+credit remains305/546,55.86%; remaining namespace and M2–M8 are not counted complete.
+
+## 2026-11-05 — BTL-005-M2A eight approved original move revisions
+
+Production source5a2b96f707806c8a6658dc4ff4e1f3e7bf2fee3b, branch
+`feature/approved-original-move-data`, PR42:
+https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/42
+Parent PR41/3031dcdb retained, main/other PR heads untouched. Owner standing
+implementation authorization and supplied approved Move Register v1 with later
+owner updates govern the exact fields/evidence in approved-design-overlays.json.
+
+Twineedle25→40 power; Lick20→40; Outrage90→120; Mean Look Normal→Ghost;
+Astonish Physical30→Special50; Rock Tomb50/80→65/90; Silver Wind5→10PP;
+Icicle Spear10→25 per hit. Only production file src/data/battle_moves.h changed.
+All347 other rows (including NONE), effects, flags, targets, priority, unrelated
+PP/accuracy and saved IDs/layouts remain. No graphics/animation/script/learnset/TM
+changes. Historical category baseline/frozen source hashes retained with exact
+normalization; Astonish is an explicit owner exception. Reconciliation preserves
+REWORKED_ORIGINAL identity after implementation, with eight explicitly implemented
+data markers and twelve original policies still pending, not inferred complete.
+
+All19 hosts/3 checkers PASS. Native mGBA0.10.5 focused100/full22-group513952
+PASS: exact controlled base damage/stat/AI data calls, Astonish screens/burn,
+Lick Reflect/burn, Mean Look Status, Silver Wind10/16PP and legacy5PP flash
+persistence. These do not certify every retained specialized effect/animation
+scene. Clean identical11e457267e5f6dc958837ec3e83ae200c1e8b40eee96db4feca241fa5a5e221b.
+Actual PR42 remote conclusions remain in its Checks/review description, not
+inferred from local passes. Parent PR41 review42076325619/push42076316757 are
+both SUCCESS; actual remote mGBA0.10.2 PASS513858 at3031dcdb.
+
+Current effective move source: original354 IDs, Ghost/Status Curse, safe15-char
+capacity/full-name UI and these eight exact revisions. No56 new IDs/effects are
+enabled. Leech Life15→10PP and Roar20→15PP require tested saved-current-PP
+handling before their atomic revisions. Real peer link/hardware and remaining
+custom effects/animation/TM/namespace work are pending. Revert this child PR for
+rollback, preserving parents; use pre-feature saves or clamp Silver Wind PP to
+old5/8 maxima on downgrade. Automatic downgrade migration is not implemented.
+No merge/auto-merge or binary artifact release. Drive synchronization pending.
+
+Provisional BTL-00513 earned/67 remaining; overall308/546=56.41%. Three points
+within existing scope, no extra credit for reruns or unsupported56-move completion.
+
+## 2026-11-05 — BTL-005-M2B saved-PP compatibility / atomic Leech Life
+
+Production4f7f71d753d7c4840b22617b65095fd56d9b57f5; latest test refinements
+7c5334d0. Branch feature/move-pp-compatibility, PR43:
+https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/43
+Stacked on PR42/51df94f7, main and parent PR heads untouched. Owner standing
+implementation authority and Leech Life's precise OWNER_EXPLICIT Move Register
+fields/evidence in approved-design-overlays.json authorize Special80/10PP.
+
+Previously, old records could retain15/18/21/24 current PP above new10/12/14/16.
+Valid normal/recovered-backup loads now cap only excess Leech Life/Roar PP using
+the authoritative maximum; preserve spent PP, PP Ups, other fields and unrelated
+moves. Roar's current20PP/data behavior stays unchanged pending its separate
+redesign. Live/serialized party,420 PC slots and both daycares covered. Route5
+import remains lazy; only active copied parents capped, read-only recovery
+record preserved. Pending eggs/mail/steps/unknown/corrupt storage unchanged.
+No new save fields/version/offsets, erasure, RNG or immediate flash writes.
+
+src/pokemon.c adds a copy-based one-decrypt/checksum/encrypt helper reusing
+unchanged private primitives. src/move_pp_compatibility.c/header traverse sites;
+src/save.c handles OK and valid-backup ERROR but skips EMPTY/INVALID/NO_FLASH;
+src/route5_daycare.c caps the active legacy copy before publish. Only Leech Life's
+category/power/PP change in battle_moves.h; original drain/contact/flags/target/
+priority/accuracy/animation remain. No other row, ID, learnset, TM, asset, ability
+or trainer data change. Historical hashes/category baselines retained through
+exact frozen normalization; old host policy tests explicitly distinguish their
+normalized migration checks from real native crypto/save tests.
+
+All20 hosts/3 checkers PASS. Final native focus20105 PASS: all slots/PP Ups/
+values/24 block orders/Shiny/tagged Egg identity, encrypted exact-byte preservation,
+full420-PC stress within unchanged budget, real flash and corrupt-newer-slot
+backup recovery, invalid/unknown data protections, nonzero mail/steps and pending
+egg identities. Actual Single/Double Leech Life animation/HP drain and Liquid Ooze
+reversal, one PP consumed, Run/field/flash; numerical Special/stats/AI/screens/burn
+and Ether/PP Up/healing routines PASS. These item calls are not Bag UI proof.
+
+Optimized full23-group local534050 PASS before final one-assertion AI/negative
+fixture refinements; final focus20105 PASS afterward, production identical. Final
+full latest-fixture remote count/conclusions are in PR43 Checks/review description,
+never inferred. Clean identical8162003f6283a46766e453db66283287913bbd778ba171649f734d465689822c.
+Initial repeated-getter full-PC timeout was fixed, not relaxed; superseded full
+run stopped. A CPU-snapshot/flash-isolation test leak was fixed independently.
+
+Current effective source: original354 move IDs, ten source-field policies now
+implemented including Curse/nine original revisions, safe full-name UI and saved
+PP handling. Eleven original policies and all56 new moves/effects/animations/AI/
+TMs remain. Peer link/hardware, historical Quest Log party snapshots and exhaustive
+drain interactions remain unverified. Revert child PR only; capped PP stays below
+restored Leech Life15PP maximum, with no automatic refill or recovery re-import.
+Parent Silver Wind downgrade limitations remain. No merge/auto-merge or ROM release.
+Drive sync pending. Parent PR42 review42079507194/push42079496239 both SUCCESS,
+actual remote mGBA0.10.2 full513952 at51df94f7.
+
+Provisional BTL-00517 earned/63 remaining, overall312/546=57.14%. Four additional
+points within existing scope, not rerun/56-move credit. Dashboard narrative now
+uses the actual summed effort denominator rather than the old inconsistent
+historical arithmetic sentence; no task history or effort totals reset.

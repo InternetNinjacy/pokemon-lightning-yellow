@@ -283,7 +283,7 @@ static const struct WindowTemplate sWindowTemplates[9] = {
         .bg = 0,
         .tilemapLeft = 15,
         .tilemapTop = 0,
-        .width = 3,
+        .width = 2,
         .height = 5,
         .paletteNum = 15,
         .baseBlock = 0x061
@@ -308,9 +308,9 @@ static const struct WindowTemplate sWindowTemplates[9] = {
     },
     {
         .bg = 0,
-        .tilemapLeft = 19,
+        .tilemapLeft = 18,
         .tilemapTop = 1,
-        .width = 10,
+        .width = 11,
         .height = 12,
         .paletteNum = 15,
         .baseBlock = 0x0f1
@@ -322,7 +322,7 @@ static const struct WindowTemplate sWindowTemplates[9] = {
         .width = 26,
         .height = 4,
         .paletteNum = 15,
-        .baseBlock = 0x169
+        .baseBlock = 0x175
     }, DUMMY_WIN_TEMPLATE
 };
 
@@ -333,7 +333,7 @@ static const struct WindowTemplate sMoveRelearnerYesNoMenuTemplate = {
     .width = 6,
     .height = 4,
     .paletteNum = 15,
-    .baseBlock = 0x1d1
+    .baseBlock = 0x1dd
 };
 
 static const struct ListMenuTemplate sMoveRelearnerListMenuTemplate = {
@@ -350,10 +350,10 @@ static const struct ListMenuTemplate sMoveRelearnerListMenuTemplate = {
     .cursorPal = 2,
     .fillValue = 1,
     .cursorShadowPal = 3,
-    .lettersSpacing = 1,
+    .lettersSpacing = 0,
     .itemVerticalPadding = 0,
     .scrollMultiple = 0,
-    .fontId = FONT_NORMAL,
+    .fontId = FONT_SMALL,
     .cursorKind = 0,
 };
 
@@ -928,5 +928,9 @@ static void PrintTextOnWindow(u8 windowId, const u8 *str, u8 x, u8 y, s32 speed,
     }
     if (colorIdx != 1)
         FillWindowPixelBuffer(windowId, PIXEL_FILL(sMoveRelearner->textColor[0]));
-    AddTextPrinterParameterized4(windowId, FONT_NORMAL_COPY_2, x, y, letterSpacing, lineSpacing, sMoveRelearner->textColor, speed, str);
+    // Three-digit power/accuracy stay within the shortened stat pane.
+    if (windowId == 3)
+        AddTextPrinterParameterized4(windowId, FONT_SMALL, 0, y, 0, 0, sMoveRelearner->textColor, speed, str);
+    else
+        AddTextPrinterParameterized4(windowId, FONT_NORMAL_COPY_2, x, y, letterSpacing, lineSpacing, sMoveRelearner->textColor, speed, str);
 }

@@ -86,3 +86,10 @@ identical SHA256e9fe4bd0034278dc289eef2a6a61dc1b4f7ef2c9ed32834dc836e4f5d6b68b1e
 Target ABI measured offsets0x264/0x2AF/0x2B0 for original/expanded/aligned BG.
 This supersedes intermediate local counts above. Remote conclusions for the
 source and any evidence-only tip commit are linked in PR40, not inferred.
+
+## Subsequent M1b child
+
+The separate `feature/move-engine-long-name-ui` child now adapts the battle and
+relearner layouts. See [its status and evidence](LONG_NAME_UI_STATUS.md). The
+remaining-layout section above describes PR40 in isolation; M1b does not change
+PR40 or enable the56 new move IDs/effects.

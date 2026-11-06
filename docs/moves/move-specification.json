@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "baseline_source_commit": "92838e5eb64d19942cb5c51cfdef6991503ac3ad",
-  "current_battle_moves_sha256": "06c4997ade40a090339675d35060aac716b5be1d5cc5e93368cc2339b5c027ac",
+  "current_battle_moves_sha256": "8eea1b1843edfeb6b54ee16b2917e09c9b46aebef12a2f3fa1b12542e46d2a45",
   "scope": "Reconciliation only, no gameplay edits. Numeric proposed IDs/semantic effects/target values are NOT compiled constants. Runtime_verified false is not a failure claim.",
   "sources": {
     "register": {
@@ -2205,7 +2205,7 @@
       "current": {
         "category": "PHYSICAL",
         "type": "BUG",
-        "power": 25,
+        "power": 40,
         "accuracy": 100,
         "pp": 20,
         "priority": 0,
@@ -2255,13 +2255,8 @@
         "source_exists": true,
         "runtime_verified": false
       },
-      "delta": {
-        "power": {
-          "current": 25,
-          "approved": 40
-        }
-      },
-      "implementation_status": "PENDING_APPROVED_REDESIGN"
+      "delta": {},
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA"
     },
     {
       "id": 42,
@@ -6728,7 +6723,7 @@
       "current": {
         "category": "PHYSICAL",
         "type": "GHOST",
-        "power": 20,
+        "power": 40,
         "accuracy": 100,
         "pp": 30,
         "priority": 0,
@@ -6776,13 +6771,8 @@
         "source_exists": true,
         "runtime_verified": false
       },
-      "delta": {
-        "power": {
-          "current": 20,
-          "approved": 40
-        }
-      },
-      "implementation_status": "PENDING_APPROVED_REDESIGN",
+      "delta": {},
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA",
       "animation_candidate": {
         "key": "LICK",
         "name": "Lick",
@@ -7781,11 +7771,11 @@
       "identity": "REWORKED_ORIGINAL",
       "source_line": 1979,
       "current": {
-        "category": "PHYSICAL",
+        "category": "SPECIAL",
         "type": "BUG",
-        "power": 20,
+        "power": 80,
         "accuracy": 100,
-        "pp": 15,
+        "pp": 10,
         "priority": 0,
         "target": "MOVE_TARGET_SELECTED",
         "effect": "EFFECT_ABSORB",
@@ -7833,21 +7823,8 @@
         "source_exists": true,
         "runtime_verified": false
       },
-      "delta": {
-        "category": {
-          "current": "PHYSICAL",
-          "approved": "SPECIAL"
-        },
-        "power": {
-          "current": 20,
-          "approved": 80
-        },
-        "pp": {
-          "current": 15,
-          "approved": 10
-        }
-      },
-      "implementation_status": "PENDING_APPROVED_REDESIGN",
+      "delta": {},
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA",
       "animation_candidate": {
         "key": "LEECH_LIFE",
         "name": "Leech Life",
@@ -11085,7 +11062,7 @@
       "current": {
         "category": "PHYSICAL",
         "type": "DRAGON",
-        "power": 90,
+        "power": 120,
         "accuracy": 100,
         "pp": 15,
         "priority": 0,
@@ -11133,13 +11110,8 @@
         "source_exists": true,
         "runtime_verified": false
       },
-      "delta": {
-        "power": {
-          "current": 90,
-          "approved": 120
-        }
-      },
-      "implementation_status": "PENDING_APPROVED_REDESIGN",
+      "delta": {},
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA",
       "animation_candidate": {
         "key": "OUTRAGE",
         "name": "Outrage",
@@ -11792,7 +11764,7 @@
       "source_line": 2973,
       "current": {
         "category": "STATUS",
-        "type": "NORMAL",
+        "type": "GHOST",
         "power": 0,
         "accuracy": 100,
         "pp": 5,
@@ -11843,13 +11815,8 @@
         "source_exists": true,
         "runtime_verified": false
       },
-      "delta": {
-        "type": {
-          "current": "NORMAL",
-          "approved": "GHOST"
-        }
-      },
-      "implementation_status": "PENDING_APPROVED_REDESIGN"
+      "delta": {},
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA"
     },
     {
       "id": 213,
@@ -17147,9 +17114,9 @@
       "identity": "REWORKED_ORIGINAL",
       "source_line": 4345,
       "current": {
-        "category": "PHYSICAL",
+        "category": "SPECIAL",
         "type": "GHOST",
-        "power": 30,
+        "power": 50,
         "accuracy": 100,
         "pp": 15,
         "priority": 0,
@@ -17197,17 +17164,8 @@
         "source_exists": true,
         "runtime_verified": false
       },
-      "delta": {
-        "category": {
-          "current": "PHYSICAL",
-          "approved": "SPECIAL"
-        },
-        "power": {
-          "current": 30,
-          "approved": 50
-        }
-      },
-      "implementation_status": "PENDING_APPROVED_REDESIGN",
+      "delta": {},
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA",
       "animation_candidate": {
         "key": "ASTONISH",
         "name": "Astonish",
@@ -17572,8 +17530,8 @@
       "current": {
         "category": "PHYSICAL",
         "type": "ROCK",
-        "power": 50,
-        "accuracy": 80,
+        "power": 65,
+        "accuracy": 90,
         "pp": 10,
         "priority": 0,
         "target": "MOVE_TARGET_SELECTED",
@@ -17620,17 +17578,8 @@
         "source_exists": true,
         "runtime_verified": false
       },
-      "delta": {
-        "power": {
-          "current": 50,
-          "approved": 65
-        },
-        "accuracy": {
-          "current": 80,
-          "approved": 90
-        }
-      },
-      "implementation_status": "PENDING_APPROVED_REDESIGN",
+      "delta": {},
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA",
       "animation_candidate": {
         "key": "ROCK_TOMB",
         "name": "Rock Tomb",
@@ -17661,7 +17610,7 @@
         "type": "BUG",
         "power": 60,
         "accuracy": 100,
-        "pp": 5,
+        "pp": 10,
         "priority": 0,
         "target": "MOVE_TARGET_SELECTED",
         "effect": "EFFECT_ALL_STATS_UP_HIT",
@@ -17707,13 +17656,8 @@
         "source_exists": true,
         "runtime_verified": false
       },
-      "delta": {
-        "pp": {
-          "current": 5,
-          "approved": 10
-        }
-      },
-      "implementation_status": "PENDING_APPROVED_REDESIGN"
+      "delta": {},
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA"
     },
     {
       "id": 319,
@@ -18480,7 +18424,7 @@
       "current": {
         "category": "PHYSICAL",
         "type": "ICE",
-        "power": 10,
+        "power": 25,
         "accuracy": 100,
         "pp": 30,
         "priority": 0,
@@ -18530,13 +18474,8 @@
         "source_exists": true,
         "runtime_verified": false
       },
-      "delta": {
-        "power": {
-          "current": 10,
-          "approved": 25
-        }
-      },
-      "implementation_status": "PENDING_APPROVED_REDESIGN",
+      "delta": {},
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA",
       "animation_candidate": {
         "key": "ICICLE_SPEAR",
         "name": "Icicle Spear",

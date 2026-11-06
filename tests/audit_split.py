@@ -62,12 +62,12 @@ class SplitAudits(unittest.TestCase):
         encoding = {char: int(value, 16) for char, value in re.findall(r"^'(.)'\s*= ([0-9A-F]{2})$", source('charmap.txt'), re.M)}
         def width(text):
             return sum(widths[encoding[c]] for c in text)
-        types = re.search(r'const u8 gTypeNames.*?\n\};', source('src/battle_main.c'), re.S)[0]
+        types = re.search(r'sMoveTypeShortNames.*?\n\};', source('src/move_categories.c'), re.S)[0]
         names = re.findall(r'_\("([A-Z?]+)"\)', types)
         self.assertEqual(len(names), 18)
         for name in names:
             for category in ('PHYS', 'SPEC', 'STAT'):
-                self.assertLessEqual(width(name + '/' + category), 64)
+                self.assertLessEqual(width(name + '/' + category), 40)
         for category in ('PHYS', 'SPEC', 'STAT'):
             self.assertLessEqual(3 + width(category), 40)  # summary icon column
         # Geometry bounds: category list row fits before next icon; fifth fits pane.
