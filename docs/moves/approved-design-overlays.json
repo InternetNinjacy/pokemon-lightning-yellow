@@ -24,6 +24,11 @@
       "file": "Pokémon Lightning Yellow — Move System Design Completion & Main Thread Handoff — 2026-10-31.txt",
       "sha256": "059f858ed638125a0951a6b9d1823a5792727da42c7ae72dc4145beadf56595a",
       "lines": 74
+    },
+    "owner_20261105": {
+      "file": "OWNER_DECISIONS_2026-11-05.md",
+      "sha256": "9588cb03407772d91302e519c1609b392e4b999b3d7bb60bc53af7933a71eba0",
+      "lines": 8
     }
   },
   "source_commit": "92838e5eb64d19942cb5c51cfdef6991503ac3ad",
@@ -45,7 +50,8 @@
       ],
       "field_basis": {
         "power": "OWNER_EXPLICIT"
-      }
+      },
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA"
     },
     "PIN_MISSILE": {
       "fields": {
@@ -169,7 +175,8 @@
       "mechanic_notes": [],
       "field_basis": {
         "power": "OWNER_EXPLICIT"
-      }
+      },
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA"
     },
     "LEECH_LIFE": {
       "fields": {
@@ -191,7 +198,8 @@
         "category": "OWNER_EXPLICIT",
         "power": "OWNER_EXPLICIT",
         "pp": "OWNER_EXPLICIT"
-      }
+      },
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA"
     },
     "SPITE": {
       "fields": {
@@ -270,7 +278,8 @@
       "mechanic_notes": [],
       "field_basis": {
         "power": "OWNER_EXPLICIT"
-      }
+      },
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA"
     },
     "SANDSTORM": {
       "fields": {
@@ -306,7 +315,8 @@
       ],
       "field_basis": {
         "type": "OWNER_EXPLICIT"
-      }
+      },
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA"
     },
     "GRUDGE": {
       "fields": {
@@ -352,7 +362,8 @@
       "field_basis": {
         "category": "OWNER_EXPLICIT",
         "power": "OWNER_EXPLICIT"
-      }
+      },
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA"
     },
     "FAKE_TEARS": {
       "fields": {
@@ -387,7 +398,8 @@
       "field_basis": {
         "power": "OWNER_EXPLICIT",
         "accuracy": "OWNER_EXPLICIT"
-      }
+      },
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA"
     },
     "SILVER_WIND": {
       "fields": {
@@ -403,7 +415,8 @@
       "mechanic_notes": [],
       "field_basis": {
         "pp": "OWNER_EXPLICIT"
-      }
+      },
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA"
     },
     "ICICLE_SPEAR": {
       "fields": {
@@ -421,23 +434,22 @@
       ],
       "field_basis": {
         "power": "OWNER_EXPLICIT"
-      }
+      },
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA"
     },
     "CURSE": {
       "fields": {
-        "type": null
+        "type": "GHOST"
       },
       "evidence": [
         {
-          "source": "register",
-          "line": 566
+          "source": "owner_20261105",
+          "line": 3
         }
       ],
-      "mechanic_notes": [
-        "SPECIFICATION CONFLICT: GenIII source TYPE_MYSTERY; design calls Curse a Ghost inventory entry but category-only approval explicitly preserves other fields. Retain source in game until owner clarifies final type; no guessed retyping."
-      ],
+      "mechanic_notes": [],
       "field_basis": {
-        "type": "UNRESOLVED_CURSE_SOURCE_TYPE_VS_DESIGN_INVENTORY"
+        "type": "OWNER_EXPLICIT_2026_11_05"
       }
     }
   },
@@ -1510,7 +1522,7 @@
         "pp": 10,
         "priority": 0,
         "target": "SELECTED",
-        "effect": "FLINCH_20_MINIMIZE_REVIEW",
+        "effect": "FLINCH_20_GEN_IV_NO_MINIMIZE_BONUS",
         "secondaryEffectChance": 20,
         "flags": null
       },
@@ -1519,6 +1531,10 @@
           "source": "register",
           "line": 755,
           "excerpt": "2026-10-30 — DRAGON-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. ORIGINAL DRAGON MOVES under modern split: PHYSICAL Dragon Claw 80 BP/100 accuracy/15 PP unchanged; Outrage BUFFED to 120 BP/100 accuracy/15 PP with original 2–3-turn locked attack and subsequent u"
+        },
+        {
+          "source": "owner_20261105",
+          "line": 5
         }
       ],
       "field_basis": {
@@ -1529,18 +1545,22 @@
         "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
         "priority": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
         "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
-        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_GENIV_EDGE_CASES_2026_11_05",
         "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
         "flags": "REQUIRES_ENGINE_TRANSLATION"
       },
       "mechanic_notes": [
-        "FLINCH_20_MINIMIZE_REVIEW"
+        "Generation IV flinch20; no later-generation Minimize power/accuracy bonus.",
+        "Owner November5: Generation IV edge cases; retain unrelated GenIII engine rules."
       ],
       "implementation_status": "NOT_IMPLEMENTED",
       "delta": null,
       "effect_rules": {
         "semantic": "FLINCH_20_MINIMIZE_REVIEW",
-        "secondary_percent": 20
+        "secondary_percent": 20,
+        "reference_generation": 4,
+        "minimize_power_bonus": false,
+        "minimize_accuracy_bypass": false
       }
     },
     {
@@ -1749,7 +1769,7 @@
         "pp": 10,
         "priority": 0,
         "target": "SELECTED",
-        "effect": "DOUBLE_IF_ACTS_AFTER_TARGET_VERSION_REVIEW",
+        "effect": "DOUBLE_IF_ACTS_AFTER_TARGET_GEN_IV",
         "secondaryEffectChance": 0,
         "flags": null
       },
@@ -1758,6 +1778,10 @@
           "source": "register",
           "line": 767,
           "excerpt": "2026-10-30 — DARK-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Preserve the original Generation III Dark moves under post-split categories unless expressly changed; no buff to Crunch was approved. ADD THREE official later-generation DARK SPECIAL moves: Snarl 55"
+        },
+        {
+          "source": "owner_20261105",
+          "line": 5
         }
       ],
       "field_basis": {
@@ -1768,17 +1792,20 @@
         "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
         "priority": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
         "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
-        "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
+        "effect": "OWNER_EXPLICIT_GENIV_EDGE_CASES_2026_11_05",
         "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
         "flags": "REQUIRES_ENGINE_TRANSLATION"
       },
       "mechanic_notes": [
-        "DOUBLE_IF_ACTS_AFTER_TARGET_VERSION_REVIEW"
+        "DOUBLE_IF_ACTS_AFTER_TARGET_VERSION_REVIEW",
+        "Owner November5: Generation IV edge cases; retain unrelated GenIII engine rules."
       ],
       "implementation_status": "NOT_IMPLEMENTED",
       "delta": null,
       "effect_rules": {
-        "semantic": "DOUBLE_IF_ACTS_AFTER_TARGET_VERSION_REVIEW"
+        "semantic": "DOUBLE_IF_ACTS_AFTER_TARGET_VERSION_REVIEW",
+        "reference_generation": 4,
+        "switching_target_doubles_power": true
       }
     },
     {

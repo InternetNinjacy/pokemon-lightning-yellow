@@ -7,9 +7,49 @@ import re
 import struct
 import subprocess
 import tempfile
+import shutil
 
 # Generate ABI constants with the game's ARM compiler, never host offsetof.
 expressions = {
+ 'BMON_MAX_HP':'offsetof(struct BattlePokemon,maxHP)',
+ 'BOX_SECURE':'offsetof(struct BoxPokemon,secure)',
+ 'SAVE1_PARTY':'offsetof(struct SaveBlock1,playerParty)',
+ 'R5_VERSION':'offsetof(struct Route5DaycareSave,version)',
+ 'SECTOR_SIZE':'SECTOR_SIZE',
+ 'SECTOR_SIGNATURE':'offsetof(struct SaveSector,signature)',
+ 'SECTOR_CHECKSUM':'offsetof(struct SaveSector,checksum)',
+
+ 'BMOVE_POWER':'offsetof(struct BattleMove,power)',
+ 'BMOVE_TYPE':'offsetof(struct BattleMove,type)',
+ 'BMOVE_CATEGORY':'offsetof(struct BattleMove,category)',
+ 'BMOVE_ACCURACY':'offsetof(struct BattleMove,accuracy)',
+ 'WIN_WIDTH':'WINDOW_WIDTH',
+ 'WIN_HEIGHT':'WINDOW_HEIGHT',
+ 'WIN_LEFT':'WINDOW_TILEMAP_LEFT',
+ 'MOVE_WINDOW':'B_WIN_MOVE_NAME_1',
+ 'PP_WINDOW':'B_WIN_PP',
+ 'TYPE_WINDOW':'B_WIN_MOVE_TYPE',
+ 'MOVEINFO_CUR_PP':'offsetof(struct ChooseMoveStruct,currentPp)',
+ 'MOVEINFO_MAX_PP':'offsetof(struct ChooseMoveStruct,maxPp)',
+ 'RELEARNER_BG':'offsetof(struct LearnMoveGfxResources,bg1TilemapBuffer)',
+ 'RELEARNER_INDEX':'offsetof(struct LearnMoveGfxResources,selectedIndex)',
+ 'SUMMARY_NAME_BUFFERS':'offsetof(struct PokemonSummaryScreenData,summary.moveNameStrBufs)',
+ 'MOVE_NAME_CAPACITY':'MOVE_NAME_LENGTH + 1',
+ 'BATTLE_TEXT_CAPACITY':'BATTLE_TEXT_BUFFER_SIZE',
+ 'BMSG_SIZE':'sizeof(struct BattleMsgData)',
+ 'BMSG_MOVE':'offsetof(struct BattleMsgData,currentMove)',
+ 'BMSG_TEXT':'offsetof(struct BattleMsgData,textBuffs)',
+ 'PSA_SIZE':'sizeof(struct PokemonSpecialAnim)',
+ 'PSA_FORGOTTEN':'offsetof(struct PokemonSpecialAnim,nameOfMoveForgotten)',
+ 'PSA_TEACH':'offsetof(struct PokemonSpecialAnim,nameOfMoveToTeach)',
+ 'PSA_CANCEL':'offsetof(struct PokemonSpecialAnim,cancelDisabled)',
+ 'PSA_SPECIES':'offsetof(struct PokemonSpecialAnim,species)',
+ 'RELEARNER_SIZE':'sizeof(struct LearnMoveGfxResources)',
+ 'RELEARNER_NAMES':'offsetof(struct LearnMoveGfxResources,listMenuStrbufs)',
+ 'RELEARNER_MOVES':'offsetof(struct LearnMoveGfxResources,learnableMoves)',
+ 'RELEARNER_COUNT':'offsetof(struct LearnMoveGfxResources,numLearnableMoves)',
+ 'RELEARNER_SLOT':'offsetof(struct LearnMoveGfxResources,selectedPartyMember)',
+
     "SAVE1_WEATHER_CONTEXT":"offsetof(struct SaveBlock1,unused_3D24)",
     "MAPHEADER_WEATHER":"offsetof(struct MapHeader,weather)",
     "MAPHEADER_TYPE":"offsetof(struct MapHeader,mapType)",
@@ -138,7 +178,7 @@ for key,expr in {
  'MAIL_WORDS':'offsetof(struct Mail,words)',
  'RESULT_CAUGHT':'offsetof(struct BattleResults,caughtMonSpecies)',
 }.items(): expressions[key]=expr
-for name in ['POKEBALL','SPECIES','HELD_ITEM','LEVEL','FRIENDSHIP','IS_EGG','ATK','DEF','HP','MAX_HP','MOVE1','MOVE2','MOVE3','MOVE4','PP1','PP2','PP3','PP4','NICKNAME','PERSONALITY','OT_NAME','OT_ID','HP_IV','SANITY_IS_BAD_EGG','ABILITY_NUM','MAIL','UNUSED_RIBBONS']:
+for name in ['STATUS','PP_BONUSES','POKEBALL','SPECIES','HELD_ITEM','LEVEL','FRIENDSHIP','IS_EGG','ATK','DEF','HP','MAX_HP','MOVE1','MOVE2','MOVE3','MOVE4','PP1','PP2','PP3','PP4','NICKNAME','PERSONALITY','OT_NAME','OT_ID','HP_IV','SANITY_IS_BAD_EGG','ABILITY_NUM','MAIL','UNUSED_RIBBONS']:
     expressions['DATA_'+name] = 'MON_DATA_'+name
 required = [
     "SetSavedWeather", "CB2_EndWildBattle", "CB2_EndTrainerBattle", "DynamicWeatherForMap", "DynamicWeatherForBattle", "DynamicWeatherAfterBattle", "DynamicWeatherUpdate", "WeatherContextValid", "GetCurrentWeather", "gWeatherPtr", "gMapHeader", "StartWildBattle",
@@ -241,6 +281,12 @@ required = [
     'ShowPokemonSummaryScreen', 'sMonSummaryScreen', 'sMoveSelectionCursorPos', 'gSideStatuses', 'gBattleStruct', 'gBattleScripting', 'gBattleMoveDamage', 'gDisplayedStringBattle',
 ]
 required += ['PewterCity_Gym_EventScript_Liam','CeruleanCity_Gym_EventScript_Diana','CeladonCity_Gym_EventScript_Mary','Cmd_setweatherballtype','gBattleMonForms','SaffronCity_Dojo_Text_NeedTwo']
+required += ['MonRestorePP','ExecuteTableBasedItemEffect']
+required += ['ClampApprovedMovePP','ClampApprovedDaycarePP','NormalizeLoadedMovePP','GetBoxMonData3','SetBoxMonData','SavePlayerParty','gSaveCounter']
+required += ['CalculatePPWithBonus','SetMonMoveSlot']
+required += ['GetWindowAttribute','MoveSelectionDisplayMoveNames','MoveSelectionDisplayPpString','MoveSelectionDisplayPpNumber','GetMoveTypeShortName','HandleMoveSwitching']
+required += ['TeachMoveRelearnerMove','CB2_MoveRelearner','GetBgTilemapBuffer']
+required += ['gMoveNames','GetStringWidth','StringCopy','AllocPSA','Free','AllocZeroed','sMoveRelearner','MoveRelearnerInitListMenuBuffersEtc','BufferStringBattle','gBattleTextBuff2','gBattleTextBuff3']
 required += ['Task_StartMenuHandleInput','sStartMenuCursorPos','sStartMenuOrder','Task_BagMenu_HandleInput','Task_HandleChooseMonInput','Task_EvolutionScene']
 symbols={}
 end_ewram=0
@@ -256,12 +302,14 @@ for line in subprocess.check_output(['arm-none-eabi-nm','-n','pokefirered.elf'],
 assert set(required)<=symbols.keys(), set(required)-symbols.keys()
 # Private input function names also exist in tutorial controllers. Verify the
 # selected local symbols belong to the actual player controller's address range.
-for name in ['HandleInputChooseAction','HandleInputChooseMove','HandleInputChooseTarget']:
+for name in ['HandleInputChooseAction','HandleInputChooseMove','HandleInputChooseTarget','MoveSelectionDisplayMoveNames','MoveSelectionDisplayMoveType','MoveSelectionDisplayPpNumber','HandleMoveSwitching']:
     assert symbols['SetControllerToPlayer'] < symbols[name] < symbols['SetControllerToOpponent'], name
 with tempfile.TemporaryDirectory(prefix='lightning-emulator-') as temp:
     temp=Path(temp)
-    source='#include "field_weather.h"\n#include <stddef.h>\n#include "global.h"\n#include "pokemon.h"\n#include "main.h"\n#include "task.h"\n'
+    source='#include "save.h"\n#include "field_weather.h"\n#include <stddef.h>\n#include "global.h"\n#include "pokemon.h"\n#include "main.h"\n#include "task.h"\n'
     source+='#include "text.h"\n#include "pokedex.h"\n#include "battle_controllers.h"\n#include "item_menu.h"\n#include "wild_encounter.h"\n#include "battle.h"\n#include "list_menu.h"\n#include "party_menu.h"\n#include "script.h"\n#include "field_player_avatar.h"\n'+screen_struct+'\n'+summary_struct+'\n'
+    learn=Path('src/learn_move.c').read_text();learn=learn[learn.index('struct LearnMoveGfxResources\n'):];learn=learn[:learn.index('\n};')+3]
+    source+='#include "battle_message.h"\n#include "pokemon_special_anim_internal.h"\n'+learn+'\n'
     source+='const unsigned long abi[] = {'+', '.join(expressions.values())+'};\n'
     (temp/'abi.c').write_text(source)
     with (temp/'abi.i').open('w') as out:
@@ -325,4 +373,5 @@ with tempfile.TemporaryDirectory(prefix='lightning-emulator-') as temp:
                   '-Wl,-rpath,'+prefix+'/usr/lib/x86_64-linux-gnu']
     command+=['-lmgba']
     subprocess.run(command,check=True)
-    subprocess.run([str(temp/'runner'),'pokefirered.gba'],check=True,env={**os.environ,'TZ':'UTC'})
+    shutil.copyfile('pokefirered.gba',temp/'test.gba')
+    subprocess.run([str(temp/'runner'),str(temp/'test.gba')],check=True,env={**os.environ,'TZ':'UTC'})

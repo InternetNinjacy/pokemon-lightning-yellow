@@ -1,11 +1,11 @@
 # Move engine architecture and acceptance milestones
 
-Planning only; no new gameplay is implemented by this reconciliation.
+Execution underway: M1a safe name capacity/Curse type in PR40; M1b battle and relearner layout implementation is its separate child. See FOUNDATION_STATUS.md and LONG_NAME_UI_STATUS.md for executed evidence and remaining namespace/effect work. M2a eight original data revisions are implemented separately in PR42; see ORIGINAL_DATA_STATUS.md. M2b saved-PP compatibility and atomic Leech Life are implemented separately in PR43; see PP_COMPATIBILITY_STATUS.md. No new move IDs are enabled yet.
 
 | Milestone | Main changes | Required acceptance |
 |---|---|---|
 | M1 Stable namespace/data/UI capacity | Append IDs355–410; MOVES_COUNT411; include/constants/moves.h; src/data/battle_moves.h; src/data/text/move_names.h; src/move_descriptions.c; extend15-char name support | Every valid ID one category/name/description/animation; NONE and count sentinels; long-name pixel-width/screenshots in battle/summary/learning/TM UI; old IDs/save layout unchanged |
-| M2 Approved original redesigns |20 policies in overlay; native battle scripts/effects; status targeting/global immunity/weather | Numeric and actual-turn tests for each changed effect; no unwanted forced-switch/multi-hit/Defense Curl behavior; all unaffected move fields preserved |
+| M2 Approved original redesigns |21 policies in overlay (including Curse type); native battle scripts/effects; status targeting/global immunity/weather | Numeric and actual-turn tests for each changed effect; no unwanted forced-switch/multi-hit/Defense Curl behavior; all unaffected move fields preserved |
 | M3 Reused standard effects | Existing hit/drain/recoil/crit/stat-drop/priority/trap/two-hit effects for new moves | Exact damage/stats/category, accuracy/PP/priority/target, recoil/drain rounded damage, per-hit procs/immunities; no accidental source-animation mechanic |
 | M4 Specialized mechanics | Grudge/Tidal lock sequence; Spite PP; conditional Dream Haunt/Avalanche/Acrobatics/Payback; Foul Play; Volt Switch; independent dual procs | Controlled seeds/stats and actual turns: lock/PP/miss/immunity reset, eligible/no-eligible PP, held-item removal, target stage/critical/burn/items/abilities, valid/no reserve/switch restrictions, independent50/50 and10/10 outcomes |
 | M5 Animation wiring | data/battle_anim_scripts.s; existing script/particle/sound reuse only | Actual Singles/Doubles player/opponent playback; substitutions/second targets/faint/miss/protect; cleanup/palette/background/sound return; owner visual review; no new graphical files |
@@ -66,8 +66,8 @@ behavior remain unless a named new move specifically requires another operand.
 Do not import unrelated GenIV mechanics or a trainer-AI overhaul.
 
 Unimplemented new moves cannot yet pass native battle/animation tests. A pending
-test contract is not a successfully executed test. Remaining ordinary Bag evolution
-and other old-feature acceptance can progress separately without waiting for these
+test contract is not a successfully executed test. Ordinary Bag evolution acceptance is complete in PR39;
+other old-feature acceptance can progress separately without waiting for these
 new effects. Real link peers/physical hardware, full natural progression and visual
 approval are separate evidence milestones. Foreign/vanilla peers using new IDs
 are unsafe unless a compatibility policy is enforced; never claim generic link

@@ -1,0 +1,77 @@
+{
+  "parent": "51df94f7126fcd5319b0b50319888486cde34aef",
+  "task": "BTL-005-M2B",
+  "files": {
+    "src/data/battle_moves.h": {
+      "before_sha256": "6da55e4d2eff37d6c6b6efdf7d8c483b43a0e1b1c2a5e783895b715c19ce3bc5",
+      "after_sha256": "8eea1b1843edfeb6b54ee16b2917e09c9b46aebef12a2f3fa1b12542e46d2a45",
+      "hunks": [
+        {
+          "before": "        .accuracy = 85,\n        .pp = 20,\n        .secondaryEffectChance = 0,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = 0,\n        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,\n    },\n\n    [MOVE_LEECH_LIFE] =\n    {\n        .category = MOVE_CATEGORY_PHYSICAL,\n        .effect = EFFECT_ABSORB,\n        .power = 20,\n        .type = TYPE_BUG,\n        .accuracy = 100,\n        .pp = 15,\n        .secondaryEffectChance = 0,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = 0,\n        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,\n    },\n\n    [MOVE_LOVELY_KISS] =\n    {\n        .category = MOVE_CATEGORY_STATUS,\n        .effect = EFFECT_SLEEP,\n",
+          "after": "        .accuracy = 85,\n        .pp = 20,\n        .secondaryEffectChance = 0,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = 0,\n        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,\n    },\n\n    [MOVE_LEECH_LIFE] =\n    {\n        .category = MOVE_CATEGORY_SPECIAL,\n        .effect = EFFECT_ABSORB,\n        .power = 80,\n        .type = TYPE_BUG,\n        .accuracy = 100,\n        .pp = 10,\n        .secondaryEffectChance = 0,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = 0,\n        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,\n    },\n\n    [MOVE_LOVELY_KISS] =\n    {\n        .category = MOVE_CATEGORY_STATUS,\n        .effect = EFFECT_SLEEP,\n"
+        }
+      ]
+    },
+    "src/pokemon.c": {
+      "before_sha256": "d313165478094c84b4acfe68e22f739baa3c772f6b65c48644a9b6ee1e34876a",
+      "after_sha256": "c3c4fe4a1002602795d8017b554ecdba25d9649cc0ce46f7beaac8232eb08f65",
+      "hunks": [
+        {
+          "before": "#define IS_POKEMON_C\n\n#include \"global.h\"\n#include \"wild_double_battle.h\"\n#include \"time_of_day.h\"\n#include \"custom_pokedex.h\"\n#include \"gflib.h\"\n#include \"random.h\"\n#include \"text.h\"\n#include \"data.h\"\n#include \"battle.h\"\n#include \"battle_anim.h\"\n#include \"item.h\"\n",
+          "after": "#define IS_POKEMON_C\n\n#include \"global.h\"\n#include \"move_pp_compatibility.h\"\n#include \"wild_double_battle.h\"\n#include \"time_of_day.h\"\n#include \"custom_pokedex.h\"\n#include \"gflib.h\"\n#include \"random.h\"\n#include \"text.h\"\n#include \"data.h\"\n#include \"battle.h\"\n#include \"battle_anim.h\"\n#include \"item.h\"\n"
+        },
+        {
+          "before": "\n        for (i = 0; otName[i] != EOS; i++)\n            if (otName[i] != gSaveBlock2Ptr->playerName[i])\n                return TRUE;\n        return FALSE;\n    }\n\n    return TRUE;\n}\n\nvoid MonRestorePP(struct Pokemon *mon)\n{\n    BoxMonRestorePP(&mon->box);\n}\n\nvoid BoxMonRestorePP(struct BoxPokemon *boxMon)\n{\n    int i;\n\n    for (i = 0; i < MAX_MON_MOVES; i++)\n",
+          "after": "\n        for (i = 0; otName[i] != EOS; i++)\n            if (otName[i] != gSaveBlock2Ptr->playerName[i])\n                return TRUE;\n        return FALSE;\n    }\n\n    return TRUE;\n}\n\n// Only approved PP reductions are eligible. Reuse the existing private crypto\n// primitives once per record so a fully occupied PC does not repeatedly decrypt\n// each field. Invalid records and the original encrypted bytes remain untouched.\nbool8 ClampApprovedMovePP(struct BoxPokemon *mon)\n{\n    struct BoxPokemon copy;\n    struct PokemonSubstruct0 *growth;\n    struct PokemonSubstruct1 *attacks;\n    u16 move;\n    u8 slot, maximum;\n    bool8 changed = FALSE;\n\n    if (!mon->hasSpecies || mon->isBadEgg)\n        return FALSE;\n    copy = *mon;\n    DecryptBoxMon(&copy);\n    if (CalculateBoxMonChecksum(&copy) != copy.checksum)\n        return FALSE;\n    growth = &GetSubstruct(&copy, copy.personality, 0)->type0;\n    if (growth->species == SPECIES_NONE || growth->species >= NUM_SPECIES)\n        return FALSE;\n    attacks = &GetSubstruct(&copy, copy.personality, 1)->type1;\n    for (slot = 0; slot < MAX_MON_MOVES; slot++)\n    {\n        move = attacks->moves[slot];\n        // Roar retains its current maximum until its separate damage redesign.\n        if (move != MOVE_LEECH_LIFE && move != MOVE_ROAR)\n            continue;\n        maximum = CalculatePPWithBonus(move, growth->ppBonuses, slot);\n        if (attacks->pp[slot] > maximum)\n        {\n            attacks->pp[slot] = maximum;\n            changed = TRUE;\n        }\n    }\n    if (changed)\n    {\n        copy.checksum = CalculateBoxMonChecksum(&copy);\n        EncryptBoxMon(&copy);\n        *mon = copy;\n    }\n    return changed;\n}\n\nvoid MonRestorePP(struct Pokemon *mon)\n{\n    BoxMonRestorePP(&mon->box);\n}\n\nvoid BoxMonRestorePP(struct BoxPokemon *boxMon)\n{\n    int i;\n\n    for (i = 0; i < MAX_MON_MOVES; i++)\n"
+        }
+      ]
+    },
+    "src/save.c": {
+      "before_sha256": "24f0b70d72cc83c50f7b2d6d73cb211c9b1272ab5fa40dc1d553ad48d1f4511c",
+      "after_sha256": "8373d7b16b64a513e58962b20b7a4319d818557f36a572a9cd7865a6bbfae2a2",
+      "hunks": [
+        {
+          "before": "#include \"global.h\"\n#include \"save.h\"\n#include \"decompress.h\"\n#include \"overworld.h\"\n#include \"load_save.h\"\n#include \"task.h\"\n#include \"link.h\"\n#include \"save_failed_screen.h\"\n#include \"fieldmap.h\"\n#include \"pokemon_storage_system.h\"\n#include \"gba/flash_internal.h\"\n",
+          "after": "#include \"global.h\"\n#include \"move_pp_compatibility.h\"\n#include \"save.h\"\n#include \"decompress.h\"\n#include \"overworld.h\"\n#include \"load_save.h\"\n#include \"task.h\"\n#include \"link.h\"\n#include \"save_failed_screen.h\"\n#include \"fieldmap.h\"\n#include \"pokemon_storage_system.h\"\n#include \"gba/flash_internal.h\"\n"
+        },
+        {
+          "before": "    }\n\n    UpdateSaveAddresses();\n    switch (saveType)\n    {\n    case SAVE_NORMAL:\n    default:\n        result = TryLoadSaveSlot(FULL_SAVE_SLOT, gRamSaveSectorLocations);\n        LoadSerializedGame();\n        gSaveFileStatus = result;\n        gGameContinueCallback = NULL;\n        break;\n    case SAVE_HALL_OF_FAME:\n        result = TryLoadSaveSector(SECTOR_ID_HOF_1, gDecompressionBuffer, SECTOR_DATA_SIZE);\n        if (result == SAVE_STATUS_OK)\n            result = TryLoadSaveSector(SECTOR_ID_HOF_2, gDecompressionBuffer + SECTOR_DATA_SIZE, SECTOR_DATA_SIZE);\n        break;\n    }\n\n    return result;\n",
+          "after": "    }\n\n    UpdateSaveAddresses();\n    switch (saveType)\n    {\n    case SAVE_NORMAL:\n    default:\n        result = TryLoadSaveSlot(FULL_SAVE_SLOT, gRamSaveSectorLocations);\n        LoadSerializedGame();\n        gSaveFileStatus = result;\n        // ERROR here can mean a valid backup was recovered after the other slot\n        // failed. EMPTY/INVALID/NO_FLASH do not authorize touching loaded records.\n        if (result == SAVE_STATUS_OK || result == SAVE_STATUS_ERROR)\n            NormalizeLoadedMovePP();\n        gGameContinueCallback = NULL;\n        break;\n    case SAVE_HALL_OF_FAME:\n        result = TryLoadSaveSector(SECTOR_ID_HOF_1, gDecompressionBuffer, SECTOR_DATA_SIZE);\n        if (result == SAVE_STATUS_OK)\n            result = TryLoadSaveSector(SECTOR_ID_HOF_2, gDecompressionBuffer + SECTOR_DATA_SIZE, SECTOR_DATA_SIZE);\n        break;\n    }\n\n    return result;\n"
+        }
+      ]
+    },
+    "src/route5_daycare.c": {
+      "before_sha256": "809343f929198553f818e1a88275c6f07a64c30e665283eea3794291ec95e880",
+      "after_sha256": "0466afe84d12ab06e1303147c0cf35ff36f63b31e01717b475cbca0948f06f81",
+      "hunks": [
+        {
+          "before": "#include <stddef.h>\n#include \"global.h\"\n#include \"route5_daycare.h\"\n#include \"pokemon.h\"\n#include \"overworld.h\"\n#include \"random.h\"\n#include \"constants/maps.h\"\n\nSTATIC_ASSERT(NUM_NATURES == 25 && SHINY_ODDS == 8, route5_shiny_policy_constants);\nSTATIC_ASSERT(sizeof(struct DayCare) == 0x11C, route5_daycare_size);\nSTATIC_ASSERT(sizeof(struct DaycareMon) == 0x8C, route5_daycare_mon_size);\nSTATIC_ASSERT(sizeof(struct Route5DaycareSave) == 400, route5_reserved_save_size);\n",
+          "after": "#include <stddef.h>\n#include \"global.h\"\n#include \"move_pp_compatibility.h\"\n#include \"route5_daycare.h\"\n#include \"pokemon.h\"\n#include \"overworld.h\"\n#include \"random.h\"\n#include \"constants/maps.h\"\n\nSTATIC_ASSERT(NUM_NATURES == 25 && SHINY_ODDS == 8, route5_shiny_policy_constants);\nSTATIC_ASSERT(sizeof(struct DayCare) == 0x11C, route5_daycare_size);\nSTATIC_ASSERT(sizeof(struct DaycareMon) == 0x8C, route5_daycare_mon_size);\nSTATIC_ASSERT(sizeof(struct Route5DaycareSave) == 400, route5_reserved_save_size);\n"
+        },
+        {
+          "before": "            return NULL;\n        return &save->daycare;\n    }\n    for (i = 0; i < sizeof(*save); i++)\n        if (bytes[i] != 0)\n            return NULL;\n    // Copy the COMPLETE record: encrypted box data, mail and accumulated steps.\n    // Keep the legacy record untouched as a forensic recovery copy. A recognized\n    // version never imports it again, even after the upgraded daycare is empty.\n    save->daycare.mons[0] = gSaveBlock1Ptr->route5DayCareMon;\n    save->version = ROUTE5_DAYCARE_VERSION;\n    save->magic = ROUTE5_DAYCARE_MAGIC; // publish only after initialization\n    return &save->daycare;\n}\n\nbool8 IsRoute5DaycareReady(void)\n{\n    return GetRoute5Daycare() != NULL;\n}\n\n",
+          "after": "            return NULL;\n        return &save->daycare;\n    }\n    for (i = 0; i < sizeof(*save); i++)\n        if (bytes[i] != 0)\n            return NULL;\n    // Copy the COMPLETE record: encrypted box data, mail and accumulated steps.\n    // Keep the legacy record untouched as a forensic recovery copy. A recognized\n    // version never imports it again, even after the upgraded daycare is empty.\n    save->daycare.mons[0] = gSaveBlock1Ptr->route5DayCareMon;\n    ClampApprovedDaycarePP(&save->daycare);\n    save->version = ROUTE5_DAYCARE_VERSION;\n    save->magic = ROUTE5_DAYCARE_MAGIC; // publish only after initialization\n    return &save->daycare;\n}\n\nbool8 IsRoute5DaycareReady(void)\n{\n    return GetRoute5Daycare() != NULL;\n}\n\n"
+        }
+      ]
+    },
+    "tests/move_categories.json": {
+      "before_sha256": "52defed9b90da2374f045b11a192ff6fe50dd541b249a2163e46c84910b544f3",
+      "after_sha256": "bc785ad245cdea81c1b3822e1cae2107eecae6ed661efced3ea726e6ae3b5fbe",
+      "hunks": [
+        {
+          "before": "  \"MOVE_SPIKE_CANNON\": \"PHYSICAL\",\n  \"MOVE_CONSTRICT\": \"PHYSICAL\",\n  \"MOVE_AMNESIA\": \"STATUS\",\n  \"MOVE_KINESIS\": \"STATUS\",\n  \"MOVE_SOFT_BOILED\": \"STATUS\",\n  \"MOVE_HI_JUMP_KICK\": \"PHYSICAL\",\n  \"MOVE_GLARE\": \"STATUS\",\n  \"MOVE_DREAM_EATER\": \"SPECIAL\",\n  \"MOVE_POISON_GAS\": \"STATUS\",\n  \"MOVE_BARRAGE\": \"PHYSICAL\",\n  \"MOVE_LEECH_LIFE\": \"PHYSICAL\",\n  \"MOVE_LOVELY_KISS\": \"STATUS\",\n  \"MOVE_SKY_ATTACK\": \"PHYSICAL\",\n  \"MOVE_TRANSFORM\": \"STATUS\",\n  \"MOVE_BUBBLE\": \"SPECIAL\",\n  \"MOVE_DIZZY_PUNCH\": \"PHYSICAL\",\n  \"MOVE_SPORE\": \"STATUS\",\n  \"MOVE_FLASH\": \"STATUS\",\n  \"MOVE_PSYWAVE\": \"SPECIAL\",\n  \"MOVE_SPLASH\": \"STATUS\",\n  \"MOVE_ACID_ARMOR\": \"STATUS\",\n",
+          "after": "  \"MOVE_SPIKE_CANNON\": \"PHYSICAL\",\n  \"MOVE_CONSTRICT\": \"PHYSICAL\",\n  \"MOVE_AMNESIA\": \"STATUS\",\n  \"MOVE_KINESIS\": \"STATUS\",\n  \"MOVE_SOFT_BOILED\": \"STATUS\",\n  \"MOVE_HI_JUMP_KICK\": \"PHYSICAL\",\n  \"MOVE_GLARE\": \"STATUS\",\n  \"MOVE_DREAM_EATER\": \"SPECIAL\",\n  \"MOVE_POISON_GAS\": \"STATUS\",\n  \"MOVE_BARRAGE\": \"PHYSICAL\",\n  \"MOVE_LEECH_LIFE\": \"SPECIAL\",\n  \"MOVE_LOVELY_KISS\": \"STATUS\",\n  \"MOVE_SKY_ATTACK\": \"PHYSICAL\",\n  \"MOVE_TRANSFORM\": \"STATUS\",\n  \"MOVE_BUBBLE\": \"SPECIAL\",\n  \"MOVE_DIZZY_PUNCH\": \"PHYSICAL\",\n  \"MOVE_SPORE\": \"STATUS\",\n  \"MOVE_FLASH\": \"STATUS\",\n  \"MOVE_PSYWAVE\": \"SPECIAL\",\n  \"MOVE_SPLASH\": \"STATUS\",\n  \"MOVE_ACID_ARMOR\": \"STATUS\",\n"
+        }
+      ]
+    }
+  },
+  "added_files": {
+    "include/move_pp_compatibility.h": "da540f68f15c7a7b297ca83767e0e7ab6de938002b04006a6a6fd75d75903a1a",
+    "src/move_pp_compatibility.c": "0940b2b0e0a9006ed17c7152a2d438abdc13a9eaac4f39c819e1d0c7c3f34966"
+  },
+  "preserved_files": {
+    "include/global.h": "23fa42f2fcf687daf2347f45465e828364cc1ad310aef8d91be093f2675f53a1",
+    "include/pokemon.h": "71ae9fafb36b5bc34e2fe6ba7e57061aa6fbfeb3e9e61b579d56345e8a9f1e5c",
+    "include/constants/moves.h": "79d5b93423006c25e6ee47355b15f403b2534616fd6b638e1755e5886d378194"
+  }
+}
