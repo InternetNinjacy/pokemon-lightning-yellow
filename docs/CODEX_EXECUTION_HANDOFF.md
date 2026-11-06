@@ -16,6 +16,7 @@ all checks, existing protections and no ROM release. No worktrees or force pushe
 -61 Ground-only Sandstorm/Rain Zap Cannon→15dacb95.
 - Main tree exactly equals verified PR61 head22314c35 tree
   `d6af90108bce62c464aca34297a026378a307419` (history differs, content identical).
+- Latest main push Actions42313545155 SUCCESS after63; game tree equals tested head.
 - Exact-head CI runs SUCCESS:56=42215345347;58=42217742516;
   59=42220799681;60=42221063828;61=42222085136. Each retained both jobs.
 - Local combined latest28-group native PASS753726;24 hosts/3 checkers PASS;
@@ -34,7 +35,8 @@ all checks, existing protections and no ROM release. No worktrees or force pushe
 -64 `maintenance/early-mgba-dependency`,143f05c0: install libmgba-dev with initial
   modified dependencies, bounded APT network/retry/lock waits, later dpkg check.
   Latest d3d38c7a: measured62.7MB/19min7s APT transfer; overall45min job,
-  unchanged20min native/all gates. Exact-head dispatch42314671025 pending. Fix was prompted by PR62 cancellation during24m35 package install;
+  unchanged20min native/all gates. Exact-head dispatch42314671025 pending.
+  Earlier30min run42311920113 cancelled; do not call that a game assertion failure. Fix was prompted by PR62 cancellation during24m35 package install;
   emulator tests never began, not an assertion failure. See CI_DEPENDENCY_STALL.md.
 -62 this documentation PR: workflow guidance plus populated handoff/tracker;
   incorporates65 historical snapshot with canonical histories/weights retained.

@@ -4,7 +4,7 @@
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
   "current_focus": "Merged63 Pin Missile/Dragon Rage with full754034/25hosts/clean and both CI PASS. New66 global Electric immunity and child67 spread statuses implemented,25hosts/3checkers/clean PASS, latest full/native CI pending. Maintenance64 measured slow62.7MB/19min7s installs, overall45min/native20min; exact-head CI pending. Tracking62 incorporates historical65 without duplicate effort. Preserve Agatha/follower/Trainer holds.",
-  "main_sha": "15dacb95424ffd394113849d10c3aa2f78c343ba",
+  "main_sha": "767bb39c4fb107418f86ecc247572630b3adf014",
   "drive_sync": {
     "status": "pending: no direct Drive writing tool available",
     "folder": "https://drive.google.com/drive/folders/1N_n0Ke48jBbdhUWSZWzwR6rpPFqpDUpl"
@@ -608,7 +608,7 @@
         "automated": "25 hosts/3 checkers and clean reproducibility PASS; exact-head Actions42311654769 and42311756718 SUCCESS",
         "emulator": "Full29-group754034 PASS, including focused314 Pin Missile/Dragon Rage assertions",
         "pull_request": "Merged40–43/56/61;63 pending",
-        "merge": "PR63 merged767bb39c4fb107418f86ecc247572630b3adf014"
+        "merge": "Main767bb39c includes63; exact-main Actions42313545155 SUCCESS. PR66/67 unmerged."
       },
       "branch": "feature/approved-roar-redesign",
       "commit": "42410891edbeb51d9b9a3ad4ba69eacdc81b7fa7",
@@ -672,7 +672,9 @@
       "subtasks": {
         "BTL-005-M2C": "Roar implemented; focused197/21 hosts/3 checkers/rebuild PASS; full/CI pending",
         "BTL-005-M2D": "Merged61/15dacb95; focused5389/24-host combined28-group753726, exact-head CI42222085136 SUCCESS",
-        "BTL-005-M2E": "Merged PR63/767bb39c: focused314/full754034/25hosts/3checkers/clean and exact-head CI PASS"
+        "BTL-005-M2E": "Merged PR63/767bb39c: focused314/full754034/25hosts/3checkers/clean and exact-head CI PASS",
+        "BTL-005-M2F": "PR66/f376e342 Electric paralysis immunity,25 hosts/3 checkers/clean PASS; initial focus949 PASS, latest full/CI pending",
+        "BTL-005-M2G": "Child PR67/1d74e8f8 three both-opponent status moves,25 hosts/3 checkers/clean PASS; initial focus1392 PASS, new guard controls/full/CI pending"
       }
     },
     {
