@@ -9,8 +9,8 @@
 - Living Change Intake: https://docs.google.com/document/d/1NpCjx3uboBMdBVqoFpMwXEyVkDquD37Kcp-FJBbYWnc/edit
 - Source: src/data/trainers.h, src/data/trainer_parties.h, src/data/pokemon/custom_pokedex.h, src/data/pokemon/evolution.h and all eight original Gym map scripts on repository default branch.
 - Historical owner progress 282/510 approvals; do not overwrite those. Source census gives **510 original ordinary Trainer IDs** after excluding exactly 41 Gym IDs and the five newer separate Ranger Camp/Park records; source now has 515 class-listed non-Gym IDs including those five.
-- Owner-approval reconciliation has confirmed further exact rosters. **Not all historical approved rosters have been reconstructed. Remaining undecoded owner approvals must be checked before code use**. Entries marked delegated proposal may therefore correspond to already-approved teams and MUST NOT be implemented without reconciliation against all approved dated Drive records. Do not infer approvals from this draft.
-- The generated alternatives below are **first-pass candidate teams, not certified final balance**. They respect the parsed class pool and 252 Dex at the species level, but have not passed trainer-by-trainer progression, rematch, moveset, AI or encounter script verification. These candidates do not supersede ANY original owner approvals.
+- Owner-approval reconciliation has confirmed further exact rosters. **Not all historical approved rosters have been reconstructed. Remaining undecoded owner approvals must be checked before code use**. Delegated designs may therefore overlap earlier owner approvals not yet reconstructed and MUST NOT be implemented without reconciliation against all approved dated Drive records. Do not infer approvals from this draft.
+- The 510 species lineups below are **design-stage selections, not certified final battle balance**. They respect the parsed class pool and 252 Dex at the species level, but have not passed trainer-by-trainer progression, rematch, moveset, AI or encounter script verification. These candidates do not supersede ANY original owner approvals.
 
 ## Method
 
@@ -19,14 +19,14 @@
 3. For clearly variant-suffixed records with existing bases, derive rematch candidates from the same original species families, with a separate rematch level-and-item draft. Higher rematch levels, legal new moves, and modest item upgrades are to be documented in a separately verified final pass, not invented as implemented.
 4. Preserve original classes, NPC dialogue, overworld placement, scripts, access gates, story events and Singles/Double formats unless separately authorized, including named Pattern Bush Ranger class conversions and Route24 Shane exception.
 5. Source move sets may be custom and are **not** legal for newly substituted species automatically. All move legality and item assignment must be verified against source mechanics, learnsets and actual unlock levels before this draft is marked ready.
-6. The current 282/510 approval milestone is separate from this automatic inventory and does not change because draft proposals exist.
+6. The 282/510 historical explicit-owner approval milestone is separate from this delegated draft inventory. Do not silently report 510 owner-validated teams until the 25 approval-record discrepancy is resolved.
 
 ## Audit summary
 
 - 510 source IDs, 132 records with numeric suffix matching an original base (a provisional rematch classifier, not proven VS Seeker linkage).
-- 257 exact teams recovered from register lines and explicit current conversation approvals; the other 253 rows are candidates and/or rematch variants, **not newly approved**. Earlier heuristic candidate-count statements are superseded by this correction.
+- Exact current roster state: 257 reconstructed previously owner-approved teams; 121 original-party teams curated under the Nov 6 design delegation; 132 family-preserving rematch teams curated under the same delegation. All 510 species rosters are now represented, but many combat tuning details and technical source event links are not final.
 - Original source party membership is preserved per row for traceability; values use canonical SPECIES symbols.
-- **Blocking step:** reconcile 264 historical approved parties and every scripted rematch source linkage, then run levels/moves/item/AI balance checks. No complete Codex implementation authorization yet.
+- **Blocking step:** reconcile the 25 historical owner approvals missing from the difference between the earlier 282-record tally and the 257 exact reconstructed parties and every scripted rematch source linkage, then run levels/moves/item/AI balance checks. No complete Codex implementation authorization yet.
 
 ## Source-ID ledger
 
