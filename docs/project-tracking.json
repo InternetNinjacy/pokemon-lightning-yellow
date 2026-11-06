@@ -3,7 +3,7 @@
   "updated": "2026-11-06",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "Owner-authorized consolidation merged approved rival/weather/Gym/integration and move/PP acceptance stack through PR43, plus approved spec PRs28/30/49/52. New owner priority is WRL-010 selectable followers after this consolidation; move-engine Roar remains queued. All prior code, evidence and earned task history retained. Fixed scope now explicitly includes six previously untracked commitments; no follower gameplay credit yet.",
+  "current_focus": "Standing autonomous execution active (AGENTS PR55 merged). Roar PR56 and Viridian sign PR58 await complete CI; approved issue38 three-gift corrections implemented on independent branch with focused80112+Museum1306 native PASS, full/clean CI pending. Follower reuse blocked, draft ordinary-Trainer PR57 is not implementation authority.",
   "main_sha": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c",
   "drive_sync": {
     "status": "pending: no direct Drive writing tool available",
@@ -2670,19 +2670,19 @@
       "dependencies": [],
       "status": {
         "design": "owner-approved or delegated design recorded in Drive",
-        "implementation": "not implemented on main; any specs/PRs noted in next action",
-        "automated": "not verified as full feature",
-        "emulator": "not verified as complete feature",
+        "implementation": "Issue38 Aron50%/Magby50% eggs and TangelaLv25 TANGO implemented; Rocket quest remains separate",
+        "automated": "Existing20 hosts/3 checkers and new gift audit PASS; build PASS; clean/full CI pending",
+        "emulator": "Focused80112 (each5030/10000 actual Shiny) and Museum1306 PASS; full latest suite pending",
         "pull_request": "not merged gameplay",
         "merge": "not merged gameplay"
       },
-      "branch": null,
+      "branch": "feature/approved-gift-revisions",
       "commit": null,
       "pr_url": null,
       "ci_url": null,
       "blocker": "New approved museum Aron 50% Shiny, Water Labyrinth Magby 50% Shiny, Celadon Tangela TANGO, hideout Ralts/Snorunt return and Rocket executive scripts not in merged code; baseline WRL-004 handles common items/events infrastructure, not these content contracts.",
       "design_authority": "Lightning Yellow canonical Drive specialist registers and November 5 change intake",
-      "next_action": "New approved museum Aron 50% Shiny, Water Labyrinth Magby 50% Shiny, Celadon Tangela TANGO, hideout Ralts/Snorunt return and Rocket executive scripts not in merged code; baseline WRL-004 handles common items/events infrastructure, not these content contracts.",
+      "next_action": "Complete clean/full native/CI, merge verified gift scope; then separate Rocket quest implementation. No invented starter levels/events.",
       "checkpoint": "2026-11-06 fixed-scope intake; no gameplay implementation credit"
     }
   ],

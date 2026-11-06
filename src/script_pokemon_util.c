@@ -88,7 +88,7 @@ u8 ScriptGiveEgg(u16 species)
 }
 
 // Special event prize. A full party must never send this egg to the PC.
-u16 ScriptGiveShinyFeebasEgg(void)
+u16 ScriptGiveMuseumAronEgg(void)
 {
     struct Pokemon *mon;
     u16 result;
@@ -100,7 +100,7 @@ u16 ScriptGiveShinyFeebasEgg(void)
     if (mon == NULL)
         return MON_CANT_GIVE;
 
-    CreateShinyEgg(mon, SPECIES_FEEBAS);
+    CreateHalfShinyGiftEgg(mon, SPECIES_ARON);
     result = GiveMonToPlayer(mon);
     Free(mon);
     return result;

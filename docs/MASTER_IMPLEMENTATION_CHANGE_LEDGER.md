@@ -1256,3 +1256,19 @@ next priority under merged implementation/selectable-following-pokemon.md;
 0/40 points, no follower code/asset coverage claimed. Roar remains queued.
 Follower source/graphics/license/save/opening feasibility gate must precede bulk
 imports or unsafe save migrations. Direct Drive synchronization remains pending.
+
+## 2026-11-06 — WRL-011-GIFTS / issue38 three owner-approved corrections
+
+- Museum guaranteed-Shiny Feebas→Aron50% genuine Shiny; Water Labyrinth Togepi→
+  Magby50%; roof EeveeLv25 nickname prompt→TangelaLv25 fixedTANGO. Existing one-time
+  bits/claimed saves preserved; no owned mon replaced, starter/Parcel untouched.
+- Added final-PID-at-creation binary-outcome helper and safe native gift specials;
+  preserve ordinary daycare/wild/other eggs, cycles, hatch/naming, party/PC and
+  gates. Museum special index unchanged; two specials appended inside table.
+- Exact source/delta/rollback details in docs/APPROVED_GIFT_REVISIONS.md. Historical
+  Museum docs retained with clear superseding effective-version note.
+- Existing20 hosts/3 checkers plus new gift audit PASS; build PASS; mGBA0.10.5
+  focused80112 PASS (Aron5030/10000,Magby5030/10000 stored trueShiny), Museum1306
+  PASS including real trivia, delayed claim, hatch/evolution and flash. Full/clean
+  CI pending initial commit; no completion/merge credit yet. No ROM assets/save
+  changes. New independent branch feature/approved-gift-revisions.
