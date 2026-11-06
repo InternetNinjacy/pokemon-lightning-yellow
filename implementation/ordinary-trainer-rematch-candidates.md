@@ -29,8 +29,8 @@ This is a first-pass mechanical table for 132 numeric-suffix variants linked to 
 | `TRAINER_LASS_JANICE_3` | `TRAINER_LASS_JANICE` | LASS | Skitty / Flaaffy | 28/28 | `ITEM_ORAN_BERRY` | Base family preserved; Moves and AI validation pending |
 | `TRAINER_YOUNGSTER_CHAD_4` | `TRAINER_YOUNGSTER_CHAD` | YOUNGSTER | Houndour / Electrike | 48/48 | `ITEM_SITRUS_BERRY` | Base family preserved; Moves and AI validation pending |
 | `TRAINER_HIKER_FRANKLIN_2` | `TRAINER_HIKER_FRANKLIN` | HIKER | Machop / Snorunt | 25/25 | `ITEM_ORAN_BERRY` | Base family preserved; Moves and AI validation pending |
-| `TRAINER_BIKER_GOON_2` | `TRAINER_BIKER_GOON` | BIKER | Weezing / Muk | 40/40 | `ITEM_SITRUS_BERRY` | Original base party size replaces source variant size; Moves and AI validation pending |
-| `TRAINER_BIKER_GOON_3` | `TRAINER_BIKER_GOON` | BIKER | Weezing / Muk | 40/40 | `ITEM_SITRUS_BERRY` | Original base party size replaces source variant size; Moves and AI validation pending |
+| `TRAINER_BIKER_GOON_2` | `TRAINER_BIKER_GOON` | BIKER | Weezing / Muk | 40/40 | `ITEM_SITRUS_BERRY` | Original base party size replaces source variant size; Moves and AI validation pending; NO_VS_SEEKER_SOURCE_LINK; DORMANT_NOT_PLAYABLE_BY_DEFAULT |
+| `TRAINER_BIKER_GOON_3` | `TRAINER_BIKER_GOON` | BIKER | Weezing / Muk | 40/40 | `ITEM_SITRUS_BERRY` | Original base party size replaces source variant size; Moves and AI validation pending; NO_VS_SEEKER_SOURCE_LINK; DORMANT_NOT_PLAYABLE_BY_DEFAULT |
 | `TRAINER_TWINS_ELI_ANNE_2` | `TRAINER_TWINS_ELI_ANNE` | TWINS | Flaaffy / Flaaffy | 28/28 | `ITEM_ORAN_BERRY` | Base family preserved; Moves and AI validation pending |
 | `TRAINER_POKEMANIAC_MARK_2` | `TRAINER_POKEMANIAC_MARK` | POKEMANIAC | Lickitung / Aerodactyl | 33/33 | `ITEM_ORAN_BERRY` | Base family preserved; Moves and AI validation pending |
 | `TRAINER_PICNICKER_KELSEY_2` | `TRAINER_PICNICKER_KELSEY` | PICNICKER | Eevee / Pikachu | 21/21 | `ITEM_ORAN_BERRY` | Base family preserved; Moves and AI validation pending |
@@ -158,3 +158,8 @@ This is a first-pass mechanical table for 132 numeric-suffix variants linked to 
 - [ ] Test difficulty with emulator encounters after separately authorized code implementation; do not claim balanced or tested from these tables alone.
 
 **No gameplay code changed; no merge permission.**
+
+
+### Verified versus-seeker source linkage
+
+The repository's current `src/vs_seeker.c` `sRematches` table links exactly 130 of these 132 numeric-suffix variant IDs to the correct base encounter and map. `TRAINER_BIKER_GOON_2` and `TRAINER_BIKER_GOON_3` are not linked and are not verified playable rematches. Keep both as dormant source-ID design candidates only until explicit event/source activation is authorized. Do not invent route events for them or count them in the active VS Seeker rematch roster. Source behavior of the remaining 130 is independently evidenced by their table references; exact rematch progression and battle playtesting remain separate.
