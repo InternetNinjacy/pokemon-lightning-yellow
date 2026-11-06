@@ -24,7 +24,10 @@ def render():
   r={'id':id,'key':key,'name':names.get(key,key),'identity':'ORIGINAL','source_line':raw[:m.start()].count('\n')+1,'current':cur,'approved':dict(cur),'evidence':[],'mechanic_notes':[],'field_basis':{f:'GENIII_RETAINED' if f!='category' else 'APPROVED_GENIV_SPLIT' for f in fields},'animation':{'assignment':'Move_'+key,'approval':'RETAIN_ORIGINAL','source_line':labels['Move_'+key],'source_exists':True,'runtime_verified':False}}
   if key in overlay['originals']:
    o=overlay['originals'][key];r['approved'].update(o['fields']);r['evidence']=o['evidence'];r['mechanic_notes']=o['mechanic_notes'];r['field_basis'].update(o['field_basis'])
-  r['delta']={k:{'current':cur[k],'approved':v} for k,v in r['approved'].items() if v!=cur[k]}
+  # Semantic owner effects remain in approved; explicit source translations are separate.
+  translated=overlay['originals'].get(key,{}).get('engine_translation',{})
+  if translated:r['engine_translation']=translated
+  r['delta']={k:{'current':cur[k],'approved':v} for k,v in r['approved'].items() if translated.get(k,v)!=cur[k]}
   if key in overlay['originals']:r['identity']='REWORKED_ORIGINAL'
   r['implementation_status']='PENDING_APPROVED_REDESIGN' if r['identity']=='REWORKED_ORIGINAL' else 'SOURCE_MATCHES_RETAINED_FIELDS'
   if key in overlay['originals'] and not r['delta'] and overlay['originals'][key].get('implementation_status')=='IMPLEMENTED_APPROVED_DATA':r['implementation_status']='IMPLEMENTED_APPROVED_DATA'

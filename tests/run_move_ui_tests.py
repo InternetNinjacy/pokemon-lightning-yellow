@@ -3,13 +3,14 @@
 from pathlib import Path
 import json,re,hashlib
 from approved_move_ui_changes import prior_move_ui_source
+from approved_roar_changes import prior_roar_source
 from approved_original_move_data_changes import prior_original_move_data_source
 f=json.loads(Path('tests/specifications/approved_move_ui_delta.json').read_text())
 for p,v in f.items():
  assert hashlib.sha256(Path(p).read_bytes()).hexdigest()==v['after_sha256'],p
  assert hashlib.sha256(prior_move_ui_source(p).encode()).hexdigest()==v['before_sha256'],p
 for p,sha in json.loads(Path('tests/specifications/move_ui_preserved.json').read_text()).items():
- data=prior_original_move_data_source(p).encode() if p=='src/data/battle_moves.h' else Path(p).read_bytes()
+ data=prior_original_move_data_source(p).encode() if p=='src/data/battle_moves.h' else prior_roar_source(p).encode() if p=='src/move_descriptions.c' else Path(p).read_bytes()
  assert hashlib.sha256(data).hexdigest()==sha,p
 source=Path('src/text.c').read_text();enc={c:int(v,16) for c,v in re.findall(r"^'(.)'\s*= ([0-9A-F]{2})$",Path('charmap.txt').read_text(),re.M)}
 widths=[int(x) for x in re.findall(r'\d+',re.search(r'sFontSmallLatinGlyphWidths\[\] =\s*\{(.*?)\};',source,re.S)[1])]
