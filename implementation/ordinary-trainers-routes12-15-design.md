@@ -102,7 +102,7 @@ The 24 numbered rematch variants tied to these routes have now been individually
 | `TRAINER_BIRD_KEEPER_MARLON_3` | Fearow / Dodrio / Fearow | 48 / 48 / 48 | `ITEM_SITRUS_BERRY` |
 | `TRAINER_BEAUTY_GRACE_2` | Gardevoir / Persian | 49 / 49 | `ITEM_SITRUS_BERRY` |
 | `TRAINER_BIRD_KEEPER_CHESTER_2` | Farfetch'd / Doduo / Doduo | 30 / 30 / 30 | `ITEM_ORAN_BERRY` |
-| `TRAINER_BIRD_KEEPER_CHESTER_3` | Dodrio / Dodrio / Dodrio | 48 / 48 / 48 | `ITEM_SITRUS_BERRY` |
+| `TRAINER_BIRD_KEEPER_CHESTER_3` | Farfetch'd / Dodrio / Dodrio | 48 / 48 / 48 | `ITEM_SITRUS_BERRY` |
 | `TRAINER_PICNICKER_BECKY_2` | Pikachu / Raichu | 32 / 32 | `ITEM_ORAN_BERRY` |
 | `TRAINER_PICNICKER_BECKY_3` | Raichu / Raichu | 49 / 49 | `ITEM_SITRUS_BERRY` |
 | `TRAINER_PICNICKER_BECKY_4` | Raichu / Raichu | 54 / 54 | `ITEM_SITRUS_BERRY` |
