@@ -1,0 +1,35 @@
+{
+  "scope": "BTL-005-M2C approved Roar only",
+  "files": {
+    "src/data/battle_moves.h": {
+      "before_sha256": "8eea1b1843edfeb6b54ee16b2917e09c9b46aebef12a2f3fa1b12542e46d2a45",
+      "after_sha256": "d8fbaf018807937d97e4e298e1ac9c411015883a12d315890c74bc7a6b467002",
+      "hunks": [
+        {
+          "before": "    [MOVE_ROAR] =\n    {\n        .category = MOVE_CATEGORY_STATUS,\n        .effect = EFFECT_ROAR,\n        .power = 0,\n        .type = TYPE_NORMAL,\n        .accuracy = 100,\n        .pp = 20,\n        .secondaryEffectChance = 0,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = -6,\n        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,\n    },",
+          "after": "    [MOVE_ROAR] =\n    {\n        .category = MOVE_CATEGORY_SPECIAL,\n        .effect = EFFECT_ATTACK_DOWN_HIT,\n        .power = 70,\n        .type = TYPE_NORMAL,\n        .accuracy = 100,\n        .pp = 15,\n        .secondaryEffectChance = 20,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = 0,\n        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,\n    },"
+        }
+      ]
+    },
+    "src/move_descriptions.c": {
+      "before_sha256": "1d6227e39ba85d694822a6b3a158c36b8ac3313ccf9e8d3264c67199bebaea0b",
+      "after_sha256": "b3a47fc1d181311eb5bf0b74e5432b1ac88bc42e8089f4ae0333aea0862ee10c",
+      "hunks": [
+        {
+          "before": "const u8 gMoveDescription_Roar[] = _(\"The foe is made to\\nswitch out with an\\nally. In the wild,\\nthe battle ends.\");",
+          "after": "const u8 gMoveDescription_Roar[] = _(\"A loud attack that\\nmay also lower\\nthe foe's ATTACK.\");"
+        }
+      ]
+    },
+    "tests/move_categories.json": {
+      "before_sha256": "bc785ad245cdea81c1b3822e1cae2107eecae6ed661efced3ea726e6ae3b5fbe",
+      "after_sha256": "27c34f85fb6101714266d222636baff1de33a04503b2a4fc49bc1a2626c8207a",
+      "hunks": [
+        {
+          "before": "\"MOVE_ROAR\": \"STATUS\"",
+          "after": "\"MOVE_ROAR\": \"SPECIAL\""
+        }
+      ]
+    }
+  }
+}

@@ -3,7 +3,7 @@
   "updated": "2026-11-06",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "Owner-authorized consolidation merged approved rival/weather/Gym/integration and move/PP acceptance stack through PR43, plus approved spec PRs28/30/49/52. New owner priority is WRL-010 selectable followers after this consolidation; move-engine Roar remains queued. All prior code, evidence and earned task history retained. Fixed scope now explicitly includes six previously untracked commitments; no follower gameplay credit yet.",
+  "current_focus": "Autonomous execution authorized November6 (AGENTS policy PR55); known prior feature stack merged. BTL-005-M2C Roar implemented with21 hosts/3 checkers, focused197 native and clean reproducibility PASS; full regression/CI pending. WRL-010 follower asset permission remains blocked; continue independent approved backlog.",
   "main_sha": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c",
   "drive_sync": {
     "status": "pending: no direct Drive writing tool available",
@@ -586,17 +586,17 @@
       ],
       "status": {
         "design": "Owner approved; November5 Curse/animation/GenIV edge choices resolved; PhaseTwo distribution remains separate",
-        "implementation": "Foundations/full-name UI, eight original revisions plus Special80/10 Leech Life and safe saved-PP normalization; no56 new IDs/effects enabled",
-        "automated": "20 host suites/3 static checkers and clean reproducibility PASS; PR43 review42093060136/push42093048274 both SUCCESS at85032f28",
-        "emulator": "Final full23-group remote mGBA0.10.2 PASS534051; local final focus20105, full-PC432; link/hardware and exhaustive effects remain separate",
+        "implementation": "Merged foundations/UI/eight original data/PP+Leech Life preserved; approved damaging Roar implemented on separate branch, full regression/CI pending",
+        "automated": "Roar21 host suites/3 checkers PASS; clean reproducible9cc3d287; no new56 move IDs",
+        "emulator": "Latest focused Roar197 PASS; full regression running, not yet claimed passed",
         "pull_request": "PR#43 merged; historical branch evidence retained",
         "merge": "merged to main; remaining feature scope/coverage is not inferred complete"
       },
-      "branch": "feature/move-pp-compatibility",
+      "branch": "feature/approved-roar-redesign",
       "commit": "4f7f71d753d7c4840b22617b65095fd56d9b57f5",
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "After requested follower implementation, continue approved Roar redesign and remaining original/new-move work; no placeholder effects or invented distributions.",
+      "next_action": "Finish Roar full/native CI and merge verified scope; continue remaining originals/new moves without placeholders or invented distribution.",
       "checkpoint": "Merged PP/foundations/UI/original-data chain; production4f7f71d7, final tested head85032f28, remote full534051 PASS; no56 new move IDs enabled",
       "source_exports": [
         "03_MOVES/Pokémon Lightning Yellow — Approved Move Change Ledger — Source Verbatim v0.1.txt",
@@ -650,6 +650,9 @@
         "pr": 43,
         "merge_commit": "6b444da2b81f6e52ce9f28250e8bce99613d15f9",
         "verified_main": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c"
+      },
+      "subtasks": {
+        "BTL-005-M2C": "Roar implemented; focused197/21 hosts/3 checkers/rebuild PASS; full/CI pending"
       }
     },
     {
