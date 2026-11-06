@@ -1,6 +1,6 @@
 # Move engine architecture and acceptance milestones
 
-Execution underway: M1a safe name capacity/Curse type in PR40; M1b battle and relearner layout implementation is its separate child. See FOUNDATION_STATUS.md and LONG_NAME_UI_STATUS.md for executed evidence and remaining namespace/effect work. No new move IDs are enabled yet.
+Execution underway: M1a safe name capacity/Curse type in PR40; M1b battle and relearner layout implementation is its separate child. See FOUNDATION_STATUS.md and LONG_NAME_UI_STATUS.md for executed evidence and remaining namespace/effect work. M2a eight original data revisions are implemented separately in PR42; see ORIGINAL_DATA_STATUS.md. M2b saved-PP compatibility and atomic Leech Life are implemented separately in PR43; see PP_COMPATIBILITY_STATUS.md. No new move IDs are enabled yet.
 
 | Milestone | Main changes | Required acceptance |
 |---|---|---|

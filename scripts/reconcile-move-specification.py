@@ -25,8 +25,9 @@ def render():
   if key in overlay['originals']:
    o=overlay['originals'][key];r['approved'].update(o['fields']);r['evidence']=o['evidence'];r['mechanic_notes']=o['mechanic_notes'];r['field_basis'].update(o['field_basis'])
   r['delta']={k:{'current':cur[k],'approved':v} for k,v in r['approved'].items() if v!=cur[k]}
-  if r['delta'] or r['mechanic_notes']:r['identity']='REWORKED_ORIGINAL'
+  if key in overlay['originals']:r['identity']='REWORKED_ORIGINAL'
   r['implementation_status']='PENDING_APPROVED_REDESIGN' if r['identity']=='REWORKED_ORIGINAL' else 'SOURCE_MATCHES_RETAINED_FIELDS'
+  if key in overlay['originals'] and not r['delta'] and overlay['originals'][key].get('implementation_status')=='IMPLEMENTED_APPROVED_DATA':r['implementation_status']='IMPLEMENTED_APPROVED_DATA'
   if key=='CURSE':r['identity']='REWORKED_ORIGINAL';r['implementation_status']='IMPLEMENTED_APPROVED_TYPE' if not r['delta'] else 'PENDING_APPROVED_REDESIGN'
   rows.append(r)
  assert len(rows)==354 and {r['id'] for r in rows}==set(range(1,355))

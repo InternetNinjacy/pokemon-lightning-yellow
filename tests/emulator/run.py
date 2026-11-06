@@ -11,6 +11,18 @@ import shutil
 
 # Generate ABI constants with the game's ARM compiler, never host offsetof.
 expressions = {
+ 'BMON_MAX_HP':'offsetof(struct BattlePokemon,maxHP)',
+ 'BOX_SECURE':'offsetof(struct BoxPokemon,secure)',
+ 'SAVE1_PARTY':'offsetof(struct SaveBlock1,playerParty)',
+ 'R5_VERSION':'offsetof(struct Route5DaycareSave,version)',
+ 'SECTOR_SIZE':'SECTOR_SIZE',
+ 'SECTOR_SIGNATURE':'offsetof(struct SaveSector,signature)',
+ 'SECTOR_CHECKSUM':'offsetof(struct SaveSector,checksum)',
+
+ 'BMOVE_POWER':'offsetof(struct BattleMove,power)',
+ 'BMOVE_TYPE':'offsetof(struct BattleMove,type)',
+ 'BMOVE_CATEGORY':'offsetof(struct BattleMove,category)',
+ 'BMOVE_ACCURACY':'offsetof(struct BattleMove,accuracy)',
  'WIN_WIDTH':'WINDOW_WIDTH',
  'WIN_HEIGHT':'WINDOW_HEIGHT',
  'WIN_LEFT':'WINDOW_TILEMAP_LEFT',
@@ -166,7 +178,7 @@ for key,expr in {
  'MAIL_WORDS':'offsetof(struct Mail,words)',
  'RESULT_CAUGHT':'offsetof(struct BattleResults,caughtMonSpecies)',
 }.items(): expressions[key]=expr
-for name in ['POKEBALL','SPECIES','HELD_ITEM','LEVEL','FRIENDSHIP','IS_EGG','ATK','DEF','HP','MAX_HP','MOVE1','MOVE2','MOVE3','MOVE4','PP1','PP2','PP3','PP4','NICKNAME','PERSONALITY','OT_NAME','OT_ID','HP_IV','SANITY_IS_BAD_EGG','ABILITY_NUM','MAIL','UNUSED_RIBBONS']:
+for name in ['STATUS','PP_BONUSES','POKEBALL','SPECIES','HELD_ITEM','LEVEL','FRIENDSHIP','IS_EGG','ATK','DEF','HP','MAX_HP','MOVE1','MOVE2','MOVE3','MOVE4','PP1','PP2','PP3','PP4','NICKNAME','PERSONALITY','OT_NAME','OT_ID','HP_IV','SANITY_IS_BAD_EGG','ABILITY_NUM','MAIL','UNUSED_RIBBONS']:
     expressions['DATA_'+name] = 'MON_DATA_'+name
 required = [
     "SetSavedWeather", "CB2_EndWildBattle", "CB2_EndTrainerBattle", "DynamicWeatherForMap", "DynamicWeatherForBattle", "DynamicWeatherAfterBattle", "DynamicWeatherUpdate", "WeatherContextValid", "GetCurrentWeather", "gWeatherPtr", "gMapHeader", "StartWildBattle",
@@ -269,6 +281,9 @@ required = [
     'ShowPokemonSummaryScreen', 'sMonSummaryScreen', 'sMoveSelectionCursorPos', 'gSideStatuses', 'gBattleStruct', 'gBattleScripting', 'gBattleMoveDamage', 'gDisplayedStringBattle',
 ]
 required += ['PewterCity_Gym_EventScript_Liam','CeruleanCity_Gym_EventScript_Diana','CeladonCity_Gym_EventScript_Mary','Cmd_setweatherballtype','gBattleMonForms','SaffronCity_Dojo_Text_NeedTwo']
+required += ['MonRestorePP','ExecuteTableBasedItemEffect']
+required += ['ClampApprovedMovePP','ClampApprovedDaycarePP','NormalizeLoadedMovePP','GetBoxMonData3','SetBoxMonData','SavePlayerParty','gSaveCounter']
+required += ['CalculatePPWithBonus','SetMonMoveSlot']
 required += ['GetWindowAttribute','MoveSelectionDisplayMoveNames','MoveSelectionDisplayPpString','MoveSelectionDisplayPpNumber','GetMoveTypeShortName','HandleMoveSwitching']
 required += ['TeachMoveRelearnerMove','CB2_MoveRelearner','GetBgTilemapBuffer']
 required += ['gMoveNames','GetStringWidth','StringCopy','AllocPSA','Free','AllocZeroed','sMoveRelearner','MoveRelearnerInitListMenuBuffersEtc','BufferStringBattle','gBattleTextBuff2','gBattleTextBuff3']
@@ -291,7 +306,7 @@ for name in ['HandleInputChooseAction','HandleInputChooseMove','HandleInputChoos
     assert symbols['SetControllerToPlayer'] < symbols[name] < symbols['SetControllerToOpponent'], name
 with tempfile.TemporaryDirectory(prefix='lightning-emulator-') as temp:
     temp=Path(temp)
-    source='#include "field_weather.h"\n#include <stddef.h>\n#include "global.h"\n#include "pokemon.h"\n#include "main.h"\n#include "task.h"\n'
+    source='#include "save.h"\n#include "field_weather.h"\n#include <stddef.h>\n#include "global.h"\n#include "pokemon.h"\n#include "main.h"\n#include "task.h"\n'
     source+='#include "text.h"\n#include "pokedex.h"\n#include "battle_controllers.h"\n#include "item_menu.h"\n#include "wild_encounter.h"\n#include "battle.h"\n#include "list_menu.h"\n#include "party_menu.h"\n#include "script.h"\n#include "field_player_avatar.h"\n'+screen_struct+'\n'+summary_struct+'\n'
     learn=Path('src/learn_move.c').read_text();learn=learn[learn.index('struct LearnMoveGfxResources\n'):];learn=learn[:learn.index('\n};')+3]
     source+='#include "battle_message.h"\n#include "pokemon_special_anim_internal.h"\n'+learn+'\n'

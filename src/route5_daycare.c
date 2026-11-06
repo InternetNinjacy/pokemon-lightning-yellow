@@ -1,5 +1,6 @@
 #include <stddef.h>
 #include "global.h"
+#include "move_pp_compatibility.h"
 #include "route5_daycare.h"
 #include "pokemon.h"
 #include "overworld.h"
@@ -39,6 +40,7 @@ struct DayCare *GetRoute5Daycare(void)
     // Keep the legacy record untouched as a forensic recovery copy. A recognized
     // version never imports it again, even after the upgraded daycare is empty.
     save->daycare.mons[0] = gSaveBlock1Ptr->route5DayCareMon;
+    ClampApprovedDaycarePP(&save->daycare);
     save->version = ROUTE5_DAYCARE_VERSION;
     save->magic = ROUTE5_DAYCARE_MAGIC; // publish only after initialization
     return &save->daycare;

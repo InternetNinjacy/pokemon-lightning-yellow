@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
 from approved_typing_changes import prior_typing_source
-"""Production save migration and Shiny identity policy; stubbed save/RNG state.
+"""Reviewed migration/Shiny policy, approved PP hook normalized; stubbed save/RNG state.
+Current PP/crypto/save behavior executes separately in native acceptance.
 Real breeding/crypto/hatching/scenes run separately in the compiled-ROM mGBA suite.
 """
 from pathlib import Path
 import subprocess, tempfile, json
 from run_split_tests import extract_function
-policy=Path('src/route5_daycare.c').read_text()
+from approved_move_pp_changes import prior_move_pp_source
+# Retain original migration-policy fixtures; new PP/crypto behavior runs natively.
+policy=prior_move_pp_source('src/route5_daycare.c')
 # Host pointer widths differ from the GBA. Production target ABI assertions stay
 # enabled in the ROM build; this host executable extracts only policy functions.
 functions='\n'.join(extract_function(policy,n) for n in ['GetRoute5Daycare','IsRoute5DaycareReady','IsRoute5Daycare','GetActiveDaycare','Route5EggPersonality','SetRoute5PendingEgg'])

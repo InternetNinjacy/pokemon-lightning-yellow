@@ -50,7 +50,8 @@
       ],
       "field_basis": {
         "power": "OWNER_EXPLICIT"
-      }
+      },
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA"
     },
     "PIN_MISSILE": {
       "fields": {
@@ -174,7 +175,8 @@
       "mechanic_notes": [],
       "field_basis": {
         "power": "OWNER_EXPLICIT"
-      }
+      },
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA"
     },
     "LEECH_LIFE": {
       "fields": {
@@ -196,7 +198,8 @@
         "category": "OWNER_EXPLICIT",
         "power": "OWNER_EXPLICIT",
         "pp": "OWNER_EXPLICIT"
-      }
+      },
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA"
     },
     "SPITE": {
       "fields": {
@@ -275,7 +278,8 @@
       "mechanic_notes": [],
       "field_basis": {
         "power": "OWNER_EXPLICIT"
-      }
+      },
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA"
     },
     "SANDSTORM": {
       "fields": {
@@ -311,7 +315,8 @@
       ],
       "field_basis": {
         "type": "OWNER_EXPLICIT"
-      }
+      },
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA"
     },
     "GRUDGE": {
       "fields": {
@@ -357,7 +362,8 @@
       "field_basis": {
         "category": "OWNER_EXPLICIT",
         "power": "OWNER_EXPLICIT"
-      }
+      },
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA"
     },
     "FAKE_TEARS": {
       "fields": {
@@ -392,7 +398,8 @@
       "field_basis": {
         "power": "OWNER_EXPLICIT",
         "accuracy": "OWNER_EXPLICIT"
-      }
+      },
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA"
     },
     "SILVER_WIND": {
       "fields": {
@@ -408,7 +415,8 @@
       "mechanic_notes": [],
       "field_basis": {
         "pp": "OWNER_EXPLICIT"
-      }
+      },
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA"
     },
     "ICICLE_SPEAR": {
       "fields": {
@@ -426,7 +434,8 @@
       ],
       "field_basis": {
         "power": "OWNER_EXPLICIT"
-      }
+      },
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA"
     },
     "CURSE": {
       "fields": {
