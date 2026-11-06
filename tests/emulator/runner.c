@@ -352,6 +352,7 @@ static void dexTests(void) {
 #include "move_pp_compatibility.c"
 #include "roar.c"
 #include "weather_moves.c"
+#include "original_effects.c"
 
 #include "viridian_sign.c"
 
@@ -394,6 +395,7 @@ int main(int argc,char **argv) {
     if(getenv("LIGHTNING_WILD_ONLY")){wildTests();printf("PASS: %u focused wild assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_DEX_ONLY")){dexTests();printf("PASS: focused Dex diagnostic\n");core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_PP_FULL_PC_ONLY")){ppFullPc();printf("PASS: %u full-PC PP assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_ORIGINAL_EFFECTS_ONLY")){originalEffectTests();printf("PASS: %u focused original-effect assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_WEATHER_MOVES_ONLY")){weatherMoveTests();printf("PASS: %u focused weather-move assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_ROAR_ONLY")){roarTests();printf("PASS: %u focused Roar assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
 
@@ -533,6 +535,7 @@ int main(int argc,char **argv) {
     movePpCompatibilityTests();
     roarTests();
     weatherMoveTests();
+    originalEffectTests();
 
     viridianSignTests();
 

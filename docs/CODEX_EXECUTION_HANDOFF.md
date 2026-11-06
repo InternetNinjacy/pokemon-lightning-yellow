@@ -1,6 +1,6 @@
 # Codex execution handoff — verified November6,2026
 
-Main audited: `15dacb95424ffd394113849d10c3aa2f78c343ba`.
+Main audited: `767bb39c4fb107418f86ecc247572630b3adf014` (PR63 merged).
 Standing owner authorization is in AGENTS.md (PR55): implement and merge verified
 approved work without routine permission. Preserve specific design/asset holds,
 all checks, existing protections and no ROM release. No worktrees or force pushes.
@@ -29,8 +29,8 @@ all checks, existing protections and no ROM release. No worktrees or force pushe
   Pin Missile, native user-level Dragon Rage, no ID/PP-max/learner changes.
  25 hosts/3 checkers PASS; focused native314 PASS; clean identical
  `f8d6d10d190bbb3e497406105954360713dce1a9371b94e8fe3122b83531a415`.
-  Full29-group local and live CI pending at this snapshot. Check current outcomes,
-  integrate workflow64 if merged, then merge63 only on passing applicable checks.
+  Full29-group754034 PASS; exact-head CI42311654769/42311756718 SUCCESS.
+  Merged767bb39c; both checks retained. GitHub401 was transient, now recovered.
 -64 `maintenance/early-mgba-dependency`,143f05c0: install libmgba-dev with initial
   modified dependencies, bounded APT network/retry/lock waits, later dpkg check.
   Actual CI pending. All host/native/clean/upstream gates and30/20-minute limits
@@ -59,7 +59,7 @@ Never alter the4-million ARM-call instruction guard or normalize runtime ROM dat
 
 ## Next three approved work units, after current PRs
 
-1. Finish/merge63 and64 with actual CI; validate main content/CI and update tracking.
+1. Finish/merge64 with actual CI, then62;63 is merged. Validate main and tracking.
 2. Approved remaining original move effects/targets/global Electric paralysis rule:
    SCARY_FACE,SCREECH,FAKE_TEARS,THUNDER_WAVE,SPITE,GRUDGE after63. Exact register,
    overlays and docs/moves/README.md are available; no new design question implied.

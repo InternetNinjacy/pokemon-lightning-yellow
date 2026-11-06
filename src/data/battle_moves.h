@@ -593,12 +593,12 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     [MOVE_PIN_MISSILE] =
     {
         .category = MOVE_CATEGORY_PHYSICAL,
-        .effect = EFFECT_MULTI_HIT,
-        .power = 14,
+        .effect = EFFECT_POISON_HIT,
+        .power = 55,
         .type = TYPE_BUG,
         .accuracy = 85,
         .pp = 20,
-        .secondaryEffectChance = 0,
+        .secondaryEffectChance = 30,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
@@ -1153,7 +1153,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     [MOVE_DRAGON_RAGE] =
     {
         .category = MOVE_CATEGORY_SPECIAL,
-        .effect = EFFECT_DRAGON_RAGE,
+        .effect = EFFECT_LEVEL_DAMAGE,
         .power = 1,
         .type = TYPE_DRAGON,
         .accuracy = 100,

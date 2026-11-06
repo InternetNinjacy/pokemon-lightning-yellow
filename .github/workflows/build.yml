@@ -57,6 +57,7 @@ jobs:
           python3 tests/run_elite_four_tests.py
 
           python3 tests/run_weather_move_tests.py
+          python3 tests/run_original_effect_tests.py
           python3 tests/run_rtc_tests.py
           python3 tests/run_evolution_tests.py
           python3 tests/run_ponyta_tests.py

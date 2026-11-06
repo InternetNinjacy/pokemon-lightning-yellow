@@ -3,7 +3,7 @@
   "updated": "2026-11-06",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "Autonomous policy55/Roar56/sign58/gifts59/six Elite Four60/weather61 merged with verified exact-head CI; combined28-group753726 and24 hosts PASS. M2E63 Pin Missile/Dragon Rage source+314/25-host/clean PASS, full/CI pending; CI dependency64 addresses observed apt stall without weaker checks. Handoff62 now populated. Preserve Agatha selector/follower permission/Trainer57 holds; source exports available.",
+  "current_focus": "PR63 Pin Missile/Dragon Rage merged767bb39c after25 hosts/3 checkers, clean reproducibility, full29-group754034 and both exact-head Actions runs PASS. CI64 and tracking62 pending. Six original policies/global Electric paralysis and56 new moves remain; retain Agatha/follower/Trainer holds.",
   "main_sha": "15dacb95424ffd394113849d10c3aa2f78c343ba",
   "drive_sync": {
     "status": "pending: no direct Drive writing tool available",
@@ -538,8 +538,8 @@
       "title": "410-move redesign",
       "aliases": [],
       "effort": {
-        "earned": 21,
-        "remaining": 59,
+        "earned": 23,
+        "remaining": 57,
         "unit": "provisional relative planning point",
         "confidence": "low",
         "history": [
@@ -590,6 +590,12 @@
             "earned": 21,
             "remaining": 59,
             "reason": "Merged weather61 Ground-only Sandstorm and Rain Zap Cannon,24-host/28-group combined753726 and exact-head CI PASS. Two points within80; Roar previous19 retained. M2E63 pending receives no credit."
+          },
+          {
+            "date": "2026-11-06",
+            "earned": 23,
+            "remaining": 57,
+            "reason": "M2E PR63 merged767bb39c: two exact approved effects,25 hosts/3 checkers, full29-group754034 native, clean reproducibility and both exact-head Actions runs PASS. Two points within existing80; all56 new moves still outstanding."
           }
         ]
       },
@@ -598,17 +604,17 @@
       ],
       "status": {
         "design": "Owner approved; November5 Curse/animation/GenIV edge choices resolved; PhaseTwo distribution remains separate",
-        "implementation": "Merged foundations/UI/PP/13 original policies including Roar/Sandstorm/Zap Cannon; M2E63 two originals on feature branch, no56 new IDs",
-        "automated": "Main24 hosts/3 checkers/clean reproducibility PASS; M2E25 hosts/3 checkers/clean PASS pending full CI",
-        "emulator": "Combined main28 groups753726 PASS; M2E focused314 PASS, full29/CI pending",
+        "implementation": "Merged foundations/UI/PP/15 original policies; six original policies/global Electric paralysis rule and56 new moves remain",
+        "automated": "25 hosts/3 checkers and clean reproducibility PASS; exact-head Actions42311654769 and42311756718 SUCCESS",
+        "emulator": "Full29-group754034 PASS, including focused314 Pin Missile/Dragon Rage assertions",
         "pull_request": "Merged40–43/56/61;63 pending",
-        "merge": "Current main15dacb95; M2E not merged"
+        "merge": "PR63 merged767bb39c4fb107418f86ecc247572630b3adf014"
       },
       "branch": "feature/approved-roar-redesign",
       "commit": "42410891edbeb51d9b9a3ad4ba69eacdc81b7fa7",
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Complete63/64 checks and merge verified work; six remaining originals/global Electric paralysis rule, then56 new moves; no placeholder IDs or invented distribution.",
+      "next_action": "Implement six remaining approved original policies/global Electric paralysis rule, then56 complete new moves, preserving distribution holds.",
       "checkpoint": "Merged PP/foundations/UI/original-data chain; production4f7f71d7, final tested head85032f28, remote full534051 PASS; no56 new move IDs enabled",
       "source_exports": [
         "03_MOVES/Pokémon Lightning Yellow — Approved Move Change Ledger — Source Verbatim v0.1.txt",
@@ -666,7 +672,7 @@
       "subtasks": {
         "BTL-005-M2C": "Roar implemented; focused197/21 hosts/3 checkers/rebuild PASS; full/CI pending",
         "BTL-005-M2D": "Merged61/15dacb95; focused5389/24-host combined28-group753726, exact-head CI42222085136 SUCCESS",
-        "BTL-005-M2E": "PR63/fbe59595 approved Pin Missile single55/poison and Dragon Rage user-level source, focused314/25-host/clean PASS; full/CI pending"
+        "BTL-005-M2E": "Merged PR63/767bb39c: focused314/full754034/25hosts/3checkers/clean and exact-head CI PASS"
       }
     },
     {
