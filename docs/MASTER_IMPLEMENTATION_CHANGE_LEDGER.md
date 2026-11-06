@@ -1256,3 +1256,22 @@ next priority under merged implementation/selectable-following-pokemon.md;
 0/40 points, no follower code/asset coverage claimed. Roar remains queued.
 Follower source/graphics/license/save/opening feasibility gate must precede bulk
 imports or unsafe save migrations. Direct Drive synchronization remains pending.
+
+## 2026-11-06 — GYM-009 independent six Elite Four party implementation
+
+- Issue50/eight exact merged contracts inspected. Only six Lorelei/Bruno/Lance
+  initial/rematch arrays changed; all metadata/scripts/save/Champion/rival and
+  both Agatha arrays preserved. Exact32 Pokémon/128 moves/held items,250/255 IV
+  policy, Lance six-member levels-only rematch, native ability slot0 choices.
+- All21 hosts/3 checkers and build PASS; native constructors verify all32 exact
+  abilities/items/levels/IVs/moves. Initial four actual room battles PASS; Lance
+  saw all6 but postbattle test input used stale battle controller. Fixture fixed
+  to gate battle controls, no assertion/timeout/production workaround. Final six
+  battle rerun/full/clean CI pending initial commit.
+- Both Agatha encounters explicitly not implemented: constructor forces even PID
+  and slot0 Synchronize, approved Inner Focus is slot1. Existing contract requires
+  conflict report; owner asked about narrowly scoped native selector. No global
+  species override or invented substitute. See docs/ELITE_FOUR_IMPLEMENTATION.md.
+- Standalone feature/approved-elite-four-battles; no effort/completion credit yet.
+  Revert six arrays safely, retaining prior histories/flags. New native fixtures
+  use deliberately boosted player stats, not balance or complete strategy proof.

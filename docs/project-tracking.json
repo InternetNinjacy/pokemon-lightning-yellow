@@ -3,8 +3,8 @@
   "updated": "2026-11-06",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "Owner-authorized consolidation merged approved rival/weather/Gym/integration and move/PP acceptance stack through PR43, plus approved spec PRs28/30/49/52. New owner priority is WRL-010 selectable followers after this consolidation; move-engine Roar remains queued. All prior code, evidence and earned task history retained. Fixed scope now explicitly includes six previously untracked commitments; no follower gameplay credit yet.",
-  "main_sha": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c",
+  "current_focus": "Autonomous policy PR55 and fully verified Roar PR56 merged. Independent sign PR58 and gift PR59 await complete integration CI; six Elite Four parties implemented/native constructor verified, actual battle rerun in progress after test-input fix. Two Agatha native-slot choices require scoped conflict resolution; no design substitutions. Followers and draft ordinary-Trainer heuristics remain blocked.",
+  "main_sha": "844b450e7b60b7f0699fef348ca8b7acb8d73824",
   "drive_sync": {
     "status": "pending: no direct Drive writing tool available",
     "folder": "https://drive.google.com/drive/folders/1N_n0Ke48jBbdhUWSZWzwR6rpPFqpDUpl"
@@ -2557,19 +2557,19 @@
       "dependencies": [],
       "status": {
         "design": "owner-approved or delegated design recorded in Drive",
-        "implementation": "not implemented on main; any specs/PRs noted in next action",
-        "automated": "not verified as full feature",
-        "emulator": "not verified as complete feature",
+        "implementation": "Six Lorelei/Bruno/Lance arrays implemented exactly; two Agatha arrays unchanged pending native alternate-slot restriction resolution",
+        "automated": "21 host suites/3 checkers PASS; exact six-array/pinned-spec audit and frozen non-scope source; build PASS",
+        "emulator": "All six native constructors exact32 members/128 moves/abilities/IVs PASS; actual battle rerun ongoing after stale-controller test input fix; full CI pending",
         "pull_request": "not merged gameplay",
         "merge": "not merged gameplay"
       },
-      "branch": null,
+      "branch": "feature/approved-elite-four-battles",
       "commit": null,
       "pr_url": null,
       "ci_url": null,
-      "blocker": "All four initial and four rematch owner-locked specs merged (PRs32/33/34/48/46), issue50 ready, gameplay code not done. Incremental eight-per-battle content beyond generic GYM-002 boss/leader wiring.",
+      "blocker": "Agatha requires native Inner Focus slot1 but current constructor always generates even PID/slot0. Contract says report unsupported customization; scoped selector proposal sent to owner, no global abilities altered.",
       "design_authority": "Lightning Yellow canonical Drive specialist registers and November 5 change intake",
-      "next_action": "All four initial and four rematch owner-locked specs merged (PRs32/33/34/48/46), issue50 ready, gameplay code not done. Incremental eight-per-battle content beyond generic GYM-002 boss/leader wiring.",
+      "next_action": "Finish six real League-room native battles, clean/full CI and merge independent completed subset; add Agatha only after scoped selector restriction resolved.",
       "checkpoint": "2026-11-06 fixed-scope intake; no gameplay implementation credit"
     },
     {
