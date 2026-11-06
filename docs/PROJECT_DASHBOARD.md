@@ -4,7 +4,7 @@ Canonical branch: `main`. Updated 2026-11-06. Audited gameplay revision: `15dacb
 
 Overall: `[#####-----]` **46.77% complete /53.23% remaining** (333 earned +379 remaining;712 provisional effort points).
 
-PR63 Pin Missile/Dragon Rage merged767bb39c after25 hosts/3 checkers, clean reproducibility, full29-group754034 and both exact-head Actions runs PASS. CI64 and tracking62 pending. Six original policies/global Electric paralysis and56 new moves remain; retain Agatha/follower/Trainer holds.
+Merged63 Pin Missile/Dragon Rage with full754034/25hosts/clean and both CI PASS. New66 global Electric immunity and child67 spread statuses implemented,25hosts/3checkers/clean PASS, latest full/native CI pending. Maintenance64 measured slow62.7MB/19min7s installs, overall45min/native20min; exact-head CI pending. Tracking62 incorporates historical65 without duplicate effort. Preserve Agatha/follower/Trainer holds.
 
 These are estimates of tracked work, not elapsed hours or release certification. Every permanent ID and earned-history entry is retained. Approved Ponyta and Ranger work expanded the scope; the denominator is the sum of the current task effort estimates. Adding scope changes it without erasing completed work. Repeated regression is not duplicate implementation credit.
 

@@ -1425,3 +1425,26 @@ imports or unsafe save migrations. Direct Drive synchronization remains pending.
   job limit30→45min; native20min, instruction guards, clean builds, all checks and
   upstream comparison unchanged. No gameplay/security/protection changes.
 - Exact-head CI pending; not represented as accepted/merged.
+
+## 2026-11-06 — Postmerge queue reconciliation after PRs 59, 60 and 61
+
+- PR #59 (merge 708f197a): Museum Aron Egg and Water Labyrinth Magby Egg, each 50% actual Shiny, plus Tangela Lv25 fixed TANGO. PR head b099cdff GitHub Actions run 42220799681 SUCCESS. Only gift portion of WRL-011 implemented; Rocket rescue/return quest is not included.
+- PR #60 (merge 66117462): six initial/rematch League battles for Lorelei, Bruno and Lance, 32 Pokémon/128 moves, scripted native battle coverage. PR head f30b91cd GitHub Actions 42221063828 SUCCESS. BOTH Agatha battles remain untouched pending narrow native ability-slot-1 Inner Focus selector. Six of eight battle contracts are not eight of eight.
+- PR #61 (merge 15dacb95): Ground Sandstorm immunity and Rain Zap Cannon accuracy. PR head 22314c35 GitHub Actions 42222085136 SUCCESS. No general species-wide abilities, route static encounter scripts, lighting visual approval, or full campaign acceptance.
+
+### Provisional fixed-scope planning credits (low-confidence effort allocation)
+Retain total712 points and all preexisting earned work. Allocate *incremental* credit only: WRL-011 +6/-6 (three gifts; Rocket quest left); GYM-009 +12/-12 (six of eight battle contracts; Agatha blocked); WTH-003 +2/-2 (Sandstorm weather coupling); BTL-005 +1/-1 (Zap Cannon special accuracy policy). This gives 335 earned /377 remaining =47.05%, versus earlier314/398=44.10%. These are deliberately provisional effort weights, not measured hours, objective feature percentage, complete QA or release readiness. If a specialist revises relative weights, update both earned and remaining together with history, do not double count scope.
+
+Full open-queue triage, explicit unresolved dependencies and effort weighting: `docs/IMPLEMENTATION_QUEUE_RECONCILIATION_2026-11-06.md`. This is a reviewable documentation update; no additional ROM or emulator suite was run by this tracking-only change.
+
+## 2026-11-06 — INT-001 parallel tracker reconciliation
+
+- Preserved PR65 source/PR/issue snapshot and append-only historical entry in PR62.
+  Its335-point allocation was an alternative provisional estimate, not extra work.
+  Retain canonical per-task histories/333 of712 (46.77%) after merged63: gifts3,
+  six E4 battles12, weather2, Pin/Dragon2 incremental points. Do not add the same
+  weather/gift scope twice or reset follower audit progress.
+- New isolated PR66 Electric paralysis and stacked67 three spread statuses are
+  built/25-host/clean tested, full native/CI pending. No completion points yet.
+- CI64 latest overall45min envelope preserves20min native limit; exact-head CI
+  required. Transient worker authentication recovered without credential changes.

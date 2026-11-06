@@ -33,10 +33,11 @@ all checks, existing protections and no ROM release. No worktrees or force pushe
   Merged767bb39c; both checks retained. GitHub401 was transient, now recovered.
 -64 `maintenance/early-mgba-dependency`,143f05c0: install libmgba-dev with initial
   modified dependencies, bounded APT network/retry/lock waits, later dpkg check.
-  Actual CI pending. All host/native/clean/upstream gates and30/20-minute limits
-  unchanged. Fix was prompted by PR62 cancellation during24m35 package install;
+  Latest d3d38c7a: measured62.7MB/19min7s APT transfer; overall45min job,
+  unchanged20min native/all gates. Exact-head dispatch42314671025 pending. Fix was prompted by PR62 cancellation during24m35 package install;
   emulator tests never began, not an assertion failure. See CI_DEPENDENCY_STALL.md.
--62 this documentation PR: workflow guidance plus populated handoff/tracker.
+-62 this documentation PR: workflow guidance plus populated handoff/tracker;
+  incorporates65 historical snapshot with canonical histories/weights retained.
   Includes64 dependency until64 merges; do not restore the empty template.
 
 ## Immediate resume commands (existing cloud checkout)
@@ -59,10 +60,12 @@ Never alter the4-million ARM-call instruction guard or normalize runtime ROM dat
 
 ## Next three approved work units, after current PRs
 
-1. Finish/merge64 with actual CI, then62;63 is merged. Validate main and tracking.
-2. Approved remaining original move effects/targets/global Electric paralysis rule:
-   SCARY_FACE,SCREECH,FAKE_TEARS,THUNDER_WAVE,SPITE,GRUDGE after63. Exact register,
-   overlays and docs/moves/README.md are available; no new design question implied.
+1. Finish/merge64 with actual CI, then62 (incorporates65);63 is merged. Validate main.
+2. Finish66 Electric immunity (f376e342) and child67 spread statuses (1d74e8f8).
+   Each25 hosts/3 checkers/clean PASS; full local logs /tmp/electric-full-native.log
+   and /tmp/spread-full-native.log running at snapshot; verify actual conclusions.
+   Focused949/1392 PASS before latest added controls; do not claim latest full yet.
+   Then THUNDER_WAVE three targets,SPITE,GRUDGE from available approved register.
 3. Begin first complete new-move engine slice from56 approved additions (no
    placeholder IDs/effects). Or independent issue45 Rocket subset/prototype51 if
    engine dependency blocks. All56 additions remain unimplemented at this snapshot.
