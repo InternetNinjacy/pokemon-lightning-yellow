@@ -1,0 +1,20 @@
+{
+  "audited_main": "69c8240654e742603d9868717c03c204f4bdacf7",
+  "date": "2026-11-06",
+  "sources": {
+    "aarant/pokeemerald": "acc75ef3fec2a952ac6a423b67dc6bea0f0014c1",
+    "Kasenn/pokeemerald-expansion-kasen": "cbe04a7a2ef645bee19d159876da074154ccf1f2",
+    "chale1342/pokefirered": "d3ba8da3ca29ef6ad24684219998fa65e53aa1aa",
+    "EmceeMikey/pokeemerald": "70341382c071a7cb46de4e8d071f3eb56ec35d60"
+  },
+  "tree_api_truncated": false,
+  "method": "Pinned recursive Git trees and source tables; PNG dimensions read only for existing local sheets. External blob existence is not frame, ownership, license or runtime certification.",
+  "counts": {
+    "roster": 252,
+    "local_sheets": 36,
+    "aarant_sheets": 252,
+    "kasenn_sheets": 252,
+    "kasenn_normal_palettes": 252,
+    "kasenn_shiny_palettes": 252
+  }
+}

@@ -1256,3 +1256,33 @@ next priority under merged implementation/selectable-following-pokemon.md;
 0/40 points, no follower code/asset coverage claimed. Roar remains queued.
 Follower source/graphics/license/save/opening feasibility gate must precede bulk
 imports or unsafe save migrations. Direct Drive synchronization remains pending.
+
+## 2026-11-06 — WRL-010 bounded follower gate and consolidation follow-up
+
+- Effective main audited: `69c8240654e742603d9868717c03c204f4bdacf7`; prior
+  consolidation finished before beginning followers. Branch:
+  `feature/selectable-following-pokemon`. Contract: merged PR52,
+  `implementation/selectable-following-pokemon.md`, approved November5/6.
+- Previous/current gameplay behavior is unchanged: no selectable follower feature.
+  New audit documentation inventories every approved252 species with pinned
+  candidate sheet paths/blob IDs and explicit permission/runtime status. Candidate
+  presence is not imported artwork or implemented gameplay. No production/save fields
+  changed, no assets imported, no runtime tests claimed.
+- Actual blocker: aarant's README requires explicit permission for outside-Emerald
+  and AI-assisted use; Kasenn credits that dependency. Record exact text/link in
+  `docs/followers/FEASIBILITY.md`. Existing Pikachu sheet is only three unique frames;
+  current Oak starter/Parcel scenes lack approved Pikachu/Eevee gift integration.
+- Sources/files: `docs/followers/{FEASIBILITY.md,252-species-coverage.csv,source-inventory.json}`,
+  `scripts/check-follower-inventory.py`, canonical tracking/dashboard and this ledger.
+- Executed audit checker PASS252 rows, ordering, pinned blob shape, candidate paths
+  and explicit unverified statuses. Dashboard renderer PASS. No follower build,
+  movement, graphics-frame or emulator certification. Main full regression Actions:
+  https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/42213317755
+  (record actual conclusion when available).
+- Keep WRL-010 earned0/remaining40; overall312/712=43.82% provisional unchanged.
+  Reuse permission/gift dependencies are not a design rejection or erased work.
+  Rollback: close/revert audit-only PR; all game/save code unchanged. Do not merge
+  new follower work or release a ROM. Drive synchronization remains pending.
+- Audit commit `47d68633`; draft implementation-workstream PR54:
+  https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/54 .
+  Remains open and explicitly incomplete pending dependencies.
