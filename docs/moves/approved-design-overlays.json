@@ -198,7 +198,8 @@
         "category": "OWNER_EXPLICIT",
         "power": "OWNER_EXPLICIT",
         "pp": "OWNER_EXPLICIT"
-      }
+      },
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA"
     },
     "SPITE": {
       "fields": {

@@ -1,4 +1,5 @@
 #include "global.h"
+#include "move_pp_compatibility.h"
 #include "save.h"
 #include "decompress.h"
 #include "overworld.h"
@@ -818,6 +819,10 @@ u8 LoadGameSave(u8 saveType)
         result = TryLoadSaveSlot(FULL_SAVE_SLOT, gRamSaveSectorLocations);
         LoadSerializedGame();
         gSaveFileStatus = result;
+        // ERROR here can mean a valid backup was recovered after the other slot
+        // failed. EMPTY/INVALID/NO_FLASH do not authorize touching loaded records.
+        if (result == SAVE_STATUS_OK || result == SAVE_STATUS_ERROR)
+            NormalizeLoadedMovePP();
         gGameContinueCallback = NULL;
         break;
     case SAVE_HALL_OF_FAME:

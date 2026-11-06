@@ -83,3 +83,9 @@ save or explicitly clamp Silver Wind current PP to the restored old maximum:
 new10/16PP records can exceed the old5/8 maxima. That downgrade path is not
 automatically migrated or tested here. Real peer link/hardware remain untested.
 Drive synchronization remains pending.
+
+## Subsequent PP compatibility child
+
+[Saved-PP compatibility and Leech Life](PP_COMPATIBILITY_STATUS.md) implements
+the separately tested atomic Leech Life revision on a child of PR42. The earlier
+remaining-work section above describes PR42 in isolation; Roar remains pending.

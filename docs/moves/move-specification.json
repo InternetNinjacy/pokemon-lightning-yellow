@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "baseline_source_commit": "92838e5eb64d19942cb5c51cfdef6991503ac3ad",
-  "current_battle_moves_sha256": "6da55e4d2eff37d6c6b6efdf7d8c483b43a0e1b1c2a5e783895b715c19ce3bc5",
+  "current_battle_moves_sha256": "8eea1b1843edfeb6b54ee16b2917e09c9b46aebef12a2f3fa1b12542e46d2a45",
   "scope": "Reconciliation only, no gameplay edits. Numeric proposed IDs/semantic effects/target values are NOT compiled constants. Runtime_verified false is not a failure claim.",
   "sources": {
     "register": {
@@ -7771,11 +7771,11 @@
       "identity": "REWORKED_ORIGINAL",
       "source_line": 1979,
       "current": {
-        "category": "PHYSICAL",
+        "category": "SPECIAL",
         "type": "BUG",
-        "power": 20,
+        "power": 80,
         "accuracy": 100,
-        "pp": 15,
+        "pp": 10,
         "priority": 0,
         "target": "MOVE_TARGET_SELECTED",
         "effect": "EFFECT_ABSORB",
@@ -7823,21 +7823,8 @@
         "source_exists": true,
         "runtime_verified": false
       },
-      "delta": {
-        "category": {
-          "current": "PHYSICAL",
-          "approved": "SPECIAL"
-        },
-        "power": {
-          "current": 20,
-          "approved": 80
-        },
-        "pp": {
-          "current": 15,
-          "approved": 10
-        }
-      },
-      "implementation_status": "PENDING_APPROVED_REDESIGN",
+      "delta": {},
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA",
       "animation_candidate": {
         "key": "LEECH_LIFE",
         "name": "Leech Life",
