@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "updated": "2026-11-05",
+  "updated": "2026-11-06",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "BTL-005-M2B PR43 implements safe saved-PP caps and atomic Special80/10 Leech Life, stacked on green PR42.20 hosts/3 checkers PASS; optimized local full23-group534050, final focused20105, full-PC432 and clean identical8162003f…9822c PASS. Final full latest-fixture remote conclusions at PR43 Checks. Eleven original policies and56 new moves remain; all parent progress retained.",
-  "main_sha": "c960642ddbdacc1cf608d8c5081ee0ecd7cca6e9",
+  "current_focus": "Owner-authorized consolidation merged approved rival/weather/Gym/integration and move/PP acceptance stack through PR43, plus approved spec PRs28/30/49/52. New owner priority is WRL-010 selectable followers after this consolidation; move-engine Roar remains queued. All prior code, evidence and earned task history retained. Fixed scope now explicitly includes six previously untracked commitments; no follower gameplay credit yet.",
+  "main_sha": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c",
   "drive_sync": {
     "status": "pending: no direct Drive writing tool available",
     "folder": "https://drive.google.com/drive/folders/1N_n0Ke48jBbdhUWSZWzwR6rpPFqpDUpl"
@@ -69,8 +69,8 @@
         "implementation": "implemented on main",
         "automated": "prior suites/CI pass; rerun after changes",
         "emulator": "selected scenarios only",
-        "pull_request": "merged; implementation history retained",
-        "merge": "merged into main via owner-authorized consolidation"
+        "pull_request": "PR#6 merged; historical branch evidence retained",
+        "merge": "merged to main; remaining feature scope/coverage is not inferred complete"
       },
       "branch": "main",
       "commit": "13c0ca04dd3505533a066a1f23ee0fefb960dc16",
@@ -83,6 +83,11 @@
       "implementation_ref": {
         "branch": "feature/custom-252-pokedex",
         "commit": "13c0ca04dd3505533a066a1f23ee0fefb960dc16"
+      },
+      "merged_reference": {
+        "pr": 6,
+        "merge_commit": "40e7797b01a2ff14eb1e95418657b7ecd4d64a1d",
+        "verified_main": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c"
       }
     },
     {
@@ -110,8 +115,8 @@
         "implementation": "implemented on main",
         "automated": "prior suites/CI pass; rerun after changes",
         "emulator": "selected scenarios only",
-        "pull_request": "merged; implementation history retained",
-        "merge": "merged into main via owner-authorized consolidation"
+        "pull_request": "PR#5 merged; historical branch evidence retained",
+        "merge": "merged to main; remaining feature scope/coverage is not inferred complete"
       },
       "branch": "main",
       "commit": "851c76c94ac5bbcfda5a48a34bdb9a9521ab202f",
@@ -124,6 +129,11 @@
       "implementation_ref": {
         "branch": "feature/evolution-mechanics",
         "commit": "851c76c94ac5bbcfda5a48a34bdb9a9521ab202f"
+      },
+      "merged_reference": {
+        "pr": 5,
+        "merge_commit": "7a49cb7d8e1e91841f34171371121b9986e887a7",
+        "verified_main": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c"
       }
     },
     {
@@ -157,8 +167,8 @@
         "implementation": "implemented; scoped automated acceptance passed",
         "automated": "all five host suites PASS; clean rebuild identical; GitHub both jobs SUCCESS",
         "emulator": "full local mGBA0.10.5 PASS:8715 assertions; selected scenes/battles only",
-        "pull_request": "merged; implementation history retained",
-        "merge": "merged into main via owner-authorized consolidation"
+        "pull_request": "PR#9 merged; historical branch evidence retained",
+        "merge": "merged to main; remaining feature scope/coverage is not inferred complete"
       },
       "branch": "main",
       "commit": "6ff574dc205a007a93a4724fd6eda867eeff8fdf",
@@ -172,6 +182,11 @@
       "implementation_ref": {
         "branch": "feature/phase-one-stabilization",
         "commit": "6ff574dc205a007a93a4724fd6eda867eeff8fdf"
+      },
+      "merged_reference": {
+        "pr": 9,
+        "merge_commit": "bf3c89063f0e51135349d6d715d706b68c1a5f36",
+        "verified_main": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c"
       }
     },
     {
@@ -207,8 +222,8 @@
         "implementation": "implemented; scoped automated acceptance passed",
         "automated": "all five host suites PASS; clean rebuild identical; GitHub both jobs SUCCESS",
         "emulator": "full local mGBA0.10.5 PASS:8715 assertions; selected scenes/battles only",
-        "pull_request": "merged; implementation history retained",
-        "merge": "merged into main via owner-authorized consolidation"
+        "pull_request": "PR#9 merged; historical branch evidence retained",
+        "merge": "merged to main; remaining feature scope/coverage is not inferred complete"
       },
       "branch": "main",
       "commit": "6ff574dc205a007a93a4724fd6eda867eeff8fdf",
@@ -221,6 +236,11 @@
       "implementation_ref": {
         "branch": "feature/phase-one-stabilization",
         "commit": "6ff574dc205a007a93a4724fd6eda867eeff8fdf"
+      },
+      "merged_reference": {
+        "pr": 9,
+        "merge_commit": "bf3c89063f0e51135349d6d715d706b68c1a5f36",
+        "verified_main": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c"
       }
     },
     {
@@ -270,8 +290,8 @@
         "implementation": "partial acceptance; remaining coverage explicitly recorded",
         "automated": "All16 host suites and3 static checkers PASS; clean/upstream CI evidence at PR39 checks",
         "emulator": "PR39 focused actual Bag eleven routes PASS49176; full19-group mGBA0.10.5 PASS512774",
-        "pull_request": "historical implementation merged; acceptance follow-up PR39 open",
-        "merge": "merged into main via owner-authorized consolidation"
+        "pull_request": "PR#9 merged; historical branch evidence retained",
+        "merge": "merged to main; remaining feature scope/coverage is not inferred complete"
       },
       "branch": "main",
       "commit": "6ff574dc205a007a93a4724fd6eda867eeff8fdf",
@@ -291,6 +311,11 @@
         "commit": "a6e179a3",
         "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/39",
         "report": "docs/BAG_EVOLUTION_ACCEPTANCE.md"
+      },
+      "merged_reference": {
+        "pr": 9,
+        "merge_commit": "bf3c89063f0e51135349d6d715d706b68c1a5f36",
+        "verified_main": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c"
       }
     },
     {
@@ -318,8 +343,8 @@
         "implementation": "implemented on main",
         "automated": "prior suites/CI pass; rerun after changes",
         "emulator": "selected scenarios only",
-        "pull_request": "merged; implementation history retained",
-        "merge": "merged into main via owner-authorized consolidation"
+        "pull_request": "PR#2 merged; historical branch evidence retained",
+        "merge": "merged to main; remaining feature scope/coverage is not inferred complete"
       },
       "branch": "main",
       "commit": "e265bcf3efa07531a4419fd471f6157fb0980cad",
@@ -332,6 +357,11 @@
       "implementation_ref": {
         "branch": "feature/physical-special-split",
         "commit": "e265bcf3efa07531a4419fd471f6157fb0980cad"
+      },
+      "merged_reference": {
+        "pr": 2,
+        "merge_commit": "93b62d6837e61a483f67d00e2a055f559dc33d53",
+        "verified_main": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c"
       }
     },
     {
@@ -359,8 +389,8 @@
         "implementation": "implemented on main",
         "automated": "prior suites/CI pass; rerun after changes",
         "emulator": "selected scenarios only",
-        "pull_request": "merged; implementation history retained",
-        "merge": "merged into main via owner-authorized consolidation"
+        "pull_request": "PR#7 merged; historical branch evidence retained",
+        "merge": "merged to main; remaining feature scope/coverage is not inferred complete"
       },
       "branch": "main",
       "commit": "bbb0459d95ed3d9b053304290961f4fff2de23eb",
@@ -373,6 +403,11 @@
       "implementation_ref": {
         "branch": "feature/wild-double-battle-capability",
         "commit": "bbb0459d95ed3d9b053304290961f4fff2de23eb"
+      },
+      "merged_reference": {
+        "pr": 7,
+        "merge_commit": "55665c6d876a1be5d2d8afecf8d0c47300048b42",
+        "verified_main": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c"
       }
     },
     {
@@ -414,8 +449,8 @@
         "implementation": "partial acceptance; remaining coverage explicitly recorded",
         "automated": "all five host suites PASS; clean rebuild identical; GitHub both jobs SUCCESS",
         "emulator": "full local mGBA0.10.5 PASS:8715 assertions; selected scenes/battles only",
-        "pull_request": "merged; implementation history retained",
-        "merge": "merged into main via owner-authorized consolidation"
+        "pull_request": "PR#9 merged; historical branch evidence retained",
+        "merge": "merged to main; remaining feature scope/coverage is not inferred complete"
       },
       "branch": "main",
       "commit": "6ff574dc205a007a93a4724fd6eda867eeff8fdf",
@@ -429,6 +464,11 @@
       "implementation_ref": {
         "branch": "feature/phase-one-stabilization",
         "commit": "6ff574dc205a007a93a4724fd6eda867eeff8fdf"
+      },
+      "merged_reference": {
+        "pr": 9,
+        "merge_commit": "bf3c89063f0e51135349d6d715d706b68c1a5f36",
+        "verified_main": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c"
       }
     },
     {
@@ -470,8 +510,8 @@
         "implementation": "existing game behavior unchanged; expanded native nickname acceptance in PR36",
         "automated": "all16 host suites, Museum and18-group registration guard PASS; final clean/full/CI evidence inPR36",
         "emulator": "367 focused nickname assertions PASS; parent combined463243 PASS; final full new suite inPR36",
-        "pull_request": "gameplay9 merged; acceptance PR36 stacked on unmerged integration35",
-        "merge": "original gameplay merged on main; new acceptance PR36 remains unmerged"
+        "pull_request": "PR#36 merged; historical branch evidence retained",
+        "merge": "merged to main; remaining feature scope/coverage is not inferred complete"
       },
       "branch": "feature/wild-capture-nickname-acceptance",
       "commit": "6ff574dc205a007a93a4724fd6eda867eeff8fdf",
@@ -485,6 +525,11 @@
       "implementation_ref": {
         "branch": "feature/phase-one-stabilization",
         "commit": "6ff574dc205a007a93a4724fd6eda867eeff8fdf"
+      },
+      "merged_reference": {
+        "pr": 36,
+        "merge_commit": "51e4b2fe07beffee7e53f524787f1a0bee3ceca3",
+        "verified_main": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c"
       }
     },
     {
@@ -542,17 +587,17 @@
       "status": {
         "design": "Owner approved; November5 Curse/animation/GenIV edge choices resolved; PhaseTwo distribution remains separate",
         "implementation": "Foundations/full-name UI, eight original revisions plus Special80/10 Leech Life and safe saved-PP normalization; no56 new IDs/effects enabled",
-        "automated": "All20 hosts/3 checkers PASS; clean identical8162003f…9822c; actual PR43 latest-fixture remote conclusions at Checks. Parent PR42 review/push both SUCCESS.",
-        "emulator": "Optimized full23-group local534050 PASS before final AI assertion; latest focus20105 PASS and full-PC432 within original budget. Final latest-fixture full result at PR43 Checks; link/hardware separate.",
-        "pull_request": "PR43 open, stacked on PR42→PR41→PR40; no parent/main changes",
-        "merge": "unmerged; no auto-merge"
+        "automated": "20 host suites/3 static checkers and clean reproducibility PASS; PR43 review42093060136/push42093048274 both SUCCESS at85032f28",
+        "emulator": "Final full23-group remote mGBA0.10.2 PASS534051; local final focus20105, full-PC432; link/hardware and exhaustive effects remain separate",
+        "pull_request": "PR#43 merged; historical branch evidence retained",
+        "merge": "merged to main; remaining feature scope/coverage is not inferred complete"
       },
       "branch": "feature/move-pp-compatibility",
       "commit": "4f7f71d753d7c4840b22617b65095fd56d9b57f5",
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Implement approved Roar damaging/Attack-drop redesign atomically using the prepared PP safeguard; then remaining original effects/targets/weather and56 new moves without placeholders or invented distributions.",
-      "checkpoint": "Production4f7f71d7, latest tests7c5334d0: local full534050 before final AI assertion, final focus20105,20 hosts/3 checkers and clean identical8162003f…9822c PASS; actual final full CI at PR43 Checks.",
+      "next_action": "After requested follower implementation, continue approved Roar redesign and remaining original/new-move work; no placeholder effects or invented distributions.",
+      "checkpoint": "Merged PP/foundations/UI/original-data chain; production4f7f71d7, final tested head85032f28, remote full534051 PASS; no56 new move IDs enabled",
       "source_exports": [
         "03_MOVES/Pokémon Lightning Yellow — Approved Move Change Ledger — Source Verbatim v0.1.txt",
         "03_MOVES/Pokémon Lightning Yellow — Complete TM & Move Register — v1 (2026-10-29).txt",
@@ -572,10 +617,10 @@
         "full_native_assertions": 513097
       },
       "implementation_milestones": {
-        "BTL-005-M1A": "Foundations PR40, complete within its limited scope; unmerged",
-        "BTL-005-M1B": "PR41 complete within limited UI scope; local513858/focused797 and both remote runs SUCCESS at3031dcdb, remote mGBA0.10.2; unmerged",
-        "BTL-005-M2A": "PR42 complete within eight-data-row scope, full513952/focus100 and both review/push CI SUCCESS at51df94f7; unmerged",
-        "BTL-005-M2B": "PR43 saved PP/atomic Leech Life: optimized full23-group local534050, final focus20105, full-PC432,20 hosts/3 checkers and clean PASS; latest-fixture full remote result at Checks; unmerged"
+        "BTL-005-M1A": "Foundations PR40, complete within its limited scope; merged in owner-authorized Nov6 consolidation",
+        "BTL-005-M1B": "PR41 complete within limited UI scope; local513858/focused797 and both remote runs SUCCESS at3031dcdb, remote mGBA0.10.2; merged in owner-authorized Nov6 consolidation",
+        "BTL-005-M2A": "PR42 complete within eight-data-row scope, full513952/focus100 and both review/push CI SUCCESS at51df94f7; merged in owner-authorized Nov6 consolidation",
+        "BTL-005-M2B": "PR43 merged through consolidated main; final review/push full534051 PASS,20 hosts/3 checkers, final focus20105 and clean identical8162003f…9822c"
       },
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/43",
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/43/checks",
@@ -600,6 +645,11 @@
         "conclusion": "both SUCCESS",
         "remote_mgba": "0.10.2",
         "full_native_assertions": 513952
+      },
+      "merged_reference": {
+        "pr": 43,
+        "merge_commit": "6b444da2b81f6e52ce9f28250e8bce99613d15f9",
+        "verified_main": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c"
       }
     },
     {
@@ -627,8 +677,8 @@
         "implementation": "implemented on main",
         "automated": "prior suites/CI pass; rerun after changes",
         "emulator": "selected scenarios only",
-        "pull_request": "merged; implementation history retained",
-        "merge": "merged into main via owner-authorized consolidation"
+        "pull_request": "PR#3 merged; historical branch evidence retained",
+        "merge": "merged to main; remaining feature scope/coverage is not inferred complete"
       },
       "branch": "main",
       "commit": "ce126c5c7c7f9bf3a052f58dc536a2a32e2580bd",
@@ -641,6 +691,11 @@
       "implementation_ref": {
         "branch": "feature/rtc-support",
         "commit": "ce126c5c7c7f9bf3a052f58dc536a2a32e2580bd"
+      },
+      "merged_reference": {
+        "pr": 3,
+        "merge_commit": "0e42800f2eed0208abf045e6ced801ff8c9f1f2b",
+        "verified_main": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c"
       }
     },
     {
@@ -676,8 +731,8 @@
         "implementation": "implemented; scoped automated acceptance passed",
         "automated": "all five host suites PASS; clean rebuild identical; GitHub both jobs SUCCESS",
         "emulator": "full local mGBA0.10.5 PASS:8715 assertions; selected scenes/battles only",
-        "pull_request": "merged; implementation history retained",
-        "merge": "merged into main via owner-authorized consolidation"
+        "pull_request": "PR#9 merged; historical branch evidence retained",
+        "merge": "merged to main; remaining feature scope/coverage is not inferred complete"
       },
       "branch": "main",
       "commit": "6ff574dc205a007a93a4724fd6eda867eeff8fdf",
@@ -690,6 +745,11 @@
       "implementation_ref": {
         "branch": "feature/phase-one-stabilization",
         "commit": "6ff574dc205a007a93a4724fd6eda867eeff8fdf"
+      },
+      "merged_reference": {
+        "pr": 9,
+        "merge_commit": "bf3c89063f0e51135349d6d715d706b68c1a5f36",
+        "verified_main": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c"
       }
     },
     {
@@ -771,8 +831,8 @@
         "implementation": "implemented83 explicit policy/context/RTC core; scoped acceptance passed",
         "automated": "14 host suites/Museum PASS;10880936 exhaustive accepted-roll plus state/rejection checks; clean reproducibility PASS; live CI inPR29",
         "emulator": "focused128355 PASS with6 local captures; full default evidence/results maintained inPR29",
-        "pull_request": "separate gameplayPR29 prepared; live check/review status onGitHub",
-        "merge": "unmerged weather gameplay"
+        "pull_request": "PR#29 merged; historical branch evidence retained",
+        "merge": "merged to main; remaining feature scope/coverage is not inferred complete"
       },
       "branch": "feature/dynamic-map-weather",
       "commit": "e04a7bc6369e47fa363631208547d6724629f9bc",
@@ -789,7 +849,12 @@
         "05_WEATHER_LIGHTING/Pokémon Lightning Yellow — Weather Map Assignments & Thread Retirement Handoff — 2026-10-28.txt"
       ],
       "source_status": "available locally; checksums verified; precise approvals/read scope in reconciliation report",
-      "combined_acceptance": "Exact reviewed27/29/31 heads reconciled inPR35;16 hosts/clean/upstream/full local+CI463243 PASS. No main/feature PR merge; future head changes require reconciliation."
+      "combined_acceptance": "Exact reviewed27/29/31 heads reconciled inPR35;16 hosts/clean/upstream/full local+CI463243 PASS. No main/feature PR merge; future head changes require reconciliation.",
+      "merged_reference": {
+        "pr": 29,
+        "merge_commit": "cd7be97ef57c3636523ae54aaeb31a7085d7f275",
+        "verified_main": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c"
+      }
     },
     {
       "id": "WTH-002",
@@ -825,8 +890,8 @@
         "implementation": "partial: necessary drought-loader clear-render/fade stability fix; custom visuals/fog remain",
         "automated": "14 host suites/Museum PASS;10880936 exhaustive accepted-roll plus state/rejection checks; clean reproducibility PASS; live CI inPR29",
         "emulator": "focused128355 PASS with6 local captures; full default evidence/results maintained inPR29",
-        "pull_request": "separate gameplayPR29 prepared; live check/review status onGitHub",
-        "merge": "unmerged weather gameplay"
+        "pull_request": "PR#29 merged; historical branch evidence retained",
+        "merge": "merged to main; remaining feature scope/coverage is not inferred complete"
       },
       "branch": "feature/dynamic-map-weather",
       "commit": "e04a7bc6369e47fa363631208547d6724629f9bc",
@@ -842,7 +907,12 @@
         "05_WEATHER_LIGHTING/Pokémon Lightning Yellow — Lighting & Weather Specification — Approved Rules and Open Gaps — 2026-10-28.txt",
         "05_WEATHER_LIGHTING/Pokémon Lightning Yellow — Weather Map Assignments & Thread Retirement Handoff — 2026-10-28.txt"
       ],
-      "source_status": "available locally; checksums verified; precise approvals/read scope in reconciliation report"
+      "source_status": "available locally; checksums verified; precise approvals/read scope in reconciliation report",
+      "merged_reference": {
+        "pr": 29,
+        "merge_commit": "cd7be97ef57c3636523ae54aaeb31a7085d7f275",
+        "verified_main": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c"
+      }
     },
     {
       "id": "WTH-003",
@@ -877,8 +947,8 @@
         "implementation": "implemented logical regional field-to-battle initialization and Cycling return hooks; existing Snow bridge retained without duplicate credit",
         "automated": "14 host suites/Museum PASS;10880936 exhaustive accepted-roll plus state/rejection checks; clean reproducibility PASS; live CI inPR29",
         "emulator": "focused128355 PASS with6 local captures; full default evidence/results maintained inPR29",
-        "pull_request": "separate gameplayPR29 prepared; live check/review status onGitHub",
-        "merge": "unmerged weather gameplay"
+        "pull_request": "PR#29 merged; historical branch evidence retained",
+        "merge": "merged to main; remaining feature scope/coverage is not inferred complete"
       },
       "branch": "feature/dynamic-map-weather",
       "commit": "e04a7bc6369e47fa363631208547d6724629f9bc",
@@ -898,7 +968,12 @@
         "05_WEATHER_LIGHTING/Pokémon Lightning Yellow — Weather Map Assignments & Thread Retirement Handoff — 2026-10-28.txt"
       ],
       "source_status": "available locally; checksums verified; precise approvals/read scope in reconciliation report",
-      "combined_acceptance": "Exact reviewed27/29/31 heads reconciled inPR35;16 hosts/clean/upstream/full local+CI463243 PASS. No main/feature PR merge; future head changes require reconciliation."
+      "combined_acceptance": "Exact reviewed27/29/31 heads reconciled inPR35;16 hosts/clean/upstream/full local+CI463243 PASS. No main/feature PR merge; future head changes require reconciliation.",
+      "merged_reference": {
+        "pr": 29,
+        "merge_commit": "cd7be97ef57c3636523ae54aaeb31a7085d7f275",
+        "verified_main": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c"
+      }
     },
     {
       "id": "DAY-001",
@@ -928,11 +1003,11 @@
       "dependencies": [],
       "status": {
         "design": "owner approved; complete supplied handoff available",
-        "implementation": "implemented on unmerged branch; scoped acceptance passed",
+        "implementation": "implemented on merged feature branch; scoped acceptance passed",
         "automated": "six host suites PASS; daycare460161 assertions + preservation audits; target ABI and identical clean rebuild PASS; Actions41451641953 both jobs SUCCESS",
         "emulator": "complete local libmGBA0.10.5 suite114313 assertions PASS; actual10000 Route5 eggs5066 Shiny; actual UI/flash/Continue/hatch scenarios PASS; external gaps retained",
-        "pull_request": "merged; implementation history retained",
-        "merge": "merged into main via owner-authorized consolidation"
+        "pull_request": "PR#10 merged; historical branch evidence retained",
+        "merge": "merged to main; remaining feature scope/coverage is not inferred complete"
       },
       "branch": "main",
       "commit": "596265d41f92fd3e42ee6b0a08d2cb8e0ed62e5d",
@@ -945,6 +1020,11 @@
       "implementation_ref": {
         "branch": "feature/route5-daycare-breeding",
         "commit": "596265d41f92fd3e42ee6b0a08d2cb8e0ed62e5d"
+      },
+      "merged_reference": {
+        "pr": 10,
+        "merge_commit": "e389172f59989b33f00e32b63171581a833d2e37",
+        "verified_main": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c"
       }
     },
     {
@@ -977,11 +1057,11 @@
       ],
       "status": {
         "design": "owner approved; complete supplied handoff available",
-        "implementation": "implemented on unmerged branch; scoped acceptance passed",
+        "implementation": "implemented on merged feature branch; scoped acceptance passed",
         "automated": "six host suites PASS; daycare460161 assertions + preservation audits; target ABI and identical clean rebuild PASS; Actions41451641953 both jobs SUCCESS",
         "emulator": "complete local libmGBA0.10.5 suite114313 assertions PASS; actual10000 Route5 eggs5066 Shiny; actual UI/flash/Continue/hatch scenarios PASS; external gaps retained",
-        "pull_request": "merged; implementation history retained",
-        "merge": "merged into main via owner-authorized consolidation"
+        "pull_request": "PR#10 merged; historical branch evidence retained",
+        "merge": "merged to main; remaining feature scope/coverage is not inferred complete"
       },
       "branch": "main",
       "commit": "596265d41f92fd3e42ee6b0a08d2cb8e0ed62e5d",
@@ -994,6 +1074,11 @@
       "implementation_ref": {
         "branch": "feature/route5-daycare-breeding",
         "commit": "596265d41f92fd3e42ee6b0a08d2cb8e0ed62e5d"
+      },
+      "merged_reference": {
+        "pr": 10,
+        "merge_commit": "e389172f59989b33f00e32b63171581a833d2e37",
+        "verified_main": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c"
       }
     },
     {
@@ -1026,11 +1111,11 @@
       ],
       "status": {
         "design": "owner approved; complete supplied handoff available",
-        "implementation": "implemented on unmerged branch; scoped acceptance passed",
+        "implementation": "implemented on merged feature branch; scoped acceptance passed",
         "automated": "six host suites PASS; daycare460161 assertions + preservation audits; target ABI and identical clean rebuild PASS; Actions41451641953 both jobs SUCCESS",
         "emulator": "complete local libmGBA0.10.5 suite114313 assertions PASS; actual10000 Route5 eggs5066 Shiny; actual UI/flash/Continue/hatch scenarios PASS; external gaps retained",
-        "pull_request": "merged; implementation history retained",
-        "merge": "merged into main via owner-authorized consolidation"
+        "pull_request": "PR#10 merged; historical branch evidence retained",
+        "merge": "merged to main; remaining feature scope/coverage is not inferred complete"
       },
       "branch": "main",
       "commit": "596265d41f92fd3e42ee6b0a08d2cb8e0ed62e5d",
@@ -1043,6 +1128,11 @@
       "implementation_ref": {
         "branch": "feature/route5-daycare-breeding",
         "commit": "596265d41f92fd3e42ee6b0a08d2cb8e0ed62e5d"
+      },
+      "merged_reference": {
+        "pr": 10,
+        "merge_commit": "e389172f59989b33f00e32b63171581a833d2e37",
+        "verified_main": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c"
       }
     },
     {
@@ -1080,8 +1170,8 @@
         "implementation": "scoped automated/emulator acceptance passed; external acceptance incomplete",
         "automated": "six host suites PASS; daycare460161 assertions + preservation audits; target ABI and identical clean rebuild PASS; Actions41451641953 both jobs SUCCESS",
         "emulator": "complete local libmGBA0.10.5 suite114313 assertions PASS; actual10000 Route5 eggs5066 Shiny; actual UI/flash/Continue/hatch scenarios PASS; external gaps retained",
-        "pull_request": "merged; implementation history retained",
-        "merge": "merged into main via owner-authorized consolidation"
+        "pull_request": "PR#10 merged; historical branch evidence retained",
+        "merge": "merged to main; remaining feature scope/coverage is not inferred complete"
       },
       "branch": "main",
       "commit": "596265d41f92fd3e42ee6b0a08d2cb8e0ed62e5d",
@@ -1095,6 +1185,11 @@
       "implementation_ref": {
         "branch": "feature/route5-daycare-breeding",
         "commit": "596265d41f92fd3e42ee6b0a08d2cb8e0ed62e5d"
+      },
+      "merged_reference": {
+        "pr": 10,
+        "merge_commit": "e389172f59989b33f00e32b63171581a833d2e37",
+        "verified_main": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c"
       }
     },
     {
@@ -1240,8 +1335,8 @@
         "implementation": "covered by GYM-007/PR31; no independent duplicate work",
         "automated": "see GYM-007",
         "emulator": "see GYM-007",
-        "pull_request": "PR31 ready for review",
-        "merge": "unmerged"
+        "pull_request": "PR#31 merged; historical branch evidence retained",
+        "merge": "merged to main; remaining feature scope/coverage is not inferred complete"
       },
       "branch": null,
       "commit": null,
@@ -1256,7 +1351,12 @@
         "02_GYMS/Pokémon Lightning Yellow — Eight-Gym Leader & Trainer Roster — Final Design Handoff (2026-11-01).txt"
       ],
       "source_status": "available locally; checksums verified; precise approvals/read scope in reconciliation report",
-      "superseded_by": "GYM-007"
+      "superseded_by": "GYM-007",
+      "merged_reference": {
+        "pr": 31,
+        "merge_commit": "51b38c360e3e5deacb870e17be1a5e571333bbc9",
+        "verified_main": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c"
+      }
     },
     {
       "id": "WRL-001",
@@ -1420,11 +1520,11 @@
       "dependencies": [],
       "status": {
         "design": "World/item/event approvals available individually; reconcile exact effective versions",
-        "implementation": "partial: Museum event complete on main; other items/events remain",
+        "implementation": "Legacy Museum Feebas reward code remains; newly approved Aron/Magby/Tangela/quest content is separately tracked in WRL-011, not implemented by documentation",
         "automated": "11 host suites/Museum static/full combined Actions PASS",
         "emulator": "Museum1307 focused and full combined276132 native assertions PASS",
-        "pull_request": "#14 merged; other events remain",
-        "merge": "Museum merged into main; other scope unimplemented"
+        "pull_request": "PR#14 merged; historical branch evidence retained",
+        "merge": "merged to main; remaining feature scope/coverage is not inferred complete"
       },
       "branch": "main",
       "commit": null,
@@ -1432,7 +1532,7 @@
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41765403411",
       "blocker": "No Museum blocker. Other unfinished placements and SOW HOLD remain; Ranger Base Camp separately tracked as GYM-005.",
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Implement remaining individually approved item/event scope; Museum already merged. Preserve unresolved placement decisions and SOW HOLD.",
+      "next_action": "Use WRL-011 exact approved gift/quest contracts; preserve legacy code until those replacements are implemented/tested. Do not invent missing levels/placements.",
       "checkpoint": "2026-11-04 supplied-export reconciliation; old unavailable-document claims superseded; no implementation/test credit from availability.",
       "scope_note": "Other item/story events excluding fossils, completed Museum subfeature and separately budgeted Ranger GYM-005. No duplicate implementation credit.",
       "source_exports": [
@@ -1458,7 +1558,12 @@
           "integration": "resolved; actual paid-exhibit placement11,4; script IDs preserved; Museum1307 focused PASS",
           "effort": "within existing WRL-004 budget; no duplicate credit or work performed on that PR"
         }
-      ]
+      ],
+      "merged_reference": {
+        "pr": 14,
+        "merge_commit": "9dd56c31b73bc885fb60b491ce8b6f3f39b53efd",
+        "verified_main": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c"
+      }
     },
     {
       "id": "INT-001",
@@ -1485,8 +1590,8 @@
         "implementation": "implemented in baseline",
         "automated": "prior suites/CI pass; rerun after changes",
         "emulator": "not applicable",
-        "pull_request": "merged; implementation history retained",
-        "merge": "merged into main via owner-authorized consolidation"
+        "pull_request": "PR#1 merged; historical branch evidence retained",
+        "merge": "merged to main; remaining feature scope/coverage is not inferred complete"
       },
       "branch": "main",
       "commit": "e04252ea0783510000e634486c0f2526a736f506",
@@ -1499,6 +1604,11 @@
       "implementation_ref": {
         "branch": "setup/firered-baseline",
         "commit": "e04252ea0783510000e634486c0f2526a736f506"
+      },
+      "merged_reference": {
+        "pr": 1,
+        "merge_commit": "e04252ea0783510000e634486c0f2526a736f506",
+        "verified_main": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c"
       }
     },
     {
@@ -1526,8 +1636,8 @@
         "implementation": "implemented on main",
         "automated": "prior suites/CI pass; rerun after changes",
         "emulator": "selected scenarios only",
-        "pull_request": "merged; implementation history retained",
-        "merge": "merged into main via owner-authorized consolidation"
+        "pull_request": "PR#4 merged; historical branch evidence retained",
+        "merge": "merged to main; remaining feature scope/coverage is not inferred complete"
       },
       "branch": "main",
       "commit": "426415d853e141960a5ecfc60eb8798fdd3cb2dd",
@@ -1540,6 +1650,11 @@
       "implementation_ref": {
         "branch": "feature/evolution-system-overhaul",
         "commit": "426415d853e141960a5ecfc60eb8798fdd3cb2dd"
+      },
+      "merged_reference": {
+        "pr": 4,
+        "merge_commit": "e07afc8a9baf188eadf78cbb73d8299ad2dcd3ec",
+        "verified_main": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c"
       }
     },
     {
@@ -1573,8 +1688,8 @@
         "implementation": "canonical dashboard and append-only ledger published in #8; Drive sync pending",
         "automated": "JSON uniqueness, effort totals, refs and diff validated; prior docs CI SUCCESS",
         "emulator": "not executed",
-        "pull_request": "merged; implementation history retained",
-        "merge": "merged into main via owner-authorized consolidation"
+        "pull_request": "PR#8 merged; historical branch evidence retained",
+        "merge": "merged to main; remaining feature scope/coverage is not inferred complete"
       },
       "branch": "main",
       "commit": null,
@@ -1587,6 +1702,11 @@
       "implementation_ref": {
         "branch": "docs/project-coordination",
         "commit": null
+      },
+      "merged_reference": {
+        "pr": 8,
+        "merge_commit": "a44c7cee9d74084130626e884e323b4ad512d45a",
+        "verified_main": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c"
       }
     },
     {
@@ -1631,8 +1751,8 @@
         "implementation": "prior acceptance on main; newer combined27/29/31 source and test registration reconciled in PR35",
         "automated": "16 host suites, Museum and registration guard PASS; clean/full/CI final evidence live in PR35",
         "emulator": "Blaine75 focused PASS; final complete combined evidence maintained in PR35",
-        "pull_request": "new integration PR35; original feature PRs remain separate/open",
-        "merge": "new integration unmerged; previous main acceptance retained"
+        "pull_request": "PR#35 merged; historical branch evidence retained",
+        "merge": "merged to main; remaining feature scope/coverage is not inferred complete"
       },
       "branch": "feature/phase-one-integration-20261105",
       "commit": "7284dc0aac833f751882826e339273a97694ce9e",
@@ -1642,7 +1762,12 @@
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
       "next_action": "Review combined acceptance PR35 without automatically merging feature PRs; retain broader acceptance scope.",
       "checkpoint": "2026-11-04 combined typing regression; no duplicated integration effort credit.",
-      "coverage_gap": "Full natural playthrough, hardware/link, interrupted saves, full quest-log/weather/lighting/move-redesign acceptance remain. Exact three-feature source combination now tested separately; live full/CI results inPR35."
+      "coverage_gap": "Full natural playthrough, hardware/link, interrupted saves, full quest-log/weather/lighting/move-redesign acceptance remain. Exact three-feature source combination now tested separately; live full/CI results inPR35.",
+      "merged_reference": {
+        "pr": 35,
+        "merge_commit": "b468fe206ea144827de8ae21f4c059f3ef86f598",
+        "verified_main": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c"
+      }
     },
     {
       "id": "INT-005",
@@ -1752,8 +1877,8 @@
         "implementation": "implemented; scoped source/native acceptance passed",
         "automated": "seven host suites/static audits PASS; identical clean rebuild; final Actions SUCCESS",
         "emulator": "full local libmGBA0.10.5 PASS:114706 assertions; native rewards/menus/restoration/flash scenes",
-        "pull_request": "merged; implementation history retained",
-        "merge": "merged into main via owner-authorized consolidation"
+        "pull_request": "PR#11 merged; historical branch evidence retained",
+        "merge": "merged to main; remaining feature scope/coverage is not inferred complete"
       },
       "branch": "main",
       "commit": "b0bd3b86f4e03dd3f540f0776a5de87f207e84e4",
@@ -1766,6 +1891,11 @@
       "implementation_ref": {
         "branch": "feature/fossil-rewards-and-roster-audit",
         "commit": "b0bd3b86f4e03dd3f540f0776a5de87f207e84e4"
+      },
+      "merged_reference": {
+        "pr": 11,
+        "merge_commit": "07dfb6111a1de09bc32aad0e91a88729a18764eb",
+        "verified_main": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c"
       }
     },
     {
@@ -1795,8 +1925,8 @@
         "implementation": "implemented; scoped source/native acceptance passed",
         "automated": "seven host suites/static audits PASS; identical clean rebuild; final Actions SUCCESS",
         "emulator": "full local libmGBA0.10.5 PASS:114706 assertions; native rewards/menus/restoration/flash scenes",
-        "pull_request": "merged; implementation history retained",
-        "merge": "merged into main via owner-authorized consolidation"
+        "pull_request": "PR#11 merged; historical branch evidence retained",
+        "merge": "merged to main; remaining feature scope/coverage is not inferred complete"
       },
       "branch": "main",
       "commit": "b0bd3b86f4e03dd3f540f0776a5de87f207e84e4",
@@ -1809,6 +1939,11 @@
       "implementation_ref": {
         "branch": "feature/fossil-rewards-and-roster-audit",
         "commit": "b0bd3b86f4e03dd3f540f0776a5de87f207e84e4"
+      },
+      "merged_reference": {
+        "pr": 11,
+        "merge_commit": "07dfb6111a1de09bc32aad0e91a88729a18764eb",
+        "verified_main": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c"
       }
     },
     {
@@ -1840,8 +1975,8 @@
         "implementation": "audit/CI no-new-findings guard implemented; global compliance BLOCKED",
         "automated": "seven host suites/static audits PASS; identical clean rebuild; final Actions SUCCESS",
         "emulator": "full local libmGBA0.10.5 PASS:114706 assertions; native rewards/menus/restoration/flash scenes",
-        "pull_request": "merged; implementation history retained",
-        "merge": "merged into main via owner-authorized consolidation"
+        "pull_request": "PR#11 merged; historical branch evidence retained",
+        "merge": "merged to main; remaining feature scope/coverage is not inferred complete"
       },
       "branch": "main",
       "commit": "b0bd3b86f4e03dd3f540f0776a5de87f207e84e4",
@@ -1862,6 +1997,11 @@
       "implementation_ref": {
         "branch": "feature/fossil-rewards-and-roster-audit",
         "commit": "b0bd3b86f4e03dd3f540f0776a5de87f207e84e4"
+      },
+      "merged_reference": {
+        "pr": 11,
+        "merge_commit": "07dfb6111a1de09bc32aad0e91a88729a18764eb",
+        "verified_main": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c"
       }
     },
     {
@@ -1903,8 +2043,8 @@
         "implementation": "implemented on main",
         "automated": "Blaine host audit and full combined Actions PASS",
         "emulator": "75 focused mGBA0.10.5 PASS including actual win, badge/TM38/flash/Continue/nonduplicate revisit",
-        "pull_request": "gameplay15 merged; additional acceptance in unmerged PR35",
-        "merge": "merged into main"
+        "pull_request": "PR#15 merged; historical branch evidence retained",
+        "merge": "merged to main; remaining feature scope/coverage is not inferred complete"
       },
       "branch": "main",
       "commit": null,
@@ -1937,7 +2077,12 @@
           }
         }
       ],
-      "coverage_pr": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/35"
+      "coverage_pr": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/35",
+      "merged_reference": {
+        "pr": 15,
+        "merge_commit": "6e6e46609fcc9dbb4f415c5e391ac8c075f7001e",
+        "verified_main": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c"
+      }
     },
     {
       "id": "BTL-006",
@@ -1972,8 +2117,8 @@
         "implementation": "implemented and merged into main; extended presentation/progression acceptance remains",
         "automated": "nine host suites/clean reproducibility/final Actions modified and upstream PASS",
         "emulator": "full default mGBA PASS; exact count and controlled/native distinctions in ledger",
-        "pull_request": "merged; implementation history retained",
-        "merge": "merged into main via owner-authorized consolidation"
+        "pull_request": "PR#13 merged; historical branch evidence retained",
+        "merge": "merged to main; remaining feature scope/coverage is not inferred complete"
       },
       "branch": "main",
       "commit": "ad86d58b0c0dec7117ffa524ae4a66926b92cd88",
@@ -1988,6 +2133,11 @@
       "implementation_ref": {
         "branch": "feature/poke-ball-redesign",
         "commit": "ad86d58b0c0dec7117ffa524ae4a66926b92cd88"
+      },
+      "merged_reference": {
+        "pr": 13,
+        "merge_commit": "d54f7a8e85d38b8fa304399dcb4d14778396d5cd",
+        "verified_main": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c"
       }
     },
     {
@@ -2015,8 +2165,8 @@
         "implementation": "implemented and merged into main; starter integration acceptance remains",
         "automated": "eight host suites PASS; local clean repeatability PASS; final Actions modified/upstream SUCCESS",
         "emulator": "full local mGBA PASS; vendor transaction/UI/10000 purchases/EXP/obedience plus existing stack; external gaps retained",
-        "pull_request": "merged; implementation history retained",
-        "merge": "merged into main via owner-authorized consolidation"
+        "pull_request": "PR#12 merged; historical branch evidence retained",
+        "merge": "merged to main; remaining feature scope/coverage is not inferred complete"
       },
       "branch": "main",
       "commit": "d54f7a8e85d38b8fa304399dcb4d14778396d5cd",
@@ -2030,6 +2180,11 @@
       "implementation_ref": {
         "branch": "feature/mystery-vendor-network",
         "commit": "d54f7a8e85d38b8fa304399dcb4d14778396d5cd"
+      },
+      "merged_reference": {
+        "pr": 12,
+        "merge_commit": "ef98140d1e0248995ae0ada2782244b6c4e7955d",
+        "verified_main": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c"
       }
     },
     {
@@ -2065,8 +2220,8 @@
         "implementation": "implemented; scoped typing acceptance passed",
         "automated": "all10 host suites PASS; clean reproducible build and final modified/upstream Actions PASS",
         "emulator": "final Actions full mGBA274791 assertions PASS; local full274765 plus46 focused summary assertions PASS; scoped fixtures, not full progression/hardware/link certification",
-        "pull_request": "merged; implementation history retained",
-        "merge": "merged into main via owner-authorized consolidation"
+        "pull_request": "PR#16 merged; historical branch evidence retained",
+        "merge": "merged to main; remaining feature scope/coverage is not inferred complete"
       },
       "branch": "main",
       "commit": "b1ff74d0e129815baf45633d54073f24af4087d0",
@@ -2085,6 +2240,11 @@
       "implementation_ref": {
         "branch": "feature/approved-typing-corrections",
         "commit": "b1ff74d0e129815baf45633d54073f24af4087d0"
+      },
+      "merged_reference": {
+        "pr": 16,
+        "merge_commit": "380b401e5b2f3851603fe20ed86408238dc40c4a",
+        "verified_main": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c"
       }
     },
     {
@@ -2120,8 +2280,8 @@
         "implementation": "implemented on main",
         "automated": "12 host suites plus Museum static/clean reproducibility/final Actions PASS",
         "emulator": "35 focused and full native276161 assertions PASS; no full progression/hardware/link certification",
-        "pull_request": "#22 merged",
-        "merge": "merged into main at 7284dc0aac833f751882826e339273a97694ce9e"
+        "pull_request": "PR#22 merged; historical branch evidence retained",
+        "merge": "merged to main; remaining feature scope/coverage is not inferred complete"
       },
       "branch": "main",
       "commit": "eb18e7808e026c32e9c7289dc4e4e3a2be6ea025",
@@ -2130,7 +2290,12 @@
       "blocker": null,
       "design_authority": "Supplied November2 Evolution & Item Supply Source Parity section3, SHA2566a39563906572b3ab6870e754473a5a4daef593c3783c92d80a0eaf02322b237; standing owner implementation authorization",
       "next_action": "Preserve approved Lv30 rule; broader Ponyta species stats/abilities/learnsets remain separate. Scoped task complete.",
-      "checkpoint": "2026-11-04 final acceptance and actual merge"
+      "checkpoint": "2026-11-04 final acceptance and actual merge",
+      "merged_reference": {
+        "pr": 22,
+        "merge_commit": "7284dc0aac833f751882826e339273a97694ce9e",
+        "verified_main": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c"
+      }
     },
     {
       "id": "GYM-005",
@@ -2179,8 +2344,8 @@
         "implementation": "implemented",
         "automated": "13 host suites, clean reproducibility and CI41833319977/41835690963 PASS",
         "emulator": "full CI280244 mGBA0.10.2; local280245 mGBA0.10.5 PASS",
-        "pull_request": "PR26 merged",
-        "merge": "merged887bf958 on explicit owner instruction"
+        "pull_request": "PR#26 merged; historical branch evidence retained",
+        "merge": "merged to main; remaining feature scope/coverage is not inferred complete"
       },
       "branch": "feature/saffron-ranger-base-camp",
       "commit": "7c9e2f5e49dc65ec4b5bb04b6464f050c568713e",
@@ -2189,7 +2354,12 @@
       "blocker": null,
       "design_authority": "implementation/saffron-ranger-base-camp.md, final owner-approved November3 handoff; no design details invented",
       "next_action": "Preserve merged implementation; general release/hardware/link acceptance remains under INT-005.",
-      "checkpoint": "2026-11-04 owner-authorized merge verified"
+      "checkpoint": "2026-11-04 owner-authorized merge verified",
+      "merged_reference": {
+        "pr": 26,
+        "merge_commit": "887bf9583170479b499d7739e98c73add5b895ec",
+        "verified_main": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c"
+      }
     },
     {
       "id": "GYM-006",
@@ -2225,8 +2395,8 @@
         "implementation": "implemented; exact data/learnset scope only",
         "automated": "14 host suites/Museum static and clean reproducibility PASS; live full CI evidence in PR27 checks",
         "emulator": "1525 data +52741 focused actual battle assertions PASS; full-suite results maintained in PR27",
-        "pull_request": "separate implementation PR27 prepared; live review/check status on GitHub",
-        "merge": "unmerged gameplay PR; specification25 already merged"
+        "pull_request": "PR#27 merged; historical branch evidence retained",
+        "merge": "merged to main; remaining feature scope/coverage is not inferred complete"
       },
       "branch": "feature/main-rival-eight-battles",
       "commit": "e4068bf0a0624c6d2df37631c11cc98b0350ff42",
@@ -2236,7 +2406,12 @@
       "design_authority": "implementation/main-rival-eight-battles.md v2 mergedPR25; owner continue/standing implementation instructions",
       "next_action": "Use live PR27 validation evidence for review; retain full natural story/Pikachu starter/manual balance acceptance. No automatic gameplay merge.",
       "checkpoint": "2026-11-04 all8 actual native battle and clean acceptance; live full/CI results in PR27",
-      "combined_acceptance": "Exact reviewed27/29/31 heads reconciled inPR35;16 hosts/clean/upstream/full local+CI463243 PASS. No main/feature PR merge; future head changes require reconciliation."
+      "combined_acceptance": "Exact reviewed27/29/31 heads reconciled inPR35;16 hosts/clean/upstream/full local+CI463243 PASS. No main/feature PR merge; future head changes require reconciliation.",
+      "merged_reference": {
+        "pr": 27,
+        "merge_commit": "51b38c360e3e5deacb870e17be1a5e571333bbc9",
+        "verified_main": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c"
+      }
     },
     {
       "id": "GYM-007",
@@ -2268,8 +2443,8 @@
         "implementation": "implemented on existing PR31 with exact PR29 source dependency",
         "automated": "15 host suites/Museum PASS; clean and final CI results maintained in PR31",
         "emulator": "359 focused actual-ROM assertions PASS: constructors, gate, forms, AI Rain Dance, victories, flags and legacy Continue/outdoor context. Full final evidence in PR31.",
-        "pull_request": "existing implementation PR31; live review/check status on GitHub",
-        "merge": "unmerged; no auto-merge requested"
+        "pull_request": "PR#31 merged; historical branch evidence retained",
+        "merge": "merged to main; remaining feature scope/coverage is not inferred complete"
       },
       "branch": "feature/gym-castform-approved-data-20261104",
       "commit": null,
@@ -2279,7 +2454,236 @@
       "design_authority": "implementation/three-gym-castform.md from PR30 head0d9cb4f5; approved Gym register and explicit owner request",
       "next_action": "Review tested PR31; review combined463243 native/CI acceptance inPR35 and reconcile any later feature-head changes. Other Gym parties/rewards/abilities remain outside scope.",
       "checkpoint": "2026-11-04 focused scoped acceptance; final build/full/CI live in PR31",
-      "combined_acceptance": "Exact reviewed27/29/31 heads reconciled inPR35;16 hosts/clean/upstream/full local+CI463243 PASS. No main/feature PR merge; future head changes require reconciliation."
+      "combined_acceptance": "Exact reviewed27/29/31 heads reconciled inPR35;16 hosts/clean/upstream/full local+CI463243 PASS. No main/feature PR merge; future head changes require reconciliation.",
+      "merged_reference": {
+        "pr": 31,
+        "merge_commit": "51b38c360e3e5deacb870e17be1a5e571333bbc9",
+        "verified_main": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c"
+      }
+    },
+    {
+      "id": "PKM-009",
+      "area": "PKM",
+      "title": "Finish approved all-252 species stats/abilities/learnsets/TM-HM reconciliation and source rollout",
+      "aliases": [],
+      "effort": {
+        "earned": 0,
+        "remaining": 28,
+        "unit": "provisional relative planning point",
+        "confidence": "low",
+        "history": [
+          {
+            "date": "2026-11-05",
+            "earned": 0,
+            "remaining": 28,
+            "reason": "Frozen scope now explicitly inventories previously approved work missing from older dashboard. Incremental estimate avoids old-task scope where stated."
+          }
+        ]
+      },
+      "dependencies": [],
+      "status": {
+        "design": "owner-approved or delegated design recorded in Drive",
+        "implementation": "not implemented on main; any specs/PRs noted in next action",
+        "automated": "not verified as full feature",
+        "emulator": "not verified as complete feature",
+        "pull_request": "not merged gameplay",
+        "merge": "not merged gameplay"
+      },
+      "branch": null,
+      "commit": null,
+      "pr_url": null,
+      "ci_url": null,
+      "blocker": "Source-relative 252-species design/audit exists, but bulk source implementation and TM legality closure are not verified; does not duplicate base Pokédex and typing work in PKM-001/007.",
+      "design_authority": "Lightning Yellow canonical Drive specialist registers and November 5 change intake",
+      "next_action": "Source-relative 252-species design/audit exists, but bulk source implementation and TM legality closure are not verified; does not duplicate base Pokédex and typing work in PKM-001/007.",
+      "checkpoint": "2026-11-06 fixed-scope intake; no gameplay implementation credit"
+    },
+    {
+      "id": "GYM-008",
+      "area": "GYM",
+      "title": "510 ordinary non-Gym Trainer species parties, levels, moves and per-ID implementation",
+      "aliases": [],
+      "effort": {
+        "earned": 0,
+        "remaining": 52,
+        "unit": "provisional relative planning point",
+        "confidence": "low",
+        "history": [
+          {
+            "date": "2026-11-05",
+            "earned": 0,
+            "remaining": 52,
+            "reason": "Frozen scope now explicitly inventories previously approved work missing from older dashboard. Incremental estimate avoids old-task scope where stated."
+          }
+        ]
+      },
+      "dependencies": [],
+      "status": {
+        "design": "owner-approved or delegated design recorded in Drive",
+        "implementation": "not implemented on main; any specs/PRs noted in next action",
+        "automated": "not verified as full feature",
+        "emulator": "not verified as complete feature",
+        "pull_request": "not merged gameplay",
+        "merge": "not merged gameplay"
+      },
+      "branch": null,
+      "commit": null,
+      "pr_url": null,
+      "ci_url": null,
+      "blocker": "251/510 distinct trainer species parties approved Nov5; 259 species assignments remain. Existing GYM-001 covers core Gym trainer framework only; this new unit covers individual non-Gym source records, excluding the already approved rival and Elite Four.",
+      "design_authority": "Lightning Yellow canonical Drive specialist registers and November 5 change intake",
+      "next_action": "251/510 distinct trainer species parties approved Nov5; 259 species assignments remain. Existing GYM-001 covers core Gym trainer framework only; this new unit covers individual non-Gym source records, excluding the already approved rival and Elite Four.",
+      "checkpoint": "2026-11-06 fixed-scope intake; no gameplay implementation credit"
+    },
+    {
+      "id": "GYM-009",
+      "area": "GYM",
+      "title": "Eight initial/rematch Elite Four party source implementations",
+      "aliases": [],
+      "effort": {
+        "earned": 0,
+        "remaining": 16,
+        "unit": "provisional relative planning point",
+        "confidence": "low",
+        "history": [
+          {
+            "date": "2026-11-05",
+            "earned": 0,
+            "remaining": 16,
+            "reason": "Frozen scope now explicitly inventories previously approved work missing from older dashboard. Incremental estimate avoids old-task scope where stated."
+          }
+        ]
+      },
+      "dependencies": [],
+      "status": {
+        "design": "owner-approved or delegated design recorded in Drive",
+        "implementation": "not implemented on main; any specs/PRs noted in next action",
+        "automated": "not verified as full feature",
+        "emulator": "not verified as complete feature",
+        "pull_request": "not merged gameplay",
+        "merge": "not merged gameplay"
+      },
+      "branch": null,
+      "commit": null,
+      "pr_url": null,
+      "ci_url": null,
+      "blocker": "All four initial and four rematch owner-locked specs merged (PRs32/33/34/48/46), issue50 ready, gameplay code not done. Incremental eight-per-battle content beyond generic GYM-002 boss/leader wiring.",
+      "design_authority": "Lightning Yellow canonical Drive specialist registers and November 5 change intake",
+      "next_action": "All four initial and four rematch owner-locked specs merged (PRs32/33/34/48/46), issue50 ready, gameplay code not done. Incremental eight-per-battle content beyond generic GYM-002 boss/leader wiring.",
+      "checkpoint": "2026-11-06 fixed-scope intake; no gameplay implementation credit"
+    },
+    {
+      "id": "WRL-009",
+      "area": "WRL",
+      "title": "Complete approved wild ecology encounter slot rates/levels/rod and Surf tables",
+      "aliases": [],
+      "effort": {
+        "earned": 0,
+        "remaining": 20,
+        "unit": "provisional relative planning point",
+        "confidence": "low",
+        "history": [
+          {
+            "date": "2026-11-05",
+            "earned": 0,
+            "remaining": 20,
+            "reason": "Frozen scope now explicitly inventories previously approved work missing from older dashboard. Incremental estimate avoids old-task scope where stated."
+          }
+        ]
+      },
+      "dependencies": [],
+      "status": {
+        "design": "owner-approved or delegated design recorded in Drive",
+        "implementation": "not implemented on main; any specs/PRs noted in next action",
+        "automated": "not verified as full feature",
+        "emulator": "not verified as complete feature",
+        "pull_request": "not merged gameplay",
+        "merge": "not merged gameplay"
+      },
+      "branch": null,
+      "commit": null,
+      "pr_url": null,
+      "ci_url": null,
+      "blocker": "122 family acquisition pathways and location sketches exist, but each map/floor/method's final balanced tables and source data remain; WRL-002 tracks underlying event/encounter engine and map policy, not full encounter-content rollout.",
+      "design_authority": "Lightning Yellow canonical Drive specialist registers and November 5 change intake",
+      "next_action": "122 family acquisition pathways and location sketches exist, but each map/floor/method's final balanced tables and source data remain; WRL-002 tracks underlying event/encounter engine and map policy, not full encounter-content rollout.",
+      "checkpoint": "2026-11-06 fixed-scope intake; no gameplay implementation credit"
+    },
+    {
+      "id": "WRL-010",
+      "area": "WRL",
+      "title": "Selectable following Pokémon for all 252 species",
+      "aliases": [],
+      "effort": {
+        "earned": 0,
+        "remaining": 40,
+        "unit": "provisional relative planning point",
+        "confidence": "low",
+        "history": [
+          {
+            "date": "2026-11-05",
+            "earned": 0,
+            "remaining": 40,
+            "reason": "Frozen scope now explicitly inventories previously approved work missing from older dashboard. Incremental estimate avoids old-task scope where stated."
+          }
+        ]
+      },
+      "dependencies": [],
+      "status": {
+        "design": "Owner approved Nov5; specification PR52 merged and owner explicitly requested implementation Nov6",
+        "implementation": "Not implemented; next workstream is the required bounded source/252-asset/license/save/event feasibility gate",
+        "automated": "Not run for follower gameplay",
+        "emulator": "Not run for follower gameplay",
+        "pull_request": "Spec52 merged; separate gameplay PR to be created",
+        "merge": "Specification merged; follower gameplay not merged"
+      },
+      "branch": null,
+      "commit": null,
+      "pr_url": null,
+      "ci_url": null,
+      "blocker": null,
+      "design_authority": "Lightning Yellow canonical Drive specialist registers and November 5 change intake",
+      "next_action": "Read merged contract from current main, audit all252 assets/licenses and existing engine/save/opening hooks; implement approved increments and report concrete blockers without placeholders.",
+      "checkpoint": "2026-11-06 fixed-scope intake; no gameplay implementation credit",
+      "spec_pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/52",
+      "specification": "implementation/selectable-following-pokemon.md"
+    },
+    {
+      "id": "WRL-011",
+      "area": "WRL",
+      "title": "Complete approved gift revisions and Rocket stolen-Pokémon return quest content",
+      "aliases": [],
+      "effort": {
+        "earned": 0,
+        "remaining": 10,
+        "unit": "provisional relative planning point",
+        "confidence": "low",
+        "history": [
+          {
+            "date": "2026-11-05",
+            "earned": 0,
+            "remaining": 10,
+            "reason": "Frozen scope now explicitly inventories previously approved work missing from older dashboard. Incremental estimate avoids old-task scope where stated."
+          }
+        ]
+      },
+      "dependencies": [],
+      "status": {
+        "design": "owner-approved or delegated design recorded in Drive",
+        "implementation": "not implemented on main; any specs/PRs noted in next action",
+        "automated": "not verified as full feature",
+        "emulator": "not verified as complete feature",
+        "pull_request": "not merged gameplay",
+        "merge": "not merged gameplay"
+      },
+      "branch": null,
+      "commit": null,
+      "pr_url": null,
+      "ci_url": null,
+      "blocker": "New approved museum Aron 50% Shiny, Water Labyrinth Magby 50% Shiny, Celadon Tangela TANGO, hideout Ralts/Snorunt return and Rocket executive scripts not in merged code; baseline WRL-004 handles common items/events infrastructure, not these content contracts.",
+      "design_authority": "Lightning Yellow canonical Drive specialist registers and November 5 change intake",
+      "next_action": "New approved museum Aron 50% Shiny, Water Labyrinth Magby 50% Shiny, Celadon Tangela TANGO, hideout Ralts/Snorunt return and Rocket executive scripts not in merged code; baseline WRL-004 handles common items/events infrastructure, not these content contracts.",
+      "checkpoint": "2026-11-06 fixed-scope intake; no gameplay implementation credit"
     }
   ],
   "legacy_crosswalk": {
@@ -2401,5 +2805,95 @@
       "url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/34",
       "status": "new documentation-only League handoff available; explicit review/merge before separate execution instruction; no gameplay implementation claimed"
     }
-  ]
+  ],
+  "scope_freeze": {
+    "as_of": "2026-11-05 America/New_York",
+    "rule": "No additional Trainer IDs, new Pokémon species, or extra gameplay features beyond already owner-approved commitments. This is a planning assumption, not an irreversible ban on later owner changes.",
+    "inventoried_untracked_tasks": [
+      "PKM-009",
+      "GYM-008",
+      "GYM-009",
+      "WRL-009",
+      "WRL-010",
+      "WRL-011"
+    ],
+    "trainer_species_parties": {
+      "approved": 251,
+      "total": 510,
+      "remaining": 259,
+      "scope": "species assignments only; levels/moves/held items/AI/implementation separately outstanding"
+    },
+    "elite_four": {
+      "initial": 4,
+      "rematches": 4,
+      "design": "approved",
+      "specs": "merged on main",
+      "gameplay_code": "not implemented per issue #50"
+    },
+    "followers": {
+      "coverage": 252,
+      "spec_pr": 52,
+      "merged": true,
+      "coded": false
+    },
+    "gift_supersessions": [
+      "Museum Egg Aron, 50% true Shiny (old Feebas code now obsolete)",
+      "Water Labyrinth Egg Magby, 50% true Shiny",
+      "Celadon rooftop Tangela Lv25 TANGO"
+    ],
+    "known_approved_work_covered_by_existing_buckets": [
+      "weather special overrides/ability eligibility issue #47",
+      "special overworld eight encounters within WRL-002 map event engine, implementation remains due",
+      "Pikachu starter under WRL-001",
+      "visual palette approval TIM-003"
+    ],
+    "reconciled_on": "2026-11-06"
+  },
+  "progress_accounting": {
+    "rule": "EARNED estimates include verified scoped native/build work in OPEN PRs when explicitly flagged; not equivalent to code merged to main. Review and release gates retained. Documentation-only PRs get zero gameplay implementation credit. New scope tasks record net extra workload beyond existing broad task buckets.",
+    "as_of": "2026-11-06",
+    "main_evidence": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c",
+    "known_merged_code_credit_separate_from_open": "Open PR evidence credited only once to corresponding permanent task. No separate points awarded merely for large assertion counts.",
+    "reconciliation": {
+      "prior_tasks": 44,
+      "preserved_earned": 312,
+      "prior_total": 546,
+      "new_incremental_tasks": 6,
+      "new_incremental_effort": 166,
+      "fixed_total": 712,
+      "id_collisions_resolved": {
+        "GYM-006": "Existing rival task preserved; incoming ordinary-Trainer inventory assigned GYM-008",
+        "GYM-007": "Existing Gym Castform task preserved; incoming Elite Four implementation assigned GYM-009"
+      },
+      "reason": "Preserve existing effort/history instead of resetting them or double-crediting rivals/Castform under generic buckets. PR53 historical300/714 proposal is retained in the ledger, superseded by this actual-branch reconciliation."
+    }
+  },
+  "latest_consolidation": {
+    "date": "2026-11-06",
+    "owner_authorization": "Please merge anything you can, and then continue; then implement selectable followers after current work",
+    "recovery_tag": "recovery/main-before-consolidation-20261106",
+    "source_stack": [
+      27,
+      29,
+      31,
+      35,
+      36,
+      37,
+      39,
+      40,
+      41,
+      42,
+      43
+    ],
+    "specifications": [
+      28,
+      30,
+      49,
+      52
+    ],
+    "tested_source_head": "85032f283099549dc84ab324ca5a6616bbd73cf8",
+    "full_native_assertions": 534051,
+    "main_before_tracking": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c",
+    "source_tree_verified": true
+  }
 }

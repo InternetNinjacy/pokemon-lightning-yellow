@@ -1200,3 +1200,59 @@ Provisional BTL-00517 earned/63 remaining, overall312/546=57.14%. Four additiona
 points within existing scope, not rerun/56-move credit. Dashboard narrative now
 uses the actual summed effort denominator rather than the old inconsistent
 historical arithmetic sentence; no task history or effort totals reset.
+
+
+## Historical PR53 scope proposal — superseded by reconciliation below
+
+
+
+## 2026-11-05 — OWNER-DIRECTED FROZEN-SCOPE REBASELINE (DOCUMENTATION PR, NO GAMEPLAY MERGE)
+
+Owner assumption: no additional Pokemon, no newly invented Trainer records, no new gameplay feature beyond existing approved commitments. Reconciled live Drive approvals and GitHub PR states. Prior ledger remains unchanged above.
+
+- Existing 42 permanent task IDs and all historical earned values preserved; no task points removed. Updated scoped estimates for native-tested OPEN PRs #27, #29, #31, #35, #36, #39, #40-43 and MERGED #26; nonmerged code distinguished from main.
+- All five Elite Four documentation PRs #32/#33/#34/#48/#46 MERGED. Eight specs approved, NO gameplay implementation credit. Codex issue #50.
+- Follower 252 all-party system approved and DOCS-ONLY PR #52 OPEN. No sprite/license/coding credit.
+- Ordinary non-Gym Trainer source records: 251/510 individual species assignments approved; 259 remaining. Party levels, moves and implementation separate.
+- New **incremental only** tasks: PKM-009 28pt, GYM-006 52pt, GYM-007 16pt, WRL-009 20pt, WRL-010 40pt, WRL-011 10pt. Do not count any of these again as original broad tasks, including GYM-001/GYM-002, WRL-001/WRL-002/WRL-004.
+- Museum Shiny Feebas code outdated: approved reward Aron Egg 50% true Shiny. Also approved Magby Egg 50% and Tangela TANGO. Rocket hideout #45 pending source changes.
+- Rebased totals: **300 earned / 414 remaining / 714 all = 42.02% estimated**. Previous237/311/548=43.25% tracker was incomplete-scope historical baseline. New numbers reflect both progress and an explicit larger fixed backlog. Estimates are LOW CONFIDENCE, not time/hours or end-to-end release readiness.
+- No existing PR merged, no code/main edited by this report. Changes published for owner review on branch docs/frozen-scope-progress-audit-20261105. Upon review/merge of this DOCS-ONLY PR, update main dashboard. No automatic merge.
+
+
+## 2026-11-06 — Owner-authorized consolidation and stable-ID scope reconciliation
+
+Owner explicitly authorized merging ready work, then requested selectable followers
+from the merged main contract after consolidation. Recovery tag:
+`recovery/main-before-consolidation-20261106` at2503a78a. The source chain
+43→42→41→40→39→37→36→35 was merged upward preserving each commit. Main now
+contains rival27, weather29 and Gym31 as well; all are recorded MERGED by GitHub.
+Every intermediate feature-head tree matched tested PR43 treef7635334c9a1fc3865c18f7b06029af619bd20c6.
+The main merge preserved eight newer Elite Four documentation files; no production
+source differed from tested85032f28. Final source proof:20 hosts/3 checkers,
+clean reproducibility and remote mGBA0.10.2 full534051 PASS in both PR43 runs.
+
+Approved documentation PR28 (sign),49 (prototype-only lighting) and52 (followers)
+were merged without gameplay changes. Draft30 had only a missing authorization
+appendix already on main: resolved by retaining main's complete approved record,
+verified exact main tree, marked ready and merged. No final lighting palette
+approval, new gift implementation, ROM release or auto-merge is inferred.
+
+PR53's planning inventory was reviewed rather than copied blindly. It collided
+with permanent GYM-006 rival/GYM-007 Castform IDs and omitted their newer branch
+history. Keep every one of the existing44 task records and their effort/history
+unchanged; assign the six genuine new scope units PKM-009/GYM-008/GYM-009/
+WRL-009/WRL-010/WRL-011. No duplicate rival/Castform credit in generic buckets.
+The historical300/714 proposal above is superseded: actual preserved312 earned
+of546 prior points plus166 net incremental scope gives a fixed712-point scope,
+312 earned/400 remaining =43.82%, provisional. Previously completed work is not
+reset; the percentage falls because omitted approved scope is now inventoried.
+No new implementation credit for merging documents or branches.
+
+Current effective code is the tested consolidated stack. New gift designs
+(Aron/Magby/Tangela/quest) are NOT falsely claimed implemented; legacy reward
+code remains until its dedicated approved implementation. WRL-010 is the owner's
+next priority under merged implementation/selectable-following-pokemon.md;
+0/40 points, no follower code/asset coverage claimed. Roar remains queued.
+Follower source/graphics/license/save/opening feasibility gate must precede bulk
+imports or unsafe save migrations. Direct Drive synchronization remains pending.
