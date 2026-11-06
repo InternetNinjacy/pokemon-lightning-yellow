@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "updated": "2026-11-04",
+  "updated": "2026-11-05",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "GYM-005 Ranger Base Camp implemented and ready for review in unmerged PR#26. All13 host suites, Museum static, clean reproducibility and full native280245 assertions PASS. Required CI conclusions are linked from PR checks. Rival remains explicitly BLOCKED; all other tracked work and credit preserved.",
-  "main_sha": "700587a805e9f67cedec10d8778f64ade3d3f3b8",
+  "current_focus": "Frozen-feature-scope rebaseline. Merged baseline is Ranger PR26 + eight Elite Four DOCS PR32/33/34/48/46; the rival/weather/Castform integration PR35 and stacked move PR40-43 are TESTED but OPEN. 251/510 individual Trainers approved, 259 remaining. New previously approved work catalogued without mistaking documentation for implementation.",
+  "main_sha": "2503a78a66013e2454190139784069408cd82d4b",
   "drive_sync": {
     "status": "pending: no direct Drive writing tool available",
     "folder": "https://drive.google.com/drive/folders/1N_n0Ke48jBbdhUWSZWzwR6rpPFqpDUpl"
@@ -229,8 +229,8 @@
       "title": "Expanded Dex/evolution acceptance",
       "aliases": [],
       "effort": {
-        "earned": 6,
-        "remaining": 2,
+        "earned": 8,
+        "remaining": 0,
         "unit": "provisional relative planning point",
         "confidence": "low",
         "history": [
@@ -251,6 +251,12 @@
             "earned": 6,
             "remaining": 2,
             "reason": "Final clean build, full local mGBA8715 and GitHub modified/upstream jobs passed. Only executed scoped work earns credit; remaining acceptance retained."
+          },
+          {
+            "date": "2026-11-05",
+            "earned": 8,
+            "remaining": 0,
+            "reason": "Frozen-scope audit: provisional evidence credit from PR #39, PKM-005; open PR credit is NOT merged-main evidence, nor a final release acceptance."
           }
         ]
       },
@@ -261,20 +267,20 @@
       ],
       "status": {
         "design": "approved scoped implementation",
-        "implementation": "partial acceptance; remaining coverage explicitly recorded",
-        "automated": "all five host suites PASS; clean rebuild identical; GitHub both jobs SUCCESS",
+        "implementation": "Expanded real Bag-navigation/evolution acceptance passes in tested open PR #39; peer/link and external acceptance still separate.",
+        "automated": "Full 512774 native assertions in stacked test branch; PR #39 remains open.",
         "emulator": "full local mGBA0.10.5 PASS:8715 assertions; selected scenes/battles only",
-        "pull_request": "merged; implementation history retained",
-        "merge": "merged into main via owner-authorized consolidation"
+        "pull_request": "OPEN tested PR, not merged",
+        "merge": "NOT merged to main"
       },
       "branch": "main",
       "commit": "6ff574dc205a007a93a4724fd6eda867eeff8fdf",
-      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/9",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/39",
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41376878452",
-      "blocker": null,
+      "blocker": "Real link peer/hardware and wider acceptance remain.",
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Full overworld Bag evolution navigation and a real link-trade peer remain unverified.",
-      "checkpoint": "2026-11-02 final stabilization: commit6ff574dc205a007a93a4724fd6eda867eeff8fdf; local8715; Actions41376878452 SUCCESS",
+      "next_action": "Real link peer/hardware and wider acceptance remain.",
+      "checkpoint": "2026-11-05 frozen-scope evidence review; open PR #39",
       "coverage_gap": "Full overworld Bag evolution navigation and a real link-trade peer remain unverified.",
       "implementation_ref": {
         "branch": "feature/phase-one-stabilization",
@@ -425,8 +431,8 @@
       "title": "Wild double battle hardening",
       "aliases": [],
       "effort": {
-        "earned": 4,
-        "remaining": 6,
+        "earned": 6,
+        "remaining": 4,
         "unit": "provisional relative planning point",
         "confidence": "low",
         "history": [
@@ -441,6 +447,12 @@
             "earned": 4,
             "remaining": 6,
             "reason": "Final clean build, full local mGBA8715 and GitHub modified/upstream jobs passed. Only executed scoped work earns credit; remaining acceptance retained."
+          },
+          {
+            "date": "2026-11-05",
+            "earned": 6,
+            "remaining": 4,
+            "reason": "Frozen-scope audit: provisional evidence credit from PR #36, BTL-004; open PR credit is NOT merged-main evidence, nor a final release acceptance."
           }
         ]
       },
@@ -449,20 +461,20 @@
       ],
       "status": {
         "design": "approved scoped implementation",
-        "implementation": "partial acceptance; remaining coverage explicitly recorded",
-        "automated": "all five host suites PASS; clean rebuild identical; GitHub both jobs SUCCESS",
+        "implementation": "Survivor catch/nickname party-and-PC save/reload cases tested on stacked PR #36; remaining wild doubles hardening still outstanding.",
+        "automated": "Focused native scenarios and accumulated combined suite on PR #36; tested open stack.",
         "emulator": "full local mGBA0.10.5 PASS:8715 assertions; selected scenes/battles only",
-        "pull_request": "merged; implementation history retained",
-        "merge": "merged into main via owner-authorized consolidation"
+        "pull_request": "OPEN tested PR, not merged",
+        "merge": "NOT merged to main"
       },
       "branch": "main",
       "commit": "6ff574dc205a007a93a4724fd6eda867eeff8fdf",
-      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/9",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/36",
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41376878452",
-      "blocker": null,
+      "blocker": "Other balls, full opponent states, weather, forced finish and external behavior remain.",
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Nickname acceptance/rename, successful captures with every ball, faint/replacement/whiteout, forced-end/spread moves and complete weather interactions remain unverified.",
-      "checkpoint": "2026-11-02 final stabilization: commit6ff574dc205a007a93a4724fd6eda867eeff8fdf; local8715; Actions41376878452 SUCCESS",
+      "next_action": "Other balls, full opponent states, weather, forced finish and external behavior remain.",
+      "checkpoint": "2026-11-05 frozen-scope evidence review; open PR #36",
       "coverage_gap": "Nickname acceptance/rename, successful captures with every ball, faint/replacement/whiteout, forced-end/spread moves and complete weather interactions remain unverified.",
       "implementation_ref": {
         "branch": "feature/phase-one-stabilization",
@@ -475,8 +487,8 @@
       "title": "410-move redesign",
       "aliases": [],
       "effort": {
-        "earned": 0,
-        "remaining": 80,
+        "earned": 12,
+        "remaining": 68,
         "unit": "provisional relative planning point",
         "confidence": "low",
         "history": [
@@ -485,6 +497,12 @@
             "earned": 0,
             "remaining": 80,
             "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          },
+          {
+            "date": "2026-11-05",
+            "earned": 12,
+            "remaining": 68,
+            "reason": "Frozen-scope audit: provisional evidence credit from PR #43, BTL-005; open PR credit is NOT merged-main evidence, nor a final release acceptance."
           }
         ]
       },
@@ -493,20 +511,20 @@
       ],
       "status": {
         "design": "17/17 type design reviews locked; complete registers/change ledger available",
-        "implementation": "not started",
-        "automated": "not executed for new work",
+        "implementation": "410-move full design inventory reconciled in PR #37; move engine name/Curse fixes and long-name UI plus eight original move edits and Leech Life are source-implemented/tested across open stacked PRs #40-43; 56 newly approved moves not implemented.",
+        "automated": "PR #43 reports full >534000 guarded native assertions and clean source builds; unmerged stacked branch.",
         "emulator": "not executed",
-        "pull_request": "not created",
-        "merge": "not merged"
+        "pull_request": "OPEN tested PR, not merged",
+        "merge": "NOT merged to main"
       },
       "branch": null,
       "commit": null,
-      "pr_url": null,
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/43",
       "ci_url": null,
-      "blocker": "Engineering reconciliation pending: assemble authoritative354+56 overlay, safe move/TM IDs, effects and viable existing-art reuse. Candidate composites and unassigned per-species distributions are separate dependencies; documents are available.",
+      "blocker": "Implement 56 approved new move IDs/effects and the remaining original move redesigns, animation reuse, TM integration, learnsets and integrated battle validation.",
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Read/reconcile supplied move register, all-type tracker and change ledger; do not reopen locked type reviews or guess per-species learners.",
-      "checkpoint": "2026-11-04 supplied-export reconciliation; old unavailable-document claims superseded; no implementation/test credit from availability.",
+      "next_action": "Implement 56 approved new move IDs/effects and the remaining original move redesigns, animation reuse, TM integration, learnsets and integrated battle validation.",
+      "checkpoint": "2026-11-05 frozen-scope evidence review; open PR #43",
       "source_exports": [
         "03_MOVES/Pokémon Lightning Yellow — Approved Move Change Ledger — Source Verbatim v0.1.txt",
         "03_MOVES/Pokémon Lightning Yellow — Complete TM & Move Register — v1 (2026-10-29).txt",
@@ -658,8 +676,8 @@
       "title": "Map weather selection and persistent state",
       "aliases": [],
       "effort": {
-        "earned": 0,
-        "remaining": 28,
+        "earned": 24,
+        "remaining": 4,
         "unit": "provisional relative planning point",
         "confidence": "low",
         "history": [
@@ -668,6 +686,12 @@
             "earned": 0,
             "remaining": 28,
             "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          },
+          {
+            "date": "2026-11-05",
+            "earned": 24,
+            "remaining": 4,
+            "reason": "Frozen-scope audit: provisional evidence credit from PR #29, WTH-001; open PR credit is NOT merged-main evidence, nor a final release acceptance."
           }
         ]
       },
@@ -676,20 +700,20 @@
       ],
       "status": {
         "design": "Weighted maps/entry/reentry/night conversion/RTC recovery supplied and approved",
-        "implementation": "not started",
-        "automated": "not executed for new work",
+        "implementation": "83 actual map IDs, weighted weather, indoor return, RTC recovery, night conversions and Cycling Road rerolls implemented and tested in OPEN PR #29, not on main.",
+        "automated": "PR #29 full native 408607 assertions and CI successful.",
         "emulator": "not executed",
-        "pull_request": "not created",
-        "merge": "not merged"
+        "pull_request": "OPEN tested PR, not merged",
+        "merge": "NOT merged to main"
       },
       "branch": null,
       "commit": null,
-      "pr_url": null,
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/29",
       "ci_url": null,
-      "blocker": null,
+      "blocker": "Owner review/merge, remaining map/override scope and integrated source parity checks.",
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Map supplied approved groups/exceptions onto actual source IDs and implement eligible base weather. Kindle Road/Trainer Tower/Tanoby/harbors are resolved by later appendices; SOW overrides remain held.",
-      "checkpoint": "2026-11-04 supplied-export reconciliation; old unavailable-document claims superseded; no implementation/test credit from availability.",
+      "next_action": "Owner review/merge, remaining map/override scope and integrated source parity checks.",
+      "checkpoint": "2026-11-05 frozen-scope evidence review; open PR #29",
       "source_exports": [
         "05_WEATHER_LIGHTING/Pokémon Lightning Yellow — Lighting & Weather Decision Handoff and Next Steps — 2026-10-28.txt",
         "05_WEATHER_LIGHTING/Pokémon Lightning Yellow — Lighting & Weather Decision Register — 2026-10-28.txt",
@@ -751,8 +775,8 @@
       "title": "Field-to-battle weather bridge",
       "aliases": [],
       "effort": {
-        "earned": 0,
-        "remaining": 20,
+        "earned": 8,
+        "remaining": 12,
         "unit": "provisional relative planning point",
         "confidence": "low",
         "history": [
@@ -761,6 +785,12 @@
             "earned": 0,
             "remaining": 20,
             "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          },
+          {
+            "date": "2026-11-05",
+            "earned": 8,
+            "remaining": 12,
+            "reason": "Frozen-scope audit: provisional evidence credit from PR #35, WTH-003; open PR credit is NOT merged-main evidence, nor a final release acceptance."
           }
         ]
       },
@@ -769,20 +799,20 @@
       ],
       "status": {
         "design": "Field Snow bridge/lifetime implemented in#13; wider regional integration pending",
-        "implementation": "partial: narrow Snow-to-Hail bridge in merged#13/vendor stack; regional policy/restoration not implemented",
-        "automated": "not executed for new work",
+        "implementation": "Regional field-to-battle state/return exercised in open PR #29 and combined PR #35, with some Snow bridge already under BTL-006; full special events/ability interactions still open.",
+        "automated": "Combined rival/weather/Castform branch PR #35 reports 463243 guarded native assertions.",
         "emulator": "not executed",
-        "pull_request": "not created",
-        "merge": "not merged"
+        "pull_request": "OPEN tested PR, not merged",
+        "merge": "NOT merged to main"
       },
       "branch": null,
       "commit": null,
-      "pr_url": null,
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/35",
       "ci_url": null,
-      "blocker": null,
+      "blocker": "Special weather overrides, remaining abilities, route-specific effects and final integrated behavior.",
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Preserve verified Snow-to-natural-Hail bridge and five-turn move Hail. Integrate regional selection/restoration later; do not count this existing BTL-006 work twice.",
-      "checkpoint": "2026-11-04 supplied-export reconciliation; old unavailable-document claims superseded; no implementation/test credit from availability.",
+      "next_action": "Special weather overrides, remaining abilities, route-specific effects and final integrated behavior.",
+      "checkpoint": "2026-11-05 frozen-scope evidence review; open PR #35",
       "source_exports": [
         "01_POKE_BALLS/Pokémon Lightning Yellow — Codex Deferred Poké Ball Task Brief — 2026-11-02.txt",
         "05_WEATHER_LIGHTING/Pokémon Lightning Yellow — Lighting & Weather Decision Handoff and Next Steps — 2026-10-28.txt",
@@ -1049,8 +1079,8 @@
       "title": "Leaders, rivals and important battles",
       "aliases": [],
       "effort": {
-        "earned": 0,
-        "remaining": 18,
+        "earned": 8,
+        "remaining": 10,
         "unit": "provisional relative planning point",
         "confidence": "low",
         "history": [
@@ -1059,26 +1089,32 @@
             "earned": 0,
             "remaining": 18,
             "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          },
+          {
+            "date": "2026-11-05",
+            "earned": 8,
+            "remaining": 10,
+            "reason": "Frozen-scope audit: provisional evidence credit from PR #27, GYM-002; open PR credit is NOT merged-main evidence, nor a final release acceptance."
           }
         ]
       },
       "dependencies": [],
       "status": {
         "design": "Leader/Rocket/Giovanni species progressions supplied; rivals/Elite Four exact teams separate",
-        "implementation": "not started",
-        "automated": "not executed for new work",
+        "implementation": "Eight frozen rival battles/24 starter-route constructor records implemented and tested in OPEN PR #27; initial/rematch Elite Four code not present and other major fights remain.",
+        "automated": "PR #27 source/build/native evidence; combined integration PR #35 full native 463243 assertions.",
         "emulator": "not executed",
-        "pull_request": "not created",
-        "merge": "not merged"
+        "pull_request": "OPEN tested PR, not merged",
+        "merge": "NOT merged to main"
       },
       "branch": null,
       "commit": null,
-      "pr_url": null,
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/27",
       "ci_url": null,
-      "blocker": "Rival spec implementation/main-rival-eight-battles.md is available and merged but explicitly BLOCKED: conditional TM/learnset choices, exact late held items and starter routing remain; no implementation inferred from document receipt.",
+      "blocker": "Review/merge rival, complete other leaders and boss battle settings without claiming Elite Four implemented.",
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Preserve latest cumulative Giovanni roster; reconcile detailed earlier leaders and pending specific battle configurations.",
-      "checkpoint": "2026-11-04 supplied-export reconciliation; old unavailable-document claims superseded; no implementation/test credit from availability.",
+      "next_action": "Review/merge rival, complete other leaders and boss battle settings without claiming Elite Four implemented.",
+      "checkpoint": "2026-11-05 frozen-scope evidence review; open PR #27",
       "source_exports": [
         "02_GYMS/Pokémon Lightning Yellow — Eight-Gym Leader & Trainer Roster — Final Design Handoff (2026-11-01).txt",
         "04_SPECIES_EVOLUTION_WORLD/Pokémon Lightning Yellow — Ordinary Trainer Class & Roster Master Register.txt",
@@ -1094,8 +1130,8 @@
         "CASTFORM-TEAM-01"
       ],
       "effort": {
-        "earned": 0,
-        "remaining": 2,
+        "earned": 2,
+        "remaining": 0,
         "unit": "provisional relative planning point",
         "confidence": "low",
         "history": [
@@ -1104,6 +1140,12 @@
             "earned": 0,
             "remaining": 2,
             "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          },
+          {
+            "date": "2026-11-05",
+            "earned": 2,
+            "remaining": 0,
+            "reason": "Frozen-scope audit: provisional evidence credit from PR #31, GYM-003; open PR credit is NOT merged-main evidence, nor a final release acceptance."
           }
         ]
       },
@@ -1112,20 +1154,20 @@
       ],
       "status": {
         "design": "Celadon ordinary Trainer7 Cacnea+Castform approved; exactly one there",
-        "implementation": "not started",
-        "automated": "not executed for new work",
+        "implementation": "Approved Castform/Cacnea Gym Trainer staging code for three Gym battles tested in OPEN PR #31, with regional weather dependency #29.",
+        "automated": "PR #31 full native 408960 assertions; open branch.",
         "emulator": "not executed",
-        "pull_request": "not created",
-        "merge": "not merged"
+        "pull_request": "OPEN tested PR, not merged",
+        "merge": "NOT merged to main"
       },
       "branch": null,
       "commit": null,
-      "pr_url": null,
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/31",
       "ci_url": null,
-      "blocker": "Castform level/moves and ordinary trainer balancing remain unassigned; the Celadon trainer slot is already approved, not missing.",
+      "blocker": "No remaining scoped source work; integration/review captured under INT-004.",
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Map approved seventh Celadon trainer slot to source ID and await its actual level/moves; retain Forecast/GenIII forms.",
-      "checkpoint": "2026-11-04 supplied-export reconciliation; old unavailable-document claims superseded; no implementation/test credit from availability.",
+      "next_action": "No remaining scoped source work; integration/review captured under INT-004.",
+      "checkpoint": "2026-11-05 frozen-scope evidence review; open PR #31",
       "source_exports": [
         "04_SPECIES_EVOLUTION_WORLD/Pokémon Lightning Yellow — Approved 252-Species Pokédex.txt",
         "02_GYMS/Pokémon Lightning Yellow — Eight-Gym Leader & Trainer Roster — Final Design Handoff (2026-11-01).txt"
@@ -1469,8 +1511,8 @@
       "title": "Combined integration acceptance",
       "aliases": [],
       "effort": {
-        "earned": 8,
-        "remaining": 16,
+        "earned": 12,
+        "remaining": 12,
         "unit": "provisional relative planning point",
         "confidence": "low",
         "history": [
@@ -1485,6 +1527,12 @@
             "earned": 8,
             "remaining": 16,
             "reason": "Final clean build, full local mGBA8715 and GitHub modified/upstream jobs passed. Only executed scoped work earns credit; remaining acceptance retained."
+          },
+          {
+            "date": "2026-11-05",
+            "earned": 12,
+            "remaining": 12,
+            "reason": "Frozen-scope audit: provisional evidence credit from PR #35, INT-004; open PR credit is NOT merged-main evidence, nor a final release acceptance."
           }
         ]
       },
@@ -1496,20 +1544,20 @@
       ],
       "status": {
         "design": "approved scoped implementation",
-        "implementation": "scoped combined acceptance passed on main; broader release work remains",
-        "automated": "12 host suites/Museum static/clean repeatability/final Actions PASS",
+        "implementation": "Tested but OPEN integration PR #35 validates the union of rival #27, regional weather #29 and three Gym Castform fights #31, including preservation of source/test fixtures.",
+        "automated": "16 host suites, identical build, full native 463243 assertions passed, but no main integration/merge.",
         "emulator": "full native276161 assertions plus Ponyta35/Museum1307/Blaine46 focused PASS",
-        "pull_request": "#2 consolidated stack, #22 Ponyta merged",
-        "merge": "merged into main"
+        "pull_request": "OPEN tested PR, not merged",
+        "merge": "NOT merged to main"
       },
       "branch": "main",
       "commit": "7284dc0aac833f751882826e339273a97694ce9e",
-      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/2",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/35",
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41767198787",
-      "blocker": null,
+      "blocker": "Review merge dependency order and retest all current open move/weather/rival changes together, final end-to-end playthrough.",
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Retain global roster, full gameplay/hardware/link and new feature/weather/move/lighting validation; no duplicate integration points.",
-      "checkpoint": "2026-11-04 combined typing regression; no duplicated integration effort credit.",
+      "next_action": "Review merge dependency order and retest all current open move/weather/rival changes together, final end-to-end playthrough.",
+      "checkpoint": "2026-11-05 frozen-scope evidence review; open PR #35",
       "coverage_gap": "No complete playthrough, physical hardware or matching-peer link certification. Blaine victory/badge/TM38/revisit and future approved engine/weather/move systems remain outstanding; prior#14/#15 integration is resolved."
     },
     {
@@ -1999,8 +2047,8 @@
       "title": "Saffron Ranger Base Camp replacement for Fighting Dojo",
       "aliases": [],
       "effort": {
-        "earned": 15,
-        "remaining": 1,
+        "earned": 16,
+        "remaining": 0,
         "unit": "provisional relative planning point",
         "confidence": "medium",
         "history": [
@@ -2021,6 +2069,12 @@
             "earned": 15,
             "remaining": 1,
             "reason": "Full actual-ROM280245 assertions and clean reproducibility PASS; remaining point reserved for review/external acceptance. No other task credit changed."
+          },
+          {
+            "date": "2026-11-05",
+            "earned": 16,
+            "remaining": 0,
+            "reason": "Frozen-scope audit: provisional evidence credit from PR #26, GYM-005; open PR credit is NOT merged-main evidence, nor a final release acceptance."
           }
         ]
       },
@@ -2031,20 +2085,242 @@
       ],
       "status": {
         "design": "approved; final specification merged in#21, supersedes#20 filename",
-        "implementation": "implemented",
-        "automated": "all13 host suites, Museum static and clean SHA256 reproducibility PASS; required CI linked from PR checks",
+        "implementation": "Saffron Ranger Base Camp implementation merged into main PR #26 after native regression; remaining global release checks tracked elsewhere.",
+        "automated": "PR #26 successful host/build CI and native 280245 guarded assertions; merged Nov 4.",
         "emulator": "full actual-ROM mGBA0.10.5 suite280245 assertions PASS; focused data368/UI3276/battles458 PASS",
-        "pull_request": "PR#26 open, ready for owner review",
-        "merge": "unmerged; explicit owner review required"
+        "pull_request": "merged on main",
+        "merge": "merged to main"
       },
       "branch": "feature/saffron-ranger-base-camp",
       "commit": "7c9e2f5e49dc65ec4b5bb04b6464f050c568713e",
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/26",
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/26/checks",
-      "blocker": null,
+      "blocker": "No scoped remaining credit; full game external QA remains INT-005.",
       "design_authority": "implementation/saffron-ranger-base-camp.md, final owner-approved November3 handoff; no design details invented",
-      "next_action": "Owner review of unmerged PR#26; preserve remaining1 point for review/external acceptance, not automatic merge.",
-      "checkpoint": "2026-11-04 complete local full-native acceptance; PR checks retain independent CI evidence"
+      "next_action": "No scoped remaining credit; full game external QA remains INT-005.",
+      "checkpoint": "2026-11-05 frozen-scope evidence review; merged PR #26"
+    },
+    {
+      "id": "PKM-009",
+      "area": "PKM",
+      "title": "Finish approved all-252 species stats/abilities/learnsets/TM-HM reconciliation and source rollout",
+      "aliases": [],
+      "effort": {
+        "earned": 0,
+        "remaining": 28,
+        "unit": "provisional relative planning point",
+        "confidence": "low",
+        "history": [
+          {
+            "date": "2026-11-05",
+            "earned": 0,
+            "remaining": 28,
+            "reason": "Frozen scope now explicitly inventories previously approved work missing from older dashboard. Incremental estimate avoids old-task scope where stated."
+          }
+        ]
+      },
+      "dependencies": [],
+      "status": {
+        "design": "owner-approved or delegated design recorded in Drive",
+        "implementation": "not implemented on main; any specs/PRs noted in next action",
+        "automated": "not verified as full feature",
+        "emulator": "not verified as complete feature",
+        "pull_request": "not merged gameplay",
+        "merge": "not merged gameplay"
+      },
+      "branch": null,
+      "commit": null,
+      "pr_url": null,
+      "ci_url": null,
+      "blocker": "Source-relative 252-species design/audit exists, but bulk source implementation and TM legality closure are not verified; does not duplicate base Pokédex and typing work in PKM-001/007.",
+      "design_authority": "Lightning Yellow canonical Drive specialist registers and November 5 change intake",
+      "next_action": "Source-relative 252-species design/audit exists, but bulk source implementation and TM legality closure are not verified; does not duplicate base Pokédex and typing work in PKM-001/007.",
+      "checkpoint": "2026-11-05 fixed-scope rebaseline, no invented new gameplay features"
+    },
+    {
+      "id": "GYM-006",
+      "area": "GYM",
+      "title": "510 ordinary non-Gym Trainer species parties, levels, moves and per-ID implementation",
+      "aliases": [],
+      "effort": {
+        "earned": 0,
+        "remaining": 52,
+        "unit": "provisional relative planning point",
+        "confidence": "low",
+        "history": [
+          {
+            "date": "2026-11-05",
+            "earned": 0,
+            "remaining": 52,
+            "reason": "Frozen scope now explicitly inventories previously approved work missing from older dashboard. Incremental estimate avoids old-task scope where stated."
+          }
+        ]
+      },
+      "dependencies": [],
+      "status": {
+        "design": "owner-approved or delegated design recorded in Drive",
+        "implementation": "not implemented on main; any specs/PRs noted in next action",
+        "automated": "not verified as full feature",
+        "emulator": "not verified as complete feature",
+        "pull_request": "not merged gameplay",
+        "merge": "not merged gameplay"
+      },
+      "branch": null,
+      "commit": null,
+      "pr_url": null,
+      "ci_url": null,
+      "blocker": "251/510 distinct trainer species parties approved Nov5; 259 species assignments remain. Existing GYM-001 covers core Gym trainer framework only; this new unit covers individual non-Gym source records, excluding the already approved rival and Elite Four.",
+      "design_authority": "Lightning Yellow canonical Drive specialist registers and November 5 change intake",
+      "next_action": "251/510 distinct trainer species parties approved Nov5; 259 species assignments remain. Existing GYM-001 covers core Gym trainer framework only; this new unit covers individual non-Gym source records, excluding the already approved rival and Elite Four.",
+      "checkpoint": "2026-11-05 fixed-scope rebaseline, no invented new gameplay features"
+    },
+    {
+      "id": "GYM-007",
+      "area": "GYM",
+      "title": "Eight initial/rematch Elite Four party source implementations",
+      "aliases": [],
+      "effort": {
+        "earned": 0,
+        "remaining": 16,
+        "unit": "provisional relative planning point",
+        "confidence": "low",
+        "history": [
+          {
+            "date": "2026-11-05",
+            "earned": 0,
+            "remaining": 16,
+            "reason": "Frozen scope now explicitly inventories previously approved work missing from older dashboard. Incremental estimate avoids old-task scope where stated."
+          }
+        ]
+      },
+      "dependencies": [],
+      "status": {
+        "design": "owner-approved or delegated design recorded in Drive",
+        "implementation": "not implemented on main; any specs/PRs noted in next action",
+        "automated": "not verified as full feature",
+        "emulator": "not verified as complete feature",
+        "pull_request": "not merged gameplay",
+        "merge": "not merged gameplay"
+      },
+      "branch": null,
+      "commit": null,
+      "pr_url": null,
+      "ci_url": null,
+      "blocker": "All four initial and four rematch owner-locked specs merged (PRs32/33/34/48/46), issue50 ready, gameplay code not done. Incremental eight-per-battle content beyond generic GYM-002 boss/leader wiring.",
+      "design_authority": "Lightning Yellow canonical Drive specialist registers and November 5 change intake",
+      "next_action": "All four initial and four rematch owner-locked specs merged (PRs32/33/34/48/46), issue50 ready, gameplay code not done. Incremental eight-per-battle content beyond generic GYM-002 boss/leader wiring.",
+      "checkpoint": "2026-11-05 fixed-scope rebaseline, no invented new gameplay features"
+    },
+    {
+      "id": "WRL-009",
+      "area": "WRL",
+      "title": "Complete approved wild ecology encounter slot rates/levels/rod and Surf tables",
+      "aliases": [],
+      "effort": {
+        "earned": 0,
+        "remaining": 20,
+        "unit": "provisional relative planning point",
+        "confidence": "low",
+        "history": [
+          {
+            "date": "2026-11-05",
+            "earned": 0,
+            "remaining": 20,
+            "reason": "Frozen scope now explicitly inventories previously approved work missing from older dashboard. Incremental estimate avoids old-task scope where stated."
+          }
+        ]
+      },
+      "dependencies": [],
+      "status": {
+        "design": "owner-approved or delegated design recorded in Drive",
+        "implementation": "not implemented on main; any specs/PRs noted in next action",
+        "automated": "not verified as full feature",
+        "emulator": "not verified as complete feature",
+        "pull_request": "not merged gameplay",
+        "merge": "not merged gameplay"
+      },
+      "branch": null,
+      "commit": null,
+      "pr_url": null,
+      "ci_url": null,
+      "blocker": "122 family acquisition pathways and location sketches exist, but each map/floor/method's final balanced tables and source data remain; WRL-002 tracks underlying event/encounter engine and map policy, not full encounter-content rollout.",
+      "design_authority": "Lightning Yellow canonical Drive specialist registers and November 5 change intake",
+      "next_action": "122 family acquisition pathways and location sketches exist, but each map/floor/method's final balanced tables and source data remain; WRL-002 tracks underlying event/encounter engine and map policy, not full encounter-content rollout.",
+      "checkpoint": "2026-11-05 fixed-scope rebaseline, no invented new gameplay features"
+    },
+    {
+      "id": "WRL-010",
+      "area": "WRL",
+      "title": "Selectable following Pokémon for all 252 species",
+      "aliases": [],
+      "effort": {
+        "earned": 0,
+        "remaining": 40,
+        "unit": "provisional relative planning point",
+        "confidence": "low",
+        "history": [
+          {
+            "date": "2026-11-05",
+            "earned": 0,
+            "remaining": 40,
+            "reason": "Frozen scope now explicitly inventories previously approved work missing from older dashboard. Incremental estimate avoids old-task scope where stated."
+          }
+        ]
+      },
+      "dependencies": [],
+      "status": {
+        "design": "owner-approved or delegated design recorded in Drive",
+        "implementation": "not implemented on main; any specs/PRs noted in next action",
+        "automated": "not verified as full feature",
+        "emulator": "not verified as complete feature",
+        "pull_request": "not merged gameplay",
+        "merge": "not merged gameplay"
+      },
+      "branch": null,
+      "commit": null,
+      "pr_url": null,
+      "ci_url": null,
+      "blocker": "Owner-approved Nov5; docs-only spec PR52 OPEN, no follower code or sprite-license/coverage verification; WRL-001 retains original Pikachu starter/story separate, no duplicate starter-credit.",
+      "design_authority": "Lightning Yellow canonical Drive specialist registers and November 5 change intake",
+      "next_action": "Owner-approved Nov5; docs-only spec PR52 OPEN, no follower code or sprite-license/coverage verification; WRL-001 retains original Pikachu starter/story separate, no duplicate starter-credit.",
+      "checkpoint": "2026-11-05 fixed-scope rebaseline, no invented new gameplay features"
+    },
+    {
+      "id": "WRL-011",
+      "area": "WRL",
+      "title": "Complete approved gift revisions and Rocket stolen-Pokémon return quest content",
+      "aliases": [],
+      "effort": {
+        "earned": 0,
+        "remaining": 10,
+        "unit": "provisional relative planning point",
+        "confidence": "low",
+        "history": [
+          {
+            "date": "2026-11-05",
+            "earned": 0,
+            "remaining": 10,
+            "reason": "Frozen scope now explicitly inventories previously approved work missing from older dashboard. Incremental estimate avoids old-task scope where stated."
+          }
+        ]
+      },
+      "dependencies": [],
+      "status": {
+        "design": "owner-approved or delegated design recorded in Drive",
+        "implementation": "not implemented on main; any specs/PRs noted in next action",
+        "automated": "not verified as full feature",
+        "emulator": "not verified as complete feature",
+        "pull_request": "not merged gameplay",
+        "merge": "not merged gameplay"
+      },
+      "branch": null,
+      "commit": null,
+      "pr_url": null,
+      "ci_url": null,
+      "blocker": "New approved museum Aron 50% Shiny, Water Labyrinth Magby 50% Shiny, Celadon Tangela TANGO, hideout Ralts/Snorunt return and Rocket executive scripts not in merged code; baseline WRL-004 handles common items/events infrastructure, not these content contracts.",
+      "design_authority": "Lightning Yellow canonical Drive specialist registers and November 5 change intake",
+      "next_action": "New approved museum Aron 50% Shiny, Water Labyrinth Magby 50% Shiny, Celadon Tangela TANGO, hideout Ralts/Snorunt return and Rocket executive scripts not in merged code; baseline WRL-004 handles common items/events infrastructure, not these content contracts.",
+      "checkpoint": "2026-11-05 fixed-scope rebaseline, no invented new gameplay features"
     }
   ],
   "legacy_crosswalk": {
@@ -2115,7 +2391,10 @@
     "WRL-008": "Manual full progression, actual two-peer trade/hardware, flash power-loss injection, exhaustive quest-log replay and independent Shiny-summary visual approval unverified. Starter exclusivity awaits WRL-001; source preservation is not runtime story acceptance.",
     "BTL-006": "No manual full-game progression, actual two-peer/hardware/power interruption or exhaustive quest-log replay; not every13-ball success/failure/presentation is independently exercised. TwoIsland/TrainerTower stock scope and natural-Hail lifetime are explicit technical review boundaries.",
     "WTH-003": "Narrow verified Snow bridge already counted under BTL-006; wider regional integration/restoration remains here, no duplicate completion claim.",
-    "GYM-005": "Full native280245 suite and focused data/UI/battles PASS. Controlled player levels; no full manual balanced progression. Hardware/link peers, power interruption and exhaustive quest-log remain unverified. Owner review/merge pending; live CI evidence at PR#26 checks."
+    "GYM-005": "Full native280245 suite and focused data/UI/battles PASS. Controlled player levels; no full manual balanced progression. Hardware/link peers, power interruption and exhaustive quest-log remain unverified. Owner review/merge pending; live CI evidence at PR#26 checks.",
+    "GYM-006": "251/510 species-only approved; 259 unassigned as of Nov5; no exact non-Gym party-code rollout or complete level/move/AI acceptance.",
+    "WRL-010": "252-species follower contract is docs-only open PR52; sprites, licenses, save/party identity and interactions unimplemented.",
+    "BTL-005": "Open stacked PR40-43 have some original-move/UI work, not 56 new moves or complete 410 move overhaul."
   },
   "effort_rules": "Provisional tracked scope. INT-004 credits combined build/repeatability/stack compatibility only; feature-specific scene/mechanics testing is counted under each feature. No double credit for parent merges. No merge/release authorization inferred.",
   "source_access": {
@@ -2135,5 +2414,53 @@
     "native_assertions": 276132,
     "recovery_tag": "recovery/main-before-consolidation-20261104",
     "repository_auto_merge": "enabled; never disabled by this task"
+  },
+  "scope_freeze": {
+    "as_of": "2026-11-05 America/New_York",
+    "rule": "No additional Trainer IDs, new Pokémon species, or extra gameplay features beyond already owner-approved commitments. This is a planning assumption, not an irreversible ban on later owner changes.",
+    "inventoried_untracked_tasks": [
+      "PKM-009",
+      "GYM-006",
+      "GYM-007",
+      "WRL-009",
+      "WRL-010",
+      "WRL-011"
+    ],
+    "trainer_species_parties": {
+      "approved": 251,
+      "total": 510,
+      "remaining": 259,
+      "scope": "species assignments only; levels/moves/held items/AI/implementation separately outstanding"
+    },
+    "elite_four": {
+      "initial": 4,
+      "rematches": 4,
+      "design": "approved",
+      "specs": "merged on main",
+      "gameplay_code": "not implemented per issue #50"
+    },
+    "followers": {
+      "coverage": 252,
+      "spec_pr": 52,
+      "merged": false,
+      "coded": false
+    },
+    "gift_supersessions": [
+      "Museum Egg Aron, 50% true Shiny (old Feebas code now obsolete)",
+      "Water Labyrinth Egg Magby, 50% true Shiny",
+      "Celadon rooftop Tangela Lv25 TANGO"
+    ],
+    "known_approved_work_covered_by_existing_buckets": [
+      "weather special overrides/ability eligibility issue #47",
+      "special overworld eight encounters within WRL-002 map event engine, implementation remains due",
+      "Pikachu starter under WRL-001",
+      "visual palette approval TIM-003"
+    ]
+  },
+  "progress_accounting": {
+    "rule": "EARNED estimates include verified scoped native/build work in OPEN PRs when explicitly flagged; not equivalent to code merged to main. Review and release gates retained. Documentation-only PRs get zero gameplay implementation credit. New scope tasks record net extra workload beyond existing broad task buckets.",
+    "as_of": "2026-11-05",
+    "main_evidence": "most recent known merged Elite Four spec PR46 merge commit; not a claim of full manual campaign pass",
+    "known_merged_code_credit_separate_from_open": "Open PR evidence credited only once to corresponding permanent task. No separate points awarded merely for large assertion counts."
   }
 }
