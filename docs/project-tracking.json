@@ -12,7 +12,7 @@
   "areas": [
     {
       "id": "PKM",
-      "title": "Pok\u00e9dex, species and evolution"
+      "title": "Pokédex, species and evolution"
     },
     {
       "id": "BTL",
@@ -559,7 +559,7 @@
             "date": "2026-11-05",
             "earned": 8,
             "remaining": 72,
-            "reason": "M1a safe15-char storage,17-byte punctuation buffer, adaptive summary font and Ghost/Status Curse implemented; focused native298 and17 host suites passed. Remaining M1\u2013M8 scope retained; no56-move implementation claim."
+            "reason": "M1a safe15-char storage,17-byte punctuation buffer, adaptive summary font and Ghost/Status Curse implemented; focused native298 and17 host suites passed. Remaining M1–M8 scope retained; no56-move implementation claim."
           },
           {
             "date": "2026-11-05",
@@ -599,11 +599,11 @@
       "next_action": "After requested follower implementation, continue approved Roar redesign and remaining original/new-move work; no placeholder effects or invented distributions.",
       "checkpoint": "Merged PP/foundations/UI/original-data chain; production4f7f71d7, final tested head85032f28, remote full534051 PASS; no56 new move IDs enabled",
       "source_exports": [
-        "03_MOVES/Pok\u00e9mon Lightning Yellow \u2014 Approved Move Change Ledger \u2014 Source Verbatim v0.1.txt",
-        "03_MOVES/Pok\u00e9mon Lightning Yellow \u2014 Complete TM & Move Register \u2014 v1 (2026-10-29).txt",
-        "03_MOVES/Pok\u00e9mon Lightning Yellow \u2014 Move System Design Completion & Main Thread Handoff \u2014 2026-10-31.txt",
-        "03_MOVES/Pok\u00e9mon Lightning Yellow \u2014 Physical Special Status Split \u2014 All-Type Design Tracker & Handoff \u2014 2026-10-29.txt",
-        "03_MOVES/Pok\u00e9mon Lightning Yellow \u2014 Pre-Codex Move & Animation Handoff \u2014 Draft v0.1.txt"
+        "03_MOVES/Pokémon Lightning Yellow — Approved Move Change Ledger — Source Verbatim v0.1.txt",
+        "03_MOVES/Pokémon Lightning Yellow — Complete TM & Move Register — v1 (2026-10-29).txt",
+        "03_MOVES/Pokémon Lightning Yellow — Move System Design Completion & Main Thread Handoff — 2026-10-31.txt",
+        "03_MOVES/Pokémon Lightning Yellow — Physical Special Status Split — All-Type Design Tracker & Handoff — 2026-10-29.txt",
+        "03_MOVES/Pokémon Lightning Yellow — Pre-Codex Move & Animation Handoff — Draft v0.1.txt"
       ],
       "source_status": "available locally; checksums verified; precise approvals/read scope in reconciliation report",
       "coverage_gap": "Eleven original redesign policies,56 new moves/namespace/effects/animations/AI/TM integration, real peer link/hardware, historic Quest Log-party snapshots and exhaustive drain interactions remain. No auto-refill on rollback; parent Silver Wind downgrade precautions retained.",
@@ -620,7 +620,7 @@
         "BTL-005-M1A": "Foundations PR40, complete within its limited scope; merged in owner-authorized Nov6 consolidation",
         "BTL-005-M1B": "PR41 complete within limited UI scope; local513858/focused797 and both remote runs SUCCESS at3031dcdb, remote mGBA0.10.2; merged in owner-authorized Nov6 consolidation",
         "BTL-005-M2A": "PR42 complete within eight-data-row scope, full513952/focus100 and both review/push CI SUCCESS at51df94f7; merged in owner-authorized Nov6 consolidation",
-        "BTL-005-M2B": "PR43 merged through consolidated main; final review/push full534051 PASS,20 hosts/3 checkers, final focus20105 and clean identical8162003f\u20269822c"
+        "BTL-005-M2B": "PR43 merged through consolidated main; final review/push full534051 PASS,20 hosts/3 checkers, final focus20105 and clean identical8162003f…9822c"
       },
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/43",
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/43/checks",
@@ -791,10 +791,10 @@
       "next_action": "Prepare palette reuse/visual prototypes under current authority; final values need visual approval; preserve ordinary interiors/caves.",
       "checkpoint": "2026-11-04 supplied-export reconciliation; old unavailable-document claims superseded; no implementation/test credit from availability.",
       "source_exports": [
-        "05_WEATHER_LIGHTING/Pok\u00e9mon Lightning Yellow \u2014 Lighting & Weather Decision Handoff and Next Steps \u2014 2026-10-28.txt",
-        "05_WEATHER_LIGHTING/Pok\u00e9mon Lightning Yellow \u2014 Lighting & Weather Decision Register \u2014 2026-10-28.txt",
-        "05_WEATHER_LIGHTING/Pok\u00e9mon Lightning Yellow \u2014 Lighting & Weather Specification \u2014 Approved Rules and Open Gaps \u2014 2026-10-28.txt",
-        "05_WEATHER_LIGHTING/Pok\u00e9mon Lightning Yellow \u2014 Weather Map Assignments & Thread Retirement Handoff \u2014 2026-10-28.txt"
+        "05_WEATHER_LIGHTING/Pokémon Lightning Yellow — Lighting & Weather Decision Handoff and Next Steps — 2026-10-28.txt",
+        "05_WEATHER_LIGHTING/Pokémon Lightning Yellow — Lighting & Weather Decision Register — 2026-10-28.txt",
+        "05_WEATHER_LIGHTING/Pokémon Lightning Yellow — Lighting & Weather Specification — Approved Rules and Open Gaps — 2026-10-28.txt",
+        "05_WEATHER_LIGHTING/Pokémon Lightning Yellow — Weather Map Assignments & Thread Retirement Handoff — 2026-10-28.txt"
       ],
       "source_status": "available locally; checksums verified; precise approvals/read scope in reconciliation report"
     },
@@ -843,10 +843,10 @@
       "next_action": "Review scoped PR29 after full checks; preserve remaining rendering/lighting/fog and broader regional/manual/integration acceptance. Reviewed-head registration conflicts resolved in PR35; review combined acceptance and preserve remaining manual/hardware coverage.",
       "checkpoint": "2026-11-04 resumed scoped acceptance; full results/live checks inPR29",
       "source_exports": [
-        "05_WEATHER_LIGHTING/Pok\u00e9mon Lightning Yellow \u2014 Lighting & Weather Decision Handoff and Next Steps \u2014 2026-10-28.txt",
-        "05_WEATHER_LIGHTING/Pok\u00e9mon Lightning Yellow \u2014 Lighting & Weather Decision Register \u2014 2026-10-28.txt",
-        "05_WEATHER_LIGHTING/Pok\u00e9mon Lightning Yellow \u2014 Lighting & Weather Specification \u2014 Approved Rules and Open Gaps \u2014 2026-10-28.txt",
-        "05_WEATHER_LIGHTING/Pok\u00e9mon Lightning Yellow \u2014 Weather Map Assignments & Thread Retirement Handoff \u2014 2026-10-28.txt"
+        "05_WEATHER_LIGHTING/Pokémon Lightning Yellow — Lighting & Weather Decision Handoff and Next Steps — 2026-10-28.txt",
+        "05_WEATHER_LIGHTING/Pokémon Lightning Yellow — Lighting & Weather Decision Register — 2026-10-28.txt",
+        "05_WEATHER_LIGHTING/Pokémon Lightning Yellow — Lighting & Weather Specification — Approved Rules and Open Gaps — 2026-10-28.txt",
+        "05_WEATHER_LIGHTING/Pokémon Lightning Yellow — Weather Map Assignments & Thread Retirement Handoff — 2026-10-28.txt"
       ],
       "source_status": "available locally; checksums verified; precise approvals/read scope in reconciliation report",
       "combined_acceptance": "Exact reviewed27/29/31 heads reconciled inPR35;16 hosts/clean/upstream/full local+CI463243 PASS. No main/feature PR merge; future head changes require reconciliation.",
@@ -902,10 +902,10 @@
       "next_action": "Review scoped PR29 after full checks; preserve remaining rendering/lighting/fog and broader regional/manual/integration acceptance. Resolve known test/tracker registration conflicts when combining withPR27.",
       "checkpoint": "2026-11-04 resumed scoped acceptance; full results/live checks inPR29",
       "source_exports": [
-        "05_WEATHER_LIGHTING/Pok\u00e9mon Lightning Yellow \u2014 Lighting & Weather Decision Handoff and Next Steps \u2014 2026-10-28.txt",
-        "05_WEATHER_LIGHTING/Pok\u00e9mon Lightning Yellow \u2014 Lighting & Weather Decision Register \u2014 2026-10-28.txt",
-        "05_WEATHER_LIGHTING/Pok\u00e9mon Lightning Yellow \u2014 Lighting & Weather Specification \u2014 Approved Rules and Open Gaps \u2014 2026-10-28.txt",
-        "05_WEATHER_LIGHTING/Pok\u00e9mon Lightning Yellow \u2014 Weather Map Assignments & Thread Retirement Handoff \u2014 2026-10-28.txt"
+        "05_WEATHER_LIGHTING/Pokémon Lightning Yellow — Lighting & Weather Decision Handoff and Next Steps — 2026-10-28.txt",
+        "05_WEATHER_LIGHTING/Pokémon Lightning Yellow — Lighting & Weather Decision Register — 2026-10-28.txt",
+        "05_WEATHER_LIGHTING/Pokémon Lightning Yellow — Lighting & Weather Specification — Approved Rules and Open Gaps — 2026-10-28.txt",
+        "05_WEATHER_LIGHTING/Pokémon Lightning Yellow — Weather Map Assignments & Thread Retirement Handoff — 2026-10-28.txt"
       ],
       "source_status": "available locally; checksums verified; precise approvals/read scope in reconciliation report",
       "merged_reference": {
@@ -959,13 +959,13 @@
       "next_action": "Review scoped PR29 after full checks; preserve remaining rendering/lighting/fog and broader regional/manual/integration acceptance. Reviewed-head registration conflicts resolved in PR35; review combined acceptance and preserve remaining manual/hardware coverage.",
       "checkpoint": "2026-11-04 resumed scoped acceptance; full results/live checks inPR29",
       "source_exports": [
-        "01_POKE_BALLS/Pok\u00e9mon Lightning Yellow \u2014 Codex Deferred Pok\u00e9 Ball Task Brief \u2014 2026-11-02.txt",
-        "05_WEATHER_LIGHTING/Pok\u00e9mon Lightning Yellow \u2014 Lighting & Weather Decision Handoff and Next Steps \u2014 2026-10-28.txt",
-        "05_WEATHER_LIGHTING/Pok\u00e9mon Lightning Yellow \u2014 Lighting & Weather Decision Register \u2014 2026-10-28.txt",
-        "05_WEATHER_LIGHTING/Pok\u00e9mon Lightning Yellow \u2014 Lighting & Weather Specification \u2014 Approved Rules and Open Gaps \u2014 2026-10-28.txt",
-        "01_POKE_BALLS/Pok\u00e9mon Lightning Yellow \u2014 Pok\u00e9 Ball Capture Code & PR9 Source Parity \u2014 2026-11-02.txt",
-        "01_POKE_BALLS/Pok\u00e9mon Lightning Yellow \u2014 Pok\u00e9 Ball Design Register & Implementation Specification \u2014 2026-11-02.txt",
-        "05_WEATHER_LIGHTING/Pok\u00e9mon Lightning Yellow \u2014 Weather Map Assignments & Thread Retirement Handoff \u2014 2026-10-28.txt"
+        "01_POKE_BALLS/Pokémon Lightning Yellow — Codex Deferred Poké Ball Task Brief — 2026-11-02.txt",
+        "05_WEATHER_LIGHTING/Pokémon Lightning Yellow — Lighting & Weather Decision Handoff and Next Steps — 2026-10-28.txt",
+        "05_WEATHER_LIGHTING/Pokémon Lightning Yellow — Lighting & Weather Decision Register — 2026-10-28.txt",
+        "05_WEATHER_LIGHTING/Pokémon Lightning Yellow — Lighting & Weather Specification — Approved Rules and Open Gaps — 2026-10-28.txt",
+        "01_POKE_BALLS/Pokémon Lightning Yellow — Poké Ball Capture Code & PR9 Source Parity — 2026-11-02.txt",
+        "01_POKE_BALLS/Pokémon Lightning Yellow — Poké Ball Design Register & Implementation Specification — 2026-11-02.txt",
+        "05_WEATHER_LIGHTING/Pokémon Lightning Yellow — Weather Map Assignments & Thread Retirement Handoff — 2026-10-28.txt"
       ],
       "source_status": "available locally; checksums verified; precise approvals/read scope in reconciliation report",
       "combined_acceptance": "Exact reviewed27/29/31 heads reconciled inPR35;16 hosts/clean/upstream/full local+CI463243 PASS. No main/feature PR merge; future head changes require reconciliation.",
@@ -1242,11 +1242,11 @@
       "checkpoint": "2026-11-04 supplied-export reconciliation; old unavailable-document claims superseded; no implementation/test credit from availability.",
       "scope_note": "All ordinary Gym/class work except separately tracked Blaine GYM-004 and Ranger Base Camp GYM-005; preserve pending ordinary Trainer scope. Excludes the five points transferred to GYM-007.",
       "source_exports": [
-        "02_GYMS/Pok\u00e9mon Lightning Yellow \u2014 Eight-Gym Leader & Trainer Roster \u2014 Final Design Handoff (2026-11-01).txt",
-        "04_SPECIES_EVOLUTION_WORLD/Pok\u00e9mon Lightning Yellow \u2014 Ordinary Trainer Class & Roster Master Register.txt",
-        "02_GYMS/Pok\u00e9mon Lightning Yellow \u2014 Source Parity: 41 Gym Trainers & Eight Species \u2014 2026-11-02.txt",
-        "04_SPECIES_EVOLUTION_WORLD/Pok\u00e9mon Lightning Yellow \u2014 Trainer Class Eligibility FINAL Handoff \u2014 2026-11-03.txt",
-        "02_GYMS/Pok\u00e9mon Lightning Yellow \u2014 Vermilion Gym Approved Design Handoff \u2014 2026-10-29.txt"
+        "02_GYMS/Pokémon Lightning Yellow — Eight-Gym Leader & Trainer Roster — Final Design Handoff (2026-11-01).txt",
+        "04_SPECIES_EVOLUTION_WORLD/Pokémon Lightning Yellow — Ordinary Trainer Class & Roster Master Register.txt",
+        "02_GYMS/Pokémon Lightning Yellow — Source Parity: 41 Gym Trainers & Eight Species — 2026-11-02.txt",
+        "04_SPECIES_EVOLUTION_WORLD/Pokémon Lightning Yellow — Trainer Class Eligibility FINAL Handoff — 2026-11-03.txt",
+        "02_GYMS/Pokémon Lightning Yellow — Vermilion Gym Approved Design Handoff — 2026-10-29.txt"
       ],
       "source_status": "available locally; checksums verified; precise approvals/read scope in reconciliation report"
     },
@@ -1293,9 +1293,9 @@
       "next_action": "Reconcile approved leader/Giovanni/important-battle scope excluding separately tracked Blaine, Ranger and rival tasks.",
       "checkpoint": "2026-11-04 supplied-export reconciliation; old unavailable-document claims superseded; no implementation/test credit from availability.",
       "source_exports": [
-        "02_GYMS/Pok\u00e9mon Lightning Yellow \u2014 Eight-Gym Leader & Trainer Roster \u2014 Final Design Handoff (2026-11-01).txt",
-        "04_SPECIES_EVOLUTION_WORLD/Pok\u00e9mon Lightning Yellow \u2014 Ordinary Trainer Class & Roster Master Register.txt",
-        "04_SPECIES_EVOLUTION_WORLD/Pok\u00e9mon Lightning Yellow \u2014 Trainer Class Eligibility FINAL Handoff \u2014 2026-11-03.txt"
+        "02_GYMS/Pokémon Lightning Yellow — Eight-Gym Leader & Trainer Roster — Final Design Handoff (2026-11-01).txt",
+        "04_SPECIES_EVOLUTION_WORLD/Pokémon Lightning Yellow — Ordinary Trainer Class & Roster Master Register.txt",
+        "04_SPECIES_EVOLUTION_WORLD/Pokémon Lightning Yellow — Trainer Class Eligibility FINAL Handoff — 2026-11-03.txt"
       ],
       "source_status": "available locally; checksums verified; precise approvals/read scope in reconciliation report",
       "scope_note": "Excludes GYM-004 Blaine, GYM-005 Ranger and GYM-006 eight-rival scope."
@@ -1347,8 +1347,8 @@
       "next_action": "Follow GYM-007; stable historical ID retained with zero duplicate effort.",
       "checkpoint": "2026-11-04 supplied-export reconciliation; old unavailable-document claims superseded; no implementation/test credit from availability.",
       "source_exports": [
-        "04_SPECIES_EVOLUTION_WORLD/Pok\u00e9mon Lightning Yellow \u2014 Approved 252-Species Pok\u00e9dex.txt",
-        "02_GYMS/Pok\u00e9mon Lightning Yellow \u2014 Eight-Gym Leader & Trainer Roster \u2014 Final Design Handoff (2026-11-01).txt"
+        "04_SPECIES_EVOLUTION_WORLD/Pokémon Lightning Yellow — Approved 252-Species Pokédex.txt",
+        "02_GYMS/Pokémon Lightning Yellow — Eight-Gym Leader & Trainer Roster — Final Design Handoff (2026-11-01).txt"
       ],
       "source_status": "available locally; checksums verified; precise approvals/read scope in reconciliation report",
       "superseded_by": "GYM-007",
@@ -1395,10 +1395,10 @@
       "next_action": "Reconcile Pikachu starter/rival/story code and approved one-time Oak Eevee gift against existing five-Nest reward. Eevee exact level/traits are not inferred; separate early stone placements remain pending.",
       "checkpoint": "2026-11-04 supplied-export reconciliation; old unavailable-document claims superseded; no implementation/test credit from availability.",
       "source_exports": [
-        "00_GOVERNANCE/Pokemon Lightning Yellow \u2014 Master Plan & Project Rules.txt",
-        "04_SPECIES_EVOLUTION_WORLD/Pok\u00e9mon Lightning Yellow \u2014 Eevee Family Design.txt",
-        "06_ENCOUNTERS_PHASE_TWO/Pok\u00e9mon Lightning Yellow \u2014 Phase Two Game Design Thread Handoff \u2014 2026-10-28.txt",
-        "04_SPECIES_EVOLUTION_WORLD/Pok\u00e9mon Lightning Yellow \u2014 Pok\u00e9dex Evolution Decisions.txt"
+        "00_GOVERNANCE/Pokemon Lightning Yellow — Master Plan & Project Rules.txt",
+        "04_SPECIES_EVOLUTION_WORLD/Pokémon Lightning Yellow — Eevee Family Design.txt",
+        "06_ENCOUNTERS_PHASE_TWO/Pokémon Lightning Yellow — Phase Two Game Design Thread Handoff — 2026-10-28.txt",
+        "04_SPECIES_EVOLUTION_WORLD/Pokémon Lightning Yellow — Pokédex Evolution Decisions.txt"
       ],
       "source_status": "available locally; checksums verified; precise approvals/read scope in reconciliation report"
     },
@@ -1439,13 +1439,13 @@
       "next_action": "Use dated living ecology approvals, source tile/rod access audit and later balancing; retain legal252-only policy.",
       "checkpoint": "2026-11-04 supplied-export reconciliation; old unavailable-document claims superseded; no implementation/test credit from availability.",
       "source_exports": [
-        "06_ENCOUNTERS_PHASE_TWO/Pok\u00e9mon Lightning Yellow \u2014 Encounter, Static Event & Weather Source Parity \u2014 2026-11-02.txt",
-        "06_ENCOUNTERS_PHASE_TWO/Pok\u00e9mon Lightning Yellow \u2014 Global Encounter Capacity Audit v0.3 (Draft).txt",
-        "06_ENCOUNTERS_PHASE_TWO/Pok\u00e9mon Lightning Yellow \u2014 Global Encounter Capacity Audit v0.4 \u2014 Starter Redistribution.txt",
-        "06_ENCOUNTERS_PHASE_TWO/Pok\u00e9mon Lightning Yellow \u2014 Phase Two Game Design Thread Handoff \u2014 2026-10-28.txt",
-        "04_SPECIES_EVOLUTION_WORLD/Pok\u00e9mon Lightning Yellow \u2014 Special Overworld Encounters \u2014 Main Thread Final Handoff (2026-11-02).txt",
-        "04_SPECIES_EVOLUTION_WORLD/Pok\u00e9mon Lightning Yellow \u2014 Special Overworld Pok\u00e9mon & Environmental Events Register.txt",
-        "06_ENCOUNTERS_PHASE_TWO/Pok\u00e9mon Lightning Yellow \u2014 Wild Encounter Ecology \u2014 252-Species Proposed Placement Matrix \u2014 2026-11-02.txt"
+        "06_ENCOUNTERS_PHASE_TWO/Pokémon Lightning Yellow — Encounter, Static Event & Weather Source Parity — 2026-11-02.txt",
+        "06_ENCOUNTERS_PHASE_TWO/Pokémon Lightning Yellow — Global Encounter Capacity Audit v0.3 (Draft).txt",
+        "06_ENCOUNTERS_PHASE_TWO/Pokémon Lightning Yellow — Global Encounter Capacity Audit v0.4 — Starter Redistribution.txt",
+        "06_ENCOUNTERS_PHASE_TWO/Pokémon Lightning Yellow — Phase Two Game Design Thread Handoff — 2026-10-28.txt",
+        "04_SPECIES_EVOLUTION_WORLD/Pokémon Lightning Yellow — Special Overworld Encounters — Main Thread Final Handoff (2026-11-02).txt",
+        "04_SPECIES_EVOLUTION_WORLD/Pokémon Lightning Yellow — Special Overworld Pokémon & Environmental Events Register.txt",
+        "06_ENCOUNTERS_PHASE_TWO/Pokémon Lightning Yellow — Wild Encounter Ecology — 252-Species Proposed Placement Matrix — 2026-11-02.txt"
       ],
       "source_status": "available locally; checksums verified; precise approvals/read scope in reconciliation report"
     },
@@ -1486,9 +1486,9 @@
       "next_action": "Use ordinary stones2100 and four trade items3000 as approved; separate framework from unfinished exact placements/badge gates.",
       "checkpoint": "2026-11-04 supplied-export reconciliation; old unavailable-document claims superseded; no implementation/test credit from availability.",
       "source_exports": [
-        "04_SPECIES_EVOLUTION_WORLD/Pok\u00e9mon Lightning Yellow \u2014 Eevee Family Design.txt",
-        "04_SPECIES_EVOLUTION_WORLD/Pok\u00e9mon Lightning Yellow \u2014 Evolution & Item Supply Source Parity \u2014 2026-11-02.txt",
-        "04_SPECIES_EVOLUTION_WORLD/Pok\u00e9mon Lightning Yellow \u2014 Pok\u00e9dex Evolution Decisions.txt"
+        "04_SPECIES_EVOLUTION_WORLD/Pokémon Lightning Yellow — Eevee Family Design.txt",
+        "04_SPECIES_EVOLUTION_WORLD/Pokémon Lightning Yellow — Evolution & Item Supply Source Parity — 2026-11-02.txt",
+        "04_SPECIES_EVOLUTION_WORLD/Pokémon Lightning Yellow — Pokédex Evolution Decisions.txt"
       ],
       "source_status": "available locally; checksums verified; precise approvals/read scope in reconciliation report"
     },
@@ -1536,14 +1536,14 @@
       "checkpoint": "2026-11-04 supplied-export reconciliation; old unavailable-document claims superseded; no implementation/test credit from availability.",
       "scope_note": "Other item/story events excluding fossils, completed Museum subfeature and separately budgeted Ranger GYM-005. No duplicate implementation credit.",
       "source_exports": [
-        "00_GOVERNANCE/Pokemon Lightning Yellow \u2014 Master Plan & Project Rules.txt",
-        "06_ENCOUNTERS_PHASE_TWO/Pok\u00e9mon Lightning Yellow \u2014 Encounter, Static Event & Weather Source Parity \u2014 2026-11-02.txt",
-        "06_ENCOUNTERS_PHASE_TWO/Pok\u00e9mon Lightning Yellow \u2014 Global Encounter Capacity Audit v0.3 (Draft).txt",
-        "06_ENCOUNTERS_PHASE_TWO/Pok\u00e9mon Lightning Yellow \u2014 Global Encounter Capacity Audit v0.4 \u2014 Starter Redistribution.txt",
-        "06_ENCOUNTERS_PHASE_TWO/Pok\u00e9mon Lightning Yellow \u2014 Phase Two Game Design Thread Handoff \u2014 2026-10-28.txt",
-        "04_SPECIES_EVOLUTION_WORLD/Pok\u00e9mon Lightning Yellow \u2014 Special Overworld Encounters \u2014 Main Thread Final Handoff (2026-11-02).txt",
-        "04_SPECIES_EVOLUTION_WORLD/Pok\u00e9mon Lightning Yellow \u2014 Special Overworld Pok\u00e9mon & Environmental Events Register.txt",
-        "06_ENCOUNTERS_PHASE_TWO/Pok\u00e9mon Lightning Yellow \u2014 Wild Encounter Ecology \u2014 252-Species Proposed Placement Matrix \u2014 2026-11-02.txt"
+        "00_GOVERNANCE/Pokemon Lightning Yellow — Master Plan & Project Rules.txt",
+        "06_ENCOUNTERS_PHASE_TWO/Pokémon Lightning Yellow — Encounter, Static Event & Weather Source Parity — 2026-11-02.txt",
+        "06_ENCOUNTERS_PHASE_TWO/Pokémon Lightning Yellow — Global Encounter Capacity Audit v0.3 (Draft).txt",
+        "06_ENCOUNTERS_PHASE_TWO/Pokémon Lightning Yellow — Global Encounter Capacity Audit v0.4 — Starter Redistribution.txt",
+        "06_ENCOUNTERS_PHASE_TWO/Pokémon Lightning Yellow — Phase Two Game Design Thread Handoff — 2026-10-28.txt",
+        "04_SPECIES_EVOLUTION_WORLD/Pokémon Lightning Yellow — Special Overworld Encounters — Main Thread Final Handoff (2026-11-02).txt",
+        "04_SPECIES_EVOLUTION_WORLD/Pokémon Lightning Yellow — Special Overworld Pokémon & Environmental Events Register.txt",
+        "06_ENCOUNTERS_PHASE_TWO/Pokémon Lightning Yellow — Wild Encounter Ecology — 252-Species Proposed Placement Matrix — 2026-11-02.txt"
       ],
       "source_status": "available locally; checksums verified; precise approvals/read scope in reconciliation report",
       "external_prs": [
@@ -1845,8 +1845,8 @@
       "next_action": "Obtain balancing values through encounter workstream; do not ask again for already supplied species/exports.",
       "checkpoint": "2026-11-04 supplied-export reconciliation; old unavailable-document claims superseded; no implementation/test credit from availability.",
       "source_exports": [
-        "04_SPECIES_EVOLUTION_WORLD/Pok\u00e9mon Lightning Yellow \u2014 Early Daycare Breeding & 50% Shiny Eggs \u2014 Design and Technical Handoff.txt",
-        "06_ENCOUNTERS_PHASE_TWO/Pok\u00e9mon Lightning Yellow \u2014 Wild Encounter Ecology \u2014 252-Species Proposed Placement Matrix \u2014 2026-11-02.txt"
+        "04_SPECIES_EVOLUTION_WORLD/Pokémon Lightning Yellow — Early Daycare Breeding & 50% Shiny Eggs — Design and Technical Handoff.txt",
+        "06_ENCOUNTERS_PHASE_TWO/Pokémon Lightning Yellow — Wild Encounter Ecology — 252-Species Proposed Placement Matrix — 2026-11-02.txt"
       ],
       "source_status": "available locally; checksums verified; precise approvals/read scope in reconciliation report"
     },
@@ -1987,11 +1987,11 @@
       "next_action": "Audit reference roles and use approved substitutions only; no invented253rd species/off-Dex exemption; preserve SOW HOLD.",
       "checkpoint": "2026-11-04 supplied-export reconciliation; old unavailable-document claims superseded; no implementation/test credit from availability.",
       "source_exports": [
-        "04_SPECIES_EVOLUTION_WORLD/Pok\u00e9mon Lightning Yellow \u2014 All 252 Species Typing & 67 Move Source Matrix \u2014 2026-11-02.txt",
-        "04_SPECIES_EVOLUTION_WORLD/Pok\u00e9mon Lightning Yellow \u2014 Approved 252-Species Pok\u00e9dex.txt",
-        "04_SPECIES_EVOLUTION_WORLD/Pok\u00e9mon Lightning Yellow \u2014 Special Overworld Encounters \u2014 Main Thread Final Handoff (2026-11-02).txt",
-        "04_SPECIES_EVOLUTION_WORLD/Pok\u00e9mon Lightning Yellow \u2014 Special Overworld Pok\u00e9mon & Environmental Events Register.txt",
-        "06_ENCOUNTERS_PHASE_TWO/Pok\u00e9mon Lightning Yellow \u2014 Wild Encounter Ecology \u2014 252-Species Proposed Placement Matrix \u2014 2026-11-02.txt"
+        "04_SPECIES_EVOLUTION_WORLD/Pokémon Lightning Yellow — All 252 Species Typing & 67 Move Source Matrix — 2026-11-02.txt",
+        "04_SPECIES_EVOLUTION_WORLD/Pokémon Lightning Yellow — Approved 252-Species Pokédex.txt",
+        "04_SPECIES_EVOLUTION_WORLD/Pokémon Lightning Yellow — Special Overworld Encounters — Main Thread Final Handoff (2026-11-02).txt",
+        "04_SPECIES_EVOLUTION_WORLD/Pokémon Lightning Yellow — Special Overworld Pokémon & Environmental Events Register.txt",
+        "06_ENCOUNTERS_PHASE_TWO/Pokémon Lightning Yellow — Wild Encounter Ecology — 252-Species Proposed Placement Matrix — 2026-11-02.txt"
       ],
       "source_status": "available locally; checksums verified; precise approvals/read scope in reconciliation report",
       "implementation_ref": {
@@ -2055,8 +2055,8 @@
       "next_action": "Review added acceptance in PR35; full natural progression/balance/hardware/link remain general release limits.",
       "checkpoint": "2026-11-04 supplied-export reconciliation; old unavailable-document claims superseded; no implementation/test credit from availability.",
       "source_exports": [
-        "04_SPECIES_EVOLUTION_WORLD/Pok\u00e9mon Lightning Yellow \u2014 All 252 Species Typing & 67 Move Source Matrix \u2014 2026-11-02.txt",
-        "02_GYMS/Pok\u00e9mon Lightning Yellow \u2014 Eight-Gym Leader & Trainer Roster \u2014 Final Design Handoff (2026-11-01).txt"
+        "04_SPECIES_EVOLUTION_WORLD/Pokémon Lightning Yellow — All 252 Species Typing & 67 Move Source Matrix — 2026-11-02.txt",
+        "02_GYMS/Pokémon Lightning Yellow — Eight-Gym Leader & Trainer Roster — Final Design Handoff (2026-11-01).txt"
       ],
       "source_status": "available locally; checksums verified; precise approvals/read scope in reconciliation report",
       "external_prs": [
@@ -2087,9 +2087,9 @@
     {
       "id": "BTL-006",
       "area": "BTL",
-      "title": "Pok\u00e9 Ball capture, items and shop redesign",
+      "title": "Poké Ball capture, items and shop redesign",
       "aliases": [
-        "Queued Pok\u00e9 Ball redesign specification intake"
+        "Queued Poké Ball redesign specification intake"
       ],
       "effort": {
         "earned": 15,
@@ -2125,7 +2125,7 @@
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/13",
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41688991039",
       "blocker": null,
-      "design_authority": "November3 source exports: all three primary Pok\u00e9 Ball documents read in full; relevant Master/Queue amendments and START HERE/intake reviewed. November2 task-specific owner authorization supersedes older design-only text.",
+      "design_authority": "November3 source exports: all three primary Poké Ball documents read in full; relevant Master/Queue amendments and START HERE/intake reviewed. November2 task-specific owner authorization supersedes older design-only text.",
       "next_action": "Preserve merged feature; extended presentation/progression/external acceptance remains. Further merges/auto-merge require their own authorization.",
       "checkpoint": "2026-11-03 implementation replaces earlier readiness-only status; no source/merge change to parents.",
       "coverage_gap": "No manual full-game progression, actual two-peer/hardware/power interruption or exhaustive quest-log replay; not every13-ball success/failure/presentation is independently exercised. TwoIsland/TrainerTower stock scope and natural-Hail lifetime are explicit technical review boundaries.",
@@ -2143,7 +2143,7 @@
     {
       "id": "WRL-008",
       "area": "WRL",
-      "title": "Mystery Pok\u00e9mon Vendor Network",
+      "title": "Mystery Pokémon Vendor Network",
       "aliases": [],
       "effort": {
         "earned": 19,
@@ -2230,9 +2230,9 @@
       "blocker": null,
       "design_authority": "Master Plan lines81,878,1208,1211; supplied252 typing matrix PartA; latest owner explicitly requests implementation. Gyarados Water/Dragon direct confirmation supersedes conflicting Gym rationale.",
       "source_exports": [
-        "00_GOVERNANCE/Pokemon Lightning Yellow \u2014 Master Plan & Project Rules.txt",
-        "04_SPECIES_EVOLUTION_WORLD/Pok\u00e9mon Lightning Yellow \u2014 All 252 Species Typing & 67 Move Source Matrix \u2014 2026-11-02.txt",
-        "04_SPECIES_EVOLUTION_WORLD/Pok\u00e9mon Lightning Yellow \u2014 Approved 252-Species Pok\u00e9dex.txt"
+        "00_GOVERNANCE/Pokemon Lightning Yellow — Master Plan & Project Rules.txt",
+        "04_SPECIES_EVOLUTION_WORLD/Pokémon Lightning Yellow — All 252 Species Typing & 67 Move Source Matrix — 2026-11-02.txt",
+        "04_SPECIES_EVOLUTION_WORLD/Pokémon Lightning Yellow — Approved 252-Species Pokédex.txt"
       ],
       "next_action": "Preserve all35 effective typing rules on main; Blaine/shared Pidgeot integration is resolved. Other species stats/abilities/learnsets are separate.",
       "checkpoint": "2026-11-04 completed PKM-007 scoped implementation/validation",
@@ -2493,9 +2493,9 @@
       "commit": null,
       "pr_url": null,
       "ci_url": null,
-      "blocker": "Source-relative 252-species design/audit exists, but bulk source implementation and TM legality closure are not verified; does not duplicate base Pok\u00e9dex and typing work in PKM-001/007.",
+      "blocker": "Source-relative 252-species design/audit exists, but bulk source implementation and TM legality closure are not verified; does not duplicate base Pokédex and typing work in PKM-001/007.",
       "design_authority": "Lightning Yellow canonical Drive specialist registers and November 5 change intake",
-      "next_action": "Source-relative 252-species design/audit exists, but bulk source implementation and TM legality closure are not verified; does not duplicate base Pok\u00e9dex and typing work in PKM-001/007.",
+      "next_action": "Source-relative 252-species design/audit exists, but bulk source implementation and TM legality closure are not verified; does not duplicate base Pokédex and typing work in PKM-001/007.",
       "checkpoint": "2026-11-06 fixed-scope intake; no gameplay implementation credit"
     },
     {
@@ -2612,7 +2612,7 @@
     {
       "id": "WRL-010",
       "area": "WRL",
-      "title": "Selectable following Pok\u00e9mon for all 252 species",
+      "title": "Selectable following Pokémon for all 252 species",
       "aliases": [],
       "effort": {
         "earned": 0,
@@ -2634,12 +2634,12 @@
         "implementation": "Bounded feasibility audit recorded; no production changes or asset imports. All252 base paths found in pinned candidates; permission unresolved.",
         "automated": "PASS inventory checker: exact252 custom roster/order, candidate paths/blob IDs, explicit unverified statuses; not runtime tests",
         "emulator": "Not run for follower gameplay",
-        "pull_request": "Separate audit/blocker PR being prepared; gameplay implementation incomplete",
+        "pull_request": "Draft PR54 open: required audit/blockers recorded; gameplay implementation incomplete",
         "merge": "Specification merged; follower gameplay not merged"
       },
       "branch": "feature/selectable-following-pokemon",
-      "commit": null,
-      "pr_url": null,
+      "commit": "47d68633",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/54",
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/42213317755",
       "blocker": "aarant README explicitly requires permission for FireRed and AI-assisted use; Kasenn credits that implementation without establishing permission for this project. Original Kanto starter/Parcel scripts still active; Pikachu/Eevee gift integration dependency unresolved.",
       "design_authority": "Lightning Yellow canonical Drive specialist registers and November 5 change intake",
@@ -2651,7 +2651,7 @@
     {
       "id": "WRL-011",
       "area": "WRL",
-      "title": "Complete approved gift revisions and Rocket stolen-Pok\u00e9mon return quest content",
+      "title": "Complete approved gift revisions and Rocket stolen-Pokémon return quest content",
       "aliases": [],
       "effort": {
         "earned": 0,
@@ -2741,7 +2741,7 @@
       "INT-005"
     ]
   },
-  "queue_crosswalk": "Q01\u2013Q08 mapping awaits full reading/reconciliation of supplied November3 Work Queue export; do not invent mappings.",
+  "queue_crosswalk": "Q01–Q08 mapping awaits full reading/reconciliation of supplied November3 Work Queue export; do not invent mappings.",
   "acceptance_limits": {
     "PKM-005": "Real link-trade peer/hardware remain unverified; no exhaustive item/menu permutation claim.",
     "BTL-003": "Complete trainer-AI strategy/gameplay coverage remains unverified; selected ROM damage/AI/UI tests pass.",
@@ -2808,7 +2808,7 @@
   ],
   "scope_freeze": {
     "as_of": "2026-11-05 America/New_York",
-    "rule": "No additional Trainer IDs, new Pok\u00e9mon species, or extra gameplay features beyond already owner-approved commitments. This is a planning assumption, not an irreversible ban on later owner changes.",
+    "rule": "No additional Trainer IDs, new Pokémon species, or extra gameplay features beyond already owner-approved commitments. This is a planning assumption, not an irreversible ban on later owner changes.",
     "inventoried_untracked_tasks": [
       "PKM-009",
       "GYM-008",
