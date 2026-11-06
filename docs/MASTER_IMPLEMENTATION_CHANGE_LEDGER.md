@@ -1378,3 +1378,14 @@ imports or unsafe save migrations. Direct Drive synchronization remains pending.
 - Full29-group/clean/CI pending initial commit; no added completion/merge credit
   yet. Branch feature/pin-missile-dragon-rage, details/limits/rollback in
   docs/moves/ORIGINAL_EFFECT_STATUS.md. No PP migration or binary assets.
+
+## 2026-11-06 — BTL-005-M2F Electric paralysis immunity implementation
+
+- Approved global Electric immunity: shared effective-recipient paralysis guard,
+  primary unaffected message and existing bad-move AI type check. No move data,
+  targets, saved fields, abilities, PP maxima or artwork changed.
+- Build and25 hosts/3 checkers PASS. Actual focused/full mGBA, clean repeatability
+  and remote CI pending final snapshot; no merge/completion credit yet.
+- Native fixtures cover primary, guaranteed secondary with retained damage,
+  Static contact, preexisting paralysis and AI score controls. Details and limits
+  in docs/moves/ELECTRIC_PARALYSIS_STATUS.md. No new Thunder Wave spread claim.

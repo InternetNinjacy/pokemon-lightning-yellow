@@ -20,3 +20,10 @@ for k in changes:
  assert approved[k]['engine_translation']['effect']==b[k]['effect']
  assert b[k]['flags']==a[k]['flags'] and b[k]['target']==a[k]['target']
 print('PASS: exact owner-approved single55/85/20/30% poison Pin Missile and user-level Dragon Rage; all other fields/353 rows, IDs, PP maxima and existing flags/effect scripts retained (static)')
+
+from approved_electric_immunity_changes import prior_electric_immunity_source
+immunity=json.loads(Path('tests/specifications/approved_electric_immunity_delta.json').read_text())
+for p,v in immunity['files'].items():
+ assert hashlib.sha256(Path(p).read_bytes()).hexdigest()==v['after_sha256'],p
+ assert hashlib.sha256(prior_electric_immunity_source(p).encode()).hexdigest()==v['before_sha256'],p
+print('PASS: exact approved global Electric paralysis immunity delta; primary message and effective-recipient secondary/contact guard (static)')
