@@ -280,6 +280,7 @@ required = [
     'gCurrentMove', 'gCritMultiplier', 'gDynamicBasePower', 'gBattlerAttacker', 'gBattlerTarget',
     'ShowPokemonSummaryScreen', 'sMonSummaryScreen', 'sMoveSelectionCursorPos', 'gSideStatuses', 'gBattleStruct', 'gBattleScripting', 'gBattleMoveDamage', 'gDisplayedStringBattle',
 ]
+required += ['Cmd_weatherdamage','Cmd_accuracycheck','gStatuses3','gHitMarker','gMoveResultFlags']
 required += ['ViridianCity_EventScript_TrainerTips1','ViridianCity_EventScript_TrainerTips2','ViridianCity_Text_CatchMonsForEasierBattles','ViridianCity_Text_MovesLimitedByPP']
 required += ['PewterCity_Gym_EventScript_Liam','CeruleanCity_Gym_EventScript_Diana','CeladonCity_Gym_EventScript_Mary','Cmd_setweatherballtype','gBattleMonForms','SaffronCity_Dojo_Text_NeedTwo']
 required += ['MonRestorePP','ExecuteTableBasedItemEffect']

@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "baseline_source_commit": "92838e5eb64d19942cb5c51cfdef6991503ac3ad",
-  "current_battle_moves_sha256": "d8fbaf018807937d97e4e298e1ac9c411015883a12d315890c74bc7a6b467002",
+  "current_battle_moves_sha256": "63b37457e138fa177a70421dcd4af12d1cdb5199404c41edaffc65b26553bc2a",
   "scope": "Reconciliation only, no gameplay edits. Numeric proposed IDs/semantic effects/target values are NOT compiled constants. Runtime_verified false is not a failure claim.",
   "sources": {
     "register": {
@@ -10648,7 +10648,7 @@
         "runtime_verified": false
       },
       "delta": {},
-      "implementation_status": "PENDING_APPROVED_REDESIGN"
+      "implementation_status": "IMPLEMENTED_APPROVED_MECHANIC"
     },
     {
       "id": 193,
@@ -11114,7 +11114,7 @@
       "source_line": 2819,
       "current": {
         "category": "STATUS",
-        "type": "ROCK",
+        "type": "GROUND",
         "power": 0,
         "accuracy": 0,
         "pp": 10,
@@ -11165,13 +11165,8 @@
         "source_exists": true,
         "runtime_verified": false
       },
-      "delta": {
-        "type": {
-          "current": "ROCK",
-          "approved": "GROUND"
-        }
-      },
-      "implementation_status": "PENDING_APPROVED_REDESIGN",
+      "delta": {},
+      "implementation_status": "IMPLEMENTED_APPROVED_MECHANIC",
       "animation_candidate": {
         "key": "SANDSTORM",
         "name": "Sandstorm",

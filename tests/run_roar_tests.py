@@ -3,11 +3,12 @@
 import hashlib,json,re
 from pathlib import Path
 from approved_roar_changes import prior_roar_source
+from approved_weather_move_changes import prior_weather_move_source
 manifest=json.loads(Path('tests/specifications/approved_roar_delta.json').read_text())
 for path,entry in manifest['files'].items():
-    assert hashlib.sha256(Path(path).read_bytes()).hexdigest()==entry['after_sha256'],path
+    assert hashlib.sha256(prior_weather_move_source(path).encode()).hexdigest()==entry['after_sha256'],path
     assert hashlib.sha256(prior_roar_source(path).encode()).hexdigest()==entry['before_sha256'],path
-source=Path('src/data/battle_moves.h').read_text()
+source=prior_weather_move_source('src/data/battle_moves.h')
 row=re.search(r'\[MOVE_ROAR\] =\s*\{(.*?)\n    \}',source,re.S)[1]
 fields=dict(re.findall(r'\.(\w+) = (.*?),',row))
 assert fields==dict(category='MOVE_CATEGORY_SPECIAL',effect='EFFECT_ATTACK_DOWN_HIT',power='70',type='TYPE_NORMAL',accuracy='100',pp='15',secondaryEffectChance='20',target='MOVE_TARGET_SELECTED',priority='0',flags='FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED')

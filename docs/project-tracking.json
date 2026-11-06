@@ -3,8 +3,8 @@
   "updated": "2026-11-06",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "Autonomous policy55 and Roar56 merged; sign58 integrated against actual main with all test registrations retained, focused/full validation pending integrated head. Gift59 and six Elite Four60 proceed independently; follower permission/Agatha selector/draft ordinary-Trainer design holds recorded.",
-  "main_sha": "844b450e7b60b7f0699fef348ca8b7acb8d73824",
+  "current_focus": "Autonomous policy55, Roar56 and Viridian sign58 merged with exact-head successful CI. Weather Ground Sandstorm/Rain Zap Cannon implemented on independent branch:22 hosts/3 checkers and focused5389 PASS, clean/full pending. Gift59 and six Elite Four60 continue full/integration checks; Agatha selector/follower permission/draft ordinary-Trainer design holds preserved.",
+  "main_sha": "d97712dc9393b5f98d73df901f8ffa70cc231309",
   "drive_sync": {
     "status": "pending: no direct Drive writing tool available",
     "folder": "https://drive.google.com/drive/folders/1N_n0Ke48jBbdhUWSZWzwR6rpPFqpDUpl"
@@ -602,7 +602,7 @@
       "commit": "42410891edbeb51d9b9a3ad4ba69eacdc81b7fa7",
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Finish Roar full/native CI and merge verified scope; continue remaining originals/new moves without placeholders or invented distribution.",
+      "next_action": "Complete M2D full/native/clean CI; eight other original policies and56 additional moves remain, no placeholder IDs or invented distribution.",
       "checkpoint": "Merged PP/foundations/UI/original-data chain; production4f7f71d7, final tested head85032f28, remote full534051 PASS; no56 new move IDs enabled",
       "source_exports": [
         "03_MOVES/Pokémon Lightning Yellow — Approved Move Change Ledger — Source Verbatim v0.1.txt",
@@ -658,7 +658,8 @@
         "verified_main": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c"
       },
       "subtasks": {
-        "BTL-005-M2C": "Roar implemented; focused197/21 hosts/3 checkers/rebuild PASS; full/CI pending"
+        "BTL-005-M2C": "Roar implemented; focused197/21 hosts/3 checkers/rebuild PASS; full/CI pending",
+        "BTL-005-M2D": "Ground Sandstorm/type-only residual immunity and guaranteed Rain Zap Cannon implemented;22 hosts/3checkers/focused5389 PASS; full/clean/CI pending"
       }
     },
     {
@@ -1574,7 +1575,7 @@
         "verified_main": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c"
       },
       "subtasks": {
-        "WRL-004-SIGN": "Approved PR28 tip implemented on standalone feature/viridian-move-category-sign; build/exact-text/focused native463 PASS, full CI pending; no double-counted scope"
+        "WRL-004-SIGN": "PR58 merged d97712dc; integrated CI42217742516 SUCCESS/full534699, focused463; no save/state/art changes or duplicate effort credit"
       }
     },
     {
@@ -2907,5 +2908,6 @@
     "full_native_assertions": 534051,
     "main_before_tracking": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c",
     "source_tree_verified": true
-  }
+  },
+  "current_weather_move_branch": "feature/weather-move-completion"
 }

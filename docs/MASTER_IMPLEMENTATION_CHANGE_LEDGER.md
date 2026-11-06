@@ -1301,3 +1301,23 @@ imports or unsafe save migrations. Direct Drive synchronization remains pending.
   Main postmerge validation continues separately; no410-move completion claim.
 - Sign PR58 merged main into its branch, retaining both Roar and sign native groups,
   all21 host registrations and append-only histories; actual integrated CI required.
+
+## 2026-11-06 — WRL-004-SIGN effective merge / WTH-003 move milestone
+
+- Sign PR58 merged d97712dc9393b5f98d73df901f8ffa70cc231309. Exact integrated head
+  2b98586b review42217742516 SUCCESS,21 hosts/3 checkers, clean rebuild and full
+  native534699 PASS; focused463. Main postmerge checks remain separately visible.
+- WTH-003 / BTL-005-M2D approved issue47/register: Sandstorm typeRock→Ground,
+  remove only Rock/Steel residual typing immunity; add Zap Cannon to native Rain
+  guaranteed-accuracy path. Existing suppressions,1/16minimum1,Ice Hail, Thunder/
+  Forecast/WeatherBall,83 map rules/species slots/state/save/IDs retained.
+- Only src/data/battle_moves.h and src/battle_script_commands.c production hunks.
+  Exact reviewed delta normalizers retain old hashes. No new abilities/Hurricane/
+  TM51, event placements or missing global ability mappings invented.
+-22 host suites/3 checkers PASS; focused mGBA0.10.5 5389 PASS (324 native residual
+  type pairs; normal/Rain/Sun/CloudNine/AirLock accuracy; actual Rain Zap turns
+  damage/paralysis,Ground/Protect/onePP). Native interpreter fixture first failed
+  due unaligned bus writes; corrected operand byte storage, no game/assertion fix.
+- Build PASS; clean/full latest CI pending initial commit. No added effort credit
+  before full acceptance. Technical scope/evidence/limits/rollback in
+  docs/WEATHER_MOVE_COMPLETION.md; no saved-schema migration or binary artifacts.
