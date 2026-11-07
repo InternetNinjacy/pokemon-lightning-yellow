@@ -28,7 +28,7 @@
       "hunks": [
         {
           "before": "const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {",
-          "after": "const u8 gMoveDescription_BUG_BITE[] = _(\"A biting attack\\nthat may reduce\\nthe foe\\x27s SP. ATK.\");\nconst u8 gMoveDescription_CHITIN_CRUSH[] = _(\"Crushes the foe.\\nMay lower the\\nfoe\\x27s DEFENSE.\");\n\nconst u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {"
+          "after": "const u8 gMoveDescription_BUG_BITE[] = _(\"A biting attack\\nthat may reduce\\nthe foe's SP. ATK.\");\nconst u8 gMoveDescription_CHITIN_CRUSH[] = _(\"Crushes the foe.\\nMay lower the\\nfoe's DEFENSE.\");\n\nconst u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {"
         },
         {
           "before": "    [MOVE_VENOM_WEB - 1] = gMoveDescription_VENOM_WEB,",
