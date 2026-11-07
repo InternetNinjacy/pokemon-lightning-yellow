@@ -1,5 +1,8 @@
 #include "global.h"
 #include "dynamic_weather.h"
+#ifdef LIGHTING_PREVIEW
+#include "rtc.h"
+#endif
 #include "gflib.h"
 #include "bg_regs.h"
 #include "cable_club.h"
@@ -139,6 +142,9 @@ static void Overworld_TryMapConnectionMusicTransition(void);
 static void ChooseAmbientCrySpecies(void);
 
 static void CB2_Overworld(void);
+#ifdef LIGHTING_PREVIEW
+static void LightingPreviewUpdateAppearance(void);
+#endif
 static void CB2_LoadMap2(void);
 static void CB2_LoadMapOnReturnToFieldCableClub(void);
 static void CB2_ReturnToFieldLocal(void);
@@ -1460,8 +1466,63 @@ void CB1_Overworld(void)
     }
 }
 
+
+#ifdef LIGHTING_PREVIEW
+// Isolated test appearance selection. No save data, RTC writes or changes to
+// functional day/night. RTC is sampled periodically rather than within VBlank.
+static EWRAM_DATA u8 sLightingPreviewAppearance = 0;
+static EWRAM_DATA u8 sLightingPreviewClockCounter = 0;
+
+static void LightingPreviewUpdateAppearance(void)
+{
+    u8 hour;
+    // Re-evaluate on first field frame and approximately every 30 frames.
+    if (sLightingPreviewClockCounter++ < 30)
+        return;
+    sLightingPreviewClockCounter = 0;
+    if (!RtcGetHour(&hour))
+    {
+        sLightingPreviewAppearance = 0; // Invalid RTC: ordinary Day.
+        return;
+    }
+    if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_VIRIDIAN_FOREST)
+     && gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_VIRIDIAN_FOREST))
+        sLightingPreviewAppearance = (hour >= 6 && hour < 18) ? 4 : 5;
+    else if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_LAVENDER_TOWN)
+          && gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_LAVENDER_TOWN))
+        sLightingPreviewAppearance = (hour >= 6 && hour < 18) ? 2 : 3;
+    else if (hour == 6)
+        sLightingPreviewAppearance = 1;
+    else if (hour >= 7 && hour < 18)
+        sLightingPreviewAppearance = 0;
+    else if (hour == 18)
+        sLightingPreviewAppearance = 2;
+    else
+        sLightingPreviewAppearance = 3;
+}
+
+u8 LightingPreviewGetAppearance(void)
+{
+    return sLightingPreviewAppearance;
+}
+
+bool8 LightingPreviewIsActive(void)
+{
+    // Avoid applying outdoor looks in battle and non-field screens.
+    // Viridian Forest is explicitly covered, even if its map type is non-outdoor.
+    bool8 forest = gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_VIRIDIAN_FOREST)
+                && gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_VIRIDIAN_FOREST);
+    return gMain.callback2 == CB2_Overworld
+        && gGlobalFieldTintMode == QL_TINT_NONE
+        && (forest || IsMapTypeOutdoors(gMapHeader.mapType));
+}
+#endif
+
 static void OverworldBasic(void)
 {
+#ifdef LIGHTING_PREVIEW
+    LightingPreviewUpdateAppearance();
+#endif
     DynamicWeatherUpdate();
     ScriptContext_RunScript();
     RunTasks();
