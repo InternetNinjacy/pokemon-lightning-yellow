@@ -10,6 +10,17 @@
 #include "constants/items.h"
 #include "constants/vars.h"
 
+#define FLAG_ROCKET_RALTS_COLLECTED FLAG_0x316 // Rocket #44 reserved save slot
+#define FLAG_ROCKET_SNORUNT_COLLECTED FLAG_0x317 // Rocket #44 reserved save slot
+#define FLAG_ROCKET_RALTS_RETURNED FLAG_0x318 // Rocket #44 reserved save slot
+#define FLAG_ROCKET_SNORUNT_RETURNED FLAG_0x319 // Rocket #44 reserved save slot
+#define FLAG_HIDE_ROCKET_RALTS_BALL FLAG_0x31A // Rocket #44 reserved save slot
+#define FLAG_HIDE_ROCKET_SNORUNT_BALL FLAG_0x31B // Rocket #44 reserved save slot
+#define VAR_ROCKET_RALTS_PID_LOW VAR_0x40F8 // Rocket #44 reserved save slot
+#define VAR_ROCKET_RALTS_PID_HIGH VAR_0x40F9 // Rocket #44 reserved save slot
+#define VAR_ROCKET_SNORUNT_PID_LOW VAR_0x40FA // Rocket #44 reserved save slot
+#define VAR_ROCKET_SNORUNT_PID_HIGH VAR_0x40FB // Rocket #44 reserved save slot
+
 // Reserved save-backed variables contain the issued Pokémon's actual personality.
 // Together with the fixed foreign OT ID, OT name and evolution-family check,
 // this survives trade, evolution, renaming, boxes and ordinary save/load.
