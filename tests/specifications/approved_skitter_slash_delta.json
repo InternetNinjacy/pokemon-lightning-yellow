@@ -1,0 +1,52 @@
+{
+  "files": {
+    "include/constants/moves.h": {
+      "hunks": [
+        {
+          "before": "#define MOVES_COUNT 361",
+          "after": "#define MOVE_SKITTER_SLASH 361\n\n#define MOVES_COUNT 362"
+        }
+      ]
+    },
+    "src/data/battle_moves.h": {
+      "hunks": [
+        {
+          "before": "\n};\n",
+          "after": "\n    [MOVE_SKITTER_SLASH] =\n    {\n        .category = MOVE_CATEGORY_PHYSICAL,\n        .effect = EFFECT_HIT,\n        .power = 40,\n        .type = TYPE_BUG,\n        .accuracy = 100,\n        .pp = 15,\n        .secondaryEffectChance = 0,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = 0,\n        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,\n    },\n\n};\n"
+        }
+      ]
+    },
+    "src/data/text/move_names.h": {
+      "hunks": [
+        {
+          "before": "    [MOVE_DREAM_HAUNT] = _(\"DREAM HAUNT\"),",
+          "after": "    [MOVE_DREAM_HAUNT] = _(\"DREAM HAUNT\"),\n    [MOVE_SKITTER_SLASH] = _(\"SKITTER SLASH\"),"
+        }
+      ]
+    },
+    "src/move_descriptions.c": {
+      "hunks": [
+        {
+          "before": "const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {",
+          "after": "const u8 gMoveDescription_SKITTER_SLASH[] = _(\"A quick, slicing\\nBug-type attack.\");\n\nconst u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {"
+        },
+        {
+          "before": "    [MOVE_DREAM_HAUNT - 1] = gMoveDescription_DREAM_HAUNT,",
+          "after": "    [MOVE_DREAM_HAUNT - 1] = gMoveDescription_DREAM_HAUNT,\n    [MOVE_SKITTER_SLASH - 1] = gMoveDescription_SKITTER_SLASH,"
+        }
+      ]
+    },
+    "data/battle_anim_scripts.s": {
+      "hunks": [
+        {
+          "before": "\t.4byte Move_DREAM_HAUNT\n\t.4byte Move_COUNT",
+          "after": "\t.4byte Move_DREAM_HAUNT\n\t.4byte Move_SKITTER_SLASH\n\t.4byte Move_COUNT"
+        },
+        {
+          "before": "inish\n\tdelay 15\n\tcall HealingEffect\n\twaitforvisualfinish\n\tclearmonbg ANIM_DEF_PARTNER\n\tblendoff\n\tdelay 1\n\tcall UnsetPsychicBackground\n\twaitforvisualfinish\n\tend\n",
+          "after": "inish\n\tdelay 15\n\tcall HealingEffect\n\twaitforvisualfinish\n\tclearmonbg ANIM_DEF_PARTNER\n\tblendoff\n\tdelay 1\n\tcall UnsetPsychicBackground\n\twaitforvisualfinish\n\tend\n\n@ Reuse the approved native Fury Cutter visual; this is animation only.\nMove_SKITTER_SLASH:\n\tgoto Move_FURY_CUTTER\n"
+        }
+      ]
+    }
+  }
+}
