@@ -25,14 +25,14 @@ def restore_ordinary_trainer_blocks(path):
         for n in range(8, 19):
             if str(path) == "src/data/trainer_parties.h":
                 pattern = (
-                    r"static const struct TrainerMon\\w+\\s+"
+                    r"static const struct TrainerMon\w+\s+"
                     + re.escape("sParty_TeamRocketGrunt" + str(n))
-                    + r"\\[\\]\\s*=\\s*\\{.*?\\};"
+                    + r"\[\]\s*=\s*\{.*?\};"
                 )
             else:
                 pattern = (
-                    r"\\[TRAINER_TEAM_ROCKET_GRUNT_" + str(n)
-                    + r"\\]\\s*=\\s*\\{.*?\\n    \\},"
+                    r"\[TRAINER_TEAM_ROCKET_GRUNT_" + str(n)
+                    + r"\]\s*=\s*\{.*?\n    \},"
                 )
             before = list(re.finditer(pattern, original, re.S))
             after = list(re.finditer(pattern, result, re.S))
