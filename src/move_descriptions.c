@@ -373,6 +373,8 @@ const u8 gMoveDescription_CHITIN_CRUSH[] = _("Crushes the foe.\nMay lower the\nf
 
 const u8 gMoveDescription_CHIRP[] = _("A sharp insect cry\nthat damages the\nfoe with sound.");
 
+const u8 gMoveDescription_SWARM_CLOUD[] = _("A swarming attack\nthat may confuse\nand poison the foe.");
+
 const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND         - 1] = gMoveDescription_Pound,
     [MOVE_KARATE_CHOP   - 1] = gMoveDescription_KarateChop,
@@ -739,4 +741,5 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_BUG_BITE - 1] = gMoveDescription_BUG_BITE,
     [MOVE_CHITIN_CRUSH - 1] = gMoveDescription_CHITIN_CRUSH,
     [MOVE_CHIRP - 1] = gMoveDescription_CHIRP,
+    [MOVE_SWARM_CLOUD - 1] = gMoveDescription_SWARM_CLOUD,
 };

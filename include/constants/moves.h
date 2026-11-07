@@ -374,7 +374,9 @@
 
 #define MOVE_CHIRP 365
 
-#define MOVES_COUNT 366
+#define MOVE_SWARM_CLOUD 366
+
+#define MOVES_COUNT 367
 
 // Used for checks for moves affected by Disable, Mimic, etc.
 #define MOVE_UNAVAILABLE 0xFFFF

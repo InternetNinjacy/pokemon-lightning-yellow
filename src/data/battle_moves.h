@@ -5125,4 +5125,18 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
     },
 
+    [MOVE_SWARM_CLOUD] =
+    {
+        .category = MOVE_CATEGORY_SPECIAL,
+        .effect = EFFECT_SWARM_CLOUD,
+        .power = 90,
+        .type = TYPE_BUG,
+        .accuracy = 90,
+        .pp = 15,
+        .secondaryEffectChance = 50,
+        .target = MOVE_TARGET_SELECTED,
+        .priority = 0,
+        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
+    },
+
 };
