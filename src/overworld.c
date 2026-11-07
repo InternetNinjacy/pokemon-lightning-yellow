@@ -1,11 +1,11 @@
 #include "global.h"
-#include "lighting_preview_config.h"
 #include "dynamic_weather.h"
+#include "gflib.h"
+#include "bg_regs.h"
+#include "lighting_preview_config.h"
 #ifdef LIGHTING_PREVIEW
 #include "rtc.h"
 #endif
-#include "gflib.h"
-#include "bg_regs.h"
 #include "cable_club.h"
 #include "credits.h"
 #include "event_data.h"
@@ -1522,13 +1522,13 @@ bool8 LightingPreviewIsActive(void)
 
 static void OverworldBasic(void)
 {
-#ifdef LIGHTING_PREVIEW
-    LightingPreviewUpdateAppearance();
-#endif
     DynamicWeatherUpdate();
     ScriptContext_RunScript();
     RunTasks();
     AnimateSprites();
+#ifdef LIGHTING_PREVIEW
+    LightingPreviewUpdateAppearance();
+#endif
     CameraUpdate();
     SetQuestLogEvent_Arrived();
     UpdateCameraPanning();
