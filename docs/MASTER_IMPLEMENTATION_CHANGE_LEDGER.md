@@ -1480,3 +1480,22 @@ PR #68 merged to main at f3a113a44d89acacc0b584f61c4dead868ef2607; exact-head Ac
 - Integrated rather than replacing current main. Reconciled exact Agatha/TW/
   ordinary-Trainer source projections; old digests unchanged. Prior755945 full
   result applies to old72 base only. New combined host/build/full/CI required.
+## 2026-11-07 — INT-001-CI2 expanded full-suite wall-clock allowance
+
+- Preserve failed42374018809: native step hit20-minute wall cap near final League
+  fights; no game assertion failure. Same-head42374015278 and local integrated
+  30-group815608 PASS. New26-host/30-group workload exceeds original23/~534k.
+- Native step20→30min, job45→60min, bounded. All assertions,4M instruction and
+  per-scene frame guards, builds/repro/full groups/upstream checks unchanged.
+- Correct static registration report26/30 and protect ordinary Trainer group.
+  No gameplay/save/baseline/security change. New exact-head CI pending.
+
+## 2026-11-07 — BTL-005-M2I integrated final local acceptance / CI timeout
+
+- Integrated current-main c33c8650:26 host suites/3 checkers, full30-group native
+  815608 assertions and byte-identical clean build PASS, including all500 ordinary
+  parties/1219 mons and all8 actual League battles.
+- Same-head42374015278 SUCCESS;42374018809 hit20min CI wall cap near final League
+  battles, no failed game assertion. Do not hide the failed duplicate. Integrate
+  maintenance78 bounded30min native/60min job with every execution guard retained,
+  then require new exact-head CI. No game/test changes from validated c33c8650.

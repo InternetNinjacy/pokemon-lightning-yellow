@@ -72,3 +72,11 @@ parallel Agatha/TW/ordinary-source projections. Updated registration checker now
 counts26 hosts/30 full native groups and explicitly protects ordinary Trainer
 coverage; its previous printed25/29 totals were stale. New combined build/full/
 clean/Actions results pending. Earlier755945 belongs only to the old72 base.
+
+Final local combined30-group result: **815608 assertions PASS**, including all500
+ordinary Trainer parties/1219 mons and eight actual League fights. Clean identical
+SHA256 `8eef5c81d7825ae95bcf73dd6b386fe0ca5b0816cda03094e27750bb58f71ac0`.
+Same-head42374015278 SUCCESS;42374018809 timed out at the20min CI wall cap near
+final League battles, with no failed game assertion. See maintenance78 and
+CI_FULL_SUITE_RUNTIME_BUDGET.md: bounded30min native/60min job, all assertions and
+execution/frame guards retained. New combined-head CI required before acceptance.
