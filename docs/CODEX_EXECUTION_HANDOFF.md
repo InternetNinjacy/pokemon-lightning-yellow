@@ -7,7 +7,7 @@ completed broad audits. Read live GitHub state before updating these references.
 
 ## Integrated main
 
-Current integrated main: `91e8095b` (resolve full SHA with Git).
+Current integrated main: `e2dabe83a2e607198186cbdf5c38d027811c7672`.
 Historical27/29/30/31/35/36/39–43/53 are merged. Main retains custom252 Dex,
 typings/evolutions/RTC/daycare/vendors/Poke Balls/fossils/Ranger/rival/weather/
 Gym Castform and move foundations/UI/saved PP. Do not duplicate implementations.
@@ -34,19 +34,19 @@ Gym Castform and move foundations/UI/saved PP. Do not duplicate implementations.
 
 ## Active implementation / coordination
 
--72 DRAFT feature/thunder-wave-spread, head26f52aba835e852682f4daa606aa6fe683d30897.
- Approved all-other-active targets, per-recipient checks/reflection, once-per-move
- inability and PP, noPP cancellation, native called-move behavior. No new IDs.
- Current-main26 hosts/3 checkers/clean PASS, focused565, full30-group815608 PASS.
- Logs /tmp/thunder-wave-integrated-full-native.log and /tmp/tw-current-clean.log.
- Old c33 head42374018809 hit20min CI wall cap; duplicate42374015278 succeeded.
- Preserve failure history.78 budget integrated; latest head Actions42377967379 /
- 42377971185 pending at this writing. Check live; ready/merge only when green.
- Main78 is already ancestor; do not reimplement. No old test guard weakened.
+-72 MERGED e2dabe83a2e607198186cbdf5c38d027811c7672. All-other-active Thunder Wave,
+ focused565/full815608/26hosts/3checkers/clean PASS; both head Actions42377967379 /
+ 42377971185 SUCCESS. Empty-tree integration9d103ae0 resolved GitHub conflict;
+ tree c52b7d8a06edf22637681251e57dbff2b98eeb27 equals tested26f52aba and main.
+ New main CI pending; no claim of exact merge-SHA CI completion.
+-79 feature/new-move-catalog-readiness,2dd80155: tooling prerequisite, no production
+ IDs/source/ROM/old baselines changed. Five fixture methods/nine rejected partial
+ cases and all27 hosts PASS. CI pending. Merge after applicable checks, then new
+ Fire move slice. Current generated354+56 artifacts remain byte-identical.
 -62 docs/codex-efficient-workflow-20261106 contains canonical tracker convergence,
  guide/handoff and65 historical snapshot ancestry. Latest main GYM00852/0 and
- GYM00916/0 preserved; BTL00529/51, WRL0113/7.395/712=55.48% provisional effort,
- not release readiness. No72 completion credit yet. Merge after checks.
+ GYM00916/0 preserved; BTL00532/48, WRL0113/7.398/712=55.90% provisional effort,
+ not release readiness. Three72 points are within existing80, no new scope/duplicate credit. Merge after checks.
 -74 Rocket and76 title art are parallel drafts: inspect current state before any
  work on those systems; do not mix their source or invent missing approvals.
 -54 follower asset audit only;57 Trainer draft is superseded by merged71.
@@ -55,7 +55,7 @@ Gym Castform and move foundations/UI/saved PP. Do not duplicate implementations.
 
 ```
 git status --short --branch
-gh pr checks 72
+gh pr checks 79
 gh pr checks 62
 gh run list --branch main --limit 4
 ```
@@ -68,7 +68,7 @@ checkout/clean while native tests run. If old logs disappear, rerun, do not infe
 
 ## Next approved work / genuine holds
 
-1. Finish72 acceptance/integration, validate resulting main, update tracker/62.
+1. Check postmerge main CI and finish coordination62/65 and tooling79 integration.
 2. New56 moves remain unimplemented. Add complete contiguous source batches with
  effects, descriptions, names, existing-art scripts, tests and all consumers.
  Start355 custom Flame Fang90/100/15 flinch20 (NOT official65/95/burn),356 Flashfire

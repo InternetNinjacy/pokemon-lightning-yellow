@@ -1584,3 +1584,18 @@ PR #68 merged to main at f3a113a44d89acacc0b584f61c4dead868ef2607; exact-head Ac
   battles, no failed game assertion. Do not hide the failed duplicate. Integrate
   maintenance78 bounded30min native/60min job with every execution guard retained,
   then require new exact-head CI. No game/test changes from validated c33c8650.
+
+## 2026-11-07 — BTL-005-M2I merge acceptance / coordination convergence
+
+- PR72 merged e2dabe83a2e607198186cbdf5c38d027811c7672 after both Actions
+  42377967379/42377971185 modified+upstream SUCCESS, local focused565/full30-group
+  815608,26 hosts/3 checkers/clean PASS. Preserve earlier timed-out duplicate.
+- GitHub reported conflict after parent78 merge. Local integration9d103ae0 had
+  zero file delta: tree c52b7d8a06edf22637681251e57dbff2b98eeb27 equals tested
+  26f52aba and resulting main. No security bypass/auto-merge. New main CI pending.
+- Three points within existing80: moves32/48; overall398/712=55.90% provisional,
+  remaining314. Preserve ordinary-Trainer52,League16,gifts3 and all histories.
+  No56 new-move or full campaign/real-link/cartridge completion credit.
+- PR79 source catalog prerequisite: all27 host runners/five fixture methods
+  (nine incomplete/reordered cases) PASS, reconciliation byte-identical. No game
+  source/IDs/art/save/baseline changes. Its CI pending; no added effort credit.
