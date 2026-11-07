@@ -382,7 +382,9 @@
 
 #define MOVE_SCORCHING_SANDS 370
 
-#define MOVES_COUNT 371
+#define MOVE_EARTH_POWER 371
+
+#define MOVES_COUNT 372
 
 // Used for checks for moves affected by Disable, Mimic, etc.
 #define MOVE_UNAVAILABLE 0xFFFF
