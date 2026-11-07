@@ -379,3 +379,18 @@ PalletTown_ProfessorOaksLab_Text_OakChoosingPikachu::
 PalletTown_ProfessorOaksLab_Text_ReservedPokeBall::
     .string "OAK: That POKé BALL isn't\n"
     .string "for you, {PLAYER}.$"
+
+PalletTown_ProfessorOaksLab_Text_OakGiftEevee::
+    .string "OAK: Thanks for bringing my\n"
+    .string "parcel, {PLAYER}!\p"
+    .string "I have another POKéMON for you:\n"
+    .string "an EEVEE named SUE.$"
+
+PalletTown_ProfessorOaksLab_Text_ReceivedSueEevee::
+    .string "{PLAYER} received SUE the EEVEE\n"
+    .string "from PROF. OAK!$"
+
+PalletTown_ProfessorOaksLab_Text_EeveeNoRoom::
+    .string "OAK: There isn't room in your\n"
+    .string "party or PC for SUE right now.\p"
+    .string "Come back when there's space.$"
