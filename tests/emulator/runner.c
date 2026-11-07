@@ -361,6 +361,25 @@ static void dexTests(void) {
 #include "elite_four.c"
 #include "ordinary_trainers.c"
 
+// Title-screen framebuffer evidence from an actual mGBA execution, not a mockup.
+static void captureTitleFrame(const char *prefix,const char *name) {
+    char path[512];
+    const void *video;
+    size_t stride;
+    CHECK(snprintf(path,sizeof(path),"%s_%s.ppm",prefix,name) < (int)sizeof(path));
+    core->getPixels(core,&video,&stride);
+    FILE *file=fopen(path,"wb");CHECK(file);
+    fprintf(file,"P6\n240 160\n255\n");
+    for(unsigned y=0;y<160;y++)for(unsigned x=0;x<240;x++) {
+        color_t pixel=((const color_t*)video)[y*stride+x];
+        fputc(pixel&255,file);
+        fputc((pixel>>8)&255,file);
+        fputc((pixel>>16)&255,file);
+    }
+    CHECK(!ferror(file));CHECK(fclose(file)==0);
+    printf("TITLE_CAPTURE: %s\n",path);
+}
+
 int main(int argc,char **argv) {
     setvbuf(stdout,NULL,_IONBF,0);
     printf("mGBA core version: %s\n",projectVersion);
@@ -376,6 +395,21 @@ int main(int argc,char **argv) {
     ((struct ARMCore*)core->cpu)->irqh.hitIllegal=illegal;
     for(unsigned i=0;i<600;i++)core->runFrame(core);
     printf("PASS: ROM booted for 600 emulated frames without a supplied BIOS\n");
+    const char *titleEvidence=getenv("LIGHTNING_TITLE_CAPTURE");
+    if(titleEvidence && *titleEvidence) {
+        captureTitleFrame(titleEvidence,"boot600");
+        frames(180,0);
+        captureTitleFrame(titleEvidence,"idle780");
+        frames(120,0);
+        captureTitleFrame(titleEvidence,"idle900");
+        frames(2,8); // Press START
+        frames(180,0); // Wait for cry/main-menu transition
+        captureTitleFrame(titleEvidence,"start1082");
+        printf("PASS: mGBA title framebuffer and START-input capture\n");
+        core->deinit(core);free(pixels);
+        return 0;
+    }
+
     struct GBA *gba=core->board;
     printf("RTC autodetected: %s\n",(gba->memory.hw.devices&HW_RTC)?"yes":"no");
     CHECK(gba->memory.hw.devices&HW_RTC);
