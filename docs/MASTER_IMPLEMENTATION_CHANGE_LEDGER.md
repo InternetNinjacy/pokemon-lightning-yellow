@@ -1687,3 +1687,10 @@ PR #68 merged to main at f3a113a44d89acacc0b584f61c4dead868ef2607; exact-head Ac
   Tackle104 in all4 slots. Latest focused517/all28 hosts PASS; new clean/CI pending.
   Old original before-hashes unchanged. No merge or effort credit yet; child82
   must inherit this correction and its exact parent-state manifest before merging.
+
+## 2026-11-07 — BTL-006 formal Master Control completion and release-QA separation
+
+- Master Control reviewed final [BTL-006 acceptance audit](BTL006_FINAL_ACCEPTANCE_AUDIT_2026-11-07.md) and specialist handoff; original PR13 merged d54f7a8e85d38b8fa304399dcb4d14778396d5cd, supplemental PR75 merged f232f69650ecf005597bed074140323cc45f7efd. Exact modified/upstream Actions41688991039 and42348317604 both SUCCESS. Source review includes 13 independent checks and persistent capture regression assertions; scoped native ROM capture/weather/shops/storage/save checks PASS.
+- Formal decision: implementation and feature-specific acceptance complete; no known defect. Historical BTL-006 effort 15 earned/1 remaining →16 earned/0 remaining, no denominator change. Overall 398/314 →399/313 of712 =56.04%; BTL area 81/55 →82/54 of136=60.29%. Other task point records untouched.
+- Exhaustive manual 13-ball visuals, complete retailer story routes, true two-peer/hardware, interrupted-power and quest-log checks NOT performed. These remain shared INT-004/INT-005 stabilization and release qualification, not an unresolved BTL-006 implementation blocker; no duplicated points. Do not claim full game or hardware certification.
+- Docs-only reviewable reconciliation; original immutable history retained. Poké Ball Design Register and Project Index had already received specialist implementation/acceptance evidence; final Master Control closure confirmation appended separately in Drive.
