@@ -366,6 +366,8 @@ const u8 gMoveDescription_DREAM_HAUNT[] = _("Has double power\nagainst a sleepin
 
 const u8 gMoveDescription_SKITTER_SLASH[] = _("A quick, slicing\nBug-type attack.");
 
+const u8 gMoveDescription_VENOM_WEB[] = _("Binds the foe in\na lingering web.\nCannot refresh trap.");
+
 const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND         - 1] = gMoveDescription_Pound,
     [MOVE_KARATE_CHOP   - 1] = gMoveDescription_KarateChop,
@@ -728,4 +730,5 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_WEARY_TOUCH - 1] = gMoveDescription_WEARY_TOUCH,
     [MOVE_DREAM_HAUNT - 1] = gMoveDescription_DREAM_HAUNT,
     [MOVE_SKITTER_SLASH - 1] = gMoveDescription_SKITTER_SLASH,
+    [MOVE_VENOM_WEB - 1] = gMoveDescription_VENOM_WEB,
 };
