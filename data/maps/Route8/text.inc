@@ -214,3 +214,9 @@ Route8_Text_JuliaOnlyMon::
 Route8_Text_JuliaReunited::
     .string "My SNORUNT! Thank you!\n"
     .string "Please accept this NEVERMELTICE!$"
+
+Route8_Text_PaigeAfterReturn::
+    .string "RALTS is home safe, thanks to you!$"
+
+Route8_Text_JuliaAfterReturn::
+    .string "SNORUNT is home safe, thanks!$"
