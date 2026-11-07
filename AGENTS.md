@@ -296,3 +296,11 @@ docs/MASTER_IMPLEMENTATION_CHANGE_LEDGER.md, and preserve prior progress. At ses
 end update docs/CODEX_EXECUTION_HANDOFF.md with exact refs, commands, test outcomes,
 blockers and the next actionable task. Continue through independent eligible tasks
 rather than stopping after the first PR; report actual execution limits honestly.
+
+BTL-005-M2I implements approved all-other-active Thunder Wave, not new move IDs.
+Read docs/moves/THUNDER_WAVE_STATUS.md. Preserve512-byte BattleStruct/private0x1E4
+padding context, original actor/per-recipient reflection, once-per-move inability
+and PP/Pressure checks, noPP cancellation, existing art and every old guard.
+Focus with LIGHTNING_THUNDER_WAVE_ONLY=1 and LIGHTNING_ORIGINAL_EFFECTS_ONLY=1;
+all26 hosts/3 checkers and full30-group native/clean/upstream acceptance remain
+required. Source overlays are not410-move completion or real-link certification.

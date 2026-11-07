@@ -818,6 +818,26 @@ static const u8 sBallCatchBonuses[] =
 // unused
 ALIGNED(4) static const u8 sJPText_Turn[] = _("ターン");
 
+// Consume each eligible recipient once, retaining the original actor across
+// per-recipient Magic Coat reflection. No saved/link data is involved.
+static u8 NextThunderWaveTarget(void)
+{
+    u8 i;
+
+    for (i = 0; i < gBattlersCount && i < MAX_BATTLERS_COUNT; i++)
+    {
+        if (!(gBattleStruct->thunderWaveTargets & gBitTable[i]))
+            continue;
+        gBattleStruct->thunderWaveTargets &= ~gBitTable[i];
+        if (((gAbsentBattlerFlags | gBattleStruct->absentBattlerFlags) & gBitTable[i])
+            || gBattleMons[i].hp == 0)
+            continue;
+        gBattleStruct->thunderWaveTarget = i;
+        return i;
+    }
+    return MAX_BATTLERS_COUNT;
+}
+
 static void Cmd_attackcanceler(void)
 {
     s32 i;
@@ -833,6 +853,22 @@ static void Cmd_attackcanceler(void)
         gBattlescriptCurrInstr = BattleScript_MoveEnd;
         return;
     }
+    if (gCurrentMove == MOVE_THUNDER_WAVE && !gBattleStruct->thunderWaveActive)
+    {
+        u8 nextTarget;
+
+        gBattleStruct->thunderWaveUser = gBattlerAttacker;
+        gBattleStruct->thunderWaveTargets = ((1 << MAX_BATTLERS_COUNT) - 1) & ~gBitTable[gBattlerAttacker];
+        gBattleStruct->thunderWaveActive = TRUE;
+        nextTarget = NextThunderWaveTarget();
+        if (nextTarget == MAX_BATTLERS_COUNT)
+        {
+            gBattleStruct->thunderWaveActive = FALSE;
+            gBattlescriptCurrInstr = BattleScript_ButItFailedAtkStringPpReduce;
+            return;
+        }
+        gBattlerTarget = nextTarget;
+    }
     if (AtkCanceller_UnableToUseMove())
         return;
     if (AbilityBattleEffects(ABILITYEFFECT_MOVES_BLOCK, gBattlerTarget, 0, 0, 0))
@@ -842,6 +878,8 @@ static void Cmd_attackcanceler(void)
     {
         gBattlescriptCurrInstr = BattleScript_NoPPForMove;
         gMoveResultFlags |= MOVE_RESULT_MISSED;
+        if (gCurrentMove == MOVE_THUNDER_WAVE)
+            gBattleStruct->thunderWaveActive = FALSE;
         return;
     }
 
@@ -4301,6 +4339,30 @@ static void Cmd_moveend(void)
             gBattleScripting.moveendState++;
             break;
         case MOVEEND_NEXT_TARGET: // For moves hitting two opposing Pokemon.
+            if (gBattleStruct->thunderWaveActive)
+            {
+                if (gCurrentMove == MOVE_THUNDER_WAVE)
+                {
+                    u8 nextTarget;
+
+                    gBattlerAttacker = gBattleStruct->thunderWaveUser;
+                    gBattlerTarget = gBattleStruct->thunderWaveTarget;
+                    if (!(gHitMarker & HITMARKER_UNABLE_TO_USE_MOVE)
+                        && (nextTarget = NextThunderWaveTarget()) != MAX_BATTLERS_COUNT)
+                    {
+                        gBattlerTarget = nextTarget;
+                        gHitMarker |= HITMARKER_NO_ATTACKSTRING;
+                        gBattleScripting.moveendState = 0;
+                        // Preserve atkCancellerTracker: inability/obedience is
+                        // checked once, not rerolled for each recipient.
+                        MoveValuesCleanUp();
+                        BattleScriptPush(gBattleScriptsForMoveEffects[gBattleMoves[gCurrentMove].effect]);
+                        gBattlescriptCurrInstr = BattleScript_FlushMessageBox;
+                        return;
+                    }
+                }
+                gBattleStruct->thunderWaveActive = FALSE;
+            }
             if (!(gHitMarker & HITMARKER_UNABLE_TO_USE_MOVE) && gBattleTypeFlags & BATTLE_TYPE_DOUBLE
                 && !gProtectStructs[gBattlerAttacker].chargingTurn && gBattleMoves[gCurrentMove].target == MOVE_TARGET_BOTH
                 && !(gHitMarker & HITMARKER_NO_ATTACKSTRING))
