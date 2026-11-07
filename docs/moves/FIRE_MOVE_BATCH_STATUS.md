@@ -11,7 +11,8 @@ Not merged or production-complete while full/clean/CI acceptance is pending.
 
 Original IDs0–354 remain fixed. Tables/names/descriptions/animation dispatch are
 complete at MOVES_COUNT358 (NONE included). No learnset, TM, encounter, Trainer,
-item or ability distribution is invented. Flashfire is a move, not Flash Fire.
+item or ability distribution is invented. Existing generic callers such as
+Metronome may naturally select newly valid moves. Flashfire is a move, not Flash Fire.
 Default native selected-opponent/contact/Protect/Mirror Move flags follow Bite,
 Quick Attack and Take Down respectively; native King's Rock eligibility retained
 for the latter two. Engine effects are FLINCH_HIT/HIT/RECOIL. Neutral priority0 for
