@@ -109,6 +109,7 @@ static void waitOverworld(unsigned keys){
  CHECK(i<3600);frames(60,0);
 }
 static void startSpecial(void){
+  fprintf(stderr,"DEBUG startSpecial map=%u.%u double=%u\\n",core->busRead8(core,SYM_gSaveBlock1),core->busRead8(core,SYM_gSaveBlock1+1),CALL(TryDoDoubleWildBattle));
  // Invoke the natural encounter trigger on packed attributes from an actual
  // ordinary land tile. This exercises its rate/Repel/roamer dispatch, without
  // a scripted event or writing either enemy species.
@@ -151,6 +152,7 @@ static void walkToBattle(void){
  printf("PASS: actual directional walking triggered wild double after %u frames on ordinary grass\n",f);
 }
 static void generationTests(void){
+  fprintf(stderr,"DEBUG enter generationTests\\n");
  wildFixture(MAP_GROUP(MAP_MT_MOON_1F),MAP_NUM(MAP_MT_MOON_1F),1);
  uint32_t info=landInfo();unsigned special=0,duplicates=0,firstP=0,secondP=0;
  core->busWrite32(core,SYM_gRngValue,0x790abcde);
@@ -183,6 +185,7 @@ static void generationTests(void){
  printf("PASS: egg is excluded from usable double-battle party count\n");
 }
 static void route1OrdinaryEncounters(void){
+  fprintf(stderr,"DEBUG enter route1OrdinaryEncounters\\n");
   wildFixture(MAP_GROUP(MAP_ROUTE1),MAP_NUM(MAP_ROUTE1),1);
   CHECK(!CALL(TryDoDoubleWildBattle));
   uint32_t info=landInfo();
