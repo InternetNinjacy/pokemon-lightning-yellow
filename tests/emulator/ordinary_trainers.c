@@ -3,9 +3,11 @@
 
 // Native ROM readback of all owner-authorized ordinary parties; no stubs.
 static void ordinaryTrainerPartyDataTests(void) {
+    // One native initialized fixture suffices: CreateNPCTrainerParty itself
+    // calls ZeroEnemyPartyMons before populating each new Trainer array.
+    daycareFixture(1);
     unsigned index = 0;
     for (unsigned t = 0; t < ORDINARY_TRAINER_COUNT; t++) {
-        daycareFixture(1);
         core->busWrite32(core, SYM_gBattleTypeFlags, BATTLE_TYPE_TRAINER);
         const unsigned id = ordinaryTrainerIds[t];
         const unsigned size = ordinaryTrainerSizes[t];
