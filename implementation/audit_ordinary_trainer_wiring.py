@@ -29,7 +29,7 @@ RE_BATTLE = re.compile(r"\btrainerbattle_(?:single|double|rematch|rematch_double
 RE_INIT = re.compile(r"\[(TRAINER_[A-Z0-9_]+)\]\s*=\s*\{([\s\S]*?)\n    \},")
 RE_CLASS = re.compile(r"\.trainerClass\s*=\s*TRAINER_CLASS_([A-Z0-9_]+)")
 RE_PARTY_REF = re.compile(r"\.party\s*=\s*[A-Z_]+\((sParty_[A-Za-z0-9_]+)\)")
-RE_PARTY_DEF = re.compile(r"static const struct TrainerMon\w+\s+(sParty_\w+)\[\]\s*=\s*\{([\s\S]*?)\n\};")
+RE_PARTY_DEF = re.compile(r"^static const struct TrainerMon\w+\s+(sParty_\w+)\[\]\s*=\s*\{(.*?)\};", re.M | re.S)
 RE_BATTLE_COMMAND = re.compile(r"\btrainerbattle_(?:single|double|rematch|rematch_double|two_trainers|continue_script|no_intro|no_intro_double)\s+(TRAINER_[A-Z0-9_]+)")
 RE_VS = re.compile(r"\{\s*\{([^{}]+)\}\s*,\s*MAP\(MAP_([A-Z0-9_]+)\)\s*\}")
 
@@ -66,6 +66,7 @@ def main():
                   for m in RE_PARTY_DEF.finditer(party_source)}
     missing_party_references = []
     missing_party_arrays = []
+    dummy_source_party_ids = []
     source_party_size_inconsistencies = []
     proposed_party_size_differences = []
     for trainer_id, row in rows.items():
@@ -79,6 +80,9 @@ def main():
             missing_party_arrays.append({"id": trainer_id, "symbol": symbol})
             continue
         actual_size = party_defs[symbol]
+        if actual_size == 0:
+            dummy_source_party_ids.append(trainer_id)
+            continue
         source_size = len([slot for slot in row["source_party"].split(";") if slot.strip()])
         draft_size = len([slot for slot in row["team"].split(";") if slot.strip()])
         if actual_size != source_size:
@@ -164,7 +168,7 @@ def main():
         data = json.loads(path.read_text(encoding="utf-8"))
         map_count += 1
         for event in data.get("object_events", []):
-            if event.get("trainer_type") in (None, "TRAINER_TYPE_NONE"):
+            if not str(event.get("trainer_type", "")).startswith("TRAINER_TYPE_") or event.get("trainer_type") == "TRAINER_TYPE_NONE":
                 continue
             trainer_map_objects += 1
             name = event.get("script", "")
@@ -187,6 +191,7 @@ def main():
         "party_arrays_parsed": len(party_defs),
         "missing_party_references": missing_party_references,
         "missing_party_arrays": missing_party_arrays,
+        "dummy_source_party_ids": dummy_source_party_ids,
         "source_party_size_inconsistencies": source_party_size_inconsistencies,
         "proposed_party_size_differences": proposed_party_size_differences,
         "original_or_standalone_records": len(original),
