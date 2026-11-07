@@ -41,19 +41,22 @@ Gym Castform and move foundations/UI/saved PP. Do not duplicate implementations.
  Exact approved Crunch/Quick Attack/Hi Jump Kick +Ember commands. Engine has ONE
  animation return slot: shared Ember body inlines old hit commands, no nested calls.
  Strict new-ID `<` secondary roll; all original moves retain inclusive GenIII `<=`.
-28 hosts/3 checkers/production chance numeric controls/487 native focus PASS.
+28 hosts/3 checkers/production chance numeric controls/517 native focus PASS.
  Final clean SHA a90ef37290e08dd8ed46eff2c3537e966c3e4f7874cdbe9e72bb1b5acef8b730.
  Both1951766a CI42381346263/42381341524 and /tmp/fire-final-full-native.log FAILED
  new flash fixture: old higher-counter flash survives CPU snapshots. Added strict
  negative control and isolated/restored fixture flash; no production save change.
- Latest /tmp/fire-isolated-final-full-native.log is corrected full run. Older
+ /tmp/fire-isolated-final-full-native.log corrected full816089 PASS, both CI
+42382668646/42382673049 SUCCESS. Final premerge AI review changes only Flashfire
+engine effect HIT→QUICK_ATTACK (same Hit script), preserving finisher106 vs Tackle104.
+Updated focus /tmp/fire-ai-native-focus.log517 and28hosts PASS; latest CI pending. Older
  /tmp/fire-full-native.log (exec87317) predates strict chance/extra flash fixture;
  do not misrepresent its eventual result as latest-source full acceptance.
- Focus log /tmp/fire-native-flash-negative-control.log487 PASS; clean /tmp/fire-final-clean.log;
+ Focus log /tmp/fire-ai-native-focus.log517 PASS; clean /tmp/fire-final-clean.log;
  host /tmp/fire-host-final.log all28 PASS. See FIRE_MOVE_BATCH_STATUS.md.
 -62/65 coordination MERGED9a5d5c20;79 catalog MERGEDa22aabd4. Both79 head runs
  42379743632/42379748023 SUCCESS; source/spec/test/build input diff is empty
- through documentation-only integration2d6e9ac2. Main postmerge CI pending.
+ through documentation-only integration2d6e9ac2. Maina22 postmerge CI42381749572 SUCCESS.
 -57 CLOSED as superseded by merged71; branch/discussion retained, no candidate
  design gameplay merged by closing.74 Rocket and76 title art remain parallel drafts:
  inspect before working there.54 follower asset audit only, permission hold.
@@ -65,7 +68,7 @@ Gym Castform and move foundations/UI/saved PP. Do not duplicate implementations.
 ```
 git status --short --branch
 gh pr checks 80
-tail -n 8 /tmp/fire-final-full-native.log
+tail -n 8 /tmp/fire-isolated-final-full-native.log
 gh run list --branch main --limit 4
 ```
 
@@ -96,3 +99,5 @@ Do not let those independent holds block fully specified move work.
 Drive writing unavailable;40 authority exports ARE available under
 /workspace/attachments/lightning-authority-2026-11-03. Git ledger/dashboard is
 canonical; Drive synchronization pending. Keep prior completed progress/history.
+
+Child82 feature/approved-ghost-move-batch at56ab370e has358–360 complete,29hosts/331focus/clean01e548bd…19ed7 PASS; full /tmp/ghost-batch-full-native.log and CI pending. It must inherit final80 AI translation and frozen manifests before merge.

@@ -615,7 +615,7 @@
         "semantic": "HIT"
       },
       "engine_translation": {
-        "effect": "EFFECT_HIT",
+        "effect": "EFFECT_QUICK_ATTACK",
         "target": "MOVE_TARGET_SELECTED",
         "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       }

@@ -16,7 +16,7 @@ for path, row in manifest['files'].items():
 
 spec = json.loads(Path('docs/moves/move-specification.json').read_text())['moves']
 expected = [('FLAME_FANG', 355, 90, 15, 0, 'EFFECT_FLINCH_HIT', 20),
-            ('FLASHFIRE', 356, 40, 30, 1, 'EFFECT_HIT', 0),
+            ('FLASHFIRE', 356, 40, 30, 1, 'EFFECT_QUICK_ATTACK', 0),
             ('BLAZE_RUSH', 357, 100, 10, 0, 'EFFECT_RECOIL', 0)]
 for key, move_id, power, pp, priority, effect, chance in expected:
     row = next(r for r in spec if r['key'] == key)

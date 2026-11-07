@@ -3,7 +3,7 @@
   "updated": "2026-11-07",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "Main includes72 Thunder Wave,62/65 coordination and79 catalog prerequisite. PR80 implements first3/56 new moves with strict new-only secondary rolls,28 hosts/487 native focus/clean PASS; latest full/CI pending.53 additions still unimplemented; no extra progress credit before acceptance.398/712 provisional.",
+  "current_focus": "Maina22 stable CI42381749572 SUCCESS;80 first Fire batch passed full816089, premerge AI translation correction focused517/28hosts PASS pending new CI. Child82 three Ghost moves source/331focus/29hosts/clean PASS, full/CI pending.398/712 provisional; no unmerged credit.",
   "main_sha": "a22aabd49d935e56bcb3573b394bcae13d60022d",
   "drive_sync": {
     "status": "GYM-009 completion synced to Project Progress and Elite Four Register on 2026-11-07; other Drive synchronization not audited",
@@ -630,7 +630,7 @@
         "design": "Owner approved; November5 Curse/animation/GenIV edge choices resolved; PhaseTwo distribution remains separate",
         "implementation": "All21 original policies/global Electric immunity merged. PR80 source-complete355 Flame Fang,356 Flashfire,357 Blaze Rush; not merged/production-complete until final acceptance. Remaining53 additions absent.",
         "automated": "Main tooling79:27 hosts and both full CI PASS before documentation-only main integration. Feature80:28 hosts/3 checkers, production chance numeric controls and clean hash a90ef372…b730 PASS; latest CI pending.",
-        "emulator": "PR80 latest focused487 native assertions PASS including real Singles/Doubles/composite animation completion/physical stats/AI/PP/flinch/recoil/priority/guards and exact encrypted flash reload. Latest full suite pending. Not full campaign/peer link/hardware or pixel-approval certification.",
+        "emulator": "PR80 latest focused517 native assertions PASS including real Singles/Doubles/composite animation completion/physical stats/AI/PP/flinch/recoil/priority/guards and exact encrypted flash reload. Latest full suite pending. Not full campaign/peer link/hardware or pixel-approval certification.",
         "pull_request": "Merged40–43/56/61;63 pending",
         "merge": "Main4bb2ece0 includes63/64/66/67/68/69/71/75;72 pending current-main acceptance."
       },
@@ -702,7 +702,7 @@
         "BTL-005-M2H": "Merged69/3d06ebc3, full755386/25hosts/clean and both Actions42316557601/42316568537 SUCCESS",
         "BTL-005-M2I": "Merged72/e2dabe83: full30-group815608/focused565/26hosts/clean PASS; both Actions42377967379/42377971185 SUCCESS at26f52aba. Merge-only9d103ae0 has identical verified tree c52b7d8a; resulting main identical. Postmerge main CI pending.",
         "BTL-005-M3A": "Merged79/a22aabd4, both Actions42379743632/42379748023 modified+upstream SUCCESS;27 hosts PASS. Documentation-only main integration2d6e9ac2 preserves identical tested code/spec inputs. No gameplay IDs/effort credit.",
-        "BTL-005-M3B": "PR80 source1951766a: complete IDs355..357,28 hosts/3checkers/strict chance routine/487 native focus/clean a90ef372…b730 PASS. Final full/CI pending. One-slot animation return hazard fixed with existing inline Ember commands; original moves retain legacy inclusive chance. No merge/effort credit yet. Both1951766a CI/full runs failed new flash fixture because RAM snapshots retain older higher-counter flash; negative control proves legitimate loader behavior. Isolated test flash/restored previous flash; focused487 PASS; corrected full/CI pending. No production save change."
+        "BTL-005-M3B": "PR80 source1951766a: complete IDs355..357,28 hosts/3checkers/strict chance routine/517 native focus/clean a90ef372…b730 PASS. Final full/CI pending. One-slot animation return hazard fixed with existing inline Ember commands; original moves retain legacy inclusive chance. No merge/effort credit yet. Both1951766a CI/full runs failed new flash fixture because RAM snapshots retain older higher-counter flash; negative control proves legitimate loader behavior. Isolated test flash/restored previous flash; focused487 PASS; corrected full/CI pending. No production save change. Corrected-flash9ab273ce full816089 and both42382668646/42382673049 PASS. Final premerge review preserves native priority finisher by translating Flashfire to QUICK_ATTACK (same Hit script). Updated focused517 incl scores106/106/104 and28hosts PASS; new CI pending."
       }
     },
     {

@@ -4989,7 +4989,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     [MOVE_FLASHFIRE] =
     {
         .category = MOVE_CATEGORY_PHYSICAL,
-        .effect = EFFECT_HIT,
+        .effect = EFFECT_QUICK_ATTACK,
         .power = 40,
         .type = TYPE_FIRE,
         .accuracy = 100,
