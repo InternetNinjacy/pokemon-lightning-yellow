@@ -68,7 +68,7 @@ static void newFireMoveTests(void){
  // Priority+1 must strike before a faster ordinary attack.
  effectBattleFixture(0,MOVE_FLASHFIRE);
  core->busWrite16(core,bmon(0)+ABI_BMON_SPEED,1);core->busWrite16(core,bmon(1)+ABI_BMON_SPEED,300);
- for(unsigned slot=0;slot<4;slot++){core->busWrite16(core,bmon(1)+ABI_BMON_MOVES+2*slot,MOVE_TACKLE);core->busWrite8(core,bmon(1)+ABI_BMON_PP+slot,35);}
+ for(unsigned slot=0;slot<4;slot++){core->busWrite16(core,bmon(1)+ABI_BMON_MOVES+2*slot,MOVE_SCRATCH);core->busWrite8(core,bmon(1)+ABI_BMON_PP+slot,35);}
  chooseMove(0,0,1);unsigned seen=0;
  for(unsigned frame=0;frame<1200&&!seen;frame++){
   frames(1,(frame%12)<2?1:0);unsigned ours=core->busRead16(core,bmon(0)+ABI_BMON_HP),theirs=core->busRead16(core,bmon(1)+ABI_BMON_HP);
