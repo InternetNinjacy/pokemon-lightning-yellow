@@ -1419,6 +1419,19 @@ imports or unsafe save migrations. Direct Drive synchronization remains pending.
   upstream comparison unchanged. No gameplay/security/protection changes.
 - Exact-head CI pending; not represented as accepted/merged.
 
+## 2026-11-07 — BTL-005-M2H Spite / Grudge implementation
+
+- Final approved register574/582: Special30 damaging Spite plus optional original
+  PP drain; Special30/90/10 Grudge using native Rollout without Defense Curl bonus,
+  selected opponent required by damaging Rollout semantics, no original KO status.
+- Retain original flags/art/IDs; update descriptions/categories/reconciliation,
+  exact reverse manifests and HP-aware Spite AI. Existing PP is not refilled.
+- Build/25 hosts/3 checkers PASS; initial focused225 native assertions PASS,
+  seven actual Spite turns and complete five-turn Grudge. Latest numeric control,
+  full/clean/CI pending; no merge/effort credit. See GHOST_REWORK_STATUS.md limits.
+- Native PP test isolated the sleeping opponent after detecting an incorrect
+  zero-PP turn-spending assumption; no production fix or weakened baseline.
+
 ## 2026-11-07 — GYM-009 draft68 validation repair (not acceptance)
 
 - Existing draft68 proposed both Agatha parties and the scoped native ability

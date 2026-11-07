@@ -32,6 +32,13 @@ print('PASS: exact approved global Electric paralysis immunity delta; primary me
 
 spread=json.loads(Path('tests/specifications/approved_spread_status_delta.json').read_text())
 for p,v in spread['files'].items():
- assert hashlib.sha256(Path(p).read_bytes()).hexdigest()==v['after_sha256'],p
+ from approved_ghost_rework_changes import prior_ghost_rework_source
+ assert hashlib.sha256(prior_ghost_rework_source(p).encode()).hexdigest()==v['after_sha256'],p
  assert hashlib.sha256(prior_spread_status_source(p).encode()).hexdigest()==v['before_sha256'],p
 print('PASS: exact approved Scary Face Ghost15PP and three both-opponent status targets; historical hashes preserved (static)')
+
+ghost=json.loads(Path('tests/specifications/approved_ghost_rework_delta.json').read_text())
+for p,v in ghost['files'].items():
+ assert hashlib.sha256(Path(p).read_bytes()).hexdigest()==v['after_sha256'],p
+ assert hashlib.sha256(prior_ghost_rework_source(p).encode()).hexdigest()==v['before_sha256'],p
+print('PASS: exact approved Spite damage/optional PP drain and Grudge native Rollout/no Defense Curl; no other production changes (static)')

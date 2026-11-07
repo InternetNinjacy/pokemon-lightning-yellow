@@ -1345,14 +1345,30 @@ BattleScript_EffectFlail::
 
 BattleScript_EffectSpite::
 	attackcanceler
+	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
 	attackstring
 	ppreduce
-	accuracycheck BattleScript_ButItFailed, ACC_CURR_MOVE
-	tryspiteppreduce BattleScript_ButItFailed
+	critcalc
+	damagecalc
+	typecalc
+	adjustnormaldamage
 	attackanimation
 	waitanimation
+	effectivenesssound
+	hitanimation BS_TARGET
+	waitstate
+	healthbarupdate BS_TARGET
+	datahpupdate BS_TARGET
+	critmessage
+	waitmessage B_WAIT_TIME_LONG
+	resultmessage
+	waitmessage B_WAIT_TIME_LONG
+	jumpifmovehadnoeffect BattleScript_SpiteDamageEnd
+	tryspiteppreduce BattleScript_SpiteDamageEnd
 	printstring STRINGID_PKMNREDUCEDPP
 	waitmessage B_WAIT_TIME_LONG
+BattleScript_SpiteDamageEnd::
+	tryfaintmon BS_TARGET
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectHealBell::

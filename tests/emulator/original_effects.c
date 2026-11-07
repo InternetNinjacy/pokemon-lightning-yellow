@@ -105,7 +105,10 @@ static void spreadStatusTests(void){
  printf("PASS: actual Double Fake Tears preserves separate Clear Body/Protect/stat-floor prevention without suppressing the other foe or charging extraPP\n");
  CHECK(core->loadState(core,bootState));
 }
+#include "ghost_reworks.c"
 static void originalEffectTests(void){
+ if(getenv("LIGHTNING_GHOST_REWORKS_ONLY")){ghostReworkTests();return;}
+ ghostReworkTests();
  spreadStatusTests();
  electricImmunityTests();
  effectBattleFixture(1,MOVE_PIN_MISSILE);damageStats();CHECK(baseDamage(MOVE_PIN_MISSILE,0,0,0)==50);
