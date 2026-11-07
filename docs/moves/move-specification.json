@@ -20766,6 +20766,12 @@
         "semantic": "HIT_SOUND",
         "sound": true
       },
+      "engine_translation": {
+        "effect": "EFFECT_HIT",
+        "target": "MOVE_TARGET_SELECTED",
+        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
+      },
+      "source_line": 5142,
       "animation": {
         "assignment": "Move_BELLOW",
         "approval": "APPROVED_EXISTING_ART_CANDIDATE",
@@ -20773,12 +20779,6 @@
         "source_exists": true,
         "runtime_verified": false
       },
-      "engine_translation": {
-        "effect": "EFFECT_HIT",
-        "target": "MOVE_TARGET_SELECTED",
-        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
-      },
-      "source_line": 5142,
       "animation_candidate": {
         "key": "BELLOW",
         "name": "Bellow",
@@ -20857,6 +20857,12 @@
       "effect_rules": {
         "semantic": "HIT"
       },
+      "engine_translation": {
+        "effect": "EFFECT_HIT",
+        "target": "MOVE_TARGET_SELECTED",
+        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
+      },
+      "source_line": 5156,
       "animation": {
         "assignment": "Move_POWER_GEM",
         "approval": "APPROVED_EXISTING_ART_CANDIDATE",
@@ -20864,12 +20870,6 @@
         "source_exists": true,
         "runtime_verified": false
       },
-      "engine_translation": {
-        "effect": "EFFECT_HIT",
-        "target": "MOVE_TARGET_SELECTED",
-        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
-      },
-      "source_line": 5156,
       "animation_candidate": {
         "key": "POWER_GEM",
         "name": "Power Gem",
@@ -20948,6 +20948,12 @@
       "effect_rules": {
         "semantic": "HIGH_CRITICAL"
       },
+      "engine_translation": {
+        "effect": "EFFECT_HIGH_CRITICAL",
+        "target": "MOVE_TARGET_SELECTED",
+        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
+      },
+      "source_line": 5170,
       "animation": {
         "assignment": "Move_STONE_EDGE",
         "approval": "APPROVED_EXISTING_ART_CANDIDATE",
@@ -20955,12 +20961,6 @@
         "source_exists": true,
         "runtime_verified": false
       },
-      "engine_translation": {
-        "effect": "EFFECT_HIGH_CRITICAL",
-        "target": "MOVE_TARGET_SELECTED",
-        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
-      },
-      "source_line": 5170,
       "animation_candidate": {
         "key": "STONE_EDGE",
         "name": "Stone Edge",
