@@ -40,3 +40,13 @@ u16 ScriptGiveTangoTangela(void)
     Free(mon);
     return result;
 }
+
+// WRL-001: fixed nickname for the approved Pikachu starter; gift is still made
+// by FireRed's original givemon script, so its party/ownership behavior stays intact.
+void ScriptNameSocketStarterPikachu(void)
+{
+    static const u8 nickname[] = _("SOCKET");
+
+    if (gPlayerPartyCount != 0 && GetMonData(&gPlayerParty[0], MON_DATA_SPECIES) == SPECIES_PIKACHU)
+        SetMonData(&gPlayerParty[0], MON_DATA_NICKNAME, nickname);
+}
