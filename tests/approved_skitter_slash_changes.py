@@ -9,6 +9,8 @@ from pathlib import Path
 def prior_skitter_slash_source(path, text=None):
     if text is None:
         text = Path(path).read_text()
+    from approved_venom_web_changes import prior_venom_web_source
+    text = prior_venom_web_source(path, text)
     manifest = json.loads(Path('tests/specifications/approved_skitter_slash_delta.json').read_text())
     for h in manifest['files'].get(str(path), {}).get('hunks', []):
         assert text.count(h['after']) == 1, 'Unreviewed Skitter Slash delta: ' + str(path)
