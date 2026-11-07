@@ -16,7 +16,7 @@ def prior_ranger_source(path, text=None):
         )
         for i, alias in enumerate(aliases):
             index = 0x316 + i
-            pattern = r"^#define " + alias + r"\\s+0x" + format(index, '03X') + r"$"
+            pattern = r"^#define " + alias + r"\s+0x" + format(index, '03X') + r"$"
             old = "#define FLAG_0x" + format(index, '03X') + "               0x" + format(index, '03X')
             hits = list(__import__('re').finditer(pattern, text, __import__('re').M))
             assert len(hits) == 1, ('Rocket flag alias', alias)
