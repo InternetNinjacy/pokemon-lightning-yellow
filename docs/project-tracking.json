@@ -3,7 +3,7 @@
   "updated": "2026-11-07",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "BTL-006 final feature acceptance: PR13+PR75 merged and verified; BTL-006 16/0 earned. Release-wide visual, retailer progression, two-peer/hardware and interrupted-power acceptance remains INT-005. Other task statuses retain dated checkpoints, no duplicate integration credit.",
+  "current_focus": "PR74 Rocket Hideout issues44/45 source implementation merged 6aef759a: WRL-011 10 earned/0 remaining, all11 battles/32 Pokémon and two original-OT return quests. Final modified Battle split CI Actions42384965443 pending; manual title/pathing/save-load/event QA reserved INT-005. GYM-008/009, BTL-006 prior merges retained; older per-task checkpoints remain dated.",
   "main_sha": "e2dabe83a2e607198186cbdf5c38d027811c7672",
   "drive_sync": {
     "status": "GYM-009 completion synced to Project Progress and Elite Four Register on 2026-11-07; other Drive synchronization not audited",
@@ -1860,7 +1860,7 @@
       "ci_url": null,
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Execute approved stabilization plan. Separate optional ordinary-Trainer experiential QA from GYM-008 closure: representative or exhaustive map-approach battle initiation; 130 VS Seeker rematch paths; Shane Double/refusal and victory flags; progression/story-state and visual Ranger aliases. No new points or claim of completion for these checks. Release-wide BTL-006 qualification (separately, no duplicate effort): all-ball manual visual/summaries, exceptional retailer full story gates, two-peer or hardware, interrupted-power and exhaustive quest-log checks; BTL-006 source implementation is formally closed.",
+      "next_action": "Execute approved stabilization plan. Separate optional ordinary-Trainer experiential QA from GYM-008 closure: representative or exhaustive map-approach battle initiation; 130 VS Seeker rematch paths; Shane Double/refusal and victory flags; progression/story-state and visual Ranger aliases. No new points or claim of completion for these checks. Release-wide BTL-006 qualification (separately, no duplicate effort): all-ball manual visual/summaries, exceptional retailer full story gates, two-peer or hardware, interrupted-power and exhaustive quest-log checks; BTL-006 source implementation is formally closed. Rocket PR74 optional in-game QA: reach both B3F rescue ball tiles, observe displayed ROCKET EXECUTIVE titles, manually save/reload exact rescued identities and Route8 transfers/rewards, traverse B1F/B4F barriers, Lift Key, Giovanni and Silph Scope. No duplicate WRL-011 points.",
       "checkpoint": "2026-11-02 initial audit"
     },
     {
@@ -2727,8 +2727,8 @@
       "title": "Complete approved gift revisions and Rocket stolen-Pokémon return quest content",
       "aliases": [],
       "effort": {
-        "earned": 3,
-        "remaining": 7,
+        "earned": 10,
+        "remaining": 0,
         "unit": "provisional relative planning point",
         "confidence": "low",
         "history": [
@@ -2743,26 +2743,32 @@
             "earned": 3,
             "remaining": 7,
             "reason": "Three approved issue38 gifts merged59 after native probability/scene/save and full integrated CI PASS; Rocket rescue/return pipeline remains7 provisional points, no duplicate shared infrastructure credit."
+          },
+          {
+            "date": "2026-11-07",
+            "earned": 10,
+            "remaining": 0,
+            "reason": "PR74 merged 6aef759a09adec0226e727501ace801b2993a84d with 11 Rocket Hideout teams/32 Pokémon, 2 Executives, stolen Ralts/Snorunt foreign-OT rescue and one-time Route8 return quests. Dedicated roster/quest source checks passed; prior full native mGBA run passed per specialist handoff. Latest-head full Battle split Actions42384965443 pending at reconciliation. Optional actual traversal/title/save-load QA tracked separately under INT-005; no duplication of gift PR59 or other task efforts."
           }
         ]
       },
       "dependencies": [],
       "status": {
-        "design": "owner-approved or delegated design recorded in Drive",
-        "implementation": "Aron50%/Magby50% eggs and TangelaLv25TANGO merged; Rocket rescue/return scope still unimplemented",
-        "automated": "All24 combined hosts/3 checkers PASS; clean/repro and CI PASS",
-        "emulator": "Latest gift focus80123 and Museum1306 PASS; each5030/10000 stored trueShiny; combined753726",
-        "pull_request": "PR59 merged; Rocket separate",
-        "merge": "Merged708f197a three-gift scope only"
+        "design": "Owner-approved PR45/issue44 contracts implemented; gift PR59 remains preserved",
+        "implementation": "Implemented on main: PR59 Aron/Magby 50% Shiny eggs, Celadon TANGO gift; PR74 all 11 Rocket battles/32 Pokémon, two B4F Rocket Executives, B3F PAIGE Ralts/JULIA Snorunt recovery and exact-individual Route8 return safeguards",
+        "automated": "PR74 dedicated Rocket roster/quest source checks PASS; final-head independent upstream CI PASS, full modified Battle split Actions42384965443 still running as of post-merge reconciliation",
+        "emulator": "Prior complete ROM native mGBA passed according to completion handoff; final PR74 head native result pending; real manual overworld/title, drop interaction and save/reload travel not exhaustively independently verified",
+        "pull_request": "PR59 and PR74 merged",
+        "merge": "PR59 merged gift scope; PR74 main 6aef759a09adec0226e727501ace801b2993a84d"
       },
-      "branch": "feature/approved-gift-revisions",
-      "commit": "06b57e71",
-      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/59",
-      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/42220799681",
-      "blocker": "New approved museum Aron 50% Shiny, Water Labyrinth Magby 50% Shiny, Celadon Tangela TANGO, hideout Ralts/Snorunt return and Rocket executive scripts not in merged code; baseline WRL-004 handles common items/events infrastructure, not these content contracts.",
+      "branch": "main",
+      "commit": "6aef759a09adec0226e727501ace801b2993a84d",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/74",
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/42384965443",
+      "blocker": null,
       "design_authority": "Lightning Yellow canonical Drive specialist registers and November 5 change intake",
-      "next_action": "Implement fully approved Rocket45/44 scope with foreign stable identities, safe party/PC transactions and exact reward safeguards; do not alter Giovanni.",
-      "checkpoint": "2026-11-06 fixed-scope intake; no gameplay implementation credit"
+      "next_action": "No further Rocket #44/#45 gameplay implementation planned. Confirm final-head Actions42384965443 modified+upstream SUCCESS; if failed, investigate as regression, not duplicate feature. Preserve optional manual pathing/drop pickup, displayed Rocket Executive titles, foreign OT/PC/save-load/rewards and full Rocket progression in INT-005.",
+      "checkpoint": "2026-11-07 merged implementation PR74; final-head CI pending and optional manual acceptance separate"
     }
   ],
   "legacy_crosswalk": {
