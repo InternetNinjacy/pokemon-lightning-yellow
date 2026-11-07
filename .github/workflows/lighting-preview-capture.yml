@@ -1,0 +1,67 @@
+name: TIM-003 real mGBA lighting preview captures
+
+on:
+  push:
+    branches: [feature/tim-003-lighting-preview]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lighting-framebuffer:
+    strategy:
+      fail-fast: false
+      matrix:
+        variant: [A, B]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Install native ARM and real mGBA screenshot dependencies
+        run: |
+          sudo apt-get -o Acquire::Retries=3 -o Acquire::http::Timeout=30 update
+          sudo apt-get -o Acquire::Retries=3 install -y --no-install-recommends build-essential binutils-arm-none-eabi git libpng-dev libmgba-dev python3 python3-pil
+      - name: Select unapproved preview candidate for this build
+        env:
+          VARIANT: ${{ matrix.variant }}
+        run: |
+          if [ "$VARIANT" = B ]; then
+            sed -i 's/^#define LIGHTING_PREVIEW_VARIANT 0$/#define LIGHTING_PREVIEW_VARIANT 1/' include/lighting_preview_config.h
+          fi
+          grep '^#define LIGHTING_PREVIEW' include/lighting_preview_config.h
+          echo "Source commit: $(git rev-parse HEAD); local build candidate: $VARIANT"
+      - name: Compile actual Lightning Yellow ROM (never upload ROM)
+        run: |
+          ./scripts/prepare-baseline.sh
+          make -j2
+      - name: Capture genuine stationary field frames in mGBA
+        timeout-minutes: 12
+        env:
+          LIGHTNING_LIGHTING_CAPTURE_DIR: /tmp/lightning-lighting
+        run: |
+          mkdir -p /tmp/lightning-lighting
+          python3 tests/emulator/run.py 2>&1 | tee /tmp/lightning-lighting/emulator-run.log
+          test "$(find /tmp/lightning-lighting -name '*.ppm' | wc -l)" -eq 24
+      - name: Encode real frame pixels into PNG, manifest and contact sheet
+        env:
+          VARIANT: ${{ matrix.variant }}
+        run: |
+          python3 tests/emulator/build_lighting_review.py /tmp/lightning-lighting --variant "$VARIANT" --commit "$(git rev-parse HEAD)" --sheet
+          python3 tests/emulator/validate_lighting_evidence.py /tmp/lightning-lighting/manifest.json
+          test "$(find /tmp/lightning-lighting -name '*.png' | wc -l)" -eq 25
+          printf 'Candidate: %s\nBuilt from source commit: %s\nCandidate B changes only LIGHTING_PREVIEW_VARIANT 0 to 1 before building.\nNot owner approved; Mansion fog not implemented.\n' "$VARIANT" "$(git rev-parse HEAD)" >/tmp/lightning-lighting/BUILD_DETAILS.txt
+      - name: Upload only screenshot evidence (never ROM, ELF, saves or gameplay assets)
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tim-003-real-mgba-lighting-candidate-${{ matrix.variant }}
+          path: |
+            /tmp/lightning-lighting/*.png
+            /tmp/lightning-lighting/manifest.json
+            /tmp/lightning-lighting/BUILD_DETAILS.txt
+            /tmp/lightning-lighting/emulator-run.log
+          retention-days: 14
+          if-no-files-found: error
