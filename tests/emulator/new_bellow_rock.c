@@ -4,13 +4,14 @@ static void bellowRockTests(void){
  const unsigned pp[]={30,20,10};
  for(unsigned m=0;m<3;m++)for(unsigned two=0;two<2;two++){
   effectBattleFixture(two,moves[m]);
+  damageStats();
   core->busWrite8(core,bmon(0)+ABI_BMON_LEVEL,50);
   core->busWrite16(core,bmon(0)+ABI_BMON_ATTACK,200);
   core->busWrite16(core,bmon(0)+ABI_BMON_SPATTACK,200);
   core->busWrite16(core,bmon(1)+ABI_BMON_DEFENSE,100);
   core->busWrite16(core,bmon(1)+ABI_BMON_SPDEFENSE,100);
   core->busWrite8(core,bmon(1)+ABI_BMON_ABILITY,ABILITY_NONE);
-  damageStats();
+
   unsigned expected=baseDamage(moves[m],0,0,0);
   CHECK(expected>0);
   core->busWrite8(core,SYM_gBattleScripting+ABI_SCRIPTING_MULTIPLIER,1);
