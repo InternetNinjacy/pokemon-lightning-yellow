@@ -662,13 +662,11 @@ Route8_EventScript_Paige::
 	trainerbattle_single TRAINER_LASS_PAIGE, Route8_Text_PaigeIntro, Route8_Text_PaigeDefeat
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route8_EventScript_PaigeRematch
-	msgbox Route8_Text_PaigePostBattle, MSGBOX_AUTOCLOSE
-	end
+	goto Route8_EventScript_PaigeQuest
 
 Route8_EventScript_PaigeRematch::
 	trainerbattle_rematch TRAINER_LASS_PAIGE, Route8_Text_PaigeRematchIntro, Route8_Text_PaigeDefeat
-	msgbox Route8_Text_PaigePostBattle, MSGBOX_AUTOCLOSE
-	end
+	goto Route8_EventScript_PaigeQuest
 
 Route8_EventScript_Andrea::
 	trainerbattle_single TRAINER_LASS_ANDREA, Route8_Text_AndreaIntro, Route8_Text_AndreaDefeat
@@ -698,13 +696,11 @@ Route8_EventScript_Julia::
 	trainerbattle_single TRAINER_LASS_JULIA, Route8_Text_JuliaIntro, Route8_Text_JuliaDefeat
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route8_EventScript_JuliaRematch
-	msgbox Route8_Text_JuliaPostBattle, MSGBOX_AUTOCLOSE
-	end
+	goto Route8_EventScript_JuliaQuest
 
 Route8_EventScript_JuliaRematch::
 	trainerbattle_rematch TRAINER_LASS_JULIA, Route8_Text_JuliaRematchIntro, Route8_Text_JuliaDefeat
-	msgbox Route8_Text_JuliaPostBattle, MSGBOX_AUTOCLOSE
-	end
+	goto Route8_EventScript_JuliaQuest
 
 Route8_EventScript_Aidan::
 	trainerbattle_single TRAINER_SUPER_NERD_AIDAN, Route8_Text_AidanIntro, Route8_Text_AidanDefeat
@@ -2804,4 +2800,82 @@ SevenIsland_TanobyRuins_EventScript_Clifford::
 SevenIsland_TanobyRuins_EventScript_CliffordRematch::
 	trainerbattle_rematch TRAINER_GENTLEMAN_CLIFFORD, SevenIsland_TanobyRuins_Text_CliffordRematchIntro, SevenIsland_TanobyRuins_Text_CliffordDefeat
 	msgbox SevenIsland_TanobyRuins_Text_CliffordPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+Route8_EventScript_PaigeQuest::
+	setvar VAR_0x8009, 0
+	specialvar VAR_RESULT, RocketRescueStatus
+	goto_if_eq VAR_RESULT, 3, Route8_EventScript_PaigeReunited
+	goto_if_eq VAR_RESULT, 2, Route8_EventScript_PaigeOffer
+	goto_if_eq VAR_RESULT, 1, Route8_EventScript_PaigeAbsent
+	msgbox Route8_Text_PaigeMissing
+	end
+
+Route8_EventScript_PaigeOffer::
+	msgbox Route8_Text_PaigeOffer, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, Route8_EventScript_PaigeDecline
+	setvar VAR_0x8009, 0
+	specialvar VAR_RESULT, RocketRescueReturn
+	goto_if_eq VAR_RESULT, 0, Route8_EventScript_PaigeReunited
+	goto_if_eq VAR_RESULT, 2, Route8_EventScript_PaigeBagFull
+	goto_if_eq VAR_RESULT, 3, Route8_EventScript_PaigeOnlyMon
+	goto Route8_EventScript_PaigeAbsent
+
+Route8_EventScript_PaigeDecline::
+	msgbox Route8_Text_PaigeDecline
+	end
+
+Route8_EventScript_PaigeAbsent::
+	msgbox Route8_Text_PaigeAbsent
+	end
+
+Route8_EventScript_PaigeBagFull::
+	msgbox Route8_Text_PaigeBagFull
+	end
+
+Route8_EventScript_PaigeOnlyMon::
+	msgbox Route8_Text_PaigeOnlyMon
+	end
+
+Route8_EventScript_PaigeReunited::
+	msgbox Route8_Text_PaigeReunited
+	end
+
+Route8_EventScript_JuliaQuest::
+	setvar VAR_0x8009, 1
+	specialvar VAR_RESULT, RocketRescueStatus
+	goto_if_eq VAR_RESULT, 3, Route8_EventScript_JuliaReunited
+	goto_if_eq VAR_RESULT, 2, Route8_EventScript_JuliaOffer
+	goto_if_eq VAR_RESULT, 1, Route8_EventScript_JuliaAbsent
+	msgbox Route8_Text_JuliaMissing
+	end
+
+Route8_EventScript_JuliaOffer::
+	msgbox Route8_Text_JuliaOffer, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, Route8_EventScript_JuliaDecline
+	setvar VAR_0x8009, 1
+	specialvar VAR_RESULT, RocketRescueReturn
+	goto_if_eq VAR_RESULT, 0, Route8_EventScript_JuliaReunited
+	goto_if_eq VAR_RESULT, 2, Route8_EventScript_JuliaBagFull
+	goto_if_eq VAR_RESULT, 3, Route8_EventScript_JuliaOnlyMon
+	goto Route8_EventScript_JuliaAbsent
+
+Route8_EventScript_JuliaDecline::
+	msgbox Route8_Text_JuliaDecline
+	end
+
+Route8_EventScript_JuliaAbsent::
+	msgbox Route8_Text_JuliaAbsent
+	end
+
+Route8_EventScript_JuliaBagFull::
+	msgbox Route8_Text_JuliaBagFull
+	end
+
+Route8_EventScript_JuliaOnlyMon::
+	msgbox Route8_Text_JuliaOnlyMon
+	end
+
+Route8_EventScript_JuliaReunited::
+	msgbox Route8_Text_JuliaReunited
 	end
