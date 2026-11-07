@@ -71,6 +71,8 @@ jobs:
           python3 tests/run_pokedex_tests.py
           python3 tests/run_typing_tests.py
           python3 tests/run_wild_double_tests.py
+          python3 tests/check_route1_encounters.py
+          python3 tests/check_route2_encounters.py
           python3 tests/run_daycare_tests.py
           python3 tests/run_world_reward_tests.py
           python3 tests/run_vendor_tests.py
