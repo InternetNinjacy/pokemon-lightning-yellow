@@ -46,7 +46,8 @@ print('PASS: exact approved Spite damage/optional PP drain and Grudge native Rol
 
 tw=json.loads(Path('tests/specifications/approved_thunder_wave_delta.json').read_text())
 for p,v in tw['files'].items():
- text=Path(p).read_text()
+ from approved_new_fire_move_changes import prior_new_fire_move_source
+ text=prior_new_fire_move_source(p)
  if p=='src/battle_main.c':
   from approved_elite_four_changes import prior_elite_four_source
   text=prior_elite_four_source(p,text)

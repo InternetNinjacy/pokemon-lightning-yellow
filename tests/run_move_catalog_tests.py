@@ -38,6 +38,15 @@ class MoveCatalogTests(unittest.TestCase):
         p.write_text(text.replace(old, new, 1))
 
     def add_fixture(self):
+        from approved_new_fire_move_changes import prior_new_fire_move_source
+        for path in self.paths[:5]:
+            p = self.root / path
+            p.write_text(prior_new_fire_move_source(path, p.read_text()))
+        animation = json.loads((self.root / self.paths[-1]).read_text())
+        for row in animation['entries']:
+            for script in row['scripts']:
+                script['line'] -= 3
+        (self.root / self.paths[-1]).write_text(json.dumps(animation))
         self.change(self.paths[0], '#define MOVES_COUNT 355',
                     '#define MOVE_FLAME_FANG 355\n#define MOVES_COUNT 356')
         body = '''    [MOVE_FLAME_FANG] =
@@ -71,10 +80,10 @@ class MoveCatalogTests(unittest.TestCase):
         (self.root / self.paths[-2]).write_text(json.dumps(self.design))
 
     def test_current_generation_byte_identical(self):
-        generated = reconcile.render(self.root)
+        generated = reconcile.render(ROOT)
         for name, text in generated.items():
             self.assertEqual((ROOT / 'docs/moves' / name).read_bytes(), text.encode())
-        self.assertEqual(validate(self.root, self.design['new_moves']), 355)
+        self.assertEqual(validate(ROOT, self.design['new_moves']), 358)
 
     def test_complete_fixture_is_source_only_not_runtime_accepted(self):
         self.add_fixture()

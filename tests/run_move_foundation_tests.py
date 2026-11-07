@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """M1a exact approved delta/name-capacity audits; runtime tests are separate."""
 from pathlib import Path
+from approved_new_fire_move_changes import prior_new_fire_move_source
 import hashlib,json,re
 from approved_move_foundation_changes import prior_move_foundation_source
 from approved_move_ui_changes import prior_move_ui_source
@@ -18,7 +19,7 @@ assert '#define BATTLE_TEXT_BUFFER_SIZE (MOVE_NAME_LENGTH + 2)' in header
 # Existing namespace, complete original data and save definitions stay byte-identical.
 for p in ['include/constants/moves.h','include/global.h','src/data/text/move_names.h']:
     expected=json.loads(Path('tests/specifications/move_foundation_unchanged.json').read_text())[p]
-    assert hashlib.sha256(Path(p).read_bytes()).hexdigest()==expected,p
+    assert hashlib.sha256(prior_new_fire_move_source(p).encode()).hexdigest()==expected,p
 rows=json.loads(Path('docs/moves/move-specification.json').read_text())['moves']
 assert next(r for r in rows if r['key']=='CURSE')['current']['type']=='GHOST'
 assert all(len(r['name'])<=15 for r in rows)

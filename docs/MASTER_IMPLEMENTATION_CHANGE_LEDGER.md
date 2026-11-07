@@ -1510,3 +1510,22 @@ PR #68 merged to main at f3a113a44d89acacc0b584f61c4dead868ef2607; exact-head Ac
   battles, no failed game assertion. Do not hide the failed duplicate. Integrate
   maintenance78 bounded30min native/60min job with every execution guard retained,
   then require new exact-head CI. No game/test changes from validated c33c8650.
+
+## 2026-11-07 — BTL-005-M3B first appended Fire moves, acceptance in progress
+
+-355 custom Flame Fang FirePhysical90/100/15 flinch20/no burn;356 Flashfire
+  FirePhysical40/100/30 priority+1;357 Blaze Rush FirePhysical100/100/10 recoil1/4.
+  Exact approved Crunch/Quick Attack/Hi Jump Kick +Ember composites; no new art
+  or distribution. Complete tables/descriptions/names, original IDs/save/wire fixed.
+- Frozen exact five-file append normalizer preserves all prior355-prefix digests;
+  dedicated actual-source audit covers three additions. Fixture tooling adapted
+  without turning presence into runtime acceptance. All28 hosts/3 checkers/build
+  PASS; final focus385 native assertions PASS, including actual Single/Double
+  animations/damage/AI/flinch/PP/recoil/priority, Protect/miss/no crash and Flash Fire.
+- Initial native hang exposed animation interpreter's ONE return slot; removed
+  nested calls by inlining existing Ember hit commands. No interpreter/guard
+  change. Earlier Bite visual draft corrected to authoritative Crunch composition
+  before final385 run; no old result claimed as final approval.
+- Full native/clean/CI pending. Branch feature/approved-fire-move-batch; not merged,
+  not production-complete; no effort credit. Rollback after acquiring appended
+  IDs needs prefeature save or move removal; old peer link not certified.

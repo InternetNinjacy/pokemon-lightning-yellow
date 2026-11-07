@@ -304,3 +304,12 @@ and PP/Pressure checks, noPP cancellation, existing art and every old guard.
 Focus with LIGHTNING_THUNDER_WAVE_ONLY=1 and LIGHTNING_ORIGINAL_EFFECTS_ONLY=1;
 all26 hosts/3 checkers and full30-group native/clean/upstream acceptance remain
 required. Source overlays are not410-move completion or real-link certification.
+
+BTL-005-M3B appends only approved Fire moves355 Flame Fang(custom90/100/15/flinch20,
+no burn),356 Flashfire40/+1,357 Blaze Rush100/quarter recoil. Read
+`docs/moves/FIRE_MOVE_BATCH_STATUS.md`. Keep original IDs/save/wire fields and
+frozen355-prefix hashes; exact new delta plus dedicated current-source tests.
+No invented distribution or new art. FireRed animation calls have ONE return slot:
+never nest shared Ember calls. Run all28 hosts/3 checkers, full30-group native,
+clean reproducibility; focus LIGHTNING_ORIGINAL_EFFECTS_ONLY=1 with
+LIGHTNING_NEW_FIRE_MOVES_ONLY=1. A source-complete row is not runtime acceptance.
