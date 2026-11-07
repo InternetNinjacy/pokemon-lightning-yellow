@@ -50,6 +50,7 @@ static void bellowRockTests(void){
  core->busWrite8(core,bmon(0)+ABI_BMON_ABILITY,ABILITY_SOUNDPROOF);
  for(unsigned m=0;m<4;m++){core->busWrite16(core,bmon(1)+ABI_BMON_MOVES+2*m,MOVE_BELLOW);core->busWrite8(core,bmon(1)+ABI_BMON_PP+m,30);}
  core->busWrite8(core,SYM_gActiveBattler,1);CALL(BattleAI_SetupAIData);
+ CALL(RecordAbilityBattle,0,ABILITY_SOUNDPROOF); // Revealed ability is known to the opposing AI.
  unsigned ai=core->busRead32(core,core->busRead32(core,SYM_gBattleResources)+ABI_BRES_AI);
  core->busWrite32(core,ai+ABI_AI_FLAGS,1);CALL(BattleAI_ChooseMoveOrAction);
  for(unsigned m=0;m<4;m++)CHECK(core->busRead8(core,ai+ABI_AI_SCORE+m)==90);
