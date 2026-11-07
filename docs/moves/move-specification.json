@@ -19697,7 +19697,7 @@
       "animation": {
         "assignment": "Move_FLASHFIRE",
         "approval": "APPROVED_EXISTING_ART_CANDIDATE",
-        "source_line": 11129,
+        "source_line": 11140,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -19796,7 +19796,7 @@
       "animation": {
         "assignment": "Move_BLAZE_RUSH",
         "approval": "APPROVED_EXISTING_ART_CANDIDATE",
-        "source_line": 11148,
+        "source_line": 11159,
         "source_exists": true,
         "runtime_verified": false
       },
