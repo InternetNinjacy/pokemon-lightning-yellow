@@ -101,6 +101,7 @@ AI_CheckBadMove_CheckSoundproof::
 	if_move MOVE_UPROAR, Score_Minus10
 	if_move MOVE_METAL_SOUND, Score_Minus10
 	if_move MOVE_GRASS_WHISTLE, Score_Minus10
+	if_move MOVE_CHIRP, Score_Minus10
 
 AI_CheckBadMove_CheckEffect::
 	if_effect EFFECT_SLEEP, AI_CBM_Sleep
