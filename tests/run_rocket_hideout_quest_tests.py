@@ -15,15 +15,17 @@ b3f_map = json.loads(read("data/maps/RocketHideout_B3F/map.json"))
 route = read("data/scripts/trainers.inc")
 route_text = read("data/maps/Route8/text.inc")
 
-for flag in (
+# The quests reserve old unused save IDs but leave frozen global
+# flags.h/vars.h unchanged for compatibility with older source audits.
+for i in range(0x316, 0x31C):
+    assert "FLAG_0x" + format(i, "03X") in flags, hex(i)
+for i in range(0x40F8, 0x40FC):
+    assert "VAR_0x" + format(i, "04X") in vars_, hex(i)
+for name in (
     "ROCKET_RALTS_COLLECTED", "ROCKET_SNORUNT_COLLECTED",
     "ROCKET_RALTS_RETURNED", "ROCKET_SNORUNT_RETURNED",
-    "HIDE_ROCKET_RALTS_BALL", "HIDE_ROCKET_SNORUNT_BALL",
 ):
-    assert ("FLAG_" + flag) in flags, flag
-for var in ("ROCKET_RALTS_PID_LOW", "ROCKET_RALTS_PID_HIGH",
-            "ROCKET_SNORUNT_PID_LOW", "ROCKET_SNORUNT_PID_HIGH"):
-    assert ("VAR_" + var) in vars_, var
+    assert "#define FLAG_" + name in native, name
 for special in ("RocketRescueStatus", "RocketRescueGive", "RocketRescueReturn"):
     assert f"def_special {special}" in specials
     assert f"u16 {special}(void)" in native
