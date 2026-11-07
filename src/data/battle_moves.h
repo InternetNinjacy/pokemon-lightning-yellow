@@ -2524,9 +2524,9 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_SPITE] =
     {
-        .category = MOVE_CATEGORY_STATUS,
+        .category = MOVE_CATEGORY_SPECIAL,
         .effect = EFFECT_SPITE,
-        .power = 0,
+        .power = 30,
         .type = TYPE_GHOST,
         .accuracy = 100,
         .pp = 10,
@@ -4036,14 +4036,14 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
     [MOVE_GRUDGE] =
     {
-        .category = MOVE_CATEGORY_STATUS,
-        .effect = EFFECT_GRUDGE,
-        .power = 0,
+        .category = MOVE_CATEGORY_SPECIAL,
+        .effect = EFFECT_ROLLOUT,
+        .power = 30,
         .type = TYPE_GHOST,
-        .accuracy = 100,
-        .pp = 5,
+        .accuracy = 90,
+        .pp = 10,
         .secondaryEffectChance = 0,
-        .target = MOVE_TARGET_USER,
+        .target = MOVE_TARGET_SELECTED,
         .priority = 0,
         .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
     },

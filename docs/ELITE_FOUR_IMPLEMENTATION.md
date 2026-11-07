@@ -58,3 +58,29 @@ are not balance/complete strategy or real-peer/hardware certification.
 Rollback: revert six data arrays only; original saved trainer/League flags and
 Pokémon IDs/layout unchanged. Never clear defeated flags to manufacture a rematch.
 No ROM/art/save artifacts committed or released.
+
+## November 6 Agatha completion branch — pending acceptance (append-only update)
+
+Branch `feature/agatha-native-inner-focus` starts at main `767bb39c4fb107418f86ecc247572630b3adf014`. The first six merged battles and historical validation claims above remain unchanged; their status descriptions are historical, not the state of this proposed branch.
+
+**Source-confirmed restriction:** `CreateNPCTrainerParty` in `src/battle_main.c` seeds PIDs with even low bytes 0x78/0x88/0x80 and only adds `nameHash << 8`. `CreateBoxMon` in `src/pokemon.c` derives the ability number from `personality & 1` when species slot 1 exists; Alakazam maps ability 0 to Synchronize and ability 1 to Inner Focus. The standard four Trainer party formats share the even-PID logic; there is no ability-selection field in `TrainerMonItemCustomMoves`.
+
+**Implemented on branch for review:** a narrow native ability setter in the existing held-item/custom-moves constructor calls `SetMonData(&party[i], MON_DATA_ABILITY_NUM, &abilityNum)` with `abilityNum = 1` **only** for `TRAINER_ELITE_FOUR_AGATHA` and `TRAINER_ELITE_FOUR_AGATHA_2` when species is `SPECIES_ALAKAZAM`. This reuses an existing supported Pokémon data field, retaining the native `GetMonAbility` lookup and Alakazam's ordinary species table. Crucially, this does **not** change personality, nature, gender, shiny constraints, Trainer party structures, save formats, other Trainer Pokémon, Trainer flags, AI, or battle metadata. Opponents are constructed at battle initialization; the selected native ability is stored in each instantiated opponent's ordinary mon data and reused on switches and rematch creation. Confirm actual runtime behavior in emulator.
+
+Both `sParty_EliteFourAgatha[]` and `sParty_EliteFourAgatha2[]` are replaced with exactly the five ordered approved members from the merged specifications, with 250 and 255 IV settings respectively. The pinned specification fixture now lists all eight battles as implemented on **the proposed branch**, not yet integrated into main. The prior six-battle delta remains hashed and frozen; regression tests reverse precisely the new two Agatha data hunks and the one native ability setter before checking preservation. The native emulator expected-data table includes all eight parties (42 members, 168 move slots); Agatha's actual scripted room is included in the two-battle scenario and checks ability, items, moves, IVs, switching, victory and room progress flags.
+
+**Validation state at authoring:** static GitHub source review and GitHub file writes only. No local checkout/compiler or mGBA run available in this ChatGPT environment; no passing host tests, CI, build or native acceptance claimed yet. PR review and GitHub Actions must verify all exact arrays, preservation audits and build/test results, followed by full mGBA acceptance including all eight battles. No merge is authorized by this branch.
+
+**Potential blocker and rollback:** if any regression or unexpected PID effect is observed, revert the scope-limited native ability field assignment and the two Agatha arrays (and corresponding tests) without touching the previous six merged Elite Four arrays. Do not replace Inner Focus with Synchronize or introduce species-wide ability changes. GYM-009 remains **implemented in draft PR / pending tests and merge**, not a completed integrated milestone.
+
+### Draft68 validation follow-up — November7
+
+Actions42315909041 failed an old battle_main hash before compilation, not a
+failed ability test. A separate exact constructor delta now feeds the shared
+EliteFour reverse normalizer so every historical audit sees its unchanged source.
+All25 host suites/3 checkers and build now PASS; original digests retained.
+Native tests additionally observe stored ability1 with even PID, actual battle
+Inner Focus on Alakazam, and use legal Surf/Ice Beam against approved Dark types.
+These are test-driver choices, not opponent/AI changes. New focus command:
+`LIGHTNING_ELITE_FOUR_ONLY=1 LIGHTNING_ELITE_AGATHA_ONLY=1 python3 tests/emulator/run.py`.
+Focused/full/clean/Actions results still pending; draft/approval status unchanged.

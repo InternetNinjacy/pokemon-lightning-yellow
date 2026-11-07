@@ -1494,3 +1494,53 @@ Full open-queue triage, explicit unresolved dependencies and effort weighting: `
 
 - PR67 merged4526a137573c722d1f685ac42a8057fc9b36497a after full755166/25hosts/3checkers/clean and both Actions42315257252/42315264496 SUCCESS. Main tree equals tested144917d5. Two points within80; canonical336/712 (47.19%). New56 moves not counted. Main postmerge CI pending.
 - PR69 latest full and draft68 latest full remain active at this snapshot; no pass inferred from intermediate logs. Updated durable handoff with exact refs/commands/holds.
+## 2026-11-07 — BTL-005-M2H Spite / Grudge implementation
+
+- Final approved register574/582: Special30 damaging Spite plus optional original
+  PP drain; Special30/90/10 Grudge using native Rollout without Defense Curl bonus,
+  selected opponent required by damaging Rollout semantics, no original KO status.
+- Retain original flags/art/IDs; update descriptions/categories/reconciliation,
+  exact reverse manifests and HP-aware Spite AI. Existing PP is not refilled.
+- Build/25 hosts/3 checkers PASS; initial focused225 native assertions PASS,
+  seven actual Spite turns and complete five-turn Grudge. Latest numeric control,
+  full/clean/CI pending; no merge/effort credit. See GHOST_REWORK_STATUS.md limits.
+- Native PP test isolated the sleeping opponent after detecting an incorrect
+  zero-PP turn-spending assumption; no production fix or weakened baseline.
+
+## 2026-11-07 — GYM-009 draft68 validation repair (not acceptance)
+
+- Existing draft68 proposed both Agatha parties and the scoped native ability
+  setter. Did not duplicate gameplay. Its Actions42315909041 failed historical
+  battle_main preservation before compilation; exact constructor reverse manifest
+  now participates in every old audit, preserving all original digests.
+- Added native stored ability1/even PID controls, actual battle-loaded Inner Focus
+  observation, Dark-aware legal controlled-player attacks and Agatha-only focus.
+  Opponents, AI, production selector and parties unchanged from draft.
+- Build/25 hosts/3 checkers PASS; latest focused/full/clean/CI pending. Draft/design
+  status retained; do not equate existing native API availability with an answered
+  owner selector question. CI64 dependency integrated, no test gates removed.
+
+
+## 2026-11-07 — GYM-009 dashboard point reconciliation
+PR #68 merged to main at f3a113a44d89acacc0b584f61c4dead868ef2607; exact-head Actions 42321156769 passed host, clean build, baseline, all eight native Elite Four encounters, 42 Pokémon/168 moves, 793818 mGBA assertions. GYM-009 previously 0 earned/16 remaining now 16 earned/0 remaining, with historical effort entry retained. Overall 314/398 -> 330/382 of unchanged 712 planning points: 44.10% -> 46.35%. GYM area 32/90 -> 48/74 of unchanged 122 points: 26.2% -> 39.3%. All other task effort records unchanged. Subjective balance and hardware tests not claimed.
+
+
+## 2026-11-07 — GYM-008 ordinary Trainer implementation acceptance and progress reconciliation
+
+- Reviewed PR71 completion handoff https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/71#issuecomment-6703579243 and confirmed squash merge on main `18d245b5e35780b1300482aa536fa15f140a1d28` (preserving concurrent Agatha GYM-009 source).
+- Scope accepted: 510 ordinary Trainer source IDs; 500 non-dummy party arrays and 1,219 Pokémon instantiated in native ROM tests; 10 dummy source records intentionally unchanged. Includes approved class/name transformations, Shane Route24 Double/rematch/refusal and existing-source-compatible gendered Ranger aliases. No bespoke Ranger overworld art claimed.
+- Exact PR-head Actions 42346786298 SUCCESS for split battle validation (modified and baseline), and 42346786287 SUCCESS for ordinary Trainer preflight/source-preservation. These validate source/build/native scoped work, not complete manual progression.
+- Historical GYM-008 effort changed from 0 earned/52 remaining to 52 earned/0 remaining; denominator712 unchanged; overall 330/382 to 382/330 =53.65%; GYM area 48/74 to 100/22=81.97% (rounded82.0%). GYM-009 16/0 and all other task point values remain untouched. No duplicate implementation credit.
+- Optional experiential QA remains distinctly under existing INT-005 stabilization/release acceptance: approach every or representative overworld Trainer, exercise all 130 live VS Seeker rematch routes, Shane double/refusal, victory flags, story states and existing-art Ranger appearance. These checks are NOT claimed executed or necessary to regard GYM-008 source implementation as merged. No additional points added; retain INT-005 original 0/8 status.
+- This reconciliation is documentation-only on a review branch. The older PR65 335/377 planning calculation and Agatha hold predate PR68/73/71 and MUST NOT be merged unchanged.
+
+## 2026-11-07 — INT-001 converged parallel progress / BTL-005-M2H integration
+
+- Preserve main's completed GYM-00852/0 and GYM-00916/0, plus coordination's
+  BTL-00526/54 and WRL-0113/7. Add only merged69's3 existing-scope points: moves
+  29/51; canonical395/712 (55.48%). Every other task uses latest main; all prior
+  effort histories retained. This is provisional effort, not release readiness.
+-69 merged3d06ebc3 after755386/25hosts/clean and both CI PASS. Parallel68/71/75
+  are already merged; old draft/blocker claims are historical, not live state.
+-72 current-main c33c8650 has26 host suites/3 checkers/clean PASS; old755945 was
+  pre-integration. Fresh30-group/full CI pending; no new completion credit.
