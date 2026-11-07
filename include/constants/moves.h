@@ -372,7 +372,9 @@
 #define MOVE_BUG_BITE 363
 #define MOVE_CHITIN_CRUSH 364
 
-#define MOVES_COUNT 365
+#define MOVE_CHIRP 365
+
+#define MOVES_COUNT 366
 
 // Used for checks for moves affected by Disable, Mimic, etc.
 #define MOVE_UNAVAILABLE 0xFFFF
