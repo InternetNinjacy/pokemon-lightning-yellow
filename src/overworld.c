@@ -1491,7 +1491,7 @@ static void LightingPreviewUpdateAppearance(void)
         sLightingPreviewAppearance = (hour >= 6 && hour < 18) ? 4 : 5;
     else if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_LAVENDER_TOWN)
           && gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_LAVENDER_TOWN))
-        sLightingPreviewAppearance = (hour >= 6 && hour < 18) ? 2 : 3;
+        sLightingPreviewAppearance = (hour >= 6 && hour < 18) ? 6 : 3;
     else if (hour == 6)
         sLightingPreviewAppearance = 1;
     else if (hour >= 7 && hour < 18)
