@@ -111,12 +111,12 @@ extern bool8 LightingPreviewIsActive(void);
 #define LIGHTING_PREVIEW_VARIANT 0
 #endif
 #if LIGHTING_PREVIEW_VARIANT == 1
-static const u8 sLightingPreviewMult[6][3] = {
+static const u8 sLightingPreviewMult[7][3] = {
     {32,32,32}, {23,28,32}, {32,23,17}, {16,19,27},
     {25,29,25}, {12,17,22}, {30,22,19},
 };
 #else
-static const u8 sLightingPreviewMult[6][3] = {
+static const u8 sLightingPreviewMult[7][3] = {
     {32,32,32}, {23,28,32}, {32,23,17}, {19,21,27},
     {25,29,25}, {14,19,23}, {30,22,19},
 };
