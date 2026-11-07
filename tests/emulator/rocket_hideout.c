@@ -3,6 +3,11 @@
 static void rocketFixture(unsigned quest)
 {
     vendorFixture();
+    // Mystery Vendor fixture starts with three Pikachu. Keep exactly one
+    // baseline party member so the issued rescue is deterministically slot 1.
+    for (unsigned slot = 1; slot < 6; slot++)
+        clearBytes(player(slot), ABI_MON_SIZE);
+    core->busWrite8(core, SYM_gPlayerPartyCount, 1);
     for (unsigned flag = 0x316; flag <= 0x31B; flag++)
         CALL(FlagClear, flag);
     core->busWrite16(core, SYM_gSpecialVar_0x8009, quest);
