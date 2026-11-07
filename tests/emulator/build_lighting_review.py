@@ -51,15 +51,15 @@ def chunk(name, payload):
 
 def read_real_frame(ppm):
     data = ppm.read_bytes()
-    header = b"P6\\n240 160\\n255\\n"
+    header = b"P6\n240 160\n255\n"
     if not data.startswith(header) or len(data) != len(header) + 240*160*3:
         raise ValueError(f"Expected native 240x160 RGB24 mGBA PPM: {ppm}")
     return data[len(header):]
 
 def write_png(path, rgb):
-    rows = b"".join(b"\\x00" + rgb[y*240*3:(y+1)*240*3] for y in range(160))
+    rows = b"".join(b"\x00" + rgb[y*240*3:(y+1)*240*3] for y in range(160))
     ihdr = struct.pack(">IIBBBBB", 240, 160, 8, 2, 0, 0, 0)
-    data = b"\\x89PNG\\r\\n\\x1a\\n" + chunk(b"IHDR", ihdr) + chunk(b"IDAT", zlib.compress(rows, 9)) + chunk(b"IEND", b"")
+    data = b"\x89PNG\r\n\x1a\n" + chunk(b"IHDR", ihdr) + chunk(b"IDAT", zlib.compress(rows, 9)) + chunk(b"IEND", b"")
     path.write_bytes(data)
     return hashlib.sha256(data).hexdigest()
 
@@ -87,7 +87,7 @@ def main():
     manifest = {"source": "actual mGBA ROM framebuffer (native 240x160); see attached runtime log",
                 "prototype_only": True, "owner_palette_approved": False,
                 "variants": {args.variant: params}, "captures": captures}
-    (root / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\\n", encoding="utf-8")
+    (root / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
     if args.sheet:
         try:
             from PIL import Image, ImageDraw
