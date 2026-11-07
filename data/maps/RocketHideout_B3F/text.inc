@@ -26,13 +26,13 @@ RocketHideout_B3F_Text_Grunt2PostBattle::
 
 
 RocketHideout_B3F_Text_RaltsSaved::
-    .string "You rescued the stolen RALTS!\\n"
+    .string "You rescued the stolen RALTS!\n"
     .string "Its original TRAINER is PAIGE.$"
 
 RocketHideout_B3F_Text_SnoruntSaved::
-    .string "You rescued the stolen SNORUNT!\\n"
+    .string "You rescued the stolen SNORUNT!\n"
     .string "Its original TRAINER is JULIA.$"
 
 RocketHideout_B3F_Text_NoStorage::
-    .string "Your party and PC are full!\\n"
+    .string "Your party and PC are full!\n"
     .string "Come back after making room.$"
