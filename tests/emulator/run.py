@@ -290,6 +290,7 @@ required = [
 required += ['NextThunderWaveTarget','gAbsentBattlerFlags']
 required += ['Cmd_rolloutdamagecalculation','gDisableStructs','gLockedMoves','gLastMoves']
 required += ['BattleAI_SetupAIData','BattleAI_ChooseMoveOrAction','RecordAbilityBattle']
+required += ['gBattleMainFunc','gPauseCounterBattle','gBattleCommunication']
 required += ['Cmd_weatherdamage','Cmd_accuracycheck','gStatuses3','gHitMarker','gMoveResultFlags']
 required += ['ViridianCity_EventScript_TrainerTips1','ViridianCity_EventScript_TrainerTips2','ViridianCity_Text_CatchMonsForEasierBattles','ViridianCity_Text_MovesLimitedByPP']
 
