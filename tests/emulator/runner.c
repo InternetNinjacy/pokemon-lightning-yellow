@@ -335,6 +335,7 @@ static void dexTests(void) {
 #include "daycare.c"
 #include "fossils.c"
 #include "mystery_vendor.c"
+#include "rocket_hideout.c"
 #include "mystery_vendor_ui.c"
 #include "capture_rules.c"
 #include "museum.c"
@@ -520,6 +521,7 @@ int main(int argc,char **argv) {
     daycareTests();
     fossilTests();
     vendorTests();
+    rocketHideoutNativeTests();
     vendorUiTests();
     captureTests();
     museumTests();
