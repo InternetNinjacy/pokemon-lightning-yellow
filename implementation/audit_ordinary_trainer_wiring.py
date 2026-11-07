@@ -111,10 +111,15 @@ def main():
         for i, label_match in enumerate(locations):
             end = locations[i + 1].start() if i + 1 < len(locations) else len(content)
             label = label_match.group(1)
-            commands = RE_BATTLE_COMMAND.findall(content[label_match.end():end])
+            block_text = content[label_match.end():end]
+            commands = RE_BATTLE_COMMAND.findall(block_text)
+            executable_lines = [line.strip() for line in block_text.splitlines()
+                                if line.strip() and not line.lstrip().startswith("@")]
+            first_opcode = executable_lines[0].split()[0] if executable_lines else None
             if commands:
                 script_blocks.setdefault(label, []).append({
-                    "path": rel(path), "trainer_ids": commands})
+                    "path": rel(path), "trainer_ids": commands,
+                    "first_opcode": first_opcode})
         for trainer_id in RE_TRAINER.findall(content):
             references.setdefault(trainer_id, set()).add(rel(path))
 
@@ -221,6 +226,7 @@ def main():
     # This is a reference-level check; save-state progression still needs ROM QA.
     vs_bases_without_map_object = []
     vs_base_map_mismatches = []
+    vs_base_object_script_not_starting_battle = []
     for variant, link in rematch_links.items():
         if variant not in variants:
             continue
@@ -231,6 +237,16 @@ def main():
             vs_bases_without_map_object.append({"variant": variant, "base": base})
             continue
         norm = lambda value: re.sub(r"[^A-Z0-9]", "", value.upper())
+        for encounter in map_object_trainer_references:
+            if base not in encounter["ids"]:
+                continue
+            allowed = [block for block in script_blocks.get(encounter["script"], [])
+                       if block["path"] == "data/scripts/trainers.inc"
+                       or block["path"] == "data/maps/" + encounter["map"] + "/scripts.inc"]
+            if not any((block["first_opcode"] or "").startswith("trainerbattle_")
+                       and base in block["trainer_ids"] for block in allowed):
+                vs_base_object_script_not_starting_battle.append({
+                    "base": base, "map": encounter["map"], "script": encounter["script"]})
         if norm(link["map"]) not in {norm(value) for value in actual_maps}:
             vs_base_map_mismatches.append({
                 "variant": variant, "base": base,
@@ -274,7 +290,8 @@ def main():
         "vs_seeker_missing_variant_ids": missing_vs,
         "vs_seeker_wrong_base_ids": incorrect_vs,
         "vs_seeker_base_without_direct_map_object": vs_bases_without_map_object,
-        "vs_seeker_base_map_mismatches": vs_base_map_mismatches,
+        "vs_seeker_base_map_mismatches_unused_metadata": vs_base_map_mismatches,
+        "vs_seeker_base_script_not_starting_battle": vs_base_object_script_not_starting_battle,
         "vs_seeker_base_missing_rematch_script": missing_rematch_script,
         "map_trainer_object_unresolved_script_labels": missing_map_labels,
     }
