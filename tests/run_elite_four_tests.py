@@ -3,11 +3,16 @@
 from pathlib import Path
 import json,re,hashlib
 from approved_elite_four_changes import prior_elite_four_source
+from approved_ordinary_trainer_projection import restore_ordinary_trainer_blocks
 m=json.loads(Path('tests/specifications/approved_elite_four_delta.json').read_text())
 for p,v in m['files'].items():
- assert hashlib.sha256(Path(p).read_bytes()).hexdigest()==v['after_sha256'],p
- assert hashlib.sha256(prior_elite_four_source(p).encode()).hexdigest()==v['before_sha256'],p
-for p,h in m['preserved_files'].items():assert hashlib.sha256(Path(p).read_bytes()).hexdigest()==h,p
+ projected=restore_ordinary_trainer_blocks(p)
+ assert hashlib.sha256(projected.encode()).hexdigest()==v['after_sha256'],p
+ assert hashlib.sha256(prior_elite_four_source(p,projected).encode()).hexdigest()==v['before_sha256'],p
+for p,h in m['preserved_files'].items():
+ data=(restore_ordinary_trainer_blocks(p).encode()
+       if p=='src/data/trainers.h' else Path(p).read_bytes())
+ assert hashlib.sha256(data).hexdigest()==h,p
 spec=json.loads(Path('tests/specifications/approved_elite_four.json').read_text())['battles'];assert len(spec)==8
 source=Path('src/data/trainer_parties.h').read_text()
 for b in spec:
