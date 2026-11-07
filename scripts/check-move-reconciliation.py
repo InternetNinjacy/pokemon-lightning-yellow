@@ -7,7 +7,7 @@ subprocess.run([sys.executable,str(R/'scripts/reconcile-move-specification.py'),
 d=json.loads((R/'docs/moves/move-specification.json').read_text());rows=d['moves'];keys={r['key']:r for r in rows}
 assert len(rows)==410 and len(keys)==410
 assert d['current_battle_moves_sha256']==hashlib.sha256((R/'src/data/battle_moves.h').read_bytes()).hexdigest()
-old=[r for r in rows if r['id'] is not None];new=[r for r in rows if r['id'] is None]
+old=[r for r in rows if r['identity'] in ['ORIGINAL','REWORKED_ORIGINAL']];new=[r for r in rows if r['identity'].startswith('NEW_')]
 assert len(old)==354 and {r['id'] for r in old}==set(range(1,355))
 assert len(new)==56 and {r['proposed_id'] for r in new}==set(range(355,411))
 assert all(r['approved']['category'] in ['PHYSICAL','SPECIAL','STATUS'] for r in rows)
@@ -28,7 +28,7 @@ assert keys['SNARL']['approved']['target']=='BOTH_OPPONENTS'
 assert all(k not in keys for k in ['NIGHT_TERROR','PHANTOM_GRASP','PSYCHIC_DREAD','DREAD_GLARE','SEISMIC_SURGE','CLOSE_COMBAT','VACUUM_WAVE','PSYCHO_CUT','PSYCHIC_FANGS','AQUA_TAIL','HYPERSPACE_FURY'])
 a=json.loads((R/'docs/moves/animation-reuse.json').read_text())['entries'];asm=(R/'data/battle_anim_scripts.s').read_text();labels=set(re.findall(r'^(Move_\w+)::?',asm,re.M))
 assert len(a)==67 and len({r['key'] for r in a})==67
-assert sum(keys[r['key']]['id'] is None for r in a)==56
+assert sum(keys[r['key']]['identity'].startswith('NEW_') for r in a)==56
 for entry in a:
  assert not entry['runtime_verified'] and not entry['composition_verified']
  assert all(s['label'] in labels for s in entry['scripts'])

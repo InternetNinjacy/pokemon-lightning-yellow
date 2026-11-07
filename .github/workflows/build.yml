@@ -47,6 +47,7 @@ jobs:
         if: matrix.target == 'modified'
         run: |
           python3 tests/run_split_tests.py
+          python3 tests/run_move_catalog_tests.py
           python3 tests/run_move_foundation_tests.py
           python3 tests/run_move_ui_tests.py
           python3 tests/run_original_move_data_tests.py
