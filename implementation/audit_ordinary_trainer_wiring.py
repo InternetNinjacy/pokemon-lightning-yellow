@@ -217,6 +217,25 @@ def main():
             if name and name not in script_labels:
                 missing_map_labels.append({"map": path.parent.name, "script": name})
 
+    # Cross-check the VS Seeker map against the actual base-Trainer NPC map.
+    # This is a reference-level check; save-state progression still needs ROM QA.
+    vs_bases_without_map_object = []
+    vs_base_map_mismatches = []
+    for variant, link in rematch_links.items():
+        if variant not in variants:
+            continue
+        base = link["base"]
+        actual_maps = sorted({entry["map"] for entry in map_object_trainer_references
+                              if base in entry["ids"]})
+        if not actual_maps:
+            vs_bases_without_map_object.append({"variant": variant, "base": base})
+            continue
+        norm = lambda value: re.sub(r"[^A-Z0-9]", "", value.upper())
+        if norm(link["map"]) not in {norm(value) for value in actual_maps}:
+            vs_base_map_mismatches.append({
+                "variant": variant, "base": base,
+                "vs_map": link["map"], "object_maps": actual_maps})
+
     report = {
         "ledger_records": len(rows),
         "duplicate_ledger_ids": duplicate_ledger_ids,
@@ -254,6 +273,8 @@ def main():
         "vs_seeker_rematches_linked": len(variants) - len(missing_vs),
         "vs_seeker_missing_variant_ids": missing_vs,
         "vs_seeker_wrong_base_ids": incorrect_vs,
+        "vs_seeker_base_without_direct_map_object": vs_bases_without_map_object,
+        "vs_seeker_base_map_mismatches": vs_base_map_mismatches,
         "vs_seeker_base_missing_rematch_script": missing_rematch_script,
         "map_trainer_object_unresolved_script_labels": missing_map_labels,
     }
