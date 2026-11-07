@@ -391,6 +391,7 @@ gBattleAnims_Moves::
 	.4byte Move_POWER_GEM
 	.4byte Move_STONE_EDGE
 	.4byte Move_SCORCHING_SANDS
+	.4byte Move_EARTH_POWER
 	.4byte Move_COUNT @ cannot be reached, because last move is Psycho Boost
 
 	.align 2
