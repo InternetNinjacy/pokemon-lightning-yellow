@@ -1,8 +1,8 @@
 # Pokémon Lightning Yellow — Project Dashboard
 
-Canonical branch: `main`. Updated 2026-11-07. Audited gameplay revision: `1cc82d53c7ef3c6c0b3d9798b4eacacebdc4f6b1`.
+Canonical branch: `main`. Updated 2026-11-07. Audited gameplay revision for TIM-003: `3735096f98fc76899b23fbbeeb7b094249a09731`.
 
-Overall: `[######----]` **58.01% complete /41.99% remaining** (413 earned +299 remaining;712 provisional effort points).
+Overall: `[######----]` **62.50% complete /37.50% remaining** (445 earned +267 remaining;712 provisional effort points).
 
 Fire80/a4681848 final28hosts/517focus/clean and both full CI PASS, ready for source-identical documentation integration. Preserve81 BTL006 closure and INT005 QA,413/299 of712 provisional. No unmerged Fire credit; Ghost82 current-parent validation separate. WRL-001/PR88 starter and parcel gift feature merged, feature closed; organic event traversal remains INT-005.
 
@@ -18,7 +18,7 @@ Fixed scope reconciliation: all prior44 task IDs/effort histories are preserved;
 |---|---|---|---|
 | PKM — Pokédex, species and evolution | `[######----]` | 62.2% /37.8% | 51 /31 |
 | BTL — Moves, types and battle mechanics | `[######----]` | 60.3% /39.7% | 82 /54 |
-| TIM — RTC, time of day and lighting | `[###-------]` | 33.3% /66.7% | 16 /32 |
+| TIM — RTC, time of day and lighting | `[##########]` | 100.0% /0.0% | 48 /0 |
 | WTH — Overworld and battle weather | `[######----]` | 60.9% /39.1% | 39 /25 |
 | DAY — Daycare, breeding and Shiny eggs | `[##########]` | 96.9% /3.1% | 31 /1 |
 | GYM — Gyms, trainers and important battles | `[########--]` | 83.6% /16.4% | 102 /20 |
@@ -56,7 +56,7 @@ Fixed scope reconciliation: all prior44 task IDs/effort histories are preserved;
 |---|---|---|---|---|---|
 | TIM-001 Read-only cartridge RTC | Design: approved scoped implementation; code: implemented on main | Automated: prior suites/CI pass; rerun after changes; emulator: selected scenarios only | PR#3 merged; historical branch evidence retained; merged to main; remaining feature scope/coverage is not inferred complete | 0 points; no task dependency | [PR](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/3); [CI](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/40390936433); Preserve and rerun relevant regression tests |
 | TIM-002 Functional day/night foundation | Design: approved scoped implementation; code: implemented; scoped automated acceptance passed | Automated: all five host suites PASS; clean rebuild identical; GitHub both jobs SUCCESS; emulator: full local mGBA0.10.5 PASS:8715 assertions; selected scenes/battles only | PR#9 merged; historical branch evidence retained; merged to main; remaining feature scope/coverage is not inferred complete | 0 points; TIM-001 | [PR](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/9); [CI](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41376878452); Preserve implemented scoped behavior on main; remaining expanded acceptance is tracked separately. |
-| TIM-003 Approved visual periods and lighting | Design: Map visual periods/exceptions, RTC fallback/recovery approved; exports available; code: not started | Automated: not executed for new work; emulator: not executed | not created; not merged | 32 points; TIM-002 | Blocker: Exact palette/tint values and visual approval remain pending. Viridian Forest/Lavender/Mansion classification and RTC fallback/recovery are supplied, not missing documents.; Prepare palette reuse/visual prototypes under current authority; final values need visual approval; preserve ordinary interiors/caves. |
+| TIM-003 Approved visual periods and lighting | Design: owner screenshot-approved fixed tint values, map exceptions and reduced Mansion fog; code: complete and merged | Automated: clean build/reproducibility/source-preservation and independent upstream PASS; emulator: 24 real screenshot/hash frames and full existing native suite PASS | [PR #90](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/90) merged `3735096f`; [screenshot run](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/42419689095); [full CI](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/42419689058) | **0 points; TIM-002** | CLOSED 2026-11-07. Approved RGB5(/32) outdoor 23/28/32 dawn, 32/32/32 day, 32/23/17 dusk, 16/19/27 night; Viridian covered 25/29/25 day,12/17/22 night; Lavender 30/22/19 day,16/19/27 night; Mansion fog (6,12) all four floors; no organic campaign/hardware claim. |
 
 ## WTH — Overworld and battle weather
 
@@ -122,3 +122,11 @@ Fixed scope reconciliation: all prior44 task IDs/effort histories are preserved;
 - Strict global species findings, remaining move/weather/lighting/content work, full progression and real peer link/hardware remain separately tracked. Blaine victory/badge/TM38/revisit acceptance passed in the merged stack.
 - Repository auto-merge remains enabled. Prior owner-authorized consolidation preserves recovery tag `recovery/main-before-consolidation-20261104`. No ROM release or binary artifacts.
 - Historical milestones and superseded blockers are preserved in Git and the append-only ledger; this dashboard is the current view, not a concatenation of old snapshots.
+
+## 2026-11-07 — TIM-003 approved lighting FINAL MERGE/CLOSEOUT (owner accepted)
+
+- [Production PR #90](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/90) merged into `main` as `3735096f98fc76899b23fbbeeb7b094249a09731`, exact reviewed implementation `6fadaacb0af4e21028027c1d2cadb1903c9d343f`. Owner selected actual mGBA screenshots; one fixed approved production palette, no A/B preview selector retained.
+- RGB5 scale/32: outdoor dawn **23/28/32**, day **32/32/32**, dusk **32/23/17**, night **16/19/27**; Viridian covered day **25/29/25**, covered night **12/17/22**; Lavender functional-day softened **30/22/19**, functional-night **16/19/27**. Open sky: dawn 06–07, day 07–18, dusk 18–19, night 19–06; functional DAY 06–18 and NIGHT 18–06. Forest and Lavender use their approved two-state functional day/night classifications.
+- Pokémon Mansion 1F/2F/3F/B1F reduced moving fog blending **(6,12)**, while Pokémon Tower original fog remains unchanged. Outdoor RGB5 treatment applies after ordinary hardware palette transfer, avoiding cumulative tints and leaving weather/fade buffers intact; ordinary interiors/caves excluded.
+- [Actual ROM screenshot workflow](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/42419689095) SUCCESS, with 24 native mGBA 240×160 frames plus manifest/SHA-256 integrity evidence. [Final full split validation](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/42419689058) both modified and upstream baseline jobs SUCCESS, including full existing native regression, source protection and clean reproducibility. Feature-specific production acceptance is complete; no claim of exhaustive organic full-story/hardware/link QA.
+- **Canonical effort**: TIM-003 **0 earned/32 remaining →32 earned/0 remaining**, moving the existing 32 points without increasing the 712 denominator; overall **413/299 →445 earned/267 remaining of 712 = 62.50%** at this particular main snapshot. This is planning effort, NOT game release certification. Any pending individual acceptance-checklist labels should be reconciled to actual evidence, not automatically asserted separately tested. TIM-003 thread RETIRED; keep shared release QA INT-004/INT-005.
