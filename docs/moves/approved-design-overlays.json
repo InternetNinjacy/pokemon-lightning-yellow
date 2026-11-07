@@ -1446,6 +1446,11 @@
       "effect_rules": {
         "semantic": "SP_DEFENSE_MINUS_1_10",
         "secondary_percent": 10
+      },
+      "engine_translation": {
+        "effect": "EFFECT_SPECIAL_DEFENSE_DOWN_HIT",
+        "target": "MOVE_TARGET_SELECTED",
+        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
       }
     },
     {
