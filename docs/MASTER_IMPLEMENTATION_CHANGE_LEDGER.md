@@ -1444,3 +1444,7 @@ imports or unsafe save migrations. Direct Drive synchronization remains pending.
 - Build/25 hosts/3 checkers PASS; latest focused/full/clean/CI pending. Draft/design
   status retained; do not equate existing native API availability with an answered
   owner selector question. CI64 dependency integrated, no test gates removed.
+
+
+## 2026-11-07 — GYM-009 dashboard point reconciliation
+PR #68 merged to main at f3a113a44d89acacc0b584f61c4dead868ef2607; exact-head Actions 42321156769 passed host, clean build, baseline, all eight native Elite Four encounters, 42 Pokémon/168 moves, 793818 mGBA assertions. GYM-009 previously 0 earned/16 remaining now 16 earned/0 remaining, with historical effort entry retained. Overall 314/398 -> 330/382 of unchanged 712 planning points: 44.10% -> 46.35%. GYM area 32/90 -> 48/74 of unchanged 122 points: 26.2% -> 39.3%. All other task effort records unchanged. Subjective balance and hardware tests not claimed.
