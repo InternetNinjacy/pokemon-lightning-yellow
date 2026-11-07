@@ -1,4 +1,5 @@
 #include "global.h"
+#include "lighting_preview_config.h"
 #include "gflib.h"
 #include "util.h"
 #include "decompress.h"
@@ -97,6 +98,54 @@ void FillPalette(u16 value, u16 offset, u16 size)
     CpuFill16(value, &gPlttBufferFaded[offset], size);
 }
 
+
+#ifdef LIGHTING_PREVIEW
+// Owner-approved TIM-003 outdoor colors; source-controlled fixed RGB5 multipliers.
+// Channel multipliers are RGB5 fixed-point with denominator 32.
+// All originals, including weather gamma/fades, remain in engine buffers.
+extern u8 LightingPreviewGetAppearance(void);
+extern bool8 LightingPreviewIsActive(void);
+// Index: 0=Day, 1=Dawn, 2=Dusk, 3=Night, 4=Covered Day,
+// 5=Covered Night, 6=Lavender soft daytime. See docs/TIM003_FINAL_LIGHTING.md.
+// Final owner-approved RGB5 transforms. Divisor is 32 for every channel.
+// Ordinary outdoor Night B; Viridian covered Day A and Night B;
+// softer Lavender daytime. No candidate selector exists in the game build.
+static const u8 sLightingPreviewMult[7][3] = {
+    {32,32,32}, // Standard day
+    {23,28,32}, // Dawn
+    {32,23,17}, // Dusk
+    {16,19,27}, // Standard night B
+    {25,29,25}, // Viridian covered day A (A/B daylight identical)
+    {12,17,22}, // Viridian covered night B
+    {30,22,19}, // Lavender softened daytime
+};
+
+static void LightingPreviewComposePalette(void)
+{
+    u16 i;
+    u8 mode = LightingPreviewGetAppearance();
+    if (mode >= ARRAY_COUNT(sLightingPreviewMult))
+        mode = 0;
+    for (i = 0; i < PLTT_BUFFER_SIZE; i++)
+    {
+        u16 c = gPlttBufferFaded[i];
+        // BG palette slots 13-15 are reserved for UI overlays in this preview.
+        // Color zero of each 16-color palette is left unchanged.
+        if ((i >= 13 * 16 && i < 16 * 16) || (i % 16 == 0))
+        {
+            ((volatile u16 *)PLTT)[i] = c;
+        }
+        else
+        {
+            u16 red = ((c & 31) * sLightingPreviewMult[mode][0] + 16) / 32;
+            u16 green = (((c >> 5) & 31) * sLightingPreviewMult[mode][1] + 16) / 32;
+            u16 blue = (((c >> 10) & 31) * sLightingPreviewMult[mode][2] + 16) / 32;
+            ((volatile u16 *)PLTT)[i] = (c & 0x8000) | (blue << 10) | (green << 5) | red;
+        }
+    }
+}
+#endif
+
 void TransferPlttBuffer(void)
 {
     if (!gPaletteFade.bufferTransferDisabled)
@@ -104,6 +153,13 @@ void TransferPlttBuffer(void)
         void *src = gPlttBufferFaded;
         void *dest = (void *)PLTT;
         DmaCopy16(3, src, dest, PLTT_SIZE);
+#ifdef LIGHTING_PREVIEW
+        // TIM-003 field lighting: after standard engine DMA, transform hardware
+        // palette entries directly, preserving the source fade/weather buffers.
+        // No additional EWRAM/IWRAM allocation or double-tint accumulation.
+        if (LightingPreviewIsActive())
+            LightingPreviewComposePalette();
+#endif
         sPlttBufferTransferPending = FALSE;
         if (gPaletteFade.mode == HARDWARE_FADE && gPaletteFade.active)
             UpdateBlendRegisters();
