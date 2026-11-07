@@ -109,7 +109,7 @@ static void waitOverworld(unsigned keys){
  CHECK(i<3600);frames(60,0);
 }
 static void startSpecial(void){
-  fprintf(stderr,"DEBUG startSpecial map=%u.%u double=%u\\n",core->busRead8(core,SYM_gSaveBlock1),core->busRead8(core,SYM_gSaveBlock1+1),CALL(TryDoDoubleWildBattle));
+  fprintf(stderr,"TRACE startSpecial double=%u mapPtr=%u\\n",CALL(TryDoDoubleWildBattle),CALL(GetCurrentMapWildMonHeaderId));
  // Invoke the natural encounter trigger on packed attributes from an actual
  // ordinary land tile. This exercises its rate/Repel/roamer dispatch, without
  // a scripted event or writing either enemy species.
@@ -185,7 +185,7 @@ static void generationTests(void){
  printf("PASS: egg is excluded from usable double-battle party count\n");
 }
 static void route1OrdinaryEncounters(void){
-  fprintf(stderr,"DEBUG enter route1OrdinaryEncounters\\n");
+  fprintf(stderr,"TRACE entering Route 1 singles test\n");
   wildFixture(MAP_GROUP(MAP_ROUTE1),MAP_NUM(MAP_ROUTE1),1);
   CHECK(!CALL(TryDoDoubleWildBattle));
   uint32_t info=landInfo();
@@ -210,6 +210,7 @@ static void route1OrdinaryEncounters(void){
   printf("PASS: Route 1 native singles only; Pidgey/Rattata/Igglybuff=%u/%u/%u per 1000 RNG draws\\n",counts[0],counts[1],counts[2]);
 }
 static void wildTests(void){
+ fprintf(stderr,"TRACE wildTests entered\\n");
  route1OrdinaryEncounters();
  generationTests();
  wildFixture(MAP_GROUP(MAP_MT_MOON_1F),MAP_NUM(MAP_MT_MOON_1F),1);
@@ -349,6 +350,7 @@ static void wildTests(void){
 }
 
 static void wildHardeningTests(void) {
+ fprintf(stderr,"TRACE wildHardeningTests entered\\n");
  // All ordinary Bag ball types share the two-live-opponent guard. Safari Ball
  // remains part of the separate unchanged Safari mode, not a normal Bag item.
  wildFixture(MAP_GROUP(MAP_MT_MOON_1F),MAP_NUM(MAP_MT_MOON_1F),1);
