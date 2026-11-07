@@ -87,3 +87,16 @@ Do not let those independent holds block fully specified move work.
 Drive writing unavailable;40 authority exports ARE available under
 /workspace/attachments/lightning-authority-2026-11-03. Git ledger/dashboard is
 canonical; Drive synchronization pending. Keep prior completed progress/history.
+
+### November7 additional maintenance/move state
+
+Maincd9650c5 includes81 BTL006 closure,399/313 of712 (56.04%), INT005 QA retained.
+Move80 sourcea4681848: strict new chance, flash isolation/negative control and
+native priority finisher correction.28 hosts/517focus/clean PASS; latest CI pending.
+Older9ab full816089 and both42382668646/42382673049 PASS predate final AI metadata.
+Ghost82 current-parent source on feature/approved-ghost-move-batch:29hosts,
+Ghost331/Fire517/build PASS; pre-parent-AI full816414 is historical; current CI
+pending. Do not duplicate these six move implementations or claim main contains them.
+Maintenance/single-pr-validation changes event selection only; all jobs remain.
+For feature branches open a draft PR or dispatch manually; PR head validation and
+main/setup pushes still run the complete matrix. No new effort credit.

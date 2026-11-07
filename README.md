@@ -34,9 +34,11 @@ The approved [Poké Ball redesign](docs/POKE_BALL_REDESIGN.md) adds Wet/Dust/Sno
 ## Build entirely on GitHub
 
 No local Python, compiler, or development tools are required. Open this repository's
-**Actions → Battle split validation** workflow. Pushes to main/feature/setup branches and pull
-requests trigger it; **Run workflow** starts a manual run once the workflow is on
-the default branch. For a feature PR, use its Checks tab or the feature branch's run.
+**Actions → Battle split validation** workflow. Opening or updating a pull request
+(including a draft) runs full validation once for that PR head. Main/setup pushes
+also run automatically. Open a draft PR early for feature-branch validation;
+without a PR, choose **Run workflow** and select your branch. For a feature PR,
+use its **Checks** tab. No local development tools are required.
 Click **modified** for regression tests and game builds, or **upstream-baseline**
 for the unchanged upstream SHA-1 comparison. The modified job also runs
 [headless mGBA integration tests](docs/EMULATOR_VALIDATION.md). Both require a clean rebuild. A green

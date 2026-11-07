@@ -1618,3 +1618,15 @@ PR #68 merged to main at f3a113a44d89acacc0b584f61c4dead868ef2607; exact-head Ac
 - Formal decision: implementation and feature-specific acceptance complete; no known defect. Historical BTL-006 effort 15 earned/1 remaining →16 earned/0 remaining, no denominator change. Overall 398/314 →399/313 of712 =56.04%; BTL area 81/55 →82/54 of136=60.29%. Other task point records untouched.
 - Exhaustive manual 13-ball visuals, complete retailer story routes, true two-peer/hardware, interrupted-power and quest-log checks NOT performed. These remain shared INT-004/INT-005 stabilization and release qualification, not an unresolved BTL-006 implementation blocker; no duplicated points. Do not claim full game or hardware certification.
 - Docs-only reviewable reconciliation; original immutable history retained. Poké Ball Design Register and Project Index had already received specialist implementation/acceptance evidence; final Master Control closure confirmation appended separately in Drive.
+
+## 2026-11-07 — INT-001-CI3 single full validation per PR head
+
+- Feature push and pull_request previously launched duplicate full matrices for
+  the same code. Keep PR open/update/reopen, main/setup pushes and manual branch
+  dispatch; feature branches without PR use draft PR or manual Run workflow.
+- Every job/test/build/clean/upstream check, permissions/concurrency/guard remains
+  unchanged. No branch/security settings or assertions edited. Before/after YAML
+  comparison and all27/30 registration check required; full CI pending.
+- Separate maintenance branch maintenance/single-pr-validation, no gameplay or
+  effort credit. Concrete old7919m08+24m01 modified /2m45+2m44 baseline≈49 job minutes
+  motivates eliminating the redundant event, not reducing test coverage.
