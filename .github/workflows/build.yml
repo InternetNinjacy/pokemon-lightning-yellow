@@ -75,6 +75,7 @@ jobs:
           python3 tests/check_route2_encounters.py
           python3 tests/check_route22_encounters.py
           python3 tests/check_route23_encounters.py
+          python3 tests/check_victory_road_encounters.py
           python3 tests/run_daycare_tests.py
           python3 tests/run_world_reward_tests.py
           python3 tests/run_vendor_tests.py
