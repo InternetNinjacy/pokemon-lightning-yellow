@@ -1596,6 +1596,45 @@ PR #68 merged to main at f3a113a44d89acacc0b584f61c4dead868ef2607; exact-head Ac
   maintenance78 bounded30min native/60min job with every execution guard retained,
   then require new exact-head CI. No game/test changes from validated c33c8650.
 
+## 2026-11-07 — BTL-005-M3B first appended Fire moves, acceptance in progress
+
+-355 custom Flame Fang FirePhysical90/100/15 flinch20/no burn;356 Flashfire
+  FirePhysical40/100/30 priority+1;357 Blaze Rush FirePhysical100/100/10 recoil1/4.
+  Exact approved Crunch/Quick Attack/Hi Jump Kick +Ember composites; no new art
+  or distribution. Complete tables/descriptions/names, original IDs/save/wire fixed.
+- Frozen exact five-file append normalizer preserves all prior355-prefix digests;
+  dedicated actual-source audit covers three additions. Fixture tooling adapted
+  without turning presence into runtime acceptance. All28 hosts/3 checkers/build
+  PASS; final focus385 native assertions PASS, including actual Single/Double
+  animations/damage/AI/flinch/PP/recoil/priority, Protect/miss/no crash and Flash Fire.
+- Initial native hang exposed animation interpreter's ONE return slot; removed
+  nested calls by inlining existing Ember hit commands. No interpreter/guard
+  change. Earlier Bite visual draft corrected to authoritative Crunch composition
+  before final385 run; no old result claimed as final approval.
+- Full native/clean/CI pending. Branch feature/approved-fire-move-batch; not merged,
+  not production-complete; no effort credit. Rollback after acquiring appended
+  IDs needs prefeature save or move removal; old peer link not certified.
+
+## 2026-11-07 — BTL-005-M3B real flash / clean acceptance
+
+- Latest focused475 PASS, adding actual flash serialization/reload of IDs355..357,
+  spent PP, PP Ups and byte-identical encrypted Pokémon record; not emulator-only
+  snapshots. All28 host runners and3 checkers PASS after correctly regenerating
+  stale animation source-line references caught by the unchanged catalog check.
+- Clean ROM SHA2568c09397903f2c6bceb7c2a1e62ad6d9e8626fb5882d255cfc17a774db8877792
+  matches incremental build. No binaries committed/uploaded. Full prior harness
+  and latest-head CI pending; not complete/merged. PR80 stacked on79.
+
+## 2026-11-07 — BTL-005-M3B new-move probability boundary
+
+- Inspection found GenIII's shared secondary roll is inclusive (`<=`), accepting
+  21 of100 integer outcomes for nominal20. Scope a strict `<` comparison to new
+  IDs>=355 only; every original move retains inclusive behavior/RNG consumption.
+  No silent change to original balance or metadata20, and no global bug overhaul.
+- Executed production routine with controlled RNG/effect callback: all100 rolls
+  for0/20/22/30/50/100, Serene Grace and immunity PASS. This host execution is not
+  a native battle test. New frozen six-file delta preserves all prior hashes;
+  all28 host runners PASS. Updated native focus/clean/CI pending at this commit.
 ## 2026-11-07 — BTL-005-M2I merge acceptance / coordination convergence
 
 - PR72 merged e2dabe83a2e607198186cbdf5c38d027811c7672 after both Actions
@@ -1611,6 +1650,30 @@ PR #68 merged to main at f3a113a44d89acacc0b584f61c4dead868ef2607; exact-head Ac
   (nine incomplete/reordered cases) PASS, reconciliation byte-identical. No game
   source/IDs/art/save/baseline changes. Its CI pending; no added effort credit.
 
+## 2026-11-07 — BTL-005-M3B full-suite flash isolation / prior integration closure
+
+- Main6265 merged9a5d5c20;79 mergeda22aabd4 after both Actions42379743632 /
+  42379748023 SUCCESS. Documentation-only integration2d6e9ac2 has no source/spec/
+  test/build input delta.57 closed as superseded by merged71, discussion retained.
+- Source1951766a both CI42381346263/42381341524 and local latest full FAILED the
+  new flash byte comparison. CPU snapshot reset RAM save counters but not earlier
+  flash. Negative control proves higher-counter Bulbasaur correctly supersedes
+  lower-counter Charmander. Test now clones/isolate/verifies blank/restores flash;
+  every original encrypted-byte/ID/PP assertion retained, no game/save/guard change.
+- Latest focus487 PASS; corrected full/CI pending. Game clean a90ef372…b730 PASS;
+  historical pre-boundary/pre-extra-flash full815987 is not latest acceptance.
+  Keep PR80 draft; no effort credit or claim that failing source was accepted.
+
+## 2026-11-07 — BTL-005-M3B corrected full pass / priority finisher follow-up
+
+-9ab273ce corrected flash fixture: local full816089 PASS, both Actions42382668646/
+  42382673049 modified+upstream SUCCESS. Maina22 own42381749572 SUCCESS as well.
+- Before merge, AI review found generic HIT omitted native priority finisher+2.
+  Flashfire engine translation now QUICK_ATTACK, same Hit script; no AI script
+  or owner value changes. Real native scores Flashfire/Quick Attack106 vs ordinary
+  Tackle104 in all4 slots. Latest focused517/all28 hosts PASS; new clean/CI pending.
+  Old original before-hashes unchanged. No merge or effort credit yet; child82
+  must inherit this correction and its exact parent-state manifest before merging.
 
 ## 2026-11-07 — BTL-006 formal Master Control completion and release-QA separation
 

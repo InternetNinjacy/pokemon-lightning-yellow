@@ -14,7 +14,8 @@ def source(path):
 class SplitAudits(unittest.TestCase):
     def test_every_move_matches_reviewed_category_manifest(self):
         expected = json.loads(source('tests/move_categories.json'))
-        entries = re.findall(r'\[(MOVE_\w+)\] =\s*\{(.*?)\n    \}', source('src/data/battle_moves.h'), re.S)
+        from approved_new_fire_move_changes import prior_new_fire_move_source
+        entries = re.findall(r'\[(MOVE_\w+)\] =\s*\{(.*?)\n    \}', prior_new_fire_move_source('src/data/battle_moves.h'), re.S)
         self.assertEqual(len(entries), 355)
         self.assertEqual(len(dict(entries)), len(entries))
         actual = {}

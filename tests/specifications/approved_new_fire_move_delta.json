@@ -1,0 +1,72 @@
+{
+  "files": {
+    "data/battle_anim_scripts.s": {
+      "before_sha256": "f1566a2d43fad88619f4e3799f995bfd1c53b65fe8de4c4a91d66a440284ea9e",
+      "after_sha256": "07c778c0b3b32487d986f93b21ea9bbbdeee4e8b05634717369472a34c3a0bab",
+      "hunks": [
+        {
+          "before": "\t.4byte Move_WATER_PULSE\n\t.4byte Move_DOOM_DESIRE\n\t.4byte Move_PSYCHO_BOOST\n\t.4byte Move_COUNT @ cannot be reached, because last move is Psycho Boost\n\n\t.align 2\n",
+          "after": "\t.4byte Move_WATER_PULSE\n\t.4byte Move_DOOM_DESIRE\n\t.4byte Move_PSYCHO_BOOST\n\t.4byte Move_FLAME_FANG\n\t.4byte Move_FLASHFIRE\n\t.4byte Move_BLAZE_RUSH\n\t.4byte Move_COUNT @ cannot be reached, because last move is Psycho Boost\n\n\t.align 2\n"
+        },
+        {
+          "before": "Special_MonToSubstitute:\n\tcreatevisualtask AnimTask_SwapMonSpriteToFromSubstitute, 2, FALSE\n\tend\n",
+          "after": "Special_MonToSubstitute:\n\tcreatevisualtask AnimTask_SwapMonSpriteToFromSubstitute, 2, FALSE\n\tend\n\n@ Owner-approved composites: existing original scripts/art only.\n\nMove_FLAME_FANG:\n\tloadspritegfx ANIM_TAG_SHARP_TEETH\n\tloadspritegfx ANIM_TAG_IMPACT\n\tmonbg ANIM_TARGET\n\tfadetobg BG_DARK\n\twaitbgfadein\n\tsetalpha 12, 8\n\tplaysewithpan SE_M_BITE, SOUND_PAN_TARGET\n\tcreatesprite gSharpTeethSpriteTemplate, ANIM_ATTACKER, 2, -32, -32, 1, 819, 819, 10\n\tcreatesprite gSharpTeethSpriteTemplate, ANIM_ATTACKER, 2, 32, 32, 5, -819, -819, 10\n\tdelay 10\n\tcreatesprite gBasicHitSplatSpriteTemplate, ANIM_ATTACKER, 2, -8, 0, ANIM_TARGET, 1\n\tcreatevisualtask AnimTask_ShakeMon, 5, ANIM_TARGET, 0, 7, 5, 2\n\twaitforvisualfinish\n\tplaysewithpan SE_M_BITE, SOUND_PAN_TARGET\n\tcreatesprite gSharpTeethSpriteTemplate, ANIM_ATTACKER, 2, 32, -32, 7, -819, 819, 10\n\tcreatesprite gSharpTeethSpriteTemplate, ANIM_ATTACKER, 2, -32, 32, 3, 819, -819, 10\n\tdelay 10\n\tcreatesprite gBasicHitSplatSpriteTemplate, ANIM_ATTACKER, 2, 8, 0, ANIM_TARGET, 1\n\tcreatevisualtask AnimTask_ShakeMon, 5, ANIM_TARGET, 0, 8, 4, 2\n\twaitforvisualfinish\n\tclearmonbg ANIM_TARGET\n\tblendoff\n\tdelay 1\n\trestorebg\n\twaitbgfadein\n\twaitforvisualfinish\n\tcall NewFireMove_Ember\n\tend\n\nMove_FLASHFIRE:\n\tloadspritegfx ANIM_TAG_IMPACT\n\tmonbg ANIM_ATK_PARTNER\n\tsetalpha 12, 8\n\tcreatevisualtask AnimTask_TranslateMonEllipticalRespectSide, 2, ANIM_ATTACKER, 24, 6, 1, 5\n\tcreatevisualtask AnimTask_TraceMonBlended, 2, 0, 4, 7, 3\n\tplaysewithpan SE_M_JUMP_KICK, SOUND_PAN_ATTACKER\n\tdelay 4\n\tcreatevisualtask AnimTask_ShakeMon, 2, ANIM_TARGET, 5, 0, 6, 1\n\tcreatesprite gBasicHitSplatSpriteTemplate, ANIM_TARGET, 4, 0, 0, ANIM_TARGET, 1\n\tplaysewithpan SE_M_VITAL_THROW2, SOUND_PAN_TARGET\n\twaitforvisualfinish\n\tclearmonbg ANIM_ATK_PARTNER\n\tblendoff\n\twaitforvisualfinish\n\twaitforvisualfinish\n\tcall NewFireMove_Ember\n\tend\n\nMove_BLAZE_RUSH:\n\tloadspritegfx ANIM_TAG_HANDS_AND_FEET\n\tloadspritegfx ANIM_TAG_IMPACT\n\tmonbg ANIM_DEF_PARTNER\n\tsetalpha 12, 8\n\tcreatesprite gSlideMonToOffsetSpriteTemplate, ANIM_ATTACKER, 2, 0, -24, 0, 0, 8\n\twaitforvisualfinish\n\tdelay 10\n\tcreatesprite gSlideMonToOriginalPosSpriteTemplate, ANIM_ATTACKER, 2, 0, 0, 3\n\tdelay 2\n\tcreatesprite gJumpKickSpriteTemplate, ANIM_ATTACKER, 2, -16, 8, 0, 0, 10, ANIM_TARGET, 1, 1\n\tplaysewithpan SE_M_JUMP_KICK, SOUND_PAN_TARGET\n\twaitforvisualfinish\n\tcreatesprite gBasicHitSplatSpriteTemplate, ANIM_ATTACKER, 2, 0, 0, ANIM_TARGET, 1\n\tplaysewithpan SE_M_VITAL_THROW2, SOUND_PAN_TARGET\n\tcreatesprite gSlideMonToOffsetSpriteTemplate, ANIM_ATTACKER, 2, 1, -28, 0, 0, 3\n\tdelay 3\n\tcreatevisualtask AnimTask_ShakeMonInPlace, 2, ANIM_TARGET, 3, 0, 11, 1\n\twaitforvisualfinish\n\tdelay 5\n\tcreatesprite gSlideMonToOriginalPosSpriteTemplate, ANIM_ATTACKER, 2, 1, 0, 6\n\twaitforvisualfinish\n\tclearmonbg ANIM_DEF_PARTNER\n\tblendoff\n\twaitforvisualfinish\n\tcall NewFireMove_Ember\n\tend\n\nNewFireMove_Ember:\n\tloadspritegfx ANIM_TAG_SMALL_EMBER\n\tloopsewithpan SE_M_EMBER, SOUND_PAN_ATTACKER, 5, 2\n\tcreatesprite gEmberSpriteTemplate, ANIM_TARGET, 2, 20, 0, -16, 24, 20, 1\n\tdelay 4\n\tcreatesprite gEmberSpriteTemplate, ANIM_TARGET, 2, 20, 0, 0, 24, 20, 1\n\tdelay 4\n\tcreatesprite gEmberSpriteTemplate, ANIM_TARGET, 2, 20, 0, 16, 24, 20, 1\n\tdelay 16\n\tplaysewithpan SE_M_FLAME_WHEEL, SOUND_PAN_TARGET\n\tcreatesprite gEmberFlareSpriteTemplate, ANIM_TARGET, 2, -24, 24, 24, 24, 20, ANIM_TARGET, 1\n\tdelay 4\n\tcreatesprite gEmberFlareSpriteTemplate, ANIM_TARGET, 2, -24, 24, 24, 24, 20, ANIM_TARGET, 1\n\tdelay 4\n\tcreatesprite gEmberFlareSpriteTemplate, ANIM_TARGET, 2, -24, 24, 24, 24, 20, ANIM_TARGET, 1\n\tdelay 4\n\twaitforvisualfinish\n\treturn\n"
+        }
+      ]
+    },
+    "src/battle_script_commands.c": {
+      "before_sha256": "080afca78eb7a38379361c6a6cc85c44060339b6b93186950b3dd673fd238e8a",
+      "after_sha256": "cbb92694f5be3e2d515d039bd94f099b513d95c786d357a213ef396700947d66",
+      "hunks": [
+        {
+          "before": "        gBattleCommunication[MOVE_EFFECT_BYTE] &= ~MOVE_EFFECT_CERTAIN;\n        SetMoveEffect(FALSE, MOVE_EFFECT_CERTAIN);\n    }\n    else if (Random() % 100 <= percentChance\n             && gBattleCommunication[MOVE_EFFECT_BYTE]\n             && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT))\n    {\n",
+          "after": "        gBattleCommunication[MOVE_EFFECT_BYTE] &= ~MOVE_EFFECT_CERTAIN;\n        SetMoveEffect(FALSE, MOVE_EFFECT_CERTAIN);\n    }\n    // Preserve GenIII's inclusive legacy roll for old moves. Approved new\n    // moves use exactly the stated number of outcomes in the 0..99 range.\n    else if ((gCurrentMove >= MOVE_FLAME_FANG\n              ? Random() % 100 < percentChance\n              : Random() % 100 <= percentChance)\n             && gBattleCommunication[MOVE_EFFECT_BYTE]\n             && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT))\n    {\n"
+        }
+      ]
+    },
+    "src/move_descriptions.c": {
+      "before_sha256": "af5f809ee2afd709b9748ef741276bf67c384849353ebe8ff5cda019cee8e73a",
+      "after_sha256": "565de0d87ad4fc6711e7bd729ff1e6c8facde06b12a726aa404d3a2002cdbbc4",
+      "hunks": [
+        {
+          "before": "const u8 gMoveDescription_DoomDesire[] = _(\"A move that attacks\\nthe foe with a\\nblast of light two\\nturns after use.\");\nconst u8 gMoveDescription_PsychoBoost[] = _(\"An intense attack\\nthat also sharply\\nreduces the user's\\nSP. ATK stat.\");\n\nconst u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {\n    [MOVE_POUND         - 1] = gMoveDescription_Pound,\n    [MOVE_KARATE_CHOP   - 1] = gMoveDescription_KarateChop,\n",
+          "after": "const u8 gMoveDescription_DoomDesire[] = _(\"A move that attacks\\nthe foe with a\\nblast of light two\\nturns after use.\");\nconst u8 gMoveDescription_PsychoBoost[] = _(\"An intense attack\\nthat also sharply\\nreduces the user's\\nSP. ATK stat.\");\n\nconst u8 gMoveDescription_FLAME_FANG[] = _(\"A fiery bite that\\nmay make the foe\\nflinch.\");\nconst u8 gMoveDescription_FLASHFIRE[] = _(\"A fast fiery strike\\nthat usually goes\\nfirst.\");\nconst u8 gMoveDescription_BLAZE_RUSH[] = _(\"A fiery rush that\\nhurts the user by\\n1/4 the damage dealt.\");\n\nconst u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {\n    [MOVE_POUND         - 1] = gMoveDescription_Pound,\n    [MOVE_KARATE_CHOP   - 1] = gMoveDescription_KarateChop,\n"
+        },
+        {
+          "before": "    [MOVE_WATER_PULSE   - 1] = gMoveDescription_WaterPulse,\n    [MOVE_DOOM_DESIRE   - 1] = gMoveDescription_DoomDesire,\n    [MOVE_PSYCHO_BOOST  - 1] = gMoveDescription_PsychoBoost,\n};\n",
+          "after": "    [MOVE_WATER_PULSE   - 1] = gMoveDescription_WaterPulse,\n    [MOVE_DOOM_DESIRE   - 1] = gMoveDescription_DoomDesire,\n    [MOVE_PSYCHO_BOOST  - 1] = gMoveDescription_PsychoBoost,\n    [MOVE_FLAME_FANG - 1] = gMoveDescription_FLAME_FANG,\n    [MOVE_FLASHFIRE - 1] = gMoveDescription_FLASHFIRE,\n    [MOVE_BLAZE_RUSH - 1] = gMoveDescription_BLAZE_RUSH,\n};\n"
+        }
+      ]
+    },
+    "src/data/battle_moves.h": {
+      "before_sha256": "95dc4eeac171b36604d31eaef97658e8e712a4dfe258590fbc559b5dbb9d3564",
+      "after_sha256": "60cd425ff962416e4e7481eed4ca1267da00237a40cf0a8b0726fd9e13150e9d",
+      "hunks": [
+        {
+          "before": "        .priority = 0,\n        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,\n    },\n};\n",
+          "after": "        .priority = 0,\n        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,\n    },\n\n    [MOVE_FLAME_FANG] =\n    {\n        .category = MOVE_CATEGORY_PHYSICAL,\n        .effect = EFFECT_FLINCH_HIT,\n        .power = 90,\n        .type = TYPE_FIRE,\n        .accuracy = 100,\n        .pp = 15,\n        .secondaryEffectChance = 20,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = 0,\n        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,\n    },\n\n    [MOVE_FLASHFIRE] =\n    {\n        .category = MOVE_CATEGORY_PHYSICAL,\n        .effect = EFFECT_QUICK_ATTACK,\n        .power = 40,\n        .type = TYPE_FIRE,\n        .accuracy = 100,\n        .pp = 30,\n        .secondaryEffectChance = 0,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = 1,\n        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,\n    },\n\n    [MOVE_BLAZE_RUSH] =\n    {\n        .category = MOVE_CATEGORY_PHYSICAL,\n        .effect = EFFECT_RECOIL,\n        .power = 100,\n        .type = TYPE_FIRE,\n        .accuracy = 100,\n        .pp = 10,\n        .secondaryEffectChance = 0,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = 0,\n        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,\n    },\n};\n"
+        }
+      ]
+    },
+    "src/data/text/move_names.h": {
+      "before_sha256": "d45a00ae94f33e294dd2fa742db1397fe1559fcf42ae553c8983f92d384b6bef",
+      "after_sha256": "71bc0e9108b26d49a388a9df883f04f934526f8ae79ab59373dfe513aea18db5",
+      "hunks": [
+        {
+          "before": "    [MOVE_SHOCK_WAVE]    = _(\"SHOCK WAVE\"),\n    [MOVE_WATER_PULSE]   = _(\"WATER PULSE\"),\n    [MOVE_DOOM_DESIRE]   = _(\"DOOM DESIRE\"),\n    [MOVE_PSYCHO_BOOST]  = _(\"PSYCHO BOOST\")\n};\n",
+          "after": "    [MOVE_SHOCK_WAVE]    = _(\"SHOCK WAVE\"),\n    [MOVE_WATER_PULSE]   = _(\"WATER PULSE\"),\n    [MOVE_DOOM_DESIRE]   = _(\"DOOM DESIRE\"),\n    [MOVE_PSYCHO_BOOST]  = _(\"PSYCHO BOOST\"),\n    [MOVE_FLAME_FANG] = _(\"FLAME FANG\"),\n    [MOVE_FLASHFIRE] = _(\"FLASHFIRE\"),\n    [MOVE_BLAZE_RUSH] = _(\"BLAZE RUSH\"),\n};\n"
+        }
+      ]
+    },
+    "include/constants/moves.h": {
+      "before_sha256": "79d5b93423006c25e6ee47355b15f403b2534616fd6b638e1755e5886d378194",
+      "after_sha256": "088556c0c3208465e07cc220dda2222fcf6a584bdac6b9205a18d94d544c9225",
+      "hunks": [
+        {
+          "before": "#define MOVE_DOOM_DESIRE 353\n#define MOVE_PSYCHO_BOOST 354\n\n#define MOVES_COUNT 355\n\n// Used for checks for moves affected by Disable, Mimic, etc.\n#define MOVE_UNAVAILABLE 0xFFFF\n",
+          "after": "#define MOVE_DOOM_DESIRE 353\n#define MOVE_PSYCHO_BOOST 354\n\n#define MOVE_FLAME_FANG 355\n#define MOVE_FLASHFIRE 356\n#define MOVE_BLAZE_RUSH 357\n\n#define MOVES_COUNT 358\n\n// Used for checks for moves affected by Disable, Mimic, etc.\n#define MOVE_UNAVAILABLE 0xFFFF\n"
+        }
+      ]
+    }
+  }
+}

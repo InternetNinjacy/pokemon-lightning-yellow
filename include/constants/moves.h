@@ -357,7 +357,11 @@
 #define MOVE_DOOM_DESIRE 353
 #define MOVE_PSYCHO_BOOST 354
 
-#define MOVES_COUNT 355
+#define MOVE_FLAME_FANG 355
+#define MOVE_FLASHFIRE 356
+#define MOVE_BLAZE_RUSH 357
+
+#define MOVES_COUNT 358
 
 // Used for checks for moves affected by Disable, Mimic, etc.
 #define MOVE_UNAVAILABLE 0xFFFF

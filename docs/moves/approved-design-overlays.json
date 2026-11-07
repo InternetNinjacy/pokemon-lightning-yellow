@@ -561,6 +561,11 @@
         "secondary_percent": 20,
         "burn_percent": 0,
         "flinch_percent": 20
+      },
+      "engine_translation": {
+        "effect": "EFFECT_FLINCH_HIT",
+        "target": "MOVE_TARGET_SELECTED",
+        "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
       }
     },
     {
@@ -608,6 +613,11 @@
       "delta": null,
       "effect_rules": {
         "semantic": "HIT"
+      },
+      "engine_translation": {
+        "effect": "EFFECT_QUICK_ATTACK",
+        "target": "MOVE_TARGET_SELECTED",
+        "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       }
     },
     {
@@ -661,6 +671,11 @@
           4
         ],
         "crash_on_miss": false
+      },
+      "engine_translation": {
+        "effect": "EFFECT_RECOIL",
+        "target": "MOVE_TARGET_SELECTED",
+        "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       }
     },
     {
