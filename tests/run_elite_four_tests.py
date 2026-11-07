@@ -41,3 +41,9 @@ for b in spec:
    assert re.search(r'\.'+field+r' = ([^,]+),',text)[1]==str(v)
   assert re.findall(r'MOVE_(\w+)',text)==row['moves']
 print('PASS: all eight exact approved Elite Four party arrays; prior six-battle baseline preserved; scoped Agatha native ability field setter verified against frozen constructor')
+
+constructor=json.loads(Path('tests/specifications/approved_agatha_constructor_delta.json').read_text())
+for p,v in constructor['files'].items():
+ assert hashlib.sha256(Path(p).read_bytes()).hexdigest()==v['after_sha256'],p
+ assert hashlib.sha256(prior_elite_four_source(p).encode()).hexdigest()==v['before_sha256'],p
+print('PASS: exact draft Agatha native-field selector is reversed consistently for every historical constructor audit; no old digest replaced')

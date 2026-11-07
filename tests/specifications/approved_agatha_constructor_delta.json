@@ -1,0 +1,15 @@
+{
+  "scope": "Proposed draft68 native field setter, no PID/species/save changes; preserve all prior hashes",
+  "files": {
+    "src/battle_main.c": {
+      "before_sha256": "a7f6805cb74e1b29714594387152e254d5a216ce452db142363f22c63861ff6a",
+      "after_sha256": "310a5c9a31f3e3b27eadce56667a63748c72ffcb548619a89ff42eff1f7d5270",
+      "hunks": [
+        {
+          "before": "                SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[i].heldItem);\n\n                for (j = 0; j < MAX_MON_MOVES; j++)",
+          "after": "                // Use the existing native ability slot field only for Agatha's Alakazam.\n                // This preserves its original PID, nature, gender and species ability table.\n                if ((trainerNum == TRAINER_ELITE_FOUR_AGATHA || trainerNum == TRAINER_ELITE_FOUR_AGATHA_2)\n                 && partyData[i].species == SPECIES_ALAKAZAM)\n                {\n                    u8 abilityNum = 1; // Inner Focus, the native second ability.\n                    SetMonData(&party[i], MON_DATA_ABILITY_NUM, &abilityNum);\n                }\n                SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[i].heldItem);\n\n                for (j = 0; j < MAX_MON_MOVES; j++)"
+        }
+      ]
+    }
+  }
+}

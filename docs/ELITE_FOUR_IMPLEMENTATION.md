@@ -72,3 +72,15 @@ Both `sParty_EliteFourAgatha[]` and `sParty_EliteFourAgatha2[]` are replaced wit
 **Validation state at authoring:** static GitHub source review and GitHub file writes only. No local checkout/compiler or mGBA run available in this ChatGPT environment; no passing host tests, CI, build or native acceptance claimed yet. PR review and GitHub Actions must verify all exact arrays, preservation audits and build/test results, followed by full mGBA acceptance including all eight battles. No merge is authorized by this branch.
 
 **Potential blocker and rollback:** if any regression or unexpected PID effect is observed, revert the scope-limited native ability field assignment and the two Agatha arrays (and corresponding tests) without touching the previous six merged Elite Four arrays. Do not replace Inner Focus with Synchronize or introduce species-wide ability changes. GYM-009 remains **implemented in draft PR / pending tests and merge**, not a completed integrated milestone.
+
+### Draft68 validation follow-up — November7
+
+Actions42315909041 failed an old battle_main hash before compilation, not a
+failed ability test. A separate exact constructor delta now feeds the shared
+EliteFour reverse normalizer so every historical audit sees its unchanged source.
+All25 host suites/3 checkers and build now PASS; original digests retained.
+Native tests additionally observe stored ability1 with even PID, actual battle
+Inner Focus on Alakazam, and use legal Surf/Ice Beam against approved Dark types.
+These are test-driver choices, not opponent/AI changes. New focus command:
+`LIGHTNING_ELITE_FOUR_ONLY=1 LIGHTNING_ELITE_AGATHA_ONLY=1 python3 tests/emulator/run.py`.
+Focused/full/clean/Actions results still pending; draft/approval status unchanged.

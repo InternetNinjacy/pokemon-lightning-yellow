@@ -1378,3 +1378,34 @@ imports or unsafe save migrations. Direct Drive synchronization remains pending.
 - Full29-group/clean/CI pending initial commit; no added completion/merge credit
   yet. Branch feature/pin-missile-dragon-rage, details/limits/rollback in
   docs/moves/ORIGINAL_EFFECT_STATUS.md. No PP migration or binary assets.
+## 2026-11-06 — INT-001-CI early bounded mGBA dependency installation
+
+- PR62 run42233960801 cancelled at30m18; modified step9 installing libmgba-dev
+  spent24m35 and native step was skipped. This is NOT an emulator assertion failure.
+  Upstream baseline passed; exact network/lock cause not exposed by step metadata.
+- Move dependency into initial modified-only package set, bounded APT transport/
+  retry/lock waits; later mGBA step verifies installed package only. All native/
+  host/build/repro/upstream gates, API guards and job/native timeouts retained.
+- No production/security setting change. docs/CI_DEPENDENCY_STALL.md records
+  exact evidence/limitations/rollback. Actual maintenance CI pending before merge.
+
+## 2026-11-06 — INT-001-CI measured slow package transfer
+
+- Live job128215173523 proves APT62.7MB/19min7s/54.7kB/s, then build start.
+  Initial idle timeouts cannot prevent slow continuing transfers. Overall Actions
+  job limit30→45min; native20min, instruction guards, clean builds, all checks and
+  upstream comparison unchanged. No gameplay/security/protection changes.
+- Exact-head CI pending; not represented as accepted/merged.
+
+## 2026-11-07 — GYM-009 draft68 validation repair (not acceptance)
+
+- Existing draft68 proposed both Agatha parties and the scoped native ability
+  setter. Did not duplicate gameplay. Its Actions42315909041 failed historical
+  battle_main preservation before compilation; exact constructor reverse manifest
+  now participates in every old audit, preserving all original digests.
+- Added native stored ability1/even PID controls, actual battle-loaded Inner Focus
+  observation, Dark-aware legal controlled-player attacks and Agatha-only focus.
+  Opponents, AI, production selector and parties unchanged from draft.
+- Build/25 hosts/3 checkers PASS; latest focused/full/clean/CI pending. Draft/design
+  status retained; do not equate existing native API availability with an answered
+  owner selector question. CI64 dependency integrated, no test gates removed.
