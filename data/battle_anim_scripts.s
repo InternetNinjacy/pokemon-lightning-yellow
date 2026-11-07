@@ -385,6 +385,7 @@ gBattleAnims_Moves::
 	.4byte Move_VENOM_WEB
 	.4byte Move_BUG_BITE
 	.4byte Move_CHITIN_CRUSH
+	.4byte Move_CHIRP
 	.4byte Move_COUNT @ cannot be reached, because last move is Psycho Boost
 
 	.align 2
@@ -11389,3 +11390,7 @@ Move_CHITIN_CRUSH:
 	clearmonbg ANIM_DEF_PARTNER
 	blendoff
 	end
+
+@ Approved Chirp sound uses the native Growl visual only.
+Move_CHIRP:
+	goto Move_GROWL
