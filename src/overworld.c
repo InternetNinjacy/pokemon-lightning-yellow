@@ -1,4 +1,5 @@
 #include "global.h"
+#include "lighting_preview_config.h"
 #include "dynamic_weather.h"
 #ifdef LIGHTING_PREVIEW
 #include "rtc.h"
