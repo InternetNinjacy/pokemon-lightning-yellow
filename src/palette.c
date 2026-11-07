@@ -106,19 +106,19 @@ void FillPalette(u16 value, u16 offset, u16 size)
 extern u8 LightingPreviewGetAppearance(void);
 extern bool8 LightingPreviewIsActive(void);
 // Index: 0=Day, 1=Dawn, 2=Dusk, 3=Night, 4=Covered Day,
-// 5=Covered Night. See docs/LIGHTING_PREVIEW_CANDIDATES.md.
+// 5=Covered Night, 6=Lavender soft daytime. See docs/LIGHTING_PREVIEW_CANDIDATES.md.
 #ifndef LIGHTING_PREVIEW_VARIANT
 #define LIGHTING_PREVIEW_VARIANT 0
 #endif
 #if LIGHTING_PREVIEW_VARIANT == 1
 static const u8 sLightingPreviewMult[6][3] = {
     {32,32,32}, {23,28,32}, {32,23,17}, {16,19,27},
-    {25,29,25}, {12,17,22},
+    {25,29,25}, {12,17,22}, {30,22,19},
 };
 #else
 static const u8 sLightingPreviewMult[6][3] = {
     {32,32,32}, {23,28,32}, {32,23,17}, {19,21,27},
-    {25,29,25}, {14,19,23},
+    {25,29,25}, {14,19,23}, {30,22,19},
 };
 #endif
 
