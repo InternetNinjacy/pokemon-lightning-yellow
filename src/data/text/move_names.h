@@ -364,4 +364,5 @@ const u8 gMoveNames[MOVES_COUNT][MOVE_NAME_LENGTH + 1] = {
     [MOVE_VENOM_WEB] = _("VENOM WEB"),
     [MOVE_BUG_BITE] = _("BUG BITE"),
     [MOVE_CHITIN_CRUSH] = _("CHITIN CRUSH"),
+    [MOVE_CHIRP] = _("CHIRP"),
 };
