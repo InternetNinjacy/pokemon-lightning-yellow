@@ -15,13 +15,12 @@ b3f_map = json.loads(read("data/maps/RocketHideout_B3F/map.json"))
 route = read("data/scripts/trainers.inc")
 route_text = read("data/maps/Route8/text.inc")
 
-# Rocket retains its own quest flags in C. WRL-001 separately claimed
-# exactly two formerly-unused save flags for Oak's one-time Eevee gift.
-# All remaining placeholders stay reserved, including 0x318..0x31B.
-assert "#define FLAG_OAK_EEVEE_PENDING                   0x316" in flags
-assert "#define FLAG_GOT_OAK_PARCEL_EEVEE                0x317" in flags
-for i in range(0x318, 0x31C):
+# Rocket's six reserved flags must remain untouched. The unrelated
+# Oak parcel gift starts at the next two unused save-backed IDs.
+for i in range(0x316, 0x31C):
     assert "FLAG_0x" + format(i, "03X") in flags, hex(i)
+assert "#define FLAG_OAK_EEVEE_PENDING                   0x31C" in flags
+assert "#define FLAG_GOT_OAK_PARCEL_EEVEE                0x31D" in flags
 for i in range(0x40F8, 0x40FC):
     assert "VAR_0x" + format(i, "04X") in vars_, hex(i)
 for name in (
