@@ -20,7 +20,7 @@ static void lightingCapture(const char *name,unsigned map,unsigned hour,unsigned
     frames(180,0);
     unsigned expectedAppearance;
     if(map==MAP_VIRIDIAN_FOREST)expectedAppearance=(hour>=6 && hour<18)?4:5;
-    else if(map==MAP_LAVENDER_TOWN)expectedAppearance=(hour>=6 && hour<18)?2:3;
+    else if(map==MAP_LAVENDER_TOWN)expectedAppearance=(hour>=6 && hour<18)?6:3;
     else if(hour==6)expectedAppearance=1;
     else if(hour>=7 && hour<18)expectedAppearance=0;
     else if(hour==18)expectedAppearance=2;
