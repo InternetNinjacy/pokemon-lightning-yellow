@@ -10,6 +10,8 @@ def prior_scorching_sands_source(path, content=None):
     if content is None:
         content = Path(path).read_text()
     path = str(path)
+    from approved_earth_power_changes import prior_earth_power_source
+    content = prior_earth_power_source(path, content)
     changes = {
         'include/constants/moves.h': [
             ('#define MOVE_SCORCHING_SANDS 370\n\n#define MOVES_COUNT 371',
