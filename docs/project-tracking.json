@@ -3,8 +3,8 @@
   "updated": "2026-11-07",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "Maina22 stable CI42381749572 SUCCESS;80 first Fire batch passed full816089, premerge AI translation correction focused517/28hosts PASS pending new CI. Child82 three Ghost moves source/331focus/29hosts/clean PASS, full/CI pending.398/712 provisional; no unmerged credit.",
-  "main_sha": "a22aabd49d935e56bcb3573b394bcae13d60022d",
+  "current_focus": "Fire80/a4681848 final28hosts/517focus/clean and both full CI PASS, ready for source-identical documentation integration. Preserve81 BTL006 closure and INT005 QA,399/313 of712 provisional. No unmerged Fire credit; Ghost82 current-parent validation separate.",
+  "main_sha": "cd9650c5780e480d1ae834cac504e0d00e2ddebe",
   "drive_sync": {
     "status": "GYM-009 completion synced to Project Progress and Elite Four Register on 2026-11-07; other Drive synchronization not audited",
     "folder": "https://drive.google.com/drive/folders/1N_n0Ke48jBbdhUWSZWzwR6rpPFqpDUpl"
@@ -1861,7 +1861,7 @@
       "ci_url": null,
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Execute approved stabilization plan. Separate optional ordinary-Trainer experiential QA from GYM-008 closure: representative or exhaustive map-approach battle initiation; 130 VS Seeker rematch paths; Shane Double/refusal and victory flags; progression/story-state and visual Ranger aliases. No new points or claim of completion for these checks.",
+      "next_action": "Execute approved stabilization plan. Separate optional ordinary-Trainer experiential QA from GYM-008 closure: representative or exhaustive map-approach battle initiation; 130 VS Seeker rematch paths; Shane Double/refusal and victory flags; progression/story-state and visual Ranger aliases. No new points or claim of completion for these checks. Release-wide BTL-006 qualification (separately, no duplicate effort): all-ball manual visual/summaries, exceptional retailer full story gates, two-peer or hardware, interrupted-power and exhaustive quest-log checks; BTL-006 source implementation is formally closed.",
       "checkpoint": "2026-11-02 initial audit"
     },
     {
@@ -2148,8 +2148,8 @@
         "Queued Poké Ball redesign specification intake"
       ],
       "effort": {
-        "earned": 15,
-        "remaining": 1,
+        "earned": 16,
+        "remaining": 0,
         "unit": "provisional relative planning point",
         "confidence": "low",
         "history": [
@@ -2164,27 +2164,33 @@
             "earned": 15,
             "remaining": 1,
             "reason": "Approved16-point scope: production implementation and scoped host/native/build/CI evidence completed. One point remains for extended presentation/progression/external acceptance; design approval alone not counted and no duplicate INT-004 credit."
+          },
+          {
+            "date": "2026-11-07",
+            "earned": 16,
+            "remaining": 0,
+            "reason": "Master Control formally accepted BTL-006 task-specific completion after merged PR13 production implementation, PR75 final static/native regression additions and Actions41688991039/42348317604 modified+upstream SUCCESS. Exhaustive hardware/peer/interrupted-power/story progression/visual certification remains release-wide INT-005/INT-004 scope, with no duplicated effort credit."
           }
         ]
       },
       "dependencies": [],
       "status": {
         "design": "approved final register and explicit task authorization read in full",
-        "implementation": "implemented and merged into main; extended presentation/progression acceptance remains",
-        "automated": "nine host suites/clean reproducibility/final Actions modified and upstream PASS",
-        "emulator": "full default mGBA PASS; exact count and controlled/native distinctions in ledger",
-        "pull_request": "PR#13 merged; historical branch evidence retained",
-        "merge": "merged to main; remaining feature scope/coverage is not inferred complete"
+        "implementation": "Complete and merged: PR13 capture/balls/items/shop redesign plus PR75 final independent acceptance regression; no known task-specific defect",
+        "automated": "PR13 Actions41688991039 and PR75 Actions42348317604 modified+upstream success; 13 supplemental independent source checks and persistent tests/run_capture_tests.py regression checks",
+        "emulator": "Scoped native mGBA purchase, weather, capture, Snow Ball, storage, bonus, Oak reward and flash persistence accepted; no claim of exhaustive 13-ball manual visual/hardware/peer tests",
+        "pull_request": "PR13 and PR75 merged",
+        "merge": "PR13 d54f7a8e85d38b8fa304399dcb4d14778396d5cd; PR75 f232f69650ecf005597bed074140323cc45f7efd"
       },
       "branch": "main",
       "commit": "ad86d58b0c0dec7117ffa524ae4a66926b92cd88",
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/13",
-      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41688991039",
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/42348317604",
       "blocker": null,
       "design_authority": "November3 source exports: all three primary Poké Ball documents read in full; relevant Master/Queue amendments and START HERE/intake reviewed. November2 task-specific owner authorization supersedes older design-only text.",
-      "next_action": "Preserve merged feature; extended presentation/progression/external acceptance remains. Further merges/auto-merge require their own authorization.",
-      "checkpoint": "2026-11-03 implementation replaces earlier readiness-only status; no source/merge change to parents.",
-      "coverage_gap": "No manual full-game progression, actual two-peer/hardware/power interruption or exhaustive quest-log replay; not every13-ball success/failure/presentation is independently exercised. TwoIsland/TrainerTower stock scope and natural-Hail lifetime are explicit technical review boundaries.",
+      "next_action": "None for BTL-006 without demonstrated defect. Retain exhaustive 13-ball visual/manual retailer progression, two-peer/hardware, interrupted-power and quest-log coverage within existing INT-004/INT-005 release qualification only.",
+      "checkpoint": "2026-11-07 formally accepted and BTL-006 feature closed; release-wide external QA separate",
+      "coverage_gap": "Deferred shared release qualification only: exhaustive visual capture/summary of all 13 balls, end-to-end story-gated retailer visits, two-peer/hardware, interrupted-power and complete quest-log playback. Not task-specific BTL-006 acceptance blockers.",
       "merge_commit": "d54f7a8e85d38b8fa304399dcb4d14778396d5cd",
       "implementation_ref": {
         "branch": "feature/poke-ball-redesign",
