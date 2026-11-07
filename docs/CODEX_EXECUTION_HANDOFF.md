@@ -1,93 +1,89 @@
-# Codex execution handoff — verified November7,2026
+# Codex execution handoff — verified November 7, 2026
 
-Main: `4526a137573c722d1f685ac42a8057fc9b36497a`.
-AGENTS.md standing policy55 authorizes approved implementation and verified merges.
-Preserve specific design/asset holds, all guards/provenance/security protections.
-No worktrees/force pushes/ROM releases. Do not restart the completed broad audit.
+Standing AGENTS policy55 authorizes approved implementation and verified merges.
+Preserve design/asset holds, guards, provenance and security protections. No
+worktrees, force pushes, ROM releases or fabricated acceptance. Do not restart
+completed broad audits. Read live GitHub state before updating these references.
 
-## Integrated work
+## Integrated main
 
-Historical27/29/30/31/35/36/39–43/53 are merged, not pending implementation stacks.
-Main retains252 Dex/types/evolutions/RTC/daycare/vendors/Poke Balls/fossils/Ranger/
-rival/weather/Gym Castform and move foundations/UI/PP. No duplicate implementation.
+Current integrated main: `91e8095b` (resolve full SHA with Git).
+Historical27/29/30/31/35/36/39–43/53 are merged. Main retains custom252 Dex,
+typings/evolutions/RTC/daycare/vendors/Poke Balls/fossils/Ranger/rival/weather/
+Gym Castform and move foundations/UI/saved PP. Do not duplicate implementations.
 
--55 policy b43f92cf;56 Roar844b450e;58 Viridian sign d97712dc.
--59 Aron/Magby50% eggs and Tangela25TANGO708f197a;60 six E4 fights66117462.
--61 Ground-only Sandstorm/Rain Zap Cannon15dacb95;63 Pin Missile/Dragon Rage767bb39c.
--66 Electric paralysis immunity d3a462e5, includes64 CI maintenance ancestry;
- GitHub marks64 merged through63b152f5. Combined-head Actions42315238692/42315244202
- both modified/upstream SUCCESS, local full29-group754679/25hosts/clean PASS.
--64 own dispatch42314671025 was pending at integration, NOT claimed passed.
- Combined unit tests every64 change; only extra workflow line is63's host suite.
- Measured62.7MB/19min7 APT transfer prompted45min job; native20min unchanged.
--67 Scary Face Ghost15PP/three both-opponent statuses4526a137. Full755166,
- 25hosts/3checkers/clean PASS; both Actions42315257252/42315264496 SUCCESS.
- Native separate accuracy, no ally/user damage, onePP and per-foe prevention PASS.
- Main tree equals tested144917d5 tree. Postmerge main CI must still be checked.
-- Latest completed earlier main Actions42313545155 SUCCESS (after63).
- No full campaign/fair-balance/real-link/cartridge certification or new56 moves.
+-55 autonomous policy;56 Roar;58 Viridian category sign.
+-59 Museum Aron/Water Labyrinth Magby50% eggs; rooftop Tangela25 TANGO.
+-60 six Lorelei/Bruno/Lance battles;61 Ground-only Sandstorm/Rain Zap Cannon.
+-63 Pin Missile/Dragon Rage:29-group754034,25 hosts/3 checkers/clean PASS.
+-66 global Electric paralysis immunity, including64 CI maintenance ancestry:
+ full754679 and both head Actions42315238692/42315244202 SUCCESS.
+-67 both-foe statuses/Scary Face Ghost15PP:755166 and both head CI SUCCESS.
+-69 Spite/Grudge:merge3d06ebc3, full755386/25hosts/clean and both CI SUCCESS.
+-68 Agatha is MERGED, not a live approval question: native stored ability selector,
+ exact42 League Pokémon/168 moves and both Agatha rooms. Main acceptance evidence
+ is recorded in the ledger. Earlier draft hold/test failure entries are historical.
+-71 ordinary Trainers is MERGED18d245b5:500 real parties/1219 Pokémon,10 untouched
+ dummies, retained130 VS variants. Source lock is
+ docs/ordinary-trainers-implementation-lock.json. Do not regenerate from old57.
+-75 BTL006 final acceptance and77 GYM008 dashboard reconciliation are merged.
+-70 unused Jack VS Seeker map metadata, mergef9090885; both Actions42318261298
+ SUCCESS. No gameplay credit; corresponding NPC/script already live on South map.
+-78 bounded full-suite CI budget: verified own Actions42376310914 SUCCESS;
+ native20→30min/job45→60min. No assertion/instruction/frame guard changes.
 
-## Existing active branches — do not duplicate
+## Active implementation / coordination
 
--69 `feature/spite-grudge-reworks`,dd1555d6: Special30 Spite damage+optional native
- 2–5PP; Grudge Special30/90/10 native Rollout without Defense Curl.25hosts/3checkers,
- clean PASS; initial focused225 PASS incl actual five-turn Grudge. Latest extra
- numeric control/full native/CI pending. Log /tmp/ghost-full-native.log, actual
- exec session29720. Retarget69 from67 to main; parents64/66/67 are now merged.
--68 DRAFT `feature/agatha-native-inner-focus`,2ff31b2c: existing proposal, not ours
- to duplicate. Reconciled concurrent76eac241 normalizer repair; preserves all
- old digests through exact constructor manifest. Production unchanged fromd238d395.
- 25hosts/3checkers/clean PASS; Agatha focus39058 PASS, all42 constructors/168 moves,
- both actual rooms/flags/flash and runtime Inner Focus/even PID. Full/CI pending;
- /tmp/agatha-full-native.log actual session32259. Initial fixture lost by choosing
- Psychic into Cacturne; fixed legal player move selection, opponents unchanged.
- Draft retained; prior specific native-selector permission question not answered.
--62 `docs/codex-efficient-workflow-20261106` contains current tracker/ledger/handoff,
- guide and65 historical snapshot. After gameplay parents merged, diff is tracking/
- documentation only. Merge after applicable checks;65 ancestry will integrate too.
- Preserve canonical weights/history;65's335 alternative estimate is not extra work.
+-72 DRAFT feature/thunder-wave-spread, head26f52aba835e852682f4daa606aa6fe683d30897.
+ Approved all-other-active targets, per-recipient checks/reflection, once-per-move
+ inability and PP, noPP cancellation, native called-move behavior. No new IDs.
+ Current-main26 hosts/3 checkers/clean PASS, focused565, full30-group815608 PASS.
+ Logs /tmp/thunder-wave-integrated-full-native.log and /tmp/tw-current-clean.log.
+ Old c33 head42374018809 hit20min CI wall cap; duplicate42374015278 succeeded.
+ Preserve failure history.78 budget integrated; latest head Actions42377967379 /
+ 42377971185 pending at this writing. Check live; ready/merge only when green.
+ Main78 is already ancestor; do not reimplement. No old test guard weakened.
+-62 docs/codex-efficient-workflow-20261106 contains canonical tracker convergence,
+ guide/handoff and65 historical snapshot ancestry. Latest main GYM00852/0 and
+ GYM00916/0 preserved; BTL00529/51, WRL0113/7.395/712=55.48% provisional effort,
+ not release readiness. No72 completion credit yet. Merge after checks.
+-74 Rocket and76 title art are parallel drafts: inspect current state before any
+ work on those systems; do not mix their source or invent missing approvals.
+-54 follower asset audit only;57 Trainer draft is superseded by merged71.
 
-## Exact next commands
+## Exact next checks
 
 ```
 git status --short --branch
-gh pr checks 69
-gh pr checks 68
+gh pr checks 72
 gh pr checks 62
 gh run list --branch main --limit 4
-tail -n 8 /tmp/ghost-full-native.log
-tail -n 8 /tmp/agatha-full-native.log
 ```
 
-If old logs/processes no longer exist, rerun rather than infer completion.
-Toolchain: source /tmp/lightning-env.sh (if present); otherwise prefix
-/workspace/lightning-toolchain/root: usr/bin PATH, usr/include CPATH,
-usr/lib/x86_64-linux-gnu LD_LIBRARY_PATH/LIBRARY_PATH, same/pkgconfig PKG_CONFIG_PATH,
-MGBA_PREFIX root. `make -j2`;25 tests/run_*tests.py and3 checker scripts; full
-`python3 tests/emulator/run.py`. Focus69: LIGHTNING_GHOST_REWORKS_ONLY=1 plus
-LIGHTNING_ORIGINAL_EFFECTS_ONLY=1. Focus68: LIGHTNING_ELITE_FOUR_ONLY=1 plus
-LIGHTNING_ELITE_AGATHA_ONLY=1. Clean/rebuild/hash compare; never weaken4M ARM guard.
-Wait for ROM/ABI copy and boot before checkout/clean while emulator tests run.
+Toolchain: source /tmp/lightning-env.sh. Build make -j2; all26 host runners and
+3 checker scripts; full python3 tests/emulator/run.py. Tests use real compiled ROM
+code and mGBA, not full campaign/cartridge/real-link certification. Never weaken
+4M instruction or scene frame guards. Wait for runner ROM/ABI copy and boot before
+checkout/clean while native tests run. If old logs disappear, rerun, do not infer.
 
 ## Next approved work / genuine holds
 
-1. Finish verified69 and documentation62/65 integration; validate resulting main.
-2. Approved Thunder Wave: all other active battlers including ally, not self;
- independent checks/one move PP cost; inspect Magic Coat/Lightning Rod/global
- inability checks before adding three-recipient iteration. Not implemented yet.
-3. Then56 complete new-move slices, no placeholder IDs/effects or invented access.
- Independent Rocket45/44 or lighting51 prototype are alternatives if blocked.
+1. Finish72 acceptance/integration, validate resulting main, update tracker/62.
+2. New56 moves remain unimplemented. Add complete contiguous source batches with
+ effects, descriptions, names, existing-art scripts, tests and all consumers.
+ Start355 custom Flame Fang90/100/15 flinch20 (NOT official65/95/burn),356 Flashfire
+ FirePhysical40/100/30 priority+1,357 Blaze Rush100/100/10 quarter-damage recoil.
+ Inspect approved overlays/animation reuse first. No invented distribution.
+ Reconciliation tooling currently assumes354 source/56 pending: extend/test before
+ assigning IDs. Keep all frozen355-prefix regression manifests authoritative.
 
-Follower54: all252 asset-path audit done, NO follower gameplay. aarant permission
-explicitly needed for FireRed/AI use. Do not import without grant. Starter Pikachu/
-Parcel Eevee not implemented; Eevee level/full-party handling still unapproved.
-Draft57 Trainers NOT CODEX READY; no parties from eligibility/heuristic candidates.
-Issue47 global ability slots/inheritance and exact SOW placement/aftermath pending.
-Final lighting RGB is owner hold; prototype/screenshots authorized, no production
-palette selection. No time-exclusive wild encounter design. Broader teams/stats/
-learnsets/encounters/items only where exact approvals exist. Keep pending Agatha
-selector question distinct from technical explanation or draft implementation.
+Follower54:252 path audit, NO follower gameplay; aarant FireRed/AI asset permission
+still needed. Starter Pikachu/Parcel Eevee: exact Eevee level/full-party behavior
+missing. Global weather ability slots/inheritance and exact special encounter
+placements/aftermath remain design dependencies. Final lighting RGB owner hold;
+reversible real-emulator prototype/screenshots authorized. No time-exclusive wilds.
+Do not let those independent holds block fully specified move work.
 
-Drive writing unavailable;40 supplied authority exports ARE available under
-/workspace/attachments/lightning-authority-2026-11-03. Git ledger/dashboard canonical;
-Drive sync pending. Transient GitHub401 and exec transport outage recovered.
+Drive writing unavailable;40 authority exports ARE available under
+/workspace/attachments/lightning-authority-2026-11-03. Git ledger/dashboard is
+canonical; Drive synchronization pending. Keep prior completed progress/history.
