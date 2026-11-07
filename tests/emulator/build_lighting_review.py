@@ -40,9 +40,9 @@ ROWS = [
     ("weather_sand_night", "Route 17", "21:00", 6, 10, "Sandstorm"),
 ]
 PALETTES = {
-    "A": {"day": (32,32,32), "dawn": (32,31,30), "dusk": (32,29,26),
+    "A": {"day": (32,32,32), "dawn": (23,28,32), "dusk": (32,23,17),
           "night": (19,21,27), "covered_day": (25,29,25), "covered_night": (14,19,23)},
-    "B": {"day": (32,32,32), "dawn": (32,31,30), "dusk": (32,29,26),
+    "B": {"day": (32,32,32), "dawn": (23,28,32), "dusk": (32,23,17),
           "night": (16,19,27), "covered_day": (25,29,25), "covered_night": (12,17,22)},
 }
 
