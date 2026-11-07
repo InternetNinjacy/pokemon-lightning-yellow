@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "baseline_source_commit": "92838e5eb64d19942cb5c51cfdef6991503ac3ad",
-  "current_battle_moves_sha256": "86865adbef29c034e15b10e2f3cdbd2ca801837fc15db456d037bc7889e17378",
+  "current_battle_moves_sha256": "082cb2f309117f1fb7c1efd22bf5c27def138054176f4304cbebce4e2c428535",
   "scope": "Reconciliation only, no gameplay edits. Numeric proposed IDs/semantic effects/target values are NOT compiled constants. Runtime_verified false is not a failure claim.",
   "sources": {
     "register": {
@@ -20118,12 +20118,23 @@
       }
     },
     {
-      "id": null,
+      "id": 361,
       "proposed_id": 361,
       "key": "SKITTER_SLASH",
       "name": "Skitter Slash",
       "identity": "NEW_CUSTOM",
-      "current": null,
+      "current": {
+        "category": "PHYSICAL",
+        "type": "BUG",
+        "power": 40,
+        "accuracy": 100,
+        "pp": 15,
+        "priority": 0,
+        "target": "MOVE_TARGET_SELECTED",
+        "effect": "EFFECT_HIT",
+        "secondaryEffectChance": 0,
+        "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
+      },
       "approved": {
         "type": "BUG",
         "category": "PHYSICAL",
@@ -20159,12 +20170,25 @@
         "HIT",
         "Normal priority0 is proposed technical translation; source approves the listed custom attack mechanics, not an explicit priority statement."
       ],
-      "implementation_status": "NOT_IMPLEMENTED",
-      "delta": null,
+      "implementation_status": "SOURCE_DATA_PRESENT_RUNTIME_UNVERIFIED",
+      "delta": {},
       "effect_rules": {
         "semantic": "HIT"
       },
       "animation": {
+        "assignment": "Move_SKITTER_SLASH",
+        "approval": "APPROVED_EXISTING_ART_CANDIDATE",
+        "source_line": 11310,
+        "source_exists": true,
+        "runtime_verified": false
+      },
+      "engine_translation": {
+        "effect": "EFFECT_HIT",
+        "target": "MOVE_TARGET_SELECTED",
+        "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
+      },
+      "source_line": 5058,
+      "animation_candidate": {
         "key": "SKITTER_SLASH",
         "name": "Skitter Slash",
         "candidate": "FURY_CUTTER",
