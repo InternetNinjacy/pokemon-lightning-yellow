@@ -156,6 +156,10 @@
       ],
       "field_basis": {
         "target": "OWNER_EXPLICIT"
+      },
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA",
+      "engine_translation": {
+        "target": "MOVE_TARGET_FOES_AND_ALLY"
       }
     },
     "SCREECH": {

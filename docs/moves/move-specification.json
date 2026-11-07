@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "baseline_source_commit": "92838e5eb64d19942cb5c51cfdef6991503ac3ad",
-  "current_battle_moves_sha256": "85ac064ba3b409a605e342fa8eedb5c300f1e50128dfcb33d38874dc7ec214cd",
+  "current_battle_moves_sha256": "95dc4eeac171b36604d31eaef97658e8e712a4dfe258590fbc559b5dbb9d3564",
   "scope": "Reconciliation only, no gameplay edits. Numeric proposed IDs/semantic effects/target values are NOT compiled constants. Runtime_verified false is not a failure claim.",
   "sources": {
     "register": {
@@ -4718,7 +4718,7 @@
         "accuracy": 100,
         "pp": 20,
         "priority": 0,
-        "target": "MOVE_TARGET_SELECTED",
+        "target": "MOVE_TARGET_FOES_AND_ALLY",
         "effect": "EFFECT_PARALYZE",
         "secondaryEffectChance": 0,
         "flags": "FLAG_PROTECT_AFFECTED | FLAG_MAGIC_COAT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
@@ -4764,13 +4764,11 @@
         "source_exists": true,
         "runtime_verified": false
       },
-      "delta": {
-        "target": {
-          "current": "MOVE_TARGET_SELECTED",
-          "approved": "ALL_OTHERS_IN_DOUBLES"
-        }
+      "engine_translation": {
+        "target": "MOVE_TARGET_FOES_AND_ALLY"
       },
-      "implementation_status": "PENDING_APPROVED_REDESIGN"
+      "delta": {},
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA"
     },
     {
       "id": 87,
