@@ -1,6 +1,6 @@
 # Lightning Yellow title screen: source audit and partial implementation
 
-Status: **PARTIAL; visual replacement not implemented.** Topic branch only. Audited against `main` at `18d245b5e35780b1300482aa536fa15f140a1d28` on 2026-11-07.
+Status: **ART ASSETS AND SOURCE REFERENCES IMPLEMENTED; build/emulator verification outstanding.** Topic branch only. Audited against `main` at `18d245b5e35780b1300482aa536fa15f140a1d28` on 2026-11-07.
 
 ## Approved visual outcome
 
@@ -32,27 +32,29 @@ The title logo, mascot, background, prompt/copyright, and moving sprite effects 
 
 1. FireRed-specific `TITLE_SPECIES` set to `SPECIES_PIKACHU` so the title transition uses Pikachu's cry. The LeafGreen conditional stays unchanged.
 
-**Not implemented:** logo pixels, mascot pixels, palettes, tilemaps, and mascot/theme effects. This code-only change must not be described as a visible Pikachu screen or finished Lightning Yellow branding.
+**Subsequent implementation on this branch:** added `graphics/title_screen/lightning_yellow/game_title_logo.png` (256×64, indexed 8bpp) and corresponding 256-color `.pal`. The two-line lettering reads **Pokémon** / **LIGHTNING YELLOW**. Added `box_art_mon.png` (96×96, indexed 4bpp) and corresponding 16-color `.pal`, using the repository's existing Pikachu front-sprite art scaled with nearest-neighbor sampling. Switched the FireRed `src/graphics.c` asset references to these new source PNG/palette files. The original FireRed `.bin` tilemaps are reused and were statically checked for tile-index and palette-bank compatibility. Upstream assets remain unmodified. Added `tests/run_title_screen_tests.py` to guard asset dimensions, palette consistency, source references and tilemap bounds.
 
-## Required bounded next implementation
+**Still not verified:** an actual built ROM or emulator rendering. The existing FireRed flame/border style remains; that is optional visual polish, not a reason to claim full visual verification.
 
-1. Produce an original/owner-approved `game_title_logo.png` and, if palette and tile arrangement change, matching `.pal` and `.bin`. Visible assembled lettering must say **Pokémon Lightning Yellow**, with no residual FireRed text.
-2. Produce a Pikachu title composition for BG1. Update `box_art_mon.png` and any matching palette/map source, respecting 4bpp (16 entries), palette bank 13, and the BG1 32×20 map. Do not simply substitute the battle front sprite without confirming dimensions and visual fit.
-3. Prefer adding new assets under `graphics/title_screen/lightning_yellow/`, changing the FireRed build's `INCBIN` paths in `src/graphics.c` and `src/title_screen.c` only where needed, rather than overwriting historical upstream art. Reuse shared prompt/copyright and core animation assets when appropriate.
-4. Review colors and readability throughout the palette transitions, especially the early mascot grayscale/brightening and BG0 window reveal. Avoid relying on FireRed-red flames as final electric-themed polish if visually inconsistent; effects changes are not a prerequisite to basic branding.
-5. Build with `scripts/prepare-baseline.sh` then `make -j2` in an authorized build environment, run relevant host regressions, clean/rebuild for repeatability, and boot the actual resulting ROM in mGBA. Capture real observations of title legibility, Pikachu, prompt blink, A/Start cry and new/continue menus. Do not distribute ROM/BIOS binaries.
+## Remaining bounded work
+
+1. Build the ROM in an authorized toolchain with `scripts/prepare-baseline.sh` and `make -j2`.
+2. Run `python3 tests/run_title_screen_tests.py` and the applicable existing host tests.
+3. Boot in mGBA and inspect the **actual** screen across the reveal/fade, verify Pokémon Lightning Yellow text and Pikachu art are fully visible and the Press Start prompt/copyright stay readable.
+4. Verify A/Start, Pikachu cry, new/continue menu, idle restart and relevant regression checks; fix any palette, tilemap layout or runtime issues observed.
+5. Review optional visual theme (FireRed flames remain intentionally unchanged until basic title acceptance succeeds).
 
 ## Validation state as of this commit
 
 - **Static source:** confirmed loaders, file paths, bpp, palettes, tilemap resource sizes, and separate title/start-menu systems.
-- **Source edit:** successfully committed the Pikachu cry constant.
+- **Source edit:** Pikachu cry and four replacement asset references committed. Two new indexed PNGs and matching palette text files committed; original compatible tilemaps retained.\n- **Static asset checking:** local PNG dimensions/palette index range verified; added a reproducible repository static test, but the repository test runner has not been executed against a complete checkout.
 - **Build:** **not run**. This session's local container could not resolve GitHub to clone the source or provision the dependency/build environment.
 - **Emulator:** **not run**.
-- **Visual verification:** **not run**; visible graphic assets are unchanged.
+- **Visual verification:** **offline mockup only**; in-ROM appearance not verified.
 - **CI:** not claimed.
 - **External proprietary assets:** none newly imported.
 - **Project tracking:** intentionally not rewritten, to avoid colliding with parallel Master Control updates.
 
 ## Acceptance gate
 
-This task is **not complete** until the assembled title visibly shows Pokémon Lightning Yellow and Pikachu, and build/emulator checks pass. Code cry replacement alone does not meet the user-facing acceptance requirements.
+The visual graphics and source registration now target Lightning Yellow/Pikachu; **acceptance remains pending** until an actual ROM boots with correct assembled title art and passes interactive checks. Never mistake offline PNG review for ROM validation.
