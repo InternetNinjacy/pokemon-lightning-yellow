@@ -44,17 +44,17 @@ static uint32_t landInfo(void){
  unsigned header=CALL(GetCurrentMapWildMonHeaderId);CHECK(header!=65535);
  uint32_t info=core->busRead32(core,SYM_gWildMonHeaders+header*ABI_WILD_HEADER_SIZE+ABI_WILD_HEADER_LAND);CHECK(info>=0x08000000);return info;
 }
-static void waitAction(void){
+static void waitActionBudget(unsigned frameBudget){
  unsigned i;
- for(i=0;i<2400;i++){
+ for(i=0;i<frameBudget;i++){
   if(controller(0)==SYM_HandleInputChooseAction)break;
   frames(1,(i%12)<3?1:0);
-  if(getenv("LIGHTNING_SWARM_ONLY")&&(i==800||i==1600||i==2399))fprintf(stderr,"SWARM WAIT progress=%u script=%08x main=%08x pause=%u comm0=%u comm1=%u status1=%08x/%08x/%08x/%08x hp=%u/%u/%u/%u\n",i,core->busRead32(core,SYM_gBattlescriptCurrInstr),core->busRead32(core,SYM_gBattleMainFunc),core->busRead16(core,SYM_gPauseCounterBattle),core->busRead8(core,SYM_gBattleCommunication),core->busRead8(core,SYM_gBattleCommunication+1),core->busRead32(core,bmon(0)+ABI_BMON_STATUS1),core->busRead32(core,bmon(1)+ABI_BMON_STATUS1),core->busRead32(core,bmon(2)+ABI_BMON_STATUS1),core->busRead32(core,bmon(3)+ABI_BMON_STATUS1),core->busRead16(core,bmon(0)+ABI_BMON_HP),core->busRead16(core,bmon(1)+ABI_BMON_HP),core->busRead16(core,bmon(2)+ABI_BMON_HP),core->busRead16(core,bmon(3)+ABI_BMON_HP));
  }
- if(i==2400)fprintf(stderr,"Script=%08x exec=%08x move=%u\n",core->busRead32(core,SYM_gBattlescriptCurrInstr),core->busRead32(core,SYM_gBattleControllerExecFlags),core->busRead16(core,SYM_gCurrentMove));
- if(i==2400)fprintf(stderr,"Battle action timeout cb=%08x battleflags=%08x ctrl=%08x/%08x/%08x/%08x battlers=%u outcome=%u\n",core->busRead32(core,SYM_gMain+ABI_MAIN_CB2),core->busRead32(core,SYM_gBattleTypeFlags),controller(0),controller(1),controller(2),controller(3),core->busRead8(core,SYM_gBattlersCount),core->busRead8(core,SYM_gBattleOutcome));
- CHECK(i<2400);frames(3,0);
+ if(i==frameBudget)fprintf(stderr,"Script=%08x exec=%08x move=%u\n",core->busRead32(core,SYM_gBattlescriptCurrInstr),core->busRead32(core,SYM_gBattleControllerExecFlags),core->busRead16(core,SYM_gCurrentMove));
+ if(i==frameBudget)fprintf(stderr,"Battle action timeout cb=%08x battleflags=%08x ctrl=%08x/%08x/%08x/%08x battlers=%u outcome=%u\n",core->busRead32(core,SYM_gMain+ABI_MAIN_CB2),core->busRead32(core,SYM_gBattleTypeFlags),controller(0),controller(1),controller(2),controller(3),core->busRead8(core,SYM_gBattlersCount),core->busRead8(core,SYM_gBattleOutcome));
+ CHECK(i<frameBudget);frames(3,0);
 }
+static void waitAction(void){waitActionBudget(2400);}
 
 static void press(unsigned key){frames(3,key);frames(3,0);}
 static void waitController(unsigned b,unsigned function){
