@@ -2,6 +2,7 @@
 static void swarmCloudTests(void){
  const unsigned moves[]={MOVE_SWARM_CLOUD};
  for(unsigned two=0;two<2;two++){
+  fprintf(stderr,"SWARM DIAGNOSTIC begin two=%u\n",two);
   effectBattleFixture(two,moves[0]);
   damageStats();
   core->busWrite8(core,bmon(0)+ABI_BMON_LEVEL,50);
@@ -25,7 +26,9 @@ static void swarmCloudTests(void){
   for(unsigned trial=0;trial<100&&combinations!=15;trial++){
    CHECK(core->loadState(core,snapshot));
    core->busWrite32(core,SYM_gRngValue,0x2ABA0000+trial*7919);
+   fprintf(stderr,"SWARM DIAGNOSTIC two=%u trial=%u RNG=%08x before selection\n",two,trial,0x2ABA0000+trial*7919);
    chooseMove(0,0,1);if(two)chooseMove(2,0,1);
+   fprintf(stderr,"SWARM DIAGNOSTIC two=%u trial=%u before waitAction script=%08x\n",two,trial,core->busRead32(core,SYM_gBattlescriptCurrInstr));
    waitAction();
    unsigned dealt=1000-core->busRead16(core,bmon(1)+ABI_BMON_HP);
    unsigned confused=!!(core->busRead32(core,bmon(1)+ABI_BMON_STATUS2)&STATUS2_CONFUSION);
