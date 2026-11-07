@@ -3998,6 +3998,7 @@ static void HandleAction_UseMove(void)
     gCritMultiplier = 1;
     gBattleScripting.dmgMultiplier = 1;
     gBattleStruct->atkCancellerTracker = 0;
+    gBattleStruct->thunderWaveActive = FALSE;
     gMoveResultFlags = 0;
     gMultiHitCounter = 0;
     gBattleCommunication[MISS_TYPE] = 0;
@@ -4060,7 +4061,8 @@ static void HandleAction_UseMove(void)
           && (gBattleMoves[gCurrentMove].power != 0
              || gBattleMoves[gCurrentMove].target != MOVE_TARGET_USER)
           && gBattleMons[*(gBattleStruct->moveTarget + gBattlerAttacker)].ability != ABILITY_LIGHTNING_ROD
-          && gBattleMoves[gCurrentMove].type == TYPE_ELECTRIC)
+          && gBattleMoves[gCurrentMove].type == TYPE_ELECTRIC
+          && gCurrentMove != MOVE_THUNDER_WAVE)
     {
         side = GetBattlerSide(gBattlerAttacker);
         for (gActiveBattler = 0; gActiveBattler < gBattlersCount; gActiveBattler++)

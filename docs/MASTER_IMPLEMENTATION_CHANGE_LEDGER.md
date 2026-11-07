@@ -1507,6 +1507,19 @@ Full open-queue triage, explicit unresolved dependencies and effort weighting: `
 - Native PP test isolated the sleeping opponent after detecting an incorrect
   zero-PP turn-spending assumption; no production fix or weakened baseline.
 
+## 2026-11-07 — BTL-005-M2I Thunder Wave implementation / focused acceptance
+
+- Approved all other active recipients incl ally, no self, using existing target
+  enum/script/art. Private4-byte runtime context occupies old BattleStruct padding;
+  target ABI512 bytes/0x1E4 preserved. Original actor restored across reflection,
+  native cancellation tracker retained once, scoped Lightning Rod exclusion and
+  noPP cancellation prevent redirect/free follow-up targets.
+- Build/25hosts/3checkers and focused565 native assertions PASS. All4 actor roles,
+  independent guards/evasion, Magic Coat, native Pressure/lastPP, Sleep Talk and
+  actual faster Spite exhaustion tested. No new IDs/learners/save/link fields.
+- Magic Coat trace completed2423 frames (move1720/remainder703). New bounded move
+  phase plus unchanged generic remainder guard; no old assertion/game timing/ARM
+  guard disabled. Full/clean/CI pending; no effort/merge credit yet.
 ## 2026-11-07 — GYM-009 draft68 validation repair (not acceptance)
 
 - Existing draft68 proposed both Agatha parties and the scoped native ability
@@ -1544,6 +1557,14 @@ PR #68 merged to main at f3a113a44d89acacc0b584f61c4dead868ef2607; exact-head Ac
   are already merged; old draft/blocker claims are historical, not live state.
 -72 current-main c33c8650 has26 host suites/3 checkers/clean PASS; old755945 was
   pre-integration. Fresh30-group/full CI pending; no new completion credit.
+## 2026-11-07 — BTL-005-M2I current-main integration
+
+- Main advanced to4bb2ece0 through parallel merged68/71/75 and tracking77 while
+  original72 validation ran. Preserve all eight E4 parties,500 ordinary Trainer
+  arrays/conversions, projection audits, new native registrations and capture QA.
+- Integrated rather than replacing current main. Reconciled exact Agatha/TW/
+  ordinary-Trainer source projections; old digests unchanged. Prior755945 full
+  result applies to old72 base only. New combined host/build/full/CI required.
 ## 2026-11-07 — INT-001-CI2 expanded full-suite wall-clock allowance
 
 - Preserve failed42374018809: native step hit20-minute wall cap near final League
@@ -1553,3 +1574,13 @@ PR #68 merged to main at f3a113a44d89acacc0b584f61c4dead868ef2607; exact-head Ac
   per-scene frame guards, builds/repro/full groups/upstream checks unchanged.
 - Correct static registration report26/30 and protect ordinary Trainer group.
   No gameplay/save/baseline/security change. New exact-head CI pending.
+
+## 2026-11-07 — BTL-005-M2I integrated final local acceptance / CI timeout
+
+- Integrated current-main c33c8650:26 host suites/3 checkers, full30-group native
+  815608 assertions and byte-identical clean build PASS, including all500 ordinary
+  parties/1219 mons and all8 actual League battles.
+- Same-head42374015278 SUCCESS;42374018809 hit20min CI wall cap near final League
+  battles, no failed game assertion. Do not hide the failed duplicate. Integrate
+  maintenance78 bounded30min native/60min job with every execution guard retained,
+  then require new exact-head CI. No game/test changes from validated c33c8650.

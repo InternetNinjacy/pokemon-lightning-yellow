@@ -106,7 +106,10 @@ static void spreadStatusTests(void){
  CHECK(core->loadState(core,bootState));
 }
 #include "ghost_reworks.c"
+#include "thunder_wave.c"
 static void originalEffectTests(void){
+ if(getenv("LIGHTNING_THUNDER_WAVE_ONLY")){thunderWaveTests();return;}
+ thunderWaveTests();
  if(getenv("LIGHTNING_GHOST_REWORKS_ONLY")){ghostReworkTests();return;}
  ghostReworkTests();
  spreadStatusTests();
