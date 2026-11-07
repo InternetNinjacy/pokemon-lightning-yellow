@@ -35,8 +35,8 @@ These values must not be copied into production without screenshot review and ex
 
 1. Prototype is committed but cannot be compiled or executed from this chat runtime (no network checkout, ARM toolchain or mGBA library). No native success is claimed.
 2. Sprite palette colors can overlap field UI; verify all UI and battle transitions visually. No claims of complete exclusion yet.
-3. Persistent Mansion fog on four floors is **not implemented** by this prototype.
-4. Deterministic map/time/weather capture and actual 240x160 mGBA PNG files are **not implemented or produced**. The manifest validator is only evidence integrity tooling.
+3. Prototype map headers now request original Pokémon Tower-style `WEATHER_FOG_HORIZONTAL` on Mansion 1F/2F/3F/B1F instead of `WEATHER_SHADE`. Rendered result and weather compatibility are not yet validated.
+4. Native map/time/weather capture and PNG conversion have now been coded in `tests/emulator/lighting_preview.c` and `tests/emulator/build_lighting_review.py`, plus the dedicated capture workflow. **Actual screenshots have not yet been confirmed or delivered.**
 5. Need owner selection of exact candidate screenshots before production palette coding.
 6. Keep this PR **draft and unmerged** until compilation, capture and owner review.
 
@@ -44,6 +44,6 @@ These values must not be copied into production without screenshot review and ex
 
 1. Build baseline and variant A from this feature branch with `scripts/prepare-baseline.sh` and `make -j2`; run `python3 tests/emulator/run.py` after the normal host checks. Do not commit ROM/ELF artifacts.
 2. Compile variant B by changing just the config number to 1, then rebuild.
-3. Extend the existing mGBA runner to drive real map state, RTC times and weather, then capture genuine 240x160 framebuffer data. The menu-only `LIGHTNING_MENU_CAPTURE` fixture is insufficient.
-4. Produce PNG frames and a manifest containing map, time, weather, position, variant, Git SHA and file SHA-256. Validate via `python3 tests/emulator/validate_lighting_evidence.py <manifest.json>`.
+3. Set `LIGHTNING_LIGHTING_CAPTURE_DIR=/tmp/lightning-lighting`, then run `python3 tests/emulator/run.py`. The new native capture mode uses the existing real map warp/RTC/weather fixture and exports actual 240x160 framebuffer PPMs. The dedicated GitHub Actions preview workflow builds candidates A/B and attempts to upload PNG-only screenshot artifacts.
+4. Convert losslessly with `python3 tests/emulator/build_lighting_review.py /tmp/lightning-lighting --variant A --sheet`, then validate via `python3 tests/emulator/validate_lighting_evidence.py /tmp/lightning-lighting/manifest.json`. Never claim capture provenance from PNG alone; retain the native mGBA log.
 5. Present side-by-side genuine captures for Pallet/Route 1 before deciding production colors.
