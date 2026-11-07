@@ -56,6 +56,7 @@ jobs:
           python3 tests/run_chirp_tests.py
           python3 tests/run_swarm_cloud_tests.py
           python3 tests/run_bellow_rock_tests.py
+          python3 tests/run_scorching_sands_tests.py
           python3 tests/run_move_foundation_tests.py
           python3 tests/run_move_ui_tests.py
           python3 tests/run_original_move_data_tests.py
