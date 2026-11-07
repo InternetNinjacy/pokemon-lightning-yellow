@@ -1,4 +1,5 @@
 #include "global.h"
+#include "lighting_preview_config.h"
 #include "gflib.h"
 #include "util.h"
 #include "decompress.h"
