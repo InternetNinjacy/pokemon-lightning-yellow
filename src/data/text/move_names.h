@@ -366,4 +366,7 @@ const u8 gMoveNames[MOVES_COUNT][MOVE_NAME_LENGTH + 1] = {
     [MOVE_CHITIN_CRUSH] = _("CHITIN CRUSH"),
     [MOVE_CHIRP] = _("CHIRP"),
     [MOVE_SWARM_CLOUD] = _("SWARM CLOUD"),
+    [MOVE_BELLOW] = _("BELLOW"),
+    [MOVE_POWER_GEM] = _("POWER GEM"),
+    [MOVE_STONE_EDGE] = _("STONE EDGE"),
 };
