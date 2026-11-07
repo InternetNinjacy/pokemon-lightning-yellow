@@ -1458,3 +1458,13 @@ PR #68 merged to main at f3a113a44d89acacc0b584f61c4dead868ef2607; exact-head Ac
 - Historical GYM-008 effort changed from 0 earned/52 remaining to 52 earned/0 remaining; denominator712 unchanged; overall 330/382 to 382/330 =53.65%; GYM area 48/74 to 100/22=81.97% (rounded82.0%). GYM-009 16/0 and all other task point values remain untouched. No duplicate implementation credit.
 - Optional experiential QA remains distinctly under existing INT-005 stabilization/release acceptance: approach every or representative overworld Trainer, exercise all 130 live VS Seeker rematch routes, Shane double/refusal, victory flags, story states and existing-art Ranger appearance. These checks are NOT claimed executed or necessary to regard GYM-008 source implementation as merged. No additional points added; retain INT-005 original 0/8 status.
 - This reconciliation is documentation-only on a review branch. The older PR65 335/377 planning calculation and Agatha hold predate PR68/73/71 and MUST NOT be merged unchanged.
+
+## 2026-11-07 — INT-001-CI2 expanded full-suite wall-clock allowance
+
+- Preserve failed42374018809: native step hit20-minute wall cap near final League
+  fights; no game assertion failure. Same-head42374015278 and local integrated
+  30-group815608 PASS. New26-host/30-group workload exceeds original23/~534k.
+- Native step20→30min, job45→60min, bounded. All assertions,4M instruction and
+  per-scene frame guards, builds/repro/full groups/upstream checks unchanged.
+- Correct static registration report26/30 and protect ordinary Trainer group.
+  No gameplay/save/baseline/security change. New exact-head CI pending.
