@@ -97,12 +97,74 @@ void FillPalette(u16 value, u16 offset, u16 size)
     CpuFill16(value, &gPlttBufferFaded[offset], size);
 }
 
+
+#ifdef LIGHTING_PREVIEW
+// Candidate values are exploratory, NOT owner-approved final palettes.
+// Channel multipliers are RGB5 fixed-point with denominator 32.
+// All originals, including weather gamma/fades, remain in engine buffers.
+extern u8 LightingPreviewGetAppearance(void);
+extern bool8 LightingPreviewIsActive(void);
+static EWRAM_DATA u16 sLightingPreviewPalette[PLTT_BUFFER_SIZE] = {0};
+
+// Index: 0=Day, 1=Dawn, 2=Dusk, 3=Night, 4=Covered Day,
+// 5=Covered Night. See docs/LIGHTING_PREVIEW_CANDIDATES.md.
+#ifndef LIGHTING_PREVIEW_VARIANT
+#define LIGHTING_PREVIEW_VARIANT 0
+#endif
+#if LIGHTING_PREVIEW_VARIANT == 1
+static const u8 sLightingPreviewMult[6][3] = {
+    {32,32,32}, {32,31,30}, {32,29,26}, {16,19,27},
+    {25,29,25}, {12,17,22},
+};
+#else
+static const u8 sLightingPreviewMult[6][3] = {
+    {32,32,32}, {32,31,30}, {32,29,26}, {19,21,27},
+    {25,29,25}, {14,19,23},
+};
+#endif
+
+static void LightingPreviewComposePalette(void)
+{
+    u16 i;
+    u8 mode = LightingPreviewGetAppearance();
+    if (mode >= ARRAY_COUNT(sLightingPreviewMult))
+        mode = 0;
+    for (i = 0; i < PLTT_BUFFER_SIZE; i++)
+    {
+        u16 c = gPlttBufferFaded[i];
+        // BG palette slots 13-15 are reserved for UI overlays in this preview.
+        // Color zero of each 16-color palette is left unchanged.
+        if ((i >= 13 * 16 && i < 16 * 16) || (i % 16 == 0))
+        {
+            sLightingPreviewPalette[i] = c;
+        }
+        else
+        {
+            u16 red = ((c & 31) * sLightingPreviewMult[mode][0] + 16) / 32;
+            u16 green = (((c >> 5) & 31) * sLightingPreviewMult[mode][1] + 16) / 32;
+            u16 blue = (((c >> 10) & 31) * sLightingPreviewMult[mode][2] + 16) / 32;
+            sLightingPreviewPalette[i] = (c & 0x8000) | (blue << 10) | (green << 5) | red;
+        }
+    }
+}
+#endif
+
 void TransferPlttBuffer(void)
 {
     if (!gPaletteFade.bufferTransferDisabled)
     {
         void *src = gPlttBufferFaded;
         void *dest = (void *)PLTT;
+#ifdef LIGHTING_PREVIEW
+        // Preview only: transform the *composited* faded buffer into a separate
+        // scratch buffer, preserving weather gamma, fog and fade source state.
+        // Never modify either engine palette buffer or apply a second tint.
+        if (LightingPreviewIsActive())
+        {
+            LightingPreviewComposePalette();
+            src = sLightingPreviewPalette;
+        }
+#endif
         DmaCopy16(3, src, dest, PLTT_SIZE);
         sPlttBufferTransferPending = FALSE;
         if (gPaletteFade.mode == HARDWARE_FADE && gPaletteFade.active)
