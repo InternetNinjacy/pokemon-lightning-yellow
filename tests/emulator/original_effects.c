@@ -109,13 +109,16 @@ static void spreadStatusTests(void){
 #include "thunder_wave.c"
 #include "new_fire_moves.c"
 #include "new_ghost_moves.c"
+#include "new_skitter_slash.c"
 static void originalEffectTests(void){
+ if(getenv("LIGHTNING_SKITTER_SLASH_ONLY")){skitterSlashTests();return;}
  if(getenv("LIGHTNING_NEW_GHOST_MOVES_ONLY")){newGhostMoveTests();return;}
  if(getenv("LIGHTNING_NEW_FIRE_MOVES_ONLY")){newFireMoveTests();return;}
  if(getenv("LIGHTNING_THUNDER_WAVE_ONLY")){thunderWaveTests();return;}
  if(getenv("LIGHTNING_GHOST_REWORKS_ONLY")){ghostReworkTests();return;}
  newGhostMoveTests();
  newFireMoveTests();
+ skitterSlashTests();
  thunderWaveTests();
  ghostReworkTests();
  spreadStatusTests();
