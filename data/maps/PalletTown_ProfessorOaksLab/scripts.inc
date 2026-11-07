@@ -567,7 +567,8 @@ PalletTown_ProfessorOaksLab_EventScript_RivalChoseStarter::
 PalletTown_ProfessorOaksLab_EventScript_ProfOak::
 	lock
 	faceplayer
-	goto_if_set FLAG_OAK_NEST_BALLS_PENDING, PalletTown_ProfessorOaksLab_EventScript_RetryNestBalls
+	goto_if_set FLAG_OAK_EEVEE_PENDING, PalletTown_ProfessorOaksLab_EventScript_RetryParcelGifts
+	goto_if_set FLAG_OAK_NEST_BALLS_PENDING, PalletTown_ProfessorOaksLab_EventScript_RetryParcelGifts
 	goto_if_set SHOWED_OAK_COMPLETE_DEX, PalletTown_ProfessorOaksLab_EventScript_OakJustShownCompleteDex
 	goto_if_eq VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 9, PalletTown_ProfessorOaksLab_EventScript_RatePokedex
 	goto_if_eq VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 8, PalletTown_ProfessorOaksLab_EventScript_MonsAroundWorldWait
@@ -657,6 +658,9 @@ PalletTown_ProfessorOaksLab_EventScript_ReceiveDexScene::
 	setflag FLAG_SYS_POKEDEX_GET
 	special SetUnlockedPokedexFlags
 	setvar VAR_MAP_SCENE_POKEMON_CENTER_TEALA, 1
+	msgbox PalletTown_ProfessorOaksLab_Text_OakGiftEevee
+	setflag FLAG_OAK_EEVEE_PENDING
+	call PalletTown_ProfessorOaksLab_EventScript_TryGiveEevee
 	msgbox PalletTown_ProfessorOaksLab_Text_OakCatchMonsForDataTakeThese
 	setflag FLAG_OAK_NEST_BALLS_PENDING
 	call PalletTown_ProfessorOaksLab_EventScript_TryGiveNestBalls
@@ -1292,10 +1296,43 @@ PalletTown_ProfessorOaksLab_EventScript_RightSignAlt::
 	releaseall
 	end
 
-PalletTown_ProfessorOaksLab_EventScript_RetryNestBalls::
-    call PalletTown_ProfessorOaksLab_EventScript_TryGiveNestBalls
-    release
-    end
+@ Oak's parcel gifts have independent persistent pending flags.
+PalletTown_ProfessorOaksLab_EventScript_RetryParcelGifts::
+	call_if_set FLAG_OAK_EEVEE_PENDING, PalletTown_ProfessorOaksLab_EventScript_TryGiveEevee
+	call_if_set FLAG_OAK_NEST_BALLS_PENDING, PalletTown_ProfessorOaksLab_EventScript_TryGiveNestBalls
+	release
+	end
+
+PalletTown_ProfessorOaksLab_EventScript_TryGiveEevee::
+	goto_if_set FLAG_GOT_OAK_PARCEL_EEVEE, PalletTown_ProfessorOaksLab_EventScript_EeveeAlreadyReceived
+	specialvar VAR_RESULT, ScriptGiveSueEevee
+	goto_if_eq VAR_RESULT, 0, PalletTown_ProfessorOaksLab_EventScript_EeveeDelivered
+	goto_if_eq VAR_RESULT, 1, PalletTown_ProfessorOaksLab_EventScript_EeveeStored
+	msgbox PalletTown_ProfessorOaksLab_Text_EeveeNoRoom
+	return
+
+PalletTown_ProfessorOaksLab_EventScript_EeveeDelivered::
+	setflag FLAG_GOT_OAK_PARCEL_EEVEE
+	clearflag FLAG_OAK_EEVEE_PENDING
+	playfanfare MUS_LEVEL_UP
+	message PalletTown_ProfessorOaksLab_Text_ReceivedSueEevee
+	waitmessage
+	waitfanfare
+	return
+
+PalletTown_ProfessorOaksLab_EventScript_EeveeStored::
+	setflag FLAG_GOT_OAK_PARCEL_EEVEE
+	clearflag FLAG_OAK_EEVEE_PENDING
+	playfanfare MUS_LEVEL_UP
+	message PalletTown_ProfessorOaksLab_Text_ReceivedSueEevee
+	waitmessage
+	waitfanfare
+	call EventScript_TransferredToPC
+	return
+
+PalletTown_ProfessorOaksLab_EventScript_EeveeAlreadyReceived::
+	clearflag FLAG_OAK_EEVEE_PENDING
+	return
 
 PalletTown_ProfessorOaksLab_EventScript_TryGiveNestBalls::
     additem ITEM_NEST_BALL, 5
