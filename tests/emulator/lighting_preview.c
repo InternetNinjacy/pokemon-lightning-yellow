@@ -58,12 +58,9 @@ static void lightingPreviewCaptures(void) {
     lightingCapture("mansion_2f",MAP_POKEMON_MANSION_2F,12,0,8,8,native,1);
     lightingCapture("mansion_3f",MAP_POKEMON_MANSION_3F,12,0,8,8,native,1);
     lightingCapture("mansion_b1f",MAP_POKEMON_MANSION_B1F,12,0,8,8,native,1);
-    // One Island's Center has story-scene gating; use the same settled scene
-    // variables as the already accepted dynamic-weather native test fixture.
-    CALL(VarSet,VAR_MAP_SCENE_ONE_ISLAND_HARBOR,3);
-    CALL(VarSet,VAR_MAP_SCENE_ONE_ISLAND_POKEMON_CENTER_1F,7);
-    lightingCapture("interior_day",MAP_ONE_ISLAND_POKEMON_CENTER_1F,12,0,7,8,native,1);
-    lightingCapture("interior_night",MAP_ONE_ISLAND_POKEMON_CENTER_1F,21,0,7,8,native,0);
+    // Use an indoor map with existing native test coverage.
+    lightingCapture("interior_day",MAP_PEWTER_CITY_MUSEUM_1F,12,0,11,5,native,1);
+    lightingCapture("interior_night",MAP_PEWTER_CITY_MUSEUM_1F,21,0,11,5,native,0);
     lightingCapture("cave_day",MAP_ROCK_TUNNEL_1F,12,0,8,8,native,1);
     lightingCapture("cave_night",MAP_ROCK_TUNNEL_1F,21,0,8,8,native,0);
     lightingCapture("weather_rain_day",MAP_ONE_ISLAND,12,0,6,10,WEATHER_RAIN,1);
