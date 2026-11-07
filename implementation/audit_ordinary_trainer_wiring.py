@@ -172,6 +172,8 @@ def main():
     map_object_trainer_references = []
     ambiguous_map_label_paths = []
     direct_battle_map_objects = 0
+    trainer_object_first_opcode_warnings = []
+    trainer_object_source_format_warnings = []
     unresolved_direct_battle_map_objects = []
     map_count = 0
     for path in MAP_DIR.glob("*/map.json"):
@@ -205,6 +207,24 @@ def main():
                 battle_ids = sorted({trainer_id for block in eligible
                                      for trainer_id in block["trainer_ids"]})
                 direct_map_trainer_ids.update(battle_ids)
+                for block in eligible:
+                    opcode = block["first_opcode"]
+                    if not (opcode or "").startswith("trainerbattle_"):
+                        trainer_object_first_opcode_warnings.append({
+                            "map": path.parent.name, "script": name,
+                            "opcode": opcode, "ids": block["trainer_ids"]})
+                    if opcode not in ("trainerbattle_single", "trainerbattle_double"):
+                        continue  # Paired / scripted formats require separate engine checks.
+                    for trainer_id in block["trainer_ids"]:
+                        entry = source_defs.get(trainer_id, "")
+                        if not entry:
+                            continue
+                        source_double = bool(re.search(r"\\.doubleBattle\\s*=\\s*TRUE", entry))
+                        if source_double != (opcode == "trainerbattle_double"):
+                            trainer_object_source_format_warnings.append({
+                                "map": path.parent.name, "script": name,
+                                "trainer_id": trainer_id,
+                                "source_double": source_double, "script_opcode": opcode})
                 map_object_trainer_references.append({
                     "map": path.parent.name, "script": name,
                     "ids": battle_ids, "x": event.get("x"), "y": event.get("y")})
@@ -252,6 +272,17 @@ def main():
                 "variant": variant, "base": base,
                 "vs_map": link["map"], "object_maps": actual_maps})
 
+    # Literal references outside the conventional map/script corpus can explain
+    # some archival IDs, but are not proof of a reachable encounter.
+    other_engine_references = {}
+    for folder in (ROOT / "src", ROOT / "data"):
+        for source_file in folder.rglob("*"):
+            if not source_file.is_file() or source_file.suffix not in (".c", ".s"):
+                continue
+            content = source_file.read_text(encoding="utf-8", errors="replace")
+            for trainer_id in set(RE_TRAINER.findall(content)) & set(missing_original):
+                other_engine_references.setdefault(trainer_id, []).append(rel(source_file))
+
     report = {
         "ledger_records": len(rows),
         "duplicate_ledger_ids": duplicate_ledger_ids,
@@ -274,6 +305,9 @@ def main():
         "map_json_files_scanned": map_count,
         "trainer_map_objects": trainer_map_objects,
         "objects_with_direct_battle_command": direct_battle_map_objects,
+        "trainer_object_first_opcode_warnings": trainer_object_first_opcode_warnings,
+        "trainer_object_source_format_warnings": trainer_object_source_format_warnings,
+        "unreferenced_original_ids_with_other_engine_references": other_engine_references,
         "objects_whose_label_only_resolves_in_other_map": ambiguous_map_label_paths,
         "ordinary_original_ids_with_direct_map_object": len(set(original) & direct_map_trainer_ids),
         "ordinary_original_ids_without_direct_map_object": sorted(set(original) - direct_map_trainer_ids),
