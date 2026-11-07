@@ -3,8 +3,8 @@
   "updated": "2026-11-07",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "PR71 merged ordinary Trainer GYM-008: 510 IDs, 500 non-dummy parties/1219 Pokémon with successful source/build/native tests; 52/52 earned. Optional manual encounter/rematch/progression QA separately under INT-005, not unfinished Trainer source feature. PR68/73 completed GYM-009 retained. Other task status checkpoints remain dated; PR65 older calculations superseded.",
-  "main_sha": "18d245b5e35780b1300482aa536fa15f140a1d28",
+  "current_focus": "Integrated Thunder Wave72 after verified identical-tree merge, preserving parallel68/71/75/77 and all50 permanent tasks.398 earned/314 remaining provisional of712. Tooling79 all27 hosts PASS; no56 new moves or final lighting/follower assets claimed.",
+  "main_sha": "e2dabe83a2e607198186cbdf5c38d027811c7672",
   "drive_sync": {
     "status": "GYM-009 completion synced to Project Progress and Elite Four Register on 2026-11-07; other Drive synchronization not audited",
     "folder": "https://drive.google.com/drive/folders/1N_n0Ke48jBbdhUWSZWzwR6rpPFqpDUpl"
@@ -538,8 +538,8 @@
       "title": "410-move redesign",
       "aliases": [],
       "effort": {
-        "earned": 19,
-        "remaining": 61,
+        "earned": 32,
+        "remaining": 48,
         "unit": "provisional relative planning point",
         "confidence": "low",
         "history": [
@@ -584,6 +584,42 @@
             "earned": 19,
             "remaining": 61,
             "reason": "Roar exact source,21 host suites/3 checkers, focused197 and latest remote full534242 PASS, clean reproducibility; PR56 merged. Two points within existing80; no56-new-move credit."
+          },
+          {
+            "date": "2026-11-06",
+            "earned": 21,
+            "remaining": 59,
+            "reason": "Merged weather61 Ground-only Sandstorm and Rain Zap Cannon,24-host/28-group combined753726 and exact-head CI PASS. Two points within80; Roar previous19 retained. M2E63 pending receives no credit."
+          },
+          {
+            "date": "2026-11-06",
+            "earned": 23,
+            "remaining": 57,
+            "reason": "M2E PR63 merged767bb39c: two exact approved effects,25 hosts/3 checkers, full29-group754034 native, clean reproducibility and both exact-head Actions runs PASS. Two points within existing80; all56 new moves still outstanding."
+          },
+          {
+            "date": "2026-11-07",
+            "earned": 24,
+            "remaining": 56,
+            "reason": "Merged66 global Electric paralysis immunity after full754679,25hosts/3checkers/clean and both combined-head CI PASS. One point within80; no new56-move credit or duplicate CI credit."
+          },
+          {
+            "date": "2026-11-07",
+            "earned": 26,
+            "remaining": 54,
+            "reason": "Merged67 three approved spread-status policies, full755166/25hosts/3checkers/clean and both Actions PASS; two points within existing80. No56-new-move credit."
+          },
+          {
+            "date": "2026-11-07",
+            "earned": 29,
+            "remaining": 51,
+            "reason": "Merged69 Spite/Grudge after local755386/25hosts/clean and both CI PASS. Three points within existing80; preserve parallel52 ordinary-Trainer/16 EliteFour credits and no new56-move credit."
+          },
+          {
+            "date": "2026-11-07",
+            "earned": 32,
+            "remaining": 48,
+            "reason": "Merged72/e2dabe83 exact tested tree c52b7d8a: focused565/full815608,26hosts/3checkers/clean and both current-head Actions SUCCESS. Three points within80, all prior progress retained;56 new moves still absent."
           }
         ]
       },
@@ -592,18 +628,18 @@
       ],
       "status": {
         "design": "Owner approved; November5 Curse/animation/GenIV edge choices resolved; PhaseTwo distribution remains separate",
-        "implementation": "Merged foundations/UI/eight original data/PP+Leech Life preserved; approved damaging Roar implemented on separate branch, full regression/CI pending",
-        "automated": "Roar21 host suites/3 checkers PASS; clean reproducible9cc3d287; no new56 move IDs",
-        "emulator": "Latest remote full534242 PASS, focused197 PASS; exact-head push CI42215345347 SUCCESS",
-        "pull_request": "PR#43 merged; historical branch evidence retained",
-        "merge": "Roar PR56 merged844b450e on autonomous authority, parent implementations preserved"
+        "implementation": "All21 approved original redesign/type policies and global Electric immunity merged, including Thunder Wave72. All56 new moves remain absent; tooling79 is independently under validation.",
+        "automated": "26 host suites/3 checkers/clean PASS for72;27 host suites PASS for tooling79. No full410 runtime acceptance.",
+        "emulator": "Thunder Wave565 focused and integrated30-group815608 native assertions PASS, actual original effect/AI/UI plus all eight League battles and ordinary Trainer construction; not full campaign/link/hardware.",
+        "pull_request": "Merged40–43/56/61;63 pending",
+        "merge": "Main4bb2ece0 includes63/64/66/67/68/69/71/75;72 pending current-main acceptance."
       },
-      "branch": "feature/approved-roar-redesign",
-      "commit": "42410891edbeb51d9b9a3ad4ba69eacdc81b7fa7",
+      "branch": "feature/thunder-wave-spread",
+      "commit": "e2dabe83a2e607198186cbdf5c38d027811c7672",
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Finish M2E full/clean/native CI; six remaining original policies/global Electric paralysis rule, then56 approved new moves. No invented distributions/placeholders.",
-      "checkpoint": "Merged PP/foundations/UI/original-data chain; production4f7f71d7, final tested head85032f28, remote full534051 PASS; no56 new move IDs enabled",
+      "next_action": "Complete tooling79 checks/integration, then complete355 Flame Fang90/100/15 flinch20,356 Flashfire40/100/30 priority+1,357 BlazeRush100/100/10 quarter recoil with approved existing-art composites and native acceptance. No invented distribution or placeholders.",
+      "checkpoint": "Merged72 completes original-policy source scope; all26 hosts/3checkers/clean/full30-group815608 and both premerge CI PASS; main tree verified identical. First56 new moves remain pending.",
       "source_exports": [
         "03_MOVES/Pokémon Lightning Yellow — Approved Move Change Ledger — Source Verbatim v0.1.txt",
         "03_MOVES/Pokémon Lightning Yellow — Complete TM & Move Register — v1 (2026-10-29).txt",
@@ -612,7 +648,7 @@
         "03_MOVES/Pokémon Lightning Yellow — Pre-Codex Move & Animation Handoff — Draft v0.1.txt"
       ],
       "source_status": "available locally; checksums verified; precise approvals/read scope in reconciliation report",
-      "coverage_gap": "Eleven original redesign policies,56 new moves/namespace/effects/animations/AI/TM integration, real peer link/hardware, historic Quest Log-party snapshots and exhaustive drain interactions remain. No auto-refill on rollback; parent Silver Wind downgrade precautions retained.",
+      "coverage_gap": "56 new moves and their effects/animations/AI/TM integration, exhaustive original-effect/animation combinations, real peer link/hardware and historical Quest Log-party snapshots remain. No new-move runtime or full campaign certification.",
       "reconciliation_pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/37",
       "commit_role": "Latest tested production source; later branch-tip changes may record evidence only",
       "initial_implementation_commit": "7738e796",
@@ -628,8 +664,8 @@
         "BTL-005-M2A": "PR42 complete within eight-data-row scope, full513952/focus100 and both review/push CI SUCCESS at51df94f7; merged in owner-authorized Nov6 consolidation",
         "BTL-005-M2B": "PR43 merged through consolidated main; final review/push full534051 PASS,20 hosts/3 checkers, final focus20105 and clean identical8162003f…9822c"
       },
-      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/56",
-      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/42215345347",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/72",
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/42377971185",
       "ui_ref": {
         "branch": "feature/move-engine-long-name-ui",
         "source_commit": "715e1dff255a6aacaa22498ca5fb62063a26d3dd",
@@ -658,9 +694,14 @@
         "verified_main": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c"
       },
       "subtasks": {
-        "BTL-005-M2C": "Roar implemented; focused197/21 hosts/3 checkers/rebuild PASS; full/CI pending",
-        "BTL-005-M2D": "Ground Sandstorm/type-only residual immunity and guaranteed Rain Zap Cannon implemented;22 hosts/3checkers/focused5389 PASS; full/clean/CI pending",
-        "BTL-005-M2E": "Pin Missile single55/30% poison and Dragon Rage user-level damage implemented;25 hosts/3checkers/focused314 PASS, full/clean/CI pending"
+        "BTL-005-M2C": "Merged PR56/844b450e: focused197/full534242/21hosts/clean, Actions42215345347 SUCCESS",
+        "BTL-005-M2D": "Merged61/15dacb95; focused5389/24-host combined28-group753726, exact-head CI42222085136 SUCCESS",
+        "BTL-005-M2E": "Merged PR63/767bb39c: focused314/full754034/25hosts/3checkers/clean and exact-head CI PASS",
+        "BTL-005-M2F": "Merged66/d3a462e5, full754679/25hosts/clean and both CI42315238692/42315244202 PASS",
+        "BTL-005-M2G": "Merged67/4526a137; full755166,25hosts/clean, Actions42315257252/42315264496 SUCCESS",
+        "BTL-005-M2H": "Merged69/3d06ebc3, full755386/25hosts/clean and both Actions42316557601/42316568537 SUCCESS",
+        "BTL-005-M2I": "Merged72/e2dabe83: full30-group815608/focused565/26hosts/clean PASS; both Actions42377967379/42377971185 SUCCESS at26f52aba. Merge-only9d103ae0 has identical verified tree c52b7d8a; resulting main identical. Postmerge main CI pending.",
+        "BTL-005-M3A": "PR79/2dd80155 tooling prerequisite: strict contiguous approved source catalog, five fixture methods including nine rejection cases, all27 host runners PASS. No production IDs or runtime/new-move credit; CI pending."
       }
     },
     {
@@ -2680,8 +2721,8 @@
       "title": "Complete approved gift revisions and Rocket stolen-Pokémon return quest content",
       "aliases": [],
       "effort": {
-        "earned": 0,
-        "remaining": 10,
+        "earned": 3,
+        "remaining": 7,
         "unit": "provisional relative planning point",
         "confidence": "low",
         "history": [
@@ -2690,25 +2731,31 @@
             "earned": 0,
             "remaining": 10,
             "reason": "Frozen scope now explicitly inventories previously approved work missing from older dashboard. Incremental estimate avoids old-task scope where stated."
+          },
+          {
+            "date": "2026-11-06",
+            "earned": 3,
+            "remaining": 7,
+            "reason": "Three approved issue38 gifts merged59 after native probability/scene/save and full integrated CI PASS; Rocket rescue/return pipeline remains7 provisional points, no duplicate shared infrastructure credit."
           }
         ]
       },
       "dependencies": [],
       "status": {
         "design": "owner-approved or delegated design recorded in Drive",
-        "implementation": "Issue38 Aron50%/Magby50% eggs and TangelaLv25 TANGO implemented; Rocket quest remains separate",
-        "automated": "Existing20 hosts/3 checkers and new gift audit PASS; build PASS; clean/full CI pending",
-        "emulator": "Focused80112 (each5030/10000 actual Shiny) and Museum1306 PASS; full latest suite pending",
-        "pull_request": "PR59 three-gift scope open; Rocket separate",
-        "merge": "not merged gameplay"
+        "implementation": "Aron50%/Magby50% eggs and TangelaLv25TANGO merged; Rocket rescue/return scope still unimplemented",
+        "automated": "All24 combined hosts/3 checkers PASS; clean/repro and CI PASS",
+        "emulator": "Latest gift focus80123 and Museum1306 PASS; each5030/10000 stored trueShiny; combined753726",
+        "pull_request": "PR59 merged; Rocket separate",
+        "merge": "Merged708f197a three-gift scope only"
       },
       "branch": "feature/approved-gift-revisions",
       "commit": "06b57e71",
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/59",
-      "ci_url": null,
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/42220799681",
       "blocker": "New approved museum Aron 50% Shiny, Water Labyrinth Magby 50% Shiny, Celadon Tangela TANGO, hideout Ralts/Snorunt return and Rocket executive scripts not in merged code; baseline WRL-004 handles common items/events infrastructure, not these content contracts.",
       "design_authority": "Lightning Yellow canonical Drive specialist registers and November 5 change intake",
-      "next_action": "Complete clean/full native/CI, merge verified gift scope; then separate Rocket quest implementation. No invented starter levels/events.",
+      "next_action": "Implement fully approved Rocket45/44 scope with foreign stable identities, safe party/PC transactions and exact reward safeguards; do not alter Giovanni.",
       "checkpoint": "2026-11-06 fixed-scope intake; no gameplay implementation credit"
     }
   ],
