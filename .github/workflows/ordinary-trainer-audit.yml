@@ -1,0 +1,39 @@
+name: Ordinary Trainer source wiring audit
+on:
+  push:
+    branches:
+      - docs/delegated-ordinary-trainer-completion-20261106
+  pull_request:
+    paths:
+      - 'implementation/audit_ordinary_trainer_wiring.py'
+      - 'implementation/ordinary-trainers-delegated-audit-draft.md'
+      - 'implementation/ordinary-trainer-rematch-candidates.md'
+      - 'data/maps/**'
+      - 'data/scripts/**'
+      - 'src/data/trainers.h'
+      - 'src/data/trainer_parties.h'
+      - 'src/vs_seeker.c'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    name: Read-only ordinary Trainer source check
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Compile Python audit script for syntax validation
+        run: python3 -m py_compile implementation/audit_ordinary_trainer_wiring.py
+      - name: Run exhaustive read-only source audit
+        run: |
+          python3 implementation/audit_ordinary_trainer_wiring.py --json | tee ordinary-trainer-wiring-audit.json
+          python3 -m json.tool ordinary-trainer-wiring-audit.json >/dev/null
+      - name: Upload report (JSON only, never ROMs)
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: ordinary-trainer-wiring-audit
+          path: ordinary-trainer-wiring-audit.json
+          retention-days: 14
