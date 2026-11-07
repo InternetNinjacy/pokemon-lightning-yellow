@@ -367,7 +367,9 @@
 
 #define MOVE_SKITTER_SLASH 361
 
-#define MOVES_COUNT 362
+#define MOVE_VENOM_WEB 362
+
+#define MOVES_COUNT 363
 
 // Used for checks for moves affected by Disable, Mimic, etc.
 #define MOVE_UNAVAILABLE 0xFFFF
