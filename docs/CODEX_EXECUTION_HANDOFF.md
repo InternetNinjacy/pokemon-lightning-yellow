@@ -100,4 +100,9 @@ Drive writing unavailable;40 authority exports ARE available under
 /workspace/attachments/lightning-authority-2026-11-03. Git ledger/dashboard is
 canonical; Drive synchronization pending. Keep prior completed progress/history.
 
-Child82 feature/approved-ghost-move-batch at56ab370e has358–360 complete,29hosts/331focus/clean01e548bd…19ed7 PASS; full /tmp/ghost-batch-full-native.log and CI pending. It must inherit final80 AI translation and frozen manifests before merge.
+Child82 feature/approved-ghost-move-batch inherited80/a4681848 throughc1550cbd,
+main81 through63be5662.29hosts/Ghost331/Fire517 native focus/build PASS on current
+parent. Pre-parent-AI56ab full816414 and clean01e548bd…19ed7 PASS are historical;
+current full/clean/CI pending. No new progress credit;81 adds only BTL006+1, so
+current399/313 of712 (56.04%). Source current maincd9650c5. Next after80 acceptance:
+finish82, then361+ exact Bug designs (read register/art, never assume official Bug Bite).

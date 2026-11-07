@@ -629,8 +629,8 @@
       "status": {
         "design": "Owner approved; November5 Curse/animation/GenIV edge choices resolved; PhaseTwo distribution remains separate",
         "implementation": "Main retains21 original policies. First six/56 additions source-complete on unmerged80/82; remaining50 absent. Parent80 must pass and merge before82.",
-        "automated": "Ghost29 host runners/3checkers/build and clean01e548bd…19ed7 PASS before parent AI metadata sync; current revalidation pending. Fire latest28 hosts/517focus PASS; AI-head CI pending.",
-        "emulator": "Ghost initial331 focus PASS: native Single/Double drain/Ooze/sleep/conditional sleep power/no drain/no wake/AI/Normal immunity. Full prior candidate/CI in progress; repeat after parent AI metadata sync. No exhaustive pixel/campaign/link/hardware claims.",
+        "automated": "Current-parent29 hosts/3 checkers/build PASS; current clean/CI pending. Preserve final parent Fire AI fix and all immutable old hashes.",
+        "emulator": "Current parent Ghost331 and Fire517 focused native PASS. Pre-parent-AI Ghost full816414 PASS is historical; current full/CI pending. Not exhaustive visual/campaign/link/hardware qualification.",
         "pull_request": "Merged40–43/56/61;63 pending",
         "merge": "Main4bb2ece0 includes63/64/66/67/68/69/71/75;72 pending current-main acceptance."
       },
@@ -703,7 +703,7 @@
         "BTL-005-M2I": "Merged72/e2dabe83: full30-group815608/focused565/26hosts/clean PASS; both Actions42377967379/42377971185 SUCCESS at26f52aba. Merge-only9d103ae0 has identical verified tree c52b7d8a; resulting main identical. Postmerge main CI pending.",
         "BTL-005-M3A": "Merged79/a22aabd4, both Actions42379743632/42379748023 modified+upstream SUCCESS;27 hosts PASS. Documentation-only main integration2d6e9ac2 preserves identical tested code/spec inputs. No gameplay IDs/effort credit.",
         "BTL-005-M3B": "PR80 source1951766a: complete IDs355..357,28 hosts/3checkers/strict chance routine/517 native focus/clean a90ef372…b730 PASS. Final full/CI pending. One-slot animation return hazard fixed with existing inline Ember commands; original moves retain legacy inclusive chance. No merge/effort credit yet. Both1951766a CI/full runs failed new flash fixture because RAM snapshots retain older higher-counter flash; negative control proves legitimate loader behavior. Isolated test flash/restored previous flash; focused487 PASS; corrected full/CI pending. No production save change. Corrected-flash9ab273ce full816089 and both42382668646/42382673049 PASS. Final premerge review preserves native priority finisher by translating Flashfire to QUICK_ATTACK (same Hit script). Updated focused517 incl scores106/106/104 and28hosts PASS; new CI pending.",
-        "BTL-005-M3C": "PR82/56ab370e initial Ghost source,29hosts/331focus/clean PASS. Inherited parent80/a4681848 priority AI correction in c1550cbd, exact Ghost reverse manifest before state updated to that parent; original frozen hashes retained. Latest validation pending; no merge/effort credit."
+        "BTL-005-M3C": "PR82/56ab370e initial Ghost source,29hosts/331focus/clean PASS. Inherited parent80/a4681848 priority AI correction in c1550cbd, exact Ghost reverse manifest before state updated to that parent; original frozen hashes retained. Latest validation pending; no merge/effort credit. Current-parent29 hosts/Ghost331/Fire517/build PASS; historical pre-AI full816414 PASS. Current clean/full/CI pending."
       }
     },
     {

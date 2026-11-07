@@ -1694,3 +1694,14 @@ PR #68 merged to main at f3a113a44d89acacc0b584f61c4dead868ef2607; exact-head Ac
 - Formal decision: implementation and feature-specific acceptance complete; no known defect. Historical BTL-006 effort 15 earned/1 remaining →16 earned/0 remaining, no denominator change. Overall 398/314 →399/313 of712 =56.04%; BTL area 81/55 →82/54 of136=60.29%. Other task point records untouched.
 - Exhaustive manual 13-ball visuals, complete retailer story routes, true two-peer/hardware, interrupted-power and quest-log checks NOT performed. These remain shared INT-004/INT-005 stabilization and release qualification, not an unresolved BTL-006 implementation blocker; no duplicated points. Do not claim full game or hardware certification.
 - Docs-only reviewable reconciliation; original immutable history retained. Poké Ball Design Register and Project Index had already received specialist implementation/acceptance evidence; final Master Control closure confirmation appended separately in Drive.
+
+## 2026-11-07 — BTL-005-M3C final-parent synchronization / main81 closure
+
+- Inherited80/a4681848 priority finisher translation, kept exact frozen Ghost
+  before-state keyed to that parent; no old digest changed. Current29 hosts/3
+  checkers/build and Ghost331 +Fire517 focused native PASS.
+- Pre-parent-AI56ab full816414/clean01e548bd…19ed7 PASS are historical; current
+  full/clean/CI pending. No merge or new-feature effort credit.
+- Main81 mergedcd9650c5 after both checks42383554875 SUCCESS. Three docs only:
+  BTL006+1 closure and INT005 outstanding release-QA notes, unchanged INT005 effort.
+  Preserve all50 IDs/712 denominator/old earned progress;399 earned/313 remaining.

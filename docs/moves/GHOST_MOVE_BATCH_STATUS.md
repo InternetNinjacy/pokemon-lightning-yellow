@@ -50,3 +50,13 @@ Current static EWRAM usage261064/262144 bytes leaves1080 bytes: future state mus
 be budgeted carefully; this slice allocates none. Revert the feature commit(s)
 with a pre-Ghost save or remove IDs358+ before loading an older build. Older peer
 builds with different move tables are not compatible/certified.
+
+## Parent synchronization
+
+Inherited final Fire priority translationa4681848 (QUICK_ATTACK dispatches the
+same Hit script and retains finisher bonus) throughc1550cbd. Updated exact Ghost
+manifest before-state to that parent; original hashes unchanged. Current-parent
+29 hosts/3 checkers/build, Ghost331 and Fire517 focused native assertions PASS.
+Earlier56ab candidate full816414 and clean01e548bd…19ed7 PASS predate this metadata
+change; they are not final-current full acceptance. Current clean/full/CI pending.
+Main81 closure/INT005 notes preserved:399 earned/313 remaining/712, no new credit.
