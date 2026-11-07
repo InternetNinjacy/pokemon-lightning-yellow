@@ -19,7 +19,8 @@ for key,id,category,power,effect,chance in expected:
 assert sum(r['id'] is not None and r['id'] <= 360 for r in rows)==360 and len(rows)==410
 scripts=Path('data/battle_scripts_1.s').read_text()
 table=scripts.split('gBattleScriptsForMoveEffects::',1)[1].split('\nBattleScript_EffectHit::',1)[0]
-assert len(re.findall(r'\.4byte BattleScript_',table))==215
+assert len(re.findall(r'\.4byte BattleScript_',table))==216
+assert re.findall(r'\.4byte (BattleScript_\w+)',table)[215]=='BattleScript_EffectSwarmCloud'
 assert re.findall(r'\.4byte (BattleScript_\w+)',table)[214]=='BattleScript_EffectSleepHit'
 assert 'BattleScript_EffectSleepHit::\n\tsetmoveeffect MOVE_EFFECT_SLEEP\n\tgoto BattleScript_EffectHit\n' in scripts
 asm=Path('data/battle_anim_scripts.s').read_text()
