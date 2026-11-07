@@ -55,6 +55,24 @@ def check():
     assert "void ScriptNameSocketStarterPikachu(void)" in GIFTS
     assert '_("SOCKET")' in GIFTS
     assert "SPECIES_PIKACHU" in GIFTS
+    assert "FLAG_OAK_EEVEE_PENDING" in SCRIPT
+    assert "FLAG_GOT_OAK_PARCEL_EEVEE" in SCRIPT
+    assert "setflag FLAG_OAK_EEVEE_PENDING" in block("PalletTown_ProfessorOaksLab_EventScript_ReceiveDexScene")
+    assert "call PalletTown_ProfessorOaksLab_EventScript_TryGiveEevee" in block("PalletTown_ProfessorOaksLab_EventScript_ReceiveDexScene")
+    gift = block("PalletTown_ProfessorOaksLab_EventScript_TryGiveEevee")
+    assert "specialvar VAR_RESULT, ScriptGiveSueEevee" in gift
+    assert "PalletTown_ProfessorOaksLab_EventScript_EeveeDelivered" in gift
+    assert "PalletTown_ProfessorOaksLab_EventScript_EeveeStored" in gift
+    assert "PalletTown_ProfessorOaksLab_Text_EeveeNoRoom" in gift
+    for label in ("EeveeDelivered", "EeveeStored"):
+        success = block("PalletTown_ProfessorOaksLab_EventScript_" + label)
+        assert "setflag FLAG_GOT_OAK_PARCEL_EEVEE" in success
+        assert "clearflag FLAG_OAK_EEVEE_PENDING" in success
+    assert "call_if_set FLAG_OAK_EEVEE_PENDING" in block("PalletTown_ProfessorOaksLab_EventScript_RetryParcelGifts")
+    assert "call_if_set FLAG_OAK_NEST_BALLS_PENDING" in block("PalletTown_ProfessorOaksLab_EventScript_RetryParcelGifts")
+    assert 'CreateMon(mon, SPECIES_EEVEE, 5, USE_RANDOM_IVS, FALSE, 0, OT_ID_PLAYER_ID, 0)' in GIFTS
+    assert '_("SUE")' in GIFTS
+    assert "def_special ScriptGiveSueEevee" in SPECIALS
     assert "FLAG_OAK_NEST_BALLS_PENDING" in SCRIPT
     assert "additem ITEM_NEST_BALL, 5" in SCRIPT
     assert "clearflag FLAG_OAK_NEST_BALLS_PENDING" in SCRIPT
