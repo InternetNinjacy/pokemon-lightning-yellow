@@ -3,6 +3,7 @@ static void swarmCloudTests(void){
  const unsigned moves[]={MOVE_SWARM_CLOUD};
  for(unsigned two=0;two<2;two++){
   effectBattleFixture(two,moves[0]);
+  damageStats();
   core->busWrite8(core,bmon(0)+ABI_BMON_LEVEL,50);
   core->busWrite16(core,bmon(0)+ABI_BMON_ATTACK,1);
   core->busWrite16(core,bmon(0)+ABI_BMON_SPATTACK,200);
@@ -11,7 +12,7 @@ static void swarmCloudTests(void){
   core->busWrite8(core,bmon(1)+ABI_BMON_TYPE1,TYPE_NORMAL);
   core->busWrite8(core,bmon(1)+ABI_BMON_TYPE2,TYPE_NORMAL);
   core->busWrite8(core,bmon(1)+ABI_BMON_ABILITY,ABILITY_BATTLE_ARMOR);
-  damageStats();
+
   unsigned expected=baseDamage(MOVE_SWARM_CLOUD,0,0,0);
   CHECK(expected>60&&expected<95);
   core->busWrite8(core,SYM_gBattleScripting+ABI_SCRIPTING_MULTIPLIER,1);
