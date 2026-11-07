@@ -10558,7 +10558,7 @@
                 "max_level": 5,
                 "species": "SPECIES_TYROGUE"
               }
-                        ]
+            ]
           },
           "water_mons": {
             "encounter_rate": 2,
@@ -23100,7 +23100,7 @@
                 "max_level": 5,
                 "species": "SPECIES_TYROGUE"
               }
-                        ],
+            ],
             "encounter_rate": 21
           },
           "water_mons": {
