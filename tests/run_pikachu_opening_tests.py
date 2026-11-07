@@ -55,6 +55,12 @@ def check():
     assert "void ScriptNameSocketStarterPikachu(void)" in GIFTS
     assert '_("SOCKET")' in GIFTS
     assert "SPECIES_PIKACHU" in GIFTS
+    flags = (ROOT / "include/constants/flags.h").read_text()
+    assert "#define FLAG_OAK_EEVEE_PENDING                   0x31C" in flags
+    assert "#define FLAG_GOT_OAK_PARCEL_EEVEE                0x31D" in flags
+    # Rocket quest reserve 0x316..0x31B must survive intact.
+    for reserved in range(0x316, 0x31C):
+        assert f"FLAG_0x{reserved:03X}" in flags
     assert "FLAG_OAK_EEVEE_PENDING" in SCRIPT
     assert "FLAG_GOT_OAK_PARCEL_EEVEE" in SCRIPT
     assert "setflag FLAG_OAK_EEVEE_PENDING" in block("PalletTown_ProfessorOaksLab_EventScript_ReceiveDexScene")
