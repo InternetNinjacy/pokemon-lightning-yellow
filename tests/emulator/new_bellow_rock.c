@@ -28,7 +28,7 @@ static void bellowRockTests(void){
    hit=1000-core->busRead16(core,bmon(1)+ABI_BMON_HP);
    CHECK(monget(player(0),ABI_DATA_PP1)==pp[m]-1);
    CHECK(core->busRead32(core,bmon(1)+ABI_BMON_STATUS1)==0);
-   CHECK(core->busRead8(core,bmon(1)+ABI_BMON_STAGES+STAT_ATTACK)==6);
+   CHECK(core->busRead8(core,bmon(1)+ABI_BMON_STAGES+STAT_ATK)==6);
    CHECK(core->busRead8(core,bmon(1)+ABI_BMON_STAGES+STAT_SPATK)==6);
    CHECK(core->busRead8(core,bmon(1)+ABI_BMON_STAGES+STAT_DEF)==6);
    CHECK(core->busRead8(core,bmon(1)+ABI_BMON_STAGES+STAT_SPDEF)==6);
