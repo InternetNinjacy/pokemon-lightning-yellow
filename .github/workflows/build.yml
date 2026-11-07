@@ -58,6 +58,7 @@ jobs:
           python3 tests/run_title_screen_tests.py
 
           python3 tests/run_approved_gift_tests.py
+          python3 tests/run_pikachu_opening_tests.py
 
           python3 tests/run_elite_four_tests.py
 
