@@ -162,55 +162,55 @@ Route8_Text_JarenPostBattle::
     .string "all just because of this.$"
 
 Route8_Text_PaigeMissing::
-    .string "TEAM ROCKET stole my RALTS!\\n"
+    .string "TEAM ROCKET stole my RALTS!\n"
     .string "I hope it's safe somewhere.$"
 
 Route8_Text_PaigeOffer::
-    .string "Is that my RALTS?\\n"
+    .string "Is that my RALTS?\n"
     .string "Will you bring it home?$"
 
 Route8_Text_PaigeDecline::
     .string "Please take good care of it.$"
 
 Route8_Text_PaigeAbsent::
-    .string "I can't find my RALTS here.\\n"
+    .string "I can't find my RALTS here.\n"
     .string "Please come back with it.$"
 
 Route8_Text_PaigeBagFull::
-    .string "Your BAG is too full for\\n"
+    .string "Your BAG is too full for\n"
     .string "my thank-you gift.$"
 
 Route8_Text_PaigeOnlyMon::
-    .string "You can't travel without a\\n"
+    .string "You can't travel without a\n"
     .string "POKéMON. Bring a friend!$"
 
 Route8_Text_PaigeReunited::
-    .string "My RALTS! Thank you!\\n"
+    .string "My RALTS! Thank you!\n"
     .string "Please accept this RARE CANDY!$"
 
 Route8_Text_JuliaMissing::
-    .string "TEAM ROCKET stole my SNORUNT!\\n"
+    .string "TEAM ROCKET stole my SNORUNT!\n"
     .string "I hope it's safe somewhere.$"
 
 Route8_Text_JuliaOffer::
-    .string "Is that my SNORUNT?\\n"
+    .string "Is that my SNORUNT?\n"
     .string "Will you bring it home?$"
 
 Route8_Text_JuliaDecline::
     .string "Please take good care of it.$"
 
 Route8_Text_JuliaAbsent::
-    .string "I can't find my SNORUNT here.\\n"
+    .string "I can't find my SNORUNT here.\n"
     .string "Please come back with it.$"
 
 Route8_Text_JuliaBagFull::
-    .string "Your BAG is too full for\\n"
+    .string "Your BAG is too full for\n"
     .string "my thank-you gift.$"
 
 Route8_Text_JuliaOnlyMon::
-    .string "You can't travel without a\\n"
+    .string "You can't travel without a\n"
     .string "POKéMON. Bring a friend!$"
 
 Route8_Text_JuliaReunited::
-    .string "My SNORUNT! Thank you!\\n"
+    .string "My SNORUNT! Thank you!\n"
     .string "Please accept this NEVERMELTICE!$"
