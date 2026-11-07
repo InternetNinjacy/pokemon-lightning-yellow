@@ -1327,6 +1327,7 @@ PalletTown_ProfessorOaksLab_EventScript_EeveeStored::
 	message PalletTown_ProfessorOaksLab_Text_ReceivedSueEevee
 	waitmessage
 	waitfanfare
+	setvar VAR_TEMP_1, SPECIES_EEVEE
 	call EventScript_TransferredToPC
 	return
 
