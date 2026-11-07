@@ -11523,3 +11523,7 @@ Move_SCORCHING_SANDS:
 	call EmberFireHit
 	waitforvisualfinish
 	end
+
+@ Owner-approved Earthquake artwork reuse for Earth Power #371; no actual weather/field change.
+Move_EARTH_POWER:
+	goto Move_EARTHQUAKE
