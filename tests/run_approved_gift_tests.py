@@ -17,6 +17,13 @@ for path,v in m['files'].items():
  if path == 'data/specials.inc':
   assert current.count(rocket_registration)==1,'Unreviewed Rocket special registration'
   current=current.replace(rocket_registration,'',1)
+  # WRL-001's approved Oak hooks are outside the protected issue38 gift delta.
+  oak_registration = (
+   "\tdef_special ScriptNameSocketStarterPikachu\n"
+   "\tdef_special ScriptGiveSueEevee\n"
+  )
+  assert current.count(oak_registration)==1,'Unreviewed Oak special registration'
+  current=current.replace(oak_registration,'',1)
  assert hashlib.sha256(current.encode()).hexdigest()==v['after_sha256'],path
  assert hashlib.sha256(prior_gift_source(path,current).encode()).hexdigest()==v['before_sha256'],path
 source=Path('src/daycare.c').read_text()

@@ -215,7 +215,7 @@ PalletTown_ProfessorOaksLab_ChooseStarterScene::
 	msgbox PalletTown_ProfessorOaksLab_Text_RivalFedUpWithWaiting
 	closemessage
 	delay 60
-	msgbox PalletTown_ProfessorOaksLab_Text_OakThreeMonsChooseOne
+	msgbox PalletTown_ProfessorOaksLab_Text_OakPikachuIntroduction
 	closemessage
 	delay 30
 	applymovement LOCALID_OAKS_LAB_RIVAL, PalletTown_ProfessorOaksLab_Movement_RivalReact
@@ -567,7 +567,8 @@ PalletTown_ProfessorOaksLab_EventScript_RivalChoseStarter::
 PalletTown_ProfessorOaksLab_EventScript_ProfOak::
 	lock
 	faceplayer
-	goto_if_set FLAG_OAK_NEST_BALLS_PENDING, PalletTown_ProfessorOaksLab_EventScript_RetryNestBalls
+	goto_if_set FLAG_OAK_EEVEE_PENDING, PalletTown_ProfessorOaksLab_EventScript_RetryParcelGifts
+	goto_if_set FLAG_OAK_NEST_BALLS_PENDING, PalletTown_ProfessorOaksLab_EventScript_RetryParcelGifts
 	goto_if_set SHOWED_OAK_COMPLETE_DEX, PalletTown_ProfessorOaksLab_EventScript_OakJustShownCompleteDex
 	goto_if_eq VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 9, PalletTown_ProfessorOaksLab_EventScript_RatePokedex
 	goto_if_eq VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 8, PalletTown_ProfessorOaksLab_EventScript_MonsAroundWorldWait
@@ -577,7 +578,7 @@ PalletTown_ProfessorOaksLab_EventScript_ProfOak::
 	goto_if_ge VAR_MAP_SCENE_VIRIDIAN_CITY_MART, 1, PalletTown_ProfessorOaksLab_EventScript_ReceiveDexScene
 	goto_if_eq VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 4, PalletTown_ProfessorOaksLab_EventScript_OakBattleMonForItToGrow
 	goto_if_eq VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 3, PalletTown_ProfessorOaksLab_EventScript_OakCanReachNextTownWithMon
-	msgbox PalletTown_ProfessorOaksLab_Text_OakWhichOneWillYouChoose
+	msgbox PalletTown_ProfessorOaksLab_Text_OakPikachuWaiting
 	release
 	end
 
@@ -657,6 +658,9 @@ PalletTown_ProfessorOaksLab_EventScript_ReceiveDexScene::
 	setflag FLAG_SYS_POKEDEX_GET
 	special SetUnlockedPokedexFlags
 	setvar VAR_MAP_SCENE_POKEMON_CENTER_TEALA, 1
+	msgbox PalletTown_ProfessorOaksLab_Text_OakGiftEevee
+	setflag FLAG_OAK_EEVEE_PENDING
+	call PalletTown_ProfessorOaksLab_EventScript_TryGiveEevee
 	msgbox PalletTown_ProfessorOaksLab_Text_OakCatchMonsForDataTakeThese
 	setflag FLAG_OAK_NEST_BALLS_PENDING
 	call PalletTown_ProfessorOaksLab_EventScript_TryGiveNestBalls
@@ -1071,14 +1075,7 @@ PalletTown_ProfessorOaksLab_Movement_RivalExit::
 PalletTown_ProfessorOaksLab_EventScript_BulbasaurBall::
 	lock
 	faceplayer
-	setvar PLAYER_STARTER_NUM, 0
-	setvar PLAYER_STARTER_SPECIES, SPECIES_BULBASAUR
-	setvar RIVAL_STARTER_SPECIES, SPECIES_CHARMANDER
-	setvar RIVAL_STARTER_ID, LOCALID_CHARMANDER_BALL
-	goto_if_ge VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 3, PalletTown_ProfessorOaksLab_EventScript_LastPokeBall
-	goto_if_eq VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 2, PalletTown_ProfessorOaksLab_EventScript_ConfirmStarterChoice
-	msgbox PalletTown_ProfessorOaksLab_Text_ThoseArePokeBalls
-	release
+	goto PalletTown_ProfessorOaksLab_EventScript_ReservedPokeBall
 	end
 
 PalletTown_ProfessorOaksLab_EventScript_ConfirmStarterChoice::
@@ -1086,13 +1083,13 @@ PalletTown_ProfessorOaksLab_EventScript_ConfirmStarterChoice::
 	waitmovement 0
 	showmonpic PLAYER_STARTER_SPECIES, 10, 3
 	textcolor NPC_TEXT_COLOR_MALE
-	goto_if_eq PLAYER_STARTER_NUM, 0, PalletTown_ProfessorOaksLab_EventScript_ConfirmBulbasaur
+	goto_if_eq PLAYER_STARTER_NUM, 0, PalletTown_ProfessorOaksLab_EventScript_ConfirmPikachu
 	goto_if_eq PLAYER_STARTER_NUM, 1, PalletTown_ProfessorOaksLab_EventScript_ConfirmSquirtle
 	goto_if_eq PLAYER_STARTER_NUM, 2, PalletTown_ProfessorOaksLab_EventScript_ConfirmCharmander
 	end
 
-PalletTown_ProfessorOaksLab_EventScript_ConfirmBulbasaur::
-	msgbox PalletTown_ProfessorOaksLab_Text_OakChoosingBulbasaur, MSGBOX_YESNO
+PalletTown_ProfessorOaksLab_EventScript_ConfirmPikachu::
+	msgbox PalletTown_ProfessorOaksLab_Text_OakChoosingPikachu, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, YES, PalletTown_ProfessorOaksLab_EventScript_ChoseStarter
 	goto_if_eq VAR_RESULT, NO, PalletTown_ProfessorOaksLab_EventScript_DeclinedStarter
 	end
@@ -1128,9 +1125,8 @@ PalletTown_ProfessorOaksLab_EventScript_ChoseStarter::
 	waitmessage
 	playfanfare MUS_OBTAIN_KEY_ITEM
 	waitfanfare
-	msgbox Text_GiveNicknameToThisMon, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, YES, EventScript_GiveNicknameToStarter
-	goto_if_eq VAR_RESULT, NO, PalletTown_ProfessorOaksLab_EventScript_RivalPicksStarter
+	special ScriptNameSocketStarterPikachu
+	goto PalletTown_ProfessorOaksLab_EventScript_RivalPicksStarter
 	end
 
 EventScript_GiveNicknameToStarter::
@@ -1214,10 +1210,10 @@ PalletTown_ProfessorOaksLab_Movement_RivalWalksToBulbasaur::
 PalletTown_ProfessorOaksLab_EventScript_SquirtleBall::
 	lock
 	faceplayer
-	setvar PLAYER_STARTER_NUM, 1
-	setvar PLAYER_STARTER_SPECIES, SPECIES_SQUIRTLE
-	setvar RIVAL_STARTER_SPECIES, SPECIES_BULBASAUR
-	setvar RIVAL_STARTER_ID, LOCALID_BULBASAUR_BALL
+	setvar PLAYER_STARTER_NUM, 0
+	setvar PLAYER_STARTER_SPECIES, SPECIES_PIKACHU
+	setvar RIVAL_STARTER_SPECIES, SPECIES_DRATINI
+	setvar RIVAL_STARTER_ID, LOCALID_CHARMANDER_BALL
 	goto_if_ge VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 3, PalletTown_ProfessorOaksLab_EventScript_LastPokeBall
 	goto_if_eq VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 2, PalletTown_ProfessorOaksLab_EventScript_ConfirmStarterChoice
 	msgbox PalletTown_ProfessorOaksLab_Text_ThoseArePokeBalls
@@ -1227,13 +1223,11 @@ PalletTown_ProfessorOaksLab_EventScript_SquirtleBall::
 PalletTown_ProfessorOaksLab_EventScript_CharmanderBall::
 	lock
 	faceplayer
-	setvar PLAYER_STARTER_NUM, 2
-	setvar PLAYER_STARTER_SPECIES, SPECIES_CHARMANDER
-	setvar RIVAL_STARTER_SPECIES, SPECIES_SQUIRTLE
-	setvar RIVAL_STARTER_ID, LOCALID_SQUIRTLE_BALL
-	goto_if_ge VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 3, PalletTown_ProfessorOaksLab_EventScript_LastPokeBall
-	goto_if_eq VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 2, PalletTown_ProfessorOaksLab_EventScript_ConfirmStarterChoice
-	msgbox PalletTown_ProfessorOaksLab_Text_ThoseArePokeBalls
+	goto PalletTown_ProfessorOaksLab_EventScript_ReservedPokeBall
+	end
+
+PalletTown_ProfessorOaksLab_EventScript_ReservedPokeBall::
+	msgbox PalletTown_ProfessorOaksLab_Text_ReservedPokeBall
 	release
 	end
 
@@ -1302,10 +1296,44 @@ PalletTown_ProfessorOaksLab_EventScript_RightSignAlt::
 	releaseall
 	end
 
-PalletTown_ProfessorOaksLab_EventScript_RetryNestBalls::
-    call PalletTown_ProfessorOaksLab_EventScript_TryGiveNestBalls
-    release
-    end
+@ Oak's parcel gifts have independent persistent pending flags.
+PalletTown_ProfessorOaksLab_EventScript_RetryParcelGifts::
+	call_if_set FLAG_OAK_EEVEE_PENDING, PalletTown_ProfessorOaksLab_EventScript_TryGiveEevee
+	call_if_set FLAG_OAK_NEST_BALLS_PENDING, PalletTown_ProfessorOaksLab_EventScript_TryGiveNestBalls
+	release
+	end
+
+PalletTown_ProfessorOaksLab_EventScript_TryGiveEevee::
+	goto_if_set FLAG_GOT_OAK_PARCEL_EEVEE, PalletTown_ProfessorOaksLab_EventScript_EeveeAlreadyReceived
+	specialvar VAR_RESULT, ScriptGiveSueEevee
+	goto_if_eq VAR_RESULT, 0, PalletTown_ProfessorOaksLab_EventScript_EeveeDelivered
+	goto_if_eq VAR_RESULT, 1, PalletTown_ProfessorOaksLab_EventScript_EeveeStored
+	msgbox PalletTown_ProfessorOaksLab_Text_EeveeNoRoom
+	return
+
+PalletTown_ProfessorOaksLab_EventScript_EeveeDelivered::
+	setflag FLAG_GOT_OAK_PARCEL_EEVEE
+	clearflag FLAG_OAK_EEVEE_PENDING
+	playfanfare MUS_LEVEL_UP
+	message PalletTown_ProfessorOaksLab_Text_ReceivedSueEevee
+	waitmessage
+	waitfanfare
+	return
+
+PalletTown_ProfessorOaksLab_EventScript_EeveeStored::
+	setflag FLAG_GOT_OAK_PARCEL_EEVEE
+	clearflag FLAG_OAK_EEVEE_PENDING
+	playfanfare MUS_LEVEL_UP
+	message PalletTown_ProfessorOaksLab_Text_ReceivedSueEevee
+	waitmessage
+	waitfanfare
+	setvar VAR_TEMP_1, SPECIES_EEVEE
+	call EventScript_TransferredToPC
+	return
+
+PalletTown_ProfessorOaksLab_EventScript_EeveeAlreadyReceived::
+	clearflag FLAG_OAK_EEVEE_PENDING
+	return
 
 PalletTown_ProfessorOaksLab_EventScript_TryGiveNestBalls::
     additem ITEM_NEST_BALL, 5

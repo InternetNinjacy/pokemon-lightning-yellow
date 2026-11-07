@@ -8,9 +8,11 @@ import json
 from approved_blaine_changes import prior_blaine_source
 from approved_museum_changes import prior_museum_source
 from approved_ponyta_changes import prior_ponyta_source
+from approved_opening_changes import prior_opening_source
 
 def prior_ball_source(path):
     text=prior_museum_source(path)
+    text=prior_opening_source(path, text)
     data=json.loads(Path('tests/specifications/approved_ball_delta.json').read_text())
     for hunk in data['hunks'].get(str(path),[]):
         assert text.count(hunk['after'])==1, 'Unreviewed change to approved ball delta: '+str(path)

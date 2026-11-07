@@ -824,8 +824,8 @@
 #define FLAG_0x319               0x319
 #define FLAG_0x31A               0x31A
 #define FLAG_0x31B               0x31B
-#define FLAG_0x31C               0x31C
-#define FLAG_0x31D               0x31D
+#define FLAG_OAK_EEVEE_PENDING                   0x31C
+#define FLAG_GOT_OAK_PARCEL_EEVEE                0x31D
 #define FLAG_0x31E               0x31E
 #define FLAG_0x31F               0x31F
 #define FLAG_0x320               0x320
