@@ -233,7 +233,7 @@ def main():
         "scripted_story_candidate_battle_commands": {
             trainer_id: sorted(references.get(trainer_id, []))
             for trainer_id in scripted_story
-            if re.search(r"\\btrainerbattle_no_intro\\s+" + re.escape(trainer_id) + r"\\b", all_script_text)},
+            if re.search(r"\btrainerbattle_no_intro\s+" + re.escape(trainer_id) + r"\b", all_script_text)},
         "source_trainer_definitions_found": len(rows) - len(source_missing),
         "script_files_scanned": len(scripts),
         "map_json_files_scanned": map_count,
