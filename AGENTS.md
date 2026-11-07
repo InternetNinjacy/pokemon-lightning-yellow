@@ -313,3 +313,12 @@ No invented distribution or new art. FireRed animation calls have ONE return slo
 never nest shared Ember calls. Run all28 hosts/3 checkers, full30-group native,
 clean reproducibility; focus LIGHTNING_ORIGINAL_EFFECTS_ONLY=1 with
 LIGHTNING_NEW_FIRE_MOVES_ONLY=1. A source-complete row is not runtime acceptance.
+
+BTL-005-M3C appends358 Soul Drain(PhysicalGhost50/half-drain/contact),359 Weary Touch
+(PhysicalGhost75/22% sleep),360 Dream Haunt(SpecialGhost55/double power vs sleep,
+no drain/no wake). Read docs/moves/GHOST_MOVE_BATCH_STATUS.md. Keep effect214
+sleep-hit fully dispatched, shared damage/AI condition, old IDs/save/wire layouts,
+exact frozen source reversals and existing-art inline composites. No distribution
+or new state/art. Run all29 hosts/3 checkers/full30-group native/clean; focus
+LIGHTNING_ORIGINAL_EFFECTS_ONLY=1 plus LIGHTNING_NEW_GHOST_MOVES_ONLY=1. Merge
+parent80 before child; native playback is not exhaustive visual/hardware approval.
