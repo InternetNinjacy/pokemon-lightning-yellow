@@ -1431,3 +1431,17 @@ imports or unsafe save migrations. Direct Drive synchronization remains pending.
   full/clean/CI pending; no merge/effort credit. See GHOST_REWORK_STATUS.md limits.
 - Native PP test isolated the sleeping opponent after detecting an incorrect
   zero-PP turn-spending assumption; no production fix or weakened baseline.
+
+## 2026-11-07 — BTL-005-M2I Thunder Wave implementation / focused acceptance
+
+- Approved all other active recipients incl ally, no self, using existing target
+  enum/script/art. Private4-byte runtime context occupies old BattleStruct padding;
+  target ABI512 bytes/0x1E4 preserved. Original actor restored across reflection,
+  native cancellation tracker retained once, scoped Lightning Rod exclusion and
+  noPP cancellation prevent redirect/free follow-up targets.
+- Build/25hosts/3checkers and focused565 native assertions PASS. All4 actor roles,
+  independent guards/evasion, Magic Coat, native Pressure/lastPP, Sleep Talk and
+  actual faster Spite exhaustion tested. No new IDs/learners/save/link fields.
+- Magic Coat trace completed2423 frames (move1720/remainder703). New bounded move
+  phase plus unchanged generic remainder guard; no old assertion/game timing/ARM
+  guard disabled. Full/clean/CI pending; no effort/merge credit yet.

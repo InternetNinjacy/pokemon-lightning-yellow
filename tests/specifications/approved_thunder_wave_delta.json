@@ -1,0 +1,81 @@
+{
+  "scope": "Approved Thunder Wave all other active battlers, per-recipient native effects, one move PP, existing global Electric immunity; private BattleStruct padding only",
+  "files": {
+    "include/battle.h": {
+      "before_sha256": "0312e2c7bd06267b12a811a96eac81f9083445d99d0f09233c59c992c618d09d",
+      "after_sha256": "7d096a2ab62dc724f887836995c84041096c97014b5800d95bcfe46ce1e452a3",
+      "hunks": [
+        {
+          "before": "    u8 padding_1E4[0x1C];",
+          "after": "    // Per-move Thunder Wave iteration; runtime-only, within the old padding.\n    u8 thunderWaveUser;\n    u8 thunderWaveTargets;\n    u8 thunderWaveTarget;\n    bool8 thunderWaveActive;\n    u8 padding_1E8[0x18];"
+        }
+      ]
+    },
+    "src/battle_main.c": {
+      "before_sha256": "a7f6805cb74e1b29714594387152e254d5a216ce452db142363f22c63861ff6a",
+      "after_sha256": "a19c102a46e6dd83fba031fd3d806e648462f1bbfb7c460e9de694151f58660e",
+      "hunks": [
+        {
+          "before": "    gBattleStruct->atkCancellerTracker = 0;\n    gMoveResultFlags = 0;",
+          "after": "    gBattleStruct->atkCancellerTracker = 0;\n    gBattleStruct->thunderWaveActive = FALSE;\n    gMoveResultFlags = 0;"
+        },
+        {
+          "before": "          && gBattleMoves[gCurrentMove].type == TYPE_ELECTRIC)",
+          "after": "          && gBattleMoves[gCurrentMove].type == TYPE_ELECTRIC\n          && gCurrentMove != MOVE_THUNDER_WAVE)"
+        }
+      ]
+    },
+    "src/battle_script_commands.c": {
+      "before_sha256": "f4f5f54ef26af680a80cb8e3c11988839d709706bfd2a2d48af5f6d3382003b6",
+      "after_sha256": "080afca78eb7a38379361c6a6cc85c44060339b6b93186950b3dd673fd238e8a",
+      "hunks": [
+        {
+          "before": "static void Cmd_attackcanceler(void)\n{",
+          "after": "// Consume each eligible recipient once, retaining the original actor across\n// per-recipient Magic Coat reflection. No saved/link data is involved.\nstatic u8 NextThunderWaveTarget(void)\n{\n    u8 i;\n\n    for (i = 0; i < gBattlersCount && i < MAX_BATTLERS_COUNT; i++)\n    {\n        if (!(gBattleStruct->thunderWaveTargets & gBitTable[i]))\n            continue;\n        gBattleStruct->thunderWaveTargets &= ~gBitTable[i];\n        if (((gAbsentBattlerFlags | gBattleStruct->absentBattlerFlags) & gBitTable[i])\n            || gBattleMons[i].hp == 0)\n            continue;\n        gBattleStruct->thunderWaveTarget = i;\n        return i;\n    }\n    return MAX_BATTLERS_COUNT;\n}\n\nstatic void Cmd_attackcanceler(void)\n{"
+        },
+        {
+          "before": "    if (AtkCanceller_UnableToUseMove())\n        return;",
+          "after": "    if (gCurrentMove == MOVE_THUNDER_WAVE && !gBattleStruct->thunderWaveActive)\n    {\n        u8 nextTarget;\n\n        gBattleStruct->thunderWaveUser = gBattlerAttacker;\n        gBattleStruct->thunderWaveTargets = ((1 << MAX_BATTLERS_COUNT) - 1) & ~gBitTable[gBattlerAttacker];\n        gBattleStruct->thunderWaveActive = TRUE;\n        nextTarget = NextThunderWaveTarget();\n        if (nextTarget == MAX_BATTLERS_COUNT)\n        {\n            gBattleStruct->thunderWaveActive = FALSE;\n            gBattlescriptCurrInstr = BattleScript_ButItFailedAtkStringPpReduce;\n            return;\n        }\n        gBattlerTarget = nextTarget;\n    }\n    if (AtkCanceller_UnableToUseMove())\n        return;"
+        },
+        {
+          "before": "        case MOVEEND_NEXT_TARGET: // For moves hitting two opposing Pokemon.\n",
+          "after": "        case MOVEEND_NEXT_TARGET: // For moves hitting two opposing Pokemon.\n            if (gBattleStruct->thunderWaveActive)\n            {\n                if (gCurrentMove == MOVE_THUNDER_WAVE)\n                {\n                    u8 nextTarget;\n\n                    gBattlerAttacker = gBattleStruct->thunderWaveUser;\n                    gBattlerTarget = gBattleStruct->thunderWaveTarget;\n                    if (!(gHitMarker & HITMARKER_UNABLE_TO_USE_MOVE)\n                        && (nextTarget = NextThunderWaveTarget()) != MAX_BATTLERS_COUNT)\n                    {\n                        gBattlerTarget = nextTarget;\n                        gHitMarker |= HITMARKER_NO_ATTACKSTRING;\n                        gBattleScripting.moveendState = 0;\n                        // Preserve atkCancellerTracker: inability/obedience is\n                        // checked once, not rerolled for each recipient.\n                        MoveValuesCleanUp();\n                        BattleScriptPush(gBattleScriptsForMoveEffects[gBattleMoves[gCurrentMove].effect]);\n                        gBattlescriptCurrInstr = BattleScript_FlushMessageBox;\n                        return;\n                    }\n                }\n                gBattleStruct->thunderWaveActive = FALSE;\n            }\n"
+        },
+        {
+          "before": "        gBattlescriptCurrInstr = BattleScript_NoPPForMove;\n        gMoveResultFlags |= MOVE_RESULT_MISSED;\n        return;",
+          "after": "        gBattlescriptCurrInstr = BattleScript_NoPPForMove;\n        gMoveResultFlags |= MOVE_RESULT_MISSED;\n        if (gCurrentMove == MOVE_THUNDER_WAVE)\n            gBattleStruct->thunderWaveActive = FALSE;\n        return;"
+        }
+      ]
+    },
+    "src/data/battle_moves.h": {
+      "before_sha256": "85ac064ba3b409a605e342fa8eedb5c300f1e50128dfcb33d38874dc7ec214cd",
+      "after_sha256": "95dc4eeac171b36604d31eaef97658e8e712a4dfe258590fbc559b5dbb9d3564",
+      "hunks": [
+        {
+          "before": "    [MOVE_THUNDER_WAVE] =\n    {\n        .category = MOVE_CATEGORY_STATUS,\n        .effect = EFFECT_PARALYZE,\n        .power = 0,\n        .type = TYPE_ELECTRIC,\n        .accuracy = 100,\n        .pp = 20,\n        .secondaryEffectChance = 0,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = 0,\n        .flags = FLAG_PROTECT_AFFECTED | FLAG_MAGIC_COAT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,\n    },",
+          "after": "    [MOVE_THUNDER_WAVE] =\n    {\n        .category = MOVE_CATEGORY_STATUS,\n        .effect = EFFECT_PARALYZE,\n        .power = 0,\n        .type = TYPE_ELECTRIC,\n        .accuracy = 100,\n        .pp = 20,\n        .secondaryEffectChance = 0,\n        .target = MOVE_TARGET_FOES_AND_ALLY,\n        .priority = 0,\n        .flags = FLAG_PROTECT_AFFECTED | FLAG_MAGIC_COAT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,\n    },"
+        }
+      ]
+    },
+    "src/move_descriptions.c": {
+      "before_sha256": "768d72452dab0a0f3ba092ba37f72f25d1f77b379c97eb1a54e85be9595cefc4",
+      "after_sha256": "af5f809ee2afd709b9748ef741276bf67c384849353ebe8ff5cda019cee8e73a",
+      "hunks": [
+        {
+          "before": "const u8 gMoveDescription_ThunderWave[] = _(\"A weak electric\\nshock that is sure\\nto cause paralysis\\nif it hits.\");",
+          "after": "const u8 gMoveDescription_ThunderWave[] = _(\"A weak jolt that\\nparalyzes all other\\nbattlers, including\\nthe user's ally.\");"
+        }
+      ]
+    },
+    "include/battle_scripts.h": {
+      "before_sha256": "d278685bc0083c2625b6dd6f051a8d8b011c800536c2037c48aee29f0290cda2",
+      "after_sha256": "0a47d9e4c9a20557f209acf52c4f3a468680a186439b90e9a28c7281a1017cd0",
+      "hunks": [
+        {
+          "before": "extern const u8 BattleScript_ButItFailed[];",
+          "after": "extern const u8 BattleScript_ButItFailed[];\nextern const u8 BattleScript_ButItFailedAtkStringPpReduce[];"
+        }
+      ]
+    }
+  }
+}
