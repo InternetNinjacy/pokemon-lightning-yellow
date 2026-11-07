@@ -368,8 +368,8 @@ const u8 gMoveDescription_SKITTER_SLASH[] = _("A quick, slicing\nBug-type attack
 
 const u8 gMoveDescription_VENOM_WEB[] = _("Binds the foe in\na lingering web.\nCannot refresh trap.");
 
-const u8 gMoveDescription_BUG_BITE[] = _("A biting attack\nthat may reduce\nthe foe\x27s SP. ATK.");
-const u8 gMoveDescription_CHITIN_CRUSH[] = _("Crushes the foe.\nMay lower the\nfoe\x27s DEFENSE.");
+const u8 gMoveDescription_BUG_BITE[] = _("A biting attack\nthat may reduce\nthe foe's SP. ATK.");
+const u8 gMoveDescription_CHITIN_CRUSH[] = _("Crushes the foe.\nMay lower the\nfoe's DEFENSE.");
 
 const u8 gMoveDescription_CHIRP[] = _("A sharp insect cry\nthat damages the\nfoe with sound.");
 
