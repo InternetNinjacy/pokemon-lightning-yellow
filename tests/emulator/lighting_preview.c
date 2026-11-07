@@ -15,7 +15,8 @@ static void lightingCapture(const char *name,unsigned map,unsigned hour,unsigned
     if(warp)fossilWarp(MAP_GROUP(map),MAP_NUM(map),x,y);
     // Stay stationary until the preview's 30-frame RTC sampler and field
     // rendering/animation settle; never compose pixels in host code.
-    if(weather!=0xFFFFFFFFU)weatherSetAndWait(weather);
+    if(weather==WEATHER_NONE) { CALL(SetWeather,WEATHER_NONE); frames(180,0); }
+    else if(weather!=0xFFFFFFFFU)weatherSetAndWait(weather);
     frames(180,0);
     screenshot(path);
     printf("LIGHTING_FRAME: %s map=%u clock=%02u:%02u x=%u y=%u weather=%u frames>=180\n",
