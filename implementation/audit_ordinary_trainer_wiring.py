@@ -94,7 +94,8 @@ def main():
                 "id": trainer_id, "source_array_size": actual_size,
                 "draft_size": draft_size})
 
-    original = {k: v for k, v in rows.items() if v["status"] != "DELEGATED_REMATCH_FAMILY_LOCKED"}
+    scripted_story = {k: v for k, v in rows.items() if v["status"] == "DELEGATED_SCRIPTED_STORY_CANDIDATE"}
+    original = {k: v for k, v in rows.items() if v["status"] not in ("DELEGATED_REMATCH_FAMILY_LOCKED", "DELEGATED_SCRIPTED_STORY_CANDIDATE")}
     variants = {k: v for k, v in rows.items() if v["status"] == "DELEGATED_REMATCH_FAMILY_LOCKED"}
 
     # Read both centrally shared and every individual map script. A base ID in
@@ -228,6 +229,11 @@ def main():
         "proposed_party_size_differences": proposed_party_size_differences,
         "original_or_standalone_records": len(original),
         "numeric_rematch_candidates": len(variants),
+        "scripted_story_candidates": len(scripted_story),
+        "scripted_story_candidate_battle_commands": {
+            trainer_id: sorted(references.get(trainer_id, []))
+            for trainer_id in scripted_story
+            if re.search(r"\\btrainerbattle_no_intro\\s+" + re.escape(trainer_id) + r"\\b", all_script_text)},
         "source_trainer_definitions_found": len(rows) - len(source_missing),
         "script_files_scanned": len(scripts),
         "map_json_files_scanned": map_count,
