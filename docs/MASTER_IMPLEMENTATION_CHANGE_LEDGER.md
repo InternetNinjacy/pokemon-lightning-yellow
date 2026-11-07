@@ -1663,3 +1663,17 @@ PR #68 merged to main at f3a113a44d89acacc0b584f61c4dead868ef2607; exact-head Ac
 - Latest focus487 PASS; corrected full/CI pending. Game clean a90ef372…b730 PASS;
   historical pre-boundary/pre-extra-flash full815987 is not latest acceptance.
   Keep PR80 draft; no effort credit or claim that failing source was accepted.
+
+## 2026-11-07 — BTL-005-M3C Ghost slice in progress
+
+- Child of80/9ab273ce:358 Soul Drain PhysicalGhost50 half drain/contact;359 Weary
+  Touch PhysicalGhost75 sleep22%;360 Dream Haunt SpecialGhost55 doubled base power
+  vs sleep, no drain/no wake. Exact approved composites, no new art/distribution.
+- New effect214 dispatch sets native sleep before Hit; common CalculateBaseDamage
+  condition serves real damage and AI. No new runtime/save fields or moved old IDs.
+  Frozen eight-file reverse delta preserves parent and every historical digest;
+  exact TW source-stage argument avoids duplicate normalization, no digest rewrite.
+- All29 hosts/3 checkers/build PASS; focused331 actual native assertions PASS,
+  selected-target Single/Double playback/drain/Ooze/sleep/conditional power/AI/
+  Normal immunity and PP. Full/clean/CI pending, no merge or effort credit.
+  EWRAM remains261064/262144;1080 static bytes free, slice adds no state.

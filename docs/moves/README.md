@@ -1,11 +1,11 @@
 # Move-system reconciliation — BTL-005
 
 Status: **all21 original redesign/type policies integrated through PR72; first
-three appended moves implemented on PR80, acceptance in progress**. Main's
+six appended moves implemented on Fire80/Ghost child branches, acceptance in progress**. Main's
 foundations, long-name UI, saved PP, original data/effects and global Electric
 paralysis rule are retained. The complete410-design inventory is not410-move
-runtime completion. PR80 adds only Flame Fang/Flashfire/Blaze Rush with no new
-artwork or distribution; see [batch evidence](FIRE_MOVE_BATCH_STATUS.md).
+runtime completion. Fire80 adds Flame Fang/Flashfire/Blaze Rush; its Ghost child adds Soul Drain,
+Weary Touch and Dream Haunt, with no new artwork or distribution; see [batch evidence](FIRE_MOVE_BATCH_STATUS.md).
 
 Historical reconciliation baseline: `92838e5eb64d19942cb5c51cfdef6991503ac3ad`.
 PR37 originally changed no game code. Later implementation milestones supersede
@@ -25,11 +25,11 @@ in their scoped status files and the master ledger.
 - [Implementation/acceptance plan](IMPLEMENTATION_PLAN.md).
 
 Every original ID1–354 is accounted for exactly once. MOVE_NONE is a non-gameplay
-Status placeholder. On PR80, IDs355–357 are complete source records and
-MOVES_COUNT358 is the exclusive array bound, not a legal move. Remaining358–410
+Status placeholder. On the Ghost child, IDs355–360 are complete source records and
+MOVES_COUNT361 is the exclusive array bound, not a legal move. Remaining361–410
 are reservations without constants or placeholder rows. Full planned411 includes
 NONE; the animation table also retains its extra Move_COUNT sentinel. Original
-IDs and saved fields do not move. Main remains355 until this batch is merged.
+IDs and saved fields do not move. Only merged slices are on main; consult the dashboard before assuming availability.
 
 333 original records retain source fields under the existing approved split;
 21 have approved redesign/effect/type-policy changes, including the November5 Ghost/Status Curse decision.

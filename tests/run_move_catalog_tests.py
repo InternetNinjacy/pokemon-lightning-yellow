@@ -3,6 +3,7 @@
 from pathlib import Path
 import importlib.util
 import json
+import re
 import shutil
 import sys
 import tempfile
@@ -45,7 +46,7 @@ class MoveCatalogTests(unittest.TestCase):
         animation = json.loads((self.root / self.paths[-1]).read_text())
         for row in animation['entries']:
             for script in row['scripts']:
-                script['line'] -= 3
+                script['line'] -= int(re.search(r'#define MOVES_COUNT (\d+)', (ROOT / self.paths[0]).read_text())[1]) - 355
         (self.root / self.paths[-1]).write_text(json.dumps(animation))
         self.change(self.paths[0], '#define MOVES_COUNT 355',
                     '#define MOVE_FLAME_FANG 355\n#define MOVES_COUNT 356')
@@ -83,7 +84,7 @@ class MoveCatalogTests(unittest.TestCase):
         generated = reconcile.render(ROOT)
         for name, text in generated.items():
             self.assertEqual((ROOT / 'docs/moves' / name).read_bytes(), text.encode())
-        self.assertEqual(validate(ROOT, self.design['new_moves']), 358)
+        self.assertEqual(validate(ROOT, self.design['new_moves']), int(re.search(r'#define MOVES_COUNT (\d+)', (ROOT / self.paths[0]).read_text())[1]))
 
     def test_complete_fixture_is_source_only_not_runtime_accepted(self):
         self.add_fixture()

@@ -7,11 +7,12 @@ import re
 import subprocess
 import tempfile
 from run_split_tests import extract_function
+from approved_new_ghost_move_changes import prior_new_ghost_move_source
 from approved_new_fire_move_changes import prior_new_fire_move_source
 
 manifest = json.loads(Path('tests/specifications/approved_new_fire_move_delta.json').read_text())
 for path, row in manifest['files'].items():
-    assert hashlib.sha256(Path(path).read_bytes()).hexdigest() == row['after_sha256'], path
+    assert hashlib.sha256(prior_new_ghost_move_source(path).encode()).hexdigest() == row['after_sha256'], path
     assert hashlib.sha256(prior_new_fire_move_source(path).encode()).hexdigest() == row['before_sha256'], path
 
 spec = json.loads(Path('docs/moves/move-specification.json').read_text())['moves']
@@ -26,7 +27,7 @@ for key, move_id, power, pp, priority, effect, chance in expected:
             cur['priority'], cur['effect'], cur['secondaryEffectChance'], cur['target']) == (
             'FIRE', 'PHYSICAL', power, 100, pp, priority, effect, chance, 'MOVE_TARGET_SELECTED'), key
     assert 'FLAG_MAKES_CONTACT' in cur['flags'] and 'FLAG_PROTECT_AFFECTED' in cur['flags']
-assert sum(r['id'] is not None for r in spec) == 357
+assert sum(r['id'] is not None for r in spec) == 360
 assert len(spec) == 410
 
 asm = Path('data/battle_anim_scripts.s').read_text()

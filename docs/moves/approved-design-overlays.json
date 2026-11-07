@@ -729,6 +729,11 @@
           2
         ],
         "contact": true
+      },
+      "engine_translation": {
+        "effect": "EFFECT_ABSORB",
+        "target": "MOVE_TARGET_SELECTED",
+        "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
       }
     },
     {
@@ -778,6 +783,11 @@
       "effect_rules": {
         "semantic": "SLEEP_22",
         "secondary_percent": 22
+      },
+      "engine_translation": {
+        "effect": "EFFECT_SLEEP_HIT",
+        "target": "MOVE_TARGET_SELECTED",
+        "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
       }
     },
     {
@@ -826,6 +836,11 @@
       "delta": null,
       "effect_rules": {
         "semantic": "DOUBLE_POWER_AGAINST_SLEEP"
+      },
+      "engine_translation": {
+        "effect": "EFFECT_HIT",
+        "target": "MOVE_TARGET_SELECTED",
+        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
       }
     },
     {

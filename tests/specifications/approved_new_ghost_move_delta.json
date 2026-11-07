@@ -1,0 +1,96 @@
+{
+  "files": {
+    "data/battle_scripts_1.s": {
+      "before_sha256": "19d999efd4af231f3a4b7bbddacb50d34d4b83925572f9034c295586b814db57",
+      "after_sha256": "41ad2acaec024221db74b0dd55817457215a19c54a997222595d27d03276348e",
+      "hunks": [
+        {
+          "before": "\t.4byte BattleScript_EffectCalmMind               @ EFFECT_CALM_MIND\n\t.4byte BattleScript_EffectDragonDance            @ EFFECT_DRAGON_DANCE\n\t.4byte BattleScript_EffectCamouflage             @ EFFECT_CAMOUFLAGE\n\nBattleScript_EffectHit::\n\tjumpifnotmove MOVE_SURF, BattleScript_HitFromAtkCanceler\n",
+          "after": "\t.4byte BattleScript_EffectCalmMind               @ EFFECT_CALM_MIND\n\t.4byte BattleScript_EffectDragonDance            @ EFFECT_DRAGON_DANCE\n\t.4byte BattleScript_EffectCamouflage             @ EFFECT_CAMOUFLAGE\n\t.4byte BattleScript_EffectSleepHit               @ EFFECT_SLEEP_HIT\n\nBattleScript_EffectHit::\n\tjumpifnotmove MOVE_SURF, BattleScript_HitFromAtkCanceler\n"
+        },
+        {
+          "before": "BattleScript_FlushMessageBox::\n\tprintstring STRINGID_EMPTYSTRING3\n\treturn\n",
+          "after": "BattleScript_FlushMessageBox::\n\tprintstring STRINGID_EMPTYSTRING3\n\treturn\n\nBattleScript_EffectSleepHit::\n\tsetmoveeffect MOVE_EFFECT_SLEEP\n\tgoto BattleScript_EffectHit\n"
+        }
+      ]
+    },
+    "data/battle_anim_scripts.s": {
+      "before_sha256": "07c778c0b3b32487d986f93b21ea9bbbdeee4e8b05634717369472a34c3a0bab",
+      "after_sha256": "d6eef54e36508b5d5b363afd6c15c2047c1f90ab2ae41faff81997c2bf8fd426",
+      "hunks": [
+        {
+          "before": "\t.4byte Move_FLAME_FANG\n\t.4byte Move_FLASHFIRE\n\t.4byte Move_BLAZE_RUSH\n\t.4byte Move_COUNT @ cannot be reached, because last move is Psycho Boost\n\n\t.align 2\n",
+          "after": "\t.4byte Move_FLAME_FANG\n\t.4byte Move_FLASHFIRE\n\t.4byte Move_BLAZE_RUSH\n\t.4byte Move_SOUL_DRAIN\n\t.4byte Move_WEARY_TOUCH\n\t.4byte Move_DREAM_HAUNT\n\t.4byte Move_COUNT @ cannot be reached, because last move is Psycho Boost\n\n\t.align 2\n"
+        },
+        {
+          "before": "\tdelay 4\n\twaitforvisualfinish\n\treturn\n",
+          "after": "\tdelay 4\n\twaitforvisualfinish\n\treturn\n\n@ Approved Ghost composites: inline original bodies, shallow original helper calls.\n\nMove_SOUL_DRAIN:\n\tloadspritegfx ANIM_TAG_LICK\n\tdelay 15\n\tplaysewithpan SE_M_LICK, SOUND_PAN_TARGET\n\tcreatesprite gLickSpriteTemplate, ANIM_TARGET, 2, 0, 0\n\tcreatevisualtask AnimTask_ShakeMon2, 2, ANIM_TARGET, 1, 0, 16, 1\n\twaitforvisualfinish\n\twaitforvisualfinish\n\tloadspritegfx ANIM_TAG_ORBS\n\tloadspritegfx ANIM_TAG_BLUE_STAR\n\tloadspritegfx ANIM_TAG_IMPACT\n\tmonbg ANIM_DEF_PARTNER\n\tsplitbgprio_foes ANIM_TARGET\n\tsetalpha 12, 8\n\tcreatesprite gSimplePaletteBlendSpriteTemplate, ANIM_ATTACKER, 2, F_PAL_BG, 1, 0, 8, RGB(13, 31, 12)\n\twaitforvisualfinish\n\tplaysewithpan SE_M_ABSORB, SOUND_PAN_TARGET\n\tcreatesprite gBasicHitSplatSpriteTemplate, ANIM_ATTACKER, 2, 0, 0, ANIM_TARGET, 1\n\tdelay 2\n\tcreatevisualtask AnimTask_ShakeMon, 5, ANIM_TARGET, 0, 5, 5, 1\n\twaitforvisualfinish\n\tdelay 3\n\tcall MegaDrainAbsorbEffect\n\twaitforvisualfinish\n\tdelay 15\n\tcall HealingEffect\n\twaitforvisualfinish\n\tcreatesprite gSimplePaletteBlendSpriteTemplate, ANIM_ATTACKER, 2, F_PAL_BG, 1, 8, 0, RGB(13, 31, 12)\n\twaitforvisualfinish\n\tclearmonbg ANIM_DEF_PARTNER\n\tblendoff\n\twaitforvisualfinish\n\tend\n\nMove_WEARY_TOUCH:\n\tloadspritegfx ANIM_TAG_LICK\n\tdelay 15\n\tplaysewithpan SE_M_LICK, SOUND_PAN_TARGET\n\tcreatesprite gLickSpriteTemplate, ANIM_TARGET, 2, 0, 0\n\tcreatevisualtask AnimTask_ShakeMon2, 2, ANIM_TARGET, 1, 0, 16, 1\n\twaitforvisualfinish\n\twaitforvisualfinish\n\tloadspritegfx ANIM_TAG_GOLD_RING\n\tcall SetPsychicBackground\n\tcall HypnosisRings\n\tcall HypnosisRings\n\tcall HypnosisRings\n\tcreatevisualtask AnimTask_BlendColorCycle, 2, F_PAL_TARGET, 2, 2, 0, 12, RGB(31, 18, 31)\n\twaitforvisualfinish\n\tdelay 1\n\tcall UnsetPsychicBackground\n\twaitforvisualfinish\n\tend\n\nMove_DREAM_HAUNT:\n\tmonbg ANIM_ATTACKER\n\tsplitbgprio ANIM_ATTACKER\n\tplaysewithpan SE_M_PSYBEAM, SOUND_PAN_ATTACKER\n\tfadetobg BG_GHOST\n\twaitbgfadein\n\tdelay 10\n\tplaysewithpan SE_M_LEER, SOUND_PAN_ATTACKER\n\tcreatevisualtask AnimTask_NightShadeClone, 5, 85\n\tdelay 70\n\tcreatevisualtask AnimTask_ShakeMon2, 2, ANIM_TARGET, 2, 0, 12, 1\n\tcreatevisualtask AnimTask_BlendColorCycle, 2, F_PAL_TARGET, 0, 2, 0, 13, RGB_BLACK\n\twaitforvisualfinish\n\tclearmonbg ANIM_ATTACKER\n\tdelay 1\n\trestorebg\n\twaitbgfadein\n\twaitforvisualfinish\n\tloadspritegfx ANIM_TAG_ORBS\n\tloadspritegfx ANIM_TAG_BLUE_STAR\n\tmonbg ANIM_DEF_PARTNER\n\tsplitbgprio_foes ANIM_TARGET\n\tplaysewithpan SE_M_PSYBEAM, SOUND_PAN_ATTACKER\n\tcall SetPsychicBackground\n\tsetalpha 8, 8\n\tplaysewithpan SE_M_MINIMIZE, SOUND_PAN_TARGET\n\tcreatevisualtask AnimTask_ShakeMon, 2, ANIM_TARGET, 5, 0, 15, 1\n\tcreatevisualtask AnimTask_ScaleMonAndRestore, 5, -6, -6, 15, ANIM_TARGET, 1\n\twaitforvisualfinish\n\tsetalpha 12, 8\n\tcreatevisualtask AnimTask_ShakeMon, 2, ANIM_TARGET, 0, 2, 25, 1\n\tcall DreamEaterAbsorb\n\twaitforvisualfinish\n\tdelay 15\n\tcall HealingEffect\n\twaitforvisualfinish\n\tclearmonbg ANIM_DEF_PARTNER\n\tblendoff\n\tdelay 1\n\tcall UnsetPsychicBackground\n\twaitforvisualfinish\n\tend\n"
+        }
+      ]
+    },
+    "src/pokemon.c": {
+      "before_sha256": "c3c4fe4a1002602795d8017b554ecdba25d9649cc0ce46f7beaac8232eb08f65",
+      "after_sha256": "c77fc8b947864cdb5bd28e95ea84c968c1384307021f0051e804d72df5558e94",
+      "hunks": [
+        {
+          "before": "        gBattleMovePower = gBattleMoves[move].power;\n    else\n        gBattleMovePower = powerOverride;\n\n    if (!typeOverride)\n        type = gBattleMoves[move].type;\n",
+          "after": "        gBattleMovePower = gBattleMoves[move].power;\n    else\n        gBattleMovePower = powerOverride;\n\n    // Dream Haunt doubles power against sleep without draining or waking.\n    if (move == MOVE_DREAM_HAUNT && (defender->status1 & STATUS1_SLEEP))\n        gBattleMovePower *= 2;\n\n    if (!typeOverride)\n        type = gBattleMoves[move].type;\n"
+        }
+      ]
+    },
+    "src/move_descriptions.c": {
+      "before_sha256": "565de0d87ad4fc6711e7bd729ff1e6c8facde06b12a726aa404d3a2002cdbbc4",
+      "after_sha256": "e03129e47c965e1f6a7f99384d548262fa413bfc99a6e0ce684d91643706ec80",
+      "hunks": [
+        {
+          "before": "const u8 gMoveDescription_FLASHFIRE[] = _(\"A fast fiery strike\\nthat usually goes\\nfirst.\");\nconst u8 gMoveDescription_BLAZE_RUSH[] = _(\"A fiery rush that\\nhurts the user by\\n1/4 the damage dealt.\");\n\nconst u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {\n    [MOVE_POUND         - 1] = gMoveDescription_Pound,\n    [MOVE_KARATE_CHOP   - 1] = gMoveDescription_KarateChop,\n",
+          "after": "const u8 gMoveDescription_FLASHFIRE[] = _(\"A fast fiery strike\\nthat usually goes\\nfirst.\");\nconst u8 gMoveDescription_BLAZE_RUSH[] = _(\"A fiery rush that\\nhurts the user by\\n1/4 the damage dealt.\");\n\nconst u8 gMoveDescription_SOUL_DRAIN[] = _(\"A spectral touch\\nthat drains half\\nthe damage dealt.\");\nconst u8 gMoveDescription_WEARY_TOUCH[] = _(\"An eerie touch\\nthat may put the\\nfoe to sleep.\");\nconst u8 gMoveDescription_DREAM_HAUNT[] = _(\"Has double power\\nagainst a sleeping\\nfoe.\");\n\nconst u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {\n    [MOVE_POUND         - 1] = gMoveDescription_Pound,\n    [MOVE_KARATE_CHOP   - 1] = gMoveDescription_KarateChop,\n"
+        },
+        {
+          "before": "    [MOVE_FLAME_FANG - 1] = gMoveDescription_FLAME_FANG,\n    [MOVE_FLASHFIRE - 1] = gMoveDescription_FLASHFIRE,\n    [MOVE_BLAZE_RUSH - 1] = gMoveDescription_BLAZE_RUSH,\n};\n",
+          "after": "    [MOVE_FLAME_FANG - 1] = gMoveDescription_FLAME_FANG,\n    [MOVE_FLASHFIRE - 1] = gMoveDescription_FLASHFIRE,\n    [MOVE_BLAZE_RUSH - 1] = gMoveDescription_BLAZE_RUSH,\n    [MOVE_SOUL_DRAIN - 1] = gMoveDescription_SOUL_DRAIN,\n    [MOVE_WEARY_TOUCH - 1] = gMoveDescription_WEARY_TOUCH,\n    [MOVE_DREAM_HAUNT - 1] = gMoveDescription_DREAM_HAUNT,\n};\n"
+        }
+      ]
+    },
+    "src/data/battle_moves.h": {
+      "before_sha256": "b56490da8ce02a0c7c89c5522fe9c4e15b4ff31c0df8eb4c9c11d51c6195db2f",
+      "after_sha256": "03e49c73fa46c28b7f0b2e950facce598f3a01956e055c1d38daf614521912fa",
+      "hunks": [
+        {
+          "before": "        .priority = 0,\n        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,\n    },\n};\n",
+          "after": "        .priority = 0,\n        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,\n    },\n\n    [MOVE_SOUL_DRAIN] =\n    {\n        .category = MOVE_CATEGORY_PHYSICAL,\n        .effect = EFFECT_ABSORB,\n        .power = 50,\n        .type = TYPE_GHOST,\n        .accuracy = 100,\n        .pp = 15,\n        .secondaryEffectChance = 0,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = 0,\n        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,\n    },\n\n    [MOVE_WEARY_TOUCH] =\n    {\n        .category = MOVE_CATEGORY_PHYSICAL,\n        .effect = EFFECT_SLEEP_HIT,\n        .power = 75,\n        .type = TYPE_GHOST,\n        .accuracy = 100,\n        .pp = 15,\n        .secondaryEffectChance = 22,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = 0,\n        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,\n    },\n\n    [MOVE_DREAM_HAUNT] =\n    {\n        .category = MOVE_CATEGORY_SPECIAL,\n        .effect = EFFECT_HIT,\n        .power = 55,\n        .type = TYPE_GHOST,\n        .accuracy = 100,\n        .pp = 15,\n        .secondaryEffectChance = 0,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = 0,\n        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,\n    },\n};\n"
+        }
+      ]
+    },
+    "src/data/text/move_names.h": {
+      "before_sha256": "71bc0e9108b26d49a388a9df883f04f934526f8ae79ab59373dfe513aea18db5",
+      "after_sha256": "88d12b3b1aec2647157ac6be8410b812bdcbdc1e45bb0efd45c893f44f5e2a88",
+      "hunks": [
+        {
+          "before": "    [MOVE_FLAME_FANG] = _(\"FLAME FANG\"),\n    [MOVE_FLASHFIRE] = _(\"FLASHFIRE\"),\n    [MOVE_BLAZE_RUSH] = _(\"BLAZE RUSH\"),\n};\n",
+          "after": "    [MOVE_FLAME_FANG] = _(\"FLAME FANG\"),\n    [MOVE_FLASHFIRE] = _(\"FLASHFIRE\"),\n    [MOVE_BLAZE_RUSH] = _(\"BLAZE RUSH\"),\n    [MOVE_SOUL_DRAIN] = _(\"SOUL DRAIN\"),\n    [MOVE_WEARY_TOUCH] = _(\"WEARY TOUCH\"),\n    [MOVE_DREAM_HAUNT] = _(\"DREAM HAUNT\"),\n};\n"
+        }
+      ]
+    },
+    "include/constants/battle_move_effects.h": {
+      "before_sha256": "fa15e285903818cc3cc7ecb2ca32c11d8317b14d261ca2d1caf44e614b53828a",
+      "after_sha256": "894f44abd05c7206fbe6f551e64774e3afd5661c26dbb119384e52f36946b099",
+      "hunks": [
+        {
+          "before": "#define EFFECT_DRAGON_DANCE 212\n#define EFFECT_CAMOUFLAGE 213\n\n#endif  // GUARD_CONSTANTS_BATTLE_MOVE_EFFECTS_H\n",
+          "after": "#define EFFECT_DRAGON_DANCE 212\n#define EFFECT_CAMOUFLAGE 213\n\n#define EFFECT_SLEEP_HIT 214\n\n#endif  // GUARD_CONSTANTS_BATTLE_MOVE_EFFECTS_H\n"
+        }
+      ]
+    },
+    "include/constants/moves.h": {
+      "before_sha256": "088556c0c3208465e07cc220dda2222fcf6a584bdac6b9205a18d94d544c9225",
+      "after_sha256": "5a84b593c66ec044618e70fcfe8adcbb385e0c19de103d1477098a75fe4ef159",
+      "hunks": [
+        {
+          "before": "#define MOVE_FLASHFIRE 356\n#define MOVE_BLAZE_RUSH 357\n\n#define MOVES_COUNT 358\n\n// Used for checks for moves affected by Disable, Mimic, etc.\n#define MOVE_UNAVAILABLE 0xFFFF\n",
+          "after": "#define MOVE_FLASHFIRE 356\n#define MOVE_BLAZE_RUSH 357\n\n#define MOVE_SOUL_DRAIN 358\n#define MOVE_WEARY_TOUCH 359\n#define MOVE_DREAM_HAUNT 360\n\n#define MOVES_COUNT 361\n\n// Used for checks for moves affected by Disable, Mimic, etc.\n#define MOVE_UNAVAILABLE 0xFFFF\n"
+        }
+      ]
+    }
+  }
+}
