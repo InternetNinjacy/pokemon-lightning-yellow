@@ -30,7 +30,11 @@ static void chirpTests(void){
   core->busWrite8(core,SYM_gActiveBattler,1);CALL(BattleAI_SetupAIData);
   unsigned ai=core->busRead32(core,core->busRead32(core,SYM_gBattleResources)+ABI_BRES_AI);
   core->busWrite32(core,ai+ABI_AI_FLAGS,1);CALL(BattleAI_ChooseMoveOrAction);
-  for(unsigned m=0;m<4;m++)CHECK(core->busRead8(core,ai+ABI_AI_SCORE+m)==(shield?90:100));
+  for(unsigned m=0;m<4;m++){
+   unsigned actual=core->busRead8(core,ai+ABI_AI_SCORE+m);
+   if(actual!=(shield?90:100))fprintf(stderr,"CHIRP AI diagnostic shield=%u slot=%u actual=%u expected=%u ability=%u move=%u flags=%u\n",shield,m,actual,shield?90:100,core->busRead8(core,bmon(0)+ABI_BMON_ABILITY),core->busRead16(core,bmon(1)+ABI_BMON_MOVES+2*m),core->busRead32(core,ai+ABI_AI_FLAGS));
+   CHECK(actual==(shield?90:100));
+  }
  }
  CHECK(core->loadState(core,bootState));
  printf("PASS: actual Singles/Doubles Chirp sound damage/PP, Soundproof immunity, no spread, native visuals and AI penalty\n");
