@@ -1,19 +1,19 @@
 # Existing-art animation assignment review
 
-Source identifiers are verified; new/composite playback is **not tested**. The50 formerly proposed assignments were owner-approved on November5; historical labels below describe their origin, not a pending approval. See OWNER_DECISIONS_2026-11-05.md. Original moves retain their own animation by default. No new artwork is permitted.
+Source identifiers are verified. Full matrix runtime/composition flags remain unset; limited native playback is recorded separately in FIRE_MOVE_BATCH_STATUS.md and GHOST_MOVE_BATCH_STATUS.md and is not pixel/target-variant approval. The50 formerly proposed assignments were owner-approved on November5; historical labels below describe their origin, not a pending approval. See OWNER_DECISIONS_2026-11-05.md. Original moves retain their own animation by default. No new artwork is permitted.
 
 | Move | Existing script(s) | Source approval label | Runtime/composition |
 |---|---|---|---|
-| Flame Fang | CRUNCH + EMBER | Recorded composite | Not yet tested |
-| Flashfire | QUICK_ATTACK + EMBER | Recorded composite | Not yet tested |
-| Blaze Rush | HI_JUMP_KICK + EMBER | Recorded composite | Not yet tested |
+| Flame Fang | CRUNCH + EMBER | Recorded composite | Limited native playback; full acceptance pending |
+| Flashfire | QUICK_ATTACK + EMBER | Recorded composite | Limited native playback; full acceptance pending |
+| Blaze Rush | HI_JUMP_KICK + EMBER | Recorded composite | Limited native playback; full acceptance pending |
 | Grudge | GRUDGE | Original visual candidate | Not yet tested |
 | Spite | SPITE | Original visual candidate | Not yet tested |
 | Lick | LICK | Original visual | Not yet tested |
 | Astonish | ASTONISH | Original visual candidate | Not yet tested |
-| Soul Drain | LICK + MEGA_DRAIN | Proposed composite | Not yet tested |
-| Weary Touch | LICK + HYPNOSIS | Proposed composite | Not yet tested |
-| Dream Haunt | NIGHT_SHADE + DREAM_EATER | Proposed composite | Not yet tested |
+| Soul Drain | LICK + MEGA_DRAIN | Proposed composite | Limited native playback; full acceptance pending |
+| Weary Touch | LICK + HYPNOSIS | Proposed composite | Limited native playback; full acceptance pending |
+| Dream Haunt | NIGHT_SHADE + DREAM_EATER | Proposed composite | Limited native playback; full acceptance pending |
 | Skitter Slash | FURY_CUTTER | Proposed | Not yet tested |
 | Venom Web | BIND + POISON_POWDER | Proposed composite | Not yet tested |
 | Bug Bite | BITE | Proposed | Not yet tested |

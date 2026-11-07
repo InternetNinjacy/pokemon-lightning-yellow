@@ -360,6 +360,10 @@ const u8 gMoveDescription_FLAME_FANG[] = _("A fiery bite that\nmay make the foe\
 const u8 gMoveDescription_FLASHFIRE[] = _("A fast fiery strike\nthat usually goes\nfirst.");
 const u8 gMoveDescription_BLAZE_RUSH[] = _("A fiery rush that\nhurts the user by\n1/4 the damage dealt.");
 
+const u8 gMoveDescription_SOUL_DRAIN[] = _("A spectral touch\nthat drains half\nthe damage dealt.");
+const u8 gMoveDescription_WEARY_TOUCH[] = _("An eerie touch\nthat may put the\nfoe to sleep.");
+const u8 gMoveDescription_DREAM_HAUNT[] = _("Has double power\nagainst a sleeping\nfoe.");
+
 const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND         - 1] = gMoveDescription_Pound,
     [MOVE_KARATE_CHOP   - 1] = gMoveDescription_KarateChop,
@@ -718,4 +722,7 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_FLAME_FANG - 1] = gMoveDescription_FLAME_FANG,
     [MOVE_FLASHFIRE - 1] = gMoveDescription_FLASHFIRE,
     [MOVE_BLAZE_RUSH - 1] = gMoveDescription_BLAZE_RUSH,
+    [MOVE_SOUL_DRAIN - 1] = gMoveDescription_SOUL_DRAIN,
+    [MOVE_WEARY_TOUCH - 1] = gMoveDescription_WEARY_TOUCH,
+    [MOVE_DREAM_HAUNT - 1] = gMoveDescription_DREAM_HAUNT,
 };

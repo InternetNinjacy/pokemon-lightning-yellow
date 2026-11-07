@@ -4,8 +4,8 @@ from pathlib import Path
 
 
 def prior_new_fire_move_source(path, text=None):
-    if text is None:
-        text = Path(path).read_text()
+    from approved_new_ghost_move_changes import prior_new_ghost_move_source
+    text = prior_new_ghost_move_source(path, text)
     manifest = json.loads(Path('tests/specifications/approved_new_fire_move_delta.json').read_text())
     for h in manifest['files'].get(str(path), {}).get('hunks', []):
         if text.count(h['after']) == 1:
