@@ -365,7 +365,9 @@
 #define MOVE_WEARY_TOUCH 359
 #define MOVE_DREAM_HAUNT 360
 
-#define MOVES_COUNT 361
+#define MOVE_SKITTER_SLASH 361
+
+#define MOVES_COUNT 362
 
 // Used for checks for moves affected by Disable, Mimic, etc.
 #define MOVE_UNAVAILABLE 0xFFFF

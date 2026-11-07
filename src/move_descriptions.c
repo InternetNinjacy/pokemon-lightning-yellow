@@ -364,6 +364,8 @@ const u8 gMoveDescription_SOUL_DRAIN[] = _("A spectral touch\nthat drains half\n
 const u8 gMoveDescription_WEARY_TOUCH[] = _("An eerie touch\nthat may put the\nfoe to sleep.");
 const u8 gMoveDescription_DREAM_HAUNT[] = _("Has double power\nagainst a sleeping\nfoe.");
 
+const u8 gMoveDescription_SKITTER_SLASH[] = _("A quick, slicing\nBug-type attack.");
+
 const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND         - 1] = gMoveDescription_Pound,
     [MOVE_KARATE_CHOP   - 1] = gMoveDescription_KarateChop,
@@ -725,4 +727,5 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_SOUL_DRAIN - 1] = gMoveDescription_SOUL_DRAIN,
     [MOVE_WEARY_TOUCH - 1] = gMoveDescription_WEARY_TOUCH,
     [MOVE_DREAM_HAUNT - 1] = gMoveDescription_DREAM_HAUNT,
+    [MOVE_SKITTER_SLASH - 1] = gMoveDescription_SKITTER_SLASH,
 };

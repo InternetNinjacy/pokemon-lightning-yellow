@@ -27,7 +27,7 @@ for key, move_id, power, pp, priority, effect, chance in expected:
             cur['priority'], cur['effect'], cur['secondaryEffectChance'], cur['target']) == (
             'FIRE', 'PHYSICAL', power, 100, pp, priority, effect, chance, 'MOVE_TARGET_SELECTED'), key
     assert 'FLAG_MAKES_CONTACT' in cur['flags'] and 'FLAG_PROTECT_AFFECTED' in cur['flags']
-assert sum(r['id'] is not None for r in spec) == 360
+assert sum(r['id'] is not None and r['id'] <= 360 for r in spec) == 360
 assert len(spec) == 410
 
 asm = Path('data/battle_anim_scripts.s').read_text()
