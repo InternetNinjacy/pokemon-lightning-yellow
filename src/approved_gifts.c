@@ -50,3 +50,25 @@ void ScriptNameSocketStarterPikachu(void)
     if (gPlayerPartyCount != 0 && GetMonData(&gPlayerParty[0], MON_DATA_SPECIES) == SPECIES_PIKACHU)
         SetMonData(&gPlayerParty[0], MON_DATA_NICKNAME, nickname);
 }
+
+// One-time Oak parcel gift, sharing the proven Tangela party/PC path.
+// Eevee has Run Away as its only current source ability.
+u16 ScriptGiveSueEevee(void)
+{
+    static const u8 nickname[] = _("SUE");
+    struct Pokemon *mon = AllocZeroed(sizeof(*mon));
+    u16 result;
+    if (mon == NULL)
+        return MON_CANT_GIVE;
+    CreateMon(mon, SPECIES_EEVEE, 5, USE_RANDOM_IVS, FALSE, 0, OT_ID_PLAYER_ID, 0);
+    SetMonData(mon, MON_DATA_NICKNAME, nickname);
+    result = GiveMonToPlayer(mon);
+    if (result != MON_CANT_GIVE)
+    {
+        u16 dex = SpeciesToNationalPokedexNum(SPECIES_EEVEE);
+        GetSetPokedexFlag(dex, FLAG_SET_SEEN);
+        GetSetPokedexFlag(dex, FLAG_SET_CAUGHT);
+    }
+    Free(mon);
+    return result;
+}
