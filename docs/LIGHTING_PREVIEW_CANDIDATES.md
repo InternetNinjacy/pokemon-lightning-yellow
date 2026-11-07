@@ -1,6 +1,6 @@
 # TIM-003 lighting preview: UNAPPROVED numerical candidates
 
-**Status:** Reversible source prototype on `feature/tim-003-lighting-preview`. No visual approval, no production merge, and no emulator captures yet.
+**Status:** Reversible source prototype on `feature/tim-003-lighting-preview`. Candidate B Night selected by owner; stronger Dawn and Dusk unapproved, no production merge. Previously captured genuine A/B mGBA evidence is archived in GitHub Actions run 42395893275; revised evidence to follow.
 
 ## Build selector
 
@@ -13,13 +13,13 @@ The preview converts each **weather-and-fade-composited** 5-bit RGB component wi
 | Visual state | Candidate A R,G,B | Candidate B R,G,B |
 | --- | --- | --- |
 | Day | 32,32,32 | 32,32,32 |
-| Dawn | 32,31,30 | 32,31,30 |
-| Dusk | 32,29,26 | 32,29,26 |
+| Dawn (revised pending visual approval) | 23,28,32 | 23,28,32 |
+| Dusk (revised pending visual approval) | 32,23,17 | 32,23,17 |
 | Night | 19,21,27 | 16,19,27 |
 | Viridian covered Day | 25,29,25 | 25,29,25 |
 | Viridian covered Night | 14,19,23 | 12,17,22 |
 
-These values must not be copied into production without screenshot review and explicit owner approval. RGB component mapping uses native GBA 5-bit color format. The current model scales components toward black and is **not yet a fully approved blue-shift or color-quality implementation**.
+Candidate B Night is approved as a direction from genuine mGBA comparisons. Dawn and Dusk values above are revised for more noticeable cool/warm separation, and still require owner review before production. RGB component mapping uses native GBA 5-bit color format. The current model scales components toward black and is **not yet a fully approved blue-shift or color-quality implementation**.
 
 ## Preview behavior
 
@@ -33,11 +33,11 @@ These values must not be copied into production without screenshot review and ex
 
 ## Known gaps and acceptance blockers
 
-1. Prototype is committed but cannot be compiled or executed from this chat runtime (no network checkout, ARM toolchain or mGBA library). No native success is claimed.
+1. Prototype is committed but cannot be compiled or executed from this chat runtime (no network checkout, ARM toolchain or mGBA library). Previous mGBA candidate runs compiled and captured genuine frames; revised stronger Dawn/Dusk values require recapture.
 2. Sprite palette colors can overlap field UI; verify all UI and battle transitions visually. No claims of complete exclusion yet.
 3. Prototype map headers now request original Pokémon Tower-style `WEATHER_FOG_HORIZONTAL` on Mansion 1F/2F/3F/B1F instead of `WEATHER_SHADE`. Rendered result and weather compatibility are not yet validated.
-4. Native map/time/weather capture and PNG conversion have now been coded in `tests/emulator/lighting_preview.c` and `tests/emulator/build_lighting_review.py`, plus the dedicated capture workflow. **Actual screenshots have not yet been confirmed or delivered.**
-5. Need owner selection of exact candidate screenshots before production palette coding.
+4. Native map/time/weather capture and PNG conversion have now been coded in `tests/emulator/lighting_preview.c` and `tests/emulator/build_lighting_review.py`, plus the dedicated capture workflow. Earlier 24-frame captures per candidate passed. The revised Dawn/Dusk comparison is pending a new native capture.
+5. Owner selected Candidate B for Night. Dawn and Dusk were too subtle and require another real screenshot review.
 6. Keep this PR **draft and unmerged** until compilation, capture and owner review.
 
 ## Native execution sequence
