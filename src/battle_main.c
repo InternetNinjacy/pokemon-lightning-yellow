@@ -1620,6 +1620,11 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum)
                     nameHash += gSpeciesNames[partyData[i].species][j];
 
                 personalityValue += nameHash << 8;
+                // Both approved Agatha Alakazam use their native second ability, Inner Focus.
+                // Keep the original PID and ability policy for every other trainer Pokémon.
+                if ((trainerNum == TRAINER_ELITE_FOUR_AGATHA || trainerNum == TRAINER_ELITE_FOUR_AGATHA_2)
+                 && partyData[i].species == SPECIES_ALAKAZAM)
+                    personalityValue |= 1;
                 fixedIV = partyData[i].iv * MAX_PER_STAT_IVS / 255;
                 CreateMon(&party[i], partyData[i].species, partyData[i].lvl, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
                 SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
