@@ -1,0 +1,58 @@
+# Lightning Yellow title screen: source audit and partial implementation
+
+Status: **PARTIAL; visual replacement not implemented.** Topic branch only. Audited against `main` at `18d245b5e35780b1300482aa536fa15f140a1d28` on 2026-11-07.
+
+## Approved visual outcome
+
+- The displayed game title must read **Pokémon Lightning Yellow** (not FireRed).
+- The prominently featured title Pokémon must be **Pikachu** (not Charizard).
+- Preserve the existing title screen's startup, prompt, input, animations, music, save/load transition, and copyright attributions unless changes prove necessary.
+- Do not change Professor Oak's intro, opening story, overworld Start menu, gameplay, or ROM/header identity as part of this artwork task.
+
+## Exact source locations
+
+- `src/title_screen.c`: `CB2_InitTitleScreen` initializes BG0–BG3; title scene transitions, window/palette effects, prompt flashing, flames, `MUS_TITLE`, A/Start handling, and `TITLE_SPECIES` cry. The FireRed build originally uses `SPECIES_CHARIZARD`; this branch changes only its title cry to `SPECIES_PIKACHU`.
+- `src/graphics.c`: FireRed/LeafGreen conditional `gGraphics_TitleScreen_*` asset declarations and `INCBIN` paths. The FireRed title currently references `graphics/title_screen/firered/`.
+- `graphics/title_screen/firered/game_title_logo.png`: original logo pixels; `game_title_logo.pal`: JASC-PAL 256 colors; `game_title_logo.bin`: 1280-byte BG tilemap. The title loader uses compressed **8bpp** logo tiles on **BG0** and an 8bpp palette.
+- `graphics/title_screen/firered/box_art_mon.png`: original Charizard artwork; `box_art_mon.pal`: JASC-PAL 16 colors; `box_art_mon.bin`: 1280-byte tilemap. The title loader uses compressed **4bpp** mascot tiles and palette bank **13** on **BG1**. BG1 is animated through palette blending and the slash/reveal system: this artwork is *not* a standard OBJ Pokémon sprite.
+- `graphics/title_screen/firered/background.pal`: original background palette used on BG2/BG3.
+- `graphics/title_screen/border_bg.png`, `graphics/title_screen/firered/border_bg.bin`: border background tiles/map used on BG3.
+- `graphics/title_screen/copyright_press_start.png`, `copyright_press_start.bin`: combined copyright and press-start graphic/map on BG2. Press Start blinks by palette-index manipulation in `Task_TitleScreen_BlinkPressStart`. Do not erase or move copyright attributions.
+- `graphics/title_screen/firered/flames.png`, `blank_flames.png`, `slash.pal`, `graphics/title_screen/slash.png`, `blank_sprite.png`: sprite/effect elements. FireRed spawns flame sprites; a yellow/electric effect treatment is optional polish, not required for first functional replacement.
+- `src/main_menu.c`: save/new-game menu transition following the title cry. `src/start_menu.c` is the separate **in-game** Start menu, not the boot title screen.
+- Existing ordinary sprite: `graphics/pokemon/pikachu/front.png` with its normal/shiny palettes. This is a Pokémon battle sprite, **not** a confirmed title-layout-compatible replacement and must not be substituted by filename alone.
+
+### Graphics and asset pipeline
+
+`Makefile` uses `graphics_file_rules.mk` and `tools/gbagfx/gbagfx`: `.png` to `.4bpp`/`.8bpp`, `.pal` to `.gbapal`, and source `INCBIN` dependencies to compressed `.lz` resources. The title's `.bin` maps are source inputs, not generated automatically from a new logo caption. Both current title graphics maps occupy 1280 bytes (32 × 20 16-bit tilemap cells). The GBA visible viewport is 240 × 160, so verify actual art placement within the map's 256-pixel tile-row width.
+
+The title logo, mascot, background, prompt/copyright, and moving sprite effects are separately supplied resources. The existing animation timing and key logic can remain untouched if new assets honor the existing tilemap sizes, palettes, BG assignments and tile limits.
+
+## Changes made in this PR
+
+1. FireRed-specific `TITLE_SPECIES` set to `SPECIES_PIKACHU` so the title transition uses Pikachu's cry. The LeafGreen conditional stays unchanged.
+
+**Not implemented:** logo pixels, mascot pixels, palettes, tilemaps, and mascot/theme effects. This code-only change must not be described as a visible Pikachu screen or finished Lightning Yellow branding.
+
+## Required bounded next implementation
+
+1. Produce an original/owner-approved `game_title_logo.png` and, if palette and tile arrangement change, matching `.pal` and `.bin`. Visible assembled lettering must say **Pokémon Lightning Yellow**, with no residual FireRed text.
+2. Produce a Pikachu title composition for BG1. Update `box_art_mon.png` and any matching palette/map source, respecting 4bpp (16 entries), palette bank 13, and the BG1 32×20 map. Do not simply substitute the battle front sprite without confirming dimensions and visual fit.
+3. Prefer adding new assets under `graphics/title_screen/lightning_yellow/`, changing the FireRed build's `INCBIN` paths in `src/graphics.c` and `src/title_screen.c` only where needed, rather than overwriting historical upstream art. Reuse shared prompt/copyright and core animation assets when appropriate.
+4. Review colors and readability throughout the palette transitions, especially the early mascot grayscale/brightening and BG0 window reveal. Avoid relying on FireRed-red flames as final electric-themed polish if visually inconsistent; effects changes are not a prerequisite to basic branding.
+5. Build with `scripts/prepare-baseline.sh` then `make -j2` in an authorized build environment, run relevant host regressions, clean/rebuild for repeatability, and boot the actual resulting ROM in mGBA. Capture real observations of title legibility, Pikachu, prompt blink, A/Start cry and new/continue menus. Do not distribute ROM/BIOS binaries.
+
+## Validation state as of this commit
+
+- **Static source:** confirmed loaders, file paths, bpp, palettes, tilemap resource sizes, and separate title/start-menu systems.
+- **Source edit:** successfully committed the Pikachu cry constant.
+- **Build:** **not run**. This session's local container could not resolve GitHub to clone the source or provision the dependency/build environment.
+- **Emulator:** **not run**.
+- **Visual verification:** **not run**; visible graphic assets are unchanged.
+- **CI:** not claimed.
+- **External proprietary assets:** none newly imported.
+- **Project tracking:** intentionally not rewritten, to avoid colliding with parallel Master Control updates.
+
+## Acceptance gate
+
+This task is **not complete** until the assembled title visibly shows Pokémon Lightning Yellow and Pikachu, and build/emulator checks pass. Code cry replacement alone does not meet the user-facing acceptance requirements.
