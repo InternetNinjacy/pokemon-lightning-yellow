@@ -111,9 +111,11 @@ static void spreadStatusTests(void){
 #include "new_ghost_moves.c"
 #include "new_skitter_slash.c"
 #include "new_venom_web.c"
+#include "new_bug_statdrops.c"
 static void originalEffectTests(void){
  if(getenv("LIGHTNING_SKITTER_SLASH_ONLY")){skitterSlashTests();return;}
  if(getenv("LIGHTNING_VENOM_WEB_ONLY")){venomWebTests();return;}
+ if(getenv("LIGHTNING_BUG_STATDROPS_ONLY")){bugStatdropTests();return;}
  if(getenv("LIGHTNING_NEW_GHOST_MOVES_ONLY")){newGhostMoveTests();return;}
  if(getenv("LIGHTNING_NEW_FIRE_MOVES_ONLY")){newFireMoveTests();return;}
  if(getenv("LIGHTNING_THUNDER_WAVE_ONLY")){thunderWaveTests();return;}
@@ -122,6 +124,7 @@ static void originalEffectTests(void){
  newFireMoveTests();
  skitterSlashTests();
  venomWebTests();
+ bugStatdropTests();
  thunderWaveTests();
  ghostReworkTests();
  spreadStatusTests();
