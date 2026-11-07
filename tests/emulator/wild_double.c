@@ -182,7 +182,32 @@ static void generationTests(void){
  CHECK(!CALL(TryDoDoubleWildBattle));
  printf("PASS: egg is excluded from usable double-battle party count\n");
 }
+static void route1OrdinaryEncounters(void){
+  wildFixture(MAP_GROUP(MAP_ROUTE1),MAP_NUM(MAP_ROUTE1),1);
+  CHECK(!CALL(TryDoDoubleWildBattle));
+  uint32_t info=landInfo();
+  unsigned counts[3]={0};
+  core->busWrite32(core,SYM_gRngValue,0x513759AC);
+  for(unsigned i=0;i<1000;i++){
+    CHECK(CALL(TryStartLandEncounter,info,0));
+    CHECK(!(core->busRead32(core,SYM_gBattleTypeFlags)&BATTLE_TYPE_DOUBLE));
+    CHECK(monget(enemy(1),ABI_DATA_SPECIES)==SPECIES_NONE);
+    unsigned mon=monget(enemy(0),ABI_DATA_SPECIES);
+    unsigned level=monget(enemy(0),ABI_DATA_LEVEL);
+    if(mon==SPECIES_PIDGEY){counts[0]++;CHECK(level>=2&&level<=5);}
+    else if(mon==SPECIES_RATTATA){counts[1]++;CHECK(level>=2&&level<=5);}
+    else if(mon==SPECIES_IGGLYBUFF){counts[2]++;CHECK(level>=3&&level<=4);}
+    else CHECK(0);
+    CALL(ResetTasks);
+  }
+  // Wide deterministic sanity bands, not a replacement for the exact slot-weight contract.
+  CHECK(counts[0]>400&&counts[0]<600);
+  CHECK(counts[1]>300&&counts[1]<500);
+  CHECK(counts[2]>50&&counts[2]<150);
+  printf("PASS: Route 1 native singles only; Pidgey/Rattata/Igglybuff=%u/%u/%u per 1000 RNG draws\\n",counts[0],counts[1],counts[2]);
+}
 static void wildTests(void){
+ route1OrdinaryEncounters();
  generationTests();
  wildFixture(MAP_GROUP(MAP_MT_MOON_1F),MAP_NUM(MAP_MT_MOON_1F),1);
  CHECK(CALL(TryDoDoubleWildBattle));
