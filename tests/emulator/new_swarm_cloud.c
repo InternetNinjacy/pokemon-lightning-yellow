@@ -35,6 +35,7 @@ static void swarmCloudTests(void){
    unsigned poisoned=!!(core->busRead32(core,bmon(1)+ABI_BMON_STATUS1)&STATUS1_POISON);
    CHECK(monget(player(0),ABI_DATA_PP1)==14);
    CHECK(core->busRead16(core,bmon(0)+ABI_BMON_HP)==1000);
+   fprintf(stderr,"SWARM DIAGNOSTIC two=%u trial=%u dealt=%u confused=%u poisoned=%u\n",two,trial,dealt,confused,poisoned);
    if(dealt>0)combinations|=1U<<(confused+2*poisoned);
    else{misses++;CHECK(!confused&&!poisoned);}
    if(two){CHECK(core->busRead16(core,bmon(2)+ABI_BMON_HP)==1000);CHECK(core->busRead16(core,bmon(3)+ABI_BMON_HP)==1000);}
