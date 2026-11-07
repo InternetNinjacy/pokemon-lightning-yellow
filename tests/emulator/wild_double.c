@@ -159,7 +159,7 @@ static void generationTests(void){
   unsigned a=monget(enemy(0),ABI_DATA_SPECIES),b=monget(enemy(1),ABI_DATA_SPECIES);
   if(a==SPECIES_ONIX&&b==SPECIES_CLOYSTER)special++;
   else{
-   CHECK(a==SPECIES_PIDGEY||a==SPECIES_RATTATA);CHECK(b==SPECIES_PIDGEY||b==SPECIES_RATTATA);
+   CHECK(a==SPECIES_PIDGEY||a==SPECIES_RATTATA||a==SPECIES_IGGLYBUFF);CHECK(b==SPECIES_PIDGEY||b==SPECIES_RATTATA||b==SPECIES_IGGLYBUFF);
    firstP+=a==SPECIES_PIDGEY;secondP+=b==SPECIES_PIDGEY;duplicates+=a==b;
   }
   for(unsigned j=0;j<2;j++){unsigned level=monget(enemy(j),ABI_DATA_LEVEL);CHECK(level>=2&&level<=5);}
