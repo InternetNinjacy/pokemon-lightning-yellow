@@ -55,7 +55,8 @@ for path in ["include/constants/moves.h", "src/data/text/move_names.h",
     assert old != content and "SCORCHING_SANDS" not in old, path
 
 def find_row(obj):
-    rows = obj["moves"] if isinstance(obj, dict) else obj
+    rows = next((obj[k] for k in ("moves", "new_moves", "entries") if k in obj), None) if isinstance(obj, dict) else obj
+    assert rows is not None
     return next(r for r in rows if r.get("key") == "SCORCHING_SANDS")
 
 for document in [catalog, overlays]:
