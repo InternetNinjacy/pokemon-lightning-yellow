@@ -16,7 +16,7 @@ overlays = json.loads(read("docs/moves/approved-design-overlays.json"))
 reuse = json.loads(read("docs/moves/animation-reuse.json"))
 
 assert "#define MOVE_SCORCHING_SANDS 370" in constant
-assert "#define MOVES_COUNT 371" in constant
+assert "#define MOVES_COUNT 372" in constant  # Earth Power #371 appended; #370 checks retained
 assert '[MOVE_SCORCHING_SANDS] = _("SCORCHING SANDS")' in names
 assert "gMoveDescription_SCORCHING_SANDS[]" in descriptions
 assert "[MOVE_SCORCHING_SANDS - 1] = gMoveDescription_SCORCHING_SANDS" in descriptions
