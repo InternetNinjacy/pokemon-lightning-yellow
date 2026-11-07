@@ -161,6 +161,9 @@ def main():
     # script tables. Special and dynamic labels are reported, not auto-fixed.
     missing_map_labels = []
     trainer_map_objects = 0
+    direct_map_trainer_ids = set()
+    map_object_trainer_references = []
+    ambiguous_map_label_paths = []
     direct_battle_map_objects = 0
     unresolved_direct_battle_map_objects = []
     map_count = 0
@@ -172,8 +175,24 @@ def main():
                 continue
             trainer_map_objects += 1
             name = event.get("script", "")
-            if name in script_blocks:
+            # Attribute the battle to the actual object's own map script, or
+            # a central shared trainer script. A same-named label defined in
+            # some unrelated map is not sufficient to verify this object.
+            eligible = [block for block in script_blocks.get(name, [])
+                        if block["path"] == rel(path.parent / "scripts.inc")
+                        or block["path"] == "data/scripts/trainers.inc"]
+            if eligible:
                 direct_battle_map_objects += 1
+                battle_ids = sorted({trainer_id for block in eligible
+                                     for trainer_id in block["trainer_ids"]})
+                direct_map_trainer_ids.update(battle_ids)
+                map_object_trainer_references.append({
+                    "map": path.parent.name, "script": name,
+                    "ids": battle_ids, "x": event.get("x"), "y": event.get("y")})
+            elif name in script_blocks:
+                ambiguous_map_label_paths.append({
+                    "map": path.parent.name, "script": name,
+                    "found_elsewhere": [b["path"] for b in script_blocks[name]]})
             else:
                 # No direct trainerbattle in this label's body. This can be
                 # intentional indirection; queue for inspection, not a defect.
@@ -201,6 +220,10 @@ def main():
         "map_json_files_scanned": map_count,
         "trainer_map_objects": trainer_map_objects,
         "objects_with_direct_battle_command": direct_battle_map_objects,
+        "objects_whose_label_only_resolves_in_other_map": ambiguous_map_label_paths,
+        "ordinary_original_ids_with_direct_map_object": len(set(original) & direct_map_trainer_ids),
+        "ordinary_original_ids_without_direct_map_object": sorted(set(original) - direct_map_trainer_ids),
+        "map_objects_with_multiple_direct_trainer_ids": [r for r in map_object_trainer_references if len(r["ids"]) > 1],
         "objects_requiring_indirect_script_review": unresolved_direct_battle_map_objects,
         "original_ids_referenced_in_scripts": len(original) - len(missing_original),
         "unreferenced_original_ids": missing_original,
