@@ -46,6 +46,10 @@ print('PASS: exact approved Spite damage/optional PP drain and Grudge native Rol
 
 tw=json.loads(Path('tests/specifications/approved_thunder_wave_delta.json').read_text())
 for p,v in tw['files'].items():
- assert hashlib.sha256(Path(p).read_bytes()).hexdigest()==v['after_sha256'],p
- assert hashlib.sha256(prior_thunder_wave_source(p).encode()).hexdigest()==v['before_sha256'],p
+ text=Path(p).read_text()
+ if p=='src/battle_main.c':
+  from approved_elite_four_changes import prior_elite_four_source
+  text=prior_elite_four_source(p,text)
+ assert hashlib.sha256(text.encode()).hexdigest()==v['after_sha256'],p
+ assert hashlib.sha256(prior_thunder_wave_source(p,text).encode()).hexdigest()==v['before_sha256'],p
 print('PASS: exact approved all-other-active Thunder Wave with private padding context, native per-recipient checks; saved/link fields unchanged (static)')

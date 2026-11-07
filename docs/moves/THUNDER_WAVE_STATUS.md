@@ -62,3 +62,13 @@ Matched modified link peers required; no vanilla-peer compatibility claim.
 Rollback exact six production hunks/files and metadata/normalizers as one unit;
 private padding returns unused and persistent data is unaffected. Parents69/67/66/
 64 are merged. Main should only receive this feature after full checks pass.
+
+## Current-main integration (not the earlier acceptance result)
+
+Main4bb2ece0 adds merged Agatha/ordinary Trainer/capture acceptance. Preserve all
+500 Trainer arrays, all8 Elite Four battles and new registrations. Integrated
+26 host suites/3 checkers PASS, with old immutable hashes preserved through exact
+parallel Agatha/TW/ordinary-source projections. Updated registration checker now
+counts26 hosts/30 full native groups and explicitly protects ordinary Trainer
+coverage; its previous printed25/29 totals were stale. New combined build/full/
+clean/Actions results pending. Earlier755945 belongs only to the old72 base.

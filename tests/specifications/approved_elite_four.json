@@ -1,5 +1,5 @@
 {
-  "scope": "Issue50 eight approved contracts; six independently executable until Agatha native-slot conflict resolved",
+  "scope": "All eight approved Elite Four battle party arrays; native-slot selector scoped to Agatha Alakazam only",
   "battles": [
     {
       "specification": "implementation/lorelei-initial-elite-four.md",
@@ -302,7 +302,7 @@
       "sha256": "ebad7a7f5102cae2130d8b7351aa7c84be0df68359aa13223b8ec6c3a9c211a8",
       "array": "sParty_EliteFourAgatha",
       "trainer": "TRAINER_ELITE_FOUR_AGATHA",
-      "implemented": false,
+      "implemented": true,
       "party": [
         {
           "species": "CACTURNE",
@@ -376,7 +376,7 @@
       "sha256": "44c11b0fe811bf567583e89833874d44c4fcc80a790d6bfc29d7df0c2b73a416",
       "array": "sParty_EliteFourAgatha2",
       "trainer": "TRAINER_ELITE_FOUR_AGATHA_2",
-      "implemented": false,
+      "implemented": true,
       "party": [
         {
           "species": "HOUNDOOM",

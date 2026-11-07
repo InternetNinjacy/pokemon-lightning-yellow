@@ -53,3 +53,42 @@ for name in names:
 assert '[ITEM_SNOW_BALL] = {gItemIcon_DiveBall, gItemIconPalette_DiveBall}' in Path('src/data/item_icon_table.h').read_text()
 assert 'case ITEM_SNOW_BALL:\n        return BALL_DIVE;' in Path('src/battle_anim_special.c').read_text()
 print('PASS: static376 item identities/prices,11 complete city/League stocks, no forbidden ball sales there, Snow shares Dive icon/animation mapping; native UI/runtime separate')
+
+# BTL-006 final-acceptance static regressions: verify UI/progression wiring.
+# These do not substitute for actual rendered screens or manual playthroughs.
+all_balls = ['MASTER', 'ULTRA', 'GREAT', 'POKE', 'SAFARI',
+             'NET', 'DIVE', 'NEST', 'REPEAT', 'TIMER', 'LUXURY',
+             'PREMIER', 'SNOW']
+assert len(all_balls) == 13
+for name in all_balls:
+    item = items['ITEM_' + name + '_BALL']
+    assert item['pocket'] == 'POCKET_POKE_BALLS', name
+    assert item['battleUseFunc'] == 'BattleUseFunc_PokeBallEtc', name
+    assert len(item['description_english']) > 20, name
+for name, title in [('NET', 'DUST BALL'), ('DIVE', 'WET BALL'),
+                    ('SNOW', 'SNOW BALL')]:
+    assert items['ITEM_' + name + '_BALL']['english'] == title
+for name in ['ViridianCity_Mart', 'PewterCity_Mart', 'CeruleanCity_Mart']:
+    shop = Path('data/maps/' + name + '/scripts.inc').read_text()
+    for ball in ['NET', 'DIVE', 'NEST', 'REPEAT', 'TIMER', 'LUXURY', 'SNOW']:
+        assert 'ITEM_' + ball + '_BALL' not in shop, (name, ball)
+two_island = Path('data/maps/TwoIsland/scripts.inc').read_text()
+for stage in ['ShopInitial', 'ShopExpanded1', 'ShopExpanded2', 'ShopExpanded3']:
+    assert 'TwoIsland_Items_' + stage + '::' in two_island
+assert re.search(r'TwoIsland_Items_ShopExpanded3::.*?ITEM_REPEAT_BALL.*?ITEM_TIMER_BALL',
+                 two_island, re.S)
+oak = Path('data/maps/PalletTown_ProfessorOaksLab/scripts.inc').read_text()
+assert 'goto_if_set FLAG_OAK_NEST_BALLS_PENDING' in oak
+assert 'goto_if_eq VAR_RESULT, FALSE, PalletTown_ProfessorOaksLab_EventScript_NestBallsFull' in oak
+assert 'clearflag FLAG_OAK_NEST_BALLS_PENDING' in oak
+assert ('giveitem_msg PalletTown_ProfessorOaksLab_Text_ReceivedFivePokeBalls, '
+        'ITEM_POKE_BALL, 5') in oak
+oak_text = Path('data/maps/PalletTown_ProfessorOaksLab/text.inc').read_text()
+assert 'received five NEST BALLS' in oak_text
+assert ('ItemIdToBallId(CaptureCodeToBallItem(ballItemId))'
+        in Path('src/pokemon_summary_screen.c').read_text())
+assert ('ItemIdToBallId(CaptureCodeToBallItem(ball))'
+        in Path('src/battle_anim_special.c').read_text())
+print('PASS: BTL-006 UI/progression static regressions: all 13 ball descriptions/handlers, '
+      'three renamed labels, early shop gates, Two Island stages, Oak retry/refill '
+      'separation and Snow summary/animation decode; live display still separate')

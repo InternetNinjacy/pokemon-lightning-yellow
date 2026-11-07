@@ -295,7 +295,7 @@ required += ['ViridianCity_EventScript_TrainerTips1','ViridianCity_EventScript_T
 
 required += ['CreateHalfShinyGiftEgg','ScriptGiveMagbyEgg','ScriptGiveTangoTangela','FiveIsland_WaterLabyrinth_EventScript_EggGentleman','CeladonCity_Condominiums_RoofRoom_EventScript_EeveeBall']
 
-required += ['PokemonLeague_LoreleisRoom_EventScript_Lorelei','PokemonLeague_BrunosRoom_EventScript_Bruno','PokemonLeague_LancesRoom_EventScript_Lance']
+required += ['PokemonLeague_LoreleisRoom_EventScript_Lorelei','PokemonLeague_BrunosRoom_EventScript_Bruno','PokemonLeague_AgathasRoom_EventScript_Agatha','PokemonLeague_LancesRoom_EventScript_Lance']
 required += ['PewterCity_Gym_EventScript_Liam','CeruleanCity_Gym_EventScript_Diana','CeladonCity_Gym_EventScript_Mary','Cmd_setweatherballtype','gBattleMonForms','SaffronCity_Dojo_Text_NeedTwo']
 required += ['MonRestorePP','ExecuteTableBasedItemEffect']
 required += ['ClampApprovedMovePP','ClampApprovedDaycarePP','NormalizeLoadedMovePP','GetBoxMonData3','SetBoxMonData','SavePlayerParty','gSaveCounter']
@@ -379,6 +379,26 @@ with tempfile.TemporaryDirectory(prefix='lightning-emulator-') as temp:
     expected+='};\n'
     (temp/'rival_expected.h').write_text(expected)
 
+
+    # Generate strict native-ROM expectations from the authorized 510-row lock.
+    # Placeholder-only source records intentionally are not constructed as foes.
+    ordinary = json.loads(Path('docs/ordinary-trainers-implementation-lock.json').read_text())['entries']
+    ordinary_active = [(name, row) for name, row in ordinary.items() if not row['source_dummy']]
+    assert len(ordinary_active) == 500
+    ordinary_mons = [mon for _, row in ordinary_active for mon in row['mons']]
+    assert len(ordinary_mons) == 1219
+    expected = '#define ORDINARY_TRAINER_COUNT 500\n#define ORDINARY_TRAINER_MON_COUNT 1219\n'
+    expected += 'static const unsigned ordinaryTrainerIds[] = {' + ','.join(name for name, _ in ordinary_active) + '};\n'
+    expected += 'static const unsigned ordinaryTrainerSizes[] = {' + ','.join(str(len(row['mons'])) for _, row in ordinary_active) + '};\n'
+    expected += 'struct OrdinaryExpected {unsigned species,level,item,iv,moves[4];};\n'
+    expected += 'static const struct OrdinaryExpected ordinaryTrainerMons[] = {\n'
+    for mon in ordinary_mons:
+        move_list = mon['moves'] + ['MOVE_NONE'] * (4 - len(mon['moves']))
+        expected += ' {' + ','.join([
+            mon['species'], str(mon['level']), mon['held_item'] or 'ITEM_NONE',
+            str(mon['iv']), '{' + ','.join(move_list) + '}']) + '},\n'
+    expected += '};\n'
+    (temp / 'ordinary_trainers_expected.h').write_text(expected)
 
     command=['gcc','-std=gnu11','-O2','-Wall','-Wextra','-I',str(temp),'-iquote','include',
              'tests/emulator/runner.c','-o',str(temp/'runner')]

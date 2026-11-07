@@ -302,5 +302,5 @@ Read docs/moves/THUNDER_WAVE_STATUS.md. Preserve512-byte BattleStruct/private0x1
 padding context, original actor/per-recipient reflection, once-per-move inability
 and PP/Pressure checks, noPP cancellation, existing art and every old guard.
 Focus with LIGHTNING_THUNDER_WAVE_ONLY=1 and LIGHTNING_ORIGINAL_EFFECTS_ONLY=1;
-all25 hosts/3 checkers and full29-group native/clean/upstream acceptance remain
+all26 hosts/3 checkers and full30-group native/clean/upstream acceptance remain
 required. Source overlays are not410-move completion or real-link certification.
