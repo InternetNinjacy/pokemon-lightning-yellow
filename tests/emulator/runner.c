@@ -359,6 +359,7 @@ static void dexTests(void) {
 #include "approved_gifts.c"
 
 #include "elite_four.c"
+#include "ordinary_trainers.c"
 
 int main(int argc,char **argv) {
     setvbuf(stdout,NULL,_IONBF,0);
@@ -403,6 +404,7 @@ int main(int argc,char **argv) {
 
     if(getenv("LIGHTNING_APPROVED_GIFTS_ONLY")){approvedGiftTests();printf("PASS: %u focused approved-gift assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
 
+    if(getenv("LIGHTNING_ORDINARY_TRAINERS_DATA_ONLY")){ordinaryTrainerPartyDataTests();printf("PASS: %u focused native ordinary Trainer assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_ELITE_FOUR_DATA_ONLY")){eliteFourDataTests();printf("PASS: %u focused Elite Four data assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_ELITE_FOUR_ONLY")){eliteFourTests();printf("PASS: %u focused Elite Four assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_MOVE_PP_ONLY")){movePpCompatibilityTests();printf("PASS: %u focused move PP assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
@@ -541,6 +543,7 @@ int main(int argc,char **argv) {
 
     approvedGiftTests();
 
+    ordinaryTrainerPartyDataTests();
     eliteFourTests();
     printf("PASS: %u mGBA assertions (includes API/register safety checks)\n",checks);
     core->deinit(core);free(pixels);free(bootState);

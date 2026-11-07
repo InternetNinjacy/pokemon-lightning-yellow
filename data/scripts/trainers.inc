@@ -155,14 +155,14 @@ Route24_EventScript_AliRematch::
 	end
 
 Route24_EventScript_Shane::
-	trainerbattle_single TRAINER_CAMPER_SHANE, Route24_Text_ShaneIntro, Route24_Text_ShaneDefeat
+	trainerbattle_double TRAINER_CAMPER_SHANE, Route24_Text_ShaneIntro, Route24_Text_ShaneDefeat, Route24_Text_ShaneNotEnoughMons
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, Route24_EventScript_ShaneRematch
 	msgbox Route24_Text_ShanePostBattle, MSGBOX_AUTOCLOSE
 	end
 
 Route24_EventScript_ShaneRematch::
-	trainerbattle_rematch TRAINER_CAMPER_SHANE, Route24_Text_ShaneRematchIntro, Route24_Text_ShaneDefeat
+	trainerbattle_rematch_double TRAINER_CAMPER_SHANE, Route24_Text_ShaneRematchIntro, Route24_Text_ShaneDefeat, Route24_Text_ShaneNotEnoughMons
 	msgbox Route24_Text_ShanePostBattle, MSGBOX_AUTOCLOSE
 	end
 
