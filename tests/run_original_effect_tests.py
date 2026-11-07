@@ -52,5 +52,5 @@ for p,v in tw['files'].items():
   from approved_elite_four_changes import prior_elite_four_source
   text=prior_elite_four_source(p,text)
  assert hashlib.sha256(text.encode()).hexdigest()==v['after_sha256'],p
- assert hashlib.sha256(prior_thunder_wave_source(p,text).encode()).hexdigest()==v['before_sha256'],p
+ assert hashlib.sha256(prior_thunder_wave_source(p,text,later_normalized=True).encode()).hexdigest()==v['before_sha256'],p
 print('PASS: exact approved all-other-active Thunder Wave with private padding context, native per-recipient checks; saved/link fields unchanged (static)')

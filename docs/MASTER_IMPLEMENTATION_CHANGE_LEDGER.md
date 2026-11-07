@@ -1664,6 +1664,19 @@ PR #68 merged to main at f3a113a44d89acacc0b584f61c4dead868ef2607; exact-head Ac
   historical pre-boundary/pre-extra-flash full815987 is not latest acceptance.
   Keep PR80 draft; no effort credit or claim that failing source was accepted.
 
+## 2026-11-07 — BTL-005-M3C Ghost slice in progress
+
+- Child of80/9ab273ce:358 Soul Drain PhysicalGhost50 half drain/contact;359 Weary
+  Touch PhysicalGhost75 sleep22%;360 Dream Haunt SpecialGhost55 doubled base power
+  vs sleep, no drain/no wake. Exact approved composites, no new art/distribution.
+- New effect214 dispatch sets native sleep before Hit; common CalculateBaseDamage
+  condition serves real damage and AI. No new runtime/save fields or moved old IDs.
+  Frozen eight-file reverse delta preserves parent and every historical digest;
+  exact TW source-stage argument avoids duplicate normalization, no digest rewrite.
+- All29 hosts/3 checkers/build PASS; focused331 actual native assertions PASS,
+  selected-target Single/Double playback/drain/Ooze/sleep/conditional power/AI/
+  Normal immunity and PP. Full/clean/CI pending, no merge or effort credit.
+  EWRAM remains261064/262144;1080 static bytes free, slice adds no state.
 ## 2026-11-07 — BTL-005-M3B corrected full pass / priority finisher follow-up
 
 -9ab273ce corrected flash fixture: local full816089 PASS, both Actions42382668646/
@@ -1674,6 +1687,24 @@ PR #68 merged to main at f3a113a44d89acacc0b584f61c4dead868ef2607; exact-head Ac
   Tackle104 in all4 slots. Latest focused517/all28 hosts PASS; new clean/CI pending.
   Old original before-hashes unchanged. No merge or effort credit yet; child82
   must inherit this correction and its exact parent-state manifest before merging.
+
+## 2026-11-07 — BTL-006 formal Master Control completion and release-QA separation
+
+- Master Control reviewed final [BTL-006 acceptance audit](BTL006_FINAL_ACCEPTANCE_AUDIT_2026-11-07.md) and specialist handoff; original PR13 merged d54f7a8e85d38b8fa304399dcb4d14778396d5cd, supplemental PR75 merged f232f69650ecf005597bed074140323cc45f7efd. Exact modified/upstream Actions41688991039 and42348317604 both SUCCESS. Source review includes 13 independent checks and persistent capture regression assertions; scoped native ROM capture/weather/shops/storage/save checks PASS.
+- Formal decision: implementation and feature-specific acceptance complete; no known defect. Historical BTL-006 effort 15 earned/1 remaining →16 earned/0 remaining, no denominator change. Overall 398/314 →399/313 of712 =56.04%; BTL area 81/55 →82/54 of136=60.29%. Other task point records untouched.
+- Exhaustive manual 13-ball visuals, complete retailer story routes, true two-peer/hardware, interrupted-power and quest-log checks NOT performed. These remain shared INT-004/INT-005 stabilization and release qualification, not an unresolved BTL-006 implementation blocker; no duplicated points. Do not claim full game or hardware certification.
+- Docs-only reviewable reconciliation; original immutable history retained. Poké Ball Design Register and Project Index had already received specialist implementation/acceptance evidence; final Master Control closure confirmation appended separately in Drive.
+
+## 2026-11-07 — BTL-005-M3C final-parent synchronization / main81 closure
+
+- Inherited80/a4681848 priority finisher translation, kept exact frozen Ghost
+  before-state keyed to that parent; no old digest changed. Current29 hosts/3
+  checkers/build and Ghost331 +Fire517 focused native PASS.
+- Pre-parent-AI56ab full816414/clean01e548bd…19ed7 PASS are historical; current
+  full/clean/CI pending. No merge or new-feature effort credit.
+- Main81 mergedcd9650c5 after both checks42383554875 SUCCESS. Three docs only:
+  BTL006+1 closure and INT005 outstanding release-QA notes, unchanged INT005 effort.
+  Preserve all50 IDs/712 denominator/old earned progress;399 earned/313 remaining.
 
 ## 2026-11-07 — BTL-006 formal Master Control completion and release-QA separation
 
