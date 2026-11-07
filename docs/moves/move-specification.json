@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "baseline_source_commit": "92838e5eb64d19942cb5c51cfdef6991503ac3ad",
-  "current_battle_moves_sha256": "684f71cd8952bf9c8e1534fa2c5af98f646ca26fa5f6eb18b9139a17c880bbd6",
+  "current_battle_moves_sha256": "85ac064ba3b409a605e342fa8eedb5c300f1e50128dfcb33d38874dc7ec214cd",
   "scope": "Reconciliation only, no gameplay edits. Numeric proposed IDs/semantic effects/target values are NOT compiled constants. Runtime_verified false is not a failure claim.",
   "sources": {
     "register": {
@@ -9866,9 +9866,9 @@
       "identity": "REWORKED_ORIGINAL",
       "source_line": 2525,
       "current": {
-        "category": "STATUS",
+        "category": "SPECIAL",
         "type": "GHOST",
-        "power": 0,
+        "power": 30,
         "accuracy": 100,
         "pp": 10,
         "priority": 0,
@@ -9918,25 +9918,12 @@
         "source_exists": true,
         "runtime_verified": false
       },
-      "delta": {
-        "category": {
-          "current": "STATUS",
-          "approved": "SPECIAL"
-        },
-        "power": {
-          "current": 0,
-          "approved": 30
-        },
-        "effect": {
-          "current": "EFFECT_SPITE",
-          "approved": "DAMAGE_AND_OPTIONAL_SPITE_PP_DRAIN"
-        },
-        "flags": {
-          "current": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED",
-          "approved": null
-        }
+      "engine_translation": {
+        "effect": "EFFECT_SPITE",
+        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
       },
-      "implementation_status": "PENDING_APPROVED_REDESIGN",
+      "delta": {},
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA",
       "animation_candidate": {
         "key": "SPITE",
         "name": "Spite",
@@ -15818,14 +15805,14 @@
       "identity": "REWORKED_ORIGINAL",
       "source_line": 4037,
       "current": {
-        "category": "STATUS",
+        "category": "SPECIAL",
         "type": "GHOST",
-        "power": 0,
-        "accuracy": 100,
-        "pp": 5,
+        "power": 30,
+        "accuracy": 90,
+        "pp": 10,
         "priority": 0,
-        "target": "MOVE_TARGET_USER",
-        "effect": "EFFECT_GRUDGE",
+        "target": "MOVE_TARGET_SELECTED",
+        "effect": "EFFECT_ROLLOUT",
         "secondaryEffectChance": 0,
         "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
       },
@@ -15836,7 +15823,7 @@
         "accuracy": 90,
         "pp": 10,
         "priority": 0,
-        "target": "MOVE_TARGET_USER",
+        "target": "MOVE_TARGET_SELECTED",
         "effect": "ROLLOUT_WITHOUT_DEFENSE_CURL",
         "secondaryEffectChance": 0,
         "flags": null
@@ -15870,33 +15857,12 @@
         "source_exists": true,
         "runtime_verified": false
       },
-      "delta": {
-        "category": {
-          "current": "STATUS",
-          "approved": "SPECIAL"
-        },
-        "power": {
-          "current": 0,
-          "approved": 30
-        },
-        "accuracy": {
-          "current": 100,
-          "approved": 90
-        },
-        "pp": {
-          "current": 5,
-          "approved": 10
-        },
-        "effect": {
-          "current": "EFFECT_GRUDGE",
-          "approved": "ROLLOUT_WITHOUT_DEFENSE_CURL"
-        },
-        "flags": {
-          "current": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED",
-          "approved": null
-        }
+      "engine_translation": {
+        "effect": "EFFECT_ROLLOUT",
+        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
       },
-      "implementation_status": "PENDING_APPROVED_REDESIGN",
+      "delta": {},
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA",
       "animation_candidate": {
         "key": "GRUDGE",
         "name": "Grudge",
