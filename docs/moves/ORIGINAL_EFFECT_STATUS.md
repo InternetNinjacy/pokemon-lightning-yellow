@@ -37,3 +37,10 @@ merged policy55,Roar56,sign58,gifts59,six Elite Four60 and weather61.
 Six other original redesign policies, global Electric paralysis immunity and all56
 new moves remain. Rollback restores two rows/descriptions; PP/save ABI unchanged.
 No ROM/BIOS/save/graphics artifacts or release.
+
+## Final acceptance and integration
+
+Full29-group mGBA **754034 assertions PASS**;25 hosts/3 checkers PASS.
+Clean rebuild identical SHA256 `f8d6d10d190bbb3e497406105954360713dce1a9371b94e8fe3122b83531a415`.
+Actions42311654769 and42311756718 both modified/upstream-baseline SUCCESS.
+PR63 merged as `767bb39c4fb107418f86ecc247572630b3adf014`.
