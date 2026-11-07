@@ -50,6 +50,7 @@ jobs:
           python3 tests/run_move_catalog_tests.py
           python3 tests/run_new_fire_moves_tests.py
           python3 tests/run_new_ghost_moves_tests.py
+          python3 tests/run_skitter_slash_tests.py
           python3 tests/run_move_foundation_tests.py
           python3 tests/run_move_ui_tests.py
           python3 tests/run_original_move_data_tests.py
