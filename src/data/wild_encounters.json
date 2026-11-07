@@ -10712,7 +10712,7 @@
                 "max_level": 44,
                 "species": "SPECIES_MANKEY"
               }
-                        ]
+            ]
           },
           "water_mons": {
             "encounter_rate": 2,
@@ -23254,7 +23254,7 @@
                 "max_level": 44,
                 "species": "SPECIES_MANKEY"
               }
-                        ],
+            ],
             "encounter_rate": 21
           },
           "water_mons": {
