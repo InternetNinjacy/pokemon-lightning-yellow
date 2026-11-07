@@ -375,6 +375,10 @@ const u8 gMoveDescription_CHIRP[] = _("A sharp insect cry\nthat damages the\nfoe
 
 const u8 gMoveDescription_SWARM_CLOUD[] = _("A swarming attack\nthat may confuse\nand poison the foe.");
 
+const u8 gMoveDescription_BELLOW[] = _("A loud cry that\nhits the foe with\npowerful sound.");
+const u8 gMoveDescription_POWER_GEM[] = _("An attack using\nthe power of a\nglowing gemstone.");
+const u8 gMoveDescription_STONE_EDGE[] = _("Sharp stones hit\nthe foe. High\ncritical-hit ratio.");
+
 const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND         - 1] = gMoveDescription_Pound,
     [MOVE_KARATE_CHOP   - 1] = gMoveDescription_KarateChop,
@@ -742,4 +746,7 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_CHITIN_CRUSH - 1] = gMoveDescription_CHITIN_CRUSH,
     [MOVE_CHIRP - 1] = gMoveDescription_CHIRP,
     [MOVE_SWARM_CLOUD - 1] = gMoveDescription_SWARM_CLOUD,
+    [MOVE_BELLOW - 1] = gMoveDescription_BELLOW,
+    [MOVE_POWER_GEM - 1] = gMoveDescription_POWER_GEM,
+    [MOVE_STONE_EDGE - 1] = gMoveDescription_STONE_EDGE,
 };
