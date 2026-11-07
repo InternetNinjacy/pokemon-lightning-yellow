@@ -134,7 +134,7 @@ static void warpGrass(void){
   if(CALL(MapGridGetMetatileAttributeAt,x,y,ABI_META_ENCOUNTER)==ABI_TILE_LAND
    && CALL(MapGridGetMetatileAttributeAt,x,y+1,ABI_META_ENCOUNTER)==ABI_TILE_LAND){found=1;break;}
  CHECK(found);y--;
- CALL(SetWarpDestination,MAP_GROUP(MAP_ROUTE1),MAP_NUM(MAP_ROUTE1),0xFFFFFFFF,x-7,y-7);
+ CALL(SetWarpDestination,MAP_GROUP(MAP_MT_MOON_1F),MAP_NUM(MAP_MT_MOON_1F),0xFFFFFFFF,x-7,y-7);
  CALL(WarpIntoMap);CALL(CB2_LoadMap);frames(180,0);
  CALL(PlayerGetDestCoords,scratch,scratch+2);
  CHECK(CALL(MapGridGetMetatileAttributeAt,core->busRead16(core,scratch),core->busRead16(core,scratch+2),ABI_META_ENCOUNTER)==ABI_TILE_LAND);
@@ -151,7 +151,7 @@ static void walkToBattle(void){
  printf("PASS: actual directional walking triggered wild double after %u frames on ordinary grass\n",f);
 }
 static void generationTests(void){
- wildFixture(MAP_GROUP(MAP_ROUTE1),MAP_NUM(MAP_ROUTE1),1);
+ wildFixture(MAP_GROUP(MAP_MT_MOON_1F),MAP_NUM(MAP_MT_MOON_1F),1);
  uint32_t info=landInfo();unsigned special=0,duplicates=0,firstP=0,secondP=0;
  core->busWrite32(core,SYM_gRngValue,0x790abcde);
  for(unsigned i=0;i<1000;i++){
@@ -159,16 +159,16 @@ static void generationTests(void){
   unsigned a=monget(enemy(0),ABI_DATA_SPECIES),b=monget(enemy(1),ABI_DATA_SPECIES);
   if(a==SPECIES_ONIX&&b==SPECIES_CLOYSTER)special++;
   else{
-   CHECK(a==SPECIES_PIDGEY||a==SPECIES_RATTATA||a==SPECIES_IGGLYBUFF);CHECK(b==SPECIES_PIDGEY||b==SPECIES_RATTATA||b==SPECIES_IGGLYBUFF);
-   firstP+=a==SPECIES_PIDGEY;secondP+=b==SPECIES_PIDGEY;duplicates+=a==b;
+   CHECK(a==SPECIES_ZUBAT||a==SPECIES_GEODUDE||a==SPECIES_PARAS||a==SPECIES_CLEFAIRY);CHECK(b==SPECIES_ZUBAT||b==SPECIES_GEODUDE||b==SPECIES_PARAS||b==SPECIES_CLEFAIRY);
+   firstP+=a==SPECIES_ZUBAT;secondP+=b==SPECIES_ZUBAT;duplicates+=a==b;
   }
-  for(unsigned j=0;j<2;j++){unsigned level=monget(enemy(j),ABI_DATA_LEVEL);CHECK(level>=2&&level<=5);}
+  for(unsigned j=0;j<2;j++){unsigned level=monget(enemy(j),ABI_DATA_LEVEL);CHECK(level>=7&&level<=10);}
   CHECK(monget(enemy(2),ABI_DATA_SPECIES)==0);
   CALL(ResetTasks);
  }
  CHECK(special>=25&&special<=75);CHECK(duplicates>300);
- CHECK(firstP>400&&firstP<550&&secondP>400&&secondP<550);
- printf("PASS: real encrypted ROM generation: %u/1000 special, %u duplicates, first/second Pidgey=%u/%u\n",special,duplicates,firstP,secondP);
+ CHECK(firstP>550&&firstP<750&&secondP>550&&secondP<750);
+ printf("PASS: real encrypted ROM generation: %u/1000 special, %u duplicates, first/second Zubat=%u/%u\n",special,duplicates,firstP,secondP);
  CALL(VarSet,VAR_REPEL_STEP_COUNT,100);
  for(unsigned i=0;i<30;i++)CHECK(!CALL(TryStartLandEncounter,info,1));
  CHECK(CALL(TryStartLandEncounter,info,0));CALL(ResetTasks);
@@ -184,7 +184,7 @@ static void generationTests(void){
 }
 static void wildTests(void){
  generationTests();
- wildFixture(MAP_GROUP(MAP_ROUTE1),MAP_NUM(MAP_ROUTE1),1);
+ wildFixture(MAP_GROUP(MAP_MT_MOON_1F),MAP_NUM(MAP_MT_MOON_1F),1);
  CHECK(CALL(TryDoDoubleWildBattle));
  warpGrass();walkToBattle();
  unsigned s1=monget(enemy(0),ABI_DATA_SPECIES),s2=monget(enemy(1),ABI_DATA_SPECIES);
@@ -227,7 +227,7 @@ static void wildTests(void){
  CHECK(core->busRead8(core,SYM_gBattleOutcome)==B_OUTCOME_RAN);
  printf("PASS: normal Run command escaped double encounter and restored overworld\n");
  for(unsigned killed=1;killed<=3;killed+=2){
-  wildFixture(MAP_GROUP(MAP_ROUTE1),MAP_NUM(MAP_ROUTE1),1);
+  wildFixture(MAP_GROUP(MAP_MT_MOON_1F),MAP_NUM(MAP_MT_MOON_1F),1);
   CHECK(CALL(AddBagItem,ITEM_MASTER_BALL,2));startSpecial();waitAction();
   CHECK(CALL(GetWildOpponentCount)==2);
   openBagUse();
@@ -260,7 +260,7 @@ static void wildTests(void){
   printf("PASS: captured species, Dex and ball inventory survived actual flash save/load\n");
  }
 
- wildFixture(MAP_GROUP(MAP_ROUTE1),MAP_NUM(MAP_ROUTE1),1);
+ wildFixture(MAP_GROUP(MAP_MT_MOON_1F),MAP_NUM(MAP_MT_MOON_1F),1);
  startSpecial();waitAction();
  chooseMove(0,0,1);chooseMove(2,0,3);waitOverworld(1);
  CHECK(core->busRead8(core,SYM_gBattleOutcome)==B_OUTCOME_WON);
@@ -280,7 +280,7 @@ static void wildTests(void){
  // RTC is present but does not replace existing encounter tables. Test the real
  // Sweet Scent entry at both times, including its original Repel bypass.
  for(unsigned hour=0;hour<=12;hour+=12){
-  wildFixture(MAP_GROUP(MAP_ROUTE1),MAP_NUM(MAP_ROUTE1),1);warpGrass();clockAt(hour);
+  wildFixture(MAP_GROUP(MAP_MT_MOON_1F),MAP_NUM(MAP_MT_MOON_1F),1);warpGrass();clockAt(hour);
   CALL(VarSet,VAR_REPEL_STEP_COUNT,100);
   CALL(SetWeather,WEATHER_RAIN);frames(120,0);
   CHECK(CALL(SweetScentWildEncounter));waitAction();
@@ -292,7 +292,7 @@ static void wildTests(void){
  }
 
 
- wildFixture(MAP_GROUP(MAP_ROUTE1),MAP_NUM(MAP_ROUTE1),1);
+ wildFixture(MAP_GROUP(MAP_MT_MOON_1F),MAP_NUM(MAP_MT_MOON_1F),1);
  for(unsigned i=2;i<6;i++)CALL(CreateMon,player(i),SPECIES_PIKACHU,50,31,1,12345+i,0,1234);
  core->busWrite8(core,SYM_gPlayerPartyCount,6);
  uint32_t name=CALL(GetBoxNamePtr,0);core->busWrite8(core,name,0xBC);core->busWrite8(core,name+1,0xFF);
@@ -302,7 +302,7 @@ static void wildTests(void){
  CHECK(CALL(GetBoxMonDataAt,0,0,ABI_DATA_SPECIES)==SPECIES_CLOYSTER);
  CHECK(CALL(BagGetQuantityByItemId,ITEM_MASTER_BALL)==0);
  printf("PASS: full-party capture sent right-side Cloyster to PC with correct species and one ball consumed\n");
- wildFixture(MAP_GROUP(MAP_ROUTE1),MAP_NUM(MAP_ROUTE1),1);warpGrass();
+ wildFixture(MAP_GROUP(MAP_MT_MOON_1F),MAP_NUM(MAP_MT_MOON_1F),1);warpGrass();
  CALL(InitRoamer);
  core->busWrite8(core,SYM_sRoamerLocation,MAP_GROUP(MAP_ROUTE1));
  core->busWrite8(core,SYM_sRoamerLocation+1,MAP_NUM(MAP_ROUTE1));
@@ -323,7 +323,7 @@ static void wildTests(void){
 static void wildHardeningTests(void) {
  // All ordinary Bag ball types share the two-live-opponent guard. Safari Ball
  // remains part of the separate unchanged Safari mode, not a normal Bag item.
- wildFixture(MAP_GROUP(MAP_ROUTE1),MAP_NUM(MAP_ROUTE1),1);
+ wildFixture(MAP_GROUP(MAP_MT_MOON_1F),MAP_NUM(MAP_MT_MOON_1F),1);
  startSpecial();waitAction();
  void *battle=malloc(core->stateSize(core));CHECK(battle && core->saveState(core,battle));
  for(unsigned ball=ITEM_MASTER_BALL;ball<=ITEM_PREMIER_BALL;ball++) {
@@ -337,7 +337,7 @@ static void wildHardeningTests(void) {
  free(battle);
  printf("PASS: all eleven ordinary Bag ball types reject two live opponents without consumption\n");
 
- wildFixture(MAP_GROUP(MAP_ROUTE1),MAP_NUM(MAP_ROUTE1),1);
+ wildFixture(MAP_GROUP(MAP_MT_MOON_1F),MAP_NUM(MAP_MT_MOON_1F),1);
  CHECK(CALL(AddBagItem,ITEM_MASTER_BALL,2));startSpecial();waitAction();killOne(1);
  openBagUse();waitController(2,SYM_HandleInputChooseAction);
  CHECK(CALL(BagGetQuantityByItemId,ITEM_MASTER_BALL)==1);
@@ -350,7 +350,7 @@ static void wildHardeningTests(void) {
  CHECK(CALL(BagGetQuantityByItemId,ITEM_MASTER_BALL)==1);
  printf("PASS: partner B canceled ball choice and refunded once; retry captured and consumed once\n");
 
- wildFixture(MAP_GROUP(MAP_ROUTE1),MAP_NUM(MAP_ROUTE1),1);
+ wildFixture(MAP_GROUP(MAP_MT_MOON_1F),MAP_NUM(MAP_MT_MOON_1F),1);
  CHECK(CALL(AddBagItem,ITEM_POKE_BALL,2));startSpecial();waitAction();killOne(1);
  battle=malloc(core->stateSize(core));CHECK(battle && core->saveState(core,battle));
  unsigned failed=0;
