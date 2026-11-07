@@ -174,6 +174,7 @@ def main():
     direct_battle_map_objects = 0
     trainer_object_first_opcode_warnings = []
     trainer_object_source_format_warnings = []
+    script_driven_double_with_source_false = []
     unresolved_direct_battle_map_objects = []
     map_count = 0
     for path in MAP_DIR.glob("*/map.json"):
@@ -220,7 +221,13 @@ def main():
                         if not entry:
                             continue
                         source_double = bool(re.search(r"\\.doubleBattle\\s*=\\s*TRUE", entry))
-                        if source_double != (opcode == "trainerbattle_double"):
+                        if opcode == "trainerbattle_double" and not source_double:
+                            # Script-driven paired Doubles legitimately set the battle mode;
+                            # the Trainer definition's flag need not also be TRUE.
+                            script_driven_double_with_source_false.append({
+                                "map": path.parent.name, "script": name,
+                                "trainer_id": trainer_id})
+                        elif opcode == "trainerbattle_single" and source_double:
                             trainer_object_source_format_warnings.append({
                                 "map": path.parent.name, "script": name,
                                 "trainer_id": trainer_id,
@@ -307,6 +314,7 @@ def main():
         "objects_with_direct_battle_command": direct_battle_map_objects,
         "trainer_object_first_opcode_warnings": trainer_object_first_opcode_warnings,
         "trainer_object_source_format_warnings": trainer_object_source_format_warnings,
+        "script_driven_double_with_source_false": script_driven_double_with_source_false,
         "unreferenced_original_ids_with_other_engine_references": other_engine_references,
         "objects_whose_label_only_resolves_in_other_map": ambiguous_map_label_paths,
         "ordinary_original_ids_with_direct_map_object": len(set(original) & direct_map_trainer_ids),
