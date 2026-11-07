@@ -162,6 +162,7 @@ def main():
     missing_map_labels = []
     trainer_map_objects = 0
     direct_map_trainer_ids = set()
+    scripted_nontrainer_objects = []
     map_object_trainer_references = []
     ambiguous_map_label_paths = []
     direct_battle_map_objects = 0
@@ -172,6 +173,18 @@ def main():
         map_count += 1
         for event in data.get("object_events", []):
             if not str(event.get("trainer_type", "")).startswith("TRAINER_TYPE_") or event.get("trainer_type") == "TRAINER_TYPE_NONE":
+                label = event.get("script", "")
+                allowed = [block for block in script_blocks.get(label, [])
+                           if block["path"] == rel(path.parent / "scripts.inc")
+                           or block["path"] == "data/scripts/trainers.inc"]
+                linked_ids = sorted({trainer_id for block in allowed
+                                     for trainer_id in block["trainer_ids"]
+                                     if trainer_id in original})
+                if linked_ids:
+                    scripted_nontrainer_objects.append({
+                        "map": path.parent.name, "script": label,
+                        "trainer_type": event.get("trainer_type"),
+                        "ids": linked_ids, "x": event.get("x"), "y": event.get("y")})
                 continue
             trainer_map_objects += 1
             name = event.get("script", "")
@@ -223,6 +236,8 @@ def main():
         "objects_whose_label_only_resolves_in_other_map": ambiguous_map_label_paths,
         "ordinary_original_ids_with_direct_map_object": len(set(original) & direct_map_trainer_ids),
         "ordinary_original_ids_without_direct_map_object": sorted(set(original) - direct_map_trainer_ids),
+        "nontrainer_objects_with_direct_ordinary_battle": scripted_nontrainer_objects,
+        "unmapped_original_ids_still_referenced_in_scripts": {trainer_id: sorted(references[trainer_id]) for trainer_id in sorted(set(original) - direct_map_trainer_ids) if trainer_id in references},
         "map_objects_with_multiple_direct_trainer_ids": [r for r in map_object_trainer_references if len(r["ids"]) > 1],
         "objects_requiring_indirect_script_review": unresolved_direct_battle_map_objects,
         "original_ids_referenced_in_scripts": len(original) - len(missing_original),
