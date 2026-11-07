@@ -4303,198 +4303,193 @@ static const struct TrainerMonNoItemDefaultMoves sParty_TeamRocketGrunt7[] = {
 static const struct TrainerMonNoItemDefaultMoves sParty_TeamRocketGrunt8[] = {
     {
         .iv = 0,
-        .lvl = 21,
-        .species = SPECIES_DROWZEE,
+        .lvl = 24,
+        .species = SPECIES_MEOWTH,
     },
     {
         .iv = 0,
-        .lvl = 21,
-        .species = SPECIES_MACHOP,
+        .lvl = 24,
+        .species = SPECIES_EKANS,
     },
 };
 
 static const struct TrainerMonNoItemDefaultMoves sParty_TeamRocketGrunt9[] = {
     {
         .iv = 0,
-        .lvl = 21,
+        .lvl = 25,
         .species = SPECIES_RATICATE,
     },
     {
         .iv = 0,
-        .lvl = 21,
-        .species = SPECIES_RATICATE,
+        .lvl = 25,
+        .species = SPECIES_MURKROW,
     },
 };
 
-static const struct TrainerMonNoItemCustomMoves sParty_TeamRocketGrunt10[] = {
+static const struct TrainerMonNoItemDefaultMoves sParty_TeamRocketGrunt10[] = {
     {
         .iv = 0,
-        .lvl = 20,
-        .species = SPECIES_GRIMER,
-        .moves = {MOVE_MINIMIZE, MOVE_SLUDGE, MOVE_DISABLE, MOVE_HARDEN},
+        .lvl = 24,
+        .species = SPECIES_HOUNDOUR,
     },
     {
         .iv = 0,
-        .lvl = 20,
-        .species = SPECIES_KOFFING,
-        .moves = {MOVE_SMOG, MOVE_TACKLE, MOVE_POISON_GAS, MOVE_NONE},
+        .lvl = 24,
+        .species = SPECIES_SEEDOT,
     },
     {
         .iv = 0,
-        .lvl = 20,
-        .species = SPECIES_KOFFING,
-        .moves = {MOVE_SMOG, MOVE_TACKLE, MOVE_POISON_GAS, MOVE_NONE},
+        .lvl = 25,
+        .species = SPECIES_CARVANHA,
     },
 };
 
 static const struct TrainerMonNoItemDefaultMoves sParty_TeamRocketGrunt11[] = {
     {
         .iv = 0,
-        .lvl = 19,
+        .lvl = 24,
         .species = SPECIES_RATTATA,
     },
     {
         .iv = 0,
-        .lvl = 19,
-        .species = SPECIES_RATICATE,
+        .lvl = 25,
+        .species = SPECIES_NUZLEAF,
     },
     {
         .iv = 0,
-        .lvl = 19,
-        .species = SPECIES_RATICATE,
+        .lvl = 28,
+        .species = SPECIES_PERSIAN,
     },
     {
         .iv = 0,
-        .lvl = 19,
-        .species = SPECIES_RATTATA,
+        .lvl = 26,
+        .species = SPECIES_RATICATE,
     },
 };
 
-static const struct TrainerMonNoItemCustomMoves sParty_TeamRocketGrunt12[] = {
+static const struct TrainerMonNoItemDefaultMoves sParty_TeamRocketGrunt12[] = {
     {
         .iv = 0,
-        .lvl = 22,
-        .species = SPECIES_GRIMER,
-        .moves = {MOVE_MINIMIZE, MOVE_SLUDGE, MOVE_DISABLE, MOVE_HARDEN},
+        .lvl = 27,
+        .species = SPECIES_ARBOK,
     },
     {
         .iv = 0,
-        .lvl = 22,
-        .species = SPECIES_KOFFING,
-        .moves = {MOVE_SLUDGE, MOVE_SMOG, MOVE_TACKLE, MOVE_POISON_GAS},
+        .lvl = 27,
+        .species = SPECIES_SNEASEL,
     },
 };
 
-static const struct TrainerMonNoItemCustomMoves sParty_TeamRocketGrunt13[] = {
+static const struct TrainerMonNoItemDefaultMoves sParty_TeamRocketGrunt13[] = {
     {
         .iv = 0,
-        .lvl = 17,
-        .species = SPECIES_ZUBAT,
-        .moves = {MOVE_BITE, MOVE_ASTONISH, MOVE_SUPERSONIC, MOVE_LEECH_LIFE},
+        .lvl = 30,
+        .species = SPECIES_ARBOK,
     },
     {
         .iv = 0,
-        .lvl = 17,
-        .species = SPECIES_KOFFING,
-        .moves = {MOVE_SMOG, MOVE_TACKLE, MOVE_POISON_GAS, MOVE_NONE},
+        .lvl = 30,
+        .species = SPECIES_PERSIAN,
     },
     {
         .iv = 0,
-        .lvl = 17,
-        .species = SPECIES_GRIMER,
-        .moves = {MOVE_SLUDGE, MOVE_DISABLE, MOVE_HARDEN, MOVE_POUND},
+        .lvl = 31,
+        .species = SPECIES_SHARPEDO,
     },
     {
         .iv = 0,
-        .lvl = 17,
-        .species = SPECIES_ZUBAT,
-        .moves = {MOVE_BITE, MOVE_ASTONISH, MOVE_SUPERSONIC, MOVE_LEECH_LIFE},
-    },
-    {
-        .iv = 0,
-        .lvl = 17,
-        .species = SPECIES_RATICATE,
-        .moves = {MOVE_HYPER_FANG, MOVE_QUICK_ATTACK, MOVE_TAIL_WHIP, MOVE_TACKLE},
+        .lvl = 31,
+        .species = SPECIES_HOUNDOOM,
     },
 };
 
 static const struct TrainerMonNoItemDefaultMoves sParty_TeamRocketGrunt14[] = {
     {
         .iv = 0,
-        .lvl = 20,
-        .species = SPECIES_RATTATA,
-    },
-    {
-        .iv = 0,
-        .lvl = 20,
+        .lvl = 27,
         .species = SPECIES_RATICATE,
     },
     {
         .iv = 0,
-        .lvl = 20,
-        .species = SPECIES_DROWZEE,
+        .lvl = 28,
+        .species = SPECIES_NUZLEAF,
+    },
+    {
+        .iv = 0,
+        .lvl = 28,
+        .species = SPECIES_MURKROW,
+    },
+    {
+        .iv = 0,
+        .lvl = 27,
+        .species = SPECIES_RALTS,
     },
 };
 
 static const struct TrainerMonNoItemDefaultMoves sParty_TeamRocketGrunt15[] = {
     {
         .iv = 0,
-        .lvl = 21,
-        .species = SPECIES_MACHOP,
+        .lvl = 28,
+        .species = SPECIES_HOUNDOUR,
     },
     {
         .iv = 0,
-        .lvl = 21,
-        .species = SPECIES_MACHOP,
+        .lvl = 29,
+        .species = SPECIES_SNEASEL,
+    },
+    {
+        .iv = 0,
+        .lvl = 27,
+        .species = SPECIES_SNORUNT,
     },
 };
 
 static const struct TrainerMonNoItemDefaultMoves sParty_TeamRocketGrunt16[] = {
     {
         .iv = 0,
-        .lvl = 23,
-        .species = SPECIES_SANDSHREW,
+        .lvl = 31,
+        .species = SPECIES_ARBOK,
     },
     {
         .iv = 0,
-        .lvl = 23,
-        .species = SPECIES_EKANS,
+        .lvl = 32,
+        .species = SPECIES_CRAWDAUNT,
     },
     {
         .iv = 0,
-        .lvl = 23,
-        .species = SPECIES_SANDSLASH,
+        .lvl = 33,
+        .species = SPECIES_HOUNDOOM,
     },
 };
 
 static const struct TrainerMonNoItemDefaultMoves sParty_TeamRocketGrunt17[] = {
     {
         .iv = 0,
-        .lvl = 23,
-        .species = SPECIES_EKANS,
+        .lvl = 31,
+        .species = SPECIES_SHIFTRY,
     },
     {
         .iv = 0,
-        .lvl = 23,
-        .species = SPECIES_SANDSHREW,
+        .lvl = 32,
+        .species = SPECIES_UMBREON,
     },
     {
         .iv = 0,
-        .lvl = 23,
-        .species = SPECIES_ARBOK,
+        .lvl = 34,
+        .species = SPECIES_ABSOL,
     },
 };
 
 static const struct TrainerMonNoItemDefaultMoves sParty_TeamRocketGrunt18[] = {
     {
         .iv = 0,
-        .lvl = 21,
-        .species = SPECIES_KOFFING,
+        .lvl = 29,
+        .species = SPECIES_PERSIAN,
     },
     {
         .iv = 0,
-        .lvl = 21,
-        .species = SPECIES_ZUBAT,
+        .lvl = 29,
+        .species = SPECIES_CARVANHA,
     },
 };
 
