@@ -811,8 +811,8 @@
       "title": "Approved visual periods and lighting",
       "aliases": [],
       "effort": {
-        "earned": 0,
-        "remaining": 32,
+        "earned": 32,
+        "remaining": 0,
         "unit": "provisional relative planning point",
         "confidence": "low",
         "history": [
@@ -821,6 +821,12 @@
             "earned": 0,
             "remaining": 32,
             "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          },
+          {
+            "date": "2026-11-07",
+            "earned": 32,
+            "remaining": 0,
+            "reason": "Owner-approved TIM-003 visual acceptance and complete source integration via merged PR90 at 3735096; exact production screenshots (24 actual mGBA 240x160 frames, manifest/hash) run42419689095 and two-job modified/upstream native/build/CI run42419689058 all SUCCESS. Existing 32-point allocation transferred from remaining to earned once; separate release-wide human full story/hardware QA not claimed."
           }
         ]
       },
@@ -828,21 +834,21 @@
         "TIM-002"
       ],
       "status": {
-        "design": "Map visual periods/exceptions, RTC fallback/recovery approved; exports available",
-        "implementation": "not started",
-        "automated": "not executed for new work",
-        "emulator": "not executed",
-        "pull_request": "not created",
-        "merge": "not merged"
+        "design": "Owner approved final four-period outdoor RGB5 treatment, Forest/Lavender exceptions and reduced Mansion fog using actual mGBA captures.",
+        "implementation": "complete: merged PR90 source production lighting and persistent Mansion fog; no provisional A/B selector",
+        "automated": "final clean modified build, source/history checks, reproducibility and independent original FireRed baseline all PASS, workflow42419689058",
+        "emulator": "24 actual native mGBA 240x160 screenshots/hash manifests validated workflow42419689095; full existing mGBA gameplay integration suite PASS workflow42419689058; not independent natural campaign/hardware proof",
+        "pull_request": "PR#90 merged",
+        "merge": "merged main 3735096f98fc76899b23fbbeeb7b094249a09731; owner lighting visual approval and TIM-003 feature acceptance 2026-11-07"
       },
-      "branch": null,
-      "commit": null,
-      "pr_url": null,
-      "ci_url": null,
-      "blocker": "Exact palette/tint values and visual approval remain pending. Viridian Forest/Lavender/Mansion classification and RTC fallback/recovery are supplied, not missing documents.",
-      "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Prepare palette reuse/visual prototypes under current authority; final values need visual approval; preserve ordinary interiors/caves.",
-      "checkpoint": "2026-11-04 supplied-export reconciliation; old unavailable-document claims superseded; no implementation/test credit from availability.",
+      "branch": "main",
+      "commit": "3735096f98fc76899b23fbbeeb7b094249a09731",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/90",
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/42419689058",
+      "blocker": null,
+      "design_authority": "Owner personally selected production tint and Mansion fog from native mGBA screenshots; lighting specification and decision register with 2026-11-07 final approval supersede prototype-only candidates.",
+      "next_action": "CLOSED. Preserve approved production lighting; general playthrough, hardware/link and cross-feature experiential QA remain INT-004/INT-005, not unfinished TIM-003. Do not change palette without new owner approval.",
+      "checkpoint": "2026-11-07 final implementation PR90 merged at 3735096; exact source 6fadaac; mGBA screenshot run42419689095 SUCCESS (24) and full split run42419689058 both jobs SUCCESS.",
       "source_exports": [
         "05_WEATHER_LIGHTING/Pokémon Lightning Yellow — Lighting & Weather Decision Handoff and Next Steps — 2026-10-28.txt",
         "05_WEATHER_LIGHTING/Pokémon Lightning Yellow — Lighting & Weather Decision Register — 2026-10-28.txt",
