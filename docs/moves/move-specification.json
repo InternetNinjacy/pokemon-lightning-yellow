@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "baseline_source_commit": "92838e5eb64d19942cb5c51cfdef6991503ac3ad",
-  "current_battle_moves_sha256": "60cd425ff962416e4e7481eed4ca1267da00237a40cf0a8b0726fd9e13150e9d",
+  "current_battle_moves_sha256": "86865adbef29c034e15b10e2f3cdbd2ca801837fc15db456d037bc7889e17378",
   "scope": "Reconciliation only, no gameplay edits. Numeric proposed IDs/semantic effects/target values are NOT compiled constants. Runtime_verified false is not a failure claim.",
   "sources": {
     "register": {
@@ -19824,12 +19824,23 @@
       }
     },
     {
-      "id": null,
+      "id": 358,
       "proposed_id": 358,
       "key": "SOUL_DRAIN",
       "name": "Soul Drain",
       "identity": "NEW_CUSTOM",
-      "current": null,
+      "current": {
+        "category": "PHYSICAL",
+        "type": "GHOST",
+        "power": 50,
+        "accuracy": 100,
+        "pp": 15,
+        "priority": 0,
+        "target": "MOVE_TARGET_SELECTED",
+        "effect": "EFFECT_ABSORB",
+        "secondaryEffectChance": 0,
+        "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
+      },
       "approved": {
         "type": "GHOST",
         "category": "PHYSICAL",
@@ -19865,8 +19876,8 @@
         "DRAIN_HALF_CONTACT",
         "Normal priority0 is proposed technical translation; source approves the listed custom attack mechanics, not an explicit priority statement."
       ],
-      "implementation_status": "NOT_IMPLEMENTED",
-      "delta": null,
+      "implementation_status": "SOURCE_DATA_PRESENT_RUNTIME_UNVERIFIED",
+      "delta": {},
       "effect_rules": {
         "semantic": "DRAIN_HALF_CONTACT",
         "drain_fraction": [
@@ -19875,7 +19886,20 @@
         ],
         "contact": true
       },
+      "engine_translation": {
+        "effect": "EFFECT_ABSORB",
+        "target": "MOVE_TARGET_SELECTED",
+        "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
+      },
+      "source_line": 5017,
       "animation": {
+        "assignment": "Move_SOUL_DRAIN",
+        "approval": "APPROVED_EXISTING_ART_CANDIDATE",
+        "source_line": 11211,
+        "source_exists": true,
+        "runtime_verified": false
+      },
+      "animation_candidate": {
         "key": "SOUL_DRAIN",
         "name": "Soul Drain",
         "candidate": "LICK + MEGA_DRAIN",
@@ -19883,11 +19907,11 @@
         "scripts": [
           {
             "label": "Move_LICK",
-            "line": 7493
+            "line": 7496
           },
           {
             "label": "Move_MEGA_DRAIN",
-            "line": 5864
+            "line": 5867
           }
         ],
         "evidence": {
@@ -19901,12 +19925,23 @@
       }
     },
     {
-      "id": null,
+      "id": 359,
       "proposed_id": 359,
       "key": "WEARY_TOUCH",
       "name": "Weary Touch",
       "identity": "NEW_CUSTOM",
-      "current": null,
+      "current": {
+        "category": "PHYSICAL",
+        "type": "GHOST",
+        "power": 75,
+        "accuracy": 100,
+        "pp": 15,
+        "priority": 0,
+        "target": "MOVE_TARGET_SELECTED",
+        "effect": "EFFECT_SLEEP_HIT",
+        "secondaryEffectChance": 22,
+        "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
+      },
       "approved": {
         "type": "GHOST",
         "category": "PHYSICAL",
@@ -19942,13 +19977,26 @@
         "SLEEP_22",
         "Normal priority0 is proposed technical translation; source approves the listed custom attack mechanics, not an explicit priority statement."
       ],
-      "implementation_status": "NOT_IMPLEMENTED",
-      "delta": null,
+      "implementation_status": "SOURCE_DATA_PRESENT_RUNTIME_UNVERIFIED",
+      "delta": {},
       "effect_rules": {
         "semantic": "SLEEP_22",
         "secondary_percent": 22
       },
+      "engine_translation": {
+        "effect": "EFFECT_SLEEP_HIT",
+        "target": "MOVE_TARGET_SELECTED",
+        "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
+      },
+      "source_line": 5031,
       "animation": {
+        "assignment": "Move_WEARY_TOUCH",
+        "approval": "APPROVED_EXISTING_ART_CANDIDATE",
+        "source_line": 11245,
+        "source_exists": true,
+        "runtime_verified": false
+      },
+      "animation_candidate": {
         "key": "WEARY_TOUCH",
         "name": "Weary Touch",
         "candidate": "LICK + HYPNOSIS",
@@ -19956,11 +20004,11 @@
         "scripts": [
           {
             "label": "Move_LICK",
-            "line": 7493
+            "line": 7496
           },
           {
             "label": "Move_HYPNOSIS",
-            "line": 7281
+            "line": 7284
           }
         ],
         "evidence": {
@@ -19974,12 +20022,23 @@
       }
     },
     {
-      "id": null,
+      "id": 360,
       "proposed_id": 360,
       "key": "DREAM_HAUNT",
       "name": "Dream Haunt",
       "identity": "NEW_CUSTOM",
-      "current": null,
+      "current": {
+        "category": "SPECIAL",
+        "type": "GHOST",
+        "power": 55,
+        "accuracy": 100,
+        "pp": 15,
+        "priority": 0,
+        "target": "MOVE_TARGET_SELECTED",
+        "effect": "EFFECT_HIT",
+        "secondaryEffectChance": 0,
+        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
+      },
       "approved": {
         "type": "GHOST",
         "category": "SPECIAL",
@@ -20015,12 +20074,25 @@
         "DOUBLE_POWER_AGAINST_SLEEP",
         "Normal priority0 is proposed technical translation; source approves the listed custom attack mechanics, not an explicit priority statement."
       ],
-      "implementation_status": "NOT_IMPLEMENTED",
-      "delta": null,
+      "implementation_status": "SOURCE_DATA_PRESENT_RUNTIME_UNVERIFIED",
+      "delta": {},
       "effect_rules": {
         "semantic": "DOUBLE_POWER_AGAINST_SLEEP"
       },
+      "engine_translation": {
+        "effect": "EFFECT_HIT",
+        "target": "MOVE_TARGET_SELECTED",
+        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
+      },
+      "source_line": 5045,
       "animation": {
+        "assignment": "Move_DREAM_HAUNT",
+        "approval": "APPROVED_EXISTING_ART_CANDIDATE",
+        "source_line": 11265,
+        "source_exists": true,
+        "runtime_verified": false
+      },
+      "animation_candidate": {
         "key": "DREAM_HAUNT",
         "name": "Dream Haunt",
         "candidate": "NIGHT_SHADE + DREAM_EATER",
@@ -20028,11 +20100,11 @@
         "scripts": [
           {
             "label": "Move_NIGHT_SHADE",
-            "line": 7434
+            "line": 7437
           },
           {
             "label": "Move_DREAM_EATER",
-            "line": 7131
+            "line": 7134
           }
         ],
         "evidence": {
