@@ -21,7 +21,8 @@ effect application callbacks are stubbed in that host test; it is not a battle.
 
 Default native selected-opponent/contact/Protect/Mirror Move flags follow Bite,
 Quick Attack and Take Down respectively; native King's Rock eligibility retained
-for the latter two. Engine effects are FLINCH_HIT/HIT/RECOIL. Neutral priority0 for
+for the latter two. Engine effects are FLINCH_HIT/QUICK_ATTACK/RECOIL. The priority effect dispatches
+the same Hit script while preserving native AI finisher scoring. Neutral priority0 for
 Flame Fang/Blaze Rush is the documented technical translation. No modern official
 Flame Fang power/accuracy/burn or Hi Jump Kick crash behavior is imported.
 
@@ -87,3 +88,13 @@ negative control, strict chance and real flash reload. Current game clean hash i
 a90ef37290e08dd8ed46eff2c3537e966c3e4f7874cdbe9e72bb1b5acef8b730.
 Pre-boundary/pre-extra-flash full815987 PASS is historical, not latest acceptance.
 Corrected full/CI pending; retain all failed runs as evidence.
+
+## Priority AI translation correction
+
+Corrected-flash source9ab273ce passed full816089 locally and both modified/upstream
+runs42382668646/42382673049. Before integration, final AI review found generic HIT
+omitted FireRed's existing +2 priority finisher score. Flashfire now translates to
+EFFECT_QUICK_ATTACK, which dispatches exactly the same Hit script. Actual native
+TryToFaint scores all four Flashfire/Quick Attack slots106 and Tackle104, preserving
+existing capability without changing AI scripts or balance. Updated focused517
+and all28 hosts PASS; latest clean/full-CI pending. Original source hashes retained.

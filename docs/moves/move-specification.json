@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "baseline_source_commit": "92838e5eb64d19942cb5c51cfdef6991503ac3ad",
-  "current_battle_moves_sha256": "03e49c73fa46c28b7f0b2e950facce598f3a01956e055c1d38daf614521912fa",
+  "current_battle_moves_sha256": "86865adbef29c034e15b10e2f3cdbd2ca801837fc15db456d037bc7889e17378",
   "scope": "Reconciliation only, no gameplay edits. Numeric proposed IDs/semantic effects/target values are NOT compiled constants. Runtime_verified false is not a failure claim.",
   "sources": {
     "register": {
@@ -19645,7 +19645,7 @@
         "pp": 30,
         "priority": 1,
         "target": "MOVE_TARGET_SELECTED",
-        "effect": "EFFECT_HIT",
+        "effect": "EFFECT_QUICK_ATTACK",
         "secondaryEffectChance": 0,
         "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       },
@@ -19689,7 +19689,7 @@
         "semantic": "HIT"
       },
       "engine_translation": {
-        "effect": "EFFECT_HIT",
+        "effect": "EFFECT_QUICK_ATTACK",
         "target": "MOVE_TARGET_SELECTED",
         "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       },

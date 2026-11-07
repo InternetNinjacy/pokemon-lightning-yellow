@@ -34,6 +34,17 @@ static void newFireMoveTests(void){
    printf("PASS: appended Fire move%u actual %s animation/damage/onePP/selected target, recoil%u and flinch controls%u/%u\n",moves[m],two?"Double":"Single",m==2,flinch,plain);
   }
  }
+ // Retain native priority finisher scoring, not just battle turn order.
+ const unsigned finishers[]={MOVE_FLASHFIRE,MOVE_QUICK_ATTACK,MOVE_TACKLE};
+ for(unsigned f=0;f<3;f++){
+  effectBattleFixture(0,MOVE_SPLASH);core->busWrite16(core,bmon(0)+ABI_BMON_HP,1);
+  for(unsigned slot=0;slot<4;slot++){CALL(SetMonMoveSlot,enemy(0),finishers[f],slot);core->busWrite16(core,bmon(1)+ABI_BMON_MOVES+2*slot,finishers[f]);core->busWrite8(core,bmon(1)+ABI_BMON_PP+slot,30);}
+  core->busWrite8(core,SYM_gActiveBattler,1);CALL(BattleAI_SetupAIData);
+  unsigned ai=core->busRead32(core,core->busRead32(core,SYM_gBattleResources)+ABI_BRES_AI);
+  core->busWrite32(core,ai+ABI_AI_FLAGS,4);CALL(BattleAI_ChooseMoveOrAction);
+  for(unsigned slot=0;slot<4;slot++)CHECK(core->busRead8(core,ai+ABI_AI_SCORE+slot)==(f<2?106:104));
+ }
+ printf("PASS: native TryToFaint scores Flashfire/Quick Attack106 in all slots, ordinary Tackle104 control\n");
  // Reusing Hi Jump Kick artwork must not import crash damage on miss/protect.
  for(unsigned guard=0;guard<3;guard++){
   effectBattleFixture(0,guard==2?MOVE_FLASHFIRE:MOVE_BLAZE_RUSH);

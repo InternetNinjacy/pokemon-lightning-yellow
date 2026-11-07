@@ -1677,3 +1677,13 @@ PR #68 merged to main at f3a113a44d89acacc0b584f61c4dead868ef2607; exact-head Ac
   selected-target Single/Double playback/drain/Ooze/sleep/conditional power/AI/
   Normal immunity and PP. Full/clean/CI pending, no merge or effort credit.
   EWRAM remains261064/262144;1080 static bytes free, slice adds no state.
+## 2026-11-07 — BTL-005-M3B corrected full pass / priority finisher follow-up
+
+-9ab273ce corrected flash fixture: local full816089 PASS, both Actions42382668646/
+  42382673049 modified+upstream SUCCESS. Maina22 own42381749572 SUCCESS as well.
+- Before merge, AI review found generic HIT omitted native priority finisher+2.
+  Flashfire engine translation now QUICK_ATTACK, same Hit script; no AI script
+  or owner value changes. Real native scores Flashfire/Quick Attack106 vs ordinary
+  Tackle104 in all4 slots. Latest focused517/all28 hosts PASS; new clean/CI pending.
+  Old original before-hashes unchanged. No merge or effort credit yet; child82
+  must inherit this correction and its exact parent-state manifest before merging.
