@@ -43,7 +43,7 @@ jobs:
           mkdir -p /tmp/lightning-title
           python3 tests/emulator/run.py
           python3 tests/emulator/ppm_to_png.py /tmp/lightning-title/*.ppm
-          test "$(find /tmp/lightning-title -name '*.png' | wc -l)" -eq 4
+          test "$(find /tmp/lightning-title -name '*.png' | wc -l)" -eq 7
       - name: Upload only frame images, never ROM, ELF or save data
         if: success()
         uses: actions/upload-artifact@v4
