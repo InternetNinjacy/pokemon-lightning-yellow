@@ -1489,3 +1489,8 @@ Full open-queue triage, explicit unresolved dependencies and effort weighting: `
   PR69 focused225 initial,25hosts/clean PASS; latest full pending. Draft68 repaired
   shared hash normalizer,25hosts/clean PASS, both Agatha native focus39058 PASS;
   full/CI and specific selector approval status remain pending, not merged.
+
+## 2026-11-07 — BTL-005-M2G final acceptance / integration
+
+- PR67 merged4526a137573c722d1f685ac42a8057fc9b36497a after full755166/25hosts/3checkers/clean and both Actions42315257252/42315264496 SUCCESS. Main tree equals tested144917d5. Two points within80; canonical336/712 (47.19%). New56 moves not counted. Main postmerge CI pending.
+- PR69 latest full and draft68 latest full remain active at this snapshot; no pass inferred from intermediate logs. Updated durable handoff with exact refs/commands/holds.

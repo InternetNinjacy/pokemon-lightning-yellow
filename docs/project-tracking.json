@@ -3,8 +3,8 @@
   "updated": "2026-11-07",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "Merged66/global Electric paralysis plus64 CI reliability via verified combined head: full754679/25hosts/clean and both CI PASS. PR67 full755166 PASS, CI pending; PR69 Spite/Grudge initial focused225/25hosts/clean PASS, latest full/CI pending. Existing draft68 repaired, actual Agatha focus39058/25hosts/clean PASS, full/CI and specific selector approval pending. Tracking62 incorporates65 without duplicate effort; source exports available.",
-  "main_sha": "d3a462e5e991f64ac8245b7e11c990c895df61ad",
+  "current_focus": "Merged64/66 validated Electric/CI unit and67 spread statuses: local full754679/755166,25hosts/clean and both respective CI runs PASS. Main4526a137. PR69 Spite/Grudge and repaired draft68 Agatha have focused/native+host/clean evidence; latest full/CI pending, no merge credit. Finish69/62 then approved Thunder Wave three-recipient logic. Keep specific Agatha/follower/Trainer holds.",
+  "main_sha": "4526a137573c722d1f685ac42a8057fc9b36497a",
   "drive_sync": {
     "status": "pending: no direct Drive writing tool available",
     "folder": "https://drive.google.com/drive/folders/1N_n0Ke48jBbdhUWSZWzwR6rpPFqpDUpl"
@@ -538,8 +538,8 @@
       "title": "410-move redesign",
       "aliases": [],
       "effort": {
-        "earned": 24,
-        "remaining": 56,
+        "earned": 26,
+        "remaining": 54,
         "unit": "provisional relative planning point",
         "confidence": "low",
         "history": [
@@ -602,6 +602,12 @@
             "earned": 24,
             "remaining": 56,
             "reason": "Merged66 global Electric paralysis immunity after full754679,25hosts/3checkers/clean and both combined-head CI PASS. One point within80; no new56-move credit or duplicate CI credit."
+          },
+          {
+            "date": "2026-11-07",
+            "earned": 26,
+            "remaining": 54,
+            "reason": "Merged67 three approved spread-status policies, full755166/25hosts/3checkers/clean and both Actions PASS; two points within existing80. No56-new-move credit."
           }
         ]
       },
@@ -614,7 +620,7 @@
         "automated": "25 hosts/3 checkers and clean reproducibility PASS; exact-head Actions42311654769 and42311756718 SUCCESS",
         "emulator": "Full29-group754034 PASS, including focused314 Pin Missile/Dragon Rage assertions",
         "pull_request": "Merged40–43/56/61;63 pending",
-        "merge": "Main d3a462e5 includes63/64/66;67/69 unmerged, no new56 IDs"
+        "merge": "Main4526a137 includes63/64/66/67;69 pending, no56 new IDs"
       },
       "branch": "feature/approved-roar-redesign",
       "commit": "42410891edbeb51d9b9a3ad4ba69eacdc81b7fa7",
@@ -680,7 +686,7 @@
         "BTL-005-M2D": "Merged61/15dacb95; focused5389/24-host combined28-group753726, exact-head CI42222085136 SUCCESS",
         "BTL-005-M2E": "Merged PR63/767bb39c: focused314/full754034/25hosts/3checkers/clean and exact-head CI PASS",
         "BTL-005-M2F": "Merged66/d3a462e5, full754679/25hosts/clean and both CI42315238692/42315244202 PASS",
-        "BTL-005-M2G": "PR67/144917d5: full755166/25hosts/clean PASS incl separate prevention controls, CI pending",
+        "BTL-005-M2G": "Merged67/4526a137; full755166,25hosts/clean, Actions42315257252/42315264496 SUCCESS",
         "BTL-005-M2H": "PR69/dd1555d6: Spite/Grudge source,25hosts/clean and initial focused225 PASS; latest full/CI pending"
       }
     },
