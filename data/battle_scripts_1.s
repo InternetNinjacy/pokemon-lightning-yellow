@@ -1006,6 +1006,7 @@ BattleScript_EffectParalyze::
 	attackcanceler
 	attackstring
 	ppreduce
+	jumpiftype BS_TARGET, TYPE_ELECTRIC, BattleScript_WasntAffected
 	jumpifability BS_TARGET, ABILITY_LIMBER, BattleScript_LimberProtected
 	jumpifstatus2 BS_TARGET, STATUS2_SUBSTITUTE, BattleScript_ButItFailed
 	typecalc
