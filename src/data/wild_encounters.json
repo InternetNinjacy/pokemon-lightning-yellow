@@ -1059,7 +1059,7 @@
                 "max_level": 46,
                 "species": "SPECIES_RHYHORN"
               }
-                        ]
+            ]
           }
         },
         {
@@ -1128,7 +1128,7 @@
                 "max_level": 48,
                 "species": "SPECIES_LARVITAR"
               }
-                        ]
+            ]
           }
         },
         {
@@ -1197,7 +1197,7 @@
                 "max_level": 49,
                 "species": "SPECIES_LARVITAR"
               }
-                        ]
+            ]
           }
         },
         {
@@ -13601,7 +13601,7 @@
                 "max_level": 46,
                 "species": "SPECIES_RHYHORN"
               }
-                        ],
+            ],
             "encounter_rate": 7
           }
         },
@@ -13670,7 +13670,7 @@
                 "max_level": 48,
                 "species": "SPECIES_LARVITAR"
               }
-                        ],
+            ],
             "encounter_rate": 7
           }
         },
@@ -13739,7 +13739,7 @@
                 "max_level": 49,
                 "species": "SPECIES_LARVITAR"
               }
-                        ],
+            ],
             "encounter_rate": 7
           }
         },
