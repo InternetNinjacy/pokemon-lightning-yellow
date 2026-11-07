@@ -2805,7 +2805,7 @@ SevenIsland_TanobyRuins_EventScript_CliffordRematch::
 Route8_EventScript_PaigeQuest::
 	setvar VAR_0x8009, 0
 	specialvar VAR_RESULT, RocketRescueStatus
-	goto_if_eq VAR_RESULT, 3, Route8_EventScript_PaigeReunited
+	goto_if_eq VAR_RESULT, 3, Route8_EventScript_PaigeAfterReturn
 	goto_if_eq VAR_RESULT, 2, Route8_EventScript_PaigeOffer
 	goto_if_eq VAR_RESULT, 1, Route8_EventScript_PaigeAbsent
 	msgbox Route8_Text_PaigeMissing
@@ -2844,7 +2844,7 @@ Route8_EventScript_PaigeReunited::
 Route8_EventScript_JuliaQuest::
 	setvar VAR_0x8009, 1
 	specialvar VAR_RESULT, RocketRescueStatus
-	goto_if_eq VAR_RESULT, 3, Route8_EventScript_JuliaReunited
+	goto_if_eq VAR_RESULT, 3, Route8_EventScript_JuliaAfterReturn
 	goto_if_eq VAR_RESULT, 2, Route8_EventScript_JuliaOffer
 	goto_if_eq VAR_RESULT, 1, Route8_EventScript_JuliaAbsent
 	msgbox Route8_Text_JuliaMissing
@@ -2878,4 +2878,12 @@ Route8_EventScript_JuliaOnlyMon::
 
 Route8_EventScript_JuliaReunited::
 	msgbox Route8_Text_JuliaReunited
+	end
+
+Route8_EventScript_PaigeAfterReturn::
+	msgbox Route8_Text_PaigeAfterReturn
+	end
+
+Route8_EventScript_JuliaAfterReturn::
+	msgbox Route8_Text_JuliaAfterReturn
 	end
