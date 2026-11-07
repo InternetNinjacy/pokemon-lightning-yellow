@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "baseline_source_commit": "92838e5eb64d19942cb5c51cfdef6991503ac3ad",
-  "current_battle_moves_sha256": "b3925f56905e4f6cfdd327de9a63901be08e0cef85b496c496d1fc3228dd8bcb",
+  "current_battle_moves_sha256": "18add1eccf8b1a994c5aae0efa5caf304f05998701eca9d67564202f21ae6fc6",
   "scope": "Reconciliation only, no gameplay edits. Numeric proposed IDs/semantic effects/target values are NOT compiled constants. Runtime_verified false is not a failure claim.",
   "sources": {
     "register": {
@@ -83,7 +83,7 @@
       "animation": {
         "assignment": "Move_POUND",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 445,
+        "source_line": 446,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -137,7 +137,7 @@
       "animation": {
         "assignment": "Move_KARATE_CHOP",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 6573,
+        "source_line": 6574,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -191,7 +191,7 @@
       "animation": {
         "assignment": "Move_DOUBLE_SLAP",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 457,
+        "source_line": 458,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -245,7 +245,7 @@
       "animation": {
         "assignment": "Move_COMET_PUNCH",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 1038,
+        "source_line": 1039,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -299,7 +299,7 @@
       "animation": {
         "assignment": "Move_MEGA_PUNCH",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 966,
+        "source_line": 967,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -353,7 +353,7 @@
       "animation": {
         "assignment": "Move_PAY_DAY",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 1943,
+        "source_line": 1944,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -407,7 +407,7 @@
       "animation": {
         "assignment": "Move_FIRE_PUNCH",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 7083,
+        "source_line": 7084,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -461,7 +461,7 @@
       "animation": {
         "assignment": "Move_ICE_PUNCH",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 4751,
+        "source_line": 4752,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -515,7 +515,7 @@
       "animation": {
         "assignment": "Move_THUNDER_PUNCH",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 4929,
+        "source_line": 4930,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -569,7 +569,7 @@
       "animation": {
         "assignment": "Move_SCRATCH",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 5019,
+        "source_line": 5020,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -623,7 +623,7 @@
       "animation": {
         "assignment": "Move_VICE_GRIP",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 1902,
+        "source_line": 1903,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -677,7 +677,7 @@
       "animation": {
         "assignment": "Move_GUILLOTINE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 1918,
+        "source_line": 1919,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -731,7 +731,7 @@
       "animation": {
         "assignment": "Move_RAZOR_WIND",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 7645,
+        "source_line": 7646,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -785,7 +785,7 @@
       "animation": {
         "assignment": "Move_SWORDS_DANCE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 1366,
+        "source_line": 1367,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -839,7 +839,7 @@
       "animation": {
         "assignment": "Move_CUT",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 1240,
+        "source_line": 1241,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -893,7 +893,7 @@
       "animation": {
         "assignment": "Move_GUST",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 6272,
+        "source_line": 6273,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -947,7 +947,7 @@
       "animation": {
         "assignment": "Move_WING_ATTACK",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 6290,
+        "source_line": 6291,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -1001,7 +1001,7 @@
       "animation": {
         "assignment": "Move_WHIRLWIND",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 2095,
+        "source_line": 2096,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -1055,7 +1055,7 @@
       "animation": {
         "assignment": "Move_FLY",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 6519,
+        "source_line": 6520,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -1109,7 +1109,7 @@
       "animation": {
         "assignment": "Move_BIND",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 7240,
+        "source_line": 7241,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -1163,7 +1163,7 @@
       "animation": {
         "assignment": "Move_SLAM",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 1540,
+        "source_line": 1541,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -1217,7 +1217,7 @@
       "animation": {
         "assignment": "Move_VINE_WHIP",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 1564,
+        "source_line": 1565,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -1271,7 +1271,7 @@
       "animation": {
         "assignment": "Move_STOMP",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 1218,
+        "source_line": 1219,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -1325,7 +1325,7 @@
       "animation": {
         "assignment": "Move_DOUBLE_KICK",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 6652,
+        "source_line": 6653,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -1379,7 +1379,7 @@
       "animation": {
         "assignment": "Move_MEGA_KICK",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 1013,
+        "source_line": 1014,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -1433,7 +1433,7 @@
       "animation": {
         "assignment": "Move_JUMP_KICK",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 6608,
+        "source_line": 6609,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -1487,7 +1487,7 @@
       "animation": {
         "assignment": "Move_ROLLING_KICK",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 2450,
+        "source_line": 2451,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -1541,7 +1541,7 @@
       "animation": {
         "assignment": "Move_SAND_ATTACK",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 5295,
+        "source_line": 5296,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -1595,7 +1595,7 @@
       "animation": {
         "assignment": "Move_HEADBUTT",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 2472,
+        "source_line": 2473,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -1649,7 +1649,7 @@
       "animation": {
         "assignment": "Move_HORN_ATTACK",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 2488,
+        "source_line": 2489,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -1703,7 +1703,7 @@
       "animation": {
         "assignment": "Move_FURY_ATTACK",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 2506,
+        "source_line": 2507,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -1757,7 +1757,7 @@
       "animation": {
         "assignment": "Move_HORN_DRILL",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 2531,
+        "source_line": 2532,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -1811,7 +1811,7 @@
       "animation": {
         "assignment": "Move_TACKLE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 605,
+        "source_line": 606,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -1865,7 +1865,7 @@
       "animation": {
         "assignment": "Move_BODY_SLAM",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 619,
+        "source_line": 620,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -1919,7 +1919,7 @@
       "animation": {
         "assignment": "Move_WRAP",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 7256,
+        "source_line": 7257,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -1973,7 +1973,7 @@
       "animation": {
         "assignment": "Move_TAKE_DOWN",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 784,
+        "source_line": 785,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -2027,7 +2027,7 @@
       "animation": {
         "assignment": "Move_THRASH",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 2598,
+        "source_line": 2599,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -2081,7 +2081,7 @@
       "animation": {
         "assignment": "Move_DOUBLE_EDGE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 808,
+        "source_line": 809,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -2135,7 +2135,7 @@
       "animation": {
         "assignment": "Move_TAIL_WHIP",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 1234,
+        "source_line": 1235,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -2189,7 +2189,7 @@
       "animation": {
         "assignment": "Move_POISON_STING",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 841,
+        "source_line": 842,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -2251,7 +2251,7 @@
       "animation": {
         "assignment": "Move_TWINEEDLE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 861,
+        "source_line": 862,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -2313,7 +2313,7 @@
       "animation": {
         "assignment": "Move_PIN_MISSILE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 726,
+        "source_line": 727,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -2371,7 +2371,7 @@
       "animation": {
         "assignment": "Move_LEER",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 7119,
+        "source_line": 7120,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -2425,7 +2425,7 @@
       "animation": {
         "assignment": "Move_BITE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 5394,
+        "source_line": 5395,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -2479,7 +2479,7 @@
       "animation": {
         "assignment": "Move_GROWL",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 5094,
+        "source_line": 5095,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -2541,7 +2541,7 @@
       "animation": {
         "assignment": "Move_ROAR",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 5066,
+        "source_line": 5067,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -2559,7 +2559,7 @@
         "scripts": [
           {
             "label": "Move_ROAR",
-            "line": 5066
+            "line": 5067
           }
         ],
         "evidence": {
@@ -2617,7 +2617,7 @@
       "animation": {
         "assignment": "Move_SING",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 2616,
+        "source_line": 2617,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -2671,7 +2671,7 @@
       "animation": {
         "assignment": "Move_SUPERSONIC",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 645,
+        "source_line": 646,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -2725,7 +2725,7 @@
       "animation": {
         "assignment": "Move_SONIC_BOOM",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 1063,
+        "source_line": 1064,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -2779,7 +2779,7 @@
       "animation": {
         "assignment": "Move_DISABLE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 7684,
+        "source_line": 7685,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -2833,7 +2833,7 @@
       "animation": {
         "assignment": "Move_ACID",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 6123,
+        "source_line": 6124,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -2887,7 +2887,7 @@
       "animation": {
         "assignment": "Move_EMBER",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 946,
+        "source_line": 947,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -2941,7 +2941,7 @@
       "animation": {
         "assignment": "Move_FLAMETHROWER",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 6432,
+        "source_line": 6433,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -2995,7 +2995,7 @@
       "animation": {
         "assignment": "Move_MIST",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 7049,
+        "source_line": 7050,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -3049,7 +3049,7 @@
       "animation": {
         "assignment": "Move_WATER_GUN",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 6364,
+        "source_line": 6365,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -3103,7 +3103,7 @@
       "animation": {
         "assignment": "Move_HYDRO_PUMP",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 5727,
+        "source_line": 5728,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -3157,7 +3157,7 @@
       "animation": {
         "assignment": "Move_SURF",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 6425,
+        "source_line": 6426,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -3211,7 +3211,7 @@
       "animation": {
         "assignment": "Move_ICE_BEAM",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 5456,
+        "source_line": 5457,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -3265,7 +3265,7 @@
       "animation": {
         "assignment": "Move_BLIZZARD",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 5638,
+        "source_line": 5639,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -3319,7 +3319,7 @@
       "animation": {
         "assignment": "Move_PSYBEAM",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 7260,
+        "source_line": 7261,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -3373,7 +3373,7 @@
       "animation": {
         "assignment": "Move_BUBBLE_BEAM",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 2253,
+        "source_line": 2254,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -3427,7 +3427,7 @@
       "animation": {
         "assignment": "Move_AURORA_BEAM",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 5507,
+        "source_line": 5508,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -3481,7 +3481,7 @@
       "animation": {
         "assignment": "Move_HYPER_BEAM",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 8509,
+        "source_line": 8510,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -3535,7 +3535,7 @@
       "animation": {
         "assignment": "Move_PECK",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 6314,
+        "source_line": 6315,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -3589,7 +3589,7 @@
       "animation": {
         "assignment": "Move_DRILL_PECK",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 1575,
+        "source_line": 1576,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -3643,7 +3643,7 @@
       "animation": {
         "assignment": "Move_SUBMISSION",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 6816,
+        "source_line": 6817,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -3697,7 +3697,7 @@
       "animation": {
         "assignment": "Move_LOW_KICK",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 2652,
+        "source_line": 2653,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -3751,7 +3751,7 @@
       "animation": {
         "assignment": "Move_COUNTER",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 6734,
+        "source_line": 6735,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -3805,7 +3805,7 @@
       "animation": {
         "assignment": "Move_SEISMIC_TOSS",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 9595,
+        "source_line": 9596,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -3859,7 +3859,7 @@
       "animation": {
         "assignment": "Move_STRENGTH",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 579,
+        "source_line": 580,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -3913,7 +3913,7 @@
       "animation": {
         "assignment": "Move_ABSORB",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 5818,
+        "source_line": 5819,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -3967,7 +3967,7 @@
       "animation": {
         "assignment": "Move_MEGA_DRAIN",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 5871,
+        "source_line": 5872,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -4021,7 +4021,7 @@
       "animation": {
         "assignment": "Move_LEECH_SEED",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 931,
+        "source_line": 932,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -4075,7 +4075,7 @@
       "animation": {
         "assignment": "Move_GROWTH",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 2082,
+        "source_line": 2083,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -4129,7 +4129,7 @@
       "animation": {
         "assignment": "Move_RAZOR_LEAF",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 6956,
+        "source_line": 6957,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -4183,7 +4183,7 @@
       "animation": {
         "assignment": "Move_SOLAR_BEAM",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 5544,
+        "source_line": 5545,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -4237,7 +4237,7 @@
       "animation": {
         "assignment": "Move_POISON_POWDER",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 479,
+        "source_line": 480,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -4291,7 +4291,7 @@
       "animation": {
         "assignment": "Move_STUN_SPORE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 504,
+        "source_line": 505,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -4345,7 +4345,7 @@
       "animation": {
         "assignment": "Move_SLEEP_POWDER",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 528,
+        "source_line": 529,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -4399,7 +4399,7 @@
       "animation": {
         "assignment": "Move_PETAL_DANCE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 6918,
+        "source_line": 6919,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -4453,7 +4453,7 @@
       "animation": {
         "assignment": "Move_STRING_SHOT",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 7563,
+        "source_line": 7564,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -4515,7 +4515,7 @@
       "animation": {
         "assignment": "Move_DRAGON_RAGE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 5348,
+        "source_line": 5349,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -4532,7 +4532,7 @@
         "scripts": [
           {
             "label": "Move_DRAGON_RAGE",
-            "line": 5348
+            "line": 5349
           }
         ],
         "evidence": {
@@ -4590,7 +4590,7 @@
       "animation": {
         "assignment": "Move_FIRE_SPIN",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 1438,
+        "source_line": 1439,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -4644,7 +4644,7 @@
       "animation": {
         "assignment": "Move_THUNDER_SHOCK",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 1090,
+        "source_line": 1091,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -4698,7 +4698,7 @@
       "animation": {
         "assignment": "Move_THUNDERBOLT",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 1111,
+        "source_line": 1112,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -4760,7 +4760,7 @@
       "animation": {
         "assignment": "Move_THUNDER_WAVE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 1160,
+        "source_line": 1161,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -4817,7 +4817,7 @@
       "animation": {
         "assignment": "Move_THUNDER",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 4871,
+        "source_line": 4872,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -4871,7 +4871,7 @@
       "animation": {
         "assignment": "Move_ROCK_THROW",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 2161,
+        "source_line": 2162,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -4925,7 +4925,7 @@
       "animation": {
         "assignment": "Move_EARTHQUAKE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 2665,
+        "source_line": 2666,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -4979,7 +4979,7 @@
       "animation": {
         "assignment": "Move_FISSURE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 2675,
+        "source_line": 2676,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -5033,7 +5033,7 @@
       "animation": {
         "assignment": "Move_DIG",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 2718,
+        "source_line": 2719,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -5087,7 +5087,7 @@
       "animation": {
         "assignment": "Move_TOXIC",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 6042,
+        "source_line": 6043,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -5141,7 +5141,7 @@
       "animation": {
         "assignment": "Move_CONFUSION",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 4799,
+        "source_line": 4800,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -5195,7 +5195,7 @@
       "animation": {
         "assignment": "Move_PSYCHIC",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 4816,
+        "source_line": 4817,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -5249,7 +5249,7 @@
       "animation": {
         "assignment": "Move_HYPNOSIS",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 7288,
+        "source_line": 7289,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -5303,7 +5303,7 @@
       "animation": {
         "assignment": "Move_MEDITATE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 2769,
+        "source_line": 2770,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -5357,7 +5357,7 @@
       "animation": {
         "assignment": "Move_AGILITY",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 2779,
+        "source_line": 2780,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -5411,7 +5411,7 @@
       "animation": {
         "assignment": "Move_QUICK_ATTACK",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 2800,
+        "source_line": 2801,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -5465,7 +5465,7 @@
       "animation": {
         "assignment": "Move_RAGE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 2817,
+        "source_line": 2818,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -5519,7 +5519,7 @@
       "animation": {
         "assignment": "Move_TELEPORT",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 2838,
+        "source_line": 2839,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -5573,7 +5573,7 @@
       "animation": {
         "assignment": "Move_NIGHT_SHADE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 7441,
+        "source_line": 7442,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -5627,7 +5627,7 @@
       "animation": {
         "assignment": "Move_MIMIC",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 7735,
+        "source_line": 7736,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -5688,7 +5688,7 @@
       "animation": {
         "assignment": "Move_SCREECH",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 668,
+        "source_line": 669,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -5745,7 +5745,7 @@
       "animation": {
         "assignment": "Move_DOUBLE_TEAM",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 2847,
+        "source_line": 2848,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -5799,7 +5799,7 @@
       "animation": {
         "assignment": "Move_RECOVER",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 7700,
+        "source_line": 7701,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -5853,7 +5853,7 @@
       "animation": {
         "assignment": "Move_HARDEN",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 4662,
+        "source_line": 4663,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -5907,7 +5907,7 @@
       "animation": {
         "assignment": "Move_MINIMIZE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 2874,
+        "source_line": 2875,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -5961,7 +5961,7 @@
       "animation": {
         "assignment": "Move_SMOKESCREEN",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 2329,
+        "source_line": 2330,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -6015,7 +6015,7 @@
       "animation": {
         "assignment": "Move_CONFUSE_RAY",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 2114,
+        "source_line": 2115,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -6069,7 +6069,7 @@
       "animation": {
         "assignment": "Move_WITHDRAW",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 5501,
+        "source_line": 5502,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -6123,7 +6123,7 @@
       "animation": {
         "assignment": "Move_DEFENSE_CURL",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 1713,
+        "source_line": 1714,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -6177,7 +6177,7 @@
       "animation": {
         "assignment": "Move_BARRIER",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 5185,
+        "source_line": 5186,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -6231,7 +6231,7 @@
       "animation": {
         "assignment": "Move_LIGHT_SCREEN",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 5128,
+        "source_line": 5129,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -6285,7 +6285,7 @@
       "animation": {
         "assignment": "Move_HAZE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 7073,
+        "source_line": 7074,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -6339,7 +6339,7 @@
       "animation": {
         "assignment": "Move_REFLECT",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 5168,
+        "source_line": 5169,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -6393,7 +6393,7 @@
       "animation": {
         "assignment": "Move_FOCUS_ENERGY",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 7509,
+        "source_line": 7510,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -6447,7 +6447,7 @@
       "animation": {
         "assignment": "Move_BIDE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 7522,
+        "source_line": 7523,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -6501,7 +6501,7 @@
       "animation": {
         "assignment": "Move_METRONOME",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 2882,
+        "source_line": 2883,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -6555,7 +6555,7 @@
       "animation": {
         "assignment": "Move_MIRROR_MOVE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 444,
+        "source_line": 445,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -6609,7 +6609,7 @@
       "animation": {
         "assignment": "Move_SELF_DESTRUCT",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 1508,
+        "source_line": 1509,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -6663,7 +6663,7 @@
       "animation": {
         "assignment": "Move_EGG_BOMB",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 7460,
+        "source_line": 7461,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -6723,7 +6723,7 @@
       "animation": {
         "assignment": "Move_LICK",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 7500,
+        "source_line": 7501,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -6737,7 +6737,7 @@
         "scripts": [
           {
             "label": "Move_LICK",
-            "line": 7500
+            "line": 7501
           }
         ],
         "evidence": {
@@ -6795,7 +6795,7 @@
       "animation": {
         "assignment": "Move_SMOG",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 5231,
+        "source_line": 5232,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -6849,7 +6849,7 @@
       "animation": {
         "assignment": "Move_SLUDGE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 6068,
+        "source_line": 6069,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -6903,7 +6903,7 @@
       "animation": {
         "assignment": "Move_BONE_CLUB",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 6176,
+        "source_line": 6177,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -6957,7 +6957,7 @@
       "animation": {
         "assignment": "Move_FIRE_BLAST",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 881,
+        "source_line": 882,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -7011,7 +7011,7 @@
       "animation": {
         "assignment": "Move_WATERFALL",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 1594,
+        "source_line": 1595,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -7065,7 +7065,7 @@
       "animation": {
         "assignment": "Move_CLAMP",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 5439,
+        "source_line": 5440,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -7119,7 +7119,7 @@
       "animation": {
         "assignment": "Move_SWIFT",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 552,
+        "source_line": 553,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -7173,7 +7173,7 @@
       "animation": {
         "assignment": "Move_SKULL_BASH",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 2894,
+        "source_line": 2895,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -7227,7 +7227,7 @@
       "animation": {
         "assignment": "Move_SPIKE_CANNON",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 1342,
+        "source_line": 1343,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -7281,7 +7281,7 @@
       "animation": {
         "assignment": "Move_CONSTRICT",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 7753,
+        "source_line": 7754,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -7335,7 +7335,7 @@
       "animation": {
         "assignment": "Move_AMNESIA",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 2930,
+        "source_line": 2931,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -7389,7 +7389,7 @@
       "animation": {
         "assignment": "Move_KINESIS",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 2942,
+        "source_line": 2943,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -7443,7 +7443,7 @@
       "animation": {
         "assignment": "Move_SOFT_BOILED",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 7819,
+        "source_line": 7820,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -7497,7 +7497,7 @@
       "animation": {
         "assignment": "Move_HI_JUMP_KICK",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 6626,
+        "source_line": 6627,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -7551,7 +7551,7 @@
       "animation": {
         "assignment": "Move_GLARE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 2961,
+        "source_line": 2962,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -7605,7 +7605,7 @@
       "animation": {
         "assignment": "Move_DREAM_EATER",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 7138,
+        "source_line": 7139,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -7659,7 +7659,7 @@
       "animation": {
         "assignment": "Move_POISON_GAS",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 7206,
+        "source_line": 7207,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -7713,7 +7713,7 @@
       "animation": {
         "assignment": "Move_BARRAGE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 2979,
+        "source_line": 2980,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -7775,7 +7775,7 @@
       "animation": {
         "assignment": "Move_LEECH_LIFE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 6001,
+        "source_line": 6002,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -7789,7 +7789,7 @@
         "scripts": [
           {
             "label": "Move_LEECH_LIFE",
-            "line": 6001
+            "line": 6002
           }
         ],
         "evidence": {
@@ -7847,7 +7847,7 @@
       "animation": {
         "assignment": "Move_LOVELY_KISS",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 7943,
+        "source_line": 7944,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -7901,7 +7901,7 @@
       "animation": {
         "assignment": "Move_SKY_ATTACK",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 2990,
+        "source_line": 2991,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -7955,7 +7955,7 @@
       "animation": {
         "assignment": "Move_TRANSFORM",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 8428,
+        "source_line": 8429,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -8009,7 +8009,7 @@
       "animation": {
         "assignment": "Move_BUBBLE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 5195,
+        "source_line": 5196,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -8063,7 +8063,7 @@
       "animation": {
         "assignment": "Move_DIZZY_PUNCH",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 1400,
+        "source_line": 1401,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -8117,7 +8117,7 @@
       "animation": {
         "assignment": "Move_SPORE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 6894,
+        "source_line": 6895,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -8171,7 +8171,7 @@
       "animation": {
         "assignment": "Move_FLASH",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 3060,
+        "source_line": 3061,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -8225,7 +8225,7 @@
       "animation": {
         "assignment": "Move_PSYWAVE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 7307,
+        "source_line": 7308,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -8279,7 +8279,7 @@
       "animation": {
         "assignment": "Move_SPLASH",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 3066,
+        "source_line": 3067,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -8333,7 +8333,7 @@
       "animation": {
         "assignment": "Move_ACID_ARMOR",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 3073,
+        "source_line": 3074,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -8387,7 +8387,7 @@
       "animation": {
         "assignment": "Move_CRABHAMMER",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 6388,
+        "source_line": 6389,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -8441,7 +8441,7 @@
       "animation": {
         "assignment": "Move_EXPLOSION",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 1675,
+        "source_line": 1676,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -8495,7 +8495,7 @@
       "animation": {
         "assignment": "Move_FURY_SWIPES",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 7956,
+        "source_line": 7957,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -8549,7 +8549,7 @@
       "animation": {
         "assignment": "Move_BONEMERANG",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 6156,
+        "source_line": 6157,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -8603,7 +8603,7 @@
       "animation": {
         "assignment": "Move_REST",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 4788,
+        "source_line": 4789,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -8657,7 +8657,7 @@
       "animation": {
         "assignment": "Move_ROCK_SLIDE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 2182,
+        "source_line": 2183,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -8711,7 +8711,7 @@
       "animation": {
         "assignment": "Move_HYPER_FANG",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 8131,
+        "source_line": 8132,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -8765,7 +8765,7 @@
       "animation": {
         "assignment": "Move_SHARPEN",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 3084,
+        "source_line": 3085,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -8819,7 +8819,7 @@
       "animation": {
         "assignment": "Move_CONVERSION",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 2353,
+        "source_line": 2354,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -8873,7 +8873,7 @@
       "animation": {
         "assignment": "Move_TRI_ATTACK",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 8166,
+        "source_line": 8167,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -8927,7 +8927,7 @@
       "animation": {
         "assignment": "Move_SUPER_FANG",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 3090,
+        "source_line": 3091,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -8981,7 +8981,7 @@
       "animation": {
         "assignment": "Move_SLASH",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 3110,
+        "source_line": 3111,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -9035,7 +9035,7 @@
       "animation": {
         "assignment": "Move_SUBSTITUTE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 8945,
+        "source_line": 8946,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -9089,7 +9089,7 @@
       "animation": {
         "assignment": "Move_STRUGGLE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 3121,
+        "source_line": 3122,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -9143,7 +9143,7 @@
       "animation": {
         "assignment": "Move_SKETCH",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 3139,
+        "source_line": 3140,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -9197,7 +9197,7 @@
       "animation": {
         "assignment": "Move_TRIPLE_KICK",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 6666,
+        "source_line": 6667,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -9251,7 +9251,7 @@
       "animation": {
         "assignment": "Move_THIEF",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 2233,
+        "source_line": 2234,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -9305,7 +9305,7 @@
       "animation": {
         "assignment": "Move_SPIDER_WEB",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 7608,
+        "source_line": 7609,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -9359,7 +9359,7 @@
       "animation": {
         "assignment": "Move_MIND_READER",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 4711,
+        "source_line": 4712,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -9413,7 +9413,7 @@
       "animation": {
         "assignment": "Move_NIGHTMARE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 3150,
+        "source_line": 3151,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -9467,7 +9467,7 @@
       "animation": {
         "assignment": "Move_FLAME_WHEEL",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 684,
+        "source_line": 685,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -9521,7 +9521,7 @@
       "animation": {
         "assignment": "Move_SNORE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 5106,
+        "source_line": 5107,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -9580,7 +9580,7 @@
       "animation": {
         "assignment": "Move_CURSE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 7770,
+        "source_line": 7771,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -9634,7 +9634,7 @@
       "animation": {
         "assignment": "Move_FLAIL",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 3173,
+        "source_line": 3174,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -9688,7 +9688,7 @@
       "animation": {
         "assignment": "Move_CONVERSION_2",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 2405,
+        "source_line": 2406,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -9742,7 +9742,7 @@
       "animation": {
         "assignment": "Move_AEROBLAST",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 6322,
+        "source_line": 6323,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -9796,7 +9796,7 @@
       "animation": {
         "assignment": "Move_COTTON_SPORE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 6873,
+        "source_line": 6874,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -9850,7 +9850,7 @@
       "animation": {
         "assignment": "Move_REVERSAL",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 1284,
+        "source_line": 1285,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -9912,7 +9912,7 @@
       "animation": {
         "assignment": "Move_SPITE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 3188,
+        "source_line": 3189,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -9930,7 +9930,7 @@
         "scripts": [
           {
             "label": "Move_SPITE",
-            "line": 3188
+            "line": 3189
           }
         ],
         "evidence": {
@@ -9988,7 +9988,7 @@
       "animation": {
         "assignment": "Move_POWDER_SNOW",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 5692,
+        "source_line": 5693,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -10042,7 +10042,7 @@
       "animation": {
         "assignment": "Move_PROTECT",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 1725,
+        "source_line": 1726,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -10096,7 +10096,7 @@
       "animation": {
         "assignment": "Move_MACH_PUNCH",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 3202,
+        "source_line": 3203,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -10158,7 +10158,7 @@
       "animation": {
         "assignment": "Move_SCARY_FACE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 7906,
+        "source_line": 7907,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -10215,7 +10215,7 @@
       "animation": {
         "assignment": "Move_FAINT_ATTACK",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 5259,
+        "source_line": 5260,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -10269,7 +10269,7 @@
       "animation": {
         "assignment": "Move_SWEET_KISS",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 7924,
+        "source_line": 7925,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -10323,7 +10323,7 @@
       "animation": {
         "assignment": "Move_BELLY_DRUM",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 4668,
+        "source_line": 4669,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -10377,7 +10377,7 @@
       "animation": {
         "assignment": "Move_SLUDGE_BOMB",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 6079,
+        "source_line": 6080,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -10431,7 +10431,7 @@
       "animation": {
         "assignment": "Move_MUD_SLAP",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 5324,
+        "source_line": 5325,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -10485,7 +10485,7 @@
       "animation": {
         "assignment": "Move_OCTAZOOKA",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 7032,
+        "source_line": 7033,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -10539,7 +10539,7 @@
       "animation": {
         "assignment": "Move_SPIKES",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 6210,
+        "source_line": 6211,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -10601,7 +10601,7 @@
       "animation": {
         "assignment": "Move_ZAP_CANNON",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 7332,
+        "source_line": 7333,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -10655,7 +10655,7 @@
       "animation": {
         "assignment": "Move_FORESIGHT",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 3235,
+        "source_line": 3236,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -10709,7 +10709,7 @@
       "animation": {
         "assignment": "Move_DESTINY_BOND",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 3254,
+        "source_line": 3255,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -10763,7 +10763,7 @@
       "animation": {
         "assignment": "Move_PERISH_SONG",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 8068,
+        "source_line": 8069,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -10817,7 +10817,7 @@
       "animation": {
         "assignment": "Move_ICY_WIND",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 2292,
+        "source_line": 2293,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -10871,7 +10871,7 @@
       "animation": {
         "assignment": "Move_DETECT",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 1735,
+        "source_line": 1736,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -10925,7 +10925,7 @@
       "animation": {
         "assignment": "Move_BONE_RUSH",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 6194,
+        "source_line": 6195,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -10979,7 +10979,7 @@
       "animation": {
         "assignment": "Move_LOCK_ON",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 2134,
+        "source_line": 2135,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -11039,7 +11039,7 @@
       "animation": {
         "assignment": "Move_OUTRAGE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 1961,
+        "source_line": 1962,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -11053,7 +11053,7 @@
         "scripts": [
           {
             "label": "Move_OUTRAGE",
-            "line": 1961
+            "line": 1962
           }
         ],
         "evidence": {
@@ -11119,7 +11119,7 @@
       "animation": {
         "assignment": "Move_SANDSTORM",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 6466,
+        "source_line": 6467,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -11133,7 +11133,7 @@
         "scripts": [
           {
             "label": "Move_SANDSTORM",
-            "line": 6466
+            "line": 6467
           }
         ],
         "evidence": {
@@ -11191,7 +11191,7 @@
       "animation": {
         "assignment": "Move_GIGA_DRAIN",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 5932,
+        "source_line": 5933,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -11245,7 +11245,7 @@
       "animation": {
         "assignment": "Move_ENDURE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 3274,
+        "source_line": 3275,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -11299,7 +11299,7 @@
       "animation": {
         "assignment": "Move_CHARM",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 3299,
+        "source_line": 3300,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -11353,7 +11353,7 @@
       "animation": {
         "assignment": "Move_ROLLOUT",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 3313,
+        "source_line": 3314,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -11407,7 +11407,7 @@
       "animation": {
         "assignment": "Move_FALSE_SWIPE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 3330,
+        "source_line": 3331,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -11461,7 +11461,7 @@
       "animation": {
         "assignment": "Move_SWAGGER",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 3357,
+        "source_line": 3358,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -11515,7 +11515,7 @@
       "animation": {
         "assignment": "Move_MILK_DRINK",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 3375,
+        "source_line": 3376,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -11569,7 +11569,7 @@
       "animation": {
         "assignment": "Move_SPARK",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 2007,
+        "source_line": 2008,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -11623,7 +11623,7 @@
       "animation": {
         "assignment": "Move_FURY_CUTTER",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 1463,
+        "source_line": 1464,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -11677,7 +11677,7 @@
       "animation": {
         "assignment": "Move_STEEL_WING",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 7353,
+        "source_line": 7354,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -11739,7 +11739,7 @@
       "animation": {
         "assignment": "Move_MEAN_LOOK",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 2146,
+        "source_line": 2147,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -11793,7 +11793,7 @@
       "animation": {
         "assignment": "Move_ATTRACT",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 2053,
+        "source_line": 2054,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -11847,7 +11847,7 @@
       "animation": {
         "assignment": "Move_SLEEP_TALK",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 8104,
+        "source_line": 8105,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -11901,7 +11901,7 @@
       "animation": {
         "assignment": "Move_HEAL_BELL",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 7842,
+        "source_line": 7843,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -11955,7 +11955,7 @@
       "animation": {
         "assignment": "Move_RETURN",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 9084,
+        "source_line": 9085,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -12009,7 +12009,7 @@
       "animation": {
         "assignment": "Move_PRESENT",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 8001,
+        "source_line": 8002,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -12063,7 +12063,7 @@
       "animation": {
         "assignment": "Move_FRUSTRATION",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 1750,
+        "source_line": 1751,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -12117,7 +12117,7 @@
       "animation": {
         "assignment": "Move_SAFEGUARD",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 1860,
+        "source_line": 1861,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -12171,7 +12171,7 @@
       "animation": {
         "assignment": "Move_PAIN_SPLIT",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 1878,
+        "source_line": 1879,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -12225,7 +12225,7 @@
       "animation": {
         "assignment": "Move_SACRED_FIRE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 4962,
+        "source_line": 4963,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -12279,7 +12279,7 @@
       "animation": {
         "assignment": "Move_MAGNITUDE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 3396,
+        "source_line": 3397,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -12333,7 +12333,7 @@
       "animation": {
         "assignment": "Move_DYNAMIC_PUNCH",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 6700,
+        "source_line": 6701,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -12387,7 +12387,7 @@
       "animation": {
         "assignment": "Move_MEGAHORN",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 6227,
+        "source_line": 6228,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -12441,7 +12441,7 @@
       "animation": {
         "assignment": "Move_DRAGON_BREATH",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 5032,
+        "source_line": 5033,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -12495,7 +12495,7 @@
       "animation": {
         "assignment": "Move_BATON_PASS",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 8061,
+        "source_line": 8062,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -12549,7 +12549,7 @@
       "animation": {
         "assignment": "Move_ENCORE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 8246,
+        "source_line": 8247,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -12603,7 +12603,7 @@
       "animation": {
         "assignment": "Move_PURSUIT",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 1312,
+        "source_line": 1313,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -12657,7 +12657,7 @@
       "animation": {
         "assignment": "Move_RAPID_SPIN",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 3420,
+        "source_line": 3421,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -12711,7 +12711,7 @@
       "animation": {
         "assignment": "Move_SWEET_SCENT",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 8470,
+        "source_line": 8471,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -12765,7 +12765,7 @@
       "animation": {
         "assignment": "Move_IRON_TAIL",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 7380,
+        "source_line": 7381,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -12819,7 +12819,7 @@
       "animation": {
         "assignment": "Move_METAL_CLAW",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 7420,
+        "source_line": 7421,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -12873,7 +12873,7 @@
       "animation": {
         "assignment": "Move_VITAL_THROW",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 6766,
+        "source_line": 6767,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -12927,7 +12927,7 @@
       "animation": {
         "assignment": "Move_MORNING_SUN",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 8437,
+        "source_line": 8438,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -12981,7 +12981,7 @@
       "animation": {
         "assignment": "Move_SYNTHESIS",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 6031,
+        "source_line": 6032,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -13035,7 +13035,7 @@
       "animation": {
         "assignment": "Move_MOONLIGHT",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 3439,
+        "source_line": 3440,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -13089,7 +13089,7 @@
       "animation": {
         "assignment": "Move_HIDDEN_POWER",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 1254,
+        "source_line": 1255,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -13143,7 +13143,7 @@
       "animation": {
         "assignment": "Move_CROSS_CHOP",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 6590,
+        "source_line": 6591,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -13197,7 +13197,7 @@
       "animation": {
         "assignment": "Move_TWISTER",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 9865,
+        "source_line": 9866,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -13251,7 +13251,7 @@
       "animation": {
         "assignment": "Move_RAIN_DANCE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 5380,
+        "source_line": 5381,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -13305,7 +13305,7 @@
       "animation": {
         "assignment": "Move_SUNNY_DAY",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 6850,
+        "source_line": 6851,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -13359,7 +13359,7 @@
       "animation": {
         "assignment": "Move_CRUNCH",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 5411,
+        "source_line": 5412,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -13413,7 +13413,7 @@
       "animation": {
         "assignment": "Move_MIRROR_COAT",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 5155,
+        "source_line": 5156,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -13467,7 +13467,7 @@
       "animation": {
         "assignment": "Move_PSYCH_UP",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 1381,
+        "source_line": 1382,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -13521,7 +13521,7 @@
       "animation": {
         "assignment": "Move_EXTREME_SPEED",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 3466,
+        "source_line": 3467,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -13575,7 +13575,7 @@
       "animation": {
         "assignment": "Move_ANCIENT_POWER",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 6999,
+        "source_line": 7000,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -13629,7 +13629,7 @@
       "animation": {
         "assignment": "Move_SHADOW_BALL",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 7485,
+        "source_line": 7486,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -13683,7 +13683,7 @@
       "animation": {
         "assignment": "Move_FUTURE_SIGHT",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 4833,
+        "source_line": 4834,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -13737,7 +13737,7 @@
       "animation": {
         "assignment": "Move_ROCK_SMASH",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 6789,
+        "source_line": 6790,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -13791,7 +13791,7 @@
       "animation": {
         "assignment": "Move_WHIRLPOOL",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 6486,
+        "source_line": 6487,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -13845,7 +13845,7 @@
       "animation": {
         "assignment": "Move_BEAT_UP",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 1181,
+        "source_line": 1182,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -13899,7 +13899,7 @@
       "animation": {
         "assignment": "Move_FAKE_OUT",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 7895,
+        "source_line": 7896,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -13953,7 +13953,7 @@
       "animation": {
         "assignment": "Move_UPROAR",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 3515,
+        "source_line": 3516,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -14007,7 +14007,7 @@
       "animation": {
         "assignment": "Move_STOCKPILE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 8310,
+        "source_line": 8311,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -14061,7 +14061,7 @@
       "animation": {
         "assignment": "Move_SPIT_UP",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 8340,
+        "source_line": 8341,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -14115,7 +14115,7 @@
       "animation": {
         "assignment": "Move_SWALLOW",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 8389,
+        "source_line": 8390,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -14169,7 +14169,7 @@
       "animation": {
         "assignment": "Move_HEAT_WAVE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 3540,
+        "source_line": 3541,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -14223,7 +14223,7 @@
       "animation": {
         "assignment": "Move_HAIL",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 3565,
+        "source_line": 3566,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -14277,7 +14277,7 @@
       "animation": {
         "assignment": "Move_TORMENT",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 3576,
+        "source_line": 3577,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -14331,7 +14331,7 @@
       "animation": {
         "assignment": "Move_FLATTER",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 8560,
+        "source_line": 8561,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -14385,7 +14385,7 @@
       "animation": {
         "assignment": "Move_WILL_O_WISP",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 8215,
+        "source_line": 8216,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -14439,7 +14439,7 @@
       "animation": {
         "assignment": "Move_MEMENTO",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 3589,
+        "source_line": 3590,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -14493,7 +14493,7 @@
       "animation": {
         "assignment": "Move_FACADE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 3613,
+        "source_line": 3614,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -14547,7 +14547,7 @@
       "animation": {
         "assignment": "Move_FOCUS_PUNCH",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 9031,
+        "source_line": 9032,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -14601,7 +14601,7 @@
       "animation": {
         "assignment": "Move_SMELLING_SALT",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 3620,
+        "source_line": 3621,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -14655,7 +14655,7 @@
       "animation": {
         "assignment": "Move_FOLLOW_ME",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 3635,
+        "source_line": 3636,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -14709,7 +14709,7 @@
       "animation": {
         "assignment": "Move_NATURE_POWER",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 6996,
+        "source_line": 6997,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -14763,7 +14763,7 @@
       "animation": {
         "assignment": "Move_CHARGE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 3645,
+        "source_line": 3646,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -14817,7 +14817,7 @@
       "animation": {
         "assignment": "Move_TAUNT",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 3680,
+        "source_line": 3681,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -14871,7 +14871,7 @@
       "animation": {
         "assignment": "Move_HELPING_HAND",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 3700,
+        "source_line": 3701,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -14925,7 +14925,7 @@
       "animation": {
         "assignment": "Move_TRICK",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 8266,
+        "source_line": 8267,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -14979,7 +14979,7 @@
       "animation": {
         "assignment": "Move_ROLE_PLAY",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 8606,
+        "source_line": 8607,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -15033,7 +15033,7 @@
       "animation": {
         "assignment": "Move_WISH",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 8294,
+        "source_line": 8295,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -15087,7 +15087,7 @@
       "animation": {
         "assignment": "Move_ASSIST",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 3717,
+        "source_line": 3718,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -15141,7 +15141,7 @@
       "animation": {
         "assignment": "Move_INGRAIN",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 7971,
+        "source_line": 7972,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -15195,7 +15195,7 @@
       "animation": {
         "assignment": "Move_SUPERPOWER",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 3734,
+        "source_line": 3735,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -15249,7 +15249,7 @@
       "animation": {
         "assignment": "Move_MAGIC_COAT",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 9667,
+        "source_line": 9668,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -15303,7 +15303,7 @@
       "animation": {
         "assignment": "Move_RECYCLE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 3768,
+        "source_line": 3769,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -15357,7 +15357,7 @@
       "animation": {
         "assignment": "Move_REVENGE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 8903,
+        "source_line": 8904,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -15411,7 +15411,7 @@
       "animation": {
         "assignment": "Move_BRICK_BREAK",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 3784,
+        "source_line": 3785,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -15465,7 +15465,7 @@
       "animation": {
         "assignment": "Move_YAWN",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 3854,
+        "source_line": 3855,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -15519,7 +15519,7 @@
       "animation": {
         "assignment": "Move_KNOCK_OFF",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 9735,
+        "source_line": 9736,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -15573,7 +15573,7 @@
       "animation": {
         "assignment": "Move_ENDEAVOR",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 3870,
+        "source_line": 3871,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -15627,7 +15627,7 @@
       "animation": {
         "assignment": "Move_ERUPTION",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 3886,
+        "source_line": 3887,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -15681,7 +15681,7 @@
       "animation": {
         "assignment": "Move_SKILL_SWAP",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 3911,
+        "source_line": 3912,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -15735,7 +15735,7 @@
       "animation": {
         "assignment": "Move_IMPRISON",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 3924,
+        "source_line": 3925,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -15789,7 +15789,7 @@
       "animation": {
         "assignment": "Move_REFRESH",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 8621,
+        "source_line": 8622,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -15851,7 +15851,7 @@
       "animation": {
         "assignment": "Move_GRUDGE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 3941,
+        "source_line": 3942,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -15869,7 +15869,7 @@
         "scripts": [
           {
             "label": "Move_GRUDGE",
-            "line": 3941
+            "line": 3942
           }
         ],
         "evidence": {
@@ -15927,7 +15927,7 @@
       "animation": {
         "assignment": "Move_SNATCH",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 9386,
+        "source_line": 9387,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -15981,7 +15981,7 @@
       "animation": {
         "assignment": "Move_SECRET_POWER",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 9852,
+        "source_line": 9853,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -16035,7 +16035,7 @@
       "animation": {
         "assignment": "Move_DIVE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 9391,
+        "source_line": 9392,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -16089,7 +16089,7 @@
       "animation": {
         "assignment": "Move_ARM_THRUST",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 8722,
+        "source_line": 8723,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -16143,7 +16143,7 @@
       "animation": {
         "assignment": "Move_CAMOUFLAGE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 3959,
+        "source_line": 3960,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -16197,7 +16197,7 @@
       "animation": {
         "assignment": "Move_TAIL_GLOW",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 3977,
+        "source_line": 3978,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -16251,7 +16251,7 @@
       "animation": {
         "assignment": "Move_LUSTER_PURGE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 3993,
+        "source_line": 3994,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -16305,7 +16305,7 @@
       "animation": {
         "assignment": "Move_MIST_BALL",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 4036,
+        "source_line": 4037,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -16359,7 +16359,7 @@
       "animation": {
         "assignment": "Move_FEATHER_DANCE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 4056,
+        "source_line": 4057,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -16413,7 +16413,7 @@
       "animation": {
         "assignment": "Move_TEETER_DANCE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 4078,
+        "source_line": 4079,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -16467,7 +16467,7 @@
       "animation": {
         "assignment": "Move_BLAZE_KICK",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 8635,
+        "source_line": 8636,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -16521,7 +16521,7 @@
       "animation": {
         "assignment": "Move_MUD_SPORT",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 4098,
+        "source_line": 4099,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -16575,7 +16575,7 @@
       "animation": {
         "assignment": "Move_ICE_BALL",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 9955,
+        "source_line": 9956,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -16629,7 +16629,7 @@
       "animation": {
         "assignment": "Move_NEEDLE_ARM",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 4145,
+        "source_line": 4146,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -16683,7 +16683,7 @@
       "animation": {
         "assignment": "Move_SLACK_OFF",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 4188,
+        "source_line": 4189,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -16737,7 +16737,7 @@
       "animation": {
         "assignment": "Move_HYPER_VOICE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 8656,
+        "source_line": 8657,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -16791,7 +16791,7 @@
       "animation": {
         "assignment": "Move_POISON_FANG",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 8932,
+        "source_line": 8933,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -16845,7 +16845,7 @@
       "animation": {
         "assignment": "Move_CRUSH_CLAW",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 4197,
+        "source_line": 4198,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -16899,7 +16899,7 @@
       "animation": {
         "assignment": "Move_BLAST_BURN",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 9251,
+        "source_line": 9252,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -16953,7 +16953,7 @@
       "animation": {
         "assignment": "Move_HYDRO_CANNON",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 9539,
+        "source_line": 9540,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -17007,7 +17007,7 @@
       "animation": {
         "assignment": "Move_METEOR_MASH",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 8878,
+        "source_line": 8879,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -17067,7 +17067,7 @@
       "animation": {
         "assignment": "Move_ASTONISH",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 9582,
+        "source_line": 9583,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -17081,7 +17081,7 @@
         "scripts": [
           {
             "label": "Move_ASTONISH",
-            "line": 9582
+            "line": 9583
           }
         ],
         "evidence": {
@@ -17139,7 +17139,7 @@
       "animation": {
         "assignment": "Move_WEATHER_BALL",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 10053,
+        "source_line": 10054,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -17193,7 +17193,7 @@
       "animation": {
         "assignment": "Move_AROMATHERAPY",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 4219,
+        "source_line": 4220,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -17254,7 +17254,7 @@
       "animation": {
         "assignment": "Move_FAKE_TEARS",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 4258,
+        "source_line": 4259,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -17311,7 +17311,7 @@
       "animation": {
         "assignment": "Move_AIR_CUTTER",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 4281,
+        "source_line": 4282,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -17365,7 +17365,7 @@
       "animation": {
         "assignment": "Move_OVERHEAT",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 9458,
+        "source_line": 9459,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -17419,7 +17419,7 @@
       "animation": {
         "assignment": "Move_ODOR_SLEUTH",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 4302,
+        "source_line": 4303,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -17479,7 +17479,7 @@
       "animation": {
         "assignment": "Move_ROCK_TOMB",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 9296,
+        "source_line": 9297,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -17493,7 +17493,7 @@
         "scripts": [
           {
             "label": "Move_ROCK_TOMB",
-            "line": 9296
+            "line": 9297
           }
         ],
         "evidence": {
@@ -17557,7 +17557,7 @@
       "animation": {
         "assignment": "Move_SILVER_WIND",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 9328,
+        "source_line": 9329,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -17611,7 +17611,7 @@
       "animation": {
         "assignment": "Move_METAL_SOUND",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 9010,
+        "source_line": 9011,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -17665,7 +17665,7 @@
       "animation": {
         "assignment": "Move_GRASS_WHISTLE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 4318,
+        "source_line": 4319,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -17719,7 +17719,7 @@
       "animation": {
         "assignment": "Move_TICKLE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 4355,
+        "source_line": 4356,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -17773,7 +17773,7 @@
       "animation": {
         "assignment": "Move_COSMIC_POWER",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 9226,
+        "source_line": 9227,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -17827,7 +17827,7 @@
       "animation": {
         "assignment": "Move_WATER_SPOUT",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 4373,
+        "source_line": 4374,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -17881,7 +17881,7 @@
       "animation": {
         "assignment": "Move_SIGNAL_BEAM",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 5776,
+        "source_line": 5777,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -17935,7 +17935,7 @@
       "animation": {
         "assignment": "Move_SHADOW_PUNCH",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 4390,
+        "source_line": 4391,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -17989,7 +17989,7 @@
       "animation": {
         "assignment": "Move_EXTRASENSORY",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 4411,
+        "source_line": 4412,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -18043,7 +18043,7 @@
       "animation": {
         "assignment": "Move_SKY_UPPERCUT",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 9808,
+        "source_line": 9809,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -18097,7 +18097,7 @@
       "animation": {
         "assignment": "Move_SAND_TOMB",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 8676,
+        "source_line": 8677,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -18151,7 +18151,7 @@
       "animation": {
         "assignment": "Move_SHEER_COLD",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 8704,
+        "source_line": 8705,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -18205,7 +18205,7 @@
       "animation": {
         "assignment": "Move_MUDDY_WATER",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 8752,
+        "source_line": 8753,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -18259,7 +18259,7 @@
       "animation": {
         "assignment": "Move_BULLET_SEED",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 8758,
+        "source_line": 8759,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -18313,7 +18313,7 @@
       "animation": {
         "assignment": "Move_AERIAL_ACE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 4432,
+        "source_line": 4433,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -18375,7 +18375,7 @@
       "animation": {
         "assignment": "Move_ICICLE_SPEAR",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 755,
+        "source_line": 756,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -18389,7 +18389,7 @@
         "scripts": [
           {
             "label": "Move_ICICLE_SPEAR",
-            "line": 755
+            "line": 756
           }
         ],
         "evidence": {
@@ -18447,7 +18447,7 @@
       "animation": {
         "assignment": "Move_IRON_DEFENSE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 4449,
+        "source_line": 4450,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -18501,7 +18501,7 @@
       "animation": {
         "assignment": "Move_BLOCK",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 4456,
+        "source_line": 4457,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -18555,7 +18555,7 @@
       "animation": {
         "assignment": "Move_HOWL",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 4462,
+        "source_line": 4463,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -18609,7 +18609,7 @@
       "animation": {
         "assignment": "Move_DRAGON_CLAW",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 8783,
+        "source_line": 8784,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -18663,7 +18663,7 @@
       "animation": {
         "assignment": "Move_FRENZY_PLANT",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 8950,
+        "source_line": 8951,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -18717,7 +18717,7 @@
       "animation": {
         "assignment": "Move_BULK_UP",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 4472,
+        "source_line": 4473,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -18771,7 +18771,7 @@
       "animation": {
         "assignment": "Move_BOUNCE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 6547,
+        "source_line": 6548,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -18825,7 +18825,7 @@
       "animation": {
         "assignment": "Move_MUD_SHOT",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 8845,
+        "source_line": 8846,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -18879,7 +18879,7 @@
       "animation": {
         "assignment": "Move_POISON_TAIL",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 7399,
+        "source_line": 7400,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -18933,7 +18933,7 @@
       "animation": {
         "assignment": "Move_COVET",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 4482,
+        "source_line": 4483,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -18987,7 +18987,7 @@
       "animation": {
         "assignment": "Move_VOLT_TACKLE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 4499,
+        "source_line": 4500,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -19041,7 +19041,7 @@
       "animation": {
         "assignment": "Move_MAGICAL_LEAF",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 9911,
+        "source_line": 9912,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -19095,7 +19095,7 @@
       "animation": {
         "assignment": "Move_WATER_SPORT",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 4546,
+        "source_line": 4547,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -19149,7 +19149,7 @@
       "animation": {
         "assignment": "Move_CALM_MIND",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 4559,
+        "source_line": 4560,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -19203,7 +19203,7 @@
       "animation": {
         "assignment": "Move_LEAF_BLADE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 4583,
+        "source_line": 4584,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -19257,7 +19257,7 @@
       "animation": {
         "assignment": "Move_DRAGON_DANCE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 4608,
+        "source_line": 4609,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -19311,7 +19311,7 @@
       "animation": {
         "assignment": "Move_ROCK_BLAST",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 9440,
+        "source_line": 9441,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -19365,7 +19365,7 @@
       "animation": {
         "assignment": "Move_SHOCK_WAVE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 4632,
+        "source_line": 4633,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -19419,7 +19419,7 @@
       "animation": {
         "assignment": "Move_WATER_PULSE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 9677,
+        "source_line": 9678,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -19473,7 +19473,7 @@
       "animation": {
         "assignment": "Move_DOOM_DESIRE",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 9756,
+        "source_line": 9757,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -19527,7 +19527,7 @@
       "animation": {
         "assignment": "Move_PSYCHO_BOOST",
         "approval": "RETAIN_ORIGINAL",
-        "source_line": 9708,
+        "source_line": 9709,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -19604,7 +19604,7 @@
       "animation": {
         "assignment": "Move_FLAME_FANG",
         "approval": "APPROVED_EXISTING_ART_CANDIDATE",
-        "source_line": 11117,
+        "source_line": 11118,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -19616,11 +19616,11 @@
         "scripts": [
           {
             "label": "Move_CRUNCH",
-            "line": 5411
+            "line": 5412
           },
           {
             "label": "Move_EMBER",
-            "line": 946
+            "line": 947
           }
         ],
         "evidence": {
@@ -19697,7 +19697,7 @@
       "animation": {
         "assignment": "Move_FLASHFIRE",
         "approval": "APPROVED_EXISTING_ART_CANDIDATE",
-        "source_line": 11147,
+        "source_line": 11148,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -19709,11 +19709,11 @@
         "scripts": [
           {
             "label": "Move_QUICK_ATTACK",
-            "line": 2800
+            "line": 2801
           },
           {
             "label": "Move_EMBER",
-            "line": 946
+            "line": 947
           }
         ],
         "evidence": {
@@ -19796,7 +19796,7 @@
       "animation": {
         "assignment": "Move_BLAZE_RUSH",
         "approval": "APPROVED_EXISTING_ART_CANDIDATE",
-        "source_line": 11166,
+        "source_line": 11167,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -19808,11 +19808,11 @@
         "scripts": [
           {
             "label": "Move_HI_JUMP_KICK",
-            "line": 6626
+            "line": 6627
           },
           {
             "label": "Move_EMBER",
-            "line": 946
+            "line": 947
           }
         ],
         "evidence": {
@@ -19895,7 +19895,7 @@
       "animation": {
         "assignment": "Move_SOUL_DRAIN",
         "approval": "APPROVED_EXISTING_ART_CANDIDATE",
-        "source_line": 11215,
+        "source_line": 11216,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -19907,11 +19907,11 @@
         "scripts": [
           {
             "label": "Move_LICK",
-            "line": 7500
+            "line": 7501
           },
           {
             "label": "Move_MEGA_DRAIN",
-            "line": 5871
+            "line": 5872
           }
         ],
         "evidence": {
@@ -19992,7 +19992,7 @@
       "animation": {
         "assignment": "Move_WEARY_TOUCH",
         "approval": "APPROVED_EXISTING_ART_CANDIDATE",
-        "source_line": 11249,
+        "source_line": 11250,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -20004,11 +20004,11 @@
         "scripts": [
           {
             "label": "Move_LICK",
-            "line": 7500
+            "line": 7501
           },
           {
             "label": "Move_HYPNOSIS",
-            "line": 7288
+            "line": 7289
           }
         ],
         "evidence": {
@@ -20088,7 +20088,7 @@
       "animation": {
         "assignment": "Move_DREAM_HAUNT",
         "approval": "APPROVED_EXISTING_ART_CANDIDATE",
-        "source_line": 11269,
+        "source_line": 11270,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -20100,11 +20100,11 @@
         "scripts": [
           {
             "label": "Move_NIGHT_SHADE",
-            "line": 7441
+            "line": 7442
           },
           {
             "label": "Move_DREAM_EATER",
-            "line": 7138
+            "line": 7139
           }
         ],
         "evidence": {
@@ -20184,7 +20184,7 @@
       "animation": {
         "assignment": "Move_SKITTER_SLASH",
         "approval": "APPROVED_EXISTING_ART_CANDIDATE",
-        "source_line": 11313,
+        "source_line": 11314,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -20196,7 +20196,7 @@
         "scripts": [
           {
             "label": "Move_FURY_CUTTER",
-            "line": 1463
+            "line": 1464
           }
         ],
         "evidence": {
@@ -20287,7 +20287,7 @@
       "animation": {
         "assignment": "Move_VENOM_WEB",
         "approval": "APPROVED_EXISTING_ART_CANDIDATE",
-        "source_line": 11318,
+        "source_line": 11319,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -20299,11 +20299,11 @@
         "scripts": [
           {
             "label": "Move_BIND",
-            "line": 7240
+            "line": 7241
           },
           {
             "label": "Move_POISON_POWDER",
-            "line": 479
+            "line": 480
           }
         ],
         "evidence": {
@@ -20387,7 +20387,7 @@
       "animation": {
         "assignment": "Move_BUG_BITE",
         "approval": "APPROVED_EXISTING_ART_CANDIDATE",
-        "source_line": 11349,
+        "source_line": 11350,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -20399,7 +20399,7 @@
         "scripts": [
           {
             "label": "Move_BITE",
-            "line": 5394
+            "line": 5395
           }
         ],
         "evidence": {
@@ -20480,7 +20480,7 @@
       "animation": {
         "assignment": "Move_CHITIN_CRUSH",
         "approval": "APPROVED_EXISTING_ART_CANDIDATE",
-        "source_line": 11352,
+        "source_line": 11353,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -20492,11 +20492,11 @@
         "scripts": [
           {
             "label": "Move_VICE_GRIP",
-            "line": 1902
+            "line": 1903
           },
           {
             "label": "Move_ROCK_SMASH",
-            "line": 6789
+            "line": 6790
           }
         ],
         "evidence": {
@@ -20510,12 +20510,23 @@
       }
     },
     {
-      "id": null,
+      "id": 365,
       "proposed_id": 365,
       "key": "CHIRP",
       "name": "Chirp",
       "identity": "NEW_CUSTOM",
-      "current": null,
+      "current": {
+        "category": "SPECIAL",
+        "type": "BUG",
+        "power": 40,
+        "accuracy": 100,
+        "pp": 25,
+        "priority": 0,
+        "target": "MOVE_TARGET_SELECTED",
+        "effect": "EFFECT_HIT",
+        "secondaryEffectChance": 0,
+        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
+      },
       "approved": {
         "type": "BUG",
         "category": "SPECIAL",
@@ -20551,13 +20562,26 @@
         "HIT_SOUND",
         "Normal priority0 is proposed technical translation; source approves the listed custom attack mechanics, not an explicit priority statement."
       ],
-      "implementation_status": "NOT_IMPLEMENTED",
-      "delta": null,
+      "implementation_status": "SOURCE_DATA_PRESENT_RUNTIME_UNVERIFIED",
+      "delta": {},
       "effect_rules": {
         "semantic": "HIT_SOUND",
         "sound": true
       },
+      "engine_translation": {
+        "effect": "EFFECT_HIT",
+        "target": "MOVE_TARGET_SELECTED",
+        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
+      },
+      "source_line": 5114,
       "animation": {
+        "assignment": "Move_CHIRP",
+        "approval": "APPROVED_EXISTING_ART_CANDIDATE",
+        "source_line": 11395,
+        "source_exists": true,
+        "runtime_verified": false
+      },
+      "animation_candidate": {
         "key": "CHIRP",
         "name": "Chirp",
         "candidate": "GROWL",
@@ -20565,7 +20589,7 @@
         "scripts": [
           {
             "label": "Move_GROWL",
-            "line": 5094
+            "line": 5095
           }
         ],
         "evidence": {
@@ -20643,11 +20667,11 @@
         "scripts": [
           {
             "label": "Move_SILVER_WIND",
-            "line": 9328
+            "line": 9329
           },
           {
             "label": "Move_POISON_POWDER",
-            "line": 479
+            "line": 480
           }
         ],
         "evidence": {
@@ -20714,7 +20738,7 @@
         "scripts": [
           {
             "label": "Move_UPROAR",
-            "line": 3515
+            "line": 3516
           }
         ],
         "evidence": {
@@ -20781,7 +20805,7 @@
         "scripts": [
           {
             "label": "Move_ANCIENT_POWER",
-            "line": 6999
+            "line": 7000
           }
         ],
         "evidence": {
@@ -20848,7 +20872,7 @@
         "scripts": [
           {
             "label": "Move_ROCK_SLIDE",
-            "line": 2182
+            "line": 2183
           }
         ],
         "evidence": {
@@ -20916,11 +20940,11 @@
         "scripts": [
           {
             "label": "Move_SANDSTORM",
-            "line": 6466
+            "line": 6467
           },
           {
             "label": "Move_EMBER",
-            "line": 946
+            "line": 947
           }
         ],
         "evidence": {
@@ -20988,7 +21012,7 @@
         "scripts": [
           {
             "label": "Move_EARTHQUAKE",
-            "line": 2665
+            "line": 2666
           }
         ],
         "evidence": {
@@ -21065,11 +21089,11 @@
         "scripts": [
           {
             "label": "Move_BITE",
-            "line": 5394
+            "line": 5395
           },
           {
             "label": "Move_ICE_PUNCH",
-            "line": 4751
+            "line": 4752
           }
         ],
         "evidence": {
@@ -21136,11 +21160,11 @@
         "scripts": [
           {
             "label": "Move_ROCK_SLIDE",
-            "line": 2182
+            "line": 2183
           },
           {
             "label": "Move_ICE_BEAM",
-            "line": 5456
+            "line": 5457
           }
         ],
         "evidence": {
@@ -21208,7 +21232,7 @@
         "scripts": [
           {
             "label": "Move_ICICLE_SPEAR",
-            "line": 755
+            "line": 756
           }
         ],
         "evidence": {
@@ -21275,7 +21299,7 @@
         "scripts": [
           {
             "label": "Move_DRAGON_BREATH",
-            "line": 5032
+            "line": 5033
           }
         ],
         "evidence": {
@@ -21351,11 +21375,11 @@
         "scripts": [
           {
             "label": "Move_TAKE_DOWN",
-            "line": 784
+            "line": 785
           },
           {
             "label": "Move_DRAGON_CLAW",
-            "line": 8783
+            "line": 8784
           }
         ],
         "evidence": {
@@ -21423,7 +21447,7 @@
         "scripts": [
           {
             "label": "Move_UPROAR",
-            "line": 3515
+            "line": 3516
           }
         ],
         "evidence": {
@@ -21491,7 +21515,7 @@
         "scripts": [
           {
             "label": "Move_NIGHT_SHADE",
-            "line": 7441
+            "line": 7442
           }
         ],
         "evidence": {
@@ -21559,7 +21583,7 @@
         "scripts": [
           {
             "label": "Move_FAINT_ATTACK",
-            "line": 5259
+            "line": 5260
           }
         ],
         "evidence": {
@@ -21626,7 +21650,7 @@
         "scripts": [
           {
             "label": "Move_SLASH",
-            "line": 3110
+            "line": 3111
           }
         ],
         "evidence": {
@@ -21700,7 +21724,7 @@
         "scripts": [
           {
             "label": "Move_REVENGE",
-            "line": 8903
+            "line": 8904
           }
         ],
         "evidence": {
@@ -21767,7 +21791,7 @@
         "scripts": [
           {
             "label": "Move_THIEF",
-            "line": 2233
+            "line": 2234
           }
         ],
         "evidence": {
@@ -21834,11 +21858,11 @@
         "scripts": [
           {
             "label": "Move_QUICK_ATTACK",
-            "line": 2800
+            "line": 2801
           },
           {
             "label": "Move_WATER_GUN",
-            "line": 6364
+            "line": 6365
           }
         ],
         "evidence": {
@@ -21906,7 +21930,7 @@
         "scripts": [
           {
             "label": "Move_WATERFALL",
-            "line": 1594
+            "line": 1595
           }
         ],
         "evidence": {
@@ -21975,7 +21999,7 @@
         "scripts": [
           {
             "label": "Move_WHIRLPOOL",
-            "line": 6486
+            "line": 6487
           }
         ],
         "evidence": {
@@ -22051,7 +22075,7 @@
         "scripts": [
           {
             "label": "Move_SURF",
-            "line": 6425
+            "line": 6426
           }
         ],
         "evidence": {
@@ -22117,7 +22141,7 @@
         "scripts": [
           {
             "label": "Move_THUNDERBOLT",
-            "line": 1111
+            "line": 1112
           }
         ],
         "evidence": {
@@ -22184,11 +22208,11 @@
         "scripts": [
           {
             "label": "Move_SPARK",
-            "line": 2007
+            "line": 2008
           },
           {
             "label": "Move_TELEPORT",
-            "line": 2838
+            "line": 2839
           }
         ],
         "evidence": {
@@ -22265,11 +22289,11 @@
         "scripts": [
           {
             "label": "Move_BITE",
-            "line": 5394
+            "line": 5395
           },
           {
             "label": "Move_THUNDER_PUNCH",
-            "line": 4929
+            "line": 4930
           }
         ],
         "evidence": {
@@ -22336,7 +22360,7 @@
         "scripts": [
           {
             "label": "Move_VOLT_TACKLE",
-            "line": 4499
+            "line": 4500
           }
         ],
         "evidence": {
@@ -22403,7 +22427,7 @@
         "scripts": [
           {
             "label": "Move_BULLET_SEED",
-            "line": 8758
+            "line": 8759
           }
         ],
         "evidence": {
@@ -22470,7 +22494,7 @@
         "scripts": [
           {
             "label": "Move_PETAL_DANCE",
-            "line": 6918
+            "line": 6919
           }
         ],
         "evidence": {
@@ -22537,11 +22561,11 @@
         "scripts": [
           {
             "label": "Move_BODY_SLAM",
-            "line": 619
+            "line": 620
           },
           {
             "label": "Move_RAZOR_LEAF",
-            "line": 6956
+            "line": 6957
           }
         ],
         "evidence": {
@@ -22608,7 +22632,7 @@
         "scripts": [
           {
             "label": "Move_PSYCHIC",
-            "line": 4816
+            "line": 4817
           }
         ],
         "evidence": {
@@ -22676,7 +22700,7 @@
         "scripts": [
           {
             "label": "Move_HYPER_BEAM",
-            "line": 8509
+            "line": 8510
           }
         ],
         "evidence": {
@@ -22743,11 +22767,11 @@
         "scripts": [
           {
             "label": "Move_MEGA_PUNCH",
-            "line": 966
+            "line": 967
           },
           {
             "label": "Move_MEGA_DRAIN",
-            "line": 5871
+            "line": 5872
           }
         ],
         "evidence": {
@@ -22815,11 +22839,11 @@
         "scripts": [
           {
             "label": "Move_HYPER_BEAM",
-            "line": 8509
+            "line": 8510
           },
           {
             "label": "Move_METAL_CLAW",
-            "line": 7420
+            "line": 7421
           }
         ],
         "evidence": {
@@ -22887,7 +22911,7 @@
         "scripts": [
           {
             "label": "Move_SWIFT",
-            "line": 552
+            "line": 553
           }
         ],
         "evidence": {
@@ -22955,7 +22979,7 @@
         "scripts": [
           {
             "label": "Move_HEADBUTT",
-            "line": 2472
+            "line": 2473
           }
         ],
         "evidence": {
@@ -23022,11 +23046,11 @@
         "scripts": [
           {
             "label": "Move_MACH_PUNCH",
-            "line": 3202
+            "line": 3203
           },
           {
             "label": "Move_METAL_CLAW",
-            "line": 7420
+            "line": 7421
           }
         ],
         "evidence": {
@@ -23094,7 +23118,7 @@
         "scripts": [
           {
             "label": "Move_AIR_CUTTER",
-            "line": 4281
+            "line": 4282
           }
         ],
         "evidence": {
@@ -23164,11 +23188,11 @@
         "scripts": [
           {
             "label": "Move_GUST",
-            "line": 6272
+            "line": 6273
           },
           {
             "label": "Move_TWISTER",
-            "line": 9865
+            "line": 9866
           }
         ],
         "evidence": {
@@ -23235,7 +23259,7 @@
         "scripts": [
           {
             "label": "Move_SKY_ATTACK",
-            "line": 2990
+            "line": 2991
           }
         ],
         "evidence": {
@@ -23302,7 +23326,7 @@
         "scripts": [
           {
             "label": "Move_AERIAL_ACE",
-            "line": 4432
+            "line": 4433
           }
         ],
         "evidence": {
@@ -23369,7 +23393,7 @@
         "scripts": [
           {
             "label": "Move_WING_ATTACK",
-            "line": 6290
+            "line": 6291
           }
         ],
         "evidence": {
@@ -23437,11 +23461,11 @@
         "scripts": [
           {
             "label": "Move_STOMP",
-            "line": 1218
+            "line": 1219
           },
           {
             "label": "Move_CONFUSION",
-            "line": 4799
+            "line": 4800
           }
         ],
         "evidence": {
@@ -23509,11 +23533,11 @@
         "scripts": [
           {
             "label": "Move_HEADBUTT",
-            "line": 2472
+            "line": 2473
           },
           {
             "label": "Move_CONFUSION",
-            "line": 4799
+            "line": 4800
           }
         ],
         "evidence": {
@@ -23581,7 +23605,7 @@
         "scripts": [
           {
             "label": "Move_POISON_TAIL",
-            "line": 7399
+            "line": 7400
           }
         ],
         "evidence": {
@@ -23649,7 +23673,7 @@
         "scripts": [
           {
             "label": "Move_POISON_STING",
-            "line": 841
+            "line": 842
           }
         ],
         "evidence": {
@@ -23717,7 +23741,7 @@
         "scripts": [
           {
             "label": "Move_SLUDGE_BOMB",
-            "line": 6079
+            "line": 6080
           }
         ],
         "evidence": {
