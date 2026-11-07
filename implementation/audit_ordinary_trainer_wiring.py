@@ -16,6 +16,7 @@ ROOT = Path(__file__).resolve().parent.parent
 LEDGER = ROOT / "implementation/ordinary-trainers-delegated-audit-draft.md"
 REMATCH = ROOT / "implementation/ordinary-trainer-rematch-candidates.md"
 TRAINER_SOURCE = ROOT / "src/data/trainers.h"
+PARTY_SOURCE = ROOT / "src/data/trainer_parties.h"
 VS_SEEKER = ROOT / "src/vs_seeker.c"
 SCRIPT_DIR = ROOT / "data/scripts"
 MAP_DIR = ROOT / "data/maps"
@@ -27,6 +28,9 @@ RE_SCRIPT = re.compile(r"^([A-Za-z_][A-Za-z_0-9]*)::", re.M)
 RE_BATTLE = re.compile(r"\btrainerbattle_(?:single|double|rematch|rematch_double|two_trainers|continue_script|no_intro|no_intro_double)\s+(TRAINER_[A-Z0-9_]+)")
 RE_INIT = re.compile(r"\[(TRAINER_[A-Z0-9_]+)\]\s*=\s*\{([\s\S]*?)\n    \},")
 RE_CLASS = re.compile(r"\.trainerClass\s*=\s*TRAINER_CLASS_([A-Z0-9_]+)")
+RE_PARTY_REF = re.compile(r"\\.party\\s*=\\s*[A-Z_]+\\((sParty_[A-Za-z0-9_]+)\\)")
+RE_PARTY_DEF = re.compile(r"static const struct TrainerMon\\w+\\s+(sParty_\\w+)\\[\\]\\s*=\\s*\\{([\\s\\S]*?)\\n\\};")
+RE_BATTLE_COMMAND = re.compile(r"\\btrainerbattle_(?:single|double|rematch|rematch_double|two_trainers|continue_script|no_intro|no_intro_double)\\s+(TRAINER_[A-Z0-9_]+)")
 RE_VS = re.compile(r"\{\s*\{([^{}]+)\}\s*,\s*MAP\(MAP_([A-Z0-9_]+)\)\s*\}")
 
 
@@ -47,9 +51,45 @@ def main():
     parser.add_argument("--json", action="store_true", help="print machine-readable audit")
     args = parser.parse_args()
 
+    ledger_text = LEDGER.read_text(encoding="utf-8")
+    ledger_ids = re.findall(r"^\\| `(TRAINER_[A-Z0-9_]+)` \\|", ledger_text, re.M)
+    duplicate_ledger_ids = sorted({name for name in ledger_ids if ledger_ids.count(name) > 1})
     rows = parse_ledger()
+    unparsed_ledger_ids = sorted(set(ledger_ids) - set(rows))
     source = TRAINER_SOURCE.read_text(encoding="utf-8")
     source_defs = {m.group(1): m.group(2) for m in RE_INIT.finditer(source)}
+    # Validate the actual source party-array wiring, not just Trainer initializer IDs.
+    # The source_party ledger field records the *current FireRed* party, not the
+    # approved replacement. A proposed size change is handled separately.
+    party_source = PARTY_SOURCE.read_text(encoding="utf-8")
+    party_defs = {m.group(1): len(re.findall(r"\\.species\\s*=", m.group(2)))
+                  for m in RE_PARTY_DEF.finditer(party_source)}
+    missing_party_references = []
+    missing_party_arrays = []
+    source_party_size_inconsistencies = []
+    proposed_party_size_differences = []
+    for trainer_id, row in rows.items():
+        entry = source_defs.get(trainer_id, "")
+        party_match = RE_PARTY_REF.search(entry)
+        if not party_match:
+            missing_party_references.append(trainer_id)
+            continue
+        symbol = party_match.group(1)
+        if symbol not in party_defs:
+            missing_party_arrays.append({"id": trainer_id, "symbol": symbol})
+            continue
+        actual_size = party_defs[symbol]
+        source_size = len([slot for slot in row["source_party"].split(";") if slot.strip()])
+        draft_size = len([slot for slot in row["team"].split(";") if slot.strip()])
+        if actual_size != source_size:
+            source_party_size_inconsistencies.append({
+                "id": trainer_id, "symbol": symbol,
+                "source_array_size": actual_size, "ledger_source_size": source_size})
+        if actual_size != draft_size:
+            proposed_party_size_differences.append({
+                "id": trainer_id, "source_array_size": actual_size,
+                "draft_size": draft_size})
+
     original = {k: v for k, v in rows.items() if v["status"] != "DELEGATED_REMATCH_FAMILY_LOCKED"}
     variants = {k: v for k, v in rows.items() if v["status"] == "DELEGATED_REMATCH_FAMILY_LOCKED"}
 
@@ -58,9 +98,18 @@ def main():
     scripts = list(SCRIPT_DIR.glob("*.inc")) + list(MAP_DIR.glob("*/scripts.inc"))
     references = {}
     script_labels = set()
+    script_blocks = {}
     for path in scripts:
         content = path.read_text(encoding="utf-8", errors="replace")
         script_labels.update(RE_SCRIPT.findall(content))
+        locations = list(RE_SCRIPT.finditer(content))
+        for i, label_match in enumerate(locations):
+            end = locations[i + 1].start() if i + 1 < len(locations) else len(content)
+            label = label_match.group(1)
+            commands = RE_BATTLE_COMMAND.findall(content[label_match.end():end])
+            if commands:
+                script_blocks.setdefault(label, []).append({
+                    "path": rel(path), "trainer_ids": commands})
         for trainer_id in RE_TRAINER.findall(content):
             references.setdefault(trainer_id, set()).add(rel(path))
 
@@ -107,6 +156,9 @@ def main():
     # A map object event script label should resolve somewhere in the loaded
     # script tables. Special and dynamic labels are reported, not auto-fixed.
     missing_map_labels = []
+    trainer_map_objects = 0
+    direct_battle_map_objects = 0
+    unresolved_direct_battle_map_objects = []
     map_count = 0
     for path in MAP_DIR.glob("*/map.json"):
         data = json.loads(path.read_text(encoding="utf-8"))
@@ -114,17 +166,37 @@ def main():
         for event in data.get("object_events", []):
             if event.get("trainer_type") in (None, "TRAINER_TYPE_NONE"):
                 continue
+            trainer_map_objects += 1
             name = event.get("script", "")
+            if name in script_blocks:
+                direct_battle_map_objects += 1
+            else:
+                # No direct trainerbattle in this label's body. This can be
+                # intentional indirection; queue for inspection, not a defect.
+                unresolved_direct_battle_map_objects.append({
+                    "map": path.parent.name, "script": name,
+                    "x": event.get("x"), "y": event.get("y"),
+                    "trainer_type": event.get("trainer_type")})
             if name and name not in script_labels:
                 missing_map_labels.append({"map": path.parent.name, "script": name})
 
     report = {
         "ledger_records": len(rows),
+        "duplicate_ledger_ids": duplicate_ledger_ids,
+        "unparsed_ledger_ids": unparsed_ledger_ids,
+        "party_arrays_parsed": len(party_defs),
+        "missing_party_references": missing_party_references,
+        "missing_party_arrays": missing_party_arrays,
+        "source_party_size_inconsistencies": source_party_size_inconsistencies,
+        "proposed_party_size_differences": proposed_party_size_differences,
         "original_or_standalone_records": len(original),
         "numeric_rematch_candidates": len(variants),
         "source_trainer_definitions_found": len(rows) - len(source_missing),
         "script_files_scanned": len(scripts),
         "map_json_files_scanned": map_count,
+        "trainer_map_objects": trainer_map_objects,
+        "objects_with_direct_battle_command": direct_battle_map_objects,
+        "objects_requiring_indirect_script_review": unresolved_direct_battle_map_objects,
         "original_ids_referenced_in_scripts": len(original) - len(missing_original),
         "unreferenced_original_ids": missing_original,
         "source_ids_missing": source_missing,
