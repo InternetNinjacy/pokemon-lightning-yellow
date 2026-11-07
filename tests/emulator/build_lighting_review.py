@@ -41,9 +41,9 @@ ROWS = [
 ]
 PALETTES = {
     "A": {"day": (32,32,32), "dawn": (23,28,32), "dusk": (32,23,17),
-          "night": (19,21,27), "covered_day": (25,29,25), "covered_night": (14,19,23)},
+          "night": (19,21,27), "covered_day": (25,29,25), "covered_night": (14,19,23), "lavender_day": (30,22,19)},
     "B": {"day": (32,32,32), "dawn": (23,28,32), "dusk": (32,23,17),
-          "night": (16,19,27), "covered_day": (25,29,25), "covered_night": (12,17,22)},
+          "night": (16,19,27), "covered_day": (25,29,25), "covered_night": (12,17,22), "lavender_day": (30,22,19)},
 }
 
 def chunk(name, payload):
