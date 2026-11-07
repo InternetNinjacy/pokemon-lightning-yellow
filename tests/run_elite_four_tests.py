@@ -5,18 +5,36 @@ import json,re,hashlib
 from approved_elite_four_changes import prior_elite_four_source
 m=json.loads(Path('tests/specifications/approved_elite_four_delta.json').read_text())
 for p,v in m['files'].items():
- assert hashlib.sha256(Path(p).read_bytes()).hexdigest()==v['after_sha256'],p
+ source=Path(p).read_text()
+ # The six-battle frozen baseline must still match after reversing ONLY the two Agatha additions.
+ six_battle_source=source
+ for h in v['hunks'][6:]:
+  assert six_battle_source.count(h['after'])==1,(p,'new approved delta')
+  six_battle_source=six_battle_source.replace(h['after'],h['before'],1)
+ assert hashlib.sha256(six_battle_source.encode()).hexdigest()==v['after_sha256'],p
  assert hashlib.sha256(prior_elite_four_source(p).encode()).hexdigest()==v['before_sha256'],p
-for p,h in m['preserved_files'].items():assert hashlib.sha256(Path(p).read_bytes()).hexdigest()==h,p
+for p,h in m['preserved_files'].items():
+ source=Path(p).read_text()
+ if p=='src/battle_main.c':
+  approved_selector='''                // Both approved Agatha Alakazam use their native second ability, Inner Focus.
+                // Keep the original PID and ability policy for every other trainer Pokémon.
+                if ((trainerNum == TRAINER_ELITE_FOUR_AGATHA || trainerNum == TRAINER_ELITE_FOUR_AGATHA_2)
+                 && partyData[i].species == SPECIES_ALAKAZAM)
+                    personalityValue |= 1;
+'''
+  assert source.count(approved_selector)==1,'Agatha native-slot selector changed'
+  source=source.replace(approved_selector,'',1)
+ assert hashlib.sha256(source.encode()).hexdigest()==h,p
+
 spec=json.loads(Path('tests/specifications/approved_elite_four.json').read_text())['battles'];assert len(spec)==8
 source=Path('src/data/trainer_parties.h').read_text()
 for b in spec:
  assert hashlib.sha256(Path(b['specification']).read_bytes()).hexdigest()==b['sha256']
- if not b['implemented']:continue
+ assert b['implemented'],b['trainer']
  body=re.search(r'\b'+b['array']+r'\[\] = \{(.*?)\n\};',source,re.S)[1]
  entries=re.findall(r'\{(.*?)\n    \}',body,re.S);assert len(entries)==len(b['party'])
  for text,row in zip(entries,b['party']):
   for field,v in [('iv',row['iv']),('lvl',row['level']),('species','SPECIES_'+row['species']),('heldItem','ITEM_'+row['item'])]:
    assert re.search(r'\.'+field+r' = ([^,]+),',text)[1]==str(v)
   assert re.findall(r'MOVE_(\w+)',text)==row['moves']
-print('PASS: six exact approved Elite Four parties; all other arrays, metadata, battle constructor, global species/save/IDs frozen; two Agatha encounters explicitly pending native alternate-slot permission')
+print('PASS: all eight exact approved Elite Four party arrays; prior six-battle baseline preserved; scoped Agatha native ability-bit selector verified against frozen constructor')
