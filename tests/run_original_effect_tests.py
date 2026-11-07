@@ -5,9 +5,10 @@ import json,re,hashlib
 from approved_original_effect_changes import prior_original_effect_source
 m=json.loads(Path('tests/specifications/approved_original_effect_delta.json').read_text())
 for p,v in m['files'].items():
- assert hashlib.sha256(Path(p).read_bytes()).hexdigest()==v['after_sha256'],p
+ from approved_spread_status_changes import prior_spread_status_source
+ assert hashlib.sha256(prior_spread_status_source(p).encode()).hexdigest()==v['after_sha256'],p
  assert hashlib.sha256(prior_original_effect_source(p).encode()).hexdigest()==v['before_sha256'],p
-source=Path('src/data/battle_moves.h').read_text();old=prior_original_effect_source('src/data/battle_moves.h')
+source=prior_spread_status_source('src/data/battle_moves.h');old=prior_original_effect_source('src/data/battle_moves.h')
 def rows(s):return {k:dict(re.findall(r'\.(\w+) = (.*?),',b)) for k,b in re.findall(r'\[MOVE_(\w+)\] =\s*\{(.*?)\n    \}',s,re.S)}
 a,b=rows(old),rows(source);assert len(a)==len(b)==355
 changes={k:{f:v for f,v in b[k].items() if v!=a[k][f]} for k in b if a[k]!=b[k]}
@@ -24,6 +25,13 @@ print('PASS: exact owner-approved single55/85/20/30% poison Pin Missile and user
 from approved_electric_immunity_changes import prior_electric_immunity_source
 immunity=json.loads(Path('tests/specifications/approved_electric_immunity_delta.json').read_text())
 for p,v in immunity['files'].items():
- assert hashlib.sha256(Path(p).read_bytes()).hexdigest()==v['after_sha256'],p
+ from approved_spread_status_changes import prior_spread_status_source
+ assert hashlib.sha256(prior_spread_status_source(p).encode()).hexdigest()==v['after_sha256'],p
  assert hashlib.sha256(prior_electric_immunity_source(p).encode()).hexdigest()==v['before_sha256'],p
 print('PASS: exact approved global Electric paralysis immunity delta; primary message and effective-recipient secondary/contact guard (static)')
+
+spread=json.loads(Path('tests/specifications/approved_spread_status_delta.json').read_text())
+for p,v in spread['files'].items():
+ assert hashlib.sha256(Path(p).read_bytes()).hexdigest()==v['after_sha256'],p
+ assert hashlib.sha256(prior_spread_status_source(p).encode()).hexdigest()==v['before_sha256'],p
+print('PASS: exact approved Scary Face Ghost15PP and three both-opponent status targets; historical hashes preserved (static)')

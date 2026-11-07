@@ -1389,6 +1389,17 @@ imports or unsafe save migrations. Direct Drive synchronization remains pending.
 - Native fixtures cover primary, guaranteed secondary with retained damage,
   Static contact, preexisting paralysis and AI score controls. Details and limits
   in docs/moves/ELECTRIC_PARALYSIS_STATUS.md. No new Thunder Wave spread claim.
+
+## 2026-11-06 — BTL-005-M2G both-opponent status move implementation
+
+- Approved Scary Face Ghost15PP and three both-opponent targets, retaining90/85/
+  100 accuracy and native Speed/Defense/Sp.Def-2. Native target iterator/scripts,
+  flags, assets, original IDs and learnsets retained; descriptions updated.
+- Build and25 hosts/3 checkers PASS. Native actual Single/Double controls confirm
+  onePP/no ally or user effect/no direct damage, both hits and independent split
+  hit/miss for Scary Face/Screech. Final focused/full/clean/CI pending. No credit
+  for Thunder Wave targeting, Spite/Grudge or56 new moves.
+- Stacked on isolated Electric immunity66; no new save schema or PP refill.
 ## 2026-11-06 — INT-001-CI early bounded mGBA dependency installation
 
 - PR62 run42233960801 cancelled at30m18; modified step9 installing libmgba-dev
