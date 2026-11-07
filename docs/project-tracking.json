@@ -2429,8 +2429,8 @@
       "title": "Eight main-story rival battles and exact Dratini-family learnsets",
       "aliases": [],
       "effort": {
-        "earned": 9,
-        "remaining": 1,
+        "earned": 10,
+        "remaining": 0,
         "unit": "provisional relative planning point",
         "confidence": "medium",
         "history": [
@@ -2445,6 +2445,12 @@
             "earned": 9,
             "remaining": 1,
             "reason": "All eight actual controlled battles/replacements/victories PASS52741; data1525, all14 host/Museum and clean rebuild PASS. Final full/CI results linked from PR27; reserve1 for review/story integration acceptance."
+          },
+          {
+            "date": "2026-11-07",
+            "earned": 10,
+            "remaining": 0,
+            "reason": "Owner-authorized final feature acceptance closure after merged PR27/31 and combined PR35; exact frozen host/native source and CI evidence reviewed. Remaining natural-story/manual-balance/hardware/link/newest-head checks belong to shared INT-004/INT-005 release QA. No new scope or duplicate points."
           }
         ]
       },
@@ -2454,11 +2460,11 @@
       ],
       "status": {
         "design": "approved v2 ready specification PR25 mergedc960642d",
-        "implementation": "implemented; exact data/learnset scope only",
-        "automated": "14 host suites/Museum static and clean reproducibility PASS; live full CI evidence in PR27 checks",
-        "emulator": "1525 data +52741 focused actual battle assertions PASS; full-suite results maintained in PR27",
+        "implementation": "feature complete on merged main; exact approved scope accepted",
+        "automated": "14 host suites/Museum static and clean reproducibility PASS; live full CI evidence in PR27 checks; final task-specific acceptance approved 2026-11-07",
+        "emulator": "1525 data +52741 focused actual battle assertions PASS; full-suite results maintained in PR27; controlled native acceptance accepted; full natural story not claimed",
         "pull_request": "PR#27 merged; historical branch evidence retained",
-        "merge": "merged to main; remaining feature scope/coverage is not inferred complete"
+        "merge": "merged to main; task-specific acceptance closed 2026-11-07 (release QA separate)"
       },
       "branch": "feature/main-rival-eight-battles",
       "commit": "e4068bf0a0624c6d2df37631c11cc98b0350ff42",
@@ -2466,14 +2472,15 @@
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/27/checks",
       "blocker": null,
       "design_authority": "implementation/main-rival-eight-battles.md v2 mergedPR25; owner continue/standing implementation instructions",
-      "next_action": "Use live PR27 validation evidence for review; retain full natural story/Pikachu starter/manual balance acceptance. No automatic gameplay merge.",
-      "checkpoint": "2026-11-04 all8 actual native battle and clean acceptance; live full/CI results in PR27",
+      "next_action": "CLOSED: preserve exact approved feature and existing regression tests. Track natural progression, subjective balance and future integrated-build compatibility in INT-004/INT-005; no extra GYM implementation credit.",
+      "checkpoint": "2026-11-07 owner-authorized feature closure; PR27/31 and PR35 CI passed, main prior run42381749572 passed; newest-head CI run42387190568 was still in progress at review.",
       "combined_acceptance": "Exact reviewed27/29/31 heads reconciled inPR35;16 hosts/clean/upstream/full local+CI463243 PASS. No main/feature PR merge; future head changes require reconciliation.",
       "merged_reference": {
         "pr": 27,
         "merge_commit": "51b38c360e3e5deacb870e17be1a5e571333bbc9",
         "verified_main": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c"
-      }
+      },
+      "acceptance_decision": "A — feature complete; 0 remaining planning points; shared release QA remains open"
     },
     {
       "id": "GYM-007",
@@ -2481,8 +2488,8 @@
       "title": "Three approved Gym Castform battles and fixed Gym weather",
       "aliases": [],
       "effort": {
-        "earned": 4,
-        "remaining": 1,
+        "earned": 5,
+        "remaining": 0,
         "unit": "provisional relative planning point",
         "confidence": "medium",
         "history": [
@@ -2491,6 +2498,12 @@
             "earned": 4,
             "remaining": 1,
             "reason": "Five points transferred from GYM-001. Exact six Pokemon/native Double/Gym weather/Continue implemented;15 host and focused359 native assertions passed. Reserve one point for review/remaining integration acceptance; full/CI evidence tracked in PR31."
+          },
+          {
+            "date": "2026-11-07",
+            "earned": 5,
+            "remaining": 0,
+            "reason": "Owner-authorized final feature acceptance closure after merged PR27/31 and combined PR35; exact frozen host/native source and CI evidence reviewed. Remaining natural-story/manual-balance/hardware/link/newest-head checks belong to shared INT-004/INT-005 release QA. No new scope or duplicate points."
           }
         ]
       },
@@ -2502,11 +2515,11 @@
       ],
       "status": {
         "design": "PR30 exact six-member contract + owner explicit November4 completion instruction",
-        "implementation": "implemented on existing PR31 with exact PR29 source dependency",
-        "automated": "15 host suites/Museum PASS; clean and final CI results maintained in PR31",
-        "emulator": "359 focused actual-ROM assertions PASS: constructors, gate, forms, AI Rain Dance, victories, flags and legacy Continue/outdoor context. Full final evidence in PR31.",
+        "implementation": "feature complete on merged main; exact approved scope accepted",
+        "automated": "15 host suites/Museum PASS; clean and final CI results maintained in PR31; final task-specific acceptance approved 2026-11-07",
+        "emulator": "359 focused actual-ROM assertions PASS: constructors, gate, forms, AI Rain Dance, victories, flags and legacy Continue/outdoor context. Full final evidence in PR31.; controlled native acceptance accepted; full natural story not claimed",
         "pull_request": "PR#31 merged; historical branch evidence retained",
-        "merge": "merged to main; remaining feature scope/coverage is not inferred complete"
+        "merge": "merged to main; task-specific acceptance closed 2026-11-07 (release QA separate)"
       },
       "branch": "feature/gym-castform-approved-data-20261104",
       "commit": null,
@@ -2514,14 +2527,15 @@
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/31/checks",
       "blocker": null,
       "design_authority": "implementation/three-gym-castform.md from PR30 head0d9cb4f5; approved Gym register and explicit owner request",
-      "next_action": "Review tested PR31; review combined463243 native/CI acceptance inPR35 and reconcile any later feature-head changes. Other Gym parties/rewards/abilities remain outside scope.",
-      "checkpoint": "2026-11-04 focused scoped acceptance; final build/full/CI live in PR31",
+      "next_action": "CLOSED: preserve exact approved feature and existing regression tests. Track natural progression, subjective balance and future integrated-build compatibility in INT-004/INT-005; no extra GYM implementation credit.",
+      "checkpoint": "2026-11-07 owner-authorized feature closure; PR27/31 and PR35 CI passed, main prior run42381749572 passed; newest-head CI run42387190568 was still in progress at review.",
       "combined_acceptance": "Exact reviewed27/29/31 heads reconciled inPR35;16 hosts/clean/upstream/full local+CI463243 PASS. No main/feature PR merge; future head changes require reconciliation.",
       "merged_reference": {
         "pr": 31,
         "merge_commit": "51b38c360e3e5deacb870e17be1a5e571333bbc9",
         "verified_main": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c"
-      }
+      },
+      "acceptance_decision": "A — feature complete; 0 remaining planning points; shared release QA remains open"
     },
     {
       "id": "PKM-009",
@@ -2931,7 +2945,7 @@
   },
   "progress_accounting": {
     "rule": "EARNED estimates include verified scoped native/build work in OPEN PRs when explicitly flagged; not equivalent to code merged to main. Review and release gates retained. Documentation-only PRs get zero gameplay implementation credit. New scope tasks record net extra workload beyond existing broad task buckets.",
-    "as_of": "2026-11-06",
+    "as_of": "2026-11-07",
     "main_evidence": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c",
     "known_merged_code_credit_separate_from_open": "Open PR evidence credited only once to corresponding permanent task. No separate points awarded merely for large assertion counts.",
     "reconciliation": {
@@ -2946,6 +2960,20 @@
         "GYM-007": "Existing Gym Castform task preserved; incoming Elite Four implementation assigned GYM-009"
       },
       "reason": "Preserve existing effort/history instead of resetting them or double-crediting rivals/Castform under generic buckets. PR53 historical300/714 proposal is retained in the ledger, superseded by this actual-branch reconciliation."
+    },
+    "gym_006_007_closure": {
+      "date": "2026-11-07",
+      "owner_approved": true,
+      "earned_before": 399,
+      "remaining_before": 313,
+      "earned_after": 401,
+      "remaining_after": 311,
+      "total_unchanged": 712,
+      "area_gym_earned_before": 100,
+      "area_gym_remaining_before": 22,
+      "area_gym_earned_after": 102,
+      "area_gym_remaining_after": 20,
+      "release_qa": "INT-004/INT-005 retained; newest checked main CI 42387190568 in progress at review; no new emulator run claimed"
     }
   },
   "latest_consolidation": {
