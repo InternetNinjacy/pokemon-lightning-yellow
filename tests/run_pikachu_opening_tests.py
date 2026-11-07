@@ -9,6 +9,8 @@ import re
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = (ROOT / "data/maps/PalletTown_ProfessorOaksLab/scripts.inc").read_text()
 TEXT = (ROOT / "data/maps/PalletTown_ProfessorOaksLab/text.inc").read_text()
+SPECIALS = (ROOT / "data/specials.inc").read_text()
+GIFTS = (ROOT / "src/approved_gifts.c").read_text()
 
 
 def block(label):
@@ -49,6 +51,13 @@ def check():
 
     assert "PalletTown_ProfessorOaksLab_Text_OakChoosingPikachu::" in TEXT
     assert "PalletTown_ProfessorOaksLab_Text_ReservedPokeBall::" in TEXT
+    assert "def_special ScriptNameSocketStarterPikachu" in SPECIALS
+    assert "void ScriptNameSocketStarterPikachu(void)" in GIFTS
+    assert '_("SOCKET")' in GIFTS
+    assert "SPECIES_PIKACHU" in GIFTS
+    assert "FLAG_OAK_NEST_BALLS_PENDING" in SCRIPT
+    assert "additem ITEM_NEST_BALL, 5" in SCRIPT
+    assert "clearflag FLAG_OAK_NEST_BALLS_PENDING" in SCRIPT
     print("WRL-001 Pikachu opening source checks: PASS")
 
 
