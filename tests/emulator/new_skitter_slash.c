@@ -9,6 +9,7 @@ static void skitterSlashTests(void){
   core->busWrite16(core,bmon(1)+ABI_BMON_SPDEFENSE,999);
   core->busWrite8(core,bmon(1)+ABI_BMON_TYPE1,TYPE_NORMAL);
   core->busWrite8(core,bmon(1)+ABI_BMON_TYPE2,TYPE_NORMAL);
+  damageStats();
   unsigned expected=baseDamage(MOVE_SKITTER_SLASH,0,0,0);
   CHECK(expected>=30&&expected<=40);
   core->busWrite8(core,SYM_gBattleScripting+ABI_SCRIPTING_MULTIPLIER,1);
