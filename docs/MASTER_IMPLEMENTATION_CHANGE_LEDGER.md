@@ -1539,3 +1539,14 @@ PR #68 merged to main at f3a113a44d89acacc0b584f61c4dead868ef2607; exact-head Ac
 - Clean ROM SHA2568c09397903f2c6bceb7c2a1e62ad6d9e8626fb5882d255cfc17a774db8877792
   matches incremental build. No binaries committed/uploaded. Full prior harness
   and latest-head CI pending; not complete/merged. PR80 stacked on79.
+
+## 2026-11-07 — BTL-005-M3B new-move probability boundary
+
+- Inspection found GenIII's shared secondary roll is inclusive (`<=`), accepting
+  21 of100 integer outcomes for nominal20. Scope a strict `<` comparison to new
+  IDs>=355 only; every original move retains inclusive behavior/RNG consumption.
+  No silent change to original balance or metadata20, and no global bug overhaul.
+- Executed production routine with controlled RNG/effect callback: all100 rolls
+  for0/20/22/30/50/100, Serene Grace and immunity PASS. This host execution is not
+  a native battle test. New frozen six-file delta preserves all prior hashes;
+  all28 host runners PASS. Updated native focus/clean/CI pending at this commit.

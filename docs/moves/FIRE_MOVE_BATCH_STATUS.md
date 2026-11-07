@@ -13,6 +13,12 @@ Original IDs0–354 remain fixed. Tables/names/descriptions/animation dispatch a
 complete at MOVES_COUNT358 (NONE included). No learnset, TM, encounter, Trainer,
 item or ability distribution is invented. Existing generic callers such as
 Metronome may naturally select newly valid moves. Flashfire is a move, not Flash Fire.
+New move secondary effects use a strict `<` comparison over0..99 so20 accepts
+20 outcomes. Original moves retain FireRed's inclusive `<=` behavior unchanged.
+The executed production chance routine is tested across all100 rolls for
+0/20/22/30/50/100, with/without Serene Grace and a no-effect result. Only RNG and
+effect application callbacks are stubbed in that host test; it is not a battle.
+
 Default native selected-opponent/contact/Protect/Mirror Move flags follow Bite,
 Quick Attack and Take Down respectively; native King's Rock eligibility retained
 for the latter two. Engine effects are FLINCH_HIT/HIT/RECOIL. Neutral priority0 for
@@ -36,7 +42,7 @@ and actual move behavior, not artistic approval or pixel-perfect screenshot QA.
 
 ## Preservation and tests
 
-Frozen exact appended deltas reverse only these five source files for historical
+Frozen exact appended deltas reverse only these six source files for historical
 355-entry audits; all original digests remain unchanged. Dedicated current-source
 checks cover all three additions, and the strict catalog validates every actual
 row. Save/wire/packed learnset layouts remain unchanged;358 fits9-bit move IDs.
@@ -55,13 +61,13 @@ LIGHTNING_ORIGINAL_EFFECTS_ONLY=1 LIGHTNING_NEW_FIRE_MOVES_ONLY=1 python3 tests/
 python3 tests/emulator/run.py
 ```
 
-All28 host runners/3 checkers and build PASS. Final focused475 native assertions
+All28 host runners/3 checkers and build PASS. Pre-boundary-fix focused475 native assertions
 PASS against the approved Crunch+Ember composition: physical damage/AI independent
 of special stats, actual Single/Double animation completion, selected target/onePP,
 no burn, flinch/nonflinch, exact recoil, Protect/miss with no crash, Flash Fire
 immunity, and priority before a faster ordinary attack. New IDs/spent PP/PP Ups and exact encrypted record survive real flash save/load.
-Clean reproducibility PASS (SHA256
+Pre-boundary-fix clean reproducibility PASS (SHA256
 8c09397903f2c6bceb7c2a1e62ad6d9e8626fb5882d255cfc17a774db8877792).
-Full30-group suite and GitHub CI pending. Do not infer410-move completion from this
+Latest boundary-fixed focus/full/clean and GitHub CI pending. Do not infer410-move completion from this
 slice. The reconciliation retains conservative source/runtime distinctions;
 approved animation candidates do not automatically become globally verified.

@@ -14,6 +14,16 @@
         }
       ]
     },
+    "src/battle_script_commands.c": {
+      "before_sha256": "080afca78eb7a38379361c6a6cc85c44060339b6b93186950b3dd673fd238e8a",
+      "after_sha256": "cbb92694f5be3e2d515d039bd94f099b513d95c786d357a213ef396700947d66",
+      "hunks": [
+        {
+          "before": "        gBattleCommunication[MOVE_EFFECT_BYTE] &= ~MOVE_EFFECT_CERTAIN;\n        SetMoveEffect(FALSE, MOVE_EFFECT_CERTAIN);\n    }\n    else if (Random() % 100 <= percentChance\n             && gBattleCommunication[MOVE_EFFECT_BYTE]\n             && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT))\n    {\n",
+          "after": "        gBattleCommunication[MOVE_EFFECT_BYTE] &= ~MOVE_EFFECT_CERTAIN;\n        SetMoveEffect(FALSE, MOVE_EFFECT_CERTAIN);\n    }\n    // Preserve GenIII's inclusive legacy roll for old moves. Approved new\n    // moves use exactly the stated number of outcomes in the 0..99 range.\n    else if ((gCurrentMove >= MOVE_FLAME_FANG\n              ? Random() % 100 < percentChance\n              : Random() % 100 <= percentChance)\n             && gBattleCommunication[MOVE_EFFECT_BYTE]\n             && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT))\n    {\n"
+        }
+      ]
+    },
     "src/move_descriptions.c": {
       "before_sha256": "af5f809ee2afd709b9748ef741276bf67c384849353ebe8ff5cda019cee8e73a",
       "after_sha256": "565de0d87ad4fc6711e7bd729ff1e6c8facde06b12a726aa404d3a2002cdbbc4",

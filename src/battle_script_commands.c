@@ -2819,7 +2819,11 @@ static void Cmd_seteffectwithchance(void)
         gBattleCommunication[MOVE_EFFECT_BYTE] &= ~MOVE_EFFECT_CERTAIN;
         SetMoveEffect(FALSE, MOVE_EFFECT_CERTAIN);
     }
-    else if (Random() % 100 <= percentChance
+    // Preserve GenIII's inclusive legacy roll for old moves. Approved new
+    // moves use exactly the stated number of outcomes in the 0..99 range.
+    else if ((gCurrentMove >= MOVE_FLAME_FANG
+              ? Random() % 100 < percentChance
+              : Random() % 100 <= percentChance)
              && gBattleCommunication[MOVE_EFFECT_BYTE]
              && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT))
     {
