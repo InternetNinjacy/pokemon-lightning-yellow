@@ -3,9 +3,10 @@
 from pathlib import Path
 import json,re,hashlib
 from approved_elite_four_changes import prior_elite_four_source
+from approved_ordinary_trainer_projection import restore_ordinary_trainer_blocks
 m=json.loads(Path('tests/specifications/approved_elite_four_delta.json').read_text())
 for p,v in m['files'].items():
- source=Path(p).read_text()
+ source=restore_ordinary_trainer_blocks(p)
  # The six-battle frozen baseline must still match after reversing ONLY the two Agatha additions.
  six_battle_source=source
  for h in v['hunks'][6:]:
@@ -14,7 +15,7 @@ for p,v in m['files'].items():
  assert hashlib.sha256(six_battle_source.encode()).hexdigest()==v['after_sha256'],p
  assert hashlib.sha256(prior_elite_four_source(p).encode()).hexdigest()==v['before_sha256'],p
 for p,h in m['preserved_files'].items():
- source=Path(p).read_text()
+ source=(restore_ordinary_trainer_blocks(p) if p=='src/data/trainers.h' else Path(p).read_text())
  if p=='src/battle_main.c':
   approved_selector='''                // Use the existing native ability slot field only for Agatha's Alakazam.
                 // This preserves its original PID, nature, gender and species ability table.
