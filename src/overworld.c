@@ -1511,11 +1511,12 @@ bool8 LightingPreviewIsActive(void)
 {
     // Avoid applying outdoor looks in battle and non-field screens.
     // Viridian Forest is explicitly covered, even if its map type is non-outdoor.
-    bool8 forest = gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_VIRIDIAN_FOREST)
-                && gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_VIRIDIAN_FOREST);
-    return gMain.callback2 == CB2_Overworld
-        && gGlobalFieldTintMode == QL_TINT_NONE
-        && (forest || IsMapTypeOutdoors(gMapHeader.mapType));
+    bool8 forest;
+    if (gMain.callback2 != CB2_Overworld || gGlobalFieldTintMode != QL_TINT_NONE || gSaveBlock1Ptr == NULL)
+        return FALSE;
+    forest = gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_VIRIDIAN_FOREST)
+          && gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_VIRIDIAN_FOREST);
+    return forest || IsMapTypeOutdoors(gMapHeader.mapType);
 }
 #endif
 
