@@ -1529,3 +1529,13 @@ PR #68 merged to main at f3a113a44d89acacc0b584f61c4dead868ef2607; exact-head Ac
 - Full native/clean/CI pending. Branch feature/approved-fire-move-batch; not merged,
   not production-complete; no effort credit. Rollback after acquiring appended
   IDs needs prefeature save or move removal; old peer link not certified.
+
+## 2026-11-07 — BTL-005-M3B real flash / clean acceptance
+
+- Latest focused475 PASS, adding actual flash serialization/reload of IDs355..357,
+  spent PP, PP Ups and byte-identical encrypted Pokémon record; not emulator-only
+  snapshots. All28 host runners and3 checkers PASS after correctly regenerating
+  stale animation source-line references caught by the unchanged catalog check.
+- Clean ROM SHA2568c09397903f2c6bceb7c2a1e62ad6d9e8626fb5882d255cfc17a774db8877792
+  matches incremental build. No binaries committed/uploaded. Full prior harness
+  and latest-head CI pending; not complete/merged. PR80 stacked on79.

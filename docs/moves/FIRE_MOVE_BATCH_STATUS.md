@@ -54,11 +54,13 @@ LIGHTNING_ORIGINAL_EFFECTS_ONLY=1 LIGHTNING_NEW_FIRE_MOVES_ONLY=1 python3 tests/
 python3 tests/emulator/run.py
 ```
 
-All28 host runners/3 checkers and build PASS. Final focused385 native assertions
+All28 host runners/3 checkers and build PASS. Final focused475 native assertions
 PASS against the approved Crunch+Ember composition: physical damage/AI independent
 of special stats, actual Single/Double animation completion, selected target/onePP,
 no burn, flinch/nonflinch, exact recoil, Protect/miss with no crash, Flash Fire
-immunity, and priority before a faster ordinary attack. Full30-group suite, clean
-reproducibility and GitHub CI pending. Do not infer410-move completion from this
+immunity, and priority before a faster ordinary attack. New IDs/spent PP/PP Ups and exact encrypted record survive real flash save/load.
+Clean reproducibility PASS (SHA256
+8c09397903f2c6bceb7c2a1e62ad6d9e8626fb5882d255cfc17a774db8877792).
+Full30-group suite and GitHub CI pending. Do not infer410-move completion from this
 slice. The reconciliation retains conservative source/runtime distinctions;
 approved animation candidates do not automatically become globally verified.
