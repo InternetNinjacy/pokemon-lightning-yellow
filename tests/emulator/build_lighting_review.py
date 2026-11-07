@@ -40,10 +40,9 @@ ROWS = [
     ("weather_sand_night", "Route 17", "21:00", 6, 10, "Sandstorm"),
 ]
 PALETTES = {
-    "A": {"day": (32,32,32), "dawn": (23,28,32), "dusk": (32,23,17),
-          "night": (19,21,27), "covered_day": (25,29,25), "covered_night": (14,19,23), "lavender_day": (30,22,19)},
     "B": {"day": (32,32,32), "dawn": (23,28,32), "dusk": (32,23,17),
-          "night": (16,19,27), "covered_day": (25,29,25), "covered_night": (12,17,22), "lavender_day": (30,22,19)},
+          "night": (16,19,27), "covered_day": (25,29,25),
+          "covered_night": (12,17,22), "lavender_day": (30,22,19)},
 }
 
 def chunk(name, payload):
@@ -66,7 +65,7 @@ def write_png(path, rgb):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("directory", type=pathlib.Path, help="mGBA LIGHTNING_LIGHTING_CAPTURE_DIR")
-    parser.add_argument("--variant", choices=("A", "B"), required=True)
+    parser.add_argument("--variant", choices=("B",), required=True)
     parser.add_argument("--commit", help="40-digit ROM source Git commit, defaults to current HEAD")
     parser.add_argument("--sheet", action="store_true", help="generate labeled contact sheet (requires Pillow)")
     args = parser.parse_args()

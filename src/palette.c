@@ -100,27 +100,25 @@ void FillPalette(u16 value, u16 offset, u16 size)
 
 
 #ifdef LIGHTING_PREVIEW
-// Dawn/Dusk values are revised exploratory candidates; Night B selected by owner.
+// Owner-approved TIM-003 outdoor colors; source-controlled fixed RGB5 multipliers.
 // Channel multipliers are RGB5 fixed-point with denominator 32.
 // All originals, including weather gamma/fades, remain in engine buffers.
 extern u8 LightingPreviewGetAppearance(void);
 extern bool8 LightingPreviewIsActive(void);
 // Index: 0=Day, 1=Dawn, 2=Dusk, 3=Night, 4=Covered Day,
-// 5=Covered Night, 6=Lavender soft daytime. See docs/LIGHTING_PREVIEW_CANDIDATES.md.
-#ifndef LIGHTING_PREVIEW_VARIANT
-#define LIGHTING_PREVIEW_VARIANT 0
-#endif
-#if LIGHTING_PREVIEW_VARIANT == 1
+// 5=Covered Night, 6=Lavender soft daytime. See docs/TIM003_FINAL_LIGHTING.md.
+// Final owner-approved RGB5 transforms. Divisor is 32 for every channel.
+// Ordinary outdoor Night B; Viridian covered Day A and Night B;
+// softer Lavender daytime. No candidate selector exists in the game build.
 static const u8 sLightingPreviewMult[7][3] = {
-    {32,32,32}, {23,28,32}, {32,23,17}, {16,19,27},
-    {25,29,25}, {12,17,22}, {30,22,19},
+    {32,32,32}, // Standard day
+    {23,28,32}, // Dawn
+    {32,23,17}, // Dusk
+    {16,19,27}, // Standard night B
+    {25,29,25}, // Viridian covered day A (A/B daylight identical)
+    {12,17,22}, // Viridian covered night B
+    {30,22,19}, // Lavender softened daytime
 };
-#else
-static const u8 sLightingPreviewMult[7][3] = {
-    {32,32,32}, {23,28,32}, {32,23,17}, {19,21,27},
-    {25,29,25}, {14,19,23}, {30,22,19},
-};
-#endif
 
 static void LightingPreviewComposePalette(void)
 {
@@ -156,7 +154,7 @@ void TransferPlttBuffer(void)
         void *dest = (void *)PLTT;
         DmaCopy16(3, src, dest, PLTT_SIZE);
 #ifdef LIGHTING_PREVIEW
-        // Isolated preview only: after standard engine DMA, transform hardware
+        // TIM-003 field lighting: after standard engine DMA, transform hardware
         // palette entries directly, preserving the source fade/weather buffers.
         // No additional EWRAM/IWRAM allocation or double-tint accumulation.
         if (LightingPreviewIsActive())
