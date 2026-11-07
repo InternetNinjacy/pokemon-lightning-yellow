@@ -381,6 +381,7 @@ gBattleAnims_Moves::
 	.4byte Move_SOUL_DRAIN
 	.4byte Move_WEARY_TOUCH
 	.4byte Move_DREAM_HAUNT
+	.4byte Move_SKITTER_SLASH
 	.4byte Move_COUNT @ cannot be reached, because last move is Psycho Boost
 
 	.align 2
@@ -11304,3 +11305,7 @@ Move_DREAM_HAUNT:
 	call UnsetPsychicBackground
 	waitforvisualfinish
 	end
+
+@ Reuse the approved native Fury Cutter visual; this is animation only.
+Move_SKITTER_SLASH:
+	goto Move_FURY_CUTTER
