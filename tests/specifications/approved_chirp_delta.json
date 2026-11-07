@@ -1,0 +1,68 @@
+{
+  "files": {
+    "include/constants/moves.h": {
+      "hunks": [
+        {
+          "before": "#define MOVES_COUNT 365",
+          "after": "#define MOVE_CHIRP 365\n\n#define MOVES_COUNT 366"
+        }
+      ]
+    },
+    "src/data/battle_moves.h": {
+      "hunks": [
+        {
+          "before": "\n};\n",
+          "after": "\n    [MOVE_CHIRP] =\n    {\n        .category = MOVE_CATEGORY_SPECIAL,\n        .effect = EFFECT_HIT,\n        .power = 40,\n        .type = TYPE_BUG,\n        .accuracy = 100,\n        .pp = 25,\n        .secondaryEffectChance = 0,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = 0,\n        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,\n    },\n\n};\n"
+        }
+      ]
+    },
+    "src/data/text/move_names.h": {
+      "hunks": [
+        {
+          "before": "    [MOVE_CHITIN_CRUSH] = _(\"CHITIN CRUSH\"),",
+          "after": "    [MOVE_CHITIN_CRUSH] = _(\"CHITIN CRUSH\"),\n    [MOVE_CHIRP] = _(\"CHIRP\"),"
+        }
+      ]
+    },
+    "src/move_descriptions.c": {
+      "hunks": [
+        {
+          "before": "const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {",
+          "after": "const u8 gMoveDescription_CHIRP[] = _(\"A sharp insect cry\\nthat damages the\\nfoe with sound.\");\n\nconst u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {"
+        },
+        {
+          "before": "    [MOVE_CHITIN_CRUSH - 1] = gMoveDescription_CHITIN_CRUSH,",
+          "after": "    [MOVE_CHITIN_CRUSH - 1] = gMoveDescription_CHITIN_CRUSH,\n    [MOVE_CHIRP - 1] = gMoveDescription_CHIRP,"
+        }
+      ]
+    },
+    "data/battle_anim_scripts.s": {
+      "hunks": [
+        {
+          "before": "\t.4byte Move_CHITIN_CRUSH\n\t.4byte Move_COUNT",
+          "after": "\t.4byte Move_CHITIN_CRUSH\n\t.4byte Move_CHIRP\n\t.4byte Move_COUNT"
+        },
+        {
+          "before": "agmentSpriteTemplate, ANIM_ATTACKER, 2, 0, 0, -30, -18, 8, 2\n\tcreatevisualtask AnimTask_ShakeMon, 2, ANIM_TARGET, 0, 3, 7, 1\n\twaitforvisualfinish\n\tclearmonbg ANIM_DEF_PARTNER\n\tblendoff\n\tend\n",
+          "after": "agmentSpriteTemplate, ANIM_ATTACKER, 2, 0, 0, -30, -18, 8, 2\n\tcreatevisualtask AnimTask_ShakeMon, 2, ANIM_TARGET, 0, 3, 7, 1\n\twaitforvisualfinish\n\tclearmonbg ANIM_DEF_PARTNER\n\tblendoff\n\tend\n\n@ Approved Chirp sound uses the native Growl visual only.\nMove_CHIRP:\n\tgoto Move_GROWL\n"
+        }
+      ]
+    },
+    "src/battle_util.c": {
+      "hunks": [
+        {
+          "before": "MOVE_UPROAR, MOVE_METAL_SOUND, MOVE_GRASS_WHISTLE, MOVE_HYPER_VOICE, SOUND_MOVES_END",
+          "after": "MOVE_UPROAR, MOVE_METAL_SOUND, MOVE_GRASS_WHISTLE, MOVE_HYPER_VOICE, MOVE_CHIRP, SOUND_MOVES_END"
+        }
+      ]
+    },
+    "data/battle_ai_scripts.s": {
+      "hunks": [
+        {
+          "before": "if_move MOVE_GRASS_WHISTLE, Score_Minus10",
+          "after": "if_move MOVE_GRASS_WHISTLE, Score_Minus10\n\tif_move MOVE_CHIRP, Score_Minus10"
+        }
+      ]
+    }
+  }
+}
