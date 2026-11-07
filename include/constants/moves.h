@@ -361,7 +361,11 @@
 #define MOVE_FLASHFIRE 356
 #define MOVE_BLAZE_RUSH 357
 
-#define MOVES_COUNT 358
+#define MOVE_SOUL_DRAIN 358
+#define MOVE_WEARY_TOUCH 359
+#define MOVE_DREAM_HAUNT 360
+
+#define MOVES_COUNT 361
 
 // Used for checks for moves affected by Disable, Mimic, etc.
 #define MOVE_UNAVAILABLE 0xFFFF

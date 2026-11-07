@@ -2411,6 +2411,10 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
     else
         gBattleMovePower = powerOverride;
 
+    // Dream Haunt doubles power against sleep without draining or waking.
+    if (move == MOVE_DREAM_HAUNT && (defender->status1 & STATUS1_SLEEP))
+        gBattleMovePower *= 2;
+
     if (!typeOverride)
         type = gBattleMoves[move].type;
     else
