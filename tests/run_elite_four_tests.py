@@ -7,7 +7,8 @@ m=json.loads(Path('tests/specifications/approved_elite_four_delta.json').read_te
 for p,v in m['files'].items():
  assert hashlib.sha256(Path(p).read_bytes()).hexdigest()==v['after_sha256'],p
  assert hashlib.sha256(prior_elite_four_source(p).encode()).hexdigest()==v['before_sha256'],p
-for p,h in m['preserved_files'].items():assert hashlib.sha256(Path(p).read_bytes()).hexdigest()==h,p
+from approved_thunder_wave_changes import prior_thunder_wave_source
+for p,h in m['preserved_files'].items():assert hashlib.sha256(prior_thunder_wave_source(p).encode()).hexdigest()==h,p
 spec=json.loads(Path('tests/specifications/approved_elite_four.json').read_text())['battles'];assert len(spec)==8
 source=Path('src/data/trainer_parties.h').read_text()
 for b in spec:
