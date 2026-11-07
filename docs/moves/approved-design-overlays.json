@@ -1010,6 +1010,11 @@
         "berry_steal": false,
         "target_stat": "SP_ATTACK",
         "stages": -1
+      },
+      "engine_translation": {
+        "effect": "EFFECT_SPECIAL_ATTACK_DOWN_HIT",
+        "target": "MOVE_TARGET_SELECTED",
+        "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
       }
     },
     {
@@ -1059,6 +1064,11 @@
       "effect_rules": {
         "semantic": "DEFENSE_MINUS_1_30",
         "secondary_percent": 30
+      },
+      "engine_translation": {
+        "effect": "EFFECT_DEFENSE_DOWN_HIT",
+        "target": "MOVE_TARGET_SELECTED",
+        "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
       }
     },
     {

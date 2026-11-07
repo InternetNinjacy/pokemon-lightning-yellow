@@ -6,6 +6,8 @@ from pathlib import Path
 def prior_venom_web_source(path, content=None):
     if content is None:
         content = Path(path).read_text()
+    from approved_bug_statdrop_changes import prior_bug_statdrop_source
+    content = prior_bug_statdrop_source(path, content)
     manifest = json.loads(Path('tests/specifications/approved_venom_web_delta.json').read_text())
     for h in manifest['files'].get(str(path), {}).get('hunks', []):
         assert content.count(h['after']) == 1, 'Unreviewed Venom Web delta: ' + str(path)

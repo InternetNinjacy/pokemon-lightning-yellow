@@ -1,0 +1,52 @@
+{
+  "files": {
+    "include/constants/moves.h": {
+      "hunks": [
+        {
+          "before": "#define MOVES_COUNT 363",
+          "after": "#define MOVE_BUG_BITE 363\n#define MOVE_CHITIN_CRUSH 364\n\n#define MOVES_COUNT 365"
+        }
+      ]
+    },
+    "src/data/battle_moves.h": {
+      "hunks": [
+        {
+          "before": "\n};\n",
+          "after": "\n    [MOVE_BUG_BITE] =\n    {\n        .category = MOVE_CATEGORY_PHYSICAL,\n        .effect = EFFECT_SPECIAL_ATTACK_DOWN_HIT,\n        .power = 65,\n        .type = TYPE_BUG,\n        .accuracy = 90,\n        .pp = 15,\n        .secondaryEffectChance = 30,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = 0,\n        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,\n    },\n\n    [MOVE_CHITIN_CRUSH] =\n    {\n        .category = MOVE_CATEGORY_PHYSICAL,\n        .effect = EFFECT_DEFENSE_DOWN_HIT,\n        .power = 85,\n        .type = TYPE_BUG,\n        .accuracy = 90,\n        .pp = 15,\n        .secondaryEffectChance = 30,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = 0,\n        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,\n    },\n\n};\n"
+        }
+      ]
+    },
+    "src/data/text/move_names.h": {
+      "hunks": [
+        {
+          "before": "    [MOVE_VENOM_WEB] = _(\"VENOM WEB\"),",
+          "after": "    [MOVE_VENOM_WEB] = _(\"VENOM WEB\"),\n    [MOVE_BUG_BITE] = _(\"BUG BITE\"),\n    [MOVE_CHITIN_CRUSH] = _(\"CHITIN CRUSH\"),"
+        }
+      ]
+    },
+    "src/move_descriptions.c": {
+      "hunks": [
+        {
+          "before": "const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {",
+          "after": "const u8 gMoveDescription_BUG_BITE[] = _(\"A biting attack\\nthat may reduce\\nthe foe's SP. ATK.\");\nconst u8 gMoveDescription_CHITIN_CRUSH[] = _(\"Crushes the foe.\\nMay lower the\\nfoe's DEFENSE.\");\n\nconst u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {"
+        },
+        {
+          "before": "    [MOVE_VENOM_WEB - 1] = gMoveDescription_VENOM_WEB,",
+          "after": "    [MOVE_VENOM_WEB - 1] = gMoveDescription_VENOM_WEB,\n    [MOVE_BUG_BITE - 1] = gMoveDescription_BUG_BITE,\n    [MOVE_CHITIN_CRUSH - 1] = gMoveDescription_CHITIN_CRUSH,"
+        }
+      ]
+    },
+    "data/battle_anim_scripts.s": {
+      "hunks": [
+        {
+          "before": "\t.4byte Move_VENOM_WEB\n\t.4byte Move_COUNT",
+          "after": "\t.4byte Move_VENOM_WEB\n\t.4byte Move_BUG_BITE\n\t.4byte Move_CHITIN_CRUSH\n\t.4byte Move_COUNT"
+        },
+        {
+          "before": "17, 89, 5, 2\n\tcreatesprite gPoisonPowderParticleSpriteTemplate, ANIM_TARGET, 2, 20, -22, 117, 112, -8, 2\n\tcreatesprite gPoisonPowderParticleSpriteTemplate, ANIM_TARGET, 2, 5, -22, 117, 80, 5, 1\n\twaitforvisualfinish\n\tend\n",
+          "after": "17, 89, 5, 2\n\tcreatesprite gPoisonPowderParticleSpriteTemplate, ANIM_TARGET, 2, 20, -22, 117, 112, -8, 2\n\tcreatesprite gPoisonPowderParticleSpriteTemplate, ANIM_TARGET, 2, 5, -22, 117, 80, 5, 1\n\twaitforvisualfinish\n\tend\n\n@ Owner-approved native move visual reuse; semantic stats remain separate.\nMove_BUG_BITE:\n\tgoto Move_BITE\n\nMove_CHITIN_CRUSH:\n\tloadspritegfx ANIM_TAG_CUT\n\tloadspritegfx ANIM_TAG_IMPACT\n\tmonbg ANIM_DEF_PARTNER\n\tsetalpha 12, 8\n\tplaysewithpan SE_M_VICEGRIP, SOUND_PAN_TARGET\n\tcreatesprite gViceGripSpriteTemplate, ANIM_ATTACKER, 2, 0\n\tcreatesprite gViceGripSpriteTemplate, ANIM_ATTACKER, 2, 1\n\tdelay 9\n\tcreatesprite gBasicHitSplatSpriteTemplate, ANIM_ATTACKER, 1, 0, 0, ANIM_TARGET, 2\n\tcreatevisualtask AnimTask_ShakeMon2, 5, ANIM_TARGET, 2, 0, 5, 1\n\twaitforvisualfinish\n\tclearmonbg ANIM_DEF_PARTNER\n\tblendoff\n\twaitforvisualfinish\n\tloadspritegfx ANIM_TAG_ROCKS\n\tloadspritegfx ANIM_TAG_IMPACT\n\tloadspritegfx ANIM_TAG_HANDS_AND_FEET\n\tmonbg ANIM_DEF_PARTNER\n\tsetalpha 12, 8\n\tdelay 1\n\tcreatesprite gBasicHitSplatSpriteTemplate, ANIM_ATTACKER, 3, 0, 0, ANIM_TARGET, 1\n\tcreatesprite gFistFootSpriteTemplate, ANIM_ATTACKER, 2, 0, 0, 8, 1, 0\n\tplaysewithpan SE_M_VITAL_THROW2, SOUND_PAN_TARGET\n\tcreatevisualtask AnimTask_ShakeMon, 2, ANIM_TARGET, 3, 0, 5, 1\n\twaitforvisualfinish\n\tplaysewithpan SE_M_ROCK_THROW, SOUND_PAN_TARGET\n\tcreatesprite gRockFragmentSpriteTemplate, ANIM_ATTACKER, 2, 0, 0, 20, 24, 14, 2\n\tcreatesprite gRockFragmentSpriteTemplate, ANIM_ATTACKER, 2, 5, 0, -20, 24, 14, 1\n\tcreatesprite gRockFragmentSpriteTemplate, ANIM_ATTACKER, 2, 0, 5, 20, -24, 14, 2\n\tcreatesprite gRockFragmentSpriteTemplate, ANIM_ATTACKER, 2, -5, 0, -20, -24, 14, 2\n\tcreatesprite gRockFragmentSpriteTemplate, ANIM_ATTACKER, 2, 0, -5, 30, 18, 8, 2\n\tcreatesprite gRockFragmentSpriteTemplate, ANIM_ATTACKER, 2, 0, 0, 30, -18, 8, 2\n\tcreatesprite gRockFragmentSpriteTemplate, ANIM_ATTACKER, 2, 0, 0, -30, 18, 8, 2\n\tcreatesprite gRockFragmentSpriteTemplate, ANIM_ATTACKER, 2, 0, 0, -30, -18, 8, 2\n\tcreatevisualtask AnimTask_ShakeMon, 2, ANIM_TARGET, 0, 3, 7, 1\n\twaitforvisualfinish\n\tclearmonbg ANIM_DEF_PARTNER\n\tblendoff\n\tend\n"
+        }
+      ]
+    }
+  }
+}

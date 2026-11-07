@@ -5083,4 +5083,32 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
     },
 
+    [MOVE_BUG_BITE] =
+    {
+        .category = MOVE_CATEGORY_PHYSICAL,
+        .effect = EFFECT_SPECIAL_ATTACK_DOWN_HIT,
+        .power = 65,
+        .type = TYPE_BUG,
+        .accuracy = 90,
+        .pp = 15,
+        .secondaryEffectChance = 30,
+        .target = MOVE_TARGET_SELECTED,
+        .priority = 0,
+        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
+    },
+
+    [MOVE_CHITIN_CRUSH] =
+    {
+        .category = MOVE_CATEGORY_PHYSICAL,
+        .effect = EFFECT_DEFENSE_DOWN_HIT,
+        .power = 85,
+        .type = TYPE_BUG,
+        .accuracy = 90,
+        .pp = 15,
+        .secondaryEffectChance = 30,
+        .target = MOVE_TARGET_SELECTED,
+        .priority = 0,
+        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
+    },
+
 };
