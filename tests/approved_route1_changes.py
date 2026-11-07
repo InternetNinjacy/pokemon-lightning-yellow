@@ -20,6 +20,15 @@ def prior_route1_source(path):
 
 def restore_route1_text(path, text):
     """Restore only the two expected Route 1 source hunks in a text audit chain."""
+    if str(path) == "src/wild_double_battle.c":
+        current_comment = ("// Temporary capability fixture confined to Mt. Moon 1F; Route 1 ecology must remain ordinary.\\n"
+                           "// No tiles, graphics, map headers or wild encounter tables change.")
+        old_comment = "// Ordinary grass and cave floor; no tiles, graphics, map headers or wild tables change."
+        anchor = "static const struct WildDoubleMap sWildDoubleMaps[] =\\n{\\n"
+        original_entry = "    {MAP_GROUP(MAP_ROUTE1), MAP_NUM(MAP_ROUTE1), ARRAY_COUNT(sTestPairs), sTestPairs},\\n"
+        assert text.count(current_comment) == 1 and text.count(anchor) == 1
+        assert original_entry not in text
+        return text.replace(current_comment, old_comment).replace(anchor, anchor + original_entry)
     if str(path) != "src/data/wild_encounters.json":
         return text
     assert text.count(APPROVED_ROUTE1_SLOTS) == 2, "Unexpected Route 1 source changes"
