@@ -18,6 +18,19 @@ static void lightingCapture(const char *name,unsigned map,unsigned hour,unsigned
     if(weather==WEATHER_NONE) { CALL(SetWeather,WEATHER_NONE); frames(180,0); }
     else if(weather!=0xFFFFFFFFU)weatherSetAndWait(weather);
     frames(180,0);
+    unsigned expectedAppearance;
+    if(map==MAP_VIRIDIAN_FOREST)expectedAppearance=(hour>=6 && hour<18)?4:5;
+    else if(map==MAP_LAVENDER_TOWN)expectedAppearance=(hour>=6 && hour<18)?2:3;
+    else if(hour==6)expectedAppearance=1;
+    else if(hour>=7 && hour<18)expectedAppearance=0;
+    else if(hour==18)expectedAppearance=2;
+    else expectedAppearance=3;
+    if(map==MAP_PALLET_TOWN || map==MAP_ROUTE1 || map==MAP_VIRIDIAN_FOREST || map==MAP_LAVENDER_TOWN || map==MAP_ONE_ISLAND || map==MAP_ROUTE17) {
+        CHECK(CALL(LightingPreviewIsActive));
+        CHECK(CALL(LightingPreviewGetAppearance)==expectedAppearance);
+    } else {
+        CHECK(!CALL(LightingPreviewIsActive));
+    }
     screenshot(path);
     printf("LIGHTING_FRAME: %s map=%u clock=%02u:%02u x=%u y=%u weather=%u frames>=180\n",
            name,map,hour,minute,x,y,weather);
@@ -53,5 +66,28 @@ static void lightingPreviewCaptures(void) {
     lightingCapture("weather_rain_night",MAP_ONE_ISLAND,21,0,6,10,WEATHER_RAIN,0);
     lightingCapture("weather_sand_day",MAP_ROUTE17,12,0,6,10,WEATHER_SANDSTORM,1);
     lightingCapture("weather_sand_night",MAP_ROUTE17,21,0,6,10,WEATHER_SANDSTORM,0);
+    // Actual GPIO absence and recovery without map transitions.
+    lightingSetClock(21,0);
+    weatherWarp(MAP_PALLET_TOWN,8,8);
+    frames(120,0);
+    CHECK(CALL(LightingPreviewGetAppearance)==3);
+    struct GBA *gba=core->board;
+    unsigned devices=gba->memory.hw.devices;
+    gba->memory.hw.devices&=~HW_RTC;
+    frames(120,0);
+    CHECK(CALL(LightingPreviewGetAppearance)==0);
+    gba->memory.hw.devices=devices;
+    frames(120,0);
+    CHECK(CALL(LightingPreviewGetAppearance)==3);
+    // Source clock classification around every approved appearance boundary.
+    static const unsigned boundary[][3]={
+        {5,59,3},{6,0,1},{6,59,1},{7,0,0},
+        {17,59,0},{18,0,2},{18,59,2},{19,0,3},
+    };
+    for(unsigned i=0;i<sizeof(boundary)/sizeof(boundary[0]);i++){
+        lightingSetClock(boundary[i][0],boundary[i][1]);
+        frames(120,0);
+        CHECK(CALL(LightingPreviewGetAppearance)==boundary[i][2]);
+    }
     printf("PASS: native mGBA field-frame capture command completed; visual approval still pending\n");
 }
