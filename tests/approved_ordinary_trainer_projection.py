@@ -18,6 +18,26 @@ def restore_ordinary_trainer_blocks(path):
     original = subprocess.check_output(
         ["git", "show", BASE + ":" + str(path)], text=True)
     result = Path(path).read_text()
+    # Rocket Hideout #45 modifies only existing Grunt IDs 8–18. Revert
+    # those exact approved records before the ordinary-Trainer baseline check;
+    # unrelated changes still fail the final byte-for-byte comparison.
+    if str(path) in ("src/data/trainer_parties.h", "src/data/trainers.h"):
+        for n in range(8, 19):
+            if str(path) == "src/data/trainer_parties.h":
+                pattern = (
+                    r"static const struct TrainerMon\w+\s+"
+                    + re.escape("sParty_TeamRocketGrunt" + str(n))
+                    + r"\[\]\s*=\s*\{.*?\};"
+                )
+            else:
+                pattern = (
+                    r"\[TRAINER_TEAM_ROCKET_GRUNT_" + str(n)
+                    + r"\]\s*=\s*\{.*?\n    \},"
+                )
+            before = list(re.finditer(pattern, original, re.S))
+            after = list(re.finditer(pattern, result, re.S))
+            assert len(before) == len(after) == 1, (path, n)
+            result = result[:after[0].start()] + before[0].group() + result[after[0].end():]
     for trainer_id, record in LOCK["entries"].items():
         if record["source_dummy"]:
             continue

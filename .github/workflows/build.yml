@@ -76,6 +76,8 @@ jobs:
           python3 tests/run_weather_tests.py
           python3 tests/run_gym_castform_tests.py
           python3 tests/run_rival_tests.py
+          python3 tests/run_rocket_hideout_roster_tests.py
+          python3 tests/run_rocket_hideout_quest_tests.py
           python3 scripts/check-integration-registrations.py
           python3 scripts/check-move-reconciliation.py
           python3 scripts/check-pewter-museum-trivia.py
