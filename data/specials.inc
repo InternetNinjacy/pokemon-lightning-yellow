@@ -460,6 +460,7 @@ gSpecials::
 	def_special ScriptGiveMagbyEgg
 	def_special ScriptGiveTangoTangela
 	def_special ScriptNameSocketStarterPikachu
+	def_special ScriptGiveSueEevee
 	def_special RocketRescueStatus
 	def_special RocketRescueGive
 	def_special RocketRescueReturn
