@@ -1544,3 +1544,12 @@ PR #68 merged to main at f3a113a44d89acacc0b584f61c4dead868ef2607; exact-head Ac
   are already merged; old draft/blocker claims are historical, not live state.
 -72 current-main c33c8650 has26 host suites/3 checkers/clean PASS; old755945 was
   pre-integration. Fresh30-group/full CI pending; no new completion credit.
+## 2026-11-07 — INT-001-CI2 expanded full-suite wall-clock allowance
+
+- Preserve failed42374018809: native step hit20-minute wall cap near final League
+  fights; no game assertion failure. Same-head42374015278 and local integrated
+  30-group815608 PASS. New26-host/30-group workload exceeds original23/~534k.
+- Native step20→30min, job45→60min, bounded. All assertions,4M instruction and
+  per-scene frame guards, builds/repro/full groups/upstream checks unchanged.
+- Correct static registration report26/30 and protect ordinary Trainer group.
+  No gameplay/save/baseline/security change. New exact-head CI pending.
