@@ -109,13 +109,28 @@ static void spreadStatusTests(void){
 #include "thunder_wave.c"
 #include "new_fire_moves.c"
 #include "new_ghost_moves.c"
+#include "new_skitter_slash.c"
+#include "new_venom_web.c"
+#include "new_bug_statdrops.c"
+#include "new_chirp.c"
+#include "new_swarm_cloud.c"
 static void originalEffectTests(void){
+ if(getenv("LIGHTNING_SKITTER_SLASH_ONLY")){skitterSlashTests();return;}
+ if(getenv("LIGHTNING_VENOM_WEB_ONLY")){venomWebTests();return;}
+ if(getenv("LIGHTNING_BUG_STATDROPS_ONLY")){bugStatdropTests();return;}
+ if(getenv("LIGHTNING_CHIRP_ONLY")){chirpTests();return;}
+ if(getenv("LIGHTNING_SWARM_CLOUD_ONLY")){swarmCloudTests();return;}
  if(getenv("LIGHTNING_NEW_GHOST_MOVES_ONLY")){newGhostMoveTests();return;}
  if(getenv("LIGHTNING_NEW_FIRE_MOVES_ONLY")){newFireMoveTests();return;}
  if(getenv("LIGHTNING_THUNDER_WAVE_ONLY")){thunderWaveTests();return;}
  if(getenv("LIGHTNING_GHOST_REWORKS_ONLY")){ghostReworkTests();return;}
  newGhostMoveTests();
  newFireMoveTests();
+ skitterSlashTests();
+ venomWebTests();
+ bugStatdropTests();
+ chirpTests();
+ swarmCloudTests();
  thunderWaveTests();
  ghostReworkTests();
  spreadStatusTests();
