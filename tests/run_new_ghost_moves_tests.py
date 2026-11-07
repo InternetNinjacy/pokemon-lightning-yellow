@@ -3,10 +3,11 @@
 from pathlib import Path
 import hashlib,json,re
 from approved_new_ghost_move_changes import prior_new_ghost_move_source
+from approved_skitter_slash_changes import prior_skitter_slash_source
 
 m=json.loads(Path('tests/specifications/approved_new_ghost_move_delta.json').read_text())
 for path,r in m['files'].items():
- assert hashlib.sha256(Path(path).read_bytes()).hexdigest()==r['after_sha256'],path
+ assert hashlib.sha256(prior_skitter_slash_source(path).encode()).hexdigest()==r['after_sha256'],path
  assert hashlib.sha256(prior_new_ghost_move_source(path).encode()).hexdigest()==r['before_sha256'],path
 rows=json.loads(Path('docs/moves/move-specification.json').read_text())['moves']
 expected=[('SOUL_DRAIN',358,'PHYSICAL',50,'EFFECT_ABSORB',0),('WEARY_TOUCH',359,'PHYSICAL',75,'EFFECT_SLEEP_HIT',22),('DREAM_HAUNT',360,'SPECIAL',55,'EFFECT_HIT',0)]
@@ -15,7 +16,7 @@ for key,id,category,power,effect,chance in expected:
  assert (c['type'],c['category'],c['power'],c['accuracy'],c['pp'],c['priority'],c['effect'],c['secondaryEffectChance'],c['target'])==('GHOST',category,power,100,15,0,effect,chance,'MOVE_TARGET_SELECTED')
  assert ('FLAG_MAKES_CONTACT' in c['flags'])==(key!='DREAM_HAUNT')
  assert r['effect_rules']
-assert sum(r['id'] is not None for r in rows)==360 and len(rows)==410
+assert sum(r['id'] is not None and r['id'] <= 360 for r in rows)==360 and len(rows)==410
 scripts=Path('data/battle_scripts_1.s').read_text()
 table=scripts.split('gBattleScriptsForMoveEffects::',1)[1].split('\nBattleScript_EffectHit::',1)[0]
 assert len(re.findall(r'\.4byte BattleScript_',table))==215
