@@ -8,9 +8,9 @@ m=json.loads(Path('tests/specifications/approved_gift_delta.json').read_text())
 # specials. Normalize only those reviewed lines; every earlier gift byte remains
 # protected by the original before/after source checks.
 rocket_registration = (
- "\\tdef_special RocketRescueStatus\n"
- "\\tdef_special RocketRescueGive\n"
- "\\tdef_special RocketRescueReturn\n"
+ "\tdef_special RocketRescueStatus\n"
+ "\tdef_special RocketRescueGive\n"
+ "\tdef_special RocketRescueReturn\n"
 )
 for path,v in m['files'].items():
  current = Path(path).read_text()
