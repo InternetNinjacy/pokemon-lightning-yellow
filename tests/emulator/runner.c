@@ -397,14 +397,24 @@ int main(int argc,char **argv) {
     printf("PASS: ROM booted for 600 emulated frames without a supplied BIOS\n");
     const char *titleEvidence=getenv("LIGHTNING_TITLE_CAPTURE");
     if(titleEvidence && *titleEvidence) {
-        captureTitleFrame(titleEvidence,"boot600");
+        // FireRed runs its Nidorino/Gengar introduction before the title.
+        // Capture across the full introduction/title interval, never infer title
+        // visibility from a successful 600-frame ROM boot.
+        frames(600,0);
+        captureTitleFrame(titleEvidence,"frame1200");
+        frames(400,0);
+        captureTitleFrame(titleEvidence,"frame1600");
+        frames(400,0);
+        captureTitleFrame(titleEvidence,"frame2000");
+        frames(400,0);
+        captureTitleFrame(titleEvidence,"frame2400");
+        frames(400,0);
+        captureTitleFrame(titleEvidence,"frame2800");
+        frames(400,0);
+        captureTitleFrame(titleEvidence,"frame3200");
+        frames(2,8); // Press START after full intro/title passage
         frames(180,0);
-        captureTitleFrame(titleEvidence,"idle780");
-        frames(120,0);
-        captureTitleFrame(titleEvidence,"idle900");
-        frames(2,8); // Press START
-        frames(180,0); // Wait for cry/main-menu transition
-        captureTitleFrame(titleEvidence,"start1082");
+        captureTitleFrame(titleEvidence,"afterStart3382");
         printf("PASS: mGBA title framebuffer and START-input capture\n");
         core->deinit(core);free(pixels);
         return 0;
