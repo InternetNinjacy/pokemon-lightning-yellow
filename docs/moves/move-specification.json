@@ -21040,18 +21040,18 @@
         "semantic": "BURN_30",
         "secondary_percent": 30
       },
+      "engine_translation": {
+        "effect": "EFFECT_BURN_HIT",
+        "target": "MOVE_TARGET_SELECTED",
+        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
+      },
+      "source_line": 5184,
       "animation": {
         "assignment": "Move_SCORCHING_SANDS",
         "approval": "APPROVED_EXISTING_ART_CANDIDATE",
         "source_line": 11501,
         "source_exists": true,
         "runtime_verified": false
-      },
-      "source_line": 5184,
-      "engine_translation": {
-        "effect": "EFFECT_BURN_HIT",
-        "target": "MOVE_TARGET_SELECTED",
-        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
       },
       "animation_candidate": {
         "key": "SCORCHING_SANDS",
