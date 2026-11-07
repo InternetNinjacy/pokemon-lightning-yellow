@@ -12,6 +12,7 @@ static void chirpTests(void){
   core->busWrite8(core,bmon(1)+ABI_BMON_ABILITY,shield?ABILITY_SOUNDPROOF:ABILITY_BATTLE_ARMOR);
   damageStats();
   unsigned expected=baseDamage(MOVE_CHIRP,0,0,0);
+  fprintf(stderr,"CHIRP DIAG two=%u shield=%u expected=%u\n",two,shield,expected);
   CHECK(expected>=30&&expected<=45);
   chooseMove(0,0,1);if(two)chooseMove(2,0,1);
   waitAction();
