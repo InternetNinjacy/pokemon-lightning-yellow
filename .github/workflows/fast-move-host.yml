@@ -1,0 +1,30 @@
+name: Fast move host contracts
+on:
+  push:
+    branches: ['integration/**']
+permissions:
+  contents: read
+concurrency:
+  group: move-host-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  host:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Source and move preservation checks (no compiler/emulator substitute)
+        run: |
+          set -e
+          python3 tests/run_split_tests.py
+          python3 tests/run_move_catalog_tests.py
+          python3 tests/run_new_fire_moves_tests.py
+          python3 tests/run_new_ghost_moves_tests.py
+          python3 tests/run_skitter_slash_tests.py
+          python3 tests/run_venom_web_tests.py
+          python3 tests/run_bug_statdrop_tests.py
+          python3 tests/run_chirp_tests.py
+          python3 tests/run_swarm_cloud_tests.py
+          python3 tests/run_bellow_rock_tests.py
+          python3 tests/run_original_effect_tests.py
+          python3 scripts/check-move-reconciliation.py
