@@ -5,7 +5,7 @@ import struct
 
 ROOT = Path(__file__).resolve().parents[1]
 ASSETS = ROOT / "graphics/title_screen/lightning_yellow"
-ORIGINAL = ROOT / "graphics/title_screen/firered"
+
 
 
 def png_info(path):
@@ -33,11 +33,19 @@ def check_palette(stem, expected_size):
 
 
 def check_map(stem, tile_count, bank):
-    raw = (ORIGINAL / (stem + ".bin")).read_bytes()
+    raw = (ASSETS / (stem + ".bin")).read_bytes()
     assert len(raw) == 32 * 20 * 2
     words = struct.unpack("<640H", raw)
     assert max(x & 0x3ff for x in words) < tile_count
     assert all(x >> 12 == bank for x in words)
+    for y in range(20):
+        for x in range(32):
+            tile = words[y * 32 + x] & 0x3ff
+            if stem == "game_title_logo":
+                expected = y * 32 + x if y < 8 else 0
+            else:
+                expected = (y - 6) * 12 + x - 17 if 6 <= y < 18 and 17 <= x < 29 else 0
+            assert tile == expected, (stem, x, y, tile, expected)
 
 
 def main():
@@ -51,6 +59,7 @@ def main():
         path = f"graphics/title_screen/lightning_yellow/{stem}"
         assert f'{path}.{ext}.lz' in graphics, path
         assert f'{path}.gbapal' in graphics, path
+        assert f'{path}.bin.lz' in graphics, path
         assert f'graphics/title_screen/firered/{stem}.{ext}.lz' not in graphics
         iw, ih, depth, kind, palette = png_info(ASSETS / (stem + ".png"))
         assert (iw, ih, depth, kind) == (w, h, bpp, 3)
