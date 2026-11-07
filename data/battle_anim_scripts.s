@@ -387,6 +387,9 @@ gBattleAnims_Moves::
 	.4byte Move_CHITIN_CRUSH
 	.4byte Move_CHIRP
 	.4byte Move_SWARM_CLOUD
+	.4byte Move_BELLOW
+	.4byte Move_POWER_GEM
+	.4byte Move_STONE_EDGE
 	.4byte Move_COUNT @ cannot be reached, because last move is Psycho Boost
 
 	.align 2
@@ -11480,3 +11483,13 @@ SwarmCloudPoisonVisual:
 	createsprite gPoisonPowderParticleSpriteTemplate, ANIM_TARGET, 2, 5, -22, 117, 80, 5, 1
 	waitforvisualfinish
 	end
+
+@ Owner-approved native artwork reuse for moves #367-369.
+Move_BELLOW:
+	goto Move_UPROAR
+
+Move_POWER_GEM:
+	goto Move_ANCIENT_POWER
+
+Move_STONE_EDGE:
+	goto Move_ROCK_SLIDE
