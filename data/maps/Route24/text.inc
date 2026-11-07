@@ -37,7 +37,7 @@ Route24_Text_ShaneIntro::
     .string "I saw your feat from the grass!$"
 
 Route24_Text_ShaneNotEnoughMons::
-    .string "You need at least two able\\n"
+    .string "You need at least two able\n"
     .string "POKéMON for a double battle!$"
 
 Route24_Text_ShaneDefeat::
