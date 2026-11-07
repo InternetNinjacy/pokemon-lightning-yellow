@@ -243,6 +243,11 @@
         "pp": "OWNER_EXPLICIT",
         "effect": "OWNER_EXPLICIT",
         "flags": "REQUIRES_REVIEW_FOR_REPLACED_EFFECT"
+      },
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA",
+      "engine_translation": {
+        "effect": "EFFECT_SPITE",
+        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
       }
     },
     "SCARY_FACE": {
@@ -384,6 +389,11 @@
         "pp": "OWNER_EXPLICIT",
         "effect": "OWNER_EXPLICIT",
         "flags": "REQUIRES_REVIEW_FOR_REPLACED_EFFECT"
+      },
+      "implementation_status": "IMPLEMENTED_APPROVED_DATA",
+      "engine_translation": {
+        "effect": "EFFECT_ROLLOUT",
+        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
       }
     },
     "ASTONISH": {

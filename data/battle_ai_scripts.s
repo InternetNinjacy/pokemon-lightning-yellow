@@ -3101,7 +3101,6 @@ AI_HPAware_DiscouragedEffectsWhenTargetLowHP::
 	.byte EFFECT_PAIN_SPLIT
 	.byte EFFECT_CONVERSION_2
 	.byte EFFECT_LOCK_ON
-	.byte EFFECT_SPITE
 	.byte EFFECT_PERISH_SONG
 	.byte EFFECT_SWAGGER
 	.byte EFFECT_FURY_CUTTER
