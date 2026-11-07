@@ -124,7 +124,10 @@ jobs:
       - name: Focused native Swarm Cloud regression in mGBA
         if: matrix.target == 'modified'
         timeout-minutes: 10
-        run: LIGHTNING_SWARM_ONLY=1 python3 tests/emulator/run.py
+        run: |
+          # Diagnostic symbol lookup only; does not modify the ROM or its tests.
+          nm -n pokefirered.elf | awk 'length($1)==8 && $1 <= "081dc716" {last=$0} END {print "Swarm timeout nearest preceding ELF symbol:",last}'
+          LIGHTNING_SWARM_ONLY=1 python3 tests/emulator/run.py
       - name: Execute ROM integration tests in mGBA
         if: matrix.target == 'modified'
         timeout-minutes: 30
