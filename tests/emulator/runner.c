@@ -458,6 +458,7 @@ int main(int argc,char **argv) {
     if(getenv("LIGHTNING_MOVE_FOUNDATION_ONLY")){moveFoundationTests();printf("PASS: %u focused move-foundation assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_BAG_EVOLUTION_ONLY")){bagEvolutionTests();printf("PASS: %u focused Bag evolution assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_WILD_NICKNAME_ONLY")){wildNicknameTests();printf("PASS: %u focused capture nickname assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_SCORCHING_SANDS_ONLY")){scorchingSandsTests();printf("PASS: %u focused Scorching Sands assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_SWARM_ONLY")){swarmCloudTests();printf("PASS: %u focused Swarm Cloud assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_BLAINE_ONLY")){blaineTests();printf("PASS: %u focused Blaine assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_GYM_CASTFORM_ONLY")){gymCastformTests();printf("PASS: %u focused Gym Castform assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}

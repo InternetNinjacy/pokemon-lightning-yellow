@@ -115,6 +115,7 @@ static void spreadStatusTests(void){
 #include "new_chirp.c"
 #include "new_swarm_cloud.c"
 #include "new_bellow_rock.c"
+#include "new_scorching_sands.c"
 static void originalEffectTests(void){
  if(getenv("LIGHTNING_SKITTER_SLASH_ONLY")){skitterSlashTests();return;}
  if(getenv("LIGHTNING_VENOM_WEB_ONLY")){venomWebTests();return;}
@@ -122,6 +123,7 @@ static void originalEffectTests(void){
  if(getenv("LIGHTNING_CHIRP_ONLY")){chirpTests();return;}
  if(getenv("LIGHTNING_SWARM_CLOUD_ONLY")){swarmCloudTests();return;}
  if(getenv("LIGHTNING_BELLOW_ROCK_ONLY")){bellowRockTests();return;}
+ if(getenv("LIGHTNING_SCORCHING_SANDS_ONLY")){scorchingSandsTests();return;}
  if(getenv("LIGHTNING_NEW_GHOST_MOVES_ONLY")){newGhostMoveTests();return;}
  if(getenv("LIGHTNING_NEW_FIRE_MOVES_ONLY")){newFireMoveTests();return;}
  if(getenv("LIGHTNING_THUNDER_WAVE_ONLY")){thunderWaveTests();return;}
@@ -134,6 +136,7 @@ static void originalEffectTests(void){
  chirpTests();
  swarmCloudTests();
  bellowRockTests();
+ scorchingSandsTests();
  thunderWaveTests();
  ghostReworkTests();
  spreadStatusTests();

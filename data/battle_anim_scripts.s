@@ -390,6 +390,7 @@ gBattleAnims_Moves::
 	.4byte Move_BELLOW
 	.4byte Move_POWER_GEM
 	.4byte Move_STONE_EDGE
+	.4byte Move_SCORCHING_SANDS
 	.4byte Move_COUNT @ cannot be reached, because last move is Psycho Boost
 
 	.align 2
@@ -11493,3 +11494,31 @@ Move_POWER_GEM:
 
 Move_STONE_EDGE:
 	goto Move_ROCK_SLIDE
+
+
+@ Owner-approved Sandstorm + Ember composite; all assets and sounds are native.
+@ No weather state mutation, imported sprites, or persistent background.
+Move_SCORCHING_SANDS:
+	loadspritegfx ANIM_TAG_FLYING_DIRT
+	loadspritegfx ANIM_TAG_SMALL_EMBER
+	playsewithpan SE_M_SANDSTORM, SOUND_PAN_ATTACKER
+	createsprite gFlyingSandCrescentSpriteTemplate, ANIM_ATTACKER, 40, 10, 2304, 96, 0
+	delay 10
+	createsprite gFlyingSandCrescentSpriteTemplate, ANIM_ATTACKER, 40, 50, 2560, 96, 0
+	delay 10
+	createsprite gFlyingSandCrescentSpriteTemplate, ANIM_ATTACKER, 40, 70, 1984, 96, 0
+	delay 10
+	waitforvisualfinish
+	loopsewithpan SE_M_EMBER, SOUND_PAN_ATTACKER, 5, 2
+	createsprite gEmberSpriteTemplate, ANIM_TARGET, 2, 20, 0, -16, 24, 20, 1
+	delay 4
+	createsprite gEmberSpriteTemplate, ANIM_TARGET, 2, 20, 0, 0, 24, 20, 1
+	delay 4
+	createsprite gEmberSpriteTemplate, ANIM_TARGET, 2, 20, 0, 16, 24, 20, 1
+	delay 16
+	playsewithpan SE_M_FLAME_WHEEL, SOUND_PAN_TARGET
+	call EmberFireHit
+	call EmberFireHit
+	call EmberFireHit
+	waitforvisualfinish
+	end

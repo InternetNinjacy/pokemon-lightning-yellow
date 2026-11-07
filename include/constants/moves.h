@@ -380,7 +380,9 @@
 #define MOVE_POWER_GEM 368
 #define MOVE_STONE_EDGE 369
 
-#define MOVES_COUNT 370
+#define MOVE_SCORCHING_SANDS 370
+
+#define MOVES_COUNT 371
 
 // Used for checks for moves affected by Disable, Mimic, etc.
 #define MOVE_UNAVAILABLE 0xFFFF
