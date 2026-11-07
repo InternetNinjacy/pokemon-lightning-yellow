@@ -105,10 +105,6 @@ void FillPalette(u16 value, u16 offset, u16 size)
 // All originals, including weather gamma/fades, remain in engine buffers.
 extern u8 LightingPreviewGetAppearance(void);
 extern bool8 LightingPreviewIsActive(void);
-// Keep the full preview copy in IWRAM: EWRAM is almost saturated and the
-// native harness reserves its final range for a guarded execution stack.
-static IWRAM_DATA u16 sLightingPreviewPalette[PLTT_BUFFER_SIZE] = {0};
-
 // Index: 0=Day, 1=Dawn, 2=Dusk, 3=Night, 4=Covered Day,
 // 5=Covered Night. See docs/LIGHTING_PREVIEW_CANDIDATES.md.
 #ifndef LIGHTING_PREVIEW_VARIANT
@@ -139,14 +135,14 @@ static void LightingPreviewComposePalette(void)
         // Color zero of each 16-color palette is left unchanged.
         if ((i >= 13 * 16 && i < 16 * 16) || (i % 16 == 0))
         {
-            sLightingPreviewPalette[i] = c;
+            ((volatile u16 *)PLTT)[i] = c;
         }
         else
         {
             u16 red = ((c & 31) * sLightingPreviewMult[mode][0] + 16) / 32;
             u16 green = (((c >> 5) & 31) * sLightingPreviewMult[mode][1] + 16) / 32;
             u16 blue = (((c >> 10) & 31) * sLightingPreviewMult[mode][2] + 16) / 32;
-            sLightingPreviewPalette[i] = (c & 0x8000) | (blue << 10) | (green << 5) | red;
+            ((volatile u16 *)PLTT)[i] = (c & 0x8000) | (blue << 10) | (green << 5) | red;
         }
     }
 }
@@ -158,17 +154,14 @@ void TransferPlttBuffer(void)
     {
         void *src = gPlttBufferFaded;
         void *dest = (void *)PLTT;
-#ifdef LIGHTING_PREVIEW
-        // Preview only: transform the *composited* faded buffer into a separate
-        // scratch buffer, preserving weather gamma, fog and fade source state.
-        // Never modify either engine palette buffer or apply a second tint.
-        if (LightingPreviewIsActive())
-        {
-            LightingPreviewComposePalette();
-            src = sLightingPreviewPalette;
-        }
-#endif
         DmaCopy16(3, src, dest, PLTT_SIZE);
+#ifdef LIGHTING_PREVIEW
+        // Isolated preview only: after standard engine DMA, transform hardware
+        // palette entries directly, preserving the source fade/weather buffers.
+        // No additional EWRAM/IWRAM allocation or double-tint accumulation.
+        if (LightingPreviewIsActive())
+            LightingPreviewComposePalette();
+#endif
         sPlttBufferTransferPending = FALSE;
         if (gPaletteFade.mode == HARDWARE_FADE && gPaletteFade.active)
             UpdateBlendRegisters();
