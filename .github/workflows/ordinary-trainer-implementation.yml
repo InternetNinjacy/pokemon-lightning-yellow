@@ -22,7 +22,13 @@ jobs:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           persist-credentials: false
+          fetch-depth: 0
       - name: Python syntax
         run: python3 -m py_compile tests/run_ordinary_trainer_tests.py
       - name: Reconcile 510 Trainer design records with committed source
         run: python3 tests/run_ordinary_trainer_tests.py
+      - name: Historical source preservation checks (no bypass)
+        run: |
+          python3 tests/run_elite_four_tests.py
+          python3 tests/run_rival_tests.py
+          python3 tests/run_pokedex_tests.py
