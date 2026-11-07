@@ -1468,3 +1468,15 @@ PR #68 merged to main at f3a113a44d89acacc0b584f61c4dead868ef2607; exact-head Ac
   per-scene frame guards, builds/repro/full groups/upstream checks unchanged.
 - Correct static registration report26/30 and protect ordinary Trainer group.
   No gameplay/save/baseline/security change. New exact-head CI pending.
+
+## 2026-11-07 — BTL-005-M3A source catalog readiness
+
+- Prior reconciliation hard-coded354 source rows and56 absent additions. New
+  tooling validates complete contiguous approved batches, all metadata/description/
+  ordered animation dispatch coverage; retains original IDs and original baseline.
+- Isolated fixtures prove incomplete tables fail and wrong owner power remains a
+  discrepancy. Source presence is explicitly runtime-unverified, never gameplay
+  completion. Five methods/nine rejection cases PASS; reconciliation byte-identical
+  and registration27 host/30 native PASS. No game source, production IDs, artwork,
+  save data, normalizer or old baseline changed. Full hosts/CI pending.
+- Branch feature/new-move-catalog-readiness; no new effort credit at this stage.
