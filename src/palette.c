@@ -100,7 +100,7 @@ void FillPalette(u16 value, u16 offset, u16 size)
 
 
 #ifdef LIGHTING_PREVIEW
-// Candidate values are exploratory, NOT owner-approved final palettes.
+// Dawn/Dusk values are revised exploratory candidates; Night B selected by owner.
 // Channel multipliers are RGB5 fixed-point with denominator 32.
 // All originals, including weather gamma/fades, remain in engine buffers.
 extern u8 LightingPreviewGetAppearance(void);
@@ -112,12 +112,12 @@ extern bool8 LightingPreviewIsActive(void);
 #endif
 #if LIGHTING_PREVIEW_VARIANT == 1
 static const u8 sLightingPreviewMult[6][3] = {
-    {32,32,32}, {32,31,30}, {32,29,26}, {16,19,27},
+    {32,32,32}, {23,28,32}, {32,23,17}, {16,19,27},
     {25,29,25}, {12,17,22},
 };
 #else
 static const u8 sLightingPreviewMult[6][3] = {
-    {32,32,32}, {32,31,30}, {32,29,26}, {19,21,27},
+    {32,32,32}, {23,28,32}, {32,23,17}, {19,21,27},
     {25,29,25}, {14,19,23},
 };
 #endif
