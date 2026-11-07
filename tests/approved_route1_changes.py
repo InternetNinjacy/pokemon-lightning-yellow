@@ -16,3 +16,11 @@ def prior_route1_source(path):
     original = ORIGINAL_ROUTE1_SLOTS.encode("utf-8")
     assert data.count(approved) == 2, "Route 1 FireRed and LeafGreen approved slots must match exactly"
     return data.replace(approved, original)
+
+
+def restore_route1_text(path, text):
+    """Restore only the two expected Route 1 source hunks in a text audit chain."""
+    if str(path) != "src/data/wild_encounters.json":
+        return text
+    assert text.count(APPROVED_ROUTE1_SLOTS) == 2, "Unexpected Route 1 source changes"
+    return text.replace(APPROVED_ROUTE1_SLOTS, ORIGINAL_ROUTE1_SLOTS)
