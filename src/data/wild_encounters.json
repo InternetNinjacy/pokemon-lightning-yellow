@@ -8320,7 +8320,7 @@
                 "max_level": 4,
                 "species": "SPECIES_IGGLYBUFF"
               }
-                        ]
+            ]
           }
         },
         {
@@ -20862,7 +20862,7 @@
                 "max_level": 4,
                 "species": "SPECIES_IGGLYBUFF"
               }
-                        ],
+            ],
             "encounter_rate": 21
           }
         },
