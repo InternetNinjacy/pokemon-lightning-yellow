@@ -55,6 +55,8 @@ jobs:
           python3 tests/run_move_pp_tests.py
           python3 tests/run_roar_tests.py
 
+          python3 tests/run_title_screen_tests.py
+
           python3 tests/run_approved_gift_tests.py
 
           python3 tests/run_elite_four_tests.py
