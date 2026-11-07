@@ -4,7 +4,7 @@ Canonical branch: `main`. Updated 2026-11-07. Audited gameplay revision: `e2dabe
 
 Overall: `[######----]` **56.04% complete /43.96% remaining** (399 earned +313 remaining;712 provisional effort points).
 
-Integrated Thunder Wave72 after verified identical-tree merge, preserving parallel68/71/75/77 and all50 permanent tasks.398 earned/314 remaining provisional of712. Tooling79 all27 hosts PASS; no56 new moves or final lighting/follower assets claimed.
+Historical Thunder Wave72 merge checkpoint (before BTL-006 final acceptance): 398 earned/314 remaining of712, preserving parallel68/71/75/77 and all50 permanent tasks. The current total including the BTL-006 final point is399/313. Tooling79 all27 hosts PASS; no56 new moves or final lighting/follower assets claimed.
 
 2026-11-07 BTL-006 final acceptance: PR13 and PR75 both merged; modified/upstream CI succeeded; scoped source, native transactions and supplemental source/UI/progression regression passed. Task BTL-006 15/1 → 16/0 (+1/-1), fixed denominator 712; optional exhaustive visuals/retailer playthrough/hardware/two-peer/interrupted-power testing remains shared INT-005 release QA with NO new point credit. No unrelated task point changed.
 
