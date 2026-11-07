@@ -108,12 +108,15 @@ static void spreadStatusTests(void){
 #include "ghost_reworks.c"
 #include "thunder_wave.c"
 #include "new_fire_moves.c"
+#include "new_ghost_moves.c"
 static void originalEffectTests(void){
+ if(getenv("LIGHTNING_NEW_GHOST_MOVES_ONLY")){newGhostMoveTests();return;}
  if(getenv("LIGHTNING_NEW_FIRE_MOVES_ONLY")){newFireMoveTests();return;}
- newFireMoveTests();
  if(getenv("LIGHTNING_THUNDER_WAVE_ONLY")){thunderWaveTests();return;}
- thunderWaveTests();
  if(getenv("LIGHTNING_GHOST_REWORKS_ONLY")){ghostReworkTests();return;}
+ newGhostMoveTests();
+ newFireMoveTests();
+ thunderWaveTests();
  ghostReworkTests();
  spreadStatusTests();
  electricImmunityTests();
