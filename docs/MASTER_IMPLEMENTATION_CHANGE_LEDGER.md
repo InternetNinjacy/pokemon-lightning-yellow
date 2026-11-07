@@ -1649,3 +1649,17 @@ PR #68 merged to main at f3a113a44d89acacc0b584f61c4dead868ef2607; exact-head Ac
 - PR79 source catalog prerequisite: all27 host runners/five fixture methods
   (nine incomplete/reordered cases) PASS, reconciliation byte-identical. No game
   source/IDs/art/save/baseline changes. Its CI pending; no added effort credit.
+
+## 2026-11-07 — BTL-005-M3B full-suite flash isolation / prior integration closure
+
+- Main6265 merged9a5d5c20;79 mergeda22aabd4 after both Actions42379743632 /
+  42379748023 SUCCESS. Documentation-only integration2d6e9ac2 has no source/spec/
+  test/build input delta.57 closed as superseded by merged71, discussion retained.
+- Source1951766a both CI42381346263/42381341524 and local latest full FAILED the
+  new flash byte comparison. CPU snapshot reset RAM save counters but not earlier
+  flash. Negative control proves higher-counter Bulbasaur correctly supersedes
+  lower-counter Charmander. Test now clones/isolate/verifies blank/restores flash;
+  every original encrypted-byte/ID/PP assertion retained, no game/save/guard change.
+- Latest focus487 PASS; corrected full/CI pending. Game clean a90ef372…b730 PASS;
+  historical pre-boundary/pre-extra-flash full815987 is not latest acceptance.
+  Keep PR80 draft; no effort credit or claim that failing source was accepted.

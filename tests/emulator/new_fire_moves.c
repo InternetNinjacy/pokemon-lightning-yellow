@@ -64,7 +64,24 @@ static void newFireMoveTests(void){
   if(ours<1000||theirs<1000){CHECK(theirs<1000&&ours==1000);seen=1;}
  }
  CHECK(seen);waitAction();CHECK(core->busRead16(core,bmon(0)+ABI_BMON_HP)<1000);
+ // CPU snapshots do not restore flash. Isolate this new-save test from earlier
+ // full-suite saves, and restore their flash afterwards for later groups.
+ CHECK(core->loadState(core,bootState));
+ GBASavedataForceType(&((struct GBA*)core->board)->memory.savedata,SAVEDATA_FLASH1M);
+ void *oldFlash=NULL;size_t oldSize=core->savedataClone(core,&oldFlash);CHECK(oldSize==0x20000&&oldFlash);
+ // Negative control: resetting RAM counters alone must NOT supersede an
+ // existing higher-counter save. This reproduces the full-suite failure.
+ initSave();create(SPECIES_BULBASAUR,20);core->busWrite8(core,SYM_gPlayerPartyCount,1);
+ core->busWrite32(core,SYM_gSaveCounter,0x100000);CHECK(CALL(TrySavingData,0)==1);CHECK(CALL(TrySavingData,0)==1);
  CHECK(core->loadState(core,bootState));initSave();create(SPECIES_CHARMANDER,50);
+ core->busWrite8(core,SYM_gPlayerPartyCount,1);CHECK(CALL(TrySavingData,0)==1);
+ CHECK(CALL(LoadGameSave,0)==1);CHECK(monget(player(0),ABI_DATA_SPECIES)==SPECIES_BULBASAUR);
+ CHECK(core->loadState(core,bootState));
+ unsigned char *blank=malloc(0x20000);CHECK(blank);memset(blank,255,0x20000);
+ CHECK(core->savedataRestore(core,blank,0x20000,true));
+ void *verify=NULL;size_t size=core->savedataClone(core,&verify);
+ CHECK(size==0x20000&&verify&&!memcmp(blank,verify,size));free(verify);free(blank);
+ initSave();create(SPECIES_CHARMANDER,50);
  core->busWrite8(core,SYM_gPlayerPartyCount,1);
  for(unsigned slot=0;slot<3;slot++){CALL(SetMonMoveSlot,player(0),moves[slot],slot);monput(player(0),ABI_DATA_PP1+slot,slot+1);}
  monput(player(0),ABI_DATA_PP_BONUSES,63);
@@ -76,6 +93,7 @@ static void newFireMoveTests(void){
  sameBytes(player(0),saved,sizeof(saved));
  for(unsigned slot=0;slot<3;slot++){CHECK(monget(player(0),ABI_DATA_MOVE1+slot)==moves[slot]);CHECK(monget(player(0),ABI_DATA_PP1+slot)==slot+1);}
  CHECK(!monget(player(0),ABI_DATA_SANITY_IS_BAD_EGG));
+ CHECK(core->savedataRestore(core,oldFlash,oldSize,true));free(oldFlash);
  CHECK(core->loadState(core,bootState));
  printf("PASS: new IDs355..357, spent PP/PP Ups and exact encrypted record persist through real flash save/load\n");
  printf("PASS: Flashfire+1 acts before faster normal-priority opponent, all three appended moves use physical stats and native AI\n");

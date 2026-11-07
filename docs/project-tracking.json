@@ -3,8 +3,8 @@
   "updated": "2026-11-07",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "Integrated Thunder Wave72 after verified identical-tree merge, preserving parallel68/71/75/77 and all50 permanent tasks.398 earned/314 remaining provisional of712. Tooling79 all27 hosts PASS; no56 new moves or final lighting/follower assets claimed.",
-  "main_sha": "e2dabe83a2e607198186cbdf5c38d027811c7672",
+  "current_focus": "Main includes72 Thunder Wave,62/65 coordination and79 catalog prerequisite. PR80 implements first3/56 new moves with strict new-only secondary rolls,28 hosts/487 native focus/clean PASS; latest full/CI pending.53 additions still unimplemented; no extra progress credit before acceptance.398/712 provisional.",
+  "main_sha": "a22aabd49d935e56bcb3573b394bcae13d60022d",
   "drive_sync": {
     "status": "GYM-009 completion synced to Project Progress and Elite Four Register on 2026-11-07; other Drive synchronization not audited",
     "folder": "https://drive.google.com/drive/folders/1N_n0Ke48jBbdhUWSZWzwR6rpPFqpDUpl"
@@ -628,17 +628,17 @@
       ],
       "status": {
         "design": "Owner approved; November5 Curse/animation/GenIV edge choices resolved; PhaseTwo distribution remains separate",
-        "implementation": "All21 approved original redesign/type policies and global Electric immunity merged, including Thunder Wave72. All56 new moves remain absent; tooling79 is independently under validation.",
-        "automated": "26 host suites/3 checkers/clean PASS for72;27 host suites PASS for tooling79. No full410 runtime acceptance.",
-        "emulator": "Thunder Wave565 focused and integrated30-group815608 native assertions PASS, actual original effect/AI/UI plus all eight League battles and ordinary Trainer construction; not full campaign/link/hardware.",
+        "implementation": "All21 original policies/global Electric immunity merged. PR80 source-complete355 Flame Fang,356 Flashfire,357 Blaze Rush; not merged/production-complete until final acceptance. Remaining53 additions absent.",
+        "automated": "Main tooling79:27 hosts and both full CI PASS before documentation-only main integration. Feature80:28 hosts/3 checkers, production chance numeric controls and clean hash a90ef372…b730 PASS; latest CI pending.",
+        "emulator": "PR80 latest focused487 native assertions PASS including real Singles/Doubles/composite animation completion/physical stats/AI/PP/flinch/recoil/priority/guards and exact encrypted flash reload. Latest full suite pending. Not full campaign/peer link/hardware or pixel-approval certification.",
         "pull_request": "Merged40–43/56/61;63 pending",
         "merge": "Main4bb2ece0 includes63/64/66/67/68/69/71/75;72 pending current-main acceptance."
       },
-      "branch": "feature/thunder-wave-spread",
-      "commit": "e2dabe83a2e607198186cbdf5c38d027811c7672",
+      "branch": "feature/approved-fire-move-batch",
+      "commit": "1951766a",
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Complete tooling79 checks/integration, then complete355 Flame Fang90/100/15 flinch20,356 Flashfire40/100/30 priority+1,357 BlazeRush100/100/10 quarter recoil with approved existing-art composites and native acceptance. No invented distribution or placeholders.",
+      "next_action": "Complete PR80 latest full/CI acceptance and integrate verified code; then358 Soul Drain (Ghost Physical50 half drain/contact),359 Weary Touch (Ghost Physical75 sleep22%),360 Dream Haunt (Ghost Special55 doubles against sleep), per exact register/approved existing art. No invented distribution.",
       "checkpoint": "Merged72 completes original-policy source scope; all26 hosts/3checkers/clean/full30-group815608 and both premerge CI PASS; main tree verified identical. First56 new moves remain pending.",
       "source_exports": [
         "03_MOVES/Pokémon Lightning Yellow — Approved Move Change Ledger — Source Verbatim v0.1.txt",
@@ -648,9 +648,9 @@
         "03_MOVES/Pokémon Lightning Yellow — Pre-Codex Move & Animation Handoff — Draft v0.1.txt"
       ],
       "source_status": "available locally; checksums verified; precise approvals/read scope in reconciliation report",
-      "coverage_gap": "56 new moves and their effects/animations/AI/TM integration, exhaustive original-effect/animation combinations, real peer link/hardware and historical Quest Log-party snapshots remain. No new-move runtime or full campaign certification.",
+      "coverage_gap": "53 not-yet-coded additions plus final3-move acceptance, remaining effects/animations/AI/TM integration and distribution where separately approved. Real peer link/hardware, historical Quest Log snapshots and exhaustive effect/pixel QA not certified.",
       "reconciliation_pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/37",
-      "commit_role": "Latest tested production source; later branch-tip changes may record evidence only",
+      "commit_role": "Source code revision including exact new-only chance boundary; later main integration changes documentation only",
       "initial_implementation_commit": "7738e796",
       "foundation_ref": {
         "branch": "feature/move-engine-foundations",
@@ -664,8 +664,8 @@
         "BTL-005-M2A": "PR42 complete within eight-data-row scope, full513952/focus100 and both review/push CI SUCCESS at51df94f7; merged in owner-authorized Nov6 consolidation",
         "BTL-005-M2B": "PR43 merged through consolidated main; final review/push full534051 PASS,20 hosts/3 checkers, final focus20105 and clean identical8162003f…9822c"
       },
-      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/72",
-      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/42377971185",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/80",
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/42381346263",
       "ui_ref": {
         "branch": "feature/move-engine-long-name-ui",
         "source_commit": "715e1dff255a6aacaa22498ca5fb62063a26d3dd",
@@ -701,7 +701,8 @@
         "BTL-005-M2G": "Merged67/4526a137; full755166,25hosts/clean, Actions42315257252/42315264496 SUCCESS",
         "BTL-005-M2H": "Merged69/3d06ebc3, full755386/25hosts/clean and both Actions42316557601/42316568537 SUCCESS",
         "BTL-005-M2I": "Merged72/e2dabe83: full30-group815608/focused565/26hosts/clean PASS; both Actions42377967379/42377971185 SUCCESS at26f52aba. Merge-only9d103ae0 has identical verified tree c52b7d8a; resulting main identical. Postmerge main CI pending.",
-        "BTL-005-M3A": "PR79/2dd80155 tooling prerequisite: strict contiguous approved source catalog, five fixture methods including nine rejection cases, all27 host runners PASS. No production IDs or runtime/new-move credit; CI pending."
+        "BTL-005-M3A": "Merged79/a22aabd4, both Actions42379743632/42379748023 modified+upstream SUCCESS;27 hosts PASS. Documentation-only main integration2d6e9ac2 preserves identical tested code/spec inputs. No gameplay IDs/effort credit.",
+        "BTL-005-M3B": "PR80 source1951766a: complete IDs355..357,28 hosts/3checkers/strict chance routine/487 native focus/clean a90ef372…b730 PASS. Final full/CI pending. One-slot animation return hazard fixed with existing inline Ember commands; original moves retain legacy inclusive chance. No merge/effort credit yet. Both1951766a CI/full runs failed new flash fixture because RAM snapshots retain older higher-counter flash; negative control proves legitimate loader behavior. Isolated test flash/restored previous flash; focused487 PASS; corrected full/CI pending. No production save change."
       }
     },
     {

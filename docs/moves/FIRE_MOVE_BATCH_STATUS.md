@@ -71,3 +71,19 @@ Pre-boundary-fix clean reproducibility PASS (SHA256
 Latest boundary-fixed focus/full/clean and GitHub CI pending. Do not infer410-move completion from this
 slice. The reconciliation retains conservative source/runtime distinctions;
 approved animation candidates do not automatically become globally verified.
+
+## Full-suite save fixture correction
+
+Both source1951766a CI runs42381346263/42381341524 and the corresponding local
+latest full run failed the new encrypted-record check after earlier tests wrote
+flash. This was not accepted as feature success. CPU snapshots do not roll back
+flash, and initSave resets RAM counters without erasing older high-counter saves.
+A controlled negative case writes Bulbasaur at counter0x100002, then Charmander at
+counter1: the production loader correctly selects Bulbasaur. The new-record test
+now clones prior flash, supplies verified blank1Mbit flash for its independent
+round trip, preserves every strict byte/ID/PP assertion and restores prior flash.
+No production save/loader code or guard changed. Latest focus487 PASS with this
+negative control, strict chance and real flash reload. Current game clean hash is
+a90ef37290e08dd8ed46eff2c3537e966c3e4f7874cdbe9e72bb1b5acef8b730.
+Pre-boundary/pre-extra-flash full815987 PASS is historical, not latest acceptance.
+Corrected full/CI pending; retain all failed runs as evidence.
