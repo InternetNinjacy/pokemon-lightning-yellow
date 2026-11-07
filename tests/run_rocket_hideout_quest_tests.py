@@ -40,6 +40,25 @@ assert {o["script"] for o in balls} == {
 for o in balls:
     assert f"{o['local_id']}::" not in b3f
     assert o["local_id"] in b3f
+# Validate the actual binary layout, not merely the map event coordinates.
+# GBA block entries are little-endian: metatile 0..9, collision 10..11,
+# elevation 12..15. An item ball cannot be recovered from an impassable tile.
+layout = (ROOT / "data/layouts/RocketHideout_B3F/map.bin").read_bytes()
+width, height = 22, 27
+assert len(layout) == width * height * 2
+def block(x, y):
+    p = 2 * (y * width + x)
+    return int.from_bytes(layout[p:p+2], "little")
+for o in balls:
+    x, y = o["x"], o["y"]
+    assert 0 <= x < width and 0 <= y < height
+    value = block(x, y)
+    assert (value >> 10) & 3 == 0, (o["local_id"], "collision", x, y)
+    assert value >> 12 == o["elevation"], (o["local_id"], "elevation", x, y)
+    assert any(0 <= a < width and 0 <= b < height
+               and ((block(a, b) >> 10) & 3) == 0
+               and (block(a, b) >> 12) == o["elevation"]
+               for a, b in ((x-1, y), (x+1, y), (x, y-1), (x, y+1))), (o["local_id"], "no adjacent floor")
 for n in (14, 15):
     assert f"TRAINER_TEAM_ROCKET_GRUNT_{n}" in b3f
 assert "MAP_SCRIPT_ON_LOAD" in b3f

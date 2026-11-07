@@ -18,7 +18,7 @@ Return operations execute synchronously: check collected and not previously retu
 
 ## Map and script coexistence
 
-B3F objects added at (3,20) Ralts and (19,10) Snorunt. They are independent of the original three B3F visible pickups, map warps, spinner layout, and Giovanni hide flags. The locations are candidates, **not yet verified for traversal or tile collision** because the binary map's geometry could not be decoded via the connected GitHub text interface. Existing Grunt defeat flags determine which item balls appear on map reload. Route 8 Paige and Julia normal trainer/rematch entrypoints preserved with postbattle return choices and post-return acknowledgment.
+B3F objects added at (3,20) Ralts and (18,8) Snorunt. They are independent of the original three B3F visible pickups, map warps, spinner layout, and Giovanni hide flags. The original proposed Snorunt location (19,10) has collision=1 and elevation=0 in the binary map and was corrected to (18,8), a collision=0/elevation=3 tile with adjacent walkable tiles. Both ball placements now pass source-level binary-layout collision/elevation assertions. Complete event-interaction and movement verification in mGBA remain separate acceptance tasks. Existing Grunt defeat flags determine which item balls appear on map reload. Route 8 Paige and Julia normal trainer/rematch entrypoints preserved with postbattle return choices and post-return acknowledgment.
 
 ## Source inventory and reasons
 
