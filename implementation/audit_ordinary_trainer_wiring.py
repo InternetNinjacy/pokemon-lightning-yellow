@@ -28,9 +28,9 @@ RE_SCRIPT = re.compile(r"^([A-Za-z_][A-Za-z_0-9]*)::", re.M)
 RE_BATTLE = re.compile(r"\btrainerbattle_(?:single|double|rematch|rematch_double|two_trainers|continue_script|no_intro|no_intro_double)\s+(TRAINER_[A-Z0-9_]+)")
 RE_INIT = re.compile(r"\[(TRAINER_[A-Z0-9_]+)\]\s*=\s*\{([\s\S]*?)\n    \},")
 RE_CLASS = re.compile(r"\.trainerClass\s*=\s*TRAINER_CLASS_([A-Z0-9_]+)")
-RE_PARTY_REF = re.compile(r"\\.party\\s*=\\s*[A-Z_]+\\((sParty_[A-Za-z0-9_]+)\\)")
-RE_PARTY_DEF = re.compile(r"static const struct TrainerMon\\w+\\s+(sParty_\\w+)\\[\\]\\s*=\\s*\\{([\\s\\S]*?)\\n\\};")
-RE_BATTLE_COMMAND = re.compile(r"\\btrainerbattle_(?:single|double|rematch|rematch_double|two_trainers|continue_script|no_intro|no_intro_double)\\s+(TRAINER_[A-Z0-9_]+)")
+RE_PARTY_REF = re.compile(r"\.party\s*=\s*[A-Z_]+\((sParty_[A-Za-z0-9_]+)\)")
+RE_PARTY_DEF = re.compile(r"static const struct TrainerMon\w+\s+(sParty_\w+)\[\]\s*=\s*\{([\s\S]*?)\n\};")
+RE_BATTLE_COMMAND = re.compile(r"\btrainerbattle_(?:single|double|rematch|rematch_double|two_trainers|continue_script|no_intro|no_intro_double)\s+(TRAINER_[A-Z0-9_]+)")
 RE_VS = re.compile(r"\{\s*\{([^{}]+)\}\s*,\s*MAP\(MAP_([A-Z0-9_]+)\)\s*\}")
 
 
@@ -52,7 +52,7 @@ def main():
     args = parser.parse_args()
 
     ledger_text = LEDGER.read_text(encoding="utf-8")
-    ledger_ids = re.findall(r"^\\| `(TRAINER_[A-Z0-9_]+)` \\|", ledger_text, re.M)
+    ledger_ids = re.findall(r"^\| `(TRAINER_[A-Z0-9_]+)` \|", ledger_text, re.M)
     duplicate_ledger_ids = sorted({name for name in ledger_ids if ledger_ids.count(name) > 1})
     rows = parse_ledger()
     unparsed_ledger_ids = sorted(set(ledger_ids) - set(rows))
@@ -62,7 +62,7 @@ def main():
     # The source_party ledger field records the *current FireRed* party, not the
     # approved replacement. A proposed size change is handled separately.
     party_source = PARTY_SOURCE.read_text(encoding="utf-8")
-    party_defs = {m.group(1): len(re.findall(r"\\.species\\s*=", m.group(2)))
+    party_defs = {m.group(1): len(re.findall(r"\.species\s*=", m.group(2)))
                   for m in RE_PARTY_DEF.finditer(party_source)}
     missing_party_references = []
     missing_party_arrays = []
