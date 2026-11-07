@@ -16,13 +16,16 @@ for p,v in m['files'].items():
 for p,h in m['preserved_files'].items():
  source=Path(p).read_text()
  if p=='src/battle_main.c':
-  approved_selector='''                // Both approved Agatha Alakazam use their native second ability, Inner Focus.
-                // Keep the original PID and ability policy for every other trainer Pokémon.
+  approved_selector='''                // Use the existing native ability slot field only for Agatha's Alakazam.
+                // This preserves its original PID, nature, gender and species ability table.
                 if ((trainerNum == TRAINER_ELITE_FOUR_AGATHA || trainerNum == TRAINER_ELITE_FOUR_AGATHA_2)
                  && partyData[i].species == SPECIES_ALAKAZAM)
-                    personalityValue |= 1;
+                {
+                    u8 abilityNum = 1; // Inner Focus, the native second ability.
+                    SetMonData(&party[i], MON_DATA_ABILITY_NUM, &abilityNum);
+                }
 '''
-  assert source.count(approved_selector)==1,'Agatha native-slot selector changed'
+  assert source.count(approved_selector)==1,'Agatha native ability setter changed'
   source=source.replace(approved_selector,'',1)
  assert hashlib.sha256(source.encode()).hexdigest()==h,p
 
@@ -37,4 +40,4 @@ for b in spec:
   for field,v in [('iv',row['iv']),('lvl',row['level']),('species','SPECIES_'+row['species']),('heldItem','ITEM_'+row['item'])]:
    assert re.search(r'\.'+field+r' = ([^,]+),',text)[1]==str(v)
   assert re.findall(r'MOVE_(\w+)',text)==row['moves']
-print('PASS: all eight exact approved Elite Four party arrays; prior six-battle baseline preserved; scoped Agatha native ability-bit selector verified against frozen constructor')
+print('PASS: all eight exact approved Elite Four party arrays; prior six-battle baseline preserved; scoped Agatha native ability field setter verified against frozen constructor')
