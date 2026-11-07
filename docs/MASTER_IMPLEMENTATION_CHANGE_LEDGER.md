@@ -1448,3 +1448,13 @@ imports or unsafe save migrations. Direct Drive synchronization remains pending.
 
 ## 2026-11-07 — GYM-009 dashboard point reconciliation
 PR #68 merged to main at f3a113a44d89acacc0b584f61c4dead868ef2607; exact-head Actions 42321156769 passed host, clean build, baseline, all eight native Elite Four encounters, 42 Pokémon/168 moves, 793818 mGBA assertions. GYM-009 previously 0 earned/16 remaining now 16 earned/0 remaining, with historical effort entry retained. Overall 314/398 -> 330/382 of unchanged 712 planning points: 44.10% -> 46.35%. GYM area 32/90 -> 48/74 of unchanged 122 points: 26.2% -> 39.3%. All other task effort records unchanged. Subjective balance and hardware tests not claimed.
+
+
+## 2026-11-07 — GYM-008 ordinary Trainer implementation acceptance and progress reconciliation
+
+- Reviewed PR71 completion handoff https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/71#issuecomment-6703579243 and confirmed squash merge on main `18d245b5e35780b1300482aa536fa15f140a1d28` (preserving concurrent Agatha GYM-009 source).
+- Scope accepted: 510 ordinary Trainer source IDs; 500 non-dummy party arrays and 1,219 Pokémon instantiated in native ROM tests; 10 dummy source records intentionally unchanged. Includes approved class/name transformations, Shane Route24 Double/rematch/refusal and existing-source-compatible gendered Ranger aliases. No bespoke Ranger overworld art claimed.
+- Exact PR-head Actions 42346786298 SUCCESS for split battle validation (modified and baseline), and 42346786287 SUCCESS for ordinary Trainer preflight/source-preservation. These validate source/build/native scoped work, not complete manual progression.
+- Historical GYM-008 effort changed from 0 earned/52 remaining to 52 earned/0 remaining; denominator712 unchanged; overall 330/382 to 382/330 =53.65%; GYM area 48/74 to 100/22=81.97% (rounded82.0%). GYM-009 16/0 and all other task point values remain untouched. No duplicate implementation credit.
+- Optional experiential QA remains distinctly under existing INT-005 stabilization/release acceptance: approach every or representative overworld Trainer, exercise all 130 live VS Seeker rematch routes, Shane double/refusal, victory flags, story states and existing-art Ranger appearance. These checks are NOT claimed executed or necessary to regard GYM-008 source implementation as merged. No additional points added; retain INT-005 original 0/8 status.
+- This reconciliation is documentation-only on a review branch. The older PR65 335/377 planning calculation and Agatha hold predate PR68/73/71 and MUST NOT be merged unchanged.
