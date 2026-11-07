@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "updated": "2026-11-06",
+  "updated": "2026-11-07",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "Merged63 Pin Missile/Dragon Rage with full754034/25hosts/clean and both CI PASS. New66 global Electric immunity and child67 spread statuses implemented,25hosts/3checkers/clean PASS, latest full/native CI pending. Maintenance64 measured slow62.7MB/19min7s installs, overall45min/native20min; exact-head CI pending. Tracking62 incorporates historical65 without duplicate effort. Preserve Agatha/follower/Trainer holds.",
-  "main_sha": "767bb39c4fb107418f86ecc247572630b3adf014",
+  "current_focus": "Merged66/global Electric paralysis plus64 CI reliability via verified combined head: full754679/25hosts/clean and both CI PASS. PR67 full755166 PASS, CI pending; PR69 Spite/Grudge initial focused225/25hosts/clean PASS, latest full/CI pending. Existing draft68 repaired, actual Agatha focus39058/25hosts/clean PASS, full/CI and specific selector approval pending. Tracking62 incorporates65 without duplicate effort; source exports available.",
+  "main_sha": "d3a462e5e991f64ac8245b7e11c990c895df61ad",
   "drive_sync": {
     "status": "pending: no direct Drive writing tool available",
     "folder": "https://drive.google.com/drive/folders/1N_n0Ke48jBbdhUWSZWzwR6rpPFqpDUpl"
@@ -538,8 +538,8 @@
       "title": "410-move redesign",
       "aliases": [],
       "effort": {
-        "earned": 23,
-        "remaining": 57,
+        "earned": 24,
+        "remaining": 56,
         "unit": "provisional relative planning point",
         "confidence": "low",
         "history": [
@@ -596,6 +596,12 @@
             "earned": 23,
             "remaining": 57,
             "reason": "M2E PR63 merged767bb39c: two exact approved effects,25 hosts/3 checkers, full29-group754034 native, clean reproducibility and both exact-head Actions runs PASS. Two points within existing80; all56 new moves still outstanding."
+          },
+          {
+            "date": "2026-11-07",
+            "earned": 24,
+            "remaining": 56,
+            "reason": "Merged66 global Electric paralysis immunity after full754679,25hosts/3checkers/clean and both combined-head CI PASS. One point within80; no new56-move credit or duplicate CI credit."
           }
         ]
       },
@@ -608,13 +614,13 @@
         "automated": "25 hosts/3 checkers and clean reproducibility PASS; exact-head Actions42311654769 and42311756718 SUCCESS",
         "emulator": "Full29-group754034 PASS, including focused314 Pin Missile/Dragon Rage assertions",
         "pull_request": "Merged40–43/56/61;63 pending",
-        "merge": "Main767bb39c includes63; exact-main Actions42313545155 SUCCESS. PR66/67 unmerged."
+        "merge": "Main d3a462e5 includes63/64/66;67/69 unmerged, no new56 IDs"
       },
       "branch": "feature/approved-roar-redesign",
       "commit": "42410891edbeb51d9b9a3ad4ba69eacdc81b7fa7",
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Implement six remaining approved original policies/global Electric paralysis rule, then56 complete new moves, preserving distribution holds.",
+      "next_action": "Finish verified67/69 integration; implement approved Thunder Wave three-recipient targeting, then complete new-move slices without placeholder effects or invented distribution.",
       "checkpoint": "Merged PP/foundations/UI/original-data chain; production4f7f71d7, final tested head85032f28, remote full534051 PASS; no56 new move IDs enabled",
       "source_exports": [
         "03_MOVES/Pokémon Lightning Yellow — Approved Move Change Ledger — Source Verbatim v0.1.txt",
@@ -673,8 +679,9 @@
         "BTL-005-M2C": "Roar implemented; focused197/21 hosts/3 checkers/rebuild PASS; full/CI pending",
         "BTL-005-M2D": "Merged61/15dacb95; focused5389/24-host combined28-group753726, exact-head CI42222085136 SUCCESS",
         "BTL-005-M2E": "Merged PR63/767bb39c: focused314/full754034/25hosts/3checkers/clean and exact-head CI PASS",
-        "BTL-005-M2F": "PR66/f376e342 Electric paralysis immunity,25 hosts/3 checkers/clean PASS; initial focus949 PASS, latest full/CI pending",
-        "BTL-005-M2G": "Child PR67/1d74e8f8 three both-opponent status moves,25 hosts/3 checkers/clean PASS; initial focus1392 PASS, new guard controls/full/CI pending"
+        "BTL-005-M2F": "Merged66/d3a462e5, full754679/25hosts/clean and both CI42315238692/42315244202 PASS",
+        "BTL-005-M2G": "PR67/144917d5: full755166/25hosts/clean PASS incl separate prevention controls, CI pending",
+        "BTL-005-M2H": "PR69/dd1555d6: Spite/Grudge source,25hosts/clean and initial focused225 PASS; latest full/CI pending"
       }
     },
     {
@@ -2606,7 +2613,7 @@
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/42221063828",
       "blocker": "Agatha requires native Inner Focus slot1 but current constructor always generates even PID/slot0. Contract says report unsupported customization; scoped selector proposal sent to owner, no global abilities altered.",
       "design_authority": "Lightning Yellow canonical Drive specialist registers and November 5 change intake",
-      "next_action": "Resolve pending specific native-slot selector restriction for two Agatha Alakazam, then implement/test them without global species changes.",
+      "next_action": "Validate existing draft68/2ff31b2c, no duplicate Agatha implementation; focused two actual battles39058, all42 constructors/168 moves,25hosts/clean PASS. Full/CI and explicit narrow-selector question remain pending.",
       "checkpoint": "2026-11-06 fixed-scope intake; no gameplay implementation credit"
     },
     {

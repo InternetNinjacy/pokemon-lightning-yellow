@@ -11,7 +11,62 @@ static void effectBattleFixture(unsigned two,unsigned move){
   if(b&1)for(unsigned m=0;m<4;m++){core->busWrite16(core,bmon(b)+ABI_BMON_MOVES+2*m,MOVE_SPLASH);core->busWrite8(core,bmon(b)+ABI_BMON_PP+m,40);CALL(SetMonMoveSlot,enemy(b>>1),MOVE_SPLASH,m);}
  }
 }
+static void electricImmunityTests(void){
+ for(unsigned electric=0;electric<3;electric++){
+  effectBattleFixture(0,MOVE_SPLASH);
+  core->busWrite8(core,bmon(0)+ABI_BMON_TYPE1,electric==1?TYPE_ELECTRIC:TYPE_NORMAL);
+  core->busWrite8(core,bmon(0)+ABI_BMON_TYPE2,electric==2?TYPE_ELECTRIC:TYPE_NORMAL);
+  for(unsigned m=0;m<4;m++){
+   core->busWrite16(core,bmon(1)+ABI_BMON_MOVES+2*m,MOVE_THUNDER_WAVE);
+   core->busWrite8(core,bmon(1)+ABI_BMON_PP+m,20);
+  }
+  core->busWrite8(core,SYM_gActiveBattler,1);CALL(BattleAI_SetupAIData);
+  unsigned ai=core->busRead32(core,core->busRead32(core,SYM_gBattleResources)+ABI_BRES_AI);
+  core->busWrite32(core,ai+ABI_AI_FLAGS,1);CALL(BattleAI_ChooseMoveOrAction);
+  for(unsigned m=0;m<4;m++)CHECK(core->busRead8(core,ai+ABI_AI_SCORE+m)==(electric?90:100));
+ }
+ printf("PASS: native bad-move AI evaluates all4 Thunder Wave slots100 normally/90 against either Electric type slot\n");
+ const unsigned moves[]={MOVE_THUNDER_WAVE,MOVE_STUN_SPORE,MOVE_ZAP_CANNON};
+ for(unsigned electric=0;electric<2;electric++)for(unsigned m=0;m<3;m++){
+  effectBattleFixture(0,moves[m]);
+  // Immunity applies in either type slot; the second slot is deliberately used.
+  core->busWrite8(core,bmon(1)+ABI_BMON_TYPE2,electric?TYPE_ELECTRIC:TYPE_NORMAL);
+  core->busWrite16(core,SYM_gBattleWeather,m==2?B_WEATHER_RAIN_PERMANENT:0);
+  void *state=malloc(core->stateSize(core));CHECK(state&&core->saveState(core,state));unsigned successes=0;
+  for(unsigned trial=0;trial<12;trial++){
+   CHECK(core->loadState(core,state));core->busWrite32(core,SYM_gRngValue,0xE1EC0000+trial*7919);
+   chooseMove(0,0,1);waitAction();unsigned status=core->busRead32(core,bmon(1)+ABI_BMON_STATUS1);
+   if(electric)CHECK(status==0);else successes+=!!(status&STATUS1_PARALYSIS);
+   CHECK(monget(player(0),ABI_DATA_PP1)==(m==2?4:!m?19:29));
+   if(m==2)CHECK(core->busRead16(core,bmon(1)+ABI_BMON_HP)<1000);
+   if(!electric&&successes)break;
+  }
+  if(!electric)CHECK(successes);
+  free(state);
+  printf("PASS: actual move%u Electric%u primary/secondary paralysis immunity, retained damage/onePP and non-Electric control\n",moves[m],electric);
+ }
+ for(unsigned electric=0;electric<2;electric++){
+  effectBattleFixture(0,MOVE_TACKLE);core->busWrite8(core,bmon(0)+ABI_BMON_TYPE1,electric?TYPE_ELECTRIC:TYPE_NORMAL);
+  core->busWrite8(core,bmon(1)+ABI_BMON_ABILITY,ABILITY_STATIC);
+  void *state=malloc(core->stateSize(core));CHECK(state&&core->saveState(core,state));unsigned procs=0;
+  for(unsigned trial=0;trial<20;trial++){
+   CHECK(core->loadState(core,state));core->busWrite32(core,SYM_gRngValue,0x57A71000+trial*7919);
+   chooseMove(0,0,1);waitAction();unsigned status=core->busRead32(core,bmon(0)+ABI_BMON_STATUS1);
+   if(electric)CHECK(status==0);else procs+=!!(status&STATUS1_PARALYSIS);
+   CHECK(monget(player(0),ABI_DATA_PP1)==34);
+  }
+  if(!electric)CHECK(procs);
+  free(state);
+  printf("PASS: actual contact Static20 seeded turns Electric%u, correct effective recipient; control procs%u\n",electric,procs);
+ }
+ // Existing paralysis is not silently cured by the new acquisition immunity.
+ effectBattleFixture(0,MOVE_THUNDER_WAVE);core->busWrite8(core,bmon(1)+ABI_BMON_TYPE1,TYPE_ELECTRIC);
+ core->busWrite32(core,bmon(1)+ABI_BMON_STATUS1,STATUS1_PARALYSIS);
+ chooseMove(0,0,1);waitAction();CHECK(core->busRead32(core,bmon(1)+ABI_BMON_STATUS1)==STATUS1_PARALYSIS);
+ CHECK(core->loadState(core,bootState));
+}
 static void originalEffectTests(void){
+ electricImmunityTests();
  effectBattleFixture(1,MOVE_PIN_MISSILE);damageStats();CHECK(baseDamage(MOVE_PIN_MISSILE,0,0,0)==50);
  core->busWrite8(core,SYM_gBattleScripting+ABI_SCRIPTING_MULTIPLIER,1);core->busWrite8(core,core->busRead32(core,SYM_gBattleStruct)+ABI_BATTLESTRUCT_DYNAMIC_TYPE,0);core->busWrite16(core,SYM_gCurrentMove,MOVE_PIN_MISSILE);CALL(AI_CalcDmg,0,1);CHECK(core->busRead32(core,SYM_gBattleMoveDamage)==50);
  for(unsigned two=0;two<2;two++){

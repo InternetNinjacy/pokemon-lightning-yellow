@@ -1413,6 +1413,18 @@ imports or unsafe save migrations. Direct Drive synchronization remains pending.
   yet. Branch feature/pin-missile-dragon-rage, details/limits/rollback in
   docs/moves/ORIGINAL_EFFECT_STATUS.md. No PP migration or binary assets.
 
+## 2026-11-06 — BTL-005-M2F Electric paralysis immunity implementation
+
+- Approved global Electric immunity: shared effective-recipient paralysis guard,
+  primary unaffected message and existing bad-move AI type check. No move data,
+  targets, saved fields, abilities, PP maxima or artwork changed.
+- Build and25 hosts/3 checkers PASS. Actual focused/full mGBA, clean repeatability
+  and remote CI pending final snapshot; no merge/completion credit yet.
+- Native fixtures cover primary, guaranteed secondary with retained damage,
+  Static contact, preexisting paralysis and AI score controls. Details and limits
+  in docs/moves/ELECTRIC_PARALYSIS_STATUS.md. No new Thunder Wave spread claim.
+## 2026-11-06 — INT-001-CI early bounded mGBA dependency installation
+
 ## 2026-11-06 — BTL-005-M2E final acceptance / integration
 
 - PR63 merged767bb39c after full29-group754034 guarded mGBA assertions,25 host suites/3 checkers, clean identical rebuild and both exact-head Actions42311654769/42311756718 SUCCESS. Scope/limits remain ORIGINAL_EFFECT_STATUS.md.
@@ -1448,3 +1460,21 @@ Full open-queue triage, explicit unresolved dependencies and effort weighting: `
   built/25-host/clean tested, full native/CI pending. No completion points yet.
 - CI64 latest overall45min envelope preserves20min native limit; exact-head CI
   required. Transient worker authentication recovered without credential changes.
+
+## 2026-11-07 — BTL-005-M2F / INT-001-CI validated combined integration
+
+- PR66 merged as d3a462e5e991f64ac8245b7e11c990c895df61ad. Its ancestry includes
+  PR64/d3d38c7a; GitHub marks64 merged through63b152f5. This uses the owner's
+  permitted validated integration strategy, not a claim that64's separate pending
+  dispatch42314671025 passed. Both combined-head Actions42315238692/42315244202
+  modified and upstream-baseline SUCCESS; actual game/test source equals locally
+  tested f376e342 (full29-group754679 PASS,25hosts/3checkers/clean PASS).
+- Maintenance64's workflow changes are unchanged; combined workflow adds only the
+  original-effect host suite already merged through63. Every guard/assertion,
+  native20min and clean/upstream gate retained. No security/protection changes.
+- Global Electric rule earns1 point within existing80; canonical334/712 (46.91%).
+  CI/shared acceptance not counted twice. Main postmerge Actions still pending.
+- PR67 full755166 PASS incl Clear Body/Protect/stat-floor; remote CI pending.
+  PR69 focused225 initial,25hosts/clean PASS; latest full pending. Draft68 repaired
+  shared hash normalizer,25hosts/clean PASS, both Agatha native focus39058 PASS;
+  full/CI and specific selector approval status remain pending, not merged.

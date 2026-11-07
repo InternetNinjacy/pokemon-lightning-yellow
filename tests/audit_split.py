@@ -38,7 +38,9 @@ class SplitAudits(unittest.TestCase):
         from run_split_tests import extract_function
         fixture = json.loads(source('tests/preserved_paths.json'))
         for path, digest in fixture['files'].items():
-            self.assertEqual(hashlib.sha256(Path(path).read_bytes()).hexdigest(), digest, path)
+            from approved_electric_immunity_changes import prior_electric_immunity_source
+            data = prior_electric_immunity_source(path).encode() if path == 'data/battle_scripts_1.s' else Path(path).read_bytes()
+            self.assertEqual(hashlib.sha256(data).hexdigest(), digest, path)
         commands = source('src/battle_script_commands.c')
         for name, digest in fixture['functions'].items():
             self.assertEqual(hashlib.sha256(extract_function(commands, name).encode()).hexdigest(), digest, name)
