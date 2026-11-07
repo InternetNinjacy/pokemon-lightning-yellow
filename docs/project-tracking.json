@@ -3,8 +3,8 @@
   "updated": "2026-11-07",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "Fire80/a4681848 final28hosts/517focus/clean and both full CI PASS, ready for source-identical documentation integration. Preserve81 BTL006 closure and INT005 QA,399/313 of712 provisional. No unmerged Fire credit; Ghost82 current-parent validation separate.",
-  "main_sha": "cd9650c5780e480d1ae834cac504e0d00e2ddebe",
+  "current_focus": "Fire80/a4681848 final28hosts/517focus/clean and both full CI PASS, ready for source-identical documentation integration. Preserve81 BTL006 closure and INT005 QA,413/299 of712 provisional. No unmerged Fire credit; Ghost82 current-parent validation separate. WRL-001/PR88 starter and parcel gift feature merged, feature closed; organic event traversal remains INT-005.",
+  "main_sha": "1cc82d53c7ef3c6c0b3d9798b4eacacebdc4f6b1",
   "drive_sync": {
     "status": "GYM-009 completion synced to Project Progress and Elite Four Register on 2026-11-07; other Drive synchronization not audited",
     "folder": "https://drive.google.com/drive/folders/1N_n0Ke48jBbdhUWSZWzwR6rpPFqpDUpl"
@@ -1417,8 +1417,8 @@
       "title": "Pikachu starter and story",
       "aliases": [],
       "effort": {
-        "earned": 0,
-        "remaining": 12,
+        "earned": 12,
+        "remaining": 0,
         "unit": "provisional relative planning point",
         "confidence": "low",
         "history": [
@@ -1427,26 +1427,32 @@
             "earned": 0,
             "remaining": 12,
             "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          },
+          {
+            "date": "2026-11-07",
+            "earned": 12,
+            "remaining": 0,
+            "reason": "Owner-directed WRL-001 closure: starter/Pikachu and Oak parcel Eevee code merged via PR88; all host/source audits, two deterministic clean modified builds, complete existing mGBA integration suite, and unchanged-upstream baseline checks PASS in both final CI runs. Natural New Game-to-parcel traversal and full-storage/save-load edge cases remain INT-005 release QA; no full-story or hardware certification claimed."
           }
         ]
       },
       "dependencies": [],
       "status": {
-        "design": "Pikachu starter approved; Oak parcel-return Eevee location approved",
-        "implementation": "not started",
-        "automated": "not executed for new work",
-        "emulator": "not executed",
-        "pull_request": "not created",
-        "merge": "not merged"
+        "design": "approved: exclusive Pikachu Lv5 SOCKET starter, one-time Oak parcel Eevee Lv5 SUE with native Run Away, normal traits/no held item, existing five Nest Balls preserved",
+        "implementation": "complete and merged to main: Oak lab starter/rival narrative/parcel gift, dedicated save flags 0x31C/0x31D, independent retry and no duplication; PR88",
+        "automated": "source-contract and all inherited host/data/audit checks PASS; clean modified ROM rebuilt twice with matching checksum; Rocket flag and original gift protections PASS",
+        "emulator": "existing full headless mGBA real-ROM integration suite PASS (final PR88 head); organic uninterrupted New Game→Oak parcel, full-party/full-PC and save/Continue paths not individually demonstrated",
+        "pull_request": "PR#88 merged; branch retained for history",
+        "merge": "merged to main at 1cc82d53c7ef3c6c0b3d9798b4eacacebdc4f6b1; feature-level owner closeout 2026-11-07; release-wide QA separate"
       },
-      "branch": null,
-      "commit": null,
-      "pr_url": null,
-      "ci_url": null,
+      "branch": "feature/wrl-001-pikachu-opening",
+      "commit": "1cc82d53c7ef3c6c0b3d9798b4eacacebdc4f6b1",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/88",
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/42391263876",
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Reconcile Pikachu starter/rival/story code and approved one-time Oak Eevee gift against existing five-Nest reward. Eevee exact level/traits are not inferred; separate early stone placements remain pending.",
-      "checkpoint": "2026-11-04 supplied-export reconciliation; old unavailable-document claims superseded; no implementation/test credit from availability.",
+      "next_action": "CLOSED for WRL-001 implementation. Keep native feature source checks; natural intro-to-parcel progression, full PC/Bag retry, save/reload/duplicate and subjective presentation in shared INT-005 release QA. Early Eevee evolution stone placement remains separate WRL-003.",
+      "checkpoint": "2026-11-07: PR88 code merged 1cc82d53c7ef3c6c0b3d9798b4eacacebdc4f6b1; Actions42391263876 and42391258878 both complete SUCCESS on final head a24cb8cffbebf6004b1da80f87ee49a8cdb6adbf. Source/host/full existing native mGBA accepted; organic event path not specifically exercised.",
       "source_exports": [
         "00_GOVERNANCE/Pokemon Lightning Yellow — Master Plan & Project Rules.txt",
         "04_SPECIES_EVOLUTION_WORLD/Pokémon Lightning Yellow — Eevee Family Design.txt",
