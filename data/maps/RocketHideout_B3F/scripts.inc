@@ -3,8 +3,8 @@ RocketHideout_B3F_MapScripts::
 	.byte 0
 
 RocketHideout_B3F_OnLoad::
-	setflag FLAG_HIDE_ROCKET_RALTS_BALL
-	setflag FLAG_HIDE_ROCKET_SNORUNT_BALL
+	setflag FLAG_0x31A
+	setflag FLAG_0x31B
 	removeobject LOCALID_ROCKET_RALTS_BALL
 	removeobject LOCALID_ROCKET_SNORUNT_BALL
 	call_if_defeated TRAINER_TEAM_ROCKET_GRUNT_14, RocketHideout_B3F_ShowRaltsIfUncollected
@@ -12,15 +12,15 @@ RocketHideout_B3F_OnLoad::
 	end
 
 RocketHideout_B3F_ShowRaltsIfUncollected::
-	goto_if_set FLAG_ROCKET_RALTS_COLLECTED, RocketHideout_B3F_NoRalts
-	clearflag FLAG_HIDE_ROCKET_RALTS_BALL
+	goto_if_set FLAG_0x316, RocketHideout_B3F_NoRalts
+	clearflag FLAG_0x31A
 	addobject LOCALID_ROCKET_RALTS_BALL
 RocketHideout_B3F_NoRalts::
 	return
 
 RocketHideout_B3F_ShowSnoruntIfUncollected::
-	goto_if_set FLAG_ROCKET_SNORUNT_COLLECTED, RocketHideout_B3F_NoSnorunt
-	clearflag FLAG_HIDE_ROCKET_SNORUNT_BALL
+	goto_if_set FLAG_0x317, RocketHideout_B3F_NoSnorunt
+	clearflag FLAG_0x31B
 	addobject LOCALID_ROCKET_SNORUNT_BALL
 RocketHideout_B3F_NoSnorunt::
 	return
@@ -61,14 +61,14 @@ RocketHideout_B3F_TryRescue::
 	specialvar VAR_RESULT, RocketRescueGive
 	goto_if_eq VAR_RESULT, 2, RocketHideout_B3F_RescueFull
 	goto_if_eq VAR_0x8009, 0, RocketHideout_B3F_RemoveRaltsBall
-	setflag FLAG_HIDE_ROCKET_SNORUNT_BALL
+	setflag FLAG_0x31B
 	removeobject LOCALID_ROCKET_SNORUNT_BALL
 	msgbox RocketHideout_B3F_Text_SnoruntSaved
 	release
 	end
 
 RocketHideout_B3F_RemoveRaltsBall::
-	setflag FLAG_HIDE_ROCKET_RALTS_BALL
+	setflag FLAG_0x31A
 	removeobject LOCALID_ROCKET_RALTS_BALL
 	msgbox RocketHideout_B3F_Text_RaltsSaved
 	release
