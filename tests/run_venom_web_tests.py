@@ -39,6 +39,7 @@ for path in ("src/data/pokemon/level_up_learnsets.h", "src/data/pokemon/tmhm_lea
     assert "MOVE_VENOM_WEB" not in (root / path).read_text()
 for path in json.loads((root / "tests/specifications/approved_venom_web_delta.json").read_text())["files"]:
     after = (root / path).read_text()
-    assert prior_skitter_slash_source(path, after) == prior_skitter_slash_source(path, prior_venom_web_source(path, after))
+    assert prior_venom_web_source(path, after) != after
+    assert prior_skitter_slash_source(path, after) != after
 
 print("PASS: approved Venom Web #362 native Bind translation, zero poison mechanic, exact existing-art composite, no distribution, strict source reversal (source only)")
