@@ -8389,7 +8389,7 @@
                 "max_level": 4,
                 "species": "SPECIES_PICHU"
               }
-                        ]
+            ]
           }
         },
         {
@@ -20931,7 +20931,7 @@
                 "max_level": 4,
                 "species": "SPECIES_PICHU"
               }
-                        ],
+            ],
             "encounter_rate": 21
           }
         },
