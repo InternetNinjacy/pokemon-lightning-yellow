@@ -11,6 +11,9 @@ import shutil
 
 # Generate ABI constants with the game's ARM compiler, never host offsetof.
 expressions = {
+ 'BRES_AI':'offsetof(struct BattleResources,ai)',
+ 'AI_SCORE':'offsetof(struct AI_ThinkingStruct,score)',
+ 'AI_FLAGS':'offsetof(struct AI_ThinkingStruct,aiFlags)',
  'BMON_MAX_HP':'offsetof(struct BattlePokemon,maxHP)',
  'BOX_SECURE':'offsetof(struct BoxPokemon,secure)',
  'SAVE1_PARTY':'offsetof(struct SaveBlock1,playerParty)',
@@ -280,6 +283,7 @@ required = [
     'gCurrentMove', 'gCritMultiplier', 'gDynamicBasePower', 'gBattlerAttacker', 'gBattlerTarget',
     'ShowPokemonSummaryScreen', 'sMonSummaryScreen', 'sMoveSelectionCursorPos', 'gSideStatuses', 'gBattleStruct', 'gBattleScripting', 'gBattleMoveDamage', 'gDisplayedStringBattle',
 ]
+required += ['BattleAI_SetupAIData','BattleAI_ChooseMoveOrAction']
 required += ['Cmd_weatherdamage','Cmd_accuracycheck','gStatuses3','gHitMarker','gMoveResultFlags']
 required += ['ViridianCity_EventScript_TrainerTips1','ViridianCity_EventScript_TrainerTips2','ViridianCity_Text_CatchMonsForEasierBattles','ViridianCity_Text_MovesLimitedByPP']
 
