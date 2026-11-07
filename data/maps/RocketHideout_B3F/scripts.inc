@@ -1,12 +1,80 @@
 RocketHideout_B3F_MapScripts::
+	map_script MAP_SCRIPT_ON_LOAD, RocketHideout_B3F_OnLoad
 	.byte 0
 
+RocketHideout_B3F_OnLoad::
+	setflag FLAG_HIDE_ROCKET_RALTS_BALL
+	setflag FLAG_HIDE_ROCKET_SNORUNT_BALL
+	removeobject LOCALID_ROCKET_RALTS_BALL
+	removeobject LOCALID_ROCKET_SNORUNT_BALL
+	call_if_defeated TRAINER_TEAM_ROCKET_GRUNT_14, RocketHideout_B3F_ShowRaltsIfUncollected
+	call_if_defeated TRAINER_TEAM_ROCKET_GRUNT_15, RocketHideout_B3F_ShowSnoruntIfUncollected
+	end
+
+RocketHideout_B3F_ShowRaltsIfUncollected::
+	goto_if_set FLAG_ROCKET_RALTS_COLLECTED, RocketHideout_B3F_NoRalts
+	clearflag FLAG_HIDE_ROCKET_RALTS_BALL
+	addobject LOCALID_ROCKET_RALTS_BALL
+RocketHideout_B3F_NoRalts::
+	return
+
+RocketHideout_B3F_ShowSnoruntIfUncollected::
+	goto_if_set FLAG_ROCKET_SNORUNT_COLLECTED, RocketHideout_B3F_NoSnorunt
+	clearflag FLAG_HIDE_ROCKET_SNORUNT_BALL
+	addobject LOCALID_ROCKET_SNORUNT_BALL
+RocketHideout_B3F_NoSnorunt::
+	return
+
 RocketHideout_B3F_EventScript_Grunt1::
-	trainerbattle_single TRAINER_TEAM_ROCKET_GRUNT_14, RocketHideout_B3F_Text_Grunt1Intro, RocketHideout_B3F_Text_Grunt1Defeat
+	trainerbattle_single TRAINER_TEAM_ROCKET_GRUNT_14, RocketHideout_B3F_Text_Grunt1Intro, RocketHideout_B3F_Text_Grunt1Defeat, RocketHideout_B3F_DefeatedGrunt1
 	msgbox RocketHideout_B3F_Text_Grunt1PostBattle, MSGBOX_AUTOCLOSE
 	end
 
+RocketHideout_B3F_DefeatedGrunt1::
+	msgbox RocketHideout_B3F_Text_Grunt1PostBattle
+	call RocketHideout_B3F_ShowRaltsIfUncollected
+	release
+	end
+
 RocketHideout_B3F_EventScript_Grunt2::
-	trainerbattle_single TRAINER_TEAM_ROCKET_GRUNT_15, RocketHideout_B3F_Text_Grunt2Intro, RocketHideout_B3F_Text_Grunt2Defeat
+	trainerbattle_single TRAINER_TEAM_ROCKET_GRUNT_15, RocketHideout_B3F_Text_Grunt2Intro, RocketHideout_B3F_Text_Grunt2Defeat, RocketHideout_B3F_DefeatedGrunt2
 	msgbox RocketHideout_B3F_Text_Grunt2PostBattle, MSGBOX_AUTOCLOSE
+	end
+
+RocketHideout_B3F_DefeatedGrunt2::
+	msgbox RocketHideout_B3F_Text_Grunt2PostBattle
+	call RocketHideout_B3F_ShowSnoruntIfUncollected
+	release
+	end
+
+RocketHideout_B3F_EventScript_RescueRalts::
+	lock
+	setvar VAR_0x8009, 0
+	goto RocketHideout_B3F_TryRescue
+
+RocketHideout_B3F_EventScript_RescueSnorunt::
+	lock
+	setvar VAR_0x8009, 1
+	goto RocketHideout_B3F_TryRescue
+
+RocketHideout_B3F_TryRescue::
+	specialvar VAR_RESULT, RocketRescueGive
+	goto_if_eq VAR_RESULT, 2, RocketHideout_B3F_RescueFull
+	goto_if_eq VAR_0x8009, 0, RocketHideout_B3F_RemoveRaltsBall
+	setflag FLAG_HIDE_ROCKET_SNORUNT_BALL
+	removeobject LOCALID_ROCKET_SNORUNT_BALL
+	msgbox RocketHideout_B3F_Text_SnoruntSaved
+	release
+	end
+
+RocketHideout_B3F_RemoveRaltsBall::
+	setflag FLAG_HIDE_ROCKET_RALTS_BALL
+	removeobject LOCALID_ROCKET_RALTS_BALL
+	msgbox RocketHideout_B3F_Text_RaltsSaved
+	release
+	end
+
+RocketHideout_B3F_RescueFull::
+	msgbox RocketHideout_B3F_Text_NoStorage
+	release
 	end
