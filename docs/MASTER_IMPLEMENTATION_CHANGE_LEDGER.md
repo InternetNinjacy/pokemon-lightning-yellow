@@ -1431,3 +1431,16 @@ imports or unsafe save migrations. Direct Drive synchronization remains pending.
   full/clean/CI pending; no merge/effort credit. See GHOST_REWORK_STATUS.md limits.
 - Native PP test isolated the sleeping opponent after detecting an incorrect
   zero-PP turn-spending assumption; no production fix or weakened baseline.
+
+## 2026-11-07 — GYM-009 draft68 validation repair (not acceptance)
+
+- Existing draft68 proposed both Agatha parties and the scoped native ability
+  setter. Did not duplicate gameplay. Its Actions42315909041 failed historical
+  battle_main preservation before compilation; exact constructor reverse manifest
+  now participates in every old audit, preserving all original digests.
+- Added native stored ability1/even PID controls, actual battle-loaded Inner Focus
+  observation, Dark-aware legal controlled-player attacks and Agatha-only focus.
+  Opponents, AI, production selector and parties unchanged from draft.
+- Build/25 hosts/3 checkers PASS; latest focused/full/clean/CI pending. Draft/design
+  status retained; do not equate existing native API availability with an answered
+  owner selector question. CI64 dependency integrated, no test gates removed.
