@@ -48,10 +48,10 @@ The title logo, mascot, background, prompt/copyright, and moving sprite effects 
 
 - **Static source:** confirmed loaders, file paths, bpp, palettes, tilemap resource sizes, and separate title/start-menu systems.
 - **Source edit:** Pikachu cry and four replacement asset references committed. Two new indexed PNGs and matching palette text files committed; original compatible tilemaps retained.\n- **Static asset checking:** local PNG dimensions/palette index range verified; added a reproducible repository static test, but the repository test runner has not been executed against a complete checkout.
-- **Build:** **not run**. This session's local container could not resolve GitHub to clone the source or provision the dependency/build environment.
-- **Emulator:** **not run**.
+- **Build:** GitHub Actions modified-game build and clean-repeatability stage **PASSED** in workflow run 42349658763; compilation ran in CI rather than locally. Local container cannot resolve GitHub for checkout.
+- **Emulator:** native mGBA regression step in workflow run 42349658763 **in progress at last check**; title-specific visual inspection remains unverified.
 - **Visual verification:** **offline mockup only**; in-ROM appearance not verified.
-- **CI:** not claimed.
+- **CI:** host-side regression and new title asset checks PASSED; modified clean reproducibility PASSED; independent upstream baseline PASSED. Current run: https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/42349658763
 - **External proprietary assets:** none newly imported.
 - **Project tracking:** intentionally not rewritten, to avoid colliding with parallel Master Control updates.
 
