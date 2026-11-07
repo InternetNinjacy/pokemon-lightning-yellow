@@ -376,7 +376,11 @@
 
 #define MOVE_SWARM_CLOUD 366
 
-#define MOVES_COUNT 367
+#define MOVE_BELLOW 367
+#define MOVE_POWER_GEM 368
+#define MOVE_STONE_EDGE 369
+
+#define MOVES_COUNT 370
 
 // Used for checks for moves affected by Disable, Mimic, etc.
 #define MOVE_UNAVAILABLE 0xFFFF
