@@ -10,17 +10,17 @@ static void eliteFourDataTests(void){
    for(unsigned k=0;k<4;k++){CHECK(monget(enemy(i),ABI_DATA_MOVE1+k)==m->moves[k]);CHECK(monget(enemy(i),ABI_DATA_PP1+k)==core->busRead8(core,SYM_gBattleMoves+ABI_BMOVE_SIZE*m->moves[k]+ABI_BMOVE_PP));}
   }
  }
- printf("PASS: native six Elite Four party constructors, exact32 members/order/level/items/abilities including Rock Head/Immunity, all IVs250/255 policy and128 move slots/PP\n");
+ printf("PASS: native eight Elite Four party constructors, exact42 members/order/level/items/abilities including Agatha Inner Focus, all IVs250/255 policy and168 move slots/PP\n");
  CHECK(core->loadState(core,bootState));
 }
 static void eliteFourBattleTests(void){
- for(unsigned e=getenv("LIGHTNING_ELITE_LANCE_ONLY")?4:0;e<sizeof(eliteIds)/sizeof(*eliteIds);e++){
+ for(unsigned e=getenv("LIGHTNING_ELITE_LANCE_ONLY")?6:0;e<sizeof(eliteIds)/sizeof(*eliteIds);e++){
   daycareFixture(1);CALL(ZeroPlayerPartyMons);CALL(CreateMon,player(0),SPECIES_MEWTWO,100,31,1,0,0,0);core->busWrite8(core,SYM_gPlayerPartyCount,1);monput(player(0),ABI_DATA_MAX_HP,2000);monput(player(0),ABI_DATA_HP,2000);
   const unsigned moves[]={MOVE_PSYCHIC,MOVE_SURF,MOVE_ICE_BEAM,MOVE_THUNDERBOLT};
   for(unsigned k=0;k<4;k++){CALL(SetMonMoveSlot,player(0),moves[k],k);monput(player(0),ABI_DATA_PP1+k,99);}
   core->busWrite8(core,careSave1()+ABI_SAVE1_RIVAL_NAME,0xCC);core->busWrite8(core,careSave1()+ABI_SAVE1_RIVAL_NAME+1,0xFF);
   unsigned rematch=e&1;if(rematch){CALL(FlagSet,FLAG_SYS_CAN_LINK_WITH_RS);CALL(FlagSet,FLAG_SYS_GAME_CLEAR);}
-  unsigned stage=e<2?1:e<4?2:4;CALL(VarSet,VAR_MAP_SCENE_POKEMON_LEAGUE,stage);
+  unsigned stage=e<2?1:e<4?2:e<6?3:4;CALL(VarSet,VAR_MAP_SCENE_POKEMON_LEAGUE,stage);
   // All League rooms share map group1; derive group/number from packed map constant.
   fossilWarp(eliteMaps[e]>>8,eliteMaps[e]&255,4,6);
   core->busWrite8(core,SYM_gSelectedObjectEvent,CALL(GetObjectEventIdByLocalIdAndMap,1,eliteMaps[e]&255,eliteMaps[e]>>8));
