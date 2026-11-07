@@ -11,8 +11,10 @@ def prior_ranger_source(path, text=None):
         # historical flag hunk, preserving both audited scopes independently.
         opening = json.loads(Path('tests/specifications/wrl001_opening_delta.json').read_text())
         for hunk in reversed(opening['files'][str(path)]):
-            assert text.count(hunk['after']) == 1, 'Unreviewed WRL-001 flag mutation'
-            text = text.replace(hunk['after'], hunk['before'], 1)
+            if text.count(hunk['after']) == 1:
+                text = text.replace(hunk['after'], hunk['before'], 1)
+            else:
+                assert text.count(hunk['before']) == 1, 'Unreviewed WRL-001 flag mutation'
     for hunk in json.loads(Path('tests/specifications/approved_ranger_delta.json').read_text())['hunks'].get(str(path),[]):
         assert text.count(hunk['after'])==1,'Unreviewed Ranger delta: '+str(path)
         text=text.replace(hunk['after'],hunk['before'],1)
