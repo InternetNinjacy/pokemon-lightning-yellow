@@ -335,6 +335,7 @@ static void dexTests(void) {
 #include "daycare.c"
 #include "fossils.c"
 #include "mystery_vendor.c"
+#include "rocket_hideout.c"
 #include "mystery_vendor_ui.c"
 #include "capture_rules.c"
 #include "museum.c"
@@ -361,7 +362,6 @@ static void dexTests(void) {
 #include "elite_four.c"
 #include "ordinary_trainers.c"
 
-// Title-screen framebuffer evidence from an actual mGBA execution, not a mockup.
 static void captureTitleFrame(const char *prefix,const char *name) {
     char path[512];
     const void *video;
@@ -564,6 +564,7 @@ int main(int argc,char **argv) {
     daycareTests();
     fossilTests();
     vendorTests();
+    rocketHideoutNativeTests();
     vendorUiTests();
     captureTests();
     museumTests();

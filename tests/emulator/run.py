@@ -241,7 +241,7 @@ required = [
     'IsMonDisobedient', 'Cmd_getexp', 'BufferStringBattle', 'gBattleControllerExecFlags',
     'gBattlerPartyIndexes', 'gBattleTextBuff2', 'gCurrMovePos',
     'ZeroBoxMonAt',
-    'BoxMonToMon', 'GetBoxedMonPtr', 'PurchaseMysteryPokemon', 'MysteryVendorStatus', 'MysteryRandomBelow', 'gSpecialVar_0x8009',
+    'BoxMonToMon', 'GetBoxedMonPtr', 'PurchaseMysteryPokemon', 'MysteryVendorStatus', 'MysteryRandomBelow', 'RocketRescueStatus', 'RocketRescueGive', 'RocketRescueReturn', 'gSpecialVar_0x8009',
     'IsTradedMon', 'FlagClear', 'ResetPokemonStorageSystem', 'GetAndCopyBoxMonDataAt',
     'gSpecialVar_MonBoxId', 'gSpecialVar_MonBoxPos',
     'IsSpeciesInCustomPokedex', 'WaitForAorBPress', 'sTextPrinters', 'gSpecialVar_0x8006', 'FlagGet', 'VarGet', 'FuncIsActiveTask', 'CheckBagHasSpace', 'ItemId_GetPocket',
