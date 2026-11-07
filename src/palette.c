@@ -105,7 +105,9 @@ void FillPalette(u16 value, u16 offset, u16 size)
 // All originals, including weather gamma/fades, remain in engine buffers.
 extern u8 LightingPreviewGetAppearance(void);
 extern bool8 LightingPreviewIsActive(void);
-static EWRAM_DATA u16 sLightingPreviewPalette[PLTT_BUFFER_SIZE] = {0};
+// Keep the full preview copy in IWRAM: EWRAM is almost saturated and the
+// native harness reserves its final range for a guarded execution stack.
+static IWRAM_DATA u16 sLightingPreviewPalette[PLTT_BUFFER_SIZE] = {0};
 
 // Index: 0=Day, 1=Dawn, 2=Dusk, 3=Night, 4=Covered Day,
 // 5=Covered Night. See docs/LIGHTING_PREVIEW_CANDIDATES.md.
