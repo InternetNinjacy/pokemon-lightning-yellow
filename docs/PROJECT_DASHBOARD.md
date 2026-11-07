@@ -6,6 +6,8 @@ Overall: `[######----]` **56.32% complete /43.68% remaining** (401 earned +311 r
 
 Fire80/a4681848 final28hosts/517focus/clean and both full CI PASS, ready for source-identical documentation integration. Preserve81 BTL006 closure and INT005 QA; GYM006/007 acceptance closed,401/311 of712 provisional. No unmerged Fire credit; Ghost82 current-parent validation separate.
 
+2026-11-07 unweighted title-screen closeout: PR #76 merged `5528566f5fc1503ae5cc267a1f529ef3e3eeeb4d`; Lightning Yellow logo, Pikachu mascot/cry and owner-approved real mGBA screenshot accepted. No standalone task ID or points exist in the 712-point scope. This presentation completion receives zero new point allocation, does NOT close WRL-001 starter/story, and does not assume pending broad CI success. Feature-specific testing is the default; broader CI is reserved for justified integration risk.
+
 These are estimates of tracked work, not elapsed hours or release certification. Every permanent ID and earned-history entry is retained. Approved Ponyta and Ranger work expanded the scope; the denominator is the sum of the current task effort estimates. Adding scope changes it without erasing completed work. Repeated regression is not duplicate implementation credit.
 
 [Machine-readable task records](project-tracking.json) · [Append-only change ledger](MASTER_IMPLEMENTATION_CHANGE_LEDGER.md) · [Supplied specification reconciliation](SPECIFICATION_RECONCILIATION_2026-11-04.md)
