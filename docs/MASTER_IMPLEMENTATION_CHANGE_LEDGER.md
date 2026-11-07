@@ -1363,6 +1363,40 @@ imports or unsafe save migrations. Direct Drive synchronization remains pending.
   before full acceptance. Technical scope/evidence/limits/rollback in
   docs/WEATHER_MOVE_COMPLETION.md; no saved-schema migration or binary artifacts.
 
+## 2026-11-06 — INT-001-CI early bounded mGBA dependency installation
+
+- PR62 run42233960801 cancelled at30m18; modified step9 installing libmgba-dev
+  spent24m35 and native step was skipped. This is NOT an emulator assertion failure.
+  Upstream baseline passed; exact network/lock cause not exposed by step metadata.
+- Move dependency into initial modified-only package set, bounded APT transport/
+  retry/lock waits; later mGBA step verifies installed package only. All native/
+  host/build/repro/upstream gates, API guards and job/native timeouts retained.
+- No production/security setting change. docs/CI_DEPENDENCY_STALL.md records
+  exact evidence/limitations/rollback. Actual maintenance CI pending before merge.
+
+## 2026-11-06 — Effective autonomous integration / current versions
+
+-59→708f197a0b3889bc96c1272c6d52f4eb837c727b;60→66117462336bff24fe7ea3115f91db6851e27980;
+ 61→15dacb95424ffd394113849d10c3aa2f78c343ba. Exact-head CI SUCCESS respectively
+ 42220799681/42221063828/42222085136; both modified/upstream jobs passed before
+ direct merges, no admin bypass/security change/auto-merge. Main content tree
+ d6af90108bce62c464aca34297a026378a307419 equals validated61 head22314c35.
+- Combined local24 hosts/3 checkers and full28-group753726 native PASS; clean
+ bba80adbe5de31b285e704f202cdda61e8aa4f4ca2256c1d8762082c73984b77. Individual
+ focus: gifts latest80123/Museum1306, E4 integrated133086, weather5389.
+- Current effective gifts: Aron50%/Magby50%/TANGO, not old Feebas/Togepi/Eevee.
+ Current E4: six exact battles, Agatha two NOT implemented. Current move milestone:
+13 original policies on main; M2E63 two originals tested314 and cleanf8d6d10d...
+ but full/CI pending, no credit;56 new moves/global Electric paralysis still due.
+- Effort: BTL-00521/59 (+2 for weather within80),GYM-00912/4 (six exact battles,
+ two held),WRL-0113/7 (three gifts, Rocket quests remain). No sign/CI/shared-weather
+ duplicate credit or scope reset. Source exports available; follower54 verified
+ audit/permission hold restored to live tracker, not reset to an unstarted audit.
+-62 workflow guide inspected: no authority/gate change. Replace its unverified
+ handoff template with factual <=100-line resume state, refs/commands/limits.
+ Includes CI64 dependency until that verified maintenance PR merges. Main-source
+ docs provenance/diff proof separate from pending new workflow run; no fresh game
+ implementation or source unavailability claim.
 ## 2026-11-06 — BTL-005-M2E Pin Missile and Dragon Rage
 
 - Approved register664/749: Pin Missile2–5×14→one55 hit/30% poison (85acc/20PP
@@ -1402,15 +1436,11 @@ imports or unsafe save migrations. Direct Drive synchronization remains pending.
 - Stacked on isolated Electric immunity66; no new save schema or PP refill.
 ## 2026-11-06 — INT-001-CI early bounded mGBA dependency installation
 
-- PR62 run42233960801 cancelled at30m18; modified step9 installing libmgba-dev
-  spent24m35 and native step was skipped. This is NOT an emulator assertion failure.
-  Upstream baseline passed; exact network/lock cause not exposed by step metadata.
-- Move dependency into initial modified-only package set, bounded APT transport/
-  retry/lock waits; later mGBA step verifies installed package only. All native/
-  host/build/repro/upstream gates, API guards and job/native timeouts retained.
-- No production/security setting change. docs/CI_DEPENDENCY_STALL.md records
-  exact evidence/limitations/rollback. Actual maintenance CI pending before merge.
+## 2026-11-06 — BTL-005-M2E final acceptance / integration
 
+- PR63 merged767bb39c after full29-group754034 guarded mGBA assertions,25 host suites/3 checkers, clean identical rebuild and both exact-head Actions42311654769/42311756718 SUCCESS. Scope/limits remain ORIGINAL_EFFECT_STATUS.md.
+- Two points earned within existing80 move effort; total333/712 (46.77%) provisional. No56-new-move credit.
+- Transient worker GitHub401 recovered without credential changes; repository permissions/protections unchanged. CI64 and tracking62 still pending, not merged based on pending checks.
 ## 2026-11-06 — INT-001-CI measured slow package transfer
 
 - Live job128215173523 proves APT62.7MB/19min7s/54.7kB/s, then build start.
@@ -1419,6 +1449,51 @@ imports or unsafe save migrations. Direct Drive synchronization remains pending.
   upstream comparison unchanged. No gameplay/security/protection changes.
 - Exact-head CI pending; not represented as accepted/merged.
 
+## 2026-11-06 — Postmerge queue reconciliation after PRs 59, 60 and 61
+
+- PR #59 (merge 708f197a): Museum Aron Egg and Water Labyrinth Magby Egg, each 50% actual Shiny, plus Tangela Lv25 fixed TANGO. PR head b099cdff GitHub Actions run 42220799681 SUCCESS. Only gift portion of WRL-011 implemented; Rocket rescue/return quest is not included.
+- PR #60 (merge 66117462): six initial/rematch League battles for Lorelei, Bruno and Lance, 32 Pokémon/128 moves, scripted native battle coverage. PR head f30b91cd GitHub Actions 42221063828 SUCCESS. BOTH Agatha battles remain untouched pending narrow native ability-slot-1 Inner Focus selector. Six of eight battle contracts are not eight of eight.
+- PR #61 (merge 15dacb95): Ground Sandstorm immunity and Rain Zap Cannon accuracy. PR head 22314c35 GitHub Actions 42222085136 SUCCESS. No general species-wide abilities, route static encounter scripts, lighting visual approval, or full campaign acceptance.
+
+### Provisional fixed-scope planning credits (low-confidence effort allocation)
+Retain total712 points and all preexisting earned work. Allocate *incremental* credit only: WRL-011 +6/-6 (three gifts; Rocket quest left); GYM-009 +12/-12 (six of eight battle contracts; Agatha blocked); WTH-003 +2/-2 (Sandstorm weather coupling); BTL-005 +1/-1 (Zap Cannon special accuracy policy). This gives 335 earned /377 remaining =47.05%, versus earlier314/398=44.10%. These are deliberately provisional effort weights, not measured hours, objective feature percentage, complete QA or release readiness. If a specialist revises relative weights, update both earned and remaining together with history, do not double count scope.
+
+Full open-queue triage, explicit unresolved dependencies and effort weighting: `docs/IMPLEMENTATION_QUEUE_RECONCILIATION_2026-11-06.md`. This is a reviewable documentation update; no additional ROM or emulator suite was run by this tracking-only change.
+
+## 2026-11-06 — INT-001 parallel tracker reconciliation
+
+- Preserved PR65 source/PR/issue snapshot and append-only historical entry in PR62.
+  Its335-point allocation was an alternative provisional estimate, not extra work.
+  Retain canonical per-task histories/333 of712 (46.77%) after merged63: gifts3,
+  six E4 battles12, weather2, Pin/Dragon2 incremental points. Do not add the same
+  weather/gift scope twice or reset follower audit progress.
+- New isolated PR66 Electric paralysis and stacked67 three spread statuses are
+  built/25-host/clean tested, full native/CI pending. No completion points yet.
+- CI64 latest overall45min envelope preserves20min native limit; exact-head CI
+  required. Transient worker authentication recovered without credential changes.
+
+## 2026-11-07 — BTL-005-M2F / INT-001-CI validated combined integration
+
+- PR66 merged as d3a462e5e991f64ac8245b7e11c990c895df61ad. Its ancestry includes
+  PR64/d3d38c7a; GitHub marks64 merged through63b152f5. This uses the owner's
+  permitted validated integration strategy, not a claim that64's separate pending
+  dispatch42314671025 passed. Both combined-head Actions42315238692/42315244202
+  modified and upstream-baseline SUCCESS; actual game/test source equals locally
+  tested f376e342 (full29-group754679 PASS,25hosts/3checkers/clean PASS).
+- Maintenance64's workflow changes are unchanged; combined workflow adds only the
+  original-effect host suite already merged through63. Every guard/assertion,
+  native20min and clean/upstream gate retained. No security/protection changes.
+- Global Electric rule earns1 point within existing80; canonical334/712 (46.91%).
+  CI/shared acceptance not counted twice. Main postmerge Actions still pending.
+- PR67 full755166 PASS incl Clear Body/Protect/stat-floor; remote CI pending.
+  PR69 focused225 initial,25hosts/clean PASS; latest full pending. Draft68 repaired
+  shared hash normalizer,25hosts/clean PASS, both Agatha native focus39058 PASS;
+  full/CI and specific selector approval status remain pending, not merged.
+
+## 2026-11-07 — BTL-005-M2G final acceptance / integration
+
+- PR67 merged4526a137573c722d1f685ac42a8057fc9b36497a after full755166/25hosts/3checkers/clean and both Actions42315257252/42315264496 SUCCESS. Main tree equals tested144917d5. Two points within80; canonical336/712 (47.19%). New56 moves not counted. Main postmerge CI pending.
+- PR69 latest full and draft68 latest full remain active at this snapshot; no pass inferred from intermediate logs. Updated durable handoff with exact refs/commands/holds.
 ## 2026-11-07 — BTL-005-M2H Spite / Grudge implementation
 
 - Final approved register574/582: Special30 damaging Spite plus optional original
@@ -1432,6 +1507,19 @@ imports or unsafe save migrations. Direct Drive synchronization remains pending.
 - Native PP test isolated the sleeping opponent after detecting an incorrect
   zero-PP turn-spending assumption; no production fix or weakened baseline.
 
+## 2026-11-07 — BTL-005-M2I Thunder Wave implementation / focused acceptance
+
+- Approved all other active recipients incl ally, no self, using existing target
+  enum/script/art. Private4-byte runtime context occupies old BattleStruct padding;
+  target ABI512 bytes/0x1E4 preserved. Original actor restored across reflection,
+  native cancellation tracker retained once, scoped Lightning Rod exclusion and
+  noPP cancellation prevent redirect/free follow-up targets.
+- Build/25hosts/3checkers and focused565 native assertions PASS. All4 actor roles,
+  independent guards/evasion, Magic Coat, native Pressure/lastPP, Sleep Talk and
+  actual faster Spite exhaustion tested. No new IDs/learners/save/link fields.
+- Magic Coat trace completed2423 frames (move1720/remainder703). New bounded move
+  phase plus unchanged generic remainder guard; no old assertion/game timing/ARM
+  guard disabled. Full/clean/CI pending; no effort/merge credit yet.
 ## 2026-11-07 — GYM-009 draft68 validation repair (not acceptance)
 
 - Existing draft68 proposed both Agatha parties and the scoped native ability
@@ -1448,3 +1536,77 @@ imports or unsafe save migrations. Direct Drive synchronization remains pending.
 
 ## 2026-11-07 — GYM-009 dashboard point reconciliation
 PR #68 merged to main at f3a113a44d89acacc0b584f61c4dead868ef2607; exact-head Actions 42321156769 passed host, clean build, baseline, all eight native Elite Four encounters, 42 Pokémon/168 moves, 793818 mGBA assertions. GYM-009 previously 0 earned/16 remaining now 16 earned/0 remaining, with historical effort entry retained. Overall 314/398 -> 330/382 of unchanged 712 planning points: 44.10% -> 46.35%. GYM area 32/90 -> 48/74 of unchanged 122 points: 26.2% -> 39.3%. All other task effort records unchanged. Subjective balance and hardware tests not claimed.
+
+
+## 2026-11-07 — GYM-008 ordinary Trainer implementation acceptance and progress reconciliation
+
+- Reviewed PR71 completion handoff https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/71#issuecomment-6703579243 and confirmed squash merge on main `18d245b5e35780b1300482aa536fa15f140a1d28` (preserving concurrent Agatha GYM-009 source).
+- Scope accepted: 510 ordinary Trainer source IDs; 500 non-dummy party arrays and 1,219 Pokémon instantiated in native ROM tests; 10 dummy source records intentionally unchanged. Includes approved class/name transformations, Shane Route24 Double/rematch/refusal and existing-source-compatible gendered Ranger aliases. No bespoke Ranger overworld art claimed.
+- Exact PR-head Actions 42346786298 SUCCESS for split battle validation (modified and baseline), and 42346786287 SUCCESS for ordinary Trainer preflight/source-preservation. These validate source/build/native scoped work, not complete manual progression.
+- Historical GYM-008 effort changed from 0 earned/52 remaining to 52 earned/0 remaining; denominator712 unchanged; overall 330/382 to 382/330 =53.65%; GYM area 48/74 to 100/22=81.97% (rounded82.0%). GYM-009 16/0 and all other task point values remain untouched. No duplicate implementation credit.
+- Optional experiential QA remains distinctly under existing INT-005 stabilization/release acceptance: approach every or representative overworld Trainer, exercise all 130 live VS Seeker rematch routes, Shane double/refusal, victory flags, story states and existing-art Ranger appearance. These checks are NOT claimed executed or necessary to regard GYM-008 source implementation as merged. No additional points added; retain INT-005 original 0/8 status.
+- This reconciliation is documentation-only on a review branch. The older PR65 335/377 planning calculation and Agatha hold predate PR68/73/71 and MUST NOT be merged unchanged.
+
+## 2026-11-07 — INT-001 converged parallel progress / BTL-005-M2H integration
+
+- Preserve main's completed GYM-00852/0 and GYM-00916/0, plus coordination's
+  BTL-00526/54 and WRL-0113/7. Add only merged69's3 existing-scope points: moves
+  29/51; canonical395/712 (55.48%). Every other task uses latest main; all prior
+  effort histories retained. This is provisional effort, not release readiness.
+-69 merged3d06ebc3 after755386/25hosts/clean and both CI PASS. Parallel68/71/75
+  are already merged; old draft/blocker claims are historical, not live state.
+-72 current-main c33c8650 has26 host suites/3 checkers/clean PASS; old755945 was
+  pre-integration. Fresh30-group/full CI pending; no new completion credit.
+## 2026-11-07 — BTL-005-M2I current-main integration
+
+- Main advanced to4bb2ece0 through parallel merged68/71/75 and tracking77 while
+  original72 validation ran. Preserve all eight E4 parties,500 ordinary Trainer
+  arrays/conversions, projection audits, new native registrations and capture QA.
+- Integrated rather than replacing current main. Reconciled exact Agatha/TW/
+  ordinary-Trainer source projections; old digests unchanged. Prior755945 full
+  result applies to old72 base only. New combined host/build/full/CI required.
+## 2026-11-07 — INT-001-CI2 expanded full-suite wall-clock allowance
+
+- Preserve failed42374018809: native step hit20-minute wall cap near final League
+  fights; no game assertion failure. Same-head42374015278 and local integrated
+  30-group815608 PASS. New26-host/30-group workload exceeds original23/~534k.
+- Native step20→30min, job45→60min, bounded. All assertions,4M instruction and
+  per-scene frame guards, builds/repro/full groups/upstream checks unchanged.
+- Correct static registration report26/30 and protect ordinary Trainer group.
+  No gameplay/save/baseline/security change. New exact-head CI pending.
+
+## 2026-11-07 — BTL-005-M3A source catalog readiness
+
+- Prior reconciliation hard-coded354 source rows and56 absent additions. New
+  tooling validates complete contiguous approved batches, all metadata/description/
+  ordered animation dispatch coverage; retains original IDs and original baseline.
+- Isolated fixtures prove incomplete tables fail and wrong owner power remains a
+  discrepancy. Source presence is explicitly runtime-unverified, never gameplay
+  completion. Five methods/nine rejection cases PASS; reconciliation byte-identical
+  and registration27 host/30 native PASS. No game source, production IDs, artwork,
+  save data, normalizer or old baseline changed. Full hosts/CI pending.
+- Branch feature/new-move-catalog-readiness; no new effort credit at this stage.
+## 2026-11-07 — BTL-005-M2I integrated final local acceptance / CI timeout
+
+- Integrated current-main c33c8650:26 host suites/3 checkers, full30-group native
+  815608 assertions and byte-identical clean build PASS, including all500 ordinary
+  parties/1219 mons and all8 actual League battles.
+- Same-head42374015278 SUCCESS;42374018809 hit20min CI wall cap near final League
+  battles, no failed game assertion. Do not hide the failed duplicate. Integrate
+  maintenance78 bounded30min native/60min job with every execution guard retained,
+  then require new exact-head CI. No game/test changes from validated c33c8650.
+
+## 2026-11-07 — BTL-005-M2I merge acceptance / coordination convergence
+
+- PR72 merged e2dabe83a2e607198186cbdf5c38d027811c7672 after both Actions
+  42377967379/42377971185 modified+upstream SUCCESS, local focused565/full30-group
+  815608,26 hosts/3 checkers/clean PASS. Preserve earlier timed-out duplicate.
+- GitHub reported conflict after parent78 merge. Local integration9d103ae0 had
+  zero file delta: tree c52b7d8a06edf22637681251e57dbff2b98eeb27 equals tested
+  26f52aba and resulting main. No security bypass/auto-merge. New main CI pending.
+- Three points within existing80: moves32/48; overall398/712=55.90% provisional,
+  remaining314. Preserve ordinary-Trainer52,League16,gifts3 and all histories.
+  No56 new-move or full campaign/real-link/cartridge completion credit.
+- PR79 source catalog prerequisite: all27 host runners/five fixture methods
+  (nine incomplete/reordered cases) PASS, reconciliation byte-identical. No game
+  source/IDs/art/save/baseline changes. Its CI pending; no added effort credit.

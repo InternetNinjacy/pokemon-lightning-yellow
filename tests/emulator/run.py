@@ -11,6 +11,10 @@ import shutil
 
 # Generate ABI constants with the game's ARM compiler, never host offsetof.
 expressions = {
+ 'BATTLESTRUCT_SIZE':'sizeof(struct BattleStruct)',
+ 'BATTLESTRUCT_TW_USER':'offsetof(struct BattleStruct,thunderWaveUser)',
+ 'BATTLESTRUCT_TW_TARGETS':'offsetof(struct BattleStruct,thunderWaveTargets)',
+ 'BATTLESTRUCT_TW_ACTIVE':'offsetof(struct BattleStruct,thunderWaveActive)',
  'BRES_AI':'offsetof(struct BattleResources,ai)',
  'AI_SCORE':'offsetof(struct AI_ThinkingStruct,score)',
  'AI_FLAGS':'offsetof(struct AI_ThinkingStruct,aiFlags)',
@@ -283,6 +287,7 @@ required = [
     'gCurrentMove', 'gCritMultiplier', 'gDynamicBasePower', 'gBattlerAttacker', 'gBattlerTarget',
     'ShowPokemonSummaryScreen', 'sMonSummaryScreen', 'sMoveSelectionCursorPos', 'gSideStatuses', 'gBattleStruct', 'gBattleScripting', 'gBattleMoveDamage', 'gDisplayedStringBattle',
 ]
+required += ['NextThunderWaveTarget','gAbsentBattlerFlags']
 required += ['Cmd_rolloutdamagecalculation','gDisableStructs','gLockedMoves','gLastMoves']
 required += ['BattleAI_SetupAIData','BattleAI_ChooseMoveOrAction']
 required += ['Cmd_weatherdamage','Cmd_accuracycheck','gStatuses3','gHitMarker','gMoveResultFlags']
