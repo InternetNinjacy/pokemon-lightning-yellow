@@ -818,8 +818,8 @@
 #define FLAG_OAK_NEST_BALLS_PENDING 0x313
 #define FLAG_RANGER_CAMP_GIFT_RECEIVED                  0x314
 #define FLAG_RANGER_PARK_INTRO_SEEN                     0x315
-#define FLAG_0x316               0x316
-#define FLAG_0x317               0x317
+#define FLAG_OAK_EEVEE_PENDING                   0x316
+#define FLAG_GOT_OAK_PARCEL_EEVEE                0x317
 #define FLAG_0x318               0x318
 #define FLAG_0x319               0x319
 #define FLAG_0x31A               0x31A
