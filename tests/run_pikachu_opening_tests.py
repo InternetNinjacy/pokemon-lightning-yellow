@@ -35,6 +35,8 @@ def check():
     choice = block("PalletTown_ProfessorOaksLab_EventScript_ChoseStarter")
     assert "givemon PLAYER_STARTER_SPECIES, 5" in choice
     assert "copyvar VAR_STARTER_MON, PLAYER_STARTER_NUM" in choice
+    assert "special ScriptNameSocketStarterPikachu" in choice
+    assert "Text_GiveNicknameToThisMon" not in choice
     assert "setflag FLAG_SYS_POKEMON_GET" in choice
 
     rival = block("PalletTown_ProfessorOaksLab_EventScript_RivalPicksStarter")
