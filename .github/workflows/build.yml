@@ -85,6 +85,7 @@ jobs:
           python3 tests/run_wild_double_tests.py
           python3 tests/check_route1_encounters.py
           python3 tests/check_route5_encounters.py
+          python3 tests/check_route8_drowzee.py
           python3 tests/check_route2_encounters.py
           python3 tests/check_route22_encounters.py
           python3 tests/check_route23_encounters.py
