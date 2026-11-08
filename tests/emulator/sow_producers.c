@@ -75,6 +75,12 @@ static void sowScriptedRunTests(void)
    fprintf(stderr,"SOW event%u: object localId=%u is absent; map=%u group=%u, player=(%u,%u), resolvedFlag=%u, activeFlag=%u, objectId=%u\\n",
     i,localIds[i],MAP_NUM(maps[i]),MAP_GROUP(maps[i]),startX[i],startY[i],
     CALL(FlagGet,resolved[i]),CALL(FlagGet,active[i]),object);
+   unsigned sg=core->busRead8(core,careSave1()+ABI_SAVE1_LOCATION);
+   unsigned sn=core->busRead8(core,careSave1()+ABI_SAVE1_LOCATION+1);
+   CALL(PlayerGetDestCoords,scratch,scratch+2);
+   fprintf(stderr," SOW loaded location group=%u map=%u, engine player grid=(%u,%u), object by XY=%u\\n",
+    sg,sn,core->busRead16(core,scratch),core->busRead16(core,scratch+2),
+    CALL(GetObjectEventIdByXY,(i==0?19:i==1?13:13)+7,(i==0?87:i==1?7:145)+7));
    for(unsigned local=1;local<=12;local++){
     unsigned present=CALL(GetObjectEventIdByLocalIdAndMap,local,MAP_NUM(maps[i]),MAP_GROUP(maps[i]));
     fprintf(stderr," SOW map object local%u -> slot%u\\n",local,present);
