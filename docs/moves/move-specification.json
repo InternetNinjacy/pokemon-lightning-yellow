@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "baseline_source_commit": "92838e5eb64d19942cb5c51cfdef6991503ac3ad",
-  "current_battle_moves_sha256": "94ef4050b4bc7a9bea4731aae5a316b6c9a3adf21c7d7953c4647088df8d8553",
+  "current_battle_moves_sha256": "f00a35313c7a3aab67c7a3188a76e02fa5f2773978f667e0629d14ef48d069a3",
   "scope": "Reconciliation only, no gameplay edits. Numeric proposed IDs/semantic effects/target values are NOT compiled constants. Runtime_verified false is not a failure claim.",
   "sources": {
     "register": {
