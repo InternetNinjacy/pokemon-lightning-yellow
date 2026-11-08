@@ -17,7 +17,8 @@ LOCK = json.loads(Path("docs/ordinary-trainers-implementation-lock.json").read_t
 def restore_ordinary_trainer_blocks(path):
     original = subprocess.check_output(
         ["git", "show", BASE + ":" + str(path)], text=True)
-    result = Path(path).read_text()
+    from approved_brock_weather_changes import prior_brock_weather_source
+    result = prior_brock_weather_source(path)
     # Rocket Hideout #45 modifies only existing Grunt IDs 8–18. Revert
     # those exact approved records before the ordinary-Trainer baseline check;
     # unrelated changes still fail the final byte-for-byte comparison.

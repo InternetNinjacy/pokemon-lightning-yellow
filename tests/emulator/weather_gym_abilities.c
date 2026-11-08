@@ -30,9 +30,25 @@ static void weatherGymAbilityTests(void)
   unsigned field=CALL(GetSav1Weather);
   fossilStart(misty?SYM_CeruleanCity_Gym_EventScript_Misty:SYM_PewterCity_Gym_EventScript_Brock);waitAction();
   CHECK(core->busRead16(core,SYM_gTrainerBattleOpponent_A)==(misty?TRAINER_LEADER_MISTY:TRAINER_LEADER_BROCK));
-  CHECK(core->busRead16(core,bmon(1)+ABI_BMON_SPECIES)==(misty?SPECIES_STARYU:SPECIES_GEODUDE));
+  CHECK(core->busRead16(core,bmon(1)+ABI_BMON_SPECIES)==(misty?SPECIES_STARYU:SPECIES_SNORUNT));
   if(misty)CHECK(!(core->busRead16(core,SYM_gBattleWeather)&B_WEATHER_RAIN));
-  fprintf(stderr,"INFO leader%u defeat lead\n",misty);frames(30,0);chooseMove(0,0,1);waitAction();
+  else {
+   unsigned history=core->busRead32(core,core->busRead32(core,SYM_gBattleResources)+ABI_BRES_HISTORY);
+   CHECK(core->busRead8(core,history+ABI_HISTORY_COUNT)==1);CHECK(core->busRead16(core,history+ABI_HISTORY_ITEMS)==ITEM_POTION);
+   CHECK(monget(enemy(0),ABI_DATA_LEVEL)==14);CHECK(monget(enemy(1),ABI_DATA_LEVEL)==16);
+   const unsigned moves[2][4]={{MOVE_POWDER_SNOW,MOVE_HEADBUTT,MOVE_LEER,MOVE_NONE},{MOVE_SCREECH,MOVE_ROCK_THROW,MOVE_HARDEN,MOVE_TACKLE}};
+   for(unsigned slot=0;slot<2;slot++)for(unsigned k=0;k<4;k++)CHECK(monget(enemy(slot),ABI_DATA_MOVE1+k)==moves[slot][k]);
+   CHECK(monget(enemy(0),ABI_DATA_HELD_ITEM)==ITEM_NONE);CHECK(monget(enemy(1),ABI_DATA_HELD_ITEM)==ITEM_PECHA_BERRY);
+   CHECK(core->busRead8(core,bmon(1)+ABI_BMON_ABILITY)==ABILITY_ICE_BODY);
+   unsigned max=core->busRead16(core,bmon(1)+ABI_BMON_MAX_HP),hp=max-9;
+   core->busWrite16(core,bmon(1)+ABI_BMON_HP,hp);monput(enemy(0),ABI_DATA_HP,hp);
+   frames(30,0);chooseMove(0,1,1);waitAction();
+   CHECK(core->busRead16(core,bmon(1)+ABI_BMON_HP)==hp+max/16);
+  }
+  fprintf(stderr,"INFO leader%u defeat lead\n",misty);frames(30,0);
+  if(misty)chooseMove(0,0,1);
+  else {waitController(0,SYM_HandleInputChooseAction);press(1);waitController(0,SYM_HandleInputChooseMove);CHECK(core->busRead8(core,SYM_gMoveSelectionCursor)==1);press(32);CHECK(core->busRead8(core,SYM_gMoveSelectionCursor)==0);press(1);}
+  waitAction();
   CHECK(core->busRead16(core,bmon(1)+ABI_BMON_SPECIES)==(misty?SPECIES_STARMIE:SPECIES_ONIX));
   CHECK(core->busRead8(core,bmon(1)+ABI_BMON_ABILITY)==(misty?ABILITY_DRIZZLE:ABILITY_OVERCOAT));
   CHECK(CALL(GetSav1Weather)==field);
@@ -42,7 +58,7 @@ static void weatherGymAbilityTests(void)
   fprintf(stderr,"INFO leader%u reserve turn\n",misty);frames(30,0);chooseMove(0,1,1);waitAction();CHECK(CALL(GetSav1Weather)==field);
   if(misty)CHECK(core->busRead16(core,SYM_gBattleWeather)&B_WEATHER_RAIN_PERMANENT);
   else CHECK(core->busRead16(core,bmon(1)+ABI_BMON_HP)==reserveHp);
-  printf("PASS: actual %s leader script/native original party and reserve entry assign %s; no field-weather overwrite or blanket Cerulean Rain\n",misty?"Misty":"Brock",misty?"Starmie Drizzle":"Onix Overcoat");
+  printf("PASS: actual %s leader script/native approved party and reserve entry assign %s; no field-weather overwrite or blanket Cerulean Rain\n",misty?"Misty":"Brock",misty?"Starmie Drizzle":"Onix Overcoat");
  }
  CHECK(core->loadState(core,bootState));
 }
