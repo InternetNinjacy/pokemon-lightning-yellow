@@ -19,8 +19,24 @@ static void sowScriptedProducerTests(void)
   CHECK(monget(enemy(0),ABI_DATA_LEVEL)==levels[i]);
   CHECK(monget(enemy(0),ABI_DATA_HELD_ITEM)==0);
   CHECK(CALL(GetMonAbility,enemy(0))==abilities[i]);
-  for(unsigned j=0;j<4;j++)CHECK(monget(enemy(0),ABI_DATA_MOVE1+j)==moves[i][j]);
+  for(unsigned j=0;j<4;j++){
+   CHECK(monget(enemy(0),ABI_DATA_MOVE1+j)==moves[i][j]);
+   CHECK(monget(enemy(0),ABI_DATA_PP1+j)>0);
+  }
  }
+ // Fail closed for invalid event selectors and mismatched levels/items,
+ // even when the species itself is otherwise eligible.
+ CALL(CreateScriptedWildMon,SPECIES_CORPHISH,30,0);
+ CALL(VarSet,VAR_0x8004,99);
+ CALL(SowPrepareScriptedEncounter);
+ CHECK(CALL(VarGet,VAR_RESULT)==0);
+ CALL(CreateScriptedWildMon,SPECIES_CORPHISH,29,0);
+ CALL(VarSet,VAR_0x8004,0);
+ CALL(SowPrepareScriptedEncounter);
+ CHECK(CALL(VarGet,VAR_RESULT)==0);
+ CALL(CreateScriptedWildMon,SPECIES_CORPHISH,30,ITEM_POTION);
+ CALL(SowPrepareScriptedEncounter);
+ CHECK(CALL(VarGet,VAR_RESULT)==0);
  CALL(CreateScriptedWildMon,SPECIES_PIDGEY,10,0);
  CALL(VarSet,VAR_0x8004,0);
  CALL(SowPrepareScriptedEncounter);
