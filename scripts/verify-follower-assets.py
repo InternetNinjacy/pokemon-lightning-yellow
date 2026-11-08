@@ -52,6 +52,34 @@ def git_blob_sha(data):
     return hashlib.sha1(b"blob " + str(len(data)).encode() + b"\0" + data).hexdigest()
 
 
+def gba_tiles_roundtrip(pixels, side):
+    """Encode one square indexed frame into native GBA 4-bpp 8x8 tile order.
+
+    This proves a reversible byte-level conversion, NOT VRAM availability or
+    correct overworld OAM allocation in FireRed.
+    """
+    if side not in (32, 64) or len(pixels) != side * side:
+        raise ValueError("unsupported GBA frame dimensions")
+    encoded = bytearray()
+    restored = [0] * (side * side)
+    for tile_y in range(0, side, 8):
+        for tile_x in range(0, side, 8):
+            for dy in range(8):
+                for dx in range(0, 8, 2):
+                    p = (tile_y + dy) * side + tile_x + dx
+                    lo, hi = pixels[p], pixels[p + 1]
+                    if not (0 <= lo <= 15 and 0 <= hi <= 15):
+                        raise ValueError("GBA 4-bit palette index out of range")
+                    encoded.append(lo | hi << 4)
+                    restored[p] = encoded[-1] & 15
+                    restored[p + 1] = encoded[-1] >> 4
+    if list(pixels) != restored:
+        raise ValueError("GBA tile nibble packing roundtrip failed")
+    if len(encoded) != side * side // 2:
+        raise ValueError("incorrect tile data byte count")
+    return bytes(encoded)
+
+
 def read_png(data):
     if data[:8] != b"\x89PNG\r\n\x1a\n":
         raise ValueError("not PNG")
@@ -120,11 +148,15 @@ def read_png(data):
         # Six square cells; upstream animation mapping is checked independently.
         pixels = tuple(v for row in rows for v in row[frame*cell_size:(frame+1)*cell_size])
         frames.append(pixels)
+    gba_frames = [gba_tiles_roundtrip(frame, cell_size) for frame in frames]
     if any(not any(pixel != 0 for pixel in frame) for frame in frames):
         raise ValueError("blank 32x32 directional animation cell")
     return {
         "dimensions": [w,h], "frame_cell_size": [cell_size,cell_size],
         "bit_depth": depth, "indexed_colors": len(palette)//3,
+        "gba_4bpp_bytes_per_frame": len(gba_frames[0]),
+        "gba_4bpp_total_six_frames": sum(len(frame) for frame in gba_frames),
+        "gba_conversion_sha256": hashlib.sha256(b"".join(gba_frames)).hexdigest(),
         "unique_frame_cells": len(set(frames)),
         "nonzero_frame_cells": sum(any(p != 0 for p in f) for f in frames),
         "cell_fingerprints": [hashlib.sha256(bytes(f)).hexdigest()[:12] for f in frames],
@@ -228,11 +260,11 @@ def main():
     report = {"source": BASE, "verified": len(results), "total": len(rows),
               "oversized_sheet_exceptions": oversized,
               "animation_contract": animation_contract,
-              "format_checked": "PNG CRC, complete scanlines, 4-bit indexed pixels, six square cells (32 or 64)",
+              "format_checked": "PNG CRC, indexed pixels, six square cells, reversible native GBA 4-bpp tile packing",
               "forms": forms, "species": results, "failures": failures,
               "limitations": ["Does not prove cell-to-facing animation table mapping",
                               "Does not prove frame art visually correct",
-                              "Does not prove conversion or FireRed runtime resource budgets",
+                              "Byte-level GBA 4-bpp encoding is isolated; does not prove FireRed graphics loading or runtime resource budgets",
                               "Does not independently establish redistribution rights"]}
     report_path = Path(os.environ.get("FOLLOWER_REPORT", "/tmp/lightning-followers-validation.json"))
     report_path.write_text(json.dumps(report, indent=2) + "\n")
