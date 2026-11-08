@@ -67,11 +67,11 @@ static void followerGraphicsNativeProbe(void) {
 }
 // Also exercise the actual FireRed graphics setup path and real OAM descriptors.
 // Unlike the allocator-only test, these create and free rendered sprites using
-// the existing FireRed Pikachu (32x32) and Seagallop (64x64) ROM artwork.
+// the existing FireRed Snorlax (32x32) and Seagallop (64x64) ROM artwork.
 static void followerGraphicsObjectProbe(void) {
     CHECK(core->loadState(core,bootState));
     CALL(ResetSpriteData);
-    uint32_t small=CALL(CreateVirtualObject,120,1,10,10,0,1);
+    uint32_t small=CALL(CreateVirtualObject,109,1,10,10,0,1);
     uint32_t big=CALL(CreateVirtualObject,108,2,11,10,0,1);
     CHECK(small < 64 && big < 64 && small != big);
     uint32_t smallPtr=SYM_gSprites + small*ABI_FOLLOW_SPRITE_SIZE;
@@ -89,7 +89,7 @@ static void followerGraphicsObjectProbe(void) {
         CHECK(CALL(SpriteTileAllocBitmapOp,bigTile+i,2)!=0);
     CALL(BuildOamBuffer);
     CHECK((core->busRead16(core,bigOam+2)>>14)==3);
-    printf("PASS: native mGBA Pikachu and Seagallop sprites both created with 32/64 OAM and allocated tiles\n");
+    printf("PASS: native mGBA Snorlax and Seagallop sprites both created with 32/64 OAM and allocated tiles\n");
     CALL(DestroySprite,smallPtr);
     for(unsigned i=0;i<16;i++)
         CHECK(CALL(SpriteTileAllocBitmapOp,smallTile+i,2)==0);
@@ -108,7 +108,7 @@ static void followerGraphicsObjectProbe(void) {
 c=c.replace(anchor, probe+"\n"+anchor)
 anchor2="    if(getenv(\"LIGHTNING_BALL_WEATHER_ONLY\"))"
 assert anchor2 in c
-c=c.replace(anchor2, '    if(getenv("LIGHTNING_FOLLOWER_GFX_ONLY")){followerGraphicsNativeProbe();followerGraphicsObjectProbe();printf"PASS: %u focused follower graphics memory assertions\\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}\n'+anchor2, 1)
+c=c.replace(anchor2, '    if(getenv("LIGHTNING_FOLLOWER_GFX_ONLY")){followerGraphicsNativeProbe();followerGraphicsObjectProbe();printf("PASS: %u focused follower graphics memory assertions\\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}\n'+anchor2, 1)
 required_anchor="required += ['NextThunderWaveTarget','gAbsentBattlerFlags']"
 assert required_anchor in p
 p=p.replace(required_anchor, "required += ['AllocSpriteTiles','SpriteTileAllocBitmapOp','ResetSpriteData','CreateVirtualObject','BuildOamBuffer','DestroySprite','gSprites']\n"+required_anchor,1)
