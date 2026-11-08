@@ -39,7 +39,58 @@ jobs:
               print('Verified PNGs: ' + str(p['verified']) + '/' + str(p['total']), file=out)
               print('Failures: ' + str(len(p['failures'])), file=out)
               print('Oversized sheets needing special renderer: ' + str(len(p.get('oversized_sheet_exceptions', []))), file=out)
+              print('Castform forms: ' + ', '.join(p['forms'].keys()), file=out)
+              print('Incomplete distinct-frame sets: ' + ', '.join(x['species'] for x in p['species'] if x['unique_frame_cells'] < 6), file=out)
               print('This does not certify directions, gameplay, ROM integration or license.', file=out)
           PY
             cat /tmp/follower-summary.md >> "$GITHUB_STEP_SUMMARY"
           fi
+
+      - name: Export JSON metadata audit without artwork or ROM data
+        if: always()
+        run: |
+          if [ -f /tmp/lightning-followers-validation.json ]; then
+            python3 - <<'PY'
+          import json
+          p = json.load(open('/tmp/lightning-followers-validation.json'))
+          reduced = {
+              'source': p['source'],
+              'verified': p['verified'],
+              'total': p['total'],
+              'failures': p['failures'],
+              'oversized_sheet_exceptions': p['oversized_sheet_exceptions'],
+              'animation_contract': p['animation_contract'],
+              'firered_existing_64x64_oam': p['firered_existing_64x64_oam'],
+              'palette_color_mismatch_species': p['palette_color_mismatch_species'],
+              'transparency_metadata_missing_species': p['transparency_metadata_missing_species'],
+              'nonzero_transparency_indices': p['nonzero_transparency_indices'],
+              'partial_alpha_species': p['partial_alpha_species'],
+              'forms': {name: {
+                  'normal': form['normal'], 'shiny': form['shiny'],
+                  'sprite_dimensions': form['sprite']['dimensions'] if isinstance(form['sprite'], dict) else form['sprite']
+              } for name, form in p['forms'].items()},
+              'species': [{
+                  'dex': item['dex'],
+                  'species': item['species'],
+                  'png_blob': item['png_blob'],
+                  'dimensions': item['dimensions'],
+                  'source_bit_depth': item['source_bit_depth'],
+                  'used_indices': item['used_indices'],
+                  'unique_frame_cells': item['unique_frame_cells'],
+                  'normal_palette_index_mismatches': item['normal_palette_index_mismatches'],
+                  'gba_4bpp_total_six_frames': item['gba_4bpp_total_six_frames'],
+                  'gba_conversion_sha256': item['gba_conversion_sha256']
+              } for item in p['species']]
+          }
+          with open('/tmp/lightning-followers-audit-metadata.json','w') as out:
+              json.dump(reduced, out, indent=2)
+          PY
+          fi
+      - name: Upload text-only technical audit metadata
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: wrl010-follower-audit-metadata
+          path: /tmp/lightning-followers-audit-metadata.json
+          if-no-files-found: warn
+          retention-days: 14
