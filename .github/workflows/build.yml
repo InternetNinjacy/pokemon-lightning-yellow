@@ -87,6 +87,7 @@ jobs:
           python3 tests/run_ranger_tests.py
           python3 tests/run_ordinary_trainer_tests.py
           python3 tests/run_weather_tests.py
+          python3 tests/run_special_weather_tests.py
           python3 tests/run_gym_castform_tests.py
           python3 tests/run_rival_tests.py
           python3 tests/run_rocket_hideout_roster_tests.py
