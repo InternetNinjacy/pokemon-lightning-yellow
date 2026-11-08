@@ -1,6 +1,6 @@
 // Actual ROM damage, AI, saved PP and Single/Double move-script execution.
 static void roarTests(void){
- wildFixture(MAP_GROUP(MAP_ROUTE1),MAP_NUM(MAP_ROUTE1),1);startSpecial();waitAction();damageStats();
+ wildFixture(MAP_GROUP(MAP_MT_MOON_1F),MAP_NUM(MAP_MT_MOON_1F),1);startSpecial();waitAction();damageStats();
  CHECK(baseDamage(MOVE_ROAR,0,0,0)==9);
  core->busWrite16(core,bmon(0)+ABI_BMON_ATTACK,400);CHECK(baseDamage(MOVE_ROAR,0,0,0)==9);
  core->busWrite16(core,bmon(0)+ABI_BMON_SPATTACK,100);CHECK(baseDamage(MOVE_ROAR,0,0,0)==17);
@@ -18,7 +18,8 @@ static void roarTests(void){
  monput(player(0),ABI_DATA_PP1,2);flashRoundTrip();CHECK(monget(player(0),ABI_DATA_PP1)==2);
  printf("PASS: actual flash load caps legacy32PP Roar to24 with three PP Ups, preserves spent2PP and second-load identity\n");
  for(unsigned two=0;two<2;two++){
-  wildFixture(MAP_GROUP(MAP_ROUTE1),MAP_NUM(MAP_ROUTE1),two);
+  wildFixture(two ? MAP_GROUP(MAP_MT_MOON_1F) : MAP_GROUP(MAP_ROUTE1),
+               two ? MAP_NUM(MAP_MT_MOON_1F) : MAP_NUM(MAP_ROUTE1), two);
   for(unsigned p=0;p<=two;p++)for(unsigned m=0;m<4;m++)CALL(SetMonMoveSlot,player(p),p==0&&m==0?MOVE_ROAR:MOVE_SPLASH,m);
   CHECK(CALL(TryStartLandEncounter,landInfo(),0));waitAction();
   core->busWrite16(core,SYM_gBattleWeather,0);
