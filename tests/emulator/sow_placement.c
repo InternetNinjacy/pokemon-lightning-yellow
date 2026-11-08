@@ -37,6 +37,54 @@ static void sowCheckLandRoute(unsigned map,unsigned width,unsigned height,
  printf("PASS: SOW map%u proposed object (%u,%u) is collision-free, non-Surf and %u walking tiles from (%u,%u)\n",
         map,x,y,steps,startX,startY);
 }
+
+// Find an actually walkable no-Surf location between the Cascade/Thunder
+// checkpoints rather than accepting the unwalkable first map-data candidate.
+// All candidates are on Route23 below the first Surf crossing.
+static void sowSelectRoute23LandTile(void)
+{
+ const unsigned width=24,height=160,startX=9,startY=151;
+ int previous[3840],queue[3840],head=0,tail=0;
+ fossilWarp(MAP_GROUP(MAP_ROUTE23),MAP_NUM(MAP_ROUTE23),startX,startY);
+ for(unsigned k=0;k<3840;k++)previous[k]=-2;
+ CHECK(sowWalkable(startX,startY));
+ unsigned start=startY*width+startX;
+ previous[start]=-1;queue[tail++]=start;
+ const int dx[]={0,0,-1,1},dy[]={-1,1,0,0};
+ while(head<tail){
+  unsigned p=queue[head++];
+  for(unsigned k=0;k<4;k++){
+   int x=(int)(p%width)+dx[k],y=(int)(p/width)+dy[k];
+   if(x<0||y<0||x>=(int)width||y>=(int)height)continue;
+   unsigned id=(unsigned)y*width+(unsigned)x;
+   if(previous[id]!=-2 || !sowWalkable(x,y))continue;
+   previous[id]=p;queue[tail++]=id;
+  }
+ }
+ for(unsigned offset=0;offset<7;offset++){
+  unsigned ys[]={145,144,146,143,147,142,148};
+  unsigned y=ys[offset];
+  const unsigned xs[]={12,11,13,10,14,9,15,8,16,7,17,6};
+  for(unsigned j=0;j<sizeof(xs)/sizeof(*xs);j++){
+   unsigned x=xs[j],id=y*width+x;
+   // Leave one free orthogonally adjacent tile for player interaction.
+   if(previous[id]==-2 || !sowWalkable(x,y))continue;
+   unsigned neighbors=0;
+   if(x>0 && previous[id-1]!=-2)neighbors++;
+   if(x+1<width && previous[id+1]!=-2)neighbors++;
+   if(y>0 && previous[id-width]!=-2)neighbors++;
+   if(y+1<height && previous[id+width]!=-2)neighbors++;
+   if(neighbors<2)continue;
+   printf("SOW-008 SELECTED ROUTE23 TILE: x=%u y=%u, reachable on foot from (%u,%u), %u walkable neighbors\\n",
+          x,y,startX,startY,neighbors);
+   sowCheckLandRoute(MAP_ROUTE23,width,height,startX,startY,x,y);
+   return;
+  }
+ }
+ fprintf(stderr,"No walkable Route23 candidate between Cascade and Thunder badge guards\\n");
+ CHECK(0);
+}
+
 static void sowPlacementTests(void)
 {
  daycareFixture(1);
@@ -45,6 +93,6 @@ static void sowPlacementTests(void)
  // Route21 northern grass, connected to the Pallet-side land entrance.
  sowCheckLandRoute(MAP_ROUTE21_NORTH,24,50,13,1,13,7);
  // Between Route23 Cascade and Thunder badge checkpoints, below Surf section.
- sowCheckLandRoute(MAP_ROUTE23,24,160,9,151,12,145);
+ sowSelectRoute23LandTile();
  CHECK(core->loadState(core,bootState));
 }
