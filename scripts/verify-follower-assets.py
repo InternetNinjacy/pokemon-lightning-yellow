@@ -100,6 +100,11 @@ def read_png(data):
             break
     if pos != len(data):
         raise ValueError("extra bytes or missing IEND")
+    names = [n for n, _ in chunks]
+    if names.count(b"IHDR") != 1 or names[0] != b"IHDR" or names[-1] != b"IEND":
+        raise ValueError("PNG must have one first IHDR and a final IEND")
+    if names.count(b"PLTE") != 1 or b"IDAT" not in names:
+        raise ValueError("indexed PNG requires one PLTE and IDAT")
     ihdr = next((x for n, x in chunks if n == b"IHDR"), None)
     if ihdr is None or len(ihdr) != 13:
         raise ValueError("missing IHDR")
@@ -111,6 +116,12 @@ def read_png(data):
     if len(palette) == 0 or len(palette) % 3 or len(palette) > 48:
         raise ValueError("invalid 4-bit palette")
     embedded_rgb = [tuple(palette[i:i + 3]) for i in range(0, len(palette), 3)]
+    alpha_chunks = [data for name, data in chunks if name == b"tRNS"]
+    if len(alpha_chunks) > 1 or (alpha_chunks and len(alpha_chunks[0]) > len(embedded_rgb)):
+        raise ValueError("malformed indexed PNG transparency")
+    alpha = alpha_chunks[0] if alpha_chunks else b""
+    transparent_indices = [index for index, value in enumerate(alpha) if value == 0]
+    partial_alpha_indices = [index for index, value in enumerate(alpha) if value not in (0, 255)]
     raw = zlib.decompress(b"".join(x for n, x in chunks if n == b"IDAT"))
     stride = (w * depth + 7) // 8
     if len(raw) != h * (stride + 1):
@@ -151,17 +162,23 @@ def read_png(data):
         pixels = tuple(v for row in rows for v in row[frame*cell_size:(frame+1)*cell_size])
         frames.append(pixels)
     gba_frames = [gba_tiles_roundtrip(frame, cell_size) for frame in frames]
-    if any(not any(pixel != 0 for pixel in frame) for frame in frames):
-        raise ValueError("blank 32x32 directional animation cell")
+    # Index zero is not automatically transparent. Many source PNGs omit tRNS;
+    # preserve ambiguous transparency for review, rather than guessing it.
+    nonzero_cells = sum(any(pixel != 0 for pixel in frame) for frame in frames)
+    if not nonzero_cells:
+        raise ValueError("all six image cells use only index zero")
     return {
         "dimensions": [w,h], "frame_cell_size": [cell_size,cell_size],
         "bit_depth": depth, "indexed_colors": len(palette)//3,
         "embedded_palette_rgb": embedded_rgb, "used_indices": used_indices,
+        "transparent_indices": transparent_indices,
+        "partial_alpha_indices": partial_alpha_indices,
+        "transparency_metadata_missing": not bool(alpha),
         "gba_4bpp_bytes_per_frame": len(gba_frames[0]),
         "gba_4bpp_total_six_frames": sum(len(frame) for frame in gba_frames),
         "gba_conversion_sha256": hashlib.sha256(b"".join(gba_frames)).hexdigest(),
         "unique_frame_cells": len(set(frames)),
-        "nonzero_frame_cells": sum(any(p != 0 for p in f) for f in frames),
+        "nonzero_frame_cells": nonzero_cells,
         "cell_fingerprints": [hashlib.sha256(bytes(f)).hexdigest()[:12] for f in frames],
     }
 
@@ -295,6 +312,17 @@ def main():
               "oversized_sheet_exceptions": oversized,
               "animation_contract": animation_contract,
               "firered_existing_64x64_oam": fire_red_64x64,
+              "transparency_metadata_missing_species": [
+                  {"dex": item["dex"], "species": item["species"]}
+                  for item in results if item["transparency_metadata_missing"]],
+              "nonzero_transparency_indices": [
+                  {"dex": item["dex"], "species": item["species"],
+                   "indices": item["transparent_indices"]}
+                  for item in results if item["transparent_indices"] and item["transparent_indices"] != [0]],
+              "partial_alpha_species": [
+                  {"dex": item["dex"], "species": item["species"],
+                   "indices": item["partial_alpha_indices"]}
+                  for item in results if item["partial_alpha_indices"]],
               "palette_color_mismatch_species": [
                   {"dex": item["dex"], "species": item["species"],
                    "indices": item["normal_palette_index_mismatches"]}
@@ -303,6 +331,7 @@ def main():
               "forms": forms, "species": results, "failures": failures,
               "limitations": ["Does not prove cell-to-facing animation table mapping",
                               "Does not prove frame art visually correct",
+                              "Transparent background color index must be resolved before FireRed artwork import",
                               "Byte-level GBA 4-bpp encoding is isolated; does not prove FireRed graphics loading or runtime resource budgets",
                               "Does not independently establish redistribution rights"]}
     report_path = Path(os.environ.get("FOLLOWER_REPORT", "/tmp/lightning-followers-validation.json"))
