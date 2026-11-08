@@ -100,6 +100,23 @@ static void followerGraphicsObjectProbe(void) {
     }
     CHECK(smallHardware>=1 && bigHardware>=1);
     printf("PASS: native mGBA hardware OAM contains both 32x32 and 64x64 sprite entries\n");
+    // Stage the EXACT pinned Steelix source frame in emulated hardware OBJ VRAM,
+    // replacing only this disposable Seagallop test object's graphics tiles.
+    // Use 16-bit bus writes: GBA OBJ VRAM does not support ordinary byte writes.
+    for (unsigned i=0;i<2048;i+=2) {
+        uint32_t address=0x06010000U+bigTile*32+i;
+        uint16_t packed=followerSteelixTiles[i]|(followerSteelixTiles[i+1]<<8);
+        core->busWrite16(core,address,packed);
+        CHECK(core->busRead16(core,address)==packed);
+    }
+    uint32_t bigPalette=(core->busRead16(core,bigOam+4)>>12)&15;
+    for (unsigned i=0;i<16;i++) {
+        uint32_t address=0x05000200U+bigPalette*32+i*2;
+        core->busWrite16(core,address,followerSteelixPalette[i]);
+        CHECK(core->busRead16(core,address)==followerSteelixPalette[i]);
+    }
+    printf("PASS: exact pinned Steelix 64x64 frame and normal palette staged with readback from emulated OBJ VRAM/PLTT\n");
+
     printf("PASS: native mGBA Snorlax and Seagallop sprites both created with 32/64 OAM and allocated tiles\n");
     CALL(DestroySprite,smallPtr);
     for(unsigned i=0;i<16;i++)
@@ -116,6 +133,7 @@ static void followerGraphicsObjectProbe(void) {
 }
 
 """
+c=c.replace('#include "symbols.h"', '#include "symbols.h"\\n#include "follower_steelix_frame.h"', 1)
 c=c.replace(anchor, probe+"\n"+anchor)
 anchor2="    if(getenv(\"LIGHTNING_BALL_WEATHER_ONLY\"))"
 assert anchor2 in c
