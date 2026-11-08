@@ -72,9 +72,7 @@ Route12_EventScript_SowCorphish::
 	setwildbattle SPECIES_CORPHISH, 30
 	callnative SowPrepareScriptedEncounter
 	goto_if_eq VAR_RESULT, FALSE, Route12_EventScript_SowAbort
-	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
 	dowildbattle
-	clearflag FLAG_SYS_SPECIAL_WILD_BATTLE
 	specialvar VAR_RESULT, GetBattleOutcome
 	goto_if_eq VAR_RESULT, B_OUTCOME_WON, Route12_EventScript_SowResolved
 	goto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, Route12_EventScript_SowResolved
