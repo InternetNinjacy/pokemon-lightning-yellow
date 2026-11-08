@@ -77,6 +77,7 @@ jobs:
           python3 tests/run_brock_weather_tests.py
           python3 tests/run_special_glalie_tests.py
           python3 tests/run_special_corphish_tests.py
+          python3 tests/run_sow_event_tests.py
           python3 tests/run_original_effect_tests.py
           python3 tests/run_rtc_tests.py
           python3 tests/run_evolution_tests.py
