@@ -64,6 +64,9 @@ static void sowScriptedRunTests(void)
  for(unsigned i=0;i<3;i++){
   CHECK(core->loadState(core,bootState));
   daycareFixture(1);
+  // Escape acceptance must not depend on the default Lv20 Pikachu losing
+  // the Gen III speed-based escape roll against Glalie/Tyranitar.
+  CALL(CreateMon,player(0),SPECIES_JOLTEON,100,31,1,12345,0,1234);
   fossilWarp(MAP_GROUP(maps[i]),MAP_NUM(maps[i]),startX[i],startY[i]);
   CHECK(CALL(FlagGet,active[i]));
   CHECK(!CALL(FlagGet,resolved[i]));
