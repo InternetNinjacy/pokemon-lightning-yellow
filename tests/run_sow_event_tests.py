@@ -17,7 +17,7 @@ expected=[
 ]
 for m,script,gfx,flag,x,y,species,level,weather in expected:
     header=json.loads((root/m/"map.json").read_text())
-    found=[o for o in header["object_events"] if o["script"]==script]
+    found=[o for o in header["object_events"] if o.get("script")==script]
     assert len(found)==1,(m,script)
     obj=found[0]
     assert (obj["graphics_id"],obj["flag"],obj["x"],obj["y"])==(gfx,flag,x,y)
