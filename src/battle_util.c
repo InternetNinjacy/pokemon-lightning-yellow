@@ -35,6 +35,12 @@ static const u16 sSoundMovesTable[] =
     MOVE_UPROAR, MOVE_METAL_SOUND, MOVE_GRASS_WHISTLE, MOVE_HYPER_VOICE, MOVE_CHIRP, MOVE_BELLOW, SOUND_MOVES_END
 };
 
+bool8 BattlerWasDamagedBy(u8 recipient, u8 source)
+{
+    return recipient < MAX_BATTLERS_COUNT && source < MAX_BATTLERS_COUNT
+        && (gBattleStruct->damagedByBattlers[recipient] & (1U << source)) != 0;
+}
+
 u8 GetBattlerForBattleScript(u8 caseId)
 {
     u8 ret = 0;

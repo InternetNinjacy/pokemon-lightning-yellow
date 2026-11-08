@@ -380,6 +380,7 @@ const u8 gMoveDescription_POWER_GEM[] = _("An attack using\nthe power of a\nglow
 const u8 gMoveDescription_STONE_EDGE[] = _("Sharp stones hit\nthe foe. High\ncritical-hit ratio.");
 const u8 gMoveDescription_SCORCHING_SANDS[] = _("Scorching sand\nmay leave the foe\nwith a burn.");
 const u8 gMoveDescription_EARTH_POWER[] = _("The ground erupts\nwith power. May\nlower Sp. Def.");
+const u8 gMoveDescription_AVALANCHE[] = _("Strikes harder if\nhurt by the foe\nthis same turn.");
 const u8 gMoveDescription_ICE_FANG[] = _("An icy bite may\nfreeze the foe or\nmake it flinch.");
 
 const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {
@@ -755,4 +756,5 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_SCORCHING_SANDS - 1] = gMoveDescription_SCORCHING_SANDS,
     [MOVE_EARTH_POWER - 1] = gMoveDescription_EARTH_POWER,
     [MOVE_ICE_FANG - 1] = gMoveDescription_ICE_FANG,
+    [MOVE_AVALANCHE - 1] = gMoveDescription_AVALANCHE,
 };

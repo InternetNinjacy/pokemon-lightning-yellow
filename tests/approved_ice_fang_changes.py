@@ -32,6 +32,8 @@ HUNKS = {
 
 def prior_ice_fang_source(path,content=None):
  if content is None: content=Path(path).read_text()
+ from approved_avalanche_changes import prior_avalanche_source
+ content=prior_avalanche_source(path,content)
  for after,before in HUNKS.get(str(path),[]):
   assert content.count(after)==1, "Unreviewed Ice Fang #372 source delta: "+str(path)
   content=content.replace(after,before,1)

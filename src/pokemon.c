@@ -2411,6 +2411,10 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
     else
         gBattleMovePower = powerOverride;
 
+    // Shared live/AI calculation uses the selected target, not last damage source.
+    if (move == MOVE_AVALANCHE && BattlerWasDamagedBy(battlerIdAtk, battlerIdDef))
+        gBattleMovePower *= 2;
+
     // Dream Haunt doubles power against sleep without draining or waking.
     if (move == MOVE_DREAM_HAUNT && (defender->status1 & STATUS1_SLEEP))
         gBattleMovePower *= 2;

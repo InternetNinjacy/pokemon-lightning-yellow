@@ -386,7 +386,9 @@
 
 #define MOVE_ICE_FANG 372
 
-#define MOVES_COUNT 373
+#define MOVE_AVALANCHE 373
+
+#define MOVES_COUNT 374
 
 // Used for checks for moves affected by Disable, Mimic, etc.
 #define MOVE_UNAVAILABLE 0xFFFF

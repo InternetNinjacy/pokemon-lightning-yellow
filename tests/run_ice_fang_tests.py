@@ -2,10 +2,11 @@
 """Ice Fang #372 source contract; actual frozen/flinched outcomes verified in native tests."""
 import json
 from pathlib import Path
+from approved_avalanche_changes import prior_avalanche_source
 from approved_ice_fang_changes import prior_ice_fang_source
 ROOT=Path(__file__).resolve().parents[1]
 read=lambda path:(ROOT/path).read_text()
-c=read("include/constants/moves.h"); d=read("src/data/battle_moves.h"); a=read("data/battle_anim_scripts.s")
+c=prior_avalanche_source("include/constants/moves.h",read("include/constants/moves.h")); d=read("src/data/battle_moves.h"); a=read("data/battle_anim_scripts.s")
 assert "#define MOVE_ICE_FANG 372" in c and "#define MOVES_COUNT 373" in c
 start=d.index("[MOVE_ICE_FANG] ="); block=d[start:d.index("    },",start)]
 for field,value in [("category","MOVE_CATEGORY_PHYSICAL"),("effect","EFFECT_ICE_FANG"),("power",65),("type","TYPE_ICE"),("accuracy",95),("pp",15),("secondaryEffectChance",10),("target","MOVE_TARGET_SELECTED"),("priority",0)]:

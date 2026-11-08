@@ -11,6 +11,7 @@ import shutil
 
 # Generate ABI constants with the game's ARM compiler, never host offsetof.
 expressions = {
+ 'BATTLESTRUCT_DAMAGE_SOURCES':'offsetof(struct BattleStruct,damagedByBattlers)',
  'BATTLESTRUCT_SIZE':'sizeof(struct BattleStruct)',
  'BATTLESTRUCT_TW_USER':'offsetof(struct BattleStruct,thunderWaveUser)',
  'BATTLESTRUCT_TW_TARGETS':'offsetof(struct BattleStruct,thunderWaveTargets)',
@@ -293,6 +294,7 @@ required = [
 ]
 required += ['NextThunderWaveTarget','gAbsentBattlerFlags']
 required += ['Cmd_accuracycheck']
+required += ['BattlerWasDamagedBy','TurnValuesCleanUp','SwitchInClearSetData','gBattleMovePower','Cmd_datahpupdate']
 required += ['Cmd_seteffectwithchance','gBattleCommunication','gCurrentTurnActionNumber','gBattlerByTurnOrder','gSideTimers']
 required += ['Cmd_rolloutdamagecalculation','gDisableStructs','gLockedMoves','gLastMoves']
 required += ['BattleAI_SetupAIData','BattleAI_ChooseMoveOrAction','RecordAbilityBattle']
