@@ -258,7 +258,7 @@ APPROVED_ROUTE5 = {
   ]
 }
 
-_SLOT = re.compile(r'("min_level": )(\\d+)(,\\s+"max_level": )(\\d+)(,\\s+"species": ")(SPECIES_[A-Z0-9_]+)(")')
+_SLOT = re.compile(r'("min_level": )(\d+)(,\s+"max_level": )(\d+)(,\s+"species": ")(SPECIES_[A-Z0-9_]+)(")')
 
 def restore_route5_text(path, source):
     if str(path) != "src/data/wild_encounters.json":
