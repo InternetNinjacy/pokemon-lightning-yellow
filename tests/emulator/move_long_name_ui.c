@@ -23,7 +23,8 @@ static void moveLongNameUiTests(void){
   CHECK(CALL(GetStringWidth,0,p,0)<=76);
  }
  for(unsigned two=0;two<2;two++){
-  wildFixture(MAP_GROUP(MAP_ROUTE1),MAP_NUM(MAP_ROUTE1),two);
+  wildFixture(two ? MAP_GROUP(MAP_MT_MOON_1F) : MAP_GROUP(MAP_ROUTE1),
+               two ? MAP_NUM(MAP_MT_MOON_1F) : MAP_NUM(MAP_ROUTE1), two);
   for(unsigned b=0;b<=two;b++)for(unsigned i=0;i<4;i++){monput(player(b),ABI_DATA_MOVE1+i,ids[i]);monput(player(b),ABI_DATA_PP1+i,pp[i]);}
   CHECK(CALL(TryStartLandEncounter,landInfo(),0));waitAction();CHECK(!!(core->busRead32(core,SYM_gBattleTypeFlags)&BATTLE_TYPE_DOUBLE)==two);
   press(1);waitController(0,SYM_HandleInputChooseMove);frames(15,0);

@@ -1,6 +1,8 @@
 // Real native turns for approved single-hit Pin Missile and level-based Dragon Rage.
 static void effectBattleFixture(unsigned two,unsigned move){
- wildFixture(MAP_GROUP(MAP_ROUTE1),MAP_NUM(MAP_ROUTE1),two);
+ // Route 1 is ordinary Singles after WRL-002; use the retained Mt. Moon double fixture.
+ wildFixture(two ? MAP_GROUP(MAP_MT_MOON_1F) : MAP_GROUP(MAP_ROUTE1),
+             two ? MAP_NUM(MAP_MT_MOON_1F) : MAP_NUM(MAP_ROUTE1), two);
  for(unsigned p=0;p<=two;p++)for(unsigned m=0;m<4;m++)CALL(SetMonMoveSlot,player(p),!p&&!m?move:MOVE_SPLASH,m);
  CHECK(CALL(TryStartLandEncounter,landInfo(),0));waitAction();core->busWrite16(core,SYM_gBattleWeather,0);
  for(unsigned b=0;b<(two?4:2);b++){
