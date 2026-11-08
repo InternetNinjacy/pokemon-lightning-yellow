@@ -17,7 +17,7 @@ static void moveFoundationTests(void){
   moveNameEquals(ptr,names[i]);
   CHECK(CALL(GetStringWidth,0,ptr,0)<=80); // FONT_SMALL; not a64px battle fit claim.
  }
- wildFixture(MAP_GROUP(MAP_ROUTE1),MAP_NUM(MAP_ROUTE1),1);
+ wildFixture(MAP_GROUP(MAP_MT_MOON_1F),MAP_NUM(MAP_MT_MOON_1F),1);
  void *field=malloc(core->stateSize(core));CHECK(field&&core->saveState(core,field));
  startSpecial();waitAction();
  core->busWrite8(core,SYM_gActiveBattler,0);
