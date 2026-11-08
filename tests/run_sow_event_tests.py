@@ -69,9 +69,7 @@ for key in ["Corphish","Glalie","Tyranitar"]:
 farewell=(root/"Route12"/"text.inc").read_text()
 assert 'Route12_Text_SowGhostFarewell::' in farewell
 assert 'At last... I can rest\\n' in farewell
-assert 'in peace...
-print("PASS: approved SOW species, all 12 exact moves, three icon gfx registrations, three installed map objects, no item/ability guards, full Route21 weather bridge and Corphish ghost farewell; real ROM integration pending")
- in farewell
+assert 'in peace...$' in farewell
 route12=(root/"Route12"/"scripts.inc").read_text()
 resolved=route12[route12.index("Route12_EventScript_SowResolved::"):]
 assert resolved.index("msgbox Route12_Text_SowGhostFarewell") < resolved.index("call SpecialWeather_EventScript_FinishAftermath")
