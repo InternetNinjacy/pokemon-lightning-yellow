@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "baseline_source_commit": "92838e5eb64d19942cb5c51cfdef6991503ac3ad",
-  "current_battle_moves_sha256": "81bd0834e69351ff29759d18eaf36fb7ad257e98de8232fb6c9eff88ba8f68e9",
+  "current_battle_moves_sha256": "94ef4050b4bc7a9bea4731aae5a316b6c9a3adf21c7d7953c4647088df8d8553",
   "scope": "Reconciliation only, no gameplay edits. Numeric proposed IDs/semantic effects/target values are NOT compiled constants. Runtime_verified false is not a failure claim.",
   "sources": {
     "register": {
@@ -21186,7 +21186,7 @@
         "target": "MOVE_TARGET_SELECTED",
         "effect": "EFFECT_ICE_FANG",
         "secondaryEffectChance": 10,
-        "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
+        "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
       },
       "approved": {
         "type": "ICE",
@@ -21248,7 +21248,7 @@
         "effect": "EFFECT_ICE_FANG",
         "target": "MOVE_TARGET_SELECTED",
         "secondaryEffectChance": 10,
-        "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
+        "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
       },
       "source_line": 5212,
       "animation_candidate": {
