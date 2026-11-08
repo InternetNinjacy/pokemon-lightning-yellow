@@ -1,0 +1,71 @@
+{
+  "files": {
+    "include/constants/pokemon.h": {
+      "before_sha256": "57e8b30cd7e3ff2b0b0850673929fe82f76b3de6884c6c98ca06f696b67518f0",
+      "after_sha256": "8ef9eec17371f3d7d8d80ae6adbd1f81303a9275a7ce59ee785ef974683da140",
+      "hunks": [
+        {
+          "before": "#define MON_DATA_SPEED2                   86\n#define MON_DATA_SPATK2                   87\n#define MON_DATA_SPDEF2                   88\n\n// Pokemon types\n#define TYPE_NONE           255\n",
+          "after": "#define MON_DATA_SPEED2                   86\n#define MON_DATA_SPATK2                   87\n#define MON_DATA_SPDEF2                   88\n// Explicit special-individual ability; encrypted existing growth filler only.\n#define MON_DATA_INDIVIDUAL_ABILITY       89\n\n// Pokemon types\n#define TYPE_NONE           255\n"
+        }
+      ]
+    },
+    "include/pokemon.h": {
+      "before_sha256": "71ae9fafb36b5bc34e2fe6ba7e57061aa6fbfeb3e9e61b579d56345e8a9f1e5c",
+      "after_sha256": "91443aa25df557597f7bcfe8ed0e4a988b0bafcaf4885322c2c841d00fc8cc6f",
+      "hunks": [
+        {
+          "before": "u8 GetMonsStateToDoubles(void);\nu8 GetAbilityBySpecies(u16 species, bool8 abilityNum);\nu8 GetMonAbility(struct Pokemon *mon);\nu8 GetSecretBaseTrainerPicIndex(void);\nu8 GetSecretBaseTrainerNameIndex(void);\nbool8 IsPlayerPartyAndPokemonStorageFull(void);\n",
+          "after": "u8 GetMonsStateToDoubles(void);\nu8 GetAbilityBySpecies(u16 species, bool8 abilityNum);\nu8 GetMonAbility(struct Pokemon *mon);\nbool8 SetSpecialEncounterAbility(struct Pokemon *mon, u8 ability);\nu8 GetSecretBaseTrainerPicIndex(void);\nu8 GetSecretBaseTrainerNameIndex(void);\nbool8 IsPlayerPartyAndPokemonStorageFull(void);\n"
+        }
+      ]
+    },
+    "src/pokemon.c": {
+      "before_sha256": "c77fc8b947864cdb5bd28e95ea84c968c1384307021f0051e804d72df5558e94",
+      "after_sha256": "37988b9e1a85838e2870d510f68f1c2a18c8d2853b4b2701c5c651f736d2d97c",
+      "hunks": [
+        {
+          "before": " * safety we have a GetBoxMonData macro (in include/pokemon.h) which\n * dispatches to either GetBoxMonData2 or GetBoxMonData3 based on the\n * number of arguments. */\nu32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)\n{\n    s32 i;\n",
+          "after": " * safety we have a GetBoxMonData macro (in include/pokemon.h) which\n * dispatches to either GetBoxMonData2 or GetBoxMonData3 based on the\n * number of arguments. */\n// Exact opt-in Glalie tag; legacy zero filler is unchanged. No slot migration.\n#define GLALIE_SNOW_WARNING_TAG 0x57A1\n\nu32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)\n{\n    s32 i;\n"
+        },
+        {
+          "before": "        break;\n    case MON_DATA_IS_EGG:\n        retVal = substruct3->isEgg;\n        break;\n    case MON_DATA_ABILITY_NUM:\n        retVal = substruct3->abilityNum;\n",
+          "after": "        break;\n    case MON_DATA_IS_EGG:\n        retVal = substruct3->isEgg;\n        break;\n    case MON_DATA_INDIVIDUAL_ABILITY:\n        if (!boxMon->isBadEgg && !substruct3->isEgg && substruct0->species == SPECIES_GLALIE\n         && substruct0->filler == GLALIE_SNOW_WARNING_TAG)\n            retVal = ABILITY_SNOW_WARNING;\n        break;\n    case MON_DATA_ABILITY_NUM:\n        retVal = substruct3->abilityNum;\n"
+        },
+        {
+          "before": "        else\n            boxMon->isEgg = FALSE;\n        break;\n    case MON_DATA_ABILITY_NUM:\n        SET8(substruct3->abilityNum);\n        break;\n",
+          "after": "        else\n            boxMon->isEgg = FALSE;\n        break;\n    case MON_DATA_INDIVIDUAL_ABILITY:\n        if (!substruct3->isEgg && substruct0->species == SPECIES_GLALIE\n         && (substruct0->filler == 0 || substruct0->filler == GLALIE_SNOW_WARNING_TAG))\n        {\n            if (*data == ABILITY_SNOW_WARNING)\n                substruct0->filler = GLALIE_SNOW_WARNING_TAG;\n            else if (*data == ABILITY_NONE)\n                substruct0->filler = 0;\n        }\n        break;\n    case MON_DATA_ABILITY_NUM:\n        SET8(substruct3->abilityNum);\n        break;\n"
+        },
+        {
+          "before": "{\n    u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);\n    u8 abilityNum = GetMonData(mon, MON_DATA_ABILITY_NUM, NULL);\n    return GetAbilityBySpecies(species, abilityNum);\n}\n\nstatic void CreateSecretBaseEnemyParty(struct SecretBaseRecord *secretBaseRecord)\n",
+          "after": "{\n    u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);\n    u8 abilityNum = GetMonData(mon, MON_DATA_ABILITY_NUM, NULL);\n    u8 individual = GetMonData(mon, MON_DATA_INDIVIDUAL_ABILITY, NULL);\n    if (individual != ABILITY_NONE)\n        return gLastUsedAbility = individual;\n    return GetAbilityBySpecies(species, abilityNum);\n}\n\nbool8 SetSpecialEncounterAbility(struct Pokemon *mon, u8 ability)\n{\n    if (GetMonData(mon, MON_DATA_SPECIES) != SPECIES_GLALIE\n     || GetMonData(mon, MON_DATA_IS_EGG) || GetMonData(mon, MON_DATA_SANITY_IS_BAD_EGG)\n     || (ability != ABILITY_SNOW_WARNING && ability != ABILITY_NONE))\n        return FALSE;\n    SetMonData(mon, MON_DATA_INDIVIDUAL_ABILITY, &ability);\n    return GetMonData(mon, MON_DATA_INDIVIDUAL_ABILITY) == ability;\n}\n\nstatic void CreateSecretBaseEnemyParty(struct SecretBaseRecord *secretBaseRecord)\n"
+        },
+        {
+          "before": "    gBattleMons[battlerId].otId = GetMonData(&gPlayerParty[partyIndex], MON_DATA_OT_ID, NULL);\n    gBattleMons[battlerId].type1 = gSpeciesInfo[gBattleMons[battlerId].species].types[0];\n    gBattleMons[battlerId].type2 = gSpeciesInfo[gBattleMons[battlerId].species].types[1];\n    gBattleMons[battlerId].ability = GetAbilityBySpecies(gBattleMons[battlerId].species, gBattleMons[battlerId].abilityNum);\n    GetMonData(&gPlayerParty[partyIndex], MON_DATA_NICKNAME, nickname);\n    StringCopy_Nickname(gBattleMons[battlerId].nickname, nickname);\n    GetMonData(&gPlayerParty[partyIndex], MON_DATA_OT_NAME, gBattleMons[battlerId].otName);\n",
+          "after": "    gBattleMons[battlerId].otId = GetMonData(&gPlayerParty[partyIndex], MON_DATA_OT_ID, NULL);\n    gBattleMons[battlerId].type1 = gSpeciesInfo[gBattleMons[battlerId].species].types[0];\n    gBattleMons[battlerId].type2 = gSpeciesInfo[gBattleMons[battlerId].species].types[1];\n    gBattleMons[battlerId].ability = GetMonAbility(&gPlayerParty[partyIndex]);\n    GetMonData(&gPlayerParty[partyIndex], MON_DATA_NICKNAME, nickname);\n    StringCopy_Nickname(gBattleMons[battlerId].nickname, nickname);\n    GetMonData(&gPlayerParty[partyIndex], MON_DATA_OT_NAME, gBattleMons[battlerId].otName);\n"
+        }
+      ]
+    },
+    "src/pokemon_summary_screen.c": {
+      "before_sha256": "4d2768242def16c85934a69a1a6ec3b0436b540f406c5e4c44428d285d03c1dc",
+      "after_sha256": "6193615cd9a506d92d4328073c39c3b2c34097b23c16438d66219b7f7ebcc252",
+      "hunks": [
+        {
+          "before": "    ConvertIntToDecimalStringN(sMonSummaryScreen->summary.expToNextLevelStrBuf, expToNextLevel, STR_CONV_MODE_LEFT_ALIGN, 7);\n    sMonSkillsPrinterXpos->toNextLevel = GetNumberRightAlign63(sMonSummaryScreen->summary.expToNextLevelStrBuf);\n\n    type = GetAbilityBySpecies(GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_SPECIES), GetMonData(&sMonSummaryScreen->currentMon, MON_DATA_ABILITY_NUM));\n    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityNames[type]);\n    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, gAbilityDescriptionPointers[type]);\n\n",
+          "after": "    ConvertIntToDecimalStringN(sMonSummaryScreen->summary.expToNextLevelStrBuf, expToNextLevel, STR_CONV_MODE_LEFT_ALIGN, 7);\n    sMonSkillsPrinterXpos->toNextLevel = GetNumberRightAlign63(sMonSummaryScreen->summary.expToNextLevelStrBuf);\n\n    type = GetMonAbility(&sMonSummaryScreen->currentMon);\n    StringCopy(sMonSummaryScreen->summary.abilityNameStrBuf, gAbilityNames[type]);\n    StringCopy(sMonSummaryScreen->summary.abilityDescStrBuf, gAbilityDescriptionPointers[type]);\n\n"
+        }
+      ]
+    },
+    "src/battle_util.c": {
+      "before_sha256": "cd217ae1e3d7fd0fa13f2a8ffb922f64c6a7f9a765190727827bdf036b0736b9",
+      "after_sha256": "f8086f60ee86d68513e3f6d72bbb0a346ce1f505bf3a310fa1af0023aaf21668",
+      "hunks": [
+        {
+          "before": "        if (gTrainerBattleOpponent_A == TRAINER_LEADER_MISTY && species == SPECIES_STARMIE)\n            return ABILITY_DRIZZLE;\n    }\n    return GetAbilityBySpecies(species, gBattleMons[battler].abilityNum);\n}\n\nu8 GetBattlerForBattleScript(u8 caseId)\n",
+          "after": "        if (gTrainerBattleOpponent_A == TRAINER_LEADER_MISTY && species == SPECIES_STARMIE)\n            return ABILITY_DRIZZLE;\n    }\n    return GetMonAbility(GetBattlerSide(battler) == B_SIDE_PLAYER\n        ? &gPlayerParty[gBattlerPartyIndexes[battler]]\n        : &gEnemyParty[gBattlerPartyIndexes[battler]]);\n}\n\nu8 GetBattlerForBattleScript(u8 caseId)\n"
+        }
+      ]
+    }
+  },
+  "species_sha256": "e37cfe0a03344890eb7c95ddf6193e635eb726e08c7198b7b7062c715ac5f267"
+}

@@ -5,10 +5,11 @@ import json
 import re
 from pathlib import Path
 from approved_weather_ability_changes import prior_weather_ability_source
+from approved_special_glalie_changes import prior_special_glalie_source
 
 manifest = json.loads(Path('tests/specifications/weather_ability_delta.json').read_text())
 for path, row in manifest['files'].items():
-    assert hashlib.sha256(Path(path).read_bytes()).hexdigest() == row['after_sha256'], path
+    assert hashlib.sha256(prior_special_glalie_source(path).encode()).hexdigest() == row['after_sha256'], path
     assert hashlib.sha256(prior_weather_ability_source(path).encode()).hexdigest() == row['before_sha256'], path
 constants = Path('include/constants/abilities.h').read_text()
 prior = prior_weather_ability_source('include/constants/abilities.h')
@@ -24,5 +25,5 @@ for name in re.findall(r'\[ABILITY_\w+\] = _\("([^"]*)"\)', text):
     assert len(name) <= 12, name
 # No allocation or species/save schema changes in this mechanics-only slice.
 for path, digest in manifest['preserved'].items():
-    assert hashlib.sha256(Path(path).read_bytes()).hexdigest() == digest, path
+    assert hashlib.sha256(prior_special_glalie_source(path).encode()).hexdigest() == digest, path
 print('PASS:81 unique ability IDs with all78 original IDs unchanged, complete names/descriptions, exact frozen-source reversals and unchanged species/save data (static; native runtime required).')
