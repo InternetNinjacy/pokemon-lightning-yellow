@@ -10,7 +10,9 @@ Authority: issue47 (LY-LW-055/056 and SOW-007), dedicated weather assignment und
 - Snow Warning starts indefinite, replaceable Hail on switch-in, using the existing GenIII Hail text, animation and weather-form script. No new artwork or later-generation Snow defense bonus. Repeating entry under already permanent Hail does not restart it. A weather move can replace it; that move's expiry does not restore Hail.
 - Ice Body reuses the existing Rain Dish healing script and ability-name buffer. The healing ability identity is saved before nested weather-suppression checks, which can overwrite `gLastUsedAbility`, then restored for the message/ability recording. Both player and opponent are tested.
 
-No global species slots, Trainer parties, individual Pokémon storage, save offsets, link record sizes, move IDs, distributions, encounters, lighting or field-weather tables change. This engine slice does **not** make any particular species or special individual acquire these abilities.
+Approved Trainer-only entry overrides assign Brock Snorunt Ice Body/Onix Overcoat and Misty Starmie Drizzle. Both initial data loading and reserve switch-in use the same helper. Player/wild/link/eReader/Trainer Tower contexts keep their native abilities. Skill Swap/Trace are not overwritten every frame. Brock's Snorunt hook is inactive until the separately approved team exists.
+
+No global species slots, Trainer parties, individual Pokémon storage, save offsets, link record sizes, move IDs, distributions, encounters, lighting or field-weather tables change. No wild/caught special individual acquires an override through this slice.
 
 ## Executable validation
 
@@ -24,7 +26,7 @@ The host runner checks exact approved delta reversals, complete81-ID/name/descri
 
 Native mGBA tests execute the compiled ROM's residual opcode over all18 monotypes with ordinary/Sand Veil/Ice Body/Overcoat fixtures; actual healing dispatcher with both battler sides, all weather categories, healthy/full/fainted/low-HP cases and both weather suppressors; actual Snow Warning callback/message/animation; and full Splash turns measuring party and battle HP. Real turns also cover six-turn permanent Hail, Sunny Day replacement and expiry without Hail restoration. Test abilities are explicitly injected fixtures, not installed species assignments or captured-individual persistence.
 
-Executed locally: all42 host runners passed; final focused native ability run passed967 assertions. The broader weather-move run and clean rebuild evidence are recorded in the PR.
+Executed locally before the Trainer-entry extension: all42 host runners passed; focused native ability run967 assertions; broader weather-move group6350 assertions; clean ROM SHA-256 reproducibility passed. Final extension results are recorded in the PR.
 
 CI runs the new host guard and the native tests through the retained full weather-move group. Independent upstream checksum and clean modified reproducibility remain required. No ROM artifacts are published.
 
@@ -32,7 +34,7 @@ CI runs the new host guard and the native tests through the retained full weathe
 
 1. Individual ability persistence for special Corphish/Glalie remains unimplemented. Do not substitute species-wide slots. Validate catch, party→PC→party, save/load, evolution and ownership/link effects when implemented.
 2. Approved global eligibility is not an approved two-slot replacement/inheritance table. That design reconciliation is still required before changing species arrays.
-3. Current main's Brock party is still Geodude12/Onix14, not the desired Snorunt14/Onix16. No movesets were invented or parties changed here. Integrate finalized Gym party data separately, then test individual Ice Body/Overcoat on the actual team. Misty's Starmie-specific Drizzle also needs source integration and real switch-in acceptance.
+3. Current main's Brock party is still Geodude12/Onix14, not the desired Snorunt14/Onix16. No movesets were invented or parties changed here. Integrate finalized Gym party data separately, then test individual Ice Body/Overcoat on the actual team. Misty's Starmie-specific Drizzle and Brock's existing Onix Overcoat are implemented as scoped Trainer overrides; the desired Snorunt party remains separate.
 4. Special-route producer placements, levels/moves and finalized Corphish aftermath are still absent. PR113 provides opt-in lifecycle mechanics only; do not enable an unresolvable override.
 5. Complete story progression, physical RTC, real hardware and link-peer testing remain external acceptance. The engine fixtures are not evidence those scenarios passed.
 

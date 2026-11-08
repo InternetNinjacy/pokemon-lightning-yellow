@@ -30,8 +30,16 @@
     },
     "src/battle_util.c": {
       "before_sha256": "93da6e4a379e19c33f953ceda664744d5f348efd32e9255b11b3ec38f56230e5",
-      "after_sha256": "f9184e2b28fed3f3053fcd0177af88fd6a2d6dd5b2e8166dffdfc1236d8d2de9",
+      "after_sha256": "cd217ae1e3d7fd0fa13f2a8ffb922f64c6a7f9a765190727827bdf036b0736b9",
       "hunks": [
+        {
+          "before": "#include \"constants/items.h\"\n#include \"constants/weather.h\"\n#include \"constants/abilities.h\"\n#include \"constants/pokemon.h\"\n#include \"constants/hold_effects.h\"\n#include \"constants/battle_move_effects.h\"\n",
+          "after": "#include \"constants/items.h\"\n#include \"constants/weather.h\"\n#include \"constants/abilities.h\"\n#include \"constants/opponents.h\"\n#include \"constants/pokemon.h\"\n#include \"constants/hold_effects.h\"\n#include \"constants/battle_move_effects.h\"\n"
+        },
+        {
+          "before": "    MOVE_GROWL, MOVE_ROAR, MOVE_SING, MOVE_SUPERSONIC, MOVE_SCREECH, MOVE_SNORE,\n    MOVE_UPROAR, MOVE_METAL_SOUND, MOVE_GRASS_WHISTLE, MOVE_HYPER_VOICE, MOVE_CHIRP, MOVE_BELLOW, SOUND_MOVES_END\n};\n\nu8 GetBattlerForBattleScript(u8 caseId)\n{\n",
+          "after": "    MOVE_GROWL, MOVE_ROAR, MOVE_SING, MOVE_SUPERSONIC, MOVE_SCREECH, MOVE_SNORE,\n    MOVE_UPROAR, MOVE_METAL_SOUND, MOVE_GRASS_WHISTLE, MOVE_HYPER_VOICE, MOVE_CHIRP, MOVE_BELLOW, SOUND_MOVES_END\n};\n\n// Approved individual Gym abilities; never edit species slots or party data.\n// Applied only when native battler data is loaded, so Skill Swap/Trace persist\n// normally until the affected battler switches again.\nu8 GetBattlerInitialAbility(u8 battler)\n{\n    u16 species = gBattleMons[battler].species;\n    if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER)\n     && !(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_EREADER_TRAINER | BATTLE_TYPE_TRAINER_TOWER))\n     && GetBattlerSide(battler) == B_SIDE_OPPONENT)\n    {\n        if (gTrainerBattleOpponent_A == TRAINER_LEADER_BROCK)\n        {\n            if (species == SPECIES_SNORUNT)\n                return ABILITY_ICE_BODY;\n            if (species == SPECIES_ONIX)\n                return ABILITY_OVERCOAT;\n        }\n        if (gTrainerBattleOpponent_A == TRAINER_LEADER_MISTY && species == SPECIES_STARMIE)\n            return ABILITY_DRIZZLE;\n    }\n    return GetAbilityBySpecies(species, gBattleMons[battler].abilityNum);\n}\n\nu8 GetBattlerForBattleScript(u8 caseId)\n{\n"
+        },
         {
           "before": "                    effect++;\n                }\n                break;\n            case ABILITY_SAND_STREAM:\n                if (!(gBattleWeather & B_WEATHER_SANDSTORM_PERMANENT))\n                {\n",
           "after": "                    effect++;\n                }\n                break;\n            case ABILITY_SNOW_WARNING:\n                if (!(gBattleWeather & B_WEATHER_HAIL_PERMANENT))\n                {\n                    gBattleWeather = B_WEATHER_HAIL_PERMANENT;\n                    BattleScriptPushCursorAndCallback(BattleScript_SnowWarningActivates);\n                    gBattleScripting.battler = battler;\n                    effect++;\n                }\n                break;\n            case ABILITY_SAND_STREAM:\n                if (!(gBattleWeather & B_WEATHER_SANDSTORM_PERMANENT))\n                {\n"
@@ -48,8 +56,12 @@
     },
     "src/battle_script_commands.c": {
       "before_sha256": "cbb92694f5be3e2d515d039bd94f099b513d95c786d357a213ef396700947d66",
-      "after_sha256": "fde96d22e296b021ab734a0e2cf42149786d10aa183f626b82b272ca176a49bc",
+      "after_sha256": "3509f3d89f2051310366a16ddc71a566220da50f249f6d1e08106fcbeef7300b",
       "hunks": [
+        {
+          "before": "\n    gBattleMons[gActiveBattler].type1 = gSpeciesInfo[gBattleMons[gActiveBattler].species].types[0];\n    gBattleMons[gActiveBattler].type2 = gSpeciesInfo[gBattleMons[gActiveBattler].species].types[1];\n    gBattleMons[gActiveBattler].ability = GetAbilityBySpecies(gBattleMons[gActiveBattler].species, gBattleMons[gActiveBattler].abilityNum);\n\n    // check knocked off item\n    i = GetBattlerSide(gActiveBattler);\n",
+          "after": "\n    gBattleMons[gActiveBattler].type1 = gSpeciesInfo[gBattleMons[gActiveBattler].species].types[0];\n    gBattleMons[gActiveBattler].type2 = gSpeciesInfo[gBattleMons[gActiveBattler].species].types[1];\n    gBattleMons[gActiveBattler].ability = GetBattlerInitialAbility(gActiveBattler);\n\n    // check knocked off item\n    i = GetBattlerSide(gActiveBattler);\n"
+        },
         {
           "before": "            if (gBattleMons[gBattlerAttacker].type1 != TYPE_GROUND\n                && gBattleMons[gBattlerAttacker].type2 != TYPE_GROUND\n                && gBattleMons[gBattlerAttacker].ability != ABILITY_SAND_VEIL\n                && !(gStatuses3[gBattlerAttacker] & STATUS3_UNDERGROUND)\n                && !(gStatuses3[gBattlerAttacker] & STATUS3_UNDERWATER))\n            {\n",
           "after": "            if (gBattleMons[gBattlerAttacker].type1 != TYPE_GROUND\n                && gBattleMons[gBattlerAttacker].type2 != TYPE_GROUND\n                && gBattleMons[gBattlerAttacker].ability != ABILITY_SAND_VEIL\n                && gBattleMons[gBattlerAttacker].ability != ABILITY_OVERCOAT\n                && !(gStatuses3[gBattlerAttacker] & STATUS3_UNDERGROUND)\n                && !(gStatuses3[gBattlerAttacker] & STATUS3_UNDERWATER))\n            {\n"
@@ -77,6 +89,26 @@
         {
           "before": "\tdatahpupdate BS_ATTACKER\n\tend3\n\nBattleScript_SandstreamActivates::\n\tpause B_WAIT_TIME_SHORT\n\tprintstring STRINGID_PKMNSXWHIPPEDUPSANDSTORM\n",
           "after": "\tdatahpupdate BS_ATTACKER\n\tend3\n\n@ Existing Gen III hail text/animation only; no new artwork.\nBattleScript_SnowWarningActivates::\n\tpause B_WAIT_TIME_SHORT\n\tprintstring STRINGID_STARTEDHAIL\n\twaitstate\n\tplayanimation BS_BATTLER_0, B_ANIM_HAIL_CONTINUES\n\tcall BattleScript_WeatherFormChanges\n\tend3\n\nBattleScript_SandstreamActivates::\n\tpause B_WAIT_TIME_SHORT\n\tprintstring STRINGID_PKMNSXWHIPPEDUPSANDSTORM\n"
+        }
+      ]
+    },
+    "src/battle_main.c": {
+      "before_sha256": "23928df7927ae73172601cab3fcc218e9a1c081e6e51a23aa5f7827f1e8e3607",
+      "after_sha256": "1b971149401820f5dd679b6ee503aec0f8839d7d1f5ce11ebd923ba04fe0b749",
+      "hunks": [
+        {
+          "before": "\n            gBattleMons[gActiveBattler].type1 = gSpeciesInfo[gBattleMons[gActiveBattler].species].types[0];\n            gBattleMons[gActiveBattler].type2 = gSpeciesInfo[gBattleMons[gActiveBattler].species].types[1];\n            gBattleMons[gActiveBattler].ability = GetAbilityBySpecies(gBattleMons[gActiveBattler].species, gBattleMons[gActiveBattler].abilityNum);\n            hpOnSwitchout = &gBattleStruct->hpOnSwitchout[GetBattlerSide(gActiveBattler)];\n            *hpOnSwitchout = gBattleMons[gActiveBattler].hp;\n            for (i = 0; i < NUM_BATTLE_STATS; i++)\n",
+          "after": "\n            gBattleMons[gActiveBattler].type1 = gSpeciesInfo[gBattleMons[gActiveBattler].species].types[0];\n            gBattleMons[gActiveBattler].type2 = gSpeciesInfo[gBattleMons[gActiveBattler].species].types[1];\n            gBattleMons[gActiveBattler].ability = GetBattlerInitialAbility(gActiveBattler);\n            hpOnSwitchout = &gBattleStruct->hpOnSwitchout[GetBattlerSide(gActiveBattler)];\n            *hpOnSwitchout = gBattleMons[gActiveBattler].hp;\n            for (i = 0; i < NUM_BATTLE_STATS; i++)\n"
+        }
+      ]
+    },
+    "include/battle_util.h": {
+      "before_sha256": "38d93e081d1886494489c0fc44bf7d77c0753b096a29f2f327a6b2909b112370",
+      "after_sha256": "d8865e2ec1747c0acd35b29e2387a75a88c665b0c74f8c87dd03488f760c5ac9",
+      "hunks": [
+        {
+          "before": "#define BS_GET_PLAYER2                  13\n#define BS_GET_OPPONENT2                14\n\nu8 GetBattlerForBattleScript(u8 caseId);\nvoid PressurePPLose(u8 target, u8 attacker, u16 move);\nvoid PressurePPLoseOnUsingImprison(u8 attacker);\n",
+          "after": "#define BS_GET_PLAYER2                  13\n#define BS_GET_OPPONENT2                14\n\nu8 GetBattlerInitialAbility(u8 battler);\nu8 GetBattlerForBattleScript(u8 caseId);\nvoid PressurePPLose(u8 target, u8 attacker, u16 move);\nvoid PressurePPLoseOnUsingImprison(u8 attacker);\n"
         }
       ]
     }

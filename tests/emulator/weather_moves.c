@@ -1,8 +1,10 @@
 // Actual battle-script command execution plus real Rain Zap Cannon turns.
 #include "weather_abilities.c"
+#include "weather_gym_abilities.c"
 static void weatherMoveTests(void){
- weatherAbilityTests();
- if(getenv("LIGHTNING_WEATHER_ABILITIES_ONLY"))return;
+ if(!getenv("LIGHTNING_WEATHER_GYM_ABILITIES_ONLY"))weatherAbilityTests();
+ weatherGymAbilityTests();
+ if(getenv("LIGHTNING_WEATHER_ABILITIES_ONLY")||getenv("LIGHTNING_WEATHER_GYM_ABILITIES_ONLY"))return;
  wildFixture(MAP_GROUP(MAP_ROUTE1),MAP_NUM(MAP_ROUTE1),1);startSpecial();waitAction();damageStats();
  uint32_t script=CALL(AllocZeroed,16);CHECK(script);
  core->busWrite16(core,bmon(0)+ABI_BMON_MAX_HP,160);core->busWrite32(core,SYM_gStatuses3,0);

@@ -22,6 +22,7 @@
 #include "constants/items.h"
 #include "constants/weather.h"
 #include "constants/abilities.h"
+#include "constants/opponents.h"
 #include "constants/pokemon.h"
 #include "constants/hold_effects.h"
 #include "constants/battle_move_effects.h"
@@ -34,6 +35,29 @@ static const u16 sSoundMovesTable[] =
     MOVE_GROWL, MOVE_ROAR, MOVE_SING, MOVE_SUPERSONIC, MOVE_SCREECH, MOVE_SNORE,
     MOVE_UPROAR, MOVE_METAL_SOUND, MOVE_GRASS_WHISTLE, MOVE_HYPER_VOICE, MOVE_CHIRP, MOVE_BELLOW, SOUND_MOVES_END
 };
+
+// Approved individual Gym abilities; never edit species slots or party data.
+// Applied only when native battler data is loaded, so Skill Swap/Trace persist
+// normally until the affected battler switches again.
+u8 GetBattlerInitialAbility(u8 battler)
+{
+    u16 species = gBattleMons[battler].species;
+    if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+     && !(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_EREADER_TRAINER | BATTLE_TYPE_TRAINER_TOWER))
+     && GetBattlerSide(battler) == B_SIDE_OPPONENT)
+    {
+        if (gTrainerBattleOpponent_A == TRAINER_LEADER_BROCK)
+        {
+            if (species == SPECIES_SNORUNT)
+                return ABILITY_ICE_BODY;
+            if (species == SPECIES_ONIX)
+                return ABILITY_OVERCOAT;
+        }
+        if (gTrainerBattleOpponent_A == TRAINER_LEADER_MISTY && species == SPECIES_STARMIE)
+            return ABILITY_DRIZZLE;
+    }
+    return GetAbilityBySpecies(species, gBattleMons[battler].abilityNum);
+}
 
 u8 GetBattlerForBattleScript(u8 caseId)
 {
