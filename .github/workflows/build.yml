@@ -57,6 +57,7 @@ jobs:
           python3 tests/run_swarm_cloud_tests.py
           python3 tests/run_bellow_rock_tests.py
           python3 tests/run_scorching_sands_tests.py
+          python3 tests/run_earth_power_tests.py
           python3 tests/run_move_foundation_tests.py
           python3 tests/run_move_ui_tests.py
           python3 tests/run_original_move_data_tests.py
@@ -124,6 +125,10 @@ jobs:
           # Already installed with the initial dependencies; verify it remains
           # available without starting another late network/package transaction.
           dpkg-query -W libmgba-dev
+      - name: Focused Earth Power native battle tests in mGBA
+        if: matrix.target == 'modified'
+        timeout-minutes: 10
+        run: LIGHTNING_EARTH_POWER_ONLY=1 python3 tests/emulator/run.py
       - name: Focused Scorching Sands native battle tests in mGBA
         if: matrix.target == 'modified'
         timeout-minutes: 10

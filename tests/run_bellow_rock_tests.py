@@ -35,7 +35,7 @@ assert table.count("MOVE_BELLOW")==1
 ai=(ROOT/"data/battle_ai_scripts.s").read_text()
 block=ai[ai.index("AI_CheckBadMove_CheckSoundproof::"):ai.index("AI_CheckBadMove_CheckEffect::")]
 assert "if_move MOVE_BELLOW, Score_Minus10" in block
-assert "#define MOVES_COUNT 371" in const  # Superseded by new approved move #370; #367-369 unchanged
+assert "#define MOVES_COUNT 372" in const  # Superseded by new approved move #370; #367-369 unchanged
 manifest=json.loads((ROOT/"tests/specifications/approved_bellow_rock_delta.json").read_text())
 for path in manifest["files"]:
  current=(ROOT/path).read_text()

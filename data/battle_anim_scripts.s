@@ -391,6 +391,7 @@ gBattleAnims_Moves::
 	.4byte Move_POWER_GEM
 	.4byte Move_STONE_EDGE
 	.4byte Move_SCORCHING_SANDS
+	.4byte Move_EARTH_POWER
 	.4byte Move_COUNT @ cannot be reached, because last move is Psycho Boost
 
 	.align 2
@@ -11522,3 +11523,7 @@ Move_SCORCHING_SANDS:
 	call EmberFireHit
 	waitforvisualfinish
 	end
+
+@ Owner-approved Earthquake artwork reuse for Earth Power #371; no actual weather/field change.
+Move_EARTH_POWER:
+	goto Move_EARTHQUAKE

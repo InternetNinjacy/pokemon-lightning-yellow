@@ -379,6 +379,7 @@ const u8 gMoveDescription_BELLOW[] = _("A loud cry that\nhits the foe with\npowe
 const u8 gMoveDescription_POWER_GEM[] = _("An attack using\nthe power of a\nglowing gemstone.");
 const u8 gMoveDescription_STONE_EDGE[] = _("Sharp stones hit\nthe foe. High\ncritical-hit ratio.");
 const u8 gMoveDescription_SCORCHING_SANDS[] = _("Scorching sand\nmay leave the foe\nwith a burn.");
+const u8 gMoveDescription_EARTH_POWER[] = _("The ground erupts\nwith power. May\nlower Sp. Def.");
 
 const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND         - 1] = gMoveDescription_Pound,
@@ -751,4 +752,5 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POWER_GEM - 1] = gMoveDescription_POWER_GEM,
     [MOVE_STONE_EDGE - 1] = gMoveDescription_STONE_EDGE,
     [MOVE_SCORCHING_SANDS - 1] = gMoveDescription_SCORCHING_SANDS,
+    [MOVE_EARTH_POWER - 1] = gMoveDescription_EARTH_POWER,
 };
