@@ -40,6 +40,9 @@ jobs:
               print('Failures: ' + str(len(p['failures'])), file=out)
               print('Oversized sheets needing special renderer: ' + str(len(p.get('oversized_sheet_exceptions', []))), file=out)
               print('Castform forms: ' + ', '.join(p['forms'].keys()), file=out)
+              print('Embedded palette variants: ' + str(p.get('embedded_palette_variant_counts')), file=out)
+              print('PNG palettes matching neither normal nor shiny: ' + str(len(p.get('unmatched_palette_species', []))), file=out)
+              print('Nonzero image background corners: ' + str(len(p.get('nonzero_corner_background_species', []))), file=out)
               print('Incomplete distinct-frame sets: ' + ', '.join(x['species'] for x in p['species'] if x['unique_frame_cells'] < 6), file=out)
               print('This does not certify directions, gameplay, ROM integration or license.', file=out)
           PY
@@ -62,6 +65,9 @@ jobs:
               'animation_contract': p['animation_contract'],
               'firered_existing_64x64_oam': p['firered_existing_64x64_oam'],
               'palette_color_mismatch_species': p['palette_color_mismatch_species'],
+              'embedded_palette_variant_counts': p['embedded_palette_variant_counts'],
+              'unmatched_palette_species': p['unmatched_palette_species'],
+              'nonzero_corner_background_species': p['nonzero_corner_background_species'],
               'transparency_metadata_missing_species': p['transparency_metadata_missing_species'],
               'nonzero_transparency_indices': p['nonzero_transparency_indices'],
               'partial_alpha_species': p['partial_alpha_species'],
@@ -78,6 +84,9 @@ jobs:
                   'used_indices': item['used_indices'],
                   'unique_frame_cells': item['unique_frame_cells'],
                   'normal_palette_index_mismatches': item['normal_palette_index_mismatches'],
+                  'shiny_palette_index_mismatches': item['shiny_palette_index_mismatches'],
+                  'embedded_palette_variant': item['embedded_palette_variant'],
+                  'corner_indices': item['corner_indices'],
                   'gba_4bpp_total_six_frames': item['gba_4bpp_total_six_frames'],
                   'gba_conversion_sha256': item['gba_conversion_sha256']
               } for item in p['species']]
