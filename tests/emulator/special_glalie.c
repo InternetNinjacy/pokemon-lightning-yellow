@@ -35,7 +35,8 @@ static void specialGlalieTests(void)
   if(pc){for(unsigned i=1;i<6;i++)CALL(CreateMon,player(i),SPECIES_PIKACHU,20,31,1,i,0,0);core->busWrite8(core,SYM_gPlayerPartyCount,6);}
   CALL(CreateMon,enemy(0),species,30,31,1,1234,0,0);
   if(kind)CHECK(CALL(SetSpecialEncounterAbility,enemy(0),ability));
-  else CHECK(CALL(GetMonAbility,enemy(0))==ABILITY_SAND_STREAM);CHECK(CALL(AddBagItem,ITEM_MASTER_BALL,1));
+  else CHECK(CALL(GetMonAbility,enemy(0))==ABILITY_SAND_STREAM);
+  CHECK(CALL(AddBagItem,ITEM_MASTER_BALL,1));
   unsigned field=CALL(GetSav1Weather);CALL(StartWildBattle);waitAction();frames(30,0);
   CHECK(core->busRead8(core,bmon(1)+ABI_BMON_ABILITY)==ability);CHECK(core->busRead16(core,SYM_gBattleWeather)&(kind==0?B_WEATHER_SANDSTORM_PERMANENT:kind==1?B_WEATHER_RAIN_PERMANENT:B_WEATHER_HAIL_PERMANENT));
   openBagUse();waitOverworld(2);CHECK(core->busRead8(core,SYM_gBattleOutcome)==B_OUTCOME_CAUGHT);
