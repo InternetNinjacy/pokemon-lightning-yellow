@@ -21,7 +21,7 @@ HUNKS = {
  "data/battle_scripts_1.s": [
   ("\t.4byte BattleScript_EffectSwarmCloud               @ EFFECT_SWARM_CLOUD\n\t.4byte BattleScript_EffectIceFang                  @ EFFECT_ICE_FANG\n", "\t.4byte BattleScript_EffectSwarmCloud               @ EFFECT_SLEEP_HIT\n"),
   ("\tjumpifmove MOVE_ICE_FANG, BattleScript_IceFangFlinch\n", ""),
-  ("BattleScript_IceFangFlinch::\n\tsetmoveeffect MOVE_EFFECT_FLINCH\n\tseteffectwithchance\n", ""),
+  ("\tgoto BattleScript_AfterSwarmCloud\nBattleScript_IceFangFlinch::\n\tsetmoveeffect MOVE_EFFECT_FLINCH\n\tseteffectwithchance\n", ""),
   ("\n@ Ice Fang independent on-hit rolls: freeze first, flinch second.\n@ The same 10-percent chance byte is rolled separately by each seteffectwithchance.\nBattleScript_EffectIceFang::\n\tsetmoveeffect MOVE_EFFECT_FREEZE\n\tgoto BattleScript_EffectHit\n", ""),
  ],
  "data/battle_anim_scripts.s": [
