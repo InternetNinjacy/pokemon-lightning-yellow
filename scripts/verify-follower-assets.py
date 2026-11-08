@@ -9,6 +9,7 @@ import hashlib
 import io
 import json
 import os
+import re
 import struct
 import sys
 import time
@@ -119,6 +120,8 @@ def read_png(data):
         # independently establish which cells face each direction.
         pixels = tuple(v for row in rows for v in row[frame*32:(frame+1)*32])
         frames.append(pixels)
+    if any(not any(pixel != 0 for pixel in frame) for frame in frames):
+        raise ValueError("blank 32x32 directional animation cell")
     return {
         "dimensions": [w,h], "bit_depth": depth, "indexed_colors": len(palette)//3,
         "unique_frame_cells": len(set(frames)),
@@ -140,7 +143,44 @@ def read_pal(data):
     return result
 
 
+def check_upstream_animation_contract():
+    """Confirm the selected six-cell format maps to all four directions."""
+    path = "src/data/object_events/object_event_anims.h"
+    source = fetch(path).decode("utf-8")
+    mapping = {
+        "sAnim_GoSouth2F": [0, 1],
+        "sAnim_GoNorth2F": [2, 3],
+        "sAnim_GoWest2F": [4, 5],
+        "sAnim_GoEast2F": [4, 5],
+    }
+    for routine, expected in mapping.items():
+        match = re.search(r"static const union AnimCmd\\s+" + routine +
+                          r"\\[\\]\\s*=\\s*\\{(.*?)\\};", source, re.S)
+        if match is None:
+            raise ValueError("missing upstream animation " + routine)
+        numbers = [int(v) for v in re.findall(r"ANIMCMD_FRAME\\((\\d+)\\s*,", match.group(1))]
+        if not numbers or set(numbers) != set(expected):
+            raise ValueError("incompatible frame mapping " + routine + ": " + str(numbers))
+        if routine == "sAnim_GoEast2F" and ".hFlip = TRUE" not in match.group(1):
+            raise ValueError("east walking must flip the west-facing image")
+    table_match = re.search(r"const union AnimCmd \\*const sAnimTable_Following\\[\\]\\s*=\\s*\\{(.*?)\\};", source, re.S)
+    if table_match is None:
+        raise ValueError("missing generic follower animation table")
+    table = table_match.group(1)
+    for direction in ("SOUTH", "NORTH", "WEST", "EAST"):
+        if ("[ANIM_STD_GO_" + direction + "] = sAnim_Go" + direction.title() + "2F") not in table:
+            raise ValueError("missing generic walking animation for " + direction)
+    graphics = fetch("src/data/object_events/object_event_graphics_info.h").decode("utf-8")
+    record = re.search(r"gObjectEventGraphicsInfo_Follower\\s*=\\s*\\{(.*?)\\};", graphics, re.S)
+    if record is None or ".anims = sAnimTable_Following," not in record.group(1):
+        raise ValueError("follower graphics record uses another animation table")
+    return {"layout": "six consecutive 32x32 cells, [south0,south1,north0,north1,west0,west1]",
+            "east": "mirrored west", "upstream_animation_table": path,
+            "graphics_info": "gObjectEventGraphicsInfo_Follower"}
+
+
 def main():
+    animation_contract = check_upstream_animation_contract()
     with (ROOT / "docs/followers/252-species-coverage.csv").open(newline="") as f:
         rows = list(csv.DictReader(f))
     if len(rows) != 252 or len({r["species"] for r in rows}) != 252 or rows[232]["species"] != "CASTFORM":
@@ -181,6 +221,7 @@ def main():
             forms[form]["sprite"] = str(exc)
             failures.append({"form": form, "sprite": str(exc)})
     report = {"source": BASE, "verified": len(results), "total": len(rows),
+              "animation_contract": animation_contract,
               "format_checked": "PNG CRC, complete scanlines, 4-bit indexed pixels, six 32x32 cells",
               "forms": forms, "species": results, "failures": failures,
               "limitations": ["Does not prove cell-to-facing animation table mapping",
