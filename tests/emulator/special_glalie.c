@@ -25,18 +25,6 @@ static void specialGlalieTests(void)
   CALL(CopyPlayerPartyMonToBattleData,0,0);CHECK(core->busRead8(core,bmon(0)+ABI_BMON_ABILITY)==ABILITY_SNOW_WARNING);
  }
  CHECK(CALL(SetSpecialEncounterAbility,player(0),ABILITY_NONE));CHECK(CALL(GetMonAbility,player(0))!=ABILITY_SNOW_WARNING);
- CALL(CreateMon,player(0),SPECIES_CORPHISH,30,31,1,1,0,0);unsigned char prior[ABI_MON_SIZE];readBytes(player(0),prior,sizeof(prior));
- CHECK(!CALL(SetSpecialEncounterAbility,player(0),ABILITY_SNOW_WARNING));sameBytes(player(0),prior,sizeof(prior));
- CHECK(CALL(SetSpecialEncounterAbility,player(0),ABILITY_DRIZZLE));CHECK(CALL(GetMonAbility,player(0))==ABILITY_DRIZZLE);
- CALL(SetBoxMonAt,0,26,player(0));flashRoundTrip();CALL(BoxMonToMon,CALL(GetBoxedMonPtr,0,26),player(0));
- CHECK(CALL(GetMonAbility,player(0))==ABILITY_DRIZZLE);
- monput(player(0),ABI_DATA_SPECIES,SPECIES_CRAWDAUNT);
- CHECK(CALL(GetMonAbility,player(0))==ABILITY_DRIZZLE);
- CALL(SetBoxMonAt,0,26,player(0));flashRoundTrip();CALL(BoxMonToMon,CALL(GetBoxedMonPtr,0,26),player(0));
- CHECK(CALL(GetMonAbility,player(0))==ABILITY_DRIZZLE);
- CALL(CreateMon,player(0),SPECIES_CRAWDAUNT,30,31,1,2,0,0);
- CHECK(CALL(GetMonAbility,player(0))!=ABILITY_DRIZZLE);
- CHECK(!CALL(SetSpecialEncounterAbility,player(0),ABILITY_DRIZZLE));
  CALL(CreateMon,player(0),SPECIES_GLALIE,30,31,1,0,0,0);monput(player(0),ABI_DATA_IS_EGG,1);CHECK(!CALL(SetSpecialEncounterAbility,player(0),ABILITY_SNOW_WARNING));
  printf("PASS: native Glalie-only opt-in tag across all24 encrypted substructure orders, unchanged legacy/invalid inputs, exact PID/OT, PC copy/flash/withdrawal and player battle data; no Corphish inheritance invented\n");
  // Real capture into party and full-party PC, using the actual Bag/Master Ball path.
@@ -71,5 +59,17 @@ static void specialGlalieTests(void)
  CHECK(core->busRead8(core,bmon(0)+ABI_BMON_ABILITY)==ABILITY_SNOW_WARNING);CHECK(core->busRead16(core,SYM_gBattleWeather)&B_WEATHER_HAIL_PERMANENT);
  CHECK(CALL(GetSav1Weather)==field);weatherRun();waitOverworld(2);CHECK(CALL(GetMonAbility,player(0))==ABILITY_SNOW_WARNING);CHECK(CALL(GetSav1Weather)==field);
  printf("PASS: captured PC Glalie withdrawn to player party starts Snow Warning in a subsequent real battle; Run restores field without changing its saved ability\n");
+ CALL(CreateMon,player(0),SPECIES_CORPHISH,30,31,1,1,0,0);unsigned char prior[ABI_MON_SIZE];readBytes(player(0),prior,sizeof(prior));
+ CHECK(!CALL(SetSpecialEncounterAbility,player(0),ABILITY_SNOW_WARNING));sameBytes(player(0),prior,sizeof(prior));
+ CHECK(CALL(SetSpecialEncounterAbility,player(0),ABILITY_DRIZZLE));CHECK(CALL(GetMonAbility,player(0))==ABILITY_DRIZZLE);
+ CALL(SetBoxMonAt,0,26,player(0));flashRoundTrip();CALL(BoxMonToMon,CALL(GetBoxedMonPtr,0,26),player(0));
+ CHECK(CALL(GetMonAbility,player(0))==ABILITY_DRIZZLE);
+ monput(player(0),ABI_DATA_SPECIES,SPECIES_CRAWDAUNT);
+ CHECK(CALL(GetMonAbility,player(0))==ABILITY_DRIZZLE);
+ CALL(SetBoxMonAt,0,26,player(0));flashRoundTrip();CALL(BoxMonToMon,CALL(GetBoxedMonPtr,0,26),player(0));
+ CHECK(CALL(GetMonAbility,player(0))==ABILITY_DRIZZLE);
+ CALL(CreateMon,player(0),SPECIES_CRAWDAUNT,30,31,1,2,0,0);
+ CHECK(CALL(GetMonAbility,player(0))!=ABILITY_DRIZZLE);
+ CHECK(!CALL(SetSpecialEncounterAbility,player(0),ABILITY_DRIZZLE));
  CHECK(core->loadState(core,bootState));
 }
