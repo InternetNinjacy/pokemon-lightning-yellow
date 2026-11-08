@@ -51,5 +51,30 @@
     "runtime_steelix_64x64_status": "NOT TESTED in compiled FireRed or mGBA; source OAM precedent only",
     "asset_gate": "BLOCKED",
     "audit_artifact_run": 42531042787
+  },
+  "native_emulator_graphics_audit_2026_11_08": {
+    "scope": "Isolated 32x32/64x64 native ROM sprite resource allocation, OAM and destruction; not Steelix artwork or follower state",
+    "main_commit": "90d0811b46bfab6f054d9b9c9b9c64240b6f3562",
+    "audit_branch_commit": "1bd50e16b04a383c37826d8140f46c3d9d6d633b",
+    "github_actions_run": 42532517738,
+    "runner": "libmGBA with compiled pokefirered.gba and ELF",
+    "assertions_passed": 361,
+    "verified": [
+      "ROM boot 600 frames",
+      "native simultaneous 16-tile 32x32 and 64-tile 64x64 allocation",
+      "native tile-map allocation exhaustion and clean recovery",
+      "real 32x32 Snorlax and 64x64 Seagallop object creation",
+      "native OAM codes 2 and 3",
+      "BuildOamBuffer",
+      "DestroySprite releases 16 and 64 tiles",
+      "re-create 64x64 sprite after cleanup"
+    ],
+    "remaining": [
+      "Steelix actual art and palette rendered under mGBA",
+      "dynamic species loader",
+      "animation, reflections, crowded map resource pressure, 32/64 atomic switch and save/gameplay behavior"
+    ],
+    "technical_subgate": "PASS isolated graphics-engine resource feasibility",
+    "asset_gate": "BLOCKED until remaining integration tests pass"
   }
 }
