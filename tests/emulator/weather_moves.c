@@ -1,6 +1,6 @@
 // Actual battle-script command execution plus real Rain Zap Cannon turns.
 static void weatherMoveTests(void){
- wildFixture(MAP_GROUP(MAP_ROUTE1),MAP_NUM(MAP_ROUTE1),1);startSpecial();waitAction();damageStats();
+ wildFixture(MAP_GROUP(MAP_MT_MOON_1F),MAP_NUM(MAP_MT_MOON_1F),1);startSpecial();waitAction();damageStats();
  uint32_t script=CALL(AllocZeroed,16);CHECK(script);
  core->busWrite16(core,bmon(0)+ABI_BMON_MAX_HP,160);core->busWrite32(core,SYM_gStatuses3,0);
  for(unsigned a=0;a<18;a++)for(unsigned b=0;b<18;b++){
