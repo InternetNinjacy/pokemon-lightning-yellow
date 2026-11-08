@@ -119,6 +119,7 @@ static void spreadStatusTests(void){
 #include "new_earth_power.c"
 #include "new_ice_fang.c"
 #include "new_avalanche.c"
+#include "new_moves374.c"
 static void originalEffectTests(void){
  if(getenv("LIGHTNING_SKITTER_SLASH_ONLY")){skitterSlashTests();return;}
  if(getenv("LIGHTNING_VENOM_WEB_ONLY")){venomWebTests();return;}
@@ -145,6 +146,7 @@ static void originalEffectTests(void){
  earthPowerTests();
  iceFangTests();
  avalancheTests();
+ moves374Tests();
  thunderWaveTests();
  ghostReworkTests();
  spreadStatusTests();

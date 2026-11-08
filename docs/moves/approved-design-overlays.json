@@ -1,27 +1,27 @@
 {
   "sources": {
     "register": {
-      "file": "Pokémon Lightning Yellow — Complete TM & Move Register — v1 (2026-10-29).txt",
+      "file": "Pok\u00e9mon Lightning Yellow \u2014 Complete TM & Move Register \u2014 v1 (2026-10-29).txt",
       "sha256": "bdd2990c1cd35523d90120844eba36794fdc369e4e014d7eced908958f681597",
       "lines": 852
     },
     "tracker": {
-      "file": "Pokémon Lightning Yellow — Physical Special Status Split — All-Type Design Tracker & Handoff — 2026-10-29.txt",
+      "file": "Pok\u00e9mon Lightning Yellow \u2014 Physical Special Status Split \u2014 All-Type Design Tracker & Handoff \u2014 2026-10-29.txt",
       "sha256": "c6d0a3df0a26445219de302677895764dcf874331bb8e4fa08368700229922e3",
       "lines": 311
     },
     "ledger": {
-      "file": "Pokémon Lightning Yellow — Approved Move Change Ledger — Source Verbatim v0.1.txt",
+      "file": "Pok\u00e9mon Lightning Yellow \u2014 Approved Move Change Ledger \u2014 Source Verbatim v0.1.txt",
       "sha256": "ece3a23869f088c7f65dea0a43375e22b31a8e306320d5c1bd7df9fbbc690b21",
       "lines": 182
     },
     "handoff": {
-      "file": "Pokémon Lightning Yellow — Pre-Codex Move & Animation Handoff — Draft v0.1.txt",
+      "file": "Pok\u00e9mon Lightning Yellow \u2014 Pre-Codex Move & Animation Handoff \u2014 Draft v0.1.txt",
       "sha256": "c192729ab16145ee2e00c46a6f9797e4a25aeb00b0dc4c99fca41573970b4b94",
       "lines": 128
     },
     "closeout": {
-      "file": "Pokémon Lightning Yellow — Move System Design Completion & Main Thread Handoff — 2026-10-31.txt",
+      "file": "Pok\u00e9mon Lightning Yellow \u2014 Move System Design Completion & Main Thread Handoff \u2014 2026-10-31.txt",
       "sha256": "059f858ed638125a0951a6b9d1823a5792727da42c7ae72dc4145beadf56595a",
       "lines": 74
     },
@@ -42,7 +42,7 @@
         {
           "source": "register",
           "line": 664,
-          "excerpt": "2026-10-29 — OWNER-APPROVED BUG PHYSICAL MOVE MECHANIC REVISIONS (SUPERSEDING OLD VALUES)"
+          "excerpt": "2026-10-29 \u2014 OWNER-APPROVED BUG PHYSICAL MOVE MECHANIC REVISIONS (SUPERSEDING OLD VALUES)"
         }
       ],
       "mechanic_notes": [
@@ -64,11 +64,11 @@
         {
           "source": "register",
           "line": 664,
-          "excerpt": "2026-10-29 — OWNER-APPROVED BUG PHYSICAL MOVE MECHANIC REVISIONS (SUPERSEDING OLD VALUES)"
+          "excerpt": "2026-10-29 \u2014 OWNER-APPROVED BUG PHYSICAL MOVE MECHANIC REVISIONS (SUPERSEDING OLD VALUES)"
         }
       ],
       "mechanic_notes": [
-        "Single hit replaces2–5 hits; keep85 accuracy/20PP;30% poison."
+        "Single hit replaces2\u20135 hits; keep85 accuracy/20PP;30% poison."
       ],
       "field_basis": {
         "power": "OWNER_EXPLICIT",
@@ -126,7 +126,7 @@
         {
           "source": "register",
           "line": 749,
-          "excerpt": "2026-10-30 — OWNER-APPROVED DRAGON RAGE NIGHT SHADE DAMAGE RULE: Existing Dragon Rage (move #082) remains DRAGON-type SPECIAL, 100% accuracy, 10 PP, but REPLACE original fixed-40-HP damage with fixed damage equal to the attacker's current level (same damage fo"
+          "excerpt": "2026-10-30 \u2014 OWNER-APPROVED DRAGON RAGE NIGHT SHADE DAMAGE RULE: Existing Dragon Rage (move #082) remains DRAGON-type SPECIAL, 100% accuracy, 10 PP, but REPLACE original fixed-40-HP damage with fixed damage equal to the attacker's current level (same damage fo"
         }
       ],
       "mechanic_notes": [
@@ -148,7 +148,7 @@
         {
           "source": "register",
           "line": 788,
-          "excerpt": "2026-10-30 — ELECTRIC-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly directed 'Let's lock in, update the drive and then tell me what's left.' SPECIAL: keep original ThunderShock 40 BP/100 accuracy/30 PP, Shock Wave 60 BP/never misses/20 PP, Thund"
+          "excerpt": "2026-10-30 \u2014 ELECTRIC-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly directed 'Let's lock in, update the drive and then tell me what's left.' SPECIAL: keep original ThunderShock 40 BP/100 accuracy/30 PP, Shock Wave 60 BP/never misses/20 PP, Thund"
         }
       ],
       "mechanic_notes": [
@@ -191,7 +191,7 @@
         {
           "source": "register",
           "line": 593,
-          "excerpt": "2026-10-29 — LICK POWER INCREASE APPROVED"
+          "excerpt": "2026-10-29 \u2014 LICK POWER INCREASE APPROVED"
         }
       ],
       "mechanic_notes": [],
@@ -234,11 +234,11 @@
         {
           "source": "register",
           "line": 581,
-          "excerpt": "2026-10-29 — SPITE DAMAGE EDGE CASE OWNER APPROVED / MOVE FINALIZED"
+          "excerpt": "2026-10-29 \u2014 SPITE DAMAGE EDGE CASE OWNER APPROVED / MOVE FINALIZED"
         }
       ],
       "mechanic_notes": [
-        "Always damage on successful Ghost hit; optional native2–5 PP depletion of eligible last-used move; no damage failure for absent eligibility."
+        "Always damage on successful Ghost hit; optional native2\u20135 PP depletion of eligible last-used move; no damage failure for absent eligibility."
       ],
       "field_basis": {
         "category": "OWNER_EXPLICIT",
@@ -264,7 +264,7 @@
         {
           "source": "register",
           "line": 642,
-          "excerpt": "2026-10-29 — SCARY FACE OWNER APPROVAL"
+          "excerpt": "2026-10-29 \u2014 SCARY FACE OWNER APPROVAL"
         }
       ],
       "mechanic_notes": [
@@ -287,7 +287,7 @@
         {
           "source": "register",
           "line": 788,
-          "excerpt": "2026-10-30 — ELECTRIC-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly directed 'Let's lock in, update the drive and then tell me what's left.' SPECIAL: keep original ThunderShock 40 BP/100 accuracy/30 PP, Shock Wave 60 BP/never misses/20 PP, Thund"
+          "excerpt": "2026-10-30 \u2014 ELECTRIC-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly directed 'Let's lock in, update the drive and then tell me what's left.' SPECIAL: keep original ThunderShock 40 BP/100 accuracy/30 PP, Shock Wave 60 BP/never misses/20 PP, Thund"
         }
       ],
       "mechanic_notes": [
@@ -312,7 +312,7 @@
         {
           "source": "register",
           "line": 752,
-          "excerpt": "2026-10-30 — OWNER-APPROVED OUTRAGE POWER INCREASE: Original Outrage (move #200) remains DRAGON-type PHYSICAL under the modern Physical/Special split; increase base power from original Gen III 90 to 120, matching later-generation values. Retain 100% accuracy, "
+          "excerpt": "2026-10-30 \u2014 OWNER-APPROVED OUTRAGE POWER INCREASE: Original Outrage (move #200) remains DRAGON-type PHYSICAL under the modern Physical/Special split; increase base power from original Gen III 90 to 120, matching later-generation values. Retain 100% accuracy, "
         }
       ],
       "mechanic_notes": [],
@@ -329,7 +329,7 @@
         {
           "source": "register",
           "line": 713,
-          "excerpt": "2026-10-30 — OWNER-APPROVED GAME-WIDE SANDSTORM RECLASSIFICATION AND IMMUNITY: Sandstorm (original move #201; original TM37) is now GROUND-type STATUS rather than Rock-type Status. TM37 remains Sandstorm with its existing eligibility; no new distribution is gr"
+          "excerpt": "2026-10-30 \u2014 OWNER-APPROVED GAME-WIDE SANDSTORM RECLASSIFICATION AND IMMUNITY: Sandstorm (original move #201; original TM37) is now GROUND-type STATUS rather than Rock-type Status. TM37 remains Sandstorm with its existing eligibility; no new distribution is gr"
         }
       ],
       "mechanic_notes": [
@@ -356,7 +356,7 @@
         {
           "source": "register",
           "line": 646,
-          "excerpt": "2026-10-29 — OWNER APPROVAL: MEAN LOOK RECLASSIFICATION"
+          "excerpt": "2026-10-29 \u2014 OWNER APPROVAL: MEAN LOOK RECLASSIFICATION"
         }
       ],
       "mechanic_notes": [
@@ -380,7 +380,7 @@
         {
           "source": "register",
           "line": 573,
-          "excerpt": "2026-10-29 — GRUDGE FINAL ROLLOUT-STYLE MECHANICS APPROVED"
+          "excerpt": "2026-10-29 \u2014 GRUDGE FINAL ROLLOUT-STYLE MECHANICS APPROVED"
         }
       ],
       "mechanic_notes": [
@@ -409,7 +409,7 @@
         {
           "source": "register",
           "line": 609,
-          "excerpt": "2026-10-29 — ASTONISH FINAL REDESIGN APPROVED"
+          "excerpt": "2026-10-29 \u2014 ASTONISH FINAL REDESIGN APPROVED"
         }
       ],
       "mechanic_notes": [],
@@ -449,7 +449,7 @@
         {
           "source": "register",
           "line": 719,
-          "excerpt": "2026-10-30 — OWNER-APPROVED ROCK PHYSICAL ATTACK UPDATES: Rock Throw unchanged: ROCK PHYSICAL 50 power, 90% accuracy, 15 PP, no secondary effect. Rock Tomb modified: ROCK PHYSICAL 65 power (previous 50), 90% accuracy (previous 80%), 10 PP unchanged, retains it"
+          "excerpt": "2026-10-30 \u2014 OWNER-APPROVED ROCK PHYSICAL ATTACK UPDATES: Rock Throw unchanged: ROCK PHYSICAL 50 power, 90% accuracy, 15 PP, no secondary effect. Rock Tomb modified: ROCK PHYSICAL 65 power (previous 50), 90% accuracy (previous 80%), 10 PP unchanged, retains it"
         }
       ],
       "mechanic_notes": [],
@@ -484,11 +484,11 @@
         {
           "source": "register",
           "line": 737,
-          "excerpt": "2026-10-30 — OWNER-APPROVED ICICLE SPEAR BUFF: Existing Icicle Spear (#333) remains ICE-type PHYSICAL multi-hit move (2–5 hits) with 100% accuracy and 30 PP, but per-hit base power is INCREASED from original Gen III 10 to 25, matching later-generation official"
+          "excerpt": "2026-10-30 \u2014 OWNER-APPROVED ICICLE SPEAR BUFF: Existing Icicle Spear (#333) remains ICE-type PHYSICAL multi-hit move (2\u20135 hits) with 100% accuracy and 30 PP, but per-hit base power is INCREASED from original Gen III 10 to 25, matching later-generation official"
         }
       ],
       "mechanic_notes": [
-        "25 power per hit; native2–5 hits;100accuracy/30PP."
+        "25 power per hit; native2\u20135 hits;100accuracy/30PP."
       ],
       "field_basis": {
         "power": "OWNER_EXPLICIT"
@@ -535,7 +535,7 @@
         {
           "source": "register",
           "line": 529,
-          "excerpt": "2026-10-29 — CUSTOM FIRE MOVE FINAL NAME APPROVED: FLAME FANG"
+          "excerpt": "2026-10-29 \u2014 CUSTOM FIRE MOVE FINAL NAME APPROVED: FLAME FANG"
         }
       ],
       "field_basis": {
@@ -591,7 +591,7 @@
         {
           "source": "register",
           "line": 533,
-          "excerpt": "2026-10-29 — CUSTOM FIRE MOVE FINAL NAME APPROVED: FLASHFIRE"
+          "excerpt": "2026-10-29 \u2014 CUSTOM FIRE MOVE FINAL NAME APPROVED: FLASHFIRE"
         }
       ],
       "field_basis": {
@@ -643,7 +643,7 @@
         {
           "source": "register",
           "line": 521,
-          "excerpt": "2026-10-29 — BLAZE RUSH ACCURACY AND PP APPROVED"
+          "excerpt": "2026-10-29 \u2014 BLAZE RUSH ACCURACY AND PP APPROVED"
         }
       ],
       "field_basis": {
@@ -701,7 +701,7 @@
         {
           "source": "register",
           "line": 589,
-          "excerpt": "2026-10-29 — SOUL DRAIN COMPLETE MECHANICS APPROVED"
+          "excerpt": "2026-10-29 \u2014 SOUL DRAIN COMPLETE MECHANICS APPROVED"
         }
       ],
       "field_basis": {
@@ -759,7 +759,7 @@
         {
           "source": "register",
           "line": 601,
-          "excerpt": "2026-10-29 — CUSTOM GHOST MOVE WEARY TOUCH FINAL NAME APPROVED"
+          "excerpt": "2026-10-29 \u2014 CUSTOM GHOST MOVE WEARY TOUCH FINAL NAME APPROVED"
         }
       ],
       "field_basis": {
@@ -813,7 +813,7 @@
         {
           "source": "register",
           "line": 615,
-          "excerpt": "2026-10-29 — DREAM HAUNT FULL DESIGN FINAL APPROVAL"
+          "excerpt": "2026-10-29 \u2014 DREAM HAUNT FULL DESIGN FINAL APPROVAL"
         }
       ],
       "field_basis": {
@@ -1212,7 +1212,7 @@
         {
           "source": "register",
           "line": 704,
-          "excerpt": "2026-10-30 OWNER-APPROVED NEW NORMAL MOVE — BELLOW: Normal-type SPECIAL damaging attack, 40 base power, 100% accuracy, 30 PP, no secondary effect. Theme: a short, forceful vocal cry/bellow produces sound waves that damage the target; broadly accessible to voca"
+          "excerpt": "2026-10-30 OWNER-APPROVED NEW NORMAL MOVE \u2014 BELLOW: Normal-type SPECIAL damaging attack, 40 base power, 100% accuracy, 30 PP, no secondary effect. Theme: a short, forceful vocal cry/bellow produces sound waves that damage the target; broadly accessible to voca"
         }
       ],
       "field_basis": {
@@ -1266,7 +1266,7 @@
         {
           "source": "register",
           "line": 716,
-          "excerpt": "2026-10-30 — OWNER-APPROVED ROCK SPECIAL MOVE POWER GEM: Introduce the later-generation move Power Gem into Pokémon Lightning Yellow as ROCK-type SPECIAL attack, 80 base power, 100% accuracy, 20 PP, no additional effect. This supplements existing AncientPower "
+          "excerpt": "2026-10-30 \u2014 OWNER-APPROVED ROCK SPECIAL MOVE POWER GEM: Introduce the later-generation move Power Gem into Pok\u00e9mon Lightning Yellow as ROCK-type SPECIAL attack, 80 base power, 100% accuracy, 20 PP, no additional effect. This supplements existing AncientPower "
         }
       ],
       "field_basis": {
@@ -1318,7 +1318,7 @@
         {
           "source": "register",
           "line": 719,
-          "excerpt": "2026-10-30 — OWNER-APPROVED ROCK PHYSICAL ATTACK UPDATES: Rock Throw unchanged: ROCK PHYSICAL 50 power, 90% accuracy, 15 PP, no secondary effect. Rock Tomb modified: ROCK PHYSICAL 65 power (previous 50), 90% accuracy (previous 80%), 10 PP unchanged, retains it"
+          "excerpt": "2026-10-30 \u2014 OWNER-APPROVED ROCK PHYSICAL ATTACK UPDATES: Rock Throw unchanged: ROCK PHYSICAL 50 power, 90% accuracy, 15 PP, no secondary effect. Rock Tomb modified: ROCK PHYSICAL 65 power (previous 50), 90% accuracy (previous 80%), 10 PP unchanged, retains it"
         }
       ],
       "field_basis": {
@@ -1370,7 +1370,7 @@
         {
           "source": "register",
           "line": 725,
-          "excerpt": "2026-10-30 OWNER-APPROVED GROUND SPECIAL MOVE — SCORCHING SANDS: Introduce official Generation VIII Scorching Sands as Ground-type SPECIAL damaging attack at its official 70 base power, 100% accuracy, 10 PP, and 30% chance to burn the target when hit. Intended"
+          "excerpt": "2026-10-30 OWNER-APPROVED GROUND SPECIAL MOVE \u2014 SCORCHING SANDS: Introduce official Generation VIII Scorching Sands as Ground-type SPECIAL damaging attack at its official 70 base power, 100% accuracy, 10 PP, and 30% chance to burn the target when hit. Intended"
         }
       ],
       "field_basis": {
@@ -1423,7 +1423,7 @@
         {
           "source": "register",
           "line": 728,
-          "excerpt": "2026-10-30 — OWNER-APPROVED GROUND SPECIAL MOVE EARTH POWER: Introduce the established Generation IV move Earth Power as a GROUND-type SPECIAL damaging attack at its official parameters: 90 base power, 100% accuracy, 10 PP, and 10% chance on successful hit to "
+          "excerpt": "2026-10-30 \u2014 OWNER-APPROVED GROUND SPECIAL MOVE EARTH POWER: Introduce the established Generation IV move Earth Power as a GROUND-type SPECIAL damaging attack at its official parameters: 90 base power, 100% accuracy, 10 PP, and 10% chance on successful hit to "
         }
       ],
       "field_basis": {
@@ -1476,7 +1476,7 @@
         {
           "source": "register",
           "line": 743,
-          "excerpt": "2026-10-30 — ICE-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. PHYSICAL ICE: retain Ice Ball at Gen III baseline and Ice Punch unchanged; buff original Icicle Spear to 25 BP per hit, 2–5 hits, 100% accuracy, 30 PP; add official later-gen Ice Fang 65 BP 95 accura"
+          "excerpt": "2026-10-30 \u2014 ICE-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. PHYSICAL ICE: retain Ice Ball at Gen III baseline and Ice Punch unchanged; buff original Icicle Spear to 25 BP per hit, 2\u20135 hits, 100% accuracy, 30 PP; add official later-gen Ice Fang 65 BP 95 accura"
         }
       ],
       "field_basis": {
@@ -1539,7 +1539,7 @@
         {
           "source": "register",
           "line": 743,
-          "excerpt": "2026-10-30 — ICE-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. PHYSICAL ICE: retain Ice Ball at Gen III baseline and Ice Punch unchanged; buff original Icicle Spear to 25 BP per hit, 2–5 hits, 100% accuracy, 30 PP; add official later-gen Ice Fang 65 BP 95 accura"
+          "excerpt": "2026-10-30 \u2014 ICE-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. PHYSICAL ICE: retain Ice Ball at Gen III baseline and Ice Punch unchanged; buff original Icicle Spear to 25 BP per hit, 2\u20135 hits, 100% accuracy, 30 PP; add official later-gen Ice Fang 65 BP 95 accura"
         }
       ],
       "field_basis": {
@@ -1591,7 +1591,7 @@
         {
           "source": "register",
           "line": 743,
-          "excerpt": "2026-10-30 — ICE-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. PHYSICAL ICE: retain Ice Ball at Gen III baseline and Ice Punch unchanged; buff original Icicle Spear to 25 BP per hit, 2–5 hits, 100% accuracy, 30 PP; add official later-gen Ice Fang 65 BP 95 accura"
+          "excerpt": "2026-10-30 \u2014 ICE-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. PHYSICAL ICE: retain Ice Ball at Gen III baseline and Ice Punch unchanged; buff original Icicle Spear to 25 BP per hit, 2\u20135 hits, 100% accuracy, 30 PP; add official later-gen Ice Fang 65 BP 95 accura"
         }
       ],
       "field_basis": {
@@ -1614,6 +1614,11 @@
       "effect_rules": {
         "semantic": "FLINCH_30",
         "secondary_percent": 30
+      },
+      "engine_translation": {
+        "effect": "EFFECT_FLINCH_HIT",
+        "target": "MOVE_TARGET_SELECTED",
+        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
       }
     },
     {
@@ -1639,7 +1644,7 @@
         {
           "source": "register",
           "line": 755,
-          "excerpt": "2026-10-30 — DRAGON-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. ORIGINAL DRAGON MOVES under modern split: PHYSICAL Dragon Claw 80 BP/100 accuracy/15 PP unchanged; Outrage BUFFED to 120 BP/100 accuracy/15 PP with original 2–3-turn locked attack and subsequent u"
+          "excerpt": "2026-10-30 \u2014 DRAGON-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. ORIGINAL DRAGON MOVES under modern split: PHYSICAL Dragon Claw 80 BP/100 accuracy/15 PP unchanged; Outrage BUFFED to 120 BP/100 accuracy/15 PP with original 2\u20133-turn locked attack and subsequent u"
         }
       ],
       "field_basis": {
@@ -1661,6 +1666,11 @@
       "delta": null,
       "effect_rules": {
         "semantic": "HIT"
+      },
+      "engine_translation": {
+        "effect": "EFFECT_HIT",
+        "target": "MOVE_TARGET_SELECTED",
+        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       }
     },
     {
@@ -1686,7 +1696,7 @@
         {
           "source": "register",
           "line": 755,
-          "excerpt": "2026-10-30 — DRAGON-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. ORIGINAL DRAGON MOVES under modern split: PHYSICAL Dragon Claw 80 BP/100 accuracy/15 PP unchanged; Outrage BUFFED to 120 BP/100 accuracy/15 PP with original 2–3-turn locked attack and subsequent u"
+          "excerpt": "2026-10-30 \u2014 DRAGON-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. ORIGINAL DRAGON MOVES under modern split: PHYSICAL Dragon Claw 80 BP/100 accuracy/15 PP unchanged; Outrage BUFFED to 120 BP/100 accuracy/15 PP with original 2\u20133-turn locked attack and subsequent u"
         },
         {
           "source": "owner_20261105",
@@ -1717,6 +1727,11 @@
         "reference_generation": 4,
         "minimize_power_bonus": false,
         "minimize_accuracy_bypass": false
+      },
+      "engine_translation": {
+        "effect": "EFFECT_FLINCH_HIT",
+        "target": "MOVE_TARGET_SELECTED",
+        "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
       }
     },
     {
@@ -1742,7 +1757,7 @@
         {
           "source": "register",
           "line": 767,
-          "excerpt": "2026-10-30 — DARK-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Preserve the original Generation III Dark moves under post-split categories unless expressly changed; no buff to Crunch was approved. ADD THREE official later-generation DARK SPECIAL moves: Snarl 55"
+          "excerpt": "2026-10-30 \u2014 DARK-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Preserve the original Generation III Dark moves under post-split categories unless expressly changed; no buff to Crunch was approved. ADD THREE official later-generation DARK SPECIAL moves: Snarl 55"
         }
       ],
       "field_basis": {
@@ -1765,6 +1780,11 @@
       "effect_rules": {
         "semantic": "SP_ATTACK_MINUS_1_100",
         "secondary_percent": 100
+      },
+      "engine_translation": {
+        "effect": "EFFECT_SPECIAL_ATTACK_DOWN_HIT",
+        "target": "MOVE_TARGET_BOTH",
+        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
       }
     },
     {
@@ -1790,7 +1810,7 @@
         {
           "source": "register",
           "line": 767,
-          "excerpt": "2026-10-30 — DARK-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Preserve the original Generation III Dark moves under post-split categories unless expressly changed; no buff to Crunch was approved. ADD THREE official later-generation DARK SPECIAL moves: Snarl 55"
+          "excerpt": "2026-10-30 \u2014 DARK-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Preserve the original Generation III Dark moves under post-split categories unless expressly changed; no buff to Crunch was approved. ADD THREE official later-generation DARK SPECIAL moves: Snarl 55"
         }
       ],
       "field_basis": {
@@ -1813,6 +1833,11 @@
       "effect_rules": {
         "semantic": "FLINCH_20",
         "secondary_percent": 20
+      },
+      "engine_translation": {
+        "effect": "EFFECT_FLINCH_HIT",
+        "target": "MOVE_TARGET_SELECTED",
+        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
       }
     },
     {
@@ -1838,7 +1863,7 @@
         {
           "source": "register",
           "line": 767,
-          "excerpt": "2026-10-30 — DARK-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Preserve the original Generation III Dark moves under post-split categories unless expressly changed; no buff to Crunch was approved. ADD THREE official later-generation DARK SPECIAL moves: Snarl 55"
+          "excerpt": "2026-10-30 \u2014 DARK-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Preserve the original Generation III Dark moves under post-split categories unless expressly changed; no buff to Crunch was approved. ADD THREE official later-generation DARK SPECIAL moves: Snarl 55"
         }
       ],
       "field_basis": {
@@ -1861,6 +1886,11 @@
       "effect_rules": {
         "semantic": "ACCURACY_MINUS_1_40",
         "secondary_percent": 40
+      },
+      "engine_translation": {
+        "effect": "EFFECT_ACCURACY_DOWN_HIT",
+        "target": "MOVE_TARGET_SELECTED",
+        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
       }
     },
     {
@@ -1886,7 +1916,7 @@
         {
           "source": "register",
           "line": 767,
-          "excerpt": "2026-10-30 — DARK-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Preserve the original Generation III Dark moves under post-split categories unless expressly changed; no buff to Crunch was approved. ADD THREE official later-generation DARK SPECIAL moves: Snarl 55"
+          "excerpt": "2026-10-30 \u2014 DARK-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Preserve the original Generation III Dark moves under post-split categories unless expressly changed; no buff to Crunch was approved. ADD THREE official later-generation DARK SPECIAL moves: Snarl 55"
         }
       ],
       "field_basis": {
@@ -1908,6 +1938,11 @@
       "delta": null,
       "effect_rules": {
         "semantic": "HIGH_CRITICAL"
+      },
+      "engine_translation": {
+        "effect": "EFFECT_HIGH_CRITICAL",
+        "target": "MOVE_TARGET_SELECTED",
+        "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       }
     },
     {
@@ -1933,7 +1968,7 @@
         {
           "source": "register",
           "line": 767,
-          "excerpt": "2026-10-30 — DARK-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Preserve the original Generation III Dark moves under post-split categories unless expressly changed; no buff to Crunch was approved. ADD THREE official later-generation DARK SPECIAL moves: Snarl 55"
+          "excerpt": "2026-10-30 \u2014 DARK-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Preserve the original Generation III Dark moves under post-split categories unless expressly changed; no buff to Crunch was approved. ADD THREE official later-generation DARK SPECIAL moves: Snarl 55"
         },
         {
           "source": "owner_20261105",
@@ -1987,7 +2022,7 @@
         {
           "source": "register",
           "line": 767,
-          "excerpt": "2026-10-30 — DARK-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Preserve the original Generation III Dark moves under post-split categories unless expressly changed; no buff to Crunch was approved. ADD THREE official later-generation DARK SPECIAL moves: Snarl 55"
+          "excerpt": "2026-10-30 \u2014 DARK-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Preserve the original Generation III Dark moves under post-split categories unless expressly changed; no buff to Crunch was approved. ADD THREE official later-generation DARK SPECIAL moves: Snarl 55"
         }
       ],
       "field_basis": {
@@ -2034,7 +2069,7 @@
         {
           "source": "register",
           "line": 779,
-          "excerpt": "2026-10-30 — WATER-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. PRESERVE original Generation III Water moves under post-split Physical/Special categories without changes to original Water attacks, including TM03 Water Pulse as Misty's reward and HM03 Surf/HM07 "
+          "excerpt": "2026-10-30 \u2014 WATER-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. PRESERVE original Generation III Water moves under post-split Physical/Special categories without changes to original Water attacks, including TM03 Water Pulse as Misty's reward and HM03 Surf/HM07 "
         }
       ],
       "field_basis": {
@@ -2081,7 +2116,7 @@
         {
           "source": "register",
           "line": 779,
-          "excerpt": "2026-10-30 — WATER-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. PRESERVE original Generation III Water moves under post-split Physical/Special categories without changes to original Water attacks, including TM03 Water Pulse as Misty's reward and HM03 Surf/HM07 "
+          "excerpt": "2026-10-30 \u2014 WATER-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. PRESERVE original Generation III Water moves under post-split Physical/Special categories without changes to original Water attacks, including TM03 Water Pulse as Misty's reward and HM03 Surf/HM07 "
         }
       ],
       "field_basis": {
@@ -2129,7 +2164,7 @@
         {
           "source": "register",
           "line": 779,
-          "excerpt": "2026-10-30 — WATER-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. PRESERVE original Generation III Water moves under post-split Physical/Special categories without changes to original Water attacks, including TM03 Water Pulse as Misty's reward and HM03 Surf/HM07 "
+          "excerpt": "2026-10-30 \u2014 WATER-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. PRESERVE original Generation III Water moves under post-split Physical/Special categories without changes to original Water attacks, including TM03 Water Pulse as Misty's reward and HM03 Surf/HM07 "
         }
       ],
       "field_basis": {
@@ -2178,7 +2213,7 @@
         {
           "source": "register",
           "line": 779,
-          "excerpt": "2026-10-30 — WATER-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. PRESERVE original Generation III Water moves under post-split Physical/Special categories without changes to original Water attacks, including TM03 Water Pulse as Misty's reward and HM03 Surf/HM07 "
+          "excerpt": "2026-10-30 \u2014 WATER-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. PRESERVE original Generation III Water moves under post-split Physical/Special categories without changes to original Water attacks, including TM03 Water Pulse as Misty's reward and HM03 Surf/HM07 "
         }
       ],
       "field_basis": {
@@ -2236,7 +2271,7 @@
         {
           "source": "register",
           "line": 788,
-          "excerpt": "2026-10-30 — ELECTRIC-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly directed 'Let's lock in, update the drive and then tell me what's left.' SPECIAL: keep original ThunderShock 40 BP/100 accuracy/30 PP, Shock Wave 60 BP/never misses/20 PP, Thund"
+          "excerpt": "2026-10-30 \u2014 ELECTRIC-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly directed 'Let's lock in, update the drive and then tell me what's left.' SPECIAL: keep original ThunderShock 40 BP/100 accuracy/30 PP, Shock Wave 60 BP/never misses/20 PP, Thund"
         }
       ],
       "field_basis": {
@@ -2284,7 +2319,7 @@
         {
           "source": "register",
           "line": 788,
-          "excerpt": "2026-10-30 — ELECTRIC-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly directed 'Let's lock in, update the drive and then tell me what's left.' SPECIAL: keep original ThunderShock 40 BP/100 accuracy/30 PP, Shock Wave 60 BP/never misses/20 PP, Thund"
+          "excerpt": "2026-10-30 \u2014 ELECTRIC-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly directed 'Let's lock in, update the drive and then tell me what's left.' SPECIAL: keep original ThunderShock 40 BP/100 accuracy/30 PP, Shock Wave 60 BP/never misses/20 PP, Thund"
         }
       ],
       "field_basis": {
@@ -2331,7 +2366,7 @@
         {
           "source": "register",
           "line": 788,
-          "excerpt": "2026-10-30 — ELECTRIC-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly directed 'Let's lock in, update the drive and then tell me what's left.' SPECIAL: keep original ThunderShock 40 BP/100 accuracy/30 PP, Shock Wave 60 BP/never misses/20 PP, Thund"
+          "excerpt": "2026-10-30 \u2014 ELECTRIC-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly directed 'Let's lock in, update the drive and then tell me what's left.' SPECIAL: keep original ThunderShock 40 BP/100 accuracy/30 PP, Shock Wave 60 BP/never misses/20 PP, Thund"
         }
       ],
       "field_basis": {
@@ -2388,7 +2423,7 @@
         {
           "source": "register",
           "line": 788,
-          "excerpt": "2026-10-30 — ELECTRIC-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly directed 'Let's lock in, update the drive and then tell me what's left.' SPECIAL: keep original ThunderShock 40 BP/100 accuracy/30 PP, Shock Wave 60 BP/never misses/20 PP, Thund"
+          "excerpt": "2026-10-30 \u2014 ELECTRIC-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly directed 'Let's lock in, update the drive and then tell me what's left.' SPECIAL: keep original ThunderShock 40 BP/100 accuracy/30 PP, Shock Wave 60 BP/never misses/20 PP, Thund"
         }
       ],
       "field_basis": {
@@ -2435,7 +2470,7 @@
         {
           "source": "register",
           "line": 794,
-          "excerpt": "2026-10-30 — GRASS TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly says 'let's go ahead and lock grass and move on.' Special Grass attacking coverage accepted without new changes; preserve original Grass Special attacks and all previously approved"
+          "excerpt": "2026-10-30 \u2014 GRASS TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly says 'let's go ahead and lock grass and move on.' Special Grass attacking coverage accepted without new changes; preserve original Grass Special attacks and all previously approved"
         }
       ],
       "field_basis": {
@@ -2482,7 +2517,7 @@
         {
           "source": "register",
           "line": 794,
-          "excerpt": "2026-10-30 — GRASS TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly says 'let's go ahead and lock grass and move on.' Special Grass attacking coverage accepted without new changes; preserve original Grass Special attacks and all previously approved"
+          "excerpt": "2026-10-30 \u2014 GRASS TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly says 'let's go ahead and lock grass and move on.' Special Grass attacking coverage accepted without new changes; preserve original Grass Special attacks and all previously approved"
         }
       ],
       "field_basis": {
@@ -2529,7 +2564,7 @@
         {
           "source": "register",
           "line": 794,
-          "excerpt": "2026-10-30 — GRASS TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly says 'let's go ahead and lock grass and move on.' Special Grass attacking coverage accepted without new changes; preserve original Grass Special attacks and all previously approved"
+          "excerpt": "2026-10-30 \u2014 GRASS TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly says 'let's go ahead and lock grass and move on.' Special Grass attacking coverage accepted without new changes; preserve original Grass Special attacks and all previously approved"
         }
       ],
       "field_basis": {
@@ -2576,7 +2611,7 @@
         {
           "source": "register",
           "line": 816,
-          "excerpt": "2026-10-31 — FIGHTING TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly said 'Yeah, let's lock fighting and move on to flying.' EXISTING Gen III FIGHTING moves retain Gen III battle parameters and modern move-based categories; all damaging original "
+          "excerpt": "2026-10-31 \u2014 FIGHTING TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly said 'Yeah, let's lock fighting and move on to flying.' EXISTING Gen III FIGHTING moves retain Gen III battle parameters and modern move-based categories; all damaging original "
         }
       ],
       "field_basis": {
@@ -2623,7 +2658,7 @@
         {
           "source": "register",
           "line": 816,
-          "excerpt": "2026-10-31 — FIGHTING TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly said 'Yeah, let's lock fighting and move on to flying.' EXISTING Gen III FIGHTING moves retain Gen III battle parameters and modern move-based categories; all damaging original "
+          "excerpt": "2026-10-31 \u2014 FIGHTING TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly said 'Yeah, let's lock fighting and move on to flying.' EXISTING Gen III FIGHTING moves retain Gen III battle parameters and modern move-based categories; all damaging original "
         }
       ],
       "field_basis": {
@@ -2671,7 +2706,7 @@
         {
           "source": "register",
           "line": 816,
-          "excerpt": "2026-10-31 — FIGHTING TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly said 'Yeah, let's lock fighting and move on to flying.' EXISTING Gen III FIGHTING moves retain Gen III battle parameters and modern move-based categories; all damaging original "
+          "excerpt": "2026-10-31 \u2014 FIGHTING TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly said 'Yeah, let's lock fighting and move on to flying.' EXISTING Gen III FIGHTING moves retain Gen III battle parameters and modern move-based categories; all damaging original "
         }
       ],
       "field_basis": {
@@ -2718,7 +2753,7 @@
         {
           "source": "register",
           "line": 813,
-          "excerpt": "2026-10-31 — STEEL TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly directed 'let's lock steel and then go back to fighting'. Preserve original Generation III Steel moves and their modern move-based categories: PHYSICAL Metal Claw, Steel Wing, Iron"
+          "excerpt": "2026-10-31 \u2014 STEEL TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly directed 'let's lock steel and then go back to fighting'. Preserve original Generation III Steel moves and their modern move-based categories: PHYSICAL Metal Claw, Steel Wing, Iron"
         }
       ],
       "field_basis": {
@@ -2766,7 +2801,7 @@
         {
           "source": "register",
           "line": 813,
-          "excerpt": "2026-10-31 — STEEL TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly directed 'let's lock steel and then go back to fighting'. Preserve original Generation III Steel moves and their modern move-based categories: PHYSICAL Metal Claw, Steel Wing, Iron"
+          "excerpt": "2026-10-31 \u2014 STEEL TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly directed 'let's lock steel and then go back to fighting'. Preserve original Generation III Steel moves and their modern move-based categories: PHYSICAL Metal Claw, Steel Wing, Iron"
         }
       ],
       "field_basis": {
@@ -2814,7 +2849,7 @@
         {
           "source": "register",
           "line": 813,
-          "excerpt": "2026-10-31 — STEEL TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly directed 'let's lock steel and then go back to fighting'. Preserve original Generation III Steel moves and their modern move-based categories: PHYSICAL Metal Claw, Steel Wing, Iron"
+          "excerpt": "2026-10-31 \u2014 STEEL TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly directed 'let's lock steel and then go back to fighting'. Preserve original Generation III Steel moves and their modern move-based categories: PHYSICAL Metal Claw, Steel Wing, Iron"
         }
       ],
       "field_basis": {
@@ -2862,7 +2897,7 @@
         {
           "source": "register",
           "line": 813,
-          "excerpt": "2026-10-31 — STEEL TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly directed 'let's lock steel and then go back to fighting'. Preserve original Generation III Steel moves and their modern move-based categories: PHYSICAL Metal Claw, Steel Wing, Iron"
+          "excerpt": "2026-10-31 \u2014 STEEL TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly directed 'let's lock steel and then go back to fighting'. Preserve original Generation III Steel moves and their modern move-based categories: PHYSICAL Metal Claw, Steel Wing, Iron"
         }
       ],
       "field_basis": {
@@ -2909,7 +2944,7 @@
         {
           "source": "register",
           "line": 825,
-          "excerpt": "2026-10-31 — FLYING TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly directed 'Let's lock and move on to psychic.' Original Generation III Flying moves keep Generation III values and move-based Physical/Special/Status classifications. ADD official "
+          "excerpt": "2026-10-31 \u2014 FLYING TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly directed 'Let's lock and move on to psychic.' Original Generation III Flying moves keep Generation III values and move-based Physical/Special/Status classifications. ADD official "
         }
       ],
       "field_basis": {
@@ -2957,7 +2992,7 @@
         {
           "source": "register",
           "line": 825,
-          "excerpt": "2026-10-31 — FLYING TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly directed 'Let's lock and move on to psychic.' Original Generation III Flying moves keep Generation III values and move-based Physical/Special/Status classifications. ADD official "
+          "excerpt": "2026-10-31 \u2014 FLYING TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly directed 'Let's lock and move on to psychic.' Original Generation III Flying moves keep Generation III values and move-based Physical/Special/Status classifications. ADD official "
         }
       ],
       "field_basis": {
@@ -3007,7 +3042,7 @@
         {
           "source": "register",
           "line": 825,
-          "excerpt": "2026-10-31 — FLYING TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly directed 'Let's lock and move on to psychic.' Original Generation III Flying moves keep Generation III values and move-based Physical/Special/Status classifications. ADD official "
+          "excerpt": "2026-10-31 \u2014 FLYING TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly directed 'Let's lock and move on to psychic.' Original Generation III Flying moves keep Generation III values and move-based Physical/Special/Status classifications. ADD official "
         }
       ],
       "field_basis": {
@@ -3054,7 +3089,7 @@
         {
           "source": "register",
           "line": 825,
-          "excerpt": "2026-10-31 — FLYING TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly directed 'Let's lock and move on to psychic.' Original Generation III Flying moves keep Generation III values and move-based Physical/Special/Status classifications. ADD official "
+          "excerpt": "2026-10-31 \u2014 FLYING TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly directed 'Let's lock and move on to psychic.' Original Generation III Flying moves keep Generation III values and move-based Physical/Special/Status classifications. ADD official "
         }
       ],
       "field_basis": {
@@ -3101,7 +3136,7 @@
         {
           "source": "register",
           "line": 825,
-          "excerpt": "2026-10-31 — FLYING TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly directed 'Let's lock and move on to psychic.' Original Generation III Flying moves keep Generation III values and move-based Physical/Special/Status classifications. ADD official "
+          "excerpt": "2026-10-31 \u2014 FLYING TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. Owner explicitly directed 'Let's lock and move on to psychic.' Original Generation III Flying moves keep Generation III values and move-based Physical/Special/Status classifications. ADD official "
         }
       ],
       "field_basis": {
@@ -3148,7 +3183,7 @@
         {
           "source": "register",
           "line": 828,
-          "excerpt": "2026-10-31 — PSYCHIC TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. User's spoken 'hard stamp' is understood as the immediately discussed official HEART STAMP. Add only TWO later-generation PSYCHIC PHYSICAL coverage moves to deliberately preserve Psychic's predom"
+          "excerpt": "2026-10-31 \u2014 PSYCHIC TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. User's spoken 'hard stamp' is understood as the immediately discussed official HEART STAMP. Add only TWO later-generation PSYCHIC PHYSICAL coverage moves to deliberately preserve Psychic's predom"
         }
       ],
       "field_basis": {
@@ -3196,7 +3231,7 @@
         {
           "source": "register",
           "line": 828,
-          "excerpt": "2026-10-31 — PSYCHIC TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. User's spoken 'hard stamp' is understood as the immediately discussed official HEART STAMP. Add only TWO later-generation PSYCHIC PHYSICAL coverage moves to deliberately preserve Psychic's predom"
+          "excerpt": "2026-10-31 \u2014 PSYCHIC TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. User's spoken 'hard stamp' is understood as the immediately discussed official HEART STAMP. Add only TWO later-generation PSYCHIC PHYSICAL coverage moves to deliberately preserve Psychic's predom"
         }
       ],
       "field_basis": {
@@ -3244,7 +3279,7 @@
         {
           "source": "register",
           "line": 834,
-          "excerpt": "2026-10-31 — POISON PHYSICAL ADDITIONS APPROVED; POISON TYPE OWNER-LOCKED; ALL 17 TYPE MOVE REVIEWS CLOSED. Owner explicitly approved ALL THREE official Generation IV physical Poison attacks and instructed 'Lock in'. Add CROSS POISON — POISON PHYSICAL, 70 base"
+          "excerpt": "2026-10-31 \u2014 POISON PHYSICAL ADDITIONS APPROVED; POISON TYPE OWNER-LOCKED; ALL 17 TYPE MOVE REVIEWS CLOSED. Owner explicitly approved ALL THREE official Generation IV physical Poison attacks and instructed 'Lock in'. Add CROSS POISON \u2014 POISON PHYSICAL, 70 base"
         }
       ],
       "field_basis": {
@@ -3292,7 +3327,7 @@
         {
           "source": "register",
           "line": 834,
-          "excerpt": "2026-10-31 — POISON PHYSICAL ADDITIONS APPROVED; POISON TYPE OWNER-LOCKED; ALL 17 TYPE MOVE REVIEWS CLOSED. Owner explicitly approved ALL THREE official Generation IV physical Poison attacks and instructed 'Lock in'. Add CROSS POISON — POISON PHYSICAL, 70 base"
+          "excerpt": "2026-10-31 \u2014 POISON PHYSICAL ADDITIONS APPROVED; POISON TYPE OWNER-LOCKED; ALL 17 TYPE MOVE REVIEWS CLOSED. Owner explicitly approved ALL THREE official Generation IV physical Poison attacks and instructed 'Lock in'. Add CROSS POISON \u2014 POISON PHYSICAL, 70 base"
         }
       ],
       "field_basis": {
@@ -3340,7 +3375,7 @@
         {
           "source": "register",
           "line": 834,
-          "excerpt": "2026-10-31 — POISON PHYSICAL ADDITIONS APPROVED; POISON TYPE OWNER-LOCKED; ALL 17 TYPE MOVE REVIEWS CLOSED. Owner explicitly approved ALL THREE official Generation IV physical Poison attacks and instructed 'Lock in'. Add CROSS POISON — POISON PHYSICAL, 70 base"
+          "excerpt": "2026-10-31 \u2014 POISON PHYSICAL ADDITIONS APPROVED; POISON TYPE OWNER-LOCKED; ALL 17 TYPE MOVE REVIEWS CLOSED. Owner explicitly approved ALL THREE official Generation IV physical Poison attacks and instructed 'Lock in'. Add CROSS POISON \u2014 POISON PHYSICAL, 70 base"
         }
       ],
       "field_basis": {

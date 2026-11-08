@@ -383,6 +383,20 @@ const u8 gMoveDescription_EARTH_POWER[] = _("The ground erupts\nwith power. May\
 const u8 gMoveDescription_AVALANCHE[] = _("Strikes harder if\nhurt by the foe\nthis same turn.");
 const u8 gMoveDescription_ICE_FANG[] = _("An icy bite may\nfreeze the foe or\nmake it flinch.");
 
+const u8 gMoveDescription_ICICLE_CRASH[] = _("Drops icicles that\nmay make the foe\nflinch.");
+
+const u8 gMoveDescription_DRAGON_PULSE[] = _("A powerful pulse\nof energy strikes\nthe foe.");
+
+const u8 gMoveDescription_DRAGON_RUSH[] = _("A reckless tackle\nthat may make the\nfoe flinch.");
+
+const u8 gMoveDescription_SNARL[] = _("A harsh yell hits\nfoes and lowers\ntheir SP. ATK.");
+
+const u8 gMoveDescription_DARK_PULSE[] = _("A dark pulse that\nmay make the foe\nflinch.");
+
+const u8 gMoveDescription_NIGHT_DAZE[] = _("A dark shock wave\nthat may lower\nfoe accuracy.");
+
+const u8 gMoveDescription_NIGHT_SLASH[] = _("Slashes the foe.\nHigh critical-hit\nratio.");
+
 const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND         - 1] = gMoveDescription_Pound,
     [MOVE_KARATE_CHOP   - 1] = gMoveDescription_KarateChop,
@@ -757,4 +771,11 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_EARTH_POWER - 1] = gMoveDescription_EARTH_POWER,
     [MOVE_ICE_FANG - 1] = gMoveDescription_ICE_FANG,
     [MOVE_AVALANCHE - 1] = gMoveDescription_AVALANCHE,
+    [MOVE_ICICLE_CRASH - 1] = gMoveDescription_ICICLE_CRASH,
+    [MOVE_DRAGON_PULSE - 1] = gMoveDescription_DRAGON_PULSE,
+    [MOVE_DRAGON_RUSH - 1] = gMoveDescription_DRAGON_RUSH,
+    [MOVE_SNARL - 1] = gMoveDescription_SNARL,
+    [MOVE_DARK_PULSE - 1] = gMoveDescription_DARK_PULSE,
+    [MOVE_NIGHT_DAZE - 1] = gMoveDescription_NIGHT_DAZE,
+    [MOVE_NIGHT_SLASH - 1] = gMoveDescription_NIGHT_SLASH,
 };
