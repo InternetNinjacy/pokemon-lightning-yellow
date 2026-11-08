@@ -11,21 +11,6 @@ static uint32_t bmon(unsigned slot) {return SYM_gBattleMons+slot*ABI_BMON_SIZE;}
 static uint32_t monget(uint32_t mon,unsigned field){return CALL(GetMonData3,mon,field,0);}
 static void monput(uint32_t mon,unsigned field,unsigned value){core->busWrite32(core,scratch,value);CALL(SetMonData,mon,field,scratch);}
 static unsigned controller(unsigned b){return core->busRead32(core,SYM_gBattlerControllerFuncs+b*4)&~1U;}
-// Temporary diagnostic for PR #99: read real ROM state without changing encounter behavior.
-static void debugWildDoubleEligibility(const char *phase){
- uint32_t save=core->busRead32(core,SYM_gSaveBlock1Ptr);
- unsigned loc=save+ABI_SAVE1_LOCATION;
- fprintf(stderr,"WILD99 %s location bytes=",phase);
- for(unsigned i=0;i<8;i++)fprintf(stderr,"%02x",core->busRead8(core,loc+i));
- fprintf(stderr," expected MtMoon group=%u num=%u header=%u partyCount=%u",
-         MAP_GROUP(MAP_MT_MOON_1F),MAP_NUM(MAP_MT_MOON_1F),
-         CALL(GetCurrentMapWildMonHeaderId),core->busRead8(core,SYM_gPlayerPartyCount));
- for(unsigned i=0;i<2;i++)
-  fprintf(stderr," mon%u(species=%u hp=%u egg=%u)",i,
-          monget(player(i),ABI_DATA_SPECIES),monget(player(i),ABI_DATA_HP),
-          monget(player(i),ABI_DATA_IS_EGG));
- fprintf(stderr," eligible=%u\\n",CALL(TryDoDoubleWildBattle));
-}
 static void screenshot(const char *path){
  if(!path)return;
  const void *video;size_t stride;core->getPixels(core,&video,&stride);
@@ -53,8 +38,6 @@ static void wildFixture(unsigned mapGroup,unsigned mapNum,unsigned two){
  frames(360,0);
  if((core->busRead32(core,SYM_gMain+ABI_MAIN_CB2)&~1U)!=SYM_CB2_Overworld){fprintf(stderr,"map-load callback=%08x\n",core->busRead32(core,SYM_gMain+ABI_MAIN_CB2));screenshot("/tmp/wild-map-timeout.ppm");}
  CHECK((core->busRead32(core,SYM_gMain+ABI_MAIN_CB2)&~1U)==SYM_CB2_Overworld);
- if(mapGroup==MAP_GROUP(MAP_MT_MOON_1F) && mapNum==MAP_NUM(MAP_MT_MOON_1F))
-  debugWildDoubleEligibility("after wildFixture");
  printf("PASS: actual overworld map loaded %u.%u with %u usable Pokemon\n",mapGroup,mapNum,two?2:1);
 }
 static uint32_t landInfo(void){
@@ -126,7 +109,6 @@ static void waitOverworld(unsigned keys){
  CHECK(i<3600);frames(60,0);
 }
 static void startSpecial(void){
- debugWildDoubleEligibility("before startSpecial");
  CHECK(CALL(TryDoDoubleWildBattle)); // Fail at the eligibility gate, not after 5000 ineffective attempts.
  // Invoke the natural encounter trigger on packed attributes from an actual
  // ordinary land tile. This exercises its rate/Repel/roamer dispatch, without
@@ -160,8 +142,6 @@ static void warpGrass(void){
    && !CALL(MapGridGetCollisionAt,x,y)
    && !CALL(MapGridGetCollisionAt,x,y+1)){found=1;break;}
  CHECK(found);
- fprintf(stderr,"WILD99 walk corridor grid=%u,%u collisions=%u/%u/%u\\n",x,y,
-         CALL(MapGridGetCollisionAt,x,y-1),CALL(MapGridGetCollisionAt,x,y),CALL(MapGridGetCollisionAt,x,y+1));
  CALL(SetWarpDestination,MAP_GROUP(MAP_MT_MOON_1F),MAP_NUM(MAP_MT_MOON_1F),0xFFFFFFFF,x-7,y-7);
  CALL(WarpIntoMap);CALL(CB2_LoadMap);frames(180,0);
  CALL(PlayerGetDestCoords,scratch,scratch+2);
@@ -174,20 +154,11 @@ static void walkToBattle(void){
   if(core->busRead32(core,SYM_gBattleTypeFlags)&BATTLE_TYPE_DOUBLE)break;
   frames(1,((f/24)%2)?64:128);
  }
- if(f==3600){
-  CALL(PlayerGetDestCoords,scratch,scratch+2);
-  unsigned px=core->busRead16(core,scratch),py=core->busRead16(core,scratch+2);
-  fprintf(stderr,"WILD99 walk timeout player grid=%u,%u land=%u collision=%u battleFlags=%08x cb2=%08x eligible=%u\\n",
-          px,py,CALL(MapGridGetMetatileAttributeAt,px,py,ABI_META_ENCOUNTER),
-          CALL(MapGridGetCollisionAt,px,py),core->busRead32(core,SYM_gBattleTypeFlags),
-          core->busRead32(core,SYM_gMain+ABI_MAIN_CB2),CALL(TryDoDoubleWildBattle));
- }
  CHECK(f<3600);core->setKeys(core,0);waitAction();
  CHECK(core->busRead8(core,SYM_gBattlersCount)==4);
  printf("PASS: actual directional walking triggered wild double after %u frames on ordinary grass\n",f);
 }
 static void generationTests(void){
-  fprintf(stderr,"DEBUG enter generationTests\\n");
  wildFixture(MAP_GROUP(MAP_MT_MOON_1F),MAP_NUM(MAP_MT_MOON_1F),1);
  uint32_t info=landInfo();unsigned special=0,duplicates=0,firstP=0,secondP=0;
  core->busWrite32(core,SYM_gRngValue,0x790abcde);
@@ -220,7 +191,6 @@ static void generationTests(void){
  printf("PASS: egg is excluded from usable double-battle party count\n");
 }
 static void route1OrdinaryEncounters(void){
-  fprintf(stderr,"TRACE entering Route 1 singles test\n");
   wildFixture(MAP_GROUP(MAP_ROUTE1),MAP_NUM(MAP_ROUTE1),1);
   CHECK(!CALL(TryDoDoubleWildBattle));
   uint32_t info=landInfo();
@@ -245,7 +215,6 @@ static void route1OrdinaryEncounters(void){
   printf("PASS: Route 1 native singles only; Pidgey/Rattata/Igglybuff=%u/%u/%u per 1000 RNG draws\\n",counts[0],counts[1],counts[2]);
 }
 static void wildTests(void){
- fprintf(stderr,"TRACE wildTests entered\\n");
  route1OrdinaryEncounters();
  generationTests();
  wildFixture(MAP_GROUP(MAP_MT_MOON_1F),MAP_NUM(MAP_MT_MOON_1F),1);
@@ -368,8 +337,10 @@ static void wildTests(void){
  printf("PASS: full-party capture sent right-side Cloyster to PC with correct species and one ball consumed\n");
  wildFixture(MAP_GROUP(MAP_MT_MOON_1F),MAP_NUM(MAP_MT_MOON_1F),1);warpGrass();
  CALL(InitRoamer);
- core->busWrite8(core,SYM_sRoamerLocation,MAP_GROUP(MAP_ROUTE1));
- core->busWrite8(core,SYM_sRoamerLocation+1,MAP_NUM(MAP_ROUTE1));
+ // Inject the roamer onto the double-enabled fixture to verify that it
+ // preempts doubles. Production roaming routes are unchanged.
+ core->busWrite8(core,SYM_sRoamerLocation,MAP_GROUP(MAP_MT_MOON_1F));
+ core->busWrite8(core,SYM_sRoamerLocation+1,MAP_NUM(MAP_MT_MOON_1F));
  unsigned found=0;
  for(unsigned n=0;n<100;n++){
   CHECK(CALL(SweetScentWildEncounter));
@@ -385,7 +356,6 @@ static void wildTests(void){
 }
 
 static void wildHardeningTests(void) {
- fprintf(stderr,"TRACE wildHardeningTests entered\\n");
  // All ordinary Bag ball types share the two-live-opponent guard. Safari Ball
  // remains part of the separate unchanged Safari mode, not a normal Bag item.
  wildFixture(MAP_GROUP(MAP_MT_MOON_1F),MAP_NUM(MAP_MT_MOON_1F),1);
