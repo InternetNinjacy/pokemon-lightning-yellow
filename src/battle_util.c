@@ -22,6 +22,7 @@
 #include "constants/items.h"
 #include "constants/weather.h"
 #include "constants/abilities.h"
+#include "constants/opponents.h"
 #include "constants/pokemon.h"
 #include "constants/hold_effects.h"
 #include "constants/battle_move_effects.h"
@@ -34,6 +35,31 @@ static const u16 sSoundMovesTable[] =
     MOVE_GROWL, MOVE_ROAR, MOVE_SING, MOVE_SUPERSONIC, MOVE_SCREECH, MOVE_SNORE,
     MOVE_UPROAR, MOVE_METAL_SOUND, MOVE_GRASS_WHISTLE, MOVE_HYPER_VOICE, MOVE_CHIRP, MOVE_BELLOW, SOUND_MOVES_END
 };
+
+// Approved individual Gym abilities; never edit species slots or party data.
+// Applied only when native battler data is loaded, so Skill Swap/Trace persist
+// normally until the affected battler switches again.
+u8 GetBattlerInitialAbility(u8 battler)
+{
+    u16 species = gBattleMons[battler].species;
+    if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+     && !(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_EREADER_TRAINER | BATTLE_TYPE_TRAINER_TOWER))
+     && GetBattlerSide(battler) == B_SIDE_OPPONENT)
+    {
+        if (gTrainerBattleOpponent_A == TRAINER_LEADER_BROCK)
+        {
+            if (species == SPECIES_SNORUNT)
+                return ABILITY_ICE_BODY;
+            if (species == SPECIES_ONIX)
+                return ABILITY_OVERCOAT;
+        }
+        if (gTrainerBattleOpponent_A == TRAINER_LEADER_MISTY && species == SPECIES_STARMIE)
+            return ABILITY_DRIZZLE;
+    }
+    return GetMonAbility(GetBattlerSide(battler) == B_SIDE_PLAYER
+        ? &gPlayerParty[gBattlerPartyIndexes[battler]]
+        : &gEnemyParty[gBattlerPartyIndexes[battler]]);
+}
 
 u8 GetBattlerForBattleScript(u8 caseId)
 {
@@ -1767,6 +1793,15 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveA
                     effect++;
                 }
                 break;
+            case ABILITY_SNOW_WARNING:
+                if (!(gBattleWeather & B_WEATHER_HAIL_PERMANENT))
+                {
+                    gBattleWeather = B_WEATHER_HAIL_PERMANENT;
+                    BattleScriptPushCursorAndCallback(BattleScript_SnowWarningActivates);
+                    gBattleScripting.battler = battler;
+                    effect++;
+                }
+                break;
             case ABILITY_SAND_STREAM:
                 if (!(gBattleWeather & B_WEATHER_SANDSTORM_PERMANENT))
                 {
@@ -1833,10 +1868,15 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveA
                 switch (gLastUsedAbility)
                 {
                 case ABILITY_RAIN_DISH:
-                    if (WEATHER_HAS_EFFECT && (gBattleWeather & B_WEATHER_RAIN)
+                case ABILITY_ICE_BODY:
+                {
+                    u8 healingAbility = gLastUsedAbility;
+                    if (WEATHER_HAS_EFFECT
+                     && ((healingAbility == ABILITY_RAIN_DISH && (gBattleWeather & B_WEATHER_RAIN))
+                      || (healingAbility == ABILITY_ICE_BODY && (gBattleWeather & B_WEATHER_HAIL)))
                      && gBattleMons[battler].maxHP > gBattleMons[battler].hp)
                     {
-                        gLastUsedAbility = ABILITY_RAIN_DISH; // why
+                        gLastUsedAbility = healingAbility;
                         BattleScriptPushCursorAndCallback(BattleScript_RainDishActivates);
                         gBattleMoveDamage = gBattleMons[battler].maxHP / 16;
                         if (gBattleMoveDamage == 0)
@@ -1845,6 +1885,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveA
                         effect++;
                     }
                     break;
+                }
                 case ABILITY_SHED_SKIN:
                     if ((gBattleMons[battler].status1 & STATUS1_ANY) && (Random() % 3) == 0)
                     {
