@@ -24,6 +24,10 @@ for row in rows:
         assert row[field] == f'graphics/pokemon/{species}/overworld_{suffix}.pal'
     assert row['permission_status'].startswith('BLOCKED:')
     assert row['runtime_status'] == 'NOT IMPLEMENTED / NOT EMULATOR TESTED'
+    assert row['kasenn_verified_png_dimensions'] == ('384x64' if row['species'] == 'STEELIX' else '192x32')
+    assert row['kasenn_png_header_sha_status'] == 'PASS pinned blob SHA and PNG IHDR 4-bit indexed'
+    assert row['aarant_alternative_dimensions'] == ('192x32' if row['species'] == 'STEELIX' else '')
+    assert row['technical_asset_status'].startswith('BLOCKED' if row['species'] == 'STEELIX' else 'PENDING')
     if row['local_sheet']:
         assert (ROOT / row['local_sheet']).is_file()
 meta = json.loads((ROOT / 'docs/followers/source-inventory.json').read_text())
@@ -31,5 +35,5 @@ assert meta['counts']['roster'] == 252
 assert meta['counts']['local_sheets'] == sum(bool(r['local_sheet']) for r in rows)
 for field in ('aarant_sheets', 'kasenn_sheets', 'kasenn_normal_palettes', 'kasenn_shiny_palettes'):
     assert meta['counts'][field] == 252
-print('PASS: 252 exact roster rows, pinned candidate paths/blob IDs, explicit permission/runtime gaps')
+print('PASS: 252 exact roster rows and independently audited PNG header/blob records; Steelix 64x64 exception preserved')
 print('NOT TESTED: external frame pixels, follower implementation, build or emulator gameplay')
