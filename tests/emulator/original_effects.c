@@ -117,6 +117,7 @@ static void spreadStatusTests(void){
 #include "new_bellow_rock.c"
 #include "new_scorching_sands.c"
 #include "new_earth_power.c"
+#include "new_ice_fang.c"
 static void originalEffectTests(void){
  if(getenv("LIGHTNING_SKITTER_SLASH_ONLY")){skitterSlashTests();return;}
  if(getenv("LIGHTNING_VENOM_WEB_ONLY")){venomWebTests();return;}
@@ -126,6 +127,7 @@ static void originalEffectTests(void){
  if(getenv("LIGHTNING_BELLOW_ROCK_ONLY")){bellowRockTests();return;}
  if(getenv("LIGHTNING_SCORCHING_SANDS_ONLY")){scorchingSandsTests();return;}
  if(getenv("LIGHTNING_EARTH_POWER_ONLY")){earthPowerTests();return;}
+ if(getenv("LIGHTNING_ICE_FANG_ONLY")){iceFangTests();return;}
  if(getenv("LIGHTNING_NEW_GHOST_MOVES_ONLY")){newGhostMoveTests();return;}
  if(getenv("LIGHTNING_NEW_FIRE_MOVES_ONLY")){newFireMoveTests();return;}
  if(getenv("LIGHTNING_THUNDER_WAVE_ONLY")){thunderWaveTests();return;}
@@ -140,6 +142,7 @@ static void originalEffectTests(void){
  bellowRockTests();
  scorchingSandsTests();
  earthPowerTests();
+ iceFangTests();
  thunderWaveTests();
  ghostReworkTests();
  spreadStatusTests();
