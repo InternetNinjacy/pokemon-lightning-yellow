@@ -55,7 +55,11 @@ static void specialGlalieTests(void)
   if(monget(caught,ABI_DATA_SPECIES)!=species){fprintf(stderr,"Glalie capture pc%u partyCount%u species:",pc,core->busRead8(core,SYM_gPlayerPartyCount));for(unsigned i=0;i<6;i++)fprintf(stderr," %u",monget(player(i),ABI_DATA_SPECIES));fprintf(stderr," box%u enemy%u\n",CALL(GetBoxMonDataAt,0,0,ABI_DATA_SPECIES),monget(enemy(0),ABI_DATA_SPECIES));}
   CHECK(monget(caught,ABI_DATA_SPECIES)==species);CHECK(CALL(GetMonAbility,caught)==ability);
   unsigned pid=monget(caught,ABI_DATA_PERSONALITY),ot=monget(caught,ABI_DATA_OT_ID);
-  CHECK(CALL(GetSav1Weather)==field);flashRoundTrip();
+  CHECK(CALL(GetSav1Weather)==field);
+   // Finish the native field/save party reconciliation before flash persistence.
+   frames(120,0);
+   CHECK(monget(caught,ABI_DATA_SPECIES)==species);
+   flashRoundTrip();
   if(pc)CALL(BoxMonToMon,CALL(GetBoxedMonPtr,0,0),caught);
   if(CALL(GetMonAbility,caught)!=ability)fprintf(stderr,"SOW capture post-save mismatch: kind=%u pc=%u expected=%u actual=%u species=%u pid=%u ot=%u flashPartyCount=%u\\n",kind,pc,ability,CALL(GetMonAbility,caught),monget(caught,ABI_DATA_SPECIES),monget(caught,ABI_DATA_PERSONALITY),monget(caught,ABI_DATA_OT_ID),core->busRead8(core,SYM_gPlayerPartyCount));
   CHECK(CALL(GetMonAbility,caught)==ability);CHECK(monget(caught,ABI_DATA_PERSONALITY)==pid);CHECK(monget(caught,ABI_DATA_OT_ID)==ot);
