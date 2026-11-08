@@ -21,7 +21,7 @@ assert "BattleScript_EffectIceFang::\n\tsetmoveeffect MOVE_EFFECT_FREEZE" in scr
 assert "\tgoto BattleScript_AfterSwarmCloud\nBattleScript_IceFangFlinch::\n\tsetmoveeffect MOVE_EFFECT_FLINCH\n\tseteffectwithchance" in scripts
 assert scripts.index("BattleScript_IceFangFlinch::") > scripts.index("BattleScript_AfterSwarmCloud::")-200
 assert a.count(".4byte Move_ICE_FANG")==1 and a.count("Move_ICE_FANG:")==1
-visual=a[a.index("Move_ICE_FANG:"):]
+visual=prior_avalanche_source("data/battle_anim_scripts.s",a).split("Move_ICE_FANG:",1)[1]
 for v in ["ANIM_TAG_SHARP_TEETH","gSharpTeethSpriteTemplate","ANIM_TAG_ICE_CRYSTALS","gIceCrystalSpiralInwardSmall","IceCrystalEffectShort"]:
  assert v in visual,v
 assert visual.strip().endswith("end")

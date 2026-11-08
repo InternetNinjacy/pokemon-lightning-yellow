@@ -388,7 +388,21 @@
 
 #define MOVE_AVALANCHE 373
 
-#define MOVES_COUNT 374
+#define MOVE_ICICLE_CRASH 374
+
+#define MOVE_DRAGON_PULSE 375
+
+#define MOVE_DRAGON_RUSH 376
+
+#define MOVE_SNARL 377
+
+#define MOVE_DARK_PULSE 378
+
+#define MOVE_NIGHT_DAZE 379
+
+#define MOVE_NIGHT_SLASH 380
+
+#define MOVES_COUNT 381
 
 // Used for checks for moves affected by Disable, Mimic, etc.
 #define MOVE_UNAVAILABLE 0xFFFF
