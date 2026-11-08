@@ -48,7 +48,7 @@ assert rows[0]["land_mons"] == rows[1]["land_mons"]
 # Immutable source scope gate: restore precisely the two expected Route 5
 # blocks, then require byte-identical original merged-main source.
 original = restore_route5_text("src/data/wild_encounters.json", text).encode("utf-8")
-blob = b"blob " + str(len(original)).encode("ascii") + b"\\0" + original
+blob = b"blob " + str(len(original)).encode("ascii") + b"\0" + original
 assert hashlib.sha1(blob).hexdigest() == "2f871858046a4dc6bec1e921a39c0dac893d2d8c", (
     "Encounter data changed outside the approved Route 5 delta")
 print("PASS: Route 5 FR/LG exact three-species roster, encounter rate 21, "
