@@ -89,6 +89,17 @@ static void followerGraphicsObjectProbe(void) {
         CHECK(CALL(SpriteTileAllocBitmapOp,bigTile+i,2)!=0);
     CALL(BuildOamBuffer);
     CHECK((core->busRead16(core,bigOam+2)>>14)==3);
+    CALL(LoadOam); // execute actual FireRed CPU copy to hardware OBJ OAM
+    unsigned smallHardware=0,bigHardware=0;
+    for(unsigned i=0;i<128;i++) {
+        uint32_t entry=0x07000000U+i*8;
+        uint32_t size=core->busRead16(core,entry+2)>>14;
+        uint32_t tile=core->busRead16(core,entry+4)&1023;
+        if(size==2 && tile==smallTile) smallHardware++;
+        if(size==3 && tile==bigTile) bigHardware++;
+    }
+    CHECK(smallHardware>=1 && bigHardware>=1);
+    printf("PASS: native mGBA hardware OAM contains both 32x32 and 64x64 sprite entries\n");
     printf("PASS: native mGBA Snorlax and Seagallop sprites both created with 32/64 OAM and allocated tiles\n");
     CALL(DestroySprite,smallPtr);
     for(unsigned i=0;i<16;i++)
@@ -111,7 +122,7 @@ assert anchor2 in c
 c=c.replace(anchor2, '    if(getenv("LIGHTNING_FOLLOWER_GFX_ONLY")){followerGraphicsNativeProbe();followerGraphicsObjectProbe();printf("PASS: %u focused follower graphics memory assertions\\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}\n'+anchor2, 1)
 required_anchor="required += ['NextThunderWaveTarget','gAbsentBattlerFlags']"
 assert required_anchor in p
-p=p.replace(required_anchor, "required += ['AllocSpriteTiles','SpriteTileAllocBitmapOp','ResetSpriteData','CreateVirtualObject','BuildOamBuffer','DestroySprite','gSprites']\n"+required_anchor,1)
+p=p.replace(required_anchor, "required += ['AllocSpriteTiles','SpriteTileAllocBitmapOp','ResetSpriteData','CreateVirtualObject','BuildOamBuffer','LoadOam','DestroySprite','gSprites']\n"+required_anchor,1)
 # ABI offsets are compiled by the game's own ARM compiler, never host guessed.
 abi_anchor = "expressions = {"
 assert abi_anchor in p
