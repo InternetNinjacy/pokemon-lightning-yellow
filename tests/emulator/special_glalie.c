@@ -57,6 +57,7 @@ static void specialGlalieTests(void)
   unsigned pid=monget(caught,ABI_DATA_PERSONALITY),ot=monget(caught,ABI_DATA_OT_ID);
   CHECK(CALL(GetSav1Weather)==field);flashRoundTrip();
   if(pc)CALL(BoxMonToMon,CALL(GetBoxedMonPtr,0,0),caught);
+  if(CALL(GetMonAbility,caught)!=ability)fprintf(stderr,"SOW capture post-save mismatch: kind=%u pc=%u expected=%u actual=%u species=%u pid=%u ot=%u flashPartyCount=%u\\n",kind,pc,ability,CALL(GetMonAbility,caught),monget(caught,ABI_DATA_SPECIES),monget(caught,ABI_DATA_PERSONALITY),monget(caught,ABI_DATA_OT_ID),core->busRead8(core,SYM_gPlayerPartyCount));
   CHECK(CALL(GetMonAbility,caught)==ability);CHECK(monget(caught,ABI_DATA_PERSONALITY)==pid);CHECK(monget(caught,ABI_DATA_OT_ID)==ot);
   printf("PASS: actual species%u ability%u entry/animation, Master Ball capture to %s, field restoration, native flash reload and retained ability/identity; test-only level/location\n",species,ability,pc?"PC":"party");
  }
