@@ -21,9 +21,10 @@ jobs:
           persist-credentials: false
       - name: Check roster and validator syntax
         run: |
-          python3 -m py_compile scripts/verify-follower-assets.py scripts/check-follower-inventory.py tests/run_follower_asset_validator_tests.py
+          python3 -m py_compile scripts/verify-follower-assets.py scripts/check-follower-inventory.py tests/run_follower_asset_validator_tests.py tests/run_follower_graphics_resource_tests.py
           python3 tests/run_follower_asset_validator_tests.py
           python3 scripts/check-follower-inventory.py
+          python3 tests/run_follower_graphics_resource_tests.py
       - name: Audit approved 252 species against exact pinned external PNG and palette source
         run: python3 -u scripts/verify-follower-assets.py
       - name: Publish text-only verification summary (no sprite or ROM redistribution)
