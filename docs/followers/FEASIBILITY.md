@@ -246,3 +246,20 @@ The owner explicitly approved continuation (“Approve it and continue”). Owne
 
 **Observed status:** Base/all-form binary pixel and tile conversion PASS; Steelix dynamic 64×64 graphics/loading test NOT EXECUTED; 252 runtime follower rendering NOT IMPLEMENTED. Thus **WRL-010 PHASE ONE — ASSET GATE BLOCKED** despite successful asset-level tests. No earned points, gameplay/save code, sprite imports or merges were authorized by this progress.
 
+
+## 2026-11-08 native mGBA graphics allocation AND 32/64 OAM render-object feasibility PASS (scoped)
+
+**Isolated ROM-native graphics proof executed and PASS:** [GitHub Actions run 42532517738](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/42532517738), audit branch `1bd50e16b04a383c37826d8140f46c3d9d6d633b`, **current production main** `90d0811b46bfab6f054d9b9c9b9c64240b6f3562`. Runner installed pinned agbcc and compiled the current FireRed ROM/ELF in an ephemeral checkout, booted **600 emulated frames** using libmGBA, injected ARM calls into original ROM routines, and executed **361 focused native graphics memory/OAM assertions** successfully. All build, native test and checkout verification steps completed successfully, with no ROM/artwork uploaded. No production code, save layout, overworld follower logic or existing ROM assets were modified or committed.
+
+**Precisely what the passed native test proved:**
+- Real ROM `ResetSpriteData` + `AllocSpriteTiles(16)` and `AllocSpriteTiles(64)` succeeded simultaneously; first blocks at tile **0** and **16** on reset graphics memory.
+- Actual `SpriteTileAllocBitmapOp` confirmed allocations occupy distinct correctly sized contiguous tile ranges (32×32 = 16 tiles, 64×64 = 64 tiles).
+- Exhaustion in this isolated reset environment occurred at **16 simultaneous 64-tile allocations**, with deterministic `-1` from additional 64-tile or 16-tile allocation and no bitmap corruption after reset/reallocation.
+- ROM `CreateVirtualObject` created two *real engine sprite objects* using existing native art, **Snorlax** (32×32, gfx ID 109) and **Seagallop** (64×64, gfx ID 108), simultaneously. Tests accessed `gSprites` and compiled ARM ABI `sizeof/offsetof` to check native **OAM size code 2** (32×32) and **size code 3** (64×64); checked their non-overlapping 16-/64-tile allocation ranges and invoked native `BuildOamBuffer`.
+- Native `DestroySprite` of each object released exactly the tile range; native recreation of 64×64 Seagallop succeeded and released resources again.
+
+**Reproduction:** `tests/followers/inject_native_graphics_probe.py` inserts a test-only probe into the disposable current-main checkout's `tests/emulator/runner.c` and ABI symbol generator; `.github/workflows/follower-native-graphics.yml` builds current main then runs `LIGHTNING_FOLLOWER_GFX_ONLY=1 python3 tests/emulator/run.py`. See exact CI run and logs rather than relying on historical generic ROM suites.
+
+**Important boundaries / pending:** This **PASSES the isolated emulator graphics-engine allocator, 32/64 object creation/OAM, and cleanup feasibility subgate**. It is **NOT** a proof that the Kasenn Steelix PNG itself was rendered on-screen, that a genuine 252-species dynamic graphics loader has been implemented, that its six directional frames animate correctly, that normal/Shiny palette swaps or reflections are correct, that object slots and sprite VRAM remain safe on crowded production maps, or that 32↔64 change through vanilla `ObjectEventSetGraphicsId` is safe. The old-size allocation fallback in that routine remains a real hazard and must **never** be used without a size-aware failure-atomic replacement. Run game-map/actual-art/native dynamic loading tests before declaring the entire WRL-010 asset gate PASS.
+
+**Result:** **native engine graphics RESOURCE feasibility PASS (isolated)**; **WRL-010 PHASE ONE — ASSET GATE BLOCKED (full integration conditions unproven)**. The complete 252 PNG/4bpp asset validation remains separately PASS. No gameplay changes or earned-point awards.
