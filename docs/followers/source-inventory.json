@@ -16,5 +16,40 @@
     "kasenn_sheets": 252,
     "kasenn_normal_palettes": 252,
     "kasenn_shiny_palettes": 252
+  },
+  "binary_pixel_audit_2026_11_08": {
+    "source": "Kasenn/pokeemerald-expansion-kasen",
+    "pinned_commit": "cbe04a7a2ef645bee19d159876da074154ccf1f2",
+    "executed_github_actions_run": 42530264122,
+    "result": "252 of 252 base sprites decoded, indexed PNG pixel matrix recovered, normal/Shiny JASC files parsed, six GBA 4bpp frame conversions roundtripped",
+    "base_sprite_conversion_failures": 0,
+    "standard_32x32_species": 251,
+    "oversized_64x64_species": [
+      "STEELIX"
+    ],
+    "embedded_png_palette_variants": {
+      "normal_or_identical": 245,
+      "shiny": 7,
+      "unmatched": 0
+    },
+    "forms_checked": {
+      "castform": [
+        "normal",
+        "sunny",
+        "rainy",
+        "snowy"
+      ],
+      "rainy_form_source_bit_depth": 8,
+      "rainy_form_embedded_palette_entries": 17,
+      "rainy_form_used_pixel_indices": "0-15"
+    },
+    "less_than_six_distinct_frames": {
+      "ABRA": 5,
+      "GLALIE": 3
+    },
+    "source_transparency_metadata": "All 252 lack tRNS; all 252 four image corners use palette index 0",
+    "runtime_steelix_64x64_status": "NOT TESTED in compiled FireRed or mGBA; source OAM precedent only",
+    "asset_gate": "BLOCKED",
+    "audit_artifact_run": 42531042787
   }
 }
