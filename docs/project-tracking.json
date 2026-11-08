@@ -3,10 +3,10 @@
   "updated": "2026-11-07",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "INT-003 documentation reconciliation prepared: WRL-011 10/0 via PR74; TIM-003 32/0 via PR90; unweighted title PR76 retained; INT-003 remains 12/4 pending Master Control. 452 earned/260 remaining of 712 on reviewed main snapshot. Other active feature PRs receive no speculative awards.",
-  "main_sha": "3fbc7b941dcbf88676d3fce645b9151669e2f8fa",
+  "current_focus": "Master Control formally closes INT-003 at 16 earned/0 remaining after PR117 GitHub/Drive reconciliation; project 456 earned/256 remaining of712 (64.04%). Preserve 50 permanent IDs and all prior histories, no duplicate Rocket/lighting/title credit. Remaining gameplay, move, ecology and shared release QA continue under their independent owners.",
+  "main_sha": "b29f0863bc57013cad28b0e51da03a0ab67e1628",
   "drive_sync": {
-    "status": "Connected Google Drive available 2026-11-07; this branch reconciles GitHub before final Drive readback; existing historical Drive snapshots remain preserved.",
+    "status": "2026-11-07 INT-003 GitHub governance PR117 merged and existing Project Progress, START HERE and Change Intake docs synchronized/read back. Master Control final four-point award authorized; final closure append to existing Drive docs in progress.",
     "folder": "https://drive.google.com/drive/folders/1N_n0Ke48jBbdhUWSZWzwR6rpPFqpDUpl"
   },
   "areas": [
@@ -1731,8 +1731,8 @@
       "title": "Audits, durable dashboard, ledger and Drive sync",
       "aliases": [],
       "effort": {
-        "earned": 12,
-        "remaining": 4,
+        "earned": 16,
+        "remaining": 0,
         "unit": "provisional relative planning point",
         "confidence": "low",
         "history": [
@@ -1747,26 +1747,32 @@
             "earned": 12,
             "remaining": 4,
             "reason": "Implemented approved stabilization and focused acceptance; remaining scope and external checks recorded separately."
+          },
+          {
+            "date": "2026-11-07",
+            "earned": 16,
+            "remaining": 0,
+            "reason": "Master Control formally accepts INT-003 governance completion after merged documentation PR117 at b29f0863bc57013cad28b0e51da03a0ab67e1628, verified canonical dashboard/append-only ledger and readback of existing Project Progress, START HERE and Change Intake Drive records. Superseded documentation PR83/87/109 closed unmerged, preserving history; permanent IDs and denominator unchanged. Final existing four points transferred exactly once, with future routine record updates owned by Master Control, not a permanent open INT-003 task."
           }
         ]
       },
       "dependencies": [],
       "status": {
-        "design": "approved scoped implementation",
-        "implementation": "Canonical tracker/dashboard/append-only ledger on main; reconciliation PR prepared against main; Drive access restored, final closeout pending",
-        "automated": "JSON uniqueness, effort totals, refs and diff validated; prior docs CI SUCCESS",
-        "emulator": "not executed",
-        "pull_request": "PR#8 merged; historical branch evidence retained",
-        "merge": "merged to main; remaining feature scope/coverage is not inferred complete"
+        "design": "Approved permanent governance scope; Master Control formally accepted 2026-11-07",
+        "implementation": "CLOSED: canonical tracker, rendered dashboard, append-only ledger and three authoritative Drive governance records reconciled and read back; merged documentation PR117",
+        "automated": "50 unique IDs, histories and totals verified; dashboard area/overall arithmetic checked; administrative readback performed; no fresh ROM/CI execution",
+        "emulator": "Not required for documentation governance; no newly executed mGBA or release-wide certification implied",
+        "pull_request": "PR8 original system and PR117 reconciliation merged; obsolete PR83/87/109 closed without merge",
+        "merge": "Final documentation reconciliation PR117 merged b29f0863bc57013cad28b0e51da03a0ab67e1628; Master Control closeout approved"
       },
       "branch": "main",
-      "commit": null,
-      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/8",
+      "commit": "b29f0863bc57013cad28b0e51da03a0ab67e1628",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/117",
       "ci_url": null,
-      "blocker": "Live Google Drive connection now available; remaining 4 points reserved for verified cross-system reconciliation, complete doc readback and Master Control acceptance.",
-      "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Review replacement administrative PR; verify final merged dashboard, ledger, and Drive readback; submit INT-003 final four-point recommendation to Master Control only after acceptance gates.",
-      "checkpoint": "2026-11-02 milestone: #8 tracking established, #9 stabilization draft and final tests underway",
+      "blocker": null,
+      "design_authority": "Owner-assigned INT-003 definition of done, merged GitHub tracking evidence, verified Google Drive record readbacks and explicit 2026-11-07 Master Control closeout authorization.",
+      "next_action": "CLOSED. Master Control maintains these same canonical files at future milestones via narrow reviewable updates; preserve append-only histories and keep shared release QA under INT-004/INT-005. No ongoing INT-003 workstream.",
+      "checkpoint": "2026-11-07 Master Control final acceptance: PR117 merged b29f0863; PR83/87/109 closed unmerged; three Drive records verified; 16 earned/0 remaining.",
       "implementation_ref": {
         "branch": "docs/project-coordination",
         "commit": null
