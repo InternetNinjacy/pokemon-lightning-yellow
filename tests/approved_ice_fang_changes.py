@@ -9,7 +9,7 @@ HUNKS = {
   ("#define EFFECT_ICE_FANG 216\n", ""),
  ],
  "src/data/battle_moves.h": [
-  ("    [MOVE_ICE_FANG] =\n    {\n        .category = MOVE_CATEGORY_PHYSICAL,\n        .effect = EFFECT_ICE_FANG,\n        .power = 65,\n        .type = TYPE_ICE,\n        .accuracy = 95,\n        .pp = 15,\n        .secondaryEffectChance = 10,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = 0,\n        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,\n    },\n\n", ""),
+  ("    [MOVE_ICE_FANG] =\n    {\n        .category = MOVE_CATEGORY_PHYSICAL,\n        .effect = EFFECT_ICE_FANG,\n        .power = 65,\n        .type = TYPE_ICE,\n        .accuracy = 95,\n        .pp = 15,\n        .secondaryEffectChance = 10,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = 0,\n        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,\n    },\n\n", ""),
  ],
  "src/data/text/move_names.h": [
   ("    [MOVE_ICE_FANG] = _(\"ICE FANG\"),\n", ""),
