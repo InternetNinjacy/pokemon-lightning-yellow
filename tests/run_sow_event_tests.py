@@ -11,7 +11,9 @@ expected=[
  ("Route12","Route12_EventScript_SowCorphish","OBJ_EVENT_GFX_SOW_CORPHISH","FLAG_UNUSED_0x4A8",19,87,
   "SPECIES_CORPHISH","30","SPECIAL_WEATHER_CORPHISH"),
  ("Route21_North","Route21_North_EventScript_SowGlalie","OBJ_EVENT_GFX_SOW_GLALIE","FLAG_UNUSED_0x4AA",13,7,
-  "SPECIES_GLALIE","40","SPECIAL_WEATHER_GLALIE")
+  "SPECIES_GLALIE","40","SPECIAL_WEATHER_GLALIE"),
+ ("Route23","Route23_EventScript_SowTyranitar","OBJ_EVENT_GFX_SOW_TYRANITAR","FLAG_UNUSED_0x4AC",13,145,
+  "SPECIES_TYRANITAR","55","SPECIAL_WEATHER_TYRANITAR")
 ]
 for m,script,gfx,flag,x,y,species,level,weather in expected:
     header=json.loads((root/m/"map.json").read_text())
@@ -47,4 +49,4 @@ for key in ["Corphish","Glalie","Tyranitar"]:
  assert "sPicTable_Sow"+key in sprite
  assert "gMonIcon_"+key in sprite
 assert "At last... I can rest" in (root/"Route12"/"text.inc").read_text()
-print("PASS: approved SOW species, all 12 exact moves, three icon gfx registrations, two installed map objects, no item/ability guards, full Route21 weather bridge and Corphish ghost farewell; real ROM integration pending")
+print("PASS: approved SOW species, all 12 exact moves, three icon gfx registrations, three installed map objects, no item/ability guards, full Route21 weather bridge and Corphish ghost farewell; real ROM integration pending")
