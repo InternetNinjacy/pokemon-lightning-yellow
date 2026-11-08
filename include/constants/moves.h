@@ -404,7 +404,13 @@
 
 #define MOVE_PAYBACK 381
 
-#define MOVES_COUNT 382
+#define MOVE_FOUL_PLAY 382
+
+#define MOVE_AQUA_JET 383
+
+#define MOVE_LIQUIDATION 384
+
+#define MOVES_COUNT 385
 
 // Used for checks for moves affected by Disable, Mimic, etc.
 #define MOVE_UNAVAILABLE 0xFFFF

@@ -1,0 +1,85 @@
+{
+  "scope": "BTL-005 #382\u2013384 exact production reversals",
+  "files": {
+    "include/constants/moves.h": {
+      "before_sha256": "782788d2dc0f98f295013160b7a0bff7f384ceb394e800c76417f15984ccbb3f",
+      "after_sha256": "af03c40dea6f81d195fa766823e272e9ef53545695f0160d447269958b0157ee",
+      "hunks": [
+        {
+          "before": "\n#define MOVES_COUNT 382\n\n",
+          "after": "\n#define MOVE_FOUL_PLAY 382\n\n#define MOVE_AQUA_JET 383\n\n#define MOVE_LIQUIDATION 384\n\n#define MOVES_COUNT 385\n\n"
+        }
+      ]
+    },
+    "src/data/battle_moves.h": {
+      "before_sha256": "a5ee6cd0617eac450e483bb1964a036bb9606484811e74b1a6436333beb2b782",
+      "after_sha256": "57d0de62bb963bb9a8132ef8f8dd5f51b4d0fdbee74adab88974061007683c3b",
+      "hunks": [
+        {
+          "before": "\n};\n",
+          "after": "\n    [MOVE_FOUL_PLAY] =\n    {\n        .category = MOVE_CATEGORY_PHYSICAL,\n        .effect = EFFECT_HIT,\n        .power = 95,\n        .type = TYPE_DARK,\n        .accuracy = 100,\n        .pp = 15,\n        .secondaryEffectChance = 0,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = 0,\n        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,\n    },\n\n    [MOVE_AQUA_JET] =\n    {\n        .category = MOVE_CATEGORY_PHYSICAL,\n        .effect = EFFECT_HIT,\n        .power = 40,\n        .type = TYPE_WATER,\n        .accuracy = 100,\n        .pp = 20,\n        .secondaryEffectChance = 0,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = 1,\n        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,\n    },\n\n    [MOVE_LIQUIDATION] =\n    {\n        .category = MOVE_CATEGORY_PHYSICAL,\n        .effect = EFFECT_DEFENSE_DOWN_HIT,\n        .power = 85,\n        .type = TYPE_WATER,\n        .accuracy = 100,\n        .pp = 10,\n        .secondaryEffectChance = 20,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = 0,\n        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,\n    },\n\n};\n"
+        }
+      ]
+    },
+    "src/data/text/move_names.h": {
+      "before_sha256": "4c308d3a198c152d5e78917bca346c09d1043ef67a45c617c52e53ec00c8c974",
+      "after_sha256": "4065281a25776d147626fca1dc6ea114847660b38e83998ae9485724b1b8dd1a",
+      "hunks": [
+        {
+          "before": "    [MOVE_PAYBACK] = _(\"PAYBACK\"),\n};\n",
+          "after": "    [MOVE_PAYBACK] = _(\"PAYBACK\"),\n    [MOVE_FOUL_PLAY] = _(\"FOUL PLAY\"),\n    [MOVE_AQUA_JET] = _(\"AQUA JET\"),\n    [MOVE_LIQUIDATION] = _(\"LIQUIDATION\"),\n};\n"
+        }
+      ]
+    },
+    "src/move_descriptions.c": {
+      "before_sha256": "a4ec22cce07937e982ad57ff20716bf738126ea9749e41c3132181392aca95d8",
+      "after_sha256": "193843911a6370bd80782823156ee83c9df6c24f989fb5abbcaad6e78c0774fa",
+      "hunks": [
+        {
+          "before": "\nconst u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {\n",
+          "after": "\nconst u8 gMoveDescription_FOUL_PLAY[] = _(\"Uses the foe's\\nATTACK power to\\nstrike it.\");\n\nconst u8 gMoveDescription_AQUA_JET[] = _(\"A water rush that\\nstrikes the foe\\nwith priority.\");\n\nconst u8 gMoveDescription_LIQUIDATION[] = _(\"A water strike\\nthat may lower\\nthe foe's DEFENSE.\");\n\nconst u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {\n"
+        },
+        {
+          "before": "    [MOVE_PAYBACK - 1] = gMoveDescription_PAYBACK,\n};\n",
+          "after": "    [MOVE_PAYBACK - 1] = gMoveDescription_PAYBACK,\n    [MOVE_FOUL_PLAY - 1] = gMoveDescription_FOUL_PLAY,\n    [MOVE_AQUA_JET - 1] = gMoveDescription_AQUA_JET,\n    [MOVE_LIQUIDATION - 1] = gMoveDescription_LIQUIDATION,\n};\n"
+        }
+      ]
+    },
+    "data/battle_anim_scripts.s": {
+      "before_sha256": "3cfabced378e40dbea3641c5f691cd1181699cecd61f815e9b27d435f47cccc9",
+      "after_sha256": "b64abaf97c5a6b821cc20b83023776a07f7392f9655c8092089d2ad7b317e208",
+      "hunks": [
+        {
+          "before": "\t.4byte Move_PAYBACK\n\t.4byte Move_COUNT @ cannot be reached, because last move is Psycho Boost\n",
+          "after": "\t.4byte Move_PAYBACK\n\t.4byte Move_FOUL_PLAY\n\t.4byte Move_AQUA_JET\n\t.4byte Move_LIQUIDATION\n\t.4byte Move_COUNT @ cannot be reached, because last move is Psycho Boost\n"
+        },
+        {
+          "before": "\tgoto Move_REVENGE\n",
+          "after": "\tgoto Move_REVENGE\n\nMove_FOUL_PLAY:\n\tgoto Move_THIEF\n\n@ Inline approved existing bodies: animation interpreter has one return slot.\nMove_AQUA_JET:\n\tloadspritegfx ANIM_TAG_IMPACT\n\tmonbg ANIM_ATTACKER\n\tsetalpha 12, 8\n\tcreatevisualtask AnimTask_TranslateMonEllipticalRespectSide, 2, ANIM_ATTACKER, 24, 6, 1, 5\n\tcreatevisualtask AnimTask_TraceMonBlended, 2, 0, 4, 7, 3\n\tplaysewithpan SE_M_JUMP_KICK, SOUND_PAN_ATTACKER\n\tdelay 4\n\tcreatevisualtask AnimTask_ShakeMon, 2, ANIM_TARGET, 5, 0, 6, 1\n\tcreatesprite gBasicHitSplatSpriteTemplate, ANIM_TARGET, 4, 0, 0, ANIM_TARGET, 1\n\tplaysewithpan SE_M_VITAL_THROW2, SOUND_PAN_TARGET\n\twaitforvisualfinish\n\tclearmonbg ANIM_ATTACKER\n\tblendoff\n\twaitforvisualfinish\n\tloadspritegfx ANIM_TAG_SMALL_BUBBLES\n\tloadspritegfx ANIM_TAG_WATER_IMPACT\n\tmonbg ANIM_TARGET\n\tsplitbgprio ANIM_TARGET\n\tsetalpha 12, 8\n\tcreatesprite gWaterGunProjectileSpriteTemplate, ANIM_ATTACKER, 2, 20, 0, 0, 0, 40, -25\n\tplaysewithpan SE_M_BUBBLE, SOUND_PAN_ATTACKER\n\twaitforvisualfinish\n\tcreatevisualtask AnimTask_ShakeMon2, 5, ANIM_TARGET, 1, 0, 8, 1\n\tcreatesprite gWaterHitSplatSpriteTemplate, ANIM_ATTACKER, 4, 0, 0, ANIM_TARGET, 2\n\tcreatesprite gWaterGunDropletSpriteTemplate, ANIM_ATTACKER, 2, 0, -15, 0, 15, 55\n\tplaysewithpan SE_M_CRABHAMMER, SOUND_PAN_TARGET\n\tdelay 10\n\tcreatesprite gWaterGunDropletSpriteTemplate, ANIM_ATTACKER, 2, 15, -20, 0, 15, 50\n\tplaysewithpan SE_M_CRABHAMMER, SOUND_PAN_TARGET\n\tdelay 10\n\tcreatesprite gWaterGunDropletSpriteTemplate, ANIM_ATTACKER, 2, -15, -10, 0, 10, 45\n\tplaysewithpan SE_M_CRABHAMMER, SOUND_PAN_TARGET\n\twaitforvisualfinish\n\tclearmonbg ANIM_TARGET\n\tblendoff\n\tend\n\nMove_LIQUIDATION:\n\tgoto Move_WATERFALL\n"
+        }
+      ]
+    },
+    "src/pokemon.c": {
+      "before_sha256": "3db3b9390cad3bcf958429d3c1de6d12a76afc1b86f9cab99c7764c368c2405d",
+      "after_sha256": "8b5c2ba31fe0d9caf2948db2b4935850c548dbca2e48e5dd7a9672648b8a61cc",
+      "hunks": [
+        {
+          "before": "    u16 attack, defense;\n    u16 spAttack, spDefense;\n",
+          "after": "    u16 attack, defense;\n    struct BattlePokemon *attackStatSource;\n    u16 spAttack, spDefense;\n"
+        },
+        {
+          "before": "\n    attack = attacker->attack;\n    defense = defender->defense;\n",
+          "after": "\n    // Foul Play borrows only raw Attack and its stages. User level, ability,\n    // held item, burn, STAB and all defensive modifiers remain on their owners.\n    attackStatSource = (move == MOVE_FOUL_PLAY) ? defender : attacker;\n    attack = attackStatSource->attack;\n    defense = defender->defense;\n"
+        },
+        {
+          "before": "            // Critical hit, if attacker has lost attack stat stages then ignore stat drop\n            if (attacker->statStages[STAT_ATK] > DEFAULT_STAT_STAGE)\n                APPLY_STAT_MOD(damage, attacker, attack, STAT_ATK)\n            else\n",
+          "after": "            // Critical hit, if attacker has lost attack stat stages then ignore stat drop\n            if (attackStatSource->statStages[STAT_ATK] > DEFAULT_STAT_STAGE)\n                APPLY_STAT_MOD(damage, attackStatSource, attack, STAT_ATK)\n            else\n"
+        },
+        {
+          "before": "        else\n            APPLY_STAT_MOD(damage, attacker, attack, STAT_ATK)\n\n",
+          "after": "        else\n            APPLY_STAT_MOD(damage, attackStatSource, attack, STAT_ATK)\n\n"
+        }
+      ]
+    }
+  }
+}

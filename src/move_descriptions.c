@@ -399,6 +399,12 @@ const u8 gMoveDescription_NIGHT_SLASH[] = _("Slashes the foe.\nHigh critical-hit
 
 const u8 gMoveDescription_PAYBACK[] = _("Strikes harder if\nthe foe has taken\nits turn already.");
 
+const u8 gMoveDescription_FOUL_PLAY[] = _("Uses the foe's\nATTACK power to\nstrike it.");
+
+const u8 gMoveDescription_AQUA_JET[] = _("A water rush that\nstrikes the foe\nwith priority.");
+
+const u8 gMoveDescription_LIQUIDATION[] = _("A water strike\nthat may lower\nthe foe's DEFENSE.");
+
 const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND         - 1] = gMoveDescription_Pound,
     [MOVE_KARATE_CHOP   - 1] = gMoveDescription_KarateChop,
@@ -781,4 +787,7 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_NIGHT_DAZE - 1] = gMoveDescription_NIGHT_DAZE,
     [MOVE_NIGHT_SLASH - 1] = gMoveDescription_NIGHT_SLASH,
     [MOVE_PAYBACK - 1] = gMoveDescription_PAYBACK,
+    [MOVE_FOUL_PLAY - 1] = gMoveDescription_FOUL_PLAY,
+    [MOVE_AQUA_JET - 1] = gMoveDescription_AQUA_JET,
+    [MOVE_LIQUIDATION - 1] = gMoveDescription_LIQUIDATION,
 };
