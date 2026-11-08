@@ -3,84 +3,93 @@
   "files": {
     "include/constants/moves.h": {
       "before_sha256": "af03c40dea6f81d195fa766823e272e9ef53545695f0160d447269958b0157ee",
-      "after_sha256": "ecbbd1ea36720d0a5f7700b10092f7f02e8993f1bb38762302d084e04eaa307c",
+      "after_sha256": "7b350de9900e383d34545ba8cd60cce5580af98c96650dabdaaffcf71c0d1d58",
       "hunks": [
         {
           "before": "\n#define MOVES_COUNT 385\n\n",
-          "after": "\n#define MOVE_VORTEX_SPIN 385\n\n#define MOVE_TIDAL_CRASH 386\n\n#define MOVE_DISCHARGE 387\n\n#define MOVES_COUNT 388\n\n"
+          "after": "\n#define MOVE_VORTEX_SPIN 385\n\n#define MOVE_TIDAL_CRASH 386\n\n#define MOVE_DISCHARGE 387\n\n#define MOVE_VOLT_SWITCH 388\n\n#define MOVES_COUNT 389\n\n"
         }
       ]
     },
     "include/constants/battle_move_effects.h": {
       "before_sha256": "dd1f37bec166f2a98be1da8ac2e515c1ea3b52bec14a6ab0c77854fccd37d84d",
-      "after_sha256": "d8fdc6464e93e9d3db23b6b5b7a4f9e5e55e937d3789aa072a0e025a67f6959d",
+      "after_sha256": "e6cf58e6838bd8071d9e50e2fb5d90b7e227d031d619611af5c01f021a1d4a71",
       "hunks": [
         {
           "before": "#define EFFECT_ICE_FANG 216\n\n",
-          "after": "#define EFFECT_ICE_FANG 216\n#define EFFECT_HIT_ALL_OTHERS 217\n\n"
+          "after": "#define EFFECT_ICE_FANG 216\n#define EFFECT_HIT_ALL_OTHERS 217\n#define EFFECT_SWITCH_HIT 218\n\n"
         }
       ]
     },
     "include/constants/battle_script_commands.h": {
       "before_sha256": "2365a9d5581325edcf41bf654ebbe70df6dea89defdf4f51bb0c962637444b30",
-      "after_sha256": "2365a9d5581325edcf41bf654ebbe70df6dea89defdf4f51bb0c962637444b30",
-      "hunks": []
+      "after_sha256": "7839e9e29f91f7a82df0b6e2368f080fdc3b65ae91d1f3809bba28dfb3646a76",
+      "hunks": [
+        {
+          "before": "#define VARIOUS_WAIT_FANFARE                    12\n\n",
+          "after": "#define VARIOUS_WAIT_FANFARE                    12\n#define VARIOUS_PREPARE_HIT_SWITCH              13\n\n"
+        }
+      ]
     },
     "src/data/battle_moves.h": {
       "before_sha256": "57d0de62bb963bb9a8132ef8f8dd5f51b4d0fdbee74adab88974061007683c3b",
-      "after_sha256": "120759f11fa2c7ec3947e3c6333cfcf74edb15c33447d4c01bf28f7da1255c73",
+      "after_sha256": "32d95a8cc5a3bb3bbbc755d4e559a7ac7a7d4c5491f7cdd28b0592c1849d1d70",
       "hunks": [
         {
           "before": "\n};\n",
-          "after": "\n    [MOVE_VORTEX_SPIN] =\n    {\n        .category = MOVE_CATEGORY_PHYSICAL,\n        .effect = EFFECT_CONFUSE_HIT,\n        .power = 55,\n        .type = TYPE_WATER,\n        .accuracy = 100,\n        .pp = 25,\n        .secondaryEffectChance = 30,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = 0,\n        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,\n    },\n\n    [MOVE_TIDAL_CRASH] =\n    {\n        .category = MOVE_CATEGORY_PHYSICAL,\n        .effect = EFFECT_ROLLOUT,\n        .power = 30,\n        .type = TYPE_WATER,\n        .accuracy = 90,\n        .pp = 20,\n        .secondaryEffectChance = 0,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = 0,\n        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,\n    },\n\n    [MOVE_DISCHARGE] =\n    {\n        .category = MOVE_CATEGORY_SPECIAL,\n        .effect = EFFECT_HIT_ALL_OTHERS,\n        .power = 80,\n        .type = TYPE_ELECTRIC,\n        .accuracy = 100,\n        .pp = 15,\n        .secondaryEffectChance = 30,\n        .target = MOVE_TARGET_FOES_AND_ALLY,\n        .priority = 0,\n        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,\n    },\n\n};\n"
+          "after": "\n    [MOVE_VORTEX_SPIN] =\n    {\n        .category = MOVE_CATEGORY_PHYSICAL,\n        .effect = EFFECT_CONFUSE_HIT,\n        .power = 55,\n        .type = TYPE_WATER,\n        .accuracy = 100,\n        .pp = 25,\n        .secondaryEffectChance = 30,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = 0,\n        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,\n    },\n\n    [MOVE_TIDAL_CRASH] =\n    {\n        .category = MOVE_CATEGORY_PHYSICAL,\n        .effect = EFFECT_ROLLOUT,\n        .power = 30,\n        .type = TYPE_WATER,\n        .accuracy = 90,\n        .pp = 20,\n        .secondaryEffectChance = 0,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = 0,\n        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,\n    },\n\n    [MOVE_DISCHARGE] =\n    {\n        .category = MOVE_CATEGORY_SPECIAL,\n        .effect = EFFECT_HIT_ALL_OTHERS,\n        .power = 80,\n        .type = TYPE_ELECTRIC,\n        .accuracy = 100,\n        .pp = 15,\n        .secondaryEffectChance = 30,\n        .target = MOVE_TARGET_FOES_AND_ALLY,\n        .priority = 0,\n        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,\n    },\n\n    [MOVE_VOLT_SWITCH] =\n    {\n        .category = MOVE_CATEGORY_SPECIAL,\n        .effect = EFFECT_SWITCH_HIT,\n        .power = 70,\n        .type = TYPE_ELECTRIC,\n        .accuracy = 100,\n        .pp = 20,\n        .secondaryEffectChance = 0,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = 0,\n        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,\n    },\n\n};\n"
         }
       ]
     },
     "src/data/text/move_names.h": {
       "before_sha256": "4065281a25776d147626fca1dc6ea114847660b38e83998ae9485724b1b8dd1a",
-      "after_sha256": "f3df3bea76ab306cca4b7a91710401fe0c29f92290ad029d3b472df605e87593",
+      "after_sha256": "772bef3aae01aadf403d657f07dff4223ea1b9d059ef2693a1513101cbe4f638",
       "hunks": [
         {
           "before": "    [MOVE_LIQUIDATION] = _(\"LIQUIDATION\"),\n};\n",
-          "after": "    [MOVE_LIQUIDATION] = _(\"LIQUIDATION\"),\n    [MOVE_VORTEX_SPIN] = _(\"VORTEX SPIN\"),\n    [MOVE_TIDAL_CRASH] = _(\"TIDAL CRASH\"),\n    [MOVE_DISCHARGE] = _(\"DISCHARGE\"),\n};\n"
+          "after": "    [MOVE_LIQUIDATION] = _(\"LIQUIDATION\"),\n    [MOVE_VORTEX_SPIN] = _(\"VORTEX SPIN\"),\n    [MOVE_TIDAL_CRASH] = _(\"TIDAL CRASH\"),\n    [MOVE_DISCHARGE] = _(\"DISCHARGE\"),\n    [MOVE_VOLT_SWITCH] = _(\"VOLT SWITCH\"),\n};\n"
         }
       ]
     },
     "src/move_descriptions.c": {
       "before_sha256": "193843911a6370bd80782823156ee83c9df6c24f989fb5abbcaad6e78c0774fa",
-      "after_sha256": "a64eb91ad1fa3529db04e59e45e6f891d9552190cf5c27566921223319893557",
+      "after_sha256": "c6140cd372a0343ae4b58c9b2af6fce1df3b07c118d217cdbdaa7d6c9425b1fd",
       "hunks": [
         {
           "before": "\nconst u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {\n",
-          "after": "\nconst u8 gMoveDescription_VORTEX_SPIN[] = _(\"A spinning water\\nstrike that may\\nconfuse the foe.\");\n\nconst u8 gMoveDescription_TIDAL_CRASH[] = _(\"A rolling wave\\nattack that grows\\nover five turns.\");\n\nconst u8 gMoveDescription_DISCHARGE[] = _(\"Electricity hits\\nall others. May\\ncause paralysis.\");\n\nconst u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {\n"
+          "after": "\nconst u8 gMoveDescription_VORTEX_SPIN[] = _(\"A spinning water\\nstrike that may\\nconfuse the foe.\");\n\nconst u8 gMoveDescription_TIDAL_CRASH[] = _(\"A rolling wave\\nattack that grows\\nover five turns.\");\n\nconst u8 gMoveDescription_DISCHARGE[] = _(\"Electricity hits\\nall others. May\\ncause paralysis.\");\n\nconst u8 gMoveDescription_VOLT_SWITCH[] = _(\"An electric hit.\\nThen switches out\\nif able.\");\n\nconst u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {\n"
         },
         {
           "before": "    [MOVE_LIQUIDATION - 1] = gMoveDescription_LIQUIDATION,\n};\n",
-          "after": "    [MOVE_LIQUIDATION - 1] = gMoveDescription_LIQUIDATION,\n    [MOVE_VORTEX_SPIN - 1] = gMoveDescription_VORTEX_SPIN,\n    [MOVE_TIDAL_CRASH - 1] = gMoveDescription_TIDAL_CRASH,\n    [MOVE_DISCHARGE - 1] = gMoveDescription_DISCHARGE,\n};\n"
+          "after": "    [MOVE_LIQUIDATION - 1] = gMoveDescription_LIQUIDATION,\n    [MOVE_VORTEX_SPIN - 1] = gMoveDescription_VORTEX_SPIN,\n    [MOVE_TIDAL_CRASH - 1] = gMoveDescription_TIDAL_CRASH,\n    [MOVE_DISCHARGE - 1] = gMoveDescription_DISCHARGE,\n    [MOVE_VOLT_SWITCH - 1] = gMoveDescription_VOLT_SWITCH,\n};\n"
         }
       ]
     },
     "data/battle_anim_scripts.s": {
       "before_sha256": "b64abaf97c5a6b821cc20b83023776a07f7392f9655c8092089d2ad7b317e208",
-      "after_sha256": "239f148684255e4d60dc8aa3e3a19bfef1a4db33abdc10814940f5bbd4d68e32",
+      "after_sha256": "f42d8d23aef51caffb34166871688cfd64efc33fb885002ec55ab4d5def06241",
       "hunks": [
         {
           "before": "\t.4byte Move_LIQUIDATION\n\t.4byte Move_COUNT @ cannot be reached, because last move is Psycho Boost\n",
-          "after": "\t.4byte Move_LIQUIDATION\n\t.4byte Move_VORTEX_SPIN\n\t.4byte Move_TIDAL_CRASH\n\t.4byte Move_DISCHARGE\n\t.4byte Move_COUNT @ cannot be reached, because last move is Psycho Boost\n"
+          "after": "\t.4byte Move_LIQUIDATION\n\t.4byte Move_VORTEX_SPIN\n\t.4byte Move_TIDAL_CRASH\n\t.4byte Move_DISCHARGE\n\t.4byte Move_VOLT_SWITCH\n\t.4byte Move_COUNT @ cannot be reached, because last move is Psycho Boost\n"
         },
         {
           "before": "\tgoto Move_WATERFALL\n",
-          "after": "\tgoto Move_WATERFALL\n\nMove_VORTEX_SPIN:\n\tgoto Move_WHIRLPOOL\n\nMove_TIDAL_CRASH:\n\tgoto Move_SURF\n\nMove_DISCHARGE:\n\tgoto Move_THUNDERBOLT\n"
+          "after": "\tgoto Move_WATERFALL\n\nMove_VORTEX_SPIN:\n\tgoto Move_WHIRLPOOL\n\nMove_TIDAL_CRASH:\n\tgoto Move_SURF\n\nMove_DISCHARGE:\n\tgoto Move_THUNDERBOLT\n\n@ Approved existing-art inline composite; no nested Move calls.\nMove_VOLT_SWITCH:\n\tloadspritegfx ANIM_TAG_IMPACT\n\tloadspritegfx ANIM_TAG_SPARK_2\n\tdelay 0\n\tcreatevisualtask AnimTask_BlendColorCycle, 2, F_PAL_BG | F_PAL_ATTACKER, -31, 1, 5, 5, RGB(31, 31, 22)\n\tplaysewithpan SE_M_THUNDERBOLT2, SOUND_PAN_ATTACKER\n\tcreatesprite gSparkElectricitySpriteTemplate, ANIM_ATTACKER, 0, 32, 24, 190, 12, ANIM_ATTACKER, 1, 0\n\tdelay 0\n\tcreatesprite gSparkElectricitySpriteTemplate, ANIM_ATTACKER, 0, 80, 24, 22, 12, ANIM_ATTACKER, 1, 0\n\tcreatesprite gSparkElectricitySpriteTemplate, ANIM_ATTACKER, 0, 156, 24, 121, 13, ANIM_ATTACKER, 1, 1\n\tdelay 0\n\tcreatevisualtask AnimTask_BlendColorCycle, 2, F_PAL_BG | F_PAL_ATTACKER, -31, 1, 0, 0, RGB(31, 31, 22)\n\tdelay 10\n\tcreatevisualtask AnimTask_BlendColorCycle, 2, F_PAL_BG | F_PAL_ATTACKER, -31, 1, 5, 5, RGB(31, 31, 22)\n\tplaysewithpan SE_M_THUNDERBOLT2, SOUND_PAN_ATTACKER\n\tcreatesprite gSparkElectricitySpriteTemplate, ANIM_ATTACKER, 0, 100, 24, 60, 10, ANIM_ATTACKER, 1, 0\n\tcreatesprite gSparkElectricitySpriteTemplate, ANIM_ATTACKER, 0, 170, 24, 42, 11, ANIM_ATTACKER, 1, 1\n\tdelay 0\n\tcreatesprite gSparkElectricitySpriteTemplate, ANIM_ATTACKER, 0, 238, 24, 165, 10, ANIM_ATTACKER, 1, 1\n\tdelay 0\n\tcreatevisualtask AnimTask_BlendColorCycle, 2, F_PAL_BG | F_PAL_ATTACKER, -31, 1, 0, 0, RGB(31, 31, 22)\n\tdelay 20\n\tcreatevisualtask AnimTask_BlendColorCycle, 2, F_PAL_BG | F_PAL_ATTACKER, -31, 1, 7, 7, RGB(31, 31, 22)\n\tplaysewithpan SE_M_THUNDERBOLT2, SOUND_PAN_ATTACKER\n\tcreatesprite gSparkElectricityFlashingSpriteTemplate, ANIM_ATTACKER, 4, 0, 0, 32, 12, 0, 20, 0, 0\n\tcreatesprite gSparkElectricityFlashingSpriteTemplate, ANIM_ATTACKER, 4, 0, 0, 32, 12, 64, 20, 1, 0\n\tcreatesprite gSparkElectricityFlashingSpriteTemplate, ANIM_ATTACKER, 4, 0, 0, 32, 12, 128, 20, 0, 0\n\tcreatesprite gSparkElectricityFlashingSpriteTemplate, ANIM_ATTACKER, 4, 0, 0, 32, 12, 192, 20, 2, 0\n\tcreatesprite gSparkElectricityFlashingSpriteTemplate, ANIM_ATTACKER, 4, 0, 0, 16, 12, 32, 20, 0, 0\n\tcreatesprite gSparkElectricityFlashingSpriteTemplate, ANIM_ATTACKER, 4, 0, 0, 16, 12, 96, 20, 1, 0\n\tcreatesprite gSparkElectricityFlashingSpriteTemplate, ANIM_ATTACKER, 4, 0, 0, 16, 12, 160, 20, 0, 0\n\tcreatesprite gSparkElectricityFlashingSpriteTemplate, ANIM_ATTACKER, 4, 0, 0, 16, 12, 224, 20, 2, 0\n\tdelay 4\n\twaitforvisualfinish\n\tcreatevisualtask AnimTask_BlendColorCycle, 2, F_PAL_BG | F_PAL_ATTACKER, -31, 1, 0, 0, RGB(31, 31, 22)\n\tcreatesprite gHorizontalLungeSpriteTemplate, ANIM_ATTACKER, 2, 4, 4\n\tdelay 4\n\tplaysewithpan SE_M_HYPER_BEAM, SOUND_PAN_TARGET\n\tcreatesprite gBasicHitSplatSpriteTemplate, ANIM_TARGET, 2, 0, 0, ANIM_TARGET, 2\n\tcreatevisualtask AnimTask_ShakeMon, 2, ANIM_TARGET, 3, 0, 6, 1\n\twaitforvisualfinish\n\tcreatevisualtask AnimTask_BlendColorCycle, 2, F_PAL_TARGET, -31, 2, 0, 6, RGB(31, 31, 22)\n\tcall ElectricityEffect\n\twaitforvisualfinish\n\tcall SetPsychicBackground\n\tcreatevisualtask AnimTask_Teleport, 2\n\tplaysewithpan SE_M_TELEPORT, SOUND_PAN_ATTACKER\n\tdelay 15\n\tcall UnsetPsychicBackground\n\twaitforvisualfinish\n\tend\n"
         }
       ]
     },
     "data/battle_scripts_1.s": {
       "before_sha256": "99dd5c4fc229ed524a5b24337283eeee8d7171af6ac7532cf055bc62ee92e9e6",
-      "after_sha256": "7823f8a700d1c741944bb94059cd99f310dbc4f966ce65427b2185d6760ba449",
+      "after_sha256": "b1ecad46f1b424a2c47c6a085831d06a699acbbc588479c830701b2e10ca6682",
       "hunks": [
         {
           "before": "\t.4byte BattleScript_EffectIceFang                  @ EFFECT_ICE_FANG\n\n",
-          "after": "\t.4byte BattleScript_EffectIceFang                  @ EFFECT_ICE_FANG\n\t.4byte BattleScript_EffectHitAllOthers              @ EFFECT_HIT_ALL_OTHERS\n\n"
+          "after": "\t.4byte BattleScript_EffectIceFang                  @ EFFECT_ICE_FANG\n\t.4byte BattleScript_EffectHitAllOthers              @ EFFECT_HIT_ALL_OTHERS\n\t.4byte BattleScript_EffectHit                       @ EFFECT_SWITCH_HIT\n\n"
+        },
+        {
+          "before": "\tmoveendall\n\tend\n",
+          "after": "\tmoveendall\n\tjumpifnotmove MOVE_VOLT_SWITCH, BattleScript_HitSwitchEnd\n\tvarious BS_ATTACKER, VARIOUS_PREPARE_HIT_SWITCH\n\tjumpifbyte CMP_EQUAL, gBattleCommunication, FALSE, BattleScript_HitSwitchEnd\n\tjumpifcantswitch SWITCH_IGNORE_ESCAPE_PREVENTION | BS_ATTACKER, BattleScript_HitSwitchEnd\n\topenpartyscreen BS_ATTACKER, BattleScript_HitSwitchEnd\n\tswitchoutabilities BS_ATTACKER\n\twaitstate\n\tswitchhandleorder BS_ATTACKER, 2\n\treturntoball BS_ATTACKER\n\tgetswitchedmondata BS_ATTACKER\n\tswitchindataupdate BS_ATTACKER\n\thpthresholds BS_ATTACKER\n\tprintstring STRINGID_SWITCHINMON\n\tswitchinanim BS_ATTACKER, TRUE\n\twaitstate\n\tswitchineffects BS_ATTACKER\nBattleScript_HitSwitchEnd::\n\tend\n"
         },
         {
           "before": "\tgoto BattleScript_EffectHit\n",
@@ -95,18 +104,45 @@
     },
     "src/battle_script_commands.c": {
       "before_sha256": "c27a5634100c618a1e83d2cd62157f7b9a1e565bdaba0ff45d14edad3e3fa85b",
-      "after_sha256": "c27a5634100c618a1e83d2cd62157f7b9a1e565bdaba0ff45d14edad3e3fa85b",
-      "hunks": []
+      "after_sha256": "4c573e66efdcc9124335ce06395047b3035f38c258e4d2d8d1b919ed94ee663e",
+      "hunks": [
+        {
+          "before": "\nstatic void Cmd_datahpupdate(void)\n",
+          "after": "\n// Record actual move damage before healing/contact callbacks can overwrite it.\n// Substitute damage qualifies; absorbed/immune/missed/passive/self damage does not.\nstatic void RecordSwitchHit(void)\n{\n    if (gHpDealt > 0 && gBattlescriptCurrInstr[1] == BS_TARGET\n     && gBattlerAttacker != gActiveBattler && !(gHitMarker & HITMARKER_PASSIVE_DAMAGE)\n     && gBattleMoves[gCurrentMove].effect == EFFECT_SWITCH_HIT)\n        gBattleStruct->switchAfterHit = TRUE;\n}\n\nstatic void Cmd_datahpupdate(void)\n"
+        },
+        {
+          "before": "            }\n            // check substitute fading\n",
+          "after": "            }\n            RecordSwitchHit();\n            // check substitute fading\n"
+        },
+        {
+          "before": "\n                // Track only real direct move HP loss, never Substitute, healing,\n",
+          "after": "\n                RecordSwitchHit();\n                // Track only real direct move HP loss, never Substitute, healing,\n"
+        },
+        {
+          "before": "        break;\n    case VARIOUS_WAIT_FANFARE:\n",
+          "after": "        break;\n    case VARIOUS_PREPARE_HIT_SWITCH:\n    {\n        struct Pokemon *opponents = GetBattlerSide(gBattlerAttacker) == B_SIDE_PLAYER ? gEnemyParty : gPlayerParty;\n        bool8 opponentsRemain = FALSE;\n        u8 i;\n        for (i = 0; i < PARTY_SIZE; i++)\n        {\n            if (GetMonData(&opponents[i], MON_DATA_SPECIES) != SPECIES_NONE\n             && !GetMonData(&opponents[i], MON_DATA_IS_EGG)\n             && GetMonData(&opponents[i], MON_DATA_HP) != 0)\n                opponentsRemain = TRUE;\n        }\n        gBattleCommunication[0] = gBattleStruct->switchAfterHit\n            && gBattleMons[gBattlerAttacker].hp != 0 && opponentsRemain;\n        // Consume once, before switching can re-enter move-end callbacks.\n        gBattleStruct->switchAfterHit = FALSE;\n        break;\n    }\n    case VARIOUS_WAIT_FANFARE:\n"
+        }
+      ]
     },
     "src/battle_main.c": {
       "before_sha256": "c3fb3ef9683463807b1c38b5366c0ac50140a2e8c9cbcf98114b0aeabe534ea5",
-      "after_sha256": "c3fb3ef9683463807b1c38b5366c0ac50140a2e8c9cbcf98114b0aeabe534ea5",
-      "hunks": []
+      "after_sha256": "22e3baf976f895982cbb111d698fa078f0399fd3dd1f3bc9f42ceab9958d5e85",
+      "hunks": [
+        {
+          "before": "    gBattleStruct->thunderWaveActive = FALSE;\n    gMoveResultFlags = 0;\n",
+          "after": "    gBattleStruct->thunderWaveActive = FALSE;\n    gBattleStruct->switchAfterHit = FALSE;\n    gMoveResultFlags = 0;\n"
+        }
+      ]
     },
     "include/battle.h": {
       "before_sha256": "721e16ed978b7a01533821337dfe94ec2685881fed959b7e561ab67ea1f82b11",
-      "after_sha256": "721e16ed978b7a01533821337dfe94ec2685881fed959b7e561ab67ea1f82b11",
-      "hunks": []
+      "after_sha256": "664bf108efdeda280d9315c419194cd0defc73806216204e4340c89be3f2d5d7",
+      "hunks": [
+        {
+          "before": "    u8 actedThisTurn;\n    u8 padding_1ED[0x13];\n}; // size == 0x200 bytes\n",
+          "after": "    u8 actedThisTurn;\n    bool8 switchAfterHit;\n    u8 padding_1EE[0x12];\n}; // size == 0x200 bytes\n"
+        }
+      ]
     }
   }
 }

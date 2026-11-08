@@ -14,6 +14,8 @@ expressions = {
  'ACTION_NOTHING_FAINTED':'B_ACTION_NOTHING_FAINTED',
  'ACTION_SWITCH':'B_ACTION_SWITCH',
  'ACTION_MOVE':'B_ACTION_USE_MOVE',
+ 'PREPARE_HIT_SWITCH':'VARIOUS_PREPARE_HIT_SWITCH',
+ 'BATTLESTRUCT_SWITCH_PENDING':'offsetof(struct BattleStruct,switchAfterHit)',
  'BATTLESTRUCT_ACTED':'offsetof(struct BattleStruct,actedThisTurn)',
  'BATTLESTRUCT_SWITCH_IN':'offsetof(struct BattleStruct,monToSwitchIntoId)',
  'BATTLESTRUCT_DAMAGE_SOURCES':'offsetof(struct BattleStruct,damagedByBattlers)',
@@ -299,7 +301,7 @@ required = [
 ]
 required += ['NextThunderWaveTarget','gAbsentBattlerFlags']
 required += ['Cmd_accuracycheck']
-required += ['BattlerHasActedThisTurn','RunTurnActionsFunctions','SetActionsAndBattlersTurnOrder','gBattleMainFunc','gCurrentActionFuncId','gChosenActionByBattler','gEnemyPartyCount','gBattlerPartyIndexes','gActionsByTurnOrder', 'BattlerWasDamagedBy','TurnValuesCleanUp','SwitchInClearSetData','gBattleMovePower','Cmd_datahpupdate']
+required += ['Cmd_various','BattlerHasActedThisTurn','RunTurnActionsFunctions','SetActionsAndBattlersTurnOrder','gBattleMainFunc','gCurrentActionFuncId','gChosenActionByBattler','gEnemyPartyCount','gBattlerPartyIndexes','gActionsByTurnOrder', 'BattlerWasDamagedBy','TurnValuesCleanUp','SwitchInClearSetData','gBattleMovePower','Cmd_datahpupdate']
 required += ['Cmd_seteffectwithchance','gBattleCommunication','gCurrentTurnActionNumber','gBattlerByTurnOrder','gSideTimers']
 required += ['Cmd_rolloutdamagecalculation','gDisableStructs','gLockedMoves','gLastMoves']
 required += ['BattleAI_SetupAIData','BattleAI_ChooseMoveOrAction','RecordAbilityBattle']

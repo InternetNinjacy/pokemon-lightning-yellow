@@ -411,6 +411,8 @@ const u8 gMoveDescription_TIDAL_CRASH[] = _("A rolling wave\nattack that grows\n
 
 const u8 gMoveDescription_DISCHARGE[] = _("Electricity hits\nall others. May\ncause paralysis.");
 
+const u8 gMoveDescription_VOLT_SWITCH[] = _("An electric hit.\nThen switches out\nif able.");
+
 const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND         - 1] = gMoveDescription_Pound,
     [MOVE_KARATE_CHOP   - 1] = gMoveDescription_KarateChop,
@@ -799,4 +801,5 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_VORTEX_SPIN - 1] = gMoveDescription_VORTEX_SPIN,
     [MOVE_TIDAL_CRASH - 1] = gMoveDescription_TIDAL_CRASH,
     [MOVE_DISCHARGE - 1] = gMoveDescription_DISCHARGE,
+    [MOVE_VOLT_SWITCH - 1] = gMoveDescription_VOLT_SWITCH,
 };

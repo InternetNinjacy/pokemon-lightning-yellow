@@ -239,6 +239,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectSwarmCloud               @ EFFECT_SWARM_CLOUD
 	.4byte BattleScript_EffectIceFang                  @ EFFECT_ICE_FANG
 	.4byte BattleScript_EffectHitAllOthers              @ EFFECT_HIT_ALL_OTHERS
+	.4byte BattleScript_EffectHit                       @ EFFECT_SWITCH_HIT
 
 BattleScript_EffectHit::
 	jumpifnotmove MOVE_SURF, BattleScript_HitFromAtkCanceler
@@ -282,6 +283,23 @@ BattleScript_AfterSwarmCloud::
 	tryfaintmon BS_TARGET
 BattleScript_MoveEnd::
 	moveendall
+	jumpifnotmove MOVE_VOLT_SWITCH, BattleScript_HitSwitchEnd
+	various BS_ATTACKER, VARIOUS_PREPARE_HIT_SWITCH
+	jumpifbyte CMP_EQUAL, gBattleCommunication, FALSE, BattleScript_HitSwitchEnd
+	jumpifcantswitch SWITCH_IGNORE_ESCAPE_PREVENTION | BS_ATTACKER, BattleScript_HitSwitchEnd
+	openpartyscreen BS_ATTACKER, BattleScript_HitSwitchEnd
+	switchoutabilities BS_ATTACKER
+	waitstate
+	switchhandleorder BS_ATTACKER, 2
+	returntoball BS_ATTACKER
+	getswitchedmondata BS_ATTACKER
+	switchindataupdate BS_ATTACKER
+	hpthresholds BS_ATTACKER
+	printstring STRINGID_SWITCHINMON
+	switchinanim BS_ATTACKER, TRUE
+	waitstate
+	switchineffects BS_ATTACKER
+BattleScript_HitSwitchEnd::
 	end
 
 BattleScript_MakeMoveMissed::

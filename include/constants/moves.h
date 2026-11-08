@@ -416,7 +416,9 @@
 
 #define MOVE_DISCHARGE 387
 
-#define MOVES_COUNT 388
+#define MOVE_VOLT_SWITCH 388
+
+#define MOVES_COUNT 389
 
 // Used for checks for moves affected by Disable, Mimic, etc.
 #define MOVE_UNAVAILABLE 0xFFFF
