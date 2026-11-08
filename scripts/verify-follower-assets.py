@@ -109,12 +109,12 @@ def read_png(data):
     if ihdr is None or len(ihdr) != 13:
         raise ValueError("missing IHDR")
     w, h, depth, ctype, compression, filtering, interlace = struct.unpack(">IIBBBBB", ihdr)
-    if (w, h) not in ((192, 32), (384, 64)) or (depth, ctype, compression, filtering, interlace) != (4, 3, 0, 0, 0):
+    if (w, h) not in ((192, 32), (384, 64)) or depth not in (4, 8) or (ctype, compression, filtering, interlace) != (3, 0, 0, 0):
         raise ValueError("unexpected PNG geometry or indexed format: " + str((w,h,depth,ctype,interlace)))
     cell_size = h  # Six square cells in a horizontal strip; never silently downscale.
     palette = next((x for n, x in chunks if n == b"PLTE"), b"")
-    if len(palette) == 0 or len(palette) % 3 or len(palette) > 48:
-        raise ValueError("invalid 4-bit palette")
+    if len(palette) == 0 or len(palette) % 3 or len(palette) > (48 if depth == 4 else 768):
+        raise ValueError("invalid indexed PNG palette")
     embedded_rgb = [tuple(palette[i:i + 3]) for i in range(0, len(palette), 3)]
     alpha_chunks = [data for name, data in chunks if name == b"tRNS"]
     if len(alpha_chunks) > 1 or (alpha_chunks and len(alpha_chunks[0]) > len(embedded_rgb)):
@@ -151,7 +151,7 @@ def read_png(data):
                 a,b,c = abs(p-left),abs(p-up),abs(p-ul)
                 predictor = left if a<=b and a<=c else up if b<=c else ul
                 row[j] = (row[j] + predictor) & 255
-        rows.append([v for byte in row for v in (byte >> 4, byte & 15)])
+        rows.append([v for byte in row for v in (byte >> 4, byte & 15)] if depth == 4 else list(row))
         prior = row
     if any(v >= len(palette)//3 for row in rows for v in row):
         raise ValueError("out-of-range indexed PNG pixel")
@@ -161,6 +161,8 @@ def read_png(data):
         # Six square cells; upstream animation mapping is checked independently.
         pixels = tuple(v for row in rows for v in row[frame*cell_size:(frame+1)*cell_size])
         frames.append(pixels)
+    if any(index >= 16 for index in used_indices):
+        raise ValueError("indexed PNG requires color-index remapping for GBA 4-bpp: " + str(used_indices))
     gba_frames = [gba_tiles_roundtrip(frame, cell_size) for frame in frames]
     # Index zero is not automatically transparent. Many source PNGs omit tRNS;
     # preserve ambiguous transparency for review, rather than guessing it.
@@ -169,7 +171,7 @@ def read_png(data):
         raise ValueError("all six image cells use only index zero")
     return {
         "dimensions": [w,h], "frame_cell_size": [cell_size,cell_size],
-        "bit_depth": depth, "indexed_colors": len(palette)//3,
+        "source_bit_depth": depth, "bit_depth": 4, "indexed_colors": len(palette)//3,
         "embedded_palette_rgb": embedded_rgb, "used_indices": used_indices,
         "transparent_indices": transparent_indices,
         "partial_alpha_indices": partial_alpha_indices,
@@ -308,6 +310,7 @@ def main():
         except Exception as exc:
             forms[form]["sprite"] = str(exc)
             failures.append({"form": form, "sprite": str(exc)})
+            print(f"ERROR CASTFORM {form}: {exc}", file=sys.stderr, flush=True)
     report = {"source": BASE, "verified": len(results), "total": len(rows),
               "oversized_sheet_exceptions": oversized,
               "animation_contract": animation_contract,
