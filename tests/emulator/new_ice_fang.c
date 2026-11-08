@@ -30,7 +30,9 @@ static void iceFangTests(void){
   core->busWrite16(core,SYM_gCurrentMove,MOVE_ICE_FANG);
   CALL(AI_CalcDmg,0,1);
   CHECK(core->busRead32(core,SYM_gBattleMoveDamage)==expected);
+  void *initial=malloc(core->stateSize(core));CHECK(initial&&core->saveState(core,initial));
   for(unsigned serene=0;serene<2;serene++){
+   CHECK(core->loadState(core,initial));
    core->busWrite8(core,bmon(0)+ABI_BMON_ABILITY,serene?ABILITY_SERENE_GRACE:ABILITY_NONE);
    void *snap=malloc(core->stateSize(core));CHECK(snap&&core->saveState(core,snap));
    unsigned combinations=0,misses=0;
@@ -53,6 +55,7 @@ static void iceFangTests(void){
    free(snap);
    printf("PASS: Ice Fang native %s %s all four independent freeze/flinch outcomes, misses, PP, Physical AI damage and existing-art termination\n",two?"Doubles":"Singles",serene?"Serene Grace":"base chance");
   }
+  free(initial);
  }
  CHECK(core->loadState(core,bootState));
 }
