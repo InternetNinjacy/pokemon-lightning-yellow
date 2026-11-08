@@ -77,6 +77,10 @@ static const u8 sShellArmorDescription[] = _("Blocks critical hits.");
 static const u8 sCacophonyDescription[] = _("Avoids sound-based moves.");
 static const u8 sAirLockDescription[] = _("Negates weather effects.");
 
+static const u8 sIceBodyDescription[] = _("Slight HP recovery in hail.");
+static const u8 sOvercoatDescription[] = _("Blocks hail and sand damage.");
+static const u8 sSnowWarningDescription[] = _("Summons hail in battle.");
+
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
 {
     [ABILITY_NONE] = sNoneDescription,
@@ -157,6 +161,9 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =
     [ABILITY_SHELL_ARMOR] = sShellArmorDescription,
     [ABILITY_CACOPHONY] = sCacophonyDescription,
     [ABILITY_AIR_LOCK] = sAirLockDescription,
+    [ABILITY_ICE_BODY] = sIceBodyDescription,
+    [ABILITY_OVERCOAT] = sOvercoatDescription,
+    [ABILITY_SNOW_WARNING] = sSnowWarningDescription,
 };
 
 const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
@@ -239,4 +246,7 @@ const u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_SHELL_ARMOR] = _("SHELL ARMOR"),
     [ABILITY_CACOPHONY] = _("CACOPHONY"),
     [ABILITY_AIR_LOCK] = _("AIR LOCK"),
+    [ABILITY_ICE_BODY] = _("ICE BODY"),
+    [ABILITY_OVERCOAT] = _("OVERCOAT"),
+    [ABILITY_SNOW_WARNING] = _("SNOW WARNING"),
 };
