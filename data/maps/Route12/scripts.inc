@@ -1,6 +1,12 @@
 Route12_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, Route12_SowOnTransition
 	map_script MAP_SCRIPT_ON_RESUME, Route12_OnResume
 	.byte 0
+
+Route12_SowOnTransition::
+	setvar VAR_0x8004, 0 @ SPECIAL_WEATHER_CORPHISH
+	callnative SpecialWeatherActivateScript
+	end
 
 Route12_OnResume::
 	call_if_set FLAG_SYS_SPECIAL_WILD_BATTLE, Route12_EventScript_TryRemoveSnorlax
@@ -56,4 +62,30 @@ Route12_EventScript_RouteSign::
 
 Route12_EventScript_FishingSign::
 	msgbox Route12_Text_SportfishingArea, MSGBOX_SIGN
+	end
+
+Route12_EventScript_SowCorphish::
+	goto_if_questlog EventScript_ReleaseEnd
+	lock
+	faceplayer
+	setvar VAR_0x8004, 0
+	setwildbattle SPECIES_CORPHISH, 30
+	callnative SowPrepareScriptedEncounter
+	goto_if_eq VAR_RESULT, FALSE, Route12_EventScript_SowAbort
+	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	dowildbattle
+	clearflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, Route12_EventScript_SowResolved
+	goto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, Route12_EventScript_SowResolved
+Route12_EventScript_SowAbort::
+	release
+	end
+
+Route12_EventScript_SowResolved::
+	copyvar VAR_0x8005, VAR_RESULT
+	msgbox Route12_Text_SowGhostFarewell
+	call SpecialWeather_EventScript_FinishAftermath
+	removeobject VAR_LAST_TALKED
+	release
 	end
