@@ -49,6 +49,25 @@ static void sowScriptedProducerTests(void)
 // Execute the real compiled event entry points, rather than only calling
 // the isolated mon constructor. A-button pathfinding and visual OAM checks
 // require the separate in-map interaction/framebuffer acceptance gate.
+// The production SetWarpDestination API takes *signed 8-bit* x/y, so a
+// direct y=146 debug warp truncates to a negative value and falls back to
+// Route23's center. Use real 16-bit saved position before loading the field.
+static void sowWarpToHighTile(unsigned map,unsigned x,unsigned y)
+{
+ CHECK(y>127);
+ CALL(SetWarpDestination,MAP_GROUP(map),MAP_NUM(map),0xFFFFFFFF,x,100);
+ CALL(WarpIntoMap);
+ core->busWrite16(core,careSave1()+ABI_SAVE1_POS_X,x);
+ core->busWrite16(core,careSave1()+ABI_SAVE1_POS_Y,y);
+ CALL(ResetInitialPlayerAvatarState);
+ CALL(CB2_LoadMap);
+ frames(360,0);
+ CHECK(fieldScriptDone());
+ CALL(PlayerGetDestCoords,scratch,scratch+2);
+ CHECK(core->busRead16(core,scratch)==x+7);
+ CHECK(core->busRead16(core,scratch+2)==y+7);
+}
+
 static void sowScriptedRunTests(void)
 {
  static const unsigned maps[]={MAP_ROUTE12,MAP_ROUTE21_NORTH,MAP_ROUTE23};
@@ -67,7 +86,8 @@ static void sowScriptedRunTests(void)
   // Escape acceptance must not depend on the default Lv20 Pikachu losing
   // the Gen III speed-based escape roll against Glalie/Tyranitar.
   CALL(CreateMon,player(0),SPECIES_JOLTEON,100,31,1,12345,0,1234);
-  fossilWarp(MAP_GROUP(maps[i]),MAP_NUM(maps[i]),startX[i],startY[i]);
+  if(startY[i]>127)sowWarpToHighTile(maps[i],startX[i],startY[i]);
+  else fossilWarp(MAP_GROUP(maps[i]),MAP_NUM(maps[i]),startX[i],startY[i]);
   CHECK(CALL(FlagGet,active[i]));
   CHECK(!CALL(FlagGet,resolved[i]));
   unsigned object=CALL(GetObjectEventIdByLocalIdAndMap,localIds[i],MAP_NUM(maps[i]),MAP_GROUP(maps[i]));
