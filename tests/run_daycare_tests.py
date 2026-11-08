@@ -132,9 +132,9 @@ with tempfile.TemporaryDirectory(prefix='lightning-daycare-') as temp:
 # byte-identical to the reviewed integration base. Separate from execution.
 import json, hashlib
 snapshot=json.loads(Path('tests/specifications/daycare_preserved.json').read_text())
-from approved_viridian_forest_changes import prior_viridian_forest_source
+from approved_mt_moon_changes import prior_mt_moon_source
 for path,expected in snapshot['files'].items():
-    assert hashlib.sha256(prior_viridian_forest_source(path)).hexdigest()==expected,path
+    assert hashlib.sha256(prior_mt_moon_source(path)).hexdigest()==expected,path
 source=Path('src/daycare.c').read_text()
 for name,expected in snapshot['functions'].items():
     assert hashlib.sha256(extract_function(source,name).encode()).hexdigest()==expected,name
