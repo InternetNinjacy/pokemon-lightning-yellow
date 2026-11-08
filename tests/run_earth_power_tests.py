@@ -10,7 +10,7 @@ data=read("src/data/battle_moves.h")
 names=read("src/data/text/move_names.h")
 desc=read("src/move_descriptions.c")
 anim=read("data/battle_anim_scripts.s")
-assert "#define MOVE_EARTH_POWER 371" in const and "#define MOVES_COUNT 372" in const
+assert "#define MOVE_EARTH_POWER 371" in const and "#define MOVES_COUNT 373" in const
 assert '[MOVE_EARTH_POWER] = _("EARTH POWER")' in names
 assert "gMoveDescription_EARTH_POWER[]" in desc and "[MOVE_EARTH_POWER - 1] = gMoveDescription_EARTH_POWER" in desc
 start=data.index("[MOVE_EARTH_POWER] =")
