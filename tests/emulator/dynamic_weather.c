@@ -92,4 +92,8 @@ static void weatherIntegrationTests(void){
  printf("PASS: actual controlled Cycling Road trainer victory callback executes exactly one measured native reroll, then returns to field/post-battle script\n");
  CHECK(core->loadState(core,bootState));
 }
-static void dynamicWeatherTests(void){weatherPolicyTests();weatherIntegrationTests();}
+#include "special_weather.c"
+static void dynamicWeatherTests(void){
+ if(getenv("LIGHTNING_SPECIAL_WEATHER_ONLY")){specialWeatherTests();return;}
+ specialWeatherTests();weatherPolicyTests();weatherIntegrationTests();
+}

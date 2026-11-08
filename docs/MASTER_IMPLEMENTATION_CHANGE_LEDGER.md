@@ -1771,3 +1771,11 @@ Glalie persistence is now stacked on Brock-party PR126/6a8b8010 (itself on PR118
 ### SOW-007 final local acceptance / baseline Tyranitar proof
 
 Current combined stack passed11864 native weather-move assertions and all44 host runners. Final focused individual-capture run5408 assertions additionally proves unchanged Tyranitar Sand Stream through actual party/PC capture and flash reload; Glalie retains Snow Warning after capture, PC/flash and subsequent actual player battle. Final clean modified-ROM SHA-256 rebuild matched. `docs/WEATHER_DECISIONS_REQUIRED.md` lists source-verified current ability slots and exact missing owner design inputs. No Corphish evolution rule, encounter balance/coordinates or global ability-slot replacements invented. Full exact-head CI remains separately recorded in PR127.
+
+## 2026-11-07 — WTH / SOW-004,007,008 opt-in weather lifecycle
+
+Approved: issue47 / LY-LW-053; dedicated priority issue105. Previously routes used the merged83-map baseline only and had no installed target encounters. New engine explicitly activates route-wide Rain/Snow/Sand, persists active/resolved flags without moving save fields, gates completion on capture/defeat after the caller's aftermath, and makes exactly one baseline selection before a real visual native wait. No event producer, dialogue, species ability slots or default route activation added.
+
+Branch: `feature/special-route-weather-overrides`; implementation commit/PR are recorded by Git history and the linked PR. Files: `src/dynamic_weather.c`, `include/dynamic_weather.h`, new constants/common script, event root, scoped host/native tests and CI registration. New strict reversible delta preserves older frozen normalizers. See [scoped implementation record](SPECIAL_ROUTE_WEATHER.md) for API, storage reservations, evidence and remaining encounter/individual-ability blockers.
+
+Automated evidence: all40 host runners passed;1020 new lifecycle assertions;10,880,936 retained regional assertions. Broader native weather run passed131,098 assertions before the additional ordinary-battle regression. Final native/build/CI evidence belongs in the review PR; no merge or production-complete claim. No global progress percentage changed.

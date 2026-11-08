@@ -27,6 +27,9 @@ pre=r'''
 #include "constants/maps.h"
 #include "constants/weather.h"
 #include "constants/time_of_day.h"
+#include "constants/special_weather.h"
+#include "constants/battle.h"
+#include "constants/field_weather.h"
 typedef uint8_t u8;typedef uint16_t u16;typedef uint32_t u32;typedef u8 bool8;
 #define TRUE 1
 #define FALSE 0
@@ -41,7 +44,14 @@ static bool8 IsMapTypeOutdoors(u8 t){return t==MAP_TYPE_ROUTE||t==MAP_TYPE_TOWN|
 static u8 GetSav1Weather(void){return save.weather;}
 static u8 GetCurrentWeather(void){return current;}
 static void SetSavedWeather(u32 w){save.weather=w;}
-static void SetNextWeather(u8 w){current=w;}
+static struct {u8 weatherChangeComplete,weatherGfxLoaded,palProcessingState,currWeather,nextWeather;} rendered,*gWeatherPtr=&rendered;
+static void SetNextWeather(u8 w){current=w;rendered.currWeather=w;rendered.nextWeather=w;}
+static u8 eventFlags[FLAGS_COUNT];
+static bool8 FlagGet(u16 flag){return eventFlags[flag];}
+static void FlagSet(u16 flag){eventFlags[flag]=1;}
+static void FlagClear(u16 flag){eventFlags[flag]=0;}
+u16 gSpecialVar_0x8004,gSpecialVar_0x8005,gSpecialVar_Result;
+
 '''
 post=r'''
 static void enter(unsigned id,unsigned type,unsigned original){save.location.mapGroup=MAP_GROUP(id);save.location.mapNum=MAP_NUM(id);gMapHeader.mapType=type;gMapHeader.weather=original;save.weather=DynamicWeatherForMap(original);}

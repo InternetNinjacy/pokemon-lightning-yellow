@@ -1363,3 +1363,5 @@ Text_TestMsg::
 	.include "data/text/pokedude.inc"
 
 	.include "data/scripts/mystery_vendor.inc"
+
+	.include "data/scripts/special_weather.inc"
