@@ -207,3 +207,9 @@ No gameplay code imported. Asset gate remains open.
 **Correction to earlier addendum:** the earlier batch described as custom-Dex #17–30 used zero-based CSV slicing with an off-by-one displayed label. The actual species-file checks were #16–29; #30 was separately fetched and verified in the final full roster pass. No roster identity was changed.
 
 **Phase One status:** 252/252 source PNGs *exist and have independently matching headers/hashes*; runtime, artwork-frame uniqueness, full palette-pixel compatibility, explicit alternative Steelix selection and resource limits remain open. No follower gameplay code, save change, imported artwork, merge or effort-point award occurred.
+
+## 2026-11-08 Steelix alternative palette incompatibility — exact binary result
+
+Compared the PNG `PLTE` chunks for both pinned Steelix sprite options against Kasenn's `graphics/pokemon/steelix/overworld_normal.pal`. Aarant's hash-matching `192×32` PNG has **16 indexed palette entries**, including magenta placeholders and a distinct color ordering; Kasenn's `384×64` PNG has **9 indexed palette entries**, with the first nine matching the corresponding normal JASC palette positions. Aarant PNG palette colors/index order **do not equal** Kasenn's normal JASC palette. Consequently **do not switch Steelix to the aarant artwork with Kasenn's normal/Shiny palettes without explicit pixel-index remapping and both-palette checks**. This is an actual technical incompatibility, not a license finding or a missing sprite.
+
+The original Kasenn Steelix is six 64×64 cells, i.e., a 2,048-byte uncompressed 4bpp frame versus the upstream standard 512-byte 32×32 frame. An explicit 64×64 dynamic graphics configuration is another possible conversion candidate, but FireRed object/OAM/tile/VRAM/rendering safety has NOT been proved. Neither solution has passed the asset gate; no art was altered or imported.
