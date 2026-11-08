@@ -28,7 +28,10 @@ jobs:
       - name: Install official FireRed build and native mGBA dependencies
         run: |
           sudo apt-get -o Acquire::Retries=3 -o Acquire::http::Timeout=30 -o Acquire::https::Timeout=30 -o DPkg::Lock::Timeout=120 update
-          sudo apt-get -o Acquire::Retries=3 -o Acquire::http::Timeout=30 -o Acquire::https::Timeout=30 -o DPkg::Lock::Timeout=120 install -y --no-install-recommends build-essential binutils-arm-none-eabi git libpng-dev python3 libmgba-dev
+          sudo apt-get -o Acquire::Retries=3 -o Acquire::http::Timeout=30 -o Acquire::https::Timeout=30 -o DPkg::Lock::Timeout=120 install -y --no-install-recommends build-essential binutils-arm-none-eabi git libpng-dev python3 python3-pil libmgba-dev
+      - name: Prepare hash-verified pinned Steelix frame in disposable workspace only
+        working-directory: current
+        run: python3 ../audit/tests/followers/prepare_steelix_native_frame.py
       - name: Overlay only the test harness into temporary main checkout
         working-directory: current
         run: |
