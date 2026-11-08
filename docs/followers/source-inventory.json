@@ -76,5 +76,34 @@
     ],
     "technical_subgate": "PASS isolated graphics-engine resource feasibility",
     "asset_gate": "BLOCKED until remaining integration tests pass"
+  },
+  "native_emulator_steelix_art_test_2026_11_08": {
+    "run_id": 42533391116,
+    "main_commit": "90d0811b46bfab6f054d9b9c9b9c64240b6f3562",
+    "audit_commit": "875cfd7684295ff6ad7fc78bf0ed9e17265171cb",
+    "assertions_passed": 1402,
+    "steelix_blob_sha": "1a0ff067983d294ce1534674efa91c697c4db794",
+    "steelix_frame": "64x64",
+    "frame_4bpp_bytes": 2048,
+    "source_normal_palette_colors": 16,
+    "passed": [
+      "real ROM boot under libmGBA",
+      "pinned Steelix image sha and frame conversion",
+      "Snorlax 32 and Seagallop 64 native object creation",
+      "real ROM OAM hardware transfer/readback",
+      "Steelix 1024 16bit words staged in OBJ VRAM and readback",
+      "Steelix 16 normal palette 16bit words staged in OBJ PLTT and readback",
+      "allocation exhaustion and recovery",
+      "object destruction and 64x64 recreation"
+    ],
+    "not_tested": [
+      "actual visible framebuffer pixels",
+      "Steelix all six walking directions on screen",
+      "shiny paletted dynamic change",
+      "reflection and map crowding",
+      "atomic production dynamic 32/64 sprite switching"
+    ],
+    "technical_subgate": "PASS native actual Steelix OBJ VRAM/PLTT + OAM engine compatibility in isolated emulator",
+    "asset_gate": "BLOCKED full visual/dynamic runtime compatibility not yet proven"
   }
 }
