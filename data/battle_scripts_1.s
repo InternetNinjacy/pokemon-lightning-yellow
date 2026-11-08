@@ -236,7 +236,8 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectDragonDance            @ EFFECT_DRAGON_DANCE
 	.4byte BattleScript_EffectCamouflage             @ EFFECT_CAMOUFLAGE
 	.4byte BattleScript_EffectSleepHit
-	.4byte BattleScript_EffectSwarmCloud               @ EFFECT_SLEEP_HIT
+	.4byte BattleScript_EffectSwarmCloud               @ EFFECT_SWARM_CLOUD
+	.4byte BattleScript_EffectIceFang                  @ EFFECT_ICE_FANG
 
 BattleScript_EffectHit::
 	jumpifnotmove MOVE_SURF, BattleScript_HitFromAtkCanceler
@@ -268,8 +269,12 @@ BattleScript_HitFromAtkAnimation::
 	resultmessage
 	waitmessage B_WAIT_TIME_LONG
 	seteffectwithchance
+	jumpifmove MOVE_ICE_FANG, BattleScript_IceFangFlinch
 	jumpifnotmove MOVE_SWARM_CLOUD, BattleScript_AfterSwarmCloud
 	setmoveeffect MOVE_EFFECT_POISON
+	seteffectwithchance
+BattleScript_IceFangFlinch::
+	setmoveeffect MOVE_EFFECT_FLINCH
 	seteffectwithchance
 BattleScript_AfterSwarmCloud::
 	tryfaintmon BS_TARGET
@@ -4411,4 +4416,10 @@ BattleScript_EffectSleepHit::
 @ Swarm Cloud uses separate native 50% Confusion and 50% Poison chances.
 BattleScript_EffectSwarmCloud::
 	setmoveeffect MOVE_EFFECT_CONFUSION
+	goto BattleScript_EffectHit
+
+@ Ice Fang independent on-hit rolls: freeze first, flinch second.
+@ The same 10-percent chance byte is rolled separately by each seteffectwithchance.
+BattleScript_EffectIceFang::
+	setmoveeffect MOVE_EFFECT_FREEZE
 	goto BattleScript_EffectHit
