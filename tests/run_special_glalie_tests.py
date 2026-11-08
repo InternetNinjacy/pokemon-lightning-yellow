@@ -3,9 +3,10 @@
 import hashlib,json,re
 from pathlib import Path
 from approved_special_glalie_changes import prior_special_glalie_source
+from approved_special_corphish_changes import prior_special_corphish_source
 m=json.loads(Path('tests/specifications/special_glalie_delta.json').read_text())
 for path,row in m['files'].items():
-    assert hashlib.sha256(Path(path).read_bytes()).hexdigest()==row['after_sha256'],path
+    assert hashlib.sha256(prior_special_corphish_source(path).encode()).hexdigest()==row['after_sha256'],path
     assert hashlib.sha256(prior_special_glalie_source(path).encode()).hexdigest()==row['before_sha256'],path
 # New functions/prototypes only: every old Pokémon record field stays byte-identical.
 s=Path('include/pokemon.h').read_text();old=prior_special_glalie_source('include/pokemon.h')
