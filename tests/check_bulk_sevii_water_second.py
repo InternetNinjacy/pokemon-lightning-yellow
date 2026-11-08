@@ -1,0 +1,23 @@
+#!/usr/bin/env python3
+"""WRL-009 nine-map second Sevii aquatic exact source contract."""
+import json
+from pathlib import Path
+root=Path(__file__).resolve().parents[1]
+group=json.loads((root/"src/data/wild_encounters.json").read_text())["wild_encounter_groups"][0]
+f={x["type"]:x for x in group["fields"]}
+assert f["water_mons"]["encounter_rates"]==[60,30,5,4,1]
+assert f["fishing_mons"]["encounter_rates"]==[70,30,60,20,20,40,40,15,4,1]
+assert f["fishing_mons"]["groups"]=={"old_rod":[0,1],"good_rod":[2,3,4],"super_rod":[5,6,7,8,9]}
+expected={"MAP_ONE_ISLAND":{"labels":["sOneIsland_FireRed","sOneIsland_LeafGreen"],"surf":["TENTACOOL","TENTACOOL","TENTACRUEL","TENTACRUEL","TENTACRUEL"],"fish":["MAGIKARP","MAGIKARP","HORSEA","KRABBY","HORSEA","KRABBY","HORSEA","KRABBY","HORSEA","KRABBY"],"surfLv":[32,35,38,41,43],"fishLv":[5,5,17,19,20,27,30,33,36,39],"waterRate":1,"fishRate":10},"MAP_ONE_ISLAND_TREASURE_BEACH":{"labels":["sOneIslandTreasureBeach_FireRed","sOneIslandTreasureBeach_LeafGreen"],"surf":["TENTACOOL","TENTACOOL","TENTACRUEL","TENTACRUEL","TENTACRUEL"],"fish":["MAGIKARP","MAGIKARP","HORSEA","KRABBY","HORSEA","KRABBY","HORSEA","KRABBY","HORSEA","KRABBY"],"surfLv":[32,35,38,41,43],"fishLv":[5,5,17,19,20,27,30,33,36,39],"waterRate":2,"fishRate":20},"MAP_THREE_ISLAND_BERRY_FOREST":{"labels":["sThreeIslandBerryForest_FireRed","sThreeIslandBerryForest_LeafGreen"],"surf":["POLIWAG","GOLDEEN","PSYDUCK","POLIWAG","GOLDEEN"],"fish":["MAGIKARP","MAGIKARP","POLIWAG","GOLDEEN","PSYDUCK","POLIWAG","GOLDEEN","PSYDUCK","GOLDEEN","POLIWAG"],"surfLv":[32,35,38,41,43],"fishLv":[5,5,17,19,20,27,30,33,36,39],"waterRate":2,"fishRate":20},"MAP_FOUR_ISLAND":{"labels":["sFourIsland_FireRed","sFourIsland_LeafGreen"],"surf":["SEEL","SPHEAL","DEWGONG","SEALEO","SHELLDER"],"fish":["SHELLDER","SHELLDER","SEEL","SPHEAL","SHELLDER","SEEL","SPHEAL","DEWGONG","SEALEO","SHELLDER"],"surfLv":[32,35,38,41,43],"fishLv":[5,5,17,19,20,27,30,33,36,39],"waterRate":2,"fishRate":20},"MAP_FOUR_ISLAND_ICEFALL_CAVE_ENTRANCE":{"labels":["sFourIslandIcefallCaveEntrance_FireRed","sFourIslandIcefallCaveEntrance_LeafGreen"],"surf":["SEEL","SPHEAL","DEWGONG","SEALEO","SHELLDER"],"fish":["SHELLDER","SHELLDER","SEEL","SPHEAL","SHELLDER","SEEL","SPHEAL","DEWGONG","SEALEO","SHELLDER"],"surfLv":[32,35,38,41,43],"fishLv":[5,5,17,19,20,27,30,33,36,39],"waterRate":2,"fishRate":20},"MAP_FOUR_ISLAND_ICEFALL_CAVE_BACK":{"labels":["sFourIslandIcefallCaveBack_FireRed","sFourIslandIcefallCaveBack_LeafGreen"],"surf":["SEEL","SPHEAL","DEWGONG","SEALEO","SHELLDER"],"fish":["SHELLDER","SHELLDER","SEEL","SPHEAL","SHELLDER","SEEL","SPHEAL","DEWGONG","SEALEO","SHELLDER"],"surfLv":[32,35,38,41,43],"fishLv":[5,5,17,19,20,27,30,33,36,39],"waterRate":2,"fishRate":20},"MAP_FIVE_ISLAND_MEADOW":{"labels":["sFiveIslandMeadow_FireRed","sFiveIslandMeadow_LeafGreen"],"surf":["TENTACOOL","TENTACOOL","TENTACRUEL","TENTACRUEL","TENTACRUEL"],"fish":["MAGIKARP","MAGIKARP","HORSEA","STARYU","HORSEA","STARYU","HORSEA","STARYU","STARYU","HORSEA"],"surfLv":[32,35,38,41,43],"fishLv":[5,5,17,19,20,27,30,33,36,39],"waterRate":2,"fishRate":20},"MAP_SIX_ISLAND_OUTCAST_ISLAND":{"labels":["sSixIslandOutcastIsland_FireRed","sSixIslandOutcastIsland_LeafGreen"],"surf":["KRABBY","KRABBY","CORPHISH","CORPHISH","CORPHISH"],"fish":["MAGIKARP","MAGIKARP","KRABBY","CORPHISH","CARVANHA","KRABBY","CORPHISH","CARVANHA","CARVANHA","CORPHISH"],"surfLv":[32,35,38,41,43],"fishLv":[5,5,17,19,20,27,30,33,36,39],"waterRate":2,"fishRate":20},"MAP_SIX_ISLAND_RUIN_VALLEY":{"labels":["sSixIslandRuinValley_FireRed","sSixIslandRuinValley_LeafGreen"],"surf":["KRABBY","KRABBY","CORPHISH","CORPHISH","CORPHISH"],"fish":["MAGIKARP","MAGIKARP","KRABBY","CORPHISH","CARVANHA","KRABBY","CORPHISH","CARVANHA","CARVANHA","CORPHISH"],"surfLv":[32,35,38,41,43],"fishLv":[5,5,17,19,20,27,30,33,36,39],"waterRate":2,"fishRate":20}}
+assert len(expected)==9
+for map_id,c in expected.items():
+ rows=[x for x in group["encounters"] if x["map"]==map_id]
+ assert len(rows)==2 and {x["base_label"] for x in rows}==set(c["labels"])
+ for row in rows:
+  for method,names,levels,rate in (("water_mons",c["surf"],c["surfLv"],c["waterRate"]),("fishing_mons",c["fish"],c["fishLv"],c["fishRate"])):
+   data=row[method];assert data["encounter_rate"]==rate and len(data["mons"])==len(names)
+   for mon,name,lv in zip(data["mons"],names,levels):
+    assert mon=={"min_level":lv,"max_level":lv,"species":"SPECIES_"+name},(map_id,row["base_label"],method,mon)
+ assert rows[0]["water_mons"]==rows[1]["water_mons"]
+ assert rows[0]["fishing_mons"]==rows[1]["fishing_mons"]
+print("PASS nine Sevii aquatic maps; 18 map records, 36 method tables; preserved encounter triggers and rod slots")

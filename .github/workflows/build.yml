@@ -99,6 +99,7 @@ jobs:
           python3 tests/check_kanto_water_followup.py
           python3 tests/check_bulk_sevii_land.py
           python3 tests/check_bulk_sevii_water.py
+          python3 tests/check_bulk_sevii_water_second.py
           python3 tests/run_daycare_tests.py
           python3 tests/run_world_reward_tests.py
           python3 tests/run_vendor_tests.py
