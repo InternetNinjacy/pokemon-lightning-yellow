@@ -110,6 +110,7 @@ def read_png(data):
     palette = next((x for n, x in chunks if n == b"PLTE"), b"")
     if len(palette) == 0 or len(palette) % 3 or len(palette) > 48:
         raise ValueError("invalid 4-bit palette")
+    embedded_rgb = [tuple(palette[i:i + 3]) for i in range(0, len(palette), 3)]
     raw = zlib.decompress(b"".join(x for n, x in chunks if n == b"IDAT"))
     stride = (w * depth + 7) // 8
     if len(raw) != h * (stride + 1):
@@ -143,6 +144,7 @@ def read_png(data):
         prior = row
     if any(v >= len(palette)//3 for row in rows for v in row):
         raise ValueError("out-of-range indexed PNG pixel")
+    used_indices = sorted({v for row in rows for v in row})
     frames = []
     for frame in range(6):
         # Six square cells; upstream animation mapping is checked independently.
@@ -154,6 +156,7 @@ def read_png(data):
     return {
         "dimensions": [w,h], "frame_cell_size": [cell_size,cell_size],
         "bit_depth": depth, "indexed_colors": len(palette)//3,
+        "embedded_palette_rgb": embedded_rgb, "used_indices": used_indices,
         "gba_4bpp_bytes_per_frame": len(gba_frames[0]),
         "gba_4bpp_total_six_frames": sum(len(frame) for frame in gba_frames),
         "gba_conversion_sha256": hashlib.sha256(b"".join(gba_frames)).hexdigest(),
@@ -212,7 +215,25 @@ def check_upstream_animation_contract():
             "graphics_info": "gObjectEventGraphicsInfo_Follower"}
 
 
+def check_firered_64x64_reference():
+    """Existing FireRed OAM support only; not evidence of dynamic follower VRAM safety."""
+    source = (ROOT / "src/data/object_events/object_event_graphics_info.h").read_text()
+    m = re.search(r"gObjectEventGraphicsInfo_Seagallop\\s*=\\s*\\{(.*?)\\};", source, re.S)
+    if not m:
+        raise ValueError("FireRed 64x64 object graphics reference not found")
+    record = m.group(1)
+    for token in (".size = 2048,", ".width = 64,", ".height = 64,",
+                  ".oam = &gObjectEventBaseOam_64x64,",
+                  ".subspriteTables = gObjectEventSpriteOamTables_64x64,"):
+        if token not in record:
+            raise ValueError("FireRed 64x64 graphics reference missing: " + token)
+    return {"reference": "gObjectEventGraphicsInfo_Seagallop",
+            "frame_bytes": 2048,
+            "scope": "OAM and sprite descriptor precedent only; VRAM safety unverified"}
+
+
 def main():
+    fire_red_64x64 = check_firered_64x64_reference()
     animation_contract = check_upstream_animation_contract()
     with (ROOT / "docs/followers/252-species-coverage.csv").open(newline="") as f:
         rows = list(csv.DictReader(f))
@@ -227,9 +248,22 @@ def main():
             if sha != row["kasenn_blob_sha"]:
                 raise ValueError("blob SHA changed: " + sha)
             details = read_png(png)
+            palettes = {}
             for variant in ("normal", "shiny"):
                 key = "kasenn_" + variant + "_palette"
-                read_pal(fetch(row[key]))
+                palettes[variant] = read_pal(fetch(row[key]))
+            # The indexed artwork is primarily paired with the NORMAL palette;
+            # log quantized color-order mismatches rather than silently applying
+            # a potentially incompatible palette (Steelix alternates need care).
+            normal = palettes["normal"]
+            details["normal_palette_index_mismatches"] = [
+                index for index in details["used_indices"]
+                if tuple(c >> 3 for c in details["embedded_palette_rgb"][index])
+                != tuple(c >> 3 for c in normal[index])
+            ]
+            # Indexed pixels must fit both the normal and Shiny 16-slot palettes.
+            if details["used_indices"][-1] >= len(palettes["shiny"]):
+                raise ValueError("Shiny palette lacks referenced pixel index")
             result = {"dex": n, "species": name, "png_blob": sha, **details}
             results.append(result)
             if details["frame_cell_size"] != [32, 32]:
@@ -260,6 +294,11 @@ def main():
     report = {"source": BASE, "verified": len(results), "total": len(rows),
               "oversized_sheet_exceptions": oversized,
               "animation_contract": animation_contract,
+              "firered_existing_64x64_oam": fire_red_64x64,
+              "palette_color_mismatch_species": [
+                  {"dex": item["dex"], "species": item["species"],
+                   "indices": item["normal_palette_index_mismatches"]}
+                  for item in results if item["normal_palette_index_mismatches"]],
               "format_checked": "PNG CRC, indexed pixels, six square cells, reversible native GBA 4-bpp tile packing",
               "forms": forms, "species": results, "failures": failures,
               "limitations": ["Does not prove cell-to-facing animation table mapping",
