@@ -168,7 +168,8 @@ static void generationTests(void){
   CALL(ResetTasks);
  }
  CHECK(special>=25&&special<=75);CHECK(duplicates>300);
- CHECK(firstP>400&&firstP<550&&secondP>400&&secondP<550);
+ if(!(firstP>400&&firstP<550&&secondP>400&&secondP<550)) fprintf(stderr,"Route1 unexpected Pidgey counts first=%u second=%u special=%u duplicates=%u\\n",firstP,secondP,special,duplicates);
+  CHECK(firstP>400&&firstP<550&&secondP>400&&secondP<550);
  printf("PASS: real encrypted ROM generation: %u/1000 special, %u duplicates, first/second Pidgey=%u/%u\n",special,duplicates,firstP,secondP);
  CALL(VarSet,VAR_REPEL_STEP_COUNT,100);
  for(unsigned i=0;i<30;i++)CHECK(!CALL(TryStartLandEncounter,info,1));
