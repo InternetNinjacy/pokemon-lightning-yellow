@@ -236,7 +236,7 @@ def main():
                 oversized.append({"dex": n, "species": name,
                                   "cell": details["frame_cell_size"],
                                   "reason": "requires explicitly validated FireRed graphics strategy"})
-            print(f"{n:03d}/252 {name}: indexed 192x32, {details['unique_frame_cells']} distinct cells", flush=True)
+            print(f"{n:03d}/252 {name}: indexed {details['dimensions'][0]}x{details['dimensions'][1]}, {details['unique_frame_cells']} distinct cells", flush=True)
         except Exception as exc:
             failures.append({"dex": n, "species": name, "error": str(exc)})
             print(f"ERROR {n:03d}/252 {name}: {exc}", file=sys.stderr, flush=True)
