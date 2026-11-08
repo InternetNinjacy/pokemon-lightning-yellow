@@ -1,3 +1,4 @@
+#include "constants/battle_script_commands.h"
 // Ice Fang #372: actual compiled ROM Single/Double trials, including transient
 // flinch status before the engine legitimately clears it at end of turn.
 struct IceFangObserved {unsigned freeze;unsigned flinch;};
@@ -12,9 +13,68 @@ static struct IceFangObserved iceFangObservedTurn(void){
  if(frame==4800)fprintf(stderr,"Ice Fang timeout script=%08x ctrl=%08x\n",core->busRead32(core,SYM_gBattlescriptCurrInstr),controller(0));
  CHECK(frame<4800);frames(3,0);return v;
 }
+// New Tier2 acceptance only: native effects are forced through their real RNG
+// command; whole turns exercise the animation/damage/guard combinations.
+static unsigned iceFangChanceSeed(unsigned roll){
+ unsigned seed=0;while((((seed*1103515245U+24691U)>>16)%100)!=roll)seed++;return seed;
+}
+static void iceFangAcceptanceGaps(void){
+ effectBattleFixture(0,MOVE_ICE_FANG);
+ unsigned script=CALL(AllocZeroed,16);CHECK(script);
+ void *state=malloc(core->stateSize(core));CHECK(state&&core->saveState(core,state));
+ for(unsigned guard=0;guard<4;guard++)for(unsigned effect=0;effect<2;effect++){
+  CHECK(core->loadState(core,state));
+  core->busWrite8(core,SYM_gBattlerAttacker,0);core->busWrite8(core,SYM_gBattlerTarget,1);
+  core->busWrite16(core,SYM_gCurrentMove,MOVE_ICE_FANG);
+  core->busWrite8(core,SYM_gMoveResultFlags,0);core->busWrite32(core,SYM_gHitMarker,0);
+  core->busWrite8(core,bmon(1)+ABI_BMON_ABILITY,ABILITY_NONE);
+  core->busWrite8(core,SYM_gBattlerByTurnOrder,guard==3?1:0);core->busWrite8(core,SYM_gBattlerByTurnOrder+1,guard==3?0:1);
+  core->busWrite8(core,SYM_gCurrentTurnActionNumber,guard==3?1:0);
+  if(guard==1){core->busWrite32(core,bmon(1)+ABI_BMON_STATUS2,STATUS2_SUBSTITUTE);core->busWrite8(core,SYM_gDisableStructs+ABI_DISABLE_SIZE+ABI_DISABLE_SUB_HP,200);}
+  if(guard==2)core->busWrite16(core,SYM_gSideStatuses+2,SIDE_STATUS_SAFEGUARD);
+  core->busWrite8(core,SYM_gBattleCommunication+MOVE_EFFECT_BYTE,effect?MOVE_EFFECT_FLINCH:MOVE_EFFECT_FREEZE);
+  core->busWrite32(core,SYM_gRngValue,iceFangChanceSeed(0));
+  core->busWrite32(core,SYM_gBattlescriptCurrInstr,script);CALL(Cmd_seteffectwithchance);
+  unsigned applied=effect?!!(core->busRead32(core,bmon(1)+ABI_BMON_STATUS2)&STATUS2_FLINCHED):!!(core->busRead32(core,bmon(1)+ABI_BMON_STATUS1)&STATUS1_FREEZE);
+  CHECK(applied==(effect?(guard==0||guard==2):(guard==0||guard==3)));
+ }
+ const unsigned rolls[]={9,10,19,20};
+ for(unsigned serene=0;serene<2;serene++)for(unsigned r=0;r<4;r++){
+  CHECK(core->loadState(core,state));core->busWrite8(core,SYM_gBattlerAttacker,0);core->busWrite8(core,SYM_gBattlerTarget,1);
+  core->busWrite8(core,bmon(0)+ABI_BMON_ABILITY,serene?ABILITY_SERENE_GRACE:ABILITY_NONE);
+  core->busWrite8(core,bmon(1)+ABI_BMON_ABILITY,ABILITY_NONE);core->busWrite16(core,SYM_gCurrentMove,MOVE_ICE_FANG);
+  core->busWrite8(core,SYM_gMoveResultFlags,0);core->busWrite32(core,SYM_gHitMarker,0);
+  core->busWrite8(core,SYM_gBattleCommunication+MOVE_EFFECT_BYTE,MOVE_EFFECT_FREEZE);
+  core->busWrite32(core,SYM_gRngValue,iceFangChanceSeed(rolls[r]));core->busWrite32(core,SYM_gBattlescriptCurrInstr,script);CALL(Cmd_seteffectwithchance);
+  CHECK(!!(core->busRead32(core,bmon(1)+ABI_BMON_STATUS1)&STATUS1_FREEZE)==(rolls[r]<(serene?20:10)));
+ }
+ CHECK(core->loadState(core,state));CALL(Free,script);free(state);
+ for(unsigned two=0;two<2;two++)for(unsigned guard=0;guard<4;guard++){
+  effectBattleFixture(two,MOVE_ICE_FANG);CHECK(core->busRead8(core,SYM_gBattlersCount)==(two?4:2));CHECK(!!(core->busRead32(core,SYM_gBattleTypeFlags)&BATTLE_TYPE_DOUBLE)==two);unsigned battleFlags=core->busRead32(core,SYM_gBattleTypeFlags);damageStats();core->busWrite32(core,SYM_gBattleTypeFlags,battleFlags);
+  core->busWrite16(core,bmon(0)+ABI_BMON_SPEED,guard==3?1:300);core->busWrite16(core,bmon(1)+ABI_BMON_SPEED,guard==3?300:1);
+  if(guard<2){core->busWrite32(core,bmon(1)+ABI_BMON_STATUS2,STATUS2_SUBSTITUTE);core->busWrite8(core,SYM_gDisableStructs+ABI_DISABLE_SIZE+ABI_DISABLE_SUB_HP,guard?1:200);}
+  if(guard==2){core->busWrite16(core,SYM_gSideStatuses+2,SIDE_STATUS_SAFEGUARD);core->busWrite8(core,SYM_gSideTimers+ABI_SIDE_TIMER_SIZE+ABI_SIDE_SAFEGUARD_TIMER,5);}
+  if(guard==3)for(unsigned k=0;k<4;k++){core->busWrite16(core,bmon(1)+ABI_BMON_MOVES+2*k,MOVE_SWIFT);core->busWrite8(core,bmon(1)+ABI_BMON_PP+k,20);CALL(SetMonMoveSlot,enemy(0),MOVE_SWIFT,k);}
+  void *initial=malloc(core->stateSize(core));CHECK(initial&&core->saveState(core,initial));unsigned hit=0;
+  for(unsigned trial=0;trial<8&&!hit;trial++){
+   CHECK(core->loadState(core,initial));core->busWrite32(core,SYM_gRngValue,0x1CE50000+trial*7919+guard*31+two*17);
+   chooseMove(0,0,1);if(two)chooseMove(2,0,1);struct IceFangObserved v=iceFangObservedTurn();
+   CHECK(monget(player(0),ABI_DATA_PP1)==14);
+   if(guard<2){hit=core->busRead8(core,SYM_gDisableStructs+ABI_DISABLE_SIZE+ABI_DISABLE_SUB_HP)<(guard?1:200);CHECK(core->busRead16(core,bmon(1)+ABI_BMON_HP)==1000);CHECK(!v.freeze&&!v.flinch);}
+   else {hit=core->busRead16(core,bmon(1)+ABI_BMON_HP)<1000;if(guard==2)CHECK(!v.freeze);else {CHECK(!v.flinch);CHECK(core->busRead16(core,bmon(0)+ABI_BMON_HP)<1000);unsigned used=0;for(unsigned k=0;k<4;k++)used+=20-monget(enemy(0),ABI_DATA_PP1+k);CHECK(used==1);}}
+   if(two){CHECK(guard==3?core->busRead16(core,bmon(2)+ABI_BMON_HP)<1000:core->busRead16(core,bmon(2)+ABI_BMON_HP)==1000);CHECK(core->busRead16(core,bmon(3)+ABI_BMON_HP)==1000);}
+  }
+  CHECK(hit);free(initial);
+  printf("PASS: Ice Fang actual %s guard%u: surviving/broken Substitute or Safeguard or already-acted foe, damage/onePP/no spread and legitimate flinch timing\n",two?"Doubles":"Singles",guard);
+ }
+ CHECK(core->loadState(core,bootState));
+ printf("PASS: native forced Ice Fang freeze/flinch guard matrix, late-target negative and exact10/20%% boundary controls; no gameplay code change\n");
+}
 static void iceFangTests(void){
- for(unsigned two=0;two<2;two++){
-  effectBattleFixture(two,MOVE_ICE_FANG);damageStats();
+ if(!getenv("LIGHTNING_ICE_FANG_DOUBLES_ONLY"))iceFangAcceptanceGaps();
+ if(getenv("LIGHTNING_ICE_FANG_GAPS_ONLY"))return;
+ for(unsigned two=getenv("LIGHTNING_ICE_FANG_DOUBLES_ONLY")?1:0;two<2;two++){
+  effectBattleFixture(two,MOVE_ICE_FANG);CHECK(core->busRead8(core,SYM_gBattlersCount)==(two?4:2));CHECK(!!(core->busRead32(core,SYM_gBattleTypeFlags)&BATTLE_TYPE_DOUBLE)==two);unsigned battleFlags=core->busRead32(core,SYM_gBattleTypeFlags);damageStats();core->busWrite32(core,SYM_gBattleTypeFlags,battleFlags);
   core->busWrite8(core,bmon(0)+ABI_BMON_LEVEL,50);
   core->busWrite16(core,bmon(0)+ABI_BMON_ATTACK,200);
   core->busWrite16(core,bmon(0)+ABI_BMON_SPATTACK,1);
@@ -45,10 +105,12 @@ static void iceFangTests(void){
     CHECK(monget(player(0),ABI_DATA_PP1)==14);
     CHECK(core->busRead16(core,bmon(0)+ABI_BMON_HP)==1000);
     if(two){CHECK(core->busRead16(core,bmon(2)+ABI_BMON_HP)==1000);CHECK(core->busRead16(core,bmon(3)+ABI_BMON_HP)==1000);}
-    if(hp==1000){misses++;CHECK(!observed.freeze&&!observed.flinch);}
+    if(hp==1000){if(!misses)printf("ICEFANG_SEED two%u serene%u miss seed%08x\n",two,serene,0x37200000+trial*7919+two*17+serene*65537);misses++;CHECK(!observed.freeze&&!observed.flinch);}
     else{
      CHECK(hp<1000&&hp>=1000-expected);
-     combinations |= 1U<<(observed.freeze+2*observed.flinch);
+     unsigned combination=observed.freeze+2*observed.flinch;
+     if(!(combinations&(1U<<combination)))printf("ICEFANG_SEED two%u serene%u outcome%u seed%08x\n",two,serene,combination,0x37200000+trial*7919+two*17+serene*65537);
+     combinations |= 1U<<combination;
     }
    }
    CHECK(combinations==15&&misses>0);
@@ -57,10 +119,11 @@ static void iceFangTests(void){
   }
   free(initial);
  }
+ if(getenv("LIGHTNING_ICE_FANG_DOUBLES_ONLY")){CHECK(core->loadState(core,bootState));return;}
  // Native immunity/ability controls. Fresh independent battle for each variant.
  // Keep HP=1000 so the target survives; count only hit turns when assessing status.
  for(unsigned variant=0;variant<3;variant++){
-  effectBattleFixture(0,MOVE_ICE_FANG);damageStats();
+  effectBattleFixture(0,MOVE_ICE_FANG);unsigned battleFlags=core->busRead32(core,SYM_gBattleTypeFlags);damageStats();core->busWrite32(core,SYM_gBattleTypeFlags,battleFlags);
   core->busWrite8(core,bmon(0)+ABI_BMON_LEVEL,50);
   core->busWrite16(core,bmon(0)+ABI_BMON_ATTACK,160);
   core->busWrite16(core,bmon(1)+ABI_BMON_DEFENSE,100);

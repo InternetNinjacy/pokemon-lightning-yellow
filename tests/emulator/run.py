@@ -79,6 +79,10 @@ expressions = {
     'BATTLESTRUCT_EXP_GETTER': 'offsetof(struct BattleStruct,expGetterMonId)',
     'BATTLESTRUCT_SENT_IN': 'offsetof(struct BattleStruct,sentInPokes)',
     'BATTLESTRUCT_WILD_SONG': 'offsetof(struct BattleStruct,wildVictorySong)',
+    'DISABLE_SIZE': 'sizeof(struct DisableStruct)',
+    'DISABLE_SUB_HP': 'offsetof(struct DisableStruct,substituteHP)',
+    'SIDE_TIMER_SIZE': 'sizeof(struct SideTimer)',
+    'SIDE_SAFEGUARD_TIMER': 'offsetof(struct SideTimer,safeguardTimer)',
     'WINDOW_SIZE': 'sizeof(struct Window)',
     'WINDOW_BG': 'offsetof(struct Window,window.bg)',
     'SCRIPT_MODE': 'offsetof(struct ScriptContext,mode)',
@@ -288,6 +292,7 @@ required = [
     'ShowPokemonSummaryScreen', 'sMonSummaryScreen', 'sMoveSelectionCursorPos', 'gSideStatuses', 'gBattleStruct', 'gBattleScripting', 'gBattleMoveDamage', 'gDisplayedStringBattle',
 ]
 required += ['NextThunderWaveTarget','gAbsentBattlerFlags']
+required += ['Cmd_seteffectwithchance','gBattleCommunication','gCurrentTurnActionNumber','gBattlerByTurnOrder','gSideTimers']
 required += ['Cmd_rolloutdamagecalculation','gDisableStructs','gLockedMoves','gLastMoves']
 required += ['BattleAI_SetupAIData','BattleAI_ChooseMoveOrAction','RecordAbilityBattle']
 required += ['Cmd_weatherdamage','Cmd_accuracycheck','gStatuses3','gHitMarker','gMoveResultFlags']
