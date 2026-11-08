@@ -17,7 +17,7 @@ assert "[MOVE_ICE_FANG - 1] = gMoveDescription_ICE_FANG" in read("src/move_descr
 scripts=read("data/battle_scripts_1.s")
 assert "#define EFFECT_ICE_FANG 216" in read("include/constants/battle_move_effects.h")
 assert "BattleScript_EffectIceFang::\n\tsetmoveeffect MOVE_EFFECT_FREEZE" in scripts
-assert "BattleScript_IceFangFlinch::\n\tsetmoveeffect MOVE_EFFECT_FLINCH\n\tseteffectwithchance" in scripts
+assert "\tgoto BattleScript_AfterSwarmCloud\nBattleScript_IceFangFlinch::\n\tsetmoveeffect MOVE_EFFECT_FLINCH\n\tseteffectwithchance" in scripts
 assert scripts.index("BattleScript_IceFangFlinch::") > scripts.index("BattleScript_AfterSwarmCloud::")-200
 assert a.count(".4byte Move_ICE_FANG")==1 and a.count("Move_ICE_FANG:")==1
 visual=a[a.index("Move_ICE_FANG:"):]
