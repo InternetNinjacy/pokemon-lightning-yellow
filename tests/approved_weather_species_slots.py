@@ -31,7 +31,7 @@ def prior_weather_species_source(text=None):
     if text is None:
         text = Path("src/data/pokemon/species_info.h").read_text()
     for species, (old, approved) in SLOTS.items():
-        pat = r"(\[SPECIES_" + species + r"\]\s*=\s*\{.*?\\.abilities = \{)(ABILITY_\w+), (ABILITY_\w+)(\})"
+        pat = r"(\[SPECIES_" + species + r"\]\s*=\s*\{.*?\.abilities = \{)(ABILITY_\w+), (ABILITY_\w+)(\})"
         found = re.search(pat, text, re.S)
         assert found and (found[2], found[3]) == approved, species
         text, count = re.subn(pat, lambda m: m[1] + ", ".join(old) + m[4], text, count=1, flags=re.S)
