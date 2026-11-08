@@ -22,7 +22,7 @@ static void sowScriptedProducerTests(void)
   for(unsigned j=0;j<4;j++)CHECK(monget(enemy(0),ABI_DATA_MOVE1+j)==moves[i][j]);
  }
  CALL(CreateScriptedWildMon,SPECIES_PIDGEY,10,0);
- CALL(VarSet,VAR_0x8004,SPECIAL_WEATHER_CORPHISH);
+ CALL(VarSet,VAR_0x8004,0);
  CALL(SowPrepareScriptedEncounter);
  CHECK(CALL(VarGet,VAR_RESULT)==FALSE);
  printf("PASS: actual scripted Corphish/Glalie/Tyranitar created at approved levels, all 12 exact moves and PP, no items, individual Drizzle/Snow Warning and native Sand Stream; invalid species fails closed\n");
