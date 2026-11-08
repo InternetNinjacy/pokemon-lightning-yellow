@@ -22,7 +22,7 @@ static void iceFangAcceptanceGaps(void){
  effectBattleFixture(0,MOVE_ICE_FANG);
  unsigned script=CALL(AllocZeroed,16);CHECK(script);
  void *state=malloc(core->stateSize(core));CHECK(state&&core->saveState(core,state));
- for(unsigned guard=0;guard<4;guard++)for(unsigned effect=0;effect<2;effect++){
+ for(unsigned guard=0;guard<8;guard++)for(unsigned effect=0;effect<2;effect++){
   CHECK(core->loadState(core,state));
   core->busWrite8(core,SYM_gBattlerAttacker,0);core->busWrite8(core,SYM_gBattlerTarget,1);
   core->busWrite16(core,SYM_gCurrentMove,MOVE_ICE_FANG);
@@ -32,11 +32,13 @@ static void iceFangAcceptanceGaps(void){
   core->busWrite8(core,SYM_gCurrentTurnActionNumber,guard==3?1:0);
   if(guard==1){core->busWrite32(core,bmon(1)+ABI_BMON_STATUS2,STATUS2_SUBSTITUTE);core->busWrite8(core,SYM_gDisableStructs+ABI_DISABLE_SIZE+ABI_DISABLE_SUB_HP,200);}
   if(guard==2)core->busWrite16(core,SYM_gSideStatuses+2,SIDE_STATUS_SAFEGUARD);
+  if(guard==4){core->busWrite8(core,bmon(1)+ABI_BMON_TYPE1,TYPE_ICE);core->busWrite8(core,bmon(1)+ABI_BMON_TYPE2,TYPE_ICE);}
+  if(guard>=5)core->busWrite8(core,bmon(1)+ABI_BMON_ABILITY,guard==5?ABILITY_MAGMA_ARMOR:guard==6?ABILITY_INNER_FOCUS:ABILITY_SHIELD_DUST);
   core->busWrite8(core,SYM_gBattleCommunication+MOVE_EFFECT_BYTE,effect?MOVE_EFFECT_FLINCH:MOVE_EFFECT_FREEZE);
   core->busWrite32(core,SYM_gRngValue,iceFangChanceSeed(0));
   core->busWrite32(core,SYM_gBattlescriptCurrInstr,script);CALL(Cmd_seteffectwithchance);
   unsigned applied=effect?!!(core->busRead32(core,bmon(1)+ABI_BMON_STATUS2)&STATUS2_FLINCHED):!!(core->busRead32(core,bmon(1)+ABI_BMON_STATUS1)&STATUS1_FREEZE);
-  CHECK(applied==(effect?(guard==0||guard==2):(guard==0||guard==3)));
+  CHECK(applied==(effect?(guard==0||guard==2||guard==4||guard==5):(guard==0||guard==3||guard==6)));
  }
  const unsigned rolls[]={9,10,19,20};
  for(unsigned serene=0;serene<2;serene++)for(unsigned r=0;r<4;r++){
@@ -48,6 +50,16 @@ static void iceFangAcceptanceGaps(void){
   core->busWrite32(core,SYM_gRngValue,iceFangChanceSeed(rolls[r]));core->busWrite32(core,SYM_gBattlescriptCurrInstr,script);CALL(Cmd_seteffectwithchance);
   CHECK(!!(core->busRead32(core,bmon(1)+ABI_BMON_STATUS1)&STATUS1_FREEZE)==(rolls[r]<(serene?20:10)));
  }
+ unsigned accurate=0;
+ for(unsigned roll=0;roll<100;roll++){
+  CHECK(core->loadState(core,state));core->busWrite8(core,SYM_gBattlerAttacker,0);core->busWrite8(core,SYM_gBattlerTarget,1);
+  core->busWrite16(core,SYM_gCurrentMove,MOVE_ICE_FANG);core->busWrite8(core,SYM_gMoveResultFlags,0);core->busWrite32(core,SYM_gHitMarker,0);
+  for(unsigned b=0;b<4;b++)core->busWrite8(core,script+1+b,(script+12)>>(8*b));
+  core->busWrite8(core,script+5,MOVE_ICE_FANG&255);core->busWrite8(core,script+6,MOVE_ICE_FANG>>8);core->busWrite32(core,SYM_gBattlescriptCurrInstr,script);
+  core->busWrite32(core,SYM_gRngValue,iceFangChanceSeed(roll));CALL(Cmd_accuracycheck);
+  unsigned hit=core->busRead32(core,SYM_gBattlescriptCurrInstr)==script+7;CHECK(hit==(roll<95));accurate+=hit;
+ }
+ CHECK(accurate==95);
  CHECK(core->loadState(core,state));CALL(Free,script);free(state);
  for(unsigned two=0;two<2;two++)for(unsigned guard=0;guard<4;guard++){
   effectBattleFixture(two,MOVE_ICE_FANG);CHECK(core->busRead8(core,SYM_gBattlersCount)==(two?4:2));CHECK(!!(core->busRead32(core,SYM_gBattleTypeFlags)&BATTLE_TYPE_DOUBLE)==two);unsigned battleFlags=core->busRead32(core,SYM_gBattleTypeFlags);damageStats();core->busWrite32(core,SYM_gBattleTypeFlags,battleFlags);
@@ -70,6 +82,14 @@ static void iceFangAcceptanceGaps(void){
  CHECK(core->loadState(core,bootState));
  printf("PASS: native forced Ice Fang freeze/flinch guard matrix, late-target negative and exact10/20%% boundary controls; no gameplay code change\n");
 }
+// Recorded from exact-head59dd4324 native discovery, including genuine Doubles.
+// Replay each actual outcome and miss directly instead of repeating RNG searches.
+static const unsigned iceFangReplaySeeds[2][2][5]={
+ {{0x37200000,0x37201EEF,0x37209AAB,0x3726866A,0x37220DDF},
+  {0x37211EF0,0x37215CCE,0x37217BBD,0x37210001,0x37236AAD}},
+ {{0x37200011,0x3720B9AB,0x37203DEF,0x3730EAC5,0x37215456},
+  {0x37211F01,0x37210012,0x3721B9AC,0x3725789D,0x37215CDF}}
+};
 static void iceFangTests(void){
  if(!getenv("LIGHTNING_ICE_FANG_DOUBLES_ONLY"))iceFangAcceptanceGaps();
  if(getenv("LIGHTNING_ICE_FANG_GAPS_ONLY"))return;
@@ -96,20 +116,20 @@ static void iceFangTests(void){
    core->busWrite8(core,bmon(0)+ABI_BMON_ABILITY,serene?ABILITY_SERENE_GRACE:ABILITY_NONE);
    void *snap=malloc(core->stateSize(core));CHECK(snap&&core->saveState(core,snap));
    unsigned combinations=0,misses=0;
-   for(unsigned trial=0;trial<(serene?260:700)&&(combinations!=15||!misses);trial++){
+   for(unsigned trial=0;trial<5;trial++){
     CHECK(core->loadState(core,snap));
-    core->busWrite32(core,SYM_gRngValue,0x37200000+trial*7919+two*17+serene*65537);
+    core->busWrite32(core,SYM_gRngValue,iceFangReplaySeeds[two][serene][trial]);
     chooseMove(0,0,1);if(two)chooseMove(2,0,1);
     struct IceFangObserved observed=iceFangObservedTurn();
     unsigned hp=core->busRead16(core,bmon(1)+ABI_BMON_HP);
     CHECK(monget(player(0),ABI_DATA_PP1)==14);
     CHECK(core->busRead16(core,bmon(0)+ABI_BMON_HP)==1000);
     if(two){CHECK(core->busRead16(core,bmon(2)+ABI_BMON_HP)==1000);CHECK(core->busRead16(core,bmon(3)+ABI_BMON_HP)==1000);}
-    if(hp==1000){if(!misses)printf("ICEFANG_SEED two%u serene%u miss seed%08x\n",two,serene,0x37200000+trial*7919+two*17+serene*65537);misses++;CHECK(!observed.freeze&&!observed.flinch);}
+    if(hp==1000){CHECK(trial==4);if(!misses)printf("ICEFANG_SEED two%u serene%u miss seed%08x\n",two,serene,iceFangReplaySeeds[two][serene][trial]);misses++;CHECK(!observed.freeze&&!observed.flinch);}
     else{
      CHECK(hp<1000&&hp>=1000-expected);
-     unsigned combination=observed.freeze+2*observed.flinch;
-     if(!(combinations&(1U<<combination)))printf("ICEFANG_SEED two%u serene%u outcome%u seed%08x\n",two,serene,combination,0x37200000+trial*7919+two*17+serene*65537);
+     unsigned combination=observed.freeze+2*observed.flinch;CHECK(combination==trial);
+     if(!(combinations&(1U<<combination)))printf("ICEFANG_SEED two%u serene%u outcome%u seed%08x\n",two,serene,combination,iceFangReplaySeeds[two][serene][trial]);
      combinations |= 1U<<combination;
     }
    }
@@ -121,7 +141,8 @@ static void iceFangTests(void){
  }
  if(getenv("LIGHTNING_ICE_FANG_DOUBLES_ONLY")){CHECK(core->loadState(core,bootState));return;}
  // Native immunity/ability controls. Fresh independent battle for each variant.
- // Keep HP=1000 so the target survives; count only hit turns when assessing status.
+ // Keep HP=1000; discover only the first required positive control, not120
+ // duplicate animated trials. Exact guard/rate assertions execute natively above.
  for(unsigned variant=0;variant<3;variant++){
   effectBattleFixture(0,MOVE_ICE_FANG);unsigned battleFlags=core->busRead32(core,SYM_gBattleTypeFlags);damageStats();core->busWrite32(core,SYM_gBattleTypeFlags,battleFlags);
   core->busWrite8(core,bmon(0)+ABI_BMON_LEVEL,50);
@@ -132,7 +153,7 @@ static void iceFangTests(void){
   core->busWrite8(core,bmon(1)+ABI_BMON_ABILITY,variant==1?ABILITY_INNER_FOCUS:(variant==2?ABILITY_SHIELD_DUST:ABILITY_BATTLE_ARMOR));
   void *snapshot=malloc(core->stateSize(core));CHECK(snapshot&&core->saveState(core,snapshot));
   unsigned hit=0,freeze=0,flinch=0;
-  for(unsigned trial=0;trial<120;trial++){
+  for(unsigned trial=0;trial<64&&(variant==2?!hit:variant==0?!flinch:!freeze);trial++){
    CHECK(core->loadState(core,snapshot));
    core->busWrite32(core,SYM_gRngValue,0x1CE00000+trial*7919+variant*71);
    chooseMove(0,0,1);
@@ -142,7 +163,7 @@ static void iceFangTests(void){
     CHECK(!v.freeze&&!v.flinch);
    }else{hit++;freeze+=v.freeze;flinch+=v.flinch;}
   }
-  CHECK(hit>90);
+  CHECK(hit>0); // Exact95/100 native accuracy is independently exhaustive above.
   if(variant==0){CHECK(freeze==0);CHECK(flinch>0);} // Ice type can flinch but cannot freeze
   if(variant==1){CHECK(flinch==0);CHECK(freeze>0);} // Inner Focus prevents flinch only
   if(variant==2){CHECK(freeze==0);CHECK(flinch==0);} // Shield Dust prevents secondary statuses

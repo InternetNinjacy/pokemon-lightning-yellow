@@ -292,6 +292,7 @@ required = [
     'ShowPokemonSummaryScreen', 'sMonSummaryScreen', 'sMoveSelectionCursorPos', 'gSideStatuses', 'gBattleStruct', 'gBattleScripting', 'gBattleMoveDamage', 'gDisplayedStringBattle',
 ]
 required += ['NextThunderWaveTarget','gAbsentBattlerFlags']
+required += ['Cmd_accuracycheck']
 required += ['Cmd_seteffectwithchance','gBattleCommunication','gCurrentTurnActionNumber','gBattlerByTurnOrder','gSideTimers']
 required += ['Cmd_rolloutdamagecalculation','gDisableStructs','gLockedMoves','gLastMoves']
 required += ['BattleAI_SetupAIData','BattleAI_ChooseMoveOrAction','RecordAbilityBattle']
