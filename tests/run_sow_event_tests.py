@@ -24,7 +24,7 @@ for event_id,(m,script,gfx,flag,x,y,species,level,weather) in enumerate(expected
     assert obj["trainer_type"]=="TRAINER_TYPE_NONE"
     content=(root/m/"scripts.inc").read_text()
     assert content.count(script+"::")==1
-    transition=content.split("::",1)[1].split("\\n\\tend",1)[0]
+    transition=content[:content.index(script+"::")]
     assert f"setvar VAR_0x8004, {event_id}" in transition
     assert "callnative SpecialWeatherActivateScript" in transition
     event_body=content[content.index(script+"::"):]
@@ -68,7 +68,7 @@ for key in ["Corphish","Glalie","Tyranitar"]:
  assert "gMonIcon_"+key in sprite
 farewell=(root/"Route12"/"text.inc").read_text()
 assert 'Route12_Text_SowGhostFarewell::' in farewell
-assert r'At last... I can rest\\n' in farewell
+assert 'At last... I can rest' in farewell
 assert 'in peace...$' in farewell
 route12=(root/"Route12"/"scripts.inc").read_text()
 resolved=route12[route12.index("Route12_EventScript_SowResolved::"):]
