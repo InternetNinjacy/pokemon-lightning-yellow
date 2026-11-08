@@ -144,6 +144,10 @@ jobs:
         timeout-minutes: 10
         run: |
           LIGHTNING_SWARM_ONLY=1 python3 tests/emulator/run.py
+      - name: Focused Corphish and Glalie native capture-save validation
+        if: matrix.target == 'modified'
+        timeout-minutes: 10
+        run: LIGHTNING_SPECIAL_GLALIE_ONLY=1 LIGHTNING_WEATHER_MOVES_ONLY=1 python3 tests/emulator/run.py
       - name: Execute ROM integration tests in mGBA
         if: matrix.target == 'modified'
         timeout-minutes: 30
