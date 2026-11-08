@@ -11,7 +11,14 @@ def restore_sevii_water_second_text(path,source):
         assert source[i:i+len(current)]==current,key
         source=source[:i]+old+source[i+len(current):]
     return source
+# Preserve the frozen pre-ecology hash while allowing the owner-approved Route 5
+# change to be reversed exactly (and nowhere else) for legacy source audits.
+from approved_route5_changes import restore_route5_text
+
 def prior_sevii_water_second_source(path):
-    return restore_sevii_water_second_text(path,prior_sevii_water_source(path).decode("utf-8")).encode("utf-8")
-def restore_prior_sevii_water_second_text(path,source):
-    return restore_sevii_water_second_text(path,restore_prior_sevii_water_text(path,source))
+    prior = restore_sevii_water_second_text(path, prior_sevii_water_source(path).decode("utf-8"))
+    return restore_route5_text(path, prior).encode("utf-8")
+
+def restore_prior_sevii_water_second_text(path, source):
+    prior = restore_sevii_water_second_text(path, restore_prior_sevii_water_text(path, source))
+    return restore_route5_text(path, prior)
