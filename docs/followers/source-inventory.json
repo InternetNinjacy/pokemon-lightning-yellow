@@ -105,5 +105,41 @@
     ],
     "technical_subgate": "PASS native actual Steelix OBJ VRAM/PLTT + OAM engine compatibility in isolated emulator",
     "asset_gate": "BLOCKED full visual/dynamic runtime compatibility not yet proven"
+  },
+  "steelix_mgba_framebuffer_verification_2026_11_08": {
+    "run_id": 42533894429,
+    "workflow": "WRL-010 native Steelix graphics resource probe",
+    "main_commit": "37230a9c513ed013fc6b402ec800bd1d13960492",
+    "audit_commit": "b80cb7bf26258af30d3a38a383e748da46482163",
+    "assertions_passed": 1415,
+    "source_blob": "1a0ff067983d294ce1534674efa91c697c4db794",
+    "frame_size": "64x64",
+    "frames_rendered": 6,
+    "frame_visible_pixels": [
+      595,
+      574,
+      588,
+      571,
+      523,
+      509
+    ],
+    "frame_hashes": [
+      "24394218214293506",
+      "2910299914365420266",
+      "1841888362547400609",
+      "3442959672311279448",
+      "10780177131382775317"
+    ],
+    "normal_and_shiny_rasterization": "PASS shiny alters hash with equal visible pixel count",
+    "sprite_allocation_and_oam": "PASS native 32/64 simultaneous, OAM hardware entry, resource failure and cleanup",
+    "graphics_hardware_gate": "PASS actual Steelix GBA4bpp OBJ VRAM/PLTT/OAM + emulator framebuffer six frames and shiny",
+    "integration_not_tested": [
+      "selected follower dynamic size switch",
+      "map crowding",
+      "reflections",
+      "live walking/warps",
+      "failure-atomic graphics loading and follower state"
+    ],
+    "full_phase_one_gate": "BLOCKED on dynamic game integration acceptance conditions; not a sprite-format blocker"
   }
 }
