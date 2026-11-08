@@ -168,15 +168,17 @@ static void generationTests(void){
   unsigned a=monget(enemy(0),ABI_DATA_SPECIES),b=monget(enemy(1),ABI_DATA_SPECIES);
   if(a==SPECIES_ONIX&&b==SPECIES_CLOYSTER)special++;
   else{
-   CHECK(a==SPECIES_ZUBAT||a==SPECIES_GEODUDE||a==SPECIES_PARAS||a==SPECIES_CLEFAIRY);CHECK(b==SPECIES_ZUBAT||b==SPECIES_GEODUDE||b==SPECIES_PARAS||b==SPECIES_CLEFAIRY);
+   CHECK(a==SPECIES_ZUBAT||a==SPECIES_GEODUDE||a==SPECIES_PARAS||a==SPECIES_CLEFFA);CHECK(b==SPECIES_ZUBAT||b==SPECIES_GEODUDE||b==SPECIES_PARAS||b==SPECIES_CLEFFA);
    firstP+=a==SPECIES_ZUBAT;secondP+=b==SPECIES_ZUBAT;duplicates+=a==b;
   }
   for(unsigned j=0;j<2;j++){unsigned level=monget(enemy(j),ABI_DATA_LEVEL);CHECK(level>=7&&level<=10);}
   CHECK(monget(enemy(2),ABI_DATA_SPECIES)==0);
   CALL(ResetTasks);
  }
- CHECK(special>=25&&special<=75);CHECK(duplicates>300);
- CHECK(firstP>550&&firstP<750&&secondP>550&&secondP<750);
+ CHECK(special>=25&&special<=75);CHECK(duplicates>220&&duplicates<370);
+ // Merged 12-slot Mt. Moon ecology: Zubat 40%, Geodude 30%, Paras 20%, Cleffa 10%.
+  // The independent 5% Onix/Cloyster pair reduces ordinary-draw sample size.
+  CHECK(firstP>300&&firstP<460&&secondP>300&&secondP<460);
  printf("PASS: real encrypted ROM generation: %u/1000 special, %u duplicates, first/second Zubat=%u/%u\n",special,duplicates,firstP,secondP);
  CALL(VarSet,VAR_REPEL_STEP_COUNT,100);
  for(unsigned i=0;i<30;i++)CHECK(!CALL(TryStartLandEncounter,info,1));
