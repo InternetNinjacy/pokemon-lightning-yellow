@@ -3829,6 +3829,10 @@ u8 GetMonsStateToDoubles(void)
 
 u8 GetAbilityBySpecies(u16 species, bool8 abilityNum)
 {
+    // These evolved species have only one approved ability. A formerly
+    // second-slot Magikarp/Feebas must not become ABILITY_NONE or Drizzle.
+    if (abilityNum && (species == SPECIES_GYARADOS || species == SPECIES_MILOTIC))
+        abilityNum = FALSE;
     if (abilityNum)
         gLastUsedAbility = gSpeciesInfo[species].abilities[1];
     else

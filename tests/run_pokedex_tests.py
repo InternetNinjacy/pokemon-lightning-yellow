@@ -120,7 +120,8 @@ with tempfile.TemporaryDirectory() as temp:
 # This detects changed stats, abilities, forms, extra types, or missing overrides.
 fixture=json.loads(Path('tests/specifications/approved_type_overrides.json').read_text())['species']
 assert len(fixture)==35
-species_info=Path('src/data/pokemon/species_info.h').read_text()
+from approved_weather_species_slots import prior_weather_species_source
+species_info=prior_weather_species_source()
 for name,types in fixture.items():
  pattern=r'(\[SPECIES_'+name+r'\]\s*=\s*\{.*?\.types = \{)(TYPE_\w+), (TYPE_\w+)(\},)'
  match=re.search(pattern,species_info,re.S)
