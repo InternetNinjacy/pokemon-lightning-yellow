@@ -21237,13 +21237,6 @@
           }
         ]
       },
-      "animation": {
-        "assignment": "Move_ICE_FANG",
-        "approval": "APPROVED_EXISTING_ART_CANDIDATE",
-        "source_line": 11534,
-        "source_exists": true,
-        "runtime_verified": false
-      },
       "engine_translation": {
         "effect": "EFFECT_ICE_FANG",
         "target": "MOVE_TARGET_SELECTED",
@@ -21251,6 +21244,13 @@
         "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
       },
       "source_line": 5212,
+      "animation": {
+        "assignment": "Move_ICE_FANG",
+        "approval": "APPROVED_EXISTING_ART_CANDIDATE",
+        "source_line": 11534,
+        "source_exists": true,
+        "runtime_verified": false
+      },
       "animation_candidate": {
         "key": "ICE_FANG",
         "name": "Ice Fang",
