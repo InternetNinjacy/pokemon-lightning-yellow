@@ -2185,6 +2185,11 @@
           "source": "register",
           "line": 779,
           "excerpt": "2026-10-30 \u2014 WATER-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. PRESERVE original Generation III Water moves under post-split Physical/Special categories without changes to original Water attacks, including TM03 Water Pulse as Misty's reward and HM03 Surf/HM07 "
+        },
+        {
+          "source": "owner_20261105",
+          "line": 13,
+          "excerpt": "November8 owner explicitly approved normal priority0 for Vortex Spin385 and Tidal Crash386."
         }
       ],
       "field_basis": {
@@ -2193,7 +2198,7 @@
         "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
         "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
         "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
-        "priority": "PROPOSED_NATIVE_NORMAL_PRIORITY",
+        "priority": "OWNER_EXPLICIT_NORMAL_PRIORITY_2026_11_08",
         "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
         "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
         "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",
@@ -2234,6 +2239,11 @@
           "source": "register",
           "line": 779,
           "excerpt": "2026-10-30 \u2014 WATER-TYPE MOVE DESIGN OWNER-APPROVED AND CLOSED. PRESERVE original Generation III Water moves under post-split Physical/Special categories without changes to original Water attacks, including TM03 Water Pulse as Misty's reward and HM03 Surf/HM07 "
+        },
+        {
+          "source": "owner_20261105",
+          "line": 13,
+          "excerpt": "November8 owner explicitly approved normal priority0 for Vortex Spin385 and Tidal Crash386."
         }
       ],
       "field_basis": {
@@ -2242,7 +2252,7 @@
         "power": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
         "accuracy": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
         "pp": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
-        "priority": "PROPOSED_NATIVE_NORMAL_PRIORITY",
+        "priority": "OWNER_EXPLICIT_NORMAL_PRIORITY_2026_11_08",
         "target": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
         "effect": "OWNER_EXPLICIT_OR_NAMED_OFFICIAL_PARAMETERS",
         "secondaryEffectChance": "USE_EXPLICIT_EFFECT_RULE_NOT_SINGLE_CHANCE_BYTE",

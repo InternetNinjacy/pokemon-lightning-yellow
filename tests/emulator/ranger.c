@@ -81,7 +81,7 @@ static void rangerGiftIdentityTests(void) {
   CHECK(core->busRead8(core,SYM_gPlayerPartyCount)==6);CHECK(CALL(GetBoxMonDataAt,0,0,ABI_DATA_SPECIES)==SPECIES_NONE);
  }
  // The actual delivered PARK mon, rather than a merely renamed own mon, drives EXP/obedience.
- wildFixture(MAP_GROUP(MAP_ROUTE1),MAP_NUM(MAP_ROUTE1),1);CALL(FlagSet,TRAINER_FLAGS_START+TRAINER_RANGER_PARK);core->busWrite16(core,SYM_gSpecialVar_0x8004,0);CHECK(CALL(RangerGiveGift)==0);
+ wildFixture(MAP_GROUP(MAP_MT_MOON_1F),MAP_NUM(MAP_MT_MOON_1F),1);CALL(FlagSet,TRAINER_FLAGS_START+TRAINER_RANGER_PARK);core->busWrite16(core,SYM_gSpecialVar_0x8004,0);CHECK(CALL(RangerGiveGift)==0);
  startSpecial();waitAction();copyBytes(player(1),player(2),ABI_MON_SIZE);CHECK(vendorExp(0,100)==100);CHECK(vendorExp(1,100)==150);
  CALL(CopyPlayerPartyMonToBattleData,0,1);core->busWrite8(core,SYM_gBattlerPartyIndexes,1);core->busWrite8(core,SYM_gBattlerAttacker,0);core->busWrite8(core,SYM_gBattlerTarget,1);
  core->busWrite16(core,SYM_gCurrentMove,MOVE_BITE);core->busWrite8(core,SYM_gCurrMovePos,1);core->busWrite32(core,SYM_gBattleTypeFlags,0);

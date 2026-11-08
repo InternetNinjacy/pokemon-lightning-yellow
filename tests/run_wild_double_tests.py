@@ -93,7 +93,7 @@ int main(void){
  unsigned i,j,k;double chi=0;
  for(i=0;i<12;i++){slots[i].species=SPECIES_BULBASAUR+i;slots[i].minLevel=3;slots[i].maxLevel=7;}
  save.location.mapGroup=MAP_GROUP(MAP_ROUTE1);save.location.mapNum=MAP_NUM(MAP_ROUTE1);
- CHECK(GetWildDoubleMap()!=NULL);CHECK(TryDoDoubleWildBattle());
+ CHECK(GetWildDoubleMap()==NULL);CHECK(!TryDoDoubleWildBattle());
  save.location.mapGroup=MAP_GROUP(MAP_MT_MOON_1F);save.location.mapNum=MAP_NUM(MAP_MT_MOON_1F);CHECK(TryDoDoubleWildBattle());
  safari=1;CHECK(!TryDoDoubleWildBattle());safari=0;
  usable=PLAYER_HAS_ONE_USABLE_MON;CHECK(!TryDoDoubleWildBattle());
@@ -101,7 +101,7 @@ int main(void){
  usable=PLAYER_HAS_TWO_USABLE_MONS;
  save.location.mapGroup=MAP_GROUP(MAP_ROUTE2);save.location.mapNum=MAP_NUM(MAP_ROUTE2);CHECK(GetWildDoubleMap()==NULL);
  CHECK(TryStartLandEncounter(&info,0));CHECK(singleStarts==2&&doubleStarts==0);
- save.location.mapGroup=MAP_GROUP(MAP_ROUTE1);save.location.mapNum=MAP_NUM(MAP_ROUTE1);
+ save.location.mapGroup=MAP_GROUP(MAP_MT_MOON_1F);save.location.mapNum=MAP_NUM(MAP_MT_MOON_1F);
  // A blocked trigger neither starts a battle nor rolls a special-pair override.
  repel=100;gPlayerParty[0].hp=20;gPlayerParty[0].level=50;
  for(i=0;i<1000;i++){CHECK(!TryStartLandEncounter(&info,WILD_CHECK_REPEL));}

@@ -1,7 +1,7 @@
 name: Battle split validation
 on:
   push:
-    branches: [main, 'feature/**', 'setup/**']
+    branches: [main]
   pull_request:
   workflow_dispatch:
 permissions:
@@ -90,7 +90,23 @@ jobs:
           python3 tests/run_typing_tests.py
           python3 tests/run_wild_double_tests.py
           python3 tests/check_route1_encounters.py
+          python3 tests/check_route5_encounters.py
           python3 tests/check_route2_encounters.py
+          python3 tests/check_route22_encounters.py
+          python3 tests/check_route23_encounters.py
+          python3 tests/check_victory_road_encounters.py
+          python3 tests/check_route3_encounters.py
+          python3 tests/check_viridian_forest_encounters.py
+          python3 tests/check_mt_moon_encounters.py
+          python3 tests/check_bulk_approved_grass.py
+          python3 tests/check_bulk_kanto_central_grass.py
+          python3 tests/check_bulk_kanto_interiors.py
+          python3 tests/check_safari_zone_land.py
+          python3 tests/check_kanto_water_bulk.py
+          python3 tests/check_kanto_water_followup.py
+          python3 tests/check_bulk_sevii_land.py
+          python3 tests/check_bulk_sevii_water.py
+          python3 tests/check_bulk_sevii_water_second.py
           python3 tests/run_daycare_tests.py
           python3 tests/run_world_reward_tests.py
           python3 tests/run_vendor_tests.py
@@ -136,39 +152,8 @@ jobs:
           # Already installed with the initial dependencies; verify it remains
           # available without starting another late network/package transaction.
           dpkg-query -W libmgba-dev
-      - name: Focused Foul Play and Water moves382–384 native tests in mGBA
-        if: matrix.target == 'modified'
-        timeout-minutes: 10
-        run: LIGHTNING_MOVES382_ONLY=1 python3 tests/emulator/run.py
-      - name: Focused Payback target-action native tests in mGBA
-        if: matrix.target == 'modified'
-        timeout-minutes: 10
-        run: LIGHTNING_PAYBACK_ONLY=1 python3 tests/emulator/run.py
-      - name: Focused reused-effect moves374–380 native tests in mGBA
-        if: matrix.target == 'modified'
-        timeout-minutes: 10
-        run: LIGHTNING_MOVES374_ONLY=1 python3 tests/emulator/run.py
-      - name: Focused Avalanche target-specific native battle tests in mGBA
-        if: matrix.target == 'modified'
-        timeout-minutes: 10
-        run: LIGHTNING_AVALANCHE_ONLY=1 python3 tests/emulator/run.py
-      - name: Focused Ice Fang native battle tests in mGBA
-        if: matrix.target == 'modified'
-        timeout-minutes: 10
-        run: LIGHTNING_ICE_FANG_ONLY=1 python3 tests/emulator/run.py
-      - name: Focused Earth Power native battle tests in mGBA
-        if: matrix.target == 'modified'
-        timeout-minutes: 10
-        run: LIGHTNING_EARTH_POWER_ONLY=1 python3 tests/emulator/run.py
-      - name: Focused Scorching Sands native battle tests in mGBA
-        if: matrix.target == 'modified'
-        timeout-minutes: 10
-        run: LIGHTNING_SCORCHING_SANDS_ONLY=1 python3 tests/emulator/run.py
-      - name: Focused native Swarm Cloud regression in mGBA
-        if: matrix.target == 'modified'
-        timeout-minutes: 10
-        run: |
-          LIGHTNING_SWARM_ONLY=1 python3 tests/emulator/run.py
+      # Every focused move group is included by the default full runner below.
+      # Keep focus flags for local debugging; execute each group once in CI.
       # Expanded BTL + inherited weather coverage can exceed30min on slower
       # runners. Keep every assertion and per-scenario emulated-frame bound.
       - name: Execute ROM integration tests in mGBA
