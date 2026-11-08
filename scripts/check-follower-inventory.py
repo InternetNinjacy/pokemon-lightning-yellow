@@ -36,7 +36,7 @@ for row in rows:
                                      'KABUTOPS', 'CASTFORM', 'ABSOL'}
         else 'NORMAL_OR_IDENTICAL'
     )
-    assert row['transparent_index_evidence'].startswith('No PNG tRNS;')
+    assert row['transparent_index_evidence'].startswith('All four source-image corners index0;')
     assert row['runtime_graphics_status'].startswith('BLOCKED' if row['species'] == 'STEELIX' else 'PENDING')
     if row['local_sheet']:
         assert (ROOT / row['local_sheet']).is_file()
