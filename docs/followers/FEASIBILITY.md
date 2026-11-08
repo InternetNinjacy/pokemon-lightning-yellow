@@ -279,3 +279,25 @@ The owner explicitly approved continuation (“Approve it and continue”). Owne
 **Still not demonstrated and must not be claimed:** Actual Steelix pixels visibly drawn to framebuffer (the current probe verifies OAM and hardware VRAM/PLTT but does not compare rendered pixels); other five Steelix directional frames animated on-screen; Shiny swap/reflections; real map entry/crowded-NPC resource pressure; or a failure-atomic 32↔64 *follower-specific* graphics loader. The game has no implemented follower state machine yet. Its current generic `ObjectEventSetGraphicsId` old-size fallback is not safe to assume for dynamically growing artwork. The asset gallery's all-252 source pixel and reversible 4-bpp tests separately remain PASS. No Phase Two gameplay or save change was made.
 
 **Gate declaration:** `WRL-010 PHASE ONE — ASSET GATE BLOCKED` until the above remaining real-world rendering/dynamic-loader proof satisfies the canonical acceptance criteria. Do not import art into source, merge, or award points solely from emulator hardware-memory success.
+
+## 2026-11-08 actual SIX-FRAME Steelix mGBA GPU framebuffer and Shiny rendering PASS — 1,415 assertions
+
+**AUTHORITATIVE EXECUTED NATIVE GRAPHICS EVIDENCE:** [GitHub Actions run 42533894429](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/42533894429), head audit `b80cb7bf26258af30d3a38a383e748da46482163`, **tested current `main` commit `37230a9c513ed013fc6b402ec800bd1d13960492`** (the source advanced since the earlier 90d081 run). The dedicated workflow compiled the current real FireRed ROM/ELF in a disposable checkout, booted 600 mGBA frames, executed actual ROM-native sprite allocator and graphics/OAM functions, and passed **1,415 assertions**. All CI steps PASS. No ROM/save or source-art artifact uploaded or committed.
+
+**Real Steelix artwork and hardware GPU evidence, NOT only file conversion:**
+- Downloaded all six frame cells from the **exact pinned Kasenn Steelix PNG SHA `1a0ff067983d294ce1534674efa91c697c4db794`** at `cbe04a7a2ef645bee19d159876da074154ccf1f2`, transiently in CI only. Each `64×64` indexed cell converted losslessly into **2,048 GBA 4bpp bytes**; both source normal and Shiny `JASC-PAL` palettes converted into 16 GBA BGR555 words.
+- Verified actual FireRed graphics engine handles simultaneous Snorlax 32×32 and Seagallop 64×64 `CreateVirtualObject` instances, `BuildOamBuffer` → ROM `LoadOam` → real emulated hardware OAM, disjoint sprite tile ranges, allocator exhaustion, cleanup and recreation.
+- Staged the real Steelix `2,048` sprite bytes into the allocated emulated OBJ VRAM and 16 normal palette words into the emulated OBJ palette bank; checked all **1,024 16-bit tile words** plus all **16 16-bit palette words** by readback.
+- **Actual GBA GPU framebuffer proof:** halted unrelated game callbacks in the disposable emulator fixture, enabled native 1D 4bpp OBJ LCD mode with one 64×64 OAM sprite, rasterized **all six real Steelix cells**, and inspected pixel output for visible non-background pixels and distinct directional frame hashes. CI evidence:
+  - Cell 0: 595 visible pixels, hash `24394218214293506`
+  - Cell 1: 574, `2910299914365420266`
+  - Cell 2: 588, `1841888362547400609`
+  - Cell 3: 571, `3442959672311279448`
+  - Cell 4: 523, `3862118727643236520`
+  - Cell 5: 509, `10780177131382775317`
+- Same indexed artwork frame 0 was then rendered using the pinned **Shiny** palette: visible-pixel count was preserved and framebuffer hash differed from normal. CI printed `PASS: mGBA GPU framebuffer rendered all six actual Steelix directional cells and distinguished Shiny palette`.
+- All **1,415 native ROM/video/memory assertions passed**.
+
+**Scoped acceptance:** **Steelix true 64×64 source-art + normal/Shiny palette GBA GPU rendering and resource/OAM feasibility: PASS in a controlled, isolated emulator environment.** The 252/252 base pixel/4bpp asset conversion is separately PASS, plus Castform alternative form decoding.
+
+**Remaining boundary:** This is not yet proof of player-facing follow behavior, live overworld party instance state, on-map warp/bicycle/battle visibility, reflections, map crowding, real-time 32↔64 species swapping or fail-safe allocation under concurrent map NPCs. The generic `ObjectEventSetGraphicsId` old-size retry remains a known unsafe implementation path; Phase Two must implement an explicit size-aware failure-atomic loader instead. Real graphics renderer support is proven, but **WRL-010 PHASE ONE — ASSET GATE remains BLOCKED** until the owner's agreed acceptance boundary explicitly permits separating controlled graphics feasibility from on-map dynamic follower integration, or those remaining conditions are actually tested. No gameplay/save code, merges, or earned points from these audit-only tests.
