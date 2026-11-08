@@ -17,7 +17,11 @@ def restore_route2_text(path, source):
 
 
 def prior_route2_source(path):
-    return restore_route2_text(path, prior_route1_source(path).decode("utf-8")).encode("utf-8")
+    result = restore_route2_text(path, prior_route1_source(path).decode("utf-8"))
+    if str(path) == "src/data/pokemon/species_info.h":
+        from approved_weather_species_slots import prior_weather_species_source
+        result = prior_weather_species_source(result)
+    return result.encode("utf-8")
 
 
 def restore_prior_route2_text(path, source):
