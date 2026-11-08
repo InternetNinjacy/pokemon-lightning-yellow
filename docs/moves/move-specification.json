@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "baseline_source_commit": "92838e5eb64d19942cb5c51cfdef6991503ac3ad",
-  "current_battle_moves_sha256": "414fcb9cf93c374860fb6d085e2dd54b87436faf0332d199cb77cfc6f3290184",
+  "current_battle_moves_sha256": "81bd0834e69351ff29759d18eaf36fb7ad257e98de8232fb6c9eff88ba8f68e9",
   "scope": "Reconciliation only, no gameplay edits. Numeric proposed IDs/semantic effects/target values are NOT compiled constants. Runtime_verified false is not a failure claim.",
   "sources": {
     "register": {
@@ -21171,12 +21171,23 @@
       }
     },
     {
-      "id": null,
+      "id": 372,
       "proposed_id": 372,
       "key": "ICE_FANG",
       "name": "Ice Fang",
       "identity": "NEW_IMPORTED",
-      "current": null,
+      "current": {
+        "category": "PHYSICAL",
+        "type": "ICE",
+        "power": 65,
+        "accuracy": 95,
+        "pp": 15,
+        "priority": 0,
+        "target": "MOVE_TARGET_SELECTED",
+        "effect": "EFFECT_ICE_FANG",
+        "secondaryEffectChance": 10,
+        "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
+      },
       "approved": {
         "type": "ICE",
         "category": "PHYSICAL",
@@ -21211,8 +21222,8 @@
       "mechanic_notes": [
         "INDEPENDENT_FREEZE_10_FLINCH_10"
       ],
-      "implementation_status": "NOT_IMPLEMENTED",
-      "delta": null,
+      "implementation_status": "SOURCE_DATA_PRESENT_RUNTIME_UNVERIFIED",
+      "delta": {},
       "effect_rules": {
         "semantic": "INDEPENDENT_FREEZE_10_FLINCH_10",
         "independent_rolls": [
@@ -21227,6 +21238,20 @@
         ]
       },
       "animation": {
+        "assignment": "Move_ICE_FANG",
+        "approval": "APPROVED_EXISTING_ART_CANDIDATE",
+        "source_line": 11534,
+        "source_exists": true,
+        "runtime_verified": false
+      },
+      "engine_translation": {
+        "effect": "EFFECT_ICE_FANG",
+        "target": "MOVE_TARGET_SELECTED",
+        "secondaryEffectChance": 10,
+        "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
+      },
+      "source_line": 5212,
+      "animation_candidate": {
         "key": "ICE_FANG",
         "name": "Ice Fang",
         "candidate": "BITE + ICE_PUNCH",
