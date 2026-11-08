@@ -156,6 +156,7 @@ def read_png(data):
     if any(v >= len(palette)//3 for row in rows for v in row):
         raise ValueError("out-of-range indexed PNG pixel")
     used_indices = sorted({v for row in rows for v in row})
+    corner_indices = [rows[0][0], rows[0][-1], rows[-1][0], rows[-1][-1]]
     frames = []
     for frame in range(6):
         # Six square cells; upstream animation mapping is checked independently.
@@ -173,6 +174,7 @@ def read_png(data):
         "dimensions": [w,h], "frame_cell_size": [cell_size,cell_size],
         "source_bit_depth": depth, "bit_depth": 4, "indexed_colors": len(palette)//3,
         "embedded_palette_rgb": embedded_rgb, "used_indices": used_indices,
+        "corner_indices": corner_indices,
         "transparent_indices": transparent_indices,
         "partial_alpha_indices": partial_alpha_indices,
         "transparency_metadata_missing": not bool(alpha),
@@ -280,6 +282,16 @@ def main():
                 if tuple(c >> 3 for c in details["embedded_palette_rgb"][index])
                 != tuple(c >> 3 for c in normal[index])
             ]
+            details["shiny_palette_index_mismatches"] = [
+                index for index in details["used_indices"]
+                if tuple(c >> 3 for c in details["embedded_palette_rgb"][index])
+                != tuple(c >> 3 for c in palettes["shiny"][index])
+            ]
+            details["embedded_palette_variant"] = (
+                "normal" if not details["normal_palette_index_mismatches"] else
+                "shiny" if not details["shiny_palette_index_mismatches"] else
+                "unmatched"
+            )
             # Indexed pixels must fit both the normal and Shiny 16-slot palettes.
             if details["used_indices"][-1] >= len(palettes["shiny"]):
                 raise ValueError("Shiny palette lacks referenced pixel index")
@@ -326,6 +338,18 @@ def main():
                   {"dex": item["dex"], "species": item["species"],
                    "indices": item["partial_alpha_indices"]}
                   for item in results if item["partial_alpha_indices"]],
+              "embedded_palette_variant_counts": {
+                  variant: sum(item["embedded_palette_variant"] == variant for item in results)
+                  for variant in ("normal", "shiny", "unmatched")},
+              "unmatched_palette_species": [
+                  {"dex": item["dex"], "species": item["species"],
+                   "normal_mismatch_indices": item["normal_palette_index_mismatches"],
+                   "shiny_mismatch_indices": item["shiny_palette_index_mismatches"]}
+                  for item in results if item["embedded_palette_variant"] == "unmatched"],
+              "nonzero_corner_background_species": [
+                  {"dex": item["dex"], "species": item["species"],
+                   "corners": item["corner_indices"]}
+                  for item in results if any(item["corner_indices"])],
               "palette_color_mismatch_species": [
                   {"dex": item["dex"], "species": item["species"],
                    "indices": item["normal_palette_index_mismatches"]}
