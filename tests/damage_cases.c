@@ -230,6 +230,22 @@ int main(void)
         CHECK(!BattlerWasDamagedBy(4, 0));CHECK(!BattlerWasDamagedBy(0, 4));
         CHECK(!BattlerWasDamagedBy(255, 255));
     }
+    Reset();
+    {
+        s32 normal, boosted;
+        gBattleMons[0].attack = 200;gBattleMons[0].level = 50;gBattleMons[1].defense = 100;
+        normal = CalculateBaseDamage(&gBattleMons[0], &gBattleMons[1], MOVE_ICE_PUNCH, 0, 50, 0, 0, 1);
+        boosted = CalculateBaseDamage(&gBattleMons[0], &gBattleMons[1], MOVE_ICE_PUNCH, 0, 100, 0, 0, 1);
+        CHECK(boosted > normal);
+        for (int mask = 0; mask < 16; mask++)
+        {
+            gBattleStruct->actedThisTurn = mask;
+            CHECK(CalculateBaseDamage(&gBattleMons[0], &gBattleMons[1], MOVE_PAYBACK, 0, 0, 0, 0, 1) == ((mask & 2) ? boosted : normal));
+            gCurrentMove = MOVE_PAYBACK;AI_CalcDmg(0, 1);
+            CHECK(gBattleMoveDamage == ((mask & 2) ? boosted : normal));
+        }
+        CHECK(!BattlerHasActedThisTurn(4));CHECK(!BattlerHasActedThisTurn(255));
+    }
     printf("PASS: %u numeric/category/UI-helper assertions (production routines, stubbed environment)\n", checks);
     return 0;
 }

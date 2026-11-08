@@ -380,4 +380,5 @@ const u8 gMoveNames[MOVES_COUNT][MOVE_NAME_LENGTH + 1] = {
     [MOVE_DARK_PULSE] = _("DARK PULSE"),
     [MOVE_NIGHT_DAZE] = _("NIGHT DAZE"),
     [MOVE_NIGHT_SLASH] = _("NIGHT SLASH"),
+    [MOVE_PAYBACK] = _("PAYBACK"),
 };

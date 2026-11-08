@@ -397,6 +397,8 @@ const u8 gMoveDescription_NIGHT_DAZE[] = _("A dark shock wave\nthat may lower\nf
 
 const u8 gMoveDescription_NIGHT_SLASH[] = _("Slashes the foe.\nHigh critical-hit\nratio.");
 
+const u8 gMoveDescription_PAYBACK[] = _("Strikes harder if\nthe foe has taken\nits turn already.");
+
 const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND         - 1] = gMoveDescription_Pound,
     [MOVE_KARATE_CHOP   - 1] = gMoveDescription_KarateChop,
@@ -778,4 +780,5 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_DARK_PULSE - 1] = gMoveDescription_DARK_PULSE,
     [MOVE_NIGHT_DAZE - 1] = gMoveDescription_NIGHT_DAZE,
     [MOVE_NIGHT_SLASH - 1] = gMoveDescription_NIGHT_SLASH,
+    [MOVE_PAYBACK - 1] = gMoveDescription_PAYBACK,
 };
