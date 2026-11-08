@@ -91,6 +91,8 @@
 #define MON_DATA_SPEED2                   86
 #define MON_DATA_SPATK2                   87
 #define MON_DATA_SPDEF2                   88
+// Explicit special-individual ability; encrypted existing growth filler only.
+#define MON_DATA_INDIVIDUAL_ABILITY       89
 
 // Pokemon types
 #define TYPE_NONE           255

@@ -235,7 +235,8 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectCalmMind               @ EFFECT_CALM_MIND
 	.4byte BattleScript_EffectDragonDance            @ EFFECT_DRAGON_DANCE
 	.4byte BattleScript_EffectCamouflage             @ EFFECT_CAMOUFLAGE
-	.4byte BattleScript_EffectSleepHit               @ EFFECT_SLEEP_HIT
+	.4byte BattleScript_EffectSleepHit
+	.4byte BattleScript_EffectSwarmCloud               @ EFFECT_SLEEP_HIT
 
 BattleScript_EffectHit::
 	jumpifnotmove MOVE_SURF, BattleScript_HitFromAtkCanceler
@@ -267,6 +268,10 @@ BattleScript_HitFromAtkAnimation::
 	resultmessage
 	waitmessage B_WAIT_TIME_LONG
 	seteffectwithchance
+	jumpifnotmove MOVE_SWARM_CLOUD, BattleScript_AfterSwarmCloud
+	setmoveeffect MOVE_EFFECT_POISON
+	seteffectwithchance
+BattleScript_AfterSwarmCloud::
 	tryfaintmon BS_TARGET
 BattleScript_MoveEnd::
 	moveendall
@@ -3961,6 +3966,15 @@ BattleScript_RainDishActivates::
 	datahpupdate BS_ATTACKER
 	end3
 
+@ Existing Gen III hail text/animation only; no new artwork.
+BattleScript_SnowWarningActivates::
+	pause B_WAIT_TIME_SHORT
+	printstring STRINGID_STARTEDHAIL
+	waitstate
+	playanimation BS_BATTLER_0, B_ANIM_HAIL_CONTINUES
+	call BattleScript_WeatherFormChanges
+	end3
+
 BattleScript_SandstreamActivates::
 	pause B_WAIT_TIME_SHORT
 	printstring STRINGID_PKMNSXWHIPPEDUPSANDSTORM
@@ -4401,4 +4415,9 @@ BattleScript_FlushMessageBox::
 
 BattleScript_EffectSleepHit::
 	setmoveeffect MOVE_EFFECT_SLEEP
+	goto BattleScript_EffectHit
+
+@ Swarm Cloud uses separate native 50% Confusion and 50% Poison chances.
+BattleScript_EffectSwarmCloud::
+	setmoveeffect MOVE_EFFECT_CONFUSION
 	goto BattleScript_EffectHit

@@ -343,6 +343,7 @@ static void dexTests(void) {
 #include "ponyta.c"
 #include "ranger.c"
 #include "dynamic_weather.c"
+#include "lighting_preview.c"
 #include "gym_castform.c"
 #include "rival.c"
 #include "wild_nickname.c"
@@ -353,6 +354,7 @@ static void dexTests(void) {
 #include "move_pp_compatibility.c"
 #include "roar.c"
 #include "weather_moves.c"
+#include "weather_species.c"
 #include "original_effects.c"
 
 #include "viridian_sign.c"
@@ -441,6 +443,7 @@ int main(int argc,char **argv) {
     if(getenv("LIGHTNING_DEX_ONLY")){dexTests();printf("PASS: focused Dex diagnostic\n");core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_PP_FULL_PC_ONLY")){ppFullPc();printf("PASS: %u full-PC PP assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_ORIGINAL_EFFECTS_ONLY")){originalEffectTests();printf("PASS: %u focused original-effect assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_WEATHER_SPECIES_ONLY")){weatherSpeciesAbilityTests();printf("PASS: %u focused species ability assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_WEATHER_MOVES_ONLY")){weatherMoveTests();printf("PASS: %u focused weather-move assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_ROAR_ONLY")){roarTests();printf("PASS: %u focused Roar assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
 
@@ -457,8 +460,12 @@ int main(int argc,char **argv) {
     if(getenv("LIGHTNING_MOVE_FOUNDATION_ONLY")){moveFoundationTests();printf("PASS: %u focused move-foundation assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_BAG_EVOLUTION_ONLY")){bagEvolutionTests();printf("PASS: %u focused Bag evolution assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_WILD_NICKNAME_ONLY")){wildNicknameTests();printf("PASS: %u focused capture nickname assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_EARTH_POWER_ONLY")){earthPowerTests();printf("PASS: %u focused Earth Power assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_SCORCHING_SANDS_ONLY")){scorchingSandsTests();printf("PASS: %u focused Scorching Sands assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_SWARM_ONLY")){swarmCloudTests();printf("PASS: %u focused Swarm Cloud assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_BLAINE_ONLY")){blaineTests();printf("PASS: %u focused Blaine assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_GYM_CASTFORM_ONLY")){gymCastformTests();printf("PASS: %u focused Gym Castform assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_LIGHTING_CAPTURE_DIR")){lightingPreviewCaptures();printf("PASS: %u native lighting capture assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_DYNAMIC_WEATHER_ONLY")){dynamicWeatherTests();printf("PASS: %u focused dynamic weather assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_RIVAL_DATA_ONLY")){rivalDataTests();printf("PASS: %u focused rival data assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_RIVAL_BATTLES_ONLY")){rivalBattleTests();printf("PASS: %u focused rival battle assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
@@ -590,6 +597,7 @@ int main(int argc,char **argv) {
 
     ordinaryTrainerPartyDataTests();
     eliteFourTests();
+    weatherSpeciesAbilityTests();
     printf("PASS: %u mGBA assertions (includes API/register safety checks)\n",checks);
     core->deinit(core);free(pixels);free(bootState);
     return 0;

@@ -3,10 +3,10 @@
   "updated": "2026-11-07",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "Fire80/a4681848 final28hosts/517focus/clean and both full CI PASS, ready for source-identical documentation integration. Preserve81 BTL006 closure and INT005 QA,413/299 of712 provisional. No unmerged Fire credit; Ghost82 current-parent validation separate. WRL-001/PR88 starter and parcel gift feature merged, feature closed; organic event traversal remains INT-005.",
-  "main_sha": "1cc82d53c7ef3c6c0b3d9798b4eacacebdc4f6b1",
+  "current_focus": "Master Control formally closes INT-003 at 16 earned/0 remaining after PR117 GitHub/Drive reconciliation; project 456 earned/256 remaining of712 (64.04%). Preserve 50 permanent IDs and all prior histories, no duplicate Rocket/lighting/title credit. Remaining gameplay, move, ecology and shared release QA continue under their independent owners.",
+  "main_sha": "b29f0863bc57013cad28b0e51da03a0ab67e1628",
   "drive_sync": {
-    "status": "GYM-009 completion synced to Project Progress and Elite Four Register on 2026-11-07; other Drive synchronization not audited",
+    "status": "2026-11-07 INT-003 GitHub governance PR117 merged and existing Project Progress, START HERE and Change Intake docs synchronized/read back. Master Control final four-point award authorized; final closure append to existing Drive docs in progress.",
     "folder": "https://drive.google.com/drive/folders/1N_n0Ke48jBbdhUWSZWzwR6rpPFqpDUpl"
   },
   "areas": [
@@ -628,18 +628,18 @@
       ],
       "status": {
         "design": "Owner approved; November5 Curse/animation/GenIV edge choices resolved; PhaseTwo distribution remains separate",
-        "implementation": "All21 original policies/global Electric immunity merged. PR80 source-complete355 Flame Fang,356 Flashfire,357 Blaze Rush; not merged/production-complete until final acceptance. Remaining53 additions absent.",
+        "implementation": "Partial approved move system implemented on main; latest Earth Power #371 PR110 merged; additional Bug/Ghost and other move batches remain open and unaccepted as complete",
         "automated": "Main tooling79:27 hosts and both full CI PASS before documentation-only main integration. Feature80:28 hosts/3 checkers, production chance numeric controls and clean hash a90ef372…b730 PASS; latest CI pending.",
         "emulator": "PR80 latest focused517 native assertions PASS including real Singles/Doubles/composite animation completion/physical stats/AI/PP/flinch/recoil/priority/guards and exact encrypted flash reload. Latest full suite pending. Not full campaign/peer link/hardware or pixel-approval certification.",
-        "pull_request": "Merged40–43/56/61;63 pending",
-        "merge": "Main4bb2ece0 includes63/64/66/67/68/69/71/75;72 pending current-main acceptance."
+        "pull_request": "Recent Earth Power PR110 merged; additional PR82/85/89/91/92/93 open and other move work pending",
+        "merge": "Partial approved move batches merged including PR110 at 3fbc7b94; BTL-005 full 80-point scope not closed"
       },
       "branch": "feature/approved-fire-move-batch",
       "commit": "1951766a",
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Complete PR80 latest full/CI acceptance and integrate verified code; then358 Soul Drain (Ghost Physical50 half drain/contact),359 Weary Touch (Ghost Physical75 sleep22%),360 Dream Haunt (Ghost Special55 doubles against sleep), per exact register/approved existing art. No invented distribution.",
-      "checkpoint": "Merged72 completes original-policy source scope; all26 hosts/3checkers/clean/full30-group815608 and both premerge CI PASS; main tree verified identical. First56 new moves remain pending.",
+      "next_action": "Continue specialist-owned source/acceptance work. Audit pending move PR stack against current main before merge; do not award further BTL-005 points without scoped approval.",
+      "checkpoint": "2026-11-07 INT-003 status-only update following PR110 Earth Power merge; effort remains 32/48 pending specialist acceptance.",
       "source_exports": [
         "03_MOVES/Pokémon Lightning Yellow — Approved Move Change Ledger — Source Verbatim v0.1.txt",
         "03_MOVES/Pokémon Lightning Yellow — Complete TM & Move Register — v1 (2026-10-29).txt",
@@ -811,8 +811,8 @@
       "title": "Approved visual periods and lighting",
       "aliases": [],
       "effort": {
-        "earned": 0,
-        "remaining": 32,
+        "earned": 32,
+        "remaining": 0,
         "unit": "provisional relative planning point",
         "confidence": "low",
         "history": [
@@ -821,6 +821,12 @@
             "earned": 0,
             "remaining": 32,
             "reason": "Initial audited scope estimate; not elapsed hours or overall game completion."
+          },
+          {
+            "date": "2026-11-07",
+            "earned": 32,
+            "remaining": 0,
+            "reason": "Owner accepted real native screenshot results and merged production PR90 at 3735096f98fc76899b23fbbeeb7b094249a09731. Screenshot Actions42419689095 and modified/upstream full CI Actions42419689058 SUCCESS. Exactly the existing 32-point allocation awarded; full campaign/hardware QA under INT-005."
           }
         ]
       },
@@ -828,21 +834,21 @@
         "TIM-002"
       ],
       "status": {
-        "design": "Map visual periods/exceptions, RTC fallback/recovery approved; exports available",
-        "implementation": "not started",
-        "automated": "not executed for new work",
-        "emulator": "not executed",
-        "pull_request": "not created",
-        "merge": "not merged"
+        "design": "Owner-approved actual mGBA screenshots: final outdoor periods, Forest/Lavender exceptions and Mansion fog",
+        "implementation": "Complete production lighting and Mansion fog on main",
+        "automated": "Modified clean/repro/source checks and independent upstream job SUCCESS Actions42419689058",
+        "emulator": "24 native mGBA screenshots/hashes Actions42419689095 SUCCESS; full native suite Actions42419689058 SUCCESS; organic campaign not claimed",
+        "pull_request": "PR90 merged",
+        "merge": "PR90 merged 3735096f98fc76899b23fbbeeb7b094249a09731; owner accepted"
       },
-      "branch": null,
-      "commit": null,
-      "pr_url": null,
-      "ci_url": null,
-      "blocker": "Exact palette/tint values and visual approval remain pending. Viridian Forest/Lavender/Mansion classification and RTC fallback/recovery are supplied, not missing documents.",
+      "branch": "main",
+      "commit": "3735096f98fc76899b23fbbeeb7b094249a09731",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/90",
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/42419689058",
+      "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Prepare palette reuse/visual prototypes under current authority; final values need visual approval; preserve ordinary interiors/caves.",
-      "checkpoint": "2026-11-04 supplied-export reconciliation; old unavailable-document claims superseded; no implementation/test credit from availability.",
+      "next_action": "Closed: preserve approved final production lighting. Remaining release-wide validation under INT-004/INT-005.",
+      "checkpoint": "2026-11-07 owner-approved visual closeout; PR90 merged; 24 capture frames plus full two-job CI SUCCESS.",
       "source_exports": [
         "05_WEATHER_LIGHTING/Pokémon Lightning Yellow — Lighting & Weather Decision Handoff and Next Steps — 2026-10-28.txt",
         "05_WEATHER_LIGHTING/Pokémon Lightning Yellow — Lighting & Weather Decision Register — 2026-10-28.txt",
@@ -1483,20 +1489,20 @@
       "dependencies": [],
       "status": {
         "design": "Dated location species approvals and122-family placement baseline available",
-        "implementation": "not started",
+        "implementation": "Existing encounter/wild-double infrastructure on main; new source-data contract guard PR97 and Route1 experimental override retirement PR99 open; final map policies still in progress",
         "automated": "not executed for new work",
         "emulator": "not executed",
-        "pull_request": "not created",
-        "merge": "not merged"
+        "pull_request": "Earlier encounter infrastructure merged; PR97 and PR99 currently open",
+        "merge": "Partial pre-existing framework merged; new PR97/99 not merged"
       },
       "branch": null,
       "commit": null,
       "pr_url": null,
       "ci_url": null,
-      "blocker": "Rates, levels, rod/Surf tables and some physical slot access remain unapproved/unverified. Draft capacity matrices are not executable encounter tables; SOW implementation HOLD remains.",
+      "blocker": "Final map-specific policies and approved encounter access are still incomplete. Active PR97/99 are partial feature work, not an entirely not-started task.",
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Use dated living ecology approvals, source tile/rod access audit and later balancing; retain legal252-only policy.",
-      "checkpoint": "2026-11-04 supplied-export reconciliation; old unavailable-document claims superseded; no implementation/test credit from availability.",
+      "next_action": "Coordinate with active WRL-002/WRL-009 specialist; validate PR97/99 and unresolved production map policies before awarding any new points.",
+      "checkpoint": "2026-11-07 status correction: PR97 source-data guard, PR99 Route1 wild-double retirement both open.",
       "source_exports": [
         "06_ENCOUNTERS_PHASE_TWO/Pokémon Lightning Yellow — Encounter, Static Event & Weather Source Parity — 2026-11-02.txt",
         "06_ENCOUNTERS_PHASE_TWO/Pokémon Lightning Yellow — Global Encounter Capacity Audit v0.3 (Draft).txt",
@@ -1725,8 +1731,8 @@
       "title": "Audits, durable dashboard, ledger and Drive sync",
       "aliases": [],
       "effort": {
-        "earned": 12,
-        "remaining": 4,
+        "earned": 16,
+        "remaining": 0,
         "unit": "provisional relative planning point",
         "confidence": "low",
         "history": [
@@ -1741,26 +1747,32 @@
             "earned": 12,
             "remaining": 4,
             "reason": "Implemented approved stabilization and focused acceptance; remaining scope and external checks recorded separately."
+          },
+          {
+            "date": "2026-11-07",
+            "earned": 16,
+            "remaining": 0,
+            "reason": "Master Control formally accepts INT-003 governance completion after merged documentation PR117 at b29f0863bc57013cad28b0e51da03a0ab67e1628, verified canonical dashboard/append-only ledger and readback of existing Project Progress, START HERE and Change Intake Drive records. Superseded documentation PR83/87/109 closed unmerged, preserving history; permanent IDs and denominator unchanged. Final existing four points transferred exactly once, with future routine record updates owned by Master Control, not a permanent open INT-003 task."
           }
         ]
       },
       "dependencies": [],
       "status": {
-        "design": "approved scoped implementation",
-        "implementation": "canonical dashboard and append-only ledger published in #8; Drive sync pending",
-        "automated": "JSON uniqueness, effort totals, refs and diff validated; prior docs CI SUCCESS",
-        "emulator": "not executed",
-        "pull_request": "PR#8 merged; historical branch evidence retained",
-        "merge": "merged to main; remaining feature scope/coverage is not inferred complete"
+        "design": "Approved permanent governance scope; Master Control formally accepted 2026-11-07",
+        "implementation": "CLOSED: canonical tracker, rendered dashboard, append-only ledger and three authoritative Drive governance records reconciled and read back; merged documentation PR117",
+        "automated": "50 unique IDs, histories and totals verified; dashboard area/overall arithmetic checked; administrative readback performed; no fresh ROM/CI execution",
+        "emulator": "Not required for documentation governance; no newly executed mGBA or release-wide certification implied",
+        "pull_request": "PR8 original system and PR117 reconciliation merged; obsolete PR83/87/109 closed without merge",
+        "merge": "Final documentation reconciliation PR117 merged b29f0863bc57013cad28b0e51da03a0ab67e1628; Master Control closeout approved"
       },
       "branch": "main",
-      "commit": null,
-      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/8",
+      "commit": "b29f0863bc57013cad28b0e51da03a0ab67e1628",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/117",
       "ci_url": null,
-      "blocker": "Drive reader/writer absent. API domain settings do not authenticate Drive.",
-      "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Keep updating this branch; synchronize when a supported Drive writer is available",
-      "checkpoint": "2026-11-02 milestone: #8 tracking established, #9 stabilization draft and final tests underway",
+      "blocker": null,
+      "design_authority": "Owner-assigned INT-003 definition of done, merged GitHub tracking evidence, verified Google Drive record readbacks and explicit 2026-11-07 Master Control closeout authorization.",
+      "next_action": "CLOSED. Master Control maintains these same canonical files at future milestones via narrow reviewable updates; preserve append-only histories and keep shared release QA under INT-004/INT-005. No ongoing INT-003 workstream.",
+      "checkpoint": "2026-11-07 Master Control final acceptance: PR117 merged b29f0863; PR83/87/109 closed unmerged; three Drive records verified; 16 earned/0 remaining.",
       "implementation_ref": {
         "branch": "docs/project-coordination",
         "commit": null
@@ -2688,20 +2700,20 @@
       "dependencies": [],
       "status": {
         "design": "owner-approved or delegated design recorded in Drive",
-        "implementation": "not implemented on main; any specs/PRs noted in next action",
+        "implementation": "In progress on feature branches: approved land ecology batches in open PRs101,102,103,104,107,108,111,112,114,115; no complete main implementation or full Surf/fishing coverage verified",
         "automated": "not verified as full feature",
         "emulator": "not verified as complete feature",
-        "pull_request": "not merged gameplay",
-        "merge": "not merged gameplay"
+        "pull_request": "Open specialist PRs #101–#115 in dependency chain; no general wild ecology merge acceptance",
+        "merge": "Not merged as full feature; branch-specific source work active"
       },
       "branch": null,
       "commit": null,
       "pr_url": null,
       "ci_url": null,
-      "blocker": "122 family acquisition pathways and location sketches exist, but each map/floor/method's final balanced tables and source data remain; WRL-002 tracks underlying event/encounter engine and map policy, not full encounter-content rollout.",
+      "blocker": "Complete map/floor/method and fishing/Surf coverage, integration and acceptance remain. Multiple approved partial land-table PRs are open and must not be reported as not started.",
       "design_authority": "Lightning Yellow canonical Drive specialist registers and November 5 change intake",
-      "next_action": "122 family acquisition pathways and location sketches exist, but each map/floor/method's final balanced tables and source data remain; WRL-002 tracks underlying event/encounter engine and map policy, not full encounter-content rollout.",
-      "checkpoint": "2026-11-06 fixed-scope intake; no gameplay implementation credit"
+      "next_action": "Specialist maintains in-progress land encounter PRs and completes remaining methods/slots. Preserve 20-point allocation with no automatic earned credit for open PRs.",
+      "checkpoint": "2026-11-07 INT-003 status correction based on open PRs101/102/103/104/107/108/111/112/114/115; no new effort credit."
     },
     {
       "id": "WRL-010",
@@ -2748,8 +2760,8 @@
       "title": "Complete approved gift revisions and Rocket stolen-Pokémon return quest content",
       "aliases": [],
       "effort": {
-        "earned": 3,
-        "remaining": 7,
+        "earned": 10,
+        "remaining": 0,
         "unit": "provisional relative planning point",
         "confidence": "low",
         "history": [
@@ -2764,26 +2776,32 @@
             "earned": 3,
             "remaining": 7,
             "reason": "Three approved issue38 gifts merged59 after native probability/scene/save and full integrated CI PASS; Rocket rescue/return pipeline remains7 provisional points, no duplicate shared infrastructure credit."
+          },
+          {
+            "date": "2026-11-07",
+            "earned": 10,
+            "remaining": 0,
+            "reason": "PR74 merged 6aef759a09adec0226e727501ace801b2993a84d with 11 Rocket battles/32 Pokémon, two Executives and exact-identity PAIGE/JULIA rescue/Route8 return; roster/quest tests and previous native acceptance confirmed. Existing gift PR59 retained. Manual natural progression remains INT-005; no duplicate award."
           }
         ]
       },
       "dependencies": [],
       "status": {
-        "design": "owner-approved or delegated design recorded in Drive",
-        "implementation": "Aron50%/Magby50% eggs and TangelaLv25TANGO merged; Rocket rescue/return scope still unimplemented",
-        "automated": "All24 combined hosts/3 checkers PASS; clean/repro and CI PASS",
-        "emulator": "Latest gift focus80123 and Museum1306 PASS; each5030/10000 stored trueShiny; combined753726",
-        "pull_request": "PR59 merged; Rocket separate",
-        "merge": "Merged708f197a three-gift scope only"
+        "design": "Owner-approved exact contracts",
+        "implementation": "Complete on main: PR59 three gifts and PR74 11 Rocket battles, Executives, Ralts/Snorunt exact-person return quests",
+        "automated": "Rocket roster/quest source tests passed; prior full native ROM acceptance reported; final-head broad CI not independently re-verified in this reconciliation",
+        "emulator": "Prior native mGBA acceptance reported; organic event traversal, title display, save/reload, PC return remain INT-005",
+        "pull_request": "PR59 and PR74 merged",
+        "merge": "PR74 merged 6aef759a09adec0226e727501ace801b2993a84d"
       },
-      "branch": "feature/approved-gift-revisions",
-      "commit": "06b57e71",
-      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/59",
-      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/42220799681",
-      "blocker": "New approved museum Aron 50% Shiny, Water Labyrinth Magby 50% Shiny, Celadon Tangela TANGO, hideout Ralts/Snorunt return and Rocket executive scripts not in merged code; baseline WRL-004 handles common items/events infrastructure, not these content contracts.",
+      "branch": "main",
+      "commit": "6aef759a09adec0226e727501ace801b2993a84d",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/74",
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/42384965443",
+      "blocker": null,
       "design_authority": "Lightning Yellow canonical Drive specialist registers and November 5 change intake",
-      "next_action": "Implement fully approved Rocket45/44 scope with foreign stable identities, safe party/PC transactions and exact reward safeguards; do not alter Giovanni.",
-      "checkpoint": "2026-11-06 fixed-scope intake; no gameplay implementation credit"
+      "next_action": "Feature implementation closed; optional real B3F pathing, Executive title, save/load and Route8 identity returns under INT-005 without double credit.",
+      "checkpoint": "2026-11-07 PR74 merge; append-only 3/7 to 10/0."
     }
   ],
   "legacy_crosswalk": {
@@ -2866,7 +2884,7 @@
     "manifest": "docs/SUPPLIED_SPECIFICATION_MANIFEST.json",
     "archive": "Pokemon_Lightning_Yellow_Codex_Authority_Exports_2026-11-03.zip",
     "sediment_file_id": "file_00000000bbc081f5b71ce88948438545",
-    "direct_drive_sync": "unavailable; local exports are snapshots, not live Drive read/write",
+    "direct_drive_sync": "Connected live Google Drive read/write available 2026-11-07; earlier unavailable note historical.",
     "reconciliation": "docs/SPECIFICATION_RECONCILIATION_2026-11-04.md",
     "read_scope": "Typing matrix and listed specialist final handoffs/specs read in full; relevant Master/Queue/other primary passages read. Not every unrelated paragraph of all40 documents claimed read."
   },

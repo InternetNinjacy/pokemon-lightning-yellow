@@ -1,4 +1,8 @@
 #include "global.h"
+#include "lighting_preview_config.h"
+#ifdef LIGHTING_PREVIEW
+#include "constants/maps.h"
+#endif
 #include "gflib.h"
 #include "battle_anim.h"
 #include "event_object_movement.h"
@@ -1340,7 +1344,26 @@ void FogHorizontal_Main(void)
     case 0:
         CreateFogHorizontalSprites();
         if (gWeatherPtr->currWeather == WEATHER_FOG_HORIZONTAL)
+        {
+#ifdef LIGHTING_PREVIEW
+            // Pokémon Mansion's pale tiles wash out under Tower-strength fog.
+            // Keep the same moving fog effect, but reduce its opacity only
+            // on these four Mansion floors. Pokémon Tower is unaffected.
+            bool8 mansion = FALSE;
+            if (gSaveBlock1Ptr != NULL)
+            {
+                u8 group = gSaveBlock1Ptr->location.mapGroup;
+                u8 num = gSaveBlock1Ptr->location.mapNum;
+                mansion = (group == MAP_GROUP(MAP_POKEMON_MANSION_1F) && num == MAP_NUM(MAP_POKEMON_MANSION_1F))
+                       || (group == MAP_GROUP(MAP_POKEMON_MANSION_2F) && num == MAP_NUM(MAP_POKEMON_MANSION_2F))
+                       || (group == MAP_GROUP(MAP_POKEMON_MANSION_3F) && num == MAP_NUM(MAP_POKEMON_MANSION_3F))
+                       || (group == MAP_GROUP(MAP_POKEMON_MANSION_B1F) && num == MAP_NUM(MAP_POKEMON_MANSION_B1F));
+            }
+            Weather_SetTargetBlendCoeffs(mansion ? 6 : 12, mansion ? 12 : 8, 3);
+#else
             Weather_SetTargetBlendCoeffs(12, 8, 3);
+#endif
+        }
         else
             Weather_SetTargetBlendCoeffs(4, 16, 0);
         gWeatherPtr->initStep++;

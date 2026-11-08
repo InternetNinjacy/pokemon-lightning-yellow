@@ -1,0 +1,71 @@
+{
+  "source_before": "69fa7135b95d4098933f4e0971676c534102c705",
+  "source_after": "fda122570863c9805a9f5ef80da408954ef89e1f",
+  "scope": "Exact source-only reverse of seven approved #367–369 additions; historical move hashes remain fixed.",
+  "files": {
+    "data/battle_ai_scripts.s": {
+      "hunks": [
+        {
+          "before": "\tif_move MOVE_METAL_SOUND, Score_Minus10\n\tif_move MOVE_GRASS_WHISTLE, Score_Minus10\n\tif_move MOVE_CHIRP, Score_Minus10\n\nAI_CheckBadMove_CheckEffect::\n\tif_effect EFFECT_SLEEP, AI_CBM_Sleep",
+          "after": "\tif_move MOVE_METAL_SOUND, Score_Minus10\n\tif_move MOVE_GRASS_WHISTLE, Score_Minus10\n\tif_move MOVE_CHIRP, Score_Minus10\n\tif_move MOVE_BELLOW, Score_Minus10\n\nAI_CheckBadMove_CheckEffect::\n\tif_effect EFFECT_SLEEP, AI_CBM_Sleep"
+        }
+      ]
+    },
+    "data/battle_anim_scripts.s": {
+      "hunks": [
+        {
+          "before": "\t.4byte Move_CHITIN_CRUSH\n\t.4byte Move_CHIRP\n\t.4byte Move_SWARM_CLOUD\n\t.4byte Move_COUNT @ cannot be reached, because last move is Psycho Boost\n\n\t.align 2",
+          "after": "\t.4byte Move_CHITIN_CRUSH\n\t.4byte Move_CHIRP\n\t.4byte Move_SWARM_CLOUD\n\t.4byte Move_BELLOW\n\t.4byte Move_POWER_GEM\n\t.4byte Move_STONE_EDGE\n\t.4byte Move_COUNT @ cannot be reached, because last move is Psycho Boost\n\n\t.align 2"
+        },
+        {
+          "before": "\tcreatesprite gPoisonPowderParticleSpriteTemplate, ANIM_TARGET, 2, 5, -22, 117, 80, 5, 1\n\twaitforvisualfinish\n\tend",
+          "after": "\tcreatesprite gPoisonPowderParticleSpriteTemplate, ANIM_TARGET, 2, 5, -22, 117, 80, 5, 1\n\twaitforvisualfinish\n\tend\n\n@ Owner-approved native artwork reuse for moves #367-369.\nMove_BELLOW:\n\tgoto Move_UPROAR\n\nMove_POWER_GEM:\n\tgoto Move_ANCIENT_POWER\n\nMove_STONE_EDGE:\n\tgoto Move_ROCK_SLIDE"
+        }
+      ]
+    },
+    "include/constants/moves.h": {
+      "hunks": [
+        {
+          "before": "\n#define MOVE_SWARM_CLOUD 366\n\n#define MOVES_COUNT 367\n\n// Used for checks for moves affected by Disable, Mimic, etc.\n#define MOVE_UNAVAILABLE 0xFFFF",
+          "after": "\n#define MOVE_SWARM_CLOUD 366\n\n#define MOVE_BELLOW 367\n#define MOVE_POWER_GEM 368\n#define MOVE_STONE_EDGE 369\n\n#define MOVES_COUNT 370\n\n// Used for checks for moves affected by Disable, Mimic, etc.\n#define MOVE_UNAVAILABLE 0xFFFF"
+        }
+      ]
+    },
+    "src/battle_util.c": {
+      "hunks": [
+        {
+          "before": "static const u16 sSoundMovesTable[] =\n{\n    MOVE_GROWL, MOVE_ROAR, MOVE_SING, MOVE_SUPERSONIC, MOVE_SCREECH, MOVE_SNORE,\n    MOVE_UPROAR, MOVE_METAL_SOUND, MOVE_GRASS_WHISTLE, MOVE_HYPER_VOICE, MOVE_CHIRP, SOUND_MOVES_END\n};\n\nu8 GetBattlerForBattleScript(u8 caseId)",
+          "after": "static const u16 sSoundMovesTable[] =\n{\n    MOVE_GROWL, MOVE_ROAR, MOVE_SING, MOVE_SUPERSONIC, MOVE_SCREECH, MOVE_SNORE,\n    MOVE_UPROAR, MOVE_METAL_SOUND, MOVE_GRASS_WHISTLE, MOVE_HYPER_VOICE, MOVE_CHIRP, MOVE_BELLOW, SOUND_MOVES_END\n};\n\nu8 GetBattlerForBattleScript(u8 caseId)"
+        }
+      ]
+    },
+    "src/data/battle_moves.h": {
+      "hunks": [
+        {
+          "before": "        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,\n    },\n\n};",
+          "after": "        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,\n    },\n\n    [MOVE_BELLOW] =\n    {\n        .category = MOVE_CATEGORY_SPECIAL,\n        .effect = EFFECT_HIT,\n        .power = 40,\n        .type = TYPE_NORMAL,\n        .accuracy = 100,\n        .pp = 30,\n        .secondaryEffectChance = 0,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = 0,\n        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,\n    },\n\n    [MOVE_POWER_GEM] =\n    {\n        .category = MOVE_CATEGORY_SPECIAL,\n        .effect = EFFECT_HIT,\n        .power = 80,\n        .type = TYPE_ROCK,\n        .accuracy = 100,\n        .pp = 20,\n        .secondaryEffectChance = 0,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = 0,\n        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,\n    },\n\n    [MOVE_STONE_EDGE] =\n    {\n        .category = MOVE_CATEGORY_PHYSICAL,\n        .effect = EFFECT_HIGH_CRITICAL,\n        .power = 100,\n        .type = TYPE_ROCK,\n        .accuracy = 80,\n        .pp = 10,\n        .secondaryEffectChance = 0,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = 0,\n        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,\n    },\n\n};"
+        }
+      ]
+    },
+    "src/data/text/move_names.h": {
+      "hunks": [
+        {
+          "before": "    [MOVE_CHITIN_CRUSH] = _(\"CHITIN CRUSH\"),\n    [MOVE_CHIRP] = _(\"CHIRP\"),\n    [MOVE_SWARM_CLOUD] = _(\"SWARM CLOUD\"),\n};",
+          "after": "    [MOVE_CHITIN_CRUSH] = _(\"CHITIN CRUSH\"),\n    [MOVE_CHIRP] = _(\"CHIRP\"),\n    [MOVE_SWARM_CLOUD] = _(\"SWARM CLOUD\"),\n    [MOVE_BELLOW] = _(\"BELLOW\"),\n    [MOVE_POWER_GEM] = _(\"POWER GEM\"),\n    [MOVE_STONE_EDGE] = _(\"STONE EDGE\"),\n};"
+        }
+      ]
+    },
+    "src/move_descriptions.c": {
+      "hunks": [
+        {
+          "before": "\nconst u8 gMoveDescription_SWARM_CLOUD[] = _(\"A swarming attack\\nthat may confuse\\nand poison the foe.\");\n\nconst u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {\n    [MOVE_POUND         - 1] = gMoveDescription_Pound,\n    [MOVE_KARATE_CHOP   - 1] = gMoveDescription_KarateChop,",
+          "after": "\nconst u8 gMoveDescription_SWARM_CLOUD[] = _(\"A swarming attack\\nthat may confuse\\nand poison the foe.\");\n\nconst u8 gMoveDescription_BELLOW[] = _(\"A loud cry that\\nhits the foe with\\npowerful sound.\");\nconst u8 gMoveDescription_POWER_GEM[] = _(\"An attack using\\nthe power of a\\nglowing gemstone.\");\nconst u8 gMoveDescription_STONE_EDGE[] = _(\"Sharp stones hit\\nthe foe. High\\ncritical-hit ratio.\");\n\nconst u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {\n    [MOVE_POUND         - 1] = gMoveDescription_Pound,\n    [MOVE_KARATE_CHOP   - 1] = gMoveDescription_KarateChop,"
+        },
+        {
+          "before": "    [MOVE_CHITIN_CRUSH - 1] = gMoveDescription_CHITIN_CRUSH,\n    [MOVE_CHIRP - 1] = gMoveDescription_CHIRP,\n    [MOVE_SWARM_CLOUD - 1] = gMoveDescription_SWARM_CLOUD,\n};",
+          "after": "    [MOVE_CHITIN_CRUSH - 1] = gMoveDescription_CHITIN_CRUSH,\n    [MOVE_CHIRP - 1] = gMoveDescription_CHIRP,\n    [MOVE_SWARM_CLOUD - 1] = gMoveDescription_SWARM_CLOUD,\n    [MOVE_BELLOW - 1] = gMoveDescription_BELLOW,\n    [MOVE_POWER_GEM - 1] = gMoveDescription_POWER_GEM,\n    [MOVE_STONE_EDGE - 1] = gMoveDescription_STONE_EDGE,\n};"
+        }
+      ]
+    }
+  }
+}

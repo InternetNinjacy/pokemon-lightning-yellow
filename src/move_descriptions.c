@@ -364,6 +364,23 @@ const u8 gMoveDescription_SOUL_DRAIN[] = _("A spectral touch\nthat drains half\n
 const u8 gMoveDescription_WEARY_TOUCH[] = _("An eerie touch\nthat may put the\nfoe to sleep.");
 const u8 gMoveDescription_DREAM_HAUNT[] = _("Has double power\nagainst a sleeping\nfoe.");
 
+const u8 gMoveDescription_SKITTER_SLASH[] = _("A quick, slicing\nBug-type attack.");
+
+const u8 gMoveDescription_VENOM_WEB[] = _("Binds the foe in\na lingering web.\nCannot refresh trap.");
+
+const u8 gMoveDescription_BUG_BITE[] = _("A biting attack\nthat may reduce\nthe foe's SP. ATK.");
+const u8 gMoveDescription_CHITIN_CRUSH[] = _("Crushes the foe.\nMay lower the\nfoe's DEFENSE.");
+
+const u8 gMoveDescription_CHIRP[] = _("A sharp insect cry\nthat damages the\nfoe with sound.");
+
+const u8 gMoveDescription_SWARM_CLOUD[] = _("A swarming attack\nthat may confuse\nand poison the foe.");
+
+const u8 gMoveDescription_BELLOW[] = _("A loud cry that\nhits the foe with\npowerful sound.");
+const u8 gMoveDescription_POWER_GEM[] = _("An attack using\nthe power of a\nglowing gemstone.");
+const u8 gMoveDescription_STONE_EDGE[] = _("Sharp stones hit\nthe foe. High\ncritical-hit ratio.");
+const u8 gMoveDescription_SCORCHING_SANDS[] = _("Scorching sand\nmay leave the foe\nwith a burn.");
+const u8 gMoveDescription_EARTH_POWER[] = _("The ground erupts\nwith power. May\nlower Sp. Def.");
+
 const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND         - 1] = gMoveDescription_Pound,
     [MOVE_KARATE_CHOP   - 1] = gMoveDescription_KarateChop,
@@ -725,4 +742,15 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_SOUL_DRAIN - 1] = gMoveDescription_SOUL_DRAIN,
     [MOVE_WEARY_TOUCH - 1] = gMoveDescription_WEARY_TOUCH,
     [MOVE_DREAM_HAUNT - 1] = gMoveDescription_DREAM_HAUNT,
+    [MOVE_SKITTER_SLASH - 1] = gMoveDescription_SKITTER_SLASH,
+    [MOVE_VENOM_WEB - 1] = gMoveDescription_VENOM_WEB,
+    [MOVE_BUG_BITE - 1] = gMoveDescription_BUG_BITE,
+    [MOVE_CHITIN_CRUSH - 1] = gMoveDescription_CHITIN_CRUSH,
+    [MOVE_CHIRP - 1] = gMoveDescription_CHIRP,
+    [MOVE_SWARM_CLOUD - 1] = gMoveDescription_SWARM_CLOUD,
+    [MOVE_BELLOW - 1] = gMoveDescription_BELLOW,
+    [MOVE_POWER_GEM - 1] = gMoveDescription_POWER_GEM,
+    [MOVE_STONE_EDGE - 1] = gMoveDescription_STONE_EDGE,
+    [MOVE_SCORCHING_SANDS - 1] = gMoveDescription_SCORCHING_SANDS,
+    [MOVE_EARTH_POWER - 1] = gMoveDescription_EARTH_POWER,
 };
