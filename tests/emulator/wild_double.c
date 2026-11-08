@@ -149,10 +149,19 @@ static void startSpecial(void){
 
 static void warpGrass(void){
  unsigned x,y,found=0;
- for(y=8;y<45&&!found;y++)for(x=8;x<24;x++)
-  if(CALL(MapGridGetMetatileAttributeAt,x,y,ABI_META_ENCOUNTER)==ABI_TILE_LAND
-   && CALL(MapGridGetMetatileAttributeAt,x,y+1,ABI_META_ENCOUNTER)==ABI_TILE_LAND){found=1;break;}
- CHECK(found);y--;
+ // In Mt. Moon, encounter-eligible tiles can border impassable cave geometry.
+ // Select a real three-tile walkable corridor; start in the middle to allow
+ // the native overworld walker to travel in both directions.
+ for(y=9;y<44&&!found;y++)for(x=8;x<24;x++)
+  if(CALL(MapGridGetMetatileAttributeAt,x,y-1,ABI_META_ENCOUNTER)==ABI_TILE_LAND
+   && CALL(MapGridGetMetatileAttributeAt,x,y,ABI_META_ENCOUNTER)==ABI_TILE_LAND
+   && CALL(MapGridGetMetatileAttributeAt,x,y+1,ABI_META_ENCOUNTER)==ABI_TILE_LAND
+   && !CALL(MapGridGetCollisionAt,x,y-1)
+   && !CALL(MapGridGetCollisionAt,x,y)
+   && !CALL(MapGridGetCollisionAt,x,y+1)){found=1;break;}
+ CHECK(found);
+ fprintf(stderr,"WILD99 walk corridor grid=%u,%u collisions=%u/%u/%u\\n",x,y,
+         CALL(MapGridGetCollisionAt,x,y-1),CALL(MapGridGetCollisionAt,x,y),CALL(MapGridGetCollisionAt,x,y+1));
  CALL(SetWarpDestination,MAP_GROUP(MAP_MT_MOON_1F),MAP_NUM(MAP_MT_MOON_1F),0xFFFFFFFF,x-7,y-7);
  CALL(WarpIntoMap);CALL(CB2_LoadMap);frames(180,0);
  CALL(PlayerGetDestCoords,scratch,scratch+2);
@@ -164,6 +173,14 @@ static void walkToBattle(void){
  for(f=0;f<3600;f++){
   if(core->busRead32(core,SYM_gBattleTypeFlags)&BATTLE_TYPE_DOUBLE)break;
   frames(1,((f/24)%2)?64:128);
+ }
+ if(f==3600){
+  CALL(PlayerGetDestCoords,scratch,scratch+2);
+  unsigned px=core->busRead16(core,scratch),py=core->busRead16(core,scratch+2);
+  fprintf(stderr,"WILD99 walk timeout player grid=%u,%u land=%u collision=%u battleFlags=%08x cb2=%08x eligible=%u\\n",
+          px,py,CALL(MapGridGetMetatileAttributeAt,px,py,ABI_META_ENCOUNTER),
+          CALL(MapGridGetCollisionAt,px,py),core->busRead32(core,SYM_gBattleTypeFlags),
+          core->busRead32(core,SYM_gMain+ABI_MAIN_CB2),CALL(TryDoDoubleWildBattle));
  }
  CHECK(f<3600);core->setKeys(core,0);waitAction();
  CHECK(core->busRead8(core,SYM_gBattlersCount)==4);
