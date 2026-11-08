@@ -2049,6 +2049,11 @@
       "delta": null,
       "effect_rules": {
         "semantic": "TARGET_ATTACK_AND_STAGES_MODIFIER_REVIEW"
+      },
+      "engine_translation": {
+        "effect": "EFFECT_HIT",
+        "target": "MOVE_TARGET_SELECTED",
+        "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       }
     },
     {
@@ -2096,6 +2101,11 @@
       "delta": null,
       "effect_rules": {
         "semantic": "HIT"
+      },
+      "engine_translation": {
+        "effect": "EFFECT_HIT",
+        "target": "MOVE_TARGET_SELECTED",
+        "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       }
     },
     {
@@ -2144,6 +2154,11 @@
       "effect_rules": {
         "semantic": "DEFENSE_MINUS_1_20",
         "secondary_percent": 20
+      },
+      "engine_translation": {
+        "effect": "EFFECT_DEFENSE_DOWN_HIT",
+        "target": "MOVE_TARGET_SELECTED",
+        "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
       }
     },
     {

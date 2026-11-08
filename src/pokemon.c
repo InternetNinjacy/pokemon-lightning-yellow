@@ -2393,6 +2393,7 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
     s32 damageHelper;
     u8 type;
     u16 attack, defense;
+    struct BattlePokemon *attackStatSource;
     u16 spAttack, spDefense;
     u8 defenderHoldEffect;
     u8 defenderHoldEffectParam;
@@ -2427,7 +2428,10 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
     else
         type = typeOverride & DYNAMIC_TYPE_MASK;
 
-    attack = attacker->attack;
+    // Foul Play borrows only raw Attack and its stages. User level, ability,
+    // held item, burn, STAB and all defensive modifiers remain on their owners.
+    attackStatSource = (move == MOVE_FOUL_PLAY) ? defender : attacker;
+    attack = attackStatSource->attack;
     defense = defender->defense;
     spAttack = attacker->spAttack;
     spDefense = defender->spDefense;
@@ -2538,13 +2542,13 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
         if (gCritMultiplier == 2)
         {
             // Critical hit, if attacker has lost attack stat stages then ignore stat drop
-            if (attacker->statStages[STAT_ATK] > DEFAULT_STAT_STAGE)
-                APPLY_STAT_MOD(damage, attacker, attack, STAT_ATK)
+            if (attackStatSource->statStages[STAT_ATK] > DEFAULT_STAT_STAGE)
+                APPLY_STAT_MOD(damage, attackStatSource, attack, STAT_ATK)
             else
                 damage = attack;
         }
         else
-            APPLY_STAT_MOD(damage, attacker, attack, STAT_ATK)
+            APPLY_STAT_MOD(damage, attackStatSource, attack, STAT_ATK)
 
         damage = damage * gBattleMovePower;
         damage *= (2 * attacker->level / 5 + 2);

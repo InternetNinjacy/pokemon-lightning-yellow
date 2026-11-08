@@ -121,6 +121,7 @@ static void spreadStatusTests(void){
 #include "new_avalanche.c"
 #include "new_moves374.c"
 #include "new_payback.c"
+#include "new_moves382.c"
 static void originalEffectTests(void){
  if(getenv("LIGHTNING_SKITTER_SLASH_ONLY")){skitterSlashTests();return;}
  if(getenv("LIGHTNING_VENOM_WEB_ONLY")){venomWebTests();return;}
@@ -149,6 +150,7 @@ static void originalEffectTests(void){
  avalancheTests();
  moves374Tests();
  paybackTests();
+ moves382Tests();
  thunderWaveTests();
  ghostReworkTests();
  spreadStatusTests();

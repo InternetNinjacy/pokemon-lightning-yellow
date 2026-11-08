@@ -62,6 +62,7 @@ jobs:
           python3 tests/run_avalanche_tests.py
           python3 tests/run_moves374_tests.py
           python3 tests/run_payback_tests.py
+          python3 tests/run_moves382_tests.py
           python3 tests/run_move_foundation_tests.py
           python3 tests/run_move_ui_tests.py
           python3 tests/run_original_move_data_tests.py
@@ -129,6 +130,10 @@ jobs:
           # Already installed with the initial dependencies; verify it remains
           # available without starting another late network/package transaction.
           dpkg-query -W libmgba-dev
+      - name: Focused Foul Play and Water moves382–384 native tests in mGBA
+        if: matrix.target == 'modified'
+        timeout-minutes: 10
+        run: LIGHTNING_MOVES382_ONLY=1 python3 tests/emulator/run.py
       - name: Focused Payback target-action native tests in mGBA
         if: matrix.target == 'modified'
         timeout-minutes: 10
