@@ -133,7 +133,7 @@ static void followerGraphicsObjectProbe(void) {
 }
 
 """
-c=c.replace('#include "symbols.h"', '#include "symbols.h"\\n#include "follower_steelix_frame.h"', 1)
+c=c.replace('#include "symbols.h"', '#include "symbols.h"\n#include "follower_steelix_frame.h"', 1)
 c=c.replace(anchor, probe+"\n"+anchor)
 anchor2="    if(getenv(\"LIGHTNING_BALL_WEATHER_ONLY\"))"
 assert anchor2 in c
