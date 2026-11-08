@@ -75,6 +75,8 @@ static void sowSelectRoute23LandTile(void)
    if(y>0 && previous[id-width]!=-2)neighbors++;
    if(y+1<height && previous[id+width]!=-2)neighbors++;
    if(neighbors<2)continue;
+   // Guard the exact installed map object, not merely any walkable candidate.
+   CHECK(x==13 && y==145);
    printf("SOW-008 SELECTED ROUTE23 TILE: x=%u y=%u, reachable on foot from (%u,%u), %u walkable neighbors\\n",
           x,y,startX,startY,neighbors);
    sowCheckLandRoute(MAP_ROUTE23,width,height,startX,startY,x,y);
@@ -94,5 +96,6 @@ static void sowPlacementTests(void)
  sowCheckLandRoute(MAP_ROUTE21_NORTH,24,50,13,1,13,7);
  // Between Route23 Cascade and Thunder badge checkpoints, below Surf section.
  sowSelectRoute23LandTile();
+ sowCheckLandRoute(MAP_ROUTE23,24,160,9,151,13,145);
  CHECK(core->loadState(core,bootState));
 }
