@@ -21,7 +21,7 @@ table = battle.split("gBattleScriptsForMoveEffects::",1)[1].split("\nBattleScrip
 pointers = re.findall(r'\.4byte (BattleScript_\w+)',table)
 assert len(pointers)==217 and pointers[214]=="BattleScript_EffectSleepHit" and pointers[215]=="BattleScript_EffectSwarmCloud" and pointers[216]=="BattleScript_EffectIceFang"
 assert re.search(r'BattleScript_EffectSwarmCloud::\n\tsetmoveeffect MOVE_EFFECT_CONFUSION\n\tgoto BattleScript_EffectHit',battle)
-assert re.search(r'seteffectwithchance\n\tjumpifnotmove MOVE_SWARM_CLOUD, BattleScript_AfterSwarmCloud\n\tsetmoveeffect MOVE_EFFECT_POISON\n\tseteffectwithchance\nBattleScript_AfterSwarmCloud::\n\ttryfaintmon BS_TARGET',battle)
+assert re.search(r'seteffectwithchance\n\tjumpifmove MOVE_ICE_FANG, BattleScript_IceFangFlinch\n\tjumpifnotmove MOVE_SWARM_CLOUD, BattleScript_AfterSwarmCloud\n\tsetmoveeffect MOVE_EFFECT_POISON\n\tseteffectwithchance\n\tgoto BattleScript_AfterSwarmCloud\nBattleScript_IceFangFlinch::\n\tsetmoveeffect MOVE_EFFECT_FLINCH\n\tseteffectwithchance\nBattleScript_AfterSwarmCloud::\n\ttryfaintmon BS_TARGET',battle)
 # Both independent rolls inherit the same 50% source chance; statuses have
 # distinct native immunity checks (Own Tempo, Safeguard, Poison/Steel, etc.).
 asm = (root/"data/battle_anim_scripts.s").read_text()
