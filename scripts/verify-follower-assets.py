@@ -76,8 +76,9 @@ def read_png(data):
     if ihdr is None or len(ihdr) != 13:
         raise ValueError("missing IHDR")
     w, h, depth, ctype, compression, filtering, interlace = struct.unpack(">IIBBBBB", ihdr)
-    if (w, h, depth, ctype, compression, filtering, interlace) != (192, 32, 4, 3, 0, 0, 0):
+    if (w, h) not in ((192, 32), (384, 64)) or (depth, ctype, compression, filtering, interlace) != (4, 3, 0, 0, 0):
         raise ValueError("unexpected PNG geometry or indexed format: " + str((w,h,depth,ctype,interlace)))
+    cell_size = h  # Six square cells in a horizontal strip; never silently downscale.
     palette = next((x for n, x in chunks if n == b"PLTE"), b"")
     if len(palette) == 0 or len(palette) % 3 or len(palette) > 48:
         raise ValueError("invalid 4-bit palette")
@@ -116,14 +117,14 @@ def read_png(data):
         raise ValueError("out-of-range indexed PNG pixel")
     frames = []
     for frame in range(6):
-        # Six consecutive 32x32 cells; the source animation table must
-        # independently establish which cells face each direction.
-        pixels = tuple(v for row in rows for v in row[frame*32:(frame+1)*32])
+        # Six square cells; upstream animation mapping is checked independently.
+        pixels = tuple(v for row in rows for v in row[frame*cell_size:(frame+1)*cell_size])
         frames.append(pixels)
     if any(not any(pixel != 0 for pixel in frame) for frame in frames):
         raise ValueError("blank 32x32 directional animation cell")
     return {
-        "dimensions": [w,h], "bit_depth": depth, "indexed_colors": len(palette)//3,
+        "dimensions": [w,h], "frame_cell_size": [cell_size,cell_size],
+        "bit_depth": depth, "indexed_colors": len(palette)//3,
         "unique_frame_cells": len(set(frames)),
         "nonzero_frame_cells": sum(any(p != 0 for p in f) for f in frames),
         "cell_fingerprints": [hashlib.sha256(bytes(f)).hexdigest()[:12] for f in frames],
@@ -185,7 +186,7 @@ def main():
         rows = list(csv.DictReader(f))
     if len(rows) != 252 or len({r["species"] for r in rows}) != 252 or rows[232]["species"] != "CASTFORM":
         raise ValueError("wrong 252 roster")
-    results, failures = [], []
+    results, failures, oversized = [], [], []
     for n, row in enumerate(rows, 1):
         name = row["species"]
         try:
@@ -199,6 +200,10 @@ def main():
                 read_pal(fetch(row[key]))
             result = {"dex": n, "species": name, "png_blob": sha, **details}
             results.append(result)
+            if details["frame_cell_size"] != [32, 32]:
+                oversized.append({"dex": n, "species": name,
+                                  "cell": details["frame_cell_size"],
+                                  "reason": "requires explicitly validated FireRed graphics strategy"})
             print(f"{n:03d}/252 {name}: indexed 192x32, {details['unique_frame_cells']} distinct cells", flush=True)
         except Exception as exc:
             failures.append({"dex": n, "species": name, "error": str(exc)})
@@ -221,8 +226,9 @@ def main():
             forms[form]["sprite"] = str(exc)
             failures.append({"form": form, "sprite": str(exc)})
     report = {"source": BASE, "verified": len(results), "total": len(rows),
+              "oversized_sheet_exceptions": oversized,
               "animation_contract": animation_contract,
-              "format_checked": "PNG CRC, complete scanlines, 4-bit indexed pixels, six 32x32 cells",
+              "format_checked": "PNG CRC, complete scanlines, 4-bit indexed pixels, six square cells (32 or 64)",
               "forms": forms, "species": results, "failures": failures,
               "limitations": ["Does not prove cell-to-facing animation table mapping",
                               "Does not prove frame art visually correct",
@@ -230,8 +236,8 @@ def main():
                               "Does not independently establish redistribution rights"]}
     report_path = Path(os.environ.get("FOLLOWER_REPORT", "/tmp/lightning-followers-validation.json"))
     report_path.write_text(json.dumps(report, indent=2) + "\n")
-    print(f"SUMMARY verified={len(results)}/252 failures={len(failures)} report={report_path}", flush=True)
-    if failures or len(results) != 252:
+    print(f"SUMMARY verified={len(results)}/252 failures={len(failures)} oversized={len(oversized)} report={report_path}", flush=True)
+    if failures or oversized or len(results) != 252:
         sys.exit(1)
 
 
