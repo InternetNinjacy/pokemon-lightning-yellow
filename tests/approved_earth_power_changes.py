@@ -45,6 +45,8 @@ HUNKS = {
 def prior_earth_power_source(path, content=None):
     if content is None:
         content = Path(path).read_text()
+    from approved_ice_fang_changes import prior_ice_fang_source
+    content = prior_ice_fang_source(path, content)
     for after, before in HUNKS.get(str(path), []):
         assert content.count(after) == 1, "Unreviewed Earth Power #371 delta: " + str(path)
         content = content.replace(after, before, 1)
