@@ -28,6 +28,15 @@ for m,script,gfx,flag,x,y,species,level,weather in expected:
     assert content.count("callnative SowPrepareScriptedEncounter")==1
     assert "B_OUTCOME_WON" in content and "B_OUTCOME_CAUGHT" in content
     assert "SpecialWeather_EventScript_FinishAftermath" in content
+    # An encounter only resolves for actual capture or defeat, never Run/loss.
+    resolved=script.replace("SowCorphish","SowResolved").replace("SowGlalie","SowResolved").replace("SowTyranitar","SowResolved")
+    abort=script.replace("SowCorphish","SowAbort").replace("SowGlalie","SowAbort").replace("SowTyranitar","SowAbort")
+    assert f"goto_if_eq VAR_RESULT, B_OUTCOME_WON, {resolved}" in content
+    assert f"goto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, {resolved}" in content
+    assert f"{abort}::\\n\\trelease\\n\\tend" in content
+    assert "B_OUTCOME_RAN" not in content[content.index(script+"::"):]
+    assert content.index("dowildbattle",content.index(script+"::")) < content.index("specialvar VAR_RESULT, GetBattleOutcome",content.index(script+"::"))
+    assert content.index("SpecialWeather_EventScript_FinishAftermath",content.index(resolved+"::")) < content.index("removeobject VAR_LAST_TALKED",content.index(resolved+"::"))
 assert "MAP_SCRIPT_ON_TRANSITION" in (root/"Route21_South"/"scripts.inc").read_text()
 assert "SpecialWeatherActivateScript" in (root/"Route23"/"scripts.inc").read_text()
 c=Path("src/script_pokemon_util.c").read_text()
