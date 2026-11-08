@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from approved_kanto_water_followup_changes import prior_water_followup_source
+from approved_sevii_land_changes import prior_sevii_land_source
 from approved_museum_changes import prior_museum_source
 """Executable production RNG mapping and separate static scope checks.
 
@@ -43,7 +43,7 @@ with tempfile.TemporaryDirectory(prefix='lightning-vendor-') as temp:
 
 fixture=json.loads(Path('tests/specifications/mystery_vendor_preserved.json').read_text())
 for path,digest in fixture['files'].items():
-    assert hashlib.sha256(prior_water_followup_source(path)).hexdigest()==digest,path
+    assert hashlib.sha256(prior_sevii_land_source(path)).hexdigest()==digest,path
 blocks=lambda s:dict(re.findall(r'^(\w+)::\n(.*?)(?=^\w+::|\Z)',s,re.M|re.S))
 for path,items in fixture['blocks'].items():
     current=blocks(Path(path).read_text())
