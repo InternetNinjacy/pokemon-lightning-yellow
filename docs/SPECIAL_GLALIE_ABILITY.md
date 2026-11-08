@@ -1,6 +1,6 @@
 # SOW-007: persistent individual Glalie Snow Warning
 
-Branch `feature/special-glalie-ability-persistence`, based on PR118 head `368b3119c7c50c251324f76573d232cdb035e8bd`. Independent of Brock-party PR126 and route-lifecycle PR113. No merge authorized. Scope: issue47 individual SOW-007 capture retention, not installing the encounter.
+Branch `feature/special-glalie-ability-persistence`, stacked on Brock-party PR126 head `6a8b8010` and its parent PR118. Route-lifecycle PR113 remains separate. No merge authorized. Scope: issue47 individual SOW-007 capture retention, not installing the encounter.
 
 ## Implementation and storage
 
@@ -25,7 +25,7 @@ LIGHTNING_WEATHER_MOVES_ONLY=1 python3 tests/emulator/run.py
 - **Actual** Bag/Master Ball captures of marked Glalie into the party and, separately, a full-party PC passed. Both retain Snow Warning and identity after flash save/reload. A captured PC Glalie restored to the player's party starts Snow Warning in a subsequent actual battle; Run restores field weather without changing the saved ability.
 - The capture fixtures use explicit test-only Route1/Lv30 data, not approved production placement/balance. They prove capture/storage/ability plumbing, not the unimplemented Route21 event or its resolution flags.
 - The initial capture fixture used a foreign preset wild OT and became a bad Egg when vanilla GiveMonToPlayer replaced OT without rekeying. Corrected the fixture to use the native wild-generation/player OT contract; no unrelated OT-setting engine behavior changed. Foreign OT identities are still exercised unchanged by the independent24-permutation storage tests.
-- Broader regression, clean reproducibility and CI evidence are recorded in the PR. No ROM/BIOS artifacts are uploaded.
+- Before combining with Brock, broader weather regression11759 assertions and clean SHA-256 reproducibility passed. Combined Brock/Glalie regression, final clean rebuild and CI evidence are recorded in the PR. No ROM/BIOS artifacts are uploaded.
 
 ## Limits and continuation
 

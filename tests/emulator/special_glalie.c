@@ -9,6 +9,9 @@ static void specialGlalieTests(void)
   CHECK(!CALL(SetSpecialEncounterAbility,player(0),ABILITY_DRIZZLE));sameBytes(player(0),original,sizeof(original));
   CHECK(CALL(SetSpecialEncounterAbility,player(0),ABILITY_SNOW_WARNING));
   CHECK(CALL(GetMonAbility,player(0))==ABILITY_SNOW_WARNING);
+  unsigned char marked[ABI_MON_SIZE];readBytes(player(0),marked,sizeof(marked));unsigned changed=0;
+  for(unsigned b=0;b<sizeof(marked);b++)changed+=marked[b]!=original[b];
+  CHECK(changed>0&&changed<=4);CHECK(monget(player(0),MON_DATA_IVS)==0x3FFFFFFF);
   CHECK(monget(player(0),ABI_DATA_PERSONALITY)==pid);CHECK(monget(player(0),ABI_DATA_OT_ID)==0x12345678);
   CHECK(!monget(player(0),ABI_DATA_SANITY_IS_BAD_EGG));CHECK(monget(player(0),ABI_DATA_LEVEL)==30);
   CALL(SetBoxMonAt,0,pid,player(0));CALL(BoxMonToMon,CALL(GetBoxedMonPtr,0,pid),enemy(0));
