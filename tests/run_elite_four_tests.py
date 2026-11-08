@@ -5,6 +5,7 @@ import json,re,hashlib
 from approved_elite_four_changes import prior_elite_four_source
 from approved_thunder_wave_changes import prior_thunder_wave_source
 from approved_ordinary_trainer_projection import restore_ordinary_trainer_blocks
+from approved_weather_species_slots import prior_weather_species_source
 m=json.loads(Path('tests/specifications/approved_elite_four_delta.json').read_text())
 for p,v in m['files'].items():
  source=restore_ordinary_trainer_blocks(p)
@@ -18,6 +19,8 @@ for p,v in m['files'].items():
 for p,h in m['preserved_files'].items():
  source=(restore_ordinary_trainer_blocks(p) if p=='src/data/trainers.h' else Path(p).read_text())
  source=prior_thunder_wave_source(p,source)
+ if p=='src/data/pokemon/species_info.h':
+  source=prior_weather_species_source(source)
  if p=='src/battle_main.c':
   approved_selector='''                // Use the existing native ability slot field only for Agatha's Alakazam.
                 // This preserves its original PID, nature, gender and species ability table.
