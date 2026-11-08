@@ -68,7 +68,7 @@ for key in ["Corphish","Glalie","Tyranitar"]:
  assert "gMonIcon_"+key in sprite
 farewell=(root/"Route12"/"text.inc").read_text()
 assert 'Route12_Text_SowGhostFarewell::' in farewell
-assert 'At last... I can rest\\n' in farewell
+assert r'At last... I can rest\\n' in farewell
 assert 'in peace...$' in farewell
 route12=(root/"Route12"/"scripts.inc").read_text()
 resolved=route12[route12.index("Route12_EventScript_SowResolved::"):]
