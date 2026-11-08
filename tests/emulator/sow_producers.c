@@ -71,7 +71,16 @@ static void sowScriptedRunTests(void)
   CHECK(CALL(FlagGet,active[i]));
   CHECK(!CALL(FlagGet,resolved[i]));
   unsigned object=CALL(GetObjectEventIdByLocalIdAndMap,localIds[i],MAP_NUM(maps[i]),MAP_GROUP(maps[i]));
-  CHECK(object<16);
+  if(object>=ABI_OBJECT_COUNT){
+   fprintf(stderr,"SOW event%u: object localId=%u is absent; map=%u group=%u, player=(%u,%u), resolvedFlag=%u, activeFlag=%u, objectId=%u\\n",
+    i,localIds[i],MAP_NUM(maps[i]),MAP_GROUP(maps[i]),startX[i],startY[i],
+    CALL(FlagGet,resolved[i]),CALL(FlagGet,active[i]),object);
+   for(unsigned local=1;local<=12;local++){
+    unsigned present=CALL(GetObjectEventIdByLocalIdAndMap,local,MAP_NUM(maps[i]),MAP_GROUP(maps[i]));
+    fprintf(stderr," SOW map object local%u -> slot%u\\n",local,present);
+   }
+  }
+  CHECK(object<ABI_OBJECT_COUNT);
   core->busWrite8(core,SYM_gSelectedObjectEvent,object);
   CALL(VarSet,VAR_LAST_TALKED,localIds[i]);
   fossilStart(scripts[i]);
