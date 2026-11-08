@@ -218,7 +218,7 @@ def check_upstream_animation_contract():
 def check_firered_64x64_reference():
     """Existing FireRed OAM support only; not evidence of dynamic follower VRAM safety."""
     source = (ROOT / "src/data/object_events/object_event_graphics_info.h").read_text()
-    m = re.search(r"gObjectEventGraphicsInfo_Seagallop\\s*=\\s*\\{(.*?)\\};", source, re.S)
+    m = re.search(r"gObjectEventGraphicsInfo_Seagallop\s*=\s*\{(.*?)\};", source, re.S)
     if not m:
         raise ValueError("FireRed 64x64 object graphics reference not found")
     record = m.group(1)
