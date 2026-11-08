@@ -14,7 +14,7 @@ static void sowScriptedProducerTests(void)
   CALL(CreateScriptedWildMon,species[i],levels[i],0);
   CALL(VarSet,VAR_0x8004,i);
   CALL(SowPrepareScriptedEncounter);
-  CHECK(CALL(VarGet,VAR_RESULT)==TRUE);
+  CHECK(CALL(VarGet,VAR_RESULT)==1);
   CHECK(monget(enemy(0),ABI_DATA_SPECIES)==species[i]);
   CHECK(monget(enemy(0),ABI_DATA_LEVEL)==levels[i]);
   CHECK(monget(enemy(0),ABI_DATA_HELD_ITEM)==0);
@@ -24,7 +24,7 @@ static void sowScriptedProducerTests(void)
  CALL(CreateScriptedWildMon,SPECIES_PIDGEY,10,0);
  CALL(VarSet,VAR_0x8004,0);
  CALL(SowPrepareScriptedEncounter);
- CHECK(CALL(VarGet,VAR_RESULT)==FALSE);
+ CHECK(CALL(VarGet,VAR_RESULT)==0);
  printf("PASS: actual scripted Corphish/Glalie/Tyranitar created at approved levels, all 12 exact moves and PP, no items, individual Drizzle/Snow Warning and native Sand Stream; invalid species fails closed\n");
  CHECK(core->loadState(core,bootState));
 }
