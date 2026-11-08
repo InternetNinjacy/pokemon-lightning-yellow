@@ -144,5 +144,5 @@ Route12_Text_GiaNotEnoughMons::
     .string "Don't you have one more POKéMON?$"
 
 Route12_Text_SowGhostFarewell::
-	.string "At last... I can rest\\n"
+	.string "At last... I can rest\n"
 	.string "in peace...$"
