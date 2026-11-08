@@ -154,16 +154,16 @@ def check_upstream_animation_contract():
         "sAnim_GoEast2F": [4, 5],
     }
     for routine, expected in mapping.items():
-        match = re.search(r"static const union AnimCmd\\s+" + routine +
-                          r"\\[\\]\\s*=\\s*\\{(.*?)\\};", source, re.S)
+        match = re.search(r"static const union AnimCmd\s+" + routine +
+                          r"\[\]\s*=\s*\{(.*?)\};", source, re.S)
         if match is None:
             raise ValueError("missing upstream animation " + routine)
-        numbers = [int(v) for v in re.findall(r"ANIMCMD_FRAME\\((\\d+)\\s*,", match.group(1))]
+        numbers = [int(v) for v in re.findall(r"ANIMCMD_FRAME\((\d+)\s*,", match.group(1))]
         if not numbers or set(numbers) != set(expected):
             raise ValueError("incompatible frame mapping " + routine + ": " + str(numbers))
         if routine == "sAnim_GoEast2F" and ".hFlip = TRUE" not in match.group(1):
             raise ValueError("east walking must flip the west-facing image")
-    table_match = re.search(r"const union AnimCmd \\*const sAnimTable_Following\\[\\]\\s*=\\s*\\{(.*?)\\};", source, re.S)
+    table_match = re.search(r"const union AnimCmd \*const sAnimTable_Following\[\]\s*=\s*\{(.*?)\};", source, re.S)
     if table_match is None:
         raise ValueError("missing generic follower animation table")
     table = table_match.group(1)
@@ -171,7 +171,7 @@ def check_upstream_animation_contract():
         if ("[ANIM_STD_GO_" + direction + "] = sAnim_Go" + direction.title() + "2F") not in table:
             raise ValueError("missing generic walking animation for " + direction)
     graphics = fetch("src/data/object_events/object_event_graphics_info.h").decode("utf-8")
-    record = re.search(r"gObjectEventGraphicsInfo_Follower\\s*=\\s*\\{(.*?)\\};", graphics, re.S)
+    record = re.search(r"gObjectEventGraphicsInfo_Follower\s*=\s*\{(.*?)\};", graphics, re.S)
     if record is None or ".anims = sAnimTable_Following," not in record.group(1):
         raise ValueError("follower graphics record uses another animation table")
     return {"layout": "six consecutive 32x32 cells, [south0,south1,north0,north1,west0,west1]",
