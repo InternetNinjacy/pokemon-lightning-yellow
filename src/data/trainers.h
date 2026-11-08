@@ -4137,10 +4137,10 @@ const struct Trainer gTrainers[] = {
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_LEADER_BROCK,
         .trainerName = _("BROCK"),
-        .items = {},
+        .items = {ITEM_POTION},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .party = NO_ITEM_CUSTOM_MOVES(sParty_LeaderBrock),
+        .party = ITEM_CUSTOM_MOVES(sParty_LeaderBrock),
     },
     [TRAINER_LEADER_MISTY] = {
         .trainerClass = TRAINER_CLASS_LEADER,
