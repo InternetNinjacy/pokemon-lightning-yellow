@@ -2,11 +2,12 @@
 """BTL-005 #370 exact source/approval audit; real battle verification runs in mGBA."""
 import json
 from pathlib import Path
+from approved_avalanche_changes import prior_avalanche_source
 from approved_scorching_sands_changes import prior_scorching_sands_source
 
 root = Path(__file__).resolve().parents[1]
 read = lambda path: (root/path).read_text()
-constant = read("include/constants/moves.h")
+constant = prior_avalanche_source("include/constants/moves.h",read("include/constants/moves.h"))
 moves = read("src/data/battle_moves.h")
 names = read("src/data/text/move_names.h")
 descriptions = read("src/move_descriptions.c")

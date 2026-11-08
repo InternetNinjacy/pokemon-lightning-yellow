@@ -2,9 +2,10 @@
 """BTL-005 #367-369 strict source contract; native GBA execution is separate."""
 import json
 from pathlib import Path
+from approved_avalanche_changes import prior_avalanche_source
 from approved_bellow_rock_changes import prior_bellow_rock_source
 ROOT=Path(__file__).resolve().parents[1]
-const=(ROOT/"include/constants/moves.h").read_text()
+const=prior_avalanche_source("include/constants/moves.h",(ROOT/"include/constants/moves.h").read_text())
 data=(ROOT/"src/data/battle_moves.h").read_text()
 names=(ROOT/"src/data/text/move_names.h").read_text()
 desc=(ROOT/"src/move_descriptions.c").read_text()

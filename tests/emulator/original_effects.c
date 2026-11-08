@@ -118,6 +118,7 @@ static void spreadStatusTests(void){
 #include "new_scorching_sands.c"
 #include "new_earth_power.c"
 #include "new_ice_fang.c"
+#include "new_avalanche.c"
 static void originalEffectTests(void){
  if(getenv("LIGHTNING_SKITTER_SLASH_ONLY")){skitterSlashTests();return;}
  if(getenv("LIGHTNING_VENOM_WEB_ONLY")){venomWebTests();return;}
@@ -143,6 +144,7 @@ static void originalEffectTests(void){
  scorchingSandsTests();
  earthPowerTests();
  iceFangTests();
+ avalancheTests();
  thunderWaveTests();
  ghostReworkTests();
  spreadStatusTests();

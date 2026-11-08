@@ -2344,6 +2344,11 @@ void SwitchInClearSetData(void)
     s32 i;
     u8 *ptr;
 
+    // A replacement is a different Pokemon, even when it reuses a battler ID.
+    gBattleStruct->damagedByBattlers[gActiveBattler] = 0;
+    for (i = 0; i < MAX_BATTLERS_COUNT; i++)
+        gBattleStruct->damagedByBattlers[i] &= ~(1U << gActiveBattler);
+
     if (gBattleMoves[gCurrentMove].effect != EFFECT_BATON_PASS)
     {
         for (i = 0; i < NUM_BATTLE_STATS; i++)
@@ -3648,6 +3653,10 @@ static void TurnValuesCleanUp(bool8 var0)
 {
     s32 i;
     u8 *dataPtr;
+
+    if (!var0)
+        for (i = 0; i < MAX_BATTLERS_COUNT; i++)
+            gBattleStruct->damagedByBattlers[i] = 0;
 
     for (gActiveBattler = 0; gActiveBattler < gBattlersCount; gActiveBattler++)
     {

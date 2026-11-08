@@ -59,6 +59,7 @@ jobs:
           python3 tests/run_scorching_sands_tests.py
           python3 tests/run_earth_power_tests.py
           python3 tests/run_ice_fang_tests.py
+          python3 tests/run_avalanche_tests.py
           python3 tests/run_move_foundation_tests.py
           python3 tests/run_move_ui_tests.py
           python3 tests/run_original_move_data_tests.py
@@ -126,6 +127,10 @@ jobs:
           # Already installed with the initial dependencies; verify it remains
           # available without starting another late network/package transaction.
           dpkg-query -W libmgba-dev
+      - name: Focused Avalanche target-specific native battle tests in mGBA
+        if: matrix.target == 'modified'
+        timeout-minutes: 10
+        run: LIGHTNING_AVALANCHE_ONLY=1 python3 tests/emulator/run.py
       - name: Focused Ice Fang native battle tests in mGBA
         if: matrix.target == 'modified'
         timeout-minutes: 10

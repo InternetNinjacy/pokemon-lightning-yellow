@@ -1849,6 +1849,13 @@ static void Cmd_datahpupdate(void)
                     gBattleMons[gActiveBattler].hp = 0;
                 }
 
+                // Track only real direct move HP loss, never Substitute, healing,
+                // recoil/confusion on the user, status effects or passive damage.
+                if (gHpDealt > 0 && gBattlescriptCurrInstr[1] == BS_TARGET
+                 && gBattlerAttacker < MAX_BATTLERS_COUNT && gBattlerAttacker != gActiveBattler
+                 && !(gHitMarker & HITMARKER_PASSIVE_DAMAGE) && !IS_MOVE_STATUS(gCurrentMove))
+                    gBattleStruct->damagedByBattlers[gActiveBattler] |= 1U << gBattlerAttacker;
+
                 if (!gSpecialStatuses[gActiveBattler].dmg && !(gHitMarker & HITMARKER_PASSIVE_DAMAGE))
                     gSpecialStatuses[gActiveBattler].dmg = gHpDealt;
 

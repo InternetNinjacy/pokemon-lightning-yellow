@@ -473,7 +473,9 @@ struct BattleStruct
     u8 thunderWaveTargets;
     u8 thunderWaveTarget;
     bool8 thunderWaveActive;
-    u8 padding_1E8[0x18];
+    // Sources of actual direct HP damage this turn, one bit per battler.
+    u8 damagedByBattlers[MAX_BATTLERS_COUNT];
+    u8 padding_1EC[0x14];
 }; // size == 0x200 bytes
 
 extern struct BattleStruct *gBattleStruct;

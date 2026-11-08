@@ -2,10 +2,11 @@
 """Earth Power #371 source contract; native Singles/Doubles verified separately."""
 import json
 from pathlib import Path
+from approved_avalanche_changes import prior_avalanche_source
 from approved_earth_power_changes import prior_earth_power_source
 ROOT=Path(__file__).resolve().parents[1]
 read=lambda p:(ROOT/p).read_text()
-const=read("include/constants/moves.h")
+const=prior_avalanche_source("include/constants/moves.h",read("include/constants/moves.h"))
 data=read("src/data/battle_moves.h")
 names=read("src/data/text/move_names.h")
 desc=read("src/move_descriptions.c")
