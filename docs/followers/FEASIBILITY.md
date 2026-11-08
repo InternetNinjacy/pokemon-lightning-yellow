@@ -144,3 +144,18 @@ Rollback: this audit-only feature branch/PR can be closed without changing gamep
 or save data. Prior merged consolidation is recoverable through Git merge history
 and tag `recovery/main-before-consolidation-20261106`. Follower implementation stays
 open for review; no auto-merge or ROM release.
+
+## 2026-11-08 continuation — owner reports permissions resolved; asset verification still pending
+
+**Owner update:** The project owner stated on November 8, 2026: “Permission was resolved. Perfect, lets continue.” Treat this as owner confirmation that the previously raised permission matter has been resolved; do not require the owner to repeat the same decision. This audit does not possess the written grant, the particular licensed sprite source, or a contributor-by-contributor scope inventory, and consequently does not independently certify redistribution rights. Preserve original notices and confirm coverage of chosen assets before import. No artwork or code was copied in this continuation.
+
+**Pinned candidate sampled:** `Kasenn/pokeemerald-expansion-kasen` at `cbe04a7a2ef645bee19d159876da074154ccf1f2`. Direct connector reads confirmed 16 RGB palette entries with `JASC-PAL / 0100 / 16` headers for normal and Shiny `bulbasaur`, `pikachu`, `eevee`, `castform`, and `wailord` (10 palettes). Also confirmed the six Castform alternate-form palettes at:
+- `graphics/pokemon/castform/sunny/overworld_{normal,shiny}.pal`
+- `graphics/pokemon/castform/rainy/overworld_{normal,shiny}.pal`
+- `graphics/pokemon/castform/snowy/overworld_{normal,shiny}.pal`
+
+**Important:** This is sixteen sample palette-file reads, **not** a 252/252 palette-content validation, image/frame verification, pixel-to-palette crosscheck, or conversion/ROM test. The prior inventory's 252 normal/Shiny *paths* remains unchanged. Unown and Spinda palettes were also readable, but those species are expressly outside Lightning Yellow's approved roster and are not follower candidates.
+
+**Binary asset access blocker:** GitHub connector's `fetch_blob` on exact pinned Bulbasaur PNG blob IDs for both Kasenn and aarant returned a `UnicodeDecodeError` on the PNG's `0x89` signature, rather than raw image bytes. A container-side Git fetch failed DNS resolution; no bytes were available for PNG dimensions, directions, animation, transparency or palette-index testing. **Do not infer frame completeness from PNG path existence.**
+
+**Gate result:** STILL BLOCKED on independent all-252 binary/frame and FireRed technical verification. Owner-reported permission resolution is acknowledged, but no asset gate PASS is claimed. No follower gameplay, save code, conversion import, PR merge or effort-point award occurred. Resume from this existing matrix once binary PNG read/download is available; validate 252 images and all applicable forms, palette indices, animation sequence, budgets and conversion in isolation before any gameplay coding. The preexisting matrix's permission column records the historical November 6 audit and is not newly adjudicated by this addendum.
