@@ -11,6 +11,21 @@ static uint32_t bmon(unsigned slot) {return SYM_gBattleMons+slot*ABI_BMON_SIZE;}
 static uint32_t monget(uint32_t mon,unsigned field){return CALL(GetMonData3,mon,field,0);}
 static void monput(uint32_t mon,unsigned field,unsigned value){core->busWrite32(core,scratch,value);CALL(SetMonData,mon,field,scratch);}
 static unsigned controller(unsigned b){return core->busRead32(core,SYM_gBattlerControllerFuncs+b*4)&~1U;}
+// Temporary diagnostic for PR #99: read real ROM state without changing encounter behavior.
+static void debugWildDoubleEligibility(const char *phase){
+ uint32_t save=core->busRead32(core,SYM_gSaveBlock1Ptr);
+ unsigned loc=save+ABI_SAVE1_LOCATION;
+ fprintf(stderr,"WILD99 %s location bytes=",phase);
+ for(unsigned i=0;i<8;i++)fprintf(stderr,"%02x",core->busRead8(core,loc+i));
+ fprintf(stderr," expected MtMoon group=%u num=%u header=%u partyCount=%u",
+         MAP_GROUP(MAP_MT_MOON_1F),MAP_NUM(MAP_MT_MOON_1F),
+         CALL(GetCurrentMapWildMonHeaderId),core->busRead8(core,SYM_gPlayerPartyCount));
+ for(unsigned i=0;i<2;i++)
+  fprintf(stderr," mon%u(species=%u hp=%u egg=%u)",i,
+          monget(player(i),ABI_DATA_SPECIES),monget(player(i),ABI_DATA_HP),
+          monget(player(i),ABI_DATA_IS_EGG));
+ fprintf(stderr," eligible=%u\\n",CALL(TryDoDoubleWildBattle));
+}
 static void screenshot(const char *path){
  if(!path)return;
  const void *video;size_t stride;core->getPixels(core,&video,&stride);
@@ -38,6 +53,8 @@ static void wildFixture(unsigned mapGroup,unsigned mapNum,unsigned two){
  frames(360,0);
  if((core->busRead32(core,SYM_gMain+ABI_MAIN_CB2)&~1U)!=SYM_CB2_Overworld){fprintf(stderr,"map-load callback=%08x\n",core->busRead32(core,SYM_gMain+ABI_MAIN_CB2));screenshot("/tmp/wild-map-timeout.ppm");}
  CHECK((core->busRead32(core,SYM_gMain+ABI_MAIN_CB2)&~1U)==SYM_CB2_Overworld);
+ if(mapGroup==MAP_GROUP(MAP_MT_MOON_1F) && mapNum==MAP_NUM(MAP_MT_MOON_1F))
+  debugWildDoubleEligibility("after wildFixture");
  printf("PASS: actual overworld map loaded %u.%u with %u usable Pokemon\n",mapGroup,mapNum,two?2:1);
 }
 static uint32_t landInfo(void){
@@ -109,7 +126,8 @@ static void waitOverworld(unsigned keys){
  CHECK(i<3600);frames(60,0);
 }
 static void startSpecial(void){
-  fprintf(stderr,"TRACE startSpecial double=%u mapPtr=%u\\n",CALL(TryDoDoubleWildBattle),CALL(GetCurrentMapWildMonHeaderId));
+ debugWildDoubleEligibility("before startSpecial");
+ CHECK(CALL(TryDoDoubleWildBattle)); // Fail at the eligibility gate, not after 5000 ineffective attempts.
  // Invoke the natural encounter trigger on packed attributes from an actual
  // ordinary land tile. This exercises its rate/Repel/roamer dispatch, without
  // a scripted event or writing either enemy species.
