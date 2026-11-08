@@ -273,6 +273,7 @@ BattleScript_HitFromAtkAnimation::
 	jumpifnotmove MOVE_SWARM_CLOUD, BattleScript_AfterSwarmCloud
 	setmoveeffect MOVE_EFFECT_POISON
 	seteffectwithchance
+	goto BattleScript_AfterSwarmCloud
 BattleScript_IceFangFlinch::
 	setmoveeffect MOVE_EFFECT_FLINCH
 	seteffectwithchance
