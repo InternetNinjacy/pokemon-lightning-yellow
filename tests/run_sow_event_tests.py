@@ -33,7 +33,7 @@ for m,script,gfx,flag,x,y,species,level,weather in expected:
     abort=script.replace("SowCorphish","SowAbort").replace("SowGlalie","SowAbort").replace("SowTyranitar","SowAbort")
     assert f"goto_if_eq VAR_RESULT, B_OUTCOME_WON, {resolved}" in content
     assert f"goto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, {resolved}" in content
-    assert f"{abort}::\\n\\trelease\\n\\tend" in content
+    assert f"{abort}::\n\trelease\n\tend" in content
     assert "B_OUTCOME_RAN" not in content[content.index(script+"::"):]
     assert content.index("dowildbattle",content.index(script+"::")) < content.index("specialvar VAR_RESULT, GetBattleOutcome",content.index(script+"::"))
     assert content.index("SpecialWeather_EventScript_FinishAftermath",content.index(resolved+"::")) < content.index("removeobject VAR_LAST_TALKED",content.index(resolved+"::"))
