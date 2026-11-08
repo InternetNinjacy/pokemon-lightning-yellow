@@ -413,6 +413,32 @@ const u8 gMoveDescription_DISCHARGE[] = _("Electricity hits\nall others. May\nca
 
 const u8 gMoveDescription_VOLT_SWITCH[] = _("An electric hit.\nThen switches out\nif able.");
 
+const u8 gMoveDescription_THUNDER_FANG[] = _("A charged bite. May\nparalyze or make\nthe foe flinch.");
+
+const u8 gMoveDescription_WILD_CHARGE[] = _("An electric tackle\nthat also hurts\nthe user.");
+
+const u8 gMoveDescription_SEED_BOMB[] = _("Hurls a cluster\nof hard seeds at\nthe foe.");
+
+const u8 gMoveDescription_PETAL_BLIZZARD[] = _("A petal storm\nstrikes every\nother battler.");
+
+const u8 gMoveDescription_WOOD_HAMMER[] = _("A heavy slam that\nalso hurts the\nuser.");
+
+const u8 gMoveDescription_AURA_SPHERE[] = _("A sphere of power\nthat bypasses\naccuracy checks.");
+
+const u8 gMoveDescription_FOCUS_BLAST[] = _("A focused blast.\nMay lower the\nfoe's SP. DEF.");
+
+const u8 gMoveDescription_DRAIN_PUNCH[] = _("A punch that\nrestores HP by\nhalf the damage.");
+
+const u8 gMoveDescription_FLASH_CANNON[] = _("A flash of energy\nthat may lower\nthe foe's SP. DEF.");
+
+const u8 gMoveDescription_MIRROR_SHOT[] = _("A metallic flash\nthat may lower\nfoe accuracy.");
+
+const u8 gMoveDescription_IRON_HEAD[] = _("A hard headbutt\nthat may make\nthe foe flinch.");
+
+const u8 gMoveDescription_BULLET_PUNCH[] = _("A fast steel\npunch that strikes\nwith priority.");
+
+const u8 gMoveDescription_AIR_SLASH[] = _("A blade of air\nthat may make\nthe foe flinch.");
+
 const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND         - 1] = gMoveDescription_Pound,
     [MOVE_KARATE_CHOP   - 1] = gMoveDescription_KarateChop,
@@ -802,4 +828,17 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_TIDAL_CRASH - 1] = gMoveDescription_TIDAL_CRASH,
     [MOVE_DISCHARGE - 1] = gMoveDescription_DISCHARGE,
     [MOVE_VOLT_SWITCH - 1] = gMoveDescription_VOLT_SWITCH,
+    [MOVE_THUNDER_FANG - 1] = gMoveDescription_THUNDER_FANG,
+    [MOVE_WILD_CHARGE - 1] = gMoveDescription_WILD_CHARGE,
+    [MOVE_SEED_BOMB - 1] = gMoveDescription_SEED_BOMB,
+    [MOVE_PETAL_BLIZZARD - 1] = gMoveDescription_PETAL_BLIZZARD,
+    [MOVE_WOOD_HAMMER - 1] = gMoveDescription_WOOD_HAMMER,
+    [MOVE_AURA_SPHERE - 1] = gMoveDescription_AURA_SPHERE,
+    [MOVE_FOCUS_BLAST - 1] = gMoveDescription_FOCUS_BLAST,
+    [MOVE_DRAIN_PUNCH - 1] = gMoveDescription_DRAIN_PUNCH,
+    [MOVE_FLASH_CANNON - 1] = gMoveDescription_FLASH_CANNON,
+    [MOVE_MIRROR_SHOT - 1] = gMoveDescription_MIRROR_SHOT,
+    [MOVE_IRON_HEAD - 1] = gMoveDescription_IRON_HEAD,
+    [MOVE_BULLET_PUNCH - 1] = gMoveDescription_BULLET_PUNCH,
+    [MOVE_AIR_SLASH - 1] = gMoveDescription_AIR_SLASH,
 };

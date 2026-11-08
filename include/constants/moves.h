@@ -418,7 +418,33 @@
 
 #define MOVE_VOLT_SWITCH 388
 
-#define MOVES_COUNT 389
+#define MOVE_THUNDER_FANG 389
+
+#define MOVE_WILD_CHARGE 390
+
+#define MOVE_SEED_BOMB 391
+
+#define MOVE_PETAL_BLIZZARD 392
+
+#define MOVE_WOOD_HAMMER 393
+
+#define MOVE_AURA_SPHERE 394
+
+#define MOVE_FOCUS_BLAST 395
+
+#define MOVE_DRAIN_PUNCH 396
+
+#define MOVE_FLASH_CANNON 397
+
+#define MOVE_MIRROR_SHOT 398
+
+#define MOVE_IRON_HEAD 399
+
+#define MOVE_BULLET_PUNCH 400
+
+#define MOVE_AIR_SLASH 401
+
+#define MOVES_COUNT 402
 
 // Used for checks for moves affected by Disable, Mimic, etc.
 #define MOVE_UNAVAILABLE 0xFFFF
