@@ -1,0 +1,39 @@
+name: WRL-010 pinned follower asset verification
+on:
+  push:
+    branches:
+      - feature/selectable-following-pokemon
+  pull_request:
+    paths:
+      - scripts/verify-follower-assets.py
+      - docs/followers/**
+      - .github/workflows/follower-assets.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify-follower-assets:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Audit approved 252 species against exact pinned external PNG and palette source
+        run: python3 -u scripts/verify-follower-assets.py
+      - name: Publish text-only verification summary (no sprite or ROM redistribution)
+        if: always()
+        run: |
+          if [ -f /tmp/lightning-followers-validation.json ]; then
+            python3 - <<'PY'
+          import json
+          p = json.load(open('/tmp/lightning-followers-validation.json'))
+          with open('/tmp/follower-summary.md','w') as out:
+              print('## Follower sprite source audit', file=out)
+              print('Pinned source: ' + p['source'], file=out)
+              print('Verified PNGs: ' + str(p['verified']) + '/' + str(p['total']), file=out)
+              print('Failures: ' + str(len(p['failures'])), file=out)
+              print('This does not certify directions, gameplay, ROM integration or license.', file=out)
+          PY
+            cat /tmp/follower-summary.md >> "$GITHUB_STEP_SUMMARY"
+          fi
