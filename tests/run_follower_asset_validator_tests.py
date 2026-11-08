@@ -20,24 +20,25 @@ def chunk(tag, data):
     return struct.pack(">I", len(data)) + tag + data + struct.pack(">I", zlib.crc32(tag + data) & 0xFFFFFFFF)
 
 
-def png(side, corruption=False, transparency=None, filter_type=0):
+def png(side, corruption=False, transparency=None, filter_type=0, depth=4, colors=16, use_index16=False):
     width = side * 6
     height = side
-    ihdr = struct.pack(">IIBBBBB", width, height, 4, 3, 0, 0, 0)
+    ihdr = struct.pack(">IIBBBBB", width, height, depth, 3, 0, 0, 0)
     # 16 separate palette entries; index zero intentionally not special-cased.
-    palette = b"".join(bytes(((i * 13) % 256, (i * 17) % 256, (i * 19) % 256)) for i in range(16))
+    palette = b"".join(bytes(((i * 13) % 256, (i * 17) % 256, (i * 19) % 256)) for i in range(colors))
     scanlines = bytearray()
     for y in range(height):
         scanlines.append(filter_type)
         values = [((x // side) + (x % side) // 8 + y // 8) % 15 + 1 for x in range(width)]
-        row = bytearray((values[j] << 4) | values[j + 1] for j in range(0, width, 2))
+        if use_index16 and y == 0:
+            values[0] = 16
+        row = bytearray((values[j] << 4) | values[j + 1] for j in range(0, width, 2)) if depth == 4 else bytearray(values)
         if filter_type == 1:
             prev = 0
             for index, item in enumerate(row):
                 row[index] = (item - prev) & 255
                 prev = item
-        elif filter_type != 0:
-            raise ValueError("synthetic fixture supports filters 0 and 1")
+        # Other filters are deliberately emitted unchanged to test decoder rejection.
         scanlines.extend(row)
     trns_chunk = chunk(b"tRNS", bytes(transparency)) if transparency is not None else b""
     data = b"\x89PNG\r\n\x1a\n" + chunk(b"IHDR", ihdr) + chunk(b"PLTE", palette) + trns_chunk + chunk(b"IDAT", zlib.compress(bytes(scanlines))) + chunk(b"IEND", b"")
@@ -100,10 +101,19 @@ class FollowerAssetTests(unittest.TestCase):
             mod.read_png(png(32)[:-12])
 
     def test_png_unsupported_filter_rejected(self):
-        source = png(32)
-        # Rebuild a valid PNG with a filter number not supported by the decoder.
         with self.assertRaises(ValueError):
             mod.read_png(png(32, filter_type=9))
+
+    def test_8bit_castform_rainy_style_unused_extra_color(self):
+        source = mod.read_png(png(32, depth=8, colors=17))
+        target = mod.read_png(png(32, depth=4, colors=16))
+        self.assertEqual(source["source_bit_depth"], 8)
+        self.assertEqual(source["gba_conversion_sha256"], target["gba_conversion_sha256"])
+        self.assertEqual(source["gba_4bpp_total_six_frames"], 3072)
+
+    def test_8bit_artwork_using_index_16_rejected_for_4bpp(self):
+        with self.assertRaisesRegex(ValueError, "color-index remapping"):
+            mod.read_png(png(32, depth=8, colors=17, use_index16=True))
 
     def test_tile_roundtrip_rejects_invalid_index(self):
         pixels = [1] * (32 * 32)
