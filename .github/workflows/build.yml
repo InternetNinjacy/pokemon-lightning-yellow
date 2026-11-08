@@ -76,6 +76,8 @@ jobs:
           python3 tests/run_weather_species_tests.py
           python3 tests/run_brock_weather_tests.py
           python3 tests/run_special_glalie_tests.py
+          python3 tests/run_special_corphish_tests.py
+          python3 tests/run_sow_event_tests.py
           python3 tests/run_original_effect_tests.py
           python3 tests/run_rtc_tests.py
           python3 tests/run_evolution_tests.py
@@ -158,6 +160,10 @@ jobs:
         timeout-minutes: 10
         run: |
           LIGHTNING_SWARM_ONLY=1 python3 tests/emulator/run.py
+      - name: Focused owner-approved SOW actual native producers and all three walkable map events
+        if: matrix.target == 'modified'
+        timeout-minutes: 10
+        run: LIGHTNING_SOW_PRODUCERS_ONLY=1 python3 tests/emulator/run.py
       - name: Execute ROM integration tests in mGBA
         if: matrix.target == 'modified'
         timeout-minutes: 30
