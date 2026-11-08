@@ -15,7 +15,7 @@ expected=[
  ("Route23","Route23_EventScript_SowTyranitar","OBJ_EVENT_GFX_SOW_TYRANITAR","FLAG_UNUSED_0x4AC",13,145,
   "SPECIES_TYRANITAR","55","SPECIAL_WEATHER_TYRANITAR")
 ]
-for m,script,gfx,flag,x,y,species,level,weather in expected:
+for event_id,(m,script,gfx,flag,x,y,species,level,weather) in enumerate(expected):
     header=json.loads((root/m/"map.json").read_text())
     found=[o for o in header["object_events"] if o.get("script")==script]
     assert len(found)==1,(m,script)
@@ -24,10 +24,16 @@ for m,script,gfx,flag,x,y,species,level,weather in expected:
     assert obj["trainer_type"]=="TRAINER_TYPE_NONE"
     content=(root/m/"scripts.inc").read_text()
     assert content.count(script+"::")==1
+    transition=content.split("::",1)[1].split("\\n\\tend",1)[0]
+    assert f"setvar VAR_0x8004, {event_id}" in transition
+    assert "callnative SpecialWeatherActivateScript" in transition
+    event_body=content[content.index(script+"::"):]
+    assert f"setvar VAR_0x8004, {event_id}" in event_body
     assert f"setwildbattle {species}, {level}" in content
     assert content.count("callnative SowPrepareScriptedEncounter")==1
     assert "B_OUTCOME_WON" in content and "B_OUTCOME_CAUGHT" in content
     assert "SpecialWeather_EventScript_FinishAftermath" in content
+    assert "copyvar VAR_0x8005, VAR_RESULT" in content
     # An encounter only resolves for actual capture or defeat, never Run/loss.
     resolved=script.replace("SowCorphish","SowResolved").replace("SowGlalie","SowResolved").replace("SowTyranitar","SowResolved")
     abort=script.replace("SowCorphish","SowAbort").replace("SowGlalie","SowAbort").replace("SowTyranitar","SowAbort")
@@ -37,7 +43,10 @@ for m,script,gfx,flag,x,y,species,level,weather in expected:
     assert "B_OUTCOME_RAN" not in content[content.index(script+"::"):]
     assert content.index("dowildbattle",content.index(script+"::")) < content.index("specialvar VAR_RESULT, GetBattleOutcome",content.index(script+"::"))
     assert content.index("SpecialWeather_EventScript_FinishAftermath",content.index(resolved+"::")) < content.index("removeobject VAR_LAST_TALKED",content.index(resolved+"::"))
-assert "MAP_SCRIPT_ON_TRANSITION" in (root/"Route21_South"/"scripts.inc").read_text()
+south=(root/"Route21_South"/"scripts.inc").read_text()
+assert "MAP_SCRIPT_ON_TRANSITION, Route21_South_SowOnTransition" in south
+assert "setvar VAR_0x8004, 1" in south
+assert "callnative SpecialWeatherActivateScript" in south
 assert "SpecialWeatherActivateScript" in (root/"Route23"/"scripts.inc").read_text()
 c=Path("src/script_pokemon_util.c").read_text()
 assert c.count("void SowPrepareScriptedEncounter(void)")==1
@@ -57,5 +66,13 @@ sprite=Path("src/data/object_events/object_event_pic_tables.h").read_text()
 for key in ["Corphish","Glalie","Tyranitar"]:
  assert "sPicTable_Sow"+key in sprite
  assert "gMonIcon_"+key in sprite
-assert "At last... I can rest" in (root/"Route12"/"text.inc").read_text()
+farewell=(root/"Route12"/"text.inc").read_text()
+assert 'Route12_Text_SowGhostFarewell::' in farewell
+assert 'At last... I can rest\\n' in farewell
+assert 'in peace...
+print("PASS: approved SOW species, all 12 exact moves, three icon gfx registrations, three installed map objects, no item/ability guards, full Route21 weather bridge and Corphish ghost farewell; real ROM integration pending")
+ in farewell
+route12=(root/"Route12"/"scripts.inc").read_text()
+resolved=route12[route12.index("Route12_EventScript_SowResolved::"):]
+assert resolved.index("msgbox Route12_Text_SowGhostFarewell") < resolved.index("call SpecialWeather_EventScript_FinishAftermath")
 print("PASS: approved SOW species, all 12 exact moves, three icon gfx registrations, three installed map objects, no item/ability guards, full Route21 weather bridge and Corphish ghost farewell; real ROM integration pending")
