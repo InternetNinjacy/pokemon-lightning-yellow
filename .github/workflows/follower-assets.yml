@@ -19,6 +19,10 @@ jobs:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           persist-credentials: false
+      - name: Check roster and validator syntax
+        run: |
+          python3 -m py_compile scripts/verify-follower-assets.py scripts/check-follower-inventory.py
+          python3 scripts/check-follower-inventory.py
       - name: Audit approved 252 species against exact pinned external PNG and palette source
         run: python3 -u scripts/verify-follower-assets.py
       - name: Publish text-only verification summary (no sprite or ROM redistribution)
@@ -33,6 +37,7 @@ jobs:
               print('Pinned source: ' + p['source'], file=out)
               print('Verified PNGs: ' + str(p['verified']) + '/' + str(p['total']), file=out)
               print('Failures: ' + str(len(p['failures'])), file=out)
+              print('Oversized sheets needing special renderer: ' + str(len(p.get('oversized_sheet_exceptions', []))), file=out)
               print('This does not certify directions, gameplay, ROM integration or license.', file=out)
           PY
             cat /tmp/follower-summary.md >> "$GITHUB_STEP_SUMMARY"
