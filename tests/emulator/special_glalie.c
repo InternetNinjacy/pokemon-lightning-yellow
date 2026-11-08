@@ -30,22 +30,24 @@ static void specialGlalieTests(void)
  CALL(CreateMon,player(0),SPECIES_GLALIE,30,31,1,0,0,0);monput(player(0),ABI_DATA_IS_EGG,1);CHECK(!CALL(SetSpecialEncounterAbility,player(0),ABILITY_SNOW_WARNING));
  printf("PASS: native Glalie-only opt-in tag across all24 encrypted substructure orders, unchanged legacy/invalid inputs, exact PID/OT, PC copy/flash/withdrawal and player battle data; no Corphish inheritance invented\n");
  // Real capture into party and full-party PC, using the actual Bag/Master Ball path.
- for(unsigned pc=0;pc<2;pc++){
+ for(unsigned kind=0;kind<2;kind++)for(unsigned pc=0;pc<2;pc++){
+  unsigned species=kind?SPECIES_GLALIE:SPECIES_TYRANITAR,ability=kind?ABILITY_SNOW_WARNING:ABILITY_SAND_STREAM;
   wildFixture(MAP_GROUP(MAP_ROUTE1),MAP_NUM(MAP_ROUTE1),0);CALL(ResetPokemonStorageSystem);
   if(pc){for(unsigned i=1;i<6;i++)CALL(CreateMon,player(i),SPECIES_PIKACHU,20,31,1,i,0,0);core->busWrite8(core,SYM_gPlayerPartyCount,6);}
-  CALL(CreateMon,enemy(0),SPECIES_GLALIE,30,31,1,1234,0,0);
-  CHECK(CALL(SetSpecialEncounterAbility,enemy(0),ABILITY_SNOW_WARNING));CHECK(CALL(AddBagItem,ITEM_MASTER_BALL,1));
+  CALL(CreateMon,enemy(0),species,30,31,1,1234,0,0);
+  if(kind)CHECK(CALL(SetSpecialEncounterAbility,enemy(0),ABILITY_SNOW_WARNING));
+  else CHECK(CALL(GetMonAbility,enemy(0))==ABILITY_SAND_STREAM);CHECK(CALL(AddBagItem,ITEM_MASTER_BALL,1));
   unsigned field=CALL(GetSav1Weather);CALL(StartWildBattle);waitAction();frames(30,0);
-  CHECK(core->busRead8(core,bmon(1)+ABI_BMON_ABILITY)==ABILITY_SNOW_WARNING);CHECK(core->busRead16(core,SYM_gBattleWeather)&B_WEATHER_HAIL_PERMANENT);
+  CHECK(core->busRead8(core,bmon(1)+ABI_BMON_ABILITY)==ability);CHECK(core->busRead16(core,SYM_gBattleWeather)&(kind?B_WEATHER_HAIL_PERMANENT:B_WEATHER_SANDSTORM_PERMANENT));
   openBagUse();waitOverworld(2);CHECK(core->busRead8(core,SYM_gBattleOutcome)==B_OUTCOME_CAUGHT);
   unsigned caught=pc?enemy(0):player(1);if(pc)CALL(BoxMonToMon,CALL(GetBoxedMonPtr,0,0),caught);
-  if(monget(caught,ABI_DATA_SPECIES)!=SPECIES_GLALIE){fprintf(stderr,"Glalie capture pc%u partyCount%u species:",pc,core->busRead8(core,SYM_gPlayerPartyCount));for(unsigned i=0;i<6;i++)fprintf(stderr," %u",monget(player(i),ABI_DATA_SPECIES));fprintf(stderr," box%u enemy%u\n",CALL(GetBoxMonDataAt,0,0,ABI_DATA_SPECIES),monget(enemy(0),ABI_DATA_SPECIES));}
-  CHECK(monget(caught,ABI_DATA_SPECIES)==SPECIES_GLALIE);CHECK(CALL(GetMonAbility,caught)==ABILITY_SNOW_WARNING);
+  if(monget(caught,ABI_DATA_SPECIES)!=species){fprintf(stderr,"Glalie capture pc%u partyCount%u species:",pc,core->busRead8(core,SYM_gPlayerPartyCount));for(unsigned i=0;i<6;i++)fprintf(stderr," %u",monget(player(i),ABI_DATA_SPECIES));fprintf(stderr," box%u enemy%u\n",CALL(GetBoxMonDataAt,0,0,ABI_DATA_SPECIES),monget(enemy(0),ABI_DATA_SPECIES));}
+  CHECK(monget(caught,ABI_DATA_SPECIES)==species);CHECK(CALL(GetMonAbility,caught)==ability);
   unsigned pid=monget(caught,ABI_DATA_PERSONALITY),ot=monget(caught,ABI_DATA_OT_ID);
   CHECK(CALL(GetSav1Weather)==field);flashRoundTrip();
   if(pc)CALL(BoxMonToMon,CALL(GetBoxedMonPtr,0,0),caught);
-  CHECK(CALL(GetMonAbility,caught)==ABILITY_SNOW_WARNING);CHECK(monget(caught,ABI_DATA_PERSONALITY)==pid);CHECK(monget(caught,ABI_DATA_OT_ID)==ot);
-  printf("PASS: actual Glalie Snow Warning entry/animation, Master Ball capture to %s, field restoration, native flash reload and retained ability/identity; test-only level/location\n",pc?"PC":"party");
+  CHECK(CALL(GetMonAbility,caught)==ability);CHECK(monget(caught,ABI_DATA_PERSONALITY)==pid);CHECK(monget(caught,ABI_DATA_OT_ID)==ot);
+  printf("PASS: actual species%u ability%u entry/animation, Master Ball capture to %s, field restoration, native flash reload and retained ability/identity; test-only level/location\n",species,ability,pc?"PC":"party");
  }
  CALL(BoxMonToMon,CALL(GetBoxedMonPtr,0,0),player(0));
  unsigned field=CALL(GetSav1Weather);CALL(CreateMon,enemy(0),SPECIES_RATTATA,5,31,1,99,0,0);

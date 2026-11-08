@@ -1751,3 +1751,7 @@ Branch `feature/special-glalie-ability-persistence`, parent PR118/368b3119. Adde
 ### SOW-007 integration stack update
 
 Glalie persistence is now stacked on Brock-party PR126/6a8b8010 (itself on PR118), so its review build includes both completed weather slices. Preserved both CI host registrations and both ledger histories when resolving the two text-only rebase conflicts. All44 combined host runners passed. Strengthened native storage acceptance to check preserved perfect IVs and at most four changed bytes (two marker/checksum words) across24 encrypted layouts. Combined final native/build/CI results are attached to the Glalie PR; no merge or global progress change.
+
+### SOW-007 final local acceptance / baseline Tyranitar proof
+
+Current combined stack passed11864 native weather-move assertions and all44 host runners. Final focused individual-capture run5408 assertions additionally proves unchanged Tyranitar Sand Stream through actual party/PC capture and flash reload; Glalie retains Snow Warning after capture, PC/flash and subsequent actual player battle. Final clean modified-ROM SHA-256 rebuild matched. `docs/WEATHER_DECISIONS_REQUIRED.md` lists source-verified current ability slots and exact missing owner design inputs. No Corphish evolution rule, encounter balance/coordinates or global ability-slot replacements invented. Full exact-head CI remains separately recorded in PR127.
