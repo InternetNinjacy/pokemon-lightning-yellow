@@ -159,3 +159,15 @@ open for review; no auto-merge or ROM release.
 **Binary asset access blocker:** GitHub connector's `fetch_blob` on exact pinned Bulbasaur PNG blob IDs for both Kasenn and aarant returned a `UnicodeDecodeError` on the PNG's `0x89` signature, rather than raw image bytes. A container-side Git fetch failed DNS resolution; no bytes were available for PNG dimensions, directions, animation, transparency or palette-index testing. **Do not infer frame completeness from PNG path existence.**
 
 **Gate result:** STILL BLOCKED on independent all-252 binary/frame and FireRed technical verification. Owner-reported permission resolution is acknowledged, but no asset gate PASS is claimed. No follower gameplay, save code, conversion import, PR merge or effort-point award occurred. Resume from this existing matrix once binary PNG read/download is available; validate 252 images and all applicable forms, palette indices, animation sequence, budgets and conversion in isolation before any gameplay coding. The preexisting matrix's permission column records the historical November 6 audit and is not newly adjudicated by this addendum.
+
+## 2026-11-08 binary access correction — working retrieval method
+
+The earlier statement that PNG bytes were inaccessible is **superseded**. The connected GitHub `fetch_file` action succeeds on pinned PNGs when called with `encoding: "base64"`; its default `utf-8` decoding fails because PNG is binary. The returned Base64 begins `iVBORw0KGgo` (PNG signature). This is a viable binary asset acquisition route and does **not** require asking the owner for an archive.
+
+- Pinned source: `Kasenn/pokeemerald-expansion-kasen@cbe04a7a2ef645bee19d159876da074154ccf1f2`.
+- Tested 15 consecutive approved-roster sprite PNGs (#1–15), all downloadable via Base64, all exact Git blob SHA matches against the existing `252-species-coverage.csv`, and all parse as indexed PNG 192×32 pixels, bit depth 4, PNG color type 3.
+- Tested twelve additional spread-roster samples (#1, #25, #50, #75, #100, #125, #150, #175, #200, #225, #233 Castform, #252 Mew); all exact blob SHA matches and the same 192×32, 4-bit indexed PNG format. Sample #1 was also in the consecutive group, so **26 distinct approved species** were checked here.
+- This establishes reproducible binary access and a preliminary uniform source format. It **does not** certify all252 sheets, actual distinct directional walking frames, transparent index, source image palette matching, Shiny pixel compatibility, GBA VRAM feasibility, game-engine conversion or full 252-runtime acceptance.
+- Bulk requests exceeded a single tool-invocation call quota and must be chunked. Direct shell HTTP requests in the execution container failed DNS, but the connected GitHub Base64 route works. No PNG files or artwork were imported into the project repository.
+
+**Gate:** STILL BLOCKED on exhaustive sprites/frame/FireRed verification. Import/gameplay implementation must not begin merely from these successful samples. No progress-point award, merge or save modification.
