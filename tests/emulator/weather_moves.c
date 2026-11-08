@@ -1,7 +1,10 @@
 // Actual battle-script command execution plus real Rain Zap Cannon turns.
 #include "weather_abilities.c"
 #include "weather_gym_abilities.c"
+#include "special_glalie.c"
 static void weatherMoveTests(void){
+ specialGlalieTests();
+ if(getenv("LIGHTNING_SPECIAL_GLALIE_ONLY"))return;
  if(!getenv("LIGHTNING_WEATHER_GYM_ABILITIES_ONLY"))weatherAbilityTests();
  weatherGymAbilityTests();
  if(getenv("LIGHTNING_WEATHER_ABILITIES_ONLY")||getenv("LIGHTNING_WEATHER_GYM_ABILITIES_ONLY"))return;

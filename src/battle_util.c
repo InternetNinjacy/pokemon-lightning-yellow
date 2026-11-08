@@ -56,7 +56,9 @@ u8 GetBattlerInitialAbility(u8 battler)
         if (gTrainerBattleOpponent_A == TRAINER_LEADER_MISTY && species == SPECIES_STARMIE)
             return ABILITY_DRIZZLE;
     }
-    return GetAbilityBySpecies(species, gBattleMons[battler].abilityNum);
+    return GetMonAbility(GetBattlerSide(battler) == B_SIDE_PLAYER
+        ? &gPlayerParty[gBattlerPartyIndexes[battler]]
+        : &gEnemyParty[gBattlerPartyIndexes[battler]]);
 }
 
 u8 GetBattlerForBattleScript(u8 caseId)
