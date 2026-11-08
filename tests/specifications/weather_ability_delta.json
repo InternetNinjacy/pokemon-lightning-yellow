@@ -1,0 +1,122 @@
+{
+  "files": {
+    "include/constants/abilities.h": {
+      "before_sha256": "1c1b93de5d5ff65d8b3066e9b40229b5d30e02842e587e3851a1d708ece1292b",
+      "after_sha256": "a3e0a7369e8b81eefb42a235b776b02139aca9d478a2a4c8726b66a6052e96cc",
+      "hunks": [
+        {
+          "before": "#define ABILITY_CACOPHONY 76\n#define ABILITY_AIR_LOCK 77\n\n#define ABILITIES_COUNT 78\n\n#endif  // GUARD_CONSTANTS_ABILITIES_H\n",
+          "after": "#define ABILITY_CACOPHONY 76\n#define ABILITY_AIR_LOCK 77\n\n#define ABILITY_ICE_BODY 78\n#define ABILITY_OVERCOAT 79\n#define ABILITY_SNOW_WARNING 80\n\n#define ABILITIES_COUNT 81\n\n#endif  // GUARD_CONSTANTS_ABILITIES_H\n"
+        }
+      ]
+    },
+    "src/data/text/abilities.h": {
+      "before_sha256": "59f5af6c7581a05b10dda9dfaf339dcc3be42d2f23463c9ec92b5d95e3145f93",
+      "after_sha256": "8faa0f50fd9fab20319dcf719215d23be30309e01d6be52653c03c497e87dd00",
+      "hunks": [
+        {
+          "before": "static const u8 sShellArmorDescription[] = _(\"Blocks critical hits.\");\nstatic const u8 sCacophonyDescription[] = _(\"Avoids sound-based moves.\");\nstatic const u8 sAirLockDescription[] = _(\"Negates weather effects.\");\n\nconst u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =\n{\n",
+          "after": "static const u8 sShellArmorDescription[] = _(\"Blocks critical hits.\");\nstatic const u8 sCacophonyDescription[] = _(\"Avoids sound-based moves.\");\nstatic const u8 sAirLockDescription[] = _(\"Negates weather effects.\");\n\nstatic const u8 sIceBodyDescription[] = _(\"Slight HP recovery in hail.\");\nstatic const u8 sOvercoatDescription[] = _(\"Blocks hail and sand damage.\");\nstatic const u8 sSnowWarningDescription[] = _(\"Summons hail in battle.\");\n\nconst u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT] =\n{\n"
+        },
+        {
+          "before": "    [ABILITY_SHELL_ARMOR] = sShellArmorDescription,\n    [ABILITY_CACOPHONY] = sCacophonyDescription,\n    [ABILITY_AIR_LOCK] = sAirLockDescription,\n};\n\nconst u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =\n",
+          "after": "    [ABILITY_SHELL_ARMOR] = sShellArmorDescription,\n    [ABILITY_CACOPHONY] = sCacophonyDescription,\n    [ABILITY_AIR_LOCK] = sAirLockDescription,\n    [ABILITY_ICE_BODY] = sIceBodyDescription,\n    [ABILITY_OVERCOAT] = sOvercoatDescription,\n    [ABILITY_SNOW_WARNING] = sSnowWarningDescription,\n};\n\nconst u8 gAbilityNames[ABILITIES_COUNT][ABILITY_NAME_LENGTH + 1] =\n"
+        },
+        {
+          "before": "    [ABILITY_SHELL_ARMOR] = _(\"SHELL ARMOR\"),\n    [ABILITY_CACOPHONY] = _(\"CACOPHONY\"),\n    [ABILITY_AIR_LOCK] = _(\"AIR LOCK\"),\n};\n",
+          "after": "    [ABILITY_SHELL_ARMOR] = _(\"SHELL ARMOR\"),\n    [ABILITY_CACOPHONY] = _(\"CACOPHONY\"),\n    [ABILITY_AIR_LOCK] = _(\"AIR LOCK\"),\n    [ABILITY_ICE_BODY] = _(\"ICE BODY\"),\n    [ABILITY_OVERCOAT] = _(\"OVERCOAT\"),\n    [ABILITY_SNOW_WARNING] = _(\"SNOW WARNING\"),\n};\n"
+        }
+      ]
+    },
+    "src/battle_util.c": {
+      "before_sha256": "93da6e4a379e19c33f953ceda664744d5f348efd32e9255b11b3ec38f56230e5",
+      "after_sha256": "cd217ae1e3d7fd0fa13f2a8ffb922f64c6a7f9a765190727827bdf036b0736b9",
+      "hunks": [
+        {
+          "before": "#include \"constants/items.h\"\n#include \"constants/weather.h\"\n#include \"constants/abilities.h\"\n#include \"constants/pokemon.h\"\n#include \"constants/hold_effects.h\"\n#include \"constants/battle_move_effects.h\"\n",
+          "after": "#include \"constants/items.h\"\n#include \"constants/weather.h\"\n#include \"constants/abilities.h\"\n#include \"constants/opponents.h\"\n#include \"constants/pokemon.h\"\n#include \"constants/hold_effects.h\"\n#include \"constants/battle_move_effects.h\"\n"
+        },
+        {
+          "before": "    MOVE_GROWL, MOVE_ROAR, MOVE_SING, MOVE_SUPERSONIC, MOVE_SCREECH, MOVE_SNORE,\n    MOVE_UPROAR, MOVE_METAL_SOUND, MOVE_GRASS_WHISTLE, MOVE_HYPER_VOICE, MOVE_CHIRP, MOVE_BELLOW, SOUND_MOVES_END\n};\n\nu8 GetBattlerForBattleScript(u8 caseId)\n{\n",
+          "after": "    MOVE_GROWL, MOVE_ROAR, MOVE_SING, MOVE_SUPERSONIC, MOVE_SCREECH, MOVE_SNORE,\n    MOVE_UPROAR, MOVE_METAL_SOUND, MOVE_GRASS_WHISTLE, MOVE_HYPER_VOICE, MOVE_CHIRP, MOVE_BELLOW, SOUND_MOVES_END\n};\n\n// Approved individual Gym abilities; never edit species slots or party data.\n// Applied only when native battler data is loaded, so Skill Swap/Trace persist\n// normally until the affected battler switches again.\nu8 GetBattlerInitialAbility(u8 battler)\n{\n    u16 species = gBattleMons[battler].species;\n    if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER)\n     && !(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_EREADER_TRAINER | BATTLE_TYPE_TRAINER_TOWER))\n     && GetBattlerSide(battler) == B_SIDE_OPPONENT)\n    {\n        if (gTrainerBattleOpponent_A == TRAINER_LEADER_BROCK)\n        {\n            if (species == SPECIES_SNORUNT)\n                return ABILITY_ICE_BODY;\n            if (species == SPECIES_ONIX)\n                return ABILITY_OVERCOAT;\n        }\n        if (gTrainerBattleOpponent_A == TRAINER_LEADER_MISTY && species == SPECIES_STARMIE)\n            return ABILITY_DRIZZLE;\n    }\n    return GetAbilityBySpecies(species, gBattleMons[battler].abilityNum);\n}\n\nu8 GetBattlerForBattleScript(u8 caseId)\n{\n"
+        },
+        {
+          "before": "                    effect++;\n                }\n                break;\n            case ABILITY_SAND_STREAM:\n                if (!(gBattleWeather & B_WEATHER_SANDSTORM_PERMANENT))\n                {\n",
+          "after": "                    effect++;\n                }\n                break;\n            case ABILITY_SNOW_WARNING:\n                if (!(gBattleWeather & B_WEATHER_HAIL_PERMANENT))\n                {\n                    gBattleWeather = B_WEATHER_HAIL_PERMANENT;\n                    BattleScriptPushCursorAndCallback(BattleScript_SnowWarningActivates);\n                    gBattleScripting.battler = battler;\n                    effect++;\n                }\n                break;\n            case ABILITY_SAND_STREAM:\n                if (!(gBattleWeather & B_WEATHER_SANDSTORM_PERMANENT))\n                {\n"
+        },
+        {
+          "before": "                switch (gLastUsedAbility)\n                {\n                case ABILITY_RAIN_DISH:\n                    if (WEATHER_HAS_EFFECT && (gBattleWeather & B_WEATHER_RAIN)\n                     && gBattleMons[battler].maxHP > gBattleMons[battler].hp)\n                    {\n                        gLastUsedAbility = ABILITY_RAIN_DISH; // why\n                        BattleScriptPushCursorAndCallback(BattleScript_RainDishActivates);\n                        gBattleMoveDamage = gBattleMons[battler].maxHP / 16;\n                        if (gBattleMoveDamage == 0)\n",
+          "after": "                switch (gLastUsedAbility)\n                {\n                case ABILITY_RAIN_DISH:\n                case ABILITY_ICE_BODY:\n                {\n                    u8 healingAbility = gLastUsedAbility;\n                    if (WEATHER_HAS_EFFECT\n                     && ((healingAbility == ABILITY_RAIN_DISH && (gBattleWeather & B_WEATHER_RAIN))\n                      || (healingAbility == ABILITY_ICE_BODY && (gBattleWeather & B_WEATHER_HAIL)))\n                     && gBattleMons[battler].maxHP > gBattleMons[battler].hp)\n                    {\n                        gLastUsedAbility = healingAbility;\n                        BattleScriptPushCursorAndCallback(BattleScript_RainDishActivates);\n                        gBattleMoveDamage = gBattleMons[battler].maxHP / 16;\n                        if (gBattleMoveDamage == 0)\n"
+        },
+        {
+          "before": "                        effect++;\n                    }\n                    break;\n                case ABILITY_SHED_SKIN:\n                    if ((gBattleMons[battler].status1 & STATUS1_ANY) && (Random() % 3) == 0)\n                    {\n",
+          "after": "                        effect++;\n                    }\n                    break;\n                }\n                case ABILITY_SHED_SKIN:\n                    if ((gBattleMons[battler].status1 & STATUS1_ANY) && (Random() % 3) == 0)\n                    {\n"
+        }
+      ]
+    },
+    "src/battle_script_commands.c": {
+      "before_sha256": "cbb92694f5be3e2d515d039bd94f099b513d95c786d357a213ef396700947d66",
+      "after_sha256": "3509f3d89f2051310366a16ddc71a566220da50f249f6d1e08106fcbeef7300b",
+      "hunks": [
+        {
+          "before": "\n    gBattleMons[gActiveBattler].type1 = gSpeciesInfo[gBattleMons[gActiveBattler].species].types[0];\n    gBattleMons[gActiveBattler].type2 = gSpeciesInfo[gBattleMons[gActiveBattler].species].types[1];\n    gBattleMons[gActiveBattler].ability = GetAbilityBySpecies(gBattleMons[gActiveBattler].species, gBattleMons[gActiveBattler].abilityNum);\n\n    // check knocked off item\n    i = GetBattlerSide(gActiveBattler);\n",
+          "after": "\n    gBattleMons[gActiveBattler].type1 = gSpeciesInfo[gBattleMons[gActiveBattler].species].types[0];\n    gBattleMons[gActiveBattler].type2 = gSpeciesInfo[gBattleMons[gActiveBattler].species].types[1];\n    gBattleMons[gActiveBattler].ability = GetBattlerInitialAbility(gActiveBattler);\n\n    // check knocked off item\n    i = GetBattlerSide(gActiveBattler);\n"
+        },
+        {
+          "before": "            if (gBattleMons[gBattlerAttacker].type1 != TYPE_GROUND\n                && gBattleMons[gBattlerAttacker].type2 != TYPE_GROUND\n                && gBattleMons[gBattlerAttacker].ability != ABILITY_SAND_VEIL\n                && !(gStatuses3[gBattlerAttacker] & STATUS3_UNDERGROUND)\n                && !(gStatuses3[gBattlerAttacker] & STATUS3_UNDERWATER))\n            {\n",
+          "after": "            if (gBattleMons[gBattlerAttacker].type1 != TYPE_GROUND\n                && gBattleMons[gBattlerAttacker].type2 != TYPE_GROUND\n                && gBattleMons[gBattlerAttacker].ability != ABILITY_SAND_VEIL\n                && gBattleMons[gBattlerAttacker].ability != ABILITY_OVERCOAT\n                && !(gStatuses3[gBattlerAttacker] & STATUS3_UNDERGROUND)\n                && !(gStatuses3[gBattlerAttacker] & STATUS3_UNDERWATER))\n            {\n"
+        },
+        {
+          "before": "        if (gBattleWeather & B_WEATHER_HAIL)\n        {\n            if (!IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_ICE)\n                && !(gStatuses3[gBattlerAttacker] & STATUS3_UNDERGROUND)\n                && !(gStatuses3[gBattlerAttacker] & STATUS3_UNDERWATER))\n            {\n",
+          "after": "        if (gBattleWeather & B_WEATHER_HAIL)\n        {\n            if (!IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_ICE)\n                && gBattleMons[gBattlerAttacker].ability != ABILITY_OVERCOAT\n                && gBattleMons[gBattlerAttacker].ability != ABILITY_ICE_BODY\n                && !(gStatuses3[gBattlerAttacker] & STATUS3_UNDERGROUND)\n                && !(gStatuses3[gBattlerAttacker] & STATUS3_UNDERWATER))\n            {\n"
+        }
+      ]
+    },
+    "include/battle_scripts.h": {
+      "before_sha256": "0a47d9e4c9a20557f209acf52c4f3a468680a186439b90e9a28c7281a1017cd0",
+      "after_sha256": "edda256f4622f39ea70770c5cf2232c96485078b05e213080c022e687c5014be",
+      "hunks": [
+        {
+          "before": "extern const u8 BattleScript_SpeedBoostActivates[];\nextern const u8 BattleScript_TraceActivates[];\nextern const u8 BattleScript_RainDishActivates[];\nextern const u8 BattleScript_SandstreamActivates[];\nextern const u8 BattleScript_ShedSkinActivates[];\nextern const u8 BattleScript_WeatherFormChanges[];\n",
+          "after": "extern const u8 BattleScript_SpeedBoostActivates[];\nextern const u8 BattleScript_TraceActivates[];\nextern const u8 BattleScript_RainDishActivates[];\nextern const u8 BattleScript_SnowWarningActivates[];\nextern const u8 BattleScript_SandstreamActivates[];\nextern const u8 BattleScript_ShedSkinActivates[];\nextern const u8 BattleScript_WeatherFormChanges[];\n"
+        }
+      ]
+    },
+    "data/battle_scripts_1.s": {
+      "before_sha256": "02174b011f4befbcf0f368e50267d0a0338cda2fba5911f852ac075d38c823cf",
+      "after_sha256": "76a14687a14b43ff400ec0dcf6eab565985557262069227cbf56ab6ee3954707",
+      "hunks": [
+        {
+          "before": "\tdatahpupdate BS_ATTACKER\n\tend3\n\nBattleScript_SandstreamActivates::\n\tpause B_WAIT_TIME_SHORT\n\tprintstring STRINGID_PKMNSXWHIPPEDUPSANDSTORM\n",
+          "after": "\tdatahpupdate BS_ATTACKER\n\tend3\n\n@ Existing Gen III hail text/animation only; no new artwork.\nBattleScript_SnowWarningActivates::\n\tpause B_WAIT_TIME_SHORT\n\tprintstring STRINGID_STARTEDHAIL\n\twaitstate\n\tplayanimation BS_BATTLER_0, B_ANIM_HAIL_CONTINUES\n\tcall BattleScript_WeatherFormChanges\n\tend3\n\nBattleScript_SandstreamActivates::\n\tpause B_WAIT_TIME_SHORT\n\tprintstring STRINGID_PKMNSXWHIPPEDUPSANDSTORM\n"
+        }
+      ]
+    },
+    "src/battle_main.c": {
+      "before_sha256": "23928df7927ae73172601cab3fcc218e9a1c081e6e51a23aa5f7827f1e8e3607",
+      "after_sha256": "1b971149401820f5dd679b6ee503aec0f8839d7d1f5ce11ebd923ba04fe0b749",
+      "hunks": [
+        {
+          "before": "\n            gBattleMons[gActiveBattler].type1 = gSpeciesInfo[gBattleMons[gActiveBattler].species].types[0];\n            gBattleMons[gActiveBattler].type2 = gSpeciesInfo[gBattleMons[gActiveBattler].species].types[1];\n            gBattleMons[gActiveBattler].ability = GetAbilityBySpecies(gBattleMons[gActiveBattler].species, gBattleMons[gActiveBattler].abilityNum);\n            hpOnSwitchout = &gBattleStruct->hpOnSwitchout[GetBattlerSide(gActiveBattler)];\n            *hpOnSwitchout = gBattleMons[gActiveBattler].hp;\n            for (i = 0; i < NUM_BATTLE_STATS; i++)\n",
+          "after": "\n            gBattleMons[gActiveBattler].type1 = gSpeciesInfo[gBattleMons[gActiveBattler].species].types[0];\n            gBattleMons[gActiveBattler].type2 = gSpeciesInfo[gBattleMons[gActiveBattler].species].types[1];\n            gBattleMons[gActiveBattler].ability = GetBattlerInitialAbility(gActiveBattler);\n            hpOnSwitchout = &gBattleStruct->hpOnSwitchout[GetBattlerSide(gActiveBattler)];\n            *hpOnSwitchout = gBattleMons[gActiveBattler].hp;\n            for (i = 0; i < NUM_BATTLE_STATS; i++)\n"
+        }
+      ]
+    },
+    "include/battle_util.h": {
+      "before_sha256": "38d93e081d1886494489c0fc44bf7d77c0753b096a29f2f327a6b2909b112370",
+      "after_sha256": "d8865e2ec1747c0acd35b29e2387a75a88c665b0c74f8c87dd03488f760c5ac9",
+      "hunks": [
+        {
+          "before": "#define BS_GET_PLAYER2                  13\n#define BS_GET_OPPONENT2                14\n\nu8 GetBattlerForBattleScript(u8 caseId);\nvoid PressurePPLose(u8 target, u8 attacker, u16 move);\nvoid PressurePPLoseOnUsingImprison(u8 attacker);\n",
+          "after": "#define BS_GET_PLAYER2                  13\n#define BS_GET_OPPONENT2                14\n\nu8 GetBattlerInitialAbility(u8 battler);\nu8 GetBattlerForBattleScript(u8 caseId);\nvoid PressurePPLose(u8 target, u8 attacker, u16 move);\nvoid PressurePPLoseOnUsingImprison(u8 attacker);\n"
+        }
+      ]
+    }
+  },
+  "preserved": {
+    "src/data/pokemon/species_info.h": "e37cfe0a03344890eb7c95ddf6193e635eb726e08c7198b7b7062c715ac5f267",
+    "include/pokemon.h": "71ae9fafb36b5bc34e2fe6ba7e57061aa6fbfeb3e9e61b579d56345e8a9f1e5c",
+    "include/global.h": "23fa42f2fcf687daf2347f45465e828364cc1ad310aef8d91be093f2675f53a1",
+    "src/pokemon.c": "c77fc8b947864cdb5bd28e95ea84c968c1384307021f0051e804d72df5558e94"
+  }
+}

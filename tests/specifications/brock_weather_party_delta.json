@@ -1,0 +1,24 @@
+{
+  "files": {
+    "src/data/trainer_parties.h": {
+      "before_sha256": "3ef0ccce270c2e5cd854b2712b2acf8b48a32261d78875b67fb6e52985efc659",
+      "after_sha256": "7492be71499ad7281010b0197ee19ca5dd82341babba833ab319fa88b5ef8938",
+      "hunks": [
+        {
+          "before": "    }\n};\n\nstatic const struct TrainerMonNoItemCustomMoves sParty_LeaderBrock[] = {\n    {\n        .iv = 0,\n        .lvl = 12,\n        .species = SPECIES_GEODUDE,\n        .moves = {MOVE_TACKLE, MOVE_DEFENSE_CURL, MOVE_NONE, MOVE_NONE},\n    },\n    {\n        .iv = 0,\n        .lvl = 14,\n        .species = SPECIES_ONIX,\n        .moves = {MOVE_TACKLE, MOVE_BIND, MOVE_ROCK_TOMB, MOVE_NONE},\n    },\n};\n\n",
+          "after": "    }\n};\n\nstatic const struct TrainerMonItemCustomMoves sParty_LeaderBrock[] = {\n    {\n        .iv = 0,\n        .lvl = 14,\n        .species = SPECIES_SNORUNT,\n        .heldItem = ITEM_NONE,\n        .moves = {MOVE_POWDER_SNOW, MOVE_HEADBUTT, MOVE_LEER, MOVE_NONE},\n    },\n    {\n        .iv = 0,\n        .lvl = 16,\n        .species = SPECIES_ONIX,\n        .heldItem = ITEM_PECHA_BERRY,\n        .moves = {MOVE_SCREECH, MOVE_ROCK_THROW, MOVE_HARDEN, MOVE_TACKLE},\n    },\n};\n\n"
+        }
+      ]
+    },
+    "src/data/trainers.h": {
+      "before_sha256": "251e6a22e9882641cce980c45ff01a45e5cc3da465f2e84532b31bce445ac739",
+      "after_sha256": "cd23c29c2b19955e4b57435f88c034d45de283b8d24b69bea24ffc9b000f880e",
+      "hunks": [
+        {
+          "before": "        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,\n        .trainerPic = TRAINER_PIC_LEADER_BROCK,\n        .trainerName = _(\"BROCK\"),\n        .items = {},\n        .doubleBattle = FALSE,\n        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,\n        .party = NO_ITEM_CUSTOM_MOVES(sParty_LeaderBrock),\n    },\n    [TRAINER_LEADER_MISTY] = {\n        .trainerClass = TRAINER_CLASS_LEADER,\n",
+          "after": "        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,\n        .trainerPic = TRAINER_PIC_LEADER_BROCK,\n        .trainerName = _(\"BROCK\"),\n        .items = {ITEM_POTION},\n        .doubleBattle = FALSE,\n        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,\n        .party = ITEM_CUSTOM_MOVES(sParty_LeaderBrock),\n    },\n    [TRAINER_LEADER_MISTY] = {\n        .trainerClass = TRAINER_CLASS_LEADER,\n"
+        }
+      ]
+    }
+  }
+}

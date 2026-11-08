@@ -60,6 +60,7 @@
 
 bool8 BattlerHasActedThisTurn(u8 battler);
 bool8 BattlerWasDamagedBy(u8 recipient, u8 source);
+u8 GetBattlerInitialAbility(u8 battler);
 u8 GetBattlerForBattleScript(u8 caseId);
 void PressurePPLose(u8 target, u8 attacker, u16 move);
 void PressurePPLoseOnUsingImprison(u8 attacker);

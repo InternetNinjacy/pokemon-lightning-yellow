@@ -3972,6 +3972,15 @@ BattleScript_RainDishActivates::
 	datahpupdate BS_ATTACKER
 	end3
 
+@ Existing Gen III hail text/animation only; no new artwork.
+BattleScript_SnowWarningActivates::
+	pause B_WAIT_TIME_SHORT
+	printstring STRINGID_STARTEDHAIL
+	waitstate
+	playanimation BS_BATTLER_0, B_ANIM_HAIL_CONTINUES
+	call BattleScript_WeatherFormChanges
+	end3
+
 BattleScript_SandstreamActivates::
 	pause B_WAIT_TIME_SHORT
 	printstring STRINGID_PKMNSXWHIPPEDUPSANDSTORM

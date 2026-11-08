@@ -63,6 +63,7 @@ jobs:
           python3 tests/run_moves374_tests.py
           python3 tests/run_payback_tests.py
           python3 tests/run_moves382_tests.py
+          python3 tests/run_btl_weather_integration_tests.py
           python3 tests/run_move_foundation_tests.py
           python3 tests/run_move_ui_tests.py
           python3 tests/run_original_move_data_tests.py
@@ -77,6 +78,9 @@ jobs:
           python3 tests/run_elite_four_tests.py
 
           python3 tests/run_weather_move_tests.py
+          python3 tests/run_weather_ability_tests.py
+          python3 tests/run_brock_weather_tests.py
+          python3 tests/run_special_glalie_tests.py
           python3 tests/run_original_effect_tests.py
           python3 tests/run_rtc_tests.py
           python3 tests/run_evolution_tests.py
@@ -94,6 +98,7 @@ jobs:
           python3 tests/run_ranger_tests.py
           python3 tests/run_ordinary_trainer_tests.py
           python3 tests/run_weather_tests.py
+          python3 tests/run_special_weather_tests.py
           python3 tests/run_gym_castform_tests.py
           python3 tests/run_rival_tests.py
           python3 tests/run_rocket_hideout_roster_tests.py
