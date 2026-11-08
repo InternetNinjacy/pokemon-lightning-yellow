@@ -134,6 +134,8 @@ for key,expr in {
  'SAVE2_PLAYER_NAME':'offsetof(struct SaveBlock2,playerName)',
  'BAG_POCKET':'offsetof(struct BagStruct,pocket)',
  'SAVE1_LOCATION':'offsetof(struct SaveBlock1,location)',
+ 'SAVE1_POS_X':'offsetof(struct SaveBlock1,pos.x)',
+ 'SAVE1_POS_Y':'offsetof(struct SaveBlock1,pos.y)',
  'WILD_HEADER_SIZE':'sizeof(struct WildPokemonHeader)',
  'WILD_HEADER_LAND':'offsetof(struct WildPokemonHeader,landMonsInfo)',
  'BMON_SPEED':'offsetof(struct BattlePokemon,speed)',
