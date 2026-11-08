@@ -132,9 +132,9 @@ with tempfile.TemporaryDirectory(prefix='lightning-daycare-') as temp:
 # byte-identical to the reviewed integration base. Separate from execution.
 import json, hashlib
 snapshot=json.loads(Path('tests/specifications/daycare_preserved.json').read_text())
-from approved_victory_road_changes import prior_victory_road_source
+from approved_route3_changes import prior_route3_source
 for path,expected in snapshot['files'].items():
-    assert hashlib.sha256(prior_victory_road_source(path)).hexdigest()==expected,path
+    assert hashlib.sha256(prior_route3_source(path)).hexdigest()==expected,path
 source=Path('src/daycare.c').read_text()
 for name,expected in snapshot['functions'].items():
     assert hashlib.sha256(extract_function(source,name).encode()).hexdigest()==expected,name
