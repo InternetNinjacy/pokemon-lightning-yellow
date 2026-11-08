@@ -1767,6 +1767,15 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveA
                     effect++;
                 }
                 break;
+            case ABILITY_SNOW_WARNING:
+                if (!(gBattleWeather & B_WEATHER_HAIL_PERMANENT))
+                {
+                    gBattleWeather = B_WEATHER_HAIL_PERMANENT;
+                    BattleScriptPushCursorAndCallback(BattleScript_SnowWarningActivates);
+                    gBattleScripting.battler = battler;
+                    effect++;
+                }
+                break;
             case ABILITY_SAND_STREAM:
                 if (!(gBattleWeather & B_WEATHER_SANDSTORM_PERMANENT))
                 {
@@ -1833,10 +1842,15 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveA
                 switch (gLastUsedAbility)
                 {
                 case ABILITY_RAIN_DISH:
-                    if (WEATHER_HAS_EFFECT && (gBattleWeather & B_WEATHER_RAIN)
+                case ABILITY_ICE_BODY:
+                {
+                    u8 healingAbility = gLastUsedAbility;
+                    if (WEATHER_HAS_EFFECT
+                     && ((healingAbility == ABILITY_RAIN_DISH && (gBattleWeather & B_WEATHER_RAIN))
+                      || (healingAbility == ABILITY_ICE_BODY && (gBattleWeather & B_WEATHER_HAIL)))
                      && gBattleMons[battler].maxHP > gBattleMons[battler].hp)
                     {
-                        gLastUsedAbility = ABILITY_RAIN_DISH; // why
+                        gLastUsedAbility = healingAbility;
                         BattleScriptPushCursorAndCallback(BattleScript_RainDishActivates);
                         gBattleMoveDamage = gBattleMons[battler].maxHP / 16;
                         if (gBattleMoveDamage == 0)
@@ -1845,6 +1859,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u8 ability, u8 special, u16 moveA
                         effect++;
                     }
                     break;
+                }
                 case ABILITY_SHED_SKIN:
                     if ((gBattleMons[battler].status1 & STATUS1_ANY) && (Random() % 3) == 0)
                     {

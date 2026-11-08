@@ -207,7 +207,7 @@ required = [
     'Task_PCMainMenu', 'Task_PokeStorageMain', 'Task_OnSelectedMon', 'Task_DepositMenu', 'Task_OnBPressed',
     'SetLastHealLocationWarp',
 
-    "CheckBagHasItem", "RemoveBagItem", "Task_ShopMenu", "Task_BuyMenu", "Task_BuyHowManyDialogueHandleInput", "Task_CallYesOrNoCallback", "FindTaskIdByFunc", "VermilionCity_Mart_EventScript_Clerk", "gWishFutureKnock", "Cmd_setrain", "Cmd_setsandstorm", "AbilityBattleEffects", "CastformDataTypeChange", "Cmd_sethail", "Cmd_setsunny", "GetBallCatchMultiplier", "IsPokeBallItem", "BallItemToCaptureCode", "CaptureCodeToBallItem", "TryBuyBallsWithPremierBonus", "ItemIdToBallId", "gCaptureOrigin",
+    "CheckBagHasItem", "RemoveBagItem", "Task_ShopMenu", "Task_BuyMenu", "Task_BuyHowManyDialogueHandleInput", "Task_CallYesOrNoCallback", "FindTaskIdByFunc", "VermilionCity_Mart_EventScript_Clerk", "gWishFutureKnock", "Cmd_setrain", "Cmd_setsandstorm", "AbilityBattleEffects", "gBattleMainFunc", "gLastUsedAbility", "CastformDataTypeChange", "Cmd_sethail", "Cmd_setsunny", "GetBallCatchMultiplier", "IsPokeBallItem", "BallItemToCaptureCode", "CaptureCodeToBallItem", "TryBuyBallsWithPremierBonus", "ItemIdToBallId", "gCaptureOrigin",
     "PalletTown_ProfessorOaksLab_EventScript_ProfOak", "PalletTown_ProfessorOaksLab_EventScript_TryGiveNestBalls",
 
     'gSpeciesNames',
