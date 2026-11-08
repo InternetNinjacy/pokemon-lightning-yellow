@@ -171,3 +171,11 @@ The earlier statement that PNG bytes were inaccessible is **superseded**. The co
 - Bulk requests exceeded a single tool-invocation call quota and must be chunked. Direct shell HTTP requests in the execution container failed DNS, but the connected GitHub Base64 route works. No PNG files or artwork were imported into the project repository.
 
 **Gate:** STILL BLOCKED on exhaustive sprites/frame/FireRed verification. Import/gameplay implementation must not begin merely from these successful samples. No progress-point award, merge or save modification.
+
+## 2026-11-08 exhaustive binary audit execution path — committed, not yet green
+
+A reproducible **all-252 actual-PNG decoding** script is now committed at `scripts/verify-follower-assets.py`; the isolated `.github/workflows/follower-assets.yml` workflow runs it on this follower branch/PR. This supersedes the previous technical-access limitation and uses the existing exact 252-species CSV and pinned Kasenn commit. The validator downloads each original PNG and both normal/Shiny JASC palettes to ephemeral runner storage, verifies the exact Git blob SHA for each base sprite, parses PNG CRC and 4-bit indexed image data including decompression/filter reconstruction, records six 32×32 pixel cells and cell fingerprints, and checks Castform's three alternate overworld sprites plus their six palette files. It does **not** commit external artwork or ROMs.
+
+**Evidence status at write:** The script/workflow were committed and read back from GitHub, but no finished GitHub Actions result was returned for the commit in the connector's available pull-request-run query. **Do not report 252/252 pixel/frame success or mark the asset gate passed until the actual workflow run concludes and is inspected.** A passing PNG structural audit would still require mapping the six frame cells to all facing/walking actions, and isolated FireRed conversion/graphics-resource evidence. The owner's permission resolution is accepted as stated; exact redistribution conditions and attribution must be preserved when actual assets are later selected.
+
+Implementation remains intentionally out of scope until all asset-gate criteria pass. No gameplay, save, graphics import, merge or planning-credit changes in this continuation.
