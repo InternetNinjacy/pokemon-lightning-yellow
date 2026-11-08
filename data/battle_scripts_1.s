@@ -238,6 +238,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectSleepHit
 	.4byte BattleScript_EffectSwarmCloud               @ EFFECT_SWARM_CLOUD
 	.4byte BattleScript_EffectIceFang                  @ EFFECT_ICE_FANG
+	.4byte BattleScript_EffectHitAllOthers              @ EFFECT_HIT_ALL_OTHERS
 
 BattleScript_EffectHit::
 	jumpifnotmove MOVE_SURF, BattleScript_HitFromAtkCanceler
@@ -4433,3 +4434,46 @@ BattleScript_EffectSwarmCloud::
 BattleScript_EffectIceFang::
 	setmoveeffect MOVE_EFFECT_FREEZE
 	goto BattleScript_EffectHit
+
+@ Approved Discharge/Petal Blizzard: native Earthquake target iteration without
+@ its underground bonus, plus independent secondary effects for each recipient.
+BattleScript_EffectHitAllOthers::
+	attackcanceler
+	attackstring
+	ppreduce
+	selectfirstvalidtarget
+BattleScript_HitAllOthersLoop::
+	movevaluescleanup
+	jumpifnotmove MOVE_DISCHARGE, BattleScript_HitAllOthersNoSecondary
+	setmoveeffect MOVE_EFFECT_PARALYSIS
+BattleScript_HitAllOthersNoSecondary::
+	accuracycheck BattleScript_HitAllOthersMissed, ACC_CURR_MOVE
+	critcalc
+	damagecalc
+	typecalc
+	adjustnormaldamage
+	attackanimation
+	waitanimation
+	effectivenesssound
+	hitanimation BS_TARGET
+	waitstate
+	healthbarupdate BS_TARGET
+	datahpupdate BS_TARGET
+	critmessage
+	waitmessage B_WAIT_TIME_LONG
+	resultmessage
+	waitmessage B_WAIT_TIME_LONG
+	seteffectwithchance
+	tryfaintmon BS_TARGET
+	moveendto MOVEEND_NEXT_TARGET
+	jumpifnexttargetvalid BattleScript_HitAllOthersLoop
+	end
+BattleScript_HitAllOthersMissed::
+	pause B_WAIT_TIME_SHORT
+	typecalc
+	effectivenesssound
+	resultmessage
+	waitmessage B_WAIT_TIME_LONG
+	moveendto MOVEEND_NEXT_TARGET
+	jumpifnexttargetvalid BattleScript_HitAllOthersLoop
+	end

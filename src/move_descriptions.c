@@ -405,6 +405,12 @@ const u8 gMoveDescription_AQUA_JET[] = _("A water rush that\nstrikes the foe\nwi
 
 const u8 gMoveDescription_LIQUIDATION[] = _("A water strike\nthat may lower\nthe foe's DEFENSE.");
 
+const u8 gMoveDescription_VORTEX_SPIN[] = _("A spinning water\nstrike that may\nconfuse the foe.");
+
+const u8 gMoveDescription_TIDAL_CRASH[] = _("A rolling wave\nattack that grows\nover five turns.");
+
+const u8 gMoveDescription_DISCHARGE[] = _("Electricity hits\nall others. May\ncause paralysis.");
+
 const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND         - 1] = gMoveDescription_Pound,
     [MOVE_KARATE_CHOP   - 1] = gMoveDescription_KarateChop,
@@ -790,4 +796,7 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_FOUL_PLAY - 1] = gMoveDescription_FOUL_PLAY,
     [MOVE_AQUA_JET - 1] = gMoveDescription_AQUA_JET,
     [MOVE_LIQUIDATION - 1] = gMoveDescription_LIQUIDATION,
+    [MOVE_VORTEX_SPIN - 1] = gMoveDescription_VORTEX_SPIN,
+    [MOVE_TIDAL_CRASH - 1] = gMoveDescription_TIDAL_CRASH,
+    [MOVE_DISCHARGE - 1] = gMoveDescription_DISCHARGE,
 };

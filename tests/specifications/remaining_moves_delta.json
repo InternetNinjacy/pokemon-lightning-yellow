@@ -1,0 +1,112 @@
+{
+  "scope": "Approved remaining BTL-005 moves385\u2013410; exact cumulative delta from stable integration checkpoint",
+  "files": {
+    "include/constants/moves.h": {
+      "before_sha256": "af03c40dea6f81d195fa766823e272e9ef53545695f0160d447269958b0157ee",
+      "after_sha256": "ecbbd1ea36720d0a5f7700b10092f7f02e8993f1bb38762302d084e04eaa307c",
+      "hunks": [
+        {
+          "before": "\n#define MOVES_COUNT 385\n\n",
+          "after": "\n#define MOVE_VORTEX_SPIN 385\n\n#define MOVE_TIDAL_CRASH 386\n\n#define MOVE_DISCHARGE 387\n\n#define MOVES_COUNT 388\n\n"
+        }
+      ]
+    },
+    "include/constants/battle_move_effects.h": {
+      "before_sha256": "dd1f37bec166f2a98be1da8ac2e515c1ea3b52bec14a6ab0c77854fccd37d84d",
+      "after_sha256": "d8fdc6464e93e9d3db23b6b5b7a4f9e5e55e937d3789aa072a0e025a67f6959d",
+      "hunks": [
+        {
+          "before": "#define EFFECT_ICE_FANG 216\n\n",
+          "after": "#define EFFECT_ICE_FANG 216\n#define EFFECT_HIT_ALL_OTHERS 217\n\n"
+        }
+      ]
+    },
+    "include/constants/battle_script_commands.h": {
+      "before_sha256": "2365a9d5581325edcf41bf654ebbe70df6dea89defdf4f51bb0c962637444b30",
+      "after_sha256": "2365a9d5581325edcf41bf654ebbe70df6dea89defdf4f51bb0c962637444b30",
+      "hunks": []
+    },
+    "src/data/battle_moves.h": {
+      "before_sha256": "57d0de62bb963bb9a8132ef8f8dd5f51b4d0fdbee74adab88974061007683c3b",
+      "after_sha256": "120759f11fa2c7ec3947e3c6333cfcf74edb15c33447d4c01bf28f7da1255c73",
+      "hunks": [
+        {
+          "before": "\n};\n",
+          "after": "\n    [MOVE_VORTEX_SPIN] =\n    {\n        .category = MOVE_CATEGORY_PHYSICAL,\n        .effect = EFFECT_CONFUSE_HIT,\n        .power = 55,\n        .type = TYPE_WATER,\n        .accuracy = 100,\n        .pp = 25,\n        .secondaryEffectChance = 30,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = 0,\n        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,\n    },\n\n    [MOVE_TIDAL_CRASH] =\n    {\n        .category = MOVE_CATEGORY_PHYSICAL,\n        .effect = EFFECT_ROLLOUT,\n        .power = 30,\n        .type = TYPE_WATER,\n        .accuracy = 90,\n        .pp = 20,\n        .secondaryEffectChance = 0,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = 0,\n        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,\n    },\n\n    [MOVE_DISCHARGE] =\n    {\n        .category = MOVE_CATEGORY_SPECIAL,\n        .effect = EFFECT_HIT_ALL_OTHERS,\n        .power = 80,\n        .type = TYPE_ELECTRIC,\n        .accuracy = 100,\n        .pp = 15,\n        .secondaryEffectChance = 30,\n        .target = MOVE_TARGET_FOES_AND_ALLY,\n        .priority = 0,\n        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,\n    },\n\n};\n"
+        }
+      ]
+    },
+    "src/data/text/move_names.h": {
+      "before_sha256": "4065281a25776d147626fca1dc6ea114847660b38e83998ae9485724b1b8dd1a",
+      "after_sha256": "f3df3bea76ab306cca4b7a91710401fe0c29f92290ad029d3b472df605e87593",
+      "hunks": [
+        {
+          "before": "    [MOVE_LIQUIDATION] = _(\"LIQUIDATION\"),\n};\n",
+          "after": "    [MOVE_LIQUIDATION] = _(\"LIQUIDATION\"),\n    [MOVE_VORTEX_SPIN] = _(\"VORTEX SPIN\"),\n    [MOVE_TIDAL_CRASH] = _(\"TIDAL CRASH\"),\n    [MOVE_DISCHARGE] = _(\"DISCHARGE\"),\n};\n"
+        }
+      ]
+    },
+    "src/move_descriptions.c": {
+      "before_sha256": "193843911a6370bd80782823156ee83c9df6c24f989fb5abbcaad6e78c0774fa",
+      "after_sha256": "a64eb91ad1fa3529db04e59e45e6f891d9552190cf5c27566921223319893557",
+      "hunks": [
+        {
+          "before": "\nconst u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {\n",
+          "after": "\nconst u8 gMoveDescription_VORTEX_SPIN[] = _(\"A spinning water\\nstrike that may\\nconfuse the foe.\");\n\nconst u8 gMoveDescription_TIDAL_CRASH[] = _(\"A rolling wave\\nattack that grows\\nover five turns.\");\n\nconst u8 gMoveDescription_DISCHARGE[] = _(\"Electricity hits\\nall others. May\\ncause paralysis.\");\n\nconst u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {\n"
+        },
+        {
+          "before": "    [MOVE_LIQUIDATION - 1] = gMoveDescription_LIQUIDATION,\n};\n",
+          "after": "    [MOVE_LIQUIDATION - 1] = gMoveDescription_LIQUIDATION,\n    [MOVE_VORTEX_SPIN - 1] = gMoveDescription_VORTEX_SPIN,\n    [MOVE_TIDAL_CRASH - 1] = gMoveDescription_TIDAL_CRASH,\n    [MOVE_DISCHARGE - 1] = gMoveDescription_DISCHARGE,\n};\n"
+        }
+      ]
+    },
+    "data/battle_anim_scripts.s": {
+      "before_sha256": "b64abaf97c5a6b821cc20b83023776a07f7392f9655c8092089d2ad7b317e208",
+      "after_sha256": "239f148684255e4d60dc8aa3e3a19bfef1a4db33abdc10814940f5bbd4d68e32",
+      "hunks": [
+        {
+          "before": "\t.4byte Move_LIQUIDATION\n\t.4byte Move_COUNT @ cannot be reached, because last move is Psycho Boost\n",
+          "after": "\t.4byte Move_LIQUIDATION\n\t.4byte Move_VORTEX_SPIN\n\t.4byte Move_TIDAL_CRASH\n\t.4byte Move_DISCHARGE\n\t.4byte Move_COUNT @ cannot be reached, because last move is Psycho Boost\n"
+        },
+        {
+          "before": "\tgoto Move_WATERFALL\n",
+          "after": "\tgoto Move_WATERFALL\n\nMove_VORTEX_SPIN:\n\tgoto Move_WHIRLPOOL\n\nMove_TIDAL_CRASH:\n\tgoto Move_SURF\n\nMove_DISCHARGE:\n\tgoto Move_THUNDERBOLT\n"
+        }
+      ]
+    },
+    "data/battle_scripts_1.s": {
+      "before_sha256": "99dd5c4fc229ed524a5b24337283eeee8d7171af6ac7532cf055bc62ee92e9e6",
+      "after_sha256": "7823f8a700d1c741944bb94059cd99f310dbc4f966ce65427b2185d6760ba449",
+      "hunks": [
+        {
+          "before": "\t.4byte BattleScript_EffectIceFang                  @ EFFECT_ICE_FANG\n\n",
+          "after": "\t.4byte BattleScript_EffectIceFang                  @ EFFECT_ICE_FANG\n\t.4byte BattleScript_EffectHitAllOthers              @ EFFECT_HIT_ALL_OTHERS\n\n"
+        },
+        {
+          "before": "\tgoto BattleScript_EffectHit\n",
+          "after": "\tgoto BattleScript_EffectHit\n\n@ Approved Discharge/Petal Blizzard: native Earthquake target iteration without\n@ its underground bonus, plus independent secondary effects for each recipient.\nBattleScript_EffectHitAllOthers::\n\tattackcanceler\n\tattackstring\n\tppreduce\n\tselectfirstvalidtarget\nBattleScript_HitAllOthersLoop::\n\tmovevaluescleanup\n\tjumpifnotmove MOVE_DISCHARGE, BattleScript_HitAllOthersNoSecondary\n\tsetmoveeffect MOVE_EFFECT_PARALYSIS\nBattleScript_HitAllOthersNoSecondary::\n\taccuracycheck BattleScript_HitAllOthersMissed, ACC_CURR_MOVE\n\tcritcalc\n\tdamagecalc\n\ttypecalc\n\tadjustnormaldamage\n\tattackanimation\n\twaitanimation\n\teffectivenesssound\n\thitanimation BS_TARGET\n\twaitstate\n\thealthbarupdate BS_TARGET\n\tdatahpupdate BS_TARGET\n\tcritmessage\n\twaitmessage B_WAIT_TIME_LONG\n\tresultmessage\n\twaitmessage B_WAIT_TIME_LONG\n\tseteffectwithchance\n\ttryfaintmon BS_TARGET\n\tmoveendto MOVEEND_NEXT_TARGET\n\tjumpifnexttargetvalid BattleScript_HitAllOthersLoop\n\tend\nBattleScript_HitAllOthersMissed::\n\tpause B_WAIT_TIME_SHORT\n\ttypecalc\n\teffectivenesssound\n\tresultmessage\n\twaitmessage B_WAIT_TIME_LONG\n\tmoveendto MOVEEND_NEXT_TARGET\n\tjumpifnexttargetvalid BattleScript_HitAllOthersLoop\n\tend\n"
+        }
+      ]
+    },
+    "src/pokemon.c": {
+      "before_sha256": "f3398bb0ae612d99c4553d4822a00633ea5d78211f70c4a970628ed78ff0fb85",
+      "after_sha256": "f3398bb0ae612d99c4553d4822a00633ea5d78211f70c4a970628ed78ff0fb85",
+      "hunks": []
+    },
+    "src/battle_script_commands.c": {
+      "before_sha256": "c27a5634100c618a1e83d2cd62157f7b9a1e565bdaba0ff45d14edad3e3fa85b",
+      "after_sha256": "c27a5634100c618a1e83d2cd62157f7b9a1e565bdaba0ff45d14edad3e3fa85b",
+      "hunks": []
+    },
+    "src/battle_main.c": {
+      "before_sha256": "c3fb3ef9683463807b1c38b5366c0ac50140a2e8c9cbcf98114b0aeabe534ea5",
+      "after_sha256": "c3fb3ef9683463807b1c38b5366c0ac50140a2e8c9cbcf98114b0aeabe534ea5",
+      "hunks": []
+    },
+    "include/battle.h": {
+      "before_sha256": "721e16ed978b7a01533821337dfe94ec2685881fed959b7e561ab67ea1f82b11",
+      "after_sha256": "721e16ed978b7a01533821337dfe94ec2685881fed959b7e561ab67ea1f82b11",
+      "hunks": []
+    }
+  }
+}

@@ -3,13 +3,14 @@
 from pathlib import Path
 import json,hashlib,re
 from approved_moves382_changes import prior_moves382_source
+from approved_remaining_moves import prior_remaining_source
 from approved_btl_weather_integration import without_weather
 m=json.loads(Path('tests/specifications/moves382_delta.json').read_text())
 for p,r in m['files'].items():
  assert hashlib.sha256(without_weather(p).encode()).hexdigest()==r['after_sha256'],p
  assert hashlib.sha256(prior_moves382_source(p).encode()).hexdigest()==r['before_sha256'],p
 rows=[('FOUL_PLAY',382,'DARK',95,100,15,0,'HIT',0,True),('AQUA_JET',383,'WATER',40,100,20,1,'HIT',0,True),('LIQUIDATION',384,'WATER',85,100,10,0,'DEFENSE_DOWN_HIT',20,False)]
-s=Path('src/data/battle_moves.h').read_text();c=Path('include/constants/moves.h').read_text();a=Path('data/battle_anim_scripts.s').read_text()
+s=Path('src/data/battle_moves.h').read_text();c=prior_remaining_source('include/constants/moves.h');a=Path('data/battle_anim_scripts.s').read_text()
 for key,idx,typ,power,acc,pp,priority,effect,chance,king in rows:
  b=re.search(r'\[MOVE_'+key+r'\]\s*=\s*\{(.*?)\n    \},',s,re.S)[1]
  for f,v in dict(category='MOVE_CATEGORY_PHYSICAL',effect='EFFECT_'+effect,type='TYPE_'+typ,power=power,accuracy=acc,pp=pp,secondaryEffectChance=chance,target='MOVE_TARGET_SELECTED',priority=priority).items():assert f'.{f} = {v},' in b,(key,f)

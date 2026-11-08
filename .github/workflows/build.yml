@@ -64,6 +64,7 @@ jobs:
           python3 tests/run_payback_tests.py
           python3 tests/run_moves382_tests.py
           python3 tests/run_btl_weather_integration_tests.py
+          python3 tests/run_remaining_moves_tests.py
           python3 tests/run_move_foundation_tests.py
           python3 tests/run_move_ui_tests.py
           python3 tests/run_original_move_data_tests.py

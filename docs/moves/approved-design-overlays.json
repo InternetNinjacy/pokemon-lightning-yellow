@@ -27,8 +27,8 @@
     },
     "owner_20261105": {
       "file": "OWNER_DECISIONS_2026-11-05.md",
-      "sha256": "9588cb03407772d91302e519c1609b392e4b999b3d7bb60bc53af7933a71eba0",
-      "lines": 8
+      "sha256": "b5f1e4ba11caa897320569d0abb76ce60d8fcc4f4127714844ab140f111d3e9d",
+      "lines": 18
     }
   },
   "source_commit": "92838e5eb64d19942cb5c51cfdef6991503ac3ad",
@@ -2213,6 +2213,11 @@
       "effect_rules": {
         "semantic": "CONFUSION_30_NO_TRAP",
         "traps": false
+      },
+      "engine_translation": {
+        "effect": "EFFECT_CONFUSE_HIT",
+        "target": "MOVE_TARGET_SELECTED",
+        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       }
     },
     {
@@ -2276,6 +2281,11 @@
         "defense_curl_bonus": true,
         "ends_on_miss": true,
         "surf_spread_mechanics": false
+      },
+      "engine_translation": {
+        "effect": "EFFECT_ROLLOUT",
+        "target": "MOVE_TARGET_SELECTED",
+        "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       }
     },
     {
@@ -2324,6 +2334,11 @@
       "effect_rules": {
         "semantic": "PARALYZE_30",
         "secondary_percent": 30
+      },
+      "engine_translation": {
+        "effect": "EFFECT_HIT_ALL_OTHERS",
+        "target": "MOVE_TARGET_FOES_AND_ALLY",
+        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
       }
     },
     {
