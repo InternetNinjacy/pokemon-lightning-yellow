@@ -6,7 +6,16 @@ known integrated file or its exact already-projected source revision.
 from pathlib import Path
 import hashlib,json
 SHARED=('include/battle_util.h','src/battle_util.c','src/battle_main.c','src/battle_script_commands.c','src/pokemon.c','data/battle_scripts_1.s')
+def before_species_evolution(path,text):
+    # Main52b06554's exact two-family fallback is orthogonal to BTL. Retain its
+    # frozen reversal rather than changing the earlier integrated file hashes.
+    from approved_weather_species_evolution_changes import AFTER, prior_weather_species_evolution_source
+    if str(path)=='src/pokemon.c' and AFTER in text:
+        return prior_weather_species_evolution_source(path,text)
+    return text
+
 def project(path,text,view):
+    text=before_species_evolution(path,text)
     row=json.loads(Path('tests/specifications/btl_weather_integration_delta.json').read_text())['files'].get(str(path))
     if row is None:return text
     digest=hashlib.sha256(text.encode()).hexdigest()

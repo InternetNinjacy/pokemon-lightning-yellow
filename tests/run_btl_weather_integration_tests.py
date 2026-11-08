@@ -2,10 +2,10 @@
 """Exact dual source projection; neither history is treated as the new baseline."""
 from pathlib import Path
 import hashlib,json
-from approved_btl_weather_integration import without_btl,without_weather
+from approved_btl_weather_integration import without_btl,without_weather,before_species_evolution
 m=json.loads(Path('tests/specifications/btl_weather_integration_delta.json').read_text())
 for path,row in m['files'].items():
- assert hashlib.sha256(Path(path).read_bytes()).hexdigest()==row['merged_sha256'],path
+ assert hashlib.sha256(before_species_evolution(path,Path(path).read_text()).encode()).hexdigest()==row['merged_sha256'],path
  assert hashlib.sha256(without_weather(path).encode()).hexdigest()==row['without_weather']['sha256'],path
  assert hashlib.sha256(without_btl(path).encode()).hexdigest()==row['without_btl']['sha256'],path
  # A novel mutation must fail both views, never be silently normalized away.

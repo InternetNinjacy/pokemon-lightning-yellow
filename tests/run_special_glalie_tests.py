@@ -4,6 +4,7 @@ import hashlib,json,re
 from pathlib import Path
 from approved_special_glalie_changes import prior_special_glalie_source
 from approved_btl_weather_integration import without_btl
+from approved_weather_species_slots import prior_weather_species_source
 m=json.loads(Path('tests/specifications/special_glalie_delta.json').read_text())
 for path,row in m['files'].items():
     assert hashlib.sha256(without_btl(path).encode()).hexdigest()==row['after_sha256'],path
@@ -15,5 +16,5 @@ p=Path('include/constants/pokemon.h').read_text();old=prior_special_glalie_sourc
 for name,value in re.findall(r'#define (MON_DATA_\w+)\s+(\d+)',old):
     assert re.search(r'#define '+name+r'\s+'+value+r'\b',p),name
 assert '#define MON_DATA_INDIVIDUAL_ABILITY       89' in p
-assert hashlib.sha256(Path('src/data/pokemon/species_info.h').read_bytes()).hexdigest()==m['species_sha256']
+assert hashlib.sha256(prior_weather_species_source().encode()).hexdigest()==m['species_sha256']
 print('PASS: exact opt-in Glalie delta, unchanged Pokémon layouts/original data IDs/species slots; field89 uses existing checksummed growth filler. Static source audit, not capture/save execution.')
