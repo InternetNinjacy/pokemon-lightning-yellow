@@ -384,7 +384,9 @@
 
 #define MOVE_EARTH_POWER 371
 
-#define MOVES_COUNT 372
+#define MOVE_ICE_FANG 372
+
+#define MOVES_COUNT 373
 
 // Used for checks for moves affected by Disable, Mimic, etc.
 #define MOVE_UNAVAILABLE 0xFFFF
