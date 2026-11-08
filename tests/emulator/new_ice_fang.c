@@ -57,5 +57,34 @@ static void iceFangTests(void){
   }
   free(initial);
  }
+ // Native immunity/ability controls. Fresh independent battle for each variant.
+ // Keep HP=1000 so the target survives; count only hit turns when assessing status.
+ for(unsigned variant=0;variant<3;variant++){
+  effectBattleFixture(0,MOVE_ICE_FANG);damageStats();
+  core->busWrite8(core,bmon(0)+ABI_BMON_LEVEL,50);
+  core->busWrite16(core,bmon(0)+ABI_BMON_ATTACK,160);
+  core->busWrite16(core,bmon(1)+ABI_BMON_DEFENSE,100);
+  core->busWrite8(core,bmon(1)+ABI_BMON_TYPE1,variant==0?TYPE_ICE:TYPE_NORMAL);
+  core->busWrite8(core,bmon(1)+ABI_BMON_TYPE2,variant==0?TYPE_ICE:TYPE_NORMAL);
+  core->busWrite8(core,bmon(1)+ABI_BMON_ABILITY,variant==1?ABILITY_INNER_FOCUS:(variant==2?ABILITY_SHIELD_DUST:ABILITY_BATTLE_ARMOR));
+  void *snapshot=malloc(core->stateSize(core));CHECK(snapshot&&core->saveState(core,snapshot));
+  unsigned hit=0,freeze=0,flinch=0;
+  for(unsigned trial=0;trial<120;trial++){
+   CHECK(core->loadState(core,snapshot));
+   core->busWrite32(core,SYM_gRngValue,0x1CE00000+trial*7919+variant*71);
+   chooseMove(0,0,1);
+   struct IceFangObserved v=iceFangObservedTurn();
+   CHECK(monget(player(0),ABI_DATA_PP1)==14);
+   if(core->busRead16(core,bmon(1)+ABI_BMON_HP)==1000){
+    CHECK(!v.freeze&&!v.flinch);
+   }else{hit++;freeze+=v.freeze;flinch+=v.flinch;}
+  }
+  CHECK(hit>90);
+  if(variant==0){CHECK(freeze==0);CHECK(flinch>0);} // Ice type can flinch but cannot freeze
+  if(variant==1){CHECK(flinch==0);CHECK(freeze>0);} // Inner Focus prevents flinch only
+  if(variant==2){CHECK(freeze==0);CHECK(flinch==0);} // Shield Dust prevents secondary statuses
+  free(snapshot);
+  printf("PASS: Ice Fang native ability/type control %u: %u hits, %u frozen, %u flinched\\n",variant,hit,freeze,flinch);
+ }
  CHECK(core->loadState(core,bootState));
 }
