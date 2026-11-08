@@ -2,7 +2,8 @@
 """PKM-007 source/preservation checks; runtime coverage is in mGBA, not simulated here."""
 import hashlib,json,re
 from pathlib import Path
-source=Path('src/data/pokemon/species_info.h').read_text()
+from approved_weather_species_slots import prior_weather_species_source
+source=prior_weather_species_source()
 load=lambda name:json.loads(Path('tests/specifications/'+name+'.json').read_text())
 rules=load('approved_type_overrides')['species']
 delta=load('approved_typing_delta')['species']
