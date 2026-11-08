@@ -1,0 +1,117 @@
+{
+  "scope": "BTL-005 #381 exact production reversals",
+  "files": {
+    "include/constants/moves.h": {
+      "before_sha256": "3ca5ffc94f5ca11192e1915d974ce90e9adb2a4d9517d6cbd67472cdc032a8fd",
+      "after_sha256": "782788d2dc0f98f295013160b7a0bff7f384ceb394e800c76417f15984ccbb3f",
+      "hunks": [
+        {
+          "before": "\n#define MOVES_COUNT 381\n\n",
+          "after": "\n#define MOVE_PAYBACK 381\n\n#define MOVES_COUNT 382\n\n"
+        }
+      ]
+    },
+    "src/data/battle_moves.h": {
+      "before_sha256": "f6dfd09c98436f130e19c14c65fc6d7a65d186308cc77ce8fc05952dc5eec93f",
+      "after_sha256": "a5ee6cd0617eac450e483bb1964a036bb9606484811e74b1a6436333beb2b782",
+      "hunks": [
+        {
+          "before": "\n};\n",
+          "after": "\n    [MOVE_PAYBACK] =\n    {\n        .category = MOVE_CATEGORY_PHYSICAL,\n        .effect = EFFECT_HIT,\n        .power = 50,\n        .type = TYPE_DARK,\n        .accuracy = 100,\n        .pp = 10,\n        .secondaryEffectChance = 0,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = 0,\n        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,\n    },\n\n};\n"
+        }
+      ]
+    },
+    "src/data/text/move_names.h": {
+      "before_sha256": "e69fd2c7a887ef663ec6966f4ce26239b17cfde3b950eb1070a4417f778f577f",
+      "after_sha256": "4c308d3a198c152d5e78917bca346c09d1043ef67a45c617c52e53ec00c8c974",
+      "hunks": [
+        {
+          "before": "    [MOVE_NIGHT_SLASH] = _(\"NIGHT SLASH\"),\n};\n",
+          "after": "    [MOVE_NIGHT_SLASH] = _(\"NIGHT SLASH\"),\n    [MOVE_PAYBACK] = _(\"PAYBACK\"),\n};\n"
+        }
+      ]
+    },
+    "src/move_descriptions.c": {
+      "before_sha256": "a6b0f5fd4d1d3f589f76e3a384f7886af8ace0c432522933c609335141c88d88",
+      "after_sha256": "a4ec22cce07937e982ad57ff20716bf738126ea9749e41c3132181392aca95d8",
+      "hunks": [
+        {
+          "before": "\nconst u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {\n",
+          "after": "\nconst u8 gMoveDescription_PAYBACK[] = _(\"Strikes harder if\\nthe foe has taken\\nits turn already.\");\n\nconst u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {\n"
+        },
+        {
+          "before": "    [MOVE_NIGHT_SLASH - 1] = gMoveDescription_NIGHT_SLASH,\n};\n",
+          "after": "    [MOVE_NIGHT_SLASH - 1] = gMoveDescription_NIGHT_SLASH,\n    [MOVE_PAYBACK - 1] = gMoveDescription_PAYBACK,\n};\n"
+        }
+      ]
+    },
+    "data/battle_anim_scripts.s": {
+      "before_sha256": "9f04cf343924ba2fe84b29f77aae8e1a66ca2719691ecc192d2abaf5b8dbf14c",
+      "after_sha256": "3cfabced378e40dbea3641c5f691cd1181699cecd61f815e9b27d435f47cccc9",
+      "hunks": [
+        {
+          "before": "\t.4byte Move_NIGHT_SLASH\n\t.4byte Move_COUNT @ cannot be reached, because last move is Psycho Boost\n",
+          "after": "\t.4byte Move_NIGHT_SLASH\n\t.4byte Move_PAYBACK\n\t.4byte Move_COUNT @ cannot be reached, because last move is Psycho Boost\n"
+        },
+        {
+          "before": "\tgoto Move_SLASH\n",
+          "after": "\tgoto Move_SLASH\n\nMove_PAYBACK:\n\tgoto Move_REVENGE\n"
+        }
+      ]
+    },
+    "include/battle.h": {
+      "before_sha256": "94bbd98c7c2b009f6339c1b86ba35843224bf51419af347e83ec2ecf61a5ac72",
+      "after_sha256": "721e16ed978b7a01533821337dfe94ec2685881fed959b7e561ab67ea1f82b11",
+      "hunks": [
+        {
+          "before": "    u8 damagedByBattlers[MAX_BATTLERS_COUNT];\n    u8 padding_1EC[0x14];\n}; // size == 0x200 bytes\n",
+          "after": "    u8 damagedByBattlers[MAX_BATTLERS_COUNT];\n    // Completed action slots, including switches (Generation IV Payback).\n    u8 actedThisTurn;\n    u8 padding_1ED[0x13];\n}; // size == 0x200 bytes\n"
+        }
+      ]
+    },
+    "include/battle_util.h": {
+      "before_sha256": "0ee7b7ac3c2c9f3a8debe447d8f72c31059ee4016c5f68d499beb58f36e55a7e",
+      "after_sha256": "a5c70361dcf1b34f079b0300d7c3d320d23640b0a784a92305eb24f55028e38f",
+      "hunks": [
+        {
+          "before": "\nbool8 BattlerWasDamagedBy(u8 recipient, u8 source);\n",
+          "after": "\nbool8 BattlerHasActedThisTurn(u8 battler);\nbool8 BattlerWasDamagedBy(u8 recipient, u8 source);\n"
+        }
+      ]
+    },
+    "src/battle_util.c": {
+      "before_sha256": "7bbb74d828995e99257fc968c0bec5827f3fce6d016fdb82ff799249b5e77839",
+      "after_sha256": "0075d46dcd7ae7533d3217ad2b8e0e328c6ceb9038914bebdeb11c8fd78fb5b3",
+      "hunks": [
+        {
+          "before": "};\n\n",
+          "after": "};\n\nbool8 BattlerHasActedThisTurn(u8 battler)\n{\n    return battler < MAX_BATTLERS_COUNT\n        && (gBattleStruct->actedThisTurn & (1U << battler)) != 0;\n}\n\n"
+        }
+      ]
+    },
+    "src/battle_main.c": {
+      "before_sha256": "dba594c7ac65566d069e867e741977b7e3fe0811c68701fe79e18b2df065dacd",
+      "after_sha256": "a8fdf9b275d7ce1a3b8e0f5f530d2a16cf8251664c09eef8e555fa6e5e1ad3c4",
+      "hunks": [
+        {
+          "before": "    if (!var0)\n        for (i = 0; i < MAX_BATTLERS_COUNT; i++)\n            gBattleStruct->damagedByBattlers[i] = 0;\n\n",
+          "after": "    if (!var0)\n    {\n        gBattleStruct->actedThisTurn = 0;\n        for (i = 0; i < MAX_BATTLERS_COUNT; i++)\n            gBattleStruct->damagedByBattlers[i] = 0;\n    }\n\n"
+        },
+        {
+          "before": "    sTurnActionsFuncsTable[gCurrentActionFuncId]();\n\n",
+          "after": "    sTurnActionsFuncsTable[gCurrentActionFuncId]();\n\n    // Mark completion, not selection or damage. Keep this slot marked when a\n    // replacement enters: Generation IV Payback also doubles against switches.\n    if (gBattleStruct->savedTurnActionNumber != gCurrentTurnActionNumber\n     && gBattleStruct->savedTurnActionNumber < gBattlersCount)\n        gBattleStruct->actedThisTurn |= 1U << gBattlerByTurnOrder[gBattleStruct->savedTurnActionNumber];\n\n"
+        }
+      ]
+    },
+    "src/pokemon.c": {
+      "before_sha256": "5a3c6fb08ea59241ad98d0e6d4b4869bce5b9f5e1dcfccda67bba96dcf094956",
+      "after_sha256": "3db3b9390cad3bcf958429d3c1de6d12a76afc1b86f9cab99c7764c368c2405d",
+      "hunks": [
+        {
+          "before": "    if (move == MOVE_AVALANCHE && BattlerWasDamagedBy(battlerIdAtk, battlerIdDef))\n        gBattleMovePower *= 2;\n",
+          "after": "    if (move == MOVE_AVALANCHE && BattlerWasDamagedBy(battlerIdAtk, battlerIdDef))\n        gBattleMovePower *= 2;\n\n    if (move == MOVE_PAYBACK && BattlerHasActedThisTurn(battlerIdDef))\n        gBattleMovePower *= 2;\n"
+        }
+      ]
+    }
+  }
+}

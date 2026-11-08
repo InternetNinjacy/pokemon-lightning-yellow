@@ -18,7 +18,7 @@ class SkitterSlashSourceTests(unittest.TestCase):
         from move_catalog import validate
         import json
         overlay = json.loads((ROOT / "docs/moves/approved-design-overlays.json").read_text())
-        self.assertEqual(validate(ROOT, overlay["new_moves"]), 381)  # Contiguous through approved #380 Night Slash
+        self.assertEqual(validate(ROOT, overlay["new_moves"]), 382)  # Contiguous through approved #381 Payback
         constants = (ROOT / "include/constants/moves.h").read_text()
         self.assertRegex(constants, r"(?m)^#define MOVE_SKITTER_SLASH 361$")
 

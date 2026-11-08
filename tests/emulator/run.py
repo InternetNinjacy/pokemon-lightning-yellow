@@ -11,6 +11,11 @@ import shutil
 
 # Generate ABI constants with the game's ARM compiler, never host offsetof.
 expressions = {
+ 'ACTION_NOTHING_FAINTED':'B_ACTION_NOTHING_FAINTED',
+ 'ACTION_SWITCH':'B_ACTION_SWITCH',
+ 'ACTION_MOVE':'B_ACTION_USE_MOVE',
+ 'BATTLESTRUCT_ACTED':'offsetof(struct BattleStruct,actedThisTurn)',
+ 'BATTLESTRUCT_SWITCH_IN':'offsetof(struct BattleStruct,monToSwitchIntoId)',
  'BATTLESTRUCT_DAMAGE_SOURCES':'offsetof(struct BattleStruct,damagedByBattlers)',
  'BATTLESTRUCT_SIZE':'sizeof(struct BattleStruct)',
  'BATTLESTRUCT_TW_USER':'offsetof(struct BattleStruct,thunderWaveUser)',
@@ -294,7 +299,7 @@ required = [
 ]
 required += ['NextThunderWaveTarget','gAbsentBattlerFlags']
 required += ['Cmd_accuracycheck']
-required += ['BattlerWasDamagedBy','TurnValuesCleanUp','SwitchInClearSetData','gBattleMovePower','Cmd_datahpupdate']
+required += ['BattlerHasActedThisTurn','RunTurnActionsFunctions','SetActionsAndBattlersTurnOrder','gBattleMainFunc','gCurrentActionFuncId','gChosenActionByBattler','gEnemyPartyCount','gBattlerPartyIndexes','gActionsByTurnOrder', 'BattlerWasDamagedBy','TurnValuesCleanUp','SwitchInClearSetData','gBattleMovePower','Cmd_datahpupdate']
 required += ['Cmd_seteffectwithchance','gBattleCommunication','gCurrentTurnActionNumber','gBattlerByTurnOrder','gSideTimers']
 required += ['Cmd_rolloutdamagecalculation','gDisableStructs','gLockedMoves','gLastMoves']
 required += ['BattleAI_SetupAIData','BattleAI_ChooseMoveOrAction','RecordAbilityBattle']

@@ -2415,6 +2415,9 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
     if (move == MOVE_AVALANCHE && BattlerWasDamagedBy(battlerIdAtk, battlerIdDef))
         gBattleMovePower *= 2;
 
+    if (move == MOVE_PAYBACK && BattlerHasActedThisTurn(battlerIdDef))
+        gBattleMovePower *= 2;
+
     // Dream Haunt doubles power against sleep without draining or waking.
     if (move == MOVE_DREAM_HAUNT && (defender->status1 & STATUS1_SLEEP))
         gBattleMovePower *= 2;

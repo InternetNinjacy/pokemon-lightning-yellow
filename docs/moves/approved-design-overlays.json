@@ -1997,6 +1997,11 @@
         "semantic": "DOUBLE_IF_ACTS_AFTER_TARGET_VERSION_REVIEW",
         "reference_generation": 4,
         "switching_target_doubles_power": true
+      },
+      "engine_translation": {
+        "effect": "EFFECT_HIT",
+        "target": "MOVE_TARGET_SELECTED",
+        "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       }
     },
     {

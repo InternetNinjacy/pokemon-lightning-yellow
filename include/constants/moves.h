@@ -402,7 +402,9 @@
 
 #define MOVE_NIGHT_SLASH 380
 
-#define MOVES_COUNT 381
+#define MOVE_PAYBACK 381
+
+#define MOVES_COUNT 382
 
 // Used for checks for moves affected by Disable, Mimic, etc.
 #define MOVE_UNAVAILABLE 0xFFFF

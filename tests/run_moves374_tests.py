@@ -3,12 +3,13 @@
 from pathlib import Path
 import json,hashlib,re
 from approved_moves374_changes import prior_moves374_source
+from approved_payback_changes import prior_payback_source
 m=json.loads(Path('tests/specifications/moves374_delta.json').read_text())
 for p,r in m['files'].items():
- assert hashlib.sha256(Path(p).read_bytes()).hexdigest()==r['after_sha256'],p
+ assert hashlib.sha256(prior_payback_source(p).encode()).hexdigest()==r['after_sha256'],p
  assert hashlib.sha256(prior_moves374_source(p).encode()).hexdigest()==r['before_sha256'],p
 rows=[('ICICLE_CRASH',374,'ICE','PHYSICAL',85,90,10,'FLINCH_HIT',30,'SELECTED',False,False),('DRAGON_PULSE',375,'DRAGON','SPECIAL',85,100,10,'HIT',0,'SELECTED',False,True),('DRAGON_RUSH',376,'DRAGON','PHYSICAL',100,75,10,'FLINCH_HIT',20,'SELECTED',True,False),('SNARL',377,'DARK','SPECIAL',55,95,15,'SPECIAL_ATTACK_DOWN_HIT',100,'BOTH',False,False),('DARK_PULSE',378,'DARK','SPECIAL',80,100,15,'FLINCH_HIT',20,'SELECTED',False,False),('NIGHT_DAZE',379,'DARK','SPECIAL',85,95,10,'ACCURACY_DOWN_HIT',40,'SELECTED',False,False),('NIGHT_SLASH',380,'DARK','PHYSICAL',70,100,15,'HIGH_CRITICAL',0,'SELECTED',True,True)]
-s=Path('src/data/battle_moves.h').read_text();constants=Path('include/constants/moves.h').read_text();a=Path('data/battle_anim_scripts.s').read_text()
+s=Path('src/data/battle_moves.h').read_text();constants=prior_payback_source('include/constants/moves.h');a=Path('data/battle_anim_scripts.s').read_text()
 for key,idx,typ,cat,power,acc,pp,effect,chance,target,contact,king in rows:
  block=re.search(r'\[MOVE_'+key+r'\]\s*=\s*\{(.*?)\n    \},',s,re.S)[1]
  for f,v in dict(category='MOVE_CATEGORY_'+cat,effect='EFFECT_'+effect,type='TYPE_'+typ,power=power,accuracy=acc,pp=pp,secondaryEffectChance=chance,target='MOVE_TARGET_'+target,priority=0).items():assert f'.{f} = {v},' in block,(key,f)

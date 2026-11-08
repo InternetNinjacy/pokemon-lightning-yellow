@@ -401,6 +401,7 @@ gBattleAnims_Moves::
 	.4byte Move_DARK_PULSE
 	.4byte Move_NIGHT_DAZE
 	.4byte Move_NIGHT_SLASH
+	.4byte Move_PAYBACK
 	.4byte Move_COUNT @ cannot be reached, because last move is Psycho Boost
 
 	.align 2
@@ -11735,3 +11736,6 @@ Move_NIGHT_DAZE:
 
 Move_NIGHT_SLASH:
 	goto Move_SLASH
+
+Move_PAYBACK:
+	goto Move_REVENGE

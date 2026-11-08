@@ -475,7 +475,9 @@ struct BattleStruct
     bool8 thunderWaveActive;
     // Sources of actual direct HP damage this turn, one bit per battler.
     u8 damagedByBattlers[MAX_BATTLERS_COUNT];
-    u8 padding_1EC[0x14];
+    // Completed action slots, including switches (Generation IV Payback).
+    u8 actedThisTurn;
+    u8 padding_1ED[0x13];
 }; // size == 0x200 bytes
 
 extern struct BattleStruct *gBattleStruct;
