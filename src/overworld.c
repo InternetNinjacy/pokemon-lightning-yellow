@@ -1,4 +1,5 @@
 #include "global.h"
+#include "follower_graphics.h"
 #include "dynamic_weather.h"
 #include "gflib.h"
 #include "bg_regs.h"
@@ -2136,7 +2137,10 @@ static void InitOverworldGraphicsRegisters(void)
 static void ResumeMap(bool32 inLink)
 {
     ResetTasks();
+    // Sprite IDs and palette tags are invalid after this reset. The
+    // graphics controller must not free a reused ID on the new map.
     ResetSpriteData();
+    FollowerGraphics_InvalidateAfterSpriteReset();
     ResetPaletteFade();
     ScanlineEffect_Clear();
     ResetAllPicSprites();
