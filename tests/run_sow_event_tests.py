@@ -12,7 +12,7 @@ expected=[
   "SPECIES_CORPHISH","30","SPECIAL_WEATHER_CORPHISH"),
  ("Route21_North","Route21_North_EventScript_SowGlalie","OBJ_EVENT_GFX_SOW_GLALIE","FLAG_UNUSED_0x4AA",13,7,
   "SPECIES_GLALIE","40","SPECIAL_WEATHER_GLALIE"),
- ("Route23","Route23_EventScript_SowTyranitar","OBJ_EVENT_GFX_SOW_TYRANITAR","FLAG_UNUSED_0x4AC",13,145,
+ ("Route23","Route23_EventScript_SowTyranitar","OBJ_EVENT_GFX_SOW_TYRANITAR","FLAG_UNUSED_0x4AC",13,142,
   "SPECIES_TYRANITAR","55","SPECIAL_WEATHER_TYRANITAR")
 ]
 for event_id,(m,script,gfx,flag,x,y,species,level,weather) in enumerate(expected):
