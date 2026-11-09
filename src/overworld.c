@@ -1,5 +1,6 @@
 #include "global.h"
 #include "follower_graphics.h"
+#include "follower_controller.h"
 #include "dynamic_weather.h"
 #include "gflib.h"
 #include "bg_regs.h"
@@ -1468,6 +1469,7 @@ static void OverworldBasic(void)
     RunTasks();
     AnimateSprites();
     CameraUpdate();
+    FollowerController_Tick();
     SetQuestLogEvent_Arrived();
     UpdateCameraPanning();
     BuildOamBuffer();
