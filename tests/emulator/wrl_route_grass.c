@@ -102,3 +102,35 @@ static void wrlRouteNativeGrassTests(void) {
     }
     CHECK(core->loadState(core,bootState));
 }
+
+// WRL-009: start on the *north edge* of Route 5, not inside the grass.
+// The compiled map has a south-facing ledge at y=4. Drive the actual
+// overworld walker through that ledge into the first approved grass row.
+// This proves in-map movement from the northern entry corridor; it does NOT
+// prove the separate Cerulean City -> Route 5 map-connection transition.
+static void wrlRoute5NorthernLedgeWalkTests(void) {
+    const unsigned x=23, gridX=x+7, ledgeGridY=4+7, firstGrassGridY=5+7;
+    wrlRouteGrassFixture(MAP_GROUP(MAP_ROUTE5),MAP_NUM(MAP_ROUTE5),x,0);
+    CALL(PlayerGetDestCoords,scratch,scratch+2);
+    CHECK(core->busRead16(core,scratch)==gridX);
+    CHECK(core->busRead16(core,scratch+2)==7);
+    CHECK(!wrlRouteGrassAt(gridX,7));
+    CHECK(CALL(MapGridGetCollisionAt,gridX,ledgeGridY));
+    CHECK(wrlRouteGrassAt(gridX,firstGrassGridY));
+    unsigned reached=0,highestY=7,frame;
+    for(frame=0;frame<3000;frame++) {
+        if((core->busRead32(core,SYM_gMain+ABI_MAIN_CB2)&~1U)!=SYM_CB2_Overworld)
+            break;
+        frames(1,64); // Hold DOWN; do not warp or inject a wild encounter.
+        CALL(PlayerGetDestCoords,scratch,scratch+2);
+        unsigned currentX=core->busRead16(core,scratch);
+        unsigned currentY=core->busRead16(core,scratch+2);
+        CHECK(currentX==gridX);
+        if(currentY>highestY)highestY=currentY;
+        if(wrlRouteGrassAt(currentX,currentY)) {reached=1;break;}
+    }
+    CHECK(reached);
+    CHECK(highestY>=firstGrassGridY);
+    printf("PASS: Route 5 native north-edge D-pad walk crossed south-facing collision ledge into approved grass in %u frames\n",frame);
+    CHECK(core->loadState(core,bootState));
+}
