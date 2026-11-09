@@ -50,7 +50,7 @@ static void sowScriptedProducerTests(void)
 // the isolated mon constructor. A-button pathfinding and visual OAM checks
 // require the separate in-map interaction/framebuffer acceptance gate.
 // The production SetWarpDestination API takes *signed 8-bit* x/y, so a
-// direct y=146 debug warp truncates to a negative value and falls back to
+// direct y=143 debug warp truncates to a negative value and falls back to
 // Route23's center. Use real 16-bit saved position before loading the field.
 static void sowWarpToHighTile(unsigned map,unsigned x,unsigned y)
 {
@@ -72,7 +72,7 @@ static void sowScriptedRunTests(void)
 {
  static const unsigned maps[]={MAP_ROUTE12,MAP_ROUTE21_NORTH,MAP_ROUTE23};
  static const unsigned localIds[]={15,7,8};
- static const unsigned startX[]={19,13,13},startY[]={88,8,146};
+ static const unsigned startX[]={19,13,13},startY[]={88,8,143};
  static const unsigned scripts[]={SYM_Route12_EventScript_SowCorphish,
                                   SYM_Route21_North_EventScript_SowGlalie,
                                   SYM_Route23_EventScript_SowTyranitar};
@@ -100,7 +100,7 @@ static void sowScriptedRunTests(void)
    CALL(PlayerGetDestCoords,scratch,scratch+2);
    fprintf(stderr," SOW loaded location group=%u map=%u, engine player grid=(%u,%u), object by XY=%u\\n",
     sg,sn,core->busRead16(core,scratch),core->busRead16(core,scratch+2),
-    CALL(GetObjectEventIdByXY,(i==0?19:i==1?13:13)+7,(i==0?87:i==1?7:145)+7));
+    CALL(GetObjectEventIdByXY,(i==0?19:i==1?13:13)+7,(i==0?87:i==1?7:142)+7));
    for(unsigned local=1;local<=12;local++){
     unsigned present=CALL(GetObjectEventIdByLocalIdAndMap,local,MAP_NUM(maps[i]),MAP_GROUP(maps[i]));
     fprintf(stderr," SOW map object local%u -> slot%u\\n",local,present);
@@ -186,7 +186,7 @@ static void sowScriptedCaptureTests(void)
 {
  static const unsigned maps[]={MAP_ROUTE12,MAP_ROUTE21_NORTH,MAP_ROUTE23};
  static const unsigned localIds[]={15,7,8};
- static const unsigned x[]={19,13,13},y[]={88,8,146};
+ static const unsigned x[]={19,13,13},y[]={88,8,143};
  static const unsigned scripts[]={SYM_Route12_EventScript_SowCorphish,
                                   SYM_Route21_North_EventScript_SowGlalie,
                                   SYM_Route23_EventScript_SowTyranitar};
@@ -250,7 +250,7 @@ static void sowPhysicalInteractionTests(void)
 {
  static const unsigned maps[]={MAP_ROUTE12,MAP_ROUTE21_NORTH,MAP_ROUTE23};
  static const unsigned localIds[]={15,7,8};
- static const unsigned x[]={19,13,13},y[]={88,8,146};
+ static const unsigned x[]={19,13,13},y[]={88,8,143};
  static const unsigned species[]={SPECIES_CORPHISH,SPECIES_GLALIE,SPECIES_TYRANITAR};
  static const unsigned abilities[]={ABILITY_DRIZZLE,ABILITY_SNOW_WARNING,ABILITY_SAND_STREAM};
  static const unsigned resolved[]={FLAG_SOW_CORPHISH_RESOLVED,FLAG_SOW_GLALIE_RESOLVED,FLAG_SOW_TYRANITAR_RESOLVED};
@@ -296,7 +296,7 @@ static void sowScriptedDefeatTests(void)
 {
  static const unsigned maps[]={MAP_ROUTE12,MAP_ROUTE21_NORTH,MAP_ROUTE23};
  static const unsigned localIds[]={15,7,8};
- static const unsigned x[]={19,13,13},y[]={88,8,146};
+ static const unsigned x[]={19,13,13},y[]={88,8,143};
  static const unsigned scripts[]={SYM_Route12_EventScript_SowCorphish,
                                   SYM_Route21_North_EventScript_SowGlalie,
                                   SYM_Route23_EventScript_SowTyranitar};
@@ -366,7 +366,7 @@ static void sowScriptedWhiteoutTests(void)
 {
  static const unsigned maps[]={MAP_ROUTE12,MAP_ROUTE21_NORTH,MAP_ROUTE23};
  static const unsigned localIds[]={15,7,8};
- static const unsigned x[]={19,13,13},y[]={88,8,146};
+ static const unsigned x[]={19,13,13},y[]={88,8,143};
  static const unsigned scripts[]={SYM_Route12_EventScript_SowCorphish,
                                   SYM_Route21_North_EventScript_SowGlalie,
                                   SYM_Route23_EventScript_SowTyranitar};
