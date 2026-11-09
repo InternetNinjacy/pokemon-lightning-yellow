@@ -205,6 +205,7 @@ static void sowScriptedCaptureTests(void)
   CHECK(CALL(FlagGet,resolved[i]));
   CHECK(!CALL(FlagGet,active[i]));
   CHECK(CALL(SpecialWeatherRestorationReady));
+  sowCaptureFrame(i,"after_capture",maps[i],x[i],y[i]);
   CHECK(!CALL(ArePlayerFieldControlsLocked));
   CHECK(CALL(GetObjectEventIdByLocalIdAndMap,localIds[i],MAP_NUM(maps[i]),MAP_GROUP(maps[i]))==ABI_OBJECT_COUNT);
   CHECK(core->busRead8(core,SYM_gPlayerPartyCount)==4);
@@ -225,6 +226,21 @@ static void sowScriptedCaptureTests(void)
   printf("PASS: SOW event%u compiled battle MasterBall capture, resolved aftermath, object removal, weather wait and flash ability/flag persistence\\n",i);
  }
  CHECK(core->loadState(core,bootState));
+}
+
+// Optional real mGBA 240x160 framebuffer evidence, never composited art.
+// Capture is enabled only when the CI job sets LIGHTNING_SOW_CAPTURE_DIR.
+static void sowCaptureFrame(unsigned event,const char *stage,unsigned map,
+                            unsigned x,unsigned y)
+{
+ const char *dir=getenv("LIGHTNING_SOW_CAPTURE_DIR");
+ if(!dir || !*dir)return;
+ char path[384];
+ CHECK(snprintf(path,sizeof(path),"%s/sow%u_%s.ppm",dir,event,stage)<(int)sizeof(path));
+ frames(90,0);
+ screenshot(path);
+ printf("SOW_FRAME: event=%u stage=%s map=%u tile=(%u,%u) fieldWeather=%u file=%s\\n",
+        event,stage,map,x,y,CALL(GetSav1Weather),path);
 }
 
 // Actual overworld input is required here: do not pre-populate
@@ -249,6 +265,7 @@ static void sowPhysicalInteractionTests(void)
   CALL(PlayerGetDestCoords,scratch,scratch+2);
   CHECK(core->busRead16(core,scratch)==x[i]+7);
   CHECK(core->busRead16(core,scratch+2)==y[i]+7);
+  sowCaptureFrame(i,"unresolved",maps[i],x[i],y[i]);
   // The registered event stands exactly one tile north. Face it via D-pad
   // then let the real field-control A-button dispatch select the object.
   press(64);
@@ -334,6 +351,7 @@ static void sowScriptedDefeatTests(void)
   CHECK(CALL(GetObjectEventIdByLocalIdAndMap,localIds[i],MAP_NUM(maps[i]),MAP_GROUP(maps[i]))==ABI_OBJECT_COUNT);
   CHECK(CALL(SpecialWeatherRestorationReady));
   CHECK(!CALL(ArePlayerFieldControlsLocked));
+  sowCaptureFrame(i,"after_defeat",maps[i],x[i],y[i]);
   flashRoundTrip();
   CHECK(CALL(FlagGet,resolved[i])&&!CALL(FlagGet,active[i]));
   sowCheckResolvedOnReentry(maps[i],x[i],y[i],localIds[i],resolved[i],active[i]);
