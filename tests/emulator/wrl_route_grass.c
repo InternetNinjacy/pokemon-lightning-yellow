@@ -118,6 +118,7 @@ static void wrlRoute5NorthernLedgeWalkTests(void) {
     CHECK(CALL(MapGridGetCollisionAt,gridX,ledgeGridY));
     CHECK(wrlRouteGrassAt(gridX,firstGrassGridY));
     unsigned reached=0,highestY=7,seenRows=0,frame;
+    unsigned previousY=7,transitionLogs=0;
     for(frame=0;frame<3000;frame++) {
         if((core->busRead32(core,SYM_gMain+ABI_MAIN_CB2)&~1U)!=SYM_CB2_Overworld)
             break;
@@ -126,6 +127,14 @@ static void wrlRoute5NorthernLedgeWalkTests(void) {
         unsigned currentX=core->busRead16(core,scratch);
         unsigned currentY=core->busRead16(core,scratch+2);
         CHECK(currentX==gridX);
+        // Bounded native coordinate trace: a map transition or coordinate jump
+        // can skip the y=10..15 sampling window without implying a blocked ledge.
+        if ((frame<5 || currentY!=previousY) && transitionLogs<24) {
+            fprintf(stderr,"WRL Route5 north coordinate frame=%u grid=(%u,%u) previousY=%u overworld=%08x\n",
+                    frame,currentX,currentY,previousY,core->busRead32(core,SYM_gMain+ABI_MAIN_CB2));
+            transitionLogs++;
+        }
+        previousY=currentY;
         // Diagnose whether the walker visits the expected grass row and whether
         // native map attributes differ while standing on it (no map edits).
         if(currentY>=10 && currentY<=15 && !(seenRows & (1U<<(currentY-10)))) {
