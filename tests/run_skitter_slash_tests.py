@@ -18,7 +18,7 @@ class SkitterSlashSourceTests(unittest.TestCase):
         from move_catalog import validate
         import json
         overlay = json.loads((ROOT / "docs/moves/approved-design-overlays.json").read_text())
-        self.assertEqual(validate(ROOT, overlay["new_moves"]), 385)  # Contiguous through approved #384 Liquidation
+        self.assertEqual(validate(ROOT, overlay["new_moves"]), 387)  # Contiguous through newly implemented #386 Tidal Crash
         constants = (ROOT / "include/constants/moves.h").read_text()
         self.assertRegex(constants, r"(?m)^#define MOVE_SKITTER_SLASH 361$")
 
