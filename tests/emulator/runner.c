@@ -450,7 +450,7 @@ int main(int argc,char **argv) {
 
     if(getenv("LIGHTNING_VIRIDIAN_SIGN_ONLY")){viridianSignTests();printf("PASS: %u focused sign assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
 
-    if(getenv("LIGHTNING_WRL_NONWILD_GIFTS_ONLY")){wrlNonWildGiftTests();printf("PASS: %u focused WRL-009 non-wild gift assertions\\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_WRL_NONWILD_GIFTS_ONLY")){wrlNonWildGiftTests();printf("PASS: %u focused WRL-009 non-wild gift assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_APPROVED_GIFTS_ONLY")){approvedGiftTests();printf("PASS: %u focused approved-gift assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
 
     if(getenv("LIGHTNING_ORDINARY_TRAINERS_DATA_ONLY")){ordinaryTrainerPartyDataTests();printf("PASS: %u focused native ordinary Trainer assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
