@@ -80,8 +80,9 @@ static void waterMoves385Mechanics(void){
    CHECK(core->busRead32(core,SYM_gDynamicBasePower)==(30U<<step)*(curl?2:1));
    CHECK(!!(core->busRead32(core,bmon(0)+ABI_BMON_STATUS2)&STATUS2_MULTIPLETURNS)==(step<4));
   }
-  CHECK(core->loadState(core,bootState)); // independent miss termination fixture
-  effectBattleFixture(0,MOVE_TIDAL_CRASH);
+  CALL(Free,script);
+  effectBattleFixture(0,MOVE_TIDAL_CRASH); // independent miss termination fixture
+  script=CALL(AllocZeroed,32);CHECK(script);
   core->busWrite8(core,SYM_gBattlerAttacker,0);
   core->busWrite16(core,SYM_gCurrentMove,MOVE_TIDAL_CRASH);
   core->busWrite32(core,SYM_gMoveResultFlags,0);
