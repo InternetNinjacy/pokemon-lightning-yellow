@@ -3,7 +3,9 @@
 import hashlib,json,re
 from pathlib import Path
 from approved_weather_species_slots import prior_weather_species_source
-source=prior_weather_species_source()
+from approved_pkm009_locked_12_changes import prior_pkm009_locked_12_source
+source=prior_pkm009_locked_12_source('src/data/pokemon/species_info.h',Path('src/data/pokemon/species_info.h').read_text())
+source=prior_weather_species_source(source)
 load=lambda name:json.loads(Path('tests/specifications/'+name+'.json').read_text())
 rules=load('approved_type_overrides')['species']
 delta=load('approved_typing_delta')['species']
