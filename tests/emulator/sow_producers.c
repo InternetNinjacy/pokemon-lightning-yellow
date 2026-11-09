@@ -139,6 +139,22 @@ static void sowScriptedRunTests(void)
 // Full compiled event-script capture + aftermath (the source's actual
 // dowildbattle and post-battle branches), independently of source-only guards.
 // Separate A-button physical-interaction testing remains outstanding.
+// Rebuild the actual route field after a flash reload, not just read flags.
+// This verifies the map object templates honor permanent event resolution.
+static void sowCheckResolvedOnReentry(unsigned map,unsigned x,unsigned y,
+                                      unsigned localId,unsigned resolvedFlag,
+                                      unsigned activeFlag)
+{
+ fossilWarp(MAP_GROUP(MAP_ROUTE5_POKEMON_DAY_CARE),MAP_NUM(MAP_ROUTE5_POKEMON_DAY_CARE),3,6);
+ if(y>127)sowWarpToHighTile(map,x,y);
+ else fossilWarp(MAP_GROUP(map),MAP_NUM(map),x,y);
+ CHECK(CALL(FlagGet,resolvedFlag));
+ CHECK(!CALL(FlagGet,activeFlag));
+ CHECK(CALL(GetObjectEventIdByLocalIdAndMap,localId,MAP_NUM(map),MAP_GROUP(map))==ABI_OBJECT_COUNT);
+ CHECK(fieldScriptDone());
+}
+
+// Full compiled event-script capture + aftermath (the source's actual
 static void sowScriptedCaptureTests(void)
 {
  static const unsigned maps[]={MAP_ROUTE12,MAP_ROUTE21_NORTH,MAP_ROUTE23};
@@ -191,6 +207,9 @@ static void sowScriptedCaptureTests(void)
   CHECK(CALL(GetMonAbility,player(3))==abilities[i]);
   CHECK(monget(player(3),ABI_DATA_PERSONALITY)==pid);
   CHECK(monget(player(3),ABI_DATA_OT_ID)==ot);
+  sowCheckResolvedOnReentry(maps[i],x[i],y[i],localIds[i],resolved[i],active[i]);
+  CHECK(monget(player(3),ABI_DATA_SPECIES)==species[i]);
+  CHECK(CALL(GetMonAbility,player(3))==abilities[i]);
   printf("PASS: SOW event%u compiled battle MasterBall capture, resolved aftermath, object removal, weather wait and flash ability/flag persistence\\n",i);
  }
  CHECK(core->loadState(core,bootState));
@@ -305,6 +324,7 @@ static void sowScriptedDefeatTests(void)
   CHECK(!CALL(ArePlayerFieldControlsLocked));
   flashRoundTrip();
   CHECK(CALL(FlagGet,resolved[i])&&!CALL(FlagGet,active[i]));
+  sowCheckResolvedOnReentry(maps[i],x[i],y[i],localIds[i],resolved[i],active[i]);
   printf("PASS: SOW event%u compiled actual battle Swift defeat, weather aftermath, object removal, flash resolved flag\\n",i);
  }
  CHECK(core->loadState(core,bootState));
