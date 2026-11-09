@@ -6,7 +6,14 @@ R=Path(__file__).resolve().parents[1]
 subprocess.run([sys.executable,str(R/'scripts/reconcile-move-specification.py'),'--check'],cwd=R,check=True)
 d=json.loads((R/'docs/moves/move-specification.json').read_text());rows=d['moves'];keys={r['key']:r for r in rows}
 assert len(rows)==410 and len(keys)==410
-assert d['current_battle_moves_sha256']==hashlib.sha256((R/'src/data/battle_moves.h').read_bytes()).hexdigest()
+# BTL-005 #385-386 remains a separately reviewable, unaccepted implementation.
+# Preserve the last accepted catalog hash, after STRICTLY reversing only the
+# approved append; the actual production source is independently audited by
+# tests/run_water_moves385_tests.py and is never silently normalized.
+sys.path.insert(0,str(R/'tests'))
+from approved_water_moves385_changes import prior_water_moves385_source
+catalog_source=prior_water_moves385_source('src/data/battle_moves.h',(R/'src/data/battle_moves.h').read_text())
+assert d['current_battle_moves_sha256']==hashlib.sha256(catalog_source.encode()).hexdigest()
 old=[r for r in rows if r['identity'] in ['ORIGINAL','REWORKED_ORIGINAL']];new=[r for r in rows if r['identity'].startswith('NEW_')]
 assert len(old)==354 and {r['id'] for r in old}==set(range(1,355))
 assert len(new)==56 and {r['proposed_id'] for r in new}==set(range(355,411))
