@@ -2139,6 +2139,9 @@ static void InitOverworldGraphicsRegisters(void)
 static void ResumeMap(bool32 inLink)
 {
     ResetTasks();
+    // Teardown the old owned ObjectEvent before sprite IDs are recycled;
+    // the selected Pokémon instance remains in the separate save record.
+    FollowerGraphics_DetachForMapTransition();
     // Sprite IDs and palette tags are invalid after this reset. The
     // graphics controller must not free a reused ID on the new map.
     ResetSpriteData();
