@@ -5,6 +5,9 @@ on:
       - feature/selectable-following-pokemon
     paths:
       - tests/followers/inject_native_graphics_probe.py
+      - tests/followers/prepare_steelix_native_frame.py
+      - include/follower_graphics.h
+      - src/follower_graphics.c
       - .github/workflows/follower-native-graphics.yml
   workflow_dispatch:
 permissions:
