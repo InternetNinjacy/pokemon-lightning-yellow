@@ -6,6 +6,8 @@ from pathlib import Path
 def prior_special_glalie_source(path, text=None):
     if text is None:
         text = Path(path).read_text()
+    from approved_gym002_misty_changes import prior_misty_gym_source
+    text = prior_misty_gym_source(path, text)
     from approved_weather_species_evolution_changes import prior_weather_species_evolution_source
     text = prior_weather_species_evolution_source(path, text)
     for h in json.loads(Path('tests/specifications/special_glalie_delta.json').read_text())['files'].get(str(path), {}).get('hunks', []):
