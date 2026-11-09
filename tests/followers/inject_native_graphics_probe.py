@@ -263,6 +263,93 @@ static void followerGraphicsMapTransitionProbe(void) {
     printf("PASS: native actual Route 5 -> Four Island map reload and size-atomic graphics recreation/cleanup\n");
 }
 
+// Exercise the production graphics resource owner, compiled into the temporary
+// ROM, with the ACTUAL pinned Steelix 64x64 frame data and its own OBJ palette.
+static void followerProductionOwnerProbe(void) {
+    CHECK(core->loadState(core,bootState));
+    CALL(ResetSpriteData);
+    CALL(FollowerGraphics_InvalidateAfterSpriteReset);
+    CHECK(CALL(FollowerGraphics_NativeSmall,120,86,2)==0);
+    CHECK(CALL(FollowerGraphics_GetSize)==32);
+    uint32_t small=CALL(FollowerGraphics_GetSpriteId);
+    CHECK(small<64 && followerSpriteSize(small)==2);
+    uint32_t smallTile=followerSpriteTile(small);
+    uint32_t smallPalette=CALL(FollowerGraphics_GetPaletteSlot);
+    CHECK(smallPalette<16);
+    CHECK(CALL(FollowerGraphics_NativeSteelix,120,86,2)==0);
+    CHECK(CALL(FollowerGraphics_GetSize)==64);
+    uint32_t big=CALL(FollowerGraphics_GetSpriteId);
+    CHECK(big<64 && big!=small && followerSpriteSize(big)==3);
+    CHECK(CALL(FollowerGraphics_GetPaletteSlot)<16);
+    for(unsigned i=0;i<16;i++) CHECK(CALL(SpriteTileAllocBitmapOp,smallTile+i,2)==0);
+    uint32_t largeTile=followerSpriteTile(big);
+    for(unsigned i=0;i<64;i++) CHECK(CALL(SpriteTileAllocBitmapOp,largeTile+i,2)!=0);
+    for(unsigned frame=0;frame<6;frame++) {
+        CHECK(CALL(FollowerGraphics_SetFrame,frame)!=0);
+        for(unsigned i=0;i<2048;i+=2) {
+            uint16_t expected=followerSteelixFrames[frame][i]|(followerSteelixFrames[frame][i+1]<<8);
+            CHECK(core->busRead16(core,0x06010000U+largeTile*32+i)==expected);
+        }
+    }
+    CHECK(CALL(FollowerGraphics_NativeSmall,120,86,2)==0);
+    uint32_t back=CALL(FollowerGraphics_GetSpriteId);
+    CHECK(back<64 && followerSpriteSize(back)==2);
+    for(unsigned i=0;i<64;i++) CHECK(CALL(SpriteTileAllocBitmapOp,largeTile+i,2)==0);
+    CALL(FollowerGraphics_Release);
+    CHECK(CALL(FollowerGraphics_GetSpriteId)==64);
+    printf("PASS: PRODUCTION graphics owner 32->Steelix64->32, six native frame tiles, palette and cleanup\n");
+
+    // Exhaust tiles with actual ROM sprite objects while owner holds its
+    // normal 32x32 slot, then check failure is truly no-op for old resources.
+    CALL(ResetSpriteData);
+    CALL(FollowerGraphics_InvalidateAfterSpriteReset);
+    CHECK(CALL(FollowerGraphics_NativeSmall,110,90,1)==0);
+    uint32_t kept=CALL(FollowerGraphics_GetSpriteId);
+    uint32_t keptTile=followerSpriteTile(kept);
+    uint32_t keptPal=CALL(FollowerGraphics_GetPaletteSlot);
+    uint32_t blockers[24];unsigned count=0;
+    for(;count<24;count++) {
+        uint32_t id=CALL(CreateVirtualObject,108,30+count,11,10,0,1);
+        if(id>=64) break;
+        blockers[count]=id;
+    }
+    CHECK(count>=10 && count<24);
+    CHECK(CALL(FollowerGraphics_NativeSteelix,110,90,1)==3);
+    CHECK(CALL(FollowerGraphics_GetSpriteId)==kept);
+    CHECK(CALL(FollowerGraphics_GetSize)==32);
+    CHECK(CALL(FollowerGraphics_GetPaletteSlot)==keptPal);
+    for(unsigned i=0;i<16;i++) CHECK(CALL(SpriteTileAllocBitmapOp,keptTile+i,2)!=0);
+    CALL(DestroySprite,SYM_gSprites+blockers[count-1]*ABI_FOLLOW_SPRITE_SIZE);
+    CHECK(CALL(FollowerGraphics_NativeSteelix,110,90,1)==0);
+    CHECK(CALL(FollowerGraphics_GetSize)==64);
+    CALL(FollowerGraphics_Release);
+    for(unsigned i=0;i<count-1;i++)
+        CALL(DestroySprite,SYM_gSprites+blockers[i]*ABI_FOLLOW_SPRITE_SIZE);
+    CHECK(CALL(AllocSpriteTiles,64)!=0xFFFFFFFFU);
+    CALL(AllocSpriteTiles,0);
+    printf("PASS: PRODUCTION 32->Steelix64 allocation failure preserved previous sprite and palette; retry freed all resources\n");
+
+    daycareFixture(1);
+    CALL(FollowerGraphics_InvalidateAfterSpriteReset);
+    CHECK(CALL(FollowerGraphics_NativeSmall,100,80,1)==0);
+    CHECK(CALL(FollowerGraphics_NativeSteelix,100,80,1)==0);
+    CHECK(CALL(FollowerGraphics_SetFrame,3)!=0);
+    CALL(FollowerGraphics_DetachForMapTransition);
+    CHECK(CALL(FollowerGraphics_GetSpriteId)==64);
+    CALL(SetWarpDestination,MAP_GROUP(MAP_FOUR_ISLAND_POKEMON_DAY_CARE),
+         MAP_NUM(MAP_FOUR_ISLAND_POKEMON_DAY_CARE),0xFFFFFFFFU,3,6);
+    CALL(WarpIntoMap);
+    CALL(ResetInitialPlayerAvatarState);
+    CALL(CB2_LoadMap);
+    frames(360,0);
+    CHECK((core->busRead32(core,SYM_gMain+ABI_MAIN_CB2)&~1U)==SYM_CB2_Overworld);
+    CALL(FollowerGraphics_InvalidateAfterSpriteReset);
+    CHECK(CALL(FollowerGraphics_NativeSteelix,100,80,1)==0);
+    CHECK(CALL(FollowerGraphics_SetFrame,5)!=0);
+    CALL(FollowerGraphics_Release);
+    printf("PASS: PRODUCTION dedicated graphics owner detached/recreated after Route5->Four Island real map reload\n");
+}
+
 static void followerGraphicsFrameBufferProbe(void) {
     CHECK(core->loadState(core,bootState));
     CALL(ResetSpriteData);
@@ -325,7 +412,7 @@ c=c.replace('#include "symbols.h"', '#include "symbols.h"\n#include "follower_st
 c=c.replace(anchor, probe+"\n"+anchor)
 anchor2="    if(getenv(\"LIGHTNING_BALL_WEATHER_ONLY\"))"
 assert anchor2 in c
-c=c.replace(anchor2, '    if(getenv("LIGHTNING_FOLLOWER_GFX_ONLY")){followerGraphicsNativeProbe();followerGraphicsObjectProbe();followerAtomicSwapNativeProbe();followerGraphicsMapTransitionProbe();followerGraphicsFrameBufferProbe();printf("PASS: %u focused follower graphics memory assertions\\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}\n'+anchor2, 1)
+c=c.replace(anchor2, '    if(getenv("LIGHTNING_FOLLOWER_GFX_ONLY")){followerGraphicsNativeProbe();followerGraphicsObjectProbe();followerAtomicSwapNativeProbe();followerGraphicsMapTransitionProbe();followerProductionOwnerProbe();followerGraphicsFrameBufferProbe();printf("PASS: %u focused follower graphics memory assertions\\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}\n'+anchor2, 1)
 required_anchor="required += ['NextThunderWaveTarget','gAbsentBattlerFlags']"
 assert required_anchor in p
 p=p.replace(required_anchor, "required += ['AllocSpriteTiles','SpriteTileAllocBitmapOp','ResetSpriteData','CreateVirtualObject','BuildOamBuffer','LoadOam','DestroySprite','gSprites','SetWarpDestination','WarpIntoMap','ResetInitialPlayerAvatarState','CB2_LoadMap','CB2_Overworld','FollowerGraphics_NativeSmall','FollowerGraphics_NativeSteelix','FollowerGraphics_GetSpriteId','FollowerGraphics_GetSize','FollowerGraphics_GetPaletteSlot','FollowerGraphics_SetFrame','FollowerGraphics_Release','FollowerGraphics_DetachForMapTransition','FollowerGraphics_InvalidateAfterSpriteReset']\\n"+required_anchor, 1)
