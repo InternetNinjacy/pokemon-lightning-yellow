@@ -141,5 +141,28 @@
       "failure-atomic graphics loading and follower state"
     ],
     "full_phase_one_gate": "BLOCKED on dynamic game integration acceptance conditions; not a sprite-format blocker"
+  },
+  "native_atomic_swap_and_map_transition_2026_11_09": {
+    "github_actions_run": 42539536937,
+    "main_commit": "37230a9c513ed013fc6b402ec800bd1d13960492",
+    "audit_commit": "8e014c74321194d82fe2adbc27007b7e56b86714",
+    "assertions_passed": 1807,
+    "actual_emulator": "libmGBA and compiled FireRed ARM ROM",
+    "passed": [
+      "32x32-to-64x64-to-32x32 acquire-first swap with old tile release",
+      "forced OBJ tile allocation failure retains original sprite id/OAM/16 tiles",
+      "retry after freeing competing 64x64 sprite succeeds and no tile leak",
+      "real Route 5 Pokemon Day Care field map with NPC resources and 32/64 virtual sprite swap",
+      "actual native SetWarpDestination WarpIntoMap CB2_LoadMap to Four Island Pokemon Day Care followed by fresh 32/64 graphics allocation",
+      "six authentic Steelix 64x64 frames rendered by GBA GPU and shiny palette change"
+    ],
+    "scope": "test-only virtual-object graphics transaction, not production follower object event or selection-state continuity",
+    "unproven": [
+      "dedicated 252-species dynamic follower graphics resolver",
+      "palette slot reservation and reflection under congestion",
+      "full 16-object event-slot exhaustion, live follower continuity across map warp",
+      "party instance/save/menu/movement state"
+    ],
+    "phase_one_gate": "BLOCKED despite scoped emulator transaction and map test PASS"
   }
 }
