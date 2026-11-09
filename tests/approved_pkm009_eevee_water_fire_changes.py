@@ -1,4 +1,4 @@
-"""Reversible exact PKM-009 Eevee/Vaporeon/Flareon owner-locked profile deltas.
+"""Reversible exact PKM-009 Eevee/Vaporeon/Flareon/Espeon owner-locked profile deltas.
 
 Used only for earlier cross-workstream whole-file SHA preservation checks.
 Forward exact profiles must also pass test_pkm009_eevee_water_fire.py.
@@ -7,6 +7,7 @@ import re
 _ORIGINAL={
 'Eevee':[(1,'TACKLE'),(1,'TAIL_WHIP'),(1,'HELPING_HAND'),(8,'SAND_ATTACK'),(16,'GROWL'),(23,'QUICK_ATTACK'),(30,'BITE'),(36,'BATON_PASS'),(42,'TAKE_DOWN')],
 'Vaporeon':[(1,'TACKLE'),(1,'TAIL_WHIP'),(1,'HELPING_HAND'),(8,'SAND_ATTACK'),(16,'WATER_GUN'),(23,'QUICK_ATTACK'),(30,'BITE'),(36,'AURORA_BEAM'),(42,'HAZE'),(47,'ACID_ARMOR'),(52,'HYDRO_PUMP')],
+'Espeon':[(1,'TACKLE'),(1,'TAIL_WHIP'),(1,'HELPING_HAND'),(8,'SAND_ATTACK'),(16,'CONFUSION'),(23,'QUICK_ATTACK'),(30,'SWIFT'),(36,'PSYBEAM'),(42,'PSYCH_UP'),(47,'PSYCHIC'),(52,'MORNING_SUN')],
 'Flareon':[(1,'TACKLE'),(1,'TAIL_WHIP'),(1,'HELPING_HAND'),(8,'SAND_ATTACK'),(16,'EMBER'),(23,'QUICK_ATTACK'),(30,'BITE'),(36,'FIRE_SPIN'),(42,'SMOG'),(47,'LEER'),(52,'FLAMETHROWER')]}
 _STATS={'EEVEE':((95,115,85,50,85,95),(55,55,50,45,65,55)),
         'FLAREON':((85,130,85,50,110,65),(65,130,60,95,110,65))}
