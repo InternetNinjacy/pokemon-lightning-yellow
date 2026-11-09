@@ -265,6 +265,72 @@ static void followerGraphicsMapTransitionProbe(void) {
 
 // Exercise the production graphics resource owner, compiled into the temporary
 // ROM, with the ACTUAL pinned Steelix 64x64 frame data and its own OBJ palette.
+static void followerProductionEventProbe(void) {
+    CHECK(core->loadState(core,bootState));
+    CALL(ResetSpriteData);
+    CALL(FollowerGraphics_InvalidateAfterSpriteReset);
+    CHECK(CALL(FollowerGraphics_NativeSmall,110,88,2)==0);
+    CHECK(CALL(FollowerGraphics_BindObjectEvent,0,0,12,12,0)!=0);
+    unsigned eventId=CALL(FollowerGraphics_GetObjectEventId);
+    CHECK(eventId<ABI_OBJECT_COUNT);
+    unsigned event=SYM_gObjectEvents+eventId*ABI_FOLLOW_OBJECT_SIZE;
+    CHECK((core->busRead8(core,event)&1)!=0);
+    CHECK(core->busRead8(core,event+4)==CALL(FollowerGraphics_GetSpriteId));
+    CHECK(core->busRead8(core,event+5)==109);
+    CHECK(CALL(FollowerGraphics_NativeSteelix,110,88,2)==0);
+    CHECK(core->busRead8(core,event+4)==CALL(FollowerGraphics_GetSpriteId));
+    CHECK(core->busRead8(core,event+5)==108);
+    for(unsigned frame=0;frame<6;frame++)
+        CHECK(CALL(FollowerGraphics_SetFrame,frame)!=0);
+    CALL(FollowerGraphics_Release);
+    CHECK((core->busRead8(core,event)&1)==0);
+    CHECK(CALL(FollowerGraphics_GetObjectEventId)==ABI_OBJECT_COUNT);
+    printf("PASS: PRODUCTION dedicated ObjectEvent slot acquired, updated on 32->Steelix64, released safely\n");
+
+    // Force all 16 actual ObjectEvent slots busy without destroying NPCs.
+    CHECK(CALL(FollowerGraphics_NativeSmall,110,88,2)==0);
+    for(unsigned i=0;i<ABI_OBJECT_COUNT;i++) {
+        unsigned p=SYM_gObjectEvents+i*ABI_FOLLOW_OBJECT_SIZE;
+        core->busWrite8(core,p,core->busRead8(core,p)|1);
+    }
+    CHECK(CALL(FollowerGraphics_BindObjectEvent,0,0,12,12,0)==0);
+    CHECK(CALL(FollowerGraphics_GetObjectEventId)==ABI_OBJECT_COUNT);
+    CHECK(CALL(FollowerGraphics_GetSize)==32);
+    CALL(FollowerGraphics_Release);
+    printf("PASS: PRODUCTION full 16-slot ObjectEvent pool refuses registration without corrupting graphics owner\n");
+
+    // Registered graphics object survives a true Route5 field map, but the
+    // owned event/sprite must be detached before a field warp rebuild.
+    daycareFixture(1);
+    CALL(FollowerGraphics_InvalidateAfterSpriteReset);
+    CHECK(CALL(FollowerGraphics_NativeSmall,100,80,1)==0);
+    CHECK(CALL(FollowerGraphics_BindObjectEvent,MAP_GROUP(MAP_ROUTE5_POKEMON_DAY_CARE),
+               MAP_NUM(MAP_ROUTE5_POKEMON_DAY_CARE),10,10,0)!=0);
+    unsigned first=CALL(FollowerGraphics_GetObjectEventId);
+    CHECK(first<ABI_OBJECT_COUNT);
+    CHECK(CALL(FollowerGraphics_NativeSteelix,100,80,1)==0);
+    CHECK(core->busRead8(core,SYM_gObjectEvents+first*ABI_FOLLOW_OBJECT_SIZE+4)
+          ==CALL(FollowerGraphics_GetSpriteId));
+    CALL(FollowerGraphics_DetachForMapTransition);
+    CHECK((core->busRead8(core,SYM_gObjectEvents+first*ABI_FOLLOW_OBJECT_SIZE)&1)==0);
+    CALL(SetWarpDestination,MAP_GROUP(MAP_FOUR_ISLAND_POKEMON_DAY_CARE),
+         MAP_NUM(MAP_FOUR_ISLAND_POKEMON_DAY_CARE),0xFFFFFFFFU,3,6);
+    CALL(WarpIntoMap);
+    CALL(ResetInitialPlayerAvatarState);
+    CALL(CB2_LoadMap);
+    frames(360,0);
+    CHECK((core->busRead32(core,SYM_gMain+ABI_MAIN_CB2)&~1U)==SYM_CB2_Overworld);
+    CALL(FollowerGraphics_InvalidateAfterSpriteReset);
+    CHECK(CALL(FollowerGraphics_NativeSteelix,100,80,1)==0);
+    CHECK(CALL(FollowerGraphics_BindObjectEvent,MAP_GROUP(MAP_FOUR_ISLAND_POKEMON_DAY_CARE),
+               MAP_NUM(MAP_FOUR_ISLAND_POKEMON_DAY_CARE),10,10,0)!=0);
+    unsigned islandId=CALL(FollowerGraphics_GetObjectEventId);
+    CHECK(islandId<ABI_OBJECT_COUNT);
+    CALL(FollowerGraphics_DetachForMapTransition);
+    CHECK((core->busRead8(core,SYM_gObjectEvents+islandId*ABI_FOLLOW_OBJECT_SIZE)&1)==0);
+    printf("PASS: PRODUCTION owned ObjectEvent released before Route5->FourIsland warp and rebound after reload\n");
+}
+
 static void followerProductionOwnerProbe(void) {
     CHECK(core->loadState(core,bootState));
     CALL(ResetSpriteData);
@@ -412,16 +478,17 @@ c=c.replace('#include "symbols.h"', '#include "symbols.h"\n#include "follower_st
 c=c.replace(anchor, probe+"\n"+anchor)
 anchor2="    if(getenv(\"LIGHTNING_BALL_WEATHER_ONLY\"))"
 assert anchor2 in c
-c=c.replace(anchor2, '    if(getenv("LIGHTNING_FOLLOWER_GFX_ONLY")){followerGraphicsNativeProbe();followerGraphicsObjectProbe();followerAtomicSwapNativeProbe();followerGraphicsMapTransitionProbe();followerProductionOwnerProbe();followerGraphicsFrameBufferProbe();printf("PASS: %u focused follower graphics memory assertions\\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}\n'+anchor2, 1)
+c=c.replace(anchor2, '    if(getenv("LIGHTNING_FOLLOWER_GFX_ONLY")){followerGraphicsNativeProbe();followerGraphicsObjectProbe();followerAtomicSwapNativeProbe();followerGraphicsMapTransitionProbe();followerProductionOwnerProbe();followerProductionEventProbe();followerGraphicsFrameBufferProbe();printf("PASS: %u focused follower graphics memory assertions\\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}\n'+anchor2, 1)
 required_anchor="required += ['NextThunderWaveTarget','gAbsentBattlerFlags']"
 assert required_anchor in p
-p=p.replace(required_anchor, "required += ['AllocSpriteTiles','SpriteTileAllocBitmapOp','ResetSpriteData','CreateVirtualObject','BuildOamBuffer','LoadOam','DestroySprite','gSprites','SetWarpDestination','WarpIntoMap','ResetInitialPlayerAvatarState','CB2_LoadMap','CB2_Overworld','FollowerGraphics_NativeSmall','FollowerGraphics_NativeSteelix','FollowerGraphics_GetSpriteId','FollowerGraphics_GetSize','FollowerGraphics_GetPaletteSlot','FollowerGraphics_SetFrame','FollowerGraphics_Release','FollowerGraphics_DetachForMapTransition','FollowerGraphics_InvalidateAfterSpriteReset']\n"+required_anchor, 1)
+p=p.replace(required_anchor, "required += ['AllocSpriteTiles','SpriteTileAllocBitmapOp','ResetSpriteData','CreateVirtualObject','BuildOamBuffer','LoadOam','DestroySprite','gSprites','SetWarpDestination','WarpIntoMap','ResetInitialPlayerAvatarState','CB2_LoadMap','CB2_Overworld','FollowerGraphics_NativeSmall','FollowerGraphics_NativeSteelix','FollowerGraphics_GetSpriteId','FollowerGraphics_GetSize','FollowerGraphics_GetPaletteSlot','FollowerGraphics_SetFrame','FollowerGraphics_Release','FollowerGraphics_DetachForMapTransition','FollowerGraphics_InvalidateAfterSpriteReset','FollowerGraphics_BindObjectEvent','FollowerGraphics_GetObjectEventId','gObjectEvents']\n"+required_anchor, 1)
 # ABI offsets are compiled by the game's own ARM compiler, never host guessed.
 abi_anchor = "expressions = {"
 assert abi_anchor in p
 p = p.replace(abi_anchor, """expressions = {
  'FOLLOW_SPRITE_SIZE': 'sizeof(struct Sprite)',
- 'FOLLOW_OAM_OFFSET': 'offsetof(struct Sprite,oam)',""", 1)
+ 'FOLLOW_OAM_OFFSET': 'offsetof(struct Sprite,oam)',
+ 'FOLLOW_OBJECT_SIZE': 'sizeof(struct ObjectEvent)',""", 1)
 source_anchor = "source='#include \"save.h\""
 assert source_anchor in p
 p = p.replace(source_anchor, "source='#include \"sprite.h\"\\n#include \"save.h\"", 1)
