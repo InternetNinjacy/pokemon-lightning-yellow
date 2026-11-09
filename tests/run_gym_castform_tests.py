@@ -10,6 +10,7 @@ import subprocess,sys
 subprocess.run([sys.executable, 'tests/test_pkm009_oddish_family.py'], check=True)
 subprocess.run([sys.executable, 'tests/test_pkm009_ponyta_family.py'], check=True)
 subprocess.run([sys.executable, 'tests/test_pkm009_vulpix_family.py'], check=True)
+subprocess.run([sys.executable, 'tests/test_pkm009_eevee_water_fire.py'], check=True)
 for p,h in d['before_sha256'].items():
  assert hashlib.sha256(prior_gym_castform_source(p).encode()).hexdigest()==h,p
 for p,h in d['unchanged_sha256'].items():
