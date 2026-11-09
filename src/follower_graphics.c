@@ -2,6 +2,7 @@
 #include "follower_graphics.h"
 #include "sprite.h"
 #include "event_object_movement.h"
+#include "constants/event_objects.h"
 
 // The sprite engine owns tile bitmap allocation. This module owns the pair
 // (sprite ID, palette tag) for its active sprite and one staged successor.
