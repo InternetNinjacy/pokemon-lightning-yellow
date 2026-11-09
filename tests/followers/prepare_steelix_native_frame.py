@@ -79,10 +79,10 @@ for frame in range(6):
                     out.append(px[base+x]|px[base+x+1]<<4)
     assert len(out)==512
     small.append(out)
-text+="static const unsigned char followerTestSmallFrames[6][512] = {\\n"
+text+="static const unsigned char followerTestSmallFrames[6][512] = {\n"
 for frame in small:
-    text+=" {\\n"+carr(frame,24)+"\\n },\\n"
-text+="};\\n"
+    text+=" {\n"+carr(frame,24)+"\n },\n"
+text+="};\n"
 text+="static const unsigned short followerSteelixNormalPalette[16] = {\n"+carr(normal,8)+"\n};\n"
 text+="static const unsigned short followerSteelixShinyPalette[16] = {\n"+carr(shiny,8)+"\n};\n"
 target=Path("tests/emulator/follower_steelix_frame.h")
