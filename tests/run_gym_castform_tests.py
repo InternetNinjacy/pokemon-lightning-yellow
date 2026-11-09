@@ -31,3 +31,7 @@ print('Runtime Forecast, Weather Ball, weather persistence, targeting and event 
 
 subprocess.run([sys.executable,'tests/test_pkm009_delegated_001_126.py'],check=True)
 subprocess.run([sys.executable,'tests/test_pkm009_delegated_127_252.py'],check=True)
+subprocess.run([sys.executable,'tests/test_pkm009_oddish_family.py'],check=True)
+subprocess.run([sys.executable,'tests/test_pkm009_ponyta_family.py'],check=True)
+subprocess.run([sys.executable,'tests/test_pkm009_vulpix_family.py'],check=True)
+subprocess.run([sys.executable,'tests/test_pkm009_eevee_water_fire.py'],check=True)
