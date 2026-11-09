@@ -176,7 +176,9 @@ enum FollowerGraphicsResult FollowerGraphics_Swap(const struct FollowerGraphicsA
 
     // Commit once all resources are allocated and staged. Both sprites may
     // coexist during staging; predecessor is untouched on failed creation.
-    gSprites[id].invisible = FALSE;
+    // A sprite with no owned object-event slot must never appear as an
+    // untracked ghost in an overcrowded map. BindObjectEvent reveals it.
+    gSprites[id].invisible = !sFollowerEventBound;
     if (sFollowerHasActive)
         FollowerGraphics_DisposeSlot(sFollowerActive);
     sFollowerActive = stage;
@@ -264,11 +266,17 @@ bool8 FollowerGraphics_BindObjectEvent(u8 mapGroup, u8 mapNum,
         {
             if (gObjectEvents[i].active && gObjectEvents[i].localId == FOLLOWER_GFX_LOCAL_ID
               && gObjectEvents[i].mapGroup == mapGroup && gObjectEvents[i].mapNum == mapNum)
+            {
+                FollowerGraphics_Release();
                 return FALSE;
+            }
         }
         i = GetFirstInactiveObjectEventId();
         if (i >= OBJECT_EVENTS_COUNT)
+        {
+            FollowerGraphics_Release();
             return FALSE;
+        }
         sFollowerEventId = i;
         event = &gObjectEvents[i];
         memset(event, 0, sizeof(*event));
@@ -292,6 +300,8 @@ bool8 FollowerGraphics_BindObjectEvent(u8 mapGroup, u8 mapNum,
     event->previousCoords = event->initialCoords;
     event->currentElevation = elevation;
     event->previousElevation = elevation;
+    // Reveal only after a real graphics object-event slot is owned.
+    gSprites[sFollowerSlots[sFollowerActive].spriteId].invisible = FALSE;
     return TRUE;
 }
 
