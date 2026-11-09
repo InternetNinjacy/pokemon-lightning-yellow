@@ -35,5 +35,13 @@ void FollowerGraphics_InvalidateAfterSpriteReset(void);
 u8 FollowerGraphics_GetSpriteId(void);
 u8 FollowerGraphics_GetPaletteSlot(void);
 u8 FollowerGraphics_GetSize(void);
+// Register one graphics-only ObjectEvent after the sprite is acquired.
+// No movement behavior, scripts, party selection or save state is installed.
+// Fails without changing any existing object event if the 16-slot pool is full
+// or local ID 126 is occupied. Coordinates use normal offset map coordinates.
+bool8 FollowerGraphics_BindObjectEvent(u8 mapGroup, u8 mapNum,
+                                        s16 mapX, s16 mapY, u8 elevation);
+u8 FollowerGraphics_GetObjectEventId(void);
+
 
 #endif
