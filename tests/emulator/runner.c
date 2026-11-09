@@ -589,6 +589,7 @@ int main(int argc,char **argv) {
     dynamicWeatherTests();
     wrlNonWildGiftTests();
     wrlRouteNativeGrassTests();
+    wrlRoute5NorthernLedgeWalkTests();
     sowPlacementTests();
     sowScriptedProducerTests();
     sowScriptedRunTests();
