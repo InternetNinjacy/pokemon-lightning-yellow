@@ -356,6 +356,9 @@ static void sowScriptedWhiteoutTests(void)
  static const unsigned resolved[]={FLAG_SOW_CORPHISH_RESOLVED,FLAG_SOW_GLALIE_RESOLVED,FLAG_SOW_TYRANITAR_RESOLVED};
  for(unsigned i=0;i<3;i++){
   daycareFixture(1);
+  // Daycare fixture normally populates three Pikachu. Merely reducing
+  // gPlayerPartyCount is insufficient: battle recomputes it from party data.
+  CALL(ZeroPlayerPartyMons);
   CALL(CreateMon,player(0),SPECIES_MAGIKARP,1,0,1,12345,0,1234);
   monput(player(0),ABI_DATA_MOVE1,MOVE_SPLASH);
   monput(player(0),ABI_DATA_PP1,40);
