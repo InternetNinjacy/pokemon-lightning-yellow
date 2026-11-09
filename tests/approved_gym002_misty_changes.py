@@ -26,8 +26,8 @@ REVIEWED = [
   },
   {
     "path": "src/battle_util.c",
-    "old": "        if (gTrainerBattleOpponent_A == TRAINER_LEADER_MISTY && species == SPECIES_STARMIE)\n",
-    "new": "        if (gTrainerBattleOpponent_A == TRAINER_LEADER_MISTY)\n",
+    "old": "        if (gTrainerBattleOpponent_A == TRAINER_LEADER_MISTY && species == SPECIES_STARMIE)\n            return ABILITY_DRIZZLE;\n",
+    "new": "        if (gTrainerBattleOpponent_A == TRAINER_LEADER_MISTY)\n        {\n            if (species == SPECIES_STARYU)\n                return ABILITY_NATURAL_CURE;\n            if (species == SPECIES_PSYDUCK)\n                return ABILITY_DAMP;\n            if (species == SPECIES_GOLDUCK)\n                return ABILITY_SYNCHRONIZE;\n            if (species == SPECIES_STARMIE)\n                return ABILITY_DRIZZLE;\n        }\n",
     "label": "Misty scoped ability"
   }
 ]
