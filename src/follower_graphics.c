@@ -3,12 +3,14 @@
 #include "sprite.h"
 #include "event_object_movement.h"
 #include "constants/event_objects.h"
+#include "constants/event_object_movement.h"
 
 // The sprite engine owns tile bitmap allocation. This module owns the pair
 // (sprite ID, palette tag) for its active sprite and one staged successor.
 // No static OBJ tile ID, NPC palette bank, or save slot is reserved.
 #define FOLLOWER_GFX_TAG_0 0xFAE0
 #define FOLLOWER_GFX_TAG_1 0xFAE1
+#define FOLLOWER_GFX_LOCAL_ID 126
 
 struct FollowerGraphicsSlot
 {
@@ -25,6 +27,8 @@ struct FollowerGraphicsSlot
 static struct FollowerGraphicsSlot sFollowerSlots[2];
 static u8 sFollowerActive;
 static bool8 sFollowerHasActive;
+static bool8 sFollowerEventBound;
+static u8 sFollowerEventId;
 
 // The graphics-only loader has no animation callback or auto-follow movement.
 // Six frame changes are explicit and may only copy during graphics-safe VBlank.
@@ -151,6 +155,25 @@ enum FollowerGraphicsResult FollowerGraphics_Swap(const struct FollowerGraphicsA
               (void *)((u8 *)OBJ_VRAM0 + gSprites[id].oam.tileNum * TILE_SIZE_4BPP),
               bytes);
 
+    // Update an already-owned object-event record only AFTER a complete
+    // replacement exists. If CreateSprite/LoadSpritePalette failed above,
+    // the object event still points at the original sprite with no mutation.
+    if (sFollowerEventBound)
+    {
+        struct ObjectEvent *event = &gObjectEvents[sFollowerEventId];
+
+        if (!event->active || event->localId != FOLLOWER_GFX_LOCAL_ID)
+        {
+            DestroySprite(&gSprites[id]);
+            FreeSpritePaletteByTag(candidate->paletteTag);
+            FollowerGraphics_ClearSlot(stage);
+            return FOLLOWER_GFX_INVALID;
+        }
+        event->spriteId = id;
+        event->graphicsId = asset->size == 64
+                          ? OBJ_EVENT_GFX_SEAGALLOP : OBJ_EVENT_GFX_SNORLAX;
+    }
+
     // Commit once all resources are allocated and staged. Both sprites may
     // coexist during staging; predecessor is untouched on failed creation.
     gSprites[id].invisible = FALSE;
@@ -182,6 +205,19 @@ bool8 FollowerGraphics_SetFrame(u8 frame)
 
 void FollowerGraphics_Release(void)
 {
+    // Revoke the owned event slot before any sprite disposal. Never call
+    // RemoveObjectEvent() here: it assumes species/static descriptor sizes
+    // when freeing sprite tiles and may release the wrong tile count.
+    if (sFollowerEventBound)
+    {
+        struct ObjectEvent *event = &gObjectEvents[sFollowerEventId];
+        if (event->active && event->localId == FOLLOWER_GFX_LOCAL_ID)
+        {
+            event->active = FALSE;
+            event->spriteId = MAX_SPRITES;
+        }
+        sFollowerEventBound = FALSE;
+    }
     if (sFollowerHasActive)
         FollowerGraphics_DisposeSlot(sFollowerActive);
     sFollowerHasActive = FALSE;
@@ -201,6 +237,62 @@ void FollowerGraphics_InvalidateAfterSpriteReset(void)
     FollowerGraphics_ClearSlot(0);
     FollowerGraphics_ClearSlot(1);
     sFollowerHasActive = FALSE;
+    sFollowerEventBound = FALSE;
+}
+
+u8 FollowerGraphics_GetObjectEventId(void)
+{
+    if (!sFollowerEventBound)
+        return OBJECT_EVENTS_COUNT;
+    return sFollowerEventId;
+}
+
+bool8 FollowerGraphics_BindObjectEvent(u8 mapGroup, u8 mapNum,
+                                        s16 mapX, s16 mapY, u8 elevation)
+{
+    u8 i;
+    struct ObjectEvent *event;
+
+    if (!sFollowerHasActive)
+        return FALSE;
+
+    // One owned graphics object per map. Do not overwrite an NPC or a
+    // preexisting special event with the same reserved local identifier.
+    if (!sFollowerEventBound)
+    {
+        for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
+        {
+            if (gObjectEvents[i].active && gObjectEvents[i].localId == FOLLOWER_GFX_LOCAL_ID
+              && gObjectEvents[i].mapGroup == mapGroup && gObjectEvents[i].mapNum == mapNum)
+                return FALSE;
+        }
+        i = GetFirstInactiveObjectEventId();
+        if (i >= OBJECT_EVENTS_COUNT)
+            return FALSE;
+        sFollowerEventId = i;
+        event = &gObjectEvents[i];
+        memset(event, 0, sizeof(*event));
+        event->localId = FOLLOWER_GFX_LOCAL_ID;
+        event->mapGroup = mapGroup;
+        event->mapNum = mapNum;
+        event->movementType = MOVEMENT_TYPE_FACE_DOWN;
+        event->facingDirection = DIR_SOUTH;
+        event->movementDirection = DIR_SOUTH;
+        event->active = TRUE;
+        sFollowerEventBound = TRUE;
+    }
+
+    event = &gObjectEvents[sFollowerEventId];
+    event->spriteId = sFollowerSlots[sFollowerActive].spriteId;
+    event->graphicsId = sFollowerSlots[sFollowerActive].size == 64
+                      ? OBJ_EVENT_GFX_SEAGALLOP : OBJ_EVENT_GFX_SNORLAX;
+    event->initialCoords.x = mapX;
+    event->initialCoords.y = mapY;
+    event->currentCoords = event->initialCoords;
+    event->previousCoords = event->initialCoords;
+    event->currentElevation = elevation;
+    event->previousElevation = elevation;
+    return TRUE;
 }
 
 u8 FollowerGraphics_GetSpriteId(void)
