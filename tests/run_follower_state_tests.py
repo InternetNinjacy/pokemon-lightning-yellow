@@ -12,6 +12,9 @@ ROOT = Path(__file__).resolve().parents[1]
 with TemporaryDirectory(prefix="wrl010-state-") as directory:
     d = Path(directory)
     (d / "constants").mkdir()
+    # The real header includes global.h relative to its own directory;
+    # stage it alongside the harness stubs to avoid mixing two global ABIs.
+    (d / "follower_state.h").write_text((ROOT / "include/follower_state.h").read_text())
     (d / "global.h").write_text(r'''
 #ifndef TEST_GLOBAL_H
 #define TEST_GLOBAL_H
@@ -106,7 +109,7 @@ int main(void)
     binary = d / "follower-state-test"
     command = [
         "cc", "-std=c99", "-Wall", "-Wextra", "-Werror",
-        "-I", str(d), "-I", str(ROOT / "include"),
+        "-I", str(d),
         str(ROOT / "src/follower_state.c"), str(d / "test.c"),
         "-o", str(binary),
     ]
