@@ -16,6 +16,9 @@ def prior_gym_castform_source(path, text=None):
         from approved_pkm009_delegated_127_252_changes import prior_pkm009_delegated_127_252_source
         text=prior_pkm009_delegated_001_126_source(str(path),text)
         text=prior_pkm009_delegated_127_252_source(str(path),text)
+    if str(path) in ("src/data/pokemon/species_info.h", "src/data/pokemon/level_up_learnsets.h"):
+        from approved_pkm009_locked_12_changes import prior_pkm009_locked_12_source
+        text=prior_pkm009_locked_12_source(str(path),text)
     from approved_special_weather_changes import prior_special_weather_source
     text=prior_special_weather_source(path,text)
     text=prior_opening_source(path, text)
