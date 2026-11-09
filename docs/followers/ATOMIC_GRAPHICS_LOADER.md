@@ -1,6 +1,6 @@
 # WRL-010 — Failure-atomic follower graphics loader engineering contract
 
-**Status:** Test-only native resource transaction demonstrated; production graphics loader not yet integrated. This note is a design/acceptance contract, not a claim that the selected follower gameplay exists.
+**Status:** Dedicated graphics-only production-source module implemented and native mGBA accepted on a disposable current-main checkout. Not merged into main or connected to follower movement/party/save systems. See executed run 42542468450.
 
 ## Evidence and source constraints
 
@@ -42,3 +42,22 @@
 Build the graphics-only production candidate with a single dynamic follower object-event identity, explicit size-aware tile/palette resource ownership, staged sprite creation and failure rollback. Test this module in a controlled current-main checkout against real 32×32 and 64×64 source assets and native field transitions **before** connecting it to party menus, save data or movement. Preserve this PR as audit provenance, not an unreviewed automatic merge.
 
 **Phase-One overall gate:** Remains BLOCKED until the complete approved dynamic graphics implementation and applicable map-state acceptance checks have executed, even though the isolated CPU/VRAM/OAM/GPU subgates passed.
+
+
+## 2026-11-09 implemented module and accepted native tests
+
+**Implementation:** `include/follower_graphics.h` and `src/follower_graphics.c` on the existing WRL-010 audit branch. The current-main test CI copies these C/header sources into a disposable checkout, compiles and links a real FireRed ROM, and invokes their exported functions on ARM under libmGBA. The actual pinned Bulbasaur six **32×32** source frames (Git blob SHA `3eb99143e0f2b7e1df044b19374419c4a977b874`) and genuine pinned Steelix six **64×64** source frames (Git blob SHA `1a0ff067983d294ce1534674efa91c697c4db794`) plus their normal palettes, and Steelix Shiny palette for the GPU test, are fetched **only temporarily in CI**; no graphics or ROM bytes were committed.
+
+**Acceptance:** [GitHub Actions run 42542468450](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/42542468450) completed **SUCCESS**, executing **8,195 native assertions** against temporary FireRed `main@37230a9c513ed013fc6b402ec800bd1d13960492`. The native run proves:
+- The production module's **acquire-before-release** 32×32 Bulbasaur → 64×64 Steelix → 32×32 Bulbasaur graphics swaps, with real image transfer of six 64×64 source cells and correct tile cleanup;
+- Ownership of each candidate's separate sprite ID, contiguous 16- or 64-tile range, temporary tagged normal palette reservation, allocation-failure rollback preserving the previous sprite and palette, and retry after tile pressure is relieved;
+- Exactly one **graphics-only FireRed `ObjectEvent` slot** reserved from the 16-slot pool using internal local ID 126, updated to the new sprite ID/OAM geometry only after successful acquisition, and released before resources are destroyed;
+- Refusal when **all 16 `ObjectEvent` slots are active**. The implementation drops unbound staged graphics (rather than leaving a ghost/stealing an NPC's slot). This is not a loss of any future selected Pokémon identity, which is not managed in this module;
+- Live 30-frame world-update periods with the graphics-owned event on each real **Route 5 Day Care** and **Four Island Day Care** map, using normal native field callbacks, plus explicit event teardown before a real map warp and safe recreation after map reload;
+- Separate real mGBA GPU rendering of all six pinned Steelix 64×64 frames and Shiny palette, plus hardware OBJ/OAM native allocation, exhaustion and recovery.
+
+**Public API:** `FollowerGraphics_Swap`, `FollowerGraphics_SetFrame`, `FollowerGraphics_BindObjectEvent`, `FollowerGraphics_Release`, `FollowerGraphics_DetachForMapTransition`, `FollowerGraphics_InvalidateAfterSpriteReset`, and introspection getters. A caller must present already-converted six 4bpp frames and one 16-color normal or Shiny BGR555 palette. The 32/64-size native source OAM descriptor is reused from FireRed, no static sprite tile indices or NPC palette banks are stolen. The graphics copy must be invoked at a graphics-safe VBlank phase: this source does not add an automatic main-loop/VBlank hook.
+
+**Limitations preventing gameplay acceptance:** The owned `ObjectEvent` is intentionally graphics-only and has no player-following movement, elevation/priority dynamic synchronization, reflection behavior, invisible/cutscene mode policy, party-instance identity, permanent saved state, or 252-species runtime resolver. No production map lifecycle hook currently calls `DetachForMapTransition`/ `InvalidateAfterSpriteReset`; the focused test calls these explicitly. It currently proves the **tested Route 5/Four Island callback transitions**, not all maps or all graphics crowding patterns. The branch is hundreds of commits behind main and cannot be blindly merged. The current graphics-loader milestone has passed its scoped native checks; the overall WRL-010 follower feature and broad asset/integration gate remain **BLOCKED** until the remaining canonical requirements pass.
+
+**Reproduction:** `tests/followers/prepare_steelix_native_frame.py`, `tests/followers/inject_native_graphics_probe.py`, and `.github/workflows/follower-native-graphics.yml` compile/test the real module and assets via disposable current-main checkout. No ROM, BIOS, save, copyrighted PNG or compiled payload is uploaded or committed.
