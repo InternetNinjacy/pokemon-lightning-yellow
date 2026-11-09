@@ -58,7 +58,7 @@ static void wrlRouteNativeGrassTests(void) {
         }
         CHECK(found[0]>0);
         if(route==5){CHECK(found[1]>0);CHECK(found[2]>0);}
-        printf("PASS: Route %u compiled singles, %u non-colliding grass tiles, 1000 native encounter draws (targets %u/%u/%u)\\n",
+        printf("PASS: Route %u compiled singles, %u non-colliding grass tiles, 1000 native encounter draws (targets %u/%u/%u)\n",
                route,tiles,found[0],found[1],found[2]);
 
         // Now use the real overworld walker. Find two neighboring ordinary
@@ -97,7 +97,7 @@ static void wrlRouteNativeGrassTests(void) {
         press(128);press(16);press(1);
         waitOverworld(1);
         CHECK(core->busRead8(core,SYM_gBattleOutcome)==B_OUTCOME_RAN);
-        printf("PASS: Route %u player D-pad steps in real grass triggered and escaped native single battle after %u frames\\n",
+        printf("PASS: Route %u player D-pad steps in real grass triggered and escaped native single battle after %u frames\n",
                route,frame);
     }
     CHECK(core->loadState(core,bootState));
