@@ -155,6 +155,7 @@ static void originalEffectTests(void){
  paybackTests();
  moves382Tests();
  waterMoves385Tests();
+ waterMoves385Mechanics();
  thunderWaveTests();
  ghostReworkTests();
  spreadStatusTests();
