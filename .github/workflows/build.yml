@@ -165,7 +165,17 @@ jobs:
       - name: Focused owner-approved SOW actual native producers and all three walkable map events
         if: matrix.target == 'modified'
         timeout-minutes: 10
-        run: LIGHTNING_SOW_PRODUCERS_ONLY=1 python3 tests/emulator/run.py
+        run: |
+          mkdir -p "$RUNNER_TEMP/sow-captures"
+          LIGHTNING_SOW_CAPTURE_DIR="$RUNNER_TEMP/sow-captures" LIGHTNING_SOW_PRODUCERS_ONLY=1 python3 tests/emulator/run.py
+      - name: Upload real SOW emulator framebuffer evidence (PPM only, no ROM)
+        if: matrix.target == 'modified' && always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sow-overworld-evidence-${{ github.sha }}
+          path: ${{ runner.temp }}/sow-captures/*.ppm
+          if-no-files-found: warn
+          retention-days: 14
       - name: Execute ROM integration tests in mGBA
         if: matrix.target == 'modified'
         timeout-minutes: 30
