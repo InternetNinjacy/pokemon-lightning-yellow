@@ -117,7 +117,7 @@ static void wrlRoute5NorthernLedgeWalkTests(void) {
     CHECK(!wrlRouteGrassAt(gridX,7));
     CHECK(CALL(MapGridGetCollisionAt,gridX,ledgeGridY));
     CHECK(wrlRouteGrassAt(gridX,firstGrassGridY));
-    unsigned reached=0,highestY=7,frame;
+    unsigned reached=0,highestY=7,seenRows=0,frame;
     for(frame=0;frame<3000;frame++) {
         if((core->busRead32(core,SYM_gMain+ABI_MAIN_CB2)&~1U)!=SYM_CB2_Overworld)
             break;
@@ -126,6 +126,16 @@ static void wrlRoute5NorthernLedgeWalkTests(void) {
         unsigned currentX=core->busRead16(core,scratch);
         unsigned currentY=core->busRead16(core,scratch+2);
         CHECK(currentX==gridX);
+        // Diagnose whether the walker visits the expected grass row and whether
+        // native map attributes differ while standing on it (no map edits).
+        if(currentY>=10 && currentY<=15 && !(seenRows & (1U<<(currentY-10)))) {
+            seenRows |= 1U<<(currentY-10);
+            fprintf(stderr,"WRL Route5 north walk row=%u encounter=%u collision=%u targetRowEncounter=%u targetRowCollision=%u\n",
+                    currentY,CALL(MapGridGetMetatileAttributeAt,currentX,currentY,ABI_META_ENCOUNTER),
+                    CALL(MapGridGetCollisionAt,currentX,currentY),
+                    CALL(MapGridGetMetatileAttributeAt,gridX,firstGrassGridY,ABI_META_ENCOUNTER),
+                    CALL(MapGridGetCollisionAt,gridX,firstGrassGridY));
+        }
         if(currentY>highestY)highestY=currentY;
         if(wrlRouteGrassAt(currentX,currentY)) {reached=1;break;}
     }
