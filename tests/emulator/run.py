@@ -295,6 +295,7 @@ required += ['ViridianCity_EventScript_TrainerTips1','ViridianCity_EventScript_T
 
 required += ['CreateHalfShinyGiftEgg','ScriptGiveMagbyEgg','ScriptGiveTangoTangela','FiveIsland_WaterLabyrinth_EventScript_EggGentleman','CeladonCity_Condominiums_RoofRoom_EventScript_EeveeBall']
 required += ['PalletTown_ProfessorOaksLab_EventScript_RetryParcelGifts','SilphCo_7F_EventScript_LaprasGuy']
+required += ['CeladonCity_GameCorner_PrizeRoom_EventScript_PrizeClerkMons','GetCoins','SetCoins']
 
 required += ['PokemonLeague_LoreleisRoom_EventScript_Lorelei','PokemonLeague_BrunosRoom_EventScript_Bruno','PokemonLeague_AgathasRoom_EventScript_Agatha','PokemonLeague_LancesRoom_EventScript_Lance']
 required += ['PewterCity_Gym_EventScript_Liam','CeruleanCity_Gym_EventScript_Diana','CeladonCity_Gym_EventScript_Mary','Cmd_setweatherballtype','gBattleMonForms','SaffronCity_Dojo_Text_NeedTwo']
