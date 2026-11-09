@@ -6100,18 +6100,34 @@ static const struct TrainerMonItemCustomMoves sParty_LeaderBrock[] = {
     },
 };
 
-static const struct TrainerMonNoItemCustomMoves sParty_LeaderMisty[] = {
+static const struct TrainerMonItemCustomMoves sParty_LeaderMisty[] = {
     {
         .iv = 0,
-        .lvl = 18,
+        .lvl = 22,
         .species = SPECIES_STARYU,
-        .moves = {MOVE_TACKLE, MOVE_HARDEN, MOVE_RECOVER, MOVE_WATER_PULSE},
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_WATER_GUN, MOVE_RAPID_SPIN, MOVE_SWIFT, MOVE_RECOVER},
     },
     {
         .iv = 0,
-        .lvl = 21,
+        .lvl = 22,
+        .species = SPECIES_PSYDUCK,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_WATER_GUN, MOVE_CONFUSION, MOVE_DISABLE, MOVE_TAIL_WHIP},
+    },
+    {
+        .iv = 0,
+        .lvl = 24,
+        .species = SPECIES_GOLDUCK,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_WATER_PULSE, MOVE_CONFUSION, MOVE_AMNESIA, MOVE_HYPNOSIS},
+    },
+    {
+        .iv = 0,
+        .lvl = 25,
         .species = SPECIES_STARMIE,
-        .moves = {MOVE_SWIFT, MOVE_RECOVER, MOVE_RAPID_SPIN, MOVE_WATER_PULSE},
+        .heldItem = ITEM_LUM_BERRY,
+        .moves = {MOVE_PSYBEAM, MOVE_RECOVER, MOVE_BUBBLE_BEAM, MOVE_THUNDER_WAVE},
     },
 };
 
