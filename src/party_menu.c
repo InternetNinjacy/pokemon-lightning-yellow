@@ -41,6 +41,7 @@
 #include "player_pc.h"
 #include "pokedex.h"
 #include "pokemon.h"
+#include "follower_state.h"
 #include "pokemon_icon.h"
 #include "pokemon_jump.h"
 #include "pokemon_special_anim.h"
@@ -130,7 +131,7 @@ struct PartyMenuInternal
     u32 spriteIdCancelPokeball:7;
     u32 messageId:14;
     u8 windowId[3];
-    u8 actions[8];
+    u8 actions[10];
     u8 numActions;
     u16 palBuffer[BG_PLTT_SIZE / sizeof(u16)];
     s16 data[16];
@@ -150,6 +151,8 @@ struct PartyMenuBox
 static void BlitBitmapToPartyWindow_LeftColumn(u8 windowId, u8 x, u8 y, u8 width, u8 height, bool8 hideHP);
 static void BlitBitmapToPartyWindow_RightColumn(u8 windowId, u8 x, u8 y, u8 width, u8 height, bool8 hideHP);
 static void CursorCB_Summary(u8 taskId);
+static void CursorCB_SetFollower(u8 taskId);
+static void CursorCB_StopFollowing(u8 taskId);
 static void CursorCB_Switch(u8 taskId);
 static void CursorCB_Cancel1(u8 taskId);
 static void CursorCB_Item(u8 taskId);
@@ -419,6 +422,8 @@ ALIGNED(4) EWRAM_DATA u8 gBattlePartyCurrentOrder[PARTY_SIZE / 2] = {0}; // bits
 COMMON_DATA void (*gItemUseCB)(u8, TaskFunc) = NULL;
 
 #include "data/pokemon/tutor_learnsets.h"
+static const u8 sText_SetFollower[] = _("Set as Follower");
+static const u8 sText_StopFollowing[] = _("Stop Following");
 #include "data/party_menu.h"
 
 void InitPartyMenu(u8 menuType, u8 layout, u8 partyAction, bool8 keepCursorPos, u8 messageId, TaskFunc task, MainCallback callback)
@@ -2986,6 +2991,12 @@ static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
         AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, CURSOR_OPTION_MAIL);
     else
         AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, CURSOR_OPTION_ITEM);
+    // Exactly one explicit follower action, always before Cancel. Does not
+    // mutate party order, battle lead, or the selected instance until chosen.
+    if (FollowerState_IsSelectedPartySlot(slotId))
+        AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, CURSOR_OPTION_STOP_FOLLOWING);
+    else
+        AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, CURSOR_OPTION_SET_FOLLOWER);
     AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, CURSOR_OPTION_CANCEL1);
 }
 
@@ -3389,6 +3400,20 @@ static void FinishTwoMonAction(u8 taskId)
 #undef tSlot2Offset
 #undef tSlot1SlideDir
 #undef tSlot2SlideDir
+
+static void CursorCB_SetFollower(u8 taskId)
+{
+    PlaySE(SE_SELECT);
+    FollowerState_SelectPartySlot(gPartyMenu.slotId);
+    CursorCB_Cancel1(taskId);
+}
+
+static void CursorCB_StopFollowing(u8 taskId)
+{
+    PlaySE(SE_SELECT);
+    FollowerState_Clear();
+    CursorCB_Cancel1(taskId);
+}
 
 static void CursorCB_Cancel1(u8 taskId)
 {
