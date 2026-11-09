@@ -380,6 +380,14 @@ static void sowScriptedWhiteoutTests(void)
     if(framesWaited>20 && controller(0)==SYM_HandleInputChooseAction)break;
     frames(1,(framesWaited%10)<3?1:0);
    }
+   if(framesWaited>=1800)
+    fprintf(stderr,"SOW whiteout diagnostic event=%u turn=%u outcome=%u hp0=%u hp1=%u cb=%08x ctrl0=%08x script=%08x partyCount=%u\\n",
+      i,turn,core->busRead8(core,SYM_gBattleOutcome),
+      core->busRead16(core,bmon(0)+ABI_BMON_HP),
+      core->busRead16(core,bmon(1)+ABI_BMON_HP),
+      core->busRead32(core,SYM_gMain+ABI_MAIN_CB2),
+      controller(0),core->busRead32(core,SYM_gBattlescriptCurrInstr),
+      core->busRead8(core,SYM_gPlayerPartyCount));
    CHECK(framesWaited<1800);
   }
   CHECK(turn<16);
