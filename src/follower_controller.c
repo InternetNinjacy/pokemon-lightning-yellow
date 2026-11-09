@@ -25,6 +25,46 @@ static void FollowerController_ResetTrail(void)
     sLastPlayerObjectId = OBJECT_EVENTS_COUNT;
 }
 
+// The all-252 asset resolver will call this with one of its pinned/converted
+// descriptors at a graphics-safe phase. Failures never alter party selection.
+bool8 FollowerController_BindAsset(const struct FollowerGraphicsAsset *asset)
+{
+    u8 playerId = gPlayerAvatar.objectEventId;
+    struct ObjectEvent *player;
+    struct Sprite *playerSprite;
+    enum FollowerGraphicsResult result;
+
+    if (!FollowerState_CanDisplay() || asset == NULL
+     || playerId >= OBJECT_EVENTS_COUNT
+     || !gObjectEvents[playerId].active)
+        return FALSE;
+    player = &gObjectEvents[playerId];
+    if (player->spriteId >= MAX_SPRITES || !gSprites[player->spriteId].inUse)
+        return FALSE;
+    playerSprite = &gSprites[player->spriteId];
+
+    // The existing loader owns both the new and old tile/palette allocations
+    // until Swap commits. This call may write OBJ VRAM: the caller MUST already
+    // be in a graphics-safe VBlank phase.
+    result = FollowerGraphics_Swap(asset,
+                                   playerSprite->pos1.x,
+                                   playerSprite->pos1.y + 16,
+                                   playerSprite->subpriority + 1);
+    if (result != FOLLOWER_GFX_OK)
+        return FALSE;
+    if (!FollowerGraphics_BindObjectEvent(gSaveBlock1Ptr->location.mapGroup,
+                                          gSaveBlock1Ptr->location.mapNum,
+                                          player->previousCoords.x,
+                                          player->previousCoords.y,
+                                          player->previousElevation))
+    {
+        FollowerGraphics_Release();
+        return FALSE;
+    }
+    FollowerController_ResetTrail();
+    return TRUE;
+}
+
 void FollowerController_Tick(void)
 {
     struct ObjectEvent *player, *follower;
