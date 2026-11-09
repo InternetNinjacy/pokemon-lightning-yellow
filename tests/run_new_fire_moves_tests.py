@@ -48,6 +48,10 @@ for path in ['src/data/pokemon/level_up_learnsets.h', 'src/data/pokemon/tmhm_lea
     if path=='src/data/pokemon/level_up_learnsets.h':
         from approved_pkm009_delegated_001_126_changes import prior_pkm009_delegated_001_126_source
         from approved_pkm009_delegated_127_252_changes import prior_pkm009_delegated_127_252_source
+        from approved_pkm009_eevee_water_fire_changes import prior_pkm009_eevee_water_fire_source
+        from approved_pkm009_ponyta_changes import prior_pkm009_ponyta_source
+        source=prior_pkm009_eevee_water_fire_source(path,source)
+        source=prior_pkm009_ponyta_source(path,source)
         source=prior_pkm009_delegated_001_126_source(path,source)
         source=prior_pkm009_delegated_127_252_source(path,source)
     assert not any('MOVE_' + key in source for key, *_ in expected), path
