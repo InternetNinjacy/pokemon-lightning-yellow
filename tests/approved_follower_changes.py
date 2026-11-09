@@ -9,6 +9,8 @@ def prior_follower_source(path, text):
     if path == "src/overworld.c":
         additions = [
             ('#include "follower_graphics.h"\n', ''),
+            ('#include "follower_controller.h"\n', ''),
+            ('    FollowerController_Tick();\n', ''),
             (
                 '    // Sprite IDs and palette tags are invalid after this reset. The\n'
                 '    // graphics controller must not free a reused ID on the new map.\n'
