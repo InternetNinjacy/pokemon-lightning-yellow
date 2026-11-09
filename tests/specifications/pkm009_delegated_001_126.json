@@ -2,7 +2,7 @@
   "title": "PKM009-delegated-natural-learnset-source-contract-001-126",
   "source": "Nov 3 v0.6 252 full audit",
   "state": "IMPLEMENTATION CANDIDATE; NOT INDIVIDUALLY LOCKED",
-  "exclude": "Locked profiles, 7 absent move identifiers, no-op species and source drift",
+  "exclude": "Locked profiles, 7 absent move identifiers, no-op species and source drift; FireRed/LeafGreen conditional learnset arrays (Dugtrio)",
   "rows": [
     {
       "dex": 4,
@@ -2712,136 +2712,6 @@
         [
           52,
           "PSYCHIC"
-        ]
-      ],
-      "authority": "NOV03_DELEGATED_WORKING_NOT_OWNER_EXPLICIT"
-    },
-    {
-      "dex": 56,
-      "species": "DUGTRIO",
-      "pointer": "sDugtrioLevelUpLearnset",
-      "before": [
-        [
-          1,
-          "TRI_ATTACK"
-        ],
-        [
-          1,
-          "SCRATCH"
-        ],
-        [
-          1,
-          "SAND_ATTACK"
-        ],
-        [
-          1,
-          "SAND_ATTACK"
-        ],
-        [
-          1,
-          "SCRATCH"
-        ],
-        [
-          1,
-          "GROWL"
-        ],
-        [
-          5,
-          "GROWL"
-        ],
-        [
-          9,
-          "MAGNITUDE"
-        ],
-        [
-          17,
-          "DIG"
-        ],
-        [
-          21,
-          "FURY_SWIPES"
-        ],
-        [
-          25,
-          "MUD_SLAP"
-        ],
-        [
-          26,
-          "SAND_TOMB"
-        ],
-        [
-          38,
-          "SLASH"
-        ],
-        [
-          51,
-          "EARTHQUAKE"
-        ],
-        [
-          64,
-          "FISSURE"
-        ]
-      ],
-      "after": [
-        [
-          1,
-          "TRI_ATTACK"
-        ],
-        [
-          1,
-          "SCRATCH"
-        ],
-        [
-          1,
-          "SAND_ATTACK"
-        ],
-        [
-          1,
-          "SAND_ATTACK"
-        ],
-        [
-          1,
-          "SCRATCH"
-        ],
-        [
-          1,
-          "GROWL"
-        ],
-        [
-          5,
-          "GROWL"
-        ],
-        [
-          9,
-          "MAGNITUDE"
-        ],
-        [
-          17,
-          "DIG"
-        ],
-        [
-          21,
-          "FURY_SWIPES"
-        ],
-        [
-          25,
-          "MUD_SLAP"
-        ],
-        [
-          26,
-          "SAND_TOMB"
-        ],
-        [
-          29,
-          "SLASH"
-        ],
-        [
-          40,
-          "EARTHQUAKE"
-        ],
-        [
-          64,
-          "FISSURE"
         ]
       ],
       "authority": "NOV03_DELEGATED_WORKING_NOT_OWNER_EXPLICIT"
