@@ -129,6 +129,15 @@ bool8 FollowerState_CanDisplay(void)
     return slot >= 0 && GetMonData(&gPlayerParty[slot], MON_DATA_HP) != 0;
 }
 
+void FollowerState_BeforeBoxDeposit(struct Pokemon *mon)
+{
+    struct FollowerSavedSelection *record = FollowerState_Record();
+    if (mon != NULL && FollowerState_IsValid(record)
+     && GetMonData(mon, MON_DATA_PERSONALITY) == record->personality
+     && GetMonData(mon, MON_DATA_OT_ID) == record->otId)
+        FollowerState_Clear();
+}
+
 void FollowerState_BeforePartyRemoval(u8 partySlot)
 {
     if (FollowerState_IsSelectedPartySlot(partySlot))
