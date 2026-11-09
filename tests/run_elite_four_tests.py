@@ -20,6 +20,10 @@ for p,h in m['preserved_files'].items():
  source=(restore_ordinary_trainer_blocks(p) if p=='src/data/trainers.h' else Path(p).read_text())
  source=prior_thunder_wave_source(p,source)
  if p=='src/data/pokemon/species_info.h':
+  # Reverse exactly PKM-009's approved Ponyta-family stats before this
+  # older frozen E4 preservation hash. Unrelated species remain guarded.
+  from approved_pkm009_ponyta_changes import prior_pkm009_ponyta_source
+  source=prior_pkm009_ponyta_source(p,source)
   source=prior_weather_species_source(source)
  if p=='src/battle_main.c':
   approved_selector='''                // Use the existing native ability slot field only for Agatha's Alakazam.
