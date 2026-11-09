@@ -12,6 +12,9 @@ def prior_gym_castform_source(path, text=None):
         from approved_weather_species_slots import prior_weather_species_source
         text = prior_weather_species_source(text)
     if str(path) in ("src/data/pokemon/species_info.h", "src/data/pokemon/level_up_learnsets.h"):
+        from approved_pkm009_eevee_water_fire_changes import prior_pkm009_eevee_water_fire_source
+        text = prior_pkm009_eevee_water_fire_source(str(path), text)
+    if str(path) in ("src/data/pokemon/species_info.h", "src/data/pokemon/level_up_learnsets.h"):
         from approved_pkm009_vulpix_changes import prior_pkm009_vulpix_source
         text = prior_pkm009_vulpix_source(str(path), text)
     if str(path) in ("src/data/pokemon/species_info.h", "src/data/pokemon/level_up_learnsets.h"):
