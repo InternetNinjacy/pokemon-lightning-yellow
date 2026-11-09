@@ -120,6 +120,18 @@ static void sowScriptedRunTests(void)
   CHECK(core->busRead8(core,SYM_gBattleOutcome)==B_OUTCOME_RAN);
   CHECK(CALL(FlagGet,active[i]));
   CHECK(!CALL(FlagGet,resolved[i]));
+  // Run is not a resolution: persist the event and reload the actual map,
+  // rather than relying on the already-live object table.
+  flashRoundTrip();
+  CHECK(CALL(FlagGet,active[i]));
+  CHECK(!CALL(FlagGet,resolved[i]));
+  fossilWarp(MAP_GROUP(MAP_ROUTE5_POKEMON_DAY_CARE),MAP_NUM(MAP_ROUTE5_POKEMON_DAY_CARE),3,6);
+  if(startY[i]>127)sowWarpToHighTile(maps[i],startX[i],startY[i]);
+  else fossilWarp(MAP_GROUP(maps[i]),MAP_NUM(maps[i]),startX[i],startY[i]);
+  object=CALL(GetObjectEventIdByLocalIdAndMap,localIds[i],MAP_NUM(maps[i]),MAP_GROUP(maps[i]));
+  CHECK(object<ABI_OBJECT_COUNT);
+  core->busWrite8(core,SYM_gSelectedObjectEvent,object);
+  CALL(VarSet,VAR_LAST_TALKED,localIds[i]);
   // The same compiled object script must still create a valid retry.
   fossilStart(scripts[i]);
   waitAction();
