@@ -195,3 +195,49 @@ static void sowScriptedCaptureTests(void)
  }
  CHECK(core->loadState(core,bootState));
 }
+
+// Actual overworld input is required here: do not pre-populate
+// gSelectedObjectEvent / VAR_LAST_TALKED and do not call fossilStart.
+// This proves the game's own A-button object discovery executes each event.
+static void sowPhysicalInteractionTests(void)
+{
+ static const unsigned maps[]={MAP_ROUTE12,MAP_ROUTE21_NORTH,MAP_ROUTE23};
+ static const unsigned localIds[]={15,7,8};
+ static const unsigned x[]={19,13,13},y[]={88,8,146};
+ static const unsigned species[]={SPECIES_CORPHISH,SPECIES_GLALIE,SPECIES_TYRANITAR};
+ static const unsigned abilities[]={ABILITY_DRIZZLE,ABILITY_SNOW_WARNING,ABILITY_SAND_STREAM};
+ static const unsigned resolved[]={FLAG_SOW_CORPHISH_RESOLVED,FLAG_SOW_GLALIE_RESOLVED,FLAG_SOW_TYRANITAR_RESOLVED};
+ for(unsigned i=0;i<3;i++){
+  daycareFixture(1);
+  CALL(CreateMon,player(0),SPECIES_JOLTEON,100,31,1,12345,0,1234);
+  if(y[i]>127)sowWarpToHighTile(maps[i],x[i],y[i]);
+  else fossilWarp(MAP_GROUP(maps[i]),MAP_NUM(maps[i]),x[i],y[i]);
+  unsigned object=CALL(GetObjectEventIdByLocalIdAndMap,localIds[i],MAP_NUM(maps[i]),MAP_GROUP(maps[i]));
+  CHECK(object<ABI_OBJECT_COUNT);
+  CHECK(!CALL(FlagGet,resolved[i]));
+  CALL(PlayerGetDestCoords,scratch,scratch+2);
+  CHECK(core->busRead16(core,scratch)==x[i]+7);
+  CHECK(core->busRead16(core,scratch+2)==y[i]+7);
+  // The registered event stands exactly one tile north. Face it via D-pad
+  // then let the real field-control A-button dispatch select the object.
+  press(64);
+  frames(12,0);
+  CALL(PlayerGetDestCoords,scratch,scratch+2);
+  CHECK(core->busRead16(core,scratch)==x[i]+7);
+  CHECK(core->busRead16(core,scratch+2)==y[i]+7);
+  press(1);
+  waitAction();
+  CHECK(CALL(VarGet,VAR_LAST_TALKED)==localIds[i]);
+  CHECK(core->busRead8(core,SYM_gSelectedObjectEvent)==object);
+  CHECK(monget(enemy(0),ABI_DATA_SPECIES)==species[i]);
+  CHECK(CALL(GetMonAbility,enemy(0))==abilities[i]);
+  weatherRun();
+  waitOverworld(2);
+  for(unsigned f=0;f<300&&!fieldScriptDone();f++)frames(1,0);
+  CHECK(fieldScriptDone());
+  CHECK(core->busRead8(core,SYM_gBattleOutcome)==B_OUTCOME_RAN);
+  CHECK(!CALL(FlagGet,resolved[i]));
+  printf("PASS: SOW event%u actual field D-pad/A-button object interaction, battle, Run and return\\n",i);
+ }
+ CHECK(core->loadState(core,bootState));
+}
