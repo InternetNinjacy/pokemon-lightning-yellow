@@ -368,7 +368,7 @@ enum FollowerGraphicsResult FollowerGraphics_NativeSteelix(s16 x, s16 y, u8 prio
     return FollowerGraphics_Swap(&sNativeSteelixAsset,x,y,priority);
 }
 """
-production.write_text(production.read_text()+"\\n"+asset_fixture)
+production.write_text(production.read_text()+"\n"+asset_fixture)
 runner.write_text(c)
 bridge.write_text(p)
 print("INJECTED: read-only-to-source CI-only ARM allocator probe; no gameplay change")
