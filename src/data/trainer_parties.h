@@ -6118,21 +6118,27 @@ static const struct TrainerMonNoItemCustomMoves sParty_LeaderMisty[] = {
 static const struct TrainerMonNoItemCustomMoves sParty_LeaderLtSurge[] = {
     {
         .iv = 0,
-        .lvl = 21,
-        .species = SPECIES_VOLTORB,
-        .moves = {MOVE_SONIC_BOOM, MOVE_TACKLE, MOVE_SCREECH, MOVE_SHOCK_WAVE},
-    },
-    {
-        .iv = 0,
-        .lvl = 18,
-        .species = SPECIES_PIKACHU,
-        .moves = {MOVE_QUICK_ATTACK, MOVE_THUNDER_WAVE, MOVE_DOUBLE_TEAM, MOVE_SHOCK_WAVE},
+        .lvl = 30,
+        .species = SPECIES_RAICHU,
+        .moves = {MOVE_ZAP_CANNON, MOVE_QUICK_ATTACK, MOVE_BRICK_BREAK, MOVE_AGILITY},
     },
     {
         .iv = 0,
         .lvl = 24,
-        .species = SPECIES_RAICHU,
-        .moves = {MOVE_QUICK_ATTACK, MOVE_THUNDER_WAVE, MOVE_DOUBLE_TEAM, MOVE_SHOCK_WAVE},
+        .species = SPECIES_VOLTORB,
+        .moves = {MOVE_THUNDER_WAVE, MOVE_SCREECH, MOVE_NONE, MOVE_NONE},
+    },
+    {
+        .iv = 0,
+        .lvl = 24,
+        .species = SPECIES_POLIWAG,
+        .moves = {MOVE_RAIN_DANCE, MOVE_SCARY_FACE, MOVE_NONE, MOVE_NONE},
+    },
+    {
+        .iv = 0,
+        .lvl = 24,
+        .species = SPECIES_ABRA,
+        .moves = {MOVE_FAKE_TEARS, MOVE_HELPING_HAND, MOVE_NONE, MOVE_NONE},
     },
 };
 
