@@ -23,7 +23,8 @@ struct FollowerGraphicsSlot
 };
 
 static struct FollowerGraphicsSlot sFollowerSlots[2];
-static u8 sFollowerActive = 0xFF;
+static u8 sFollowerActive;
+static bool8 sFollowerHasActive;
 
 // The graphics-only loader has no animation callback or auto-follow movement.
 // Six frame changes are explicit and may only copy during graphics-safe VBlank.
@@ -88,7 +89,7 @@ enum FollowerGraphicsResult FollowerGraphics_Swap(const struct FollowerGraphicsA
     if (!FollowerGraphics_AssetValid(asset))
         return FOLLOWER_GFX_INVALID;
 
-    stage = sFollowerActive == 0 ? 1 : 0;
+    stage = sFollowerHasActive && sFollowerActive == 0 ? 1 : 0;
     if (sFollowerSlots[stage].owned)
         return FOLLOWER_GFX_INVALID; // Never discard another staged owner.
     candidate = &sFollowerSlots[stage];
@@ -153,9 +154,10 @@ enum FollowerGraphicsResult FollowerGraphics_Swap(const struct FollowerGraphicsA
     // Commit once all resources are allocated and staged. Both sprites may
     // coexist during staging; predecessor is untouched on failed creation.
     gSprites[id].invisible = FALSE;
-    if (sFollowerActive < 2)
+    if (sFollowerHasActive)
         FollowerGraphics_DisposeSlot(sFollowerActive);
     sFollowerActive = stage;
+    sFollowerHasActive = TRUE;
     return FOLLOWER_GFX_OK;
 }
 
@@ -164,7 +166,7 @@ bool8 FollowerGraphics_SetFrame(u8 frame)
     struct FollowerGraphicsSlot *slot;
     u16 bytes;
 
-    if (frame >= 6 || sFollowerActive >= 2)
+    if (frame >= 6 || !sFollowerHasActive)
         return FALSE;
     slot = &sFollowerSlots[sFollowerActive];
     if (!slot->owned || slot->spriteId >= MAX_SPRITES
@@ -180,9 +182,9 @@ bool8 FollowerGraphics_SetFrame(u8 frame)
 
 void FollowerGraphics_Release(void)
 {
-    if (sFollowerActive < 2)
+    if (sFollowerHasActive)
         FollowerGraphics_DisposeSlot(sFollowerActive);
-    sFollowerActive = 0xFF;
+    sFollowerHasActive = FALSE;
 }
 
 void FollowerGraphics_DetachForMapTransition(void)
@@ -198,26 +200,26 @@ void FollowerGraphics_InvalidateAfterSpriteReset(void)
     // Never free old ID from a newly loaded map.
     FollowerGraphics_ClearSlot(0);
     FollowerGraphics_ClearSlot(1);
-    sFollowerActive = 0xFF;
+    sFollowerHasActive = FALSE;
 }
 
 u8 FollowerGraphics_GetSpriteId(void)
 {
-    if (sFollowerActive >= 2)
+    if (!sFollowerHasActive)
         return MAX_SPRITES;
     return sFollowerSlots[sFollowerActive].spriteId;
 }
 
 u8 FollowerGraphics_GetPaletteSlot(void)
 {
-    if (sFollowerActive >= 2)
+    if (!sFollowerHasActive)
         return 0xFF;
     return sFollowerSlots[sFollowerActive].paletteSlot;
 }
 
 u8 FollowerGraphics_GetSize(void)
 {
-    if (sFollowerActive >= 2)
+    if (!sFollowerHasActive)
         return 0;
     return sFollowerSlots[sFollowerActive].size;
 }
