@@ -343,6 +343,7 @@ static void dexTests(void) {
 #include "ponyta.c"
 #include "ranger.c"
 #include "dynamic_weather.c"
+#include "wrl_nonwild_gifts.c"
 #include "sow_placement.c"
 #include "sow_producers.c"
 #include "lighting_preview.c"
@@ -468,6 +469,7 @@ int main(int argc,char **argv) {
     if(getenv("LIGHTNING_BLAINE_ONLY")){blaineTests();printf("PASS: %u focused Blaine assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_GYM_CASTFORM_ONLY")){gymCastformTests();printf("PASS: %u focused Gym Castform assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_LIGHTING_CAPTURE_DIR")){lightingPreviewCaptures();printf("PASS: %u native lighting capture assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_WRL_NONWILD_GIFTS_ONLY")){wrlNonWildGiftTests();printf("PASS: %u focused WRL-009 non-wild gift assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_SOW_PRODUCERS_ONLY")){sowPlacementTests();sowScriptedProducerTests();sowScriptedRunTests();sowScriptedCaptureTests();sowPhysicalInteractionTests();sowScriptedDefeatTests();sowScriptedWhiteoutTests();printf("PASS: %u native SOW placement, producer, Run/retry and capture/aftermath assertions\\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_SOW_PLACEMENT_ONLY")){sowPlacementTests();printf("PASS: %u native no-Surf placement assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_DYNAMIC_WEATHER_ONLY")){dynamicWeatherTests();printf("PASS: %u focused dynamic weather assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
@@ -583,6 +585,7 @@ int main(int argc,char **argv) {
     ponytaTests();
     rangerTests();
     dynamicWeatherTests();
+    wrlNonWildGiftTests();
     sowPlacementTests();
     sowScriptedProducerTests();
     sowScriptedRunTests();
