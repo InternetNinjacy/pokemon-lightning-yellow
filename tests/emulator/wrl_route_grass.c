@@ -129,6 +129,12 @@ static void wrlRoute5NorthernLedgeWalkTests(void) {
         if(currentY>highestY)highestY=currentY;
         if(wrlRouteGrassAt(currentX,currentY)) {reached=1;break;}
     }
+    if (!reached) {
+        CALL(PlayerGetDestCoords,scratch,scratch+2);
+        fprintf(stderr,"WRL Route5 north-edge walk blocked: highest grid Y=%u, final grid=(%u,%u), frames=%u, CB2=%08x, expected grass Y=%u\\n",
+                highestY,core->busRead16(core,scratch),core->busRead16(core,scratch+2),frame,
+                core->busRead32(core,SYM_gMain+ABI_MAIN_CB2),firstGrassGridY);
+    }
     CHECK(reached);
     CHECK(highestY>=firstGrassGridY);
     printf("PASS: Route 5 native north-edge D-pad walk crossed south-facing collision ledge into approved grass in %u frames\n",frame);
