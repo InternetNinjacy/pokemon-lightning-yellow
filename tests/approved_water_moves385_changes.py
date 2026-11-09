@@ -7,12 +7,12 @@ HUNKS = {
   "include/constants/moves.h": [
     [
       "#define MOVE_VORTEX_SPIN 385\n#define MOVE_TIDAL_CRASH 386\n\n#define MOVES_COUNT 387\n",
-      "#define MOVES_COUNT 385\n\n"
+      "#define MOVES_COUNT 385\n"
     ]
   ],
   "src/data/battle_moves.h": [
     [
-      "    // BTL-005 #385: Whirlpool visuals, but confusion rather than trapping.\n    [MOVE_VORTEX_SPIN] =\n    {\n        .category = MOVE_CATEGORY_PHYSICAL,\n        .effect = EFFECT_CONFUSE_HIT,\n        .power = 55,\n        .type = TYPE_WATER,\n        .accuracy = 100,\n        .pp = 25,\n        .secondaryEffectChance = 30,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = 0,\n        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,\n    },\n\n    // BTL-005 #386: use the native Rollout/Defense Curl battle path.\n    [MOVE_TIDAL_CRASH] =\n    {\n        .category = MOVE_CATEGORY_PHYSICAL,\n        .effect = EFFECT_ROLLOUT,\n        .power = 30,\n        .type = TYPE_WATER,\n        .accuracy = 90,\n        .pp = 20,\n        .secondaryEffectChance = 0,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = 0,\n        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,\n    },\n",
+      "\n    // BTL-005 #385: Whirlpool visuals, but confusion rather than trapping.\n    [MOVE_VORTEX_SPIN] =\n    {\n        .category = MOVE_CATEGORY_PHYSICAL,\n        .effect = EFFECT_CONFUSE_HIT,\n        .power = 55,\n        .type = TYPE_WATER,\n        .accuracy = 100,\n        .pp = 25,\n        .secondaryEffectChance = 30,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = 0,\n        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,\n    },\n\n    // BTL-005 #386: use the native Rollout/Defense Curl battle path.\n    [MOVE_TIDAL_CRASH] =\n    {\n        .category = MOVE_CATEGORY_PHYSICAL,\n        .effect = EFFECT_ROLLOUT,\n        .power = 30,\n        .type = TYPE_WATER,\n        .accuracy = 90,\n        .pp = 20,\n        .secondaryEffectChance = 0,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = 0,\n        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,\n    },\n",
       ""
     ]
   ],
