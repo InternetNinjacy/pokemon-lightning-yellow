@@ -512,7 +512,7 @@ static const struct FollowerGraphicsAsset sNativeSmallAsset = {
         followerTestSmallFrames[2], followerTestSmallFrames[3],
         followerTestSmallFrames[4], followerTestSmallFrames[5],
     },
-    .palette = followerSteelixNormalPalette,
+    .palette = followerTestSmallNormalPalette,
     .size = 32,
 };
 static const struct FollowerGraphicsAsset sNativeSteelixAsset = {
