@@ -97,5 +97,18 @@ static void sowPlacementTests(void)
  // Between Route23 Cascade and Thunder badge checkpoints, below Surf section.
  sowSelectRoute23LandTile();
  sowCheckLandRoute(MAP_ROUTE23,24,160,9,151,13,145);
+ // ISOLATED DIAGNOSTIC ONLY: candidate walkability near both sides of the
+ // Cascade arch. Does not alter approved production object coordinate.
+ fossilWarp(MAP_GROUP(MAP_ROUTE23),MAP_NUM(MAP_ROUTE23),9,151);
+ for(unsigned y=137;y<=154;y++){
+  printf("ROUTE23_PROBE y=%u ",y);
+  for(unsigned x=7;x<=17;x++){
+   unsigned attr=CALL(MapGridGetMetatileAttributeAt,x+7,y+7,ABI_META_BEHAVIOR);
+   printf("%c", !CALL(MapGridGetCollisionAt,x+7,y+7)
+     ? (CALL(MetatileBehavior_IsSurfable,attr)?'~':'.'):'#');
+  }
+  printf("\\n");
+ }
+
  CHECK(core->loadState(core,bootState));
 }
