@@ -1,4 +1,5 @@
 #include "global.h"
+#include "follower_graphics.h"
 #include "gflib.h"
 #include "event_data.h"
 #include "event_object_movement.h"
@@ -4904,6 +4905,12 @@ static bool8 DoesObjectCollideWithObjectAt(struct ObjectEvent *objectEvent, s16 
     for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
     {
         curObject = &gObjectEvents[i];
+        // The follower owns a real ObjectEvent slot only for sprite lifetime.
+        // It is visual and must never become an impassable NPC for the player,
+        // NPCs, doors or forced movements. Compare the owned slot, not local ID:
+        // an unrelated object using that identifier is not exempt.
+        if (i == FollowerGraphics_GetObjectEventId())
+            continue;
         if (curObject->active && curObject != objectEvent)
         {
             if ((curObject->currentCoords.x == x && curObject->currentCoords.y == y) || (curObject->previousCoords.x == x && curObject->previousCoords.y == y))
