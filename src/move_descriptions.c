@@ -405,8 +405,8 @@ const u8 gMoveDescription_AQUA_JET[] = _("A water rush that\nstrikes the foe\nwi
 
 const u8 gMoveDescription_LIQUIDATION[] = _("A water strike\nthat may lower\nthe foe's DEFENSE.");
 
-const u8 gMoveDescription_VORTEX_SPIN[] = _("A swirling water\\nstrike that may\\nconfuse the foe.");
-const u8 gMoveDescription_TIDAL_CRASH[] = _("A 5-turn water\\nattack that grows\\nstronger each hit.");
+const u8 gMoveDescription_VORTEX_SPIN[] = _("A swirling water\nstrike that may\nconfuse the foe.");
+const u8 gMoveDescription_TIDAL_CRASH[] = _("A 5-turn water\nattack that grows\nstronger each hit.");
 
 const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND         - 1] = gMoveDescription_Pound,
