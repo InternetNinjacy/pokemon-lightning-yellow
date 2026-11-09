@@ -241,3 +241,54 @@ static void sowPhysicalInteractionTests(void)
  }
  CHECK(core->loadState(core,bootState));
 }
+
+// Real compiled script defeat branch. Only the fixture battle HP is reduced:
+// the production Tyranitar/Glalie/Corphish encounter remains untouched.
+static void sowScriptedDefeatTests(void)
+{
+ static const unsigned maps[]={MAP_ROUTE12,MAP_ROUTE21_NORTH,MAP_ROUTE23};
+ static const unsigned localIds[]={15,7,8};
+ static const unsigned x[]={19,13,13},y[]={88,8,146};
+ static const unsigned scripts[]={SYM_Route12_EventScript_SowCorphish,
+                                  SYM_Route21_North_EventScript_SowGlalie,
+                                  SYM_Route23_EventScript_SowTyranitar};
+ static const unsigned species[]={SPECIES_CORPHISH,SPECIES_GLALIE,SPECIES_TYRANITAR};
+ static const unsigned resolved[]={FLAG_SOW_CORPHISH_RESOLVED,FLAG_SOW_GLALIE_RESOLVED,FLAG_SOW_TYRANITAR_RESOLVED};
+ static const unsigned active[]={FLAG_SOW_CORPHISH_ACTIVE,FLAG_SOW_GLALIE_ACTIVE,FLAG_SOW_TYRANITAR_ACTIVE};
+ for(unsigned i=0;i<3;i++){
+  daycareFixture(1);
+  CALL(CreateMon,player(0),SPECIES_JOLTEON,100,31,1,12345,0,1234);
+  monput(player(0),ABI_DATA_MOVE1,MOVE_SWIFT);
+  monput(player(0),ABI_DATA_PP1,20);
+  if(y[i]>127)sowWarpToHighTile(maps[i],x[i],y[i]);
+  else fossilWarp(MAP_GROUP(maps[i]),MAP_NUM(maps[i]),x[i],y[i]);
+  unsigned object=CALL(GetObjectEventIdByLocalIdAndMap,localIds[i],MAP_NUM(maps[i]),MAP_GROUP(maps[i]));
+  CHECK(object<ABI_OBJECT_COUNT);
+  core->busWrite8(core,SYM_gSelectedObjectEvent,object);
+  CALL(VarSet,VAR_LAST_TALKED,localIds[i]);
+  fossilStart(scripts[i]);
+  waitAction();
+  CHECK(monget(enemy(0),ABI_DATA_SPECIES)==species[i]);
+  CHECK(core->busRead16(core,bmon(1)+ABI_BMON_HP)>0);
+  // Deterministic one-hit test fixture, with actual move selection and battle
+  // result processing rather than manually setting the B_OUTCOME_WON variable.
+  core->busWrite16(core,bmon(1)+ABI_BMON_HP,1);
+  chooseMove(0,0,1);
+  waitOverworld(2);
+  CHECK(core->busRead8(core,SYM_gBattleOutcome)==B_OUTCOME_WON);
+  unsigned done=0;
+  for(unsigned frame=0;frame<3600;frame++){
+   if(fieldScriptDone()){done=1;break;}
+   frames(1,(frame%12)<3?1:0);
+  }
+  CHECK(done);
+  CHECK(CALL(FlagGet,resolved[i])&&!CALL(FlagGet,active[i]));
+  CHECK(CALL(GetObjectEventIdByLocalIdAndMap,localIds[i],MAP_NUM(maps[i]),MAP_GROUP(maps[i]))==ABI_OBJECT_COUNT);
+  CHECK(CALL(SpecialWeatherRestorationReady));
+  CHECK(!CALL(ArePlayerFieldControlsLocked));
+  flashRoundTrip();
+  CHECK(CALL(FlagGet,resolved[i])&&!CALL(FlagGet,active[i]));
+  printf("PASS: SOW event%u compiled actual battle Swift defeat, weather aftermath, object removal, flash resolved flag\\n",i);
+ }
+ CHECK(core->loadState(core,bootState));
+}
