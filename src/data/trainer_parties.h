@@ -4597,77 +4597,108 @@ static const struct TrainerMonNoItemCustomMoves sParty_ScientistIvan[] = {
     },
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_BossGiovanni[] = {
+static const struct TrainerMonNoItemCustomMoves sParty_BossGiovanni[] = {
     {
         .iv = 250,
         .lvl = 25,
-        .species = SPECIES_ONIX,
+        .species = SPECIES_HOUNDOOM,
+        .moves = {MOVE_EMBER, MOVE_BITE, MOVE_SMOG, MOVE_HOWL},
     },
     {
         .iv = 250,
-        .lvl = 24,
-        .species = SPECIES_RHYHORN,
+        .lvl = 26,
+        .species = SPECIES_SHARPEDO,
+        .moves = {MOVE_CRUNCH, MOVE_BITE, MOVE_FOCUS_ENERGY, MOVE_SCARY_FACE},
+    },
+    {
+        .iv = 250,
+        .lvl = 27,
+        .species = SPECIES_SHIFTRY,
+        .moves = {MOVE_NATURE_POWER, MOVE_FAKE_OUT, MOVE_GROWTH, MOVE_TORMENT},
     },
     {
         .iv = 250,
         .lvl = 29,
-        .species = SPECIES_KANGASKHAN,
+        .species = SPECIES_TYRANITAR,
+        .moves = {MOVE_ROCK_SLIDE, MOVE_THRASH, MOVE_BITE, MOVE_DIG},
     },
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_BossGiovanni2[] = {
-    {
-        .iv = 250,
-        .lvl = 37,
-        .species = SPECIES_NIDORINO,
-    },
+static const struct TrainerMonNoItemCustomMoves sParty_BossGiovanni2[] = {
     {
         .iv = 250,
         .lvl = 35,
-        .species = SPECIES_KANGASKHAN,
+        .species = SPECIES_HOUNDOOM,
+        .moves = {MOVE_EMBER, MOVE_BITE, MOVE_HOWL, MOVE_ROAR},
     },
     {
         .iv = 250,
         .lvl = 37,
-        .species = SPECIES_RHYHORN,
+        .species = SPECIES_SHARPEDO,
+        .moves = {MOVE_CRUNCH, MOVE_SLASH, MOVE_SCREECH, MOVE_FOCUS_ENERGY},
+    },
+    {
+        .iv = 250,
+        .lvl = 38,
+        .species = SPECIES_SHIFTRY,
+        .moves = {MOVE_NATURE_POWER, MOVE_FAKE_OUT, MOVE_FAINT_ATTACK, MOVE_RAZOR_WIND},
+    },
+    {
+        .iv = 250,
+        .lvl = 36,
+        .species = SPECIES_SNEASEL,
+        .moves = {MOVE_FAINT_ATTACK, MOVE_FURY_SWIPES, MOVE_SCREECH, MOVE_AGILITY},
     },
     {
         .iv = 250,
         .lvl = 41,
-        .species = SPECIES_NIDOQUEEN,
+        .species = SPECIES_TYRANITAR,
+        .moves = {MOVE_ROCK_SLIDE, MOVE_THRASH, MOVE_DIG, MOVE_SCARY_FACE},
     },
 };
 
-static const struct TrainerMonNoItemCustomMoves sParty_LeaderGiovanni[] = {
+static const struct TrainerMonItemCustomMoves sParty_LeaderGiovanni[] = {
+    {
+        .iv = 0,
+        .lvl = 44,
+        .species = SPECIES_HOUNDOOM,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_FLAMETHROWER, MOVE_FAINT_ATTACK, MOVE_BITE, MOVE_HOWL},
+    },
     {
         .iv = 0,
         .lvl = 45,
-        .species = SPECIES_RHYHORN,
-        .moves = {MOVE_TAKE_DOWN, MOVE_ROCK_BLAST, MOVE_SCARY_FACE, MOVE_EARTHQUAKE},
+        .species = SPECIES_SHARPEDO,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_CRUNCH, MOVE_SLASH, MOVE_SCREECH, MOVE_SWAGGER},
+    },
+    {
+        .iv = 0,
+        .lvl = 46,
+        .species = SPECIES_SHIFTRY,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_FAINT_ATTACK, MOVE_RAZOR_WIND, MOVE_FAKE_OUT, MOVE_NATURE_POWER},
+    },
+    {
+        .iv = 0,
+        .lvl = 43,
+        .species = SPECIES_SNEASEL,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_ICY_WIND, MOVE_FAINT_ATTACK, MOVE_AGILITY, MOVE_SCREECH},
     },
     {
         .iv = 0,
         .lvl = 42,
-        .species = SPECIES_DUGTRIO,
-        .moves = {MOVE_SLASH, MOVE_SAND_TOMB, MOVE_MUD_SLAP, MOVE_EARTHQUAKE},
-    },
-    {
-        .iv = 0,
-        .lvl = 44,
-        .species = SPECIES_NIDOQUEEN,
-        .moves = {MOVE_BODY_SLAM, MOVE_DOUBLE_KICK, MOVE_POISON_STING, MOVE_EARTHQUAKE},
-    },
-    {
-        .iv = 0,
-        .lvl = 45,
-        .species = SPECIES_NIDOKING,
-        .moves = {MOVE_THRASH, MOVE_DOUBLE_KICK, MOVE_POISON_STING, MOVE_EARTHQUAKE},
+        .species = SPECIES_MURKROW,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_FAINT_ATTACK, MOVE_NIGHT_SHADE, MOVE_TAUNT, MOVE_PURSUIT},
     },
     {
         .iv = 0,
         .lvl = 50,
-        .species = SPECIES_RHYHORN,
-        .moves = {MOVE_TAKE_DOWN, MOVE_ROCK_BLAST, MOVE_SCARY_FACE, MOVE_EARTHQUAKE},
+        .species = SPECIES_TYRANITAR,
+        .heldItem = ITEM_HARD_STONE,
+        .moves = {MOVE_ROCK_SLIDE, MOVE_CRUNCH, MOVE_DIG, MOVE_THRASH},
     },
 };
 
