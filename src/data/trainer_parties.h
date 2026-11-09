@@ -6274,11 +6274,12 @@ static const struct TrainerMonNoItemCustomMoves sParty_GentlemanArthur[] = {
     },
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_GentlemanTucker[] = {
+static const struct TrainerMonNoItemCustomMoves sParty_GentlemanTucker[] = {
     {
         .iv = 0,
-        .lvl = 23,
-        .species = SPECIES_PIKACHU,
+        .lvl = 22,
+        .species = SPECIES_VOLTORB,
+        .moves = {MOVE_CHARGE, MOVE_SPARK, MOVE_NONE, MOVE_NONE},
     },
 };
 
