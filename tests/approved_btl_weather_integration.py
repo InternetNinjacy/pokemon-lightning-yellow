@@ -15,6 +15,12 @@ def before_species_evolution(path,text):
     return text
 
 def project(path,text,view):
+    # Source views predating the separately approved water move append must be
+    # byte-exact, even when a guard invokes without_weather() directly.
+    # Reversal of a present append is strict; absent append is left untouched.
+    from approved_water_moves385_changes import HUNKS, prior_water_moves385_source
+    if str(path) in HUNKS and any(after in text for after,_ in HUNKS[str(path)]):
+        text=prior_water_moves385_source(path,text)
     text=before_species_evolution(path,text)
     row=json.loads(Path('tests/specifications/btl_weather_integration_delta.json').read_text())['files'].get(str(path))
     if row is None:return text
