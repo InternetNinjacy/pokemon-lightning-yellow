@@ -340,6 +340,7 @@ static void dexTests(void) {
 #include "capture_rules.c"
 #include "museum.c"
 #include "blaine.c"
+#include "surge.c"
 #include "ponyta.c"
 #include "ranger.c"
 #include "dynamic_weather.c"
@@ -465,6 +466,7 @@ int main(int argc,char **argv) {
     if(getenv("LIGHTNING_EARTH_POWER_ONLY")){earthPowerTests();printf("PASS: %u focused Earth Power assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_SCORCHING_SANDS_ONLY")){scorchingSandsTests();printf("PASS: %u focused Scorching Sands assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_SWARM_ONLY")){swarmCloudTests();printf("PASS: %u focused Swarm Cloud assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_SURGE_ONLY")){surgeTests();printf("PASS: %u focused Surge assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_BLAINE_ONLY")){blaineTests();printf("PASS: %u focused Blaine assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_GYM_CASTFORM_ONLY")){gymCastformTests();printf("PASS: %u focused Gym Castform assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_LIGHTING_CAPTURE_DIR")){lightingPreviewCaptures();printf("PASS: %u native lighting capture assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
@@ -578,6 +580,7 @@ int main(int argc,char **argv) {
     captureTests();
     museumTests();
     blaineTests();
+    surgeTests();
     ponytaTests();
     rangerTests();
     dynamicWeatherTests();
