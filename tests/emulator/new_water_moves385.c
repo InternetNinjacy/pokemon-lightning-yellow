@@ -39,3 +39,60 @@ static void waterMoves385Tests(void){
  }
  CHECK(core->loadState(core,bootState));
 }
+
+// Direct native command acceptance supplements real Singles/Doubles turns above:
+// exact custom confusion chance (including Serene Grace) and all five native
+// Rollout powers, Defense Curl doubling, lock expiration and miss cleanup.
+static void waterMoves385Mechanics(void){
+ effectBattleFixture(0,MOVE_VORTEX_SPIN);
+ unsigned script=CALL(AllocZeroed,32);CHECK(script);
+ void *state=malloc(core->stateSize(core));CHECK(state&&core->saveState(core,state));
+ const unsigned rolls[]={29,30,59,60};
+ for(unsigned serene=0;serene<2;serene++)for(unsigned r=0;r<4;r++){
+  CHECK(core->loadState(core,state));
+  core->busWrite8(core,SYM_gBattlerAttacker,0);
+  core->busWrite8(core,SYM_gBattlerTarget,1);
+  core->busWrite8(core,bmon(0)+ABI_BMON_ABILITY,serene?ABILITY_SERENE_GRACE:ABILITY_NONE);
+  core->busWrite8(core,bmon(1)+ABI_BMON_ABILITY,ABILITY_NONE);
+  core->busWrite16(core,SYM_gCurrentMove,MOVE_VORTEX_SPIN);
+  core->busWrite8(core,SYM_gMoveResultFlags,0);
+  core->busWrite32(core,SYM_gHitMarker,0);
+  core->busWrite8(core,SYM_gBattleCommunication+MOVE_EFFECT_BYTE,MOVE_EFFECT_CONFUSION);
+  core->busWrite32(core,SYM_gRngValue,iceFangChanceSeed(rolls[r]));
+  core->busWrite32(core,SYM_gBattlescriptCurrInstr,script);
+  CALL(Cmd_seteffectwithchance);
+  unsigned status2=core->busRead32(core,bmon(1)+ABI_BMON_STATUS2);
+  CHECK(!!(status2&STATUS2_CONFUSION)==(rolls[r]<(serene?60:30)));
+  CHECK(!(status2&STATUS2_WRAPPED));
+ }
+ CHECK(core->loadState(core,state));CALL(Free,script);free(state);
+ for(unsigned curl=0;curl<2;curl++){
+  effectBattleFixture(0,MOVE_TIDAL_CRASH);
+  script=CALL(AllocZeroed,32);CHECK(script);
+  core->busWrite8(core,SYM_gBattlerAttacker,0);
+  core->busWrite8(core,SYM_gBattlerTarget,1);
+  core->busWrite16(core,SYM_gCurrentMove,MOVE_TIDAL_CRASH);
+  core->busWrite32(core,SYM_gMoveResultFlags,0);
+  core->busWrite32(core,bmon(0)+ABI_BMON_STATUS2,curl?STATUS2_DEFENSE_CURL:0);
+  core->busWrite32(core,SYM_gBattlescriptCurrInstr,script);
+  for(unsigned step=0;step<5;step++){
+   CALL(Cmd_rolloutdamagecalculation);
+   CHECK(core->busRead32(core,SYM_gDynamicBasePower)==(30U<<step)*(curl?2:1));
+   CHECK(!!(core->busRead32(core,bmon(0)+ABI_BMON_STATUS2)&STATUS2_MULTIPLETURNS)==(step<4));
+  }
+  CHECK(core->loadState(core,bootState)); // independent miss termination fixture
+  effectBattleFixture(0,MOVE_TIDAL_CRASH);
+  core->busWrite8(core,SYM_gBattlerAttacker,0);
+  core->busWrite16(core,SYM_gCurrentMove,MOVE_TIDAL_CRASH);
+  core->busWrite32(core,SYM_gMoveResultFlags,0);
+  core->busWrite32(core,SYM_gBattlescriptCurrInstr,script);
+  CALL(Cmd_rolloutdamagecalculation);
+  CHECK(core->busRead32(core,bmon(0)+ABI_BMON_STATUS2)&STATUS2_MULTIPLETURNS);
+  core->busWrite32(core,SYM_gMoveResultFlags,MOVE_RESULT_MISSED);
+  CALL(Cmd_rolloutdamagecalculation);
+  CHECK(!(core->busRead32(core,bmon(0)+ABI_BMON_STATUS2)&STATUS2_MULTIPLETURNS));
+  CALL(Free,script);
+ }
+ CHECK(core->loadState(core,bootState));
+ printf("PASS: native Vortex Spin exact 30/60%% confusion, zero wrapping; Tidal Crash 30/60/120/240/480 power, Defense Curl doubling, five-turn lock/miss cleanup\n");
+}
