@@ -19,6 +19,11 @@ def fetch(name):
     with urllib.request.urlopen(req,timeout=45) as f:
         return f.read(400000)
 
+def fetch_species(path):
+    req=urllib.request.Request(BASE+"/"+path,headers={"User-Agent":"LightningYellow-WRL010-MGBA-Graphics-Audit"})
+    with urllib.request.urlopen(req,timeout=45) as f:
+        return f.read(400000)
+
 def tile_pack(pixels):
     assert len(pixels)==4096 and all(0<=v<16 for v in pixels)
     out=[]
@@ -65,11 +70,18 @@ text+="static const unsigned char followerSteelixFrames[6][2048] = {\n"
 for frame in frames:
     text+=" {\n"+carr(frame,24)+"\n },\n"
 text+="};\n"
-# A 32x32 graphics-only test asset cropped from the pinned source; it is
-# deliberately NOT used as a replacement Steelix sprite in the game.
+# Every graphics test uses actual approved-species artwork: Bulbasaur 32x32,
+# Steelix 64x64. Both pinned blobs are downloaded only to ephemeral CI memory.
+small_raw=fetch_species("graphics/pokemon/bulbasaur/overworld.png")
+small_sha=hashlib.sha1(b"blob "+str(len(small_raw)).encode()+b"\\0"+small_raw).hexdigest()
+assert small_sha=="3eb99143e0f2b7e1df044b19374419c4a977b874"
+small_im=Image.open(BytesIO(small_raw))
+small_im.load()
+assert small_im.size==(192,32) and small_im.mode=="P"
 small=[]
 for frame in range(6):
-    px=list(im.crop((frame*64,0,frame*64+32,32)).getdata())
+    px=list(small_im.crop((frame*32,0,(frame+1)*32,32)).getdata())
+    assert all(0<=v<16 for v in px)
     out=[]
     for ty in range(0,32,8):
         for tx in range(0,32,8):
@@ -79,12 +91,19 @@ for frame in range(6):
                     out.append(px[base+x]|px[base+x+1]<<4)
     assert len(out)==512
     small.append(out)
+small_palette_lines=fetch_species("graphics/pokemon/bulbasaur/overworld_normal.pal").decode("ascii").splitlines()
+assert small_palette_lines[:3]==["JASC-PAL","0100","16"] and len(small_palette_lines)==19
+small_colors=[]
+for line in small_palette_lines[3:]:
+    r,g,b=[int(v) for v in line.split()]
+    small_colors.append((r>>3)|((g>>3)<<5)|((b>>3)<<10))
 text+="static const unsigned char followerTestSmallFrames[6][512] = {\n"
 for frame in small:
     text+=" {\n"+carr(frame,24)+"\n },\n"
 text+="};\n"
+text+="static const unsigned short followerTestSmallNormalPalette[16] = {\n"+carr(small_colors,8)+"\n};\n"
 text+="static const unsigned short followerSteelixNormalPalette[16] = {\n"+carr(normal,8)+"\n};\n"
 text+="static const unsigned short followerSteelixShinyPalette[16] = {\n"+carr(shiny,8)+"\n};\n"
 target=Path("tests/emulator/follower_steelix_frame.h")
 target.write_text(text)
-print(f"PASS: ephemeral six 64x64 Steelix frames (each 2048 native 4bpp bytes) + 16 normal and 16 shiny colors; blob={actual}")
+print(f"PASS: pinned Bulbasaur six 32x32 frames and Steelix six 64x64 frames, native normal palettes and Steelix Shiny; blobs={small_sha},{actual}")
