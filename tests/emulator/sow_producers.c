@@ -273,7 +273,24 @@ static void sowScriptedDefeatTests(void)
   // Deterministic one-hit test fixture, with actual move selection and battle
   // result processing rather than manually setting the B_OUTCOME_WON variable.
   core->busWrite16(core,bmon(1)+ABI_BMON_HP,1);
-  chooseMove(0,0,1);
+  // Glalie legitimately knows Protect. A protected first turn must lead to
+  // another real action selection, not a false return-to-overworld timeout.
+  unsigned attempts=0;
+  while(!core->busRead8(core,SYM_gBattleOutcome)
+     && core->busRead16(core,bmon(1)+ABI_BMON_HP)>0 && attempts<12){
+   chooseMove(0,0,1);
+   unsigned framesWaited;
+   for(framesWaited=0;framesWaited<1600;framesWaited++){
+    if(core->busRead16(core,bmon(1)+ABI_BMON_HP)==0
+       || core->busRead8(core,SYM_gBattleOutcome))break;
+    if(framesWaited>20 && controller(0)==SYM_HandleInputChooseAction)break;
+    frames(1,(framesWaited%12)<3?2:0);
+   }
+   CHECK(framesWaited<1600);
+   attempts++;
+  }
+  CHECK(attempts>0 && attempts<12);
+  CHECK(core->busRead16(core,bmon(1)+ABI_BMON_HP)==0);
   waitOverworld(2);
   CHECK(core->busRead8(core,SYM_gBattleOutcome)==B_OUTCOME_WON);
   unsigned done=0;
