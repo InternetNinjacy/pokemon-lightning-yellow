@@ -37,6 +37,8 @@ jobs:
         run: |
           echo "SOURCE MAIN COMMIT: $(git rev-parse HEAD)"
           echo "AUDIT BRANCH COMMIT: $(git -C ../audit rev-parse HEAD)"
+          cp ../audit/src/follower_graphics.c src/follower_graphics.c
+          cp ../audit/include/follower_graphics.h include/follower_graphics.h
           python3 ../audit/tests/followers/inject_native_graphics_probe.py
       - name: Fetch pinned agbcc toolchain and permitted build inputs
         working-directory: current
