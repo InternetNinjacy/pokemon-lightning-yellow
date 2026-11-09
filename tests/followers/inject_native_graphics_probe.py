@@ -311,6 +311,10 @@ static void followerProductionEventProbe(void) {
     CHECK(CALL(FollowerGraphics_NativeSteelix,100,80,1)==0);
     CHECK(core->busRead8(core,SYM_gObjectEvents+first*ABI_FOLLOW_OBJECT_SIZE+4)
           ==CALL(FollowerGraphics_GetSpriteId));
+    frames(30,0); // Actual map update loops with the graphics-owned event alive.
+    CHECK((core->busRead8(core,SYM_gObjectEvents+first*ABI_FOLLOW_OBJECT_SIZE)&1)!=0);
+    CHECK(core->busRead8(core,SYM_gObjectEvents+first*ABI_FOLLOW_OBJECT_SIZE+4)
+          ==CALL(FollowerGraphics_GetSpriteId));
     CALL(FollowerGraphics_DetachForMapTransition);
     CHECK((core->busRead8(core,SYM_gObjectEvents+first*ABI_FOLLOW_OBJECT_SIZE)&1)==0);
     CALL(SetWarpDestination,MAP_GROUP(MAP_FOUR_ISLAND_POKEMON_DAY_CARE),
@@ -326,6 +330,10 @@ static void followerProductionEventProbe(void) {
                MAP_NUM(MAP_FOUR_ISLAND_POKEMON_DAY_CARE),10,10,0)!=0);
     unsigned islandId=CALL(FollowerGraphics_GetObjectEventId);
     CHECK(islandId<ABI_OBJECT_COUNT);
+    frames(30,0);
+    CHECK((core->busRead8(core,SYM_gObjectEvents+islandId*ABI_FOLLOW_OBJECT_SIZE)&1)!=0);
+    CHECK(core->busRead8(core,SYM_gObjectEvents+islandId*ABI_FOLLOW_OBJECT_SIZE+4)
+          ==CALL(FollowerGraphics_GetSpriteId));
     CALL(FollowerGraphics_DetachForMapTransition);
     CHECK((core->busRead8(core,SYM_gObjectEvents+islandId*ABI_FOLLOW_OBJECT_SIZE)&1)==0);
     printf("PASS: PRODUCTION owned ObjectEvent released before Route5->FourIsland warp and rebound after reload\n");
