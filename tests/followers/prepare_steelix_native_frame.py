@@ -65,6 +65,24 @@ text+="static const unsigned char followerSteelixFrames[6][2048] = {\n"
 for frame in frames:
     text+=" {\n"+carr(frame,24)+"\n },\n"
 text+="};\n"
+# A 32x32 graphics-only test asset cropped from the pinned source; it is
+# deliberately NOT used as a replacement Steelix sprite in the game.
+small=[]
+for frame in range(6):
+    px=list(im.crop((frame*64,0,frame*64+32,32)).getdata())
+    out=[]
+    for ty in range(0,32,8):
+        for tx in range(0,32,8):
+            for y in range(8):
+                base=(ty+y)*32+tx
+                for x in range(0,8,2):
+                    out.append(px[base+x]|px[base+x+1]<<4)
+    assert len(out)==512
+    small.append(out)
+text+="static const unsigned char followerTestSmallFrames[6][512] = {\\n"
+for frame in small:
+    text+=" {\\n"+carr(frame,24)+"\\n },\\n"
+text+="};\\n"
 text+="static const unsigned short followerSteelixNormalPalette[16] = {\n"+carr(normal,8)+"\n};\n"
 text+="static const unsigned short followerSteelixShinyPalette[16] = {\n"+carr(shiny,8)+"\n};\n"
 target=Path("tests/emulator/follower_steelix_frame.h")
