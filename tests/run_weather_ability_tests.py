@@ -30,6 +30,8 @@ for path, digest in manifest['preserved'].items():
         # Normalize only exact owner-locked PKM-009 data; older weather scope
         # preservation still rejects every other species/engine change.
         source = Path(path).read_text()
+        from approved_pkm009_eevee_water_fire_changes import prior_pkm009_eevee_water_fire_source
+        source = prior_pkm009_eevee_water_fire_source(path, source)
         from approved_pkm009_vulpix_changes import prior_pkm009_vulpix_source
         source = prior_pkm009_vulpix_source(path, source)
         from approved_pkm009_ponyta_changes import prior_pkm009_ponyta_source
