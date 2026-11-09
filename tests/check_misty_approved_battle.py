@@ -50,7 +50,7 @@ for sp,ability_name in [
 ("STARMIE","DRIZZLE"),
 ]:
     assert re.search(r"if \(species == SPECIES_"+sp+r"\)\s*return ABILITY_"+ability_name+r";",body),sp
-    block=re.search(r"\[SPECIES_"+sp+r"\] = \{(.*?)\n    \},",species_info,re.S)
+    block=re.search(r"\[SPECIES_"+sp+r"\]\s*=\s*\{(.*?)\n    \},",species_info,re.S)
     assert block and ".abilities = " in block[1]
 assert "return GetMonAbility(" in body
 print("GYM-002 Misty source PASS: ordered 4, Lum, moves, Double/refusal, single Super Potion, original AI/badge/TM03 and 4 trainer-only abilities.")
