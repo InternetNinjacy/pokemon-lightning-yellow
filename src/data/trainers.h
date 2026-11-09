@@ -4167,10 +4167,10 @@ const struct Trainer gTrainers[] = {
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,
         .trainerPic = TRAINER_PIC_LEADER_ERIKA,
         .trainerName = _("ERIKA"),
-        .items = {ITEM_HYPER_POTION, ITEM_FULL_HEAL},
+        .items = {ITEM_SUPER_POTION, ITEM_SUPER_POTION},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .party = NO_ITEM_CUSTOM_MOVES(sParty_LeaderErika),
+        .party = ITEM_CUSTOM_MOVES(sParty_LeaderErika),
     },
     [TRAINER_LEADER_KOGA] = {
         .trainerClass = TRAINER_CLASS_LEADER,
