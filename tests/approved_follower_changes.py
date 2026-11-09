@@ -12,6 +12,12 @@ def prior_follower_source(path, text):
             ('#include "follower_controller.h"\n', ''),
             ('    FollowerController_Tick();\n', ''),
             (
+                '    // Teardown the old owned ObjectEvent before sprite IDs are recycled;\n'
+                '    // the selected Pokémon instance remains in the separate save record.\n'
+                '    FollowerGraphics_DetachForMapTransition();\n',
+                '',
+            ),
+            (
                 '    // Sprite IDs and palette tags are invalid after this reset. The\n'
                 '    // graphics controller must not free a reused ID on the new map.\n'
                 '    ResetSpriteData();\n'
