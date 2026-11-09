@@ -410,7 +410,10 @@
 
 #define MOVE_LIQUIDATION 384
 
-#define MOVES_COUNT 385
+#define MOVE_VORTEX_SPIN 385
+#define MOVE_TIDAL_CRASH 386
+
+#define MOVES_COUNT 387
 
 // Used for checks for moves affected by Disable, Mimic, etc.
 #define MOVE_UNAVAILABLE 0xFFFF
