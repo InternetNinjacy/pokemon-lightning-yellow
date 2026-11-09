@@ -128,7 +128,9 @@ static void iceFangTests(void){
     if(hp==1000){CHECK(trial==4);if(!misses)printf("ICEFANG_SEED two%u serene%u miss seed%08x\n",two,serene,iceFangReplaySeeds[two][serene][trial]);misses++;CHECK(!observed.freeze&&!observed.flinch);}
     else{
      CHECK(hp<1000&&hp>=1000-expected);
-     unsigned combination=observed.freeze+2*observed.flinch;CHECK(combination==trial);
+     unsigned combination=observed.freeze+2*observed.flinch;
+     if(combination!=trial)fprintf(stderr,"ICEFANG_REPLAY_MISMATCH two=%u serene=%u trial=%u actual=%u seed=%08x hp=%u freeze=%u flinch=%u flags=%08x\\n",two,serene,trial,combination,iceFangReplaySeeds[two][serene][trial],hp,observed.freeze,observed.flinch,core->busRead32(core,SYM_gBattleTypeFlags));
+     CHECK(combination==trial);
      if(!(combinations&(1U<<combination)))printf("ICEFANG_SEED two%u serene%u outcome%u seed%08x\n",two,serene,combination,iceFangReplaySeeds[two][serene][trial]);
      combinations |= 1U<<combination;
     }
