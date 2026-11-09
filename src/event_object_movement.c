@@ -8395,7 +8395,7 @@ static void UpdateObjectEventElevationAndPriority(struct ObjectEvent *objEvent, 
     // Leave object location, collision and elevation untouched; test whether
     // foreground-priority rendering can reveal the graphic in the real ROM.
     if (objEvent->graphicsId == OBJ_EVENT_GFX_SOW_TYRANITAR)
-        sprite->oam.priority = 1;
+        sprite->oam.priority = 0;
 }
 
 static void InitObjectPriorityByElevation(struct Sprite *sprite, u8 elevation)
