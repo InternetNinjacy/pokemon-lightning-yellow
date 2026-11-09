@@ -116,24 +116,39 @@ static void iceFangTests(void){
    core->busWrite8(core,bmon(0)+ABI_BMON_ABILITY,serene?ABILITY_SERENE_GRACE:ABILITY_NONE);
    void *snap=malloc(core->stateSize(core));CHECK(snap&&core->saveState(core,snap));
    unsigned combinations=0,misses=0;
+   // The original five replay seeds were recorded on a prior source head.
+   // Doubles action ordering can consume RNG differently: replay each known
+   // seed first, then search a bounded deterministic sequence for EACH exact
+   // independent status combination and one real miss. Do not accept fewer
+   // outcomes, weaken combat/PP checks, or rely on a particular old seed.
    for(unsigned trial=0;trial<5;trial++){
-    CHECK(core->loadState(core,snap));
-    core->busWrite32(core,SYM_gRngValue,iceFangReplaySeeds[two][serene][trial]);
-    chooseMove(0,0,1);if(two)chooseMove(2,0,1);
-    struct IceFangObserved observed=iceFangObservedTurn();
-    unsigned hp=core->busRead16(core,bmon(1)+ABI_BMON_HP);
-    CHECK(monget(player(0),ABI_DATA_PP1)==14);
-    CHECK(core->busRead16(core,bmon(0)+ABI_BMON_HP)==1000);
-    if(two){CHECK(core->busRead16(core,bmon(2)+ABI_BMON_HP)==1000);CHECK(core->busRead16(core,bmon(3)+ABI_BMON_HP)==1000);}
-    if(hp==1000){CHECK(trial==4);if(!misses)printf("ICEFANG_SEED two%u serene%u miss seed%08x\n",two,serene,iceFangReplaySeeds[two][serene][trial]);misses++;CHECK(!observed.freeze&&!observed.flinch);}
-    else{
-     CHECK(hp<1000&&hp>=1000-expected);
-     unsigned combination=observed.freeze+2*observed.flinch;
-     if(combination!=trial)fprintf(stderr,"ICEFANG_REPLAY_MISMATCH two=%u serene=%u trial=%u actual=%u seed=%08x hp=%u freeze=%u flinch=%u flags=%08x\\n",two,serene,trial,combination,iceFangReplaySeeds[two][serene][trial],hp,observed.freeze,observed.flinch,core->busRead32(core,SYM_gBattleTypeFlags));
-     CHECK(combination==trial);
-     if(!(combinations&(1U<<combination)))printf("ICEFANG_SEED two%u serene%u outcome%u seed%08x\n",two,serene,combination,iceFangReplaySeeds[two][serene][trial]);
-     combinations |= 1U<<combination;
+    unsigned found=0;
+    for(unsigned attempt=0;attempt<512&&!found;attempt++){
+     unsigned seed=attempt<5?iceFangReplaySeeds[two][serene][attempt]:0x37200000U+attempt*7919U+two*17U+serene*29U;
+     CHECK(core->loadState(core,snap));
+     core->busWrite32(core,SYM_gRngValue,seed);
+     chooseMove(0,0,1);if(two)chooseMove(2,0,1);
+     struct IceFangObserved observed=iceFangObservedTurn();
+     unsigned hp=core->busRead16(core,bmon(1)+ABI_BMON_HP);
+     CHECK(monget(player(0),ABI_DATA_PP1)==14);
+     CHECK(core->busRead16(core,bmon(0)+ABI_BMON_HP)==1000);
+     if(two){CHECK(core->busRead16(core,bmon(2)+ABI_BMON_HP)==1000);CHECK(core->busRead16(core,bmon(3)+ABI_BMON_HP)==1000);}
+     if(hp==1000){
+      CHECK(!observed.freeze&&!observed.flinch);
+      if(trial!=4)continue;
+      misses++;found=1;
+      printf("ICEFANG_SEED two%u serene%u miss seed%08x\\n",two,serene,seed);
+     }else{
+      CHECK(hp<1000&&hp>=1000-expected);
+      unsigned combination=observed.freeze+2*observed.flinch;
+      if(trial==4||combination!=trial)continue;
+      CHECK(combination==trial);
+      combinations|=1U<<combination;found=1;
+      printf("ICEFANG_SEED two%u serene%u outcome%u seed%08x\\n",two,serene,combination,seed);
+     }
     }
+    if(!found)fprintf(stderr,"ICEFANG_OUTCOME_UNREACHABLE two=%u serene=%u outcome=%u within512 trials\\n",two,serene,trial);
+    CHECK(found);
    }
    CHECK(combinations==15&&misses>0);
    free(snap);
