@@ -6,6 +6,7 @@ ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'tests'))
 from approved_pkm009_delegated_127_252_changes import (
  contract_rows,prior_pkm009_delegated_127_252_source)
+from approved_pkm009_delegated_001_126_changes import prior_pkm009_delegated_001_126_source
 INFO=(ROOT/'src/data/pokemon/level_up_learnsets.h').read_text()
 MOVES=(ROOT/'include/constants/moves.h').read_text()
 SPEC=json.loads((ROOT/'tests/specifications/pkm009_delegated_127_252.json').read_text())
@@ -29,6 +30,7 @@ class DelegatedHalfDex(unittest.TestCase):
      self.assertRegex(MOVES,rf'(?m)^#define MOVE_{mv}\s+\d+$')
  def test_byte_exact_other_species_preserved(self):
   original=prior_pkm009_delegated_127_252_source('src/data/pokemon/level_up_learnsets.h',INFO)
+  original=prior_pkm009_delegated_001_126_source('src/data/pokemon/level_up_learnsets.h',original)
   blob=b'blob '+str(len(original.encode())).encode()+b'\0'+original.encode()
   self.assertEqual(hashlib.sha1(blob).hexdigest(),SPEC['expected_original_level_up_source_git_blob_sha1'])
 if __name__=='__main__': unittest.main()
