@@ -6244,6 +6244,36 @@ static const struct TrainerMonNoItemCustomMoves sParty_LeaderSabrina[] = {
     },
 };
 
+static const struct TrainerMonNoItemCustomMoves sParty_GentlemanThomas[] = {
+    {
+        .iv = 0,
+        .lvl = 18,
+        .species = SPECIES_GROWLITHE,
+        .moves = {MOVE_ROAR, MOVE_BITE, MOVE_LEER, MOVE_EMBER},
+    },
+    {
+        .iv = 0,
+        .lvl = 18,
+        .species = SPECIES_ELECTRIKE,
+        .moves = {MOVE_QUICK_ATTACK, MOVE_THUNDER_WAVE, MOVE_TACKLE, MOVE_LEER},
+    },
+};
+
+static const struct TrainerMonNoItemCustomMoves sParty_GentlemanArthur[] = {
+    {
+        .iv = 0,
+        .lvl = 19,
+        .species = SPECIES_PONYTA,
+        .moves = {MOVE_STOMP, MOVE_EMBER, MOVE_GROWL, MOVE_QUICK_ATTACK},
+    },
+    {
+        .iv = 0,
+        .lvl = 19,
+        .species = SPECIES_MURKROW,
+        .moves = {MOVE_PURSUIT, MOVE_PECK, MOVE_ASTONISH, MOVE_NONE},
+    },
+};
+
 static const struct TrainerMonNoItemDefaultMoves sParty_GentlemanTucker[] = {
     {
         .iv = 0,
