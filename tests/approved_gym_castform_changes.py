@@ -11,6 +11,9 @@ def prior_gym_castform_source(path, text=None):
     if str(path) == "src/data/pokemon/species_info.h":
         from approved_weather_species_slots import prior_weather_species_source
         text = prior_weather_species_source(text)
+    if str(path) in ("src/data/pokemon/species_info.h", "src/data/pokemon/level_up_learnsets.h"):
+        from approved_pkm009_ponyta_changes import prior_pkm009_ponyta_source
+        text = prior_pkm009_ponyta_source(str(path), text)
     # PKM-009: reverse precisely the four owner-locked Oddish-family changes
     # before checking the earlier Castform baseline hash. Any unrelated
     # learnset edit still changes the historical digest and fails CI.
