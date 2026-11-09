@@ -14,7 +14,7 @@ Snapshot: 2026-11-09, GitHub main commit `37230a9c513ed013fc6b402ec800bd1d139604
 ## Snapshot findings
 - 252/252 approved custom-Dex source species, natural learnset, TM/HM and evolution records captured.
 - 78 current main learnsets match the historical v0.6 **proposed** full sequences; 174 differ, which is not equivalent to 174 approved missing implementations.
-- 14 owner-locked individual species/eespective family profiles distinguished from delegated design. Three Dratini global learnset exceptions appear on main.
+- 14 owner-locked individual or grouped family species profiles distinguished from delegated design. Three Dratini global learnset exceptions appear on main.
 - All 16 latest owner-approved (Nov 6) weather species-wide ability slots match current main.
 - Twelve historical/locked target records reference identifiers absent from this pinned main; **Jolteon Volt Switch/Discharge and Umbreon Snarl/Payback/Foul Play are owner-locked dependencies**. No substitute move is authorized.
 - Existing source TM/HM compatibility is captured, not expanded. Custom/new TM legality remains a separate approval/integration issue.
