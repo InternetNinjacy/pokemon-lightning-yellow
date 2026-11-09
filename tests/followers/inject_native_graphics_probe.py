@@ -295,7 +295,8 @@ static void followerProductionEventProbe(void) {
     }
     CHECK(CALL(FollowerGraphics_BindObjectEvent,0,0,12,12,0)==0);
     CHECK(CALL(FollowerGraphics_GetObjectEventId)==ABI_OBJECT_COUNT);
-    CHECK(CALL(FollowerGraphics_GetSize)==32);
+    CHECK(CALL(FollowerGraphics_GetSize)==0);
+    CHECK(CALL(FollowerGraphics_GetSpriteId)==64);
     CALL(FollowerGraphics_Release);
     printf("PASS: PRODUCTION full 16-slot ObjectEvent pool refuses registration without corrupting graphics owner\n");
 
