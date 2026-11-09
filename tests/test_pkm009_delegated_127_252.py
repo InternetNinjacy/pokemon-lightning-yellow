@@ -10,11 +10,11 @@ INFO=(ROOT/'src/data/pokemon/level_up_learnsets.h').read_text()
 MOVES=(ROOT/'include/constants/moves.h').read_text()
 SPEC=json.loads((ROOT/'tests/specifications/pkm009_delegated_127_252.json').read_text())
 class DelegatedHalfDex(unittest.TestCase):
- def test_75_exact_profile_sequences(self):
+ def test_72_exact_profile_sequences(self):
   data=contract_rows()
   self.assertEqual(len(data),72)
-  self.assertEqual(len({x['species'] for x in data}),75)
-  self.assertEqual(len({x['dex'] for x in data}),75)
+  self.assertEqual(len({x['species'] for x in data}),72)
+  self.assertEqual(len({x['dex'] for x in data}),72)
   for row in data:
    with self.subTest(dex=row['dex'],species=row['species']):
     match=re.search(r'static const u16 '+re.escape(row['pointer'])+r'\[\] = \{(.*?)\};',INFO,re.S)
