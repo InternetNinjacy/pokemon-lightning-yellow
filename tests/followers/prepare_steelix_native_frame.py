@@ -73,7 +73,7 @@ text+="};\n"
 # Every graphics test uses actual approved-species artwork: Bulbasaur 32x32,
 # Steelix 64x64. Both pinned blobs are downloaded only to ephemeral CI memory.
 small_raw=fetch_species("graphics/pokemon/bulbasaur/overworld.png")
-small_sha=hashlib.sha1(b"blob "+str(len(small_raw)).encode()+b"\\0"+small_raw).hexdigest()
+small_sha=hashlib.sha1(b"blob "+str(len(small_raw)).encode()+b"\0"+small_raw).hexdigest()
 assert small_sha=="3eb99143e0f2b7e1df044b19374419c4a977b874"
 small_im=Image.open(BytesIO(small_raw))
 small_im.load()
