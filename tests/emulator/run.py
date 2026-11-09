@@ -287,6 +287,7 @@ required = [
     'gCurrentMove', 'gCritMultiplier', 'gDynamicBasePower', 'gBattlerAttacker', 'gBattlerTarget',
     'ShowPokemonSummaryScreen', 'sMonSummaryScreen', 'sMoveSelectionCursorPos', 'gSideStatuses', 'gBattleStruct', 'gBattleScripting', 'gBattleMoveDamage', 'gDisplayedStringBattle',
 ]
+required += ['VermilionCity_Gym_EventScript_LtSurge']
 required += ['NextThunderWaveTarget','gAbsentBattlerFlags']
 required += ['Cmd_rolloutdamagecalculation','gDisableStructs','gLockedMoves','gLastMoves']
 required += ['BattleAI_SetupAIData','BattleAI_ChooseMoveOrAction','RecordAbilityBattle']
