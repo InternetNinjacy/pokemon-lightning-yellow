@@ -361,6 +361,7 @@ static void dexTests(void) {
 
 #include "approved_gifts.c"
 #include "wrl_nonwild_gifts.c"
+#include "wrl_route_grass.c"
 
 #include "elite_four.c"
 #include "ordinary_trainers.c"
@@ -451,6 +452,7 @@ int main(int argc,char **argv) {
     if(getenv("LIGHTNING_VIRIDIAN_SIGN_ONLY")){viridianSignTests();printf("PASS: %u focused sign assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
 
     if(getenv("LIGHTNING_WRL_NONWILD_GIFTS_ONLY")){wrlNonWildGiftTests();printf("PASS: %u focused WRL-009 non-wild gift assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_WRL_ROUTE_GRASS_ONLY")){wrlRouteNativeGrassTests();printf("PASS: %u focused WRL-009 native route grass assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_APPROVED_GIFTS_ONLY")){approvedGiftTests();printf("PASS: %u focused approved-gift assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
 
     if(getenv("LIGHTNING_ORDINARY_TRAINERS_DATA_ONLY")){ordinaryTrainerPartyDataTests();printf("PASS: %u focused native ordinary Trainer assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
@@ -597,6 +599,7 @@ int main(int argc,char **argv) {
 
     approvedGiftTests();
     wrlNonWildGiftTests();
+    wrlRouteNativeGrassTests();
 
     ordinaryTrainerPartyDataTests();
     eliteFourTests();
