@@ -97,6 +97,8 @@ static void sowPlacementTests(void)
  // Between Route23 Cascade and Thunder badge checkpoints, below Surf section.
  sowSelectRoute23LandTile();
  sowCheckLandRoute(MAP_ROUTE23,24,160,9,151,13,145);
+ // Candidate above the arch, intentionally not installed until owner approval.
+ sowCheckLandRoute(MAP_ROUTE23,24,160,9,151,13,142);
  // ISOLATED DIAGNOSTIC ONLY: candidate walkability near both sides of the
  // Cascade arch. Does not alter approved production object coordinate.
  fossilWarp(MAP_GROUP(MAP_ROUTE23),MAP_NUM(MAP_ROUTE23),9,151);
