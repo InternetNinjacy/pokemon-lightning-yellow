@@ -222,6 +222,47 @@ static void followerAtomicSwapNativeProbe(void) {
     printf("PASS: native resource-starved swap retries safely and cleans up under sprite crowding\n");
 }
 
+// Real field-map callback smoke test: reuse the already-accepted Day Care
+// fixture, which boots an actual map with player, NPC graphics and field tasks.
+// This is still a virtual-object graphics probe, not follower map persistence.
+static void followerGraphicsMapTransitionProbe(void) {
+    daycareFixture(1); // real Route 5 Day Care map, 360 emulated field frames
+    CHECK((core->busRead32(core,SYM_gMain+ABI_MAIN_CB2)&~1U)==SYM_CB2_Overworld);
+    uint32_t routeSmall=CALL(CreateVirtualObject,109,52,3,5,0,1);
+    CHECK(routeSmall<64 && followerSpriteSize(routeSmall)==2);
+    uint32_t routeBig=followerAtomicSwap(routeSmall,108,53);
+    CHECK(routeBig<64 && routeBig!=routeSmall && followerSpriteSize(routeBig)==3);
+    CALL(BuildOamBuffer);
+    CALL(LoadOam);
+    CHECK(followerSpriteSize(routeBig)==3);
+    CALL(DestroySprite,SYM_gSprites+routeBig*ABI_FOLLOW_SPRITE_SIZE);
+    printf("PASS: native Route 5 map creates, switches and releases 32x32/64x64 graphics with real NPC scene\n");
+
+    // Cross an actual FireRed field warp and reload to another populated map.
+    // Every old virtual sprite handle is invalid after CB2_LoadMap; recreate
+    // only from current map resources, never trust stale OAM or bitmap state.
+    CALL(SetWarpDestination,MAP_GROUP(MAP_FOUR_ISLAND_POKEMON_DAY_CARE),
+         MAP_NUM(MAP_FOUR_ISLAND_POKEMON_DAY_CARE),0xFFFFFFFFU,3,6);
+    CALL(WarpIntoMap);
+    CALL(ResetInitialPlayerAvatarState);
+    CALL(CB2_LoadMap);
+    frames(360,0);
+    CHECK((core->busRead32(core,SYM_gMain+ABI_MAIN_CB2)&~1U)==SYM_CB2_Overworld);
+    uint32_t islandSmall=CALL(CreateVirtualObject,109,54,3,5,0,1);
+    CHECK(islandSmall<64 && followerSpriteSize(islandSmall)==2);
+    uint32_t islandBig=followerAtomicSwap(islandSmall,108,55);
+    CHECK(islandBig<64 && islandBig!=islandSmall && followerSpriteSize(islandBig)==3);
+    CALL(BuildOamBuffer);
+    CALL(LoadOam);
+    unsigned islandTile=followerSpriteTile(islandBig);
+    for(unsigned i=0;i<64;i++)
+        CHECK(CALL(SpriteTileAllocBitmapOp,islandTile+i,2)!=0);
+    CALL(DestroySprite,SYM_gSprites+islandBig*ABI_FOLLOW_SPRITE_SIZE);
+    for(unsigned i=0;i<64;i++)
+        CHECK(CALL(SpriteTileAllocBitmapOp,islandTile+i,2)==0);
+    printf("PASS: native actual Route 5 -> Four Island map reload and size-atomic graphics recreation/cleanup\n");
+}
+
 static void followerGraphicsFrameBufferProbe(void) {
     CHECK(core->loadState(core,bootState));
     CALL(ResetSpriteData);
@@ -284,10 +325,10 @@ c=c.replace('#include "symbols.h"', '#include "symbols.h"\n#include "follower_st
 c=c.replace(anchor, probe+"\n"+anchor)
 anchor2="    if(getenv(\"LIGHTNING_BALL_WEATHER_ONLY\"))"
 assert anchor2 in c
-c=c.replace(anchor2, '    if(getenv("LIGHTNING_FOLLOWER_GFX_ONLY")){followerGraphicsNativeProbe();followerGraphicsObjectProbe();followerAtomicSwapNativeProbe();followerGraphicsFrameBufferProbe();printf("PASS: %u focused follower graphics memory assertions\\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}\n'+anchor2, 1)
+c=c.replace(anchor2, '    if(getenv("LIGHTNING_FOLLOWER_GFX_ONLY")){followerGraphicsNativeProbe();followerGraphicsObjectProbe();followerAtomicSwapNativeProbe();followerGraphicsMapTransitionProbe();followerGraphicsFrameBufferProbe();printf("PASS: %u focused follower graphics memory assertions\\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}\n'+anchor2, 1)
 required_anchor="required += ['NextThunderWaveTarget','gAbsentBattlerFlags']"
 assert required_anchor in p
-p=p.replace(required_anchor, "required += ['AllocSpriteTiles','SpriteTileAllocBitmapOp','ResetSpriteData','CreateVirtualObject','BuildOamBuffer','LoadOam','DestroySprite','gSprites']\n"+required_anchor,1)
+p=p.replace(required_anchor, "required += ['AllocSpriteTiles','SpriteTileAllocBitmapOp','ResetSpriteData','CreateVirtualObject','BuildOamBuffer','LoadOam','DestroySprite','gSprites','SetWarpDestination','WarpIntoMap','ResetInitialPlayerAvatarState','CB2_LoadMap','CB2_Overworld']\n"+required_anchor,1)
 # ABI offsets are compiled by the game's own ARM compiler, never host guessed.
 abi_anchor = "expressions = {"
 assert abi_anchor in p
