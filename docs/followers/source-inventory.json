@@ -164,5 +164,46 @@
       "party instance/save/menu/movement state"
     ],
     "phase_one_gate": "BLOCKED despite scoped emulator transaction and map test PASS"
+  },
+  "production_graphics_loader_2026_11_09": {
+    "status": "PASS isolated production-source graphics + ObjectEvent lifecycle module under native mGBA; NOT full follower gameplay",
+    "run_id": 42542468450,
+    "conclusion": "success",
+    "main_sha_tested": "37230a9c513ed013fc6b402ec800bd1d13960492",
+    "assertions_passed": 8195,
+    "sources": [
+      "include/follower_graphics.h",
+      "src/follower_graphics.c"
+    ],
+    "real_assets": [
+      {
+        "species": "BULBASAUR",
+        "dimensions": "6x32x32",
+        "pinned_blob": "3eb99143e0f2b7e1df044b19374419c4a977b874"
+      },
+      {
+        "species": "STEELIX",
+        "dimensions": "6x64x64",
+        "pinned_blob": "1a0ff067983d294ce1534674efa91c697c4db794"
+      }
+    ],
+    "proved": [
+      "Production ROM-native acquire before release 16/64 tile sprite switching",
+      "two independent tagged OBJ palette ownership slots",
+      "palette/tile preservation on allocation failure and clean successful retry",
+      "six actual Steelix 64x64 frame transfers",
+      "graphics-only ObjectEvent registration and sprite-id geometry updates",
+      "16/16 object slots occupied fail-safe release",
+      "real Route5 and Four Island Day Care field-update frames and detach/rebind across map load",
+      "existing Steelix six-frame and Shiny GPU rendering"
+    ],
+    "unproven": [
+      "production installed into main and automatic lifecycle hooks",
+      "runtime complete 252-species converted sprite data mapping",
+      "selected party Pokémon instance and saved assignment",
+      "actual following movement and reflection/cutscene suppression",
+      "all-world maps and extreme mixed sprite-palette crowding"
+    ],
+    "asset_gate": "BLOCKED overall follower readiness despite scoped graphics loader native PASS"
   }
 }
