@@ -47,8 +47,8 @@ bool8 FollowerController_BindAsset(const struct FollowerGraphicsAsset *asset)
     // until Swap commits. This call may write OBJ VRAM: the caller MUST already
     // be in a graphics-safe VBlank phase.
     result = FollowerGraphics_Swap(asset,
-                                   playerSprite->pos1.x,
-                                   playerSprite->pos1.y + 16,
+                                   playerSprite->x,
+                                   playerSprite->y + 16,
                                    playerSprite->subpriority + 1);
     if (result != FOLLOWER_GFX_OK)
         return FALSE;
@@ -150,12 +150,12 @@ void FollowerController_Tick(void)
     follower->previousCoords = follower->currentCoords;
     follower->currentCoords = sTrailTile;
     follower->currentElevation = player->previousElevation;
-    followerSprite->pos1.x = playerSprite->pos1.x
+    followerSprite->x = playerSprite->x
                            + (sTrailTile.x - player->currentCoords.x) * 16;
-    followerSprite->pos1.y = playerSprite->pos1.y
+    followerSprite->y = playerSprite->y
                            + (sTrailTile.y - player->currentCoords.y) * 16;
-    followerSprite->pos2.x = playerSprite->pos2.x;
-    followerSprite->pos2.y = playerSprite->pos2.y;
+    followerSprite->x2 = playerSprite->x2;
+    followerSprite->y2 = playerSprite->y2;
     followerSprite->oam.priority = playerSprite->oam.priority;
     followerSprite->invisible = FALSE;
 }
