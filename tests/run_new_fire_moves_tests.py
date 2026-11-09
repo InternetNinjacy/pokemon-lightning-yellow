@@ -50,6 +50,8 @@ for path in ['src/data/pokemon/level_up_learnsets.h', 'src/data/pokemon/tmhm_lea
              'src/data/trainer_parties.h']:
     text = Path(path).read_text()
     if path == 'src/data/pokemon/level_up_learnsets.h':
+        from approved_pkm009_eevee_water_fire_changes import prior_pkm009_eevee_water_fire_source
+        text = prior_pkm009_eevee_water_fire_source(path, text)
         text = prior_pkm009_ponyta_source(path, text)
     assert not any('MOVE_' + key in text for key, *_ in expected), path
 print('PASS: exact appended Fire designs; Ponyta/Rapidash-only owner-locked distribution, no unrelated natural/TM/trainer distribution; frozen historical preservation (source audit).')
