@@ -47,6 +47,10 @@ class PonytaFamilyContract(unittest.TestCase):
                 self.assertEqual(got,data["learn"])
                 self.assertEqual([l for l,_ in got],sorted(l for l,_ in got))
                 self.assertEqual(body.count("LEVEL_UP_END"),1)
+    def test_existing_level_30_evolution_is_retained(self):
+        evolution = (ROOT / "src/data/pokemon/evolution.h").read_text()
+        self.assertRegex(evolution, r"\[SPECIES_PONYTA\]\s*=\s*\{\{EVO_LEVEL,\s*30,\s*SPECIES_RAPIDASH\}\}")
+
     def test_custom_moves_exist_in_current_source(self):
         for move in ("FLASHFIRE","FLAME_FANG","BLAZE_RUSH"):
             with self.subTest(move=move):
