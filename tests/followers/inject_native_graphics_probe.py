@@ -153,6 +153,75 @@ static uint64_t followerGraphicsFrameHash(unsigned *colored) {
 // Render EXACT SIX Steelix sprites via mGBA GPU after staging indexed native
 // tiles and palettes. Park game CPU to avoid unrelated title callbacks wiping
 // test graphics, while the emulator's LCD clock still draws real scanlines.
+// Graphics-only transaction: acquire and verify successor before destroying
+// predecessor. This exists only in the native emulator test harness; not in
+// player-facing follower, map, party or save code.
+static uint32_t followerAtomicSwap(uint32_t oldId,unsigned gfx,unsigned virtualId) {
+    uint32_t replacement=CALL(CreateVirtualObject,gfx,virtualId,10,10,0,1);
+    if(replacement>=64) return oldId;
+    if(oldId<64) {
+        uint32_t original=SYM_gSprites+oldId*ABI_FOLLOW_SPRITE_SIZE;
+        CALL(DestroySprite,original);
+    }
+    return replacement;
+}
+static uint32_t followerSpriteTile(uint32_t id) {
+    return core->busRead16(core,SYM_gSprites+id*ABI_FOLLOW_SPRITE_SIZE+ABI_FOLLOW_OAM_OFFSET+4)&1023;
+}
+static uint32_t followerSpriteSize(uint32_t id) {
+    return core->busRead16(core,SYM_gSprites+id*ABI_FOLLOW_SPRITE_SIZE+ABI_FOLLOW_OAM_OFFSET+2)>>14;
+}
+static void followerAtomicSwapNativeProbe(void) {
+    CHECK(core->loadState(core,bootState));
+    CALL(ResetSpriteData);
+    uint32_t small=CALL(CreateVirtualObject,109,14,10,10,0,1);
+    CHECK(small<64 && followerSpriteSize(small)==2);
+    unsigned smallTile=followerSpriteTile(small);
+    uint32_t large=followerAtomicSwap(small,108,15);
+    CHECK(large<64 && large!=small && followerSpriteSize(large)==3);
+    for(unsigned i=0;i<16;i++) CHECK(CALL(SpriteTileAllocBitmapOp,smallTile+i,2)==0);
+    unsigned largeTile=followerSpriteTile(large);
+    for(unsigned i=0;i<64;i++) CHECK(CALL(SpriteTileAllocBitmapOp,largeTile+i,2)!=0);
+    uint32_t back=followerAtomicSwap(large,109,16);
+    CHECK(back<64 && back!=large && followerSpriteSize(back)==2);
+    for(unsigned i=0;i<64;i++) CHECK(CALL(SpriteTileAllocBitmapOp,largeTile+i,2)==0);
+    CHECK(followerSpriteTile(back)+16<=1024);
+    CALL(DestroySprite,SYM_gSprites+back*ABI_FOLLOW_SPRITE_SIZE);
+    printf("PASS: native 32->64->32 acquire-first swap releases predecessor tile ranges\n");
+
+    // Real ROM-native allocation under OBJ VRAM pressure. Keep predecessor
+    // 32x32 alive while filling the remaining tile space with other sprites.
+    CALL(ResetSpriteData);
+    uint32_t original=CALL(CreateVirtualObject,109,17,10,10,0,1);
+    CHECK(original<64 && followerSpriteSize(original)==2);
+    unsigned originalTile=followerSpriteTile(original);
+    uint32_t blockers[24];
+    unsigned count=0;
+    for(;count<24;count++) {
+        uint32_t id=CALL(CreateVirtualObject,108,20+count,11,10,0,1);
+        if(id>=64) break;
+        blockers[count]=id;
+    }
+    CHECK(count>=10 && count<24);
+    uint32_t aborted=followerAtomicSwap(original,108,50);
+    CHECK(aborted==original && followerSpriteSize(original)==2);
+    CHECK(followerSpriteTile(original)==originalTile);
+    for(unsigned i=0;i<16;i++) CHECK(CALL(SpriteTileAllocBitmapOp,originalTile+i,2)!=0);
+    printf("PASS: native failed 32->64 swap preserves original sprite and its 16 tile allocations\n");
+    // Remove ONE blocker; successor can be allocated while old remains live.
+    CALL(DestroySprite,SYM_gSprites+blockers[count-1]*ABI_FOLLOW_SPRITE_SIZE);
+    uint32_t resumed=followerAtomicSwap(original,108,51);
+    CHECK(resumed<64 && resumed!=original && followerSpriteSize(resumed)==3);
+    for(unsigned i=0;i<16;i++) CHECK(CALL(SpriteTileAllocBitmapOp,originalTile+i,2)==0);
+    unsigned resumedTile=followerSpriteTile(resumed);
+    for(unsigned i=0;i<64;i++) CHECK(CALL(SpriteTileAllocBitmapOp,resumedTile+i,2)!=0);
+    CALL(DestroySprite,SYM_gSprites+resumed*ABI_FOLLOW_SPRITE_SIZE);
+    for(unsigned i=0;i<count-1;i++)
+        CALL(DestroySprite,SYM_gSprites+blockers[i]*ABI_FOLLOW_SPRITE_SIZE);
+    CHECK(CALL(AllocSpriteTiles,64)!=0xFFFFFFFFU);
+    printf("PASS: native resource-starved swap retries safely and cleans up under sprite crowding\n");
+}
+
 static void followerGraphicsFrameBufferProbe(void) {
     CHECK(core->loadState(core,bootState));
     CALL(ResetSpriteData);
@@ -215,7 +284,7 @@ c=c.replace('#include "symbols.h"', '#include "symbols.h"\n#include "follower_st
 c=c.replace(anchor, probe+"\n"+anchor)
 anchor2="    if(getenv(\"LIGHTNING_BALL_WEATHER_ONLY\"))"
 assert anchor2 in c
-c=c.replace(anchor2, '    if(getenv("LIGHTNING_FOLLOWER_GFX_ONLY")){followerGraphicsNativeProbe();followerGraphicsObjectProbe();followerGraphicsFrameBufferProbe();printf("PASS: %u focused follower graphics memory assertions\\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}\n'+anchor2, 1)
+c=c.replace(anchor2, '    if(getenv("LIGHTNING_FOLLOWER_GFX_ONLY")){followerGraphicsNativeProbe();followerGraphicsObjectProbe();followerAtomicSwapNativeProbe();followerGraphicsFrameBufferProbe();printf("PASS: %u focused follower graphics memory assertions\\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}\n'+anchor2, 1)
 required_anchor="required += ['NextThunderWaveTarget','gAbsentBattlerFlags']"
 assert required_anchor in p
 p=p.replace(required_anchor, "required += ['AllocSpriteTiles','SpriteTileAllocBitmapOp','ResetSpriteData','CreateVirtualObject','BuildOamBuffer','LoadOam','DestroySprite','gSprites']\n"+required_anchor,1)
