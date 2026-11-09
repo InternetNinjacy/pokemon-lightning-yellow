@@ -13,5 +13,7 @@ bool8 FollowerState_CanDisplay(void);
 // Call immediately before removing a selected party instance from the party.
 // Never call on unrelated deposits or simple party reordering.
 void FollowerState_BeforePartyRemoval(u8 partySlot);
+// For PC's held-mon path: the mon may no longer occupy a party slot.
+void FollowerState_BeforeBoxDeposit(struct Pokemon *mon);
 
 #endif // GUARD_FOLLOWER_STATE_H
