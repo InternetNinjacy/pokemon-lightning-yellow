@@ -341,3 +341,65 @@ static void sowScriptedDefeatTests(void)
  }
  CHECK(core->loadState(core,bootState));
 }
+
+// Full native battle-loss/whiteout path. Run and success are covered above;
+// this uses a genuine one-HP Lv1 party and actual opponent damage/actions.
+static void sowScriptedWhiteoutTests(void)
+{
+ static const unsigned maps[]={MAP_ROUTE12,MAP_ROUTE21_NORTH,MAP_ROUTE23};
+ static const unsigned localIds[]={15,7,8};
+ static const unsigned x[]={19,13,13},y[]={88,8,146};
+ static const unsigned scripts[]={SYM_Route12_EventScript_SowCorphish,
+                                  SYM_Route21_North_EventScript_SowGlalie,
+                                  SYM_Route23_EventScript_SowTyranitar};
+ static const unsigned active[]={FLAG_SOW_CORPHISH_ACTIVE,FLAG_SOW_GLALIE_ACTIVE,FLAG_SOW_TYRANITAR_ACTIVE};
+ static const unsigned resolved[]={FLAG_SOW_CORPHISH_RESOLVED,FLAG_SOW_GLALIE_RESOLVED,FLAG_SOW_TYRANITAR_RESOLVED};
+ for(unsigned i=0;i<3;i++){
+  daycareFixture(1);
+  CALL(CreateMon,player(0),SPECIES_MAGIKARP,1,0,1,12345,0,1234);
+  monput(player(0),ABI_DATA_MOVE1,MOVE_SPLASH);
+  monput(player(0),ABI_DATA_PP1,40);
+  core->busWrite8(core,SYM_gPlayerPartyCount,1);
+  if(y[i]>127)sowWarpToHighTile(maps[i],x[i],y[i]);
+  else fossilWarp(MAP_GROUP(maps[i]),MAP_NUM(maps[i]),x[i],y[i]);
+  unsigned object=CALL(GetObjectEventIdByLocalIdAndMap,localIds[i],MAP_NUM(maps[i]),MAP_GROUP(maps[i]));
+  CHECK(object<ABI_OBJECT_COUNT);
+  core->busWrite8(core,SYM_gSelectedObjectEvent,object);
+  CALL(VarSet,VAR_LAST_TALKED,localIds[i]);
+  fossilStart(scripts[i]);
+  waitAction();
+  CHECK(core->busRead16(core,bmon(0)+ABI_BMON_HP)>0);
+  core->busWrite16(core,bmon(0)+ABI_BMON_HP,1);
+  // The opponent must cause a real faint, not a manually assigned outcome.
+  unsigned turn;
+  for(turn=0;turn<16 && !core->busRead8(core,SYM_gBattleOutcome);turn++){
+   chooseMove(0,0,1);
+   unsigned framesWaited;
+   for(framesWaited=0;framesWaited<1800;framesWaited++){
+    if(core->busRead8(core,SYM_gBattleOutcome))break;
+    if(framesWaited>20 && controller(0)==SYM_HandleInputChooseAction)break;
+    frames(1,(framesWaited%10)<3?1:0);
+   }
+   CHECK(framesWaited<1800);
+  }
+  CHECK(turn<16);
+  CHECK(core->busRead8(core,SYM_gBattleOutcome)==B_OUTCOME_LOST);
+  CHECK(core->busRead16(core,bmon(0)+ABI_BMON_HP)==0);
+  // Whiteout may relocate the player to a heal location. Neither this nor
+  // the loss itself is permission to resolve a special weather encounter.
+  for(unsigned frame=0;frame<6000;frame++){
+   if((core->busRead32(core,SYM_gMain+ABI_MAIN_CB2)&~1U)==SYM_CB2_Overworld
+      && frame>120 && fieldScriptDone())break;
+   frames(1,(frame%12)<3?1:0);
+  }
+  CHECK(!CALL(FlagGet,resolved[i]));
+  CHECK(CALL(FlagGet,active[i]));
+  flashRoundTrip();
+  CHECK(!CALL(FlagGet,resolved[i]));
+  if(y[i]>127)sowWarpToHighTile(maps[i],x[i],y[i]);
+  else fossilWarp(MAP_GROUP(maps[i]),MAP_NUM(maps[i]),x[i],y[i]);
+  CHECK(CALL(GetObjectEventIdByLocalIdAndMap,localIds[i],MAP_NUM(maps[i]),MAP_GROUP(maps[i]))<ABI_OBJECT_COUNT);
+  printf("PASS: SOW event%u actual loss/whiteout preserves unresolved object through flash and return\\n",i);
+ }
+ CHECK(core->loadState(core,bootState));
+}
