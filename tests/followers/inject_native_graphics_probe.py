@@ -328,7 +328,8 @@ assert anchor2 in c
 c=c.replace(anchor2, '    if(getenv("LIGHTNING_FOLLOWER_GFX_ONLY")){followerGraphicsNativeProbe();followerGraphicsObjectProbe();followerAtomicSwapNativeProbe();followerGraphicsMapTransitionProbe();followerGraphicsFrameBufferProbe();printf("PASS: %u focused follower graphics memory assertions\\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}\n'+anchor2, 1)
 required_anchor="required += ['NextThunderWaveTarget','gAbsentBattlerFlags']"
 assert required_anchor in p
-p=p.replace(required_anchor, "required += ['AllocSpriteTiles','SpriteTileAllocBitmapOp','ResetSpriteData','CreateVirtualObject','BuildOamBuffer','LoadOam','DestroySprite','gSprites','SetWarpDestination','WarpIntoMap','ResetInitialPlayerAvatarState','CB2_LoadMap','CB2_Overworld']\n"+required_anchor,1)
+p=p.replace(required_anchor, "required += ['AllocSpriteTiles','SpriteTileAllocBitmapOp','ResetSpriteData','CreateVirtualObject','BuildOamBuffer','LoadOam','DestroySprite','gSprites','SetWarpDestination','WarpIntoMap','ResetInitialPlayerAvatarState','CB2_LoadMap','CB2_Overworld']
+p=p.replace(required_anchor, "required += ['FollowerGraphics_NativeSmall','FollowerGraphics_NativeSteelix','FollowerGraphics_GetSpriteId','FollowerGraphics_GetSize','FollowerGraphics_GetPaletteSlot','FollowerGraphics_SetFrame','FollowerGraphics_Release','FollowerGraphics_DetachForMapTransition','FollowerGraphics_InvalidateAfterSpriteReset']\\n"+required_anchor,1)\n"+required_anchor,1)
 # ABI offsets are compiled by the game's own ARM compiler, never host guessed.
 abi_anchor = "expressions = {"
 assert abi_anchor in p
@@ -338,6 +339,37 @@ p = p.replace(abi_anchor, """expressions = {
 source_anchor = "source='#include \"save.h\""
 assert source_anchor in p
 p = p.replace(source_anchor, "source='#include \"sprite.h\"\\n#include \"save.h\"", 1)
+# These fixture symbols only exist in the temporary current-main checkout.
+# No copyrighted/pinned sprite bytes or project ROM are committed.
+production = Path("src/follower_graphics.c")
+asset_fixture = """
+#include "../tests/emulator/follower_steelix_frame.h"
+static const struct FollowerGraphicsAsset sNativeSmallAsset = {
+    .frames = {
+        followerTestSmallFrames[0], followerTestSmallFrames[1],
+        followerTestSmallFrames[2], followerTestSmallFrames[3],
+        followerTestSmallFrames[4], followerTestSmallFrames[5],
+    },
+    .palette = followerSteelixNormalPalette,
+    .size = 32,
+};
+static const struct FollowerGraphicsAsset sNativeSteelixAsset = {
+    .frames = {
+        followerSteelixFrames[0], followerSteelixFrames[1],
+        followerSteelixFrames[2], followerSteelixFrames[3],
+        followerSteelixFrames[4], followerSteelixFrames[5],
+    },
+    .palette = followerSteelixNormalPalette,
+    .size = 64,
+};
+enum FollowerGraphicsResult FollowerGraphics_NativeSmall(s16 x, s16 y, u8 priority) {
+    return FollowerGraphics_Swap(&sNativeSmallAsset,x,y,priority);
+}
+enum FollowerGraphicsResult FollowerGraphics_NativeSteelix(s16 x, s16 y, u8 priority) {
+    return FollowerGraphics_Swap(&sNativeSteelixAsset,x,y,priority);
+}
+"""
+production.write_text(production.read_text()+"\\n"+asset_fixture)
 runner.write_text(c)
 bridge.write_text(p)
 print("INJECTED: read-only-to-source CI-only ARM allocator probe; no gameplay change")
