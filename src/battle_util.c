@@ -53,8 +53,17 @@ u8 GetBattlerInitialAbility(u8 battler)
             if (species == SPECIES_ONIX)
                 return ABILITY_OVERCOAT;
         }
-        if (gTrainerBattleOpponent_A == TRAINER_LEADER_MISTY && species == SPECIES_STARMIE)
-            return ABILITY_DRIZZLE;
+        if (gTrainerBattleOpponent_A == TRAINER_LEADER_MISTY)
+        {
+            if (species == SPECIES_STARYU)
+                return ABILITY_NATURAL_CURE;
+            if (species == SPECIES_PSYDUCK)
+                return ABILITY_DAMP;
+            if (species == SPECIES_GOLDUCK)
+                return ABILITY_SYNCHRONIZE;
+            if (species == SPECIES_STARMIE)
+                return ABILITY_DRIZZLE;
+        }
     }
     return GetMonAbility(GetBattlerSide(battler) == B_SIDE_PLAYER
         ? &gPlayerParty[gBattlerPartyIndexes[battler]]

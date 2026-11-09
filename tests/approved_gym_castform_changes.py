@@ -11,6 +11,11 @@ def prior_gym_castform_source(path, text=None):
     if str(path) == "src/data/pokemon/species_info.h":
         from approved_weather_species_slots import prior_weather_species_source
         text = prior_weather_species_source(text)
+    from approved_gym002_misty_changes import prior_misty_gym_source
+    if str(path) != "src/battle_util.c":
+        text=prior_misty_gym_source(path,text)
+    # The battle-util block is already reversed at the older Glalie audit
+    # entrypoint, before its native ability data normalization.
     from approved_special_weather_changes import prior_special_weather_source
     text=prior_special_weather_source(path,text)
     text=prior_opening_source(path, text)
