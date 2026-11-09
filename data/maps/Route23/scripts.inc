@@ -3,6 +3,8 @@ Route23_MapScripts::
 	.byte 0
 
 Route23_OnTransition::
+	setvar VAR_0x8004, 2 @ SPECIAL_WEATHER_TYRANITAR
+	callnative SpecialWeatherActivateScript
 	clearflag FLAG_HIDE_VICTORY_ROAD_3F_BOULDER
 	setflag FLAG_HIDE_VICTORY_ROAD_2F_BOULDER
 	setvar VAR_MAP_SCENE_VICTORY_ROAD_1F, 0
@@ -125,4 +127,27 @@ Route23_EventScript_EarthBadgeGuardTrigger::
 
 Route23_EventScript_VictoryRoadGateSign::
 	msgbox Route23_Text_VictoryRoadGateSign, MSGBOX_SIGN
+	end
+
+Route23_EventScript_SowTyranitar::
+	goto_if_questlog EventScript_ReleaseEnd
+	lock
+	faceplayer
+	setvar VAR_0x8004, 2
+	setwildbattle SPECIES_TYRANITAR, 55
+	callnative SowPrepareScriptedEncounter
+	goto_if_eq VAR_RESULT, FALSE, Route23_EventScript_SowAbort
+	dowildbattle
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, Route23_EventScript_SowResolved
+	goto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, Route23_EventScript_SowResolved
+Route23_EventScript_SowAbort::
+	release
+	end
+
+Route23_EventScript_SowResolved::
+	copyvar VAR_0x8005, VAR_RESULT
+	call SpecialWeather_EventScript_FinishAftermath
+	removeobject VAR_LAST_TALKED
+	release
 	end

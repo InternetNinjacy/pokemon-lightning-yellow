@@ -134,6 +134,8 @@ for key,expr in {
  'SAVE2_PLAYER_NAME':'offsetof(struct SaveBlock2,playerName)',
  'BAG_POCKET':'offsetof(struct BagStruct,pocket)',
  'SAVE1_LOCATION':'offsetof(struct SaveBlock1,location)',
+ 'SAVE1_POS_X':'offsetof(struct SaveBlock1,pos.x)',
+ 'SAVE1_POS_Y':'offsetof(struct SaveBlock1,pos.y)',
  'WILD_HEADER_SIZE':'sizeof(struct WildPokemonHeader)',
  'WILD_HEADER_LAND':'offsetof(struct WildPokemonHeader,landMonsInfo)',
  'BMON_SPEED':'offsetof(struct BattlePokemon,speed)',
@@ -276,7 +278,7 @@ required = [
     'StoreSelectedPokemonInDaycare', 'StorePokemonInDaycare', 'TakePokemonFromDaycare',
     'GetDaycareCost', 'GetNumLevelsGainedFromDaycare', 'GetDaycareState', 'GetDaycarePokemonCount',
     'GetDaycareCompatibilityScore', 'GiveMailToMon', 'GetCursorSelectionMonId', 'GetMonGender',
-    'IsMonShiny', 'ScriptHatchMon', 'CreateEgg', 'MapGridGetCollisionAt', 'MapGridGetElevationAt',
+    'IsMonShiny', 'ScriptHatchMon', 'CreateEgg', 'MapGridGetCollisionAt', 'MapGridGetElevationAt', 'MetatileBehavior_IsSurfable',
     'ScriptContext_SetupScript', 'ScriptContext_IsEnabled', 'EventScript_EggHatch',
     'Route5_PokemonDayCare_EventScript_DaycareWoman', 'Route5_PokemonDayCare_Egg_DaycareMan',
     'FourIsland_PokemonDayCare_EventScript_DaycareWoman', 'FourIsland_EventScript_DaycareMan',
@@ -294,8 +296,6 @@ required += ['Cmd_weatherdamage','Cmd_accuracycheck','gStatuses3','gHitMarker','
 required += ['ViridianCity_EventScript_TrainerTips1','ViridianCity_EventScript_TrainerTips2','ViridianCity_Text_CatchMonsForEasierBattles','ViridianCity_Text_MovesLimitedByPP']
 
 required += ['CreateHalfShinyGiftEgg','ScriptGiveMagbyEgg','ScriptGiveTangoTangela','FiveIsland_WaterLabyrinth_EventScript_EggGentleman','CeladonCity_Condominiums_RoofRoom_EventScript_EeveeBall']
-required += ['PalletTown_ProfessorOaksLab_EventScript_RetryParcelGifts','SilphCo_7F_EventScript_LaprasGuy']
-required += ['CeladonCity_GameCorner_PrizeRoom_EventScript_PrizeClerkMons','GetCoins','SetCoins']
 
 required += ['PokemonLeague_LoreleisRoom_EventScript_Lorelei','PokemonLeague_BrunosRoom_EventScript_Bruno','PokemonLeague_AgathasRoom_EventScript_Agatha','PokemonLeague_LancesRoom_EventScript_Lance']
 required += ['PewterCity_Gym_EventScript_Liam','CeruleanCity_Gym_EventScript_Diana','CeladonCity_Gym_EventScript_Mary','Cmd_setweatherballtype','gBattleMonForms','SaffronCity_Dojo_Text_NeedTwo']
@@ -307,7 +307,10 @@ required += ['TeachMoveRelearnerMove','CB2_MoveRelearner','GetBgTilemapBuffer']
 required += ['gMoveNames','GetStringWidth','StringCopy','AllocPSA','Free','AllocZeroed','sMoveRelearner','MoveRelearnerInitListMenuBuffersEtc','BufferStringBattle','gBattleTextBuff2','gBattleTextBuff3']
 required += ['LightingPreviewGetAppearance', 'LightingPreviewIsActive']  # preview-branch native assertions
 required += ['Task_StartMenuHandleInput','sStartMenuCursorPos','sStartMenuOrder','Task_BagMenu_HandleInput','Task_HandleChooseMonInput','Task_EvolutionScene']
-required += ['SpecialWeatherActivateScript','SpecialWeatherActivate','SpecialWeatherFinishAftermath','SpecialWeatherRestorationReady',
+required += ['PalletTown_ProfessorOaksLab_EventScript_RetryParcelGifts','SilphCo_7F_EventScript_LaprasGuy']
+required += ['CeladonCity_GameCorner_PrizeRoom_EventScript_PrizeClerkMons','GetCoins','SetCoins']
+required += ['Route12_EventScript_SowCorphish','Route21_North_EventScript_SowGlalie','Route23_EventScript_SowTyranitar',
+             'GetObjectEventIdByXY','CreateScriptedWildMon','SowPrepareScriptedEncounter','SpecialWeatherActivateScript','SpecialWeatherActivate','SpecialWeatherFinishAftermath','SpecialWeatherRestorationReady',
              'SpecialWeather_EventScript_FinishAftermath','Alloc']
 symbols={}
 end_ewram=0

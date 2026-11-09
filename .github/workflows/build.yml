@@ -76,6 +76,8 @@ jobs:
           python3 tests/run_weather_species_tests.py
           python3 tests/run_brock_weather_tests.py
           python3 tests/run_special_glalie_tests.py
+          python3 tests/run_special_corphish_tests.py
+          python3 tests/run_sow_event_tests.py
           python3 tests/run_original_effect_tests.py
           python3 tests/run_rtc_tests.py
           python3 tests/run_evolution_tests.py
@@ -84,11 +86,11 @@ jobs:
           python3 tests/run_typing_tests.py
           python3 tests/run_wild_double_tests.py
           python3 tests/check_route1_encounters.py
-          python3 tests/check_route5_encounters.py
-          python3 tests/check_route8_drowzee.py
           python3 tests/check_route2_encounters.py
           python3 tests/check_route22_encounters.py
           python3 tests/check_route23_encounters.py
+          python3 tests/check_route5_encounters.py
+          python3 tests/check_route8_drowzee.py
           python3 tests/check_victory_road_encounters.py
           python3 tests/check_route3_encounters.py
           python3 tests/check_viridian_forest_encounters.py
@@ -160,6 +162,20 @@ jobs:
         timeout-minutes: 10
         run: |
           LIGHTNING_SWARM_ONLY=1 python3 tests/emulator/run.py
+      - name: Focused owner-approved SOW actual native producers and all three walkable map events
+        if: matrix.target == 'modified'
+        timeout-minutes: 10
+        run: |
+          mkdir -p "$RUNNER_TEMP/sow-captures"
+          LIGHTNING_SOW_CAPTURE_DIR="$RUNNER_TEMP/sow-captures" LIGHTNING_SOW_PRODUCERS_ONLY=1 python3 tests/emulator/run.py
+      - name: Upload real SOW emulator framebuffer evidence (PPM only, no ROM)
+        if: matrix.target == 'modified' && always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sow-overworld-evidence-${{ github.sha }}
+          path: ${{ runner.temp }}/sow-captures/*.ppm
+          if-no-files-found: warn
+          retention-days: 14
       - name: Execute ROM integration tests in mGBA
         if: matrix.target == 'modified'
         timeout-minutes: 30
