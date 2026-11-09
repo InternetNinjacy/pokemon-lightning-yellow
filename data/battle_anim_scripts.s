@@ -405,6 +405,8 @@ gBattleAnims_Moves::
 	.4byte Move_FOUL_PLAY
 	.4byte Move_AQUA_JET
 	.4byte Move_LIQUIDATION
+	.4byte Move_VORTEX_SPIN
+	.4byte Move_TIDAL_CRASH
 	.4byte Move_COUNT @ cannot be reached, because last move is Psycho Boost
 
 	.align 2
@@ -11787,3 +11789,11 @@ Move_AQUA_JET:
 
 Move_LIQUIDATION:
 	goto Move_WATERFALL
+
+@ BTL-005 owner-approved Generation III art reuse; no trapping effect attached.
+Move_VORTEX_SPIN:
+	goto Move_WHIRLPOOL
+
+@ BTL-005 single-target Rollout mechanics with approved Surf animation.
+Move_TIDAL_CRASH:
+	goto Move_SURF
