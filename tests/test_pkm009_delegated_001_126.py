@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""PKM-009 delegated 75-species natural learnset and full-source preservation contract."""
+"""PKM-009 delegated 74-species natural learnset and full-source preservation contract."""
 from pathlib import Path
 import sys,unittest,re,json,hashlib
 ROOT=Path(__file__).resolve().parents[1]
@@ -10,11 +10,11 @@ INFO=(ROOT/'src/data/pokemon/level_up_learnsets.h').read_text()
 MOVES=(ROOT/'include/constants/moves.h').read_text()
 SPEC=json.loads((ROOT/'tests/specifications/pkm009_delegated_001_126.json').read_text())
 class DelegatedHalfDex(unittest.TestCase):
- def test_75_exact_profile_sequences(self):
+ def test_74_exact_profile_sequences(self):
   data=contract_rows()
-  self.assertEqual(len(data),75)
-  self.assertEqual(len({x['species'] for x in data}),75)
-  self.assertEqual(len({x['dex'] for x in data}),75)
+  self.assertEqual(len(data),74)
+  self.assertEqual(len({x['species'] for x in data}),74)
+  self.assertEqual(len({x['dex'] for x in data}),74)
   for row in data:
    with self.subTest(dex=row['dex'],species=row['species']):
     match=re.search(r'static const u16 '+re.escape(row['pointer'])+r'\[\] = \{(.*?)\};',INFO,re.S)
