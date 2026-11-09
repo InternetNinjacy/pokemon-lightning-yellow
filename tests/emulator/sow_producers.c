@@ -148,6 +148,21 @@ static void sowScriptedRunTests(void)
 }
 
 
+// Optional real mGBA 240x160 framebuffer evidence, never composited art.
+// Capture is enabled only when the CI job sets LIGHTNING_SOW_CAPTURE_DIR.
+static void sowCaptureFrame(unsigned event,const char *stage,unsigned map,
+                            unsigned x,unsigned y)
+{
+ const char *dir=getenv("LIGHTNING_SOW_CAPTURE_DIR");
+ if(!dir || !*dir)return;
+ char path[384];
+ CHECK(snprintf(path,sizeof(path),"%s/sow%u_%s.ppm",dir,event,stage)<(int)sizeof(path));
+ frames(90,0);
+ screenshot(path);
+ printf("SOW_FRAME: event=%u stage=%s map=%u tile=(%u,%u) fieldWeather=%u file=%s\\n",
+        event,stage,map,x,y,CALL(GetSav1Weather),path);
+}
+
 // Full compiled event-script capture + aftermath (the source's actual
 // dowildbattle and post-battle branches), independently of source-only guards.
 // Separate A-button physical-interaction testing remains outstanding.
@@ -226,21 +241,6 @@ static void sowScriptedCaptureTests(void)
   printf("PASS: SOW event%u compiled battle MasterBall capture, resolved aftermath, object removal, weather wait and flash ability/flag persistence\\n",i);
  }
  CHECK(core->loadState(core,bootState));
-}
-
-// Optional real mGBA 240x160 framebuffer evidence, never composited art.
-// Capture is enabled only when the CI job sets LIGHTNING_SOW_CAPTURE_DIR.
-static void sowCaptureFrame(unsigned event,const char *stage,unsigned map,
-                            unsigned x,unsigned y)
-{
- const char *dir=getenv("LIGHTNING_SOW_CAPTURE_DIR");
- if(!dir || !*dir)return;
- char path[384];
- CHECK(snprintf(path,sizeof(path),"%s/sow%u_%s.ppm",dir,event,stage)<(int)sizeof(path));
- frames(90,0);
- screenshot(path);
- printf("SOW_FRAME: event=%u stage=%s map=%u tile=(%u,%u) fieldWeather=%u file=%s\\n",
-        event,stage,map,x,y,CALL(GetSav1Weather),path);
 }
 
 // Actual overworld input is required here: do not pre-populate
