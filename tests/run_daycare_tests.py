@@ -134,7 +134,11 @@ import json, hashlib
 snapshot=json.loads(Path('tests/specifications/daycare_preserved.json').read_text())
 from approved_sevii_water_second_changes import prior_sevii_water_second_source
 for path,expected in snapshot['files'].items():
-    assert hashlib.sha256(prior_sevii_water_second_source(path)).hexdigest()==expected,path
+    previous=prior_sevii_water_second_source(path)
+    if path=='src/data/pokemon/species_info.h':
+        from approved_pkm009_locked_12_changes import prior_pkm009_locked_12_source
+        previous=prior_pkm009_locked_12_source(path,previous.decode('utf-8')).encode('utf-8')
+    assert hashlib.sha256(previous).hexdigest()==expected,path
 source=Path('src/daycare.c').read_text()
 for name,expected in snapshot['functions'].items():
     assert hashlib.sha256(extract_function(source,name).encode()).hexdigest()==expected,name
