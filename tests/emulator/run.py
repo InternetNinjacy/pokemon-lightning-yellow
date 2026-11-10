@@ -167,6 +167,9 @@ for key,expr in {
  'TEMPLATE_SIZE':'sizeof(struct ObjectEventTemplate)',
  'TEMPLATE_GRAPHICS':'offsetof(struct ObjectEventTemplate,graphicsId)',
  'OBJECT_COUNT':'OBJECT_EVENTS_COUNT',
+ 'OBJECT_EVENT_SIZE':'sizeof(struct ObjectEvent)',
+ 'OBJECT_EVENT_COORDS':'offsetof(struct ObjectEvent,currentCoords)',
+ 'AVATAR_EVENT_ID':'offsetof(struct PlayerAvatar,objectEventId)',
  'CARE_SIZE':'sizeof(struct DayCare)',
  'CARE_MON_SIZE':'sizeof(struct DaycareMon)',
  'BOX_SIZE':'sizeof(struct BoxPokemon)',
@@ -309,6 +312,7 @@ required += ['TeachMoveRelearnerMove','CB2_MoveRelearner','GetBgTilemapBuffer']
 required += ['gMoveNames','GetStringWidth','StringCopy','AllocPSA','Free','AllocZeroed','sMoveRelearner','MoveRelearnerInitListMenuBuffersEtc','BufferStringBattle','gBattleTextBuff2','gBattleTextBuff3']
 required += ['LightingPreviewGetAppearance', 'LightingPreviewIsActive']  # preview-branch native assertions
 required += ['ScriptNameSocketStarterPikachu','ScriptGiveSueEevee']
+required += ['gObjectEvents','gPlayerAvatar']
 required += ['FollowerGraphics_GetSize','FollowerController_RequestRefresh']
 required += ['FollowerGraphics_GetSpriteId','FollowerGraphics_GetObjectEventId','FollowerSpecial_PlayCry','FollowerState_ResolvePartySlot','FollowerState_SelectPartySlot','FollowerState_CanDisplay','FollowerState_BeforePartyRemoval','FollowerState_Clear','FollowerAssets_Count','FollowerAssets_Resolve','CustomPokedexNumToSpecies','gStringVar4']
 required += ['Task_StartMenuHandleInput','sStartMenuCursorPos','sStartMenuOrder','Task_BagMenu_HandleInput','Task_HandleChooseMonInput','Task_EvolutionScene']
