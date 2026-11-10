@@ -42,6 +42,7 @@
 #include "pokedex.h"
 #include "pokemon.h"
 #include "follower_state.h"
+#include "follower_controller.h"
 #include "pokemon_icon.h"
 #include "pokemon_jump.h"
 #include "pokemon_special_anim.h"
@@ -3404,7 +3405,8 @@ static void FinishTwoMonAction(u8 taskId)
 static void CursorCB_SetFollower(u8 taskId)
 {
     PlaySE(SE_SELECT);
-    FollowerState_SelectPartySlot(gPartyMenu.slotId);
+    if (FollowerState_SelectPartySlot(gPartyMenu.slotId))
+        FollowerController_RequestRefresh();
     CursorCB_Cancel1(taskId);
 }
 
@@ -3412,6 +3414,7 @@ static void CursorCB_StopFollowing(u8 taskId)
 {
     PlaySE(SE_SELECT);
     FollowerState_Clear();
+    FollowerController_RequestRefresh();
     CursorCB_Cancel1(taskId);
 }
 
