@@ -1,38 +1,64 @@
-name: BTL-005 Batch A focused staging checks
+name: BTL-005 Batch A focused native validation
 on:
   push:
     branches:
       - feature/btl005-batch-a-mechanics-20261110
   workflow_dispatch:
+permissions:
+  contents: read
+# Every run is retained for its exact commit. New pushes cannot cancel or
+# replace in-flight native evidence from another SHA.
+concurrency:
+  group: btl005-focused-${{ github.run_id }}-${{ github.run_attempt }}
+  cancel-in-progress: false
 jobs:
   batch-a-host-contract:
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    steps:
-      - uses: actions/checkout@v4
-      - name: Python syntax and strict Batch A approved data checks
-        run: |
-          python3 -m py_compile tests/run_btl_batch_a_staging_tests.py
-          python3 tests/run_btl_batch_a_staging_tests.py
-
-  batch-a-native-mgba:
     runs-on: ubuntu-24.04
-    timeout-minutes: 40
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
+          ref: ${{ github.sha }}
           persist-credentials: false
+      - name: Verify immutable source SHA
+        run: test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+      - name: Exact-head Batch A source contracts
+        run: |
+          python3 -m py_compile tests/run_btl_batch_a_staging_tests.py
+          python3 tests/run_btl_batch_a_staging_tests.py
+          python3 scripts/check-move-reconciliation.py
+
+  batch-a-native-mgba:
+    name: native-${{ matrix.focus }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - focus: batch-a
+            selection: LIGHTNING_BATCH_A_ONLY
+          - focus: blaine
+            selection: LIGHTNING_BLAINE_ONLY
+    runs-on: ubuntu-24.04
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Verify immutable source SHA
+        run: test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
       - name: Install compiler and native mGBA libraries
         run: |
           sudo apt-get -o Acquire::Retries=3 -o Acquire::http::Timeout=30 update
           sudo apt-get -o Acquire::Retries=3 -o Acquire::http::Timeout=30 install -y --no-install-recommends build-essential binutils-arm-none-eabi git libpng-dev python3 libmgba-dev
-      - name: Prepare exact compiler inputs and build ROM
+      - name: Prepare pinned compiler inputs and build ROM
         run: |
           scripts/prepare-baseline.sh
           make -j2
-      - name: Run exact-head native Batch A Singles/Doubles
-        timeout-minutes: 20
-        run: LIGHTNING_BATCH_A_ONLY=1 python3 tests/emulator/run.py
-      - name: Diagnose exact-head native Blaine party without weakening checks
-        timeout-minutes: 15
-        run: LIGHTNING_BLAINE_ONLY=1 python3 tests/emulator/run.py
+      - name: Execute exact-SHA native mGBA acceptance
+        timeout-minutes: 25
+        env:
+          FOCUS_SELECTOR: ${{ matrix.selection }}
+        run: |
+          echo "BTL-005 FOCUSED SHA: $(git rev-parse HEAD)"
+          env "$FOCUS_SELECTOR=1" python3 tests/emulator/run.py
