@@ -413,7 +413,18 @@
 #define MOVE_VORTEX_SPIN 385
 #define MOVE_TIDAL_CRASH 386
 
-#define MOVES_COUNT 387
+// BTL-005 Batch A staging: approved fixed IDs; intervening IDs remain reserved for B/C.
+#define MOVE_SEED_BOMB 391
+#define MOVE_PETAL_BLIZZARD 392
+#define MOVE_AURA_SPHERE 394
+#define MOVE_FOCUS_BLAST 395
+#define MOVE_FLASH_CANNON 397
+#define MOVE_MIRROR_SHOT 398
+#define MOVE_IRON_HEAD 399
+#define MOVE_BULLET_PUNCH 400
+#define MOVE_AIR_SLASH 401
+#define MOVE_HEART_STAMP 406
+#define MOVES_COUNT 407
 
 // Used for checks for moves affected by Disable, Mimic, etc.
 #define MOVE_UNAVAILABLE 0xFFFF
