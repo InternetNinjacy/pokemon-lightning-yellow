@@ -141,7 +141,7 @@ jobs:
       # noncommercial permission using pinned source sheets in runner only.
       # Individual contributor grants and external redistribution are NOT certified.
       - name: Generate temporary exact-252 follower artwork for native ROM tests
-        if: matrix.target == 'modified' && github.ref == 'refs/heads/feature/selectable-following-pokemon'
+        if: matrix.target == 'modified' && (github.head_ref == 'feature/selectable-following-pokemon' || github.ref == 'refs/heads/feature/selectable-following-pokemon')
         timeout-minutes: 18
         run: |
           python3 scripts/build-follower-assets.py --confirmed-scope --report /tmp/wrl010-art-provenance.json
@@ -159,7 +159,7 @@ jobs:
           make clean
           make -j2
           sha256sum -c /tmp/modified.sha256
-          if [ "$GITHUB_REF" = 'refs/heads/feature/selectable-following-pokemon' ]; then
+          if [ "$GITHUB_REF" = 'refs/heads/feature/selectable-following-pokemon' ] || [ "$GITHUB_HEAD_REF" = 'feature/selectable-following-pokemon' ]; then
             git restore -- src/follower_assets_generated.inc
           fi
           git diff --exit-code
@@ -199,6 +199,9 @@ jobs:
       - name: Execute ROM integration tests in mGBA
         if: matrix.target == 'modified'
         timeout-minutes: 30
+        env:
+          # An all-green run must not silently accept the zero-artwork stub.
+          FOLLOWER_NATIVE_ALL252: ${{ (github.head_ref == 'feature/selectable-following-pokemon' || github.ref == 'refs/heads/feature/selectable-following-pokemon') && '1' || '0' }}
         run: python3 tests/emulator/run.py
       - name: Verify original upstream SHA-1 twice from clean
         if: matrix.target == 'upstream-baseline'
