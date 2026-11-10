@@ -49,7 +49,7 @@ def prior_moves387_source(path, text=None):
     hunks=HUNKS.get(str(path), [])
     if hunks and not any(after in text for after,_ in hunks):
         raw=text.encode()
-        digest=hashlib.sha1((f'blob {len(raw)}\\0').encode()+raw).hexdigest()
+        digest=hashlib.sha1((f'blob {len(raw)}\0').encode()+raw).hexdigest()
         assert digest==BASE_BLOB_SHA1[str(path)], "Unknown pre-batch source: "+str(path)
         return text
     for after,before in reversed(hunks):
