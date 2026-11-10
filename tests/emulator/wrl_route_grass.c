@@ -8,24 +8,24 @@ static void wrlRouteGrassFixture(unsigned group,unsigned map,unsigned x,unsigned
     // is Route 1 (the staging fixture), NOT Route 5; do not misattribute it
     // to a spontaneous southern map connection without observing the transition.
     if(group==MAP_GROUP(MAP_CERULEAN_CITY) && map==MAP_NUM(MAP_CERULEAN_CITY))
-        fprintf(stderr,"WRL Cerulean stage=staging saveMap=(%u,%u) pos=(%u,%u)\\n",
+        fprintf(stderr,"WRL Cerulean stage=staging saveMap=(%u,%u) pos=(%u,%u)\n",
                 core->busRead8(core,SYM_gSaveBlock1+4),core->busRead8(core,SYM_gSaveBlock1+5),
                 core->busRead16(core,SYM_gSaveBlock1),core->busRead16(core,SYM_gSaveBlock1+2));
     CALL(SetWarpDestination,group,map,0xFFFFFFFF,x,y);
     CALL(WarpIntoMap);
     if(group==MAP_GROUP(MAP_CERULEAN_CITY) && map==MAP_NUM(MAP_CERULEAN_CITY))
-        fprintf(stderr,"WRL Cerulean stage=warp saveMap=(%u,%u) pos=(%u,%u)\\n",
+        fprintf(stderr,"WRL Cerulean stage=warp saveMap=(%u,%u) pos=(%u,%u)\n",
                 core->busRead8(core,SYM_gSaveBlock1+4),core->busRead8(core,SYM_gSaveBlock1+5),
                 core->busRead16(core,SYM_gSaveBlock1),core->busRead16(core,SYM_gSaveBlock1+2));
     CALL(ResetInitialPlayerAvatarState);
     CALL(CB2_LoadMap);
     if(group==MAP_GROUP(MAP_CERULEAN_CITY) && map==MAP_NUM(MAP_CERULEAN_CITY))
-        fprintf(stderr,"WRL Cerulean stage=load-start saveMap=(%u,%u) pos=(%u,%u)\\n",
+        fprintf(stderr,"WRL Cerulean stage=load-start saveMap=(%u,%u) pos=(%u,%u)\n",
                 core->busRead8(core,SYM_gSaveBlock1+4),core->busRead8(core,SYM_gSaveBlock1+5),
                 core->busRead16(core,SYM_gSaveBlock1),core->busRead16(core,SYM_gSaveBlock1+2));
     frames(360,0);
     if(group==MAP_GROUP(MAP_CERULEAN_CITY) && map==MAP_NUM(MAP_CERULEAN_CITY))
-        fprintf(stderr,"WRL Cerulean stage=load-finish saveMap=(%u,%u) pos=(%u,%u) cb2=%08x\\n",
+        fprintf(stderr,"WRL Cerulean stage=load-finish saveMap=(%u,%u) pos=(%u,%u) cb2=%08x\n",
                 core->busRead8(core,SYM_gSaveBlock1+4),core->busRead8(core,SYM_gSaveBlock1+5),
                 core->busRead16(core,SYM_gSaveBlock1),core->busRead16(core,SYM_gSaveBlock1+2),
                 core->busRead32(core,SYM_gMain+ABI_MAIN_CB2));
