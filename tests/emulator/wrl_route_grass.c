@@ -1,4 +1,5 @@
 // WRL-009: native map grass, compiled encounter tables, and player-driven steps.
+#include "constants/flags.h"
 // A controlled warp to a grass patch is NOT proof of a natural route from the
 // previous town. These tests deliberately leave that separate acceptance gate open.
 static void wrlRouteGrassFixture(unsigned group,unsigned map,unsigned x,unsigned y) {
@@ -299,5 +300,317 @@ static void wrlLavenderToRoute8ConnectionTests(void) {
     CHECK(transitioned);
     printf("PASS: native Lavender Town -> Route 8 player LEFT D-pad map connection at y=%u in %u frames\n",
            selectedY,selectedFrame);
+    CHECK(core->loadState(core,bootState));
+}
+
+
+// Trainer sight on Route 8 is part of natural access. Advance its real
+// field dialogue, battle menu, victory and return; never set trainer flags.
+static void wrlRoute8FinishTrainerBattle(void) {
+    unsigned started=0,won=0,quiet=0,f;
+    for(f=0;f<36000;f++) {
+        unsigned cb=core->busRead32(core,SYM_gMain+ABI_MAIN_CB2)&~1U;
+        if(cb==SYM_BattleMainCB2) {
+            started=1;
+            CHECK(core->busRead32(core,SYM_gBattleTypeFlags)&BATTLE_TYPE_TRAINER);
+        }
+        if(started && core->busRead8(core,SYM_gBattleOutcome)==B_OUTCOME_WON)
+            won=1;
+        if(won && fieldScriptDone()) {
+            if(++quiet==30)break;
+            frames(1,0);
+            continue;
+        }
+        quiet=0;
+        // Bounded native diagnostics: distinguish menu-input deadlock from
+        // ineffective attacks or trainer-script transition without bypasses.
+        if(f==0 || f==600 || f==3000 || f==9000 || f==18000 || f==27000) {
+            fprintf(stderr,"WRL Route8 battle trace frame=%u started=%u won=%u cb=%08x controller=%08x exec=%08x outcome=%u playerHP=%u enemyHP=%u actionCursor=%u moveCursor=%u trainer=%u bufferCmd=%u textActive=%u textState=%u scriptPtr=%08x scriptOp=%u expState=%u\\n",
+                    f,started,won,cb,controller(0),
+                    core->busRead32(core,SYM_gBattleControllerExecFlags),
+                    core->busRead8(core,SYM_gBattleOutcome),
+                    core->busRead16(core,bmon(0)+ABI_BMON_HP),
+                    core->busRead16(core,bmon(1)+ABI_BMON_HP),
+                    core->busRead8(core,SYM_gActionSelectionCursor),
+                    core->busRead8(core,SYM_gMoveSelectionCursor),
+                    core->busRead16(core,SYM_gTrainerBattleOpponent_A),
+                    core->busRead8(core,SYM_gBattleBufferA),
+                    core->busRead8(core,SYM_sTextPrinters+ABI_TEXT_ACTIVE),
+                    core->busRead8(core,SYM_sTextPrinters+ABI_TEXT_STATE),
+                    core->busRead32(core,SYM_gBattlescriptCurrInstr),
+                    core->busRead8(core,core->busRead32(core,SYM_gBattlescriptCurrInstr)),
+                    core->busRead8(core,SYM_gBattleScripting+ABI_SCRIPT_EXP_STATE));
+        }
+        unsigned key=0;
+        if(f%8==0) {
+            key=1; // Real trainer pre/post-battle dialogue.
+            // CONTROLLER_CHOOSEPOKEMON (22) opens the actual party menu.
+            // After the foe faints, A repeatedly selects the active mon and
+            // cannot dismiss the optional switch prompt. Press B to decline
+            // switching and return to the real trainer battle instead.
+            if(started && cb!=SYM_BattleMainCB2 && cb!=SYM_CB2_Overworld
+               && core->busRead8(core,SYM_gBattleBufferA)==22)
+                key=2;
+            else if(cb==SYM_BattleMainCB2
+               && (core->busRead32(core,SYM_gBattleControllerExecFlags)&1U)) {
+                unsigned fn=controller(0);
+                if(fn==SYM_HandleInputChooseAction) {
+                    unsigned c=core->busRead8(core,SYM_gActionSelectionCursor);
+                    key=c&2?64:c&1?32:1;
+                } else if(fn==SYM_HandleInputChooseMove) {
+                    unsigned c=core->busRead8(core,SYM_gMoveSelectionCursor);
+                    key=c&2?64:c&1?32:1;
+                } else if(fn==SYM_HandleInputChooseTarget)key=1;
+                else {
+                    // After a real knockout, advance active mandatory battle
+                    // text with A; keep B for other non-menu prompts.
+                    unsigned fainted=core->busRead16(core,bmon(1)+ABI_BMON_HP)==0;
+                    unsigned textActive=core->busRead8(core,SYM_sTextPrinters+ABI_TEXT_ACTIVE);
+                    key=(fainted && textActive)?1:2;
+                }
+            }
+        }
+        frames(1,key);
+    }
+    if(f==36000)
+        fprintf(stderr,"WRL Route8 trainer timeout started=%u won=%u callback=%08x outcome=%u controls=%u script=%u\n",
+                started,won,core->busRead32(core,SYM_gMain+ABI_MAIN_CB2),
+                core->busRead8(core,SYM_gBattleOutcome),
+                CALL(ArePlayerFieldControlsLocked),CALL(ScriptContext_IsEnabled));
+    CHECK(started && won && f<36000);
+    CHECK((core->busRead32(core,SYM_gMain+ABI_MAIN_CB2)&~1U)==SYM_CB2_Overworld);
+    printf("PASS: native Route 8 trainer sight interruption resolved by real battle victory in %u frames\n",f);
+}
+
+// WRL-009: follow the Lavender -> Route 8 connection with a real player
+// walk to approved grass. Actual unavoidable trainer battles must be won
+// with native inputs; no trainer flags, teleports, or map data are altered.
+// This remains a staged Lavender fixture, not proof of new-game progression.
+static void wrlLavenderToRoute8GrassWalkTests(void) {
+    // A single west-edge entry row can be separated from grass by real
+    // trainers. Probe each authored Lavender west connection row rather than
+    // treating one staged entry as the only possible natural approach.
+    // The selected entry must still cross via actual LEFT D-pad movement.
+    enum { W=90,H=40,N=W*H,MAX_REPLANS=24 };
+    unsigned char blocked[N]={0};
+    // Block only actual trainer objects, not their sight lines. A sight
+    // encounter must be resolved by a real trainer battle, not a flag edit.
+    blocked[21*W+69]=1; // Julia, source (62,14) plus 7-tile border.
+    blocked[22*W+62]=1; // Rich, source (55,15) plus border.
+    // Native run #42899187692 proved no grass path exists when both
+    // authored Cut-tree objects are excluded. They are conditional traversal
+    // tiles, never ordinary walkable tiles: the native player must face the
+    // tree, use a Pokemon's Cut with the required badge, and see it removed
+    // by the game's own event script before stepping onto its former tile.
+    // Eastern tree grid=(54,19), western grid=(40,22).
+    const unsigned candidateY[]={10,9,11,8,12,7,13,6,14,5,15,4,16,3,17,18};
+    unsigned transitionFrame=0,selectedY=0,selected=0,transitionCount=0;
+    for(unsigned i=0;i<sizeof(candidateY)/sizeof(candidateY[0]);i++) {
+        unsigned y=candidateY[i],transitioned=0,frame;
+        wrlRouteGrassFixture(MAP_GROUP(MAP_LAVENDER_TOWN),
+                            MAP_NUM(MAP_LAVENDER_TOWN),1,y);
+        for(frame=0;frame<900;frame++) {
+            frames(1,32); // Real LEFT D-pad; never warp into Route 8.
+            unsigned group=core->busRead8(core,wrlLiveSaveBlock1()+4);
+            unsigned map=core->busRead8(core,wrlLiveSaveBlock1()+5);
+            if(group==MAP_GROUP(MAP_ROUTE8) && map==MAP_NUM(MAP_ROUTE8)) {
+                transitioned=1;break;
+            }
+            if(group!=MAP_GROUP(MAP_LAVENDER_TOWN)
+               || map!=MAP_NUM(MAP_LAVENDER_TOWN))break;
+        }
+        core->setKeys(core,0);
+        if(!transitioned) {
+            fprintf(stderr,"WRL Lavender->Route8 grass candidate y=%u no map transition in %u frames\\n",y,frame);
+            continue;
+        }
+        transitionCount++;
+        frames(120,0);
+        CHECK((core->busRead32(core,SYM_gMain+ABI_MAIN_CB2)&~1U)==SYM_CB2_Overworld);
+        CHECK(core->busRead8(core,wrlLiveSaveBlock1()+4)==MAP_GROUP(MAP_ROUTE8));
+        CHECK(core->busRead8(core,wrlLiveSaveBlock1()+5)==MAP_NUM(MAP_ROUTE8));
+        CALL(PlayerGetDestCoords,scratch,scratch+2);
+        unsigned sx=core->busRead16(core,scratch),sy=core->busRead16(core,scratch+2);
+        CHECK(sx>=7 && sx<79 && sy>=7 && sy<27);
+        // Probe a route permitting Cut-tree tiles as conditional edges.
+        // Neither this probe nor the BFS below is acceptance evidence:
+        // actual Cut use and subsequent D-pad traversal must still succeed.
+        unsigned char seen[N]={0};
+        unsigned queue[N],front=0,back=0,start=sy*W+sx,grass=0;
+        seen[start]=1;queue[back++]=start;
+        while(front<back) {
+            unsigned cur=queue[front++],x=cur%W,cy=cur/W;
+            if(wrlRouteGrassAt(x,cy)){grass=1;break;}
+            const int ddx[4]={0,0,-1,1},ddy[4]={-1,1,0,0};
+            for(unsigned d=0;d<4;d++) {
+                int nx=(int)x+ddx[d],ny=(int)cy+ddy[d];
+                if(nx<7 || nx>=79 || ny<7 || ny>=27)continue;
+                unsigned next=(unsigned)ny*W+(unsigned)nx;
+                if(seen[next] || blocked[next]
+                   || CALL(MapGridGetCollisionAt,nx,ny))continue;
+                seen[next]=1;queue[back++]=next;
+            }
+        }
+        fprintf(stderr,"WRL Lavender->Route8 grass candidate y=%u arrival=(%u,%u) grassPath=%u examined=%u transitionFrame=%u\\n",
+                y,sx,sy,grass,front,frame);
+        if(grass){selected=1;selectedY=y;transitionFrame=frame;break;}
+    }
+    if(!selected)
+        fprintf(stderr,"WRL Lavender->Route8: no candidate path even with legitimate Cut-tree traversal from %u Lavender entry rows\\n",transitionCount);
+    CHECK(selected);
+    fprintf(stderr,"WRL Lavender->Route8 selected west entry y=%u after %u frames\\n",
+            selectedY,transitionFrame);
+    // Strengthen the staged party for legitimate trainer battles. This
+    // changes only the test's player party, never ROM encounter data.
+    CALL(CreateMon,player(0),SPECIES_MEWTWO,100,31,1,12345,0,1234);
+    monput(player(0),ABI_DATA_MOVE1,MOVE_PSYCHIC);
+    monput(player(0),ABI_DATA_PP1,99);
+    monput(player(0),ABI_DATA_MOVE2,MOVE_SWIFT);
+    monput(player(0),ABI_DATA_PP2,99);
+    // Staged test prerequisites, not an assertion of story progression:
+    // a real Cut-capable party member and the actual Cascade Badge flag.
+    // Never edit the tree's temporary flags or trainer-defeat flags.
+    CALL(CreateMon,player(1),SPECIES_FARFETCHD,50,31,1,12345,0,1234);
+    monput(player(1),ABI_DATA_MOVE1,MOVE_CUT);
+    monput(player(1),ABI_DATA_PP1,30);
+    CALL(FlagSet,FLAG_BADGE02_GET);
+    CHECK(CALL(FlagGet,FLAG_BADGE02_GET));
+    CHECK(monget(player(1),ABI_DATA_MOVE1)==MOVE_CUT);
+    const int dx[4]={0,0,-1,1},dy[4]={-1,1,0,0};
+    const unsigned keys[4]={64,128,32,16};
+    unsigned totalFrames=0,totalSteps=0,replans=0,reached=0,trainerWins=0;
+    for(unsigned attempt=0;attempt<=MAX_REPLANS;attempt++) {
+        CALL(PlayerGetDestCoords,scratch,scratch+2);
+        unsigned sx=core->busRead16(core,scratch),sy=core->busRead16(core,scratch+2);
+        CHECK(sx>=7 && sx<79 && sy>=7 && sy<27);
+        if(wrlRouteGrassAt(sx,sy)){reached=1;break;}
+        unsigned char visited[N]={0},directions[N]={0};
+        int parent[N];
+        unsigned queue[N],front=0,back=0,start=sy*W+sx,goal=N;
+        visited[start]=1;parent[start]=-1;queue[back++]=start;
+        while(front<back) {
+            unsigned cur=queue[front++],x=cur%W,y=cur/W;
+            if(wrlRouteGrassAt(x,y)){goal=cur;break;}
+            for(unsigned d=0;d<4;d++) {
+                int nx=(int)x+dx[d],ny=(int)y+dy[d];
+                if(nx<7 || nx>=79 || ny<7 || ny>=27)continue;
+                unsigned next=(unsigned)ny*W+(unsigned)nx;
+                if(visited[next] || blocked[next]
+                   || CALL(MapGridGetCollisionAt,nx,ny))continue;
+                visited[next]=1;parent[next]=(int)cur;
+                directions[next]=(unsigned char)keys[d];
+                queue[back++]=next;
+            }
+        }
+        fprintf(stderr,"WRL Lavender->Route8 grass BFS from=(%u,%u) reachable=%u examined=%u replans=%u transitionFrame=%u\n",
+                sx,sy,goal!=N,front,replans,transitionFrame);
+        CHECK(goal!=N);
+        unsigned path[N],length=0;
+        for(unsigned cur=goal;cur!=start;cur=(unsigned)parent[cur]) {
+            CHECK(length<N);
+            path[length++]=cur;
+        }
+        CHECK(length>0);
+        unsigned needsReplan=0;
+        for(unsigned step=length;step>0;step--) {
+            unsigned target=path[step-1],tx=target%W,ty=target/W;
+            unsigned key=directions[target],moved=0;
+            CALL(PlayerGetDestCoords,scratch,scratch+2);
+            unsigned prevX=core->busRead16(core,scratch);
+            unsigned prevY=core->busRead16(core,scratch+2);
+            unsigned cutTree=(tx==54 && ty==19)||(tx==40 && ty==22);
+            if(cutTree) {
+                // This tile is occupied by a real Cut-tree object. Approach
+                // from an adjacent tile, face it using the D-pad, then press
+                // A through the genuine badge/party/yes-no/field-effect script.
+                // The only success criterion is the tree's *own* temp flag
+                // changing in-game; the test never sets or clears that flag.
+                unsigned treeFlag=(tx==54)?FLAG_TEMP_13:FLAG_TEMP_12;
+                CHECK((prevX==tx && (prevY+1==ty || ty+1==prevY))
+                   || (prevY==ty && (prevX+1==tx || tx+1==prevX)));
+                CHECK(!CALL(FlagGet,treeFlag));
+                frames(1,key);
+                frames(18,0);
+                CALL(PlayerGetDestCoords,scratch,scratch+2);
+                CHECK(core->busRead16(core,scratch)==prevX
+                   && core->busRead16(core,scratch+2)==prevY);
+                unsigned scriptSeen=0,cutDone=0,cutFrame;
+                for(cutFrame=0;cutFrame<2400;cutFrame++) {
+                    frames(1,(cutFrame%12==0)?1:0);
+                    if(CALL(ArePlayerFieldControlsLocked)
+                       || CALL(ScriptContext_IsEnabled))scriptSeen=1;
+                    if(scriptSeen && CALL(FlagGet,treeFlag)) {
+                        cutDone=1;break;
+                    }
+                }
+                fprintf(stderr,"WRL Route8 native Cut tree=(%u,%u) scriptSeen=%u removed=%u frames=%u\\n",
+                        tx,ty,scriptSeen,cutDone,cutFrame);
+                CHECK(scriptSeen && cutDone);
+                frames(30,0);
+            }
+            for(unsigned frame=0;frame<96;frame++) {
+                frames(1,key);
+                totalFrames++;
+                CALL(PlayerGetDestCoords,scratch,scratch+2);
+                unsigned px=core->busRead16(core,scratch);
+                unsigned py=core->busRead16(core,scratch+2);
+                if(px==tx && py==ty){moved=1;break;}
+                if((core->busRead32(core,SYM_gMain+ABI_MAIN_CB2)&~1U)!=SYM_CB2_Overworld)
+                    break;
+            }
+            core->setKeys(core,0);
+            // A trainer can intercept the player while walking toward the
+            // planned tile; the actual engine must resolve that battle.
+            if(CALL(ArePlayerFieldControlsLocked)
+               || CALL(ScriptContext_IsEnabled)
+               || (core->busRead32(core,SYM_gMain+ABI_MAIN_CB2)&~1U)!=SYM_CB2_Overworld) {
+                fprintf(stderr,"WRL Route8 trainer interruption target=(%u,%u) moved=%u\n",tx,ty,moved);
+                wrlRoute8FinishTrainerBattle();
+                trainerWins++;
+                replans++;
+                needsReplan=1;
+                break;
+            }
+            CHECK((core->busRead32(core,SYM_gMain+ABI_MAIN_CB2)&~1U)==SYM_CB2_Overworld);
+            CHECK(core->busRead8(core,wrlLiveSaveBlock1()+4)==MAP_GROUP(MAP_ROUTE8));
+            CHECK(core->busRead8(core,wrlLiveSaveBlock1()+5)==MAP_NUM(MAP_ROUTE8));
+            if(!moved) {
+                CALL(PlayerGetDestCoords,scratch,scratch+2);
+                unsigned px=core->busRead16(core,scratch);
+                unsigned py=core->busRead16(core,scratch+2);
+                fprintf(stderr,"WRL Route8 object-blocked target=(%u,%u) actual=(%u,%u) prior=(%u,%u) metatileCollision=%u replan=%u\n",
+                        tx,ty,px,py,prevX,prevY,
+                        CALL(MapGridGetCollisionAt,tx,ty),replans+1);
+                fprintf(stderr,"WRL Route8 stall fieldControlsLocked=%u scriptEnabled=%u\\n",
+                        CALL(ArePlayerFieldControlsLocked),CALL(ScriptContext_IsEnabled));
+                // Replan only if the attempted native step actually stayed
+                // in place. Unexpected movement is a genuine test failure.
+                CHECK(px==prevX && py==prevY);
+                blocked[target]=1;
+                replans++;
+                needsReplan=1;
+                frames(18,0);
+                break;
+            }
+            totalSteps++;
+            frames(18,0); // Finish the walking animation before next turn.
+            if(wrlRouteGrassAt(tx,ty)){reached=1;break;}
+            if(CALL(ArePlayerFieldControlsLocked) || CALL(ScriptContext_IsEnabled)) {
+                wrlRoute8FinishTrainerBattle();
+                trainerWins++;
+                replans++;
+                needsReplan=1;
+                break;
+            }
+        }
+        if(reached)break;
+        CHECK(needsReplan);
+    }
+    CHECK(reached);
+    CALL(PlayerGetDestCoords,scratch,scratch+2);
+    CHECK(wrlRouteGrassAt(core->busRead16(core,scratch),
+                          core->busRead16(core,scratch+2)));
+    printf("PASS: native Lavender -> Route 8 connection followed by %u actual D-pad steps to approved grass in %u walking frames (%u replans, %u trainer victories)\n",
+           totalSteps,totalFrames,replans,trainerWins);
     CHECK(core->loadState(core,bootState));
 }
