@@ -12,9 +12,15 @@ BASE_BLOB_SHA1 = {
     "data/battle_anim_scripts.s": "b28afe8369f3719be6d64cbcd768cad294a33e9c",
     "include/constants/battle_move_effects.h": "8bef6202ae38c246627d53363877c1ccace1ae83",
     "data/battle_scripts_1.s": "60d2ba8aa4663149207bcfbeb9c05f19e1c4302f",
+    "src/battle_script_commands.c": "a5f5aef00fd95d27db0e119061c6fdb3b785fa6d",
 }
 
 HUNKS = {
+    "src/battle_script_commands.c": [
+        ("if ((gCurrentMove == MOVE_THUNDER_WAVE || gCurrentMove == MOVE_DISCHARGE || gCurrentMove == MOVE_PETAL_BLIZZARD)\n     && !gBattleStruct->thunderWaveActive)", "if (gCurrentMove == MOVE_THUNDER_WAVE && !gBattleStruct->thunderWaveActive)"),
+        ("if (gCurrentMove == MOVE_THUNDER_WAVE || gCurrentMove == MOVE_DISCHARGE || gCurrentMove == MOVE_PETAL_BLIZZARD)\n            gBattleStruct->thunderWaveActive = FALSE;", "if (gCurrentMove == MOVE_THUNDER_WAVE)\n            gBattleStruct->thunderWaveActive = FALSE;"),
+        ("if (gCurrentMove == MOVE_THUNDER_WAVE || gCurrentMove == MOVE_DISCHARGE || gCurrentMove == MOVE_PETAL_BLIZZARD)\n                {\n                    u8 nextTarget;", "if (gCurrentMove == MOVE_THUNDER_WAVE)\n                {\n                    u8 nextTarget;"),
+    ],
     "include/constants/moves.h": [
         ("\n// BTL-005 next approved batch (staged pending runtime acceptance).\n#define MOVE_DISCHARGE 387\n#define MOVE_VOLT_SWITCH 388\n#define MOVE_THUNDER_FANG 389\n#define MOVE_WILD_CHARGE 390\n#define MOVE_SEED_BOMB 391\n#define MOVE_PETAL_BLIZZARD 392\n#define MOVE_WOOD_HAMMER 393\n#define MOVE_AURA_SPHERE 394\n\n#define MOVES_COUNT 395\n\n", "\n#define MOVES_COUNT 387\n\n"),
     ],
