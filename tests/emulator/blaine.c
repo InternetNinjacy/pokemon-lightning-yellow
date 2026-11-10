@@ -48,7 +48,14 @@ static void blaineTests(void) {
  CHECK(core->busRead8(core,SYM_gBattlersCount)==4);
  const unsigned species[]={SPECIES_DONPHAN,SPECIES_PIDGEOT,SPECIES_SANDSLASH,SPECIES_AERODACTYL,SPECIES_FLYGON};
  const unsigned levels[]={42,42,43,44,47};
- for(unsigned i=0;i<5;i++){CHECK(monget(enemy(i),ABI_DATA_SPECIES)==species[i]);CHECK(monget(enemy(i),ABI_DATA_LEVEL)==levels[i]);}
+ for(unsigned i=0;i<5;i++){
+  unsigned actualSpecies=monget(enemy(i),ABI_DATA_SPECIES),actualLevel=monget(enemy(i),ABI_DATA_LEVEL);
+  if(actualSpecies!=species[i]||actualLevel!=levels[i])
+   fprintf(stderr,"BLAINE_NATIVE_DIAGNOSTIC index=%u species=%u expected_species=%u level=%u expected_level=%u enemy_count=%u battler_count=%u flags=%08x\\n",
+    i,actualSpecies,species[i],actualLevel,levels[i],core->busRead8(core,SYM_gEnemyPartyCount),
+    core->busRead8(core,SYM_gBattlersCount),core->busRead32(core,SYM_gBattleTypeFlags));
+  CHECK(actualSpecies==species[i]);CHECK(actualLevel==levels[i]);
+ }
  CHECK(core->busRead16(core,bmon(1)+ABI_BMON_SPECIES)==SPECIES_DONPHAN);
  CHECK(core->busRead16(core,bmon(3)+ABI_BMON_SPECIES)==SPECIES_PIDGEOT);
  CHECK(core->busRead8(core,bmon(3)+ABI_BMON_TYPE1)==TYPE_FLYING);
