@@ -171,10 +171,13 @@ static void wrlRoute5NorthernLedgeWalkTests(void) {
 // change before proceeding to the approved Route 5 grass. This does not prove
 // the full new-game quest path to Cerulean City.
 static void wrlCeruleanToRoute5ConnectionTests(void) {
-    // Begin inside Cerulean's 40-row layout, above the south connection.
+    // Begin below Cerulean's Cut-tree chokepoint (26,32) on the sole
+    // collision-free south lane (26,39). This isolates the actual map
+    // connection; it does NOT prove that the player can reach this point
+    // naturally before Cut or through the full story route.
     // Earlier apparent Route 1 readings were from a stale save-block buffer,
     // not evidence of a spontaneous transition to Route 5.
-    const unsigned x=23, startY=30, gridX=x+7;
+    const unsigned x=26, startY=33, gridX=x+7;
     wrlRouteGrassFixture(MAP_GROUP(MAP_CERULEAN_CITY),
                          MAP_NUM(MAP_CERULEAN_CITY),x,startY);
     // LoadMap relocates SaveBlock1. Read the live pointer, not the stale
