@@ -67,3 +67,56 @@ static void followerNativeTests(void)
     }
     printf("PASS: native follower state identity/faint/remove and %u ROM-linked art descriptors\n",count);
 }
+
+// Native field callback acceptance on real Route 5/Four Island Day Care maps.
+// Covers map reinitialization, visual suppression and same-instance retention.
+// This fixture is not a full controller-input door/ledge/cutscene playback.
+static void followerFieldNativeTests(void)
+{
+    if (CALL(FollowerAssets_Count) != 255)
+        return; // source-only local build has no copied artwork by design
+    daycareFixture(1);
+    CHECK(CALL(FollowerState_SelectPartySlot, 0) == 1);
+    frames(100, 0);
+    unsigned objectId = CALL(FollowerGraphics_GetObjectEventId);
+    unsigned spriteId = CALL(FollowerGraphics_GetSpriteId);
+    CHECK(objectId < ABI_OBJECT_COUNT);
+    CHECK(spriteId < 64);
+    CHECK(CALL(FollowerState_ResolvePartySlot) == 0);
+
+    // Fainting must not replace the selected Pokémon or drop identity.
+    core->busWrite16(core, scratch, 0);
+    CALL(SetMonData, SYM_gPlayerParty, MON_DATA_HP, scratch);
+    frames(14, 0);
+    CHECK(CALL(FollowerState_CanDisplay) == 0);
+    CHECK(CALL(FollowerState_ResolvePartySlot) == 0);
+    CHECK(CALL(FollowerGraphics_GetObjectEventId) == objectId);
+
+    // Revive/heal the same instance, without selecting slot one again.
+    core->busWrite16(core, scratch, 17);
+    CALL(SetMonData, SYM_gPlayerParty, MON_DATA_HP, scratch);
+    frames(60, 0);
+    CHECK(CALL(FollowerState_CanDisplay) == 1);
+    CHECK(CALL(FollowerGraphics_GetSpriteId) < 64);
+    CALL(FollowerSpecial_PlayCry); // actual compiled cry code; no friendship writes
+    CHECK(CALL(FollowerState_ResolvePartySlot) == 0);
+
+    // Cross actual FireRed map reload callbacks with an assigned follower.
+    CALL(SetWarpDestination, MAP_GROUP(MAP_FOUR_ISLAND_POKEMON_DAY_CARE),
+         MAP_NUM(MAP_FOUR_ISLAND_POKEMON_DAY_CARE), 0xFFFFFFFFU, 3, 6);
+    CALL(WarpIntoMap);
+    CALL(ResetInitialPlayerAvatarState);
+    CALL(CB2_LoadMap);
+    frames(360, 0);
+    CHECK((core->busRead32(core, SYM_gMain + ABI_MAIN_CB2) & ~1U) == SYM_CB2_Overworld);
+    CHECK(CALL(FollowerState_ResolvePartySlot) == 0);
+    CHECK(CALL(FollowerGraphics_GetSpriteId) < 64);
+    CHECK(CALL(FollowerGraphics_GetObjectEventId) < ABI_OBJECT_COUNT);
+
+    // Clearing selection tears down the single owned sprite/object.
+    CALL(FollowerState_Clear);
+    frames(20, 0);
+    CHECK(CALL(FollowerGraphics_GetObjectEventId) == ABI_OBJECT_COUNT);
+    CHECK((int32_t)CALL(FollowerState_ResolvePartySlot) == -1);
+    printf("PASS: native follower map warp, faint/revive, cry and teardown on two real Day Care maps\n");
+}
