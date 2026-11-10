@@ -1,4 +1,5 @@
 // WRL-009: native map grass, compiled encounter tables, and player-driven steps.
+#include "constants/flags.h"
 // A controlled warp to a grass patch is NOT proof of a natural route from the
 // previous town. These tests deliberately leave that separate acceptance gate open.
 static void wrlRouteGrassFixture(unsigned group,unsigned map,unsigned x,unsigned y) {
@@ -396,14 +397,12 @@ static void wrlLavenderToRoute8GrassWalkTests(void) {
     // encounter must be resolved by a real trainer battle, not a flag edit.
     blocked[21*W+69]=1; // Julia, source (62,14) plus 7-tile border.
     blocked[22*W+62]=1; // Rich, source (55,15) plus border.
-    // Native run #42881522001 identified both remaining zero-collision
-    // movement blockers as authored Route 8 Cut-tree objects, not terrain:
-    // target (54,19) = source (47,12); target (40,22) = source (33,15).
-    // Exclude their occupied tiles from the walk-only planner. If no route
-    // remains, Cut must be validated through actual field use, never by
-    // deleting trees, setting flags, or treating collision-free as walkable.
-    blocked[19*W+54]=1; // Route 8 eastern Cut tree.
-    blocked[22*W+40]=1; // Route 8 western Cut tree.
+    // Native run #42899187692 proved no grass path exists when both
+    // authored Cut-tree objects are excluded. They are conditional traversal
+    // tiles, never ordinary walkable tiles: the native player must face the
+    // tree, use a Pokemon's Cut with the required badge, and see it removed
+    // by the game's own event script before stepping onto its former tile.
+    // Eastern tree grid=(54,19), western grid=(40,22).
     const unsigned candidateY[]={10,9,11,8,12,7,13,6,14,5,15,4,16,3,17,18};
     unsigned transitionFrame=0,selectedY=0,selected=0,transitionCount=0;
     for(unsigned i=0;i<sizeof(candidateY)/sizeof(candidateY[0]);i++) {
@@ -433,9 +432,9 @@ static void wrlLavenderToRoute8GrassWalkTests(void) {
         CALL(PlayerGetDestCoords,scratch,scratch+2);
         unsigned sx=core->busRead16(core,scratch),sy=core->busRead16(core,scratch+2);
         CHECK(sx>=7 && sx<79 && sy>=7 && sy<27);
-        // Diagnose collision-connected grass while excluding trainer sight.
-        // A candidate is accepted only if a full native D-pad walk can then
-        // prove it, not merely because this topological probe finds a path.
+        // Probe a route permitting Cut-tree tiles as conditional edges.
+        // Neither this probe nor the BFS below is acceptance evidence:
+        // actual Cut use and subsequent D-pad traversal must still succeed.
         unsigned char seen[N]={0};
         unsigned queue[N],front=0,back=0,start=sy*W+sx,grass=0;
         seen[start]=1;queue[back++]=start;
@@ -457,7 +456,7 @@ static void wrlLavenderToRoute8GrassWalkTests(void) {
         if(grass){selected=1;selectedY=y;transitionFrame=frame;break;}
     }
     if(!selected)
-        fprintf(stderr,"WRL Lavender->Route8: no trainer-sight-free grass path from %u successful Lavender west-entry rows; real trainer battles may be required\\n",transitionCount);
+        fprintf(stderr,"WRL Lavender->Route8: no candidate path even with legitimate Cut-tree traversal from %u Lavender entry rows\\n",transitionCount);
     CHECK(selected);
     fprintf(stderr,"WRL Lavender->Route8 selected west entry y=%u after %u frames\\n",
             selectedY,transitionFrame);
@@ -468,6 +467,15 @@ static void wrlLavenderToRoute8GrassWalkTests(void) {
     monput(player(0),ABI_DATA_PP1,99);
     monput(player(0),ABI_DATA_MOVE2,MOVE_SWIFT);
     monput(player(0),ABI_DATA_PP2,99);
+    // Staged test prerequisites, not an assertion of story progression:
+    // a real Cut-capable party member and the actual Cascade Badge flag.
+    // Never edit the tree's temporary flags or trainer-defeat flags.
+    CALL(CreateMon,player(1),SPECIES_FARFETCHD,50,31,1,12345,0,1234);
+    monput(player(1),ABI_DATA_MOVE1,MOVE_CUT);
+    monput(player(1),ABI_DATA_PP1,30);
+    CALL(FlagSet,FLAG_BADGE02_GET);
+    CHECK(CALL(FlagGet,FLAG_BADGE02_GET));
+    CHECK(monget(player(1),ABI_DATA_MOVE1)==MOVE_CUT);
     const int dx[4]={0,0,-1,1},dy[4]={-1,1,0,0};
     const unsigned keys[4]={64,128,32,16};
     unsigned totalFrames=0,totalSteps=0,replans=0,reached=0,trainerWins=0;
@@ -510,6 +518,36 @@ static void wrlLavenderToRoute8GrassWalkTests(void) {
             CALL(PlayerGetDestCoords,scratch,scratch+2);
             unsigned prevX=core->busRead16(core,scratch);
             unsigned prevY=core->busRead16(core,scratch+2);
+            unsigned cutTree=(tx==54 && ty==19)||(tx==40 && ty==22);
+            if(cutTree) {
+                // This tile is occupied by a real Cut-tree object. Approach
+                // from an adjacent tile, face it using the D-pad, then press
+                // A through the genuine badge/party/yes-no/field-effect script.
+                // The only success criterion is the tree's *own* temp flag
+                // changing in-game; the test never sets or clears that flag.
+                unsigned treeFlag=(tx==54)?FLAG_TEMP_13:FLAG_TEMP_12;
+                CHECK((prevX==tx && (prevY+1==ty || ty+1==prevY))
+                   || (prevY==ty && (prevX+1==tx || tx+1==prevX)));
+                CHECK(!CALL(FlagGet,treeFlag));
+                frames(1,key);
+                frames(18,0);
+                CALL(PlayerGetDestCoords,scratch,scratch+2);
+                CHECK(core->busRead16(core,scratch)==prevX
+                   && core->busRead16(core,scratch+2)==prevY);
+                unsigned scriptSeen=0,cutDone=0,cutFrame;
+                for(cutFrame=0;cutFrame<2400;cutFrame++) {
+                    frames(1,(cutFrame%12==0)?1:0);
+                    if(CALL(ArePlayerFieldControlsLocked)
+                       || CALL(ScriptContext_IsEnabled))scriptSeen=1;
+                    if(scriptSeen && CALL(FlagGet,treeFlag)) {
+                        cutDone=1;break;
+                    }
+                }
+                fprintf(stderr,"WRL Route8 native Cut tree=(%u,%u) scriptSeen=%u removed=%u frames=%u\\n",
+                        tx,ty,scriptSeen,cutDone,cutFrame);
+                CHECK(scriptSeen && cutDone);
+                frames(30,0);
+            }
             for(unsigned frame=0;frame<96;frame++) {
                 frames(1,key);
                 totalFrames++;
