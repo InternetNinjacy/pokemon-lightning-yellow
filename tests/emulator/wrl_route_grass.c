@@ -171,9 +171,9 @@ static void wrlRoute5NorthernLedgeWalkTests(void) {
 // change before proceeding to the approved Route 5 grass. This does not prove
 // the full new-game quest path to Cerulean City.
 static void wrlCeruleanToRoute5ConnectionTests(void) {
-    // Begin well inside Cerulean's 40-row layout, away from the south
-    // connection's camera-load boundary. Starting at y=37 caused the native
-    // map loader to report Route 5 before any D-pad input was sent.
+    // Begin inside Cerulean's 40-row layout, above the south connection.
+    // Earlier apparent Route 1 readings were from a stale save-block buffer,
+    // not evidence of a spontaneous transition to Route 5.
     const unsigned x=23, startY=30, gridX=x+7;
     wrlRouteGrassFixture(MAP_GROUP(MAP_CERULEAN_CITY),
                          MAP_NUM(MAP_CERULEAN_CITY),x,startY);
