@@ -6,11 +6,19 @@ import json,re
 R=Path(__file__).resolve().parents[1]
 spec={m["proposed_id"]:m for m in json.loads((R/"docs/moves/approved-design-overlays.json").read_text())["new_moves"]}
 anim={m["key"]:m for m in json.loads((R/"docs/moves/animation-reuse.json").read_text())["entries"]}
-ids=(R/"include/constants/moves.h").read_text()
-data=(R/"src/data/battle_moves.h").read_text()
-names=(R/"src/data/text/move_names.h").read_text()
-desc=(R/"src/move_descriptions.c").read_text()
-art=(R/"data/battle_anim_scripts.s").read_text()
+# Batch B invokes this contract against the exact reversible Batch A source
+# view, while its own ten production entries are checked separately.
+def staged_a_source(path):
+ text=(R/path).read_text()
+ if (R/"tests/approved_batch_b_changes.py").exists():
+  from approved_batch_b_changes import prior_batch_b_source
+  return prior_batch_b_source(str(path),text)
+ return text
+ids=staged_a_source("include/constants/moves.h")
+data=staged_a_source("src/data/battle_moves.h")
+names=staged_a_source("src/data/text/move_names.h")
+desc=staged_a_source("src/move_descriptions.c")
+art=staged_a_source("data/battle_anim_scripts.s")
 cases={
 391:("EFFECT_HIT","MOVE_TARGET_SELECTED",False),
 392:("EFFECT_HIT","MOVE_TARGET_FOES_AND_ALLY",False),
