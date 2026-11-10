@@ -254,9 +254,21 @@ void FollowerController_Tick(void)
     followerSprite->oam.priority = playerSprite->oam.priority;
     followerSprite->invisible = FALSE;
 
-    // Upstream six-cell direction contract: south 0/1, north 2/3,
-    // west 4/5, east mirrored west. Frame bytes copy in VBlank only.
-    direction = GetPlayerFacingDirection();
+    // Follow the direction of the follower's own completed tile step, not
+    // the player's current facing: after a corner those are often different.
+    // While stationary, retain the existing player-facing fallback.
+    // Six-cell art contract: south 0/1, north 2/3, west 4/5,
+    // east mirrored west. Frame bytes copy in VBlank only.
+    if (follower->currentCoords.x > follower->previousCoords.x)
+        direction = DIR_EAST;
+    else if (follower->currentCoords.x < follower->previousCoords.x)
+        direction = DIR_WEST;
+    else if (follower->currentCoords.y > follower->previousCoords.y)
+        direction = DIR_SOUTH;
+    else if (follower->currentCoords.y < follower->previousCoords.y)
+        direction = DIR_NORTH;
+    else
+        direction = GetPlayerFacingDirection();
     sFrameMirrored = (direction == DIR_EAST);
     if (direction == DIR_NORTH)
         sFrameToCopy = 2;
@@ -266,8 +278,8 @@ void FollowerController_Tick(void)
         sFrameToCopy = 0;
     // Animate at one native walking frame per alternating tile; no large
     // per-frame DMA copy is performed from the field callback.
-    if (player->currentCoords.x != player->previousCoords.x
-     || player->currentCoords.y != player->previousCoords.y)
+    if (follower->currentCoords.x != follower->previousCoords.x
+     || follower->currentCoords.y != follower->previousCoords.y)
         sFrameToCopy += (++sWalkFrameCounter >> 3) & 1;
     else
         sWalkFrameCounter = 0;
