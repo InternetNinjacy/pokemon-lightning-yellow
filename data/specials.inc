@@ -457,6 +457,4 @@ gSpecials::
 	def_special PurchaseMysteryPokemon
 	def_special ScriptGiveShinyFeebasEgg
 	def_special RangerGiveGift
-	@ WRL-010: append only; preserve every preexisting special ID.
-	def_special FollowerSpecial_PlayCry
 gSpecialsEnd::
