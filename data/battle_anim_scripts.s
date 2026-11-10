@@ -407,6 +407,26 @@ gBattleAnims_Moves::
 	.4byte Move_LIQUIDATION
 	.4byte Move_VORTEX_SPIN
 	.4byte Move_TIDAL_CRASH
+	.4byte Move_NONE
+	.4byte Move_NONE
+	.4byte Move_NONE
+	.4byte Move_NONE
+	.4byte Move_SEED_BOMB
+	.4byte Move_PETAL_BLIZZARD
+	.4byte Move_NONE
+	.4byte Move_AURA_SPHERE
+	.4byte Move_FOCUS_BLAST
+	.4byte Move_NONE
+	.4byte Move_FLASH_CANNON
+	.4byte Move_MIRROR_SHOT
+	.4byte Move_IRON_HEAD
+	.4byte Move_BULLET_PUNCH
+	.4byte Move_AIR_SLASH
+	.4byte Move_NONE
+	.4byte Move_NONE
+	.4byte Move_NONE
+	.4byte Move_NONE
+	.4byte Move_HEART_STAMP
 	.4byte Move_COUNT @ cannot be reached, because last move is Psycho Boost
 
 	.align 2
@@ -11797,3 +11817,67 @@ Move_VORTEX_SPIN:
 @ BTL-005 single-target Rollout mechanics with approved Surf animation.
 Move_TIDAL_CRASH:
 	goto Move_SURF
+
+
+@ BTL-005 Batch A: approved Gen III animation reuse. Unsupported
+@ intervening moves are reserved and never distributed from this branch.
+Move_SEED_BOMB:
+	goto Move_BULLET_SEED
+
+Move_PETAL_BLIZZARD:
+	goto Move_PETAL_DANCE
+
+Move_AURA_SPHERE:
+	goto Move_PSYCHIC
+
+Move_FOCUS_BLAST:
+	goto Move_HYPER_BEAM
+
+@ Flash Cannon: Hyper Beam energy followed by Metal Claw's metallic shimmer.
+Move_FLASH_CANNON:
+	loadspritegfx ANIM_TAG_ORBS
+	createvisualtask AnimTask_MetallicShine, 5, 0, 0, 0
+	waitforvisualfinish
+	playsewithpan SE_M_HYPER_BEAM, SOUND_PAN_ATTACKER
+	createvisualtask AnimTask_ShakeMon2, 2, ANIM_TARGET, 1, 0, 8, 1
+	waitforvisualfinish
+	end
+
+Move_MIRROR_SHOT:
+	goto Move_SWIFT
+
+Move_IRON_HEAD:
+	goto Move_HEADBUTT
+
+@ Bullet Punch: Mach Punch's fast fist impact with Metal Claw shine.
+Move_BULLET_PUNCH:
+	loadspritegfx ANIM_TAG_IMPACT
+	loadspritegfx ANIM_TAG_HANDS_AND_FEET
+	createvisualtask AnimTask_MetallicShine, 5, 0, 0, 0
+	waitforvisualfinish
+	createsprite gFistFootSpriteTemplate, ANIM_ATTACKER, 2, 0, 0, 8, 1, 0
+	playsewithpan SE_M_VITAL_THROW2, SOUND_PAN_TARGET
+	createvisualtask AnimTask_ShakeMon, 2, ANIM_TARGET, 3, 0, 5, 1
+	waitforvisualfinish
+	end
+
+Move_AIR_SLASH:
+	goto Move_AIR_CUTTER
+
+@ Heart Stamp: Stomp foot impact followed by Confusion-style psychic pulse.
+Move_HEART_STAMP:
+	loadspritegfx ANIM_TAG_HANDS_AND_FEET
+	loadspritegfx ANIM_TAG_IMPACT
+	monbg ANIM_TARGET
+	setalpha 12, 8
+	createsprite gStompFootSpriteTemplate, ANIM_ATTACKER, 3, 0, -32, 15
+	delay 19
+	createsprite gBasicHitSplatSpriteTemplate, ANIM_ATTACKER, 2, 0, -8, ANIM_TARGET, 1
+	playsewithpan SE_M_MEGA_KICK2, SOUND_PAN_TARGET
+	waitforvisualfinish
+	createvisualtask AnimTask_ShakeMon, 2, ANIM_TARGET, 3, 0, 15, 1
+	playsewithpan SE_M_SUPERSONIC, SOUND_PAN_TARGET
+	waitforvisualfinish
+	clearmonbg ANIM_TARGET
+	blendoff
+	end
