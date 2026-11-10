@@ -61,6 +61,10 @@ def prior_batch_a_source(path, text=None):
     path=str(path)
     if text is None:
         text=Path(path).read_text()
+    # A later Batch B layer must first reverse exactly to its Batch A parent.
+    if Path(__file__).with_name('approved_batch_b_changes.py').exists():
+        from approved_batch_b_changes import prior_batch_b_source
+        text=prior_batch_b_source(path,text)
     if path not in HUNKS:
         return text
     def digest(t):
