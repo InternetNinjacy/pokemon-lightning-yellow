@@ -80,7 +80,7 @@ def gba_tiles_roundtrip(pixels, side):
     return bytes(encoded)
 
 
-def read_png(data):
+def read_png(data, include_gba_frames=False):
     if data[:8] != b"\x89PNG\r\n\x1a\n":
         raise ValueError("not PNG")
     pos = 8
@@ -170,7 +170,7 @@ def read_png(data):
     nonzero_cells = sum(any(pixel != 0 for pixel in frame) for frame in frames)
     if not nonzero_cells:
         raise ValueError("all six image cells use only index zero")
-    return {
+    result = {
         "dimensions": [w,h], "frame_cell_size": [cell_size,cell_size],
         "source_bit_depth": depth, "bit_depth": 4, "indexed_colors": len(palette)//3,
         "embedded_palette_rgb": embedded_rgb, "used_indices": used_indices,
@@ -185,6 +185,9 @@ def read_png(data):
         "nonzero_frame_cells": nonzero_cells,
         "cell_fingerprints": [hashlib.sha256(bytes(f)).hexdigest()[:12] for f in frames],
     }
+    if include_gba_frames:
+        result["gba_frames"] = gba_frames
+    return result
 
 
 def read_pal(data):
