@@ -54,6 +54,14 @@ for number in range(387,407):
  if number not in cases:
   assert entries[number]=="NONE",number
   assert "[MOVE_"+spec[number]["key"]+"]" not in data,number
+  # The array must have a valid category for every allocated slot. These
+  # numeric-only, zero-PP Splash records cannot masquerade as actual moves.
+  reserved=re.search(r"\\["+str(number)+r"\\]\\s*=\\s*\\{(.*?)\\n    \\},",data,re.S)
+  assert reserved,number
+  raw=reserved.group(1)
+  for exact in (".category = MOVE_CATEGORY_STATUS,",".effect = EFFECT_SPLASH,",
+                ".power = 0,", ".accuracy = 0,", ".pp = 0,", ".flags = 0,"):
+   assert exact in raw,(number,exact)
 assert "gCurrentMove == MOVE_ROLLOUT" in (R/"src/battle_script_commands.c").read_text()
 assert spec[386]["effect_rules"]["defense_curl_bonus"] is False
 print("PASS: Batch A ten approved indexed data/name/description/animation candidates; original Rollout-only Curl preserved. STAGING ONLY: reserved gaps, effects and composites require native acceptance.")
