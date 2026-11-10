@@ -356,7 +356,6 @@ static void dexTests(void) {
 #include "weather_moves.c"
 #include "weather_species.c"
 #include "original_effects.c"
-#include "btl_batch_a.c"
 
 #include "viridian_sign.c"
 
