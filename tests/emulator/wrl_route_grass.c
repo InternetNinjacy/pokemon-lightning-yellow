@@ -337,6 +337,13 @@ static void wrlLavenderToRoute8GrassWalkTests(void) {
     // edit the map, or treat a BFS path as proof of actual access.
     enum { W=90,H=40,N=W*H,MAX_REPLANS=24 };
     unsigned char blocked[N]={0};
+    // Julia's authored Route 8 object is at (62,14), facing LEFT with a
+    // six-tile trainer sight range. Her occupied tile is grid (69,21);
+    // grid x=63..68 on the same row enters her sight. Avoid this corridor
+    // when planning an *unbattled* walking path rather than mistaking a
+    // trainer dialogue lock for an impassable terrain tile. No trainer flag,
+    // event, encounter, or player position is modified.
+    for(unsigned x=63;x<=69;x++)blocked[21*W+x]=1;
     const int dx[4]={0,0,-1,1},dy[4]={-1,1,0,0};
     const unsigned keys[4]={64,128,32,16};
     unsigned totalFrames=0,totalSteps=0,replans=0,reached=0;
@@ -400,6 +407,8 @@ static void wrlLavenderToRoute8GrassWalkTests(void) {
                 fprintf(stderr,"WRL Route8 object-blocked target=(%u,%u) actual=(%u,%u) prior=(%u,%u) metatileCollision=%u replan=%u\n",
                         tx,ty,px,py,prevX,prevY,
                         CALL(MapGridGetCollisionAt,tx,ty),replans+1);
+                fprintf(stderr,"WRL Route8 stall fieldControlsLocked=%u scriptEnabled=%u\\n",
+                        CALL(ArePlayerFieldControlsLocked),CALL(ScriptContext_IsEnabled));
                 // Replan only if the attempted native step actually stayed
                 // in place. Unexpected movement is a genuine test failure.
                 CHECK(px==prevX && py==prevY);
