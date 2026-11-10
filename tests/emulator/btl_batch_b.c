@@ -61,3 +61,72 @@ static void batchBNativeTests(void){
  }
  CHECK(core->loadState(core,bootState));
 }
+
+static void batchBExactMechanics(void){
+ const unsigned moves[]={MOVE_DISCHARGE,MOVE_THUNDER_FANG,MOVE_WILD_CHARGE,
+  MOVE_WOOD_HAMMER,MOVE_DRAIN_PUNCH,MOVE_BRAVE_BIRD,MOVE_ZEN_HEADBUTT,
+  MOVE_CROSS_POISON,MOVE_POISON_JAB,MOVE_GUNK_SHOT};
+ const unsigned accuracies[]={100,95,100,100,100,100,90,100,100,80};
+ effectBattleFixture(0,MOVE_DISCHARGE);
+ unsigned script=CALL(AllocZeroed,16);CHECK(script);
+ void *snap=malloc(core->stateSize(core));CHECK(snap&&core->saveState(core,snap));
+ for(unsigned m=0;m<10;m++){
+  unsigned hits=0;
+  for(unsigned roll=0;roll<100;roll++){
+   CHECK(core->loadState(core,snap));
+   core->busWrite8(core,SYM_gBattlerAttacker,0);
+   core->busWrite8(core,SYM_gBattlerTarget,1);
+   core->busWrite16(core,SYM_gCurrentMove,moves[m]);
+   core->busWrite8(core,SYM_gMoveResultFlags,0);
+   core->busWrite32(core,SYM_gHitMarker,0);
+   for(unsigned i=0;i<4;i++)core->busWrite8(core,script+1+i,(script+12)>>(8*i));
+   core->busWrite8(core,script+5,moves[m]&255);
+   core->busWrite8(core,script+6,moves[m]>>8);
+   core->busWrite32(core,SYM_gBattlescriptCurrInstr,script);
+   core->busWrite32(core,SYM_gRngValue,iceFangChanceSeed(roll));
+   CALL(Cmd_accuracycheck);
+   unsigned hit=core->busRead32(core,SYM_gBattlescriptCurrInstr)==script+7;
+   CHECK(hit==(roll<accuracies[m]));
+   hits+=hit;
+  }
+  CHECK(hits==accuracies[m]);
+ }
+ // Each fang outcome is independent: paralysis and flinch each roll 10%;
+ // Serene Grace doubles either independently, not their combined probability.
+ const unsigned secondaryMoves[]={MOVE_DISCHARGE,MOVE_THUNDER_FANG,
+  MOVE_THUNDER_FANG,MOVE_ZEN_HEADBUTT,MOVE_CROSS_POISON,
+  MOVE_POISON_JAB,MOVE_GUNK_SHOT};
+ const unsigned effects[]={MOVE_EFFECT_PARALYSIS,MOVE_EFFECT_PARALYSIS,
+  MOVE_EFFECT_FLINCH,MOVE_EFFECT_FLINCH,MOVE_EFFECT_POISON,
+  MOVE_EFFECT_POISON,MOVE_EFFECT_POISON};
+ const unsigned percent[]={30,10,10,20,10,30,30};
+ for(unsigned m=0;m<7;m++)for(unsigned serene=0;serene<2;serene++)
+ for(unsigned guard=0;guard<4;guard++)for(unsigned boundary=0;boundary<2;boundary++){
+  CHECK(core->loadState(core,snap));
+  unsigned t=percent[m]*(serene?2:1),roll=boundary?t:t-1;
+  core->busWrite8(core,SYM_gBattlerAttacker,0);
+  core->busWrite8(core,SYM_gBattlerTarget,1);
+  core->busWrite16(core,SYM_gCurrentMove,secondaryMoves[m]);
+  core->busWrite8(core,SYM_gMoveResultFlags,0);
+  core->busWrite32(core,SYM_gHitMarker,0);
+  core->busWrite8(core,bmon(0)+ABI_BMON_ABILITY,serene?ABILITY_SERENE_GRACE:ABILITY_NONE);
+  core->busWrite8(core,bmon(1)+ABI_BMON_ABILITY,
+    guard==1?ABILITY_SHIELD_DUST:guard==3?ABILITY_INNER_FOCUS:ABILITY_NONE);
+  if(guard==2)core->busWrite32(core,bmon(1)+ABI_BMON_STATUS2,STATUS2_SUBSTITUTE);
+  core->busWrite8(core,SYM_gBattlerByTurnOrder,0);
+  core->busWrite8(core,SYM_gBattlerByTurnOrder+1,1);
+  core->busWrite8(core,SYM_gCurrentTurnActionNumber,0);
+  core->busWrite8(core,SYM_gBattleCommunication+MOVE_EFFECT_BYTE,effects[m]);
+  core->busWrite32(core,SYM_gRngValue,iceFangChanceSeed(roll));
+  core->busWrite32(core,SYM_gBattlescriptCurrInstr,script);
+  CALL(Cmd_seteffectwithchance);
+  unsigned flinch=(m==2||m==3);
+  unsigned applied=flinch?
+    !!(core->busRead32(core,bmon(1)+ABI_BMON_STATUS2)&STATUS2_FLINCHED):
+    !!(core->busRead32(core,bmon(1)+ABI_BMON_STATUS1)&
+      (effects[m]==MOVE_EFFECT_PARALYSIS?STATUS1_PARALYSIS:STATUS1_POISON));
+  CHECK(applied==(!boundary&&(guard==0||(guard==3&&!flinch))));
+ }
+ CHECK(core->loadState(core,snap));CALL(Free,script);free(snap);
+ printf("PASS: Batch B native exact 80/90/95/100 accuracy, independent Thunder Fang effects and 10/20/30%% secondary boundaries with ability guards\\n");
+}
