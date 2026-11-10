@@ -126,8 +126,10 @@ static void spreadStatusTests(void){
 #include "new_moves382.c"
 #include "new_water_moves385.c"
 #include "btl_batch_a.c"
+#include "btl_batch_b.c"
 static void originalEffectTests(void){
  if(getenv("LIGHTNING_BTL_BATCH_A_ONLY")){batchAExactMechanics();batchANativeTests();batchAFlashPersistence();return;}
+ if(getenv("LIGHTNING_BTL_BATCH_B_ONLY")){batchBExactMechanics();batchBNativeTests();batchBFlashPersistence();return;}
  if(getenv("LIGHTNING_SKITTER_SLASH_ONLY")){skitterSlashTests();return;}
  if(getenv("LIGHTNING_VENOM_WEB_ONLY")){venomWebTests();return;}
  if(getenv("LIGHTNING_BUG_STATDROPS_ONLY")){bugStatdropTests();return;}
@@ -162,6 +164,9 @@ static void originalEffectTests(void){
  batchAExactMechanics();
  batchANativeTests();
  batchAFlashPersistence();
+ batchBExactMechanics();
+ batchBNativeTests();
+ batchBFlashPersistence();
  thunderWaveTests();
  ghostReworkTests();
  spreadStatusTests();
