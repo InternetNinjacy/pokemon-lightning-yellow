@@ -16,7 +16,8 @@ for key,idx,typ,power,acc,pp,priority,effect,chance,king in rows:
  assert 'FLAG_MAKES_CONTACT' in b and ('FLAG_KINGS_ROCK_AFFECTED' in b)==king
  assert '#define MOVE_'+key+' '+str(idx) in c and a.count('.4byte Move_'+key+'\n')==1
  for p in ['src/data/pokemon/level_up_learnsets.h','src/data/pokemon/tmhm_learnsets.h','src/data/trainer_parties.h']:assert 'MOVE_'+key not in Path(p).read_text(),p
-assert '#define MOVES_COUNT 387' in c  # #385-386 appended without renumbering #382-384
+from approved_batch_a_changes import prior_batch_a_source
+assert '#define MOVES_COUNT 387' in prior_batch_a_source('include/constants/moves.h',c)  # exact accepted #385-386 projection
 assert 'Move_FOUL_PLAY:\n\tgoto Move_THIEF\n' in a and 'Move_LIQUIDATION:\n\tgoto Move_WATERFALL\n' in a
 jet=a.split('Move_AQUA_JET:\n')[1].split('\tend\n',1)[0];assert 'AnimTask_TraceMonBlended' in jet and 'gWaterGunProjectileSpriteTemplate' in jet and 'call Move_' not in jet and 'ANIM_DEF_PARTNER' not in jet
 p=Path('src/pokemon.c').read_text();assert 'attackStatSource = (move == MOVE_FOUL_PLAY) ? defender : attacker;' in p and 'attack = attackStatSource->attack;' in p
