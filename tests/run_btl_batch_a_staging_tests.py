@@ -25,7 +25,7 @@ cases={
 }
 assert re.search(r"^#define MOVES_COUNT 407$",ids,re.M)
 table=art.split("gBattleAnims_Moves::",1)[1].split(".4byte Move_COUNT @",1)[0]
-entries=re.findall(r"^\s*\.4byte Move_(\w+)\s*$",table,re.M)
+entries=re.findall(r"^\s*\.4byte Move_(\w+)[^\n]*$",table,re.M)
 assert len(entries)==407, len(entries)
 for number,(effect,target,contact) in cases.items():
  row=spec[number];key=row["key"];approved=row["approved"]
