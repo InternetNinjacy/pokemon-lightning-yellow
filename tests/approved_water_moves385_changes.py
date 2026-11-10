@@ -2,6 +2,7 @@
 Expected historical SHA values and original approved manifests remain unchanged.
 """
 from pathlib import Path
+from approved_moves387_changes import prior_moves387_source
 
 HUNKS = {
   # New production delta is strictly reversible before the frozen ancestor
