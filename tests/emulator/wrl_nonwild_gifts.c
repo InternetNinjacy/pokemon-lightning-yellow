@@ -23,6 +23,23 @@ static void wrlParcelEeveeTests(void) {
   fossilStart(SYM_PalletTown_ProfessorOaksLab_EventScript_RetryParcelGifts);
   fossilClose(1);
   CHECK(core->busRead8(core,SYM_gPlayerPartyCount)==count);
+  // Re-arm a stale pending flag after a real flash reload: the persisted
+  // delivered flag must prevent a duplicate SUE in either party or PC.
+  CALL(FlagSet,FLAG_OAK_EEVEE_PENDING);
+  fossilStart(SYM_PalletTown_ProfessorOaksLab_EventScript_RetryParcelGifts);
+  fossilClose(1);
+  CHECK(CALL(FlagGet,FLAG_GOT_OAK_PARCEL_EEVEE));
+  CHECK(!CALL(FlagGet,FLAG_OAK_EEVEE_PENDING));
+  CHECK(core->busRead8(core,SYM_gPlayerPartyCount)==count);
+  if(pc)CALL(BoxMonToMon,CALL(GetBoxedMonPtr,0,0),mon);
+  CHECK(monget(mon,ABI_DATA_SPECIES)==SPECIES_EEVEE);
+  CHECK(monget(mon,ABI_DATA_PERSONALITY)==pid);
+  flashRoundTrip();
+  CHECK(core->busRead8(core,SYM_gPlayerPartyCount)==count);
+  CHECK(CALL(FlagGet,FLAG_GOT_OAK_PARCEL_EEVEE));
+  CHECK(!CALL(FlagGet,FLAG_OAK_EEVEE_PENDING));
+  if(pc)CALL(BoxMonToMon,CALL(GetBoxedMonPtr,0,0),mon);
+  CHECK(monget(mon,ABI_DATA_PERSONALITY)==pid);
  }
  vendorFixture();vendorFillCapacity();
  CALL(FlagSet,FLAG_OAK_EEVEE_PENDING);
