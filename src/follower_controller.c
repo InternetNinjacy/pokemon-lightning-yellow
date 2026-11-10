@@ -33,6 +33,7 @@ static struct FollowerGraphicsAsset sPendingGraphics;
 static u8 sFrameToCopy;
 static u8 sLastCopiedFrame = 0xFF;
 static bool8 sFrameMirrored;
+static u8 sWalkFrameCounter;
 
 static void ResetTrail(void)
 {
@@ -264,7 +265,9 @@ void FollowerController_Tick(void)
     // per-frame DMA copy is performed from the field callback.
     if (player->currentCoords.x != player->previousCoords.x
      || player->currentCoords.y != player->previousCoords.y)
-        sFrameToCopy += (gMain.frameCounter >> 3) & 1;
+        sFrameToCopy += (++sWalkFrameCounter >> 3) & 1;
+    else
+        sWalkFrameCounter = 0;
 }
 
 void FollowerController_VBlank(void)
