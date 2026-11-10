@@ -350,6 +350,7 @@ static void dexTests(void) {
 #include "move_long_name_ui.c"
 #include "original_move_data.c"
 #include "move_pp_compatibility.c"
+#include "follower.c"
 
 int main(int argc,char **argv) {
     setvbuf(stdout,NULL,_IONBF,0);
@@ -491,6 +492,7 @@ int main(int argc,char **argv) {
         levelScene(SPECIES_TYROGUE,15,choices[i],i,0,stats==0?200:10,stats==2?200:10);
     levelScene(SPECIES_TYROGUE,15,SPECIES_HITMONCHAN,0,1,100,100);
     levelScene(SPECIES_TYROGUE,16,SPECIES_HITMONTOP,2,2,100,100);
+    followerNativeTests();
     dexTests();
     categoryTests();
     summaryTests();
