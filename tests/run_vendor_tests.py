@@ -50,7 +50,7 @@ for path,items in fixture['blocks'].items():
     for label,digest in items.items():
         assert hashlib.sha256(current[label].strip().encode()).hexdigest()==digest,(path,label)
 specials=prior_museum_source('data/specials.inc')
-assert re.findall(r'\bdef_special\s+(\w+)',specials)==fixture['specials']+['MysteryVendorStatus','PurchaseMysteryPokemon','FollowerSpecial_PlayCry']
+assert re.findall(r'\bdef_special\s+(\w+)',specials)==fixture['specials']+['MysteryVendorStatus','PurchaseMysteryPokemon']
 assert specials.index('def_special PurchaseMysteryPokemon') < specials.index('gSpecialsEnd::')
 sites=json.loads(Path('tests/specifications/mystery_vendor_sites.json').read_text())['vendors']
 for v in sites:
