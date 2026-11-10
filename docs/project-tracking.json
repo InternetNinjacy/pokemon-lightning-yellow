@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated": "2026-11-07",
+  "updated": "2026-11-09",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "Master Control formally closes INT-003 at 16 earned/0 remaining after PR117 GitHub/Drive reconciliation; project 456 earned/256 remaining of712 (64.04%). Preserve 50 permanent IDs and all prior histories, no duplicate Rocket/lighting/title credit. Remaining gameplay, move, ecology and shared release QA continue under their independent owners.",
-  "main_sha": "b29f0863bc57013cad28b0e51da03a0ab67e1628",
+  "current_focus": "Master Control verified WTH-001 SOW encounter implementation PR139 merged to main4e73c908 with final PR-head and merged-main CI success; WTH-001 28/0 CLOSED (+4 reserved), project460 earned/252 remaining of712 (64.61%). WTH-002 visual/fog and INT-004/005 release QA remain separate; Codex BTL-005, PKM-009 species, wild ecology and WRL-010 asset licensing continue independently. No reimplementation or additional SOW visual approval round absent regression.",
+  "main_sha": "4e73c90831baa9ff989f60c3c1908844956ed1ed",
   "drive_sync": {
-    "status": "2026-11-07 INT-003 GitHub governance PR117 merged and existing Project Progress, START HERE and Change Intake docs synchronized/read back. Master Control final four-point award authorized; final closure append to existing Drive docs in progress.",
+    "status": "2026-11-09 WTH-001 merged and canonical GitHub tracking closeout prepared for review; existing START HERE, Project Progress, Weather Specification and Decision Register updated/read back independently in same session (see Drive revision/readback).",
     "folder": "https://drive.google.com/drive/folders/1N_n0Ke48jBbdhUWSZWzwR6rpPFqpDUpl"
   },
   "areas": [
@@ -863,8 +863,8 @@
       "title": "Map weather selection and persistent state",
       "aliases": [],
       "effort": {
-        "earned": 24,
-        "remaining": 4,
+        "earned": 28,
+        "remaining": 0,
         "unit": "provisional relative planning point",
         "confidence": "medium",
         "history": [
@@ -879,6 +879,12 @@
             "earned": 24,
             "remaining": 4,
             "reason": "Scoped weather core/native callback/render stability acceptance in PR29; independent task scopes, no new credit for pre-existing Snow/Hail bridge. Final broad integration/review/remaining rendering retained."
+          },
+          {
+            "date": "2026-11-09",
+            "earned": 28,
+            "remaining": 0,
+            "reason": "Master Control WTH-001 scoped closeout: PR139 merged4e73c908, final PR-head workflows42666339237/42666327883 and title42666338673 successful, merged-commit modified/upstream SUCCESS42666557371, accepted SOW-004/007/008 actual A-interaction/capture/defeat/flee/loss/save/reentry/weather native tests, locked Route23 Tyranitar(13,142). Four previously reserved WTH-001 points awarded, denominator712 unchanged; WTH-002 visual/fog and INT release QA explicitly not certified."
           }
         ]
       },
@@ -887,20 +893,20 @@
       ],
       "status": {
         "design": "Weighted maps/entry/reentry/night conversion/RTC recovery supplied and approved",
-        "implementation": "implemented83 explicit policy/context/RTC core; scoped acceptance passed",
-        "automated": "14 host suites/Museum PASS;10880936 exhaustive accepted-roll plus state/rejection checks; clean reproducibility PASS; live CI inPR29",
-        "emulator": "focused128355 PASS with6 local captures; full default evidence/results maintained inPR29",
-        "pull_request": "PR#29 merged; historical branch evidence retained",
-        "merge": "merged to main; remaining feature scope/coverage is not inferred complete"
+        "implementation": "COMPLETE: regional policy/core, approved SOW-004 Route12(19,87), SOW-007 Route21 North(13,7), SOW-008 Route23(13,142) visible events, native abilities and capture/defeat/Run/loss weather lifecycle merged to main",
+        "automated": "PR139 final exact-head split CI42666339237 and42666327883 SUCCESS; title42666338673 SUCCESS; merged commit4e73c908 modified and upstream-baseline SUCCESS42666557371, host/source-contract guards preserved",
+        "emulator": "Actual mGBA overworld A-interaction, party/PC captures, defeat/Run/loss, permanent flags, flash save/reentry and weather activation/restoration verified for three SOW; approved Tyranitar(13,142) land reachable; physical hardware/full story/visual-fog release QA separate",
+        "pull_request": "PR139 merged; PR137/138 superseded closed unmerged; isolated diagnostic PR163 closed unmerged",
+        "merge": "main merge4e73c90831baa9ff989f60c3c1908844956ed1ed; owner-approved exact Tyranitar(13,142) locked"
       },
-      "branch": "feature/dynamic-map-weather",
-      "commit": "e04a7bc6369e47fa363631208547d6724629f9bc",
-      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/29",
-      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/29/checks",
+      "branch": "main",
+      "commit": "4e73c90831baa9ff989f60c3c1908844956ed1ed",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/139",
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/42666557371",
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Review scoped PR29 after full checks; preserve remaining rendering/lighting/fog and broader regional/manual/integration acceptance. Reviewed-head registration conflicts resolved in PR35; review combined acceptance and preserve remaining manual/hardware coverage.",
-      "checkpoint": "2026-11-04 resumed scoped acceptance; full results/live checks inPR29",
+      "next_action": "CLOSED WTH-001 scoped implementation; specialist retired. Preserve SOW-004/007/008 and Route23(13,142). Any broad fog/lighting presentation belongs WTH-002; release/hardware/natural-play acceptance INT-004/005; no redundant weather PR merges.",
+      "checkpoint": "2026-11-09 PR139 merged and exact merged-main checks SUCCESS; final prior PR head split/title workflows SUCCESS.",
       "source_exports": [
         "05_WEATHER_LIGHTING/Pokémon Lightning Yellow — Lighting & Weather Decision Handoff and Next Steps — 2026-10-28.txt",
         "05_WEATHER_LIGHTING/Pokémon Lightning Yellow — Lighting & Weather Decision Register — 2026-10-28.txt",
@@ -910,9 +916,25 @@
       "source_status": "available locally; checksums verified; precise approvals/read scope in reconciliation report",
       "combined_acceptance": "Exact reviewed27/29/31 heads reconciled inPR35;16 hosts/clean/upstream/full local+CI463243 PASS. No main/feature PR merge; future head changes require reconciliation.",
       "merged_reference": {
-        "pr": 29,
-        "merge_commit": "cd7be97ef57c3636523ae54aaeb31a7085d7f275",
-        "verified_main": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c"
+        "pr": 139,
+        "merge_commit": "4e73c90831baa9ff989f60c3c1908844956ed1ed",
+        "verified_main": "4e73c90831baa9ff989f60c3c1908844956ed1ed",
+        "approved_tyranitar": {
+          "map": "MAP_ROUTE23",
+          "x": 13,
+          "y": 142
+        },
+        "superseded_prs": [
+          137,
+          138,
+          163
+        ],
+        "ci_run_ids": [
+          42666339237,
+          42666327883,
+          42666338673,
+          42666557371
+        ]
       }
     },
     {
@@ -2969,7 +2991,7 @@
   },
   "progress_accounting": {
     "rule": "EARNED estimates include verified scoped native/build work in OPEN PRs when explicitly flagged; not equivalent to code merged to main. Review and release gates retained. Documentation-only PRs get zero gameplay implementation credit. New scope tasks record net extra workload beyond existing broad task buckets.",
-    "as_of": "2026-11-07",
+    "as_of": "2026-11-09",
     "main_evidence": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c",
     "known_merged_code_credit_separate_from_open": "Open PR evidence credited only once to corresponding permanent task. No separate points awarded merely for large assertion counts.",
     "reconciliation": {
@@ -2998,6 +3020,17 @@
       "area_gym_earned_after": 102,
       "area_gym_remaining_after": 20,
       "release_qa": "INT-004/INT-005 retained; newest checked main CI 42387190568 in progress at review; no new emulator run claimed"
+    },
+    "wth001_closure": {
+      "date": "2026-11-09",
+      "earned_before": 456,
+      "remaining_before": 256,
+      "earned_after": 460,
+      "remaining_after": 252,
+      "total_unchanged": 712,
+      "points_reassigned": 4,
+      "source": "PR139 merge 4e73c908 and split/title/merged checks, owner specialist handoff",
+      "limits": "WTH-002 visual-fog and INT-004/005 broad tests excluded"
     }
   },
   "latest_consolidation": {
