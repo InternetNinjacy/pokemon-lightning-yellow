@@ -75,6 +75,17 @@ static void waterMoves385Tests(void){
      // that input the test can stall at the partner's action menu indefinitely.
      if(two&&controller(2)==SYM_HandleInputChooseAction){
       chooseMove(2,0,1);
+     }else if(two&&controller(2)==SYM_HandleInputChooseMove){
+      // A controller can advance to the partner's move menu after the
+      // prior action helper returned; finish that actual native menu.
+      CHECK(core->busRead8(core,SYM_gMoveSelectionCursor+2)==0);
+      press(1);
+     }else if(two&&controller(2)==SYM_HandleInputChooseTarget){
+      // A delayed selected-target menu is likewise real controller input.
+      // Never accept an unintended ally or second foe as the target.
+      for(unsigned turn=0;turn<6&&core->busRead8(core,SYM_gMultiUsePlayerCursor)!=1;turn++)press(16);
+      CHECK(core->busRead8(core,SYM_gMultiUsePlayerCursor)==1);
+      press(1);
      }
      frames(1,(frame%12)<3?1:0);
      unsigned current=core->busRead16(core,bmon(1)+ABI_BMON_HP);
