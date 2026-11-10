@@ -33,7 +33,8 @@ static u8 sDesiredForm;
 static u8 sBoundForm;
 static struct FollowerGraphicsAsset sPendingGraphics;
 static u8 sFrameToCopy;
-static u8 sLastCopiedFrame = 0xFF;
+static u8 sLastCopiedFrame;
+static bool8 sHasCopiedFrame;
 static bool8 sFrameMirrored;
 static u8 sWalkFrameCounter;
 
@@ -49,7 +50,7 @@ void FollowerController_RequestRefresh(void)
     // can run after the field has torn down sprite IDs.
     sPendingAsset = FALSE;
     sBoundAsset = FALSE;
-    sLastCopiedFrame = 0xFF;
+    sHasCopiedFrame = FALSE;
     ResetTrail();
 }
 
@@ -287,16 +288,20 @@ void FollowerController_VBlank(void)
         sBoundShiny = sDesiredShiny;
         sBoundForm = sDesiredForm;
         sLastCopiedFrame = 0;
+        sHasCopiedFrame = TRUE;
     }
     if (!sBoundAsset)
         return;
     id = FollowerGraphics_GetSpriteId();
     if (id >= MAX_SPRITES || !gSprites[id].inUse)
         return;
-    if (sFrameToCopy < 6 && sFrameToCopy != sLastCopiedFrame)
+    if (sFrameToCopy < 6 && (!sHasCopiedFrame || sFrameToCopy != sLastCopiedFrame))
     {
         if (FollowerGraphics_SetFrame(sFrameToCopy))
+        {
             sLastCopiedFrame = sFrameToCopy;
+            sHasCopiedFrame = TRUE;
+        }
     }
     gSprites[id].hFlip = sFrameMirrored;
 }
