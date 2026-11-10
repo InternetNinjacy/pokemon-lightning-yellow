@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "updated": "2026-11-09",
+  "updated": "2026-11-10",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "Master Control verified WTH-001 SOW encounter implementation PR139 merged to main4e73c908 with final PR-head and merged-main CI success; WTH-001 28/0 CLOSED (+4 reserved), project460 earned/252 remaining of712 (64.61%). WTH-002 visual/fog and INT-004/005 release QA remain separate; Codex BTL-005, PKM-009 species, wild ecology and WRL-010 asset licensing continue independently. No reimplementation or additional SOW visual approval round absent regression.",
+  "current_focus": "Proposed WRL-008 task-level closure following accepted vendor PR12 and merged WRL-001 PR88: +1 reserved point (461 earned/251 remaining of712, pending Master Control review and documentation merge). Other tasks and release QA unchanged.",
   "main_sha": "4e73c90831baa9ff989f60c3c1908844956ed1ed",
   "drive_sync": {
     "status": "2026-11-09 WTH-001 merged and canonical GitHub tracking closeout prepared for review; existing START HERE, Project Progress, Weather Specification and Decision Register updated/read back independently in same session (see Drive revision/readback).",
@@ -2248,8 +2248,8 @@
       "title": "Mystery Pokémon Vendor Network",
       "aliases": [],
       "effort": {
-        "earned": 19,
-        "remaining": 1,
+        "earned": 20,
+        "remaining": 0,
         "unit": "provisional relative planning point",
         "confidence": "low",
         "history": [
@@ -2258,17 +2258,23 @@
             "earned": 19,
             "remaining": 1,
             "reason": "New separately approved feature scope20; implemented transaction/UI/persistence and executed scoped tests. One point reserved for starter integration acceptance; no duplicate INT-004 feature-test credit."
+          },
+          {
+            "date": "2026-11-10",
+            "earned": 20,
+            "remaining": 0,
+            "reason": "Proposed Master Control closeout: independent vendor-starter boundary approved in owner handoff, vendor PR12 merged and validated native/CI, WRL-001 Pikachu/Eevee PR88 independently merged; current-main source confirms separate pool/gifts/flags/OT and no shared acquisition hook. Final reserved point only; full-game acquisition and release QA remain separate. See docs/WRL008_STARTER_BOUNDARY_ACCEPTANCE.md."
           }
         ]
       },
       "dependencies": [],
       "status": {
         "design": "approved owner handoff v1.0 and vendor CSV; independent starter boundary explicitly approved",
-        "implementation": "implemented and merged into main; starter integration acceptance remains",
+        "implementation": "Complete and merged; independent starter boundary inspected against merged WRL-001 PR88; no vendor code changes required",
         "automated": "eight host suites PASS; local clean repeatability PASS; final Actions modified/upstream SUCCESS",
         "emulator": "full local mGBA PASS; vendor transaction/UI/10000 purchases/EXP/obedience plus existing stack; external gaps retained",
         "pull_request": "PR#12 merged; historical branch evidence retained",
-        "merge": "merged to main; remaining feature scope/coverage is not inferred complete"
+        "merge": "PR12 merged ef98140d; WRL-001 PR88 merged 1cc82d53; starter boundary verified on main ec81efb; proposed tracking closeout awaiting Master Control merge authorization"
       },
       "branch": "main",
       "commit": "d54f7a8e85d38b8fa304399dcb4d14778396d5cd",
@@ -2276,9 +2282,9 @@
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41673840642",
       "blocker": null,
       "design_authority": "DES-008 owner supplied Mystery Vendor Codex Implementation Handoff v1.0, approved pool CSV, explicit independent starter boundary. Approved700/level5/90%/OT Mystery; no new design inferred.",
-      "next_action": "Preserve implemented scoped behavior on main; remaining expanded acceptance is tracked separately.",
+      "next_action": "Proposed CLOSED for WRL-008 task-level acceptance: see docs/WRL008_STARTER_BOUNDARY_ACCEPTANCE.md; Master Control reviews/merges accounting. Global species source exclusivity and organic full-game/release QA remain separate.",
       "checkpoint": "2026-11-04 PR#12 head includes owner-authorized#13 merge; vendor itself remains open, not main.",
-      "coverage_gap": "Manual full progression, actual two-peer trade/hardware, flash power-loss injection, exhaustive quest-log replay and independent Shiny-summary visual approval unverified. Starter exclusivity awaits WRL-001; source preservation is not runtime story acceptance.",
+      "coverage_gap": "Starter-boundary source integration verified after WRL-001 merge; independent global acquisition/ecology, manual full progression, two-peer trade/hardware, flash power-loss, exhaustive quest-log replay and Shiny-summary presentation remain separate owners/release QA.",
       "implementation_ref": {
         "branch": "feature/mystery-vendor-network",
         "commit": "d54f7a8e85d38b8fa304399dcb4d14778396d5cd"
