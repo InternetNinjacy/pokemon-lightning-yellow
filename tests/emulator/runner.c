@@ -574,6 +574,7 @@ int main(int argc,char **argv) {
     levelScene(SPECIES_TYROGUE,16,SPECIES_HITMONTOP,2,2,100,100);
     followerNativeTests();
     followerFieldNativeTests();
+    followerGiftNativeTests();
     dexTests();
     categoryTests();
     summaryTests();
