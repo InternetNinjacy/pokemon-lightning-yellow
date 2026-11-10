@@ -30,7 +30,16 @@ static void waterMoves385Tests(void){
    CHECK(monget(player(0),ABI_DATA_PP1)==pp[m]-1);
    CHECK(core->busRead16(core,bmon(0)+ABI_BMON_HP)==1000);
    if(two){CHECK(core->busRead16(core,bmon(2)+ABI_BMON_HP)==1000);CHECK(core->busRead16(core,bmon(3)+ABI_BMON_HP)==1000);}
-   if(hp<1000){if(hp<1000-expected)fprintf(stderr,"WATER385_DAMAGE_MISMATCH move=%u two=%u trial=%u hp=%u dealt=%u expected=%u dynamic=%u status2=%08x flags=%08x seed=%08x\\n",moves[m],two,trial,hp,1000-hp,expected,core->busRead32(core,SYM_gDynamicBasePower),core->busRead32(core,bmon(0)+ABI_BMON_STATUS2),core->busRead32(core,SYM_gBattleTypeFlags),0x38538600U+trial*7919U+two*17U+m*31U);CHECK(hp>=1000-expected);hits++;}
+   if(hp<1000){
+    // A forced native Rollout sequence may execute several damaging turns before
+    // waitActionBudget returns control. Compare the cumulative damage against
+    // the sum of the five approved stage powers, not a single base-power hit.
+    // Vortex Spin still uses its original strict single-hit bound.
+    unsigned maxDamage=expected*(m==1?31U:1U); // 1+2+4+8+16
+    if(1000-hp>maxDamage)fprintf(stderr,"WATER385_DAMAGE_MISMATCH move=%u two=%u trial=%u hp=%u dealt=%u expected_single=%u max_sequence=%u dynamic=%u status2=%08x flags=%08x seed=%08x\\n",moves[m],two,trial,hp,1000-hp,expected,maxDamage,core->busRead32(core,SYM_gDynamicBasePower),core->busRead32(core,bmon(0)+ABI_BMON_STATUS2),core->busRead32(core,SYM_gBattleTypeFlags),0x38538600U+trial*7919U+two*17U+m*31U);
+    CHECK(1000-hp<=maxDamage);
+    hits++;
+   }
    if(m==0)CHECK(!(core->busRead32(core,bmon(1)+ABI_BMON_STATUS2)&STATUS2_WRAPPED));
   }
   CHECK(hits);
