@@ -4,11 +4,31 @@
 static void wrlRouteGrassFixture(unsigned group,unsigned map,unsigned x,unsigned y) {
     // Reuse the native overworld fixture with two healthy level-50 Pokemon.
     wildFixture(MAP_GROUP(MAP_ROUTE1),MAP_NUM(MAP_ROUTE1),1);
+    // Diagnose the Cerulean fixture at each native warp/load stage. Map 3.19
+    // is Route 1 (the staging fixture), NOT Route 5; do not misattribute it
+    // to a spontaneous southern map connection without observing the transition.
+    if(group==MAP_GROUP(MAP_CERULEAN_CITY) && map==MAP_NUM(MAP_CERULEAN_CITY))
+        fprintf(stderr,"WRL Cerulean stage=staging saveMap=(%u,%u) pos=(%u,%u)\\n",
+                core->busRead8(core,SYM_gSaveBlock1+4),core->busRead8(core,SYM_gSaveBlock1+5),
+                core->busRead16(core,SYM_gSaveBlock1),core->busRead16(core,SYM_gSaveBlock1+2));
     CALL(SetWarpDestination,group,map,0xFFFFFFFF,x,y);
     CALL(WarpIntoMap);
+    if(group==MAP_GROUP(MAP_CERULEAN_CITY) && map==MAP_NUM(MAP_CERULEAN_CITY))
+        fprintf(stderr,"WRL Cerulean stage=warp saveMap=(%u,%u) pos=(%u,%u)\\n",
+                core->busRead8(core,SYM_gSaveBlock1+4),core->busRead8(core,SYM_gSaveBlock1+5),
+                core->busRead16(core,SYM_gSaveBlock1),core->busRead16(core,SYM_gSaveBlock1+2));
     CALL(ResetInitialPlayerAvatarState);
     CALL(CB2_LoadMap);
+    if(group==MAP_GROUP(MAP_CERULEAN_CITY) && map==MAP_NUM(MAP_CERULEAN_CITY))
+        fprintf(stderr,"WRL Cerulean stage=load-start saveMap=(%u,%u) pos=(%u,%u)\\n",
+                core->busRead8(core,SYM_gSaveBlock1+4),core->busRead8(core,SYM_gSaveBlock1+5),
+                core->busRead16(core,SYM_gSaveBlock1),core->busRead16(core,SYM_gSaveBlock1+2));
     frames(360,0);
+    if(group==MAP_GROUP(MAP_CERULEAN_CITY) && map==MAP_NUM(MAP_CERULEAN_CITY))
+        fprintf(stderr,"WRL Cerulean stage=load-finish saveMap=(%u,%u) pos=(%u,%u) cb2=%08x\\n",
+                core->busRead8(core,SYM_gSaveBlock1+4),core->busRead8(core,SYM_gSaveBlock1+5),
+                core->busRead16(core,SYM_gSaveBlock1),core->busRead16(core,SYM_gSaveBlock1+2),
+                core->busRead32(core,SYM_gMain+ABI_MAIN_CB2));
     CHECK((core->busRead32(core,SYM_gMain+ABI_MAIN_CB2)&~1U)==SYM_CB2_Overworld);
 }
 static unsigned wrlRouteGrassAt(unsigned x,unsigned y) {
