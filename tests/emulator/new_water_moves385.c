@@ -75,25 +75,30 @@ static void waterMoves385Mechanics(void){
   CHECK(!(status2&STATUS2_WRAPPED));
  }
  CHECK(core->loadState(core,state));CALL(Free,script);free(state);
- for(unsigned curl=0;curl<2;curl++){
-  effectBattleFixture(0,MOVE_TIDAL_CRASH);
+ // Independently prove original Rollout retains its Defense Curl interaction
+ // while Tidal Crash shares ONLY the five-turn progression and miss cleanup.
+ for(unsigned original=0;original<2;original++)for(unsigned curl=0;curl<2;curl++){
+  const unsigned move=original?MOVE_ROLLOUT:MOVE_TIDAL_CRASH;
+  effectBattleFixture(0,move);
   script=CALL(AllocZeroed,32);CHECK(script);
   core->busWrite8(core,SYM_gBattlerAttacker,0);
   core->busWrite8(core,SYM_gBattlerTarget,1);
-  core->busWrite16(core,SYM_gCurrentMove,MOVE_TIDAL_CRASH);
+  core->busWrite16(core,SYM_gCurrentMove,move);
   core->busWrite32(core,SYM_gMoveResultFlags,0);
   core->busWrite32(core,bmon(0)+ABI_BMON_STATUS2,curl?STATUS2_DEFENSE_CURL:0);
   core->busWrite32(core,SYM_gBattlescriptCurrInstr,script);
   for(unsigned step=0;step<5;step++){
    CALL(Cmd_rolloutdamagecalculation);
-   CHECK(core->busRead32(core,SYM_gDynamicBasePower)==(30U<<step)*(curl?2:1));
+   unsigned expected=(30U<<step)*(original&&curl?2U:1U);
+   CHECK(core->busRead32(core,SYM_gDynamicBasePower)==expected);
    CHECK(!!(core->busRead32(core,bmon(0)+ABI_BMON_STATUS2)&STATUS2_MULTIPLETURNS)==(step<4));
+   if(step<4)CHECK(core->busRead16(core,SYM_gLockedMoves)==move);
   }
   CALL(Free,script);
-  effectBattleFixture(0,MOVE_TIDAL_CRASH); // independent miss termination fixture
+  effectBattleFixture(0,move); // independent miss termination fixture
   script=CALL(AllocZeroed,32);CHECK(script);
   core->busWrite8(core,SYM_gBattlerAttacker,0);
-  core->busWrite16(core,SYM_gCurrentMove,MOVE_TIDAL_CRASH);
+  core->busWrite16(core,SYM_gCurrentMove,move);
   core->busWrite32(core,SYM_gMoveResultFlags,0);
   core->busWrite32(core,SYM_gBattlescriptCurrInstr,script);
   CALL(Cmd_rolloutdamagecalculation);
@@ -104,5 +109,5 @@ static void waterMoves385Mechanics(void){
   CALL(Free,script);
  }
  CHECK(core->loadState(core,bootState));
- printf("PASS: native Vortex Spin exact 30/60%% confusion, zero wrapping; Tidal Crash 30/60/120/240/480 power, Defense Curl doubling, five-turn lock/miss cleanup\n");
+ printf("PASS: native Vortex Spin exact 30/60%% confusion, zero wrapping; Tidal Crash 30/60/120/240/480 without Defense Curl boost; original Rollout doubles after Defense Curl; five-turn lock/miss cleanup\n");
 }
