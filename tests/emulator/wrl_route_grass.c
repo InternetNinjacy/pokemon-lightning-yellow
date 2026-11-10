@@ -192,6 +192,18 @@ static void wrlCeruleanToRoute5ConnectionTests(void) {
     CALL(PlayerGetDestCoords,scratch,scratch+2);
     CHECK(core->busRead16(core,scratch)==gridX);
     CHECK(core->busRead16(core,scratch+2)==startY+7);
+    // Diagnose the *actual* southern walking lane without changing map data.
+    // A fixed DOWN input can be blocked by a city tile even when the map
+    // connection itself is valid. Probe the native loaded metatile collision.
+    for(unsigned lane=18;lane<=33;lane++) {
+        unsigned blocked=0;
+        for(unsigned gy=38;gy<=46;gy++)
+            if(CALL(MapGridGetCollisionAt,lane+7,gy))
+                blocked|=1U<<(gy-38);
+        fprintf(stderr,"WRL Cerulean south lane x=%u collisionRows38to46=%03x\\n",lane,blocked);
+    }
+    fprintf(stderr,"WRL Cerulean chosen lane x=%u nextTileCollision=%u\\n",
+            x,CALL(MapGridGetCollisionAt,gridX,startY+9));
     unsigned transitioned=0,grassReached=0,frame,routeFrames=0;
     unsigned lastGroup=MAP_GROUP(MAP_CERULEAN_CITY),lastMap=MAP_NUM(MAP_CERULEAN_CITY);
     for(frame=0;frame<3000;frame++) {
