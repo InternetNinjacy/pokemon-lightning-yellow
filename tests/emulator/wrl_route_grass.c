@@ -4,32 +4,17 @@
 static void wrlRouteGrassFixture(unsigned group,unsigned map,unsigned x,unsigned y) {
     // Reuse the native overworld fixture with two healthy level-50 Pokemon.
     wildFixture(MAP_GROUP(MAP_ROUTE1),MAP_NUM(MAP_ROUTE1),1);
-    // Diagnose the Cerulean fixture at each native warp/load stage. Map 3.19
-    // is Route 1 (the staging fixture), NOT Route 5; do not misattribute it
-    // to a spontaneous southern map connection without observing the transition.
-    if(group==MAP_GROUP(MAP_CERULEAN_CITY) && map==MAP_NUM(MAP_CERULEAN_CITY))
-        fprintf(stderr,"WRL Cerulean stage=staging saveMap=(%u,%u) pos=(%u,%u)\n",
-                core->busRead8(core,SYM_gSaveBlock1+4),core->busRead8(core,SYM_gSaveBlock1+5),
-                core->busRead16(core,SYM_gSaveBlock1),core->busRead16(core,SYM_gSaveBlock1+2));
+    // The map load can relocate save blocks via MoveSaveBlocks_ResetHeap.
+    // The tests below must read gSaveBlock1Ptr, never the old fixed buffer.
     CALL(SetWarpDestination,group,map,0xFFFFFFFF,x,y);
     CALL(WarpIntoMap);
-    if(group==MAP_GROUP(MAP_CERULEAN_CITY) && map==MAP_NUM(MAP_CERULEAN_CITY))
-        fprintf(stderr,"WRL Cerulean stage=warp saveMap=(%u,%u) pos=(%u,%u)\n",
-                core->busRead8(core,SYM_gSaveBlock1+4),core->busRead8(core,SYM_gSaveBlock1+5),
-                core->busRead16(core,SYM_gSaveBlock1),core->busRead16(core,SYM_gSaveBlock1+2));
     CALL(ResetInitialPlayerAvatarState);
     CALL(CB2_LoadMap);
-    if(group==MAP_GROUP(MAP_CERULEAN_CITY) && map==MAP_NUM(MAP_CERULEAN_CITY))
-        fprintf(stderr,"WRL Cerulean stage=load-start saveMap=(%u,%u) pos=(%u,%u)\n",
-                core->busRead8(core,SYM_gSaveBlock1+4),core->busRead8(core,SYM_gSaveBlock1+5),
-                core->busRead16(core,SYM_gSaveBlock1),core->busRead16(core,SYM_gSaveBlock1+2));
     frames(360,0);
-    if(group==MAP_GROUP(MAP_CERULEAN_CITY) && map==MAP_NUM(MAP_CERULEAN_CITY))
-        fprintf(stderr,"WRL Cerulean stage=load-finish saveMap=(%u,%u) pos=(%u,%u) cb2=%08x\n",
-                core->busRead8(core,SYM_gSaveBlock1+4),core->busRead8(core,SYM_gSaveBlock1+5),
-                core->busRead16(core,SYM_gSaveBlock1),core->busRead16(core,SYM_gSaveBlock1+2),
-                core->busRead32(core,SYM_gMain+ABI_MAIN_CB2));
     CHECK((core->busRead32(core,SYM_gMain+ABI_MAIN_CB2)&~1U)==SYM_CB2_Overworld);
+}
+static uint32_t wrlLiveSaveBlock1(void) {
+    return core->busRead32(core,SYM_gSaveBlock1Ptr);
 }
 static unsigned wrlRouteGrassAt(unsigned x,unsigned y) {
     return CALL(MapGridGetMetatileAttributeAt,x,y,ABI_META_ENCOUNTER)==ABI_TILE_LAND
@@ -192,17 +177,18 @@ static void wrlCeruleanToRoute5ConnectionTests(void) {
     const unsigned x=23, startY=30, gridX=x+7;
     wrlRouteGrassFixture(MAP_GROUP(MAP_CERULEAN_CITY),
                          MAP_NUM(MAP_CERULEAN_CITY),x,startY);
-    // Log the actual post-load map and coordinates before asserting the entry
-    // fixture. The first CI run failed at mapNum, before any D-pad input.
+    // LoadMap relocates SaveBlock1. Read the live pointer, not the stale
+    // initial buffer (which still contains Route 1, map 3.19).
+    CHECK(wrlLiveSaveBlock1()>=0x02000000 && wrlLiveSaveBlock1()+ABI_SAVE1_SIZE<=ABI_EWRAM_END);
     CALL(PlayerGetDestCoords,scratch,scratch+2);
     fprintf(stderr,"WRL Cerulean fixture expected=(%u,%u) actual=(%u,%u) start=(%u,%u) grid=(%u,%u) cb2=%08x\n",
             MAP_GROUP(MAP_CERULEAN_CITY),MAP_NUM(MAP_CERULEAN_CITY),
-            core->busRead8(core,SYM_gSaveBlock1+4),
-            core->busRead8(core,SYM_gSaveBlock1+5),x,startY,
+            core->busRead8(core,wrlLiveSaveBlock1()+4),
+            core->busRead8(core,wrlLiveSaveBlock1()+5),x,startY,
             core->busRead16(core,scratch),core->busRead16(core,scratch+2),
             core->busRead32(core,SYM_gMain+ABI_MAIN_CB2));
-    CHECK(core->busRead8(core,SYM_gSaveBlock1+4)==MAP_GROUP(MAP_CERULEAN_CITY));
-    CHECK(core->busRead8(core,SYM_gSaveBlock1+5)==MAP_NUM(MAP_CERULEAN_CITY));
+    CHECK(core->busRead8(core,wrlLiveSaveBlock1()+4)==MAP_GROUP(MAP_CERULEAN_CITY));
+    CHECK(core->busRead8(core,wrlLiveSaveBlock1()+5)==MAP_NUM(MAP_CERULEAN_CITY));
     CALL(PlayerGetDestCoords,scratch,scratch+2);
     CHECK(core->busRead16(core,scratch)==gridX);
     CHECK(core->busRead16(core,scratch+2)==startY+7);
@@ -210,8 +196,8 @@ static void wrlCeruleanToRoute5ConnectionTests(void) {
     unsigned lastGroup=MAP_GROUP(MAP_CERULEAN_CITY),lastMap=MAP_NUM(MAP_CERULEAN_CITY);
     for(frame=0;frame<3000;frame++) {
         frames(1,128); // Real GBA DOWN (0x80), not an injected map warp.
-        unsigned group=core->busRead8(core,SYM_gSaveBlock1+4);
-        unsigned map=core->busRead8(core,SYM_gSaveBlock1+5);
+        unsigned group=core->busRead8(core,wrlLiveSaveBlock1()+4);
+        unsigned map=core->busRead8(core,wrlLiveSaveBlock1()+5);
         if((group!=lastGroup || map!=lastMap) && frame<1800)
             fprintf(stderr,"WRL Cerulean->Route5 native map change frame=%u (%u,%u)->(%u,%u)\n",
                     frame,lastGroup,lastMap,group,map);
