@@ -11,6 +11,7 @@ void FollowerController_Tick(void);
 void FollowerController_VBlank(void);
 // Explicit UI selection/dismissal can invalidate an old visual immediately.
 void FollowerController_RequestRefresh(void);
+void FollowerSpecial_PlayCry(void);
 // Requires a caller-supplied, previously validated species/form asset.
 // Must be invoked during graphics-safe VBlank; never from Tick.
 bool8 FollowerController_BindAsset(const struct FollowerGraphicsAsset *asset);
