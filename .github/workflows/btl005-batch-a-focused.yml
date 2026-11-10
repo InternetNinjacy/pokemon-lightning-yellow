@@ -1,0 +1,16 @@
+name: BTL-005 Batch A focused staging checks
+on:
+  push:
+    branches:
+      - feature/btl005-batch-a-mechanics-20261110
+  workflow_dispatch:
+jobs:
+  batch-a-host-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Python syntax and strict Batch A approved data checks
+        run: |
+          python3 -m py_compile tests/run_btl_batch_a_staging_tests.py
+          python3 tests/run_btl_batch_a_staging_tests.py
