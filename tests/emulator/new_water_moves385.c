@@ -46,6 +46,12 @@ static void waterMoves385Tests(void){
     unsigned frame;
     for(frame=0;frame<4800;frame++){
      if(frame>0&&controller(0)==SYM_HandleInputChooseAction)break;
+     // The locked Rollout user does not reselect, but its Doubles partner
+     // must still submit a normal action on each additional turn. Without
+     // that input the test can stall at the partner's action menu indefinitely.
+     if(two&&controller(2)==SYM_HandleInputChooseAction){
+      chooseMove(2,0,1);
+     }
      frames(1,(frame%12)<3?1:0);
      unsigned current=core->busRead16(core,bmon(1)+ABI_BMON_HP);
      CHECK(current<=hp);
@@ -61,6 +67,7 @@ static void waterMoves385Tests(void){
       hp=current;
      }
     }
+    if(frame==4800)fprintf(stderr,"TIDAL_DOUBLES_TIMEOUT two=%u trial=%u count=%u hp=%u lock=%08x ctrl=%08x/%08x/%08x/%08x script=%08x\\n",two,trial,count,hp,core->busRead32(core,bmon(0)+ABI_BMON_STATUS2),controller(0),controller(1),controller(2),controller(3),core->busRead32(core,SYM_gBattlescriptCurrInstr));
     CHECK(frame<4800);frames(3,0);
    }
    CHECK(monget(player(0),ABI_DATA_PP1)==pp[m]-1);
