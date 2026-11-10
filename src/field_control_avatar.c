@@ -7,6 +7,7 @@
 #include "event_object_movement.h"
 #include "event_scripts.h"
 #include "follower_graphics.h"
+#include "follower_controller.h"
 #include "fieldmap.h"
 #include "field_control_avatar.h"
 #include "field_fadetransition.h"
@@ -465,7 +466,10 @@ static const u8 *GetInteractedObjectEventScript(struct MapPosition *position, u8
             }
         }
         if (objectEventId == FollowerGraphics_GetObjectEventId())
+        {
+            FollowerSpecial_PlayCry();
             return EventScript_FollowerInteraction;
+        }
     }
 
     if (InUnionRoom() == TRUE && !ObjectEventCheckHeldMovementStatus(&gObjectEvents[objectEventId]))
