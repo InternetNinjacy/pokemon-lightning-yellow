@@ -19,21 +19,68 @@ static void waterMoves385Tests(void){
   core->busWrite16(core,SYM_gCurrentMove,moves[m]);
   CALL(AI_CalcDmg,0,1);
   CHECK(core->busRead32(core,SYM_gBattleMoveDamage)==expected);
+  // Rollout's native status2 lock can play all five attacks before the
+  // action chooser returns. Never compare their cumulative HP loss to the
+  // first hit's 30-power reference. Record each real ROM hit separately.
+  unsigned perHit[5]={0};
+  if(m==1){
+   CHECK(!(core->busRead32(core,bmon(0)+ABI_BMON_STATUS2)&STATUS2_DEFENSE_CURL));
+   CHECK(!(core->busRead32(core,bmon(0)+ABI_BMON_STATUS2)&STATUS2_MULTIPLETURNS));
+   for(unsigned step=0;step<5;step++){
+    perHit[step]=baseDamage(MOVE_TIDAL_CRASH,0,30U<<step,0);
+    CHECK(perHit[step]>0);
+   }
+  }
   void *snap=malloc(core->stateSize(core));CHECK(snap&&core->saveState(core,snap));
-  unsigned hits=0;
-  for(unsigned trial=0;trial<40&&!hits;trial++){
+  unsigned hits=0,misses=0;
+  for(unsigned trial=0;trial<(m?64:40)&&(!hits||(m==1&&!misses));trial++){
    CHECK(core->loadState(core,snap));
    core->busWrite32(core,SYM_gRngValue,0x38538600U+trial*7919U+two*17U+m*31U);
    chooseMove(0,0,1);if(two)chooseMove(2,0,1);
-   waitActionBudget(4800);
-   unsigned hp=core->busRead16(core,bmon(1)+ABI_BMON_HP);
+   unsigned count=0,hp=1000;
+   if(m==0){
+    waitActionBudget(4800);
+    hp=core->busRead16(core,bmon(1)+ABI_BMON_HP);
+    count=(hp<1000);
+   }else{
+    unsigned frame;
+    for(frame=0;frame<4800;frame++){
+     if(frame>0&&controller(0)==SYM_HandleInputChooseAction)break;
+     frames(1,(frame%12)<3?1:0);
+     unsigned current=core->busRead16(core,bmon(1)+ABI_BMON_HP);
+     CHECK(current<=hp);
+     if(current<hp){
+      CHECK(count<5);
+      unsigned dealt=hp-current;
+      if(dealt<perHit[count]*85/100||dealt>perHit[count])
+       fprintf(stderr,"TIDAL_HIT_MISMATCH two=%u trial=%u step=%u dealt=%u range=%u..%u status2=%08x\n",
+               two,trial,count,dealt,perHit[count]*85/100,perHit[count],
+               core->busRead32(core,bmon(0)+ABI_BMON_STATUS2));
+      CHECK(dealt>=perHit[count]*85/100&&dealt<=perHit[count]);
+      count++;
+      hp=current;
+     }
+    }
+    CHECK(frame<4800);frames(3,0);
+   }
    CHECK(monget(player(0),ABI_DATA_PP1)==pp[m]-1);
    CHECK(core->busRead16(core,bmon(0)+ABI_BMON_HP)==1000);
-   if(two){CHECK(core->busRead16(core,bmon(2)+ABI_BMON_HP)==1000);CHECK(core->busRead16(core,bmon(3)+ABI_BMON_HP)==1000);}
-   if(hp<1000){if(hp<1000-expected)fprintf(stderr,"WATER385_DAMAGE_MISMATCH move=%u two=%u trial=%u hp=%u dealt=%u expected=%u dynamic=%u status2=%08x flags=%08x seed=%08x\\n",moves[m],two,trial,hp,1000-hp,expected,core->busRead32(core,SYM_gDynamicBasePower),core->busRead32(core,bmon(0)+ABI_BMON_STATUS2),core->busRead32(core,SYM_gBattleTypeFlags),0x38538600U+trial*7919U+two*17U+m*31U);CHECK(hp>=1000-expected);hits++;}
-   if(m==0)CHECK(!(core->busRead32(core,bmon(1)+ABI_BMON_STATUS2)&STATUS2_WRAPPED));
+   if(two){
+    CHECK(core->busRead16(core,bmon(2)+ABI_BMON_HP)==1000);
+    CHECK(core->busRead16(core,bmon(3)+ABI_BMON_HP)==1000);
+   }
+   if(!m){
+    if(hp<1000){CHECK(hp>=1000-expected);hits++;}
+    CHECK(!(core->busRead32(core,bmon(1)+ABI_BMON_STATUS2)&STATUS2_WRAPPED));
+   }else{
+    if(count)hits++;
+    else misses++;
+    if(!two&&count==5)
+     CHECK(!(core->busRead32(core,bmon(0)+ABI_BMON_STATUS2)&STATUS2_MULTIPLETURNS));
+   }
   }
   CHECK(hits);
+  if(m==1)CHECK(misses); // 90% accuracy must produce genuine native misses.
   free(snap);
   printf("PASS: native water move %u %s physical AI damage, single-target actual animation, PP, no trap\\n",moves[m],two?"Doubles":"Singles");
  }
