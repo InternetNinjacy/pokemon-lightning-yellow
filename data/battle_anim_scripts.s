@@ -407,26 +407,30 @@ gBattleAnims_Moves::
 	.4byte Move_LIQUIDATION
 	.4byte Move_VORTEX_SPIN
 	.4byte Move_TIDAL_CRASH
+	.4byte Move_DISCHARGE
 	.4byte Move_NONE
-	.4byte Move_NONE
-	.4byte Move_NONE
-	.4byte Move_NONE
+	.4byte Move_THUNDER_FANG
+	.4byte Move_WILD_CHARGE
 	.4byte Move_SEED_BOMB
 	.4byte Move_PETAL_BLIZZARD
-	.4byte Move_NONE
+	.4byte Move_WOOD_HAMMER
 	.4byte Move_AURA_SPHERE
 	.4byte Move_FOCUS_BLAST
-	.4byte Move_NONE
+	.4byte Move_DRAIN_PUNCH
 	.4byte Move_FLASH_CANNON
 	.4byte Move_MIRROR_SHOT
 	.4byte Move_IRON_HEAD
 	.4byte Move_BULLET_PUNCH
 	.4byte Move_AIR_SLASH
 	.4byte Move_NONE
-	.4byte Move_NONE
+	.4byte Move_BRAVE_BIRD
 	.4byte Move_NONE
 	.4byte Move_NONE
 	.4byte Move_HEART_STAMP
+	.4byte Move_ZEN_HEADBUTT
+	.4byte Move_CROSS_POISON
+	.4byte Move_POISON_JAB
+	.4byte Move_GUNK_SHOT
 	.4byte Move_COUNT @ cannot be reached, because last move is Psycho Boost
 
 	.align 2
@@ -11881,3 +11885,106 @@ Move_HEART_STAMP:
 	clearmonbg ANIM_TARGET
 	blendoff
 	end
+
+
+@ BTL-005 Batch B: native Gen III playback and owner-approved composites.
+Move_DISCHARGE:
+	goto Move_THUNDERBOLT
+
+@ Electric bite combines Bite's jaws with Thunder Punch's lightning.
+Move_THUNDER_FANG:
+	loadspritegfx ANIM_TAG_SHARP_TEETH
+	loadspritegfx ANIM_TAG_IMPACT
+	loadspritegfx ANIM_TAG_LIGHTNING
+	monbg ANIM_TARGET
+	setalpha 12, 8
+	playsewithpan SE_M_BITE, SOUND_PAN_TARGET
+	createsprite gSharpTeethSpriteTemplate, ANIM_ATTACKER, 2, 0, -32, 0, 0, 819, 10
+	createsprite gSharpTeethSpriteTemplate, ANIM_ATTACKER, 2, 0, 32, 4, 0, -819, 10
+	delay 10
+	createsprite gBasicHitSplatSpriteTemplate, ANIM_ATTACKER, 2, 0, 0, ANIM_TARGET, 2
+	createsprite gLightningSpriteTemplate, ANIM_TARGET, 2, 0, -48
+	playsewithpan SE_M_TRI_ATTACK2, SOUND_PAN_TARGET
+	createvisualtask AnimTask_ShakeMon, 5, ANIM_TARGET, 0, 4, 7, 1
+	waitforvisualfinish
+	clearmonbg ANIM_TARGET
+	blendoff
+	end
+
+Move_WILD_CHARGE:
+	goto Move_VOLT_TACKLE
+
+@ A body slam with Razor Leaf's slicing foliage.
+Move_WOOD_HAMMER:
+	loadspritegfx ANIM_TAG_IMPACT
+	loadspritegfx ANIM_TAG_LEAF
+	loadspritegfx ANIM_TAG_RAZOR_LEAF
+	monbg ANIM_DEF_PARTNER
+	setalpha 12, 8
+	playsewithpan SE_M_TAKE_DOWN, SOUND_PAN_ATTACKER
+	createsprite gVerticalDipSpriteTemplate, ANIM_ATTACKER, 2, 6, 1, ANIM_ATTACKER
+	waitforvisualfinish
+	createsprite gSlideMonToOffsetSpriteTemplate, ANIM_ATTACKER, 2, 0, 26, 0, 0, 5
+	delay 6
+	createsprite gBasicHitSplatSpriteTemplate, ANIM_ATTACKER, 4, -10, 0, ANIM_TARGET, 0
+	createsprite gRazorLeafCutterSpriteTemplate, ANIM_TARGET, 3, 20, -10, 20, 0, 22, 20, 1
+	playsewithpan SE_M_RAZOR_WIND2, SOUND_PAN_TARGET
+	waitforvisualfinish
+	createsprite gSlideMonToOriginalPosSpriteTemplate, ANIM_ATTACKER, 2, 0, 0, 6
+	waitforvisualfinish
+	clearmonbg ANIM_DEF_PARTNER
+	blendoff
+	end
+
+@ Mega Punch's fist impact followed by Mega Drain's restorative orbs.
+Move_DRAIN_PUNCH:
+	loadspritegfx ANIM_TAG_IMPACT
+	loadspritegfx ANIM_TAG_HANDS_AND_FEET
+	loadspritegfx ANIM_TAG_ORBS
+	loadspritegfx ANIM_TAG_BLUE_STAR
+	monbg ANIM_DEF_PARTNER
+	setalpha 12, 8
+	playsewithpan SE_M_MEGA_KICK, SOUND_PAN_TARGET
+	createsprite gMegaPunchKickSpriteTemplate, ANIM_ATTACKER, 3, 0, 0, 0, 50
+	createvisualtask AnimTask_ShakeMon2, 2, ANIM_TARGET, 4, 0, 12, 1
+	waitforvisualfinish
+	call MegaDrainAbsorbEffect
+	waitforvisualfinish
+	call HealingEffect
+	waitforvisualfinish
+	clearmonbg ANIM_DEF_PARTNER
+	blendoff
+	end
+
+Move_BRAVE_BIRD:
+	goto Move_SKY_ATTACK
+
+@ Headbutt's physical impact followed by Confusion's psychic energy.
+Move_ZEN_HEADBUTT:
+	loadspritegfx ANIM_TAG_IMPACT
+	createsprite gBowMonSpriteTemplate, ANIM_ATTACKER, 2, 0
+	playsewithpan SE_M_HEADBUTT, SOUND_PAN_ATTACKER
+	waitforvisualfinish
+	createsprite gBowMonSpriteTemplate, ANIM_ATTACKER, 2, 2
+	createsprite gFlashingHitSplatSpriteTemplate, ANIM_TARGET, 3, 0, 0, ANIM_TARGET, 1
+	waitforvisualfinish
+	monbg ANIM_DEF_PARTNER
+	call SetPsychicBackground
+	setalpha 8, 8
+	createvisualtask AnimTask_BlendColorCycle, 2, F_PAL_ATTACKER, 0, 2, 0, 8, RGB_WHITE
+	playsewithpan SE_M_SUPERSONIC, SOUND_PAN_TARGET
+	createvisualtask AnimTask_ShakeMon, 2, ANIM_TARGET, 3, 0, 15, 1
+	waitforvisualfinish
+	clearmonbg ANIM_DEF_PARTNER
+	blendoff
+	call UnsetPsychicBackground
+	end
+
+Move_CROSS_POISON:
+	goto Move_POISON_TAIL
+
+Move_POISON_JAB:
+	goto Move_POISON_STING
+
+Move_GUNK_SHOT:
+	goto Move_SLUDGE_BOMB
