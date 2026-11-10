@@ -321,6 +321,19 @@ static void wrlRoute8FinishTrainerBattle(void) {
             continue;
         }
         quiet=0;
+        // Bounded native diagnostics: distinguish menu-input deadlock from
+        // ineffective attacks or trainer-script transition without bypasses.
+        if(f==0 || f==600 || f==3000 || f==9000 || f==18000 || f==27000) {
+            fprintf(stderr,"WRL Route8 battle trace frame=%u started=%u won=%u cb=%08x controller=%08x exec=%08x outcome=%u playerHP=%u enemyHP=%u actionCursor=%u moveCursor=%u trainer=%u\\n",
+                    f,started,won,cb,controller(0),
+                    core->busRead32(core,SYM_gBattleControllerExecFlags),
+                    core->busRead8(core,SYM_gBattleOutcome),
+                    core->busRead16(core,bmon(0)+ABI_BMON_HP),
+                    core->busRead16(core,bmon(1)+ABI_BMON_HP),
+                    core->busRead8(core,SYM_gActionSelectionCursor),
+                    core->busRead8(core,SYM_gMoveSelectionCursor),
+                    core->busRead16(core,SYM_gTrainerBattleOpponent_A));
+        }
         unsigned key=0;
         if(f%8==0) {
             key=1; // Real trainer pre/post-battle dialogue.
