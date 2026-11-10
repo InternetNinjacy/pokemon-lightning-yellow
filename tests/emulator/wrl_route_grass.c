@@ -324,7 +324,7 @@ static void wrlRoute8FinishTrainerBattle(void) {
         // Bounded native diagnostics: distinguish menu-input deadlock from
         // ineffective attacks or trainer-script transition without bypasses.
         if(f==0 || f==600 || f==3000 || f==9000 || f==18000 || f==27000) {
-            fprintf(stderr,"WRL Route8 battle trace frame=%u started=%u won=%u cb=%08x controller=%08x exec=%08x outcome=%u playerHP=%u enemyHP=%u actionCursor=%u moveCursor=%u trainer=%u\\n",
+            fprintf(stderr,"WRL Route8 battle trace frame=%u started=%u won=%u cb=%08x controller=%08x exec=%08x outcome=%u playerHP=%u enemyHP=%u actionCursor=%u moveCursor=%u trainer=%u bufferCmd=%u textActive=%u textState=%u scriptPtr=%08x scriptOp=%u expState=%u\\n",
                     f,started,won,cb,controller(0),
                     core->busRead32(core,SYM_gBattleControllerExecFlags),
                     core->busRead8(core,SYM_gBattleOutcome),
@@ -332,7 +332,13 @@ static void wrlRoute8FinishTrainerBattle(void) {
                     core->busRead16(core,bmon(1)+ABI_BMON_HP),
                     core->busRead8(core,SYM_gActionSelectionCursor),
                     core->busRead8(core,SYM_gMoveSelectionCursor),
-                    core->busRead16(core,SYM_gTrainerBattleOpponent_A));
+                    core->busRead16(core,SYM_gTrainerBattleOpponent_A),
+                    core->busRead8(core,SYM_gBattleBufferA),
+                    core->busRead8(core,SYM_sTextPrinters+ABI_TEXT_ACTIVE),
+                    core->busRead8(core,SYM_sTextPrinters+ABI_TEXT_STATE),
+                    core->busRead32(core,SYM_gBattlescriptCurrInstr),
+                    core->busRead8(core,core->busRead32(core,SYM_gBattlescriptCurrInstr)),
+                    core->busRead8(core,SYM_gBattleScripting+ABI_SCRIPT_EXP_STATE));
         }
         unsigned key=0;
         if(f%8==0) {
@@ -347,7 +353,13 @@ static void wrlRoute8FinishTrainerBattle(void) {
                     unsigned c=core->busRead8(core,SYM_gMoveSelectionCursor);
                     key=c&2?64:c&1?32:1;
                 } else if(fn==SYM_HandleInputChooseTarget)key=1;
-                else key=2; // Decline optional switch prompts.
+                else {
+                    // After a real knockout, advance active mandatory battle
+                    // text with A; keep B for other non-menu prompts.
+                    unsigned fainted=core->busRead16(core,bmon(1)+ABI_BMON_HP)==0;
+                    unsigned textActive=core->busRead8(core,SYM_sTextPrinters+ABI_TEXT_ACTIVE);
+                    key=(fainted && textActive)?1:2;
+                }
             }
         }
         frames(1,key);
