@@ -11,6 +11,9 @@ def prior_follower_source(path, text):
             ('#include "follower_graphics.h"\n', ''),
             ('#include "follower_controller.h"\n', ''),
             ('    FollowerController_Tick();\n', ''),
+            ('    FollowerController_VBlank();\n', ''),
+            ('    FollowerController_RequestRefresh();\n', ''),
+            ('    // Graphics allocations and 4bpp frame transfers are VBlank-only.\n', ''),
             (
                 '    // Teardown the old owned ObjectEvent before sprite IDs are recycled;\n'
                 '    // the selected Pokémon instance remains in the separate save record.\n'
