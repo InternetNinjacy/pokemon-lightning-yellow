@@ -102,16 +102,32 @@ static void followerFieldNativeTests(void)
         int y = (int16_t)core->busRead16(core, playerCoords + 2);
         if (x != playerX || y != playerY) {
             ++moved;
+            // These are distinct real D-pad movements including two turns
+            // and one reversal, not four calls to the controller routine.
+            // Ensure each held input completes exactly one cardinal tile:
+            // a multiple-tile jump can otherwise satisfy the old trail test.
+            const int expectedDx[] = {0, -1, 1, 0};
+            const int expectedDy[] = {-1, 0, 0, 1};
+            CHECK(x - playerX == expectedDx[direction]);
+            CHECK(y - playerY == expectedDy[direction]);
             int followerX = (int16_t)core->busRead16(core, followerCoords);
             int followerY = (int16_t)core->busRead16(core, followerCoords + 2);
             CHECK(abs(followerX - x) <= 1);
             CHECK(abs(followerY - y) <= 1);
-            // Exact one-tile trail: after a completed player step the
-            // follower occupies the tile the player just left. Checking
-            // adjacency alone permits an incorrectly stationary follower.
+            // Exact one-tile trail through corners and the reversal:
+            // after each completed step, the follower occupies the
+            // previous PLAYER tile, never merely an adjacent stale tile.
             CHECK(followerX == playerX);
             CHECK(followerY == playerY);
             CHECK(CALL(FollowerState_ResolvePartySlot) == 0);
+            CHECK(CALL(FollowerGraphics_GetObjectEventId) == objectId);
+            // Leave the controller at rest. The follower may animate, but
+            // it must not drift into the player or lose its owned object.
+            frames(20, 0);
+            CHECK((int16_t)core->busRead16(core, followerCoords) == followerX);
+            CHECK((int16_t)core->busRead16(core, followerCoords + 2) == followerY);
+            CHECK((int16_t)core->busRead16(core, playerCoords) == x);
+            CHECK((int16_t)core->busRead16(core, playerCoords + 2) == y);
             CHECK(CALL(FollowerGraphics_GetObjectEventId) == objectId);
         }
         playerX = x;
