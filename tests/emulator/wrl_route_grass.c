@@ -396,6 +396,14 @@ static void wrlLavenderToRoute8GrassWalkTests(void) {
     // encounter must be resolved by a real trainer battle, not a flag edit.
     blocked[21*W+69]=1; // Julia, source (62,14) plus 7-tile border.
     blocked[22*W+62]=1; // Rich, source (55,15) plus border.
+    // Native run #42881522001 identified both remaining zero-collision
+    // movement blockers as authored Route 8 Cut-tree objects, not terrain:
+    // target (54,19) = source (47,12); target (40,22) = source (33,15).
+    // Exclude their occupied tiles from the walk-only planner. If no route
+    // remains, Cut must be validated through actual field use, never by
+    // deleting trees, setting flags, or treating collision-free as walkable.
+    blocked[19*W+54]=1; // Route 8 eastern Cut tree.
+    blocked[22*W+40]=1; // Route 8 western Cut tree.
     const unsigned candidateY[]={10,9,11,8,12,7,13,6,14,5,15,4,16,3,17,18};
     unsigned transitionFrame=0,selectedY=0,selected=0,transitionCount=0;
     for(unsigned i=0;i<sizeof(candidateY)/sizeof(candidateY[0]);i++) {
