@@ -18,6 +18,7 @@ expected={
 }
 from approved_batch_a_changes import prior_batch_a_source
 assert re.search(r'^#define MOVES_COUNT 387$',prior_batch_a_source('include/constants/moves.h',ids),re.M)
+for key,(idx,power,accuracy,pp,chance,effect,art,contact) in expected.items():
  design=moves[key]
  assert design['proposed_id']==idx
  assert design['approved']['priority']==0
