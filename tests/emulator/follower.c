@@ -7,7 +7,7 @@ static void followerNativeTests(void)
     initSave();
     create(SPECIES_PIKACHU, 5);
     core->busWrite8(core, SYM_gPlayerPartyCount, 1);
-    CHECK(CALL(FollowerState_ResolvePartySlot) == 0xFFFFFFFFU);
+    CHECK((int8_t)CALL(FollowerState_ResolvePartySlot) == -1);
     CHECK(CALL(FollowerState_SelectPartySlot, 0) == 1);
     CHECK(CALL(FollowerState_ResolvePartySlot) == 0);
     CHECK(CALL(FollowerState_CanDisplay) == 1);
@@ -26,17 +26,17 @@ static void followerNativeTests(void)
         core->busWrite8(core, SYM_gPlayerParty + ABI_POKEMON_SIZE + i,
                          core->busRead8(core, SYM_gPlayerParty + i));
     core->busWrite8(core, SYM_gPlayerPartyCount, 2);
-    CHECK((int32_t)CALL(FollowerState_ResolvePartySlot) == -1);
+    CHECK((int8_t)CALL(FollowerState_ResolvePartySlot) == -1);
     CHECK(CALL(FollowerState_CanDisplay) == 0);
     for (unsigned i = 0; i < ABI_POKEMON_SIZE; ++i)
         core->busWrite8(core, SYM_gPlayerParty + ABI_POKEMON_SIZE + i, 0);
     core->busWrite8(core, SYM_gPlayerPartyCount, 1);
     CHECK(CALL(FollowerState_SelectPartySlot, 0) == 1);
     CALL(FollowerState_BeforePartyRemoval, 0);
-    CHECK((int32_t)CALL(FollowerState_ResolvePartySlot) == -1);
+    CHECK((int8_t)CALL(FollowerState_ResolvePartySlot) == -1);
     CHECK(CALL(FollowerState_SelectPartySlot, 0) == 1);
     CALL(FollowerState_Clear);
-    CHECK((int32_t)CALL(FollowerState_ResolvePartySlot) == -1);
+    CHECK((int8_t)CALL(FollowerState_ResolvePartySlot) == -1);
 
     // Registry should contain only the approved roster and three Castform
     // alternate sheets; the temporary CI build supplies source art locally.
@@ -117,7 +117,7 @@ static void followerFieldNativeTests(void)
     CALL(FollowerState_Clear);
     frames(20, 0);
     CHECK(CALL(FollowerGraphics_GetObjectEventId) == ABI_OBJECT_COUNT);
-    CHECK((int32_t)CALL(FollowerState_ResolvePartySlot) == -1);
+    CHECK((int8_t)CALL(FollowerState_ResolvePartySlot) == -1);
     printf("PASS: native follower map warp, faint/revive, cry and teardown on two real Day Care maps\n");
 }
 
@@ -130,7 +130,7 @@ static void followerGiftNativeTests(void)
     CALL(ZeroPlayerPartyMons);
     CALL(CreateMon, SYM_gPlayerParty, SPECIES_PIKACHU, 5, 31, 1, 34567, 0, 0);
     core->busWrite8(core, SYM_gPlayerPartyCount, 1);
-    CHECK((int32_t)CALL(FollowerState_ResolvePartySlot) == -1);
+    CHECK((int8_t)CALL(FollowerState_ResolvePartySlot) == -1);
     CALL(ScriptNameSocketStarterPikachu);
     CHECK(CALL(FollowerState_ResolvePartySlot) == 0);
     CHECK(CALL(FollowerState_CanDisplay) == 1);
@@ -146,6 +146,6 @@ static void followerGiftNativeTests(void)
     CALL(FollowerState_SelectPartySlot,1);
     CHECK(CALL(FollowerState_ResolvePartySlot) == 1);
     CALL(FollowerState_Clear);
-    CHECK((int32_t)CALL(FollowerState_ResolvePartySlot) == -1);
+    CHECK((int8_t)CALL(FollowerState_ResolvePartySlot) == -1);
     printf("PASS: native approved SOCKET auto-assignment, SUE manual-only, no lead/party swap\n");
 }
