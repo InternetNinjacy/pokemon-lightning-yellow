@@ -56,7 +56,32 @@ def prior_follower_source(path, text):
     elif path == "src/field_control_avatar.c":
         additions = [
             ('#include "follower_graphics.h"\n', ''),
-            ('    u8 i;\n', ''),
+            (
+                '    u8 objectEventId;\n    u8 i;\n    const u8 *script;\n',
+                '    u8 objectEventId;\n    const u8 *script;\n',
+            ),
+            (
+                '    // Dynamic follower is a visual ObjectEvent, not a map-template NPC.\n'
+                '    // Never call GetObjectEventScriptPointerByObjectEventId on its local ID.\n'
+                '    // If an NPC shares the follower tile, the actual NPC gets precedence.\n'
+                '    if (objectEventId == FollowerGraphics_GetObjectEventId())\n'
+                '    {\n'
+                '        for (i = 0; i < OBJECT_EVENTS_COUNT; i++)\n'
+                '        {\n'
+                '            if (i != objectEventId && gObjectEvents[i].active\n'
+                '             && gObjectEvents[i].localId != LOCALID_PLAYER\n'
+                '             && gObjectEvents[i].currentCoords.x == position->x\n'
+                '             && gObjectEvents[i].currentCoords.y == position->y)\n'
+                '            {\n'
+                '                objectEventId = i;\n'
+                '                break;\n'
+                '            }\n'
+                '        }\n'
+                '        if (objectEventId == FollowerGraphics_GetObjectEventId())\n'
+                '            return EventScript_FollowerInteraction;\n'
+                '    }\n\n',
+                '',
+            ),
         ]
     else:
         return text
