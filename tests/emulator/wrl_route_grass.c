@@ -122,7 +122,7 @@ static void wrlRoute5NorthernLedgeWalkTests(void) {
     for(frame=0;frame<3000;frame++) {
         if((core->busRead32(core,SYM_gMain+ABI_MAIN_CB2)&~1U)!=SYM_CB2_Overworld)
             break;
-        frames(1,64); // Hold DOWN; do not warp or inject a wild encounter.
+        frames(1,128); // GBA DOWN is bit 7 (0x80); 0x40 is UP into Cerulean City.
         CALL(PlayerGetDestCoords,scratch,scratch+2);
         unsigned currentX=core->busRead16(core,scratch);
         unsigned currentY=core->busRead16(core,scratch+2);
