@@ -245,3 +245,59 @@ static void wrlCeruleanToRoute5ConnectionTests(void) {
     printf("PASS: native Cerulean City -> Route 5 map connection and player D-pad traversal into approved grass in %u frames\n",frame);
     CHECK(core->loadState(core,bootState));
 }
+
+
+// WRL-009: verify a genuine, player-driven Lavender Town -> Route 8 map
+// connection. This fixture is deliberately staged in Lavender Town near the
+// west edge. It is NOT proof of normal new-game access to Lavender Town, nor
+// a proof that the Route 8 grass can be reached from the arrival tile.
+// Route 8 grass and its approved Drowzee draws are separately tested above.
+static void wrlLavenderToRoute8ConnectionTests(void) {
+    // Try several city-edge rows because not every row is walkable. Each
+    // candidate uses the live collision map and actual LEFT D-pad input;
+    // neither the route transition nor a battle is injected by the test.
+    const unsigned candidateY[]={10,11,12,9,13,8,14,7,15,6,16,5,17,4,18,3};
+    unsigned transitioned=0,selectedY=0,selectedFrame=0,attempts=0;
+    for(unsigned i=0;i<sizeof(candidateY)/sizeof(candidateY[0]);i++) {
+        unsigned y=candidateY[i],gy=y+7;
+        wrlRouteGrassFixture(MAP_GROUP(MAP_LAVENDER_TOWN),
+                            MAP_NUM(MAP_LAVENDER_TOWN),1,y);
+        CHECK(wrlLiveSaveBlock1()>=0x02000000
+           && wrlLiveSaveBlock1()+ABI_SAVE1_SIZE<=ABI_EWRAM_END);
+        CHECK(core->busRead8(core,wrlLiveSaveBlock1()+4)==MAP_GROUP(MAP_LAVENDER_TOWN));
+        CHECK(core->busRead8(core,wrlLiveSaveBlock1()+5)==MAP_NUM(MAP_LAVENDER_TOWN));
+        unsigned edge=CALL(MapGridGetCollisionAt,7,gy);
+        unsigned near=CALL(MapGridGetCollisionAt,8,gy);
+        unsigned inner=CALL(MapGridGetCollisionAt,9,gy);
+        fprintf(stderr,"WRL Lavender west candidate y=%u collision grid x7/8/9=%u/%u/%u\n",
+                y,edge,near,inner);
+        if(near || inner)continue;
+        attempts++;
+        for(unsigned frame=0;frame<900;frame++) {
+            frames(1,32); // GBA LEFT is bit 5 (0x20).
+            unsigned group=core->busRead8(core,wrlLiveSaveBlock1()+4);
+            unsigned map=core->busRead8(core,wrlLiveSaveBlock1()+5);
+            if(group==MAP_GROUP(MAP_ROUTE8) && map==MAP_NUM(MAP_ROUTE8)) {
+                transitioned=1;selectedY=y;selectedFrame=frame;
+                fprintf(stderr,"WRL Lavender->Route8 live map transition at y=%u frame=%u\n",
+                        y,frame);
+                break;
+            }
+            // Stop rather than accidentally accepting an unrelated map.
+            if(group!=MAP_GROUP(MAP_LAVENDER_TOWN)
+               || map!=MAP_NUM(MAP_LAVENDER_TOWN)) {
+                fprintf(stderr,"WRL Lavender candidate y=%u entered unexpected map=(%u,%u)\n",
+                        y,group,map);
+                break;
+            }
+        }
+        core->setKeys(core,0);
+        if(transitioned)break;
+    }
+    if(!transitioned)
+        fprintf(stderr,"WRL Lavender->Route8 transition not reached in %u walkable candidate lanes\n",attempts);
+    CHECK(transitioned);
+    printf("PASS: native Lavender Town -> Route 8 player LEFT D-pad map connection at y=%u in %u frames\n",
+           selectedY,selectedFrame);
+    CHECK(core->loadState(core,bootState));
+}
