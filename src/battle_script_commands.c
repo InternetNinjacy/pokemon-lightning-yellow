@@ -8253,7 +8253,7 @@ static void Cmd_rolloutdamagecalculation(void)
         for (i = 1; i < (5 - gDisableStructs[gBattlerAttacker].rolloutTimer); i++)
             gDynamicBasePower *= 2;
 
-        if (gCurrentMove == MOVE_ROLLOUT
+        if (gCurrentMove != MOVE_GRUDGE
             && gBattleMons[gBattlerAttacker].status2 & STATUS2_DEFENSE_CURL)
             gDynamicBasePower *= 2;
 
