@@ -57,9 +57,10 @@ static void batchANativeTests(void){
    unsigned dealt=1000-core->busRead16(core,bmon(1)+ABI_BMON_HP);
    CHECK(monget(player(0),ABI_DATA_PP1)==pp[m]-1);
    if(dealt){
-    // Petal Blizzard hits all other battlers, so Gen III spread damage
-    // reduces the selected foe's damage to 75% before the random roll.
-    unsigned expected=(m==1&&two)?raw*3/4:raw;
+    // baseDamage uses the real production calculation, including the
+    // approved 75% all-other-battler modifier for Petal Blizzard in Doubles.
+    // Do not apply spread damage a second time in the acceptance oracle.
+    unsigned expected=raw;
     if(dealt<expected*85/100-2||dealt>expected+2)
      fprintf(stderr,"BATCH_A_DAMAGE m=%u two=%u expected=%u dealt=%u\\n",m,two,expected,dealt);
     CHECK(dealt+2>=expected*85/100&&dealt<=expected+2);
