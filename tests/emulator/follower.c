@@ -260,6 +260,37 @@ static void followerGiftNativeTests(void)
     CHECK((int8_t)CALL(FollowerState_ResolvePartySlot) == -1);
     CHECK(core->busRead8(core, SYM_gPlayerPartyCount) == 2);
     printf("PASS: native SOCKET auto-assignment, manual SUE selection and cleared state across flash saves\n");
+    // Native compatibility of saves made before the 16-byte follower record
+    // existed. Exercise the exact SaveBlock1 field from the ARM-derived ABI,
+    // without touching Pokemon, storage or unrelated save regions.
+    unsigned save1 = core->busRead32(core, SYM_gSaveBlock1Ptr);
+    CHECK(save1 >= 0x02000000U && save1 < 0x02040000U);
+    unsigned record = save1 + ABI_SAVE1_FOLLOWER_RECORD;
+    for (unsigned variant = 0; variant < 2; ++variant) {
+        for (unsigned i = 0; i < 16; ++i)
+            core->busWrite8(core, record + i, variant ? 0xFF : 0);
+        flashRoundTrip();
+        CHECK((int8_t)CALL(FollowerState_ResolvePartySlot) == -1);
+        CHECK(CALL(FollowerState_CanDisplay) == 0);
+        CHECK(core->busRead8(core, SYM_gPlayerPartyCount) == 2);
+        CHECK(monget(player(0), ABI_DATA_PERSONALITY) == pid);
+        CHECK(monget(player(1), ABI_DATA_PERSONALITY) == suePid);
+    }
+    // Incompatible version and damaged checksum are likewise rejected after
+    // real flash reload, without accidentally selecting party lead.
+    CHECK(CALL(FollowerState_SelectPartySlot, 1) == 1);
+    core->busWrite8(core, record + 14, 2); // record.version
+    flashRoundTrip();
+    CHECK((int8_t)CALL(FollowerState_ResolvePartySlot) == -1);
+    CHECK(CALL(FollowerState_SelectPartySlot, 1) == 1);
+    core->busWrite8(core, record + 12, core->busRead8(core, record + 12) ^ 0x40); // integrity
+    flashRoundTrip();
+    CHECK((int8_t)CALL(FollowerState_ResolvePartySlot) == -1);
+    CHECK(core->busRead8(core, SYM_gPlayerPartyCount) == 2);
+    CHECK(monget(player(0), ABI_DATA_PERSONALITY) == pid);
+    CHECK(monget(player(1), ABI_DATA_PERSONALITY) == suePid);
+    printf("PASS: native old/zero/erased follower records and invalid version/integrity fail closed across flash saves\\n");
+
     // loadState restores the emulated CPU, but not the libmGBA flash file.
     // The following Dex suite creates its own Castform save and must not
     // inherit our two-gift sectors or counters. Reset through the existing

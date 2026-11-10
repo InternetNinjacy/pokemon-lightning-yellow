@@ -21,6 +21,7 @@ expressions = {
  'BMON_MAX_HP':'offsetof(struct BattlePokemon,maxHP)',
  'BOX_SECURE':'offsetof(struct BoxPokemon,secure)',
  'SAVE1_PARTY':'offsetof(struct SaveBlock1,playerParty)',
+ 'SAVE1_FOLLOWER_RECORD':'offsetof(struct SaveBlock1,unused_3A94)',
  'POKEMON_SIZE':'sizeof(struct Pokemon)',
  'FOLLOWER_ASSET_SIZE':'sizeof(struct FollowerGraphicsAsset)',
  'R5_VERSION':'offsetof(struct Route5DaycareSave,version)',
