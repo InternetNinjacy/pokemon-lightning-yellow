@@ -72,6 +72,10 @@ def prior_batch_a_source(path, text=None):
         return hashlib.sha1(b"blob "+str(len(b)).encode()+b"\0"+b).hexdigest()
     if digest(text)==BASE_BLOBS[path]:
         return text
+    found=[text.count(after) for after,before in HUNKS[path]]
+    if all(x==0 for x in found):
+        return text  # Fully pre-projected historical view; downstream frozen hashes apply.
+    assert all(x==1 for x in found), "Mixed/unreviewed Batch A source delta: "+path
     for after,before in HUNKS[path]:
         assert text.count(after)==1, "Unreviewed Batch A source delta: "+path
         text=text.replace(after,before,1)
