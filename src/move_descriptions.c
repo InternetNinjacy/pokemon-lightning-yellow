@@ -798,4 +798,5 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_VORTEX_SPIN - 1] = gMoveDescription_VORTEX_SPIN,
     [MOVE_TIDAL_CRASH - 1] = gMoveDescription_TIDAL_CRASH,
     [MOVE_DISCHARGE - 1] = gMoveDescription_DISCHARGE,
+    [MOVE_VOLT_SWITCH - 1] = gMoveDescription_VOLT_SWITCH,
 };
