@@ -41,11 +41,6 @@ def prior_follower_source(path, text):
                 '',
             ),
         ]
-    elif path == "data/specials.inc":
-        additions = [
-            ('\t@ WRL-010: append only; preserve every preexisting special ID.\n'
-             '\tdef_special FollowerSpecial_PlayCry\n', ''),
-        ]
     elif path == "data/event_scripts.s":
         additions = [('\t.include "data/scripts/follower.inc"\n', '')]
     elif path == "include/event_scripts.h":
@@ -56,6 +51,7 @@ def prior_follower_source(path, text):
     elif path == "src/field_control_avatar.c":
         additions = [
             ('#include "follower_graphics.h"\n', ''),
+            ('#include "follower_controller.h"\n', ''),
             (
                 '    u8 objectEventId;\n    u8 i;\n    const u8 *script;\n',
                 '    u8 objectEventId;\n    const u8 *script;\n',
@@ -78,7 +74,10 @@ def prior_follower_source(path, text):
                 '            }\n'
                 '        }\n'
                 '        if (objectEventId == FollowerGraphics_GetObjectEventId())\n'
+                '        {\n'
+                '            FollowerSpecial_PlayCry();\n'
                 '            return EventScript_FollowerInteraction;\n'
+                '        }\n'
                 '    }\n\n',
                 '',
             ),
