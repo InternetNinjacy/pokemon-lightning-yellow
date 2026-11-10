@@ -12,7 +12,7 @@ HUNKS = {
         ("    [MOVE_DISCHARGE] = _(\"DISCHARGE\"),\n", ""),
     ],
     "src/move_descriptions.c": [
-        ("const u8 gMoveDescription_DISCHARGE[] = _(\"Electricity hits\\nall other Pokémon.\\nMay paralyze.\");\n", ""),
+        ("const u8 gMoveDescription_DISCHARGE[] = _(\"Electricity hits\\nall other foes.\\nMay paralyze.\");\n", ""),
         ("    [MOVE_DISCHARGE - 1] = gMoveDescription_DISCHARGE,\n", ""),
     ],
     "data/battle_anim_scripts.s": [
