@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - feature/btl005-batch-a-mechanics-20261110
+  pull_request:
   workflow_dispatch:
 permissions:
   contents: read
@@ -18,10 +19,14 @@ jobs:
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
-          ref: ${{ github.sha }}
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
           persist-credentials: false
       - name: Verify immutable source SHA
-        run: test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+        run: |
+          expected="${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}"
+          actual="$(git rev-parse HEAD)"
+          echo "FOCUSED_SHA=$actual"
+          test "$actual" = "$expected"
       - name: Exact-head Batch A source contracts
         run: |
           python3 -m py_compile tests/run_btl_batch_a_staging_tests.py
@@ -43,10 +48,14 @@ jobs:
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
-          ref: ${{ github.sha }}
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
           persist-credentials: false
       - name: Verify immutable source SHA
-        run: test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+        run: |
+          expected="${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}"
+          actual="$(git rev-parse HEAD)"
+          echo "FOCUSED_SHA=$actual"
+          test "$actual" = "$expected"
       - name: Install compiler and native mGBA libraries
         run: |
           sudo apt-get -o Acquire::Retries=3 -o Acquire::http::Timeout=30 update
