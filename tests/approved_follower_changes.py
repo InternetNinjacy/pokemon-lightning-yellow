@@ -7,26 +7,16 @@ or weakening any existing preservation assertions.
 def prior_follower_source(path, text):
     path = str(path)
     if path == "src/overworld.c":
+        # All hooks must be present exactly once, even after approved main
+        # introduces unrelated field/weather/lighting code around them.
         additions = [
             ('#include "follower_graphics.h"\n', ''),
             ('#include "follower_controller.h"\n', ''),
             ('    FollowerController_Tick();\n', ''),
             ('    FollowerController_VBlank();\n', ''),
             ('    FollowerController_RequestRefresh();\n', ''),
-            ('    // Graphics allocations and 4bpp frame transfers are VBlank-only.\n', ''),
-            (
-                '    // Teardown the old owned ObjectEvent before sprite IDs are recycled;\n'
-                '    // the selected Pokémon instance remains in the separate save record.\n'
-                '    FollowerGraphics_DetachForMapTransition();\n',
-                '',
-            ),
-            (
-                '    // Sprite IDs and palette tags are invalid after this reset. The\n'
-                '    // graphics controller must not free a reused ID on the new map.\n'
-                '    ResetSpriteData();\n'
-                '    FollowerGraphics_InvalidateAfterSpriteReset();\n',
-                '    ResetSpriteData();\n',
-            ),
+            ('    FollowerGraphics_DetachForMapTransition();\n', ''),
+            ('    FollowerGraphics_InvalidateAfterSpriteReset();\n', ''),
         ]
     elif path == "src/event_object_movement.c":
         additions = [
