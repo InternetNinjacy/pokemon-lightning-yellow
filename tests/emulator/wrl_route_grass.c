@@ -159,3 +159,56 @@ static void wrlRoute5NorthernLedgeWalkTests(void) {
     printf("PASS: Route 5 native north-edge D-pad walk crossed south-facing collision ledge into approved grass in %u frames\n",frame);
     CHECK(core->loadState(core,bootState));
 }
+
+// WRL-009: genuine overworld MAP CONNECTION from Cerulean City into Route 5.
+// Unlike the northern ledge test, this fixture begins in Cerulean City, uses
+// only player D-pad movement, and must observe the live saved map-group/map-num
+// change before proceeding to the approved Route 5 grass. This does not prove
+// the full new-game quest path to Cerulean City.
+static void wrlCeruleanToRoute5ConnectionTests(void) {
+    const unsigned x=23, startY=37, gridX=x+7;
+    wrlRouteGrassFixture(MAP_GROUP(MAP_CERULEAN_CITY),
+                         MAP_NUM(MAP_CERULEAN_CITY),x,startY);
+    CHECK(core->busRead8(core,SYM_gSaveBlock1+4)==MAP_GROUP(MAP_CERULEAN_CITY));
+    CHECK(core->busRead8(core,SYM_gSaveBlock1+5)==MAP_NUM(MAP_CERULEAN_CITY));
+    CALL(PlayerGetDestCoords,scratch,scratch+2);
+    CHECK(core->busRead16(core,scratch)==gridX);
+    CHECK(core->busRead16(core,scratch+2)==startY+7);
+    unsigned transitioned=0,grassReached=0,frame,routeFrames=0;
+    unsigned lastGroup=MAP_GROUP(MAP_CERULEAN_CITY),lastMap=MAP_NUM(MAP_CERULEAN_CITY);
+    for(frame=0;frame<3000;frame++) {
+        frames(1,128); // Real GBA DOWN (0x80), not an injected map warp.
+        unsigned group=core->busRead8(core,SYM_gSaveBlock1+4);
+        unsigned map=core->busRead8(core,SYM_gSaveBlock1+5);
+        if((group!=lastGroup || map!=lastMap) && frame<1800)
+            fprintf(stderr,"WRL Cerulean->Route5 native map change frame=%u (%u,%u)->(%u,%u)\n",
+                    frame,lastGroup,lastMap,group,map);
+        lastGroup=group;lastMap=map;
+        if(group==MAP_GROUP(MAP_ROUTE5) && map==MAP_NUM(MAP_ROUTE5))
+            transitioned=1;
+        if(!transitioned)continue;
+        routeFrames++;
+        if((core->busRead32(core,SYM_gMain+ABI_MAIN_CB2)&~1U)!=SYM_CB2_Overworld)
+            continue;
+        CALL(PlayerGetDestCoords,scratch,scratch+2);
+        unsigned gx=core->busRead16(core,scratch);
+        unsigned gy=core->busRead16(core,scratch+2);
+        if(gx==gridX && wrlRouteGrassAt(gx,gy)) {
+            grassReached=1;
+            fprintf(stderr,"WRL Cerulean->Route5 grass grid=(%u,%u) frame=%u\n",gx,gy,frame);
+            break;
+        }
+    }
+    core->setKeys(core,0);
+    if(!transitioned || !grassReached) {
+        CALL(PlayerGetDestCoords,scratch,scratch+2);
+        fprintf(stderr,"WRL Cerulean->Route5 failure transition=%u grass=%u frames=%u routeFrames=%u map=(%u,%u) grid=(%u,%u) cb2=%08x\n",
+                transitioned,grassReached,frame,routeFrames,lastGroup,lastMap,
+                core->busRead16(core,scratch),core->busRead16(core,scratch+2),
+                core->busRead32(core,SYM_gMain+ABI_MAIN_CB2));
+    }
+    CHECK(transitioned);
+    CHECK(grassReached);
+    printf("PASS: native Cerulean City -> Route 5 map connection and player D-pad traversal into approved grass in %u frames\n",frame);
+    CHECK(core->loadState(core,bootState));
+}
