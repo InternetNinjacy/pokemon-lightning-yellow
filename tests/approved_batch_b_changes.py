@@ -71,6 +71,10 @@ def prior_batch_b_source(path, text=None):
         return hashlib.sha1(b"blob "+str(len(raw)).encode()+b"\0"+raw).hexdigest()
     if git_blob_sha(text)==BASE_BLOBS[path]:
         return text
+    found=[text.count(after) for after,before in HUNKS[path]]
+    if all(x==0 for x in found):
+        return text  # Fully projected ancestor; later frozen source guards still apply.
+    assert all(x==1 for x in found), "Mixed/unreviewed Batch B source delta: "+path
     for after,before in HUNKS[path]:
         assert text.count(after)==1, "Unreviewed Batch B source delta: "+path
         text=text.replace(after,before,1)
