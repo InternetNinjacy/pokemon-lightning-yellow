@@ -143,9 +143,22 @@ static void followerGiftNativeTests(void)
     CHECK(monget(player(1),ABI_DATA_SPECIES) == SPECIES_EEVEE);
     CHECK(CALL(FollowerState_ResolvePartySlot) == 0);
     CHECK(get(ABI_DATA_PERSONALITY) == pid);
-    CALL(FollowerState_SelectPartySlot,1);
+    CHECK(CALL(FollowerState_SelectPartySlot,1) == 1);
+    CHECK(CALL(FollowerState_ResolvePartySlot) == 1);
+    // Verify real flash persistence of both gift identities and the manually
+    // selected individual; do not confuse RAM-only state with saved state.
+    unsigned suePid = monget(player(1), ABI_DATA_PERSONALITY);
+    flashRoundTrip();
+    CHECK(core->busRead8(core, SYM_gPlayerPartyCount) == 2);
+    CHECK(monget(player(0), ABI_DATA_SPECIES) == SPECIES_PIKACHU);
+    CHECK(monget(player(1), ABI_DATA_SPECIES) == SPECIES_EEVEE);
+    CHECK(monget(player(0), ABI_DATA_PERSONALITY) == pid);
+    CHECK(monget(player(1), ABI_DATA_PERSONALITY) == suePid);
     CHECK(CALL(FollowerState_ResolvePartySlot) == 1);
     CALL(FollowerState_Clear);
+    flashRoundTrip();
+    CHECK((int8_t)CALL(FollowerState_ResolvePartySlot) == -1);
+    CHECK(core->busRead8(core, SYM_gPlayerPartyCount) == 2);
     CHECK((int8_t)CALL(FollowerState_ResolvePartySlot) == -1);
     printf("PASS: native approved SOCKET auto-assignment, SUE manual-only, no lead/party swap\n");
 }
