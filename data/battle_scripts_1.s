@@ -282,6 +282,7 @@ BattleScript_IceFangFlinch::
 BattleScript_AfterSwarmCloud::
 	tryfaintmon BS_TARGET
 	jumpifmove MOVE_VOLT_SWITCH, BattleScript_VoltSwitchPivot
+	goto BattleScript_MoveEnd
 BattleScript_VoltSwitchPivot::
 	@ Damage and its resulting faint effects have already resolved. Do not
 	@ replace the attacking Pokemon after a miss, immunity or failed hit.
