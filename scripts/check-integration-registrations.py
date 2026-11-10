@@ -7,7 +7,7 @@ workflow=Path('.github/workflows/build.yml').read_text()
 for p in Path('tests').glob('run_*tests.py'):
     assert workflow.count('python3 '+str(p))==1, p
 runner=Path('tests/emulator/runner.c').read_text()
-full=runner[runner.index('    dexTests();',runner.index('int main(')):]
+full=runner[runner.index('    followerNativeTests();',runner.index('int main(')):]
 expected=['dex','category','summary','wild','wildHardening','daycare','fossil','vendor','vendorUi','capture','museum','blaine','ponyta','ranger','dynamicWeather','gymCastform','rival','wildNickname','bagEvolution','moveFoundation','moveLongNameUi','originalMoveData','movePpCompatibility','followerNative']
 for name in expected:
     assert len(re.findall(r'^    '+name+r'Tests\(\);$',full,re.M))==1,name
