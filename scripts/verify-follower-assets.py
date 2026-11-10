@@ -367,7 +367,14 @@ def main():
     report_path = Path(os.environ.get("FOLLOWER_REPORT", "/tmp/lightning-followers-validation.json"))
     report_path.write_text(json.dumps(report, indent=2) + "\n")
     print(f"SUMMARY verified={len(results)}/252 failures={len(failures)} oversized={len(oversized)} report={report_path}", flush=True)
-    if failures or oversized or len(results) != 252:
+    # The sole 64x64 source sheet, Steelix, has a separately accepted native
+    # 64-tile allocator/renderer and is NOT a missing sprite. Keep an exact
+    # exception: any other large art, missing Steelix, or changed geometry
+    # still fails this gate rather than silently downscaling or skipping it.
+    accepted_oversized = (len(oversized) == 1
+                          and oversized[0]["species"] == "STEELIX"
+                          and oversized[0]["cell"] == [64, 64])
+    if failures or len(results) != 252 or not accepted_oversized:
         sys.exit(1)
 
 
