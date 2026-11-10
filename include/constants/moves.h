@@ -416,8 +416,14 @@
 // BTL-005 next approved batch (staged pending runtime acceptance).
 #define MOVE_DISCHARGE 387
 #define MOVE_VOLT_SWITCH 388
+#define MOVE_THUNDER_FANG 389
+#define MOVE_WILD_CHARGE 390
+#define MOVE_SEED_BOMB 391
+#define MOVE_PETAL_BLIZZARD 392
+#define MOVE_WOOD_HAMMER 393
+#define MOVE_AURA_SPHERE 394
 
-#define MOVES_COUNT 389
+#define MOVES_COUNT 395
 
 // Used for checks for moves affected by Disable, Mimic, etc.
 #define MOVE_UNAVAILABLE 0xFFFF
