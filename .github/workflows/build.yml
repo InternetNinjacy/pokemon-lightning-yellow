@@ -169,6 +169,13 @@ jobs:
           # Already installed with the initial dependencies; verify it remains
           # available without starting another late network/package transaction.
           dpkg-query -W libmgba-dev
+      - name: WRL-010 focused native all-species follower and opening-gift acceptance
+        if: matrix.target == 'modified' && (github.head_ref == 'feature/selectable-following-pokemon' || github.ref == 'refs/heads/feature/selectable-following-pokemon')
+        timeout-minutes: 12
+        env:
+          FOLLOWER_NATIVE_ALL252: '1'
+          LIGHTNING_FOLLOWER_ONLY: '1'
+        run: python3 tests/emulator/run.py
       - name: Focused Earth Power native battle tests in mGBA
         if: matrix.target == 'modified'
         timeout-minutes: 10
