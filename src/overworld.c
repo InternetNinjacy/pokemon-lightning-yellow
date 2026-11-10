@@ -1781,6 +1781,8 @@ static void SetFieldVBlankCallback(void)
 
 static void VBlankCB_Field(void)
 {
+    // Graphics allocations and 4bpp frame transfers are VBlank-only.
+    FollowerController_VBlank();
     LoadOam();
     ProcessSpriteCopyRequests();
     ScanlineEffect_InitHBlankDmaTransfer();
@@ -2142,6 +2144,7 @@ static void ResumeMap(bool32 inLink)
     // Teardown the old owned ObjectEvent before sprite IDs are recycled;
     // the selected Pokémon instance remains in the separate save record.
     FollowerGraphics_DetachForMapTransition();
+    FollowerController_RequestRefresh();
     // Sprite IDs and palette tags are invalid after this reset. The
     // graphics controller must not free a reused ID on the new map.
     ResetSpriteData();
