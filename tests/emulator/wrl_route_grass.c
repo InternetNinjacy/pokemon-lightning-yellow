@@ -169,6 +169,15 @@ static void wrlCeruleanToRoute5ConnectionTests(void) {
     const unsigned x=23, startY=37, gridX=x+7;
     wrlRouteGrassFixture(MAP_GROUP(MAP_CERULEAN_CITY),
                          MAP_NUM(MAP_CERULEAN_CITY),x,startY);
+    // Log the actual post-load map and coordinates before asserting the entry
+    // fixture. The first CI run failed at mapNum, before any D-pad input.
+    CALL(PlayerGetDestCoords,scratch,scratch+2);
+    fprintf(stderr,"WRL Cerulean fixture expected=(%u,%u) actual=(%u,%u) start=(%u,%u) grid=(%u,%u) cb2=%08x\\n",
+            MAP_GROUP(MAP_CERULEAN_CITY),MAP_NUM(MAP_CERULEAN_CITY),
+            core->busRead8(core,SYM_gSaveBlock1+4),
+            core->busRead8(core,SYM_gSaveBlock1+5),x,startY,
+            core->busRead16(core,scratch),core->busRead16(core,scratch+2),
+            core->busRead32(core,SYM_gMain+ABI_MAIN_CB2));
     CHECK(core->busRead8(core,SYM_gSaveBlock1+4)==MAP_GROUP(MAP_CERULEAN_CITY));
     CHECK(core->busRead8(core,SYM_gSaveBlock1+5)==MAP_NUM(MAP_CERULEAN_CITY));
     CALL(PlayerGetDestCoords,scratch,scratch+2);
