@@ -159,6 +159,10 @@ static void followerGiftNativeTests(void)
     flashRoundTrip();
     CHECK((int8_t)CALL(FollowerState_ResolvePartySlot) == -1);
     CHECK(core->busRead8(core, SYM_gPlayerPartyCount) == 2);
-    CHECK((int8_t)CALL(FollowerState_ResolvePartySlot) == -1);
-    printf("PASS: native approved SOCKET auto-assignment, SUE manual-only, no lead/party swap\n");
+    printf("PASS: native SOCKET auto-assignment, manual SUE selection and cleared state across flash saves\n");
+    // loadState restores the emulated CPU, but not the libmGBA flash file.
+    // The following Dex suite creates its own Castform save and must not
+    // inherit our two-gift sectors or counters. Reset through the existing
+    // verified fresh-flash fixture instead of weakening any Dex assertions.
+    daycareFixture(1);
 }
