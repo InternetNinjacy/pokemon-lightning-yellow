@@ -20,7 +20,7 @@ AFTER = """        // Preserve Gen III's half damage for both-foe moves, while
 
 def blob(text):
     data = text.encode()
-    return hashlib.sha1(b"blob " + str(len(data)).encode() + b"\\0" + data).hexdigest()
+    return hashlib.sha1(b"blob " + str(len(data)).encode() + b"\0" + data).hexdigest()
 
 def prior_batch_a_spread_source(path, text=None):
     path = str(path)
