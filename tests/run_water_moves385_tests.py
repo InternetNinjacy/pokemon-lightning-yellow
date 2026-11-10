@@ -102,30 +102,53 @@ for path in ['include/constants/moves.h','src/data/battle_moves.h','src/data/tex
  assert 'MOVE_VORTEX_SPIN' not in old and 'MOVE_TIDAL_CRASH' not in old,path
 print('PASS: approved 385-386 source values, IDs, owner priority, animation, no trap, native Rollout and strict prior-source reversals')
 
-# First approved staged addition in batch 387-394; runtime mGBA remains gated.
-assert re.search(r'^#define MOVE_DISCHARGE 387$',ids,re.M)
-assert re.search(r'^#define MOVES_COUNT 388$',ids,re.M)
-design=moves['DISCHARGE']
-assert design['proposed_id']==387
-assert design['approved']['effect']=='PARALYZE_30'
-assert design['approved']['target']=='ALL_OTHERS'
-assert design['approved']['secondaryEffectChance']==30
-record=re.search(r'\[MOVE_DISCHARGE\]\s*=\s*\{(.*?)\n    \},',data,re.S)
-assert record
-for key,value in {
- 'category':'MOVE_CATEGORY_SPECIAL','effect':'EFFECT_PARALYZE_HIT',
- 'power':'80','type':'TYPE_ELECTRIC','accuracy':'100','pp':'15',
- 'secondaryEffectChance':'30','target':'MOVE_TARGET_FOES_AND_ALLY','priority':'0'
-}.items():
- assert re.search(r'\.'+key+r'\s*=\s*'+value+r'\s*,',record[1]),key
-assert '[MOVE_DISCHARGE] = _("DISCHARGE")' in names
-assert 'gMoveDescription_DISCHARGE[]' in descs
-assert '[MOVE_DISCHARGE - 1] = gMoveDescription_DISCHARGE' in descs
-assert re.search(r'^Move_DISCHARGE:\s*\n\s*goto Move_THUNDERBOLT\s*$',anim,re.M)
-assert anim.count('\t.4byte Move_DISCHARGE\n')==1
+# Approved first batch #387-394. Strictly project all eight production
+# additions away before historical checks; do not alter frozen source hashes.
+approved387={
+ 'DISCHARGE':(387,'ELECTRIC','SPECIAL',80,100,15,30,'PARALYZE_HIT','FOES_AND_ALLY','THUNDERBOLT'),
+ 'VOLT_SWITCH':(388,'ELECTRIC','SPECIAL',70,100,20,0,'HIT','SELECTED',None),
+ 'THUNDER_FANG':(389,'ELECTRIC','PHYSICAL',65,95,15,10,'THUNDER_FANG','SELECTED',None),
+ 'WILD_CHARGE':(390,'ELECTRIC','PHYSICAL',90,100,15,0,'RECOIL','SELECTED','VOLT_TACKLE'),
+ 'SEED_BOMB':(391,'GRASS','PHYSICAL',80,100,15,0,'HIT','SELECTED','BULLET_SEED'),
+ 'PETAL_BLIZZARD':(392,'GRASS','PHYSICAL',90,100,15,0,'HIT','FOES_AND_ALLY','PETAL_DANCE'),
+ 'WOOD_HAMMER':(393,'GRASS','PHYSICAL',120,100,15,0,'DOUBLE_EDGE','SELECTED',None),
+ 'AURA_SPHERE':(394,'FIGHTING','SPECIAL',80,0,20,0,'ALWAYS_HIT','SELECTED','PSYCHIC'),
+}
+assert re.search(r'^#define MOVES_COUNT 395$',ids,re.M)
+for key,(idx,kind,category,power,accuracy,pp,chance,effect,target,art) in approved387.items():
+ design=moves[key]
+ assert design['proposed_id']==idx
+ assert design['approved']['power']==power and design['approved']['accuracy']==accuracy
+ assert design['approved']['pp']==pp and design['approved']['priority']==0
+ assert re.search(r'^#define MOVE_'+key+r' '+str(idx)+r'$',ids,re.M),key
+ record=re.search(r'\[MOVE_'+key+r'\]\s*=\s*\{(.*?)\n    \},',data,re.S)
+ assert record,key
+ for field,value in {'category':'MOVE_CATEGORY_'+category,'type':'TYPE_'+kind,
+   'power':str(power),'accuracy':str(accuracy),'pp':str(pp),
+   'secondaryEffectChance':str(chance),'priority':'0',
+   'effect':'EFFECT_'+effect,'target':'MOVE_TARGET_'+target}.items():
+  assert re.search(r'\.'+field+r'\s*=\s*'+value+r'\s*,',record[1]),(key,field)
+ assert ('[MOVE_'+key+'] = _("'+key.replace('_',' ')+'")') in names,key
+ assert 'gMoveDescription_'+key+'[]' in descs,key
+ assert '[MOVE_'+key+' - 1] = gMoveDescription_'+key in descs,key
+ assert anim.count('\t.4byte Move_'+key+'\n')==1,key
+ if art:assert re.search(r'^Move_'+key+r':\s*\n\s*goto Move_'+art+r'\s*$',anim,re.M),key
+ else:assert 'Move_'+key+':' in anim,key
+assert 'BattleScript_VoltSwitchPivot::' in (root/'data/battle_scripts_1.s').read_text()
+scripts=(root/'data/battle_scripts_1.s').read_text()
+assert 'jumpifmove MOVE_VOLT_SWITCH, BattleScript_VoltSwitchPivot' in scripts
+assert 'jumpifmovehadnoeffect BattleScript_MoveEnd' in scripts
+assert 'jumpifcantswitch SWITCH_IGNORE_ESCAPE_PREVENTION | BS_ATTACKER, BattleScript_MoveEnd' in scripts
+assert 'BattleScript_EffectThunderFang::\n\tsetmoveeffect MOVE_EFFECT_PARALYSIS' in scripts
+assert 'jumpifmove MOVE_THUNDER_FANG, BattleScript_IceFangFlinch' in scripts
+assert '#define EFFECT_THUNDER_FANG 217' in (root/'include/constants/battle_move_effects.h').read_text()
 for path in ['include/constants/moves.h','src/data/battle_moves.h',
-             'src/data/text/move_names.h','src/move_descriptions.c','data/battle_anim_scripts.s']:
+ 'src/data/text/move_names.h','src/move_descriptions.c','data/battle_anim_scripts.s',
+ 'include/constants/battle_move_effects.h','data/battle_scripts_1.s']:
  before=prior_moves387_source(path)
- assert 'MOVE_DISCHARGE' not in before,path
- assert 'MOVE_DISCHARGE' not in prior_water_moves385_source(path),path
-print('PASS: staged #387 exact approved Discharge, all-others targeting, Thunderbolt art and strict additive reversal; native acceptance separately gated')
+ assert 'MOVE_DISCHARGE' not in before and 'MOVE_VOLT_SWITCH' not in before,path
+ assert 'MOVE_THUNDER_FANG' not in before,path
+ if path in ('include/constants/moves.h','src/data/battle_moves.h',
+             'src/data/text/move_names.h','src/move_descriptions.c','data/battle_anim_scripts.s'):
+  assert 'MOVE_DISCHARGE' not in prior_water_moves385_source(path),path
+print('PASS: staged #387-394 exact owner data, native effect bindings, approved animation scripts and strict historical reversal; runtime acceptance independently gated')
