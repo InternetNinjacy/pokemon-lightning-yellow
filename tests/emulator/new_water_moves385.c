@@ -43,12 +43,22 @@ static void waterMoves385Tests(void){
     hp=core->busRead16(core,bmon(1)+ABI_BMON_HP);
     count=(hp<1000);
    }else{
-    unsigned frame;
-    // Diagnose real fourth-to-fifth-hit stalls without extending the timeout
-    // or bypassing any battle-controller/action state.
+    unsigned frame, lastHitFrame=0;
+    // The ROM's five actual battle turns exceed a single-action frame budget.
+    // Keep the original strict 4800-frame watchdog for EACH hit, with a
+    // separate finite five-turn bound. Never infer success from elapsed time.
+    const unsigned perHitFrameBudget=4800;
+    const unsigned sequenceFrameBudget=5*perHitFrameBudget;
     unsigned lastScript=0,lastExec=0,lastController=0,lastCount=0;
     unsigned transitions=0;
-    for(frame=0;frame<4800;frame++){
+    for(frame=0;frame<sequenceFrameBudget;frame++){
+     if(frame-lastHitFrame>=perHitFrameBudget){
+      fprintf(stderr,"TIDAL_HIT_WATCHDOG two=%u trial=%u count=%u waited=%u script=%08x exec=%08x ctrl0=%08x ctrl2=%08x status0=%08x\\n",
+       two,trial,count,frame-lastHitFrame,core->busRead32(core,SYM_gBattlescriptCurrInstr),
+       core->busRead32(core,SYM_gBattleControllerExecFlags),controller(0),controller(2),
+       core->busRead32(core,bmon(0)+ABI_BMON_STATUS2));
+      CHECK(frame-lastHitFrame<perHitFrameBudget);
+     }
      if(two && count>=4){
       unsigned scriptNow=core->busRead32(core,SYM_gBattlescriptCurrInstr);
       unsigned execNow=core->busRead32(core,SYM_gBattleControllerExecFlags);
@@ -78,11 +88,12 @@ static void waterMoves385Tests(void){
                core->busRead32(core,bmon(0)+ABI_BMON_STATUS2));
       CHECK(dealt>=perHit[count]*85/100&&dealt<=perHit[count]);
       count++;
+      lastHitFrame=frame;
       hp=current;
      }
     }
-    if(frame==4800)fprintf(stderr,"TIDAL_DOUBLES_TIMEOUT two=%u trial=%u count=%u hp=%u lock=%08x ctrl=%08x/%08x/%08x/%08x script=%08x\\n",two,trial,count,hp,core->busRead32(core,bmon(0)+ABI_BMON_STATUS2),controller(0),controller(1),controller(2),controller(3),core->busRead32(core,SYM_gBattlescriptCurrInstr));
-    CHECK(frame<4800);frames(3,0);
+    if(frame==sequenceFrameBudget)fprintf(stderr,"TIDAL_DOUBLES_TIMEOUT two=%u trial=%u count=%u hp=%u lock=%08x ctrl=%08x/%08x/%08x/%08x script=%08x\\n",two,trial,count,hp,core->busRead32(core,bmon(0)+ABI_BMON_STATUS2),controller(0),controller(1),controller(2),controller(3),core->busRead32(core,SYM_gBattlescriptCurrInstr));
+    CHECK(frame<sequenceFrameBudget);frames(3,0);
    }
    CHECK(monget(player(0),ABI_DATA_PP1)==pp[m]-1);
    CHECK(core->busRead16(core,bmon(0)+ABI_BMON_HP)==1000);
@@ -96,14 +107,14 @@ static void waterMoves385Tests(void){
    }else{
     if(count)hits++;
     else misses++;
-    if(!two&&count==5){
+    if(count==5){
      fiveHits++;
      CHECK(!(core->busRead32(core,bmon(0)+ABI_BMON_STATUS2)&STATUS2_MULTIPLETURNS));
     }
    }
   }
   CHECK(hits);
-  if(m==1){CHECK(misses);if(!two)CHECK(fiveHits);} // genuine miss plus all five real Singles hits.
+  if(m==1){CHECK(misses);CHECK(fiveHits);} // genuine miss plus all five real Singles hits.
   free(snap);
   printf("PASS: native water move %u %s physical AI damage, single-target actual animation, PP, no trap\\n",moves[m],two?"Doubles":"Singles");
  }
