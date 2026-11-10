@@ -6,9 +6,11 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+# Full acceptance is tied to its immutable run/SHA. Never cancel an
+# in-flight comprehensive native/baseline verification on a later push.
 concurrency:
-  group: split-${{ github.ref }}
-  cancel-in-progress: true
+  group: split-acceptance-${{ github.run_id }}-${{ github.run_attempt }}
+  cancel-in-progress: false
 jobs:
   verify:
     name: ${{ matrix.target }}
@@ -22,7 +24,14 @@ jobs:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           persist-credentials: false
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 0 # Verify strict prechange source preservation against pinned gameplay main
+      - name: Confirm exact source commit
+        run: |
+          expected="${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}"
+          actual="$(git rev-parse HEAD)"
+          echo "ACCEPTANCE_SHA=$actual"
+          test "$actual" = "$expected"
       - name: Install upstream Linux dependencies and test runner
         run: |
           # Fetch all required packages before either expensive build. Bound
