@@ -113,7 +113,7 @@ static void waterMoves385Mechanics(void){
   core->busWrite32(core,SYM_gBattlescriptCurrInstr,script);
   for(unsigned step=0;step<5;step++){
    CALL(Cmd_rolloutdamagecalculation);
-   unsigned expected=(30U<<step)*(original&&curl?2U:1U);
+   unsigned expected=(30U<<step)*(curl?2U:1U);
    CHECK(core->busRead32(core,SYM_gDynamicBasePower)==expected);
    CHECK(!!(core->busRead32(core,bmon(0)+ABI_BMON_STATUS2)&STATUS2_MULTIPLETURNS)==(step<4));
    if(step<4)CHECK(core->busRead16(core,SYM_gLockedMoves)==move);
