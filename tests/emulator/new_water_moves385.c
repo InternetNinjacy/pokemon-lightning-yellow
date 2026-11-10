@@ -19,54 +19,91 @@ static void waterMoves385Tests(void){
   core->busWrite16(core,SYM_gCurrentMove,moves[m]);
   CALL(AI_CalcDmg,0,1);
   CHECK(core->busRead32(core,SYM_gBattleMoveDamage)==expected);
+  // Rollout's native status2 lock can play all five attacks before the
+  // action chooser returns. Never compare their cumulative HP loss to the
+  // first hit's 30-power reference. Record each real ROM hit separately.
+  unsigned perHit[5]={0};
+  if(m==1){
+   CHECK(!(core->busRead32(core,bmon(0)+ABI_BMON_STATUS2)&STATUS2_DEFENSE_CURL));
+   CHECK(!(core->busRead32(core,bmon(0)+ABI_BMON_STATUS2)&STATUS2_MULTIPLETURNS));
+   for(unsigned step=0;step<5;step++){
+    perHit[step]=baseDamage(MOVE_TIDAL_CRASH,0,30U<<step,0);
+    CHECK(perHit[step]>0);
+   }
+  }
   void *snap=malloc(core->stateSize(core));CHECK(snap&&core->saveState(core,snap));
-  unsigned hits=0;
-  for(unsigned trial=0;trial<40&&!hits;trial++){
+  unsigned hits=0,misses=0,fiveHits=0;
+  for(unsigned trial=0;trial<(m?64:40)&&(!hits||(m==1&&!misses));trial++){
    CHECK(core->loadState(core,snap));
    core->busWrite32(core,SYM_gRngValue,0x38538600U+trial*7919U+two*17U+m*31U);
    chooseMove(0,0,1);if(two)chooseMove(2,0,1);
-   if(m==1 && two){
-    // The first battler is automatically locked into subsequent Rollout turns,
-    // but its Doubles partner still requires a real player decision each turn.
-    // Exercise that controller instead of waiting forever for a menu that is
-    // deliberately suppressed during the multi-turn lock.
-    unsigned frame,partnerChoices=0,sawLock=0;
+   unsigned count=0,hp=1000;
+   if(m==0){
+    waitActionBudget(4800);
+    hp=core->busRead16(core,bmon(1)+ABI_BMON_HP);
+    count=(hp<1000);
+   }else{
+    unsigned frame;
+    // Diagnose real fourth-to-fifth-hit stalls without extending the timeout
+    // or bypassing any battle-controller/action state.
+    unsigned lastScript=0,lastExec=0,lastController=0,lastCount=0;
+    unsigned transitions=0;
     for(frame=0;frame<4800;frame++){
-     unsigned status=core->busRead32(core,bmon(0)+ABI_BMON_STATUS2);
-     sawLock|=!!(status&STATUS2_MULTIPLETURNS);
-     if(controller(0)==SYM_HandleInputChooseAction && !(status&STATUS2_MULTIPLETURNS))
-      break;
-     if(controller(2)==SYM_HandleInputChooseAction){
-      CHECK(partnerChoices<5);
+     if(two && count>=4){
+      unsigned scriptNow=core->busRead32(core,SYM_gBattlescriptCurrInstr);
+      unsigned execNow=core->busRead32(core,SYM_gBattleControllerExecFlags);
+      unsigned ctrlNow=controller(2);
+      if(scriptNow!=lastScript||execNow!=lastExec||ctrlNow!=lastController||count!=lastCount){
+       if(transitions<48)fprintf(stderr,"TIDAL_STEP5_TRACE frame=%u count=%u script=%08x exec=%08x ctrl0=%08x ctrl2=%08x action2=%u move2=%u status0=%08x\\n",frame,count,scriptNow,execNow,controller(0),ctrlNow,core->busRead8(core,SYM_gActionSelectionCursor+2),core->busRead8(core,SYM_gMoveSelectionCursor+2),core->busRead32(core,bmon(0)+ABI_BMON_STATUS2));
+       transitions++;
+       lastScript=scriptNow;lastExec=execNow;lastController=ctrlNow;lastCount=count;
+      }
+     }
+     if(frame>0&&controller(0)==SYM_HandleInputChooseAction)break;
+     // The locked Rollout user does not reselect, but its Doubles partner
+     // must still submit a normal action on each additional turn. Without
+     // that input the test can stall at the partner's action menu indefinitely.
+     if(two&&controller(2)==SYM_HandleInputChooseAction){
       chooseMove(2,0,1);
-      partnerChoices++;
-     }else{
-      frames(1,(frame%12)<3?1:0);
+     }
+     frames(1,(frame%12)<3?1:0);
+     unsigned current=core->busRead16(core,bmon(1)+ABI_BMON_HP);
+     CHECK(current<=hp);
+     if(current<hp){
+      CHECK(count<5);
+      unsigned dealt=hp-current;
+      if(dealt<perHit[count]*85/100||dealt>perHit[count])
+       fprintf(stderr,"TIDAL_HIT_MISMATCH two=%u trial=%u step=%u dealt=%u range=%u..%u status2=%08x\n",
+               two,trial,count,dealt,perHit[count]*85/100,perHit[count],
+               core->busRead32(core,bmon(0)+ABI_BMON_STATUS2));
+      CHECK(dealt>=perHit[count]*85/100&&dealt<=perHit[count]);
+      count++;
+      hp=current;
      }
     }
-    if(frame==4800)fprintf(stderr,"TIDAL_DOUBLE_TIMEOUT partnerChoices=%u sawLock=%u ctrl0=%08x ctrl2=%08x status2=%08x script=%08x exec=%08x move=%u hp=%u pp=%u\\n",
-       partnerChoices,sawLock,controller(0),controller(2),core->busRead32(core,bmon(0)+ABI_BMON_STATUS2),core->busRead32(core,SYM_gBattlescriptCurrInstr),core->busRead32(core,SYM_gBattleControllerExecFlags),core->busRead16(core,SYM_gCurrentMove),core->busRead16(core,bmon(1)+ABI_BMON_HP),monget(player(0),ABI_DATA_PP1));
-    CHECK(frame<4800);
-    CHECK(sawLock || core->busRead16(core,bmon(1)+ABI_BMON_HP)==1000); // first-turn miss can cancel before a lock is visible
-    frames(3,0);
-   }else waitActionBudget(4800);
-   unsigned hp=core->busRead16(core,bmon(1)+ABI_BMON_HP);
+    if(frame==4800)fprintf(stderr,"TIDAL_DOUBLES_TIMEOUT two=%u trial=%u count=%u hp=%u lock=%08x ctrl=%08x/%08x/%08x/%08x script=%08x\\n",two,trial,count,hp,core->busRead32(core,bmon(0)+ABI_BMON_STATUS2),controller(0),controller(1),controller(2),controller(3),core->busRead32(core,SYM_gBattlescriptCurrInstr));
+    CHECK(frame<4800);frames(3,0);
+   }
    CHECK(monget(player(0),ABI_DATA_PP1)==pp[m]-1);
    CHECK(core->busRead16(core,bmon(0)+ABI_BMON_HP)==1000);
-   if(two){CHECK(core->busRead16(core,bmon(2)+ABI_BMON_HP)==1000);CHECK(core->busRead16(core,bmon(3)+ABI_BMON_HP)==1000);}
-   if(hp<1000){
-    // A forced native Rollout sequence may execute several damaging turns before
-    // waitActionBudget returns control. Compare the cumulative damage against
-    // the sum of the five approved stage powers, not a single base-power hit.
-    // Vortex Spin still uses its original strict single-hit bound.
-    unsigned maxDamage=expected*(m==1?31U:1U); // 1+2+4+8+16
-    if(1000-hp>maxDamage)fprintf(stderr,"WATER385_DAMAGE_MISMATCH move=%u two=%u trial=%u hp=%u dealt=%u expected_single=%u max_sequence=%u dynamic=%u status2=%08x flags=%08x seed=%08x\\n",moves[m],two,trial,hp,1000-hp,expected,maxDamage,core->busRead32(core,SYM_gDynamicBasePower),core->busRead32(core,bmon(0)+ABI_BMON_STATUS2),core->busRead32(core,SYM_gBattleTypeFlags),0x38538600U+trial*7919U+two*17U+m*31U);
-    CHECK(1000-hp<=maxDamage);
-    hits++;
+   if(two){
+    CHECK(core->busRead16(core,bmon(2)+ABI_BMON_HP)==1000);
+    CHECK(core->busRead16(core,bmon(3)+ABI_BMON_HP)==1000);
    }
-   if(m==0)CHECK(!(core->busRead32(core,bmon(1)+ABI_BMON_STATUS2)&STATUS2_WRAPPED));
+   if(!m){
+    if(hp<1000){CHECK(hp>=1000-expected);hits++;}
+    CHECK(!(core->busRead32(core,bmon(1)+ABI_BMON_STATUS2)&STATUS2_WRAPPED));
+   }else{
+    if(count)hits++;
+    else misses++;
+    if(!two&&count==5){
+     fiveHits++;
+     CHECK(!(core->busRead32(core,bmon(0)+ABI_BMON_STATUS2)&STATUS2_MULTIPLETURNS));
+    }
+   }
   }
   CHECK(hits);
+  if(m==1){CHECK(misses);if(!two)CHECK(fiveHits);} // genuine miss plus all five real Singles hits.
   free(snap);
   printf("PASS: native water move %u %s physical AI damage, single-target actual animation, PP, no trap\\n",moves[m],two?"Doubles":"Singles");
  }
@@ -99,7 +136,7 @@ static void waterMoves385Mechanics(void){
   CHECK(!(status2&STATUS2_WRAPPED));
  }
  CHECK(core->loadState(core,state));CALL(Free,script);free(state);
- // Prove Defense Curl doubles ONLY original Rollout, never Tidal Crash.
+ // The approved Defense Curl bonus applies to both Rollout and Tidal Crash.
  // Both moves retain their five-hit progression and miss cleanup.
  for(unsigned original=0;original<2;original++)for(unsigned curl=0;curl<2;curl++){
   const unsigned move=original?MOVE_ROLLOUT:MOVE_TIDAL_CRASH;
@@ -133,5 +170,5 @@ static void waterMoves385Mechanics(void){
   CALL(Free,script);
  }
  CHECK(core->loadState(core,bootState));
- printf("PASS: native Vortex Spin exact 30/60%% confusion, zero wrapping; Tidal Crash 30/60/120/240/480 never Curl-boosted; original Rollout Curl doubles; five-turn lock/miss cleanup\n");
+ printf("PASS: native Vortex Spin exact 30/60%% confusion, zero wrapping; Tidal Crash and original Rollout both double after Defense Curl; five-turn lock/miss cleanup\n");
 }
