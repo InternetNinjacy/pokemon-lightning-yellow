@@ -805,4 +805,10 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_TIDAL_CRASH - 1] = gMoveDescription_TIDAL_CRASH,
     [MOVE_DISCHARGE - 1] = gMoveDescription_DISCHARGE,
     [MOVE_VOLT_SWITCH - 1] = gMoveDescription_VOLT_SWITCH,
+    [MOVE_THUNDER_FANG - 1] = gMoveDescription_THUNDER_FANG,
+    [MOVE_WILD_CHARGE - 1] = gMoveDescription_WILD_CHARGE,
+    [MOVE_SEED_BOMB - 1] = gMoveDescription_SEED_BOMB,
+    [MOVE_PETAL_BLIZZARD - 1] = gMoveDescription_PETAL_BLIZZARD,
+    [MOVE_WOOD_HAMMER - 1] = gMoveDescription_WOOD_HAMMER,
+    [MOVE_AURA_SPHERE - 1] = gMoveDescription_AURA_SPHERE,
 };
