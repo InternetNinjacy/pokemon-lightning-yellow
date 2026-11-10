@@ -363,7 +363,7 @@ static void wrlLavenderToRoute8GrassWalkTests(void) {
                 queue[back++]=next;
             }
         }
-        fprintf(stderr,"WRL Lavender->Route8 grass BFS from=(%u,%u) reachable=%u examined=%u replans=%u transitionFrame=%u\\n",
+        fprintf(stderr,"WRL Lavender->Route8 grass BFS from=(%u,%u) reachable=%u examined=%u replans=%u transitionFrame=%u\n",
                 sx,sy,goal!=N,front,replans,transitionFrame);
         CHECK(goal!=N);
         unsigned path[N],length=0;
@@ -397,7 +397,7 @@ static void wrlLavenderToRoute8GrassWalkTests(void) {
                 CALL(PlayerGetDestCoords,scratch,scratch+2);
                 unsigned px=core->busRead16(core,scratch);
                 unsigned py=core->busRead16(core,scratch+2);
-                fprintf(stderr,"WRL Route8 object-blocked target=(%u,%u) actual=(%u,%u) prior=(%u,%u) metatileCollision=%u replan=%u\\n",
+                fprintf(stderr,"WRL Route8 object-blocked target=(%u,%u) actual=(%u,%u) prior=(%u,%u) metatileCollision=%u replan=%u\n",
                         tx,ty,px,py,prevX,prevY,
                         CALL(MapGridGetCollisionAt,tx,ty),replans+1);
                 // Replan only if the attempted native step actually stayed
@@ -420,7 +420,7 @@ static void wrlLavenderToRoute8GrassWalkTests(void) {
     CALL(PlayerGetDestCoords,scratch,scratch+2);
     CHECK(wrlRouteGrassAt(core->busRead16(core,scratch),
                           core->busRead16(core,scratch+2)));
-    printf("PASS: native Lavender -> Route 8 connection followed by %u actual D-pad steps to approved grass in %u walking frames (%u object-blocker replans)\\n",
+    printf("PASS: native Lavender -> Route 8 connection followed by %u actual D-pad steps to approved grass in %u walking frames (%u object-blocker replans)\n",
            totalSteps,totalFrames,replans);
     CHECK(core->loadState(core,bootState));
 }
