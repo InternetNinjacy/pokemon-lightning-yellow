@@ -32,7 +32,7 @@ static void waterMoves385Tests(void){
    }
   }
   void *snap=malloc(core->stateSize(core));CHECK(snap&&core->saveState(core,snap));
-  unsigned hits=0,misses=0;
+  unsigned hits=0,misses=0,fiveHits=0;
   for(unsigned trial=0;trial<(m?64:40)&&(!hits||(m==1&&!misses));trial++){
    CHECK(core->loadState(core,snap));
    core->busWrite32(core,SYM_gRngValue,0x38538600U+trial*7919U+two*17U+m*31U);
@@ -75,12 +75,14 @@ static void waterMoves385Tests(void){
    }else{
     if(count)hits++;
     else misses++;
-    if(!two&&count==5)
+    if(!two&&count==5){
+     fiveHits++;
      CHECK(!(core->busRead32(core,bmon(0)+ABI_BMON_STATUS2)&STATUS2_MULTIPLETURNS));
+    }
    }
   }
   CHECK(hits);
-  if(m==1)CHECK(misses); // 90% accuracy must produce genuine native misses.
+  if(m==1){CHECK(misses);if(!two)CHECK(fiveHits);} // genuine miss plus all five real Singles hits.
   free(snap);
   printf("PASS: native water move %u %s physical AI damage, single-target actual animation, PP, no trap\\n",moves[m],two?"Doubles":"Singles");
  }
@@ -113,8 +115,8 @@ static void waterMoves385Mechanics(void){
   CHECK(!(status2&STATUS2_WRAPPED));
  }
  CHECK(core->loadState(core,state));CALL(Free,script);free(state);
- for(unsigned curl=0;curl<2;curl++){
-  effectBattleFixture(0,MOVE_TIDAL_CRASH);
+ for(unsigned two=0;two<2;two++)for(unsigned curl=0;curl<2;curl++){
+  effectBattleFixture(two,MOVE_TIDAL_CRASH);
   script=CALL(AllocZeroed,32);CHECK(script);
   core->busWrite8(core,SYM_gBattlerAttacker,0);
   core->busWrite8(core,SYM_gBattlerTarget,1);
@@ -128,7 +130,7 @@ static void waterMoves385Mechanics(void){
    CHECK(!!(core->busRead32(core,bmon(0)+ABI_BMON_STATUS2)&STATUS2_MULTIPLETURNS)==(step<4));
   }
   CALL(Free,script);
-  effectBattleFixture(0,MOVE_TIDAL_CRASH); // independent miss termination fixture
+  effectBattleFixture(two,MOVE_TIDAL_CRASH); // independent miss termination fixture
   script=CALL(AllocZeroed,32);CHECK(script);
   core->busWrite8(core,SYM_gBattlerAttacker,0);
   core->busWrite16(core,SYM_gCurrentMove,MOVE_TIDAL_CRASH);
