@@ -1,5 +1,18 @@
 """Strict reverse projection of staged #387-394 production changes; frozen history remains unchanged."""
 from pathlib import Path
+import hashlib
+
+# Exact Git blob hashes for the parent head. These permit repeated historical
+# projection ONLY on byte-identical ancestor text, never arbitrary absent hunks.
+BASE_BLOB_SHA1 = {
+    "include/constants/moves.h": "2eee2995edf119f08ce36e01eeac337c6ecac197",
+    "src/data/battle_moves.h": "921de16e0c92df54d16ddb1e8de94790e5acc93f",
+    "src/data/text/move_names.h": "00df9bd1b0ea8329a9d31761d9ba556df76c65a9",
+    "src/move_descriptions.c": "3bacc83c2ab6a4d3238e6a7eff4b3f6feb5cae22",
+    "data/battle_anim_scripts.s": "b28afe8369f3719be6d64cbcd768cad294a33e9c",
+    "include/constants/battle_move_effects.h": "8bef6202ae38c246627d53363877c1ccace1ae83",
+    "data/battle_scripts_1.s": "60d2ba8aa4663149207bcfbeb9c05f19e1c4302f",
+}
 
 HUNKS = {
     "include/constants/moves.h": [
@@ -33,7 +46,13 @@ HUNKS = {
 def prior_moves387_source(path, text=None):
     if text is None:
         text=Path(path).read_text()
-    for after,before in reversed(HUNKS.get(str(path), [])):
+    hunks=HUNKS.get(str(path), [])
+    if hunks and not any(after in text for after,_ in hunks):
+        raw=text.encode()
+        digest=hashlib.sha1((f'blob {len(raw)}\\0').encode()+raw).hexdigest()
+        assert digest==BASE_BLOB_SHA1[str(path)], "Unknown pre-batch source: "+str(path)
+        return text
+    for after,before in reversed(hunks):
         assert text.count(after)==1, "Unreviewed #387-394 source delta: "+str(path)
         text=text.replace(after,before,1)
     return text
