@@ -424,7 +424,18 @@
 #define MOVE_BULLET_PUNCH 400
 #define MOVE_AIR_SLASH 401
 #define MOVE_HEART_STAMP 406
-#define MOVES_COUNT 407
+// BTL-005 Batch B: approved imported IDs; Batch C gaps remain inert/unreleased.
+#define MOVE_DISCHARGE 387
+#define MOVE_THUNDER_FANG 389
+#define MOVE_WILD_CHARGE 390
+#define MOVE_WOOD_HAMMER 393
+#define MOVE_DRAIN_PUNCH 396
+#define MOVE_BRAVE_BIRD 403
+#define MOVE_ZEN_HEADBUTT 407
+#define MOVE_CROSS_POISON 408
+#define MOVE_POISON_JAB 409
+#define MOVE_GUNK_SHOT 410
+#define MOVES_COUNT 411
 
 // Used for checks for moves affected by Disable, Mimic, etc.
 #define MOVE_UNAVAILABLE 0xFFFF
