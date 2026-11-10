@@ -279,6 +279,7 @@ BattleScript_IceFangFlinch::
 	seteffectwithchance
 BattleScript_AfterSwarmCloud::
 	tryfaintmon BS_TARGET
+	jumpifmove MOVE_VOLT_SWITCH, BattleScript_VoltSwitchPivot
 BattleScript_MoveEnd::
 	moveendall
 	end
