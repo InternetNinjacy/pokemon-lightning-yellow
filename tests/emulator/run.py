@@ -14,6 +14,8 @@ expressions = {
  'BMON_MAX_HP':'offsetof(struct BattlePokemon,maxHP)',
  'BOX_SECURE':'offsetof(struct BoxPokemon,secure)',
  'SAVE1_PARTY':'offsetof(struct SaveBlock1,playerParty)',
+ 'POKEMON_SIZE':'sizeof(struct Pokemon)',
+ 'FOLLOWER_ASSET_SIZE':'sizeof(struct FollowerGraphicsAsset)',
  'R5_VERSION':'offsetof(struct Route5DaycareSave,version)',
  'SECTOR_SIZE':'SECTOR_SIZE',
  'SECTOR_SIGNATURE':'offsetof(struct SaveSector,signature)',
@@ -287,6 +289,7 @@ required += ['CalculatePPWithBonus','SetMonMoveSlot']
 required += ['GetWindowAttribute','MoveSelectionDisplayMoveNames','MoveSelectionDisplayPpString','MoveSelectionDisplayPpNumber','GetMoveTypeShortName','HandleMoveSwitching']
 required += ['TeachMoveRelearnerMove','CB2_MoveRelearner','GetBgTilemapBuffer']
 required += ['gMoveNames','GetStringWidth','StringCopy','AllocPSA','Free','AllocZeroed','sMoveRelearner','MoveRelearnerInitListMenuBuffersEtc','BufferStringBattle','gBattleTextBuff2','gBattleTextBuff3']
+required += ['FollowerState_ResolvePartySlot','FollowerState_SelectPartySlot','FollowerState_CanDisplay','FollowerState_BeforePartyRemoval','FollowerState_Clear','FollowerAssets_Count','FollowerAssets_Resolve','CustomPokedexNumToSpecies','gStringVar4']
 required += ['Task_StartMenuHandleInput','sStartMenuCursorPos','sStartMenuOrder','Task_BagMenu_HandleInput','Task_HandleChooseMonInput','Task_EvolutionScene']
 symbols={}
 end_ewram=0
@@ -307,6 +310,7 @@ for name in ['HandleInputChooseAction','HandleInputChooseMove','HandleInputChoos
 with tempfile.TemporaryDirectory(prefix='lightning-emulator-') as temp:
     temp=Path(temp)
     source='#include "save.h"\n#include "field_weather.h"\n#include <stddef.h>\n#include "global.h"\n#include "pokemon.h"\n#include "main.h"\n#include "task.h"\n'
+    source+='#include "follower_graphics.h"\n'
     source+='#include "text.h"\n#include "pokedex.h"\n#include "battle_controllers.h"\n#include "item_menu.h"\n#include "wild_encounter.h"\n#include "battle.h"\n#include "list_menu.h"\n#include "party_menu.h"\n#include "script.h"\n#include "field_player_avatar.h"\n'+screen_struct+'\n'+summary_struct+'\n'
     learn=Path('src/learn_move.c').read_text();learn=learn[learn.index('struct LearnMoveGfxResources\n'):];learn=learn[:learn.index('\n};')+3]
     source+='#include "battle_message.h"\n#include "pokemon_special_anim_internal.h"\n'+learn+'\n'
