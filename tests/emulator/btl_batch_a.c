@@ -158,3 +158,53 @@ static void batchAExactMechanics(void){
  CHECK(core->loadState(core,snapshot));CALL(Free,script);free(snapshot);
  printf("PASS: Batch A exact native 0/70/85/95/100 accuracy and 10/30%% secondary effects with Serene Grace/Shield Dust/Substitute/Inner Focus protections\\n");
 }
+
+static void batchAFlashPersistence(void){
+ const unsigned moves[]={MOVE_SEED_BOMB,MOVE_PETAL_BLIZZARD,MOVE_AURA_SPHERE,
+  MOVE_FOCUS_BLAST,MOVE_FLASH_CANNON,MOVE_MIRROR_SHOT,MOVE_IRON_HEAD,
+  MOVE_BULLET_PUNCH,MOVE_AIR_SLASH,MOVE_HEART_STAMP,MOVE_SPLASH,MOVE_SPLASH};
+ const unsigned maxPp[]={15,15,20,5,10,10,15,30,15,25,40,40};
+ CHECK(core->loadState(core,bootState));
+ GBASavedataForceType(&((struct GBA*)core->board)->memory.savedata,SAVEDATA_FLASH1M);
+ void *oldFlash=NULL;
+ size_t flashSize=core->savedataClone(core,&oldFlash);
+ CHECK(flashSize==0x20000&&oldFlash);
+ unsigned char *blank=malloc(0x20000);CHECK(blank);
+ memset(blank,255,0x20000);
+ CHECK(core->savedataRestore(core,blank,0x20000,true));
+ free(blank);
+ initSave();
+ unsigned char saved[3][ABI_BOX_SIZE];
+ for(unsigned p=0;p<3;p++){
+  CALL(CreateMon,player(p),SPECIES_SQUIRTLE,50,31,1,12345+p,0,1234+p);
+  for(unsigned slot=0;slot<4;slot++){
+   unsigned i=p*4+slot;
+   CALL(SetMonMoveSlot,player(p),moves[i],slot);
+   monput(player(p),ABI_DATA_PP1+slot,maxPp[i]-1);
+  }
+  monput(player(p),ABI_DATA_PP_BONUSES,p==0?0:p==1?21:42);
+  readBytes(player(p),saved[p],sizeof(saved[p]));
+ }
+ core->busWrite8(core,SYM_gPlayerPartyCount,3);
+ CHECK(CALL(TrySavingData,0)==1);
+ for(unsigned k=0;k<ABI_SAVE1_SIZE;k+=4)core->busWrite32(core,SYM_gSaveBlock1+k,0);
+ for(unsigned k=0;k<ABI_SAVE2_SIZE;k+=4)core->busWrite32(core,SYM_gSaveBlock2+k,0);
+ for(unsigned p=0;p<3;p++)for(unsigned slot=0;slot<4;slot++)
+  CALL(SetMonMoveSlot,player(p),MOVE_POUND,slot);
+ CHECK(CALL(LoadGameSave,0)==1);
+ CHECK(core->busRead8(core,SYM_gPlayerPartyCount)==3);
+ for(unsigned p=0;p<3;p++){
+  sameBytes(player(p),saved[p],sizeof(saved[p]));
+  for(unsigned slot=0;slot<4;slot++){
+   unsigned i=p*4+slot;
+   CHECK(monget(player(p),ABI_DATA_MOVE1+slot)==moves[i]);
+   CHECK(monget(player(p),ABI_DATA_PP1+slot)==maxPp[i]-1);
+  }
+  CHECK(monget(player(p),ABI_DATA_PP_BONUSES)==(p==0?0:p==1?21:42));
+  CHECK(!monget(player(p),ABI_DATA_SANITY_IS_BAD_EGG));
+ }
+ CHECK(core->savedataRestore(core,oldFlash,flashSize,true));
+ free(oldFlash);
+ CHECK(core->loadState(core,bootState));
+ printf("PASS: Batch A all ten move IDs, spent PP, PP bonuses and encrypted Pokemon records persist through actual flash save/load\\n");
+}
