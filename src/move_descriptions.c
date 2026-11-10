@@ -408,6 +408,17 @@ const u8 gMoveDescription_LIQUIDATION[] = _("A water strike\nthat may lower\nthe
 const u8 gMoveDescription_VORTEX_SPIN[] = _("A swirling water\nstrike that may\nconfuse the foe.");
 const u8 gMoveDescription_TIDAL_CRASH[] = _("A 5-turn water\nattack that grows\nstronger each hit.");
 
+const u8 gMoveDescription_SEED_BOMB[] = _("Strikes the foe\nwith a hard seed.");
+const u8 gMoveDescription_PETAL_BLIZZARD[] = _("A storm of petals\nstrikes everyone\naround the user.");
+const u8 gMoveDescription_AURA_SPHERE[] = _("An aura attack\nthat never misses.");
+const u8 gMoveDescription_FOCUS_BLAST[] = _("May lower the\nfoe's SP. DEF.");
+const u8 gMoveDescription_FLASH_CANNON[] = _("May lower the\nfoe's SP. DEF.");
+const u8 gMoveDescription_MIRROR_SHOT[] = _("May lower the\nfoe's accuracy.");
+const u8 gMoveDescription_IRON_HEAD[] = _("A head strike that\nmay cause flinching.");
+const u8 gMoveDescription_BULLET_PUNCH[] = _("A fast punch that\nstrikes first.");
+const u8 gMoveDescription_AIR_SLASH[] = _("Sharp wind blades\nmay cause flinching.");
+const u8 gMoveDescription_HEART_STAMP[] = _("A heart-stopping\nstrike that may\ncause flinching.");
+
 const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND         - 1] = gMoveDescription_Pound,
     [MOVE_KARATE_CHOP   - 1] = gMoveDescription_KarateChop,
@@ -795,4 +806,14 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_LIQUIDATION - 1] = gMoveDescription_LIQUIDATION,
     [MOVE_VORTEX_SPIN - 1] = gMoveDescription_VORTEX_SPIN,
     [MOVE_TIDAL_CRASH - 1] = gMoveDescription_TIDAL_CRASH,
+    [MOVE_SEED_BOMB - 1] = gMoveDescription_SEED_BOMB,
+    [MOVE_PETAL_BLIZZARD - 1] = gMoveDescription_PETAL_BLIZZARD,
+    [MOVE_AURA_SPHERE - 1] = gMoveDescription_AURA_SPHERE,
+    [MOVE_FOCUS_BLAST - 1] = gMoveDescription_FOCUS_BLAST,
+    [MOVE_FLASH_CANNON - 1] = gMoveDescription_FLASH_CANNON,
+    [MOVE_MIRROR_SHOT - 1] = gMoveDescription_MIRROR_SHOT,
+    [MOVE_IRON_HEAD - 1] = gMoveDescription_IRON_HEAD,
+    [MOVE_BULLET_PUNCH - 1] = gMoveDescription_BULLET_PUNCH,
+    [MOVE_AIR_SLASH - 1] = gMoveDescription_AIR_SLASH,
+    [MOVE_HEART_STAMP - 1] = gMoveDescription_HEART_STAMP,
 };
