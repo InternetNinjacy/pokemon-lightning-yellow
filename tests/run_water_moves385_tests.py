@@ -101,3 +101,31 @@ for path in ['include/constants/moves.h','src/data/battle_moves.h','src/data/tex
  old=prior_water_moves385_source(path)
  assert 'MOVE_VORTEX_SPIN' not in old and 'MOVE_TIDAL_CRASH' not in old,path
 print('PASS: approved 385-386 source values, IDs, owner priority, animation, no trap, native Rollout and strict prior-source reversals')
+
+# First approved staged addition in batch 387-394; runtime mGBA remains gated.
+assert re.search(r'^#define MOVE_DISCHARGE 387$',ids,re.M)
+assert re.search(r'^#define MOVES_COUNT 388$',ids,re.M)
+design=moves['DISCHARGE']
+assert design['proposed_id']==387
+assert design['approved']['effect']=='PARALYZE_30'
+assert design['approved']['target']=='ALL_OTHERS'
+assert design['approved']['secondaryEffectChance']==30
+record=re.search(r'\[MOVE_DISCHARGE\]\s*=\s*\{(.*?)\n    \},',data,re.S)
+assert record
+for key,value in {
+ 'category':'MOVE_CATEGORY_SPECIAL','effect':'EFFECT_PARALYZE_HIT',
+ 'power':'80','type':'TYPE_ELECTRIC','accuracy':'100','pp':'15',
+ 'secondaryEffectChance':'30','target':'MOVE_TARGET_FOES_AND_ALLY','priority':'0'
+}.items():
+ assert re.search(r'\.'+key+r'\s*=\s*'+value+r'\s*,',record[1]),key
+assert '[MOVE_DISCHARGE] = _("DISCHARGE")' in names
+assert 'gMoveDescription_DISCHARGE[]' in descs
+assert '[MOVE_DISCHARGE - 1] = gMoveDescription_DISCHARGE' in descs
+assert re.search(r'^Move_DISCHARGE:\s*\n\s*goto Move_THUNDERBOLT\s*$',anim,re.M)
+assert anim.count('\t.4byte Move_DISCHARGE\n')==1
+for path in ['include/constants/moves.h','src/data/battle_moves.h',
+             'src/data/text/move_names.h','src/move_descriptions.c','data/battle_anim_scripts.s']:
+ before=prior_moves387_source(path)
+ assert 'MOVE_DISCHARGE' not in before,path
+ assert 'MOVE_DISCHARGE' not in prior_water_moves385_source(path),path
+print('PASS: staged #387 exact approved Discharge, all-others targeting, Thunderbolt art and strict additive reversal; native acceptance separately gated')
