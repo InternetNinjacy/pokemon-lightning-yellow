@@ -172,7 +172,7 @@ static void wrlCeruleanToRoute5ConnectionTests(void) {
     // Log the actual post-load map and coordinates before asserting the entry
     // fixture. The first CI run failed at mapNum, before any D-pad input.
     CALL(PlayerGetDestCoords,scratch,scratch+2);
-    fprintf(stderr,"WRL Cerulean fixture expected=(%u,%u) actual=(%u,%u) start=(%u,%u) grid=(%u,%u) cb2=%08x\\n",
+    fprintf(stderr,"WRL Cerulean fixture expected=(%u,%u) actual=(%u,%u) start=(%u,%u) grid=(%u,%u) cb2=%08x\n",
             MAP_GROUP(MAP_CERULEAN_CITY),MAP_NUM(MAP_CERULEAN_CITY),
             core->busRead8(core,SYM_gSaveBlock1+4),
             core->busRead8(core,SYM_gSaveBlock1+5),x,startY,
