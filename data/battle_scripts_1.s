@@ -270,6 +270,7 @@ BattleScript_HitFromAtkAnimation::
 	waitmessage B_WAIT_TIME_LONG
 	seteffectwithchance
 	jumpifmove MOVE_ICE_FANG, BattleScript_IceFangFlinch
+	jumpifmove MOVE_THUNDER_FANG, BattleScript_IceFangFlinch
 	jumpifnotmove MOVE_SWARM_CLOUD, BattleScript_AfterSwarmCloud
 	setmoveeffect MOVE_EFFECT_POISON
 	seteffectwithchance
@@ -4431,5 +4432,10 @@ BattleScript_EffectSwarmCloud::
 @ Ice Fang independent on-hit rolls: freeze first, flinch second.
 @ The same 10-percent chance byte is rolled separately by each seteffectwithchance.
 BattleScript_EffectIceFang::
+	jumpifmove MOVE_THUNDER_FANG, BattleScript_ThunderFangParalysis
 	setmoveeffect MOVE_EFFECT_FREEZE
+	goto BattleScript_EffectHit
+
+BattleScript_ThunderFangParalysis:
+	setmoveeffect MOVE_EFFECT_PARALYSIS
 	goto BattleScript_EffectHit
