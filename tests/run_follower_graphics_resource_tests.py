@@ -19,7 +19,8 @@ for token in (
 ):
     assert token in match.group(1), "64x64 OAM precedent changed: " + token
 
-assert re.search(r"#define NUM_OBJ_EVENT_GFX\s+152\b", constants)
+count = re.search(r"#define NUM_OBJ_EVENT_GFX\s+(\d+)\b", constants)
+assert count and 152 <= int(count.group(1)) < 240, "graphics IDs must remain 8-bit and below variable IDs"
 assert re.search(r"#define OBJ_EVENT_GFX_VARS\s+240\b", constants)
 assert 32 * 32 // 2 == 512
 assert 64 * 64 // 2 == 2048
