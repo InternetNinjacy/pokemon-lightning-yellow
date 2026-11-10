@@ -78,6 +78,20 @@ jobs:
         run: |
           if [ "$TARGET" = upstream-baseline ]; then cd vanilla; fi
           "$GITHUB_WORKSPACE/scripts/prepare-baseline.sh"
+      # No external artwork is committed. This one branch tests owner-reported
+      # noncommercial permission using pinned source sheets in runner only.
+      # Individual contributor grants and external redistribution are NOT certified.
+      - name: Generate temporary exact-252 follower artwork for native ROM tests
+        if: matrix.target == 'modified' && github.ref == 'refs/heads/feature/selectable-following-pokemon'
+        timeout-minutes: 18
+        run: |
+          python3 scripts/build-follower-assets.py --confirmed-scope --report /tmp/wrl010-art-provenance.json
+          python3 - <<'PY'
+          import json
+          p=json.load(open('/tmp/wrl010-art-provenance.json'))
+          assert p['graphics_records']==255 and p['base_species_count']==252 and p['castform_form_count']==3
+          print('PASS: ephemeral 252 base + 3 Castform graphics records generated; no ROM/artifact upload')
+          PY
       - name: Build modified game and verify clean reproducibility
         if: matrix.target == 'modified'
         run: |
@@ -86,6 +100,10 @@ jobs:
           make clean
           make -j2
           sha256sum -c /tmp/modified.sha256
+          # Remove generated third-party pixel bytes before source-tree audit.
+          if [ "$GITHUB_REF" = 'refs/heads/feature/selectable-following-pokemon' ]; then
+            git restore -- src/follower_assets_generated.inc
+          fi
           git diff --exit-code
       - name: Install headless mGBA core
         if: matrix.target == 'modified'
