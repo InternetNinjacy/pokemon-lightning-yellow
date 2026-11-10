@@ -46,7 +46,14 @@ for key,(idx,power,accuracy,pp,chance,effect,art,contact) in expected.items():
 assert 'EFFECT_CONFUSE_HIT' in data
 assert 'EFFECT_ROLLOUT' in data
 assert 'gDynamicBasePower *= 2' in (root/'src/battle_script_commands.c').read_text()
-assert 'STATUS2_DEFENSE_CURL' in (root/'src/battle_script_commands.c').read_text()
+rollout_source=(root/'src/battle_script_commands.c').read_text()
+rollout_func=rollout_source.split('static void Cmd_rolloutdamagecalculation(void)\n{',1)[1].split('\nstatic void Cmd_jumpifconfusedandstatmaxed',1)[0]
+assert 'gCurrentMove == MOVE_ROLLOUT\n            && gBattleMons[gBattlerAttacker].status2 & STATUS2_DEFENSE_CURL' in rollout_func
+assert 'gCurrentMove != MOVE_GRUDGE\n            && gBattleMons[gBattlerAttacker].status2 & STATUS2_DEFENSE_CURL' not in rollout_func
+assert 'gDynamicBasePower *= 2' in rollout_func
+assert 'gLockedMoves[gBattlerAttacker] = gCurrentMove;' in rollout_func
+assert 'CancelMultiTurnMoves(gBattlerAttacker);' in rollout_func
+assert prior_water_moves385_source('src/battle_script_commands.c',rollout_source).count('gCurrentMove != MOVE_GRUDGE') == rollout_source.count('gCurrentMove != MOVE_GRUDGE') + 1
 for path in ['include/constants/moves.h','src/data/battle_moves.h','src/data/text/move_names.h','src/move_descriptions.c','data/battle_anim_scripts.s']:
  old=prior_water_moves385_source(path)
  assert 'MOVE_VORTEX_SPIN' not in old and 'MOVE_TIDAL_CRASH' not in old,path
