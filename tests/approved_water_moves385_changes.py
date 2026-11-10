@@ -55,8 +55,11 @@ HUNKS = {
 def prior_water_moves385_source(path, text=None):
     if text is None:
         text=Path(path).read_text()
-    from approved_batch_a_changes import prior_batch_a_source
-    text=prior_batch_a_source(path,text)
+    from approved_batch_a_changes import HUNKS as BATCH_A_HUNKS, prior_batch_a_source
+    # Some historical callers already received a strict Batch A projection.
+    # Only project the full staged delta when its source hunks remain.
+    if str(path) in BATCH_A_HUNKS and any(after in text for after,_ in BATCH_A_HUNKS[str(path)]):
+        text=prior_batch_a_source(path,text)
     for after,before in HUNKS.get(str(path),[]):
         assert text.count(after)==1, "Unreviewed #385-386 source delta: "+str(path)
         text=text.replace(after,before,1)
