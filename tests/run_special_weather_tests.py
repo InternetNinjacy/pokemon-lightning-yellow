@@ -5,9 +5,13 @@ import ast,hashlib,json,re,subprocess,tempfile
 root=Path(__file__).resolve().parents[1]
 m=json.loads((root/'tests/specifications/special_weather_delta.json').read_text())
 from approved_special_weather_changes import prior_special_weather_source
+from approved_follower_changes import prior_follower_source
 for path,record in m['files'].items():
- assert hashlib.sha256(Path(path).read_bytes()).hexdigest()==record['after_sha256'],path
- assert hashlib.sha256(prior_special_weather_source(path).encode()).hexdigest()==record['before_sha256'],path
+ # Strip only the separately reviewed WRL-010 source hooks, then retain
+ # exact immutable special-weather after/before SHA-256 requirements.
+ preserved=prior_follower_source(path,Path(path).read_text())
+ assert hashlib.sha256(preserved.encode()).hexdigest()==record['after_sha256'],path
+ assert hashlib.sha256(prior_special_weather_source(path,preserved).encode()).hexdigest()==record['before_sha256'],path
 # Reuse the existing tested host environment, not a second weather implementation.
 tree=ast.parse(Path('tests/run_weather_tests.py').read_text())
 pre=next(ast.literal_eval(n.value) for n in tree.body if isinstance(n,ast.Assign) and any(isinstance(t,ast.Name) and t.id=='pre' for t in n.targets))
