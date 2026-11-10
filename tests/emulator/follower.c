@@ -106,13 +106,18 @@ static void followerFieldNativeTests(void)
             int followerY = (int16_t)core->busRead16(core, followerCoords + 2);
             CHECK(abs(followerX - x) <= 1);
             CHECK(abs(followerY - y) <= 1);
+            // Exact one-tile trail: after a completed player step the
+            // follower occupies the tile the player just left. Checking
+            // adjacency alone permits an incorrectly stationary follower.
+            CHECK(followerX == playerX);
+            CHECK(followerY == playerY);
             CHECK(CALL(FollowerState_ResolvePartySlot) == 0);
             CHECK(CALL(FollowerGraphics_GetObjectEventId) == objectId);
         }
         playerX = x;
         playerY = y;
     }
-    CHECK(moved > 0);
+    CHECK(moved == 4);
     printf("PASS: native cardinal controller input produced %u moved directions with adjacent follower tiles\\n", moved);
 
     // Fainting must not replace the selected Pokémon or drop identity.
