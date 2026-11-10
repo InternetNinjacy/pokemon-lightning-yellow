@@ -234,6 +234,27 @@ static void followerGiftNativeTests(void)
     CHECK(monget(player(0), ABI_DATA_PERSONALITY) == pid);
     CHECK(monget(player(1), ABI_DATA_PERSONALITY) == suePid);
     CHECK(CALL(FollowerState_ResolvePartySlot) == 1);
+
+    // A byte-identical SUE clone after an actual flash reload must not allow
+    // ambiguous PID/OT selection. Persist the fail-closed selection state and
+    // verify that deleting the clone does not silently resurrect a follower.
+    for (unsigned i = 0; i < ABI_POKEMON_SIZE; ++i)
+        core->busWrite8(core, SYM_gPlayerParty + 2 * ABI_POKEMON_SIZE + i,
+                        core->busRead8(core, SYM_gPlayerParty + ABI_POKEMON_SIZE + i));
+    core->busWrite8(core, SYM_gPlayerPartyCount, 3);
+    CHECK((int8_t)CALL(FollowerState_ResolvePartySlot) == -1);
+    CHECK(CALL(FollowerState_CanDisplay) == 0);
+    flashRoundTrip();
+    CHECK(core->busRead8(core, SYM_gPlayerPartyCount) == 3);
+    CHECK((int8_t)CALL(FollowerState_ResolvePartySlot) == -1);
+    for (unsigned i = 0; i < ABI_POKEMON_SIZE; ++i)
+        core->busWrite8(core, SYM_gPlayerParty + 2 * ABI_POKEMON_SIZE + i, 0);
+    core->busWrite8(core, SYM_gPlayerPartyCount, 2);
+    CHECK((int8_t)CALL(FollowerState_ResolvePartySlot) == -1);
+    CHECK(CALL(FollowerState_SelectPartySlot, 1) == 1);
+    flashRoundTrip();
+    CHECK(CALL(FollowerState_ResolvePartySlot) == 1);
+    CHECK(core->busRead8(core, SYM_gPlayerPartyCount) == 2);
     CALL(FollowerState_Clear);
     flashRoundTrip();
     CHECK((int8_t)CALL(FollowerState_ResolvePartySlot) == -1);
