@@ -66,8 +66,6 @@ jobs:
           python3 tests/run_water_moves385_tests.py
           python3 tests/run_btl_batch_a_staging_tests.py
           python3 tests/run_btl_batch_b_staging_tests.py
-          python3 tests/run_btl_batch_a_staging_tests.py
-          python3 tests/run_btl_batch_b_staging_tests.py
           python3 tests/run_btl_weather_integration_tests.py
           python3 tests/run_move_foundation_tests.py
           python3 tests/run_move_ui_tests.py
