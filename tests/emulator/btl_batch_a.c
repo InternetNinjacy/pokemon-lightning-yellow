@@ -30,6 +30,17 @@ static void batchANativeTests(void){
   }
   unsigned raw=baseDamage(moves[m],0,0,0);
   CHECK(raw>0&&raw<900);
+  if(m==1&&two){
+   // Independent metamorphic control: the identical attacker/defender and
+   // move without the Doubles flag must produce unspread Singles damage.
+   unsigned savedFlags=core->busRead32(core,SYM_gBattleTypeFlags);
+   core->busWrite32(core,SYM_gBattleTypeFlags,savedFlags&~BATTLE_TYPE_DOUBLE);
+   unsigned unspread=baseDamage(moves[m],0,0,0);
+   core->busWrite32(core,SYM_gBattleTypeFlags,savedFlags);
+   CHECK(unspread>raw);
+   // Base damage applies integer rounding and the final damage offset.
+   CHECK(raw+2>=unspread*3/4&&raw<=unspread*3/4+3);
+  }
   core->busWrite8(core,SYM_gBattleScripting+ABI_SCRIPTING_MULTIPLIER,1);
   core->busWrite16(core,SYM_gCurrentMove,moves[m]);
   CALL(AI_CalcDmg,0,1);
