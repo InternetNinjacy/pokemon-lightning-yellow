@@ -71,13 +71,14 @@ static void batchANativeTests(void){
    }
    if(m==3||m==4)proc|=(core->busRead8(core,bmon(1)+ABI_BMON_STAGES+STAT_SPDEF)<6);
    if(m==5)proc|=(core->busRead8(core,bmon(1)+ABI_BMON_STAGES+STAT_ACC)<6);
-   if(m==6||m==8||m==9)proc=1; // Flinch is checked by dedicated real-order trials.
+   // Flinch must be verified in a later dedicated real turn-order test;
+   // do not manufacture a successful proc in this smoke suite.
   }
   CHECK(hit);
   if(m==3||m==5||m==8)CHECK(miss);
   if(m==3||m==4||m==5)CHECK(proc);
   free(state);
-  printf("PASS: Batch A move%u %s native targeting, damage, actual animation, PP, status and priority probe\\n",moves[m],two?"Doubles":"Singles");
+  printf("PASS: Batch A move%u %s native targeting, damage, actual animation, PP and partial proc/priority probe (flinch acceptance pending)\\n",moves[m],two?"Doubles":"Singles");
  }
  CHECK(core->loadState(core,bootState));
 }
