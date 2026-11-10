@@ -303,9 +303,55 @@ static void wrlLavenderToRoute8ConnectionTests(void) {
 }
 
 
+// Trainer sight on Route 8 is part of natural access. Advance its real
+// field dialogue, battle menu, victory and return; never set trainer flags.
+static void wrlRoute8FinishTrainerBattle(void) {
+    unsigned started=0,won=0,quiet=0,f;
+    for(f=0;f<36000;f++) {
+        unsigned cb=core->busRead32(core,SYM_gMain+ABI_MAIN_CB2)&~1U;
+        if(cb==SYM_BattleMainCB2) {
+            started=1;
+            CHECK(core->busRead32(core,SYM_gBattleTypeFlags)&BATTLE_TYPE_TRAINER);
+        }
+        if(started && core->busRead8(core,SYM_gBattleOutcome)==B_OUTCOME_WON)
+            won=1;
+        if(won && fieldScriptDone()) {
+            if(++quiet==30)break;
+            frames(1,0);
+            continue;
+        }
+        quiet=0;
+        unsigned key=0;
+        if(f%8==0) {
+            key=1; // Real trainer pre/post-battle dialogue.
+            if(cb==SYM_BattleMainCB2
+               && (core->busRead32(core,SYM_gBattleControllerExecFlags)&1U)) {
+                unsigned fn=controller(0);
+                if(fn==SYM_HandleInputChooseAction) {
+                    unsigned c=core->busRead8(core,SYM_gActionSelectionCursor);
+                    key=c&2?64:c&1?32:1;
+                } else if(fn==SYM_HandleInputChooseMove) {
+                    unsigned c=core->busRead8(core,SYM_gMoveSelectionCursor);
+                    key=c&2?64:c&1?32:1;
+                } else if(fn==SYM_HandleInputChooseTarget)key=1;
+                else key=2; // Decline optional switch prompts.
+            }
+        }
+        frames(1,key);
+    }
+    if(f==36000)
+        fprintf(stderr,"WRL Route8 trainer timeout started=%u won=%u callback=%08x outcome=%u controls=%u script=%u\n",
+                started,won,core->busRead32(core,SYM_gMain+ABI_MAIN_CB2),
+                core->busRead8(core,SYM_gBattleOutcome),
+                CALL(ArePlayerFieldControlsLocked),CALL(ScriptContext_IsEnabled));
+    CHECK(started && won && f<36000);
+    CHECK((core->busRead32(core,SYM_gMain+ABI_MAIN_CB2)&~1U)==SYM_CB2_Overworld);
+    printf("PASS: native Route 8 trainer sight interruption resolved by real battle victory in %u frames\n",f);
+}
+
 // WRL-009: follow the Lavender -> Route 8 connection with a real player
-// walk to the first reachable approved grass. No Route 8 warp, forced wild
-// battle, teleport, map edit, or assumed scripted trainer clearance is used.
+// walk to approved grass. Actual unavoidable trainer battles must be won
+// with native inputs; no trainer flags, teleports, or map data are altered.
 // This remains a staged Lavender fixture, not proof of new-game progression.
 static void wrlLavenderToRoute8GrassWalkTests(void) {
     // A single west-edge entry row can be separated from grass by real
@@ -314,11 +360,10 @@ static void wrlLavenderToRoute8GrassWalkTests(void) {
     // The selected entry must still cross via actual LEFT D-pad movement.
     enum { W=90,H=40,N=W*H,MAX_REPLANS=24 };
     unsigned char blocked[N]={0};
-    // Julia's occupied tile and six-tile LEFT-facing sight corridor.
-    for(unsigned x=63;x<=69;x++)blocked[21*W+x]=1;
-    // Rich's occupied tile and three-tile DOWN-facing sight corridor.
-    // We do not mark either trainer defeated or bypass their battles.
-    for(unsigned y=22;y<=25;y++)blocked[y*W+62]=1;
+    // Block only actual trainer objects, not their sight lines. A sight
+    // encounter must be resolved by a real trainer battle, not a flag edit.
+    blocked[21*W+69]=1; // Julia, source (62,14) plus 7-tile border.
+    blocked[22*W+62]=1; // Rich, source (55,15) plus border.
     const unsigned candidateY[]={10,9,11,8,12,7,13,6,14,5,15,4,16,3,17,18};
     unsigned transitionFrame=0,selectedY=0,selected=0,transitionCount=0;
     for(unsigned i=0;i<sizeof(candidateY)/sizeof(candidateY[0]);i++) {
@@ -376,9 +421,16 @@ static void wrlLavenderToRoute8GrassWalkTests(void) {
     CHECK(selected);
     fprintf(stderr,"WRL Lavender->Route8 selected west entry y=%u after %u frames\\n",
             selectedY,transitionFrame);
+    // Strengthen the staged party for legitimate trainer battles. This
+    // changes only the test's player party, never ROM encounter data.
+    CALL(CreateMon,player(0),SPECIES_MEWTWO,100,31,1,12345,0,1234);
+    monput(player(0),ABI_DATA_MOVE1,MOVE_PSYCHIC);
+    monput(player(0),ABI_DATA_PP1,99);
+    monput(player(0),ABI_DATA_MOVE2,MOVE_SWIFT);
+    monput(player(0),ABI_DATA_PP2,99);
     const int dx[4]={0,0,-1,1},dy[4]={-1,1,0,0};
     const unsigned keys[4]={64,128,32,16};
-    unsigned totalFrames=0,totalSteps=0,replans=0,reached=0;
+    unsigned totalFrames=0,totalSteps=0,replans=0,reached=0,trainerWins=0;
     for(unsigned attempt=0;attempt<=MAX_REPLANS;attempt++) {
         CALL(PlayerGetDestCoords,scratch,scratch+2);
         unsigned sx=core->busRead16(core,scratch),sy=core->busRead16(core,scratch+2);
@@ -429,6 +481,18 @@ static void wrlLavenderToRoute8GrassWalkTests(void) {
                     break;
             }
             core->setKeys(core,0);
+            // A trainer can intercept the player while walking toward the
+            // planned tile; the actual engine must resolve that battle.
+            if(CALL(ArePlayerFieldControlsLocked)
+               || CALL(ScriptContext_IsEnabled)
+               || (core->busRead32(core,SYM_gMain+ABI_MAIN_CB2)&~1U)!=SYM_CB2_Overworld) {
+                fprintf(stderr,"WRL Route8 trainer interruption target=(%u,%u) moved=%u\n",tx,ty,moved);
+                wrlRoute8FinishTrainerBattle();
+                trainerWins++;
+                replans++;
+                needsReplan=1;
+                break;
+            }
             CHECK((core->busRead32(core,SYM_gMain+ABI_MAIN_CB2)&~1U)==SYM_CB2_Overworld);
             CHECK(core->busRead8(core,wrlLiveSaveBlock1()+4)==MAP_GROUP(MAP_ROUTE8));
             CHECK(core->busRead8(core,wrlLiveSaveBlock1()+5)==MAP_NUM(MAP_ROUTE8));
@@ -453,6 +517,13 @@ static void wrlLavenderToRoute8GrassWalkTests(void) {
             totalSteps++;
             frames(18,0); // Finish the walking animation before next turn.
             if(wrlRouteGrassAt(tx,ty)){reached=1;break;}
+            if(CALL(ArePlayerFieldControlsLocked) || CALL(ScriptContext_IsEnabled)) {
+                wrlRoute8FinishTrainerBattle();
+                trainerWins++;
+                replans++;
+                needsReplan=1;
+                break;
+            }
         }
         if(reached)break;
         CHECK(needsReplan);
@@ -461,7 +532,7 @@ static void wrlLavenderToRoute8GrassWalkTests(void) {
     CALL(PlayerGetDestCoords,scratch,scratch+2);
     CHECK(wrlRouteGrassAt(core->busRead16(core,scratch),
                           core->busRead16(core,scratch+2)));
-    printf("PASS: native Lavender -> Route 8 connection followed by %u actual D-pad steps to approved grass in %u walking frames (%u object-blocker replans)\n",
-           totalSteps,totalFrames,replans);
+    printf("PASS: native Lavender -> Route 8 connection followed by %u actual D-pad steps to approved grass in %u walking frames (%u replans, %u trainer victories)\n",
+           totalSteps,totalFrames,replans,trainerWins);
     CHECK(core->loadState(core,bootState));
 }
