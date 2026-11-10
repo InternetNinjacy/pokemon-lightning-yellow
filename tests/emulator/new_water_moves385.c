@@ -99,8 +99,8 @@ static void waterMoves385Mechanics(void){
   CHECK(!(status2&STATUS2_WRAPPED));
  }
  CHECK(core->loadState(core,state));CALL(Free,script);free(state);
- // Independently prove original Rollout retains its Defense Curl interaction
- // while Tidal Crash shares ONLY the five-turn progression and miss cleanup.
+ // Require the approved Defense Curl doubling for BOTH native Rollout and
+ // Tidal Crash, with identical five-hit lock and miss cleanup.
  for(unsigned original=0;original<2;original++)for(unsigned curl=0;curl<2;curl++){
   const unsigned move=original?MOVE_ROLLOUT:MOVE_TIDAL_CRASH;
   effectBattleFixture(0,move);
@@ -133,5 +133,5 @@ static void waterMoves385Mechanics(void){
   CALL(Free,script);
  }
  CHECK(core->loadState(core,bootState));
- printf("PASS: native Vortex Spin exact 30/60%% confusion, zero wrapping; Tidal Crash 30/60/120/240/480 without Defense Curl boost; original Rollout doubles after Defense Curl; five-turn lock/miss cleanup\n");
+ printf("PASS: native Vortex Spin exact 30/60%% confusion, zero wrapping; Tidal Crash and Rollout 30/60/120/240/480 with Defense Curl doubling; five-turn lock/miss cleanup\n");
 }
