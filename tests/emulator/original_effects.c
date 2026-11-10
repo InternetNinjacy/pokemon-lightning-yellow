@@ -125,6 +125,7 @@ static void spreadStatusTests(void){
 #include "new_payback.c"
 #include "new_moves382.c"
 #include "new_water_moves385.c"
+#include "new_moves387.c"
 static void originalEffectTests(void){
  if(getenv("LIGHTNING_SKITTER_SLASH_ONLY")){skitterSlashTests();return;}
  if(getenv("LIGHTNING_VENOM_WEB_ONLY")){venomWebTests();return;}
@@ -157,6 +158,7 @@ static void originalEffectTests(void){
  waterMoves385Tests();
  waterMoves385Mechanics();
  waterMoves385SavePersistence();
+ discharge387Tests();
  thunderWaveTests();
  ghostReworkTests();
  spreadStatusTests();
