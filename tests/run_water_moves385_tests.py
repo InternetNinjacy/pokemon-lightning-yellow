@@ -53,7 +53,7 @@ assert spec['new_moves'] and moves['TIDAL_CRASH']['effect_rules']['defense_curl_
 assert 'gDynamicBasePower *= 2' in rollout_func
 assert 'gLockedMoves[gBattlerAttacker] = gCurrentMove;' in rollout_func
 assert 'CancelMultiTurnMoves(gBattlerAttacker);' in rollout_func
-assert prior_water_moves385_source('src/battle_script_commands.c',rollout_source).count('gCurrentMove != MOVE_GRUDGE') == rollout_source.count('gCurrentMove != MOVE_GRUDGE') + 1
+assert prior_water_moves385_source('src/battle_script_commands.c',rollout_source) == rollout_source  # Exact unchanged ancestor engine semantics
 for path in ['include/constants/moves.h','src/data/battle_moves.h','src/data/text/move_names.h','src/move_descriptions.c','data/battle_anim_scripts.s']:
  old=prior_water_moves385_source(path)
  assert 'MOVE_VORTEX_SPIN' not in old and 'MOVE_TIDAL_CRASH' not in old,path
