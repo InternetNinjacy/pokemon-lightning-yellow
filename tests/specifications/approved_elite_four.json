@@ -1,0 +1,623 @@
+{
+  "scope": "All eight approved Elite Four battle party arrays; native-slot selector scoped to Agatha Alakazam only",
+  "battles": [
+    {
+      "specification": "implementation/lorelei-initial-elite-four.md",
+      "sha256": "26292df1fea10084f19a1326eacd12f9702c61e1f6267f1b638a258e6b8fd88b",
+      "array": "sParty_EliteFourLorelei",
+      "trainer": "TRAINER_ELITE_FOUR_LORELEI",
+      "implemented": true,
+      "party": [
+        {
+          "species": "MILTANK",
+          "level": 52,
+          "moves": [
+            "STOMP",
+            "ATTRACT",
+            "MILK_DRINK",
+            "ROLLOUT"
+          ],
+          "ability": "THICK_FAT",
+          "item": "LUM_BERRY",
+          "iv": 250
+        },
+        {
+          "species": "PORYGON2",
+          "level": 53,
+          "moves": [
+            "TRI_ATTACK",
+            "THUNDERBOLT",
+            "ICE_BEAM",
+            "PSYCHIC"
+          ],
+          "ability": "TRACE",
+          "item": "MAGNET",
+          "iv": 250
+        },
+        {
+          "species": "TAUROS",
+          "level": 54,
+          "moves": [
+            "RETURN",
+            "EARTHQUAKE",
+            "ROCK_TOMB",
+            "IRON_TAIL"
+          ],
+          "ability": "INTIMIDATE",
+          "item": "SILK_SCARF",
+          "iv": 250
+        },
+        {
+          "species": "BLISSEY",
+          "level": 54,
+          "moves": [
+            "TOXIC",
+            "SOFT_BOILED",
+            "PROTECT",
+            "LIGHT_SCREEN"
+          ],
+          "ability": "NATURAL_CURE",
+          "item": "LEFTOVERS",
+          "iv": 250
+        },
+        {
+          "species": "SNORLAX",
+          "level": 56,
+          "moves": [
+            "BODY_SLAM",
+            "EARTHQUAKE",
+            "SHADOW_BALL",
+            "REST"
+          ],
+          "ability": "IMMUNITY",
+          "item": "CHESTO_BERRY",
+          "iv": 250
+        }
+      ]
+    },
+    {
+      "specification": "implementation/lorelei-postgame-rematch.md",
+      "sha256": "3ea9602a1ae2a0f71ccc93ca7fc4083c852aa4507c7ba323de5e9736353bec02",
+      "array": "sParty_EliteFourLorelei2",
+      "trainer": "TRAINER_ELITE_FOUR_LORELEI_2",
+      "implemented": true,
+      "party": [
+        {
+          "species": "KANGASKHAN",
+          "level": 64,
+          "moves": [
+            "FAKE_OUT",
+            "RETURN",
+            "EARTHQUAKE",
+            "SHADOW_BALL"
+          ],
+          "ability": "EARLY_BIRD",
+          "item": "SILK_SCARF",
+          "iv": 255
+        },
+        {
+          "species": "PORYGON2",
+          "level": 65,
+          "moves": [
+            "TRI_ATTACK",
+            "THUNDERBOLT",
+            "ICE_BEAM",
+            "RECOVER"
+          ],
+          "ability": "TRACE",
+          "item": "MAGNET",
+          "iv": 255
+        },
+        {
+          "species": "TAUROS",
+          "level": 65,
+          "moves": [
+            "RETURN",
+            "EARTHQUAKE",
+            "IRON_TAIL",
+            "FIRE_BLAST"
+          ],
+          "ability": "INTIMIDATE",
+          "item": "CHOICE_BAND",
+          "iv": 255
+        },
+        {
+          "species": "CLEFABLE",
+          "level": 66,
+          "moves": [
+            "CALM_MIND",
+            "PSYCHIC",
+            "FLAMETHROWER",
+            "THUNDERBOLT"
+          ],
+          "ability": "CUTE_CHARM",
+          "item": "TWISTED_SPOON",
+          "iv": 255
+        },
+        {
+          "species": "SNORLAX",
+          "level": 68,
+          "moves": [
+            "BODY_SLAM",
+            "EARTHQUAKE",
+            "SHADOW_BALL",
+            "REST"
+          ],
+          "ability": "IMMUNITY",
+          "item": "CHESTO_BERRY",
+          "iv": 255
+        }
+      ]
+    },
+    {
+      "specification": "implementation/bruno-initial-monster-tamer.md",
+      "sha256": "35fa194897859a8792b8f6ffe57cffbf11c70825457ff3f3d4ecef38eb996270",
+      "array": "sParty_EliteFourBruno",
+      "trainer": "TRAINER_ELITE_FOUR_BRUNO",
+      "implemented": true,
+      "party": [
+        {
+          "species": "ELECTABUZZ",
+          "level": 54,
+          "moves": [
+            "THUNDER",
+            "PSYCHIC",
+            "BRICK_BREAK",
+            "IRON_TAIL"
+          ],
+          "ability": "STATIC",
+          "item": "MAGNET",
+          "iv": 250
+        },
+        {
+          "species": "MAGMAR",
+          "level": 54,
+          "moves": [
+            "FIRE_BLAST",
+            "PSYCHIC",
+            "BRICK_BREAK",
+            "IRON_TAIL"
+          ],
+          "ability": "FLAME_BODY",
+          "item": "CHARCOAL",
+          "iv": 250
+        },
+        {
+          "species": "URSARING",
+          "level": 55,
+          "moves": [
+            "THRASH",
+            "EARTHQUAKE",
+            "BRICK_BREAK",
+            "AERIAL_ACE"
+          ],
+          "ability": "GUTS",
+          "item": "CHOICE_BAND",
+          "iv": 250
+        },
+        {
+          "species": "GYARADOS",
+          "level": 56,
+          "moves": [
+            "HYDRO_PUMP",
+            "EARTHQUAKE",
+            "BLIZZARD",
+            "HYPER_BEAM"
+          ],
+          "ability": "INTIMIDATE",
+          "item": "MYSTIC_WATER",
+          "iv": 250
+        },
+        {
+          "species": "NIDOKING",
+          "level": 58,
+          "moves": [
+            "MEGAHORN",
+            "EARTHQUAKE",
+            "SLUDGE_BOMB",
+            "THUNDER"
+          ],
+          "ability": "POISON_POINT",
+          "item": "SOFT_SAND",
+          "iv": 250
+        }
+      ]
+    },
+    {
+      "specification": "implementation/bruno-postgame-rematch.md",
+      "sha256": "7f9366c8aa63bb4e9d736ac6ebb7ac5056c941f33f3d895fa99dfaf27a9ddbf3",
+      "array": "sParty_EliteFourBruno2",
+      "trainer": "TRAINER_ELITE_FOUR_BRUNO_2",
+      "implemented": true,
+      "party": [
+        {
+          "species": "TYRANITAR",
+          "level": 65,
+          "moves": [
+            "ROCK_SLIDE",
+            "CRUNCH",
+            "EARTHQUAKE",
+            "HYPER_BEAM"
+          ],
+          "ability": "SAND_STREAM",
+          "item": "BLACK_GLASSES",
+          "iv": 255
+        },
+        {
+          "species": "MAGMAR",
+          "level": 66,
+          "moves": [
+            "FIRE_BLAST",
+            "PSYCHIC",
+            "BRICK_BREAK",
+            "IRON_TAIL"
+          ],
+          "ability": "FLAME_BODY",
+          "item": "CHARCOAL",
+          "iv": 255
+        },
+        {
+          "species": "MACHAMP",
+          "level": 66,
+          "moves": [
+            "CROSS_CHOP",
+            "EARTHQUAKE",
+            "ROCK_TOMB",
+            "HYPER_BEAM"
+          ],
+          "ability": "GUTS",
+          "item": "BLACK_BELT",
+          "iv": 255
+        },
+        {
+          "species": "GYARADOS",
+          "level": 67,
+          "moves": [
+            "HYDRO_PUMP",
+            "EARTHQUAKE",
+            "BLIZZARD",
+            "HYPER_BEAM"
+          ],
+          "ability": "INTIMIDATE",
+          "item": "MYSTIC_WATER",
+          "iv": 255
+        },
+        {
+          "species": "NIDOKING",
+          "level": 70,
+          "moves": [
+            "MEGAHORN",
+            "EARTHQUAKE",
+            "SLUDGE_BOMB",
+            "THUNDER"
+          ],
+          "ability": "POISON_POINT",
+          "item": "SOFT_SAND",
+          "iv": 255
+        }
+      ]
+    },
+    {
+      "specification": "implementation/agatha-initial-specialist.md",
+      "sha256": "ebad7a7f5102cae2130d8b7351aa7c84be0df68359aa13223b8ec6c3a9c211a8",
+      "array": "sParty_EliteFourAgatha",
+      "trainer": "TRAINER_ELITE_FOUR_AGATHA",
+      "implemented": true,
+      "party": [
+        {
+          "species": "CACTURNE",
+          "level": 56,
+          "moves": [
+            "GIGA_DRAIN",
+            "FAINT_ATTACK",
+            "LEECH_SEED",
+            "SPIKES"
+          ],
+          "ability": "SAND_VEIL",
+          "item": "MIRACLE_SEED",
+          "iv": 250
+        },
+        {
+          "species": "ALAKAZAM",
+          "level": 56,
+          "moves": [
+            "PSYCHIC",
+            "SHOCK_WAVE",
+            "CALM_MIND",
+            "RECOVER"
+          ],
+          "ability": "INNER_FOCUS",
+          "item": "TWISTED_SPOON",
+          "iv": 250
+        },
+        {
+          "species": "UMBREON",
+          "level": 57,
+          "moves": [
+            "TOXIC",
+            "MOONLIGHT",
+            "CONFUSE_RAY",
+            "FAINT_ATTACK"
+          ],
+          "ability": "SYNCHRONIZE",
+          "item": "LEFTOVERS",
+          "iv": 250
+        },
+        {
+          "species": "DUSCLOPS",
+          "level": 58,
+          "moves": [
+            "WILL_O_WISP",
+            "NIGHT_SHADE",
+            "ICE_BEAM",
+            "PROTECT"
+          ],
+          "ability": "PRESSURE",
+          "item": "SITRUS_BERRY",
+          "iv": 250
+        },
+        {
+          "species": "GENGAR",
+          "level": 60,
+          "moves": [
+            "SHADOW_BALL",
+            "THUNDERBOLT",
+            "PSYCHIC",
+            "GIGA_DRAIN"
+          ],
+          "ability": "LEVITATE",
+          "item": "SPELL_TAG",
+          "iv": 250
+        }
+      ]
+    },
+    {
+      "specification": "implementation/agatha-postgame-rematch.md",
+      "sha256": "44c11b0fe811bf567583e89833874d44c4fcc80a790d6bfc29d7df0c2b73a416",
+      "array": "sParty_EliteFourAgatha2",
+      "trainer": "TRAINER_ELITE_FOUR_AGATHA_2",
+      "implemented": true,
+      "party": [
+        {
+          "species": "HOUNDOOM",
+          "level": 67,
+          "moves": [
+            "FLAMETHROWER",
+            "CRUNCH",
+            "SUNNY_DAY",
+            "SOLAR_BEAM"
+          ],
+          "ability": "EARLY_BIRD",
+          "item": "CHARCOAL",
+          "iv": 255
+        },
+        {
+          "species": "ALAKAZAM",
+          "level": 67,
+          "moves": [
+            "PSYCHIC",
+            "SHOCK_WAVE",
+            "CALM_MIND",
+            "RECOVER"
+          ],
+          "ability": "INNER_FOCUS",
+          "item": "TWISTED_SPOON",
+          "iv": 255
+        },
+        {
+          "species": "UMBREON",
+          "level": 68,
+          "moves": [
+            "TOXIC",
+            "MOONLIGHT",
+            "CONFUSE_RAY",
+            "FAINT_ATTACK"
+          ],
+          "ability": "SYNCHRONIZE",
+          "item": "LEFTOVERS",
+          "iv": 255
+        },
+        {
+          "species": "DUSCLOPS",
+          "level": 69,
+          "moves": [
+            "WILL_O_WISP",
+            "NIGHT_SHADE",
+            "ICE_BEAM",
+            "PROTECT"
+          ],
+          "ability": "PRESSURE",
+          "item": "SITRUS_BERRY",
+          "iv": 255
+        },
+        {
+          "species": "GENGAR",
+          "level": 72,
+          "moves": [
+            "SHADOW_BALL",
+            "THUNDERBOLT",
+            "PSYCHIC",
+            "GIGA_DRAIN"
+          ],
+          "ability": "LEVITATE",
+          "item": "SPELL_TAG",
+          "iv": 255
+        }
+      ]
+    },
+    {
+      "specification": "implementation/lance-initial-elite-four.md",
+      "sha256": "be53f38a4f61a1cde436be1b2ce50c7e16712ee6cd6c8ea81307855f15396d8c",
+      "array": "sParty_EliteFourLance",
+      "trainer": "TRAINER_ELITE_FOUR_LANCE",
+      "implemented": true,
+      "party": [
+        {
+          "species": "CROBAT",
+          "level": 58,
+          "moves": [
+            "CONFUSE_RAY",
+            "POISON_FANG",
+            "AERIAL_ACE",
+            "SHADOW_BALL"
+          ],
+          "ability": "INNER_FOCUS",
+          "item": "POISON_BARB",
+          "iv": 250
+        },
+        {
+          "species": "AERODACTYL",
+          "level": 59,
+          "moves": [
+            "ANCIENT_POWER",
+            "AERIAL_ACE",
+            "EARTHQUAKE",
+            "IRON_TAIL"
+          ],
+          "ability": "ROCK_HEAD",
+          "item": "HARD_STONE",
+          "iv": 250
+        },
+        {
+          "species": "ARTICUNO",
+          "level": 60,
+          "moves": [
+            "ICE_BEAM",
+            "BLIZZARD",
+            "REFLECT",
+            "WATER_PULSE"
+          ],
+          "ability": "PRESSURE",
+          "item": "NEVER_MELT_ICE",
+          "iv": 250
+        },
+        {
+          "species": "ZAPDOS",
+          "level": 60,
+          "moves": [
+            "THUNDERBOLT",
+            "THUNDER",
+            "DRILL_PECK",
+            "THUNDER_WAVE"
+          ],
+          "ability": "PRESSURE",
+          "item": "MAGNET",
+          "iv": 250
+        },
+        {
+          "species": "MOLTRES",
+          "level": 61,
+          "moves": [
+            "FLAMETHROWER",
+            "FIRE_BLAST",
+            "OVERHEAT",
+            "AERIAL_ACE"
+          ],
+          "ability": "PRESSURE",
+          "item": "CHARCOAL",
+          "iv": 250
+        },
+        {
+          "species": "DRAGONITE",
+          "level": 62,
+          "moves": [
+            "OUTRAGE",
+            "EARTHQUAKE",
+            "THUNDERBOLT",
+            "ICE_BEAM"
+          ],
+          "ability": "INNER_FOCUS",
+          "item": "DRAGON_FANG",
+          "iv": 250
+        }
+      ]
+    },
+    {
+      "specification": "implementation/lance-postgame-rematch.md",
+      "sha256": "3cf0e4436e5a3f8c9a5bf731cec1d09d1902bb7349d07504a756687dea19cbac",
+      "array": "sParty_EliteFourLance2",
+      "trainer": "TRAINER_ELITE_FOUR_LANCE_2",
+      "implemented": true,
+      "party": [
+        {
+          "species": "CROBAT",
+          "level": 70,
+          "moves": [
+            "CONFUSE_RAY",
+            "POISON_FANG",
+            "AERIAL_ACE",
+            "SHADOW_BALL"
+          ],
+          "ability": "INNER_FOCUS",
+          "item": "POISON_BARB",
+          "iv": 255
+        },
+        {
+          "species": "AERODACTYL",
+          "level": 71,
+          "moves": [
+            "ANCIENT_POWER",
+            "AERIAL_ACE",
+            "EARTHQUAKE",
+            "IRON_TAIL"
+          ],
+          "ability": "ROCK_HEAD",
+          "item": "HARD_STONE",
+          "iv": 255
+        },
+        {
+          "species": "ARTICUNO",
+          "level": 72,
+          "moves": [
+            "ICE_BEAM",
+            "BLIZZARD",
+            "REFLECT",
+            "WATER_PULSE"
+          ],
+          "ability": "PRESSURE",
+          "item": "NEVER_MELT_ICE",
+          "iv": 255
+        },
+        {
+          "species": "ZAPDOS",
+          "level": 72,
+          "moves": [
+            "THUNDERBOLT",
+            "THUNDER",
+            "DRILL_PECK",
+            "THUNDER_WAVE"
+          ],
+          "ability": "PRESSURE",
+          "item": "MAGNET",
+          "iv": 255
+        },
+        {
+          "species": "MOLTRES",
+          "level": 73,
+          "moves": [
+            "FLAMETHROWER",
+            "FIRE_BLAST",
+            "OVERHEAT",
+            "AERIAL_ACE"
+          ],
+          "ability": "PRESSURE",
+          "item": "CHARCOAL",
+          "iv": 255
+        },
+        {
+          "species": "DRAGONITE",
+          "level": 75,
+          "moves": [
+            "OUTRAGE",
+            "EARTHQUAKE",
+            "THUNDERBOLT",
+            "ICE_BEAM"
+          ],
+          "ability": "INNER_FOCUS",
+          "item": "DRAGON_FANG",
+          "iv": 255
+        }
+      ]
+    }
+  ]
+}

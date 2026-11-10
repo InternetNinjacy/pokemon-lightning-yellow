@@ -11,6 +11,13 @@ import shutil
 
 # Generate ABI constants with the game's ARM compiler, never host offsetof.
 expressions = {
+ 'BATTLESTRUCT_SIZE':'sizeof(struct BattleStruct)',
+ 'BATTLESTRUCT_TW_USER':'offsetof(struct BattleStruct,thunderWaveUser)',
+ 'BATTLESTRUCT_TW_TARGETS':'offsetof(struct BattleStruct,thunderWaveTargets)',
+ 'BATTLESTRUCT_TW_ACTIVE':'offsetof(struct BattleStruct,thunderWaveActive)',
+ 'BRES_AI':'offsetof(struct BattleResources,ai)',
+ 'AI_SCORE':'offsetof(struct AI_ThinkingStruct,score)',
+ 'AI_FLAGS':'offsetof(struct AI_ThinkingStruct,aiFlags)',
  'BMON_MAX_HP':'offsetof(struct BattlePokemon,maxHP)',
  'BOX_SECURE':'offsetof(struct BoxPokemon,secure)',
  'SAVE1_PARTY':'offsetof(struct SaveBlock1,playerParty)',
@@ -129,6 +136,8 @@ for key,expr in {
  'SAVE2_PLAYER_NAME':'offsetof(struct SaveBlock2,playerName)',
  'BAG_POCKET':'offsetof(struct BagStruct,pocket)',
  'SAVE1_LOCATION':'offsetof(struct SaveBlock1,location)',
+ 'SAVE1_POS_X':'offsetof(struct SaveBlock1,pos.x)',
+ 'SAVE1_POS_Y':'offsetof(struct SaveBlock1,pos.y)',
  'WILD_HEADER_SIZE':'sizeof(struct WildPokemonHeader)',
  'WILD_HEADER_LAND':'offsetof(struct WildPokemonHeader,landMonsInfo)',
  'BMON_SPEED':'offsetof(struct BattlePokemon,speed)',
@@ -202,7 +211,7 @@ required = [
     'Task_PCMainMenu', 'Task_PokeStorageMain', 'Task_OnSelectedMon', 'Task_DepositMenu', 'Task_OnBPressed',
     'SetLastHealLocationWarp',
 
-    "CheckBagHasItem", "RemoveBagItem", "Task_ShopMenu", "Task_BuyMenu", "Task_BuyHowManyDialogueHandleInput", "Task_CallYesOrNoCallback", "FindTaskIdByFunc", "VermilionCity_Mart_EventScript_Clerk", "gWishFutureKnock", "Cmd_setrain", "Cmd_setsandstorm", "AbilityBattleEffects", "CastformDataTypeChange", "Cmd_sethail", "Cmd_setsunny", "GetBallCatchMultiplier", "IsPokeBallItem", "BallItemToCaptureCode", "CaptureCodeToBallItem", "TryBuyBallsWithPremierBonus", "ItemIdToBallId", "gCaptureOrigin",
+    "CheckBagHasItem", "RemoveBagItem", "Task_ShopMenu", "Task_BuyMenu", "Task_BuyHowManyDialogueHandleInput", "Task_CallYesOrNoCallback", "FindTaskIdByFunc", "VermilionCity_Mart_EventScript_Clerk", "gWishFutureKnock", "Cmd_setrain", "Cmd_setsandstorm", "AbilityBattleEffects", "gBattleMainFunc", "gLastUsedAbility", "GetBattlerInitialAbility", "SetSpecialEncounterAbility", "SetBoxMonAt", "PewterCity_Gym_EventScript_Brock", "CeruleanCity_Gym_EventScript_Misty", "CastformDataTypeChange", "Cmd_sethail", "Cmd_setsunny", "GetBallCatchMultiplier", "IsPokeBallItem", "BallItemToCaptureCode", "CaptureCodeToBallItem", "TryBuyBallsWithPremierBonus", "ItemIdToBallId", "gCaptureOrigin",
     "PalletTown_ProfessorOaksLab_EventScript_ProfOak", "PalletTown_ProfessorOaksLab_EventScript_TryGiveNestBalls",
 
     'gSpeciesNames',
@@ -236,7 +245,7 @@ required = [
     'IsMonDisobedient', 'Cmd_getexp', 'BufferStringBattle', 'gBattleControllerExecFlags',
     'gBattlerPartyIndexes', 'gBattleTextBuff2', 'gCurrMovePos',
     'ZeroBoxMonAt',
-    'BoxMonToMon', 'GetBoxedMonPtr', 'PurchaseMysteryPokemon', 'MysteryVendorStatus', 'MysteryRandomBelow', 'gSpecialVar_0x8009',
+    'BoxMonToMon', 'GetBoxedMonPtr', 'PurchaseMysteryPokemon', 'MysteryVendorStatus', 'MysteryRandomBelow', 'RocketRescueStatus', 'RocketRescueGive', 'RocketRescueReturn', 'gSpecialVar_0x8009',
     'IsTradedMon', 'FlagClear', 'ResetPokemonStorageSystem', 'GetAndCopyBoxMonDataAt',
     'gSpecialVar_MonBoxId', 'gSpecialVar_MonBoxPos',
     'IsSpeciesInCustomPokedex', 'WaitForAorBPress', 'sTextPrinters', 'gSpecialVar_0x8006', 'FlagGet', 'VarGet', 'FuncIsActiveTask', 'CheckBagHasSpace', 'ItemId_GetPocket',
@@ -271,17 +280,26 @@ required = [
     'StoreSelectedPokemonInDaycare', 'StorePokemonInDaycare', 'TakePokemonFromDaycare',
     'GetDaycareCost', 'GetNumLevelsGainedFromDaycare', 'GetDaycareState', 'GetDaycarePokemonCount',
     'GetDaycareCompatibilityScore', 'GiveMailToMon', 'GetCursorSelectionMonId', 'GetMonGender',
-    'IsMonShiny', 'ScriptHatchMon', 'CreateEgg', 'MapGridGetCollisionAt', 'MapGridGetElevationAt',
+    'IsMonShiny', 'ScriptHatchMon', 'CreateEgg', 'MapGridGetCollisionAt', 'MapGridGetElevationAt', 'MetatileBehavior_IsSurfable',
     'ScriptContext_SetupScript', 'ScriptContext_IsEnabled', 'EventScript_EggHatch',
     'Route5_PokemonDayCare_EventScript_DaycareWoman', 'Route5_PokemonDayCare_Egg_DaycareMan',
     'FourIsland_PokemonDayCare_EventScript_DaycareWoman', 'FourIsland_EventScript_DaycareMan',
     'gSpecialVar_0x8004', 'gSpecialVar_0x8005', 'gSpecialVar_Result', 'gPartyMenu', 'gSelectedObjectEvent',
     'sRoamerLocation', 'IsNationalPokedexEnabled', 'CopyPlayerPartyMonToBattleData', 'CalculateBaseDamage', 'TypeCalc', 'AI_TypeCalc', 'AI_CalcDmg', 'Cmd_dmgtolevel',
-    'CinnabarIsland_Gym_EventScript_Blaine', 'CreateShinyEgg', 'ScriptGiveShinyFeebasEgg', 'PewterCity_Museum_1F_EventScript_TriviaEmployee', 'PewterCity_Museum_1F_Text_TriviaOffer',
+    'CinnabarIsland_Gym_EventScript_Blaine', 'CreateShinyEgg', 'ScriptGiveMuseumAronEgg', 'PewterCity_Museum_1F_EventScript_TriviaEmployee', 'PewterCity_Museum_1F_Text_TriviaOffer',
     'GetMoveCategoryName', 'GetMoveCategoryShortName', 'MoveSelectionDisplayMoveType',
     'gCurrentMove', 'gCritMultiplier', 'gDynamicBasePower', 'gBattlerAttacker', 'gBattlerTarget',
     'ShowPokemonSummaryScreen', 'sMonSummaryScreen', 'sMoveSelectionCursorPos', 'gSideStatuses', 'gBattleStruct', 'gBattleScripting', 'gBattleMoveDamage', 'gDisplayedStringBattle',
 ]
+required += ['NextThunderWaveTarget','gAbsentBattlerFlags']
+required += ['Cmd_rolloutdamagecalculation','gDisableStructs','gLockedMoves','gLastMoves']
+required += ['BattleAI_SetupAIData','BattleAI_ChooseMoveOrAction','RecordAbilityBattle']
+required += ['Cmd_weatherdamage','Cmd_accuracycheck','gStatuses3','gHitMarker','gMoveResultFlags']
+required += ['ViridianCity_EventScript_TrainerTips1','ViridianCity_EventScript_TrainerTips2','ViridianCity_Text_CatchMonsForEasierBattles','ViridianCity_Text_MovesLimitedByPP']
+
+required += ['CreateHalfShinyGiftEgg','ScriptGiveMagbyEgg','ScriptGiveTangoTangela','FiveIsland_WaterLabyrinth_EventScript_EggGentleman','CeladonCity_Condominiums_RoofRoom_EventScript_EeveeBall']
+
+required += ['PokemonLeague_LoreleisRoom_EventScript_Lorelei','PokemonLeague_BrunosRoom_EventScript_Bruno','PokemonLeague_AgathasRoom_EventScript_Agatha','PokemonLeague_LancesRoom_EventScript_Lance']
 required += ['PewterCity_Gym_EventScript_Liam','CeruleanCity_Gym_EventScript_Diana','CeladonCity_Gym_EventScript_Mary','Cmd_setweatherballtype','gBattleMonForms','SaffronCity_Dojo_Text_NeedTwo']
 required += ['MonRestorePP','ExecuteTableBasedItemEffect']
 required += ['ClampApprovedMovePP','ClampApprovedDaycarePP','NormalizeLoadedMovePP','GetBoxMonData3','SetBoxMonData','SavePlayerParty','gSaveCounter']
@@ -289,9 +307,14 @@ required += ['CalculatePPWithBonus','SetMonMoveSlot']
 required += ['GetWindowAttribute','MoveSelectionDisplayMoveNames','MoveSelectionDisplayPpString','MoveSelectionDisplayPpNumber','GetMoveTypeShortName','HandleMoveSwitching']
 required += ['TeachMoveRelearnerMove','CB2_MoveRelearner','GetBgTilemapBuffer']
 required += ['gMoveNames','GetStringWidth','StringCopy','AllocPSA','Free','AllocZeroed','sMoveRelearner','MoveRelearnerInitListMenuBuffersEtc','BufferStringBattle','gBattleTextBuff2','gBattleTextBuff3']
-required += ['FollowerGraphics_GetSpriteId','FollowerGraphics_GetObjectEventId','FollowerSpecial_PlayCry']
-required += ['FollowerState_ResolvePartySlot','FollowerState_SelectPartySlot','FollowerState_CanDisplay','FollowerState_BeforePartyRemoval','FollowerState_Clear','FollowerAssets_Count','FollowerAssets_Resolve','CustomPokedexNumToSpecies','gStringVar4']
+required += ['LightingPreviewGetAppearance', 'LightingPreviewIsActive']  # preview-branch native assertions
+required += ['FollowerGraphics_GetSpriteId','FollowerGraphics_GetObjectEventId','FollowerSpecial_PlayCry','FollowerState_ResolvePartySlot','FollowerState_SelectPartySlot','FollowerState_CanDisplay','FollowerState_BeforePartyRemoval','FollowerState_Clear','FollowerAssets_Count','FollowerAssets_Resolve','CustomPokedexNumToSpecies','gStringVar4']
 required += ['Task_StartMenuHandleInput','sStartMenuCursorPos','sStartMenuOrder','Task_BagMenu_HandleInput','Task_HandleChooseMonInput','Task_EvolutionScene']
+required += ['PalletTown_ProfessorOaksLab_EventScript_RetryParcelGifts','SilphCo_7F_EventScript_LaprasGuy']
+required += ['CeladonCity_GameCorner_PrizeRoom_EventScript_PrizeClerkMons','GetCoins','SetCoins']
+required += ['Route12_EventScript_SowCorphish','Route21_North_EventScript_SowGlalie','Route23_EventScript_SowTyranitar',
+             'GetObjectEventIdByXY','CreateScriptedWildMon','SowPrepareScriptedEncounter','SpecialWeatherActivateScript','SpecialWeatherActivate','SpecialWeatherFinishAftermath','SpecialWeatherRestorationReady',
+             'SpecialWeather_EventScript_FinishAftermath','Alloc']
 symbols={}
 end_ewram=0
 for line in subprocess.check_output(['arm-none-eabi-nm','-S','pokefirered.elf'],text=True).splitlines():
@@ -368,6 +391,26 @@ with tempfile.TemporaryDirectory(prefix='lightning-emulator-') as temp:
     expected+='};\n'
     (temp/'rival_expected.h').write_text(expected)
 
+
+    # Generate strict native-ROM expectations from the authorized 510-row lock.
+    # Placeholder-only source records intentionally are not constructed as foes.
+    ordinary = json.loads(Path('docs/ordinary-trainers-implementation-lock.json').read_text())['entries']
+    ordinary_active = [(name, row) for name, row in ordinary.items() if not row['source_dummy']]
+    assert len(ordinary_active) == 500
+    ordinary_mons = [mon for _, row in ordinary_active for mon in row['mons']]
+    assert len(ordinary_mons) == 1219
+    expected = '#define ORDINARY_TRAINER_COUNT 500\n#define ORDINARY_TRAINER_MON_COUNT 1219\n'
+    expected += 'static const unsigned ordinaryTrainerIds[] = {' + ','.join(name for name, _ in ordinary_active) + '};\n'
+    expected += 'static const unsigned ordinaryTrainerSizes[] = {' + ','.join(str(len(row['mons'])) for _, row in ordinary_active) + '};\n'
+    expected += 'struct OrdinaryExpected {unsigned species,level,item,iv,moves[4];};\n'
+    expected += 'static const struct OrdinaryExpected ordinaryTrainerMons[] = {\n'
+    for mon in ordinary_mons:
+        move_list = mon['moves'] + ['MOVE_NONE'] * (4 - len(mon['moves']))
+        expected += ' {' + ','.join([
+            mon['species'], str(mon['level']), mon['held_item'] or 'ITEM_NONE',
+            str(mon['iv']), '{' + ','.join(move_list) + '}']) + '},\n'
+    expected += '};\n'
+    (temp / 'ordinary_trainers_expected.h').write_text(expected)
 
     command=['gcc','-std=gnu11','-O2','-Wall','-Wextra','-I',str(temp),'-iquote','include',
              'tests/emulator/runner.c','-o',str(temp/'runner')]

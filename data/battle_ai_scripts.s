@@ -101,6 +101,8 @@ AI_CheckBadMove_CheckSoundproof::
 	if_move MOVE_UPROAR, Score_Minus10
 	if_move MOVE_METAL_SOUND, Score_Minus10
 	if_move MOVE_GRASS_WHISTLE, Score_Minus10
+	if_move MOVE_CHIRP, Score_Minus10
+	if_move MOVE_BELLOW, Score_Minus10
 
 AI_CheckBadMove_CheckEffect::
 	if_effect EFFECT_SLEEP, AI_CBM_Sleep
@@ -400,6 +402,10 @@ AI_CBM_Reflect::
 	end
 
 AI_CBM_Paralyze::
+	get_target_type1
+	if_equal TYPE_ELECTRIC, Score_Minus10
+	get_target_type2
+	if_equal TYPE_ELECTRIC, Score_Minus10
 	if_type_effectiveness AI_EFFECTIVENESS_x0, Score_Minus10
 	get_ability AI_TARGET
 	if_equal ABILITY_LIMBER, Score_Minus10
@@ -3097,7 +3103,6 @@ AI_HPAware_DiscouragedEffectsWhenTargetLowHP::
 	.byte EFFECT_PAIN_SPLIT
 	.byte EFFECT_CONVERSION_2
 	.byte EFFECT_LOCK_ON
-	.byte EFFECT_SPITE
 	.byte EFFECT_PERISH_SONG
 	.byte EFFECT_SWAGGER
 	.byte EFFECT_FURY_CUTTER

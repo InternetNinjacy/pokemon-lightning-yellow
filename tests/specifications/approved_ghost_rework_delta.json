@@ -1,0 +1,77 @@
+{
+  "scope": "Approved register574/582: Special30 Spite plus optional native PP drain; Special30/90/10 Ghost Grudge native Rollout without Defense Curl bonus",
+  "files": {
+    "src/data/battle_moves.h": {
+      "before_sha256": "684f71cd8952bf9c8e1534fa2c5af98f646ca26fa5f6eb18b9139a17c880bbd6",
+      "after_sha256": "85ac064ba3b409a605e342fa8eedb5c300f1e50128dfcb33d38874dc7ec214cd",
+      "hunks": [
+        {
+          "before": "    [MOVE_SPITE] =\n    {\n        .category = MOVE_CATEGORY_STATUS,\n        .effect = EFFECT_SPITE,\n        .power = 0,\n        .type = TYPE_GHOST,\n        .accuracy = 100,\n        .pp = 10,\n        .secondaryEffectChance = 0,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = 0,\n        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,\n    },",
+          "after": "    [MOVE_SPITE] =\n    {\n        .category = MOVE_CATEGORY_SPECIAL,\n        .effect = EFFECT_SPITE,\n        .power = 30,\n        .type = TYPE_GHOST,\n        .accuracy = 100,\n        .pp = 10,\n        .secondaryEffectChance = 0,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = 0,\n        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,\n    },"
+        },
+        {
+          "before": "    [MOVE_GRUDGE] =\n    {\n        .category = MOVE_CATEGORY_STATUS,\n        .effect = EFFECT_GRUDGE,\n        .power = 0,\n        .type = TYPE_GHOST,\n        .accuracy = 100,\n        .pp = 5,\n        .secondaryEffectChance = 0,\n        .target = MOVE_TARGET_USER,\n        .priority = 0,\n        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,\n    },",
+          "after": "    [MOVE_GRUDGE] =\n    {\n        .category = MOVE_CATEGORY_SPECIAL,\n        .effect = EFFECT_ROLLOUT,\n        .power = 30,\n        .type = TYPE_GHOST,\n        .accuracy = 90,\n        .pp = 10,\n        .secondaryEffectChance = 0,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = 0,\n        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,\n    },"
+        }
+      ]
+    },
+    "data/battle_scripts_1.s": {
+      "before_sha256": "385805ccbd6fd18d408018d5b9b5e6dea4b2998168e2030053f1a4912e0a3d1d",
+      "after_sha256": "19d999efd4af231f3a4b7bbddacb50d34d4b83925572f9034c295586b814db57",
+      "hunks": [
+        {
+          "before": "BattleScript_EffectSpite::\n\tattackcanceler\n\tattackstring\n\tppreduce\n\taccuracycheck BattleScript_ButItFailed, ACC_CURR_MOVE\n\ttryspiteppreduce BattleScript_ButItFailed\n\tattackanimation\n\twaitanimation\n\tprintstring STRINGID_PKMNREDUCEDPP\n\twaitmessage B_WAIT_TIME_LONG\n\tgoto BattleScript_MoveEnd\n\n",
+          "after": "BattleScript_EffectSpite::\n\tattackcanceler\n\taccuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE\n\tattackstring\n\tppreduce\n\tcritcalc\n\tdamagecalc\n\ttypecalc\n\tadjustnormaldamage\n\tattackanimation\n\twaitanimation\n\teffectivenesssound\n\thitanimation BS_TARGET\n\twaitstate\n\thealthbarupdate BS_TARGET\n\tdatahpupdate BS_TARGET\n\tcritmessage\n\twaitmessage B_WAIT_TIME_LONG\n\tresultmessage\n\twaitmessage B_WAIT_TIME_LONG\n\tjumpifmovehadnoeffect BattleScript_SpiteDamageEnd\n\ttryspiteppreduce BattleScript_SpiteDamageEnd\n\tprintstring STRINGID_PKMNREDUCEDPP\n\twaitmessage B_WAIT_TIME_LONG\nBattleScript_SpiteDamageEnd::\n\ttryfaintmon BS_TARGET\n\tgoto BattleScript_MoveEnd\n\n"
+        }
+      ]
+    },
+    "src/battle_script_commands.c": {
+      "before_sha256": "77054952c3d9374c977c3eefd2265dba992512bab22b182d82ef3d7401097b36",
+      "after_sha256": "f4f5f54ef26af680a80cb8e3c11988839d709706bfd2a2d48af5f6d3382003b6",
+      "hunks": [
+        {
+          "before": "        if (gBattleMons[gBattlerAttacker].status2 & STATUS2_DEFENSE_CURL)\n            gDynamicBasePower *= 2;",
+          "after": "        if (gCurrentMove != MOVE_GRUDGE\n            && gBattleMons[gBattlerAttacker].status2 & STATUS2_DEFENSE_CURL)\n            gDynamicBasePower *= 2;"
+        }
+      ]
+    },
+    "data/battle_ai_scripts.s": {
+      "before_sha256": "7d75cf1e1f970803db340676b9d131b3a9552b7a5ed017784549d1d2cea55f64",
+      "after_sha256": "6c0685614356c81789f2fe75222184cb4d80942e51018a889a7c9c38827db2fd",
+      "hunks": [
+        {
+          "before": "\t.byte EFFECT_LOCK_ON\n\t.byte EFFECT_SPITE\n\t.byte EFFECT_PERISH_SONG\n",
+          "after": "\t.byte EFFECT_LOCK_ON\n\t.byte EFFECT_PERISH_SONG\n"
+        }
+      ]
+    },
+    "src/move_descriptions.c": {
+      "before_sha256": "827b66ca98b93f7b64461928ea32750d34c0ac583fb8dab54ae0a82cb3edb088",
+      "after_sha256": "768d72452dab0a0f3ba092ba37f72f25d1f77b379c97eb1a54e85be9595cefc4",
+      "hunks": [
+        {
+          "before": "const u8 gMoveDescription_Spite[] = _(\"A move that cuts\\n2 to 5 PP from the\\nmove last used by\\nthe foe.\");",
+          "after": "const u8 gMoveDescription_Spite[] = _(\"Hits the foe and\\ncuts 2 to 5 PP\\nfrom its last move\\nwhen possible.\");"
+        },
+        {
+          "before": "const u8 gMoveDescription_Grudge[] = _(\"If the user faints,\\nthis move deletes\\nthe PP of the move\\nthat finished it.\");",
+          "after": "const u8 gMoveDescription_Grudge[] = _(\"A 5-turn attack\\nthat grows stronger\\nwith each hit. A\\nmiss ends the move.\");"
+        }
+      ]
+    },
+    "tests/move_categories.json": {
+      "before_sha256": "27c34f85fb6101714266d222636baff1de33a04503b2a4fc49bc1a2626c8207a",
+      "after_sha256": "8a7ce6abb35245f4ca29981570d59c6ad8c24ef76267bf307dec7828fa76e0ed",
+      "hunks": [
+        {
+          "before": "\"MOVE_SPITE\": \"STATUS\"",
+          "after": "\"MOVE_SPITE\": \"SPECIAL\""
+        },
+        {
+          "before": "\"MOVE_GRUDGE\": \"STATUS\"",
+          "after": "\"MOVE_GRUDGE\": \"SPECIAL\""
+        }
+      ]
+    }
+  }
+}

@@ -1146,14 +1146,14 @@ void CreateEgg(struct Pokemon *mon, u16 species, bool8 setHotSpringsLocation)
 
 // Museum prize eggs use a fixed shiny personality at creation, not a cosmetic
 // effect or a hatch-time reroll. Normal daycare and gift eggs are unchanged.
-void CreateShinyEgg(struct Pokemon *mon, u16 species)
+static void CreateGiftEggWithShininess(struct Pokemon *mon, u16 species, bool8 shiny)
 {
     u32 otId = (u32)gSaveBlock2Ptr->playerTrainerId[0]
              | ((u32)gSaveBlock2Ptr->playerTrainerId[1] << 8)
              | ((u32)gSaveBlock2Ptr->playerTrainerId[2] << 16)
              | ((u32)gSaveBlock2Ptr->playerTrainerId[3] << 24);
     u16 pidLow = Random();
-    u16 pidHigh = pidLow ^ (u16)otId ^ (u16)(otId >> 16);
+    u16 pidHigh = pidLow ^ (u16)otId ^ (u16)(otId >> 16) ^ (shiny ? 0 : SHINY_ODDS);
     u32 personality = ((u32)pidHigh << 16) | pidLow;
     u8 metLevel = 0;
     u16 ball = ITEM_POKE_BALL;
@@ -1169,6 +1169,18 @@ void CreateShinyEgg(struct Pokemon *mon, u16 species)
     SetMonData(mon, MON_DATA_LANGUAGE, &language);
     SetMonData(mon, MON_DATA_MET_LOCATION, &metLocation);
     SetMonData(mon, MON_DATA_IS_EGG, &isEgg);
+}
+
+// Preserve the original guaranteed-Shiny helper for other explicit callers.
+void CreateShinyEgg(struct Pokemon *mon, u16 species)
+{
+    CreateGiftEggWithShininess(mon, species, TRUE);
+}
+
+// Each eligible gift creation rolls once; stored PID/OT determine the hatch.
+void CreateHalfShinyGiftEgg(struct Pokemon *mon, u16 species)
+{
+    CreateGiftEggWithShininess(mon, species, Random() & 1);
 }
 
 static void SetInitialEggData(struct Pokemon *mon, u16 species, struct DayCare *daycare)

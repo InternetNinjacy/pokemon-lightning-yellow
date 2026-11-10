@@ -17,15 +17,23 @@ jobs:
       matrix:
         target: [modified, upstream-baseline]
     runs-on: ubuntu-24.04
-    timeout-minutes: 30
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           persist-credentials: false
+          fetch-depth: 0 # Verify strict prechange source preservation against pinned gameplay main
       - name: Install upstream Linux dependencies and test runner
         run: |
-          sudo apt-get update
-          sudo apt-get install -y --no-install-recommends build-essential binutils-arm-none-eabi git libpng-dev python3
+          # Fetch all required packages before either expensive build. Bound
+          # mirror/lock stalls; no compile/native/assertion gate is skipped.
+          lightning_apt_options=(-o Acquire::Retries=3 -o Acquire::http::Timeout=30 -o Acquire::https::Timeout=30 -o DPkg::Lock::Timeout=120)
+          lightning_packages=(build-essential binutils-arm-none-eabi git libpng-dev python3)
+          if [ "${{ matrix.target }}" = modified ]; then
+            lightning_packages+=(libmgba-dev)
+          fi
+          sudo apt-get "${lightning_apt_options[@]}" update
+          sudo apt-get "${lightning_apt_options[@]}" install -y --no-install-recommends "${lightning_packages[@]}"
           gcc --version
           arm-none-eabi-as --version
           dpkg-query -W build-essential binutils-arm-none-eabi git libpng-dev python3
@@ -39,28 +47,79 @@ jobs:
         if: matrix.target == 'modified'
         run: |
           python3 tests/run_split_tests.py
+          python3 tests/run_move_catalog_tests.py
+          python3 tests/run_new_fire_moves_tests.py
+          python3 tests/run_new_ghost_moves_tests.py
+          python3 tests/run_skitter_slash_tests.py
+          python3 tests/run_venom_web_tests.py
+          python3 tests/run_bug_statdrop_tests.py
+          python3 tests/run_chirp_tests.py
+          python3 tests/run_swarm_cloud_tests.py
+          python3 tests/run_bellow_rock_tests.py
+          python3 tests/run_scorching_sands_tests.py
+          python3 tests/run_earth_power_tests.py
           python3 tests/run_move_foundation_tests.py
           python3 tests/run_move_ui_tests.py
           python3 tests/run_original_move_data_tests.py
           python3 tests/run_move_pp_tests.py
+          python3 tests/run_roar_tests.py
+
+          python3 tests/run_title_screen_tests.py
+
+          python3 tests/run_approved_gift_tests.py
+          python3 tests/run_pikachu_opening_tests.py
+
+          python3 tests/run_elite_four_tests.py
+
+          python3 tests/run_weather_move_tests.py
+          python3 tests/run_weather_ability_tests.py
+          python3 tests/run_weather_species_tests.py
+          python3 tests/run_brock_weather_tests.py
+          python3 tests/run_special_glalie_tests.py
+          python3 tests/run_special_corphish_tests.py
+          python3 tests/run_sow_event_tests.py
+          python3 tests/run_original_effect_tests.py
           python3 tests/run_rtc_tests.py
           python3 tests/run_evolution_tests.py
           python3 tests/run_ponyta_tests.py
           python3 tests/run_pokedex_tests.py
           python3 tests/run_typing_tests.py
           python3 tests/run_wild_double_tests.py
+          python3 tests/check_route1_encounters.py
+          python3 tests/check_route2_encounters.py
+          python3 tests/check_route22_encounters.py
+          python3 tests/check_route23_encounters.py
+          python3 tests/check_route5_encounters.py
+          python3 tests/check_route8_drowzee.py
+          python3 tests/check_victory_road_encounters.py
+          python3 tests/check_route3_encounters.py
+          python3 tests/check_viridian_forest_encounters.py
+          python3 tests/check_mt_moon_encounters.py
+          python3 tests/check_bulk_approved_grass.py
+          python3 tests/check_bulk_kanto_central_grass.py
+          python3 tests/check_bulk_kanto_interiors.py
+          python3 tests/check_safari_zone_land.py
+          python3 tests/check_kanto_water_bulk.py
+          python3 tests/check_kanto_water_followup.py
+          python3 tests/check_bulk_sevii_land.py
+          python3 tests/check_bulk_sevii_water.py
+          python3 tests/check_bulk_sevii_water_second.py
           python3 tests/run_daycare_tests.py
           python3 tests/run_world_reward_tests.py
           python3 tests/run_vendor_tests.py
           python3 tests/run_capture_tests.py
           python3 tests/run_blaine_tests.py
           python3 tests/run_ranger_tests.py
+          python3 tests/run_ordinary_trainer_tests.py
           python3 tests/run_weather_tests.py
+          python3 tests/run_special_weather_tests.py
           python3 tests/run_gym_castform_tests.py
           python3 tests/run_rival_tests.py
-          python3 tests/run_follower_asset_validator_tests.py
-          python3 tests/run_follower_graphics_resource_tests.py
           python3 tests/run_follower_state_tests.py
+          python3 tests/run_follower_graphics_resource_tests.py
+          python3 tests/run_follower_asset_validator_tests.py
+          python3 tests/run_rocket_hideout_roster_tests.py
+          python3 tests/run_rocket_hideout_quest_tests.py
           python3 scripts/check-integration-registrations.py
           python3 scripts/check-move-reconciliation.py
           python3 scripts/check-pewter-museum-trivia.py
@@ -100,7 +159,6 @@ jobs:
           make clean
           make -j2
           sha256sum -c /tmp/modified.sha256
-          # Remove generated third-party pixel bytes before source-tree audit.
           if [ "$GITHUB_REF" = 'refs/heads/feature/selectable-following-pokemon' ]; then
             git restore -- src/follower_assets_generated.inc
           fi
@@ -108,11 +166,39 @@ jobs:
       - name: Install headless mGBA core
         if: matrix.target == 'modified'
         run: |
-          sudo apt-get install -y --no-install-recommends libmgba-dev
+          # Already installed with the initial dependencies; verify it remains
+          # available without starting another late network/package transaction.
           dpkg-query -W libmgba-dev
+      - name: Focused Earth Power native battle tests in mGBA
+        if: matrix.target == 'modified'
+        timeout-minutes: 10
+        run: LIGHTNING_EARTH_POWER_ONLY=1 python3 tests/emulator/run.py
+      - name: Focused Scorching Sands native battle tests in mGBA
+        if: matrix.target == 'modified'
+        timeout-minutes: 10
+        run: LIGHTNING_SCORCHING_SANDS_ONLY=1 python3 tests/emulator/run.py
+      - name: Focused native Swarm Cloud regression in mGBA
+        if: matrix.target == 'modified'
+        timeout-minutes: 10
+        run: |
+          LIGHTNING_SWARM_ONLY=1 python3 tests/emulator/run.py
+      - name: Focused owner-approved SOW actual native producers and all three walkable map events
+        if: matrix.target == 'modified'
+        timeout-minutes: 10
+        run: |
+          mkdir -p "$RUNNER_TEMP/sow-captures"
+          LIGHTNING_SOW_CAPTURE_DIR="$RUNNER_TEMP/sow-captures" LIGHTNING_SOW_PRODUCERS_ONLY=1 python3 tests/emulator/run.py
+      - name: Upload real SOW emulator framebuffer evidence (PPM only, no ROM)
+        if: matrix.target == 'modified' && always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sow-overworld-evidence-${{ github.sha }}
+          path: ${{ runner.temp }}/sow-captures/*.ppm
+          if-no-files-found: warn
+          retention-days: 14
       - name: Execute ROM integration tests in mGBA
         if: matrix.target == 'modified'
-        timeout-minutes: 20
+        timeout-minutes: 30
         run: python3 tests/emulator/run.py
       - name: Verify original upstream SHA-1 twice from clean
         if: matrix.target == 'upstream-baseline'

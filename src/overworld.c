@@ -4,6 +4,10 @@
 #include "dynamic_weather.h"
 #include "gflib.h"
 #include "bg_regs.h"
+#include "lighting_preview_config.h"
+#ifdef LIGHTING_PREVIEW
+#include "rtc.h"
+#endif
 #include "cable_club.h"
 #include "credits.h"
 #include "event_data.h"
@@ -141,6 +145,9 @@ static void Overworld_TryMapConnectionMusicTransition(void);
 static void ChooseAmbientCrySpecies(void);
 
 static void CB2_Overworld(void);
+#ifdef LIGHTING_PREVIEW
+static void LightingPreviewUpdateAppearance(void);
+#endif
 static void CB2_LoadMap2(void);
 static void CB2_LoadMapOnReturnToFieldCableClub(void);
 static void CB2_ReturnToFieldLocal(void);
@@ -1462,12 +1469,68 @@ void CB1_Overworld(void)
     }
 }
 
+
+#ifdef LIGHTING_PREVIEW
+// Isolated test appearance selection. No save data, RTC writes or changes to
+// functional day/night. RTC is sampled periodically rather than within VBlank.
+static EWRAM_DATA u8 sLightingPreviewAppearance = 0;
+static EWRAM_DATA u8 sLightingPreviewClockCounter = 0;
+
+static void LightingPreviewUpdateAppearance(void)
+{
+    u8 hour;
+    // Re-evaluate on first field frame and approximately every 30 frames.
+    if (sLightingPreviewClockCounter++ < 30)
+        return;
+    sLightingPreviewClockCounter = 0;
+    if (!RtcGetHour(&hour))
+    {
+        sLightingPreviewAppearance = 0; // Invalid RTC: ordinary Day.
+        return;
+    }
+    if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_VIRIDIAN_FOREST)
+     && gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_VIRIDIAN_FOREST))
+        sLightingPreviewAppearance = (hour >= 6 && hour < 18) ? 4 : 5;
+    else if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_LAVENDER_TOWN)
+          && gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_LAVENDER_TOWN))
+        sLightingPreviewAppearance = (hour >= 6 && hour < 18) ? 6 : 3;
+    else if (hour == 6)
+        sLightingPreviewAppearance = 1;
+    else if (hour >= 7 && hour < 18)
+        sLightingPreviewAppearance = 0;
+    else if (hour == 18)
+        sLightingPreviewAppearance = 2;
+    else
+        sLightingPreviewAppearance = 3;
+}
+
+u8 LightingPreviewGetAppearance(void)
+{
+    return sLightingPreviewAppearance;
+}
+
+bool8 LightingPreviewIsActive(void)
+{
+    // Avoid applying outdoor looks in battle and non-field screens.
+    // Viridian Forest is explicitly covered, even if its map type is non-outdoor.
+    bool8 forest;
+    if (gMain.callback2 != CB2_Overworld || gGlobalFieldTintMode != QL_TINT_NONE || gSaveBlock1Ptr == NULL)
+        return FALSE;
+    forest = gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_VIRIDIAN_FOREST)
+          && gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_VIRIDIAN_FOREST);
+    return forest || IsMapTypeOutdoors(gMapHeader.mapType);
+}
+#endif
+
 static void OverworldBasic(void)
 {
     DynamicWeatherUpdate();
     ScriptContext_RunScript();
     RunTasks();
     AnimateSprites();
+#ifdef LIGHTING_PREVIEW
+    LightingPreviewUpdateAppearance();
+#endif
     CameraUpdate();
     FollowerController_Tick();
     SetQuestLogEvent_Arrived();
@@ -1781,7 +1844,6 @@ static void SetFieldVBlankCallback(void)
 
 static void VBlankCB_Field(void)
 {
-    // Graphics allocations and 4bpp frame transfers are VBlank-only.
     FollowerController_VBlank();
     LoadOam();
     ProcessSpriteCopyRequests();
@@ -2141,12 +2203,8 @@ static void InitOverworldGraphicsRegisters(void)
 static void ResumeMap(bool32 inLink)
 {
     ResetTasks();
-    // Teardown the old owned ObjectEvent before sprite IDs are recycled;
-    // the selected Pokémon instance remains in the separate save record.
     FollowerGraphics_DetachForMapTransition();
     FollowerController_RequestRefresh();
-    // Sprite IDs and palette tags are invalid after this reset. The
-    // graphics controller must not free a reused ID on the new map.
     ResetSpriteData();
     FollowerGraphics_InvalidateAfterSpriteReset();
     ResetPaletteFade();

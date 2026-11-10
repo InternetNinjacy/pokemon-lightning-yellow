@@ -87,7 +87,7 @@
     },
     {
       "type": "object",
-      "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
+      "graphics_id": "OBJ_EVENT_GFX_LIGHTNING_RANGER_M",
       "x": 32,
       "y": 5,
       "elevation": 3,
@@ -115,7 +115,7 @@
     },
     {
       "type": "object",
-      "graphics_id": "OBJ_EVENT_GFX_LASS",
+      "graphics_id": "OBJ_EVENT_GFX_LIGHTNING_RANGER_F",
       "x": 8,
       "y": 21,
       "elevation": 3,
@@ -129,7 +129,7 @@
     },
     {
       "type": "object",
-      "graphics_id": "OBJ_EVENT_GFX_LASS",
+      "graphics_id": "OBJ_EVENT_GFX_LIGHTNING_RANGER_F",
       "x": 39,
       "y": 6,
       "elevation": 3,

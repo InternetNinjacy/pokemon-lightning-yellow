@@ -1,0 +1,76 @@
+{
+  "files": {
+    "include/constants/moves.h": {
+      "hunks": [
+        {
+          "before": "#define MOVES_COUNT 366",
+          "after": "#define MOVE_SWARM_CLOUD 366\n\n#define MOVES_COUNT 367"
+        }
+      ]
+    },
+    "include/constants/battle_move_effects.h": {
+      "hunks": [
+        {
+          "before": "#define EFFECT_SLEEP_HIT 214",
+          "after": "#define EFFECT_SLEEP_HIT 214\n#define EFFECT_SWARM_CLOUD 215"
+        }
+      ]
+    },
+    "src/data/battle_moves.h": {
+      "hunks": [
+        {
+          "before": "\n};\n",
+          "after": "\n    [MOVE_SWARM_CLOUD] =\n    {\n        .category = MOVE_CATEGORY_SPECIAL,\n        .effect = EFFECT_SWARM_CLOUD,\n        .power = 90,\n        .type = TYPE_BUG,\n        .accuracy = 90,\n        .pp = 15,\n        .secondaryEffectChance = 50,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = 0,\n        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,\n    },\n\n};\n"
+        }
+      ]
+    },
+    "src/data/text/move_names.h": {
+      "hunks": [
+        {
+          "before": "    [MOVE_CHIRP] = _(\"CHIRP\"),",
+          "after": "    [MOVE_CHIRP] = _(\"CHIRP\"),\n    [MOVE_SWARM_CLOUD] = _(\"SWARM CLOUD\"),"
+        }
+      ]
+    },
+    "src/move_descriptions.c": {
+      "hunks": [
+        {
+          "before": "const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {",
+          "after": "const u8 gMoveDescription_SWARM_CLOUD[] = _(\"A swarming attack\\nthat may confuse\\nand poison the foe.\");\n\nconst u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {"
+        },
+        {
+          "before": "    [MOVE_CHIRP - 1] = gMoveDescription_CHIRP,",
+          "after": "    [MOVE_CHIRP - 1] = gMoveDescription_CHIRP,\n    [MOVE_SWARM_CLOUD - 1] = gMoveDescription_SWARM_CLOUD,"
+        }
+      ]
+    },
+    "data/battle_scripts_1.s": {
+      "hunks": [
+        {
+          "before": "\t.4byte BattleScript_EffectSleepHit",
+          "after": "\t.4byte BattleScript_EffectSleepHit\n\t.4byte BattleScript_EffectSwarmCloud"
+        },
+        {
+          "before": "seteffectwithchance\n\ttryfaintmon BS_TARGET\nBattleScript_MoveEnd::",
+          "after": "seteffectwithchance\n\tjumpifnotmove MOVE_SWARM_CLOUD, BattleScript_AfterSwarmCloud\n\tsetmoveeffect MOVE_EFFECT_POISON\n\tseteffectwithchance\nBattleScript_AfterSwarmCloud::\n\ttryfaintmon BS_TARGET\nBattleScript_MoveEnd::"
+        },
+        {
+          "before": "string STRINGID_EMPTYSTRING3\n\treturn\n\nBattleScript_EffectSleepHit::\n\tsetmoveeffect MOVE_EFFECT_SLEEP\n\tgoto BattleScript_EffectHit\n",
+          "after": "string STRINGID_EMPTYSTRING3\n\treturn\n\nBattleScript_EffectSleepHit::\n\tsetmoveeffect MOVE_EFFECT_SLEEP\n\tgoto BattleScript_EffectHit\n\n@ Swarm Cloud uses separate native 50% Confusion and 50% Poison chances.\nBattleScript_EffectSwarmCloud::\n\tsetmoveeffect MOVE_EFFECT_CONFUSION\n\tgoto BattleScript_EffectHit\n"
+        }
+      ]
+    },
+    "data/battle_anim_scripts.s": {
+      "hunks": [
+        {
+          "before": "\t.4byte Move_CHIRP\n\t.4byte Move_COUNT",
+          "after": "\t.4byte Move_CHIRP\n\t.4byte Move_SWARM_CLOUD\n\t.4byte Move_COUNT"
+        },
+        {
+          "before": "1\n\twaitforvisualfinish\n\tclearmonbg ANIM_DEF_PARTNER\n\tblendoff\n\tend\n\n@ Approved Chirp sound uses the native Growl visual only.\nMove_CHIRP:\n\tgoto Move_GROWL\n",
+          "after": "1\n\twaitforvisualfinish\n\tclearmonbg ANIM_DEF_PARTNER\n\tblendoff\n\tend\n\n@ Approved Chirp sound uses the native Growl visual only.\nMove_CHIRP:\n\tgoto Move_GROWL\n\n@ Approved native Silver Wind and Poison Powder visual composite.\nMove_SWARM_CLOUD:\n\tloadspritegfx ANIM_TAG_SPARKLE_6\n\tpanse SE_M_GUST, SOUND_PAN_ATTACKER, SOUND_PAN_TARGET, +2, 0\n\tplaysewithpan SE_M_MORNING_SUN, 0\n\tdelay 0\n\tmonbg ANIM_DEF_PARTNER\n\tsplitbgprio_all\n\tdelay 0\n\tcreatevisualtask AnimTask_BlendBattleAnimPalExclude, 10, ANIM_TARGET, 0, 0, 4, RGB_BLACK\n\tcreatevisualtask AnimTask_GetTargetSide, 2\n\tjumprettrue SwarmCloudOnPlayer\n\tfadetobg BG_BUG_OPPONENT\n\twaitbgfadeout\n\tcreatevisualtask AnimTask_StartSlidingBg, 5, 1536, 0, 0, -1\nSwarmCloudContinue:\n\tdelay 0\n\tcreatevisualtask AnimTask_BlendBattleAnimPal, 10, F_PAL_BG, 0, 4, 4, RGB_BLACK\n\twaitbgfadein\n\tcreatesprite gSilverWindBigSparkSpriteTemplate, ANIM_TARGET, 66, -32, 16, 0, 6, 2, 3, 1\n\tcreatesprite gSilverWindBigSparkSpriteTemplate, ANIM_TARGET, 66, -8, 18, 64, 3, 2, 2, 1\n\tcreatesprite gSilverWindBigSparkSpriteTemplate, ANIM_ATTACKER, 120, -24, 18, 90, 5, 1, 2, 1\n\tcreatesprite gSilverWindBigSparkSpriteTemplate, ANIM_ATTACKER, 120, -40, 14, 128, 4, 1, 2, 1\n\tdelay 0\n\tcreatesprite gSilverWindMediumSparkSpriteTemplate, ANIM_TARGET, 66, -32, 16, 0, 6, 2, 3, 1\n\tcreatesprite gSilverWindMediumSparkSpriteTemplate, ANIM_TARGET, 66, -8, 18, 64, 3, 2, 2, 1\n\tcreatesprite gSilverWindMediumSparkSpriteTemplate, ANIM_ATTACKER, 120, -24, 18, 90, 5, 1, 2, 1\n\tcreatesprite gSilverWindMediumSparkSpriteTemplate, ANIM_ATTACKER, 120, -40, 14, 128, 4, 1, 2, 1\n\tdelay 0\n\tcreatesprite gSilverWindSmallSparkSpriteTemplate, ANIM_TARGET, 66, -32, 16, 0, 6, 2, 3, 1\n\tcreatesprite gSilverWindSmallSparkSpriteTemplate, ANIM_TARGET, 66, -8, 18, 64, 3, 2, 2, 1\n\tcreatesprite gSilverWindSmallSparkSpriteTemplate, ANIM_ATTACKER, 120, -24, 18, 90, 5, 1, 2, 1\n\tcreatesprite gSilverWindSmallSparkSpriteTemplate, ANIM_ATTACKER, 120, -40, 14, 128, 4, 1, 2, 1\n\tdelay 6\n\tcreatesprite gSilverWindBigSparkSpriteTemplate, ANIM_TARGET, 66, -4, 16, 0, 6, 1, 2, 1\n\tcreatesprite gSilverWindBigSparkSpriteTemplate, ANIM_TARGET, 66, -16, 12, 192, 5, 2, 3, 1\n\tdelay 0\n\tcreatesprite gSilverWindMediumSparkSpriteTemplate, ANIM_TARGET, 66, -4, 16, 0, 6, 1, 2, 1\n\tcreatesprite gSilverWindMediumSparkSpriteTemplate, ANIM_TARGET, 66, -16, 12, 192, 5, 2, 3, 1\n\tdelay 0\n\tcreatesprite gSilverWindSmallSparkSpriteTemplate, ANIM_TARGET, 66, -4, 16, 0, 6, 1, 2, 1\n\tcreatesprite gSilverWindSmallSparkSpriteTemplate, ANIM_TARGET, 66, -16, 12, 192, 5, 2, 3, 1\n\twaitforvisualfinish\n\tplaysewithpan SE_M_GUST2, SOUND_PAN_TARGET\n\tclearmonbg ANIM_DEF_PARTNER\n\tdelay 0\n\trestorebg\n\twaitbgfadeout\n\tcreatevisualtask AnimTask_BlendBattleAnimPalExclude, 10, ANIM_TARGET, 0, 4, 0, RGB_BLACK\n\tsetarg 7, 0xFFFF\n\twaitbgfadein\n\tgoto SwarmCloudPoisonVisual\n\nSwarmCloudOnPlayer:\n\tfadetobg BG_BUG_PLAYER\n\twaitbgfadeout\n\tcreatevisualtask AnimTask_StartSlidingBg, 5, -1536, 0, 0, -1\n\tgoto SwarmCloudContinue\n\n\nSwarmCloudPoisonVisual:\n\tloadspritegfx ANIM_TAG_POISON_POWDER\n\tloadspritegfx ANIM_TAG_POISON_BUBBLE\n\tloopsewithpan SE_M_POISON_POWDER, SOUND_PAN_TARGET, 10, 6\n\tcreatesprite gPoisonPowderParticleSpriteTemplate, ANIM_TARGET, 2, -30, -22, 117, 80, 5, 1\n\tcreatesprite gPoisonPowderParticleSpriteTemplate, ANIM_TARGET, 2, 10, -22, 117, 80, -5, 1\n\tcreatesprite gPoisonPowderParticleSpriteTemplate, ANIM_TARGET, 2, -25, -22, 117, 112, 5, 3\n\tdelay 15\n\tcreatesprite gPoisonPowderParticleSpriteTemplate, ANIM_TARGET, 2, -5, -22, 117, 80, -5, 1\n\tcreatesprite gPoisonPowderParticleSpriteTemplate, ANIM_TARGET, 2, 5, -22, 117, 96, 5, 1\n\tcreatesprite gPoisonPowderParticleSpriteTemplate, ANIM_TARGET, 2, 0, -22, 117, 69, -5, 1\n\tcreatesprite gPoisonPowderParticleSpriteTemplate, ANIM_TARGET, 2, -15, -22, 117, 112, 5, 2\n\tdelay 30\n\tcreatesprite gPoisonPowderParticleSpriteTemplate, ANIM_TARGET, 2, -15, -22, 117, 112, 5, 2\n\tcreatesprite gPoisonPowderParticleSpriteTemplate, ANIM_TARGET, 2, 15, -22, 117, 80, -5, 1\n\tcreatesprite gPoisonPowderParticleSpriteTemplate, ANIM_TARGET, 2, -10, -22, 117, 96, 7, 2\n\tcreatesprite gPoisonPowderParticleSpriteTemplate, ANIM_TARGET, 2, -5, -22, 117, 90, -8, 0\n\tdelay 20\n\tcreatesprite gPoisonPowderParticleSpriteTemplate, ANIM_TARGET, 2, -10, -22, 117, 80, -5, 1\n\tcreatesprite gPoisonPowderParticleSpriteTemplate, ANIM_TARGET, 2, 0, -22, 117, 89, 5, 2\n\tcreatesprite gPoisonPowderParticleSpriteTemplate, ANIM_TARGET, 2, 20, -22, 117, 112, -8, 2\n\tcreatesprite gPoisonPowderParticleSpriteTemplate, ANIM_TARGET, 2, 5, -22, 117, 80, 5, 1\n\twaitforvisualfinish\n\tend\n"
+        }
+      ]
+    }
+  }
+}

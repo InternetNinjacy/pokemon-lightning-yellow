@@ -1,0 +1,44 @@
+{
+  "files": {
+    "src/dynamic_weather.c": {
+      "before_sha256": "c3a5b78142409af498c4b301c90a912ea10dcb809107ce6fd9de8edbf2b936d1",
+      "after_sha256": "8b5e97ff36bc86c336d89dbb8d0030b83f7e39dc3446fbec80f2aa926c43c044",
+      "hunks": [
+        {
+          "before": "#include \"time_of_day.h\"\n#include \"constants/maps.h\"\n#include \"constants/weather.h\"\n\nstruct WeatherPolicy\n{\n",
+          "after": "#include \"time_of_day.h\"\n#include \"constants/maps.h\"\n#include \"constants/weather.h\"\n#include \"constants/special_weather.h\"\n#include \"constants/battle.h\"\n#include \"event_data.h\"\n\nstruct WeatherPolicy\n{\n"
+        },
+        {
+          "before": "    return WEATHER_NONE; // Unreachable for the frozen positive-total policies.\n}\n\nstatic bool8 IsFixedWeatherGym(void)\n{\n    return (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_PEWTER_CITY_GYM)\n",
+          "after": "    return WEATHER_NONE; // Unreachable for the frozen positive-total policies.\n}\n\n// Explicit activation prevents unplaced events from forcing unresolvable weather.\nstruct SpecialWeatherPolicy\n{\n    u8 group, map, otherMap, weather;\n    u16 active, resolved;\n};\nstatic const struct SpecialWeatherPolicy sSpecialWeatherPolicies[] =\n{\n    {MAP_GROUP(MAP_ROUTE12), MAP_NUM(MAP_ROUTE12), MAP_NUM(MAP_ROUTE12), WEATHER_RAIN, FLAG_SOW_CORPHISH_ACTIVE, FLAG_SOW_CORPHISH_RESOLVED},\n    {MAP_GROUP(MAP_ROUTE21_NORTH), MAP_NUM(MAP_ROUTE21_NORTH), MAP_NUM(MAP_ROUTE21_SOUTH), WEATHER_SNOW, FLAG_SOW_GLALIE_ACTIVE, FLAG_SOW_GLALIE_RESOLVED},\n    {MAP_GROUP(MAP_ROUTE23), MAP_NUM(MAP_ROUTE23), MAP_NUM(MAP_ROUTE23), WEATHER_SANDSTORM, FLAG_SOW_TYRANITAR_ACTIVE, FLAG_SOW_TYRANITAR_RESOLVED},\n};\n\nstatic bool8 SpecialWeatherOnRoute(const struct SpecialWeatherPolicy *p, u8 group, u8 map)\n{\n    return p->group == group && (p->map == map || p->otherMap == map);\n}\n\nstatic u8 SpecialWeatherOverride(u8 group, u8 map)\n{\n    u8 i;\n    for (i = 0; i < ARRAY_COUNT(sSpecialWeatherPolicies); i++)\n    {\n        const struct SpecialWeatherPolicy *p = &sSpecialWeatherPolicies[i];\n        if (SpecialWeatherOnRoute(p, group, map) && FlagGet(p->active) && !FlagGet(p->resolved))\n            return p->weather;\n    }\n    return 0xFF;\n}\n\nstatic bool8 ApplySpecialWeather(void)\n{\n    u8 group = gSaveBlock1Ptr->location.mapGroup, map = gSaveBlock1Ptr->location.mapNum;\n    u8 weather = SpecialWeatherOverride(group, map);\n    if (weather == 0xFF)\n        return FALSE;\n    if (GetSav1Weather() != weather)\n    {\n        SetSavedWeather(weather);\n        SetNextWeather(GetSav1Weather());\n    }\n    WriteWeatherContext(group, map, weather, FALSE);\n    return TRUE;\n}\n\nstatic bool8 IsFixedWeatherGym(void)\n{\n    return (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_PEWTER_CITY_GYM)\n"
+        },
+        {
+          "before": "    u8 group = gSaveBlock1Ptr->location.mapGroup, map = gSaveBlock1Ptr->location.mapNum;\n    const struct WeatherPolicy *policy = FindWeatherPolicy(group, map);\n    u8 weather, *p = WeatherContext();\n    if (policy == NULL)\n    {\n        // Unassigned outdoor maps retain native headers, never inferred weights.\n",
+          "after": "    u8 group = gSaveBlock1Ptr->location.mapGroup, map = gSaveBlock1Ptr->location.mapNum;\n    const struct WeatherPolicy *policy = FindWeatherPolicy(group, map);\n    u8 weather, *p = WeatherContext();\n    weather = SpecialWeatherOverride(group, map);\n    if (weather != 0xFF)\n    {\n        WriteWeatherContext(group, map, weather, FALSE);\n        return weather; // Includes Route21 North/South: no boundary RNG draw.\n    }\n    if (policy == NULL)\n    {\n        // Unassigned outdoor maps retain native headers, never inferred weights.\n"
+        },
+        {
+          "before": "            SetSavedWeather(gMapHeader.weather);\n            SetNextWeather(gMapHeader.weather);\n        }\n        SynchronizeSun();\n    }\n}\n\nu8 DynamicWeatherForBattle(void)\n{\n    // Approved fixed indoor Gym weather is independent of outdoor RTC policy.\n    // Read the logical header so battle entry never races a field fade.\n    if (IsFixedWeatherGym())\n",
+          "after": "            SetSavedWeather(gMapHeader.weather);\n            SetNextWeather(gMapHeader.weather);\n        }\n        ApplySpecialWeather();\n        SynchronizeSun();\n    }\n}\n\nu8 DynamicWeatherForBattle(void)\n{\n    u8 forced = SpecialWeatherOverride(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum);\n    if (forced != 0xFF)\n        return forced;\n    // Approved fixed indoor Gym weather is independent of outdoor RTC policy.\n    // Read the logical header so battle entry never races a field fade.\n    if (IsFixedWeatherGym())\n"
+        },
+        {
+          "before": "void DynamicWeatherAfterBattle(void)\n{\n    u8 group = gSaveBlock1Ptr->location.mapGroup, map = gSaveBlock1Ptr->location.mapNum;\n    if (group == MAP_GROUP(MAP_ROUTE16)\n     && (map == MAP_NUM(MAP_ROUTE16) || map == MAP_NUM(MAP_ROUTE17) || map == MAP_NUM(MAP_ROUTE18)))\n    {\n",
+          "after": "void DynamicWeatherAfterBattle(void)\n{\n    u8 group = gSaveBlock1Ptr->location.mapGroup, map = gSaveBlock1Ptr->location.mapNum;\n    if (ApplySpecialWeather())\n        return; // Run/loss leave unresolved events forced; never reroll here.\n    if (group == MAP_GROUP(MAP_ROUTE16)\n     && (map == MAP_NUM(MAP_ROUTE16) || map == MAP_NUM(MAP_ROUTE17) || map == MAP_NUM(MAP_ROUTE18)))\n    {\n"
+        },
+        {
+          "before": "    else\n        SynchronizeSun();\n}\n",
+          "after": "    else\n        SynchronizeSun();\n}\n\nbool8 SpecialWeatherActivate(u8 event)\n{\n    const struct SpecialWeatherPolicy *p;\n    if (event >= SPECIAL_WEATHER_COUNT)\n        return FALSE;\n    p = &sSpecialWeatherPolicies[event];\n    if (FlagGet(p->resolved) || !SpecialWeatherOnRoute(p, gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum))\n        return FALSE;\n    FlagSet(p->active);\n    ApplySpecialWeather();\n    return TRUE;\n}\n\nbool8 SpecialWeatherFinishAftermath(u8 event, u8 outcome)\n{\n    const struct SpecialWeatherPolicy *p;\n    const struct WeatherPolicy *baseline;\n    u8 group = gSaveBlock1Ptr->location.mapGroup, map = gSaveBlock1Ptr->location.mapNum;\n    u8 weather;\n    if (event >= SPECIAL_WEATHER_COUNT || (outcome != B_OUTCOME_WON && outcome != B_OUTCOME_CAUGHT))\n        return FALSE;\n    p = &sSpecialWeatherPolicies[event];\n    if (!SpecialWeatherOnRoute(p, group, map) || !FlagGet(p->active) || FlagGet(p->resolved))\n        return FALSE;\n    baseline = FindWeatherPolicy(group, map);\n    if (baseline == NULL)\n        return FALSE;\n    FlagSet(p->resolved);\n    FlagClear(p->active);\n    weather = RollWeather(baseline); // Exactly one baseline selection, after aftermath.\n    WriteWeatherContext(group, map, weather, FALSE);\n    SetSavedWeather(weather);\n    if (gWeatherPtr->currWeather != GetSav1Weather() || gWeatherPtr->nextWeather != GetSav1Weather())\n        SetNextWeather(GetSav1Weather());\n    return TRUE;\n}\n\nbool8 SpecialWeatherRestorationReady(void)\n{\n    return GetCurrentWeather() == GetSav1Weather()\n        && gWeatherPtr->nextWeather == GetSav1Weather() && gWeatherPtr->weatherGfxLoaded\n        && gWeatherPtr->palProcessingState == WEATHER_PAL_STATE_IDLE;\n}\n\nvoid SpecialWeatherActivateScript(void)\n{\n    gSpecialVar_Result = FALSE;\n    if (gSpecialVar_0x8004 < SPECIAL_WEATHER_COUNT)\n        gSpecialVar_Result = SpecialWeatherActivate(gSpecialVar_0x8004);\n}\n\nvoid SpecialWeatherResolveScript(void)\n{\n    gSpecialVar_Result = FALSE;\n    if (gSpecialVar_0x8004 >= SPECIAL_WEATHER_COUNT\n     || (gSpecialVar_0x8005 != B_OUTCOME_WON && gSpecialVar_0x8005 != B_OUTCOME_CAUGHT))\n        return;\n    gSpecialVar_Result = SpecialWeatherFinishAftermath(gSpecialVar_0x8004, gSpecialVar_0x8005);\n    // The caller follows success with native-script wait on RestorationReady.\n    // Polling readiness never invokes resolution or draws another weather roll.\n}\n"
+        }
+      ]
+    },
+    "data/event_scripts.s": {
+      "before_sha256": "27bd9daa21e5636d366d0efe3012a187e392776882ccf9b430a7e52740402668",
+      "after_sha256": "f60559043bc497cc0ec97974c0a8d58a594ee4c56370a3ebaabe24bddd214bee",
+      "hunks": [
+        {
+          "before": "\t.include \"data/text/pokedude.inc\"\n\n\t.include \"data/scripts/mystery_vendor.inc\"\n",
+          "after": "\t.include \"data/text/pokedude.inc\"\n\n\t.include \"data/scripts/mystery_vendor.inc\"\n\n\t.include \"data/scripts/special_weather.inc\"\n"
+        }
+      ]
+    }
+  }
+}

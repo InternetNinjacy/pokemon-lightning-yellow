@@ -85,6 +85,9 @@ const u8 gTrainerClassNames[][13] = {
     [TRAINER_CLASS_BOSS]                = _("BOSS"),
     [TRAINER_CLASS_LEADER]              = _("LEADER"),
     [TRAINER_CLASS_TEAM_ROCKET]         = _("TEAM ROCKET"),
+    // The 12-byte class-name field uses the paired trainer name EXECUTIVE
+    // to display the full battle title ROCKET EXECUTIVE.
+    [TRAINER_CLASS_ROCKET_EXECUTIVE]    = _("ROCKET"),
     [TRAINER_CLASS_COOLTRAINER]         = _("COOLTRAINER"),
     [TRAINER_CLASS_ELITE_FOUR]          = _("ELITE FOUR"),
     [TRAINER_CLASS_GENTLEMAN]           = _("GENTLEMAN"),

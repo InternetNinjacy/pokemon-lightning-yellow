@@ -1,14 +1,19 @@
 #!/usr/bin/env python3
 """Exact M2b source/authority/save-layout audit; crypto and flash execute in mGBA."""
 from pathlib import Path
+from approved_new_fire_move_changes import prior_new_fire_move_source
 import hashlib,json,re
 from approved_move_pp_changes import prior_move_pp_source
+from approved_roar_changes import prior_roar_source
+from approved_gift_changes import prior_gift_source
+from approved_weather_move_changes import prior_weather_move_source
+def before_later_features(path):return prior_roar_source(path,prior_gift_source(path,prior_weather_move_source(path)))
 m=json.loads(Path('tests/specifications/approved_move_pp_delta.json').read_text())
 for p,v in m['files'].items():
- assert hashlib.sha256(Path(p).read_bytes()).hexdigest()==v['after_sha256'],p
+ assert hashlib.sha256(before_later_features(p).encode()).hexdigest()==v['after_sha256'],p
  assert hashlib.sha256(prior_move_pp_source(p).encode()).hexdigest()==v['before_sha256'],p
-for p,sha in m['added_files'].items():assert hashlib.sha256(Path(p).read_bytes()).hexdigest()==sha,p
-p='src/data/battle_moves.h';old=prior_move_pp_source(p);new=Path(p).read_text()
+for p,sha in m['added_files'].items():assert hashlib.sha256(prior_new_fire_move_source(p).encode()).hexdigest()==sha,p
+p='src/data/battle_moves.h';old=prior_move_pp_source(p);new=before_later_features(p)
 def entries(s):return {k:dict(re.findall(r'\.(\w+) = (.*?),',b)) for k,b in re.findall(r'\[MOVE_(\w+)\] =\s*\{(.*?)\n    \}',s,re.S)}
 a,b=entries(old),entries(new);assert len(a)==len(b)==355
 changes={k:{f:v for f,v in b[k].items() if v!=a[k][f]} for k in b if a[k]!=b[k]}
@@ -28,5 +33,5 @@ assert 'route5DayCareMon' not in sites # recovery copy must not be normalized
 assert 'route5->magic == ROUTE5_DAYCARE_MAGIC && route5->version == ROUTE5_DAYCARE_VERSION' in sites
 assert 'if (result == SAVE_STATUS_OK || result == SAVE_STATUS_ERROR)' in Path('src/save.c').read_text()
 # No save structure or ID edits, even though source hooks are added.
-for p,sha in m['preserved_files'].items():assert hashlib.sha256(Path(p).read_bytes()).hexdigest()==sha,p
+for p,sha in m['preserved_files'].items():assert hashlib.sha256(prior_new_fire_move_source(p).encode()).hexdigest()==sha,p
 print('PASS: atomic owner-approved Special/80/10 Leech Life, all other move fields/rows and save/ID layouts preserved; frozen PP/load/lazy-migration hooks, no RNG/refill/recovery-copy writes (static, not runtime crypto proof).')

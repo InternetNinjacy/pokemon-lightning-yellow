@@ -1,0 +1,33 @@
+{
+  "scope": "Owner-approved Pin Missile single55/30% poison and Dragon Rage fixed user-level damage; all other fields/flags/access/art unchanged",
+  "files": {
+    "src/data/battle_moves.h": {
+      "before_sha256": "63b37457e138fa177a70421dcd4af12d1cdb5199404c41edaffc65b26553bc2a",
+      "after_sha256": "58e830223021d25984818099ab5e94319b932d9a86566341257ea88c42df3c33",
+      "hunks": [
+        {
+          "before": "    [MOVE_PIN_MISSILE] =\n    {\n        .category = MOVE_CATEGORY_PHYSICAL,\n        .effect = EFFECT_MULTI_HIT,\n        .power = 14,\n        .type = TYPE_BUG,\n        .accuracy = 85,\n        .pp = 20,\n        .secondaryEffectChance = 0,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = 0,\n        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,\n    },",
+          "after": "    [MOVE_PIN_MISSILE] =\n    {\n        .category = MOVE_CATEGORY_PHYSICAL,\n        .effect = EFFECT_POISON_HIT,\n        .power = 55,\n        .type = TYPE_BUG,\n        .accuracy = 85,\n        .pp = 20,\n        .secondaryEffectChance = 30,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = 0,\n        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,\n    },"
+        },
+        {
+          "before": "    [MOVE_DRAGON_RAGE] =\n    {\n        .category = MOVE_CATEGORY_SPECIAL,\n        .effect = EFFECT_DRAGON_RAGE,\n        .power = 1,\n        .type = TYPE_DRAGON,\n        .accuracy = 100,\n        .pp = 10,\n        .secondaryEffectChance = 0,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = 0,\n        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,\n    },",
+          "after": "    [MOVE_DRAGON_RAGE] =\n    {\n        .category = MOVE_CATEGORY_SPECIAL,\n        .effect = EFFECT_LEVEL_DAMAGE,\n        .power = 1,\n        .type = TYPE_DRAGON,\n        .accuracy = 100,\n        .pp = 10,\n        .secondaryEffectChance = 0,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = 0,\n        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,\n    },"
+        }
+      ]
+    },
+    "src/move_descriptions.c": {
+      "before_sha256": "b3a47fc1d181311eb5bf0b74e5432b1ac88bc42e8089f4ae0333aea0862ee10c",
+      "after_sha256": "f944d2e451fddae8399bc675af2cc130cb8d76b6ae04b86ca2713abb9b5afeb4",
+      "hunks": [
+        {
+          "before": "const u8 gMoveDescription_PinMissile[] = _(\"Sharp pins are shot\\nat the foe and hit\\ntwo to five times\\nat once.\");",
+          "after": "const u8 gMoveDescription_PinMissile[] = _(\"Sharp pins strike\\nonce and may poison\\nthe foe.\");"
+        },
+        {
+          "before": "const u8 gMoveDescription_DragonRage[] = _(\"The foe is hit with\\na shock wave that\\nalways inflicts 40-\\nHP damage.\");",
+          "after": "const u8 gMoveDescription_DragonRage[] = _(\"Inflicts damage\\nequal to the\\nuser's level.\");"
+        }
+      ]
+    }
+  }
+}

@@ -2411,6 +2411,10 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
     else
         gBattleMovePower = powerOverride;
 
+    // Dream Haunt doubles power against sleep without draining or waking.
+    if (move == MOVE_DREAM_HAUNT && (defender->status1 & STATUS1_SLEEP))
+        gBattleMovePower *= 2;
+
     if (!typeOverride)
         type = gBattleMoves[move].type;
     else
@@ -2990,6 +2994,10 @@ u32 GetMonData2(struct Pokemon *mon, s32 field) __attribute__((alias("GetMonData
  * safety we have a GetBoxMonData macro (in include/pokemon.h) which
  * dispatches to either GetBoxMonData2 or GetBoxMonData3 based on the
  * number of arguments. */
+// Exact opt-in Glalie tag; legacy zero filler is unchanged. No slot migration.
+#define GLALIE_SNOW_WARNING_TAG 0x57A1
+#define CORPHISH_DRIZZLE_TAG 0xD122
+
 u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
 {
     s32 i;
@@ -3198,6 +3206,16 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
         break;
     case MON_DATA_IS_EGG:
         retVal = substruct3->isEgg;
+        break;
+    case MON_DATA_INDIVIDUAL_ABILITY:
+        if (!boxMon->isBadEgg && !substruct3->isEgg)
+        {
+            if (substruct0->species == SPECIES_GLALIE && substruct0->filler == GLALIE_SNOW_WARNING_TAG)
+                retVal = ABILITY_SNOW_WARNING;
+            else if ((substruct0->species == SPECIES_CORPHISH || substruct0->species == SPECIES_CRAWDAUNT)
+                  && substruct0->filler == CORPHISH_DRIZZLE_TAG)
+                retVal = ABILITY_DRIZZLE;
+        }
         break;
     case MON_DATA_ABILITY_NUM:
         retVal = substruct3->abilityNum;
@@ -3609,6 +3627,26 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
         else
             boxMon->isEgg = FALSE;
         break;
+    case MON_DATA_INDIVIDUAL_ABILITY:
+        if (!substruct3->isEgg && substruct0->species == SPECIES_GLALIE
+         && (substruct0->filler == 0 || substruct0->filler == GLALIE_SNOW_WARNING_TAG))
+        {
+            if (*data == ABILITY_SNOW_WARNING)
+                substruct0->filler = GLALIE_SNOW_WARNING_TAG;
+            else if (*data == ABILITY_NONE)
+                substruct0->filler = 0;
+        }
+        else if (!substruct3->isEgg
+              && (substruct0->species == SPECIES_CORPHISH || substruct0->species == SPECIES_CRAWDAUNT)
+              && (substruct0->filler == 0 || substruct0->filler == CORPHISH_DRIZZLE_TAG))
+        {
+            // Only the special Corphish can gain Drizzle; its evolution retains the tag.
+            if (*data == ABILITY_DRIZZLE && substruct0->species == SPECIES_CORPHISH)
+                substruct0->filler = CORPHISH_DRIZZLE_TAG;
+            else if (*data == ABILITY_NONE)
+                substruct0->filler = 0;
+        }
+        break;
     case MON_DATA_ABILITY_NUM:
         SET8(substruct3->abilityNum);
         break;
@@ -3807,6 +3845,10 @@ u8 GetMonsStateToDoubles(void)
 
 u8 GetAbilityBySpecies(u16 species, bool8 abilityNum)
 {
+    // These evolved species have only one approved ability. A formerly
+    // second-slot Magikarp/Feebas must not become ABILITY_NONE or Drizzle.
+    if (abilityNum && (species == SPECIES_GYARADOS || species == SPECIES_MILOTIC))
+        abilityNum = FALSE;
     if (abilityNum)
         gLastUsedAbility = gSpeciesInfo[species].abilities[1];
     else
@@ -3819,7 +3861,21 @@ u8 GetMonAbility(struct Pokemon *mon)
 {
     u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
     u8 abilityNum = GetMonData(mon, MON_DATA_ABILITY_NUM, NULL);
+    u8 individual = GetMonData(mon, MON_DATA_INDIVIDUAL_ABILITY, NULL);
+    if (individual != ABILITY_NONE)
+        return gLastUsedAbility = individual;
     return GetAbilityBySpecies(species, abilityNum);
+}
+
+bool8 SetSpecialEncounterAbility(struct Pokemon *mon, u8 ability)
+{
+    u16 species = GetMonData(mon, MON_DATA_SPECIES);
+    if (GetMonData(mon, MON_DATA_IS_EGG) || GetMonData(mon, MON_DATA_SANITY_IS_BAD_EGG)
+     || !((species == SPECIES_GLALIE && (ability == ABILITY_SNOW_WARNING || ability == ABILITY_NONE))
+       || (species == SPECIES_CORPHISH && (ability == ABILITY_DRIZZLE || ability == ABILITY_NONE))))
+        return FALSE;
+    SetMonData(mon, MON_DATA_INDIVIDUAL_ABILITY, &ability);
+    return GetMonData(mon, MON_DATA_INDIVIDUAL_ABILITY) == ability;
 }
 
 static void CreateSecretBaseEnemyParty(struct SecretBaseRecord *secretBaseRecord)
@@ -3969,7 +4025,7 @@ static void CopyPlayerPartyMonToBattleData(u8 battlerId, u8 partyIndex)
     gBattleMons[battlerId].otId = GetMonData(&gPlayerParty[partyIndex], MON_DATA_OT_ID, NULL);
     gBattleMons[battlerId].type1 = gSpeciesInfo[gBattleMons[battlerId].species].types[0];
     gBattleMons[battlerId].type2 = gSpeciesInfo[gBattleMons[battlerId].species].types[1];
-    gBattleMons[battlerId].ability = GetAbilityBySpecies(gBattleMons[battlerId].species, gBattleMons[battlerId].abilityNum);
+    gBattleMons[battlerId].ability = GetMonAbility(&gPlayerParty[partyIndex]);
     GetMonData(&gPlayerParty[partyIndex], MON_DATA_NICKNAME, nickname);
     StringCopy_Nickname(gBattleMons[battlerId].nickname, nickname);
     GetMonData(&gPlayerParty[partyIndex], MON_DATA_OT_NAME, gBattleMons[battlerId].otName);

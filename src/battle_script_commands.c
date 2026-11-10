@@ -818,6 +818,26 @@ static const u8 sBallCatchBonuses[] =
 // unused
 ALIGNED(4) static const u8 sJPText_Turn[] = _("ターン");
 
+// Consume each eligible recipient once, retaining the original actor across
+// per-recipient Magic Coat reflection. No saved/link data is involved.
+static u8 NextThunderWaveTarget(void)
+{
+    u8 i;
+
+    for (i = 0; i < gBattlersCount && i < MAX_BATTLERS_COUNT; i++)
+    {
+        if (!(gBattleStruct->thunderWaveTargets & gBitTable[i]))
+            continue;
+        gBattleStruct->thunderWaveTargets &= ~gBitTable[i];
+        if (((gAbsentBattlerFlags | gBattleStruct->absentBattlerFlags) & gBitTable[i])
+            || gBattleMons[i].hp == 0)
+            continue;
+        gBattleStruct->thunderWaveTarget = i;
+        return i;
+    }
+    return MAX_BATTLERS_COUNT;
+}
+
 static void Cmd_attackcanceler(void)
 {
     s32 i;
@@ -833,6 +853,22 @@ static void Cmd_attackcanceler(void)
         gBattlescriptCurrInstr = BattleScript_MoveEnd;
         return;
     }
+    if (gCurrentMove == MOVE_THUNDER_WAVE && !gBattleStruct->thunderWaveActive)
+    {
+        u8 nextTarget;
+
+        gBattleStruct->thunderWaveUser = gBattlerAttacker;
+        gBattleStruct->thunderWaveTargets = ((1 << MAX_BATTLERS_COUNT) - 1) & ~gBitTable[gBattlerAttacker];
+        gBattleStruct->thunderWaveActive = TRUE;
+        nextTarget = NextThunderWaveTarget();
+        if (nextTarget == MAX_BATTLERS_COUNT)
+        {
+            gBattleStruct->thunderWaveActive = FALSE;
+            gBattlescriptCurrInstr = BattleScript_ButItFailedAtkStringPpReduce;
+            return;
+        }
+        gBattlerTarget = nextTarget;
+    }
     if (AtkCanceller_UnableToUseMove())
         return;
     if (AbilityBattleEffects(ABILITYEFFECT_MOVES_BLOCK, gBattlerTarget, 0, 0, 0))
@@ -842,6 +878,8 @@ static void Cmd_attackcanceler(void)
     {
         gBattlescriptCurrInstr = BattleScript_NoPPForMove;
         gMoveResultFlags |= MOVE_RESULT_MISSED;
+        if (gCurrentMove == MOVE_THUNDER_WAVE)
+            gBattleStruct->thunderWaveActive = FALSE;
         return;
     }
 
@@ -992,7 +1030,8 @@ static bool8 AccuracyCalcHelper(u16 move)
 
     gHitMarker &= ~HITMARKER_IGNORE_UNDERWATER;
 
-    if ((WEATHER_HAS_EFFECT && (gBattleWeather & B_WEATHER_RAIN) && gBattleMoves[move].effect == EFFECT_THUNDER)
+    if ((WEATHER_HAS_EFFECT && (gBattleWeather & B_WEATHER_RAIN)
+         && (gBattleMoves[move].effect == EFFECT_THUNDER || move == MOVE_ZAP_CANNON))
      || (gBattleMoves[move].effect == EFFECT_ALWAYS_HIT || gBattleMoves[move].effect == EFFECT_VITAL_THROW))
     {
         JumpIfMoveFailed(7, move);
@@ -2261,6 +2300,9 @@ void SetMoveEffect(bool8 primary, u8 certain)
             statusChanged = TRUE;
             break;
         case STATUS1_PARALYSIS:
+            // Owner-approved global immunity, including secondary/contact effects.
+            if (IS_BATTLER_OF_TYPE(gEffectBattler, TYPE_ELECTRIC))
+                break;
             if (gBattleMons[gEffectBattler].ability == ABILITY_LIMBER)
             {
                 if (primary == TRUE || certain == MOVE_EFFECT_CERTAIN)
@@ -2777,7 +2819,11 @@ static void Cmd_seteffectwithchance(void)
         gBattleCommunication[MOVE_EFFECT_BYTE] &= ~MOVE_EFFECT_CERTAIN;
         SetMoveEffect(FALSE, MOVE_EFFECT_CERTAIN);
     }
-    else if (Random() % 100 <= percentChance
+    // Preserve GenIII's inclusive legacy roll for old moves. Approved new
+    // moves use exactly the stated number of outcomes in the 0..99 range.
+    else if ((gCurrentMove >= MOVE_FLAME_FANG
+              ? Random() % 100 < percentChance
+              : Random() % 100 <= percentChance)
              && gBattleCommunication[MOVE_EFFECT_BYTE]
              && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT))
     {
@@ -4297,6 +4343,30 @@ static void Cmd_moveend(void)
             gBattleScripting.moveendState++;
             break;
         case MOVEEND_NEXT_TARGET: // For moves hitting two opposing Pokemon.
+            if (gBattleStruct->thunderWaveActive)
+            {
+                if (gCurrentMove == MOVE_THUNDER_WAVE)
+                {
+                    u8 nextTarget;
+
+                    gBattlerAttacker = gBattleStruct->thunderWaveUser;
+                    gBattlerTarget = gBattleStruct->thunderWaveTarget;
+                    if (!(gHitMarker & HITMARKER_UNABLE_TO_USE_MOVE)
+                        && (nextTarget = NextThunderWaveTarget()) != MAX_BATTLERS_COUNT)
+                    {
+                        gBattlerTarget = nextTarget;
+                        gHitMarker |= HITMARKER_NO_ATTACKSTRING;
+                        gBattleScripting.moveendState = 0;
+                        // Preserve atkCancellerTracker: inability/obedience is
+                        // checked once, not rerolled for each recipient.
+                        MoveValuesCleanUp();
+                        BattleScriptPush(gBattleScriptsForMoveEffects[gBattleMoves[gCurrentMove].effect]);
+                        gBattlescriptCurrInstr = BattleScript_FlushMessageBox;
+                        return;
+                    }
+                }
+                gBattleStruct->thunderWaveActive = FALSE;
+            }
             if (!(gHitMarker & HITMARKER_UNABLE_TO_USE_MOVE) && gBattleTypeFlags & BATTLE_TYPE_DOUBLE
                 && !gProtectStructs[gBattlerAttacker].chargingTurn && gBattleMoves[gCurrentMove].target == MOVE_TARGET_BOTH
                 && !(gHitMarker & HITMARKER_NO_ATTACKSTRING))
@@ -4473,7 +4543,7 @@ static void Cmd_switchindataupdate(void)
 
     gBattleMons[gActiveBattler].type1 = gSpeciesInfo[gBattleMons[gActiveBattler].species].types[0];
     gBattleMons[gActiveBattler].type2 = gSpeciesInfo[gBattleMons[gActiveBattler].species].types[1];
-    gBattleMons[gActiveBattler].ability = GetAbilityBySpecies(gBattleMons[gActiveBattler].species, gBattleMons[gActiveBattler].abilityNum);
+    gBattleMons[gActiveBattler].ability = GetBattlerInitialAbility(gActiveBattler);
 
     // check knocked off item
     i = GetBattlerSide(gActiveBattler);
@@ -7217,13 +7287,10 @@ static void Cmd_weatherdamage(void)
     {
         if (gBattleWeather & B_WEATHER_SANDSTORM)
         {
-            if (gBattleMons[gBattlerAttacker].type1 != TYPE_ROCK
-                && gBattleMons[gBattlerAttacker].type1 != TYPE_STEEL
-                && gBattleMons[gBattlerAttacker].type1 != TYPE_GROUND
-                && gBattleMons[gBattlerAttacker].type2 != TYPE_ROCK
-                && gBattleMons[gBattlerAttacker].type2 != TYPE_STEEL
+            if (gBattleMons[gBattlerAttacker].type1 != TYPE_GROUND
                 && gBattleMons[gBattlerAttacker].type2 != TYPE_GROUND
                 && gBattleMons[gBattlerAttacker].ability != ABILITY_SAND_VEIL
+                && gBattleMons[gBattlerAttacker].ability != ABILITY_OVERCOAT
                 && !(gStatuses3[gBattlerAttacker] & STATUS3_UNDERGROUND)
                 && !(gStatuses3[gBattlerAttacker] & STATUS3_UNDERWATER))
             {
@@ -7239,6 +7306,8 @@ static void Cmd_weatherdamage(void)
         if (gBattleWeather & B_WEATHER_HAIL)
         {
             if (!IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_ICE)
+                && gBattleMons[gBattlerAttacker].ability != ABILITY_OVERCOAT
+                && gBattleMons[gBattlerAttacker].ability != ABILITY_ICE_BODY
                 && !(gStatuses3[gBattlerAttacker] & STATUS3_UNDERGROUND)
                 && !(gStatuses3[gBattlerAttacker] & STATUS3_UNDERWATER))
             {
@@ -8177,7 +8246,8 @@ static void Cmd_rolloutdamagecalculation(void)
         for (i = 1; i < (5 - gDisableStructs[gBattlerAttacker].rolloutTimer); i++)
             gDynamicBasePower *= 2;
 
-        if (gBattleMons[gBattlerAttacker].status2 & STATUS2_DEFENSE_CURL)
+        if (gCurrentMove != MOVE_GRUDGE
+            && gBattleMons[gBattlerAttacker].status2 & STATUS2_DEFENSE_CURL)
             gDynamicBasePower *= 2;
 
         gBattlescriptCurrInstr++;

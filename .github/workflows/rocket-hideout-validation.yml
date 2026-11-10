@@ -1,0 +1,26 @@
+name: Celadon Rocket Hideout contract validation
+on:
+  push:
+    branches: ['feature/celadon-rocket-hideout-*']
+  pull_request:
+    paths:
+      - 'src/rocket_rescue.c'
+      - 'src/data/trainer_parties.h'
+      - 'src/data/trainers.h'
+      - 'data/maps/RocketHideout_B3F/**'
+      - 'data/scripts/trainers.inc'
+      - 'tests/run_rocket_hideout_*.py'
+      - '.github/workflows/rocket-hideout-validation.yml'
+permissions:
+  contents: read
+jobs:
+  rocket-source-contract:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Check eleven approved trainer parties and two Executive titles
+        run: python3 tests/run_rocket_hideout_roster_tests.py
+      - name: Check independent rescue quest script and source contracts
+        run: python3 tests/run_rocket_hideout_quest_tests.py

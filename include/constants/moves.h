@@ -357,7 +357,34 @@
 #define MOVE_DOOM_DESIRE 353
 #define MOVE_PSYCHO_BOOST 354
 
-#define MOVES_COUNT 355
+#define MOVE_FLAME_FANG 355
+#define MOVE_FLASHFIRE 356
+#define MOVE_BLAZE_RUSH 357
+
+#define MOVE_SOUL_DRAIN 358
+#define MOVE_WEARY_TOUCH 359
+#define MOVE_DREAM_HAUNT 360
+
+#define MOVE_SKITTER_SLASH 361
+
+#define MOVE_VENOM_WEB 362
+
+#define MOVE_BUG_BITE 363
+#define MOVE_CHITIN_CRUSH 364
+
+#define MOVE_CHIRP 365
+
+#define MOVE_SWARM_CLOUD 366
+
+#define MOVE_BELLOW 367
+#define MOVE_POWER_GEM 368
+#define MOVE_STONE_EDGE 369
+
+#define MOVE_SCORCHING_SANDS 370
+
+#define MOVE_EARTH_POWER 371
+
+#define MOVES_COUNT 372
 
 // Used for checks for moves affected by Disable, Mimic, etc.
 #define MOVE_UNAVAILABLE 0xFFFF

@@ -1,7 +1,7 @@
 // Native capture nickname keyboard, left/right survivors, party/PC and flash.
 static void wildNicknameTests(void){
  for(unsigned full=0;full<2;full++)for(unsigned killed=1;killed<=3;killed+=2){
-  wildFixture(MAP_GROUP(MAP_ROUTE1),MAP_NUM(MAP_ROUTE1),1);CALL(ResetPokemonStorageSystem);
+  wildFixture(MAP_GROUP(MAP_MT_MOON_1F),MAP_NUM(MAP_MT_MOON_1F),1);CALL(ResetPokemonStorageSystem);
   if(full){for(unsigned i=2;i<6;i++)CALL(CreateMon,player(i),SPECIES_PIKACHU,50,31,1,200+i,0,1234);core->busWrite8(core,SYM_gPlayerPartyCount,6);}
   unsigned initial=full?6:2,pids[6],lengths[6];unsigned char names[6][11];
   for(unsigned i=0;i<initial;i++){

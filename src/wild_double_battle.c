@@ -13,10 +13,10 @@ static const struct WildDoublePair sTestPairs[] =
     {{SPECIES_ONIX, SPECIES_CLOYSTER}, 5},
 };
 
-// Ordinary grass and cave floor; no tiles, graphics, map headers or wild tables change.
+// Temporary capability fixture confined to Mt. Moon 1F; Route 1 ecology must remain ordinary.
+// No tiles, graphics, map headers or wild encounter tables change.
 static const struct WildDoubleMap sWildDoubleMaps[] =
 {
-    {MAP_GROUP(MAP_ROUTE1), MAP_NUM(MAP_ROUTE1), ARRAY_COUNT(sTestPairs), sTestPairs},
     {MAP_GROUP(MAP_MT_MOON_1F), MAP_NUM(MAP_MT_MOON_1F), ARRAY_COUNT(sTestPairs), sTestPairs},
 };
 

@@ -14,7 +14,8 @@ def source(path):
 class SplitAudits(unittest.TestCase):
     def test_every_move_matches_reviewed_category_manifest(self):
         expected = json.loads(source('tests/move_categories.json'))
-        entries = re.findall(r'\[(MOVE_\w+)\] =\s*\{(.*?)\n    \}', source('src/data/battle_moves.h'), re.S)
+        from approved_new_fire_move_changes import prior_new_fire_move_source
+        entries = re.findall(r'\[(MOVE_\w+)\] =\s*\{(.*?)\n    \}', prior_new_fire_move_source('src/data/battle_moves.h'), re.S)
         self.assertEqual(len(entries), 355)
         self.assertEqual(len(dict(entries)), len(entries))
         actual = {}
@@ -38,7 +39,9 @@ class SplitAudits(unittest.TestCase):
         from run_split_tests import extract_function
         fixture = json.loads(source('tests/preserved_paths.json'))
         for path, digest in fixture['files'].items():
-            self.assertEqual(hashlib.sha256(Path(path).read_bytes()).hexdigest(), digest, path)
+            from approved_electric_immunity_changes import prior_electric_immunity_source
+            data = prior_electric_immunity_source(path).encode() if path == 'data/battle_scripts_1.s' else Path(path).read_bytes()
+            self.assertEqual(hashlib.sha256(data).hexdigest(), digest, path)
         commands = source('src/battle_script_commands.c')
         for name, digest in fixture['functions'].items():
             self.assertEqual(hashlib.sha256(extract_function(commands, name).encode()).hexdigest(), digest, name)

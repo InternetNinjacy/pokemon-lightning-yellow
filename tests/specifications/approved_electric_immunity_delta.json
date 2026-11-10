@@ -1,0 +1,35 @@
+{
+  "scope": "Approved global Electric-type immunity to new paralysis; no curing existing status or targeting change",
+  "files": {
+    "src/battle_script_commands.c": {
+      "before_sha256": "c92077fb7a0640b6847304b4e5017543937407e25378ae8cd458759494f439ac",
+      "after_sha256": "77054952c3d9374c977c3eefd2265dba992512bab22b182d82ef3d7401097b36",
+      "hunks": [
+        {
+          "before": "        case STATUS1_PARALYSIS:\n            if (gBattleMons[gEffectBattler].ability == ABILITY_LIMBER)",
+          "after": "        case STATUS1_PARALYSIS:\n            // Owner-approved global immunity, including secondary/contact effects.\n            if (IS_BATTLER_OF_TYPE(gEffectBattler, TYPE_ELECTRIC))\n                break;\n            if (gBattleMons[gEffectBattler].ability == ABILITY_LIMBER)"
+        }
+      ]
+    },
+    "data/battle_scripts_1.s": {
+      "before_sha256": "27e9c39f3147b05e5ba2ed36ca0c89fcdc9b26718778083bd362c582de800034",
+      "after_sha256": "385805ccbd6fd18d408018d5b9b5e6dea4b2998168e2030053f1a4912e0a3d1d",
+      "hunks": [
+        {
+          "before": "BattleScript_EffectParalyze::\n\tattackcanceler\n\tattackstring\n\tppreduce\n",
+          "after": "BattleScript_EffectParalyze::\n\tattackcanceler\n\tattackstring\n\tppreduce\n\tjumpiftype BS_TARGET, TYPE_ELECTRIC, BattleScript_WasntAffected\n"
+        }
+      ]
+    },
+    "data/battle_ai_scripts.s": {
+      "before_sha256": "e64e1e5d3ac7dff43358e2b3358fecb556a7e1ec33fe450059c59c692576b854",
+      "after_sha256": "7d75cf1e1f970803db340676b9d131b3a9552b7a5ed017784549d1d2cea55f64",
+      "hunks": [
+        {
+          "before": "AI_CBM_Paralyze::\n\tif_type_effectiveness",
+          "after": "AI_CBM_Paralyze::\n\tget_target_type1\n\tif_equal TYPE_ELECTRIC, Score_Minus10\n\tget_target_type2\n\tif_equal TYPE_ELECTRIC, Score_Minus10\n\tif_type_effectiveness"
+        }
+      ]
+    }
+  }
+}

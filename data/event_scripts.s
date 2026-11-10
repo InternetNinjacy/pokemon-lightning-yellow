@@ -1364,3 +1364,5 @@ Text_TestMsg::
 
 	.include "data/scripts/mystery_vendor.inc"
 	.include "data/scripts/follower.inc"
+
+	.include "data/scripts/special_weather.inc"

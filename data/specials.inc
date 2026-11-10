@@ -455,6 +455,13 @@ gSpecials::
 	def_special IsRoute5DaycareReady
 	def_special MysteryVendorStatus
 	def_special PurchaseMysteryPokemon
-	def_special ScriptGiveShinyFeebasEgg
+	def_special ScriptGiveMuseumAronEgg
 	def_special RangerGiveGift
+	def_special ScriptGiveMagbyEgg
+	def_special ScriptGiveTangoTangela
+	def_special ScriptNameSocketStarterPikachu
+	def_special ScriptGiveSueEevee
+	def_special RocketRescueStatus
+	def_special RocketRescueGive
+	def_special RocketRescueReturn
 gSpecialsEnd::

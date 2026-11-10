@@ -261,3 +261,64 @@ Roar's data redesign is not enabled; its current maximum remains authoritative.
 Run all20 hosts/3 checkers and23 native groups; focus LIGHTNING_MOVE_PP_ONLY=1,
 full-PC stress LIGHTNING_PP_FULL_PC_ONLY=1. Keep frozen deltas and target ABI guards;
 never normalize runtime ROM data to make tests pass. No merge/auto-merge/release.
+
+## Standing autonomous development authorization — 2026-11-06
+
+The owner explicitly authorizes autonomous execution of all currently actionable,
+fully approved Lightning Yellow specifications: prioritize tasks, implement, fix,
+refactor, build/test, manage topic branches and PRs, resolve integration conflicts,
+and merge technically complete, verified work into main without asking for routine
+owner approval. This standing authorization supersedes ALL older blanket bans on
+production changes, routine implementation or merging in this file and historical
+handoffs, including earlier consolidation-only limits. Keep changes reviewable on
+topic branches; never push gameplay changes directly to main.
+
+Gameplay design approval remains mandatory. Do not invent missing teams, move
+values/distributions, ability slots, encounter tables, gift conditions or final
+lighting colors; respect explicit design holds. Specifications/prototypes are not
+completed gameplay. If blocked, record the precise missing decision/permission and
+continue independent approved work. External licensing/asset permission is not
+provided by this authorization.
+
+Before merging, satisfy the documented scope/dependencies and applicable host,
+feature, build, native mGBA, integration/save and reproducibility checks. Preserve
+all test registrations, assertions, ABI guards, upstream provenance, independent
+vanilla checksum verification and frozen regression normalizers. Never weaken a
+check to pass. Honor existing GitHub protections and required checks; do not change
+repository security settings or bypass controls. This does not authorize ROM/BIOS
+or proprietary asset distribution, credentials, destructive operations, releases,
+or selecting unapproved final production lighting. Do not enable automatic merging
+as a shortcut to technical readiness.
+
+Maintain docs/project-tracking.json, regenerate docs/PROJECT_DASHBOARD.md with
+scripts/render-project-dashboard.py, append implementation/test/merge evidence to
+docs/MASTER_IMPLEMENTATION_CHANGE_LEDGER.md, and preserve prior progress. At session
+end update docs/CODEX_EXECUTION_HANDOFF.md with exact refs, commands, test outcomes,
+blockers and the next actionable task. Continue through independent eligible tasks
+rather than stopping after the first PR; report actual execution limits honestly.
+
+BTL-005-M2I implements approved all-other-active Thunder Wave, not new move IDs.
+Read docs/moves/THUNDER_WAVE_STATUS.md. Preserve512-byte BattleStruct/private0x1E4
+padding context, original actor/per-recipient reflection, once-per-move inability
+and PP/Pressure checks, noPP cancellation, existing art and every old guard.
+Focus with LIGHTNING_THUNDER_WAVE_ONLY=1 and LIGHTNING_ORIGINAL_EFFECTS_ONLY=1;
+all26 hosts/3 checkers and full30-group native/clean/upstream acceptance remain
+required. Source overlays are not410-move completion or real-link certification.
+
+BTL-005-M3B appends only approved Fire moves355 Flame Fang(custom90/100/15/flinch20,
+no burn),356 Flashfire40/+1,357 Blaze Rush100/quarter recoil. Read
+`docs/moves/FIRE_MOVE_BATCH_STATUS.md`. Keep original IDs/save/wire fields and
+frozen355-prefix hashes; exact new delta plus dedicated current-source tests.
+No invented distribution or new art. FireRed animation calls have ONE return slot:
+never nest shared Ember calls. Run all28 hosts/3 checkers, full30-group native,
+clean reproducibility; focus LIGHTNING_ORIGINAL_EFFECTS_ONLY=1 with
+LIGHTNING_NEW_FIRE_MOVES_ONLY=1. A source-complete row is not runtime acceptance.
+
+BTL-005-M3C appends358 Soul Drain(PhysicalGhost50/half-drain/contact),359 Weary Touch
+(PhysicalGhost75/22% sleep),360 Dream Haunt(SpecialGhost55/double power vs sleep,
+no drain/no wake). Read docs/moves/GHOST_MOVE_BATCH_STATUS.md. Keep effect214
+sleep-hit fully dispatched, shared damage/AI condition, old IDs/save/wire layouts,
+exact frozen source reversals and existing-art inline composites. No distribution
+or new state/art. Run all29 hosts/3 checkers/full30-group native/clean; focus
+LIGHTNING_ORIGINAL_EFFECTS_ONLY=1 plus LIGHTNING_NEW_GHOST_MOVES_ONLY=1. Merge
+parent80 before child; native playback is not exhaustive visual/hardware approval.

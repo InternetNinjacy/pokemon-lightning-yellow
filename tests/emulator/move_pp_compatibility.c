@@ -35,7 +35,7 @@ static void ppCapMatrix(void){
  }
  for(unsigned bonus=0;bonus<4;bonus++){
   ppLegacyMon(0,0,5);CALL(SetMonMoveSlot,enemy(0),MOVE_ROAR,2);monput(enemy(0),ABI_DATA_PP_BONUSES,bonus<<4);monput(enemy(0),ABI_DATA_PP3,255);
-  CHECK(CALL(ClampApprovedMovePP,enemy(0)));CHECK(monget(enemy(0),ABI_DATA_PP3)==20+4*bonus);CHECK(monget(enemy(0),ABI_DATA_PP1)==5);
+  CHECK(CALL(ClampApprovedMovePP,enemy(0)));CHECK(monget(enemy(0),ABI_DATA_PP3)==15+3*bonus);CHECK(monget(enemy(0),ABI_DATA_PP1)==5);
  }
  // An unrelated move's invalid PP is not silently repaired by this feature.
  ppLegacyMon(0,0,5);CALL(SetMonMoveSlot,enemy(0),MOVE_SILVER_WIND,2);monput(enemy(0),ABI_DATA_PP3,255);
@@ -107,7 +107,7 @@ static void ppBackupRecovery(void){
 }
 
 static void ppLeechLifeBattles(void){
- wildFixture(MAP_GROUP(MAP_ROUTE1),MAP_NUM(MAP_ROUTE1),1);startSpecial();waitAction();damageStats();
+ wildFixture(MAP_GROUP(MAP_MT_MOON_1F),MAP_NUM(MAP_MT_MOON_1F),1);startSpecial();waitAction();damageStats();
  CHECK(baseDamage(MOVE_LEECH_LIFE,0,0,0)==10);
  for(unsigned side=0;side<2;side++)core->busWrite16(core,SYM_gSideStatuses+2*side,0);
  uint32_t aiBattle=core->busRead32(core,SYM_gBattleStruct);core->busWrite8(core,aiBattle+ABI_BATTLESTRUCT_DYNAMIC_TYPE,0);
@@ -122,7 +122,8 @@ static void ppLeechLifeBattles(void){
   unsigned char *clean=malloc(0x20000);CHECK(clean);memset(clean,255,0x20000);
   GBASavedataForceType(&((struct GBA*)core->board)->memory.savedata,SAVEDATA_FLASH1M);
   CHECK(core->savedataRestore(core,clean,0x20000,true));free(clean);
-  wildFixture(MAP_GROUP(MAP_ROUTE1),MAP_NUM(MAP_ROUTE1),two);
+  wildFixture(two ? MAP_GROUP(MAP_MT_MOON_1F) : MAP_GROUP(MAP_ROUTE1),
+               two ? MAP_NUM(MAP_MT_MOON_1F) : MAP_NUM(MAP_ROUTE1), two);
   for(unsigned party=0;party<=two;party++)for(unsigned move=0;move<4;move++)CALL(SetMonMoveSlot,player(party),party==0&&move==0?MOVE_LEECH_LIFE:MOVE_SPLASH,move);
   CHECK(CALL(TryStartLandEncounter,landInfo(),0));waitAction();
   core->busWrite16(core,SYM_gBattleWeather,0);

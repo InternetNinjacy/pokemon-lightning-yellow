@@ -12,7 +12,7 @@ static void originalMoveDataTests(void)
   {MOVE_SILVER_WIND,TYPE_BUG,MOVE_CATEGORY_SPECIAL,60,100,10,8},
   {MOVE_ICICLE_SPEAR,TYPE_ICE,MOVE_CATEGORY_PHYSICAL,25,100,30,24}
  };
- wildFixture(MAP_GROUP(MAP_ROUTE1),MAP_NUM(MAP_ROUTE1),1);startSpecial();waitAction();
+ wildFixture(MAP_GROUP(MAP_MT_MOON_1F),MAP_NUM(MAP_MT_MOON_1F),1);startSpecial();waitAction();
  const unsigned offsets[]={ABI_BMOVE_TYPE,ABI_BMOVE_CATEGORY,ABI_BMOVE_POWER,ABI_BMOVE_ACCURACY,ABI_BMOVE_PP};
  for(unsigned i=0;i<8;i++){
   const unsigned *c=cases[i];uint32_t move=SYM_gBattleMoves+c[0]*ABI_BMOVE_SIZE;

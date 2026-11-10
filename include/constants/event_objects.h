@@ -46,6 +46,10 @@
 #define OBJ_EVENT_GFX_PICNICKER 40
 #define OBJ_EVENT_GFX_COOLTRAINER_M 41
 #define OBJ_EVENT_GFX_COOLTRAINER_F 42
+// Temporary source-compatible gendered Ranger overworld aliases.
+// Separate Ranger battle portraits remain TRAINER_PIC_POKEMON_RANGER_M/F.
+#define OBJ_EVENT_GFX_LIGHTNING_RANGER_M OBJ_EVENT_GFX_COOLTRAINER_M
+#define OBJ_EVENT_GFX_LIGHTNING_RANGER_F OBJ_EVENT_GFX_COOLTRAINER_F
 #define OBJ_EVENT_GFX_SWIMMER_M_WATER 43
 #define OBJ_EVENT_GFX_SWIMMER_F_WATER 44
 #define OBJ_EVENT_GFX_SWIMMER_M_LAND 45
@@ -156,7 +160,10 @@
 #define OBJ_EVENT_GFX_DEOXYS_N 150
 #define OBJ_EVENT_GFX_SS_ANNE 151
 
-#define NUM_OBJ_EVENT_GFX     152
+#define OBJ_EVENT_GFX_SOW_CORPHISH 152
+#define OBJ_EVENT_GFX_SOW_GLALIE 153
+#define OBJ_EVENT_GFX_SOW_TYRANITAR 154
+#define NUM_OBJ_EVENT_GFX     155
 
 // These are dynamic object gfx ids.
 // They correspond with the values of the VAR_OBJ_GFX_ID_X vars.

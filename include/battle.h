@@ -468,7 +468,12 @@ struct BattleStruct
         struct LinkBattlerHeader linkBattlerHeader;
         struct MultiBattlePokemonTx multiBattleMons[3];
     } multiBuffer;
-    u8 padding_1E4[0x1C];
+    // Per-move Thunder Wave iteration; runtime-only, within the old padding.
+    u8 thunderWaveUser;
+    u8 thunderWaveTargets;
+    u8 thunderWaveTarget;
+    bool8 thunderWaveActive;
+    u8 padding_1E8[0x18];
 }; // size == 0x200 bytes
 
 extern struct BattleStruct *gBattleStruct;

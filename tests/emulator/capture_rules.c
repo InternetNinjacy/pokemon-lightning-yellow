@@ -21,7 +21,7 @@ static void captureShopTests(void) {
  printf("PASS: actual Mart buy/quantity10/confirm/return UI gives ten Poke plus one Premier, charges2000 once and survives flash\n");
 }
 static void captureWeatherTests(void) {
- wildFixture(MAP_GROUP(MAP_ROUTE1),MAP_NUM(MAP_ROUTE1),1);CALL(SetWeather,WEATHER_SNOW);frames(60,0);startSpecial();waitAction();
+ wildFixture(MAP_GROUP(MAP_MT_MOON_1F),MAP_NUM(MAP_MT_MOON_1F),1);CALL(SetWeather,WEATHER_SNOW);frames(60,0);startSpecial();waitAction();
  CHECK(core->busRead16(core,SYM_gBattleWeather)&B_WEATHER_HAIL_PERMANENT);
  if(getenv("LIGHTNING_HAIL_GROWL")) {
   for(unsigned foe=1;foe<=3;foe+=2)for(unsigned m=0;m<4;m++) {

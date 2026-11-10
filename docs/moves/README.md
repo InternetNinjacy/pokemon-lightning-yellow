@@ -1,10 +1,16 @@
 # Move-system reconciliation — BTL-005
 
-Status: **inventory reconciled; owner decisions resolved; M1a implemented; M1b UI implemented in PR41 (remote results at Checks)**.
-Historical baseline inspected: `92838e5eb64d19942cb5c51cfdef6991503ac3ad`, including the tested
-rival/weather/Gym integration. Main remains a separate, unmodified review baseline.
-Owner requested this reconciliation and remaining automated acceptance on Nov5.
-The original PR37 reconciliation changed no production code. The current foundation branch implements only the approved Curse type and safe name-buffer/summary capacity; the56 new moves and other original reworks remain unimplemented.
+Status: **all21 original redesign/type policies integrated through PR72; first
+six appended moves implemented on Fire80/Ghost child branches, acceptance in progress**. Main's
+foundations, long-name UI, saved PP, original data/effects and global Electric
+paralysis rule are retained. The complete410-design inventory is not410-move
+runtime completion. Fire80 adds Flame Fang/Flashfire/Blaze Rush; its Ghost child adds Soul Drain,
+Weary Touch and Dream Haunt, with no new artwork or distribution; see [batch evidence](FIRE_MOVE_BATCH_STATUS.md).
+
+Historical reconciliation baseline: `92838e5eb64d19942cb5c51cfdef6991503ac3ad`.
+PR37 originally changed no game code. Later implementation milestones supersede
+its old preparation-only/current-foundation status; preserve historical evidence
+in their scoped status files and the master ledger.
 
 ## Review artifacts
 
@@ -19,10 +25,11 @@ The original PR37 reconciliation changed no production code. The current foundat
 - [Implementation/acceptance plan](IMPLEMENTATION_PLAN.md).
 
 Every original ID1–354 is accounted for exactly once. MOVE_NONE is a non-gameplay
-Status placeholder, not one of the410 moves. Current MOVES_COUNT355 is an array
-bound, not a legal move. Proposed355–410 IDs are engineering reservations only,
-not assigned constants. Proposed MOVES_COUNT411 includes NONE; animation count
-would be412 when retaining the extra Move_COUNT sentinel. No IDs are reassigned.
+Status placeholder. On the Ghost child, IDs355–360 are complete source records and
+MOVES_COUNT361 is the exclusive array bound, not a legal move. Remaining361–410
+are reservations without constants or placeholder rows. Full planned411 includes
+NONE; the animation table also retains its extra Move_COUNT sentinel. Original
+IDs and saved fields do not move. Only merged slices are on main; consult the dashboard before assuming availability.
 
 333 original records retain source fields under the existing approved split;
 21 have approved redesign/effect/type-policy changes, including the November5 Ghost/Status Curse decision.
@@ -83,7 +90,7 @@ species decision. Do not mutate those learnsets to make the move engine pass.
 ## Source-verified capacity and integration findings
 
 Target agbcc ABI measurement: BattleMove size12, flags offset8, category offset9;
-ELF gBattleMoves is4260 bytes =355*12. Do not substitute host sizeof (which differs).
+Historical ELF gBattleMoves was4260 bytes =355*12; PR80 is4296 =358*12. Do not substitute host sizeof (which differs).
 Adding56 same-size records would add672 ROM bytes; no battle/save struct expansion
 is required for move IDs. Level-up encoding has9 move bits (0x1FF);410 fits.
 Current effect IDs0–213 fit a u8; append/reuse must be counted before exceeding255.

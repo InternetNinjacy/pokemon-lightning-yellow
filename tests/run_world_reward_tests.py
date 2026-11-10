@@ -8,10 +8,12 @@ import subprocess
 from approved_blaine_changes import prior_blaine_source
 from approved_museum_changes import prior_museum_source
 from approved_ponyta_changes import prior_ponyta_source
+from approved_sevii_water_second_changes import restore_prior_sevii_water_second_text
 
 data = json.loads(Path('tests/specifications/world_reward_preserved.json').read_text())
 for path, digest in data['files'].items():
-    assert hashlib.sha256(prior_ponyta_source(path, prior_blaine_source(path, prior_museum_source(path))).encode()).hexdigest() == digest, path
+    original = prior_ponyta_source(path, prior_blaine_source(path, prior_museum_source(path)))
+    assert hashlib.sha256(restore_prior_sevii_water_second_text(path, original).encode()).hexdigest() == digest, path
 lab = Path('data/maps/CinnabarIsland_PokemonLab_ExperimentRoom/scripts.inc').read_text()
 for label, digest in data['lab_blocks'].items():
     m = re.search('^' + re.escape(label) + r'::\n(.*?)(?=^\w+::|\Z)', lab, re.S | re.M)

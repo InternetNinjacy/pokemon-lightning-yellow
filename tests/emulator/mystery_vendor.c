@@ -71,7 +71,7 @@ static unsigned vendorExp(unsigned slot,unsigned value) {
  return core->busRead32(core,SYM_gBattleMoveDamage);
 }
 static void vendorBattleTests(void) {
- wildFixture(MAP_GROUP(MAP_ROUTE1),MAP_NUM(MAP_ROUTE1),1);
+ wildFixture(MAP_GROUP(MAP_MT_MOON_1F),MAP_NUM(MAP_MT_MOON_1F),1);
  CALL(SetMoney,careSave1()+ABI_SAVE1_MONEY,700);
  core->busWrite16(core,SYM_gSpecialVar_0x8009,0);
  CHECK(CALL(PurchaseMysteryPokemon)==0);

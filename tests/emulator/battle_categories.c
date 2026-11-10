@@ -37,7 +37,7 @@ static void damageStats(void) {
     core->busWrite8(core,SYM_gBattlerTarget,1);
 }
 static void categoryTests(void) {
-    wildFixture(MAP_GROUP(MAP_ROUTE1),MAP_NUM(MAP_ROUTE1),1);
+    wildFixture(MAP_GROUP(MAP_MT_MOON_1F),MAP_NUM(MAP_MT_MOON_1F),1);
     startSpecial();waitAction();
     void *battle=malloc(core->stateSize(core));CHECK(battle && core->saveState(core,battle));
     const unsigned typings[][3]={
