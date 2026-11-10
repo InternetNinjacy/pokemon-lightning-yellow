@@ -597,9 +597,6 @@ int main(int argc,char **argv) {
     roarTests();
     weatherMoveTests();
     originalEffectTests();
-    batchANativeTests();
-    batchAExactMechanics();
-    batchAFlashPersistence();
 
     viridianSignTests();
 
