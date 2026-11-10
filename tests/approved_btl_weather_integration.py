@@ -18,6 +18,8 @@ def project(path,text,view):
     # Source views predating the separately approved water move append must be
     # byte-exact, even when a guard invokes without_weather() directly.
     # Reversal of a present append is strict; absent append is left untouched.
+    from approved_batch_a_changes import prior_batch_a_source
+    text=prior_batch_a_source(path,text)
     from approved_water_moves385_changes import HUNKS, prior_water_moves385_source
     if str(path) in HUNKS and any(after in text for after,_ in HUNKS[str(path)]):
         text=prior_water_moves385_source(path,text)
