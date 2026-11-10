@@ -26,7 +26,7 @@ for key,field,value in [('SHADOW_BALL','category','SPECIAL'),('ASTONISH','catego
  assert keys[key]['approved'][field]==value,(key,field)
 assert keys['HURRICANE']['approved']['secondaryEffectChance']==30 and keys['DRAGON_RUSH']['approved']['secondaryEffectChance']==20
 assert keys['HURRICANE']['effect_rules']['sun_accuracy_percent']==50
-assert keys['TIDAL_CRASH']['effect_rules']['defense_curl_bonus'] is True
+assert keys['TIDAL_CRASH']['effect_rules']['defense_curl_bonus'] is False  # 2026-11-10 owner supersession: only Rollout receives Curl
 assert keys['BLAZE_RUSH']['effect_rules']['crash_on_miss'] is False
 assert keys['THUNDERBOLT']['approved']['power']==95 and keys['THUNDER']['approved']['power']==120
 assert keys['THUNDER_WAVE']['approved']['target']=='ALL_OTHERS_IN_DOUBLES'
