@@ -84,6 +84,37 @@ static void followerFieldNativeTests(void)
     CHECK(spriteId < 64);
     CHECK(CALL(FollowerState_ResolvePartySlot) == 0);
 
+    // Controller-input acceptance, not direct coordinate mutation: the live
+    // overworld must advance the real player and the follower must remain
+    // within one tile of the player after each completed cardinal step.
+    unsigned playerObjectId = core->busRead8(core, SYM_gPlayerAvatar + ABI_AVATAR_EVENT_ID);
+    CHECK(playerObjectId < ABI_OBJECT_COUNT);
+    unsigned playerCoords = SYM_gObjectEvents + playerObjectId * ABI_OBJECT_EVENT_SIZE + ABI_OBJECT_EVENT_COORDS;
+    unsigned followerCoords = SYM_gObjectEvents + objectId * ABI_OBJECT_EVENT_SIZE + ABI_OBJECT_EVENT_COORDS;
+    int playerX = (int16_t)core->busRead16(core, playerCoords);
+    int playerY = (int16_t)core->busRead16(core, playerCoords + 2);
+    unsigned moved = 0;
+    const unsigned cardinalKeys[] = {64, 32, 16, 128}; // native UP, LEFT, RIGHT, DOWN
+    for (unsigned direction = 0; direction < 4; ++direction) {
+        frames(9, cardinalKeys[direction]);
+        frames(30, 0);
+        int x = (int16_t)core->busRead16(core, playerCoords);
+        int y = (int16_t)core->busRead16(core, playerCoords + 2);
+        if (x != playerX || y != playerY) {
+            ++moved;
+            int followerX = (int16_t)core->busRead16(core, followerCoords);
+            int followerY = (int16_t)core->busRead16(core, followerCoords + 2);
+            CHECK(abs(followerX - x) <= 1);
+            CHECK(abs(followerY - y) <= 1);
+            CHECK(CALL(FollowerState_ResolvePartySlot) == 0);
+            CHECK(CALL(FollowerGraphics_GetObjectEventId) == objectId);
+        }
+        playerX = x;
+        playerY = y;
+    }
+    CHECK(moved > 0);
+    printf("PASS: native cardinal controller input produced %u moved directions with adjacent follower tiles\\n", moved);
+
     // Fainting must not replace the selected Pokémon or drop identity.
     core->busWrite16(core, scratch, 0);
     CALL(SetMonData, SYM_gPlayerParty, MON_DATA_HP, scratch);
