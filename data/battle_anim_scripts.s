@@ -407,6 +407,7 @@ gBattleAnims_Moves::
 	.4byte Move_LIQUIDATION
 	.4byte Move_VORTEX_SPIN
 	.4byte Move_TIDAL_CRASH
+	.4byte Move_DISCHARGE
 	.4byte Move_COUNT @ cannot be reached, because last move is Psycho Boost
 
 	.align 2
