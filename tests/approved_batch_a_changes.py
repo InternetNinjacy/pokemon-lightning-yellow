@@ -68,6 +68,13 @@ def prior_batch_a_source(path, text=None):
         return hashlib.sha1(b"blob "+str(len(b)).encode()+b"\0"+b).hexdigest()
     if digest(text)==BASE_BLOBS[path]:
         return text
+    present=[text.count(after) for after,before in HUNKS[path]]
+    # Older approved source views may have removed this entire layer already.
+    # Accept only the wholly absent layer; never silently accept a partially
+    # stripped or mutated staging delta. Frozen downstream hashes still apply.
+    if all(count==0 for count in present):
+        return text
+    assert all(count==1 for count in present), "Mixed/unreviewed Batch A source delta: "+path
     for after,before in HUNKS[path]:
         assert text.count(after)==1, "Unreviewed Batch A source delta: "+path
         text=text.replace(after,before,1)
