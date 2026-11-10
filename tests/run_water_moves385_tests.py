@@ -17,7 +17,7 @@ expected={
  'TIDAL_CRASH':(386,30,90,20,0,'EFFECT_ROLLOUT','Move_SURF',True),
 }
 from approved_batch_a_changes import prior_batch_a_source
-assert re.search(r'^#define MOVES_COUNT 387for key,(idx,power,accuracy,pp,chance,effect,art,contact) in expected.items():
+assert re.search(r'^#define MOVES_COUNT 387$',prior_batch_a_source('include/constants/moves.h',ids),re.M)
  design=moves[key]
  assert design['proposed_id']==idx
  assert design['approved']['priority']==0
