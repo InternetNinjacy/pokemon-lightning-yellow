@@ -408,6 +408,7 @@ const u8 gMoveDescription_LIQUIDATION[] = _("A water strike\nthat may lower\nthe
 const u8 gMoveDescription_VORTEX_SPIN[] = _("A swirling water\nstrike that may\nconfuse the foe.");
 const u8 gMoveDescription_TIDAL_CRASH[] = _("A 5-turn water\nattack that grows\nstronger each hit.");
 const u8 gMoveDescription_DISCHARGE[] = _("Electricity hits\nall other foes.\nMay paralyze.");
+const u8 gMoveDescription_VOLT_SWITCH[] = _("An electric hit\nthat switches the\nuser out.");
 
 const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND         - 1] = gMoveDescription_Pound,
