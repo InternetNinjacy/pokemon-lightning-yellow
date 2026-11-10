@@ -56,7 +56,7 @@ for number in range(387,407):
   assert "[MOVE_"+spec[number]["key"]+"]" not in data,number
   # The array must have a valid category for every allocated slot. These
   # numeric-only, zero-PP Splash records cannot masquerade as actual moves.
-  reserved=re.search(r"\\["+str(number)+r"\\]\\s*=\\s*\\{(.*?)\\n    \\},",data,re.S)
+  reserved=re.search(r"\["+str(number)+r"\]\s*=\s*\{(.*?)\n    \},",data,re.S)
   assert reserved,number
   raw=reserved.group(1)
   for exact in (".category = MOVE_CATEGORY_STATUS,",".effect = EFFECT_SPLASH,",
