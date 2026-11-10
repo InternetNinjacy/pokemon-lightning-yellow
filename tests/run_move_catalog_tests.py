@@ -85,7 +85,9 @@ class MoveCatalogTests(unittest.TestCase):
         generated = reconcile.render(ROOT)
         for name, text in generated.items():
             self.assertEqual((ROOT / 'docs/moves' / name).read_bytes(), text.encode())
-        self.assertEqual(validate(ROOT, self.design['new_moves']), int(re.search(r'#define MOVES_COUNT (\d+)', (ROOT / self.paths[0]).read_text())[1]))
+        from approved_batch_a_changes import prior_batch_a_source
+        accepted_constants = prior_batch_a_source(self.paths[0], (ROOT / self.paths[0]).read_text())
+        self.assertEqual(validate(ROOT, self.design['new_moves']), int(re.search(r'#define MOVES_COUNT (\d+)', accepted_constants)[1]))
 
     def test_complete_fixture_is_source_only_not_runtime_accepted(self):
         self.add_fixture()
