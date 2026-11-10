@@ -5422,6 +5422,165 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
     },
 
 
+    // BTL-005 reserved #387: never distributed; not an implemented move.
+    [387] =
+    {
+        .category = MOVE_CATEGORY_STATUS,
+        .effect = EFFECT_SPLASH,
+        .power = 0,
+        .type = TYPE_NORMAL,
+        .accuracy = 0,
+        .pp = 0,
+        .secondaryEffectChance = 0,
+        .target = MOVE_TARGET_USER,
+        .priority = 0,
+        .flags = 0,
+    },
+
+
+    // BTL-005 reserved #388: never distributed; not an implemented move.
+    [388] =
+    {
+        .category = MOVE_CATEGORY_STATUS,
+        .effect = EFFECT_SPLASH,
+        .power = 0,
+        .type = TYPE_NORMAL,
+        .accuracy = 0,
+        .pp = 0,
+        .secondaryEffectChance = 0,
+        .target = MOVE_TARGET_USER,
+        .priority = 0,
+        .flags = 0,
+    },
+
+
+    // BTL-005 reserved #389: never distributed; not an implemented move.
+    [389] =
+    {
+        .category = MOVE_CATEGORY_STATUS,
+        .effect = EFFECT_SPLASH,
+        .power = 0,
+        .type = TYPE_NORMAL,
+        .accuracy = 0,
+        .pp = 0,
+        .secondaryEffectChance = 0,
+        .target = MOVE_TARGET_USER,
+        .priority = 0,
+        .flags = 0,
+    },
+
+
+    // BTL-005 reserved #390: never distributed; not an implemented move.
+    [390] =
+    {
+        .category = MOVE_CATEGORY_STATUS,
+        .effect = EFFECT_SPLASH,
+        .power = 0,
+        .type = TYPE_NORMAL,
+        .accuracy = 0,
+        .pp = 0,
+        .secondaryEffectChance = 0,
+        .target = MOVE_TARGET_USER,
+        .priority = 0,
+        .flags = 0,
+    },
+
+
+    // BTL-005 reserved #393: never distributed; not an implemented move.
+    [393] =
+    {
+        .category = MOVE_CATEGORY_STATUS,
+        .effect = EFFECT_SPLASH,
+        .power = 0,
+        .type = TYPE_NORMAL,
+        .accuracy = 0,
+        .pp = 0,
+        .secondaryEffectChance = 0,
+        .target = MOVE_TARGET_USER,
+        .priority = 0,
+        .flags = 0,
+    },
+
+
+    // BTL-005 reserved #396: never distributed; not an implemented move.
+    [396] =
+    {
+        .category = MOVE_CATEGORY_STATUS,
+        .effect = EFFECT_SPLASH,
+        .power = 0,
+        .type = TYPE_NORMAL,
+        .accuracy = 0,
+        .pp = 0,
+        .secondaryEffectChance = 0,
+        .target = MOVE_TARGET_USER,
+        .priority = 0,
+        .flags = 0,
+    },
+
+
+    // BTL-005 reserved #402: never distributed; not an implemented move.
+    [402] =
+    {
+        .category = MOVE_CATEGORY_STATUS,
+        .effect = EFFECT_SPLASH,
+        .power = 0,
+        .type = TYPE_NORMAL,
+        .accuracy = 0,
+        .pp = 0,
+        .secondaryEffectChance = 0,
+        .target = MOVE_TARGET_USER,
+        .priority = 0,
+        .flags = 0,
+    },
+
+
+    // BTL-005 reserved #403: never distributed; not an implemented move.
+    [403] =
+    {
+        .category = MOVE_CATEGORY_STATUS,
+        .effect = EFFECT_SPLASH,
+        .power = 0,
+        .type = TYPE_NORMAL,
+        .accuracy = 0,
+        .pp = 0,
+        .secondaryEffectChance = 0,
+        .target = MOVE_TARGET_USER,
+        .priority = 0,
+        .flags = 0,
+    },
+
+
+    // BTL-005 reserved #404: never distributed; not an implemented move.
+    [404] =
+    {
+        .category = MOVE_CATEGORY_STATUS,
+        .effect = EFFECT_SPLASH,
+        .power = 0,
+        .type = TYPE_NORMAL,
+        .accuracy = 0,
+        .pp = 0,
+        .secondaryEffectChance = 0,
+        .target = MOVE_TARGET_USER,
+        .priority = 0,
+        .flags = 0,
+    },
+
+
+    // BTL-005 reserved #405: never distributed; not an implemented move.
+    [405] =
+    {
+        .category = MOVE_CATEGORY_STATUS,
+        .effect = EFFECT_SPLASH,
+        .power = 0,
+        .type = TYPE_NORMAL,
+        .accuracy = 0,
+        .pp = 0,
+        .secondaryEffectChance = 0,
+        .target = MOVE_TARGET_USER,
+        .priority = 0,
+        .flags = 0,
+    },
+
     // BTL-005 Batch A approved move #391; reserved intervening IDs are not yet implemented.
     [MOVE_SEED_BOMB] =
     {
