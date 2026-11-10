@@ -11798,3 +11798,7 @@ Move_VORTEX_SPIN:
 @ BTL-005 single-target Rollout mechanics with approved Surf animation.
 Move_TIDAL_CRASH:
 	goto Move_SURF
+
+@ Approved #387 reused Thunderbolt animation; real Doubles targeting remains independent.
+Move_DISCHARGE:
+	goto Move_THUNDERBOLT
