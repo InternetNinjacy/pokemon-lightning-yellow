@@ -343,7 +343,14 @@ static void wrlRoute8FinishTrainerBattle(void) {
         unsigned key=0;
         if(f%8==0) {
             key=1; // Real trainer pre/post-battle dialogue.
-            if(cb==SYM_BattleMainCB2
+            // CONTROLLER_CHOOSEPOKEMON (22) opens the actual party menu.
+            // After the foe faints, A repeatedly selects the active mon and
+            // cannot dismiss the optional switch prompt. Press B to decline
+            // switching and return to the real trainer battle instead.
+            if(started && cb!=SYM_BattleMainCB2 && cb!=SYM_CB2_Overworld
+               && core->busRead8(core,SYM_gBattleBufferA)==22)
+                key=2;
+            else if(cb==SYM_BattleMainCB2
                && (core->busRead32(core,SYM_gBattleControllerExecFlags)&1U)) {
                 unsigned fn=controller(0);
                 if(fn==SYM_HandleInputChooseAction) {
