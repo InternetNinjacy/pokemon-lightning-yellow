@@ -41,6 +41,23 @@ def prior_follower_source(path, text):
                 '',
             ),
         ]
+    elif path == "data/specials.inc":
+        additions = [
+            ('\t@ WRL-010: append only; preserve every preexisting special ID.\n'
+             '\tdef_special FollowerSpecial_PlayCry\n', ''),
+        ]
+    elif path == "data/event_scripts.s":
+        additions = [('\t.include "data/scripts/follower.inc"\n', '')]
+    elif path == "include/event_scripts.h":
+        additions = [
+            ('// WRL-010: dynamic follower visual interaction script.\n'
+             'extern const u8 EventScript_FollowerInteraction[];\n', ''),
+        ]
+    elif path == "src/field_control_avatar.c":
+        additions = [
+            ('#include "follower_graphics.h"\n', ''),
+            ('    u8 i;\n', ''),
+        ]
     else:
         return text
     for after, before in additions:
