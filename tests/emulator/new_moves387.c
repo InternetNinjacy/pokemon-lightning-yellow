@@ -114,3 +114,77 @@ static void moves389to394Tests(void){
  CHECK(core->loadState(core,bootState));
  printf("PASS: native #389-394 Singles/Doubles physical-special AI, hits, selected/spread target HP, PP, quarter/third recoil and Aura Sphere accuracy bypass\n");
 }
+
+
+// Volt Switch cannot open a replacement screen when every party member is
+// already active, and electric immunity must not trigger pivot behavior.
+static void voltSwitch388NoBenchTests(void){
+ for(unsigned two=0;two<2;two++)for(unsigned immune=0;immune<2;immune++){
+  effectBattleFixture(two,MOVE_VOLT_SWITCH);
+  unsigned flags=core->busRead32(core,SYM_gBattleTypeFlags);
+  damageStats();core->busWrite32(core,SYM_gBattleTypeFlags,flags);
+  core->busWrite16(core,bmon(0)+ABI_BMON_SPATTACK,200);
+  core->busWrite16(core,bmon(0)+ABI_BMON_ATTACK,1);
+  core->busWrite16(core,bmon(1)+ABI_BMON_SPDEFENSE,100);
+  if(immune){
+   core->busWrite8(core,bmon(1)+ABI_BMON_TYPE1,TYPE_GROUND);
+   core->busWrite8(core,bmon(1)+ABI_BMON_TYPE2,TYPE_GROUND);
+  }
+  unsigned beforeIndex=core->busRead8(core,SYM_gBattlerPartyIndexes);
+  chooseMove(0,0,1);if(two)chooseMove(2,0,1);
+  waitActionBudget(4800);
+  CHECK(monget(player(0),ABI_DATA_PP1)==19);
+  CHECK((core->busRead16(core,bmon(1)+ABI_BMON_HP)<1000)==!immune);
+  CHECK(core->busRead8(core,SYM_gBattlerPartyIndexes)==beforeIndex);
+ }
+ CHECK(core->loadState(core,bootState));
+ printf("PASS: native Volt Switch #388 Single/Double dealt damage or hit Ground immunity, one PP, no illegal switch with no bench\n");
+}
+
+// Verify actual flash serialization for all eight new move slots in two
+// separately encrypted boxed Pokémon, not a transient CPU snapshot.
+static void moves387to394SavePersistence(void){
+ const unsigned ids[]={MOVE_DISCHARGE,MOVE_VOLT_SWITCH,MOVE_THUNDER_FANG,MOVE_WILD_CHARGE,
+                       MOVE_SEED_BOMB,MOVE_PETAL_BLIZZARD,MOVE_WOOD_HAMMER,MOVE_AURA_SPHERE};
+ const unsigned pp[]={9,11,7,8,6,5,4,3};
+ CHECK(core->loadState(core,bootState));
+ GBASavedataForceType(&((struct GBA*)core->board)->memory.savedata,SAVEDATA_FLASH1M);
+ void *oldFlash=NULL;
+ size_t oldSize=core->savedataClone(core,&oldFlash);
+ CHECK(oldSize==0x20000&&oldFlash);
+ unsigned char *blank=malloc(0x20000);CHECK(blank);
+ memset(blank,255,0x20000);
+ CHECK(core->savedataRestore(core,blank,0x20000,true));
+ free(blank);
+ initSave();
+ for(unsigned p=0;p<2;p++){
+  CALL(CreateMon,player(p),p?SPECIES_PIKACHU:SPECIES_SQUIRTLE,50,31,1,9001+p,0,777);
+  for(unsigned s=0;s<4;s++){
+   CALL(SetMonMoveSlot,player(p),ids[4*p+s],s);
+   monput(player(p),ABI_DATA_PP1+s,pp[4*p+s]);
+  }
+  monput(player(p),ABI_DATA_PP_BONUSES,p?5:1);
+ }
+ core->busWrite8(core,SYM_gPlayerPartyCount,2);
+ unsigned char saved[2][ABI_BOX_SIZE];
+ for(unsigned p=0;p<2;p++)readBytes(player(p),saved[p],ABI_BOX_SIZE);
+ CHECK(CALL(TrySavingData,0)==1);
+ for(unsigned k=0;k<ABI_SAVE1_SIZE;k+=4)core->busWrite32(core,SYM_gSaveBlock1+k,0);
+ for(unsigned k=0;k<ABI_SAVE2_SIZE;k+=4)core->busWrite32(core,SYM_gSaveBlock2+k,0);
+ for(unsigned p=0;p<2;p++)for(unsigned s=0;s<4;s++)CALL(SetMonMoveSlot,player(p),MOVE_SPLASH,s);
+ CHECK(CALL(LoadGameSave,0)==1);
+ CHECK(core->busRead8(core,SYM_gPlayerPartyCount)==2);
+ for(unsigned p=0;p<2;p++){
+  sameBytes(player(p),saved[p],ABI_BOX_SIZE);
+  for(unsigned s=0;s<4;s++){
+   CHECK(monget(player(p),ABI_DATA_MOVE1+s)==ids[4*p+s]);
+   CHECK(monget(player(p),ABI_DATA_PP1+s)==pp[4*p+s]);
+  }
+  CHECK(monget(player(p),ABI_DATA_PP_BONUSES)==(p?5:1));
+  CHECK(!monget(player(p),ABI_DATA_SANITY_IS_BAD_EGG));
+ }
+ CHECK(core->savedataRestore(core,oldFlash,oldSize,true));
+ free(oldFlash);
+ CHECK(core->loadState(core,bootState));
+ printf("PASS: native #387-394 move IDs, spent PP, PP Ups and encrypted two-mon records survive real flash save/load\n");
+}
