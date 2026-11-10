@@ -4456,3 +4456,8 @@ BattleScript_EffectSwarmCloud::
 BattleScript_EffectIceFang::
 	setmoveeffect MOVE_EFFECT_FREEZE
 	goto BattleScript_EffectHit
+
+@ Thunder Fang independently rolls paralysis first, flinch second.
+BattleScript_EffectThunderFang::
+	setmoveeffect MOVE_EFFECT_PARALYSIS
+	goto BattleScript_EffectHit
