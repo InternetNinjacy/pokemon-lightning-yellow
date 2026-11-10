@@ -18,6 +18,10 @@ def project(path,text,view):
     # Source views predating the separately approved water move append must be
     # byte-exact, even when a guard invokes without_weather() directly.
     # Reversal of a present append is strict; absent append is left untouched.
+    # Reverse the exact new Batch A damage delta before checking frozen
+    # weather-integration source hashes; rejects altered staged source blobs.
+    from approved_batch_a_spread_changes import prior_batch_a_spread_source
+    text=prior_batch_a_spread_source(path,text)
     from approved_batch_a_changes import HUNKS as BATCH_A_HUNKS, prior_batch_a_source
     # Ancestor guards may call this view *after* a prior projection. Restore
     # Batch A only when its complete staged hunk is actually present. The
