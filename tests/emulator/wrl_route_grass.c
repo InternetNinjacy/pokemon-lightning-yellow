@@ -344,6 +344,12 @@ static void wrlLavenderToRoute8GrassWalkTests(void) {
     // trainer dialogue lock for an impassable terrain tile. No trainer flag,
     // event, encounter, or player position is modified.
     for(unsigned x=63;x<=69;x++)blocked[21*W+x]=1;
+    // Rich is at authored (55,15), grid (62,22), facing DOWN with a
+    // three-tile trainer sight range. The previous native run reached his
+    // occupied tile and then entered a locked trainer script while trying
+    // to replan. Exclude his occupied tile and sight corridor up front;
+    // a script lock is not an ordinary terrain collision or a free pass.
+    for(unsigned y=22;y<=25;y++)blocked[y*W+62]=1;
     const int dx[4]={0,0,-1,1},dy[4]={-1,1,0,0};
     const unsigned keys[4]={64,128,32,16};
     unsigned totalFrames=0,totalSteps=0,replans=0,reached=0;
