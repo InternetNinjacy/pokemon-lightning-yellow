@@ -238,6 +238,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectSleepHit
 	.4byte BattleScript_EffectSwarmCloud               @ EFFECT_SWARM_CLOUD
 	.4byte BattleScript_EffectIceFang                  @ EFFECT_ICE_FANG
+	.4byte BattleScript_EffectThunderFang              @ EFFECT_THUNDER_FANG
 
 BattleScript_EffectHit::
 	jumpifnotmove MOVE_SURF, BattleScript_HitFromAtkCanceler
