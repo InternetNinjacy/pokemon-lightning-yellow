@@ -119,6 +119,33 @@ static void followerFieldNativeTests(void)
     CHECK(CALL(FollowerGraphics_GetObjectEventId) == ABI_OBJECT_COUNT);
     CHECK((int8_t)CALL(FollowerState_ResolvePartySlot) == -1);
     printf("PASS: native follower map warp, faint/revive, cry and teardown on two real Day Care maps\n");
+    // Exercise the real sprite allocator and object-event owner through both
+    // tile geometries: Pikachu uses 16 tiles, Steelix requires 64 tiles.
+    // An old-size ObjectEventSetGraphicsId fallback would corrupt this switch.
+    daycareFixture(1);
+    CALL(CreateMon, player(1), SPECIES_STEELIX, 20, 31, 1, 111, 0, 0);
+    CHECK(CALL(FollowerState_SelectPartySlot, 1) == 1);
+    frames(100, 0);
+    CHECK(CALL(FollowerGraphics_GetObjectEventId) < ABI_OBJECT_COUNT);
+    CHECK(CALL(FollowerGraphics_GetSpriteId) < 64);
+    CHECK(CALL(FollowerGraphics_GetSize) == 64);
+    CHECK(CALL(FollowerState_ResolvePartySlot) == 1);
+
+    CHECK(CALL(FollowerState_SelectPartySlot, 0) == 1);
+    CALL(FollowerController_RequestRefresh);
+    frames(100, 0);
+    CHECK(CALL(FollowerGraphics_GetObjectEventId) < ABI_OBJECT_COUNT);
+    CHECK(CALL(FollowerGraphics_GetSpriteId) < 64);
+    CHECK(CALL(FollowerGraphics_GetSize) == 32);
+    CHECK(CALL(FollowerState_ResolvePartySlot) == 0);
+    CHECK(CALL(FollowerState_SelectPartySlot, 1) == 1);
+    CALL(FollowerController_RequestRefresh);
+    frames(100, 0);
+    CHECK(CALL(FollowerGraphics_GetObjectEventId) < ABI_OBJECT_COUNT);
+    CHECK(CALL(FollowerGraphics_GetSpriteId) < 64);
+    CHECK(CALL(FollowerGraphics_GetSize) == 64);
+    printf("PASS: native 64x64 Steelix -> 32x32 Pikachu -> 64x64 Steelix resource transitions\\n");
+
 }
 
 // Story bridge: actual WRL-001 gift functions on ARM under libmGBA.
