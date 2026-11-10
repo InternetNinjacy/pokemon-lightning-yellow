@@ -8,6 +8,8 @@
 #include "custom_pokedex.h"
 #include "pokemon.h"
 #include "sprite.h"
+#include "sound.h"
+#include "string_util.h"
 #include "constants/event_objects.h"
 #include "constants/event_object_movement.h"
 
@@ -297,4 +299,15 @@ void FollowerController_VBlank(void)
             sLastCopiedFrame = sFrameToCopy;
     }
     gSprites[id].hFlip = sFrameMirrored;
+}
+
+// Called only by WRL-010's interaction script. Does not touch happiness,
+// friendship, party position or persistent selection.
+void FollowerSpecial_PlayCry(void)
+{
+    s8 slot = FollowerState_ResolvePartySlot();
+    if (slot < 0 || !FollowerState_CanDisplay())
+        return;
+    GetMonData(&gPlayerParty[slot], MON_DATA_NICKNAME, gStringVar1);
+    PlayCry_Normal(GetMonData(&gPlayerParty[slot], MON_DATA_SPECIES), 0);
 }
