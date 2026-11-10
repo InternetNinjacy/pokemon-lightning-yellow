@@ -8,8 +8,8 @@ HUNKS = {
   # source-history guards run; never rewrite their approved snapshots.
   "src/battle_script_commands.c": [
     [
-      "if (gCurrentMove == MOVE_ROLLOUT\\n            && gBattleMons[gBattlerAttacker].status2 & STATUS2_DEFENSE_CURL)",
-      "if (gCurrentMove != MOVE_GRUDGE\\n            && gBattleMons[gBattlerAttacker].status2 & STATUS2_DEFENSE_CURL)"
+      "if (gCurrentMove == MOVE_ROLLOUT\n            && gBattleMons[gBattlerAttacker].status2 & STATUS2_DEFENSE_CURL)",
+      "if (gCurrentMove != MOVE_GRUDGE\n            && gBattleMons[gBattlerAttacker].status2 & STATUS2_DEFENSE_CURL)"
     ]
   ],
   "include/constants/moves.h": [
