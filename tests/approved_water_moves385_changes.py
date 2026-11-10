@@ -4,6 +4,14 @@ Expected historical SHA values and original approved manifests remain unchanged.
 from pathlib import Path
 
 HUNKS = {
+  # New production delta is strictly reversible before the frozen ancestor
+  # source-history guards run; never rewrite their approved snapshots.
+  "src/battle_script_commands.c": [
+    [
+      "if (gCurrentMove == MOVE_ROLLOUT\\n            && gBattleMons[gBattlerAttacker].status2 & STATUS2_DEFENSE_CURL)",
+      "if (gCurrentMove != MOVE_GRUDGE\\n            && gBattleMons[gBattlerAttacker].status2 & STATUS2_DEFENSE_CURL)"
+    ]
+  ],
   "include/constants/moves.h": [
     [
       "#define MOVE_VORTEX_SPIN 385\n#define MOVE_TIDAL_CRASH 386\n\n#define MOVES_COUNT 387\n",
