@@ -102,3 +102,60 @@ static void wrlRouteNativeGrassTests(void) {
     }
     CHECK(core->loadState(core,bootState));
 }
+
+// WRL-009: start on the *north edge* of Route 5, not inside the grass.
+// The compiled map has a south-facing ledge at y=4. Drive the actual
+// overworld walker through that ledge into the first approved grass row.
+// This proves in-map movement from the northern entry corridor; it does NOT
+// prove the separate Cerulean City -> Route 5 map-connection transition.
+static void wrlRoute5NorthernLedgeWalkTests(void) {
+    const unsigned x=23, gridX=x+7, ledgeGridY=4+7, firstGrassGridY=5+7;
+    wrlRouteGrassFixture(MAP_GROUP(MAP_ROUTE5),MAP_NUM(MAP_ROUTE5),x,0);
+    CALL(PlayerGetDestCoords,scratch,scratch+2);
+    CHECK(core->busRead16(core,scratch)==gridX);
+    CHECK(core->busRead16(core,scratch+2)==7);
+    CHECK(!wrlRouteGrassAt(gridX,7));
+    CHECK(CALL(MapGridGetCollisionAt,gridX,ledgeGridY));
+    CHECK(wrlRouteGrassAt(gridX,firstGrassGridY));
+    unsigned reached=0,highestY=7,seenRows=0,frame;
+    unsigned previousY=7,transitionLogs=0;
+    for(frame=0;frame<3000;frame++) {
+        if((core->busRead32(core,SYM_gMain+ABI_MAIN_CB2)&~1U)!=SYM_CB2_Overworld)
+            break;
+        frames(1,128); // GBA DOWN is bit 7 (0x80); 0x40 is UP into Cerulean City.
+        CALL(PlayerGetDestCoords,scratch,scratch+2);
+        unsigned currentX=core->busRead16(core,scratch);
+        unsigned currentY=core->busRead16(core,scratch+2);
+        CHECK(currentX==gridX);
+        // Bounded native coordinate trace: a map transition or coordinate jump
+        // can skip the y=10..15 sampling window without implying a blocked ledge.
+        if ((frame<5 || currentY!=previousY) && transitionLogs<24) {
+            fprintf(stderr,"WRL Route5 north coordinate frame=%u grid=(%u,%u) previousY=%u overworld=%08x\n",
+                    frame,currentX,currentY,previousY,core->busRead32(core,SYM_gMain+ABI_MAIN_CB2));
+            transitionLogs++;
+        }
+        previousY=currentY;
+        // Diagnose whether the walker visits the expected grass row and whether
+        // native map attributes differ while standing on it (no map edits).
+        if(currentY>=10 && currentY<=15 && !(seenRows & (1U<<(currentY-10)))) {
+            seenRows |= 1U<<(currentY-10);
+            fprintf(stderr,"WRL Route5 north walk row=%u encounter=%u collision=%u targetRowEncounter=%u targetRowCollision=%u\n",
+                    currentY,CALL(MapGridGetMetatileAttributeAt,currentX,currentY,ABI_META_ENCOUNTER),
+                    CALL(MapGridGetCollisionAt,currentX,currentY),
+                    CALL(MapGridGetMetatileAttributeAt,gridX,firstGrassGridY,ABI_META_ENCOUNTER),
+                    CALL(MapGridGetCollisionAt,gridX,firstGrassGridY));
+        }
+        if(currentY>highestY)highestY=currentY;
+        if(wrlRouteGrassAt(currentX,currentY)) {reached=1;break;}
+    }
+    if (!reached) {
+        CALL(PlayerGetDestCoords,scratch,scratch+2);
+        fprintf(stderr,"WRL Route5 north-edge walk blocked: highest grid Y=%u, final grid=(%u,%u), frames=%u, CB2=%08x, expected grass Y=%u\\n",
+                highestY,core->busRead16(core,scratch),core->busRead16(core,scratch+2),frame,
+                core->busRead32(core,SYM_gMain+ABI_MAIN_CB2),firstGrassGridY);
+    }
+    CHECK(reached);
+    CHECK(highestY>=firstGrassGridY);
+    printf("PASS: Route 5 native north-edge D-pad walk crossed south-facing collision ledge into approved grass in %u frames\n",frame);
+    CHECK(core->loadState(core,bootState));
+}
