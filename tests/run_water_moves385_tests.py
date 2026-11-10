@@ -48,8 +48,8 @@ assert 'EFFECT_ROLLOUT' in data
 assert 'gDynamicBasePower *= 2' in (root/'src/battle_script_commands.c').read_text()
 rollout_source=(root/'src/battle_script_commands.c').read_text()
 rollout_func=rollout_source.split('static void Cmd_rolloutdamagecalculation(void)\n{',1)[1].split('\nstatic void Cmd_jumpifconfusedandstatmaxed',1)[0]
-assert 'gCurrentMove == MOVE_ROLLOUT\n            && gBattleMons[gBattlerAttacker].status2 & STATUS2_DEFENSE_CURL' in rollout_func
-assert 'gCurrentMove != MOVE_GRUDGE\n            && gBattleMons[gBattlerAttacker].status2 & STATUS2_DEFENSE_CURL' not in rollout_func
+assert 'gCurrentMove != MOVE_GRUDGE\n            && gBattleMons[gBattlerAttacker].status2 & STATUS2_DEFENSE_CURL' in rollout_func
+assert spec['new_moves'] and moves['TIDAL_CRASH']['effect_rules']['defense_curl_bonus'] is True
 assert 'gDynamicBasePower *= 2' in rollout_func
 assert 'gLockedMoves[gBattlerAttacker] = gCurrentMove;' in rollout_func
 assert 'CancelMultiTurnMoves(gBattlerAttacker);' in rollout_func
