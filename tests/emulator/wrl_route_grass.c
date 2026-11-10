@@ -331,71 +331,96 @@ static void wrlLavenderToRoute8GrassWalkTests(void) {
     unsigned sx=core->busRead16(core,scratch),sy=core->busRead16(core,scratch+2);
     CHECK(sx>=7 && sx<79 && sy>=7 && sy<27);
 
-    // A collision-only breadth-first search selects a route; the test must
-    // then EXECUTE that route with native D-pad movement. Search results
-    // alone are not accepted as runtime reachability evidence.
-    enum { W=90,H=40,N=W*H };
-    unsigned char visited[N]={0},directions[N]={0};
-    int parent[N];
-    unsigned queue[N],front=0,back=0;
+    // Native metatile collision alone cannot see NPC/object-event blockers.
+    // Replan from the LIVE player position after a demonstrated failed step,
+    // excluding that blocked tile. Never teleport, skip an unexecuted step,
+    // edit the map, or treat a BFS path as proof of actual access.
+    enum { W=90,H=40,N=W*H,MAX_REPLANS=24 };
+    unsigned char blocked[N]={0};
     const int dx[4]={0,0,-1,1},dy[4]={-1,1,0,0};
     const unsigned keys[4]={64,128,32,16};
-    unsigned start=sy*W+sx,goal=N;
-    visited[start]=1;parent[start]=-1;queue[back++]=start;
-    while(front<back) {
-        unsigned cur=queue[front++],x=cur%W,y=cur/W;
-        if(wrlRouteGrassAt(x,y)){goal=cur;break;}
-        for(unsigned d=0;d<4;d++) {
-            int nx=(int)x+dx[d],ny=(int)y+dy[d];
-            if(nx<7 || nx>=79 || ny<7 || ny>=27)continue;
-            unsigned next=(unsigned)ny*W+(unsigned)nx;
-            if(visited[next] || CALL(MapGridGetCollisionAt,nx,ny))continue;
-            visited[next]=1;parent[next]=(int)cur;
-            directions[next]=(unsigned char)keys[d];
-            queue[back++]=next;
+    unsigned totalFrames=0,totalSteps=0,replans=0,reached=0;
+    for(unsigned attempt=0;attempt<=MAX_REPLANS;attempt++) {
+        CALL(PlayerGetDestCoords,scratch,scratch+2);
+        unsigned sx=core->busRead16(core,scratch),sy=core->busRead16(core,scratch+2);
+        CHECK(sx>=7 && sx<79 && sy>=7 && sy<27);
+        if(wrlRouteGrassAt(sx,sy)){reached=1;break;}
+        unsigned char visited[N]={0},directions[N]={0};
+        int parent[N];
+        unsigned queue[N],front=0,back=0,start=sy*W+sx,goal=N;
+        visited[start]=1;parent[start]=-1;queue[back++]=start;
+        while(front<back) {
+            unsigned cur=queue[front++],x=cur%W,y=cur/W;
+            if(wrlRouteGrassAt(x,y)){goal=cur;break;}
+            for(unsigned d=0;d<4;d++) {
+                int nx=(int)x+dx[d],ny=(int)y+dy[d];
+                if(nx<7 || nx>=79 || ny<7 || ny>=27)continue;
+                unsigned next=(unsigned)ny*W+(unsigned)nx;
+                if(visited[next] || blocked[next]
+                   || CALL(MapGridGetCollisionAt,nx,ny))continue;
+                visited[next]=1;parent[next]=(int)cur;
+                directions[next]=(unsigned char)keys[d];
+                queue[back++]=next;
+            }
         }
-    }
-    fprintf(stderr,"WRL Lavender->Route8 grass BFS start=(%u,%u) reachable=%u goal=%u examined=%u transitionFrame=%u\n",
-            sx,sy,goal!=N,goal,front,transitionFrame);
-    CHECK(goal!=N);
-    unsigned path[N],length=0;
-    for(unsigned cur=goal;cur!=start;cur=(unsigned)parent[cur]) {
-        CHECK(length<N);
-        path[length++]=cur;
-    }
-    fprintf(stderr,"WRL Lavender->Route8 grass planned native D-pad steps=%u\n",length);
-    CHECK(length>0);
-    unsigned totalFrames=0;
-    for(unsigned step=length;step>0;step--) {
-        unsigned target=path[step-1],tx=target%W,ty=target/W;
-        unsigned key=directions[target],moved=0;
-        for(unsigned frame=0;frame<96;frame++) {
-            frames(1,key);
-            totalFrames++;
+        fprintf(stderr,"WRL Lavender->Route8 grass BFS from=(%u,%u) reachable=%u examined=%u replans=%u transitionFrame=%u\\n",
+                sx,sy,goal!=N,front,replans,transitionFrame);
+        CHECK(goal!=N);
+        unsigned path[N],length=0;
+        for(unsigned cur=goal;cur!=start;cur=(unsigned)parent[cur]) {
+            CHECK(length<N);
+            path[length++]=cur;
+        }
+        CHECK(length>0);
+        unsigned needsReplan=0;
+        for(unsigned step=length;step>0;step--) {
+            unsigned target=path[step-1],tx=target%W,ty=target/W;
+            unsigned key=directions[target],moved=0;
             CALL(PlayerGetDestCoords,scratch,scratch+2);
-            unsigned px=core->busRead16(core,scratch);
-            unsigned py=core->busRead16(core,scratch+2);
-            if(px==tx && py==ty){moved=1;break;}
-            if((core->busRead32(core,SYM_gMain+ABI_MAIN_CB2)&~1U)!=SYM_CB2_Overworld)
+            unsigned prevX=core->busRead16(core,scratch);
+            unsigned prevY=core->busRead16(core,scratch+2);
+            for(unsigned frame=0;frame<96;frame++) {
+                frames(1,key);
+                totalFrames++;
+                CALL(PlayerGetDestCoords,scratch,scratch+2);
+                unsigned px=core->busRead16(core,scratch);
+                unsigned py=core->busRead16(core,scratch+2);
+                if(px==tx && py==ty){moved=1;break;}
+                if((core->busRead32(core,SYM_gMain+ABI_MAIN_CB2)&~1U)!=SYM_CB2_Overworld)
+                    break;
+            }
+            core->setKeys(core,0);
+            CHECK((core->busRead32(core,SYM_gMain+ABI_MAIN_CB2)&~1U)==SYM_CB2_Overworld);
+            CHECK(core->busRead8(core,wrlLiveSaveBlock1()+4)==MAP_GROUP(MAP_ROUTE8));
+            CHECK(core->busRead8(core,wrlLiveSaveBlock1()+5)==MAP_NUM(MAP_ROUTE8));
+            if(!moved) {
+                CALL(PlayerGetDestCoords,scratch,scratch+2);
+                unsigned px=core->busRead16(core,scratch);
+                unsigned py=core->busRead16(core,scratch+2);
+                fprintf(stderr,"WRL Route8 object-blocked target=(%u,%u) actual=(%u,%u) prior=(%u,%u) metatileCollision=%u replan=%u\\n",
+                        tx,ty,px,py,prevX,prevY,
+                        CALL(MapGridGetCollisionAt,tx,ty),replans+1);
+                // Replan only if the attempted native step actually stayed
+                // in place. Unexpected movement is a genuine test failure.
+                CHECK(px==prevX && py==prevY);
+                blocked[target]=1;
+                replans++;
+                needsReplan=1;
+                frames(18,0);
                 break;
+            }
+            totalSteps++;
+            frames(18,0); // Finish the walking animation before next turn.
+            if(wrlRouteGrassAt(tx,ty)){reached=1;break;}
         }
-        core->setKeys(core,0);
-        if(!moved) {
-            CALL(PlayerGetDestCoords,scratch,scratch+2);
-            fprintf(stderr,"WRL Route8 live walk blocked step=%u/%u target=(%u,%u) actual=(%u,%u) CB2=%08x\n",
-                    length-step+1,length,tx,ty,
-                    core->busRead16(core,scratch),core->busRead16(core,scratch+2),
-                    core->busRead32(core,SYM_gMain+ABI_MAIN_CB2));
-        }
-        CHECK(moved);
-        CHECK(core->busRead8(core,wrlLiveSaveBlock1()+4)==MAP_GROUP(MAP_ROUTE8));
-        CHECK(core->busRead8(core,wrlLiveSaveBlock1()+5)==MAP_NUM(MAP_ROUTE8));
-        if(step>1)frames(18,0); // Finish walking animation before next turn.
+        if(reached)break;
+        CHECK(needsReplan);
     }
+    CHECK(reached);
     CALL(PlayerGetDestCoords,scratch,scratch+2);
     CHECK(wrlRouteGrassAt(core->busRead16(core,scratch),
                           core->busRead16(core,scratch+2)));
-    printf("PASS: native Lavender -> Route 8 connection followed by %u actual D-pad steps to approved grass in %u walking frames\n",
-           length,totalFrames);
+    printf("PASS: native Lavender -> Route 8 connection followed by %u actual D-pad steps to approved grass in %u walking frames (%u object-blocker replans)\\n",
+           totalSteps,totalFrames,replans);
     CHECK(core->loadState(core,bootState));
 }
