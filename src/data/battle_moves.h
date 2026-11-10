@@ -5406,7 +5406,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
     },
 
-    // BTL-005 #386: use the native Rollout multi-turn battle path; no Defense Curl bonus
+    // BTL-005 #386: use the native Rollout multi-turn battle path; no Defense Curl bonus.
     [MOVE_TIDAL_CRASH] =
     {
         .category = MOVE_CATEGORY_PHYSICAL,
