@@ -3,6 +3,13 @@
 from pathlib import Path
 import collections,json,re,subprocess,sys,hashlib
 R=Path(__file__).resolve().parents[1]
+# Batch A staging is checked against the accepted #385-386 blob history and
+# its own exact owner-approved source contract before any catalog projection.
+sys.path.insert(0,str(R/'tests'))
+from approved_batch_a_changes import HUNKS as BATCH_A_HUNKS, prior_batch_a_source
+for batch_path in BATCH_A_HUNKS:
+    prior_batch_a_source(batch_path)
+subprocess.run([sys.executable,str(R/'tests/run_btl_batch_a_staging_tests.py')],cwd=R,check=True)
 subprocess.run([sys.executable,str(R/'scripts/reconcile-move-specification.py'),'--check'],cwd=R,check=True)
 d=json.loads((R/'docs/moves/move-specification.json').read_text());rows=d['moves'];keys={r['key']:r for r in rows}
 assert len(rows)==410 and len(keys)==410
