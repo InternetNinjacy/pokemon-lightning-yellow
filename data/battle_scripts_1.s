@@ -271,6 +271,7 @@ BattleScript_HitFromAtkAnimation::
 	waitmessage B_WAIT_TIME_LONG
 	seteffectwithchance
 	jumpifmove MOVE_ICE_FANG, BattleScript_IceFangFlinch
+	jumpifmove MOVE_THUNDER_FANG, BattleScript_IceFangFlinch
 	jumpifnotmove MOVE_SWARM_CLOUD, BattleScript_AfterSwarmCloud
 	setmoveeffect MOVE_EFFECT_POISON
 	seteffectwithchance
