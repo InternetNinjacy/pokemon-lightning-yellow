@@ -308,48 +308,74 @@ static void wrlLavenderToRoute8ConnectionTests(void) {
 // battle, teleport, map edit, or assumed scripted trainer clearance is used.
 // This remains a staged Lavender fixture, not proof of new-game progression.
 static void wrlLavenderToRoute8GrassWalkTests(void) {
-    wrlRouteGrassFixture(MAP_GROUP(MAP_LAVENDER_TOWN),
-                        MAP_NUM(MAP_LAVENDER_TOWN),1,10);
-    unsigned transitioned=0,transitionFrame=0;
-    for(unsigned frame=0;frame<900;frame++) {
-        frames(1,32); // Real LEFT D-pad from Lavender's west edge.
-        unsigned group=core->busRead8(core,wrlLiveSaveBlock1()+4);
-        unsigned map=core->busRead8(core,wrlLiveSaveBlock1()+5);
-        if(group==MAP_GROUP(MAP_ROUTE8) && map==MAP_NUM(MAP_ROUTE8)) {
-            transitioned=1;transitionFrame=frame;break;
-        }
-        if(group!=MAP_GROUP(MAP_LAVENDER_TOWN)
-           || map!=MAP_NUM(MAP_LAVENDER_TOWN))break;
-    }
-    core->setKeys(core,0);
-    CHECK(transitioned);
-    frames(120,0); // Finish the live connection transition.
-    CHECK((core->busRead32(core,SYM_gMain+ABI_MAIN_CB2)&~1U)==SYM_CB2_Overworld);
-    CHECK(core->busRead8(core,wrlLiveSaveBlock1()+4)==MAP_GROUP(MAP_ROUTE8));
-    CHECK(core->busRead8(core,wrlLiveSaveBlock1()+5)==MAP_NUM(MAP_ROUTE8));
-    CALL(PlayerGetDestCoords,scratch,scratch+2);
-    unsigned sx=core->busRead16(core,scratch),sy=core->busRead16(core,scratch+2);
-    CHECK(sx>=7 && sx<79 && sy>=7 && sy<27);
-
-    // Native metatile collision alone cannot see NPC/object-event blockers.
-    // Replan from the LIVE player position after a demonstrated failed step,
-    // excluding that blocked tile. Never teleport, skip an unexecuted step,
-    // edit the map, or treat a BFS path as proof of actual access.
+    // A single west-edge entry row can be separated from grass by real
+    // trainers. Probe each authored Lavender west connection row rather than
+    // treating one staged entry as the only possible natural approach.
+    // The selected entry must still cross via actual LEFT D-pad movement.
     enum { W=90,H=40,N=W*H,MAX_REPLANS=24 };
     unsigned char blocked[N]={0};
-    // Julia's authored Route 8 object is at (62,14), facing LEFT with a
-    // six-tile trainer sight range. Her occupied tile is grid (69,21);
-    // grid x=63..68 on the same row enters her sight. Avoid this corridor
-    // when planning an *unbattled* walking path rather than mistaking a
-    // trainer dialogue lock for an impassable terrain tile. No trainer flag,
-    // event, encounter, or player position is modified.
+    // Julia's occupied tile and six-tile LEFT-facing sight corridor.
     for(unsigned x=63;x<=69;x++)blocked[21*W+x]=1;
-    // Rich is at authored (55,15), grid (62,22), facing DOWN with a
-    // three-tile trainer sight range. The previous native run reached his
-    // occupied tile and then entered a locked trainer script while trying
-    // to replan. Exclude his occupied tile and sight corridor up front;
-    // a script lock is not an ordinary terrain collision or a free pass.
+    // Rich's occupied tile and three-tile DOWN-facing sight corridor.
+    // We do not mark either trainer defeated or bypass their battles.
     for(unsigned y=22;y<=25;y++)blocked[y*W+62]=1;
+    const unsigned candidateY[]={10,9,11,8,12,7,13,6,14,5,15,4,16,3,17,18};
+    unsigned transitionFrame=0,selectedY=0,selected=0,transitionCount=0;
+    for(unsigned i=0;i<sizeof(candidateY)/sizeof(candidateY[0]);i++) {
+        unsigned y=candidateY[i],transitioned=0,frame;
+        wrlRouteGrassFixture(MAP_GROUP(MAP_LAVENDER_TOWN),
+                            MAP_NUM(MAP_LAVENDER_TOWN),1,y);
+        for(frame=0;frame<900;frame++) {
+            frames(1,32); // Real LEFT D-pad; never warp into Route 8.
+            unsigned group=core->busRead8(core,wrlLiveSaveBlock1()+4);
+            unsigned map=core->busRead8(core,wrlLiveSaveBlock1()+5);
+            if(group==MAP_GROUP(MAP_ROUTE8) && map==MAP_NUM(MAP_ROUTE8)) {
+                transitioned=1;break;
+            }
+            if(group!=MAP_GROUP(MAP_LAVENDER_TOWN)
+               || map!=MAP_NUM(MAP_LAVENDER_TOWN))break;
+        }
+        core->setKeys(core,0);
+        if(!transitioned) {
+            fprintf(stderr,"WRL Lavender->Route8 grass candidate y=%u no map transition in %u frames\\n",y,frame);
+            continue;
+        }
+        transitionCount++;
+        frames(120,0);
+        CHECK((core->busRead32(core,SYM_gMain+ABI_MAIN_CB2)&~1U)==SYM_CB2_Overworld);
+        CHECK(core->busRead8(core,wrlLiveSaveBlock1()+4)==MAP_GROUP(MAP_ROUTE8));
+        CHECK(core->busRead8(core,wrlLiveSaveBlock1()+5)==MAP_NUM(MAP_ROUTE8));
+        CALL(PlayerGetDestCoords,scratch,scratch+2);
+        unsigned sx=core->busRead16(core,scratch),sy=core->busRead16(core,scratch+2);
+        CHECK(sx>=7 && sx<79 && sy>=7 && sy<27);
+        // Diagnose collision-connected grass while excluding trainer sight.
+        // A candidate is accepted only if a full native D-pad walk can then
+        // prove it, not merely because this topological probe finds a path.
+        unsigned char seen[N]={0};
+        unsigned queue[N],front=0,back=0,start=sy*W+sx,grass=0;
+        seen[start]=1;queue[back++]=start;
+        while(front<back) {
+            unsigned cur=queue[front++],x=cur%W,cy=cur/W;
+            if(wrlRouteGrassAt(x,cy)){grass=1;break;}
+            const int ddx[4]={0,0,-1,1},ddy[4]={-1,1,0,0};
+            for(unsigned d=0;d<4;d++) {
+                int nx=(int)x+ddx[d],ny=(int)cy+ddy[d];
+                if(nx<7 || nx>=79 || ny<7 || ny>=27)continue;
+                unsigned next=(unsigned)ny*W+(unsigned)nx;
+                if(seen[next] || blocked[next]
+                   || CALL(MapGridGetCollisionAt,nx,ny))continue;
+                seen[next]=1;queue[back++]=next;
+            }
+        }
+        fprintf(stderr,"WRL Lavender->Route8 grass candidate y=%u arrival=(%u,%u) grassPath=%u examined=%u transitionFrame=%u\\n",
+                y,sx,sy,grass,front,frame);
+        if(grass){selected=1;selectedY=y;transitionFrame=frame;break;}
+    }
+    if(!selected)
+        fprintf(stderr,"WRL Lavender->Route8: no trainer-sight-free grass path from %u successful Lavender west-entry rows; real trainer battles may be required\\n",transitionCount);
+    CHECK(selected);
+    fprintf(stderr,"WRL Lavender->Route8 selected west entry y=%u after %u frames\\n",
+            selectedY,transitionFrame);
     const int dx[4]={0,0,-1,1},dy[4]={-1,1,0,0};
     const unsigned keys[4]={64,128,32,16};
     unsigned totalFrames=0,totalSteps=0,replans=0,reached=0;
