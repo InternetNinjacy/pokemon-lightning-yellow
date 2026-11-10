@@ -44,7 +44,21 @@ static void waterMoves385Tests(void){
     count=(hp<1000);
    }else{
     unsigned frame;
+    // Diagnose real fourth-to-fifth-hit stalls without extending the timeout
+    // or bypassing any battle-controller/action state.
+    unsigned lastScript=0,lastExec=0,lastController=0,lastCount=0;
+    unsigned transitions=0;
     for(frame=0;frame<4800;frame++){
+     if(two && count>=4){
+      unsigned scriptNow=core->busRead32(core,SYM_gBattlescriptCurrInstr);
+      unsigned execNow=core->busRead32(core,SYM_gBattleControllerExecFlags);
+      unsigned ctrlNow=controller(2);
+      if(scriptNow!=lastScript||execNow!=lastExec||ctrlNow!=lastController||count!=lastCount){
+       if(transitions<48)fprintf(stderr,"TIDAL_STEP5_TRACE frame=%u count=%u script=%08x exec=%08x ctrl0=%08x ctrl2=%08x action2=%u move2=%u status0=%08x\\n",frame,count,scriptNow,execNow,controller(0),ctrlNow,core->busRead8(core,SYM_gActionSelectionCursor+2),core->busRead8(core,SYM_gMoveSelectionCursor+2),core->busRead32(core,bmon(0)+ABI_BMON_STATUS2));
+       transitions++;
+       lastScript=scriptNow;lastExec=execNow;lastController=ctrlNow;lastCount=count;
+      }
+     }
      if(frame>0&&controller(0)==SYM_HandleInputChooseAction)break;
      // The locked Rollout user does not reselect, but its Doubles partner
      // must still submit a normal action on each additional turn. Without
