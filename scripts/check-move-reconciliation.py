@@ -9,7 +9,13 @@ sys.path.insert(0,str(R/'tests'))
 from approved_batch_a_changes import HUNKS as BATCH_A_HUNKS, prior_batch_a_source
 for batch_path in BATCH_A_HUNKS:
     prior_batch_a_source(batch_path)
-subprocess.run([sys.executable,str(R/'tests/run_btl_batch_a_staging_tests.py')],cwd=R,check=True)
+if (R/'tests/approved_batch_b_changes.py').exists():
+    from approved_batch_b_changes import HUNKS as BATCH_B_HUNKS, prior_batch_b_source
+    for path in BATCH_B_HUNKS:
+        prior_batch_b_source(path)
+    subprocess.run([sys.executable,str(R/'tests/run_btl_batch_b_staging_tests.py')],cwd=R,check=True)
+else:
+    subprocess.run([sys.executable,str(R/'tests/run_btl_batch_a_staging_tests.py')],cwd=R,check=True)
 subprocess.run([sys.executable,str(R/'scripts/reconcile-move-specification.py'),'--check'],cwd=R,check=True)
 d=json.loads((R/'docs/moves/move-specification.json').read_text());rows=d['moves'];keys={r['key']:r for r in rows}
 assert len(rows)==410 and len(keys)==410
