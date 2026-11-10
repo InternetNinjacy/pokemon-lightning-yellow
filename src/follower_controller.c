@@ -278,8 +278,8 @@ void FollowerController_Tick(void)
         sFrameToCopy = 0;
     // Animate at one native walking frame per alternating tile; no large
     // per-frame DMA copy is performed from the field callback.
-    if (follower->currentCoords.x != follower->previousCoords.x
-     || follower->currentCoords.y != follower->previousCoords.y)
+    if (player->currentCoords.x != player->previousCoords.x
+     || player->currentCoords.y != player->previousCoords.y)
         sFrameToCopy += (++sWalkFrameCounter >> 3) & 1;
     else
         sWalkFrameCounter = 0;
