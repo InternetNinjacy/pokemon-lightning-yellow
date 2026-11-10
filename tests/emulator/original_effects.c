@@ -159,6 +159,7 @@ static void originalEffectTests(void){
  waterMoves385Mechanics();
  waterMoves385SavePersistence();
  discharge387Tests();
+ moves389to394Tests();
  thunderWaveTests();
  ghostReworkTests();
  spreadStatusTests();
