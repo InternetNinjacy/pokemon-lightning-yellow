@@ -160,6 +160,8 @@ static void originalEffectTests(void){
  waterMoves385SavePersistence();
  discharge387Tests();
  moves389to394Tests();
+ voltSwitch388NoBenchTests();
+ moves387to394SavePersistence();
  thunderWaveTests();
  ghostReworkTests();
  spreadStatusTests();
