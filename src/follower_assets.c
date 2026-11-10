@@ -13,6 +13,7 @@ bool8 FollowerAssets_Resolve(u16 species, u8 form, bool8 shiny,
 {
     const struct FollowerArtEntry *entry;
     u16 i, bytes;
+    volatile u16 count = sFollowerArtCount; // zero-art source builds still compile safely
     u8 frame;
 
     if (out == NULL)
@@ -26,7 +27,7 @@ bool8 FollowerAssets_Resolve(u16 species, u8 form, bool8 shiny,
     if (form > 3)
         return FALSE;
 
-    for (i = 0; i < sFollowerArtCount; i++)
+    for (i = 0; i < count; i++)
     {
         entry = &sFollowerArtTable[i];
         if (entry->species != species || entry->form != form)
