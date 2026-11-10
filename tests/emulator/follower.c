@@ -120,3 +120,32 @@ static void followerFieldNativeTests(void)
     CHECK((int32_t)CALL(FollowerState_ResolvePartySlot) == -1);
     printf("PASS: native follower map warp, faint/revive, cry and teardown on two real Day Care maps\n");
 }
+
+// Story bridge: actual WRL-001 gift functions on ARM under libmGBA.
+// The separate WRL-001 suite covers Parcel flag delivery/PC overflow.
+// This verifies WRL-010 assigns only the opening Pikachu and never Eevee.
+static void followerGiftNativeTests(void)
+{
+    daycareFixture(1);
+    CALL(ZeroPlayerPartyMons);
+    CALL(CreateMon, SYM_gPlayerParty, SPECIES_PIKACHU, 5, 31, 1, 34567, 0, 0);
+    core->busWrite8(core, SYM_gPlayerPartyCount, 1);
+    CHECK((int32_t)CALL(FollowerState_ResolvePartySlot) == -1);
+    CALL(ScriptNameSocketStarterPikachu);
+    CHECK(CALL(FollowerState_ResolvePartySlot) == 0);
+    CHECK(CALL(FollowerState_CanDisplay) == 1);
+    CALL(GetMonData3, SYM_gPlayerParty, ABI_DATA_NICKNAME, scratch);
+    textEquals(scratch, "SOCKET");
+    unsigned pid = get(ABI_DATA_PERSONALITY);
+    unsigned result = CALL(ScriptGiveSueEevee);
+    CHECK(result == 0);
+    CHECK(core->busRead8(core,SYM_gPlayerPartyCount) == 2);
+    CHECK(monget(player(1),ABI_DATA_SPECIES) == SPECIES_EEVEE);
+    CHECK(CALL(FollowerState_ResolvePartySlot) == 0);
+    CHECK(get(ABI_DATA_PERSONALITY) == pid);
+    CALL(FollowerState_SelectPartySlot,1);
+    CHECK(CALL(FollowerState_ResolvePartySlot) == 1);
+    CALL(FollowerState_Clear);
+    CHECK((int32_t)CALL(FollowerState_ResolvePartySlot) == -1);
+    printf("PASS: native approved SOCKET auto-assignment, SUE manual-only, no lead/party swap\n");
+}
