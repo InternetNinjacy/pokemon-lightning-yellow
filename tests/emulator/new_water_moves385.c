@@ -194,3 +194,42 @@ static void waterMoves385Mechanics(void){
  CHECK(core->loadState(core,bootState));
  printf("PASS: native Vortex Spin exact 30/60%% confusion, zero wrapping; Tidal Crash never receives Curl doubling; original Rollout doubles after Defense Curl; five-turn lock/miss cleanup\n");
 }
+
+static void waterMoves385SavePersistence(void){
+ // Exercise real flash serialization, not a transient mGBA CPU snapshot.
+ CHECK(core->loadState(core,bootState));
+ GBASavedataForceType(&((struct GBA*)core->board)->memory.savedata,SAVEDATA_FLASH1M);
+ void *oldFlash=NULL;
+ size_t oldSize=core->savedataClone(core,&oldFlash);
+ CHECK(oldSize==0x20000&&oldFlash);
+ unsigned char *blank=malloc(0x20000);CHECK(blank);
+ memset(blank,255,0x20000);
+ CHECK(core->savedataRestore(core,blank,0x20000,true));
+ free(blank);
+ initSave();create(SPECIES_SQUIRTLE,50);
+ core->busWrite8(core,SYM_gPlayerPartyCount,1);
+ CALL(SetMonMoveSlot,player(0),MOVE_VORTEX_SPIN,0);
+ CALL(SetMonMoveSlot,player(0),MOVE_TIDAL_CRASH,1);
+ monput(player(0),ABI_DATA_PP1,17);
+ monput(player(0),ABI_DATA_PP2,9);
+ monput(player(0),ABI_DATA_PP_BONUSES,5);
+ unsigned char saved[ABI_BOX_SIZE];
+ readBytes(player(0),saved,sizeof(saved));
+ CHECK(CALL(TrySavingData,0)==1);
+ for(unsigned k=0;k<ABI_SAVE1_SIZE;k+=4)core->busWrite32(core,SYM_gSaveBlock1+k,0);
+ for(unsigned k=0;k<ABI_SAVE2_SIZE;k+=4)core->busWrite32(core,SYM_gSaveBlock2+k,0);
+ CALL(SetMonMoveSlot,player(0),MOVE_SPLASH,0);
+ CALL(SetMonMoveSlot,player(0),MOVE_SPLASH,1);
+ CHECK(CALL(LoadGameSave,0)==1);
+ sameBytes(player(0),saved,sizeof(saved));
+ CHECK(monget(player(0),ABI_DATA_MOVE1)==MOVE_VORTEX_SPIN);
+ CHECK(monget(player(0),ABI_DATA_MOVE2)==MOVE_TIDAL_CRASH);
+ CHECK(monget(player(0),ABI_DATA_PP1)==17);
+ CHECK(monget(player(0),ABI_DATA_PP2)==9);
+ CHECK(monget(player(0),ABI_DATA_PP_BONUSES)==5);
+ CHECK(!monget(player(0),ABI_DATA_SANITY_IS_BAD_EGG));
+ CHECK(core->savedataRestore(core,oldFlash,oldSize,true));
+ free(oldFlash);
+ CHECK(core->loadState(core,bootState));
+ printf("PASS: native water moves385-386 IDs, spent PP, PP bonuses and encrypted record survive actual flash save/load\\n");
+}
