@@ -458,3 +458,6 @@ gSpecials::
 	def_special ScriptGiveShinyFeebasEgg
 	def_special RangerGiveGift
 gSpecialsEnd::
+
+	@ WRL-010: append only; preserve every preexisting special ID.
+	def_special FollowerSpecial_PlayCry
