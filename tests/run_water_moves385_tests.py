@@ -3,6 +3,7 @@
 from pathlib import Path
 import re,json
 from approved_water_moves385_changes import prior_water_moves385_source
+from approved_moves387_changes import prior_moves387_source
 
 root=Path('.')
 spec=json.loads((root/'docs/moves/approved-design-overlays.json').read_text())
