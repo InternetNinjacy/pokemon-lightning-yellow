@@ -42,7 +42,21 @@ static void blaineTests(void) {
  blaineFixture(1);fossilStart(SYM_CinnabarIsland_Gym_EventScript_Blaine);fossilClose(1);
  CHECK(!(core->busRead32(core,SYM_gBattleTypeFlags)&BATTLE_TYPE_TRAINER));
  CHECK(!CALL(FlagGet,FLAG_BADGE07_GET));CHECK(!CALL(FlagGet,FLAG_DEFEATED_BLAINE));
- blaineFixture(2);fossilStart(SYM_CinnabarIsland_Gym_EventScript_Blaine);waitAction();
+ blaineFixture(2);
+ // Pin down whether the native trainer-party constructor itself creates
+ // valid encrypted records, independently of the scripted battle lifecycle.
+ // Restore a full core snapshot before the real NPC encounter.
+ void *constructorState=malloc(core->stateSize(core));CHECK(constructorState);
+ CHECK(core->saveState(core,constructorState));
+ core->busWrite32(core,SYM_gBattleTypeFlags,BATTLE_TYPE_TRAINER|BATTLE_TYPE_DOUBLE);
+ CHECK(CALL(CreateNPCTrainerParty,SYM_gEnemyParty,TRAINER_LEADER_BLAINE)==5);
+ unsigned created=monget(enemy(0),ABI_DATA_SPECIES);
+ fprintf(stderr,"BLAINE_CONSTRUCTOR_DIAGNOSTIC species=%u expected=%u bad_egg=%u level=%u\\n",
+  created,SPECIES_DONPHAN,monget(enemy(0),ABI_DATA_SANITY_IS_BAD_EGG),
+  monget(enemy(0),ABI_DATA_LEVEL));
+ CHECK(created==SPECIES_DONPHAN);
+ CHECK(core->loadState(core,constructorState));free(constructorState);
+ fossilStart(SYM_CinnabarIsland_Gym_EventScript_Blaine);waitAction();
  CHECK(core->busRead32(core,SYM_gBattleTypeFlags)&BATTLE_TYPE_TRAINER);
  CHECK(core->busRead32(core,SYM_gBattleTypeFlags)&BATTLE_TYPE_DOUBLE);
  CHECK(core->busRead8(core,SYM_gBattlersCount)==4);
