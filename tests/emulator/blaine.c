@@ -38,10 +38,22 @@ static void blaineVictoryTests(void) {
  printf("PASS: actual Blaine Double victory/all five opponents seen, original badge/TM38/defeat script, flash Continue and nonduplicating revisit in%u frames; controlled players, unchanged opponent party\n",f);
  CHECK(core->loadState(core,bootState));
 }
+// Compute the actual decrypted BoxPokemon checksum from the 12 encrypted
+// secure words without calling ROM routines or modifying the running battle.
+// A changing *stored* checksum alone does not establish corruption.
+static unsigned blaineCalculatedChecksum(unsigned slot) {
+ uint32_t base=enemy(slot),key=core->busRead32(core,base)^core->busRead32(core,base+4);
+ unsigned sum=0;
+ for(unsigned word=0;word<12;word++) {
+  uint32_t decrypted=core->busRead32(core,base+0x20+word*4)^key;
+  sum+=(decrypted&0xffff)+(decrypted>>16);
+ }
+ return sum&0xffff;
+}
 // Audit only raw encrypted party header bytes while the unchanged native
 // battle-intro frames run. No ROM calls or writes are made during tracing.
 static void blaineWaitActionWithAudit(void) {
- unsigned frame,seenCreated=0,seenCorrupt=0,seenChecksumChange=0;
+ unsigned frame,seenCreated=0,seenCorrupt=0,seenChecksumChange=0,seenCipherMismatch=0;
  unsigned firstChecksum=0,lastChecksum=0,checksumChanges=0;
  for(frame=0;frame<2400;frame++) {
   unsigned flags=core->busRead8(core,enemy(0)+0x13);
@@ -64,10 +76,16 @@ static void blaineWaitActionWithAudit(void) {
   }
   if(seenCreated) {
    unsigned checksum=core->busRead16(core,enemy(0)+0x1c);
+   unsigned calculated=blaineCalculatedChecksum(0);
+   if(checksum!=calculated && !seenCipherMismatch) {
+    seenCipherMismatch=1;
+    fprintf(stderr,"BLAINE_CIPHER_FIRST_INVALID frame=%u stored=%04x computed=%04x flags=%02x callback=%08x\\n",
+     frame,checksum,calculated,flags,core->busRead32(core,SYM_gMain+ABI_MAIN_CB2));
+   }
    if(checksum!=lastChecksum) {
     if(checksumChanges<16)
-     fprintf(stderr,"BLAINE_CHECKSUM_TRANSITION n=%u frame=%u from=%04x to=%04x flags=%02x callback=%08x\\n",
-      checksumChanges,frame,lastChecksum,checksum,flags,
+     fprintf(stderr,"BLAINE_CHECKSUM_TRANSITION n=%u frame=%u from=%04x to=%04x computed=%04x valid=%u flags=%02x callback=%08x\\n",
+      checksumChanges,frame,lastChecksum,checksum,calculated,checksum==calculated,flags,
       core->busRead32(core,SYM_gMain+ABI_MAIN_CB2));
     checksumChanges++;
     lastChecksum=checksum;
