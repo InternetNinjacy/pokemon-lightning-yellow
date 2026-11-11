@@ -71,6 +71,74 @@ static void followerNativeTests(void)
 // Native field callback acceptance on real Route 5/Four Island Day Care maps.
 // Covers map reinitialization, visual suppression and same-instance retention.
 // This fixture is not a full controller-input door/ledge/cutscene playback.
+
+/*
+ * M2 roster-wide production loader proof: REAL ARM ROM FollowerAssets_Resolve,
+ * FollowerGraphics_Swap and SetFrame, ROM-supplied source pixels and native OBJ
+ * VRAM and software palette buffers. No sprite sheets or ROM artifacts leave CI.
+ * This is not framebuffer/reflective/crowded-map visual certification.
+ */
+static void followerAllSpeciesGraphicsNativeTests(void)
+{
+    if (CALL(FollowerAssets_Count) != 255)
+        return;
+    daycareFixture(1);
+    CHECK(CALL(FollowerGraphics_GetSpriteId) == 64);
+    unsigned tested = 0;
+    const unsigned samples = 16;
+    for (unsigned number = 1; number <= 252; ++number) {
+        unsigned species = CALL(CustomPokedexNumToSpecies, number);
+        CHECK(species != 0);
+        unsigned forms = species == SPECIES_CASTFORM ? 4 : 1;
+        for (unsigned form = 0; form < forms; ++form) {
+            for (unsigned shiny = 0; shiny < 2; ++shiny) {
+                const unsigned descriptor = SYM_gStringVar4;
+                CHECK(CALL(FollowerAssets_Resolve, species, form, shiny, descriptor) == 1);
+                unsigned size = core->busRead8(core, descriptor + 28);
+                CHECK(size == (species == SPECIES_STEELIX ? 64 : 32));
+                unsigned bytes = size == 64 ? 2048 : 512;
+                unsigned palettePtr = core->busRead32(core, descriptor + 24);
+                CHECK(palettePtr >= 0x08000000U);
+                CHECK(CALL(FollowerGraphics_Swap, descriptor, 96, 72, 1) == 0);
+                CHECK(CALL(FollowerGraphics_GetSize) == size);
+                unsigned spriteId = CALL(FollowerGraphics_GetSpriteId);
+                unsigned palSlot = CALL(FollowerGraphics_GetPaletteSlot);
+                CHECK(spriteId < 64 && palSlot < 16);
+                unsigned oam = SYM_gSprites + spriteId * ABI_FOLLOW_SPRITE_SIZE
+                               + ABI_FOLLOW_SPRITE_OAM;
+                unsigned tile = core->busRead16(core, oam + 4) & 1023;
+                CHECK(tile + (bytes / 32) <= 1024);
+                // Verify the palette selected by the actual graphics owner,
+                // not merely the descriptor's pointers or color count.
+                for (unsigned color = 0; color < 16; ++color)
+                    CHECK(core->busRead16(core, SYM_gPlttBufferUnfaded
+                          + 0x200 + palSlot * 32 + color * 2)
+                          == core->busRead16(core, palettePtr + color * 2));
+                for (unsigned frame = 0; frame < 6; ++frame) {
+                    unsigned source = core->busRead32(core, descriptor + frame * 4);
+                    CHECK(source >= 0x08000000U);
+                    CHECK(CALL(FollowerGraphics_SetFrame, frame) == 1);
+                    // Compare the full frame's sampled tile-word stripes,
+                    // including first, last, and interior source positions.
+                    for (unsigned n = 0; n <= samples; ++n) {
+                        unsigned offset = ((bytes / 2 - 1) * n / samples) * 2;
+                        CHECK(core->busRead16(core, 0x06010000U + tile * 32 + offset)
+                              == core->busRead16(core, source + offset));
+                    }
+                }
+                CHECK(CALL(FollowerGraphics_SetFrame, 6) == 0);
+                ++tested;
+            }
+        }
+    }
+    CHECK(tested == 510); // 252 normal + Shiny plus 3 Castform alternate pairs
+    CALL(FollowerGraphics_Release);
+    CHECK(CALL(FollowerGraphics_GetSpriteId) == 64);
+    CHECK(CALL(FollowerGraphics_GetPaletteSlot) == 0xFF);
+    printf("PASS: %u real production sprite variants, all 6 native frames, OBJ tiles and owned palette data; no artwork exported\\n", tested);
+    daycareFixture(1);
+}
+
 static void followerFieldNativeTests(void)
 {
     if (CALL(FollowerAssets_Count) != 255)

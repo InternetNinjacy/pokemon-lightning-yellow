@@ -439,6 +439,7 @@ int main(int argc,char **argv) {
     if(getenv("LIGHTNING_FOLLOWER_ONLY")) {
         CHECK(CALL(FollowerAssets_Count) == 255);
         followerNativeTests();
+        followerAllSpeciesGraphicsNativeTests();
         followerFieldNativeTests();
         followerGiftNativeTests();
         followerPartyMenuNativeTests();
@@ -587,6 +588,7 @@ int main(int argc,char **argv) {
     levelScene(SPECIES_TYROGUE,15,SPECIES_HITMONCHAN,0,1,100,100);
     levelScene(SPECIES_TYROGUE,16,SPECIES_HITMONTOP,2,2,100,100);
     followerNativeTests();
+    followerAllSpeciesGraphicsNativeTests();
     followerFieldNativeTests();
     followerGiftNativeTests();
     followerPartyMenuNativeTests();
