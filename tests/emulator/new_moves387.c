@@ -211,7 +211,7 @@ static void thunderFang389GuardMatrix(void){
   CALL(Cmd_seteffectwithchance);
   unsigned para=!!(core->busRead32(core,bmon(1)+ABI_BMON_STATUS1)&STATUS1_PARALYSIS);
   unsigned flinch=!!(core->busRead32(core,bmon(1)+ABI_BMON_STATUS2)&STATUS2_FLINCHED);
-  unsigned allowed=effect?(guard==0||guard==2||guard==3||guard==4||guard==7):
+  unsigned allowed=effect?(guard==0||guard==2||guard==4||guard==7):
                           (guard==0||guard==3||guard==5);
   CHECK((effect?flinch:para)==allowed);
   CHECK(effect?!para:!flinch);
