@@ -108,6 +108,7 @@ jobs:
           python3 tests/run_capture_tests.py
           python3 tests/run_blaine_tests.py
           python3 tests/check_vermilion_tucker_approved_battle.py
+          python3 tests/check_vermilion_baily_approved_battle.py
           python3 tests/run_ranger_tests.py
           python3 tests/run_ordinary_trainer_tests.py
           python3 tests/run_weather_tests.py
