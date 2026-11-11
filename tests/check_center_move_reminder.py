@@ -19,7 +19,8 @@ for path in CENTER_MAPS:
     assert len(coords) == len(set(coords)), f"{path}: overlapping NPCs"
 shared = (ROOT / "data/scripts/free_center_move_reminder.inc").read_text(encoding="utf-8")
 assembly = (ROOT / "data/event_scripts.s").read_text(encoding="utf-8")
-assert 'data/scripts/free_center_move_reminder.inc' in assembly
+assert 'data/scripts/move_tutors.inc' in assembly
+assert 'data/scripts/free_center_move_reminder.inc' in (ROOT / "data/scripts/move_tutors.inc").read_text(encoding="utf-8")
 assert SCRIPT + "::" in shared
 for needed in ("ChooseMonForMoveRelearner", "TeachMoveRelearnerMove",
                "IsSelectedMonEgg", "waitstate", "release"):
