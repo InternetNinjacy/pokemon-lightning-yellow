@@ -69,7 +69,7 @@ static void ordinaryTrainerPartyDataTests(void) {
             CHECK(knownMoves > 0);
         }
     }
-    printf("PASS: native Fuchsia three approved Singles trainer constructors, six exact species, Lv34, original IVs, no items and default PP\\n");
+    printf("PASS: native Fuchsia three approved Singles trainer constructors, six exact species, Lv34, original IVs, no items and default PP\n");
     printf("PASS: native ROM constructors for %u ordinary parties, %u Pokémon, "
            "species/level/IV/held-item/moves/PP; ten dummy source records excluded\n",
            ORDINARY_TRAINER_COUNT, index);
