@@ -163,6 +163,7 @@ static void originalEffectTests(void){
  thunderFang389IndependentEffects();
  thunderFang389GuardMatrix();
  voltSwitch388NoBenchTests();
+ voltSwitch388RealPivotTests();
  moves387to394SavePersistence();
  thunderWaveTests();
  ghostReworkTests();
