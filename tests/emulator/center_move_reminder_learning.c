@@ -197,11 +197,22 @@ static void centerMoveReminderLearningTests(void) {
     }
     CHECK(f < 6000); frames(16, 0); press(1); // yes, forget another
     // The *original* summary UI now selects which occupied move to replace.
+    // Its intervening printed prompt and confirmation may need more than one
+    // real A press; never inject the state or bypass the original menu.
     for (f = 0; f < 6000; f++) {
         uint32_t cb = core->busRead32(core, SYM_gMain + ABI_MAIN_CB2) & ~1U;
         if (cb != SYM_CB2_MoveRelearner && cb != SYM_CB2_Overworld) break;
-        frames(1, 0);
+        unsigned st = core->busRead8(core, ui);
+        frames(1, (f % 24) == 0 && (st == 18 || fossilTextPaused()) ? 1 : 0);
     }
+    if (f == 6000)
+        fprintf(stderr, "REMINDER_FULL_SLOTS_SUMMARY_WAIT state=%u callback=%08x menu=%u textPause=%u selected=%u move0=%u\n",
+            core->busRead8(core, ui),
+            core->busRead32(core, SYM_gMain + ABI_MAIN_CB2),
+            CALL(FuncIsActiveTask, SYM_Task_YesNoMenu_HandleInput | 1U),
+            fossilTextPaused(),
+            core->busRead8(core, SYM_gSelectedObjectEvent),
+            monget(player(0), ABI_DATA_MOVE1));
     CHECK(f < 6000);
     frames(240, 0); // wait for standard summary's palette and input setup
     press(1); // select first move (Tackle) via actual summary A input
