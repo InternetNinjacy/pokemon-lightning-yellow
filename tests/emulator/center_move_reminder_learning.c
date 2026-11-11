@@ -191,7 +191,9 @@ static void centerMoveReminderLearningTests(void) {
     CHECK(f < 6000); frames(16, 0); press(1); // yes, teach
     for (f = 0; f < 6000; f++) {
         if (core->busRead8(core, ui) == 18) break;
-        frames(1, 0);
+        // Original full-slot flow prints a blocking message before Yes/No.
+        // Advance only when the native text printer is paused for A/B.
+        frames(1, (f % 12) == 0 && fossilTextPaused() ? 1 : 0);
     }
     CHECK(f < 6000); frames(16, 0); press(1); // yes, forget another
     // The *original* summary UI now selects which occupied move to replace.
