@@ -14,6 +14,16 @@ static void waitThunderWaveTurn(void){
  // the actual action-selection controller requirement.
  unsigned j;
  for(j=0;j<2400;j++){
+  if(j%600==0||j==2399)fprintf(stderr,"TW_TEXT_PROGRESS frame=%u ctrl=%08x script=%08x exec=%08x tw=%u textptr=%08x char=%02x active=%u state=%u speed=%u delay=%u\\n",j,
+   controller(0),core->busRead32(core,SYM_gBattlescriptCurrInstr),
+   core->busRead32(core,SYM_gBattleControllerExecFlags),
+   core->busRead8(core,core->busRead32(core,SYM_gBattleStruct)+ABI_BATTLESTRUCT_TW_ACTIVE),
+   core->busRead32(core,SYM_sTextPrinters),
+   core->busRead8(core,core->busRead32(core,SYM_sTextPrinters)),
+   core->busRead8(core,SYM_sTextPrinters+ABI_TEXT_ACTIVE),
+   core->busRead8(core,SYM_sTextPrinters+ABI_TEXT_STATE),
+   core->busRead8(core,SYM_sTextPrinters+ABI_TEXT_STATE+1),
+   core->busRead8(core,SYM_sTextPrinters+ABI_TEXT_STATE+2));
   if(controller(0)==SYM_HandleInputChooseAction)break;
   frames(1,1);
  }
