@@ -104,7 +104,17 @@ static void blaineWaitActionWithAudit(void) {
  }
  if(frame==2400)fprintf(stderr,"BLAINE_AUDIT_TIMEOUT flags=%02x\\n",core->busRead8(core,enemy(0)+0x13));
  CHECK(frame<2400);
+ // Preserve the unmodified native turn and capture the exact boundary at
+ // which the host subsequently calls GetMonData3. The constructor can be
+ // observed mid-encryption across several frames; only a stable checksum
+ // mismatch or a getter-induced flag change is evidence of corruption.
+ fprintf(stderr,"BLAINE_AUDIT_STOP frame=%u stored=%04x calculated=%04x flags=%02x controller=%08x\\n",
+  frame,core->busRead16(core,enemy(0)+0x1c),blaineCalculatedChecksum(0),
+  core->busRead8(core,enemy(0)+0x13),controller(0));
  frames(3,0);
+ fprintf(stderr,"BLAINE_AUDIT_EXIT stored=%04x calculated=%04x flags=%02x controller=%08x\\n",
+  core->busRead16(core,enemy(0)+0x1c),blaineCalculatedChecksum(0),
+  core->busRead8(core,enemy(0)+0x13),controller(0));
 }
 static void blaineTests(void) {
  blaineFixture(1);fossilStart(SYM_CinnabarIsland_Gym_EventScript_Blaine);fossilClose(1);
@@ -122,7 +132,17 @@ static void blaineTests(void) {
  const unsigned species[]={SPECIES_DONPHAN,SPECIES_PIDGEOT,SPECIES_SANDSLASH,SPECIES_AERODACTYL,SPECIES_FLYGON};
  const unsigned levels[]={42,42,43,44,47};
  for(unsigned i=0;i<5;i++){
-  unsigned actualSpecies=monget(enemy(i),ABI_DATA_SPECIES),actualLevel=monget(enemy(i),ABI_DATA_LEVEL);
+  unsigned beforeFlags=core->busRead8(core,enemy(i)+0x13);
+  unsigned beforeStored=core->busRead16(core,enemy(i)+0x1c);
+  unsigned beforeCalculated=blaineCalculatedChecksum(i);
+  unsigned actualSpecies=monget(enemy(i),ABI_DATA_SPECIES);
+  unsigned afterSpeciesFlags=core->busRead8(core,enemy(i)+0x13);
+  unsigned afterSpeciesStored=core->busRead16(core,enemy(i)+0x1c);
+  unsigned afterSpeciesCalculated=blaineCalculatedChecksum(i);
+  unsigned actualLevel=monget(enemy(i),ABI_DATA_LEVEL);
+  if(i==0 || beforeFlags!=afterSpeciesFlags || beforeStored!=beforeCalculated)
+   fprintf(stderr,"BLAINE_GETMON_BOUNDARY slot=%u before_flags=%02x before_checksum=%04x/%04x after_species_flags=%02x after_checksum=%04x/%04x species=%u level=%u\\n",
+    i,beforeFlags,beforeStored,beforeCalculated,afterSpeciesFlags,afterSpeciesStored,afterSpeciesCalculated,actualSpecies,actualLevel);
   if(actualSpecies!=species[i]||actualLevel!=levels[i]){
    // 412 is SPECIES_EGG: discriminate corrupt encrypted party records from
    // incorrect trainer selection without changing canonical expectations.
