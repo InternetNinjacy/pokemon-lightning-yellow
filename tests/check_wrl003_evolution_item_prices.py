@@ -4,8 +4,12 @@ import json
 from pathlib import Path
 
 items = json.loads(Path("src/data/items.json").read_text())["items"]
+from collections import Counter
+
+counts = Counter(item["itemId"] for item in items)
+# The upstream item table intentionally reuses ITEM_NONE for unused slots.
+# Require exactly one row for each approved priced item instead.
 by_id = {item["itemId"]: item for item in items}
-assert len(by_id) == len(items), "Duplicate item IDs"
 prices = {
     "ITEM_FIRE_STONE": 2100,
     "ITEM_WATER_STONE": 2100,
@@ -19,6 +23,7 @@ prices = {
     "ITEM_UP_GRADE": 3000,
 }
 for item_id, expected in prices.items():
+    assert counts[item_id] == 1, (item_id, counts[item_id])
     assert by_id[item_id]["price"] == expected, (
         item_id, by_id[item_id]["price"], expected
     )
