@@ -46,7 +46,16 @@ static void wrlVendorPhysicalTalkTests(void) {
         CHECK(core->busRead8(core, SYM_gSelectedObjectEvent) == object);
         CHECK(core->busRead16(core, SYM_gSpecialVar_0x8009) == v);
         vendorTextMatches(vendorIntros[v]);
-        CHECK(CALL(GetMoney, careSave1() + ABI_SAVE1_MONEY) == 70000);
+        // Diagnose a changed balance without relaxing the no-purchase gate.
+        // Distinguish an accidental Yes purchase from a save-pointer reset.
+        unsigned menuMoney = CALL(GetMoney, careSave1() + ABI_SAVE1_MONEY);
+        if (menuMoney != 70000)
+            fprintf(stderr, "WRL vendor physical unexpected pre-decline money site=%u cash=%u party=%u status=%u selected=%u menu=%u save1=%08x script=%08x\\n",
+                    v + 1, menuMoney, core->busRead8(core, SYM_gPlayerPartyCount),
+                    CALL(MysteryVendorStatus), core->busRead8(core, SYM_gSelectedObjectEvent),
+                    CALL(FuncIsActiveTask, SYM_Task_YesNoMenu_HandleInput | 1U),
+                    careSave1(), core->busRead32(core, SYM_sGlobalScriptContext + ABI_SCRIPT_PTR));
+        CHECK(menuMoney == 70000);
         press(2); // Decline purchase via the real Yes/No menu.
         fossilClose(1);
         CHECK(CALL(GetMoney, careSave1() + ABI_SAVE1_MONEY) == 70000);
