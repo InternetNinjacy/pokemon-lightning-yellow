@@ -5,12 +5,24 @@ static void waitThunderWaveTurn(void){
   unsigned active=core->busRead8(core,core->busRead32(core,SYM_gBattleStruct)+ABI_BATTLESTRUCT_TW_ACTIVE);
   seenActive|=active;
   if((seenActive&&!active)||controller(0)==SYM_HandleInputChooseAction)break;
-  frames(1,(i%12)<3?1:0);
+  // Hold the real A button during long multi-recipient text, rather than
+  // pulsing it for only 3 of every 12 frames. No controller/PP/script writes.
+  frames(1,1);
  }
  CHECK(i<2400);
- // Keep the existing2400-frame remainder guard. Magic Coat's real full turn is
- //2423 frames: the three-recipient move ends at1720, other actions take703.
- waitAction();
+ // Retain the original independent 2400-frame remainder watchdog and
+ // the actual action-selection controller requirement.
+ unsigned j;
+ for(j=0;j<2400;j++){
+  if(controller(0)==SYM_HandleInputChooseAction)break;
+  frames(1,1);
+ }
+ if(j==2400)fprintf(stderr,"TW_REMAINDER_TIMEOUT ctrl0=%08x script=%08x exec=%08x twActive=%u\\n",
+  controller(0),core->busRead32(core,SYM_gBattlescriptCurrInstr),
+  core->busRead32(core,SYM_gBattleControllerExecFlags),
+  core->busRead8(core,core->busRead32(core,SYM_gBattleStruct)+ABI_BATTLESTRUCT_TW_ACTIVE));
+ CHECK(j<2400);
+ frames(3,0);
 }
 static void thunderWaveTests(void){
  CHECK(ABI_BATTLESTRUCT_SIZE==0x200);CHECK(ABI_BATTLESTRUCT_TW_USER==0x1E4);CHECK(ABI_BATTLESTRUCT_TW_ACTIVE==0x1E7);
