@@ -156,7 +156,15 @@ static void voltSwitch388RealPivotTests(void){
   core->busWrite16(core,bmon(0)+ABI_BMON_SPEED,600);
   core->busWrite16(core,bmon(1)+ABI_BMON_SPEED,1);
   unsigned initialCB=core->busRead32(core,SYM_gMain+ABI_MAIN_CB2);
-  CHECK(core->busRead8(core,SYM_gBattlerPartyIndexes)==0);
+  CHECK(core->busRead16(core,SYM_gBattlerPartyIndexes)==0);
+  // Production declares gBattlerPartyIndexes as u16[4], not u8[4].
+  // Snapshot the partner's actual 16-bit slot and live identity before pivot.
+  unsigned partnerSlotBefore=two?core->busRead16(core,SYM_gBattlerPartyIndexes+2*sizeof(u16)):0;
+  unsigned partnerSpeciesBefore=two?core->busRead16(core,bmon(2)+ABI_BMON_SPECIES):0;
+  if(two){
+   CHECK(partnerSlotBefore==1);
+   CHECK(partnerSpeciesBefore==monget(player(1),ABI_DATA_SPECIES));
+  }
   chooseMove(0,0,1);if(two)chooseMove(2,0,1);
   unsigned frame,seenPartyScreen=0,switched=0,selectionSent=0,partyFrames=0;
   for(frame=0;frame<7200;frame++){
@@ -184,13 +192,16 @@ static void voltSwitch388RealPivotTests(void){
   CHECK(core->busRead16(core,bmon(1)+ABI_BMON_HP)<1000);
   CHECK(monget(player(0),ABI_DATA_PP1)==19);
   if(two){
-   unsigned partnerIndex=core->busRead8(core,SYM_gBattlerPartyIndexes+2);
+   unsigned partnerIndex=core->busRead16(core,SYM_gBattlerPartyIndexes+2*sizeof(u16));
    unsigned partnerSpecies=core->busRead16(core,bmon(2)+ABI_BMON_SPECIES);
    unsigned partySpecies=monget(player(1),ABI_DATA_SPECIES);
-   fprintf(stderr,"VOLT_PIVOT_PARTNER_DIAGNOSTIC partnerIndex=%u partnerSpecies=%u party1Species=%u reserve=%u playerCount=%u battlerCount=%u flags=%08x\\n",
-    partnerIndex,partnerSpecies,partySpecies,reserve,core->busRead8(core,SYM_gPlayerPartyCount),
-    core->busRead8(core,SYM_gBattlersCount),core->busRead32(core,SYM_gBattleTypeFlags));
+   fprintf(stderr,"VOLT_PIVOT_PARTNER_DIAGNOSTIC initialIndex=%u partnerIndex=%u initialSpecies=%u partnerSpecies=%u party1Species=%u reserve=%u playerCount=%u battlerCount=%u flags=%08x\\n",
+    partnerSlotBefore,partnerIndex,partnerSpeciesBefore,partnerSpecies,partySpecies,reserve,
+    core->busRead8(core,SYM_gPlayerPartyCount),core->busRead8(core,SYM_gBattlersCount),core->busRead32(core,SYM_gBattleTypeFlags));
+   CHECK(partnerIndex==partnerSlotBefore);
    CHECK(partnerIndex==1);
+   CHECK(partnerSpecies==partnerSpeciesBefore);
+   CHECK(partnerSpecies==partySpecies);
   }
   printf("PASS: native Volt Switch #388 %s actual damage, genuine player party menu and selected bench replacement; PP and partner identity\\n",two?"Doubles":"Singles");
  }
