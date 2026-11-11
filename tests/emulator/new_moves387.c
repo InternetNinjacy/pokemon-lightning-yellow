@@ -163,10 +163,10 @@ static void voltSwitch388RealPivotTests(void){
    unsigned cb=core->busRead32(core,SYM_gMain+ABI_MAIN_CB2);
    if(cb!=initialCB){seenPartyScreen=1;partyFrames++;}
    if(seenPartyScreen&&!selectionSent&&partyFrames>=120){
-    // From the active lead at slot 0, DOWN reaches the unused
-    // reserve (slot 1 in Singles, slot 2 in Doubles layout).
-    // Select using real D-pad/A presses, then choose SHIFT.
-    press(128);
+    // Singles DOWN goes 0 -> 1; Doubles RIGHT goes 0 -> 2.
+    // Both select the actual unused reserve through native menu input.
+    // Confirm the Pokemon, then confirm its SHIFT action.
+    press(two?16:128);
     press(1);
     press(1);
     selectionSent=1;
