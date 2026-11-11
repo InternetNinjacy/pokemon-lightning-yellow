@@ -54,12 +54,11 @@ VermilionCity_Gym_Text_TuckerPostBattle::
     .string "his cautious nature in the Army.$"
 
 VermilionCity_Gym_Text_BailyIntro::
-    .string "I'm a lightweight, but I'm good\n"
-    .string "with electricity!\p"
-    .string "That's why I joined this GYM.$"
+    .string "Better bring a PARLYZ HEAL!\n"
+    .string "You might need it!$"
 
 VermilionCity_Gym_Text_BailyDefeat::
-    .string "Fried!$"
+    .string "You weren't shocked at all!$"
 
 VermilionCity_Gym_Text_BailyPostBattle::
     .string "Okay, I'll talk!\p"
