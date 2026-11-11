@@ -141,6 +141,40 @@ static void voltSwitch388NoBenchTests(void){
  printf("PASS: native Volt Switch #388 Single/Double dealt damage or hit Ground immunity, one PP, no illegal switch with no bench\n");
 }
 
+// Native compiled-ROM boundary checks for Thunder Fang's two distinct
+// secondary-effect commands. Each rolls independently through the original
+// battle command, with effects isolated so neither can mask the other.
+static void thunderFang389IndependentEffects(void){
+ effectBattleFixture(0,MOVE_THUNDER_FANG);
+ unsigned script=CALL(AllocZeroed,32);CHECK(script);
+ void *state=malloc(core->stateSize(core));CHECK(state&&core->saveState(core,state));
+ const unsigned rolls[]={9,10,19,20};
+ for(unsigned serene=0;serene<2;serene++)for(unsigned effect=0;effect<2;effect++)for(unsigned r=0;r<4;r++){
+  CHECK(core->loadState(core,state));
+  core->busWrite8(core,SYM_gBattlerAttacker,0);
+  core->busWrite8(core,SYM_gBattlerTarget,1);
+  core->busWrite8(core,SYM_gBattlerByTurnOrder,0);
+  core->busWrite8(core,SYM_gBattlerByTurnOrder+1,1);
+  core->busWrite8(core,SYM_gCurrentTurnActionNumber,0);
+  core->busWrite8(core,bmon(0)+ABI_BMON_ABILITY,serene?ABILITY_SERENE_GRACE:ABILITY_NONE);
+  core->busWrite8(core,bmon(1)+ABI_BMON_ABILITY,ABILITY_NONE);
+  core->busWrite16(core,SYM_gCurrentMove,MOVE_THUNDER_FANG);
+  core->busWrite8(core,SYM_gMoveResultFlags,0);
+  core->busWrite32(core,SYM_gHitMarker,0);
+  core->busWrite8(core,SYM_gBattleCommunication+MOVE_EFFECT_BYTE,effect?MOVE_EFFECT_FLINCH:MOVE_EFFECT_PARALYSIS);
+  core->busWrite32(core,SYM_gRngValue,iceFangChanceSeed(rolls[r]));
+  core->busWrite32(core,SYM_gBattlescriptCurrInstr,script);
+  CALL(Cmd_seteffectwithchance);
+  unsigned para=!!(core->busRead32(core,bmon(1)+ABI_BMON_STATUS1)&STATUS1_PARALYSIS);
+  unsigned flinch=!!(core->busRead32(core,bmon(1)+ABI_BMON_STATUS2)&STATUS2_FLINCHED);
+  CHECK((effect?flinch:para)==(rolls[r]<(serene?20:10)));
+  CHECK(effect?!para:!flinch);
+ }
+ CHECK(core->loadState(core,state));CALL(Free,script);free(state);
+ CHECK(core->loadState(core,bootState));
+ printf("PASS: native Thunder Fang #389 independent paralysis/flinch exact 10/20%% RNG boundaries and non-cross-effect guards\\n");
+}
+
 // Verify actual flash serialization for all eight new move slots in two
 // separately encrypted boxed Pokémon, not a transient CPU snapshot.
 static void moves387to394SavePersistence(void){
