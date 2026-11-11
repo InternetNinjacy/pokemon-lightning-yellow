@@ -37,7 +37,7 @@ import re
 shop = Path("src/shop.c").read_text()
 
 def function_body(name):
-    match = re.search(r"\\bstatic void " + re.escape(name) + r"\\([^;]*\\)\\s*\\{", shop)
+    match = re.search(r"\bstatic void " + re.escape(name) + r"\([^;]*\)\s*\{", shop)
     assert match, f"Missing production shop function: {name}"
     depth = 1
     pos = match.end()
