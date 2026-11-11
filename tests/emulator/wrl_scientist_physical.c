@@ -45,7 +45,11 @@ static void wrlScientistPhysicalTests(void) {
         fossilWaitMenu(SYM_Task_YesNoMenu_HandleInput);
         CHECK(core->busRead8(core, SYM_gSelectedObjectEvent) == scientist);
         press(2); // Decline the real Yes/No gift dialogue.
-        fossilClose(1);
+        // Verify the B decision before any text-dismissal input: an A during
+        // close can also accept a re-opened menu on a wandering NPC.
+        CHECK(!CALL(BagGetQuantityByItemId, gift));
+        CHECK(!CALL(FlagGet, FLAG_GOT_UNCHOSEN_MT_MOON_FOSSIL));
+        fossilClose(2); // Keep B through the decline/close path, never A.
         CHECK(!CALL(BagGetQuantityByItemId, gift));
         CHECK(!CALL(FlagGet, FLAG_GOT_UNCHOSEN_MT_MOON_FOSSIL));
 
