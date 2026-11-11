@@ -13,7 +13,7 @@ HUNK = "            // A move targeting every other battler must visit the secon
 
 def _blob(text):
     data = text.encode()
-    return hashlib.sha1(b"blob " + str(len(data)).encode() + b"\\0" + data).hexdigest()
+    return hashlib.sha1(b"blob " + str(len(data)).encode() + b"\0" + data).hexdigest()
 
 
 def prior_batch_a_traversal_source(path, text):
