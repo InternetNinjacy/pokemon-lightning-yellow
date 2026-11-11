@@ -55,7 +55,7 @@ static void ordinaryTrainerPartyDataTests(void) {
               core->busRead8(core,
                   SYM_gBattleMoves + ABI_BMOVE_SIZE * move + ABI_BMOVE_PP));
     }
-    printf("PASS: native Vermilion Tucker one Voltorb Lv22, exact Charge/Spark/empty slots, zero IVs, no held item and original PP\\n");
+    printf("PASS: native Vermilion Tucker one Voltorb Lv22, exact Charge/Spark/empty slots, zero IVs, no held item and original PP\n");
     printf("PASS: native ROM constructors for %u ordinary parties, %u Pokémon, "
            "species/level/IV/held-item/moves/PP; ten dummy source records excluded\n",
            ORDINARY_TRAINER_COUNT, index);
