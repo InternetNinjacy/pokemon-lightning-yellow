@@ -41,14 +41,26 @@ static void blaineVictoryTests(void) {
 // Audit only raw encrypted party header bytes while the unchanged native
 // battle-intro frames run. No ROM calls or writes are made during tracing.
 static void blaineWaitActionWithAudit(void) {
- unsigned frame,seenCreated=0,seenCorrupt=0;
+ unsigned frame,seenCreated=0,seenCorrupt=0,seenChecksumChange=0;
+ unsigned firstChecksum=0;
  for(frame=0;frame<2400;frame++) {
   unsigned flags=core->busRead8(core,enemy(0)+0x13);
   if((flags&2) && !seenCreated) {
    seenCreated=1;
+   firstChecksum=core->busRead16(core,enemy(0)+0x1c);
    fprintf(stderr,"BLAINE_PARTY_CREATED frame=%u flags=%02x checksum=%04x callback=%08x\\n",
      frame,flags,core->busRead16(core,enemy(0)+0x1c),
      core->busRead32(core,SYM_gMain+ABI_MAIN_CB2));
+  }
+  if(seenCreated && !seenChecksumChange
+     && core->busRead16(core,enemy(0)+0x1c)!=firstChecksum) {
+   seenChecksumChange=1;
+   fprintf(stderr,"BLAINE_CHECKSUM_CHANGE_FIRST frame=%u from=%04x to=%04x flags=%02x personality=%08x ot_id=%08x callback=%08x battle_main=%08x exec=%08x\\n",
+    frame,firstChecksum,core->busRead16(core,enemy(0)+0x1c),flags,
+    core->busRead32(core,enemy(0)),core->busRead32(core,enemy(0)+4),
+    core->busRead32(core,SYM_gMain+ABI_MAIN_CB2),
+    core->busRead32(core,SYM_gBattleMainFunc),
+    core->busRead32(core,SYM_gBattleControllerExecFlags));
   }
   if((flags&1) && !seenCorrupt) {
    seenCorrupt=1;
