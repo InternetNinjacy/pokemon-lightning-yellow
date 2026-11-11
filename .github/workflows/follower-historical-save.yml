@@ -1,0 +1,85 @@
+name: WRL-010 genuine pre-feature flash acceptance
+on:
+  push:
+    branches: [feature/selectable-following-pokemon]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: wrl010-historical-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  authentic-old-save:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - name: Check out current feature
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Check out pinned pre-follower main
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          repository: InternetNinjacy/pokemon-lightning-yellow
+          ref: ae928a1d9eba3aed16f4252123027cb5413106a7
+          path: old-main
+          persist-credentials: false
+      - name: Install compiler and mGBA dependencies
+        run: |
+          sudo apt-get -o Acquire::Retries=3 -o Acquire::http::Timeout=30 -o Acquire::https::Timeout=30 update
+          sudo apt-get -o Acquire::Retries=3 -o DPkg::Lock::Timeout=120 install -y --no-install-recommends build-essential binutils-arm-none-eabi git libpng-dev python3 libmgba-dev
+      - name: Generate genuine pre-feature flash file from pinned main ROM
+        env:
+          LIGHTNING_EXPORT_OLD_SAVE: ${{ runner.temp }}/wrl010-pre-feature.sav
+        run: |
+          test "$(git -C old-main rev-parse HEAD)" = ae928a1d9eba3aed16f4252123027cb5413106a7
+          cd old-main
+          ./scripts/prepare-baseline.sh
+          make -j2
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('tests/emulator/runner.c')
+          source = p.read_text()
+          marker = '    if(getenv("LIGHTNING_BALL_WEATHER_ONLY"))'
+          assert source.count(marker) == 1
+          fixture = r'''
+    if(getenv("LIGHTNING_EXPORT_OLD_SAVE")) {
+        daycareFixture(1);
+        CALL(ZeroPlayerPartyMons);
+        CALL(CreateMon, player(0), SPECIES_PIKACHU, 5, 31, 1, 34567, 0, 0);
+        CALL(CreateMon, player(1), SPECIES_EEVEE, 5, 31, 1, 45678, 0, 0);
+        core->busWrite8(core, SYM_gPlayerPartyCount, 2);
+        CHECK(monget(player(0), ABI_DATA_PERSONALITY) == 34567);
+        CHECK(monget(player(1), ABI_DATA_PERSONALITY) == 45678);
+        CHECK(CALL(AddBagItem, ITEM_POTION, 3));
+        CHECK(CALL(BagGetQuantityByItemId, ITEM_POTION) == 3);
+        CHECK(CALL(FlagGet, FLAG_SYS_POKEMON_GET));
+        CHECK(CALL(TrySavingData, 0) == 1);
+        void *raw = NULL;
+        size_t size = core->savedataClone(core, &raw);
+        CHECK(size == 0x20000 && raw);
+        FILE *f = fopen(getenv("LIGHTNING_EXPORT_OLD_SAVE"), "wb");
+        CHECK(f);
+        CHECK(fwrite(raw, 1, size, f) == size);
+        CHECK(fclose(f) == 0);
+        free(raw);
+        printf("PASS: pre-follower main ROM created genuine 128 KiB flash save with two unique PIDs, potion inventory and original flags\\n");
+        core->deinit(core);free(pixels);free(bootState);return 0;
+    }
+'''
+          p.write_text(source.replace(marker, fixture + marker))
+          PY
+          python3 tests/emulator/run.py
+          test "$(stat -c %s "$LIGHTNING_EXPORT_OLD_SAVE")" = 131072
+          sha256sum "$LIGHTNING_EXPORT_OLD_SAVE"
+      - name: Compile exact-head feature ROM with ephemeral follower artwork
+        run: |
+          ./scripts/prepare-baseline.sh
+          python3 scripts/build-follower-assets.py --confirmed-scope --report /tmp/wrl010-historical-art.json
+          make -j2
+      - name: Load genuine old flash into current ROM and test follower persistence
+        env:
+          LIGHTNING_IMPORT_OLD_SAVE: ${{ runner.temp }}/wrl010-pre-feature.sav
+        run: |
+          python3 tests/emulator/run.py
+          echo 'PASS: genuine cross-build pre-feature save compatibility; no .sav or ROM committed or uploaded'

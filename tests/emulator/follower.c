@@ -227,6 +227,56 @@ static void followerMenuChooseAction(void)
     frames(36, 0);
 }
 
+
+/*
+ * Cross-build legacy save acceptance. The input must be the genuine 128 KiB
+ * flash file emitted by the pinned pre-follower main ROM's TrySavingData.
+ * It is deliberately NOT constructed by editing the current save record.
+ */
+static void followerHistoricalFlashNativeTests(void)
+{
+    const char *path = getenv("LIGHTNING_IMPORT_OLD_SAVE");
+    CHECK(path != NULL && *path != '\0');
+    FILE *file = fopen(path, "rb");
+    CHECK(file != NULL);
+    unsigned char *bytes = malloc(0x20000);
+    CHECK(bytes != NULL);
+    CHECK(fread(bytes, 1, 0x20000, file) == 0x20000);
+    CHECK(fgetc(file) == EOF);
+    CHECK(fclose(file) == 0);
+    CHECK(core->loadState(core, bootState));
+    initSave();
+    GBASavedataForceType(&((struct GBA *)core->board)->memory.savedata, SAVEDATA_FLASH1M);
+    CHECK(core->savedataRestore(core, bytes, 0x20000, true));
+    free(bytes);
+    CHECK(CALL(LoadGameSave, 0) == 1);
+    CALL(SetBagPocketsPointers);
+    CHECK(core->busRead8(core, SYM_gPlayerPartyCount) == 2);
+    CHECK(monget(player(0), ABI_DATA_SPECIES) == SPECIES_PIKACHU);
+    CHECK(monget(player(1), ABI_DATA_SPECIES) == SPECIES_EEVEE);
+    CHECK(monget(player(0), ABI_DATA_PERSONALITY) == 34567);
+    CHECK(monget(player(1), ABI_DATA_PERSONALITY) == 45678);
+    CHECK(CALL(BagGetQuantityByItemId, ITEM_POTION) == 3);
+    CHECK(CALL(FlagGet, FLAG_SYS_POKEMON_GET));
+    CHECK((int8_t)CALL(FollowerState_ResolvePartySlot) == -1);
+    CHECK(!CALL(FollowerState_CanDisplay));
+    CHECK(CALL(FollowerState_SelectPartySlot, 1));
+    CHECK(CALL(FollowerState_ResolvePartySlot) == 1);
+    flashRoundTrip();
+    CHECK(core->busRead8(core, SYM_gPlayerPartyCount) == 2);
+    CHECK(monget(player(0), ABI_DATA_PERSONALITY) == 34567);
+    CHECK(monget(player(1), ABI_DATA_PERSONALITY) == 45678);
+    CHECK(CALL(BagGetQuantityByItemId, ITEM_POTION) == 3);
+    CHECK(CALL(FlagGet, FLAG_SYS_POKEMON_GET));
+    CHECK(CALL(FollowerState_ResolvePartySlot) == 1);
+    CALL(FollowerState_Clear);
+    flashRoundTrip();
+    CHECK((int8_t)CALL(FollowerState_ResolvePartySlot) == -1);
+    CHECK(CALL(BagGetQuantityByItemId, ITEM_POTION) == 3);
+    CHECK(CALL(FlagGet, FLAG_SYS_POKEMON_GET));
+    printf("PASS: genuine pinned pre-feature ROM flash save loaded, PID/party/bag/flags preserved, follower selected/cleared across real flash reloads\\n");
+}
+
 static void followerPartyMenuNativeTests(void)
 {
     daycareFixture(1);

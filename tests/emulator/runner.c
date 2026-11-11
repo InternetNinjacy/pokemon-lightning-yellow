@@ -431,6 +431,11 @@ int main(int argc,char **argv) {
     printf("RTC autodetected: %s\n",(gba->memory.hw.devices&HW_RTC)?"yes":"no");
     CHECK(gba->memory.hw.devices&HW_RTC);
     bootState=malloc(core->stateSize(core));CHECK(bootState && core->saveState(core,bootState));
+    if(getenv("LIGHTNING_IMPORT_OLD_SAVE")) {
+        followerHistoricalFlashNativeTests();
+        printf("PASS: %u genuine historical-save native assertions\\n",checks);
+        core->deinit(core);free(pixels);free(bootState);return 0;
+    }
     if(getenv("LIGHTNING_FOLLOWER_ONLY")) {
         CHECK(CALL(FollowerAssets_Count) == 255);
         followerNativeTests();
