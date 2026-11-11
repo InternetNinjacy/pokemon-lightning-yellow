@@ -43,9 +43,13 @@ static void wrlAidePhysicalTests(void) {
             frames(6, 64);
             frames(6, 0);
             press(1);
-            fossilClose(1);
+            // Verify physical A selected the real aide while dialogue is live.
+            // Once the one-message repeat script releases the overworld,
+            // gSelectedObjectEvent is not a persistent conversation record.
             CHECK(core->busRead8(core, SYM_gSelectedObjectEvent) == aide);
+            fossilClose(1);
             CHECK(CALL(BagGetQuantityByItemId, ITEM_CLAW_FOSSIL) == 1);
+            CHECK(CALL(FlagGet, FLAG_GOT_CLAW_FOSSIL_FROM_OAKS_AIDE));
         }
         printf("PASS: WRL Route10 aide physical UP/A with %u caught, Claw award=%u and one-time flag\n",
                caught, awarded);
