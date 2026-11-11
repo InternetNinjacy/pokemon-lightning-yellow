@@ -111,38 +111,19 @@ static void blaineWaitActionWithAudit(void) {
  fprintf(stderr,"BLAINE_AUDIT_STOP frame=%u stored=%04x calculated=%04x flags=%02x controller=%08x\\n",
   frame,core->busRead16(core,enemy(0)+0x1c),blaineCalculatedChecksum(0),
   core->busRead8(core,enemy(0)+0x13),controller(0));
- // The previous exact-head run was valid at controller-stop but invalid
- // three frames later. Observe each real emulated frame and the 12 raw secure
- // words, without ROM calls, save-state restores or changes to game memory.
- uint32_t previousSecure[12];
- for(unsigned w=0;w<12;w++)previousSecure[w]=core->busRead32(core,enemy(0)+0x20+4*w);
- for(unsigned step=1;step<=3;step++) {
-  unsigned beforeStored=core->busRead16(core,enemy(0)+0x1c);
-  unsigned beforeComputed=blaineCalculatedChecksum(0);
-  unsigned beforeFlags=core->busRead8(core,enemy(0)+0x13);
-  unsigned beforeController=controller(0);
-  unsigned beforeCb=core->busRead32(core,SYM_gMain+ABI_MAIN_CB2);
-  frames(1,0);
-  unsigned changes=0;
-  for(unsigned w=0;w<12;w++) {
-   uint32_t current=core->busRead32(core,enemy(0)+0x20+4*w);
-   if(current!=previousSecure[w]) {
-    fprintf(stderr,"BLAINE_SECURE_WORD_CHANGED step=%u word=%u before=%08x after=%08x\\n",
-     step,w,previousSecure[w],current);
-    changes++;
-   }
-   previousSecure[w]=current;
-  }
-  fprintf(stderr,"BLAINE_LAST_FRAMES step=%u stored=%04x/%04x computed=%04x/%04x flags=%02x/%02x secure_changes=%u controller=%08x/%08x cb=%08x/%08x exec=%08x\\n",
-   step,beforeStored,core->busRead16(core,enemy(0)+0x1c),
-   beforeComputed,blaineCalculatedChecksum(0),beforeFlags,
-   core->busRead8(core,enemy(0)+0x13),changes,beforeController,controller(0),
-   beforeCb,core->busRead32(core,SYM_gMain+ABI_MAIN_CB2),
-   core->busRead32(core,SYM_gBattleControllerExecFlags));
- }
- fprintf(stderr,"BLAINE_AUDIT_EXIT stored=%04x calculated=%04x flags=%02x controller=%08x\\n",
-  core->busRead16(core,enemy(0)+0x1c),blaineCalculatedChecksum(0),
-  core->busRead8(core,enemy(0)+0x13),controller(0));
+ // The preceding exact-head diagnostic established that the three extra
+ // emulator frames entered a *temporary decrypted* BoxPokemon secure-data
+ // window: all 12 words changed from encrypted to (word ^ personality ^ otId)
+ // together, while their plaintext checksum still equaled the stored value.
+ // GetMonData3 would decrypt that plaintext a second time and flag Bad Egg.
+ // Do not inject a ROM getter or advance diagnostic frames inside that window.
+ // Assert the original, stable real action-selection boundary instead; the
+ // five strict species/level checks and full battle/victory checks still follow.
+ unsigned stableStored=core->busRead16(core,enemy(0)+0x1c);
+ unsigned stableCalculated=blaineCalculatedChecksum(0);
+ fprintf(stderr,"BLAINE_STABLE_PARTY_BOUNDARY stored=%04x calculated=%04x flags=%02x controller=%08x\\n",
+  stableStored,stableCalculated,core->busRead8(core,enemy(0)+0x13),controller(0));
+ CHECK(stableStored==stableCalculated);
 }
 static void blaineTests(void) {
  blaineFixture(1);fossilStart(SYM_CinnabarIsland_Gym_EventScript_Blaine);fossilClose(1);
