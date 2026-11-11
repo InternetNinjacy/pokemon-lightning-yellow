@@ -350,6 +350,7 @@ static void dexTests(void) {
 #include "wrl_lapras_physical.c"
 #include "wrl_porygon_physical.c"
 #include "center_move_reminder_physical.c"
+#include "center_move_reminder_learning.c"
 #include "wrl_route_grass.c"
 #include "sow_placement.c"
 #include "sow_producers.c"
@@ -477,6 +478,7 @@ int main(int argc,char **argv) {
     if(getenv("LIGHTNING_GYM_CASTFORM_ONLY")){gymCastformTests();printf("PASS: %u focused Gym Castform assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_LIGHTING_CAPTURE_DIR")){lightingPreviewCaptures();printf("PASS: %u native lighting capture assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_WRL_VENDOR_PHYSICAL_ONLY")){wrlVendorPhysicalTalkTests();printf("PASS: %u focused WRL-009 physical vendor assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_CENTER_REMINDER_LEARNING_ONLY")){centerMoveReminderLearningTests();printf("PASS: %u focused Center Reminder eligibility/persistence assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_CENTER_REMINDER_PHYSICAL_ONLY")){centerMoveReminderPhysicalTests();printf("PASS: %u focused physical Center Move Reminder assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_WRL_PORYGON_PHYSICAL_ONLY")){wrlPorygonPhysicalTests();printf("PASS: %u focused WRL-009 physical Porygon assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_WRL_LAPRAS_PHYSICAL_ONLY")){wrlLaprasPhysicalTests();printf("PASS: %u focused WRL-009 physical Lapras assertions\\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
