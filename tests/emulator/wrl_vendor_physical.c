@@ -43,6 +43,9 @@ static void wrlVendorPhysicalTalkTests(void) {
                     core->busRead8(core, SYM_sGlobalScriptContextStatus));
         }
         CHECK(f < 6000);
+        // Match fossilWaitMenu(): the task can be registered before its first
+        // input-ready frame. Let it settle before sending the decline key.
+        frames(10, 0);
         CHECK(core->busRead8(core, SYM_gSelectedObjectEvent) == object);
         CHECK(core->busRead16(core, SYM_gSpecialVar_0x8009) == v);
         vendorTextMatches(vendorIntros[v]);
@@ -57,8 +60,15 @@ static void wrlVendorPhysicalTalkTests(void) {
                     careSave1(), core->busRead32(core, SYM_sGlobalScriptContext + ABI_SCRIPT_PTR));
         CHECK(menuMoney == 70000);
         press(2); // Decline purchase via the real Yes/No menu.
-        fossilClose(1);
-        CHECK(CALL(GetMoney, careSave1() + ABI_SAVE1_MONEY) == 70000);
+        // Do not inject A during cleanup: if B was too early, A could buy.
+        fossilClose(2);
+        unsigned closedMoney = CALL(GetMoney, careSave1() + ABI_SAVE1_MONEY);
+        if (closedMoney != 70000)
+            fprintf(stderr, "WRL vendor physical post-decline site=%u cash=%u party=%u status=%u menu=%u script=%08x\n",
+                    v + 1, closedMoney, core->busRead8(core, SYM_gPlayerPartyCount),
+                    CALL(MysteryVendorStatus), CALL(FuncIsActiveTask, SYM_Task_YesNoMenu_HandleInput | 1U),
+                    core->busRead32(core, SYM_sGlobalScriptContext + ABI_SCRIPT_PTR));
+        CHECK(closedMoney == 70000);
         CHECK(!CALL(MysteryVendorStatus));
         CHECK(core->busRead8(core, SYM_gPlayerPartyCount) == 3);
         printf("PASS: WRL vendor%u staged physical UP/A NPC interaction, correct seller and no-charge decline\\n", v + 1);
