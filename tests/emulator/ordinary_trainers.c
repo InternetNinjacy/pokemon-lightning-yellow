@@ -56,6 +56,44 @@ static void ordinaryTrainerPartyDataTests(void) {
                   SYM_gBattleMoves + ABI_BMOVE_SIZE * move + ABI_BMOVE_PP));
     }
     printf("PASS: native Vermilion Tucker one Voltorb Lv22, exact Charge/Spark/empty slots, zero IVs, no held item and original PP\n");
+
+    // Baily is a distinct, approved ordinary Vermilion Gym Trainer, stacked
+    // after Tucker without modifying Tucker's native acceptance. Both use
+    // genuine production CreateNPCTrainerParty and normal level-up moves.
+    core->busWrite32(core, SYM_gBattleTypeFlags, BATTLE_TYPE_TRAINER);
+    CHECK(CALL(CreateNPCTrainerParty, SYM_gEnemyParty,
+               TRAINER_ENGINEER_BAILY) == 2);
+    const unsigned bailySpecies[] = {SPECIES_PICHU, SPECIES_FLAAFFY};
+    const unsigned bailyLevels[] = {8, 22};
+    const unsigned bailyLegalMoves[][4] = {
+        {MOVE_THUNDER_SHOCK, MOVE_CHARM, MOVE_TAIL_WHIP, MOVE_THUNDER_WAVE},
+        {MOVE_TACKLE, MOVE_GROWL, MOVE_THUNDER_SHOCK, MOVE_THUNDER_WAVE},
+    };
+    for (unsigned i = 0; i < 2; i++) {
+        const unsigned mon = enemy(i);
+        CHECK(monget(mon, ABI_DATA_SPECIES) == bailySpecies[i]);
+        CHECK(monget(mon, ABI_DATA_LEVEL) == bailyLevels[i]);
+        CHECK(monget(mon, ABI_DATA_HELD_ITEM) == ITEM_NONE);
+        for (unsigned iv = 0; iv < 6; iv++)
+            CHECK(monget(mon, ABI_DATA_HP_IV + iv) == 0);
+        for (unsigned slot = 0; slot < 4; slot++) {
+            const unsigned move = monget(mon, ABI_DATA_MOVE1 + slot);
+            unsigned matches = 0;
+            for (unsigned legal = 0; legal < 4; legal++)
+                if (move == bailyLegalMoves[i][legal])
+                    matches++;
+            CHECK(matches == 1);
+            CHECK(monget(mon, ABI_DATA_PP1 + slot) ==
+                  core->busRead8(core,
+                      SYM_gBattleMoves + ABI_BMOVE_SIZE * move + ABI_BMOVE_PP));
+        }
+        unsigned waveCount = 0;
+        for (unsigned slot = 0; slot < 4; slot++)
+            if (monget(mon, ABI_DATA_MOVE1 + slot) == MOVE_THUNDER_WAVE)
+                waveCount++;
+        CHECK(waveCount == 1);
+    }
+    printf("PASS: native Vermilion Baily Pichu8/Flaaffy22, natural Thunder Wave, legal moves/PP, zero IVs and no held items\n");
     printf("PASS: native ROM constructors for %u ordinary parties, %u Pokémon, "
            "species/level/IV/held-item/moves/PP; ten dummy source records excluded\n",
            ORDINARY_TRAINER_COUNT, index);
