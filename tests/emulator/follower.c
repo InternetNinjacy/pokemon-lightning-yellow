@@ -203,6 +203,83 @@ static void followerFieldNativeTests(void)
 // Story bridge: actual WRL-001 gift functions on ARM under libmGBA.
 // The separate WRL-001 suite covers Parcel flag delivery/PC overflow.
 // This verifies WRL-010 assigns only the opening Pikachu and never Eevee.
+
+/*
+ * Native field-party menu acceptance.  Do not replace these button presses
+ * with direct FollowerState_SelectPartySlot / FollowerState_Clear calls:
+ * that would skip the real action-list, cursor and callback integration.
+ */
+static void followerMenuTap(unsigned key)
+{
+    frames(2, key);
+    frames(12, 0);
+}
+
+static void followerMenuChooseAction(void)
+{
+    // Two non-Egg party members: Summary, Switch, Item, follower, Cancel.
+    // The follower item is fourth (three DOWN presses from initial cursor).
+    followerMenuTap(1); // A opens the actual selected Pokémon action menu
+    frames(36, 0);
+    for (unsigned i = 0; i < 3; ++i)
+        followerMenuTap(128); // DOWN
+    followerMenuTap(1); // A dispatches Set as Follower or Stop Following
+    frames(36, 0);
+}
+
+static void followerPartyMenuNativeTests(void)
+{
+    daycareFixture(1);
+    CALL(ZeroPlayerPartyMons);
+    CALL(CreateMon, player(0), SPECIES_PIKACHU, 5, 31, 1, 34567, 0, 0);
+    core->busWrite8(core, SYM_gPlayerPartyCount, 1);
+    CALL(ScriptNameSocketStarterPikachu);
+    CHECK(CALL(ScriptGiveSueEevee) == 0);
+    CHECK(core->busRead8(core, SYM_gPlayerPartyCount) == 2);
+    const unsigned socketPid = monget(player(0), ABI_DATA_PERSONALITY);
+    const unsigned suePid = monget(player(1), ABI_DATA_PERSONALITY);
+    CHECK(socketPid != suePid);
+    CALL(FollowerState_Clear);
+    CHECK((int8_t)CALL(FollowerState_ResolvePartySlot) == -1);
+
+    // Initialize the real compiled field party menu, then press actual keys.
+    CALL(CB2_PartyMenuFromStartMenu);
+    frames(180, 0);
+    CHECK(core->busRead8(core, SYM_gPartyMenu + ABI_PARTY_MENU_SLOT) == 0);
+    followerMenuChooseAction();
+    CHECK(CALL(FollowerState_ResolvePartySlot) == 0);
+    CHECK(monget(player(0), ABI_DATA_PERSONALITY) == socketPid);
+
+    followerMenuTap(128); // move highlighted Pokémon from slot 0 to slot 1
+    CHECK(core->busRead8(core, SYM_gPartyMenu + ABI_PARTY_MENU_SLOT) == 1);
+    followerMenuChooseAction();
+    CHECK(CALL(FollowerState_ResolvePartySlot) == 1);
+    CHECK(monget(player(1), ABI_DATA_PERSONALITY) == suePid);
+    followerMenuTap(2); // B closes party menu, preserving selection
+    frames(140, 0);
+    flashRoundTrip();
+    CHECK(core->busRead8(core, SYM_gPlayerPartyCount) == 2);
+    CHECK(monget(player(0), ABI_DATA_PERSONALITY) == socketPid);
+    CHECK(monget(player(1), ABI_DATA_PERSONALITY) == suePid);
+    CHECK(CALL(FollowerState_ResolvePartySlot) == 1);
+
+    // Reopen and use the menu's Stop Following action for the saved SUE.
+    CALL(CB2_PartyMenuFromStartMenu);
+    frames(180, 0);
+    followerMenuTap(128);
+    CHECK(core->busRead8(core, SYM_gPartyMenu + ABI_PARTY_MENU_SLOT) == 1);
+    followerMenuChooseAction();
+    CHECK((int8_t)CALL(FollowerState_ResolvePartySlot) == -1);
+    followerMenuTap(2);
+    frames(140, 0);
+    flashRoundTrip();
+    CHECK((int8_t)CALL(FollowerState_ResolvePartySlot) == -1);
+    CHECK(monget(player(0), ABI_DATA_PERSONALITY) == socketPid);
+    CHECK(monget(player(1), ABI_DATA_PERSONALITY) == suePid);
+    printf("PASS: actual party-menu A/D-pad Set/Stop actions, SOCKET-to-SUE identity and flash deselection\\n");
+    daycareFixture(1);
+}
+
 static void followerGiftNativeTests(void)
 {
     daycareFixture(1);

@@ -436,6 +436,8 @@ int main(int argc,char **argv) {
         followerNativeTests();
         followerFieldNativeTests();
         followerGiftNativeTests();
+    followerPartyMenuNativeTests();
+        followerPartyMenuNativeTests();
         printf("PASS: %u native WRL-010 follower assertions\n", checks);
         core->deinit(core);free(pixels);free(bootState);return 0;
     }
