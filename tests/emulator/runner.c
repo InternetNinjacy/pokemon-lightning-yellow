@@ -484,6 +484,7 @@ int main(int argc,char **argv) {
     if(getenv("LIGHTNING_WILD_NICKNAME_ONLY")){wildNicknameTests();printf("PASS: %u focused capture nickname assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_BLAINE_ONLY")){blaineTests();printf("PASS: %u focused Blaine assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_MUSEUM_ONLY")){museumTests();printf("PASS: %u focused Museum assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_THUNDER_WAVE_ONLY")){thunderWaveTests();printf("PASS: %u focused Thunder Wave native assertions\\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_BATCH_A_ONLY")){batchANativeTests();batchAExactMechanics();batchAFlashPersistence();printf("PASS: %u focused Batch A native mGBA assertions\\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     initSave();
     for(unsigned h=0;h<24;h++) {
