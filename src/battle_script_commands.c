@@ -4394,6 +4394,42 @@ static void Cmd_moveend(void)
                     gHitMarker |= HITMARKER_NO_ATTACKSTRING;
                 }
             }
+            // A move targeting every other battler must visit the second foe
+            // and then the user's ally. Retain MOVE_TARGET_BOTH's original
+            // two-opponent handling and its normal 50% damage behavior.
+            if (!(gHitMarker & HITMARKER_UNABLE_TO_USE_MOVE)
+                && (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+                && !gProtectStructs[gBattlerAttacker].chargingTurn
+                && gBattleMoves[gCurrentMove].target == MOVE_TARGET_FOES_AND_ALLY
+                && GetBattlerSide(gBattlerTarget) != GetBattlerSide(gBattlerAttacker))
+            {
+                u8 nextTarget;
+
+                if (!(gHitMarker & HITMARKER_NO_ATTACKSTRING))
+                {
+                    // The first recipient was a foe: try their partner.
+                    nextTarget = GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(gBattlerTarget)));
+                    if (gBattleMons[nextTarget].hp == 0)
+                        nextTarget = GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(gBattlerAttacker)));
+                }
+                else
+                {
+                    // After the second foe, the only remaining recipient is
+                    // the attacker's partner. Do not bounce between foes.
+                    nextTarget = GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(gBattlerAttacker)));
+                }
+
+                if (nextTarget != gBattlerAttacker && gBattleMons[nextTarget].hp != 0)
+                {
+                    gBattlerTarget = nextTarget;
+                    gHitMarker |= HITMARKER_NO_ATTACKSTRING;
+                    gBattleScripting.moveendState = 0;
+                    MoveValuesCleanUp();
+                    BattleScriptPush(gBattleScriptsForMoveEffects[gBattleMoves[gCurrentMove].effect]);
+                    gBattlescriptCurrInstr = BattleScript_FlushMessageBox;
+                    return;
+                }
+            }
             gBattleScripting.moveendState++;
             break;
         case MOVEEND_COUNT:
