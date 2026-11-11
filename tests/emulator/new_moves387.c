@@ -141,6 +141,46 @@ static void voltSwitch388NoBenchTests(void){
  printf("PASS: native Volt Switch #388 Single/Double dealt damage or hit Ground immunity, one PP, no illegal switch with no bench\n");
 }
 
+// Real Volt Switch pivot acceptance: create an unused, healthy party member,
+// use actual battle move input, then select it through the player's native
+// party screen with A presses. No battler indexes or switch buffers are forged.
+static void voltSwitch388RealPivotTests(void){
+ for(unsigned two=0;two<2;two++){
+  effectBattleFixture(two,MOVE_VOLT_SWITCH);
+  unsigned reserve=two?2:1;
+  CALL(CreateMon,player(reserve),SPECIES_SNORLAX,50,31,1,12348,0,1234);
+  CHECK(monget(player(reserve),ABI_DATA_SPECIES)==SPECIES_SNORLAX);
+  core->busWrite8(core,SYM_gPlayerPartyCount,reserve+1);
+  core->busWrite16(core,bmon(0)+ABI_BMON_SPATTACK,200);
+  core->busWrite16(core,bmon(1)+ABI_BMON_SPDEFENSE,100);
+  core->busWrite16(core,bmon(0)+ABI_BMON_SPEED,600);
+  core->busWrite16(core,bmon(1)+ABI_BMON_SPEED,1);
+  unsigned initialCB=core->busRead32(core,SYM_gMain+ABI_MAIN_CB2);
+  CHECK(core->busRead8(core,SYM_gBattlerPartyIndexes)==0);
+  chooseMove(0,0,1);if(two)chooseMove(2,0,1);
+  unsigned frame,seenPartyScreen=0,switched=0;
+  for(frame=0;frame<7200;frame++){
+   unsigned cb=core->busRead32(core,SYM_gMain+ABI_MAIN_CB2);
+   if(cb!=initialCB)seenPartyScreen=1;
+   if(core->busRead8(core,SYM_gBattlerPartyIndexes)==reserve)switched=1;
+   if(switched&&controller(0)==SYM_HandleInputChooseAction)break;
+   // A is genuine controller input, not a fabricated controller response.
+   frames(1,(frame%12)<3?1:0);
+  }
+  if(frame==7200)fprintf(stderr,"VOLT_PIVOT_TIMEOUT two=%u party=%u switched=%u cb=%08x ctrl=%08x script=%08x exec=%08x\\n",two,seenPartyScreen,switched,core->busRead32(core,SYM_gMain+ABI_MAIN_CB2),controller(0),core->busRead32(core,SYM_gBattlescriptCurrInstr),core->busRead32(core,SYM_gBattleControllerExecFlags));
+  CHECK(frame<7200);
+  CHECK(seenPartyScreen);
+  CHECK(switched);
+  CHECK(core->busRead8(core,SYM_gBattlerPartyIndexes)==reserve);
+  CHECK(core->busRead16(core,bmon(0)+ABI_BMON_SPECIES)==SPECIES_SNORLAX);
+  CHECK(core->busRead16(core,bmon(1)+ABI_BMON_HP)<1000);
+  CHECK(monget(player(0),ABI_DATA_PP1)==19);
+  if(two)CHECK(core->busRead8(core,SYM_gBattlerPartyIndexes+2)==1);
+  printf("PASS: native Volt Switch #388 %s actual damage, genuine player party menu and selected bench replacement; PP and partner identity\\n",two?"Doubles":"Singles");
+ }
+ CHECK(core->loadState(core,bootState));
+}
+
 // Native compiled-ROM boundary checks for Thunder Fang's two distinct
 // secondary-effect commands. Each rolls independently through the original
 // battle command, with effects isolated so neither can mask the other.
