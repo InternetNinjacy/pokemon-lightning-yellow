@@ -20,6 +20,8 @@ def project(path,text,view):
     # Reversal of a present append is strict; absent append is left untouched.
     # Reverse the exact new Batch A damage delta before checking frozen
     # weather-integration source hashes; rejects altered staged source blobs.
+    from approved_batch_a_traversal_changes import prior_batch_a_traversal_source
+    text=prior_batch_a_traversal_source(path,text)
     from approved_batch_a_spread_changes import prior_batch_a_spread_source
     text=prior_batch_a_spread_source(path,text)
     from approved_batch_a_changes import HUNKS as BATCH_A_HUNKS, prior_batch_a_source
