@@ -257,3 +257,48 @@ static void summaryTests(void) {
     }
     printf("PASS: real summary list/detail navigation selected physical, special and status moves\n");
 }
+
+/*
+ * BTL-003 acceptance: exercise the compiled AI script/score/choice path, not
+ * merely AI_CalcDmg. The controlled opponent is Ghost type so the Normal
+ * damaging option cannot hit; the other move is a neutral Special attack.
+ * Preserve the original trainer script and all move/category data.
+ */
+static void trainerAiCategoryAcceptance(void) {
+    wildFixture(MAP_GROUP(MAP_MT_MOON_1F),MAP_NUM(MAP_MT_MOON_1F),1);
+    startSpecial();
+    waitAction();
+    create(SPECIES_KECLEON,50);
+    CALL(CopyPlayerPartyMonToBattleData,1,0);
+    create(SPECIES_GENGAR,50);
+    CALL(CopyPlayerPartyMonToBattleData,0,0);
+    damageStats();
+    core->busWrite16(core,bmon(1)+ABI_BMON_MOVES,MOVE_TACKLE);
+    core->busWrite16(core,bmon(1)+ABI_BMON_MOVES+2,MOVE_SHADOW_BALL);
+    core->busWrite16(core,bmon(1)+ABI_BMON_MOVES+4,MOVE_NONE);
+    core->busWrite16(core,bmon(1)+ABI_BMON_MOVES+6,MOVE_NONE);
+    core->busWrite8(core,bmon(1)+ABI_BMON_PP,30);
+    core->busWrite8(core,bmon(1)+ABI_BMON_PP+1,15);
+    core->busWrite8(core,bmon(1)+ABI_BMON_PP+2,0);
+    core->busWrite8(core,bmon(1)+ABI_BMON_PP+3,0);
+    core->busWrite8(core,SYM_gActiveBattler,1);
+    core->busWrite32(core,SYM_gBattleTypeFlags,BATTLE_TYPE_TRAINER);
+    CALL(BattleAI_SetupAIData);
+    uint32_t battleRes=core->busRead32(core,SYM_gBattleResources);
+    CHECK(battleRes>=0x02000000 && battleRes<0x02040000);
+    uint32_t thinking=core->busRead32(core,battleRes+ABI_BRES_AI);
+    CHECK(thinking>=0x02000000 && thinking<0x02040000);
+    // Use the production CHECK_BAD_MOVE script without changing a Trainer's
+    // installed policy or claiming that all trainer strategies are covered.
+    core->busWrite32(core,thinking+ABI_AI_FLAGS,1);
+    unsigned chosen=CALL(BattleAI_ChooseMoveOrAction);
+    unsigned normal=core->busRead8(core,thinking+ABI_AI_SCORE);
+    unsigned special=core->busRead8(core,thinking+ABI_AI_SCORE+1);
+    if(chosen!=1 || special<=normal)
+        fprintf(stderr,"BTL003 real AI immunity scenario: chosen=%u normal=%u special=%u\\n",
+                chosen,normal,special);
+    CHECK(special>normal);
+    CHECK(chosen==1);
+    printf("PASS: actual ROM trainer-AI script penalizes immune Physical move and chooses viable Special move\\n");
+    CHECK(core->loadState(core,bootState));
+}
