@@ -31,6 +31,13 @@ static void wrlAidePhysicalTests(void) {
             flashRoundTrip();
             CHECK(CALL(BagGetQuantityByItemId, ITEM_CLAW_FOSSIL) == 1);
             CHECK(CALL(FlagGet, FLAG_GOT_CLAW_FOSSIL_FROM_OAKS_AIDE));
+            // Flash loading restores save blocks but not the live field/avatar
+            // state. Re-enter the authored map before testing a second real
+            // overworld conversation, as Continue would do.
+            fossilWarp(group, map, 12, 6);
+            aide = CALL(GetObjectEventIdByLocalIdAndMap, 5, map, group);
+            CHECK(aide < ABI_OBJECT_COUNT);
+            CHECK(CALL(GetObjectEventIdByXY, 12 + 7, 5 + 7) == aide);
             // Repeat through real A input: the one-time aide cannot award twice.
             core->busWrite8(core, SYM_gSelectedObjectEvent, 0xFF);
             frames(6, 64);
