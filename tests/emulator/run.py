@@ -270,7 +270,7 @@ required = [
     'gRngValue', 'gSaveBlock1', 'gSaveBlock1Ptr', 'gSaveBlock2', 'gSaveBlock2Ptr',
     'gTasks', 'gWildMonHeaders', 'sEvoStructPtr', 'sPlttBufferTransferPending', 'sPokedexScreenData',
     'sEggHatchData', 'sGlobalScriptContext', 'sGlobalScriptContextStatus', 'EggHatch', 'CB2_EggHatch_0', 'CB2_EggHatch_1',
-    'CB2_UpdatePartyMenu', 'SetMoney', 'GetMoney', 'GetGameStat', 'SetGameStat',
+    'CB2_UpdatePartyMenu', 'SetMoney', 'GetMoney', 'ItemId_GetPrice', 'GetGameStat', 'SetGameStat',
     'ArePlayerFieldControlsLocked', 'gPlayerAvatar', 'gQuestLogState',
     'CB2_ContinueSavedGame', 'Route5DaycareNeedsMapRefresh', 'RemoveObjectEventByLocalIdAndMap', 'GetObjectEventIdByLocalIdAndMap',
     'GetRoute5Daycare', 'GetActiveDaycare', 'IsRoute5DaycareReady', 'TriggerPendingDaycareEgg',
