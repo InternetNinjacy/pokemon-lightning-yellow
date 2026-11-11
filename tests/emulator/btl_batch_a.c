@@ -45,6 +45,14 @@ static void batchANativeTests(void){
   core->busWrite16(core,SYM_gCurrentMove,moves[m]);
   CALL(AI_CalcDmg,0,1);
   CHECK(core->busRead32(core,SYM_gBattleMoveDamage)==raw);
+  // The source base-damage routine deliberately excludes effectiveness.
+  // Compare actual battle damage to the independent native TypeCalc result:
+  // Aura Sphere is Fighting and the fixture's target is Normal (2x).
+  core->busWrite32(core,SYM_gBattleMoveDamage,raw);
+  CALL(TypeCalc,moves[m],0,1);
+  unsigned expectedTyped=core->busRead32(core,SYM_gBattleMoveDamage);
+  CHECK(expectedTyped>0);
+  core->busWrite8(core,SYM_gMoveResultFlags,0);
   void *state=malloc(core->stateSize(core));CHECK(state&&core->saveState(core,state));
   // Full exact accuracy and proc/ability boundaries are tested separately;
   // this suite exercises real battle turns and actual animation completion.
@@ -71,7 +79,7 @@ static void batchANativeTests(void){
     // baseDamage uses the real production calculation, including the
     // approved 75% all-other-battler modifier for Petal Blizzard in Doubles.
     // Do not apply spread damage a second time in the acceptance oracle.
-    unsigned expected=raw;
+    unsigned expected=expectedTyped;
     if(dealt<expected*85/100-2||dealt>expected+2)
      fprintf(stderr,"BATCH_A_DAMAGE m=%u two=%u expected=%u dealt=%u\\n",m,two,expected,dealt);
     CHECK(dealt+2>=expected*85/100&&dealt<=expected+2);
