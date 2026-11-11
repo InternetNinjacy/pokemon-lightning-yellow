@@ -159,7 +159,7 @@ static void voltSwitch388RealPivotTests(void){
   CHECK(core->busRead16(core,SYM_gBattlerPartyIndexes)==0);
   // Production declares gBattlerPartyIndexes as u16[4], not u8[4].
   // Snapshot the partner's actual 16-bit slot and live identity before pivot.
-  unsigned partnerSlotBefore=two?core->busRead16(core,SYM_gBattlerPartyIndexes+2*sizeof(u16)):0;
+  unsigned partnerSlotBefore=two?core->busRead16(core,SYM_gBattlerPartyIndexes+2*sizeof(uint16_t)):0;
   unsigned partnerSpeciesBefore=two?core->busRead16(core,bmon(2)+ABI_BMON_SPECIES):0;
   if(two){
    CHECK(partnerSlotBefore==1);
@@ -192,7 +192,7 @@ static void voltSwitch388RealPivotTests(void){
   CHECK(core->busRead16(core,bmon(1)+ABI_BMON_HP)<1000);
   CHECK(monget(player(0),ABI_DATA_PP1)==19);
   if(two){
-   unsigned partnerIndex=core->busRead16(core,SYM_gBattlerPartyIndexes+2*sizeof(u16));
+   unsigned partnerIndex=core->busRead16(core,SYM_gBattlerPartyIndexes+2*sizeof(uint16_t));
    unsigned partnerSpecies=core->busRead16(core,bmon(2)+ABI_BMON_SPECIES);
    unsigned partySpecies=monget(player(1),ABI_DATA_SPECIES);
    fprintf(stderr,"VOLT_PIVOT_PARTNER_DIAGNOSTIC initialIndex=%u partnerIndex=%u initialSpecies=%u partnerSpecies=%u party1Species=%u reserve=%u playerCount=%u battlerCount=%u flags=%08x\\n",
