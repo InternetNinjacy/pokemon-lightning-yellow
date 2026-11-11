@@ -50,10 +50,16 @@ static void blaineTests(void) {
  const unsigned levels[]={42,42,43,44,47};
  for(unsigned i=0;i<5;i++){
   unsigned actualSpecies=monget(enemy(i),ABI_DATA_SPECIES),actualLevel=monget(enemy(i),ABI_DATA_LEVEL);
-  if(actualSpecies!=species[i]||actualLevel!=levels[i])
-   fprintf(stderr,"BLAINE_NATIVE_DIAGNOSTIC index=%u species=%u expected_species=%u level=%u expected_level=%u enemy_count=%u battler_count=%u flags=%08x\\n",
+  if(actualSpecies!=species[i]||actualLevel!=levels[i]){
+   // 412 is SPECIES_EGG: discriminate corrupt encrypted party records from
+   // incorrect trainer selection without changing canonical expectations.
+   fprintf(stderr,"BLAINE_NATIVE_DIAGNOSTIC index=%u species=%u expected_species=%u level=%u expected_level=%u enemy_count=%u battler_count=%u flags=%08x bad_egg=%u is_egg=%u trainer=%u battle_left=%u battle_right=%u\\n",
     i,actualSpecies,species[i],actualLevel,levels[i],core->busRead8(core,SYM_gEnemyPartyCount),
-    core->busRead8(core,SYM_gBattlersCount),core->busRead32(core,SYM_gBattleTypeFlags));
+    core->busRead8(core,SYM_gBattlersCount),core->busRead32(core,SYM_gBattleTypeFlags),
+    monget(enemy(i),ABI_DATA_SANITY_IS_BAD_EGG),monget(enemy(i),ABI_DATA_IS_EGG),
+    core->busRead16(core,SYM_gTrainerBattleOpponent_A),
+    core->busRead16(core,bmon(1)+ABI_BMON_SPECIES),core->busRead16(core,bmon(3)+ABI_BMON_SPECIES));
+  }
   CHECK(actualSpecies==species[i]);CHECK(actualLevel==levels[i]);
  }
  CHECK(core->busRead16(core,bmon(1)+ABI_BMON_SPECIES)==SPECIES_DONPHAN);
