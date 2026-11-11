@@ -19,7 +19,8 @@ def restore_ordinary_trainer_blocks(path):
         ["git", "show", BASE + ":" + str(path)], text=True)
     from approved_brock_weather_changes import prior_brock_weather_source
     from approved_gym001_tucker_changes import prior_gym001_tucker_source
-    result = prior_gym001_tucker_source(path, prior_brock_weather_source(path))
+    from approved_gym001_baily_changes import prior_gym001_baily_source
+    result = prior_gym001_baily_source(path, prior_gym001_tucker_source(path, prior_brock_weather_source(path)))
     # Rocket Hideout #45 modifies only existing Grunt IDs 8–18. Revert
     # those exact approved records before the ordinary-Trainer baseline check;
     # unrelated changes still fail the final byte-for-byte comparison.
