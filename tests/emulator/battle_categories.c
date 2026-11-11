@@ -337,28 +337,48 @@ static void trainerAiCategoryAcceptance(void) {
     // The ability-off control must restore the Physical score; do not forge
     // move scores or replace the AI's actual chosen action.
     const unsigned abilities[]={ABILITY_FLASH_FIRE,ABILITY_LEVITATE};
+    const unsigned abilitySpecies[]={SPECIES_VULPIX,SPECIES_GENGAR};
     const unsigned physicalMoves[]={MOVE_FIRE_PUNCH,MOVE_EARTHQUAKE};
     const unsigned targetTypes[]={TYPE_GRASS,TYPE_ELECTRIC};
     for(unsigned i=0;i<2;i++) {
+        // FRLG's opponent AI infers an unobserved ability from the species
+        // table, not the raw battle-mon ability byte. Use actual single-ability
+        // species (Vulpix=Flash Fire, Gengar=Levitate) rather than an invented
+        // Flash Fire Gengar. The Doubles AI also randomly chooses target 0/2;
+        // pin the fixture's target after setup so it evaluates the controlled
+        // battler, without changing AI scores or its move-choice routine.
+        create(abilitySpecies[i],50);
+        CALL(CopyPlayerPartyMonToBattleData,0,0);
+        CHECK(core->busRead16(core,bmon(0)+ABI_BMON_SPECIES)==abilitySpecies[i]);
+        CHECK(core->busRead8(core,bmon(0)+ABI_BMON_ABILITY)==abilities[i]);
         core->busWrite8(core,bmon(0)+ABI_BMON_TYPE1,targetTypes[i]);
         core->busWrite8(core,bmon(0)+ABI_BMON_TYPE2,targetTypes[i]);
-        core->busWrite8(core,bmon(0)+ABI_BMON_ABILITY,abilities[i]);
         core->busWrite16(core,bmon(1)+ABI_BMON_MOVES,physicalMoves[i]);
         core->busWrite16(core,bmon(1)+ABI_BMON_MOVES+2,MOVE_SHADOW_BALL);
         core->busWrite8(core,bmon(1)+ABI_BMON_PP,15);
         core->busWrite8(core,bmon(1)+ABI_BMON_PP+1,15);
         CALL(BattleAI_SetupAIData);
+        core->busWrite8(core,SYM_gBattlerTarget,0);
         core->busWrite32(core,thinking+ABI_AI_FLAGS,1);
         chosen=CALL(BattleAI_ChooseMoveOrAction);
         unsigned blocked=core->busRead8(core,thinking+ABI_AI_SCORE);
         unsigned viable=core->busRead8(core,thinking+ABI_AI_SCORE+1);
         if(chosen!=1 || viable<=blocked)
-            fprintf(stderr,"BTL003 ability immunity scenario %u: chosen=%u physical=%u special=%u\\n",
-                    i,chosen,blocked,viable);
+            fprintf(stderr,"BTL003 ability immunity scenario %u: chosen=%u physical=%u special=%u target=%u species=%u\\n",
+                    i,chosen,blocked,viable,core->busRead8(core,SYM_gBattlerTarget),
+                    core->busRead16(core,bmon(0)+ABI_BMON_SPECIES));
         CHECK(viable>blocked);
         CHECK(chosen==1);
-        core->busWrite8(core,bmon(0)+ABI_BMON_ABILITY,ABILITY_NONE);
+        // Control with the same effective types and moves, but an actual
+        // nonimmune Color Change species. Merely clearing gBattleMons.ability
+        // would be invalid: this AI still infers Vulpix/Gengar's species ability.
+        create(SPECIES_KECLEON,50);
+        CALL(CopyPlayerPartyMonToBattleData,0,0);
+        CHECK(core->busRead16(core,bmon(0)+ABI_BMON_SPECIES)==SPECIES_KECLEON);
+        core->busWrite8(core,bmon(0)+ABI_BMON_TYPE1,targetTypes[i]);
+        core->busWrite8(core,bmon(0)+ABI_BMON_TYPE2,targetTypes[i]);
         CALL(BattleAI_SetupAIData);
+        core->busWrite8(core,SYM_gBattlerTarget,0);
         core->busWrite32(core,thinking+ABI_AI_FLAGS,1);
         CALL(BattleAI_ChooseMoveOrAction);
         unsigned unblocked=core->busRead8(core,thinking+ABI_AI_SCORE);
