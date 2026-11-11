@@ -347,6 +347,7 @@ static void dexTests(void) {
 #include "wrl_vendor_physical.c"
 #include "wrl_aide_physical.c"
 #include "wrl_lapras_physical.c"
+#include "wrl_porygon_physical.c"
 #include "wrl_route_grass.c"
 #include "sow_placement.c"
 #include "sow_producers.c"
@@ -475,6 +476,7 @@ int main(int argc,char **argv) {
     if(getenv("LIGHTNING_LIGHTING_CAPTURE_DIR")){lightingPreviewCaptures();printf("PASS: %u native lighting capture assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_WRL_VENDOR_PHYSICAL_ONLY")){wrlVendorPhysicalTalkTests();printf("PASS: %u focused WRL-009 physical vendor assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_WRL_LAPRAS_PHYSICAL_ONLY")){wrlLaprasPhysicalTests();printf("PASS: %u focused WRL-009 physical Lapras assertions\\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_WRL_PORYGON_PHYSICAL_ONLY")){wrlPorygonPhysicalTests();printf("PASS: %u focused WRL-009 physical Porygon assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_WRL_AIDE_PHYSICAL_ONLY")){wrlAidePhysicalTests();printf("PASS: %u focused WRL-009 physical aide assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_WRL_NONWILD_GIFTS_ONLY")){wrlNonWildGiftTests();printf("PASS: %u focused WRL-009 non-wild gift assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_WRL_ROUTE_GRASS_ONLY")){wrlRouteNativeGrassTests();wrlRoute5NorthernLedgeWalkTests();wrlCeruleanToRoute5ConnectionTests();wrlLavenderToRoute8ConnectionTests();wrlLavenderToRoute8GrassWalkTests();printf("PASS: %u focused WRL-009 native route grass assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
@@ -597,6 +599,7 @@ int main(int argc,char **argv) {
     wrlVendorPhysicalTalkTests();
     wrlAidePhysicalTests();
     wrlLaprasPhysicalTests();
+    wrlPorygonPhysicalTests();
     wrlRouteNativeGrassTests();
     wrlRoute5NorthernLedgeWalkTests();wrlCeruleanToRoute5ConnectionTests();
     sowPlacementTests();
