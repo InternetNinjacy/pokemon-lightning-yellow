@@ -41,6 +41,23 @@ static void bagEvoScene(unsigned species,unsigned result,unsigned item,unsigned 
  CHECK(f<5000);CHECK(started);CHECK(monget(player(1),ABI_DATA_SPECIES)==(cancel?species:result));CHECK(CALL(BagGetQuantityByItemId,item)==(cancel?2:1));CHECK(!CALL(IsNationalPokedexEnabled));frames(24,0);
 }
 static void bagEvolutionTests(void){
+ // WRL-003: check actual compiled ROM item prices, not just JSON source.
+ // Vendor inventory and badge-gated access remain separate, unimplemented scope.
+ const unsigned priceCases[][2]={
+  {ITEM_FIRE_STONE,2100},{ITEM_WATER_STONE,2100},
+  {ITEM_THUNDER_STONE,2100},{ITEM_LEAF_STONE,2100},
+  {ITEM_SUN_STONE,2100},{ITEM_MOON_STONE,2100},
+  {ITEM_KINGS_ROCK,3000},{ITEM_METAL_COAT,3000},
+  {ITEM_DRAGON_SCALE,3000},{ITEM_UP_GRADE,3000}
+ };
+ for(unsigned i=0;i<sizeof(priceCases)/sizeof(priceCases[0]);i++){
+  unsigned actual=CALL(ItemId_GetPrice,priceCases[i][0]);
+  if(actual!=priceCases[i][1])
+   fprintf(stderr,"WRL-003 native item%u price%u expected%u\\n",
+           priceCases[i][0],actual,priceCases[i][1]);
+  CHECK(actual==priceCases[i][1]);
+ }
+ printf("PASS: native ROM ItemId_GetPrice for all six stones and four trade items\\n");
  const unsigned cases[][3]={{SPECIES_EEVEE,ITEM_SUN_STONE,SPECIES_ESPEON},{SPECIES_EEVEE,ITEM_MOON_STONE,SPECIES_UMBREON},{SPECIES_EEVEE,ITEM_FIRE_STONE,SPECIES_FLAREON},{SPECIES_EEVEE,ITEM_WATER_STONE,SPECIES_VAPOREON},{SPECIES_EEVEE,ITEM_THUNDER_STONE,SPECIES_JOLTEON},
  {SPECIES_POLIWHIRL,ITEM_KINGS_ROCK,SPECIES_POLITOED},{SPECIES_SLOWPOKE,ITEM_KINGS_ROCK,SPECIES_SLOWKING},{SPECIES_ONIX,ITEM_METAL_COAT,SPECIES_STEELIX},{SPECIES_SCYTHER,ITEM_METAL_COAT,SPECIES_SCIZOR},{SPECIES_SEADRA,ITEM_DRAGON_SCALE,SPECIES_KINGDRA},{SPECIES_PORYGON,ITEM_UP_GRADE,SPECIES_PORYGON2}};
  for(unsigned c=0;c<sizeof(cases)/sizeof(cases[0]);c++){
