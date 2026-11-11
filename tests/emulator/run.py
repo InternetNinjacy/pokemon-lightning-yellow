@@ -331,6 +331,24 @@ for line in subprocess.check_output(['arm-none-eabi-nm','-n','pokefirered.elf'],
     fields=line.split()
     if len(fields)==3 and fields[2] in required:
         symbols.setdefault(fields[2],int(fields[0],16)) # first matching local symbol (player controller precedes tutorial controllers)
+# Read-only native controller address correlation for the dedicated Thunder Wave
+# regression. Use the actual built ELF rather than guessed ROM offsets.
+if os.environ.get('LIGHTNING_THUNDER_WAVE_ONLY'):
+    nm_rows = []
+    for line in subprocess.check_output(['arm-none-eabi-nm','-n','pokefirered.elf'],text=True).splitlines():
+        fields = line.split()
+        if len(fields)==3 and fields[1].lower() in ('t','w'):
+            try:
+                address = int(fields[0],16)
+            except ValueError:
+                continue
+            if 0x08000000 <= address < 0x0A000000:
+                nm_rows.append((address,fields[2]))
+    for observed in (0x08030d98,0x0802eb34,0x0803623c,0x081db917):
+        nearest = max((item for item in nm_rows if item[0]<=observed),default=None)
+        print('TW_ELF_SYMBOL observed=%08x nearest=%s offset=%s' %
+              (observed,nearest[1] if nearest else 'NONE',
+               ('%x'%(observed-nearest[0])) if nearest else 'NONE'),flush=True)
 assert set(required)<=symbols.keys(), set(required)-symbols.keys()
 # Private input function names also exist in tutorial controllers. Verify the
 # selected local symbols belong to the actual player controller's address range.
