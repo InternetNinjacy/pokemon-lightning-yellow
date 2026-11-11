@@ -90,7 +90,15 @@ static void batchANativeTests(void){
      CHECK(core->busRead16(core,bmon(2)+ABI_BMON_HP)<1000);
      CHECK(core->busRead16(core,bmon(3)+ABI_BMON_HP)<1000);
     }else{
-     CHECK(core->busRead16(core,bmon(2)+ABI_BMON_HP)==1000);
+     // Bullet Punch's priority is checked at first damage above. Its faster
+     // opposing Swift user then takes its turn and hits both player battlers.
+     // That retaliation must not be mistaken for Bullet Punch spreading.
+     if(m==7){
+      CHECK(core->busRead16(core,bmon(0)+ABI_BMON_HP)<1000);
+      CHECK(core->busRead16(core,bmon(2)+ABI_BMON_HP)<1000);
+     }else{
+      CHECK(core->busRead16(core,bmon(2)+ABI_BMON_HP)==1000);
+     }
      CHECK(core->busRead16(core,bmon(3)+ABI_BMON_HP)==1000);
     }
    }
