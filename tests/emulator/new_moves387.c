@@ -175,6 +175,52 @@ static void thunderFang389IndependentEffects(void){
  printf("PASS: native Thunder Fang #389 independent paralysis/flinch exact 10/20%% RNG boundaries and non-cross-effect guards\\n");
 }
 
+// Exercise the real secondary-effect command with relevant battle guards.
+// Protect the distinction between primary paralysis, flinch, and abilities.
+static void thunderFang389GuardMatrix(void){
+ effectBattleFixture(0,MOVE_THUNDER_FANG);
+ unsigned script=CALL(AllocZeroed,32);CHECK(script);
+ void *state=malloc(core->stateSize(core));CHECK(state&&core->saveState(core,state));
+ for(unsigned guard=0;guard<8;guard++)for(unsigned effect=0;effect<2;effect++){
+  CHECK(core->loadState(core,state));
+  core->busWrite8(core,SYM_gBattlerAttacker,0);
+  core->busWrite8(core,SYM_gBattlerTarget,1);
+  core->busWrite8(core,bmon(0)+ABI_BMON_ABILITY,ABILITY_NONE);
+  core->busWrite8(core,bmon(1)+ABI_BMON_ABILITY,ABILITY_NONE);
+  core->busWrite8(core,SYM_gBattlerByTurnOrder,guard==3?1:0);
+  core->busWrite8(core,SYM_gBattlerByTurnOrder+1,guard==3?0:1);
+  core->busWrite8(core,SYM_gCurrentTurnActionNumber,guard==3?1:0);
+  core->busWrite16(core,SYM_gCurrentMove,MOVE_THUNDER_FANG);
+  core->busWrite8(core,SYM_gMoveResultFlags,0);
+  core->busWrite32(core,SYM_gHitMarker,0);
+  if(guard==1){
+   core->busWrite32(core,bmon(1)+ABI_BMON_STATUS2,STATUS2_SUBSTITUTE);
+   core->busWrite8(core,SYM_gDisableStructs+ABI_DISABLE_SIZE+ABI_DISABLE_SUB_HP,200);
+  }
+  if(guard==2)core->busWrite16(core,SYM_gSideStatuses+2,SIDE_STATUS_SAFEGUARD);
+  if(guard==4){
+   core->busWrite8(core,bmon(1)+ABI_BMON_TYPE1,TYPE_ELECTRIC);
+   core->busWrite8(core,bmon(1)+ABI_BMON_TYPE2,TYPE_ELECTRIC);
+  }
+  if(guard==5)core->busWrite8(core,bmon(1)+ABI_BMON_ABILITY,ABILITY_INNER_FOCUS);
+  if(guard==6)core->busWrite8(core,bmon(1)+ABI_BMON_ABILITY,ABILITY_SHIELD_DUST);
+  if(guard==7)core->busWrite8(core,bmon(1)+ABI_BMON_ABILITY,ABILITY_LIMBER);
+  core->busWrite8(core,SYM_gBattleCommunication+MOVE_EFFECT_BYTE,effect?MOVE_EFFECT_FLINCH:MOVE_EFFECT_PARALYSIS);
+  core->busWrite32(core,SYM_gRngValue,iceFangChanceSeed(0));
+  core->busWrite32(core,SYM_gBattlescriptCurrInstr,script);
+  CALL(Cmd_seteffectwithchance);
+  unsigned para=!!(core->busRead32(core,bmon(1)+ABI_BMON_STATUS1)&STATUS1_PARALYSIS);
+  unsigned flinch=!!(core->busRead32(core,bmon(1)+ABI_BMON_STATUS2)&STATUS2_FLINCHED);
+  unsigned allowed=effect?(guard==0||guard==2||guard==3||guard==4||guard==7):
+                          (guard==0||guard==3||guard==5);
+  CHECK((effect?flinch:para)==allowed);
+  CHECK(effect?!para:!flinch);
+ }
+ CHECK(core->loadState(core,state));CALL(Free,script);free(state);
+ CHECK(core->loadState(core,bootState));
+ printf("PASS: native Thunder Fang #389 independent paralysis/flinch guard matrix: substitute, safeguard, turn order, Electric, Inner Focus, Shield Dust, Limber\\n");
+}
+
 // Verify actual flash serialization for all eight new move slots in two
 // separately encrypted boxed Pokémon, not a transient CPU snapshot.
 static void moves387to394SavePersistence(void){
