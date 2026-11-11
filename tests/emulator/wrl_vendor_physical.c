@@ -24,6 +24,22 @@ static void wrlVendorPhysicalTalkTests(void) {
         // Deliberately poison the selected-object slot: only the actual
         // player-facing A-button interaction may choose the vendor.
         core->busWrite8(core, SYM_gSelectedObjectEvent, 0xFF);
+        // Route 10's salesman (and some outdoor vendors) wander in the
+        // unmodified map. Wait for the actual object to stand north of the
+        // player before using the real D-pad/A interaction; never move it,
+        // inject a script, or preselect the object in test RAM.
+        unsigned stable = 0, wait;
+        for (wait = 0; wait < 6000 && stable < 24; wait++) {
+            if (CALL(GetObjectEventIdByXY, site->x + 7, site->y + 7) == object)
+                stable++;
+            else
+                stable = 0;
+            frames(1, 0);
+        }
+        if (stable != 24)
+            fprintf(stderr, "WRL vendor physical NPC never returned site=%u object=%u at=(%u,%u) waited=%u\\n",
+                    v + 1, object, site->x + 7, site->y + 7, wait);
+        CHECK(stable == 24);
         frames(6, 64); // Real D-pad UP to face the NPC to the north.
         frames(6, 0);
         press(1);      // Real A-button interaction, no direct script call.
