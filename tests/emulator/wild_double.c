@@ -63,6 +63,20 @@ static void waitActionBudget(unsigned frameBudget){
    core->busRead32(core,SYM_gBattlescriptCurrInstr),
    core->busRead32(core,SYM_gBattleControllerExecFlags),
    core->busRead16(core,SYM_gCurrentMove));
+  // Diagnostic-only: inspect the real GBA text-printer state. This callback
+  // must not be bypassed, and the original input/watchdog remain unchanged.
+  fprintf(stderr,"NATIVE_TEXT_PRINTER active=%u state=%u speed=%u delay=%u textptr=%08x current=%08x twActive=%u\\n",
+   core->busRead8(core,SYM_sTextPrinters+ABI_TEXT_ACTIVE),
+   core->busRead8(core,SYM_sTextPrinters+ABI_TEXT_STATE),
+   core->busRead8(core,SYM_sTextPrinters+ABI_TEXT_STATE+1),
+   core->busRead8(core,SYM_sTextPrinters+ABI_TEXT_STATE+2),
+   core->busRead32(core,SYM_sTextPrinters),
+   core->busRead8(core,core->busRead32(core,SYM_sTextPrinters)),
+   core->busRead8(core,core->busRead32(core,SYM_gBattleStruct)+ABI_BATTLESTRUCT_TW_ACTIVE));
+  for(unsigned b=0;b<battlers&&b<4;b++)
+   fprintf(stderr,"NATIVE_TEXT_STATUS battler=%u status=%08x ability=%u\\n",b,
+    core->busRead32(core,bmon(b)+ABI_BMON_STATUS1),
+    core->busRead8(core,bmon(b)+ABI_BMON_ABILITY));
   // gBattlerPartyIndexes is a u16 array: never use the battler index
   // itself as a byte offset. Read only slots valid for this battle.
   for(unsigned b=0;b<battlers&&b<4;b++)
