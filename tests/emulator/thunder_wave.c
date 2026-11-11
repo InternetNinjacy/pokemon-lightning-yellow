@@ -27,15 +27,13 @@ static void thunderWaveTests(void){
  for(unsigned scenario=0;scenario<12;scenario++){
   unsigned two=scenario!=0,user=scenario>=10?(scenario==10?1:3):scenario>=8?2:0;
   effectBattleFixture(two,MOVE_THUNDER_WAVE);
+  // A zero-initialized save chooses Slow text (7 frames/character), which
+  // consumes the native 2400-frame action watchdog across three recipient
+  // messages. Use the game's real Fast text option (2), not a text shortcut.
+  // SaveBlock2 optionsTextSpeed occupies the low 3 bits of byte 0x14.
+  core->busWrite8(core,SYM_gSaveBlock2+0x14,
+   (core->busRead8(core,SYM_gSaveBlock2+0x14)&~7U)|2U);
   if(user==2){CALL(SetMonMoveSlot,player(0),scenario==9?MOVE_MAGIC_COAT:MOVE_SPLASH,0);CALL(SetMonMoveSlot,player(1),MOVE_THUNDER_WAVE,0);core->busWrite16(core,bmon(0)+ABI_BMON_MOVES,scenario==9?MOVE_MAGIC_COAT:MOVE_SPLASH);core->busWrite8(core,bmon(0)+ABI_BMON_PP,scenario==9?15:40);core->busWrite16(core,bmon(2)+ABI_BMON_MOVES,MOVE_THUNDER_WAVE);core->busWrite8(core,bmon(2)+ABI_BMON_PP,20);}
-  // The scenario names one Thunder Wave user. In Doubles its partner
-  // must take a genuine separate action, not issue a second all-target
-  // Thunder Wave that exceeds the existing per-turn native watchdog.
-  if(two && user==0){
-   CALL(SetMonMoveSlot,player(1),MOVE_SPLASH,0);
-   core->busWrite16(core,bmon(2)+ABI_BMON_MOVES,MOVE_SPLASH);
-   core->busWrite8(core,bmon(2)+ABI_BMON_PP,40);
-  }
   if(user&1){
    CALL(SetMonMoveSlot,player(0),MOVE_SPLASH,0);core->busWrite16(core,bmon(0)+ABI_BMON_MOVES,MOVE_SPLASH);core->busWrite8(core,bmon(0)+ABI_BMON_PP,40);
    for(unsigned m=0;m<4;m++){CALL(SetMonMoveSlot,enemy(user/2),MOVE_THUNDER_WAVE,m);core->busWrite16(core,bmon(user)+ABI_BMON_MOVES+2*m,MOVE_THUNDER_WAVE);core->busWrite8(core,bmon(user)+ABI_BMON_PP+m,20);}
