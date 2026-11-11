@@ -35,6 +35,11 @@ static void centerMoveReminderPhysicalTests(void) {
         if (map == MAP_NUM(MAP_ONE_ISLAND_POKEMON_CENTER_1F)
             && group == MAP_GROUP(MAP_ONE_ISLAND_POKEMON_CENTER_1F))
             CALL(VarSet, VAR_MAP_SCENE_ONE_ISLAND_POKEMON_CENTER_1F, 1);
+        // Six Island likewise runs its original rival-arrival cutscene in
+        // map scene 0. Test the ordinary post-scene Center service instead.
+        if (map == MAP_NUM(MAP_SIX_ISLAND_POKEMON_CENTER_1F)
+            && group == MAP_GROUP(MAP_SIX_ISLAND_POKEMON_CENTER_1F))
+            CALL(VarSet, VAR_MAP_SCENE_SIX_ISLAND_POKEMON_CENTER_1F, 1);
         fossilWarp(group, map, x, y + 1);
         CALL(PlayerGetDestCoords, scratch, scratch + 2);
         CHECK(core->busRead16(core, scratch) == x + 7);
