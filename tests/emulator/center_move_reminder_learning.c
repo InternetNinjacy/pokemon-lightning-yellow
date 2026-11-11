@@ -72,5 +72,71 @@ static void centerMoveReminderLearningTests(void) {
     CHECK(CALL(GetMoney, careSave1() + ABI_SAVE1_MONEY) == money);
     CHECK(!centerHasMove(centerEligible(player(0)), MOVE_WATER_GUN));
     printf("PASS: production move eligibility, evolved species, level16, full slots, known/no moves and learned-move flash persistence\n");
+
+    // Complete real-NPC dialog -> party picker -> move picker -> Yes -> learned
+    // transaction. D-pad/A/B are the only UI inputs; do not set script flags,
+    // force an NPC script, or write a learned move during this transaction.
+    vendorFixture();
+    fossilWarp(MAP_GROUP(MAP_VIRIDIAN_CITY_POKEMON_CENTER_1F),
+               MAP_NUM(MAP_VIRIDIAN_CITY_POKEMON_CENTER_1F), 10, 5);
+    CALL(CreateMon, player(0), SPECIES_VAPOREON, 16, 31, 1, 7, 0, 0);
+    monput(player(0), ABI_DATA_MOVE1, MOVE_TACKLE);
+    monput(player(0), ABI_DATA_MOVE2, MOVE_TAIL_WHIP);
+    monput(player(0), ABI_DATA_MOVE3, MOVE_HELPING_HAND);
+    monput(player(0), ABI_DATA_MOVE4, MOVE_NONE);
+    CHECK(centerEligible(player(0)) == 2);
+    CHECK(centerHasMove(2, MOVE_WATER_GUN));
+    unsigned originalMoney = CALL(GetMoney, careSave1() + ABI_SAVE1_MONEY);
+    unsigned npc = CALL(GetObjectEventIdByXY, 10 + 7, 4 + 7);
+    CHECK(npc < ABI_OBJECT_COUNT);
+    core->busWrite8(core, SYM_gSelectedObjectEvent, 0xFF);
+    frames(6, 64); frames(6, 0); press(1); // physical UP, A
+    fossilWaitMenu(SYM_Task_YesNoMenu_HandleInput);
+    CHECK(core->busRead8(core, SYM_gSelectedObjectEvent) == npc);
+    press(1); // accept free reminder
+    unsigned f;
+    for (f = 0; f < 6000; f++) {
+        if (CALL(FuncIsActiveTask, SYM_Task_HandleChooseMonInput | 1U)) break;
+        frames(1, (f % 12) == 0 && fossilTextPaused() ? 1 : 0);
+    }
+    CHECK(f < 6000);
+    frames(16, 0); press(1); // select party member 0 through the real party menu
+    for (f = 0; f < 6000; f++) {
+        if ((core->busRead32(core, SYM_gMain + ABI_MAIN_CB2) & ~1U)
+            == SYM_CB2_MoveRelearner) break;
+        frames(1, (f % 12) == 0 && fossilTextPaused() ? 1 : 0);
+    }
+    CHECK(f < 6000);
+    for (f = 0; f < 6000; f++) {
+        unsigned p = core->busRead32(core, SYM_sMoveRelearner);
+        if (p && core->busRead8(core, p) == 4) break; // list ready
+        frames(1, 0);
+    }
+    CHECK(f < 6000);
+    unsigned ui = core->busRead32(core, SYM_sMoveRelearner);
+    CHECK(core->busRead8(core, ui + ABI_RELEARNER_INDEX) == 0);
+    press(128); frames(16, 0); // DOWN to Water Gun
+    CHECK(core->busRead8(core, ui + ABI_RELEARNER_INDEX) == 1);
+    press(1); // select Water Gun
+    for (f = 0; f < 6000; f++) {
+        if (core->busRead8(core, ui) == 9) break; // confirmation Yes/No
+        frames(1, 0);
+    }
+    CHECK(f < 6000); frames(16, 0);
+    press(1); // confirm teaching into the empty fourth slot
+    for (f = 0; f < 6000; f++) {
+        if (core->busRead8(core, ui) == 33) break; // fanfare complete
+        frames(1, 0);
+    }
+    CHECK(f < 6000);
+    CHECK(monget(player(0), ABI_DATA_MOVE4) == MOVE_WATER_GUN);
+    press(1); // dismiss learned-move fanfare
+    fossilClose(2); // B exits repeated party picker after return to field
+    CHECK(CALL(GetMoney, careSave1() + ABI_SAVE1_MONEY) == originalMoney);
+    flashRoundTrip();
+    CHECK(monget(player(0), ABI_DATA_MOVE4) == MOVE_WATER_GUN);
+    CHECK(CALL(GetMoney, careSave1() + ABI_SAVE1_MONEY) == originalMoney);
+    printf("PASS: real Center NPC -> party -> relearn UI -> Water Gun; free, save/reload stable\n");
+
     CHECK(core->loadState(core, bootState));
 }
