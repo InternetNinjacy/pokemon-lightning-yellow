@@ -43,6 +43,8 @@ jobs:
             selection: LIGHTNING_BATCH_A_ONLY
           - focus: blaine
             selection: LIGHTNING_BLAINE_ONLY
+          - focus: thunder-wave
+            selection: LIGHTNING_THUNDER_WAVE_ONLY
     runs-on: ubuntu-24.04
     timeout-minutes: 50
     steps:
