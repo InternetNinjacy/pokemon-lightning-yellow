@@ -29,6 +29,12 @@ static void centerMoveReminderPhysicalTests(void) {
         const unsigned group = sites[i].group, map = sites[i].map;
         const unsigned x = sites[i].x, y = sites[i].y;
         vendorFixture();
+        // The One Island Center's initial visit starts the long Bill/Celio
+        // cutscene. Stage its original post-introduction scene state before
+        // a map-local NPC interaction check; do not change production scripts.
+        if (map == MAP_NUM(MAP_ONE_ISLAND_POKEMON_CENTER_1F)
+            && group == MAP_GROUP(MAP_ONE_ISLAND_POKEMON_CENTER_1F))
+            CALL(VarSet, VAR_MAP_SCENE_ONE_ISLAND_POKEMON_CENTER_1F, 1);
         fossilWarp(group, map, x, y + 1);
         CALL(PlayerGetDestCoords, scratch, scratch + 2);
         CHECK(core->busRead16(core, scratch) == x + 7);

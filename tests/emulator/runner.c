@@ -19,6 +19,7 @@
 #include "constants/battle.h"
 #include "constants/pokedex.h"
 #include "constants/time_of_day.h"
+#include "constants/vars.h"
 #include "symbols.h"
 
 static struct mCore *core;
