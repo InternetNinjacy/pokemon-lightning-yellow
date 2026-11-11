@@ -331,6 +331,44 @@ static void trainerAiCategoryAcceptance(void) {
                 chosen,normal,status);
     CHECK(normal>status);
     CHECK(chosen==0);
+    // Ability-specific immunity, tested against the same production AI script.
+    // A super-effective Physical attack must be rejected when Flash Fire or
+    // Levitate makes it ineffective, while a viable Special attack remains.
+    // The ability-off control must restore the Physical score; do not forge
+    // move scores or replace the AI's actual chosen action.
+    const unsigned abilities[]={ABILITY_FLASH_FIRE,ABILITY_LEVITATE};
+    const unsigned physicalMoves[]={MOVE_FIRE_PUNCH,MOVE_EARTHQUAKE};
+    const unsigned targetTypes[]={TYPE_GRASS,TYPE_ELECTRIC};
+    for(unsigned i=0;i<2;i++) {
+        core->busWrite8(core,bmon(0)+ABI_BMON_TYPE1,targetTypes[i]);
+        core->busWrite8(core,bmon(0)+ABI_BMON_TYPE2,targetTypes[i]);
+        core->busWrite8(core,bmon(0)+ABI_BMON_ABILITY,abilities[i]);
+        core->busWrite16(core,bmon(1)+ABI_BMON_MOVES,physicalMoves[i]);
+        core->busWrite16(core,bmon(1)+ABI_BMON_MOVES+2,MOVE_SHADOW_BALL);
+        core->busWrite8(core,bmon(1)+ABI_BMON_PP,15);
+        core->busWrite8(core,bmon(1)+ABI_BMON_PP+1,15);
+        CALL(BattleAI_SetupAIData);
+        core->busWrite32(core,thinking+ABI_AI_FLAGS,1);
+        chosen=CALL(BattleAI_ChooseMoveOrAction);
+        unsigned blocked=core->busRead8(core,thinking+ABI_AI_SCORE);
+        unsigned viable=core->busRead8(core,thinking+ABI_AI_SCORE+1);
+        if(chosen!=1 || viable<=blocked)
+            fprintf(stderr,"BTL003 ability immunity scenario %u: chosen=%u physical=%u special=%u\\n",
+                    i,chosen,blocked,viable);
+        CHECK(viable>blocked);
+        CHECK(chosen==1);
+        core->busWrite8(core,bmon(0)+ABI_BMON_ABILITY,ABILITY_NONE);
+        CALL(BattleAI_SetupAIData);
+        core->busWrite32(core,thinking+ABI_AI_FLAGS,1);
+        CALL(BattleAI_ChooseMoveOrAction);
+        unsigned unblocked=core->busRead8(core,thinking+ABI_AI_SCORE);
+        unsigned controlSpecial=core->busRead8(core,thinking+ABI_AI_SCORE+1);
+        if(unblocked<=blocked || controlSpecial!=viable)
+            fprintf(stderr,"BTL003 ability control %u: blocked=%u unblocked=%u special=%u/%u\\n",
+                    i,blocked,unblocked,viable,controlSpecial);
+        CHECK(unblocked>blocked);
+        CHECK(controlSpecial==viable);
+    }
     printf("PASS: native trainer-AI selects viable Physical or Special move under reciprocal type immunities and rejects Electric-immune status\\n");
     CHECK(core->loadState(core,bootState));
 }
