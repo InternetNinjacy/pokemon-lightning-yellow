@@ -72,7 +72,7 @@ static void wrl003MartPriceTests(void){
   flashRoundTrip();
   CHECK(CALL(BagGetQuantityByItemId,item)==2);
   CHECK(CALL(GetMoney,careSave1()+ABI_SAVE1_MONEY)==6500-2*price);
-  printf("PASS: WRL-003 staged-stock real Mart UI item%u x2 at %u each, no Premier, saved bag and money\\n",item,price);
+  printf("PASS: WRL-003 staged-stock real Mart UI item%u x2 at %u each, no Premier, saved bag and money\n",item,price);
  }
 }
 static void bagEvolutionTests(void){
