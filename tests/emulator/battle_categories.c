@@ -314,6 +314,23 @@ static void trainerAiCategoryAcceptance(void) {
                 chosen,normal,special);
     CHECK(normal>special);
     CHECK(chosen==0);
-    printf("PASS: native trainer-AI selects viable Physical or Special move under reciprocal type immunities\\n");
+    // Third, exercise a status choice on the same compiled trainer-AI path.
+    // Thunder Wave is immune against an Electric target in this approved ROM;
+    // a neutral Physical Tackle must outrank it. No action/score is forged.
+    core->busWrite8(core,bmon(0)+ABI_BMON_TYPE1,TYPE_ELECTRIC);
+    core->busWrite8(core,bmon(0)+ABI_BMON_TYPE2,TYPE_ELECTRIC);
+    core->busWrite16(core,bmon(1)+ABI_BMON_MOVES+2,MOVE_THUNDER_WAVE);
+    core->busWrite8(core,bmon(1)+ABI_BMON_PP+1,20);
+    CALL(BattleAI_SetupAIData);
+    core->busWrite32(core,thinking+ABI_AI_FLAGS,1);
+    chosen=CALL(BattleAI_ChooseMoveOrAction);
+    normal=core->busRead8(core,thinking+ABI_AI_SCORE);
+    unsigned status=core->busRead8(core,thinking+ABI_AI_SCORE+1);
+    if(chosen!=0 || normal<=status)
+        fprintf(stderr,"BTL003 Electric status immunity scenario: chosen=%u physical=%u status=%u\\n",
+                chosen,normal,status);
+    CHECK(normal>status);
+    CHECK(chosen==0);
+    printf("PASS: native trainer-AI selects viable Physical or Special move under reciprocal type immunities and rejects Electric-immune status\\n");
     CHECK(core->loadState(core,bootState));
 }
