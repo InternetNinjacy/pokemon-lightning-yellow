@@ -50,8 +50,29 @@ static void waitActionBudget(unsigned frameBudget){
   if(controller(0)==SYM_HandleInputChooseAction)break;
   frames(1,(i%12)<3?1:0);
  }
- if(i==frameBudget)fprintf(stderr,"Script=%08x exec=%08x move=%u\n",core->busRead32(core,SYM_gBattlescriptCurrInstr),core->busRead32(core,SYM_gBattleControllerExecFlags),core->busRead16(core,SYM_gCurrentMove));
- if(i==frameBudget)fprintf(stderr,"Battle action timeout cb=%08x battleflags=%08x ctrl=%08x/%08x/%08x/%08x battlers=%u outcome=%u\n",core->busRead32(core,SYM_gMain+ABI_MAIN_CB2),core->busRead32(core,SYM_gBattleTypeFlags),controller(0),controller(1),controller(2),controller(3),core->busRead8(core,SYM_gBattlersCount),core->busRead8(core,SYM_gBattleOutcome));
+ if(i==frameBudget){
+  unsigned battlers=core->busRead8(core,SYM_gBattlersCount);
+  unsigned active=core->busRead8(core,SYM_gActiveBattler);
+  unsigned attacker=core->busRead8(core,SYM_gBattlerAttacker);
+  unsigned target=core->busRead8(core,SYM_gBattlerTarget);
+  fprintf(stderr,"NATIVE_ACTION_TIMEOUT elapsed=%u budget=%u active=%u attacker=%u target=%u battlers=%u cb=%08x battleflags=%08x outcome=%u script=%08x exec=%08x move=%u\\n",
+   i,frameBudget,active,attacker,target,battlers,
+   core->busRead32(core,SYM_gMain+ABI_MAIN_CB2),
+   core->busRead32(core,SYM_gBattleTypeFlags),
+   core->busRead8(core,SYM_gBattleOutcome),
+   core->busRead32(core,SYM_gBattlescriptCurrInstr),
+   core->busRead32(core,SYM_gBattleControllerExecFlags),
+   core->busRead16(core,SYM_gCurrentMove));
+  // gBattlerPartyIndexes is a u16 array: never use the battler index
+  // itself as a byte offset. Read only slots valid for this battle.
+  for(unsigned b=0;b<battlers&&b<4;b++)
+   fprintf(stderr,"NATIVE_ACTION_BATTLER id=%u ctrl=%08x partyIndex=%u actionCursor=%u moveCursor=%u species=%u hp=%u\\n",
+    b,controller(b),core->busRead16(core,SYM_gBattlerPartyIndexes+2*b),
+    core->busRead8(core,SYM_gActionSelectionCursor+b),
+    core->busRead8(core,SYM_gMoveSelectionCursor+b),
+    core->busRead16(core,bmon(b)+ABI_BMON_SPECIES),
+    core->busRead16(core,bmon(b)+ABI_BMON_HP));
+ }
  CHECK(i<frameBudget);frames(3,0);
 }
 static void waitAction(void){waitActionBudget(2400);}
