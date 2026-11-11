@@ -1797,3 +1797,9 @@ PRs #137 and #138 were superseded, **closed without merge**. Diagnostic PR #163 
 ## 2026-11-10 — WRL-008 mystery vendor independent-starter boundary (proposed)
 
 Source review on main `ec81efb901be6eb0d93d2743216125abfc75334a` confirms vendor PR12 merged/accepted and later WRL-001 Pikachu/Eevee PR88 merged separately. Locked ten-species network excludes Pikachu/Eevee; starter/gift source and persistent flags are independent. Owner's vendor handoff expressly authorizes the independent starter boundary. No WRL-008 code change or new runtime test claimed. See `docs/WRL008_STARTER_BOUNDARY_ACCEPTANCE.md` for exact inspected files, provenance, evidence and limits. **Proposed only, pending Master Control authorization and PR merge:** WRL-008 19/1 -> 20/0; project 460/252 -> 461/251 of unchanged 712, preserve all 50 IDs and prior histories; no credit for independent WRL-001/010, PKM-009, ecology, or release QA.
+
+## 2026-11-10 — Master Control verifies WTH-001 and WRL-008 administrative closures merged
+
+PR #170 merged into main at `ec81efb901be6eb0d93d2743216125abfc75334a` after both modified and independent upstream-baseline checks succeeded; WTH-001 now 28 earned/0 remaining. Owner-locked Tyranitar Route23 (13,142), Corphish and Glalie actual native tests and separate WTH-002 fog work preserved.
+
+PR #184 merged into main at `ae928a1d9eba3aed16f4252123027cb5413106a7`; its merged-commit modified and independent upstream checks succeeded. Final independent Mystery Vendor/WRL-001 starter boundary accepted on preserved merged source and original vendor native CI. WRL-008 now 20 earned/0 remaining. No new gameplay or ROM test executed for this documentation closeout, and no duplicate points for WRL-001/010. **Project 461 earned / 251 remaining of 712 = 64.75%**. Fifty permanent tasks and historical point records retained. INT-004/005 broader release coverage remains open.
