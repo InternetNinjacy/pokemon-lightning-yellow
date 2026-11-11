@@ -53,11 +53,11 @@ static void bagEvolutionTests(void){
  for(unsigned i=0;i<sizeof(priceCases)/sizeof(priceCases[0]);i++){
   unsigned actual=CALL(ItemId_GetPrice,priceCases[i][0]);
   if(actual!=priceCases[i][1])
-   fprintf(stderr,"WRL-003 native item%u price%u expected%u\\n",
+   fprintf(stderr,"WRL-003 native item%u price%u expected%u\n",
            priceCases[i][0],actual,priceCases[i][1]);
   CHECK(actual==priceCases[i][1]);
  }
- printf("PASS: native ROM ItemId_GetPrice for all six stones and four trade items\\n");
+ printf("PASS: native ROM ItemId_GetPrice for all six stones and four trade items\n");
  const unsigned cases[][3]={{SPECIES_EEVEE,ITEM_SUN_STONE,SPECIES_ESPEON},{SPECIES_EEVEE,ITEM_MOON_STONE,SPECIES_UMBREON},{SPECIES_EEVEE,ITEM_FIRE_STONE,SPECIES_FLAREON},{SPECIES_EEVEE,ITEM_WATER_STONE,SPECIES_VAPOREON},{SPECIES_EEVEE,ITEM_THUNDER_STONE,SPECIES_JOLTEON},
  {SPECIES_POLIWHIRL,ITEM_KINGS_ROCK,SPECIES_POLITOED},{SPECIES_SLOWPOKE,ITEM_KINGS_ROCK,SPECIES_SLOWKING},{SPECIES_ONIX,ITEM_METAL_COAT,SPECIES_STEELIX},{SPECIES_SCYTHER,ITEM_METAL_COAT,SPECIES_SCIZOR},{SPECIES_SEADRA,ITEM_DRAGON_SCALE,SPECIES_KINGDRA},{SPECIES_PORYGON,ITEM_UP_GRADE,SPECIES_PORYGON2}};
  for(unsigned c=0;c<sizeof(cases)/sizeof(cases[0]);c++){
