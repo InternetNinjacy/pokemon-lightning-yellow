@@ -40,6 +40,41 @@ static void bagEvoScene(unsigned species,unsigned result,unsigned item,unsigned 
  if(f==5000)fprintf(stderr,"Bag evolution timeout species%u cancel%u started%u cb%08x\n",species,cancel,started,core->busRead32(core,SYM_gMain+ABI_MAIN_CB2));
  CHECK(f<5000);CHECK(started);CHECK(monget(player(1),ABI_DATA_SPECIES)==(cancel?species:result));CHECK(CALL(BagGetQuantityByItemId,item)==(cancel?2:1));CHECK(!CALL(IsNationalPokedexEnabled));frames(24,0);
 }
+// WRL-003: a deliberately staged stock list tests the existing production
+// Poké Mart UI. It does NOT make these items available at any real vendor.
+static void wrl003MartPriceTests(void){
+ const unsigned cases[][2]={{ITEM_MOON_STONE,2100},{ITEM_KINGS_ROCK,3000}};
+ for(unsigned i=0;i<sizeof(cases)/sizeof(cases[0]);i++){
+  unsigned item=cases[i][0],price=cases[i][1];
+  vendorFixture();
+  fossilWarp(MAP_GROUP(MAP_VERMILION_CITY_MART),MAP_NUM(MAP_VERMILION_CITY_MART),5,4);
+  CALL(ClearBag);
+  CALL(SetMoney,careSave1()+ABI_SAVE1_MONEY,6500);
+  CHECK(CALL(GetMoney,careSave1()+ABI_SAVE1_MONEY)==6500);
+  CHECK(CALL(BagGetQuantityByItemId,item)==0);
+  // Two u16 entries in test-only EWRAM: selected item, ITEM_NONE terminator.
+  core->busWrite16(core,testStack,item);
+  core->busWrite16(core,testStack+2,ITEM_NONE);
+  CALL(CreatePokemartMenu,testStack);
+  captureWaitTask(SYM_Task_ShopMenu);
+  press(1);captureWaitTask(SYM_Task_BuyMenu);
+  press(1);captureWaitTask(SYM_Task_BuyHowManyDialogueHandleInput);
+  press(64); // Real UI quantity increase from one to two.
+  unsigned task=CALL(FindTaskIdByFunc,SYM_Task_BuyHowManyDialogueHandleInput|1U);
+  CHECK(task<16);
+  CHECK(core->busRead16(core,SYM_gTasks+task*ABI_TASK_SIZE+ABI_TASK_DATA+2)==2);
+  press(1);captureWaitTask(SYM_Task_CallYesOrNoCallback);
+  press(1);frames(600,0);press(1);captureWaitTask(SYM_Task_BuyMenu);
+  CHECK(CALL(BagGetQuantityByItemId,item)==2);
+  CHECK(CALL(GetMoney,careSave1()+ABI_SAVE1_MONEY)==6500-2*price);
+  CHECK(CALL(BagGetQuantityByItemId,ITEM_PREMIER_BALL)==0);
+  press(2);captureWaitTask(SYM_Task_ShopMenu);press(2);fossilClose(1);
+  flashRoundTrip();
+  CHECK(CALL(BagGetQuantityByItemId,item)==2);
+  CHECK(CALL(GetMoney,careSave1()+ABI_SAVE1_MONEY)==6500-2*price);
+  printf("PASS: WRL-003 staged-stock real Mart UI item%u x2 at %u each, no Premier, saved bag and money\\n",item,price);
+ }
+}
 static void bagEvolutionTests(void){
  // WRL-003: check actual compiled ROM item prices, not just JSON source.
  // Vendor inventory and badge-gated access remain separate, unimplemented scope.
@@ -58,6 +93,7 @@ static void bagEvolutionTests(void){
   CHECK(actual==priceCases[i][1]);
  }
  printf("PASS: native ROM ItemId_GetPrice for all six stones and four trade items\n");
+ wrl003MartPriceTests();
  const unsigned cases[][3]={{SPECIES_EEVEE,ITEM_SUN_STONE,SPECIES_ESPEON},{SPECIES_EEVEE,ITEM_MOON_STONE,SPECIES_UMBREON},{SPECIES_EEVEE,ITEM_FIRE_STONE,SPECIES_FLAREON},{SPECIES_EEVEE,ITEM_WATER_STONE,SPECIES_VAPOREON},{SPECIES_EEVEE,ITEM_THUNDER_STONE,SPECIES_JOLTEON},
  {SPECIES_POLIWHIRL,ITEM_KINGS_ROCK,SPECIES_POLITOED},{SPECIES_SLOWPOKE,ITEM_KINGS_ROCK,SPECIES_SLOWKING},{SPECIES_ONIX,ITEM_METAL_COAT,SPECIES_STEELIX},{SPECIES_SCYTHER,ITEM_METAL_COAT,SPECIES_SCIZOR},{SPECIES_SEADRA,ITEM_DRAGON_SCALE,SPECIES_KINGDRA},{SPECIES_PORYGON,ITEM_UP_GRADE,SPECIES_PORYGON2}};
  for(unsigned c=0;c<sizeof(cases)/sizeof(cases[0]);c++){
