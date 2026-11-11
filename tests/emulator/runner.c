@@ -348,6 +348,7 @@ static void dexTests(void) {
 #include "wrl_vendor_physical.c"
 #include "wrl_aide_physical.c"
 #include "wrl_lapras_physical.c"
+#include "wrl_oak_eevee_physical.c"
 #include "wrl_porygon_physical.c"
 #include "center_move_reminder_physical.c"
 #include "center_move_reminder_learning.c"
@@ -478,6 +479,7 @@ int main(int argc,char **argv) {
     if(getenv("LIGHTNING_GYM_CASTFORM_ONLY")){gymCastformTests();printf("PASS: %u focused Gym Castform assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_LIGHTING_CAPTURE_DIR")){lightingPreviewCaptures();printf("PASS: %u native lighting capture assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_WRL_VENDOR_PHYSICAL_ONLY")){wrlVendorPhysicalTalkTests();printf("PASS: %u focused WRL-009 physical vendor assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_WRL_OAK_EEVEE_PHYSICAL_ONLY")){wrlOakEeveePhysicalTests();printf("PASS: %u focused WRL-009 physical Oak Eevee assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_CENTER_REMINDER_LEARNING_ONLY")){centerMoveReminderLearningTests();printf("PASS: %u focused Center Reminder eligibility/persistence assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_CENTER_REMINDER_PHYSICAL_ONLY")){centerMoveReminderPhysicalTests();printf("PASS: %u focused physical Center Move Reminder assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_WRL_PORYGON_PHYSICAL_ONLY")){wrlPorygonPhysicalTests();printf("PASS: %u focused WRL-009 physical Porygon assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
@@ -604,6 +606,7 @@ int main(int argc,char **argv) {
     wrlVendorPhysicalTalkTests();
     wrlAidePhysicalTests();
     wrlLaprasPhysicalTests();
+    wrlOakEeveePhysicalTests();
     wrlPorygonPhysicalTests();
     wrlRouteNativeGrassTests();
     wrlRoute5NorthernLedgeWalkTests();wrlCeruleanToRoute5ConnectionTests();
