@@ -1,0 +1,209 @@
+{
+  "audited_main": "69c8240654e742603d9868717c03c204f4bdacf7",
+  "date": "2026-11-06",
+  "sources": {
+    "aarant/pokeemerald": "acc75ef3fec2a952ac6a423b67dc6bea0f0014c1",
+    "Kasenn/pokeemerald-expansion-kasen": "cbe04a7a2ef645bee19d159876da074154ccf1f2",
+    "chale1342/pokefirered": "d3ba8da3ca29ef6ad24684219998fa65e53aa1aa",
+    "EmceeMikey/pokeemerald": "70341382c071a7cb46de4e8d071f3eb56ec35d60"
+  },
+  "tree_api_truncated": false,
+  "method": "Pinned recursive Git trees and source tables; PNG dimensions read only for existing local sheets. External blob existence is not frame, ownership, license or runtime certification.",
+  "counts": {
+    "roster": 252,
+    "local_sheets": 36,
+    "aarant_sheets": 252,
+    "kasenn_sheets": 252,
+    "kasenn_normal_palettes": 252,
+    "kasenn_shiny_palettes": 252
+  },
+  "binary_pixel_audit_2026_11_08": {
+    "source": "Kasenn/pokeemerald-expansion-kasen",
+    "pinned_commit": "cbe04a7a2ef645bee19d159876da074154ccf1f2",
+    "executed_github_actions_run": 42530264122,
+    "result": "252 of 252 base sprites decoded, indexed PNG pixel matrix recovered, normal/Shiny JASC files parsed, six GBA 4bpp frame conversions roundtripped",
+    "base_sprite_conversion_failures": 0,
+    "standard_32x32_species": 251,
+    "oversized_64x64_species": [
+      "STEELIX"
+    ],
+    "embedded_png_palette_variants": {
+      "normal_or_identical": 245,
+      "shiny": 7,
+      "unmatched": 0
+    },
+    "forms_checked": {
+      "castform": [
+        "normal",
+        "sunny",
+        "rainy",
+        "snowy"
+      ],
+      "rainy_form_source_bit_depth": 8,
+      "rainy_form_embedded_palette_entries": 17,
+      "rainy_form_used_pixel_indices": "0-15"
+    },
+    "less_than_six_distinct_frames": {
+      "ABRA": 5,
+      "GLALIE": 3
+    },
+    "source_transparency_metadata": "All 252 lack tRNS; all 252 four image corners use palette index 0",
+    "runtime_steelix_64x64_status": "NOT TESTED in compiled FireRed or mGBA; source OAM precedent only",
+    "asset_gate": "BLOCKED",
+    "audit_artifact_run": 42531042787
+  },
+  "native_emulator_graphics_audit_2026_11_08": {
+    "scope": "Isolated 32x32/64x64 native ROM sprite resource allocation, OAM and destruction; not Steelix artwork or follower state",
+    "main_commit": "90d0811b46bfab6f054d9b9c9b9c64240b6f3562",
+    "audit_branch_commit": "1bd50e16b04a383c37826d8140f46c3d9d6d633b",
+    "github_actions_run": 42532517738,
+    "runner": "libmGBA with compiled pokefirered.gba and ELF",
+    "assertions_passed": 361,
+    "verified": [
+      "ROM boot 600 frames",
+      "native simultaneous 16-tile 32x32 and 64-tile 64x64 allocation",
+      "native tile-map allocation exhaustion and clean recovery",
+      "real 32x32 Snorlax and 64x64 Seagallop object creation",
+      "native OAM codes 2 and 3",
+      "BuildOamBuffer",
+      "DestroySprite releases 16 and 64 tiles",
+      "re-create 64x64 sprite after cleanup"
+    ],
+    "remaining": [
+      "Steelix actual art and palette rendered under mGBA",
+      "dynamic species loader",
+      "animation, reflections, crowded map resource pressure, 32/64 atomic switch and save/gameplay behavior"
+    ],
+    "technical_subgate": "PASS isolated graphics-engine resource feasibility",
+    "asset_gate": "BLOCKED until remaining integration tests pass"
+  },
+  "native_emulator_steelix_art_test_2026_11_08": {
+    "run_id": 42533391116,
+    "main_commit": "90d0811b46bfab6f054d9b9c9b9c64240b6f3562",
+    "audit_commit": "875cfd7684295ff6ad7fc78bf0ed9e17265171cb",
+    "assertions_passed": 1402,
+    "steelix_blob_sha": "1a0ff067983d294ce1534674efa91c697c4db794",
+    "steelix_frame": "64x64",
+    "frame_4bpp_bytes": 2048,
+    "source_normal_palette_colors": 16,
+    "passed": [
+      "real ROM boot under libmGBA",
+      "pinned Steelix image sha and frame conversion",
+      "Snorlax 32 and Seagallop 64 native object creation",
+      "real ROM OAM hardware transfer/readback",
+      "Steelix 1024 16bit words staged in OBJ VRAM and readback",
+      "Steelix 16 normal palette 16bit words staged in OBJ PLTT and readback",
+      "allocation exhaustion and recovery",
+      "object destruction and 64x64 recreation"
+    ],
+    "not_tested": [
+      "actual visible framebuffer pixels",
+      "Steelix all six walking directions on screen",
+      "shiny paletted dynamic change",
+      "reflection and map crowding",
+      "atomic production dynamic 32/64 sprite switching"
+    ],
+    "technical_subgate": "PASS native actual Steelix OBJ VRAM/PLTT + OAM engine compatibility in isolated emulator",
+    "asset_gate": "BLOCKED full visual/dynamic runtime compatibility not yet proven"
+  },
+  "steelix_mgba_framebuffer_verification_2026_11_08": {
+    "run_id": 42533894429,
+    "workflow": "WRL-010 native Steelix graphics resource probe",
+    "main_commit": "37230a9c513ed013fc6b402ec800bd1d13960492",
+    "audit_commit": "b80cb7bf26258af30d3a38a383e748da46482163",
+    "assertions_passed": 1415,
+    "source_blob": "1a0ff067983d294ce1534674efa91c697c4db794",
+    "frame_size": "64x64",
+    "frames_rendered": 6,
+    "frame_visible_pixels": [
+      595,
+      574,
+      588,
+      571,
+      523,
+      509
+    ],
+    "frame_hashes": [
+      "24394218214293506",
+      "2910299914365420266",
+      "1841888362547400609",
+      "3442959672311279448",
+      "10780177131382775317"
+    ],
+    "normal_and_shiny_rasterization": "PASS shiny alters hash with equal visible pixel count",
+    "sprite_allocation_and_oam": "PASS native 32/64 simultaneous, OAM hardware entry, resource failure and cleanup",
+    "graphics_hardware_gate": "PASS actual Steelix GBA4bpp OBJ VRAM/PLTT/OAM + emulator framebuffer six frames and shiny",
+    "integration_not_tested": [
+      "selected follower dynamic size switch",
+      "map crowding",
+      "reflections",
+      "live walking/warps",
+      "failure-atomic graphics loading and follower state"
+    ],
+    "full_phase_one_gate": "BLOCKED on dynamic game integration acceptance conditions; not a sprite-format blocker"
+  },
+  "native_atomic_swap_and_map_transition_2026_11_09": {
+    "github_actions_run": 42539536937,
+    "main_commit": "37230a9c513ed013fc6b402ec800bd1d13960492",
+    "audit_commit": "8e014c74321194d82fe2adbc27007b7e56b86714",
+    "assertions_passed": 1807,
+    "actual_emulator": "libmGBA and compiled FireRed ARM ROM",
+    "passed": [
+      "32x32-to-64x64-to-32x32 acquire-first swap with old tile release",
+      "forced OBJ tile allocation failure retains original sprite id/OAM/16 tiles",
+      "retry after freeing competing 64x64 sprite succeeds and no tile leak",
+      "real Route 5 Pokemon Day Care field map with NPC resources and 32/64 virtual sprite swap",
+      "actual native SetWarpDestination WarpIntoMap CB2_LoadMap to Four Island Pokemon Day Care followed by fresh 32/64 graphics allocation",
+      "six authentic Steelix 64x64 frames rendered by GBA GPU and shiny palette change"
+    ],
+    "scope": "test-only virtual-object graphics transaction, not production follower object event or selection-state continuity",
+    "unproven": [
+      "dedicated 252-species dynamic follower graphics resolver",
+      "palette slot reservation and reflection under congestion",
+      "full 16-object event-slot exhaustion, live follower continuity across map warp",
+      "party instance/save/menu/movement state"
+    ],
+    "phase_one_gate": "BLOCKED despite scoped emulator transaction and map test PASS"
+  },
+  "production_graphics_loader_2026_11_09": {
+    "status": "PASS isolated production-source graphics + ObjectEvent lifecycle module under native mGBA; NOT full follower gameplay",
+    "run_id": 42542468450,
+    "conclusion": "success",
+    "main_sha_tested": "37230a9c513ed013fc6b402ec800bd1d13960492",
+    "assertions_passed": 8195,
+    "sources": [
+      "include/follower_graphics.h",
+      "src/follower_graphics.c"
+    ],
+    "real_assets": [
+      {
+        "species": "BULBASAUR",
+        "dimensions": "6x32x32",
+        "pinned_blob": "3eb99143e0f2b7e1df044b19374419c4a977b874"
+      },
+      {
+        "species": "STEELIX",
+        "dimensions": "6x64x64",
+        "pinned_blob": "1a0ff067983d294ce1534674efa91c697c4db794"
+      }
+    ],
+    "proved": [
+      "Production ROM-native acquire before release 16/64 tile sprite switching",
+      "two independent tagged OBJ palette ownership slots",
+      "palette/tile preservation on allocation failure and clean successful retry",
+      "six actual Steelix 64x64 frame transfers",
+      "graphics-only ObjectEvent registration and sprite-id geometry updates",
+      "16/16 object slots occupied fail-safe release",
+      "real Route5 and Four Island Day Care field-update frames and detach/rebind across map load",
+      "existing Steelix six-frame and Shiny GPU rendering"
+    ],
+    "unproven": [
+      "production installed into main and automatic lifecycle hooks",
+      "runtime complete 252-species converted sprite data mapping",
+      "selected party Pokémon instance and saved assignment",
+      "actual following movement and reflection/cutscene suppression",
+      "all-world maps and extreme mixed sprite-palette crowding"
+    ],
+    "asset_gate": "BLOCKED overall follower readiness despite scoped graphics loader native PASS"
+  }
+}

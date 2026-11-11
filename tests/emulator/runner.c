@@ -356,6 +356,7 @@ static void dexTests(void) {
 #include "move_long_name_ui.c"
 #include "original_move_data.c"
 #include "move_pp_compatibility.c"
+#include "follower.c"
 #include "roar.c"
 #include "weather_moves.c"
 #include "weather_species.c"
@@ -430,6 +431,21 @@ int main(int argc,char **argv) {
     printf("RTC autodetected: %s\n",(gba->memory.hw.devices&HW_RTC)?"yes":"no");
     CHECK(gba->memory.hw.devices&HW_RTC);
     bootState=malloc(core->stateSize(core));CHECK(bootState && core->saveState(core,bootState));
+    if(getenv("LIGHTNING_IMPORT_OLD_SAVE")) {
+        followerHistoricalFlashNativeTests();
+        printf("PASS: %u genuine historical-save native assertions\\n",checks);
+        core->deinit(core);free(pixels);free(bootState);return 0;
+    }
+    if(getenv("LIGHTNING_FOLLOWER_ONLY")) {
+        CHECK(CALL(FollowerAssets_Count) == 255);
+        followerNativeTests();
+        followerAllSpeciesGraphicsNativeTests();
+        followerFieldNativeTests();
+        followerGiftNativeTests();
+        followerPartyMenuNativeTests();
+        printf("PASS: %u native WRL-010 follower assertions\n", checks);
+        core->deinit(core);free(pixels);free(bootState);return 0;
+    }
     if(getenv("LIGHTNING_BALL_WEATHER_ONLY")){captureWeatherTests();printf("PASS: %u focused weather assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_BALL_SHOP_ONLY")){captureShopTests();printf("PASS: %u focused shop assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_BALLS_ONLY")){captureTests();printf("PASS: %u focused capture assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
@@ -571,6 +587,11 @@ int main(int argc,char **argv) {
         levelScene(SPECIES_TYROGUE,15,choices[i],i,0,stats==0?200:10,stats==2?200:10);
     levelScene(SPECIES_TYROGUE,15,SPECIES_HITMONCHAN,0,1,100,100);
     levelScene(SPECIES_TYROGUE,16,SPECIES_HITMONTOP,2,2,100,100);
+    followerNativeTests();
+    followerAllSpeciesGraphicsNativeTests();
+    followerFieldNativeTests();
+    followerGiftNativeTests();
+    followerPartyMenuNativeTests();
     dexTests();
     categoryTests();
     summaryTests();

@@ -1,4 +1,6 @@
 #include "global.h"
+#include "follower_graphics.h"
+#include "follower_controller.h"
 #include "dynamic_weather.h"
 #include "gflib.h"
 #include "bg_regs.h"
@@ -1530,6 +1532,7 @@ static void OverworldBasic(void)
     LightingPreviewUpdateAppearance();
 #endif
     CameraUpdate();
+    FollowerController_Tick();
     SetQuestLogEvent_Arrived();
     UpdateCameraPanning();
     BuildOamBuffer();
@@ -1841,6 +1844,7 @@ static void SetFieldVBlankCallback(void)
 
 static void VBlankCB_Field(void)
 {
+    FollowerController_VBlank();
     LoadOam();
     ProcessSpriteCopyRequests();
     ScanlineEffect_InitHBlankDmaTransfer();
@@ -2199,7 +2203,10 @@ static void InitOverworldGraphicsRegisters(void)
 static void ResumeMap(bool32 inLink)
 {
     ResetTasks();
+    FollowerGraphics_DetachForMapTransition();
+    FollowerController_RequestRefresh();
     ResetSpriteData();
+    FollowerGraphics_InvalidateAfterSpriteReset();
     ResetPaletteFade();
     ScanlineEffect_Clear();
     ResetAllPicSprites();

@@ -115,6 +115,9 @@ jobs:
           python3 tests/run_special_weather_tests.py
           python3 tests/run_gym_castform_tests.py
           python3 tests/run_rival_tests.py
+          python3 tests/run_follower_state_tests.py
+          python3 tests/run_follower_graphics_resource_tests.py
+          python3 tests/run_follower_asset_validator_tests.py
           python3 tests/run_rocket_hideout_roster_tests.py
           python3 tests/run_rocket_hideout_quest_tests.py
           python3 scripts/check-integration-registrations.py
@@ -134,6 +137,20 @@ jobs:
         run: |
           if [ "$TARGET" = upstream-baseline ]; then cd vanilla; fi
           "$GITHUB_WORKSPACE/scripts/prepare-baseline.sh"
+      # No external artwork is committed. This one branch tests owner-reported
+      # noncommercial permission using pinned source sheets in runner only.
+      # Individual contributor grants and external redistribution are NOT certified.
+      - name: Generate temporary exact-252 follower artwork for native ROM tests
+        if: matrix.target == 'modified' && (github.head_ref == 'feature/selectable-following-pokemon' || github.ref == 'refs/heads/feature/selectable-following-pokemon')
+        timeout-minutes: 18
+        run: |
+          python3 scripts/build-follower-assets.py --confirmed-scope --report /tmp/wrl010-art-provenance.json
+          python3 - <<'PY'
+          import json
+          p=json.load(open('/tmp/wrl010-art-provenance.json'))
+          assert p['graphics_records']==255 and p['base_species_count']==252 and p['castform_form_count']==3
+          print('PASS: ephemeral 252 base + 3 Castform graphics records generated; no ROM/artifact upload')
+          PY
       - name: Build modified game and verify clean reproducibility
         if: matrix.target == 'modified'
         run: |
@@ -142,6 +159,9 @@ jobs:
           make clean
           make -j2
           sha256sum -c /tmp/modified.sha256
+          if [ "$GITHUB_REF" = 'refs/heads/feature/selectable-following-pokemon' ] || [ "$GITHUB_HEAD_REF" = 'feature/selectable-following-pokemon' ]; then
+            git restore -- src/follower_assets_generated.inc
+          fi
           git diff --exit-code
       - name: Install headless mGBA core
         if: matrix.target == 'modified'
@@ -149,6 +169,13 @@ jobs:
           # Already installed with the initial dependencies; verify it remains
           # available without starting another late network/package transaction.
           dpkg-query -W libmgba-dev
+      - name: WRL-010 focused native all-species follower and opening-gift acceptance
+        if: matrix.target == 'modified' && (github.head_ref == 'feature/selectable-following-pokemon' || github.ref == 'refs/heads/feature/selectable-following-pokemon')
+        timeout-minutes: 12
+        env:
+          FOLLOWER_NATIVE_ALL252: '1'
+          LIGHTNING_FOLLOWER_ONLY: '1'
+        run: python3 tests/emulator/run.py
       - name: Focused Earth Power native battle tests in mGBA
         if: matrix.target == 'modified'
         timeout-minutes: 10
@@ -183,6 +210,9 @@ jobs:
       - name: Execute ROM integration tests in mGBA
         if: matrix.target == 'modified'
         timeout-minutes: 30
+        env:
+          # An all-green run must not silently accept the zero-artwork stub.
+          FOLLOWER_NATIVE_ALL252: ${{ (github.head_ref == 'feature/selectable-following-pokemon' || github.ref == 'refs/heads/feature/selectable-following-pokemon') && '1' || '0' }}
         run: python3 tests/emulator/run.py
       - name: Verify original upstream SHA-1 twice from clean
         if: matrix.target == 'upstream-baseline'

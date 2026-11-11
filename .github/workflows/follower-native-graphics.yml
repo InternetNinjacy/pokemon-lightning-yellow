@@ -1,0 +1,63 @@
+name: WRL-010 native Steelix graphics resource probe
+on:
+  push:
+    branches:
+      - feature/selectable-following-pokemon
+    paths:
+      - tests/followers/inject_native_graphics_probe.py
+      - tests/followers/prepare_steelix_native_frame.py
+      - include/follower_graphics.h
+      - src/follower_graphics.c
+      - .github/workflows/follower-native-graphics.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  native-follower-graphics:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 50
+    steps:
+      - name: Checkout isolated audit scripts
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          path: audit
+          persist-credentials: false
+      - name: Checkout current project main for ROM test (no changes committed)
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: main
+          path: current
+          persist-credentials: false
+      - name: Install official FireRed build and native mGBA dependencies
+        run: |
+          sudo apt-get -o Acquire::Retries=3 -o Acquire::http::Timeout=30 -o Acquire::https::Timeout=30 -o DPkg::Lock::Timeout=120 update
+          sudo apt-get -o Acquire::Retries=3 -o Acquire::http::Timeout=30 -o Acquire::https::Timeout=30 -o DPkg::Lock::Timeout=120 install -y --no-install-recommends build-essential binutils-arm-none-eabi git libpng-dev python3 python3-pil libmgba-dev
+      - name: Prepare hash-verified pinned Steelix frame in disposable workspace only
+        working-directory: current
+        run: python3 ../audit/tests/followers/prepare_steelix_native_frame.py
+      - name: Overlay only the test harness into temporary main checkout
+        working-directory: current
+        run: |
+          echo "SOURCE MAIN COMMIT: $(git rev-parse HEAD)"
+          echo "AUDIT BRANCH COMMIT: $(git -C ../audit rev-parse HEAD)"
+          cp ../audit/src/follower_graphics.c src/follower_graphics.c
+          cp ../audit/include/follower_graphics.h include/follower_graphics.h
+          python3 ../audit/tests/followers/inject_native_graphics_probe.py
+      - name: Fetch pinned agbcc toolchain and permitted build inputs
+        working-directory: current
+        run: ./scripts/prepare-baseline.sh
+      - name: Build current main ROM and ELF (never upload ROM)
+        working-directory: current
+        run: make -j2
+      - name: Run real ROM native sprite tile allocation/exhaustion in mGBA
+        working-directory: current
+        env:
+          LIGHTNING_FOLLOWER_GFX_ONLY: "1"
+        run: python3 tests/emulator/run.py
+      - name: Verify only ephemeral harness changes were made to current main checkout
+        if: always()
+        working-directory: current
+        run: |
+          git status --short
+          git diff --stat
+          git diff --name-only
