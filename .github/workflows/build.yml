@@ -150,6 +150,10 @@ jobs:
           # Already installed with the initial dependencies; verify it remains
           # available without starting another late network/package transaction.
           dpkg-query -W libmgba-dev
+      - name: Focused free Center Move Reminder physical NPC checks in mGBA
+        if: matrix.target == 'modified'
+        timeout-minutes: 10
+        run: LIGHTNING_CENTER_REMINDER_PHYSICAL_ONLY=1 python3 tests/emulator/run.py
       - name: Focused Earth Power native battle tests in mGBA
         if: matrix.target == 'modified'
         timeout-minutes: 10
