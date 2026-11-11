@@ -93,19 +93,10 @@ static void blaineTests(void) {
  CHECK(!(core->busRead32(core,SYM_gBattleTypeFlags)&BATTLE_TYPE_TRAINER));
  CHECK(!CALL(FlagGet,FLAG_BADGE07_GET));CHECK(!CALL(FlagGet,FLAG_DEFEATED_BLAINE));
  blaineFixture(2);
- // Pin down whether the native trainer-party constructor itself creates
- // valid encrypted records, independently of the scripted battle lifecycle.
- // Restore a full core snapshot before the real NPC encounter.
- void *constructorState=malloc(core->stateSize(core));CHECK(constructorState);
- CHECK(core->saveState(core,constructorState));
- core->busWrite32(core,SYM_gBattleTypeFlags,BATTLE_TYPE_TRAINER|BATTLE_TYPE_DOUBLE);
- CHECK(CALL(CreateNPCTrainerParty,SYM_gEnemyParty,TRAINER_LEADER_BLAINE)==5);
- unsigned created=monget(enemy(0),ABI_DATA_SPECIES);
- fprintf(stderr,"BLAINE_CONSTRUCTOR_DIAGNOSTIC species=%u expected=%u bad_egg=%u level=%u\\n",
-  created,SPECIES_DONPHAN,monget(enemy(0),ABI_DATA_SANITY_IS_BAD_EGG),
-  monget(enemy(0),ABI_DATA_LEVEL));
- CHECK(created==SPECIES_DONPHAN);
- CHECK(core->loadState(core,constructorState));free(constructorState);
+ // Exercise the real NPC battle without an injected constructor call and
+ // snapshot restore immediately beforehand. The previous audit proved the
+ // constructor initially valid, but the subsequent native battle contained
+ // corrupted encrypted enemy records. Keep both strict checks, isolated.
  fossilStart(SYM_CinnabarIsland_Gym_EventScript_Blaine);blaineWaitActionWithAudit();
  CHECK(core->busRead32(core,SYM_gBattleTypeFlags)&BATTLE_TYPE_TRAINER);
  CHECK(core->busRead32(core,SYM_gBattleTypeFlags)&BATTLE_TYPE_DOUBLE);
@@ -143,4 +134,24 @@ static void blaineTests(void) {
  // Discard the modified type-check fixture; victory uses a fresh native battle.
  CHECK(core->loadState(core,bootState));
  blaineVictoryTests();
+ // Independent constructor acceptance runs only AFTER both native battle
+ // paths, so injected ROM calls cannot contaminate the battle under test.
+ blaineFixture(2);
+ core->busWrite32(core,SYM_gBattleTypeFlags,BATTLE_TYPE_TRAINER|BATTLE_TYPE_DOUBLE);
+ CHECK(CALL(CreateNPCTrainerParty,SYM_gEnemyParty,TRAINER_LEADER_BLAINE)==5);
+ const unsigned constructorSpecies[]={SPECIES_DONPHAN,SPECIES_PIDGEOT,SPECIES_SANDSLASH,SPECIES_AERODACTYL,SPECIES_FLYGON};
+ const unsigned constructorLevels[]={42,42,43,44,47};
+ for(unsigned i=0;i<5;i++){
+  unsigned actualSpecies=monget(enemy(i),ABI_DATA_SPECIES);
+  unsigned actualLevel=monget(enemy(i),ABI_DATA_LEVEL);
+  unsigned badEgg=monget(enemy(i),ABI_DATA_SANITY_IS_BAD_EGG);
+  if(actualSpecies!=constructorSpecies[i]||actualLevel!=constructorLevels[i]||badEgg)
+   fprintf(stderr,"BLAINE_CONSTRUCTOR_DIAGNOSTIC slot=%u species=%u expected=%u level=%u expectedLevel=%u badEgg=%u\\n",
+    i,actualSpecies,constructorSpecies[i],actualLevel,constructorLevels[i],badEgg);
+  CHECK(actualSpecies==constructorSpecies[i]);
+  CHECK(actualLevel==constructorLevels[i]);
+  CHECK(!badEgg);
+ }
+ printf("PASS: isolated native Blaine five-member encrypted party constructor after complete battle acceptance\\n");
+ CHECK(core->loadState(core,bootState));
 }
