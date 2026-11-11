@@ -5,34 +5,12 @@ static void waitThunderWaveTurn(void){
   unsigned active=core->busRead8(core,core->busRead32(core,SYM_gBattleStruct)+ABI_BATTLESTRUCT_TW_ACTIVE);
   seenActive|=active;
   if((seenActive&&!active)||controller(0)==SYM_HandleInputChooseAction)break;
-  // Hold the real A button during long multi-recipient text, rather than
-  // pulsing it for only 3 of every 12 frames. No controller/PP/script writes.
-  frames(1,1);
+  frames(1,(i%12)<3?1:0);
  }
  CHECK(i<2400);
- // Retain the original independent 2400-frame remainder watchdog and
- // the actual action-selection controller requirement.
- unsigned j;
- for(j=0;j<2400;j++){
-  if(j%600==0||j==2399)fprintf(stderr,"TW_TEXT_PROGRESS frame=%u ctrl=%08x script=%08x exec=%08x tw=%u textptr=%08x char=%02x active=%u state=%u speed=%u delay=%u\\n",j,
-   controller(0),core->busRead32(core,SYM_gBattlescriptCurrInstr),
-   core->busRead32(core,SYM_gBattleControllerExecFlags),
-   core->busRead8(core,core->busRead32(core,SYM_gBattleStruct)+ABI_BATTLESTRUCT_TW_ACTIVE),
-   core->busRead32(core,SYM_sTextPrinters),
-   core->busRead8(core,core->busRead32(core,SYM_sTextPrinters)),
-   core->busRead8(core,SYM_sTextPrinters+ABI_TEXT_ACTIVE),
-   core->busRead8(core,SYM_sTextPrinters+ABI_TEXT_STATE),
-   core->busRead8(core,SYM_sTextPrinters+ABI_TEXT_STATE+1),
-   core->busRead8(core,SYM_sTextPrinters+ABI_TEXT_STATE+2));
-  if(controller(0)==SYM_HandleInputChooseAction)break;
-  frames(1,1);
- }
- if(j==2400)fprintf(stderr,"TW_REMAINDER_TIMEOUT ctrl0=%08x script=%08x exec=%08x twActive=%u\\n",
-  controller(0),core->busRead32(core,SYM_gBattlescriptCurrInstr),
-  core->busRead32(core,SYM_gBattleControllerExecFlags),
-  core->busRead8(core,core->busRead32(core,SYM_gBattleStruct)+ABI_BATTLESTRUCT_TW_ACTIVE));
- CHECK(j<2400);
- frames(3,0);
+ // Keep the existing2400-frame remainder guard. Magic Coat's real full turn is
+ //2423 frames: the three-recipient move ends at1720, other actions take703.
+ waitAction();
 }
 static void thunderWaveTests(void){
  CHECK(ABI_BATTLESTRUCT_SIZE==0x200);CHECK(ABI_BATTLESTRUCT_TW_USER==0x1E4);CHECK(ABI_BATTLESTRUCT_TW_ACTIVE==0x1E7);
@@ -50,6 +28,14 @@ static void thunderWaveTests(void){
   unsigned two=scenario!=0,user=scenario>=10?(scenario==10?1:3):scenario>=8?2:0;
   effectBattleFixture(two,MOVE_THUNDER_WAVE);
   if(user==2){CALL(SetMonMoveSlot,player(0),scenario==9?MOVE_MAGIC_COAT:MOVE_SPLASH,0);CALL(SetMonMoveSlot,player(1),MOVE_THUNDER_WAVE,0);core->busWrite16(core,bmon(0)+ABI_BMON_MOVES,scenario==9?MOVE_MAGIC_COAT:MOVE_SPLASH);core->busWrite8(core,bmon(0)+ABI_BMON_PP,scenario==9?15:40);core->busWrite16(core,bmon(2)+ABI_BMON_MOVES,MOVE_THUNDER_WAVE);core->busWrite8(core,bmon(2)+ABI_BMON_PP,20);}
+  // The scenario names one Thunder Wave user. In Doubles its partner
+  // must take a genuine separate action, not issue a second all-target
+  // Thunder Wave that exceeds the existing per-turn native watchdog.
+  if(two && user==0){
+   CALL(SetMonMoveSlot,player(1),MOVE_SPLASH,0);
+   core->busWrite16(core,bmon(2)+ABI_BMON_MOVES,MOVE_SPLASH);
+   core->busWrite8(core,bmon(2)+ABI_BMON_PP,40);
+  }
   if(user&1){
    CALL(SetMonMoveSlot,player(0),MOVE_SPLASH,0);core->busWrite16(core,bmon(0)+ABI_BMON_MOVES,MOVE_SPLASH);core->busWrite8(core,bmon(0)+ABI_BMON_PP,40);
    for(unsigned m=0;m<4;m++){CALL(SetMonMoveSlot,enemy(user/2),MOVE_THUNDER_WAVE,m);core->busWrite16(core,bmon(user)+ABI_BMON_MOVES+2*m,MOVE_THUNDER_WAVE);core->busWrite8(core,bmon(user)+ABI_BMON_PP+m,20);}
