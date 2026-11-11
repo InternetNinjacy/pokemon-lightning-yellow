@@ -42,12 +42,12 @@ static void blaineVictoryTests(void) {
 // battle-intro frames run. No ROM calls or writes are made during tracing.
 static void blaineWaitActionWithAudit(void) {
  unsigned frame,seenCreated=0,seenCorrupt=0,seenChecksumChange=0;
- unsigned firstChecksum=0;
+ unsigned firstChecksum=0,lastChecksum=0,checksumChanges=0;
  for(frame=0;frame<2400;frame++) {
   unsigned flags=core->busRead8(core,enemy(0)+0x13);
   if((flags&2) && !seenCreated) {
    seenCreated=1;
-   firstChecksum=core->busRead16(core,enemy(0)+0x1c);
+   firstChecksum=lastChecksum=core->busRead16(core,enemy(0)+0x1c);
    fprintf(stderr,"BLAINE_PARTY_CREATED frame=%u flags=%02x checksum=%04x callback=%08x\\n",
      frame,flags,core->busRead16(core,enemy(0)+0x1c),
      core->busRead32(core,SYM_gMain+ABI_MAIN_CB2));
@@ -61,6 +61,17 @@ static void blaineWaitActionWithAudit(void) {
     core->busRead32(core,SYM_gMain+ABI_MAIN_CB2),
     core->busRead32(core,SYM_gBattleMainFunc),
     core->busRead32(core,SYM_gBattleControllerExecFlags));
+  }
+  if(seenCreated) {
+   unsigned checksum=core->busRead16(core,enemy(0)+0x1c);
+   if(checksum!=lastChecksum) {
+    if(checksumChanges<16)
+     fprintf(stderr,"BLAINE_CHECKSUM_TRANSITION n=%u frame=%u from=%04x to=%04x flags=%02x callback=%08x\\n",
+      checksumChanges,frame,lastChecksum,checksum,flags,
+      core->busRead32(core,SYM_gMain+ABI_MAIN_CB2));
+    checksumChanges++;
+    lastChecksum=checksum;
+   }
   }
   if((flags&1) && !seenCorrupt) {
    seenCorrupt=1;
@@ -117,8 +128,8 @@ static void blaineTests(void) {
    fprintf(stderr,"BLAINE_ENCRYPTED_RECORD index=%u personality=%08x ot_id=%08x stored_checksum=%04x stored_flags=%02x party_index_left=%u party_index_right=%u\\n",
     i,monget(enemy(i),ABI_DATA_PERSONALITY),monget(enemy(i),ABI_DATA_OT_ID),
     core->busRead16(core,enemy(i)+0x1c),core->busRead8(core,enemy(i)+0x13),
-    core->busRead8(core,SYM_gBattlerPartyIndexes+1),
-    core->busRead8(core,SYM_gBattlerPartyIndexes+3));
+    core->busRead16(core,SYM_gBattlerPartyIndexes+2),
+    core->busRead16(core,SYM_gBattlerPartyIndexes+6));
   }
   CHECK(actualSpecies==species[i]);CHECK(actualLevel==levels[i]);
  }
