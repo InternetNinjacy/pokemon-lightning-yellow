@@ -59,6 +59,13 @@ static void blaineTests(void) {
     monget(enemy(i),ABI_DATA_SANITY_IS_BAD_EGG),monget(enemy(i),ABI_DATA_IS_EGG),
     core->busRead16(core,SYM_gTrainerBattleOpponent_A),
     core->busRead16(core,bmon(1)+ABI_BMON_SPECIES),core->busRead16(core,bmon(3)+ABI_BMON_SPECIES));
+   // Isolate a corrupted encrypted party record from the correctly loaded
+   // battle battler; never rewrite/rekey Pokémon or bypass the assertion.
+   fprintf(stderr,"BLAINE_ENCRYPTED_RECORD index=%u personality=%08x ot_id=%08x stored_checksum=%04x stored_flags=%02x party_index_left=%u party_index_right=%u\\n",
+    i,monget(enemy(i),ABI_DATA_PERSONALITY),monget(enemy(i),ABI_DATA_OT_ID),
+    core->busRead16(core,enemy(i)+0x1c),core->busRead8(core,enemy(i)+0x13),
+    core->busRead8(core,SYM_gBattlerPartyIndexes+1),
+    core->busRead8(core,SYM_gBattlerPartyIndexes+3));
   }
   CHECK(actualSpecies==species[i]);CHECK(actualLevel==levels[i]);
  }
