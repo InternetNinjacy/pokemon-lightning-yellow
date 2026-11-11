@@ -158,14 +158,22 @@ static void voltSwitch388RealPivotTests(void){
   unsigned initialCB=core->busRead32(core,SYM_gMain+ABI_MAIN_CB2);
   CHECK(core->busRead8(core,SYM_gBattlerPartyIndexes)==0);
   chooseMove(0,0,1);if(two)chooseMove(2,0,1);
-  unsigned frame,seenPartyScreen=0,switched=0;
+  unsigned frame,seenPartyScreen=0,switched=0,selectionSent=0,partyFrames=0;
   for(frame=0;frame<7200;frame++){
    unsigned cb=core->busRead32(core,SYM_gMain+ABI_MAIN_CB2);
-   if(cb!=initialCB)seenPartyScreen=1;
+   if(cb!=initialCB){seenPartyScreen=1;partyFrames++;}
+   if(seenPartyScreen&&!selectionSent&&partyFrames>=120){
+    // From the active lead at slot 0, DOWN reaches the unused
+    // reserve (slot 1 in Singles, slot 2 in Doubles layout).
+    // Select using real D-pad/A presses, then choose SHIFT.
+    press(128);
+    press(1);
+    press(1);
+    selectionSent=1;
+   }
    if(core->busRead8(core,SYM_gBattlerPartyIndexes)==reserve)switched=1;
    if(switched&&controller(0)==SYM_HandleInputChooseAction)break;
-   // A is genuine controller input, not a fabricated controller response.
-   frames(1,(frame%12)<3?1:0);
+   frames(1,selectionSent?(frame%12)<3?1:0:0);
   }
   if(frame==7200)fprintf(stderr,"VOLT_PIVOT_TIMEOUT two=%u party=%u switched=%u cb=%08x ctrl=%08x script=%08x exec=%08x\\n",two,seenPartyScreen,switched,core->busRead32(core,SYM_gMain+ABI_MAIN_CB2),controller(0),core->busRead32(core,SYM_gBattlescriptCurrInstr),core->busRead32(core,SYM_gBattleControllerExecFlags));
   CHECK(frame<7200);
