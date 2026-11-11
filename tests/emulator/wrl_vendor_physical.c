@@ -10,6 +10,10 @@ static void wrlVendorPhysicalTalkTests(void) {
         if (v == 7)
             CALL(FlagClear, FLAG_HIDE_SAFFRON_CIVILIANS);
         fossilWarp(site->group, site->map, site->x, site->y + 1);
+        // CB2_LoadMap can reset the staged encrypted save state. Set the
+        // vendor funds after entering the map, before any physical dialogue.
+        CALL(SetMoney, careSave1() + ABI_SAVE1_MONEY, 70000);
+        CHECK(CALL(GetMoney, careSave1() + ABI_SAVE1_MONEY) == 70000);
         unsigned object = CALL(GetObjectEventIdByLocalIdAndMap,
                                site->local, site->map, site->group);
         CHECK(object < ABI_OBJECT_COUNT);
