@@ -35,6 +35,27 @@ static void ordinaryTrainerPartyDataTests(void) {
         }
     }
     CHECK(index == ORDINARY_TRAINER_MON_COUNT);
+    // Tucker is separately owner-approved and not part of the locked
+    // 500-party ordinary Trainer expected array. Check the actual native
+    // constructor, including both explicit and empty custom-move slots.
+    core->busWrite32(core, SYM_gBattleTypeFlags, BATTLE_TYPE_TRAINER);
+    CHECK(CALL(CreateNPCTrainerParty, SYM_gEnemyParty,
+               TRAINER_GENTLEMAN_TUCKER) == 1);
+    const unsigned tucker = enemy(0);
+    CHECK(monget(tucker, ABI_DATA_SPECIES) == SPECIES_VOLTORB);
+    CHECK(monget(tucker, ABI_DATA_LEVEL) == 22);
+    CHECK(monget(tucker, ABI_DATA_HELD_ITEM) == ITEM_NONE);
+    for (unsigned iv = 0; iv < 6; iv++)
+        CHECK(monget(tucker, ABI_DATA_HP_IV + iv) == 0);
+    const unsigned tuckerMoves[] = {MOVE_CHARGE, MOVE_SPARK, MOVE_NONE, MOVE_NONE};
+    for (unsigned slot = 0; slot < 4; slot++) {
+        unsigned move = monget(tucker, ABI_DATA_MOVE1 + slot);
+        CHECK(move == tuckerMoves[slot]);
+        CHECK(monget(tucker, ABI_DATA_PP1 + slot) ==
+              core->busRead8(core,
+                  SYM_gBattleMoves + ABI_BMOVE_SIZE * move + ABI_BMOVE_PP));
+    }
+    printf("PASS: native Vermilion Tucker one Voltorb Lv22, exact Charge/Spark/empty slots, zero IVs, no held item and original PP\\n");
     printf("PASS: native ROM constructors for %u ordinary parties, %u Pokémon, "
            "species/level/IV/held-item/moves/PP; ten dummy source records excluded\n",
            ORDINARY_TRAINER_COUNT, index);
