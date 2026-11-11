@@ -122,9 +122,3 @@ Fixed scope reconciliation: all prior44 task IDs/effort histories are preserved;
 - Strict global species findings, remaining move/weather/content work, full progression and real peer link/hardware remain separately tracked. Blaine victory/badge/TM38/revisit acceptance passed in the merged stack.
 - Repository auto-merge remains enabled. Prior owner-authorized consolidation preserves recovery tag `recovery/main-before-consolidation-20261104`. No ROM release or binary artifacts.
 - Historical milestones and superseded blockers are preserved in Git and the append-only ledger; this dashboard is the current view, not a concatenation of old snapshots.
-
-## WRL service follow-on — Issue #191 Move Reminder (2026-11-11)
-- **Owner authority:** 2026-10-29 Master Plan: a free species/level-aware Move Reminder in **every** Pokémon Center, with evolved-species learnsets and no mushroom/item/currency charge.
-- **Implementation status:** PR [#192](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/192) is **draft / not merged**. The feature branch stages a shared service reused by 19 Pokémon Center 1F object events; the original Two Island Move Maniac is unchanged. The 19-map static coverage guard is wired into modified CI.
-- **Acceptance status:** compilation, exact-head modified / upstream CI, reachable NPCs, physical D-pad/A in Kanto/Sevii/Indigo, move eligibility/save/cancel/full slots, and merged-main CI must be verified before credit. Existing 712-point accounting is unchanged; **zero completion points awarded**. Do not infer proof from source changes or an unmerged PR.
-- **Dependencies:** PKM-009 species learnsets and BTL-005 boundaries remain independently owned. Existing WRL-002/009 and SOW work unaffected. No separate duplicate pipeline task.
