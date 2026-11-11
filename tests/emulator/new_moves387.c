@@ -183,7 +183,15 @@ static void voltSwitch388RealPivotTests(void){
   CHECK(core->busRead16(core,bmon(0)+ABI_BMON_SPECIES)==SPECIES_SNORLAX);
   CHECK(core->busRead16(core,bmon(1)+ABI_BMON_HP)<1000);
   CHECK(monget(player(0),ABI_DATA_PP1)==19);
-  if(two)CHECK(core->busRead8(core,SYM_gBattlerPartyIndexes+2)==1);
+  if(two){
+   unsigned partnerIndex=core->busRead8(core,SYM_gBattlerPartyIndexes+2);
+   unsigned partnerSpecies=core->busRead16(core,bmon(2)+ABI_BMON_SPECIES);
+   unsigned partySpecies=monget(player(1),ABI_DATA_SPECIES);
+   fprintf(stderr,"VOLT_PIVOT_PARTNER_DIAGNOSTIC partnerIndex=%u partnerSpecies=%u party1Species=%u reserve=%u playerCount=%u battlerCount=%u flags=%08x\\n",
+    partnerIndex,partnerSpecies,partySpecies,reserve,core->busRead8(core,SYM_gPlayerPartyCount),
+    core->busRead8(core,SYM_gBattlersCount),core->busRead32(core,SYM_gBattleTypeFlags));
+   CHECK(partnerIndex==1);
+  }
   printf("PASS: native Volt Switch #388 %s actual damage, genuine player party menu and selected bench replacement; PP and partner identity\\n",two?"Doubles":"Singles");
  }
  CHECK(core->loadState(core,bootState));
