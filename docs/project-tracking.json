@@ -3,10 +3,10 @@
   "updated": "2026-11-10",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "Proposed WRL-008 task-level closure following accepted vendor PR12 and merged WRL-001 PR88: +1 reserved point (461 earned/251 remaining of712, pending Master Control review and documentation merge). Other tasks and release QA unchanged.",
-  "main_sha": "4e73c90831baa9ff989f60c3c1908844956ed1ed",
+  "current_focus": "Master Control verified WTH-001 scoped gameplay and accounting CLOSEOUT (PR #170 merged ec81efb901be) and WRL-008 vendor starter-boundary CLOSEOUT (PR #184 merged ae928a1d9eba), each with exact merged-head modified/upstream CI SUCCESS. Official tracker: 461 earned/251 remaining of unchanged 712 (64.75%). Both tasks CLOSED, no gameplay redesign, no double-counting WRL-001 or weather. Remaining BTL-005, WRL-002/009/010, PKM-009, GYM-001/002, WTH-002/003, other event/shop work and INT-004/005 acceptance continue.",
+  "main_sha": "ae928a1d9eba3aed16f4252123027cb5413106a7",
   "drive_sync": {
-    "status": "2026-11-09 WTH-001 merged and canonical GitHub tracking closeout prepared for review; existing START HERE, Project Progress, Weather Specification and Decision Register updated/read back independently in same session (see Drive revision/readback).",
+    "status": "2026-11-10 WTH-001 and WRL-008 closeout PRs #170/#184 merged and verified; corresponding existing Google Drive Progress, START HERE and vendor register synchronized with definitive completion evidence.",
     "folder": "https://drive.google.com/drive/folders/1N_n0Ke48jBbdhUWSZWzwR6rpPFqpDUpl"
   },
   "areas": [
@@ -2273,8 +2273,8 @@
         "implementation": "Complete and merged; independent starter boundary inspected against merged WRL-001 PR88; no vendor code changes required",
         "automated": "eight host suites PASS; local clean repeatability PASS; final Actions modified/upstream SUCCESS",
         "emulator": "full local mGBA PASS; vendor transaction/UI/10000 purchases/EXP/obedience plus existing stack; external gaps retained",
-        "pull_request": "PR#12 merged; historical branch evidence retained",
-        "merge": "PR12 merged ef98140d; WRL-001 PR88 merged 1cc82d53; starter boundary verified on main ec81efb; proposed tracking closeout awaiting Master Control merge authorization"
+        "pull_request": "Gameplay PR12 merged; final accounting and starter-boundary acceptance PR184 merged; no gameplay source change",
+        "merge": "PR12 gameplay merged ef98140d; WRL-001 PR88 merged 1cc82d53; final starter-boundary tracking PR184 merged ae928a1d9eba3aed16f4252123027cb5413106a7, exact merged-main checks SUCCESS"
       },
       "branch": "main",
       "commit": "d54f7a8e85d38b8fa304399dcb4d14778396d5cd",
@@ -2282,8 +2282,8 @@
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41673840642",
       "blocker": null,
       "design_authority": "DES-008 owner supplied Mystery Vendor Codex Implementation Handoff v1.0, approved pool CSV, explicit independent starter boundary. Approved700/level5/90%/OT Mystery; no new design inferred.",
-      "next_action": "Proposed CLOSED for WRL-008 task-level acceptance: see docs/WRL008_STARTER_BOUNDARY_ACCEPTANCE.md; Master Control reviews/merges accounting. Global species source exclusivity and organic full-game/release QA remain separate.",
-      "checkpoint": "2026-11-04 PR#12 head includes owner-authorized#13 merge; vendor itself remains open, not main.",
+      "next_action": "CLOSED: WRL-008 20/0. Preserve vendor sales, 90% Shiny and separate Pikachu/Eevee starter paths. Broader natural-acquisition/release QA stays PKM/WRL ecology and INT-004/005.",
+      "checkpoint": "2026-11-10 PR184 merged and accepted. Final reserved point transferred; no extra scope or denominator change.",
       "coverage_gap": "Starter-boundary source integration verified after WRL-001 merge; independent global acquisition/ecology, manual full progression, two-peer trade/hardware, flash power-loss, exhaustive quest-log replay and Shiny-summary presentation remain separate owners/release QA.",
       "implementation_ref": {
         "branch": "feature/mystery-vendor-network",
@@ -2293,6 +2293,12 @@
         "pr": 12,
         "merge_commit": "ef98140d1e0248995ae0ada2782244b6c4e7955d",
         "verified_main": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c"
+      },
+      "closure_reference": {
+        "pr": 184,
+        "merge_commit": "ae928a1d9eba3aed16f4252123027cb5413106a7",
+        "prior_gameplay_pr": 12,
+        "starter_pr": 88
       }
     },
     {
@@ -2997,7 +3003,7 @@
   },
   "progress_accounting": {
     "rule": "EARNED estimates include verified scoped native/build work in OPEN PRs when explicitly flagged; not equivalent to code merged to main. Review and release gates retained. Documentation-only PRs get zero gameplay implementation credit. New scope tasks record net extra workload beyond existing broad task buckets.",
-    "as_of": "2026-11-09",
+    "as_of": "2026-11-10",
     "main_evidence": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c",
     "known_merged_code_credit_separate_from_open": "Open PR evidence credited only once to corresponding permanent task. No separate points awarded merely for large assertion counts.",
     "reconciliation": {
@@ -3037,6 +3043,18 @@
       "points_reassigned": 4,
       "source": "PR139 merge 4e73c908 and split/title/merged checks, owner specialist handoff",
       "limits": "WTH-002 visual-fog and INT-004/005 broad tests excluded"
+    },
+    "wrl008_closure": {
+      "date": "2026-11-10",
+      "pr": 184,
+      "merge_commit": "ae928a1d9eba3aed16f4252123027cb5413106a7",
+      "earned_before": 460,
+      "remaining_before": 252,
+      "earned_after": 461,
+      "remaining_after": 251,
+      "points_reassigned": 1,
+      "denominator_unchanged": 712,
+      "limits": "Vendor independent starter boundary only; global acquisition/complete story/hardware under other tasks"
     }
   },
   "latest_consolidation": {
