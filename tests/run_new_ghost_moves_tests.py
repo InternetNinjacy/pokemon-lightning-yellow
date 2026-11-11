@@ -4,6 +4,7 @@ from pathlib import Path
 import hashlib,json,re
 from approved_new_ghost_move_changes import prior_new_ghost_move_source
 from approved_skitter_slash_changes import prior_skitter_slash_source
+from approved_moves387_changes import prior_moves387_source
 
 m=json.loads(Path('tests/specifications/approved_new_ghost_move_delta.json').read_text())
 for path,r in m['files'].items():
@@ -17,7 +18,7 @@ for key,id,category,power,effect,chance in expected:
  assert ('FLAG_MAKES_CONTACT' in c['flags'])==(key!='DREAM_HAUNT')
  assert r['effect_rules']
 assert sum(r['id'] is not None and r['id'] <= 360 for r in rows)==360 and len(rows)==410
-scripts=Path('data/battle_scripts_1.s').read_text()
+scripts=prior_moves387_source('data/battle_scripts_1.s')
 table=scripts.split('gBattleScriptsForMoveEffects::',1)[1].split('\nBattleScript_EffectHit::',1)[0]
 assert len(re.findall(r'\.4byte BattleScript_',table))==217  # #372 adds a new reviewed effect; older 216 unchanged
 assert re.findall(r'\.4byte (BattleScript_\w+)',table)[216]=='BattleScript_EffectIceFang'

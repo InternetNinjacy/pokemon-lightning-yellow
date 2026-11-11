@@ -19,6 +19,9 @@ def project(path,text,view):
     # byte-exact, even when a guard invokes without_weather() directly.
     # Reversal of a present append is strict; absent append is left untouched.
     from approved_water_moves385_changes import HUNKS, prior_water_moves385_source
+    from approved_moves387_changes import HUNKS as BATCH387_HUNKS, prior_moves387_source
+    if str(path) in BATCH387_HUNKS and any(after in text for after,_ in BATCH387_HUNKS[str(path)]):
+        text=prior_moves387_source(path,text)
     if str(path) in HUNKS and any(after in text for after,_ in HUNKS[str(path)]):
         text=prior_water_moves385_source(path,text)
     text=before_species_evolution(path,text)

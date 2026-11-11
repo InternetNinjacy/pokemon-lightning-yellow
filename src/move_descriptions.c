@@ -407,6 +407,14 @@ const u8 gMoveDescription_LIQUIDATION[] = _("A water strike\nthat may lower\nthe
 
 const u8 gMoveDescription_VORTEX_SPIN[] = _("A swirling water\nstrike that may\nconfuse the foe.");
 const u8 gMoveDescription_TIDAL_CRASH[] = _("A 5-turn water\nattack that grows\nstronger each hit.");
+const u8 gMoveDescription_DISCHARGE[] = _("Electricity hits\nall other foes.\nMay paralyze.");
+const u8 gMoveDescription_VOLT_SWITCH[] = _("An electric hit\nthat switches the\nuser out.");
+const u8 gMoveDescription_THUNDER_FANG[] = _("Sharp fangs may\nparalyze or cause\nthe foe to flinch.");
+const u8 gMoveDescription_WILD_CHARGE[] = _("An electric rush\nthat hurts the\nuser in recoil.");
+const u8 gMoveDescription_SEED_BOMB[] = _("Launches a large\nseed at the foe\nwith great force.");
+const u8 gMoveDescription_PETAL_BLIZZARD[] = _("A storm of petals\nstrikes all nearby\nPokémon.");
+const u8 gMoveDescription_WOOD_HAMMER[] = _("A heavy blow that\nalso damages the\nuser on impact.");
+const u8 gMoveDescription_AURA_SPHERE[] = _("An aura blast\nthat never misses\nits target.");
 
 const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND         - 1] = gMoveDescription_Pound,
@@ -795,4 +803,12 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_LIQUIDATION - 1] = gMoveDescription_LIQUIDATION,
     [MOVE_VORTEX_SPIN - 1] = gMoveDescription_VORTEX_SPIN,
     [MOVE_TIDAL_CRASH - 1] = gMoveDescription_TIDAL_CRASH,
+    [MOVE_DISCHARGE - 1] = gMoveDescription_DISCHARGE,
+    [MOVE_VOLT_SWITCH - 1] = gMoveDescription_VOLT_SWITCH,
+    [MOVE_THUNDER_FANG - 1] = gMoveDescription_THUNDER_FANG,
+    [MOVE_WILD_CHARGE - 1] = gMoveDescription_WILD_CHARGE,
+    [MOVE_SEED_BOMB - 1] = gMoveDescription_SEED_BOMB,
+    [MOVE_PETAL_BLIZZARD - 1] = gMoveDescription_PETAL_BLIZZARD,
+    [MOVE_WOOD_HAMMER - 1] = gMoveDescription_WOOD_HAMMER,
+    [MOVE_AURA_SPHERE - 1] = gMoveDescription_AURA_SPHERE,
 };

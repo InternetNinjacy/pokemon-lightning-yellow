@@ -2,6 +2,7 @@
 Expected historical SHA values and original approved manifests remain unchanged.
 """
 from pathlib import Path
+from approved_moves387_changes import prior_moves387_source
 
 HUNKS = {
   # New production delta is strictly reversible before the frozen ancestor
@@ -55,6 +56,7 @@ HUNKS = {
 def prior_water_moves385_source(path, text=None):
     if text is None:
         text=Path(path).read_text()
+    text=prior_moves387_source(path,text)
     for after,before in HUNKS.get(str(path),[]):
         assert text.count(after)==1, "Unreviewed #385-386 source delta: "+str(path)
         text=text.replace(after,before,1)

@@ -4,6 +4,7 @@ from pathlib import Path
 import json
 import re
 from approved_swarm_cloud_changes import prior_swarm_cloud_source
+from approved_moves387_changes import prior_moves387_source
 
 root = Path(__file__).resolve().parents[1]
 rows = json.loads((root/"docs/moves/move-specification.json").read_text())["moves"]
@@ -16,7 +17,7 @@ assert (c["type"],c["category"],c["power"],c["accuracy"],c["pp"],
 assert "FLAG_MAKES_CONTACT" not in c["flags"]
 effects = (root/"include/constants/battle_move_effects.h").read_text()
 assert "#define EFFECT_SWARM_CLOUD 215" in effects
-battle = (root/"data/battle_scripts_1.s").read_text()
+battle = prior_moves387_source("data/battle_scripts_1.s", (root/"data/battle_scripts_1.s").read_text())
 table = battle.split("gBattleScriptsForMoveEffects::",1)[1].split("\nBattleScript_EffectHit::",1)[0]
 pointers = re.findall(r'\.4byte (BattleScript_\w+)',table)
 assert len(pointers)==217 and pointers[214]=="BattleScript_EffectSleepHit" and pointers[215]=="BattleScript_EffectSwarmCloud" and pointers[216]=="BattleScript_EffectIceFang"

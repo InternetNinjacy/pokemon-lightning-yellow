@@ -853,7 +853,8 @@ static void Cmd_attackcanceler(void)
         gBattlescriptCurrInstr = BattleScript_MoveEnd;
         return;
     }
-    if (gCurrentMove == MOVE_THUNDER_WAVE && !gBattleStruct->thunderWaveActive)
+    if ((gCurrentMove == MOVE_THUNDER_WAVE || gCurrentMove == MOVE_DISCHARGE || gCurrentMove == MOVE_PETAL_BLIZZARD)
+     && !gBattleStruct->thunderWaveActive)
     {
         u8 nextTarget;
 
@@ -878,7 +879,7 @@ static void Cmd_attackcanceler(void)
     {
         gBattlescriptCurrInstr = BattleScript_NoPPForMove;
         gMoveResultFlags |= MOVE_RESULT_MISSED;
-        if (gCurrentMove == MOVE_THUNDER_WAVE)
+        if (gCurrentMove == MOVE_THUNDER_WAVE || gCurrentMove == MOVE_DISCHARGE || gCurrentMove == MOVE_PETAL_BLIZZARD)
             gBattleStruct->thunderWaveActive = FALSE;
         return;
     }
@@ -4352,7 +4353,7 @@ static void Cmd_moveend(void)
         case MOVEEND_NEXT_TARGET: // For moves hitting two opposing Pokemon.
             if (gBattleStruct->thunderWaveActive)
             {
-                if (gCurrentMove == MOVE_THUNDER_WAVE)
+                if (gCurrentMove == MOVE_THUNDER_WAVE || gCurrentMove == MOVE_DISCHARGE || gCurrentMove == MOVE_PETAL_BLIZZARD)
                 {
                     u8 nextTarget;
 
