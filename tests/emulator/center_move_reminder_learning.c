@@ -138,5 +138,94 @@ static void centerMoveReminderLearningTests(void) {
     CHECK(CALL(GetMoney, careSave1() + ABI_SAVE1_MONEY) == originalMoney);
     printf("PASS: real Center NPC -> party -> relearn UI -> Water Gun; free, save/reload stable\n");
 
+
+    // All four move slots occupied: real NPC -> party menu -> learn move ->
+    // Yes -> agree to forget -> original summary move selector -> chosen slot.
+    // No direct call to SetMonMoveSlot, no special-variable test injection.
+    vendorFixture();
+    fossilWarp(MAP_GROUP(MAP_VIRIDIAN_CITY_POKEMON_CENTER_1F),
+               MAP_NUM(MAP_VIRIDIAN_CITY_POKEMON_CENTER_1F), 10, 5);
+    CALL(CreateMon, player(0), SPECIES_VAPOREON, 16, 31, 1, 7, 0, 0);
+    monput(player(0), ABI_DATA_MOVE1, MOVE_TACKLE);
+    monput(player(0), ABI_DATA_MOVE2, MOVE_TAIL_WHIP);
+    monput(player(0), ABI_DATA_MOVE3, MOVE_HELPING_HAND);
+    monput(player(0), ABI_DATA_MOVE4, MOVE_SPLASH);
+    CHECK(centerEligible(player(0)) == 2);
+    CHECK(centerHasMove(2, MOVE_WATER_GUN));
+    unsigned fullMoney = CALL(GetMoney, careSave1() + ABI_SAVE1_MONEY);
+    unsigned oldMoves[4] = {MOVE_TACKLE, MOVE_TAIL_WHIP, MOVE_HELPING_HAND, MOVE_SPLASH};
+    unsigned fullNpc = CALL(GetObjectEventIdByXY, 17, 11);
+    CHECK(fullNpc < ABI_OBJECT_COUNT);
+    core->busWrite8(core, SYM_gSelectedObjectEvent, 0xFF);
+    frames(6, 64); frames(6, 0); press(1); // real UP and A
+    fossilWaitMenu(SYM_Task_YesNoMenu_HandleInput);
+    CHECK(core->busRead8(core, SYM_gSelectedObjectEvent) == fullNpc);
+    press(1); // accept
+    for (f = 0; f < 6000; f++) {
+        if (CALL(FuncIsActiveTask, SYM_Task_HandleChooseMonInput | 1U)) break;
+        frames(1, (f % 12) == 0 && fossilTextPaused() ? 1 : 0);
+    }
+    CHECK(f < 6000);
+    frames(16, 0); press(1); // party member zero
+    for (f = 0; f < 6000; f++) {
+        if ((core->busRead32(core, SYM_gMain + ABI_MAIN_CB2) & ~1U)
+            == SYM_CB2_MoveRelearner) break;
+        frames(1, (f % 12) == 0 && fossilTextPaused() ? 1 : 0);
+    }
+    CHECK(f < 6000);
+    for (f = 0; f < 6000; f++) {
+        unsigned p = core->busRead32(core, SYM_sMoveRelearner);
+        if (p && core->busRead8(core, p) == 4) break;
+        frames(1, 0);
+    }
+    CHECK(f < 6000);
+    ui = core->busRead32(core, SYM_sMoveRelearner);
+    CHECK(core->busRead8(core, ui + ABI_RELEARNER_INDEX) == 0);
+    press(128); frames(16, 0);
+    CHECK(core->busRead8(core, ui + ABI_RELEARNER_INDEX) == 1);
+    press(1); // Water Gun
+    for (f = 0; f < 6000; f++) {
+        if (core->busRead8(core, ui) == 9) break;
+        frames(1, 0);
+    }
+    CHECK(f < 6000); frames(16, 0); press(1); // yes, teach
+    for (f = 0; f < 6000; f++) {
+        if (core->busRead8(core, ui) == 18) break;
+        frames(1, 0);
+    }
+    CHECK(f < 6000); frames(16, 0); press(1); // yes, forget another
+    // The *original* summary UI now selects which occupied move to replace.
+    for (f = 0; f < 6000; f++) {
+        uint32_t cb = core->busRead32(core, SYM_gMain + ABI_MAIN_CB2) & ~1U;
+        if (cb != SYM_CB2_MoveRelearner && cb != SYM_CB2_Overworld) break;
+        frames(1, 0);
+    }
+    CHECK(f < 6000);
+    frames(240, 0); // wait for standard summary's palette and input setup
+    press(1); // select first move (Tackle) via actual summary A input
+    for (f = 0; f < 6000; f++) {
+        if ((core->busRead32(core, SYM_gMain + ABI_MAIN_CB2) & ~1U)
+            == SYM_CB2_MoveRelearner) break;
+        frames(1, 0);
+    }
+    CHECK(f < 6000);
+    for (f = 0; f < 6000; f++) {
+        if (core->busRead8(core, ui) == 33) break;
+        frames(1, (f % 12) == 0 && fossilTextPaused() ? 1 : 0);
+    }
+    CHECK(f < 6000);
+    CHECK(monget(player(0), ABI_DATA_MOVE1) == MOVE_WATER_GUN);
+    for (unsigned slot = 1; slot < 4; slot++)
+        CHECK(monget(player(0), ABI_DATA_MOVE1 + slot) == oldMoves[slot]);
+    press(1);
+    fossilClose(2);
+    CHECK(CALL(GetMoney, careSave1() + ABI_SAVE1_MONEY) == fullMoney);
+    flashRoundTrip();
+    CHECK(monget(player(0), ABI_DATA_MOVE1) == MOVE_WATER_GUN);
+    for (unsigned slot = 1; slot < 4; slot++)
+        CHECK(monget(player(0), ABI_DATA_MOVE1 + slot) == oldMoves[slot]);
+    CHECK(CALL(GetMoney, careSave1() + ABI_SAVE1_MONEY) == fullMoney);
+    printf("PASS: full four-move NPC -> summary replacement, selected slot only, free and flash persistent\n");
+
     CHECK(core->loadState(core, bootState));
 }
