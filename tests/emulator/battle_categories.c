@@ -299,6 +299,21 @@ static void trainerAiCategoryAcceptance(void) {
                 chosen,normal,special);
     CHECK(special>normal);
     CHECK(chosen==1);
-    printf("PASS: actual ROM trainer-AI script penalizes immune Physical move and chooses viable Special move\\n");
+    // Reverse the immunity in the same native battle: Normal now receives
+    // Tackle while Ghost Shadow Ball is ineffective. Reinitialize the actual
+    // trainer-AI evaluator instead of manually writing expected score bytes.
+    core->busWrite8(core,bmon(0)+ABI_BMON_TYPE1,TYPE_NORMAL);
+    core->busWrite8(core,bmon(0)+ABI_BMON_TYPE2,TYPE_NORMAL);
+    CALL(BattleAI_SetupAIData);
+    core->busWrite32(core,thinking+ABI_AI_FLAGS,1);
+    chosen=CALL(BattleAI_ChooseMoveOrAction);
+    normal=core->busRead8(core,thinking+ABI_AI_SCORE);
+    special=core->busRead8(core,thinking+ABI_AI_SCORE+1);
+    if(chosen!=0 || normal<=special)
+        fprintf(stderr,"BTL003 reverse AI immunity scenario: chosen=%u normal=%u special=%u\\n",
+                chosen,normal,special);
+    CHECK(normal>special);
+    CHECK(chosen==0);
+    printf("PASS: native trainer-AI selects viable Physical or Special move under reciprocal type immunities\\n");
     CHECK(core->loadState(core,bootState));
 }
