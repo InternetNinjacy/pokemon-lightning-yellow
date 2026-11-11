@@ -38,6 +38,33 @@ static void blaineVictoryTests(void) {
  printf("PASS: actual Blaine Double victory/all five opponents seen, original badge/TM38/defeat script, flash Continue and nonduplicating revisit in%u frames; controlled players, unchanged opponent party\n",f);
  CHECK(core->loadState(core,bootState));
 }
+// Audit only raw encrypted party header bytes while the unchanged native
+// battle-intro frames run. No ROM calls or writes are made during tracing.
+static void blaineWaitActionWithAudit(void) {
+ unsigned frame,seenCreated=0,seenCorrupt=0;
+ for(frame=0;frame<2400;frame++) {
+  unsigned flags=core->busRead8(core,enemy(0)+0x13);
+  if((flags&2) && !seenCreated) {
+   seenCreated=1;
+   fprintf(stderr,"BLAINE_PARTY_CREATED frame=%u flags=%02x checksum=%04x callback=%08x\\n",
+     frame,flags,core->busRead16(core,enemy(0)+0x1c),
+     core->busRead32(core,SYM_gMain+ABI_MAIN_CB2));
+  }
+  if((flags&1) && !seenCorrupt) {
+   seenCorrupt=1;
+   fprintf(stderr,"BLAINE_PARTY_BAD_EGG_FIRST frame=%u flags=%02x checksum=%04x callback=%08x battle_main=%08x exec=%08x\\n",
+     frame,flags,core->busRead16(core,enemy(0)+0x1c),
+     core->busRead32(core,SYM_gMain+ABI_MAIN_CB2),
+     core->busRead32(core,SYM_gBattleMainFunc),
+     core->busRead32(core,SYM_gBattleControllerExecFlags));
+  }
+  if(controller(0)==SYM_HandleInputChooseAction)break;
+  frames(1,(frame%12)<3?1:0);
+ }
+ if(frame==2400)fprintf(stderr,"BLAINE_AUDIT_TIMEOUT flags=%02x\\n",core->busRead8(core,enemy(0)+0x13));
+ CHECK(frame<2400);
+ frames(3,0);
+}
 static void blaineTests(void) {
  blaineFixture(1);fossilStart(SYM_CinnabarIsland_Gym_EventScript_Blaine);fossilClose(1);
  CHECK(!(core->busRead32(core,SYM_gBattleTypeFlags)&BATTLE_TYPE_TRAINER));
@@ -56,7 +83,7 @@ static void blaineTests(void) {
   monget(enemy(0),ABI_DATA_LEVEL));
  CHECK(created==SPECIES_DONPHAN);
  CHECK(core->loadState(core,constructorState));free(constructorState);
- fossilStart(SYM_CinnabarIsland_Gym_EventScript_Blaine);waitAction();
+ fossilStart(SYM_CinnabarIsland_Gym_EventScript_Blaine);blaineWaitActionWithAudit();
  CHECK(core->busRead32(core,SYM_gBattleTypeFlags)&BATTLE_TYPE_TRAINER);
  CHECK(core->busRead32(core,SYM_gBattleTypeFlags)&BATTLE_TYPE_DOUBLE);
  CHECK(core->busRead8(core,SYM_gBattlersCount)==4);
