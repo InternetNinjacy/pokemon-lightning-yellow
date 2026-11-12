@@ -322,3 +322,17 @@ exact frozen source reversals and existing-art inline composites. No distributio
 or new state/art. Run all29 hosts/3 checkers/full30-group native/clean; focus
 LIGHTNING_ORIGINAL_EFFECTS_ONLY=1 plus LIGHTNING_NEW_GHOST_MOVES_ONLY=1. Merge
 parent80 before child; native playback is not exhaustive visual/hardware approval.
+
+## November 12 validation clarification — risk-based batching
+
+The owner reiterates the **existing November 7 risk-based TEST EQUIVALENCE POLICY**.
+Use `docs/CODEX_COST_EFFICIENT_WORKFLOW.md` for tiers 0–4, focused local tests,
+compatible-batch planning and PR impact/equivalence notes. Do not repeatedly poll
+long-running native CI; progress another approved independent task instead.
+This clarification does **not** change the existing Actions workflow, mandated
+status names, source-preservation checks or protected merge rules. The full native
+mGBA and independent upstream jobs still run under the current workflow until a
+separately reviewed CI-optimization PR has established the actual branch rules,
+fail-closed change classification and preserved high-risk/release gates. Keep all
+special-case acceptance (including WRL-002/009 actual Cut/grass, event/save, ABI,
+real gameplay and licensing) and do not claim green results for untested heads.
