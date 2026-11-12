@@ -10,7 +10,7 @@ assert p.count(AFTER_PARTY) == 1 and p.count(BEFORE_PARTY) == 0
 assert prior_viridian_jason_source("src/data/trainer_parties.h", p).count(BEFORE_PARTY) == 1
 m = re.search(r"\[TRAINER_TAMER_JASON\] = \{(.*?)\n    \},", t, re.S)
 assert m
-for v in (".items = {}", ".doubleBattle = FALSE", ".aiFlags = AI_SCRIPT_CHECK_BAD_MOVE", ".party = NO_ITEM_DEFAULT_MOVES(sParty_TamerJason)"):
+for v in (".items = {ITEM_SUPER_POTION, ITEM_FULL_HEAL}", ".doubleBattle = FALSE", ".aiFlags = AI_SCRIPT_CHECK_BAD_MOVE", ".party = NO_ITEM_DEFAULT_MOVES(sParty_TamerJason)"):
     assert v in m.group(1), v
 assert "trainerbattle_single TRAINER_TAMER_JASON" in script
 print("PASS: Jason Carvanha/Umbreon Lv43 IV40, two no-item default-moves slots, original Singles/AI. Trainer Revive+Full Heal remains separately unresolved.")

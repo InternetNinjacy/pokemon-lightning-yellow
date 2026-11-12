@@ -10,7 +10,7 @@ assert p.count(AFTER_PARTY)==1 and p.count(BEFORE_PARTY)==0
 assert prior_viridian_warren_source("src/data/trainer_parties.h",p).count(BEFORE_PARTY)==1
 m=re.search(r"\[TRAINER_COOLTRAINER_WARREN\] = \{(.*?)\n    \},",t,re.S)
 assert m
-for v in (".items = {ITEM_HYPER_POTION}",".doubleBattle = FALSE",".aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY",AFTER_META):
+for v in (".items = {ITEM_SUPER_POTION, ITEM_FULL_HEAL}",".doubleBattle = FALSE",".aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY",AFTER_META):
     assert v in m.group(1),v
 assert "trainerbattle_single TRAINER_COOLTRAINER_WARREN" in s
 print("PASS: Warren Nuzleaf/Raticate/Absol Lv37/37/38 IV100 no-held default moves; source Singles/AI unchanged. Historical Hyper Potion bag preserved; target Revive+Full Heal still unimplemented.")

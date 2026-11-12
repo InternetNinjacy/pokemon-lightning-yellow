@@ -15,7 +15,7 @@ assert parties.count(BEFORE_PARTY) == 0
 assert prior_viridian_atsushi_source("src/data/trainer_parties.h", parties).count(BEFORE_PARTY) == 1
 m = re.search(r"\[TRAINER_BLACK_BELT_ATSUSHI\] = \{(.*?)\n    \},", trainers, re.S)
 assert m
-for x in (".items = {}", ".doubleBattle = FALSE",
+for x in (".items = {ITEM_SUPER_POTION, ITEM_FULL_HEAL}", ".doubleBattle = FALSE",
           ".aiFlags = AI_SCRIPT_CHECK_BAD_MOVE", AFTER_METADATA):
     assert x in m.group(1), x
 assert "trainerbattle_single TRAINER_BLACK_BELT_ATSUSHI" in scripts
