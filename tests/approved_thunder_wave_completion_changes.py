@@ -13,7 +13,7 @@ AFTER = "            // Thunder Wave already consumed its three recipients above
 
 def _blob(text):
     data = text.encode()
-    return hashlib.sha1(b"blob " + str(len(data)).encode() + b"\\0" + data).hexdigest()
+    return hashlib.sha1(b"blob " + str(len(data)).encode() + b"\0" + data).hexdigest()
 
 def prior_thunder_wave_completion_source(path, text):
     if str(path) != PATH:
