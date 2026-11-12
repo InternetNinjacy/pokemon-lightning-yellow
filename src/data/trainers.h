@@ -3220,7 +3220,7 @@ const struct Trainer gTrainers[] = {
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
-        .party = ITEM_DEFAULT_MOVES(sParty_BlackBeltAtsushi),
+        .party = NO_ITEM_DEFAULT_MOVES(sParty_BlackBeltAtsushi),
     },
     [TRAINER_BLACK_BELT_KIYO] = {
         .trainerClass = TRAINER_CLASS_BLACK_BELT,
