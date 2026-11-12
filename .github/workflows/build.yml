@@ -91,6 +91,15 @@ jobs:
           python3 tests/run_weather_ability_tests.py
           python3 tests/run_weather_species_tests.py
           python3 tests/run_brock_weather_tests.py
+          python3 tests/check_viridian_cole_approved_pair.py
+          python3 tests/check_viridian_atsushi_approved_pair.py
+          python3 tests/check_viridian_takashi_approved_trio.py
+          python3 tests/check_viridian_kiyo_approved_pair.py
+          python3 tests/check_viridian_jason_approved_pair.py
+          python3 tests/check_viridian_samuel_approved_pair.py
+          python3 tests/check_viridian_yuji_approved_pair.py
+          python3 tests/check_viridian_warren_approved_trio.py
+          python3 tests/check_viridian_bags_super_potion_full_heal.py
           python3 tests/check_wrl003_evolution_item_prices.py
           python3 tests/run_special_glalie_tests.py
           python3 tests/run_special_corphish_tests.py
