@@ -12,7 +12,7 @@ assert parties.count(BEFORE) == 0
 assert prior_viridian_cole_source("src/data/trainer_parties.h", parties).count(BEFORE) == 1
 block = re.search(r"\[TRAINER_TAMER_COLE\] = \{(.*?)\n    \},", metadata, re.S)
 assert block
-for v in (".items = {}", ".doubleBattle = FALSE",
+for v in (".items = {ITEM_SUPER_POTION, ITEM_FULL_HEAL}", ".doubleBattle = FALSE",
           ".aiFlags = AI_SCRIPT_CHECK_BAD_MOVE",
           ".party = NO_ITEM_DEFAULT_MOVES(sParty_TamerCole)"):
     assert v in block.group(1), v
