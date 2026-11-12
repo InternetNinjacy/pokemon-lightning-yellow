@@ -20,6 +20,10 @@ def project(path,text,view):
     # Reversal of a present append is strict; absent append is left untouched.
     # Reverse the exact new Batch A damage delta before checking frozen
     # weather-integration source hashes; rejects altered staged source blobs.
+    # Reverse only the newly reviewed Thunder Wave completion delta first;
+    # the existing Batch A and weather source guards retain their exact hashes.
+    from approved_thunder_wave_completion_changes import prior_thunder_wave_completion_source
+    text=prior_thunder_wave_completion_source(path,text)
     from approved_batch_a_traversal_changes import prior_batch_a_traversal_source
     text=prior_batch_a_traversal_source(path,text)
     from approved_batch_a_spread_changes import prior_batch_a_spread_source
