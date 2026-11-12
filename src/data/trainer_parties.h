@@ -6157,30 +6157,34 @@ static const struct TrainerMonNoItemCustomMoves sParty_LeaderErika[] = {
     },
 };
 
-static const struct TrainerMonNoItemCustomMoves sParty_LeaderKoga[] = {
+static const struct TrainerMonItemCustomMoves sParty_LeaderKoga[] = {
     {
         .iv = 0,
         .lvl = 37,
-        .species = SPECIES_KOFFING,
-        .moves = {MOVE_SELF_DESTRUCT, MOVE_SLUDGE, MOVE_SMOKESCREEN, MOVE_TOXIC},
+        .species = SPECIES_SCYTHER,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_SLASH, MOVE_WING_ATTACK, MOVE_SWORDS_DANCE, MOVE_FOCUS_ENERGY},
     },
     {
         .iv = 0,
         .lvl = 39,
-        .species = SPECIES_MUK,
-        .moves = {MOVE_MINIMIZE, MOVE_SLUDGE, MOVE_ACID_ARMOR, MOVE_TOXIC},
+        .species = SPECIES_HERACROSS,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_BRICK_BREAK, MOVE_TAKE_DOWN, MOVE_COUNTER, MOVE_FURY_ATTACK},
     },
     {
         .iv = 0,
         .lvl = 37,
-        .species = SPECIES_KOFFING,
-        .moves = {MOVE_SELF_DESTRUCT, MOVE_SLUDGE, MOVE_SMOKESCREEN, MOVE_TOXIC},
+        .species = SPECIES_ARBOK,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_BITE, MOVE_ACID, MOVE_SCREECH, MOVE_GLARE},
     },
     {
         .iv = 0,
         .lvl = 43,
-        .species = SPECIES_WEEZING,
-        .moves = {MOVE_TACKLE, MOVE_SLUDGE, MOVE_SMOKESCREEN, MOVE_TOXIC},
+        .species = SPECIES_CROBAT,
+        .heldItem = ITEM_SCOPE_LENS,
+        .moves = {MOVE_AIR_CUTTER, MOVE_WING_ATTACK, MOVE_CONFUSE_RAY, MOVE_BITE},
     },
 };
 
