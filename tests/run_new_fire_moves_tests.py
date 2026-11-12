@@ -44,7 +44,13 @@ assert '\tcall ' not in shared  # FireRed animation interpreter has ONE return s
 # No production distribution has been added as a side effect of engine support.
 for path in ['src/data/pokemon/level_up_learnsets.h', 'src/data/pokemon/tmhm_learnsets.h',
              'src/data/trainer_parties.h']:
-    assert not any('MOVE_' + key in Path(path).read_text() for key, *_ in expected), path
+    source=Path(path).read_text()
+    if path=='src/data/pokemon/level_up_learnsets.h':
+        from approved_pkm009_delegated_001_126_changes import prior_pkm009_delegated_001_126_source
+        from approved_pkm009_delegated_127_252_changes import prior_pkm009_delegated_127_252_source
+        source=prior_pkm009_delegated_001_126_source(path,source)
+        source=prior_pkm009_delegated_127_252_source(path,source)
+    assert not any('MOVE_' + key in source for key, *_ in expected), path
 print('PASS: three exact appended owner designs, complete catalog and frozen historical reversal; original animation bodies/art reused; no distribution added (source audit, not runtime proof).')
 
 # Execute the actual production chance routine with controlled rolls; only its
