@@ -76,6 +76,7 @@ jobs:
           python3 tests/run_weather_species_tests.py
           python3 tests/run_brock_weather_tests.py
           python3 tests/check_viridian_cole_approved_pair.py
+          python3 tests/check_viridian_atsushi_approved_pair.py
           python3 tests/run_special_glalie_tests.py
           python3 tests/run_special_corphish_tests.py
           python3 tests/run_sow_event_tests.py
