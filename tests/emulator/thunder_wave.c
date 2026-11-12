@@ -27,15 +27,6 @@ static void thunderWaveTests(void){
  for(unsigned scenario=0;scenario<12;scenario++){
   unsigned two=scenario!=0,user=scenario>=10?(scenario==10?1:3):scenario>=8?2:0;
   effectBattleFixture(two,MOVE_THUNDER_WAVE);
-  // Use the active saved Options menu choice, not an inferred static save
-  // address; this is a legitimate Fast text setting for real battle text.
-  // The fixture initializes a fresh slow-text save for each native scenario.
-  unsigned save2=core->busRead32(core,SYM_gSaveBlock2Ptr);
-  CHECK(save2>=0x02000000&&save2<0x02040000);
-  core->busWrite8(core,save2+0x14,
-   (core->busRead8(core,save2+0x14)&~7U)|OPTIONS_TEXT_SPEED_FAST);
-  fprintf(stderr,"TW_TEXT_OPTION scenario=%u save2=%08x raw=%08x value=%u\\n",
-   scenario,save2,SYM_gSaveBlock2,core->busRead8(core,save2+0x14)&7U);
   if(user==2){CALL(SetMonMoveSlot,player(0),scenario==9?MOVE_MAGIC_COAT:MOVE_SPLASH,0);CALL(SetMonMoveSlot,player(1),MOVE_THUNDER_WAVE,0);core->busWrite16(core,bmon(0)+ABI_BMON_MOVES,scenario==9?MOVE_MAGIC_COAT:MOVE_SPLASH);core->busWrite8(core,bmon(0)+ABI_BMON_PP,scenario==9?15:40);core->busWrite16(core,bmon(2)+ABI_BMON_MOVES,MOVE_THUNDER_WAVE);core->busWrite8(core,bmon(2)+ABI_BMON_PP,20);}
   if(user&1){
    CALL(SetMonMoveSlot,player(0),MOVE_SPLASH,0);core->busWrite16(core,bmon(0)+ABI_BMON_MOVES,MOVE_SPLASH);core->busWrite8(core,bmon(0)+ABI_BMON_PP,40);
