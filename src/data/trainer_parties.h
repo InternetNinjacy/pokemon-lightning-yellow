@@ -4127,24 +4127,21 @@ static const struct TrainerMonItemDefaultMoves sParty_BlackBeltKiyo[] = {
     },
 };
 
-static const struct TrainerMonItemDefaultMoves sParty_BlackBeltTakashi[] = {
+static const struct TrainerMonNoItemDefaultMoves sParty_BlackBeltTakashi[] = {
     {
         .iv = 100,
         .lvl = 38,
-        .species = SPECIES_MACHOKE,
-        .heldItem = ITEM_BLACK_BELT,
+        .species = SPECIES_CACTURNE,
     },
     {
         .iv = 100,
         .lvl = 38,
-        .species = SPECIES_MACHOP,
-        .heldItem = ITEM_BLACK_BELT,
+        .species = SPECIES_UMBREON,
     },
     {
         .iv = 100,
         .lvl = 38,
-        .species = SPECIES_MACHOKE,
-        .heldItem = ITEM_BLACK_BELT,
+        .species = SPECIES_ABSOL,
     },
 };
 
