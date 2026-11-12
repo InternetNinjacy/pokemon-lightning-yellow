@@ -33,4 +33,13 @@ for literal in (
     ".party = NO_ITEM_CUSTOM_MOVES(sParty_LeaderSabrina)",
 ):
     assert literal in body, literal
+script = (root / "data/maps/SaffronCity_Gym/scripts.inc").read_text()
+assert (
+    "trainerbattle_double TRAINER_LEADER_SABRINA, "
+    "SaffronCity_Gym_Text_SabrinaIntro, "
+    "SaffronCity_Gym_Text_SabrinaDefeat, "
+    "SaffronCity_Dojo_Text_NeedTwo, "
+    "SaffronCity_Gym_EventScript_DefeatedSabrina, NO_MUSIC"
+) in script, "Leader script must enter the existing Double battle path"
+assert "trainerbattle_single TRAINER_LEADER_SABRINA" not in script
 print("GYM-002 Sabrina: mandated Gengar/Machamp opening, reserves, 16 moves, Double and AI verified.")
