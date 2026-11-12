@@ -10,7 +10,7 @@ assert p.count(AFTER_PARTY) == 1 and p.count(BEFORE_PARTY) == 0
 assert prior_viridian_kiyo_source("src/data/trainer_parties.h", p).count(BEFORE_PARTY) == 1
 m = re.search(r"\[TRAINER_BLACK_BELT_KIYO\] = \{(.*?)\n    \},", t, re.S)
 assert m
-for v in (".items = {}", ".doubleBattle = FALSE", ".aiFlags = AI_SCRIPT_CHECK_BAD_MOVE", AFTER_META):
+for v in (".items = {ITEM_SUPER_POTION, ITEM_FULL_HEAL}", ".doubleBattle = FALSE", ".aiFlags = AI_SCRIPT_CHECK_BAD_MOVE", AFTER_META):
     assert v in m.group(1), v
 assert "trainerbattle_single TRAINER_BLACK_BELT_KIYO" in script
 print("PASS: Kiyo Nuzleaf/Carvanha Lv43 IV100; original Singles/AI, no held items. Revive/Full Heal separately pending.")
