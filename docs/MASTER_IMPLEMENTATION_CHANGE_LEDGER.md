@@ -1805,6 +1805,8 @@ Source review on main `ec81efb901be6eb0d93d2743216125abfc75334a` confirms vendor
 - **Post-merge gate:** Exact merged-main [CI #43129537615](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/43129537615) reached terminal **SUCCESS** in both modified (job `130889947719`; complete native mGBA integration SUCCESS) and independent upstream-baseline (job `130889948007`). Verified before documentation closeout.
 - **No double credit:** Existing 50 permanent task IDs and 461/251/712 provisional baseline unchanged. Do not award a new task or test point for this evidence. Natural uninterrupted story traversal and hardware/link acceptance remain separate release qualification, not claimed here.
 
+### 2026-11-12 — Retrospective record of merged WTH-001 / WRL-008 administrative closeouts
+
 ## 2026-11-10 — Master Control verifies WTH-001 and WRL-008 administrative closures merged
 
 PR #170 merged into main at `ec81efb901be6eb0d93d2743216125abfc75334a` after both modified and independent upstream-baseline checks succeeded; WTH-001 now 28 earned/0 remaining. Owner-locked Tyranitar Route23 (13,142), Corphish and Glalie actual native tests and separate WTH-002 fog work preserved.
