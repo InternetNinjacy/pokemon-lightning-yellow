@@ -85,15 +85,15 @@ jobs:
           path=Path('tests/approved_batch_a_spread_changes.py')
           source=path.read_text()
           before='    count = text.count(AFTER)\n'
-          after='''    # Current-main SOW Corphish is independent of the frozen BTL spread source.
-              # Reverse its exact approved hunks in the projected view only.
-              from approved_special_corphish_changes import prior_special_corphish_source
-              import json
-              hunks=json.loads(Path('tests/specifications/corphish_drizzle_delta.json').read_text())['hunks']
-              if any(h['after'] in text for h in hunks):
-                  text=prior_special_corphish_source(path,text)
-              count = text.count(AFTER)
-          '''.replace('              ','')
+          after='\\n'.join([
+              '    # Reverse only the exact separately approved current-main Corphish source delta.',
+              '    from approved_special_corphish_changes import prior_special_corphish_source',
+              '    import json',
+              "    hunks=json.loads(Path('tests/specifications/corphish_drizzle_delta.json').read_text())['hunks']",
+              "    if any(h['after'] in text for h in hunks):",
+              '        text=prior_special_corphish_source(path,text)',
+              '    count = text.count(AFTER)',
+          ])+'\\n'
           assert source.count(before)==1
           path.write_text(source.replace(before,after))
           PY
