@@ -5,11 +5,11 @@ import json
 from pathlib import Path
 
 from approved_special_corphish_changes import prior_special_corphish_source
-from approved_weather_species_evolution_changes import prior_weather_species_evolution_source
+from approved_btl_weather_integration import without_btl
 
 p = Path("src/pokemon.c")
 source = p.read_text()
-baseline = prior_weather_species_evolution_source(str(p), prior_special_corphish_source(str(p), source))
+baseline = without_btl(str(p), prior_special_corphish_source(str(p), source))
 existing = json.loads(Path("tests/specifications/special_glalie_delta.json").read_text())
 assert hashlib.sha256(baseline.encode()).hexdigest() == existing["files"][str(p)]["after_sha256"]
 assert source.count("#define CORPHISH_DRIZZLE_TAG 0xD122") == 1

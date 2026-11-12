@@ -380,6 +380,44 @@ const u8 gMoveDescription_POWER_GEM[] = _("An attack using\nthe power of a\nglow
 const u8 gMoveDescription_STONE_EDGE[] = _("Sharp stones hit\nthe foe. High\ncritical-hit ratio.");
 const u8 gMoveDescription_SCORCHING_SANDS[] = _("Scorching sand\nmay leave the foe\nwith a burn.");
 const u8 gMoveDescription_EARTH_POWER[] = _("The ground erupts\nwith power. May\nlower Sp. Def.");
+const u8 gMoveDescription_AVALANCHE[] = _("Strikes harder if\nhurt by the foe\nthis same turn.");
+const u8 gMoveDescription_ICE_FANG[] = _("An icy bite may\nfreeze the foe or\nmake it flinch.");
+
+const u8 gMoveDescription_ICICLE_CRASH[] = _("Drops icicles that\nmay make the foe\nflinch.");
+
+const u8 gMoveDescription_DRAGON_PULSE[] = _("A powerful pulse\nof energy strikes\nthe foe.");
+
+const u8 gMoveDescription_DRAGON_RUSH[] = _("A reckless tackle\nthat may make the\nfoe flinch.");
+
+const u8 gMoveDescription_SNARL[] = _("A harsh yell hits\nfoes and lowers\ntheir SP. ATK.");
+
+const u8 gMoveDescription_DARK_PULSE[] = _("A dark pulse that\nmay make the foe\nflinch.");
+
+const u8 gMoveDescription_NIGHT_DAZE[] = _("A dark shock wave\nthat may lower\nfoe accuracy.");
+
+const u8 gMoveDescription_NIGHT_SLASH[] = _("Slashes the foe.\nHigh critical-hit\nratio.");
+
+const u8 gMoveDescription_PAYBACK[] = _("Strikes harder if\nthe foe has taken\nits turn already.");
+
+const u8 gMoveDescription_FOUL_PLAY[] = _("Uses the foe's\nATTACK power to\nstrike it.");
+
+const u8 gMoveDescription_AQUA_JET[] = _("A water rush that\nstrikes the foe\nwith priority.");
+
+const u8 gMoveDescription_LIQUIDATION[] = _("A water strike\nthat may lower\nthe foe's DEFENSE.");
+
+const u8 gMoveDescription_VORTEX_SPIN[] = _("A swirling water\nstrike that may\nconfuse the foe.");
+const u8 gMoveDescription_TIDAL_CRASH[] = _("A 5-turn water\nattack that grows\nstronger each hit.");
+
+const u8 gMoveDescription_SEED_BOMB[] = _("Strikes the foe\nwith a hard seed.");
+const u8 gMoveDescription_PETAL_BLIZZARD[] = _("A storm of petals\nstrikes everyone\naround the user.");
+const u8 gMoveDescription_AURA_SPHERE[] = _("An aura attack\nthat never misses.");
+const u8 gMoveDescription_FOCUS_BLAST[] = _("May lower the\nfoe's SP. DEF.");
+const u8 gMoveDescription_FLASH_CANNON[] = _("May lower the\nfoe's SP. DEF.");
+const u8 gMoveDescription_MIRROR_SHOT[] = _("May lower the\nfoe's accuracy.");
+const u8 gMoveDescription_IRON_HEAD[] = _("A head strike that\nmay cause flinching.");
+const u8 gMoveDescription_BULLET_PUNCH[] = _("A fast punch that\nstrikes first.");
+const u8 gMoveDescription_AIR_SLASH[] = _("Sharp wind blades\nmay cause flinching.");
+const u8 gMoveDescription_HEART_STAMP[] = _("A heart-stopping\nstrike that may\ncause flinching.");
 
 const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND         - 1] = gMoveDescription_Pound,
@@ -753,4 +791,29 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_STONE_EDGE - 1] = gMoveDescription_STONE_EDGE,
     [MOVE_SCORCHING_SANDS - 1] = gMoveDescription_SCORCHING_SANDS,
     [MOVE_EARTH_POWER - 1] = gMoveDescription_EARTH_POWER,
+    [MOVE_ICE_FANG - 1] = gMoveDescription_ICE_FANG,
+    [MOVE_AVALANCHE - 1] = gMoveDescription_AVALANCHE,
+    [MOVE_ICICLE_CRASH - 1] = gMoveDescription_ICICLE_CRASH,
+    [MOVE_DRAGON_PULSE - 1] = gMoveDescription_DRAGON_PULSE,
+    [MOVE_DRAGON_RUSH - 1] = gMoveDescription_DRAGON_RUSH,
+    [MOVE_SNARL - 1] = gMoveDescription_SNARL,
+    [MOVE_DARK_PULSE - 1] = gMoveDescription_DARK_PULSE,
+    [MOVE_NIGHT_DAZE - 1] = gMoveDescription_NIGHT_DAZE,
+    [MOVE_NIGHT_SLASH - 1] = gMoveDescription_NIGHT_SLASH,
+    [MOVE_PAYBACK - 1] = gMoveDescription_PAYBACK,
+    [MOVE_FOUL_PLAY - 1] = gMoveDescription_FOUL_PLAY,
+    [MOVE_AQUA_JET - 1] = gMoveDescription_AQUA_JET,
+    [MOVE_LIQUIDATION - 1] = gMoveDescription_LIQUIDATION,
+    [MOVE_VORTEX_SPIN - 1] = gMoveDescription_VORTEX_SPIN,
+    [MOVE_TIDAL_CRASH - 1] = gMoveDescription_TIDAL_CRASH,
+    [MOVE_SEED_BOMB - 1] = gMoveDescription_SEED_BOMB,
+    [MOVE_PETAL_BLIZZARD - 1] = gMoveDescription_PETAL_BLIZZARD,
+    [MOVE_AURA_SPHERE - 1] = gMoveDescription_AURA_SPHERE,
+    [MOVE_FOCUS_BLAST - 1] = gMoveDescription_FOCUS_BLAST,
+    [MOVE_FLASH_CANNON - 1] = gMoveDescription_FLASH_CANNON,
+    [MOVE_MIRROR_SHOT - 1] = gMoveDescription_MIRROR_SHOT,
+    [MOVE_IRON_HEAD - 1] = gMoveDescription_IRON_HEAD,
+    [MOVE_BULLET_PUNCH - 1] = gMoveDescription_BULLET_PUNCH,
+    [MOVE_AIR_SLASH - 1] = gMoveDescription_AIR_SLASH,
+    [MOVE_HEART_STAMP - 1] = gMoveDescription_HEART_STAMP,
 };
