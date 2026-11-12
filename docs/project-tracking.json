@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "updated": "2026-11-10",
+  "updated": "2026-11-12",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "Master Control verified WTH-001 scoped gameplay and accounting CLOSEOUT (PR #170 merged ec81efb901be) and WRL-008 vendor starter-boundary CLOSEOUT (PR #184 merged ae928a1d9eba), each with exact merged-head modified/upstream CI SUCCESS. Official tracker: 461 earned/251 remaining of unchanged 712 (64.75%). Both tasks CLOSED, no gameplay redesign, no double-counting WRL-001 or weather. Remaining BTL-005, WRL-002/009/010, PKM-009, GYM-001/002, WTH-002/003, other event/shop work and INT-004/005 acceptance continue.",
-  "main_sha": "ae928a1d9eba3aed16f4252123027cb5413106a7",
+  "current_focus": "Master Control verified WTH-001 scoped gameplay and accounting CLOSEOUT (PR #170 merged ec81efb901be) and WRL-008 vendor starter-boundary CLOSEOUT (PR #184 merged ae928a1d9eba), each with exact merged-head modified/upstream CI SUCCESS. Official tracker: 461 earned/251 remaining of unchanged 712 (64.75%). Both tasks CLOSED, no gameplay redesign, no double-counting WRL-001 or weather. Remaining BTL-005, WRL-002/009/010, PKM-009, GYM-001/002, WTH-002/003, other event/shop work and INT-004/005 acceptance continue. Issue #191/PR #198 Move Reminder records already accepted on main; preserved without duplicate credit.",
+  "main_sha": "1f225205111c1703aa7895240f90f129a53f8210",
   "drive_sync": {
     "status": "2026-11-10 WTH-001 and WRL-008 closeout PRs #170/#184 merged and verified; corresponding existing Google Drive Progress, START HERE and vendor register synchronized with definitive completion evidence.",
     "folder": "https://drive.google.com/drive/folders/1N_n0Ke48jBbdhUWSZWzwR6rpPFqpDUpl"

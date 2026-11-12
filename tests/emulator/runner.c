@@ -19,6 +19,7 @@
 #include "constants/battle.h"
 #include "constants/pokedex.h"
 #include "constants/time_of_day.h"
+#include "constants/vars.h"
 #include "symbols.h"
 
 static struct mCore *core;
@@ -344,6 +345,14 @@ static void dexTests(void) {
 #include "ranger.c"
 #include "dynamic_weather.c"
 #include "wrl_nonwild_gifts.c"
+#include "wrl_vendor_physical.c"
+#include "wrl_aide_physical.c"
+#include "wrl_lapras_physical.c"
+#include "wrl_oak_eevee_physical.c"
+#include "wrl_scientist_physical.c"
+#include "wrl_porygon_physical.c"
+#include "center_move_reminder_physical.c"
+#include "center_move_reminder_learning.c"
 #include "wrl_route_grass.c"
 #include "sow_placement.c"
 #include "sow_producers.c"
@@ -470,6 +479,14 @@ int main(int argc,char **argv) {
     if(getenv("LIGHTNING_BLAINE_ONLY")){blaineTests();printf("PASS: %u focused Blaine assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_GYM_CASTFORM_ONLY")){gymCastformTests();printf("PASS: %u focused Gym Castform assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_LIGHTING_CAPTURE_DIR")){lightingPreviewCaptures();printf("PASS: %u native lighting capture assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_WRL_VENDOR_PHYSICAL_ONLY")){wrlVendorPhysicalTalkTests();printf("PASS: %u focused WRL-009 physical vendor assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_WRL_SCIENTIST_PHYSICAL_ONLY")){wrlScientistPhysicalTests();printf("PASS: %u focused WRL-009 physical Cinnabar scientist assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_WRL_OAK_EEVEE_PHYSICAL_ONLY")){wrlOakEeveePhysicalTests();printf("PASS: %u focused WRL-009 physical Oak Eevee assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_CENTER_REMINDER_LEARNING_ONLY")){centerMoveReminderLearningTests();printf("PASS: %u focused Center Reminder eligibility/persistence assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_CENTER_REMINDER_PHYSICAL_ONLY")){centerMoveReminderPhysicalTests();printf("PASS: %u focused physical Center Move Reminder assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_WRL_PORYGON_PHYSICAL_ONLY")){wrlPorygonPhysicalTests();printf("PASS: %u focused WRL-009 physical Porygon assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_WRL_LAPRAS_PHYSICAL_ONLY")){wrlLaprasPhysicalTests();printf("PASS: %u focused WRL-009 physical Lapras assertions\\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_WRL_AIDE_PHYSICAL_ONLY")){wrlAidePhysicalTests();printf("PASS: %u focused WRL-009 physical aide assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_WRL_NONWILD_GIFTS_ONLY")){wrlNonWildGiftTests();printf("PASS: %u focused WRL-009 non-wild gift assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_WRL_ROUTE_GRASS_ONLY")){wrlRouteNativeGrassTests();wrlRoute5NorthernLedgeWalkTests();wrlCeruleanToRoute5ConnectionTests();wrlLavenderToRoute8ConnectionTests();wrlLavenderToRoute8GrassWalkTests();printf("PASS: %u focused WRL-009 native route grass assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_SOW_PRODUCERS_ONLY")){sowPlacementTests();sowScriptedProducerTests();sowScriptedRunTests();sowScriptedCaptureTests();sowPhysicalInteractionTests();sowScriptedDefeatTests();sowScriptedWhiteoutTests();printf("PASS: %u native SOW placement, producer, Run/retry and capture/aftermath assertions\\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
@@ -588,6 +605,12 @@ int main(int argc,char **argv) {
     rangerTests();
     dynamicWeatherTests();
     wrlNonWildGiftTests();
+    wrlVendorPhysicalTalkTests();
+    wrlAidePhysicalTests();
+    wrlLaprasPhysicalTests();
+    wrlOakEeveePhysicalTests();
+    wrlScientistPhysicalTests();
+    wrlPorygonPhysicalTests();
     wrlRouteNativeGrassTests();
     wrlRoute5NorthernLedgeWalkTests();wrlCeruleanToRoute5ConnectionTests();
     sowPlacementTests();

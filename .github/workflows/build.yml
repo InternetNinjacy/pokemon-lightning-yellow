@@ -81,6 +81,7 @@ jobs:
           python3 tests/run_original_effect_tests.py
           python3 tests/run_rtc_tests.py
           python3 tests/run_evolution_tests.py
+          python3 tests/check_center_move_reminder.py
           python3 tests/run_ponyta_tests.py
           python3 tests/run_pokedex_tests.py
           python3 tests/run_typing_tests.py
@@ -149,6 +150,14 @@ jobs:
           # Already installed with the initial dependencies; verify it remains
           # available without starting another late network/package transaction.
           dpkg-query -W libmgba-dev
+      - name: Focused Center Move Reminder native eligibility and flash acceptance
+        if: matrix.target == 'modified'
+        timeout-minutes: 10
+        run: LIGHTNING_CENTER_REMINDER_LEARNING_ONLY=1 python3 tests/emulator/run.py
+      - name: Focused free Center Move Reminder physical NPC checks in mGBA
+        if: matrix.target == 'modified'
+        timeout-minutes: 10
+        run: LIGHTNING_CENTER_REMINDER_PHYSICAL_ONLY=1 python3 tests/emulator/run.py
       - name: Focused Earth Power native battle tests in mGBA
         if: matrix.target == 'modified'
         timeout-minutes: 10
