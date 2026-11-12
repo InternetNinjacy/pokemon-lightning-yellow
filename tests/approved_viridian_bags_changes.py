@@ -15,7 +15,7 @@ def prior_viridian_bags_source(path, data=None):
     if str(path) != "src/data/trainers.h":
         return data
     for trainer_id, previous in BAG_BEFORE.items():
-        pattern = r"(\\[TRAINER_" + re.escape(trainer_id) + r"\\] = \\{[\\s\\S]*?\\n        )(\\.items = \\{[^}]*\\})"
+        pattern = r"(\[TRAINER_" + re.escape(trainer_id) + r"\] = \{[\s\S]*?\n        )(\.items = \{[^}]*\})"
         matches = list(re.finditer(pattern, data))
         assert len(matches) == 1, ("missing/duplicate trainer", trainer_id)
         match = matches[0]
