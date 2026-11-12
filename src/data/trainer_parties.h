@@ -3609,7 +3609,12 @@ static const struct TrainerMonNoItemDefaultMoves sParty_TamerJason[] = {
     {
         .iv = 40,
         .lvl = 43,
-        .species = SPECIES_RHYHORN,
+        .species = SPECIES_CARVANHA,
+    },
+    {
+        .iv = 40,
+        .lvl = 43,
+        .species = SPECIES_UMBREON,
     },
 };
 

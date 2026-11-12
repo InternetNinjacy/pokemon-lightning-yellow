@@ -22,7 +22,8 @@ def restore_ordinary_trainer_blocks(path):
     from approved_viridian_atsushi_changes import prior_viridian_atsushi_source
     from approved_viridian_takashi_changes import prior_viridian_takashi_source
     from approved_viridian_kiyo_changes import prior_viridian_kiyo_source
-    result = prior_viridian_cole_source(path, prior_viridian_atsushi_source(path, prior_viridian_takashi_source(path, prior_viridian_kiyo_source(path, prior_brock_weather_source(path)))))
+    from approved_viridian_jason_changes import prior_viridian_jason_source
+    result = prior_viridian_cole_source(path, prior_viridian_atsushi_source(path, prior_viridian_takashi_source(path, prior_viridian_jason_source(path, prior_viridian_kiyo_source(path, prior_brock_weather_source(path))))))
     # Rocket Hideout #45 modifies only existing Grunt IDs 8–18. Revert
     # those exact approved records before the ordinary-Trainer baseline check;
     # unrelated changes still fail the final byte-for-byte comparison.
