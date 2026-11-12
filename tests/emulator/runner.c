@@ -473,6 +473,12 @@ int main(int argc,char **argv) {
     if(getenv("LIGHTNING_MOVE_FOUNDATION_ONLY")){moveFoundationTests();printf("PASS: %u focused move-foundation assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_BAG_EVOLUTION_ONLY")){bagEvolutionTests();printf("PASS: %u focused Bag evolution assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_WILD_NICKNAME_ONLY")){wildNicknameTests();printf("PASS: %u focused capture nickname assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_BTL_CURRENT_MAIN_ONLY")){iceFangTests();avalancheTests();moves374Tests();paybackTests();moves382Tests();weatherSpeciesAbilityTests();weatherAbilityTests();weatherGymAbilityTests();specialGlalieTests();specialWeatherTests();printf("PASS: %u focused current-main BTL/weather integration assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_MOVES382_ONLY")){moves382Tests();printf("PASS: %u focused moves382–384 assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_PAYBACK_ONLY")){paybackTests();printf("PASS: %u focused Payback assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_MOVES374_ONLY")){moves374Tests();printf("PASS: %u focused moves374–380 assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_AVALANCHE_ONLY")){avalancheTests();printf("PASS: %u focused Avalanche assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_ICE_FANG_ONLY")){iceFangTests();printf("PASS: %u focused Ice Fang assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_EARTH_POWER_ONLY")){earthPowerTests();printf("PASS: %u focused Earth Power assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_SCORCHING_SANDS_ONLY")){scorchingSandsTests();printf("PASS: %u focused Scorching Sands assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_SWARM_ONLY")){swarmCloudTests();printf("PASS: %u focused Swarm Cloud assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
@@ -503,6 +509,8 @@ int main(int argc,char **argv) {
     if(getenv("LIGHTNING_WILD_NICKNAME_ONLY")){wildNicknameTests();printf("PASS: %u focused capture nickname assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_BLAINE_ONLY")){blaineTests();printf("PASS: %u focused Blaine assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_MUSEUM_ONLY")){museumTests();printf("PASS: %u focused Museum assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_THUNDER_WAVE_ONLY")){thunderWaveTests();printf("PASS: %u focused Thunder Wave native assertions\\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_BATCH_A_ONLY")){batchANativeTests();batchAExactMechanics();batchAFlashPersistence();printf("PASS: %u focused Batch A native mGBA assertions\\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     initSave();
     for(unsigned h=0;h<24;h++) {
         clockAt(h);core->busWrite8(core,scratch,255);

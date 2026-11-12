@@ -2393,6 +2393,7 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
     s32 damageHelper;
     u8 type;
     u16 attack, defense;
+    struct BattlePokemon *attackStatSource;
     u16 spAttack, spDefense;
     u8 defenderHoldEffect;
     u8 defenderHoldEffectParam;
@@ -2411,6 +2412,13 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
     else
         gBattleMovePower = powerOverride;
 
+    // Shared live/AI calculation uses the selected target, not last damage source.
+    if (move == MOVE_AVALANCHE && BattlerWasDamagedBy(battlerIdAtk, battlerIdDef))
+        gBattleMovePower *= 2;
+
+    if (move == MOVE_PAYBACK && BattlerHasActedThisTurn(battlerIdDef))
+        gBattleMovePower *= 2;
+
     // Dream Haunt doubles power against sleep without draining or waking.
     if (move == MOVE_DREAM_HAUNT && (defender->status1 & STATUS1_SLEEP))
         gBattleMovePower *= 2;
@@ -2420,7 +2428,10 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
     else
         type = typeOverride & DYNAMIC_TYPE_MASK;
 
-    attack = attacker->attack;
+    // Foul Play borrows only raw Attack and its stages. User level, ability,
+    // held item, burn, STAB and all defensive modifiers remain on their owners.
+    attackStatSource = (move == MOVE_FOUL_PLAY) ? defender : attacker;
+    attack = attackStatSource->attack;
     defense = defender->defense;
     spAttack = attacker->spAttack;
     spDefense = defender->spDefense;
@@ -2531,13 +2542,13 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
         if (gCritMultiplier == 2)
         {
             // Critical hit, if attacker has lost attack stat stages then ignore stat drop
-            if (attacker->statStages[STAT_ATK] > DEFAULT_STAT_STAGE)
-                APPLY_STAT_MOD(damage, attacker, attack, STAT_ATK)
+            if (attackStatSource->statStages[STAT_ATK] > DEFAULT_STAT_STAGE)
+                APPLY_STAT_MOD(damage, attackStatSource, attack, STAT_ATK)
             else
                 damage = attack;
         }
         else
-            APPLY_STAT_MOD(damage, attacker, attack, STAT_ATK)
+            APPLY_STAT_MOD(damage, attackStatSource, attack, STAT_ATK)
 
         damage = damage * gBattleMovePower;
         damage *= (2 * attacker->level / 5 + 2);
@@ -2569,9 +2580,15 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
                 damage /= 2;
         }
 
-        // Moves hitting both targets do half damage in double battles
-        if ((gBattleTypeFlags & BATTLE_TYPE_DOUBLE) && gBattleMoves[move].target == MOVE_TARGET_BOTH && CountAliveMonsInBattle(BATTLE_ALIVE_DEF_SIDE) == 2)
-            damage /= 2;
+        // Preserve Gen III's half damage for both-foe moves, while
+        // all-other-battler moves use their approved 75% spread damage.
+        if ((gBattleTypeFlags & BATTLE_TYPE_DOUBLE) && CountAliveMonsInBattle(BATTLE_ALIVE_DEF_SIDE) == 2)
+        {
+            if (gBattleMoves[move].target == MOVE_TARGET_BOTH)
+                damage /= 2;
+            else if (gBattleMoves[move].target == MOVE_TARGET_FOES_AND_ALLY)
+                damage = damage * 3 / 4;
+        }
 
         // Moves always do at least 1 damage.
         if (damage == 0)
@@ -2617,9 +2634,15 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
                 damage /= 2;
         }
 
-        // Moves hitting both targets do half damage in double battles
-        if ((gBattleTypeFlags & BATTLE_TYPE_DOUBLE) && gBattleMoves[move].target == MOVE_TARGET_BOTH && CountAliveMonsInBattle(BATTLE_ALIVE_DEF_SIDE) == 2)
-            damage /= 2;
+        // Preserve Gen III's half damage for both-foe moves, while
+        // all-other-battler moves use their approved 75% spread damage.
+        if ((gBattleTypeFlags & BATTLE_TYPE_DOUBLE) && CountAliveMonsInBattle(BATTLE_ALIVE_DEF_SIDE) == 2)
+        {
+            if (gBattleMoves[move].target == MOVE_TARGET_BOTH)
+                damage /= 2;
+            else if (gBattleMoves[move].target == MOVE_TARGET_FOES_AND_ALLY)
+                damage = damage * 3 / 4;
+        }
     }
 
     // Are effects of weather negated with cloud nine or air lock

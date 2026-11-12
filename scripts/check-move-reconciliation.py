@@ -3,10 +3,24 @@
 from pathlib import Path
 import collections,json,re,subprocess,sys,hashlib
 R=Path(__file__).resolve().parents[1]
+# Batch A staging is checked against the accepted #385-386 blob history and
+# its own exact owner-approved source contract before any catalog projection.
+sys.path.insert(0,str(R/'tests'))
+from approved_batch_a_changes import HUNKS as BATCH_A_HUNKS, prior_batch_a_source
+for batch_path in BATCH_A_HUNKS:
+    prior_batch_a_source(batch_path)
+subprocess.run([sys.executable,str(R/'tests/run_btl_batch_a_staging_tests.py')],cwd=R,check=True)
 subprocess.run([sys.executable,str(R/'scripts/reconcile-move-specification.py'),'--check'],cwd=R,check=True)
 d=json.loads((R/'docs/moves/move-specification.json').read_text());rows=d['moves'];keys={r['key']:r for r in rows}
 assert len(rows)==410 and len(keys)==410
-assert d['current_battle_moves_sha256']==hashlib.sha256((R/'src/data/battle_moves.h').read_bytes()).hexdigest()
+# BTL-005 #385-386 remains a separately reviewable, unaccepted implementation.
+# Preserve the last accepted catalog hash, after STRICTLY reversing only the
+# approved append; the actual production source is independently audited by
+# tests/run_water_moves385_tests.py and is never silently normalized.
+sys.path.insert(0,str(R/'tests'))
+from approved_water_moves385_changes import prior_water_moves385_source
+catalog_source=prior_water_moves385_source('src/data/battle_moves.h',(R/'src/data/battle_moves.h').read_text())
+assert d['current_battle_moves_sha256']==hashlib.sha256(catalog_source.encode()).hexdigest()
 old=[r for r in rows if r['identity'] in ['ORIGINAL','REWORKED_ORIGINAL']];new=[r for r in rows if r['identity'].startswith('NEW_')]
 assert len(old)==354 and {r['id'] for r in old}==set(range(1,355))
 assert len(new)==56 and {r['proposed_id'] for r in new}==set(range(355,411))
@@ -19,7 +33,7 @@ for key,field,value in [('SHADOW_BALL','category','SPECIAL'),('ASTONISH','catego
  assert keys[key]['approved'][field]==value,(key,field)
 assert keys['HURRICANE']['approved']['secondaryEffectChance']==30 and keys['DRAGON_RUSH']['approved']['secondaryEffectChance']==20
 assert keys['HURRICANE']['effect_rules']['sun_accuracy_percent']==50
-assert keys['TIDAL_CRASH']['effect_rules']['defense_curl_bonus'] is True
+assert keys['TIDAL_CRASH']['effect_rules']['defense_curl_bonus'] is False  # 2026-11-10 owner supersession: only Rollout receives Curl
 assert keys['BLAZE_RUSH']['effect_rules']['crash_on_miss'] is False
 assert keys['THUNDERBOLT']['approved']['power']==95 and keys['THUNDER']['approved']['power']==120
 assert keys['THUNDER_WAVE']['approved']['target']=='ALL_OTHERS_IN_DOUBLES'

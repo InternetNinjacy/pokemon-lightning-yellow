@@ -38,17 +38,139 @@ static void blaineVictoryTests(void) {
  printf("PASS: actual Blaine Double victory/all five opponents seen, original badge/TM38/defeat script, flash Continue and nonduplicating revisit in%u frames; controlled players, unchanged opponent party\n",f);
  CHECK(core->loadState(core,bootState));
 }
+// Compute the actual decrypted BoxPokemon checksum from the 12 encrypted
+// secure words without calling ROM routines or modifying the running battle.
+// A changing *stored* checksum alone does not establish corruption.
+static unsigned blaineCalculatedChecksum(unsigned slot) {
+ uint32_t base=enemy(slot),key=core->busRead32(core,base)^core->busRead32(core,base+4);
+ unsigned sum=0;
+ for(unsigned word=0;word<12;word++) {
+  uint32_t decrypted=core->busRead32(core,base+0x20+word*4)^key;
+  sum+=(decrypted&0xffff)+(decrypted>>16);
+ }
+ return sum&0xffff;
+}
+// Audit only raw encrypted party header bytes while the unchanged native
+// battle-intro frames run. No ROM calls or writes are made during tracing.
+static void blaineWaitActionWithAudit(void) {
+ unsigned frame,seenCreated=0,seenCorrupt=0,seenChecksumChange=0,seenCipherMismatch=0;
+ unsigned firstChecksum=0,lastChecksum=0,checksumChanges=0;
+ for(frame=0;frame<2400;frame++) {
+  unsigned flags=core->busRead8(core,enemy(0)+0x13);
+  if((flags&2) && !seenCreated) {
+   seenCreated=1;
+   firstChecksum=lastChecksum=core->busRead16(core,enemy(0)+0x1c);
+   fprintf(stderr,"BLAINE_PARTY_CREATED frame=%u flags=%02x checksum=%04x callback=%08x\\n",
+     frame,flags,core->busRead16(core,enemy(0)+0x1c),
+     core->busRead32(core,SYM_gMain+ABI_MAIN_CB2));
+  }
+  if(seenCreated && !seenChecksumChange
+     && core->busRead16(core,enemy(0)+0x1c)!=firstChecksum) {
+   seenChecksumChange=1;
+   fprintf(stderr,"BLAINE_CHECKSUM_CHANGE_FIRST frame=%u from=%04x to=%04x flags=%02x personality=%08x ot_id=%08x callback=%08x battle_main=%08x exec=%08x\\n",
+    frame,firstChecksum,core->busRead16(core,enemy(0)+0x1c),flags,
+    core->busRead32(core,enemy(0)),core->busRead32(core,enemy(0)+4),
+    core->busRead32(core,SYM_gMain+ABI_MAIN_CB2),
+    core->busRead32(core,SYM_gBattleMainFunc),
+    core->busRead32(core,SYM_gBattleControllerExecFlags));
+  }
+  if(seenCreated) {
+   unsigned checksum=core->busRead16(core,enemy(0)+0x1c);
+   unsigned calculated=blaineCalculatedChecksum(0);
+   if(checksum!=calculated && !seenCipherMismatch) {
+    seenCipherMismatch=1;
+    fprintf(stderr,"BLAINE_CIPHER_FIRST_INVALID frame=%u stored=%04x computed=%04x flags=%02x callback=%08x\\n",
+     frame,checksum,calculated,flags,core->busRead32(core,SYM_gMain+ABI_MAIN_CB2));
+   }
+   if(checksum!=lastChecksum) {
+    if(checksumChanges<16)
+     fprintf(stderr,"BLAINE_CHECKSUM_TRANSITION n=%u frame=%u from=%04x to=%04x computed=%04x valid=%u flags=%02x callback=%08x\\n",
+      checksumChanges,frame,lastChecksum,checksum,calculated,checksum==calculated,flags,
+      core->busRead32(core,SYM_gMain+ABI_MAIN_CB2));
+    checksumChanges++;
+    lastChecksum=checksum;
+   }
+  }
+  if((flags&1) && !seenCorrupt) {
+   seenCorrupt=1;
+   fprintf(stderr,"BLAINE_PARTY_BAD_EGG_FIRST frame=%u flags=%02x checksum=%04x callback=%08x battle_main=%08x exec=%08x\\n",
+     frame,flags,core->busRead16(core,enemy(0)+0x1c),
+     core->busRead32(core,SYM_gMain+ABI_MAIN_CB2),
+     core->busRead32(core,SYM_gBattleMainFunc),
+     core->busRead32(core,SYM_gBattleControllerExecFlags));
+  }
+  if(controller(0)==SYM_HandleInputChooseAction)break;
+  frames(1,(frame%12)<3?1:0);
+ }
+ if(frame==2400)fprintf(stderr,"BLAINE_AUDIT_TIMEOUT flags=%02x\\n",core->busRead8(core,enemy(0)+0x13));
+ CHECK(frame<2400);
+ // Preserve the unmodified native turn and capture the exact boundary at
+ // which the host subsequently calls GetMonData3. The constructor can be
+ // observed mid-encryption across several frames; only a stable checksum
+ // mismatch or a getter-induced flag change is evidence of corruption.
+ fprintf(stderr,"BLAINE_AUDIT_STOP frame=%u stored=%04x calculated=%04x flags=%02x controller=%08x\\n",
+  frame,core->busRead16(core,enemy(0)+0x1c),blaineCalculatedChecksum(0),
+  core->busRead8(core,enemy(0)+0x13),controller(0));
+ // The preceding exact-head diagnostic established that the three extra
+ // emulator frames entered a *temporary decrypted* BoxPokemon secure-data
+ // window: all 12 words changed from encrypted to (word ^ personality ^ otId)
+ // together, while their plaintext checksum still equaled the stored value.
+ // GetMonData3 would decrypt that plaintext a second time and flag Bad Egg.
+ // Do not inject a ROM getter or advance diagnostic frames inside that window.
+ // Assert the original, stable real action-selection boundary instead; the
+ // five strict species/level checks and full battle/victory checks still follow.
+ unsigned stableStored=core->busRead16(core,enemy(0)+0x1c);
+ unsigned stableCalculated=blaineCalculatedChecksum(0);
+ fprintf(stderr,"BLAINE_STABLE_PARTY_BOUNDARY stored=%04x calculated=%04x flags=%02x controller=%08x\\n",
+  stableStored,stableCalculated,core->busRead8(core,enemy(0)+0x13),controller(0));
+ CHECK(stableStored==stableCalculated);
+}
 static void blaineTests(void) {
  blaineFixture(1);fossilStart(SYM_CinnabarIsland_Gym_EventScript_Blaine);fossilClose(1);
  CHECK(!(core->busRead32(core,SYM_gBattleTypeFlags)&BATTLE_TYPE_TRAINER));
  CHECK(!CALL(FlagGet,FLAG_BADGE07_GET));CHECK(!CALL(FlagGet,FLAG_DEFEATED_BLAINE));
- blaineFixture(2);fossilStart(SYM_CinnabarIsland_Gym_EventScript_Blaine);waitAction();
+ blaineFixture(2);
+ // Exercise the real NPC battle without an injected constructor call and
+ // snapshot restore immediately beforehand. The previous audit proved the
+ // constructor initially valid, but the subsequent native battle contained
+ // corrupted encrypted enemy records. Keep both strict checks, isolated.
+ fossilStart(SYM_CinnabarIsland_Gym_EventScript_Blaine);blaineWaitActionWithAudit();
  CHECK(core->busRead32(core,SYM_gBattleTypeFlags)&BATTLE_TYPE_TRAINER);
  CHECK(core->busRead32(core,SYM_gBattleTypeFlags)&BATTLE_TYPE_DOUBLE);
  CHECK(core->busRead8(core,SYM_gBattlersCount)==4);
  const unsigned species[]={SPECIES_DONPHAN,SPECIES_PIDGEOT,SPECIES_SANDSLASH,SPECIES_AERODACTYL,SPECIES_FLYGON};
  const unsigned levels[]={42,42,43,44,47};
- for(unsigned i=0;i<5;i++){CHECK(monget(enemy(i),ABI_DATA_SPECIES)==species[i]);CHECK(monget(enemy(i),ABI_DATA_LEVEL)==levels[i]);}
+ for(unsigned i=0;i<5;i++){
+  unsigned beforeFlags=core->busRead8(core,enemy(i)+0x13);
+  unsigned beforeStored=core->busRead16(core,enemy(i)+0x1c);
+  unsigned beforeCalculated=blaineCalculatedChecksum(i);
+  unsigned actualSpecies=monget(enemy(i),ABI_DATA_SPECIES);
+  unsigned afterSpeciesFlags=core->busRead8(core,enemy(i)+0x13);
+  unsigned afterSpeciesStored=core->busRead16(core,enemy(i)+0x1c);
+  unsigned afterSpeciesCalculated=blaineCalculatedChecksum(i);
+  unsigned actualLevel=monget(enemy(i),ABI_DATA_LEVEL);
+  if(i==0 || beforeFlags!=afterSpeciesFlags || beforeStored!=beforeCalculated)
+   fprintf(stderr,"BLAINE_GETMON_BOUNDARY slot=%u before_flags=%02x before_checksum=%04x/%04x after_species_flags=%02x after_checksum=%04x/%04x species=%u level=%u\\n",
+    i,beforeFlags,beforeStored,beforeCalculated,afterSpeciesFlags,afterSpeciesStored,afterSpeciesCalculated,actualSpecies,actualLevel);
+  if(actualSpecies!=species[i]||actualLevel!=levels[i]){
+   // 412 is SPECIES_EGG: discriminate corrupt encrypted party records from
+   // incorrect trainer selection without changing canonical expectations.
+   fprintf(stderr,"BLAINE_NATIVE_DIAGNOSTIC index=%u species=%u expected_species=%u level=%u expected_level=%u enemy_count=%u battler_count=%u flags=%08x bad_egg=%u is_egg=%u trainer=%u battle_left=%u battle_right=%u\\n",
+    i,actualSpecies,species[i],actualLevel,levels[i],core->busRead8(core,SYM_gEnemyPartyCount),
+    core->busRead8(core,SYM_gBattlersCount),core->busRead32(core,SYM_gBattleTypeFlags),
+    monget(enemy(i),ABI_DATA_SANITY_IS_BAD_EGG),monget(enemy(i),ABI_DATA_IS_EGG),
+    core->busRead16(core,SYM_gTrainerBattleOpponent_A),
+    core->busRead16(core,bmon(1)+ABI_BMON_SPECIES),core->busRead16(core,bmon(3)+ABI_BMON_SPECIES));
+   // Isolate a corrupted encrypted party record from the correctly loaded
+   // battle battler; never rewrite/rekey Pokémon or bypass the assertion.
+   fprintf(stderr,"BLAINE_ENCRYPTED_RECORD index=%u personality=%08x ot_id=%08x stored_checksum=%04x stored_flags=%02x party_index_left=%u party_index_right=%u\\n",
+    i,monget(enemy(i),ABI_DATA_PERSONALITY),monget(enemy(i),ABI_DATA_OT_ID),
+    core->busRead16(core,enemy(i)+0x1c),core->busRead8(core,enemy(i)+0x13),
+    core->busRead16(core,SYM_gBattlerPartyIndexes+2),
+    core->busRead16(core,SYM_gBattlerPartyIndexes+6));
+  }
+  CHECK(actualSpecies==species[i]);CHECK(actualLevel==levels[i]);
+ }
  CHECK(core->busRead16(core,bmon(1)+ABI_BMON_SPECIES)==SPECIES_DONPHAN);
  CHECK(core->busRead16(core,bmon(3)+ABI_BMON_SPECIES)==SPECIES_PIDGEOT);
  CHECK(core->busRead8(core,bmon(3)+ABI_BMON_TYPE1)==TYPE_FLYING);
@@ -59,4 +181,24 @@ static void blaineTests(void) {
  // Discard the modified type-check fixture; victory uses a fresh native battle.
  CHECK(core->loadState(core,bootState));
  blaineVictoryTests();
+ // Independent constructor acceptance runs only AFTER both native battle
+ // paths, so injected ROM calls cannot contaminate the battle under test.
+ blaineFixture(2);
+ core->busWrite32(core,SYM_gBattleTypeFlags,BATTLE_TYPE_TRAINER|BATTLE_TYPE_DOUBLE);
+ CHECK(CALL(CreateNPCTrainerParty,SYM_gEnemyParty,TRAINER_LEADER_BLAINE)==5);
+ const unsigned constructorSpecies[]={SPECIES_DONPHAN,SPECIES_PIDGEOT,SPECIES_SANDSLASH,SPECIES_AERODACTYL,SPECIES_FLYGON};
+ const unsigned constructorLevels[]={42,42,43,44,47};
+ for(unsigned i=0;i<5;i++){
+  unsigned actualSpecies=monget(enemy(i),ABI_DATA_SPECIES);
+  unsigned actualLevel=monget(enemy(i),ABI_DATA_LEVEL);
+  unsigned badEgg=monget(enemy(i),ABI_DATA_SANITY_IS_BAD_EGG);
+  if(actualSpecies!=constructorSpecies[i]||actualLevel!=constructorLevels[i]||badEgg)
+   fprintf(stderr,"BLAINE_CONSTRUCTOR_DIAGNOSTIC slot=%u species=%u expected=%u level=%u expectedLevel=%u badEgg=%u\\n",
+    i,actualSpecies,constructorSpecies[i],actualLevel,constructorLevels[i],badEgg);
+  CHECK(actualSpecies==constructorSpecies[i]);
+  CHECK(actualLevel==constructorLevels[i]);
+  CHECK(!badEgg);
+ }
+ printf("PASS: isolated native Blaine five-member encrypted party constructor after complete battle acceptance\\n");
+ CHECK(core->loadState(core,bootState));
 }

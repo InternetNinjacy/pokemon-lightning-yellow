@@ -11,6 +11,12 @@ import shutil
 
 # Generate ABI constants with the game's ARM compiler, never host offsetof.
 expressions = {
+ 'ACTION_NOTHING_FAINTED':'B_ACTION_NOTHING_FAINTED',
+ 'ACTION_SWITCH':'B_ACTION_SWITCH',
+ 'ACTION_MOVE':'B_ACTION_USE_MOVE',
+ 'BATTLESTRUCT_ACTED':'offsetof(struct BattleStruct,actedThisTurn)',
+ 'BATTLESTRUCT_SWITCH_IN':'offsetof(struct BattleStruct,monToSwitchIntoId)',
+ 'BATTLESTRUCT_DAMAGE_SOURCES':'offsetof(struct BattleStruct,damagedByBattlers)',
  'BATTLESTRUCT_SIZE':'sizeof(struct BattleStruct)',
  'BATTLESTRUCT_TW_USER':'offsetof(struct BattleStruct,thunderWaveUser)',
  'BATTLESTRUCT_TW_TARGETS':'offsetof(struct BattleStruct,thunderWaveTargets)',
@@ -79,6 +85,10 @@ expressions = {
     'BATTLESTRUCT_EXP_GETTER': 'offsetof(struct BattleStruct,expGetterMonId)',
     'BATTLESTRUCT_SENT_IN': 'offsetof(struct BattleStruct,sentInPokes)',
     'BATTLESTRUCT_WILD_SONG': 'offsetof(struct BattleStruct,wildVictorySong)',
+    'DISABLE_SIZE': 'sizeof(struct DisableStruct)',
+    'DISABLE_SUB_HP': 'offsetof(struct DisableStruct,substituteHP)',
+    'SIDE_TIMER_SIZE': 'sizeof(struct SideTimer)',
+    'SIDE_SAFEGUARD_TIMER': 'offsetof(struct SideTimer,safeguardTimer)',
     'WINDOW_SIZE': 'sizeof(struct Window)',
     'WINDOW_BG': 'offsetof(struct Window,window.bg)',
     'SCRIPT_MODE': 'offsetof(struct ScriptContext,mode)',
@@ -290,6 +300,9 @@ required = [
     'ShowPokemonSummaryScreen', 'sMonSummaryScreen', 'sMoveSelectionCursorPos', 'gSideStatuses', 'gBattleStruct', 'gBattleScripting', 'gBattleMoveDamage', 'gDisplayedStringBattle',
 ]
 required += ['NextThunderWaveTarget','gAbsentBattlerFlags']
+required += ['Cmd_accuracycheck']
+required += ['BattlerHasActedThisTurn','RunTurnActionsFunctions','SetActionsAndBattlersTurnOrder','gBattleMainFunc','gCurrentActionFuncId','gChosenActionByBattler','gEnemyPartyCount','gBattlerPartyIndexes','gActionsByTurnOrder', 'BattlerWasDamagedBy','TurnValuesCleanUp','SwitchInClearSetData','gBattleMovePower','Cmd_datahpupdate']
+required += ['Cmd_seteffectwithchance','gBattleCommunication','gCurrentTurnActionNumber','gBattlerByTurnOrder','gSideTimers']
 required += ['Cmd_rolloutdamagecalculation','gDisableStructs','gLockedMoves','gLastMoves']
 required += ['BattleAI_SetupAIData','BattleAI_ChooseMoveOrAction','RecordAbilityBattle']
 required += ['Cmd_weatherdamage','Cmd_accuracycheck','gStatuses3','gHitMarker','gMoveResultFlags']
@@ -324,6 +337,24 @@ for line in subprocess.check_output(['arm-none-eabi-nm','-n','pokefirered.elf'],
     fields=line.split()
     if len(fields)==3 and fields[2] in required:
         symbols.setdefault(fields[2],int(fields[0],16)) # first matching local symbol (player controller precedes tutorial controllers)
+# Read-only native controller address correlation for the dedicated Thunder Wave
+# regression. Use the actual built ELF rather than guessed ROM offsets.
+if os.environ.get('LIGHTNING_THUNDER_WAVE_ONLY'):
+    nm_rows = []
+    for line in subprocess.check_output(['arm-none-eabi-nm','-n','pokefirered.elf'],text=True).splitlines():
+        fields = line.split()
+        if len(fields)==3 and fields[1].lower() in ('t','w'):
+            try:
+                address = int(fields[0],16)
+            except ValueError:
+                continue
+            if 0x08000000 <= address < 0x0A000000:
+                nm_rows.append((address,fields[2]))
+    for observed in (0x08030d98,0x0802eb34,0x0803623c,0x081db917):
+        nearest = max((item for item in nm_rows if item[0]<=observed),default=None)
+        print('TW_ELF_SYMBOL observed=%08x nearest=%s offset=%s' %
+              (observed,nearest[1] if nearest else 'NONE',
+               ('%x'%(observed-nearest[0])) if nearest else 'NONE'),flush=True)
 assert set(required)<=symbols.keys(), set(required)-symbols.keys()
 # Private input function names also exist in tutorial controllers. Verify the
 # selected local symbols belong to the actual player controller's address range.
