@@ -20,7 +20,9 @@ jobs:
           set -euo pipefail
           BASE=1f225205111c1703aa7895240f90f129a53f8210
           STACK=f1f74116ca3905e264d272b7a55b2773cee57f81
-          test "$(git rev-parse HEAD^)" = "$BASE"
+          git merge-base --is-ancestor "$BASE" HEAD
+          git diff --name-only "$BASE" HEAD | grep -v '^.github/workflows/btl005-combined-integration.yml$' > /tmp/other-branch-paths || true
+          test ! -s /tmp/other-branch-paths
           git fetch --no-tags origin "$STACK"
           git config user.name 'BTL-005 integration'
           git config user.email 'btl005-integration@users.noreply.github.com'
@@ -76,6 +78,26 @@ jobs:
           subprocess.run(['git','add','--']+sorted(expected),check=True)
           assert not subprocess.check_output(['git','diff','--name-only','--diff-filter=U'],text=True).strip()
           PY
+          python3 - <<'PY'
+          # Compose the newly approved Corphish source delta with the historical
+          # strict Batch A blob guard, without modifying any frozen SHA.
+          from pathlib import Path
+          path=Path('tests/approved_batch_a_spread_changes.py')
+          source=path.read_text()
+          before='    count = text.count(AFTER)\n'
+          after='''    # Current-main SOW Corphish is independent of the frozen BTL spread source.
+              # Reverse its exact approved hunks in the projected view only.
+              from approved_special_corphish_changes import prior_special_corphish_source
+              import json
+              hunks=json.loads(Path('tests/specifications/corphish_drizzle_delta.json').read_text())['hunks']
+              if any(h['after'] in text for h in hunks):
+                  text=prior_special_corphish_source(path,text)
+              count = text.count(AFTER)
+          '''.replace('              ','')
+          assert source.count(before)==1
+          path.write_text(source.replace(before,after))
+          PY
+          git add tests/approved_batch_a_spread_changes.py
           python3 -m py_compile tests/approved_special_glalie_changes.py tests/run_special_glalie_tests.py
           python3 tests/run_special_glalie_tests.py
           python3 tests/run_btl_weather_integration_tests.py
