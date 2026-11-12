@@ -26,5 +26,18 @@ for name in re.findall(r'\[ABILITY_\w+\] = _\("([^"]*)"\)', text):
     assert len(name) <= 12, name
 # No allocation or species/save schema changes in this mechanics-only slice.
 for path, digest in manifest['preserved'].items():
-    assert hashlib.sha256((prior_weather_species_source() if path == 'src/data/pokemon/species_info.h' else prior_special_glalie_source(path)).encode()).hexdigest() == digest, path
+    if path == 'src/data/pokemon/species_info.h':
+        # Normalize only exact owner-locked PKM-009 data; older weather scope
+        # preservation still rejects every other species/engine change.
+        source = Path(path).read_text()
+        from approved_pkm009_eevee_water_fire_changes import prior_pkm009_eevee_water_fire_source
+        source = prior_pkm009_eevee_water_fire_source(path, source)
+        from approved_pkm009_vulpix_changes import prior_pkm009_vulpix_source
+        source = prior_pkm009_vulpix_source(path, source)
+        from approved_pkm009_ponyta_changes import prior_pkm009_ponyta_source
+        source = prior_pkm009_ponyta_source(path, source)
+        source = prior_weather_species_source(source)
+    else:
+        source = prior_special_glalie_source(path)
+    assert hashlib.sha256(source.encode()).hexdigest() == digest, path
 print('PASS:81 unique ability IDs with all78 original IDs unchanged, complete names/descriptions, exact frozen-source reversals and unchanged species/save data (static; native runtime required).')

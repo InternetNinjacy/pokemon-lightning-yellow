@@ -29,6 +29,12 @@ for key,parts in zip(['SOUL_DRAIN','WEARY_TOUCH','DREAM_HAUNT'],[['LICK','MEGA_D
  expected_body=''.join(re.search(r'Move_'+p+r':\n(.*?)\n\tend',asm,re.S)[1]+'\n\twaitforvisualfinish\n' for p in parts)
  actual=re.search(r'Move_'+key+r':\n(.*?)\tend',asm,re.S)[1]
  assert actual==expected_body,key
+# Owner-locked PKM-009 Vulpix and Ninetales natural Dream Haunt distribution
+# is the only new exception. Exact species rows are asserted before reversal.
+from approved_pkm009_vulpix_changes import prior_pkm009_vulpix_source
 for path in ['src/data/pokemon/level_up_learnsets.h','src/data/pokemon/tmhm_learnsets.h','src/data/trainer_parties.h']:
- assert not any('MOVE_'+k in Path(path).read_text() for k,*_ in expected),path
-print('PASS: exact three approved Ghost designs, complete appended sleep-hit dispatch, original bodies composed inline, exact old-source reversal and no distribution (static, not runtime proof).')
+ text=Path(path).read_text()
+ if path=='src/data/pokemon/level_up_learnsets.h':
+  text=prior_pkm009_vulpix_source(path,text)
+ assert not any('MOVE_'+k in text for k,*_ in expected),path
+print('PASS: three approved Ghost designs; only owner-locked Vulpix-family Dream Haunt distribution; no unrelated learnset/TM/trainer distribution (static).')

@@ -121,7 +121,9 @@ with tempfile.TemporaryDirectory() as temp:
 fixture=json.loads(Path('tests/specifications/approved_type_overrides.json').read_text())['species']
 assert len(fixture)==35
 from approved_weather_species_slots import prior_weather_species_source
-species_info=prior_weather_species_source()
+from approved_pkm009_locked_12_changes import prior_pkm009_locked_12_source
+species_info=prior_pkm009_locked_12_source('src/data/pokemon/species_info.h',Path('src/data/pokemon/species_info.h').read_text())
+species_info=prior_weather_species_source(species_info)
 for name,types in fixture.items():
  pattern=r'(\[SPECIES_'+name+r'\]\s*=\s*\{.*?\.types = \{)(TYPE_\w+), (TYPE_\w+)(\},)'
  match=re.search(pattern,species_info,re.S)

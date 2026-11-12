@@ -17,5 +17,7 @@ p=Path('include/constants/pokemon.h').read_text();old=prior_special_glalie_sourc
 for name,value in re.findall(r'#define (MON_DATA_\w+)\s+(\d+)',old):
     assert re.search(r'#define '+name+r'\s+'+value+r'\b',p),name
 assert '#define MON_DATA_INDIVIDUAL_ABILITY       89' in p
-assert hashlib.sha256(prior_weather_species_source().encode()).hexdigest()==m['species_sha256']
+from approved_pkm009_locked_12_changes import prior_pkm009_locked_12_source
+species_source=prior_pkm009_locked_12_source('src/data/pokemon/species_info.h',Path('src/data/pokemon/species_info.h').read_text())
+assert hashlib.sha256(prior_weather_species_source(species_source).encode()).hexdigest()==m['species_sha256']
 print('PASS: exact opt-in Glalie delta, unchanged Pokémon layouts/original data IDs/species slots; field89 uses existing checksummed growth filler. Static source audit, not capture/save execution.')
