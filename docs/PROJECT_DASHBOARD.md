@@ -1,5 +1,7 @@
 # Pokémon Lightning Yellow — Project Dashboard
 
+> **Dual-progress dashboard — evidence snapshot 2026-11-12.** Formal accepted **64.75% (461/712)** remains unchanged. Separate **provisional pipeline evidence index: 70.0% (498.3/712 weighted equivalents)** based on approved designs and unmerged source stages, **not actual code completion or current release readiness**; re-audit after substantive integration. Final release certification: **0/6 gates independently cleared at snapshot**. [All 50 tasks, calculations, source/CI caveats](DUAL_PROGRESS_EVIDENCE_AUDIT.md). PR #185 closeouts are already incorporated on main. No new earned points, gameplay modifications or specialist edits.
+
 Canonical branch: `main`. Reconciled 2026-11-12 against main `1f225205111c1703aa7895240f90f129a53f8210`; historical accepted tracking source `ae928a1d9eba3aed16f4252123027cb5413106a7`.
 
 Overall: `[######----]` **64.75% complete /35.25% remaining** (461 earned +251 remaining;712 provisional effort points).
