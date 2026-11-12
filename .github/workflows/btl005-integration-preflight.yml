@@ -1,0 +1,59 @@
+name: BTL-005 full-stack merge preflight (diagnostic only)
+on:
+  push:
+    branches:
+      - integration/btl005-merge-preflight-20261112
+permissions:
+  contents: read
+jobs:
+  integration-preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - name: Checkout exact diagnostic base
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Verify base and try full-stack Git merge without pushing
+        shell: bash
+        run: |
+          set -euo pipefail
+          expected_main=5d5ac14df11fa87a16c043a93780057d7f7ce58f
+          expected_stack=f1f74116ca3905e264d272b7a55b2773cee57f81
+          echo "PREFLIGHT_BASE=$expected_main"
+          echo "PREFLIGHT_STACK=$expected_stack"
+          actual_main="$(git rev-parse HEAD^)"
+          if [ "$actual_main" != "$expected_main" ]; then
+            echo "DIAGNOSTIC_BASE_MISMATCH=$actual_main"
+            exit 2
+          fi
+          git fetch --no-tags origin "$expected_stack"
+          git cat-file -e "$expected_stack^{commit}"
+          git config user.name 'BTL-005 integration preflight'
+          git config user.email 'preflight@users.noreply.github.com'
+          set +e
+          git merge --no-commit --no-ff "$expected_stack" > /tmp/btl-merge.stdout 2>&1
+          merge_rc=$?
+          set -e
+          echo "MERGE_EXIT_CODE=$merge_rc"
+          echo "--- MERGE OUTPUT ---"
+          cat /tmp/btl-merge.stdout
+          echo "--- UNMERGED PATHS ---"
+          git diff --name-only --diff-filter=U || true
+          echo "--- STAGED CHANGES ---"
+          git diff --cached --stat | tail -n 100 || true
+          echo "--- STATUS ---"
+          git status --short | tail -n 130 || true
+          echo "--- CONFLICT MARKER COUNTS (each unmerged path) ---"
+          while IFS= read -r -d '' path; do
+            printf '%s: ' "$path"
+            grep -c '^<<<<<<< ' "$path" || true
+          done < <(git diff --name-only --diff-filter=U -z)
+          if [ -f .git/MERGE_HEAD ]; then git merge --abort; fi
+          if [ "$merge_rc" -eq 0 ]; then
+            echo "PREFLIGHT_MERGE_CLEAN=true"
+          else
+            echo "PREFLIGHT_MERGE_CLEAN=false"
+            exit 1
+          fi
