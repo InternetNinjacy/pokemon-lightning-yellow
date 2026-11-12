@@ -104,6 +104,13 @@ jobs:
           python3 tests/run_btl_batch_a_staging_tests.py
           python3 tests/run_move_catalog_tests.py
           python3 scripts/check-move-reconciliation.py
+          # GitHub Actions token lacks workflow-file write permission.
+          # Publish ONLY the fully checked source snapshot; restore CI-specific
+          # workflow additions later via the owner-authorized GitHub connector.
+          git restore --source="$BASE" -- .github/workflows/build.yml
+          git rm -f .github/workflows/btl005-batch-a-focused.yml
+          git add .github/workflows/build.yml
+          test "$(git diff --cached --name-only | grep -c '^.github/workflows/' || true)" = 0
           git diff --check --cached
           git commit --no-edit
           echo "INTEGRATION_HEAD=$(git rev-parse HEAD)"
