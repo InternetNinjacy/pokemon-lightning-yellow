@@ -80,6 +80,7 @@ jobs:
           python3 tests/check_viridian_takashi_approved_trio.py
           python3 tests/check_viridian_kiyo_approved_pair.py
           python3 tests/check_viridian_jason_approved_pair.py
+          python3 tests/check_viridian_samuel_approved_pair.py
           python3 tests/run_special_glalie_tests.py
           python3 tests/run_special_corphish_tests.py
           python3 tests/run_sow_event_tests.py

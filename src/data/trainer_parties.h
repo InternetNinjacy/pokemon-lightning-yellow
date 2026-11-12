@@ -5352,36 +5352,16 @@ static const struct TrainerMonNoItemDefaultMoves sParty_TeamRocketGrunt41[] = {
     },
 };
 
-static const struct TrainerMonNoItemCustomMoves sParty_CooltrainerSamuel[] = {
+static const struct TrainerMonNoItemDefaultMoves sParty_CooltrainerSamuel[] = {
     {
         .iv = 100,
         .lvl = 37,
-        .species = SPECIES_SANDSLASH,
-        .moves = {MOVE_SLASH, MOVE_SWIFT, MOVE_SAND_ATTACK, MOVE_POISON_STING},
+        .species = SPECIES_ARBOK,
     },
     {
         .iv = 100,
         .lvl = 37,
-        .species = SPECIES_SANDSLASH,
-        .moves = {MOVE_SLASH, MOVE_SWIFT, MOVE_SAND_ATTACK, MOVE_POISON_STING},
-    },
-    {
-        .iv = 100,
-        .lvl = 38,
-        .species = SPECIES_RHYHORN,
-        .moves = {MOVE_TAKE_DOWN, MOVE_ROCK_BLAST, MOVE_FURY_ATTACK, MOVE_SCARY_FACE},
-    },
-    {
-        .iv = 100,
-        .lvl = 39,
-        .species = SPECIES_NIDORINO,
-        .moves = {MOVE_FURY_ATTACK, MOVE_HORN_ATTACK, MOVE_POISON_STING, MOVE_DOUBLE_KICK},
-    },
-    {
-        .iv = 100,
-        .lvl = 39,
-        .species = SPECIES_NIDOKING,
-        .moves = {MOVE_THRASH, MOVE_DOUBLE_KICK, MOVE_POISON_STING, MOVE_FOCUS_ENERGY},
+        .species = SPECIES_CACTURNE,
     },
 };
 
