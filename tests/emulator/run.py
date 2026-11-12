@@ -219,7 +219,7 @@ required = [
     'Task_PCMainMenu', 'Task_PokeStorageMain', 'Task_OnSelectedMon', 'Task_DepositMenu', 'Task_OnBPressed',
     'SetLastHealLocationWarp',
 
-    "CheckBagHasItem", "RemoveBagItem", "Task_ShopMenu", "Task_BuyMenu", "Task_BuyHowManyDialogueHandleInput", "Task_CallYesOrNoCallback", "FindTaskIdByFunc", "VermilionCity_Mart_EventScript_Clerk", "gWishFutureKnock", "Cmd_setrain", "Cmd_setsandstorm", "AbilityBattleEffects", "gBattleMainFunc", "gLastUsedAbility", "GetBattlerInitialAbility", "SetSpecialEncounterAbility", "SetBoxMonAt", "PewterCity_Gym_EventScript_Brock", "CeruleanCity_Gym_EventScript_Misty", "CastformDataTypeChange", "Cmd_sethail", "Cmd_setsunny", "GetBallCatchMultiplier", "IsPokeBallItem", "BallItemToCaptureCode", "CaptureCodeToBallItem", "TryBuyBallsWithPremierBonus", "ItemIdToBallId", "gCaptureOrigin",
+    "CheckBagHasItem", "RemoveBagItem", "CreatePokemartMenu", "Task_ShopMenu", "Task_BuyMenu", "Task_BuyHowManyDialogueHandleInput", "Task_CallYesOrNoCallback", "FindTaskIdByFunc", "VermilionCity_Mart_EventScript_Clerk", "gWishFutureKnock", "Cmd_setrain", "Cmd_setsandstorm", "AbilityBattleEffects", "gBattleMainFunc", "gLastUsedAbility", "GetBattlerInitialAbility", "SetSpecialEncounterAbility", "SetBoxMonAt", "PewterCity_Gym_EventScript_Brock", "CeruleanCity_Gym_EventScript_Misty", "CastformDataTypeChange", "Cmd_sethail", "Cmd_setsunny", "GetBallCatchMultiplier", "IsPokeBallItem", "BallItemToCaptureCode", "CaptureCodeToBallItem", "TryBuyBallsWithPremierBonus", "ItemIdToBallId", "gCaptureOrigin",
     "PalletTown_ProfessorOaksLab_EventScript_ProfOak", "PalletTown_ProfessorOaksLab_EventScript_TryGiveNestBalls",
 
     'gSpeciesNames',
@@ -280,7 +280,7 @@ required = [
     'gRngValue', 'gSaveBlock1', 'gSaveBlock1Ptr', 'gSaveBlock2', 'gSaveBlock2Ptr',
     'gTasks', 'gWildMonHeaders', 'sEvoStructPtr', 'sPlttBufferTransferPending', 'sPokedexScreenData',
     'sEggHatchData', 'sGlobalScriptContext', 'sGlobalScriptContextStatus', 'EggHatch', 'CB2_EggHatch_0', 'CB2_EggHatch_1',
-    'CB2_UpdatePartyMenu', 'SetMoney', 'GetMoney', 'GetGameStat', 'SetGameStat',
+    'CB2_UpdatePartyMenu', 'SetMoney', 'GetMoney', 'ItemId_GetPrice', 'GetGameStat', 'SetGameStat',
     'ArePlayerFieldControlsLocked', 'gPlayerAvatar', 'gQuestLogState',
     'CB2_ContinueSavedGame', 'Route5DaycareNeedsMapRefresh', 'RemoveObjectEventByLocalIdAndMap', 'GetObjectEventIdByLocalIdAndMap',
     'GetRoute5Daycare', 'GetActiveDaycare', 'IsRoute5DaycareReady', 'TriggerPendingDaycareEgg',
