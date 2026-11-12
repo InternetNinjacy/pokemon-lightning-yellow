@@ -17,12 +17,19 @@ jobs:
       matrix:
         target: [modified, upstream-baseline]
     runs-on: ubuntu-24.04
-    timeout-minutes: 60
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           persist-credentials: false
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 0 # Verify strict prechange source preservation against pinned gameplay main
+      - name: Confirm exact source commit
+        run: |
+          expected="${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}"
+          actual="$(git rev-parse HEAD)"
+          echo "ACCEPTANCE_SHA=$actual"
+          test "$actual" = "$expected"
       - name: Install upstream Linux dependencies and test runner
         run: |
           # Fetch all required packages before either expensive build. Bound
@@ -63,6 +70,15 @@ jobs:
           python3 tests/run_original_move_data_tests.py
           python3 tests/run_move_pp_tests.py
           python3 tests/run_roar_tests.py
+
+          python3 tests/run_ice_fang_tests.py
+          python3 tests/run_avalanche_tests.py
+          python3 tests/run_moves374_tests.py
+          python3 tests/run_payback_tests.py
+          python3 tests/run_moves382_tests.py
+          python3 tests/run_water_moves385_tests.py
+          python3 tests/run_btl_batch_a_staging_tests.py
+          python3 tests/run_btl_weather_integration_tests.py
 
           python3 tests/run_title_screen_tests.py
 
@@ -191,7 +207,7 @@ jobs:
         run: LIGHTNING_WRL_ROUTE_GRASS_ONLY=1 python3 tests/emulator/run.py
       - name: Execute ROM integration tests in mGBA
         if: matrix.target == 'modified'
-        timeout-minutes: 30
+        timeout-minutes: 45
         run: python3 tests/emulator/run.py
       - name: Verify original upstream SHA-1 twice from clean
         if: matrix.target == 'upstream-baseline'
