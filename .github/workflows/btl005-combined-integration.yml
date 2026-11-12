@@ -1,0 +1,90 @@
+name: BTL-005 combine exact stack with current main
+on:
+  push:
+    branches: [integration/btl005-combined-main-20261112]
+permissions:
+  contents: write
+jobs:
+  integrate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 18
+    steps:
+      - name: Checkout isolated candidate
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+      - name: Merge exact approved stack and validate narrow resolutions
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE=1f225205111c1703aa7895240f90f129a53f8210
+          STACK=f1f74116ca3905e264d272b7a55b2773cee57f81
+          test "$(git rev-parse HEAD^)" = "$BASE"
+          git fetch --no-tags origin "$STACK"
+          git config user.name 'BTL-005 integration'
+          git config user.email 'btl005-integration@users.noreply.github.com'
+          git merge --no-commit --no-ff "$STACK" || true
+          echo "UNMERGED:"
+          git diff --name-only --diff-filter=U
+          python3 - <<'PY'
+          from pathlib import Path
+          import subprocess
+          expected={
+            '.github/workflows/build.yml',
+            'tests/approved_special_glalie_changes.py',
+            'tests/run_special_glalie_tests.py',
+          }
+          conflicts=set(subprocess.check_output(['git','diff','--name-only','--diff-filter=U'],text=True).splitlines())
+          assert conflicts == expected, ('Unexpected conflict paths',conflicts)
+          def resolve(path, transform):
+              p=Path(path); s=p.read_text()
+              assert s.count('<<<<<<< HEAD')==1 and s.count('=======')==1 and s.count('>>>>>>> ')==1,(path,'unexpected hunk shape')
+              prefix,tail=s.split('<<<<<<< HEAD',1)
+              ours,tail=tail.split('=======',1)
+              theirs,suffix=tail.split('>>>>>>> ',1)
+              suffix=suffix.split('\n',1)[1]
+              p.write_text(prefix+transform(ours,theirs)+suffix)
+          def build(ours,theirs):
+              assert 'LIGHTNING_CENTER_REMINDER_LEARNING_ONLY' in ours
+              assert 'LIGHTNING_SOW_PRODUCERS_ONLY' in ours
+              assert 'LIGHTNING_WRL_ROUTE_GRASS_ONLY' in ours
+              assert 'default full runner' in theirs
+              return ours + theirs
+          resolve('.github/workflows/build.yml',build)
+          def adapter(ours,theirs):
+              assert 'prior_special_corphish_source' in ours
+              assert 'prior_weather_species_evolution_source' in ours
+              assert 'without_btl(path,text)' in theirs
+              return """    from approved_special_corphish_changes import prior_special_corphish_source
+              text = prior_special_corphish_source(path, text)
+              from approved_btl_weather_integration import without_btl
+              text = without_btl(path, text)
+          """.replace('              ','')
+          resolve('tests/approved_special_glalie_changes.py',adapter)
+          def audit(ours,theirs):
+              assert 'prior_special_corphish_source' in ours and 'prior_weather_species_evolution_source' in ours
+              assert 'without_btl(path)' in theirs
+              return """from approved_special_corphish_changes import prior_special_corphish_source
+          from approved_btl_weather_integration import without_btl
+          from approved_weather_species_slots import prior_weather_species_source
+          m=json.loads(Path('tests/specifications/special_glalie_delta.json').read_text())
+          for path,row in m['files'].items():
+              assert hashlib.sha256(without_btl(path,prior_special_corphish_source(path)).encode()).hexdigest()==row['after_sha256'],path
+          """.replace('          ','')
+          resolve('tests/run_special_glalie_tests.py',audit)
+          subprocess.run(['git','add','--']+sorted(expected),check=True)
+          assert not subprocess.check_output(['git','diff','--name-only','--diff-filter=U'],text=True).strip()
+          PY
+          python3 -m py_compile tests/approved_special_glalie_changes.py tests/run_special_glalie_tests.py
+          python3 tests/run_special_glalie_tests.py
+          python3 tests/run_btl_weather_integration_tests.py
+          python3 tests/run_btl_batch_a_staging_tests.py
+          python3 tests/run_move_catalog_tests.py
+          python3 scripts/check-move-reconciliation.py
+          git diff --check --cached
+          git commit --no-edit
+          echo "INTEGRATION_HEAD=$(git rev-parse HEAD)"
+          echo "INTEGRATION_PARENTS=$(git rev-list --parents -n 1 HEAD)"
+          git push origin HEAD:refs/heads/integration/btl005-combined-main-20261112
+          echo "PUSHED_INTEGRATION_CANDIDATE"
