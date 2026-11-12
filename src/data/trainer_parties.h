@@ -5596,36 +5596,16 @@ static const struct TrainerMonNoItemCustomMoves sParty_CooltrainerBerke[] = {
     },
 };
 
-static const struct TrainerMonNoItemCustomMoves sParty_CooltrainerYuji[] = {
+static const struct TrainerMonNoItemDefaultMoves sParty_CooltrainerYuji[] = {
     {
         .iv = 100,
         .lvl = 38,
-        .species = SPECIES_SANDSLASH,
-        .moves = {MOVE_SLASH, MOVE_SWIFT, MOVE_SAND_ATTACK, MOVE_POISON_STING},
+        .species = SPECIES_UMBREON,
     },
     {
         .iv = 100,
         .lvl = 38,
-        .species = SPECIES_GRAVELER,
-        .moves = {MOVE_ROCK_BLAST, MOVE_MAGNITUDE, MOVE_MUD_SPORT, MOVE_DEFENSE_CURL},
-    },
-    {
-        .iv = 100,
-        .lvl = 38,
-        .species = SPECIES_ONIX,
-        .moves = {MOVE_DRAGON_BREATH, MOVE_SANDSTORM, MOVE_ROCK_THROW, MOVE_BIND},
-    },
-    {
-        .iv = 100,
-        .lvl = 38,
-        .species = SPECIES_GRAVELER,
-        .moves = {MOVE_ROCK_BLAST, MOVE_MAGNITUDE, MOVE_ROLLOUT, MOVE_DEFENSE_CURL},
-    },
-    {
-        .iv = 100,
-        .lvl = 38,
-        .species = SPECIES_MAROWAK,
-        .moves = {MOVE_BONEMERANG, MOVE_HEADBUTT, MOVE_LEER, MOVE_GROWL},
+        .species = SPECIES_ABSOL,
     },
 };
 
