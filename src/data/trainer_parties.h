@@ -3617,12 +3617,12 @@ static const struct TrainerMonNoItemDefaultMoves sParty_TamerCole[] = {
     {
         .iv = 40,
         .lvl = 39,
-        .species = SPECIES_ARBOK,
+        .species = SPECIES_RATICATE,
     },
     {
         .iv = 40,
         .lvl = 39,
-        .species = SPECIES_TAUROS,
+        .species = SPECIES_HOUNDOUR,
     },
 };
 
