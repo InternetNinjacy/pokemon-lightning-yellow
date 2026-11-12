@@ -1,6 +1,6 @@
-# WRL-008 — Mystery Vendor starter-integration acceptance (proposed closure)
+# WRL-008 — Mystery Vendor starter-integration acceptance (CLOSED 2026-11-10)
 
-Date: 2026-11-10. Reviewed live `main` at `ec81efb901be6eb0d93d2743216125abfc75334a`. Scope: WRL-008 only. This is a documentation and effort-accounting proposal, **not** a new gameplay implementation or full-release certification.
+Date: 2026-11-10. Reviewed live `main` at `ec81efb901be6eb0d93d2743216125abfc75334a`. Scope: WRL-008 only. Master Control verified PR #184 merged at `ae928a1d9eba3aed16f4252123027cb5413106a7`, with merged-head modified/upstream checks SUCCESS. This is verified task-level accounting and source acceptance, **not** new gameplay implementation or full-release certification.
 
 ## Authorities and verified history
 - [Canonical START HERE](https://docs.google.com/document/d/14bV_mRB-IgcyWqGcIH2tgmvNoYLY1Ip_zSqSbdHGYtw/edit) indexes the [owner-approved Vendor Handoff v1.0](https://docs.google.com/document/d/1gOUWIW9LkDHTZ6UNk183f5tIdkF76dxvE2ZU137DcRs/edit) and the [Vendor/Gift Master Register](https://docs.google.com/document/d/18hjdaHs8d4aE7xof09ZrvfABa3lwGjdn5GHNYYkqU9U/edit). Later explicit handoff approvals supersede preliminary register drafts.

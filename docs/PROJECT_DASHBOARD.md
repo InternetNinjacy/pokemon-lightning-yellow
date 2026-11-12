@@ -1,10 +1,10 @@
 # Pokémon Lightning Yellow — Project Dashboard
 
-Canonical branch: `main`. Proposed WRL-008 accounting revision 2026-11-10 (not yet merged/authorized). Audited gameplay revision: `4e73c90831baa9ff989f60c3c1908844956ed1ed`.
+Canonical branch: `main`. Reconciled 2026-11-12 against main `1f225205111c1703aa7895240f90f129a53f8210`; historical accepted tracking source `ae928a1d9eba3aed16f4252123027cb5413106a7`.
 
-Overall (WRL-008 proposed accounting): `[######----]` **64.75% complete /35.25% remaining** (461 earned +251 remaining;712 provisional effort points). Pending Master Control approval/merge.
+Overall: `[######----]` **64.75% complete /35.25% remaining** (461 earned +251 remaining;712 provisional effort points).
 
-Master Control verified WTH-001 SOW encounter implementation PR139 merged to main4e73c908 with final PR-head and merged-main CI success; WTH-001 28/0 CLOSED (+4 reserved), project460 earned/252 remaining of712 (64.61%). WTH-002 visual/fog and INT-004/005 release QA remain separate; Codex BTL-005, PKM-009 species, wild ecology and WRL-010 asset licensing continue independently. No reimplementation or additional SOW visual approval round absent regression.
+Master Control verified WTH-001 scoped gameplay and accounting CLOSEOUT (PR #170 merged ec81efb901be) and WRL-008 vendor starter-boundary CLOSEOUT (PR #184 merged ae928a1d9eba), each with exact merged-head modified/upstream CI SUCCESS. Official tracker: 461 earned/251 remaining of unchanged 712 (64.75%). Both tasks CLOSED, no gameplay redesign, no double-counting WRL-001 or weather. Remaining BTL-005, WRL-002/009/010, PKM-009, GYM-001/002, WTH-002/003, other event/shop work and INT-004/005 acceptance continue.
 
 These are estimates of tracked work, not elapsed hours or release certification. Every permanent ID and earned-history entry is retained. Approved Ponyta and Ranger work expanded the scope; the denominator is the sum of the current task effort estimates. Adding scope changes it without erasing completed work. Repeated regression is not duplicate implementation credit.
 

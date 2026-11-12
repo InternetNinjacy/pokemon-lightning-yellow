@@ -1804,3 +1804,11 @@ Source review on main `ec81efb901be6eb0d93d2743216125abfc75334a` confirms vendor
 - **Direct evidence:** Exact PR-head [CI #43085323327](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/43085323327) both modified and independent upstream-baseline SUCCESS; physical all-19 Center input/cancel/no-charge, native full four-slot summary overwrite and first empty-slot learning with flash persistence, static wiring and original build reproducibility. Earlier focused failures were test-input text/confirmation sequencing, resolved without production changes, assertion weakening, or watchdog alteration.
 - **Post-merge gate:** Exact merged-main [CI #43129537615](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/43129537615) reached terminal **SUCCESS** in both modified (job `130889947719`; complete native mGBA integration SUCCESS) and independent upstream-baseline (job `130889948007`). Verified before documentation closeout.
 - **No double credit:** Existing 50 permanent task IDs and 461/251/712 provisional baseline unchanged. Do not award a new task or test point for this evidence. Natural uninterrupted story traversal and hardware/link acceptance remain separate release qualification, not claimed here.
+
+### 2026-11-12 — Retrospective record of merged WTH-001 / WRL-008 administrative closeouts
+
+## 2026-11-10 — Master Control verifies WTH-001 and WRL-008 administrative closures merged
+
+PR #170 merged into main at `ec81efb901be6eb0d93d2743216125abfc75334a` after both modified and independent upstream-baseline checks succeeded; WTH-001 now 28 earned/0 remaining. Owner-locked Tyranitar Route23 (13,142), Corphish and Glalie actual native tests and separate WTH-002 fog work preserved.
+
+PR #184 merged into main at `ae928a1d9eba3aed16f4252123027cb5413106a7`; its merged-commit modified and independent upstream checks succeeded. Final independent Mystery Vendor/WRL-001 starter boundary accepted on preserved merged source and original vendor native CI. WRL-008 now 20 earned/0 remaining. No new gameplay or ROM test executed for this documentation closeout, and no duplicate points for WRL-001/010. **Project 461 earned / 251 remaining of 712 = 64.75%**. Fifty permanent tasks and historical point records retained. INT-004/005 broader release coverage remains open.
