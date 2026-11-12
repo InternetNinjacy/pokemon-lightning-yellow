@@ -4397,7 +4397,11 @@ static void Cmd_moveend(void)
             // A move targeting every other battler must visit the second foe
             // and then the user's ally. Retain MOVE_TARGET_BOTH's original
             // two-opponent handling and its normal 50% damage behavior.
-            if (!(gHitMarker & HITMARKER_UNABLE_TO_USE_MOVE)
+            // Thunder Wave already consumed its three recipients above. The
+            // ordinary spread-move loop would otherwise replay the ally after
+            // the final foe, extending battle text and applying the effect twice.
+            if (gCurrentMove != MOVE_THUNDER_WAVE
+                && !(gHitMarker & HITMARKER_UNABLE_TO_USE_MOVE)
                 && (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
                 && !gProtectStructs[gBattlerAttacker].chargingTurn
                 && gBattleMoves[gCurrentMove].target == MOVE_TARGET_FOES_AND_ALLY
