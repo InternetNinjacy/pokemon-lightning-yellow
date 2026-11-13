@@ -2553,16 +2553,18 @@ static const struct TrainerMonNoItemCustomMoves sParty_FishermanAndrew[] = {
     },
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_SwimmerMaleLuis[] = {
+static const struct TrainerMonNoItemCustomMoves sParty_SwimmerMaleLuis[] = {
     {
         .iv = 0,
-        .lvl = 16,
-        .species = SPECIES_HORSEA,
+        .lvl = 17,
+        .species = SPECIES_SLOWPOKE,
+        .moves = {MOVE_WATER_GUN, MOVE_CONFUSION, MOVE_GROWL, MOVE_DISABLE},
     },
     {
         .iv = 0,
-        .lvl = 16,
-        .species = SPECIES_SHELLDER,
+        .lvl = 17,
+        .species = SPECIES_HORSEA,
+        .moves = {MOVE_WATER_GUN, MOVE_BUBBLE, MOVE_SMOKESCREEN, MOVE_LEER},
     },
 };
 
