@@ -35,6 +35,43 @@ def restore_ordinary_trainer_blocks(path):
     from approved_viridian_warren_changes import prior_viridian_warren_source
     from approved_viridian_bags_changes import prior_viridian_bags_source
     result = prior_erika_gym002_source(path, prior_koga_gym002_source(path, prior_celadon_four_source(path, prior_fuchsia_three_source(path, prior_gym001_baily_source(path, prior_gym001_tucker_source(path, prior_viridian_bags_source(path, prior_viridian_cole_source(path, prior_viridian_atsushi_source(path, prior_viridian_takashi_source(path, prior_viridian_warren_source(path, prior_viridian_yuji_source(path, prior_viridian_samuel_source(path, prior_viridian_jason_source(path, prior_viridian_kiyo_source(path, prior_brock_weather_source(path, prior_gym002_source(path)))))))))))))))))
+    # GYM-002 Luis: reverse ONLY the separately approved Cerulean Double
+    # and exact Slowpoke/Horsea party before the frozen pre-trainer audit.
+    # All other trainer fields and party records remain byte-exact protected.
+    if str(path) in ("src/data/trainer_parties.h", "src/data/trainers.h"):
+        if str(path) == "src/data/trainer_parties.h":
+            pattern = r"static const struct TrainerMon\\w+\\s+sParty_SwimmerMaleLuis\\[\\]\\s*=\\s*\\{.*?\\n\\};"
+            approved = """static const struct TrainerMonNoItemCustomMoves sParty_SwimmerMaleLuis[] = {
+    {
+        .iv = 0,
+        .lvl = 17,
+        .species = SPECIES_SLOWPOKE,
+        .moves = {MOVE_WATER_GUN, MOVE_CONFUSION, MOVE_GROWL, MOVE_DISABLE},
+    },
+    {
+        .iv = 0,
+        .lvl = 17,
+        .species = SPECIES_HORSEA,
+        .moves = {MOVE_WATER_GUN, MOVE_BUBBLE, MOVE_SMOKESCREEN, MOVE_LEER},
+    },
+};"""
+        else:
+            pattern = r"\\[TRAINER_SWIMMER_MALE_LUIS\\]\\s*=\\s*\\{.*?\\n    \\},"
+            approved = None
+        before = list(re.finditer(pattern, original, re.S))
+        after = list(re.finditer(pattern, result, re.S))
+        assert len(before) == len(after) == 1, (path, "Luis record count")
+        if approved is None:
+            expected = before[0].group().replace(
+                ".doubleBattle = FALSE,", ".doubleBattle = TRUE,", 1
+            ).replace("NO_ITEM_DEFAULT_MOVES(sParty_SwimmerMaleLuis)",
+                      "NO_ITEM_CUSTOM_MOVES(sParty_SwimmerMaleLuis)", 1)
+            assert before[0].group().count(".doubleBattle = FALSE,") == 1
+            assert before[0].group().count("NO_ITEM_DEFAULT_MOVES(sParty_SwimmerMaleLuis)") == 1
+        else:
+            expected = approved
+        assert after[0].group() == expected, "Luis changed outside approved exact Gym contract"
+        result = result[:after[0].start()] + before[0].group() + result[after[0].end():]
     # Rocket Hideout #45 modifies only existing Grunt IDs 8–18. Revert
     # those exact approved records before the ordinary-Trainer baseline check;
     # unrelated changes still fail the final byte-for-byte comparison.
