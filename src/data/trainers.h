@@ -4158,7 +4158,7 @@ const struct Trainer gTrainers[] = {
         .trainerPic = TRAINER_PIC_LEADER_LT_SURGE,
         .trainerName = _("LT. SURGE"),
         .items = {ITEM_SUPER_POTION, ITEM_FULL_HEAL},
-        .doubleBattle = FALSE,
+        .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
         .party = NO_ITEM_CUSTOM_MOVES(sParty_LeaderLtSurge),
     },
