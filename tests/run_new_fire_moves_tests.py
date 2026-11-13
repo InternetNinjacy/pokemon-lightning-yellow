@@ -53,13 +53,13 @@ authorized_natural = {
     'Rapidash': [(16, 'FLASHFIRE'), (36, 'FLAME_FANG'), (48, 'BLAZE_RUSH')],
     'Flareon': [(8, 'FLASHFIRE'), (36, 'FLAME_FANG'), (54, 'BLAZE_RUSH')],
 }
-learnset_pattern = r's([A-Za-z0-9]+)LevelUpLearnset\\[\\]\\s*=\\s*\\{(.*?)\\};'
+learnset_pattern = r's([A-Za-z0-9]+)LevelUpLearnset\[\]\s*=\s*\{(.*?)\};'
 learnsets = re.findall(learnset_pattern, level_source, re.S)
 assert len(learnsets) > 100, 'level-up learnset parsing failed'
 actual_natural = {}
 for species, block in learnsets:
     entries = [(int(level), move) for level, move in re.findall(
-        r'LEVEL_UP_MOVE\\(\\s*(\\d+)\\s*,\\s*MOVE_(FLAME_FANG|FLASHFIRE|BLAZE_RUSH)\\s*\\)', block)]
+        r'LEVEL_UP_MOVE\(\s*(\d+)\s*,\s*MOVE_(FLAME_FANG|FLASHFIRE|BLAZE_RUSH)\s*\)', block)]
     if entries:
         actual_natural[species] = entries
 assert actual_natural == authorized_natural, (actual_natural, authorized_natural)
