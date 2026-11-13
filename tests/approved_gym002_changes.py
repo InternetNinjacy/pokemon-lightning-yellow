@@ -58,4 +58,16 @@ def prior_gym002_source(path, source=None):
         assert len(gym_before) == len(gym_after) == 1, "TRAINER_LEADER_GIOVANNI: protected original/new block count"
         assert gym_after[0].group() == "[TRAINER_LEADER_GIOVANNI] = {\n        .trainerClass = TRAINER_CLASS_LEADER,\n        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_AQUA,\n        .trainerPic = TRAINER_PIC_LEADER_GIOVANNI,\n        .trainerName = _(\"GIOVANNI\"),\n        .items = {ITEM_MAX_POTION, ITEM_SUPER_POTION, ITEM_FULL_RESTORE},\n        .doubleBattle = FALSE,\n        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,\n        .party = ITEM_CUSTOM_MOVES(sParty_LeaderGiovanni),\n    },", "TRAINER_LEADER_GIOVANNI: source changed outside approved Gym contract"
         source = source[:gym_after[0].start()] + gym_before[0].group() + source[gym_after[0].end():]
+    # Approved Misty Doubles is a separate single-field GYM-002 delta.
+    # Project it away before historical SHA audits without changing frozen digests.
+    if str(path) == "src/data/trainers.h":
+        pattern = r"\[TRAINER_LEADER_MISTY\]\s*=\s*\{.*?\n    \},"
+        before = list(re.finditer(pattern, original, re.S))
+        after = list(re.finditer(pattern, source, re.S))
+        assert len(before) == len(after) == 1, "Misty: protected record count"
+        old_record, new_record = before[0].group(), after[0].group()
+        assert old_record.count(".doubleBattle = FALSE,") == 1
+        expected = old_record.replace(".doubleBattle = FALSE,", ".doubleBattle = TRUE,", 1)
+        assert new_record in (old_record, expected), "Misty: unexpected trainer record change"
+        source = source[:after[0].start()] + old_record + source[after[0].end():]
     return source
