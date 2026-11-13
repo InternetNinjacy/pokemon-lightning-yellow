@@ -6222,27 +6222,27 @@ static const struct TrainerMonNoItemCustomMoves sParty_LeaderBlaine[] = {
 static const struct TrainerMonNoItemCustomMoves sParty_LeaderSabrina[] = {
     {
         .iv = 0,
+        .lvl = 43,
+        .species = SPECIES_GENGAR,
+        .moves = {MOVE_HYPNOSIS, MOVE_DREAM_EATER, MOVE_SHADOW_PUNCH, MOVE_DESTINY_BOND},
+    },
+    {
+        .iv = 0,
         .lvl = 38,
-        .species = SPECIES_KADABRA,
-        .moves = {MOVE_PSYBEAM, MOVE_REFLECT, MOVE_FUTURE_SIGHT, MOVE_CALM_MIND},
+        .species = SPECIES_MACHAMP,
+        .moves = {MOVE_VITAL_THROW, MOVE_REVENGE, MOVE_FORESIGHT, MOVE_FOCUS_ENERGY},
+    },
+    {
+        .iv = 0,
+        .lvl = 38,
+        .species = SPECIES_DUSCLOPS,
+        .moves = {MOVE_SHADOW_PUNCH, MOVE_CONFUSE_RAY, MOVE_CURSE, MOVE_NIGHT_SHADE},
     },
     {
         .iv = 0,
         .lvl = 37,
-        .species = SPECIES_MR_MIME,
-        .moves = {MOVE_BARRIER, MOVE_PSYBEAM, MOVE_BATON_PASS, MOVE_CALM_MIND},
-    },
-    {
-        .iv = 0,
-        .lvl = 38,
-        .species = SPECIES_VENOMOTH,
-        .moves = {MOVE_PSYBEAM, MOVE_GUST, MOVE_LEECH_LIFE, MOVE_SUPERSONIC},
-    },
-    {
-        .iv = 0,
-        .lvl = 43,
-        .species = SPECIES_ALAKAZAM,
-        .moves = {MOVE_PSYCHIC, MOVE_RECOVER, MOVE_FUTURE_SIGHT, MOVE_CALM_MIND},
+        .species = SPECIES_HITMONTOP,
+        .moves = {MOVE_TRIPLE_KICK, MOVE_COUNTER, MOVE_QUICK_ATTACK, MOVE_AGILITY},
     },
 };
 
