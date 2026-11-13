@@ -1,0 +1,205 @@
+{
+  "scope": "Exact BTL through384 and merged main a89194f0 shared-source projections; frozen histories unchanged",
+  "main": "a89194f026dcedc8942b5de29f0d93eb4a7bb72a",
+  "btl": "f04c1bed79baaa2b9b21ce56624631033f7055ff",
+  "files": {
+    "include/battle_util.h": {
+      "merged_sha256": "36683b378c279b946a28ed34015fff5cb434d9462c622223cc6f2d2be9fffc2c",
+      "without_weather": {
+        "sha256": "a5c70361dcf1b34f079b0300d7c3d320d23640b0a784a92305eb24f55028e38f",
+        "hunks": [
+          {
+            "before": "bool8 BattlerWasDamagedBy(u8 recipient, u8 source);\nu8 GetBattlerForBattleScript(u8 caseId);\n",
+            "after": "bool8 BattlerWasDamagedBy(u8 recipient, u8 source);\nu8 GetBattlerInitialAbility(u8 battler);\nu8 GetBattlerForBattleScript(u8 caseId);\n"
+          }
+        ]
+      },
+      "without_btl": {
+        "sha256": "d8865e2ec1747c0acd35b29e2387a75a88c665b0c74f8c87dd03488f760c5ac9",
+        "hunks": [
+          {
+            "before": "\nu8 GetBattlerInitialAbility(u8 battler);\n",
+            "after": "\nbool8 BattlerHasActedThisTurn(u8 battler);\nbool8 BattlerWasDamagedBy(u8 recipient, u8 source);\nu8 GetBattlerInitialAbility(u8 battler);\n"
+          }
+        ]
+      }
+    },
+    "src/battle_util.c": {
+      "merged_sha256": "fc788a4037392f22019f648af393fe62b784ff0ce6bf07a6be06f70859c56d52",
+      "without_weather": {
+        "sha256": "0075d46dcd7ae7533d3217ad2b8e0e328c6ceb9038914bebdeb11c8fd78fb5b3",
+        "hunks": [
+          {
+            "before": "#include \"constants/abilities.h\"\n#include \"constants/pokemon.h\"\n",
+            "after": "#include \"constants/abilities.h\"\n#include \"constants/opponents.h\"\n#include \"constants/pokemon.h\"\n"
+          },
+          {
+            "before": "        && (gBattleStruct->damagedByBattlers[recipient] & (1U << source)) != 0;\n}\n",
+            "after": "        && (gBattleStruct->damagedByBattlers[recipient] & (1U << source)) != 0;\n}\n\n// Approved individual Gym abilities; never edit species slots or party data.\n// Applied only when native battler data is loaded, so Skill Swap/Trace persist\n// normally until the affected battler switches again.\nu8 GetBattlerInitialAbility(u8 battler)\n{\n    u16 species = gBattleMons[battler].species;\n    if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER)\n     && !(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_EREADER_TRAINER | BATTLE_TYPE_TRAINER_TOWER))\n     && GetBattlerSide(battler) == B_SIDE_OPPONENT)\n    {\n        if (gTrainerBattleOpponent_A == TRAINER_LEADER_BROCK)\n        {\n            if (species == SPECIES_SNORUNT)\n                return ABILITY_ICE_BODY;\n            if (species == SPECIES_ONIX)\n                return ABILITY_OVERCOAT;\n        }\n        if (gTrainerBattleOpponent_A == TRAINER_LEADER_MISTY && species == SPECIES_STARMIE)\n            return ABILITY_DRIZZLE;\n    }\n    return GetMonAbility(GetBattlerSide(battler) == B_SIDE_PLAYER\n        ? &gPlayerParty[gBattlerPartyIndexes[battler]]\n        : &gEnemyParty[gBattlerPartyIndexes[battler]]);\n}\n"
+          },
+          {
+            "before": "                break;\n            case ABILITY_SAND_STREAM:\n",
+            "after": "                break;\n            case ABILITY_SNOW_WARNING:\n                if (!(gBattleWeather & B_WEATHER_HAIL_PERMANENT))\n                {\n                    gBattleWeather = B_WEATHER_HAIL_PERMANENT;\n                    BattleScriptPushCursorAndCallback(BattleScript_SnowWarningActivates);\n                    gBattleScripting.battler = battler;\n                    effect++;\n                }\n                break;\n            case ABILITY_SAND_STREAM:\n"
+          },
+          {
+            "before": "                case ABILITY_RAIN_DISH:\n                    if (WEATHER_HAS_EFFECT && (gBattleWeather & B_WEATHER_RAIN)\n                     && gBattleMons[battler].maxHP > gBattleMons[battler].hp)\n                    {\n                        gLastUsedAbility = ABILITY_RAIN_DISH; // why\n                        BattleScriptPushCursorAndCallback(BattleScript_RainDishActivates);\n",
+            "after": "                case ABILITY_RAIN_DISH:\n                case ABILITY_ICE_BODY:\n                {\n                    u8 healingAbility = gLastUsedAbility;\n                    if (WEATHER_HAS_EFFECT\n                     && ((healingAbility == ABILITY_RAIN_DISH && (gBattleWeather & B_WEATHER_RAIN))\n                      || (healingAbility == ABILITY_ICE_BODY && (gBattleWeather & B_WEATHER_HAIL)))\n                     && gBattleMons[battler].maxHP > gBattleMons[battler].hp)\n                    {\n                        gLastUsedAbility = healingAbility;\n                        BattleScriptPushCursorAndCallback(BattleScript_RainDishActivates);\n"
+          },
+          {
+            "before": "                    break;\n                case ABILITY_SHED_SKIN:\n",
+            "after": "                    break;\n                }\n                case ABILITY_SHED_SKIN:\n"
+          }
+        ]
+      },
+      "without_btl": {
+        "sha256": "f8086f60ee86d68513e3f6d72bbb0a346ce1f505bf3a310fa1af0023aaf21668",
+        "hunks": [
+          {
+            "before": "    MOVE_GROWL, MOVE_ROAR, MOVE_SING, MOVE_SUPERSONIC, MOVE_SCREECH, MOVE_SNORE,\n    MOVE_UPROAR, MOVE_METAL_SOUND, MOVE_GRASS_WHISTLE, MOVE_HYPER_VOICE, MOVE_CHIRP, MOVE_BELLOW, SOUND_MOVES_END\n};\n\n",
+            "after": "    MOVE_GROWL, MOVE_ROAR, MOVE_SING, MOVE_SUPERSONIC, MOVE_SCREECH, MOVE_SNORE,\n    MOVE_UPROAR, MOVE_METAL_SOUND, MOVE_GRASS_WHISTLE, MOVE_HYPER_VOICE, MOVE_CHIRP, MOVE_BELLOW, MOVE_SNARL, SOUND_MOVES_END\n};\n\nbool8 BattlerHasActedThisTurn(u8 battler)\n{\n    return battler < MAX_BATTLERS_COUNT\n        && (gBattleStruct->actedThisTurn & (1U << battler)) != 0;\n}\n\nbool8 BattlerWasDamagedBy(u8 recipient, u8 source)\n{\n    return recipient < MAX_BATTLERS_COUNT && source < MAX_BATTLERS_COUNT\n        && (gBattleStruct->damagedByBattlers[recipient] & (1U << source)) != 0;\n}\n\n"
+          }
+        ]
+      }
+    },
+    "src/battle_main.c": {
+      "merged_sha256": "c3fb3ef9683463807b1c38b5366c0ac50140a2e8c9cbcf98114b0aeabe534ea5",
+      "without_weather": {
+        "sha256": "a8fdf9b275d7ce1a3b8e0f5f530d2a16cf8251664c09eef8e555fa6e5e1ad3c4",
+        "hunks": [
+          {
+            "before": "            gBattleMons[gActiveBattler].type2 = gSpeciesInfo[gBattleMons[gActiveBattler].species].types[1];\n            gBattleMons[gActiveBattler].ability = GetAbilityBySpecies(gBattleMons[gActiveBattler].species, gBattleMons[gActiveBattler].abilityNum);\n            hpOnSwitchout = &gBattleStruct->hpOnSwitchout[GetBattlerSide(gActiveBattler)];\n",
+            "after": "            gBattleMons[gActiveBattler].type2 = gSpeciesInfo[gBattleMons[gActiveBattler].species].types[1];\n            gBattleMons[gActiveBattler].ability = GetBattlerInitialAbility(gActiveBattler);\n            hpOnSwitchout = &gBattleStruct->hpOnSwitchout[GetBattlerSide(gActiveBattler)];\n"
+          }
+        ]
+      },
+      "without_btl": {
+        "sha256": "1b971149401820f5dd679b6ee503aec0f8839d7d1f5ce11ebd923ba04fe0b749",
+        "hunks": [
+          {
+            "before": "\n    if (gBattleMoves[gCurrentMove].effect != EFFECT_BATON_PASS)\n",
+            "after": "\n    // A replacement is a different Pokemon, even when it reuses a battler ID.\n    gBattleStruct->damagedByBattlers[gActiveBattler] = 0;\n    for (i = 0; i < MAX_BATTLERS_COUNT; i++)\n        gBattleStruct->damagedByBattlers[i] &= ~(1U << gActiveBattler);\n\n    if (gBattleMoves[gCurrentMove].effect != EFFECT_BATON_PASS)\n"
+          },
+          {
+            "before": "\n    for (gActiveBattler = 0; gActiveBattler < gBattlersCount; gActiveBattler++)\n",
+            "after": "\n    if (!var0)\n    {\n        gBattleStruct->actedThisTurn = 0;\n        for (i = 0; i < MAX_BATTLERS_COUNT; i++)\n            gBattleStruct->damagedByBattlers[i] = 0;\n    }\n\n    for (gActiveBattler = 0; gActiveBattler < gBattlersCount; gActiveBattler++)\n"
+          },
+          {
+            "before": "    sTurnActionsFuncsTable[gCurrentActionFuncId]();\n\n",
+            "after": "    sTurnActionsFuncsTable[gCurrentActionFuncId]();\n\n    // Mark completion, not selection or damage. Keep this slot marked when a\n    // replacement enters: Generation IV Payback also doubles against switches.\n    if (gBattleStruct->savedTurnActionNumber != gCurrentTurnActionNumber\n     && gBattleStruct->savedTurnActionNumber < gBattlersCount)\n        gBattleStruct->actedThisTurn |= 1U << gBattlerByTurnOrder[gBattleStruct->savedTurnActionNumber];\n\n"
+          }
+        ]
+      }
+    },
+    "src/battle_script_commands.c": {
+      "merged_sha256": "c27a5634100c618a1e83d2cd62157f7b9a1e565bdaba0ff45d14edad3e3fa85b",
+      "without_weather": {
+        "sha256": "e18afc3452082b7afce21e1d5e3fed77356ab664919aecbd6aab9c6cbb32ce20",
+        "hunks": [
+          {
+            "before": "    gBattleMons[gActiveBattler].type2 = gSpeciesInfo[gBattleMons[gActiveBattler].species].types[1];\n    gBattleMons[gActiveBattler].ability = GetAbilityBySpecies(gBattleMons[gActiveBattler].species, gBattleMons[gActiveBattler].abilityNum);\n\n",
+            "after": "    gBattleMons[gActiveBattler].type2 = gSpeciesInfo[gBattleMons[gActiveBattler].species].types[1];\n    gBattleMons[gActiveBattler].ability = GetBattlerInitialAbility(gActiveBattler);\n\n"
+          },
+          {
+            "before": "                && gBattleMons[gBattlerAttacker].ability != ABILITY_SAND_VEIL\n                && !(gStatuses3[gBattlerAttacker] & STATUS3_UNDERGROUND)\n",
+            "after": "                && gBattleMons[gBattlerAttacker].ability != ABILITY_SAND_VEIL\n                && gBattleMons[gBattlerAttacker].ability != ABILITY_OVERCOAT\n                && !(gStatuses3[gBattlerAttacker] & STATUS3_UNDERGROUND)\n"
+          },
+          {
+            "before": "            if (!IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_ICE)\n                && !(gStatuses3[gBattlerAttacker] & STATUS3_UNDERGROUND)\n",
+            "after": "            if (!IS_BATTLER_OF_TYPE(gBattlerAttacker, TYPE_ICE)\n                && gBattleMons[gBattlerAttacker].ability != ABILITY_OVERCOAT\n                && gBattleMons[gBattlerAttacker].ability != ABILITY_ICE_BODY\n                && !(gStatuses3[gBattlerAttacker] & STATUS3_UNDERGROUND)\n"
+          }
+        ]
+      },
+      "without_btl": {
+        "sha256": "3509f3d89f2051310366a16ddc71a566220da50f249f6d1e08106fcbeef7300b",
+        "hunks": [
+          {
+            "before": "                }\n\n",
+            "after": "                }\n\n                // Track only real direct move HP loss, never Substitute, healing,\n                // recoil/confusion on the user, status effects or passive damage.\n                if (gHpDealt > 0 && gBattlescriptCurrInstr[1] == BS_TARGET\n                 && gBattlerAttacker < MAX_BATTLERS_COUNT && gBattlerAttacker != gActiveBattler\n                 && !(gHitMarker & HITMARKER_PASSIVE_DAMAGE) && !IS_MOVE_STATUS(gCurrentMove))\n                    gBattleStruct->damagedByBattlers[gActiveBattler] |= 1U << gBattlerAttacker;\n\n"
+          }
+        ]
+      }
+    },
+    "src/pokemon.c": {
+      "merged_sha256": "782c2b097dd0da95d9ad0d19c3e8f19724eed8c3708e38c0ecf82750d77319a0",
+      "without_weather": {
+        "sha256": "8b5c2ba31fe0d9caf2948db2b4935850c548dbca2e48e5dd7a9672648b8a61cc",
+        "hunks": [
+          {
+            "before": " * number of arguments. */\nu32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)\n",
+            "after": " * number of arguments. */\n// Exact opt-in Glalie tag; legacy zero filler is unchanged. No slot migration.\n#define GLALIE_SNOW_WARNING_TAG 0x57A1\n\nu32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)\n"
+          },
+          {
+            "before": "        retVal = substruct3->isEgg;\n        break;\n",
+            "after": "        retVal = substruct3->isEgg;\n        break;\n    case MON_DATA_INDIVIDUAL_ABILITY:\n        if (!boxMon->isBadEgg && !substruct3->isEgg && substruct0->species == SPECIES_GLALIE\n         && substruct0->filler == GLALIE_SNOW_WARNING_TAG)\n            retVal = ABILITY_SNOW_WARNING;\n        break;\n"
+          },
+          {
+            "before": "        break;\n    case MON_DATA_ABILITY_NUM:\n",
+            "after": "        break;\n    case MON_DATA_INDIVIDUAL_ABILITY:\n        if (!substruct3->isEgg && substruct0->species == SPECIES_GLALIE\n         && (substruct0->filler == 0 || substruct0->filler == GLALIE_SNOW_WARNING_TAG))\n        {\n            if (*data == ABILITY_SNOW_WARNING)\n                substruct0->filler = GLALIE_SNOW_WARNING_TAG;\n            else if (*data == ABILITY_NONE)\n                substruct0->filler = 0;\n        }\n        break;\n    case MON_DATA_ABILITY_NUM:\n"
+          },
+          {
+            "before": "    u8 abilityNum = GetMonData(mon, MON_DATA_ABILITY_NUM, NULL);\n    return GetAbilityBySpecies(species, abilityNum);\n}\n",
+            "after": "    u8 abilityNum = GetMonData(mon, MON_DATA_ABILITY_NUM, NULL);\n    u8 individual = GetMonData(mon, MON_DATA_INDIVIDUAL_ABILITY, NULL);\n    if (individual != ABILITY_NONE)\n        return gLastUsedAbility = individual;\n    return GetAbilityBySpecies(species, abilityNum);\n}\n\nbool8 SetSpecialEncounterAbility(struct Pokemon *mon, u8 ability)\n{\n    if (GetMonData(mon, MON_DATA_SPECIES) != SPECIES_GLALIE\n     || GetMonData(mon, MON_DATA_IS_EGG) || GetMonData(mon, MON_DATA_SANITY_IS_BAD_EGG)\n     || (ability != ABILITY_SNOW_WARNING && ability != ABILITY_NONE))\n        return FALSE;\n    SetMonData(mon, MON_DATA_INDIVIDUAL_ABILITY, &ability);\n    return GetMonData(mon, MON_DATA_INDIVIDUAL_ABILITY) == ability;\n}\n"
+          },
+          {
+            "before": "    gBattleMons[battlerId].type2 = gSpeciesInfo[gBattleMons[battlerId].species].types[1];\n    gBattleMons[battlerId].ability = GetAbilityBySpecies(gBattleMons[battlerId].species, gBattleMons[battlerId].abilityNum);\n    GetMonData(&gPlayerParty[partyIndex], MON_DATA_NICKNAME, nickname);\n",
+            "after": "    gBattleMons[battlerId].type2 = gSpeciesInfo[gBattleMons[battlerId].species].types[1];\n    gBattleMons[battlerId].ability = GetMonAbility(&gPlayerParty[partyIndex]);\n    GetMonData(&gPlayerParty[partyIndex], MON_DATA_NICKNAME, nickname);\n"
+          }
+        ]
+      },
+      "without_btl": {
+        "sha256": "37988b9e1a85838e2870d510f68f1c2a18c8d2853b4b2701c5c651f736d2d97c",
+        "hunks": [
+          {
+            "before": "    u16 attack, defense;\n    u16 spAttack, spDefense;\n",
+            "after": "    u16 attack, defense;\n    struct BattlePokemon *attackStatSource;\n    u16 spAttack, spDefense;\n"
+          },
+          {
+            "before": "\n    // Dream Haunt doubles power against sleep without draining or waking.\n",
+            "after": "\n    // Shared live/AI calculation uses the selected target, not last damage source.\n    if (move == MOVE_AVALANCHE && BattlerWasDamagedBy(battlerIdAtk, battlerIdDef))\n        gBattleMovePower *= 2;\n\n    if (move == MOVE_PAYBACK && BattlerHasActedThisTurn(battlerIdDef))\n        gBattleMovePower *= 2;\n\n    // Dream Haunt doubles power against sleep without draining or waking.\n"
+          },
+          {
+            "before": "\n    attack = attacker->attack;\n    defense = defender->defense;\n",
+            "after": "\n    // Foul Play borrows only raw Attack and its stages. User level, ability,\n    // held item, burn, STAB and all defensive modifiers remain on their owners.\n    attackStatSource = (move == MOVE_FOUL_PLAY) ? defender : attacker;\n    attack = attackStatSource->attack;\n    defense = defender->defense;\n"
+          },
+          {
+            "before": "            // Critical hit, if attacker has lost attack stat stages then ignore stat drop\n            if (attacker->statStages[STAT_ATK] > DEFAULT_STAT_STAGE)\n                APPLY_STAT_MOD(damage, attacker, attack, STAT_ATK)\n            else\n",
+            "after": "            // Critical hit, if attacker has lost attack stat stages then ignore stat drop\n            if (attackStatSource->statStages[STAT_ATK] > DEFAULT_STAT_STAGE)\n                APPLY_STAT_MOD(damage, attackStatSource, attack, STAT_ATK)\n            else\n"
+          },
+          {
+            "before": "        else\n            APPLY_STAT_MOD(damage, attacker, attack, STAT_ATK)\n\n",
+            "after": "        else\n            APPLY_STAT_MOD(damage, attackStatSource, attack, STAT_ATK)\n\n"
+          }
+        ]
+      }
+    },
+    "data/battle_scripts_1.s": {
+      "merged_sha256": "99dd5c4fc229ed524a5b24337283eeee8d7171af6ac7532cf055bc62ee92e9e6",
+      "without_weather": {
+        "sha256": "db2e1dfcc4e3a618c805abe9c103f007181fb7f067252c5bed5d0476efe7fae3",
+        "hunks": [
+          {
+            "before": "\nBattleScript_SandstreamActivates::\n",
+            "after": "\n@ Existing Gen III hail text/animation only; no new artwork.\nBattleScript_SnowWarningActivates::\n\tpause B_WAIT_TIME_SHORT\n\tprintstring STRINGID_STARTEDHAIL\n\twaitstate\n\tplayanimation BS_BATTLER_0, B_ANIM_HAIL_CONTINUES\n\tcall BattleScript_WeatherFormChanges\n\tend3\n\nBattleScript_SandstreamActivates::\n"
+          }
+        ]
+      },
+      "without_btl": {
+        "sha256": "76a14687a14b43ff400ec0dcf6eab565985557262069227cbf56ab6ee3954707",
+        "hunks": [
+          {
+            "before": "\t.4byte BattleScript_EffectSleepHit\n\t.4byte BattleScript_EffectSwarmCloud               @ EFFECT_SLEEP_HIT\n\n",
+            "after": "\t.4byte BattleScript_EffectSleepHit\n\t.4byte BattleScript_EffectSwarmCloud               @ EFFECT_SWARM_CLOUD\n\t.4byte BattleScript_EffectIceFang                  @ EFFECT_ICE_FANG\n\n"
+          },
+          {
+            "before": "\tseteffectwithchance\n\tjumpifnotmove MOVE_SWARM_CLOUD, BattleScript_AfterSwarmCloud\n\tsetmoveeffect MOVE_EFFECT_POISON\n\tseteffectwithchance\n",
+            "after": "\tseteffectwithchance\n\tjumpifmove MOVE_ICE_FANG, BattleScript_IceFangFlinch\n\tjumpifnotmove MOVE_SWARM_CLOUD, BattleScript_AfterSwarmCloud\n\tsetmoveeffect MOVE_EFFECT_POISON\n\tseteffectwithchance\n\tgoto BattleScript_AfterSwarmCloud\nBattleScript_IceFangFlinch::\n\tsetmoveeffect MOVE_EFFECT_FLINCH\n\tseteffectwithchance\n"
+          },
+          {
+            "before": "\tgoto BattleScript_EffectHit\n",
+            "after": "\tgoto BattleScript_EffectHit\n\n@ Ice Fang independent on-hit rolls: freeze first, flinch second.\n@ The same 10-percent chance byte is rolled separately by each seteffectwithchance.\nBattleScript_EffectIceFang::\n\tsetmoveeffect MOVE_EFFECT_FREEZE\n\tgoto BattleScript_EffectHit\n"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1752,3 +1752,21 @@ static const struct SpriteFrameImage sPicTable_Mom[] = {
     overworld_frame(gObjectEventPic_Mom, 2, 4, 2),
     overworld_frame(gObjectEventPic_Mom, 2, 4, 2),
 };
+
+// Reuse existing two-frame 32x32 Pokémon party icons; no substitute species art.
+// The standard 9 directional frame slots intentionally reference native icon frames.
+static const struct SpriteFrameImage sPicTable_SowCorphish[] = {
+    {gMonIcon_Corphish, 512}, {gMonIcon_Corphish + 512, 512}, {gMonIcon_Corphish, 512},
+    {gMonIcon_Corphish, 512}, {gMonIcon_Corphish, 512}, {gMonIcon_Corphish + 512, 512},
+    {gMonIcon_Corphish, 512}, {gMonIcon_Corphish + 512, 512}, {gMonIcon_Corphish, 512},
+};
+static const struct SpriteFrameImage sPicTable_SowGlalie[] = {
+    {gMonIcon_Glalie, 512}, {gMonIcon_Glalie + 512, 512}, {gMonIcon_Glalie, 512},
+    {gMonIcon_Glalie, 512}, {gMonIcon_Glalie, 512}, {gMonIcon_Glalie + 512, 512},
+    {gMonIcon_Glalie, 512}, {gMonIcon_Glalie + 512, 512}, {gMonIcon_Glalie, 512},
+};
+static const struct SpriteFrameImage sPicTable_SowTyranitar[] = {
+    {gMonIcon_Tyranitar, 512}, {gMonIcon_Tyranitar + 512, 512}, {gMonIcon_Tyranitar, 512},
+    {gMonIcon_Tyranitar, 512}, {gMonIcon_Tyranitar, 512}, {gMonIcon_Tyranitar + 512, 512},
+    {gMonIcon_Tyranitar, 512}, {gMonIcon_Tyranitar + 512, 512}, {gMonIcon_Tyranitar, 512},
+};

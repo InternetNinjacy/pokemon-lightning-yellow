@@ -17,8 +17,11 @@ from approved_route5_changes import restore_route5_text
 
 def prior_sevii_water_second_source(path):
     prior = restore_sevii_water_second_text(path, prior_sevii_water_source(path).decode("utf-8"))
-    return restore_route5_text(path, prior).encode("utf-8")
+    return restore_free_center_reminder_text(path, restore_route5_text(path, prior)).encode("utf-8")
 
 def restore_prior_sevii_water_second_text(path, source):
     prior = restore_sevii_water_second_text(path, restore_prior_sevii_water_text(path, source))
-    return restore_route5_text(path, prior)
+    return restore_free_center_reminder_text(path, restore_route5_text(path, prior))
+
+# Undo only the exact approved one-NPC additions for archival source hashes.
+from approved_center_reminder_changes import restore_free_center_reminder_text
