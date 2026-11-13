@@ -17,12 +17,30 @@ static void weatherGymAbilityTests(void)
   core->busWrite32(core,SYM_gBattleTypeFlags,0);CHECK(CALL(GetBattlerInitialAbility,1)!=expected[i]);
   core->busWrite32(core,SYM_gBattleTypeFlags,BATTLE_TYPE_TRAINER);core->busWrite16(core,SYM_gTrainerBattleOpponent_A,TRAINER_CAMPER_LIAM);CHECK(CALL(GetBattlerInitialAbility,1)!=expected[i]);
  }
- // Genuine current leader scripts and reserve switch-in; no fixture Trainer teams.
+ // Genuine leader scripts: Brock's reserve switch-in and Misty's two active foes.
+ // Misty's approved Double must reject a party with fewer than two usable Pokemon.
+ for(unsigned fainted=0;fainted<2;fainted++){
+  daycareFixture(1);clockAt(12);
+  for(unsigned k=1;k<6;k++)clearBytes(player(k),ABI_MON_SIZE);
+  CALL(CreateMon,player(0),SPECIES_MEWTWO,100,31,1,123,0,0);
+  if(fainted){CALL(CreateMon,player(1),SPECIES_MEWTWO,100,31,1,124,0,0);monput(player(1),ABI_DATA_HP,0);}
+  core->busWrite8(core,SYM_gPlayerPartyCount,fainted?2:1);
+  fossilWarp(MAP_GROUP(MAP_CERULEAN_CITY_GYM),MAP_NUM(MAP_CERULEAN_CITY_GYM),5,9);
+  unsigned obj=CALL(GetObjectEventIdByLocalIdAndMap,3,MAP_NUM(MAP_CERULEAN_CITY_GYM),MAP_GROUP(MAP_CERULEAN_CITY_GYM));CHECK(obj<ABI_OBJECT_COUNT);core->busWrite8(core,SYM_gSelectedObjectEvent,obj);
+  fossilStart(SYM_CeruleanCity_Gym_EventScript_Misty);fossilClose(1);
+  CHECK(!(core->busRead32(core,SYM_gBattleTypeFlags)&BATTLE_TYPE_TRAINER));
+  CHECK(core->busRead8(core,SYM_gBattlersCount)==0);
+  CHECK(!CALL(FlagGet,TRAINER_FLAGS_START+TRAINER_LEADER_MISTY));
+  vendorTextMatches(SYM_SaffronCity_Dojo_Text_NeedTwo);
+ }
+ printf("PASS: Misty approved Double refuses one usable Pokemon and a fainted second without battle or defeat flag\\n");
  for(unsigned misty=0;misty<2;misty++){
   daycareFixture(1);clockAt(12);
   for(unsigned k=1;k<6;k++)clearBytes(player(k),ABI_MON_SIZE);
-  core->busWrite8(core,SYM_gPlayerPartyCount,1);
+  core->busWrite8(core,SYM_gPlayerPartyCount,misty?2:1);
   CALL(CreateMon,player(0),SPECIES_MEWTWO,100,31,1,123,0,0);CALL(SetMonMoveSlot,player(0),MOVE_SWIFT,0);
+  if(misty){CALL(CreateMon,player(1),SPECIES_MEWTWO,100,31,1,124,0,0);CALL(SetMonMoveSlot,player(1),MOVE_SWIFT,0);
+   for(unsigned k=1;k<4;k++)CALL(SetMonMoveSlot,player(1),MOVE_SPLASH,k);}
   for(unsigned k=1;k<4;k++)CALL(SetMonMoveSlot,player(0),MOVE_SPLASH,k);
   unsigned map=misty?MAP_CERULEAN_CITY_GYM:MAP_PEWTER_CITY_GYM;
   fossilWarp(MAP_GROUP(map),MAP_NUM(map),misty?5:4,misty?9:10);
@@ -31,7 +49,24 @@ static void weatherGymAbilityTests(void)
   fossilStart(misty?SYM_CeruleanCity_Gym_EventScript_Misty:SYM_PewterCity_Gym_EventScript_Brock);waitAction();
   CHECK(core->busRead16(core,SYM_gTrainerBattleOpponent_A)==(misty?TRAINER_LEADER_MISTY:TRAINER_LEADER_BROCK));
   CHECK(core->busRead16(core,bmon(1)+ABI_BMON_SPECIES)==(misty?SPECIES_STARYU:SPECIES_SNORUNT));
-  if(misty)CHECK(!(core->busRead16(core,SYM_gBattleWeather)&B_WEATHER_RAIN));
+  if(misty){
+   CHECK(core->busRead8(core,SYM_gBattlersCount)==4);
+   CHECK((core->busRead32(core,SYM_gBattleTypeFlags)&(BATTLE_TYPE_TRAINER|BATTLE_TYPE_DOUBLE))==(BATTLE_TYPE_TRAINER|BATTLE_TYPE_DOUBLE));
+   CHECK(monget(enemy(0),ABI_DATA_SPECIES)==SPECIES_STARYU);
+   CHECK(monget(enemy(1),ABI_DATA_SPECIES)==SPECIES_STARMIE);
+   CHECK(core->busRead16(core,bmon(3)+ABI_BMON_SPECIES)==SPECIES_STARMIE);
+   CHECK(core->busRead8(core,bmon(3)+ABI_BMON_ABILITY)==ABILITY_DRIZZLE);
+   CHECK(core->busRead16(core,SYM_gBattleWeather)&B_WEATHER_RAIN_PERMANENT);
+   CHECK(CALL(GetSav1Weather)==field);
+   // Both of Misty's Pokemon are already on the field; there is no reserve.
+   // Advance an ordinary Double turn through both real player controllers.
+   chooseMove(0,1,1);chooseMove(2,1,3);waitAction();
+   CHECK(core->busRead16(core,SYM_gBattleWeather)&B_WEATHER_RAIN_PERMANENT);
+   CHECK(CALL(GetSav1Weather)==field);
+   CHECK(!CALL(FlagGet,TRAINER_FLAGS_START+TRAINER_LEADER_MISTY));
+   printf("PASS: actual Misty leader Double starts with Staryu/Starmie, four battlers, Starmie Drizzle, native turn and unchanged field weather\\n");
+   continue;
+  }
   else {
    unsigned history=core->busRead32(core,core->busRead32(core,SYM_gBattleResources)+ABI_BRES_HISTORY);
    CHECK(core->busRead8(core,history+ABI_HISTORY_COUNT)==1);CHECK(core->busRead16(core,history+ABI_HISTORY_ITEMS)==ITEM_POTION);
@@ -46,8 +81,7 @@ static void weatherGymAbilityTests(void)
    CHECK(core->busRead16(core,bmon(1)+ABI_BMON_HP)==hp+max/16);
   }
   fprintf(stderr,"INFO leader%u defeat lead\n",misty);frames(30,0);
-  if(misty)chooseMove(0,0,1);
-  else {waitController(0,SYM_HandleInputChooseAction);press(1);waitController(0,SYM_HandleInputChooseMove);CHECK(core->busRead8(core,SYM_gMoveSelectionCursor)==1);press(32);CHECK(core->busRead8(core,SYM_gMoveSelectionCursor)==0);press(1);}
+  waitController(0,SYM_HandleInputChooseAction);press(1);waitController(0,SYM_HandleInputChooseMove);CHECK(core->busRead8(core,SYM_gMoveSelectionCursor)==1);press(32);CHECK(core->busRead8(core,SYM_gMoveSelectionCursor)==0);press(1);
   waitAction();
   CHECK(core->busRead16(core,bmon(1)+ABI_BMON_SPECIES)==(misty?SPECIES_STARMIE:SPECIES_ONIX));
   CHECK(core->busRead8(core,bmon(1)+ABI_BMON_ABILITY)==(misty?ABILITY_DRIZZLE:ABILITY_OVERCOAT));
