@@ -60,7 +60,27 @@ static void weatherGymAbilityTests(void)
    CHECK(CALL(GetSav1Weather)==field);
    // Both of Misty's Pokemon are already on the field; there is no reserve.
    // Advance an ordinary Double turn through both real player controllers.
-   chooseMove(0,1,1);chooseMove(2,1,3);waitAction();
+   // The previous Brock test may leave the shared native move cursor in row 2.
+   // Navigate through the real menu instead of assuming the cursor starts at 0.
+   for(unsigned b=0;b<3;b+=2){
+    waitController(b,SYM_HandleInputChooseAction);press(1);
+    waitController(b,SYM_HandleInputChooseMove);
+    unsigned cursor=core->busRead8(core,SYM_gMoveSelectionCursor+b);
+    CHECK(cursor<4);
+    if(cursor>=2)press(64); // Native UP, second row -> first row.
+    cursor=core->busRead8(core,SYM_gMoveSelectionCursor+b);
+    if(cursor==0)press(16); // Native RIGHT, first move -> Splash.
+    CHECK(core->busRead8(core,SYM_gMoveSelectionCursor+b)==1);
+    press(1);
+    if(controller(b)==SYM_HandleInputChooseTarget){
+     unsigned cursorTarget=core->busRead8(core,SYM_gMultiUsePlayerCursor);
+     for(unsigned steps=0;steps<4&&cursorTarget!=(b?3:1);steps++){
+      press(16);cursorTarget=core->busRead8(core,SYM_gMultiUsePlayerCursor);
+     }
+     CHECK(cursorTarget==(b?3:1));press(1);
+    }
+   }
+   waitAction();
    CHECK(core->busRead16(core,SYM_gBattleWeather)&B_WEATHER_RAIN_PERMANENT);
    CHECK(CALL(GetSav1Weather)==field);
    CHECK(!CALL(FlagGet,TRAINER_FLAGS_START+TRAINER_LEADER_MISTY));
