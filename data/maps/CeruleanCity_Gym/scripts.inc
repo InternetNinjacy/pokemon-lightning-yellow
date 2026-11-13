@@ -39,7 +39,7 @@ CeruleanCity_Gym_EventScript_Diana::
 	end
 
 CeruleanCity_Gym_EventScript_Luis::
-	trainerbattle_single TRAINER_SWIMMER_MALE_LUIS, CeruleanCity_Gym_Text_LuisIntro, CeruleanCity_Gym_Text_LuisDefeat
+	trainerbattle_double TRAINER_SWIMMER_MALE_LUIS, CeruleanCity_Gym_Text_LuisIntro, CeruleanCity_Gym_Text_LuisDefeat, SaffronCity_Dojo_Text_NeedTwo
 	famechecker FAMECHECKER_MISTY, 2
 	msgbox CeruleanCity_Gym_Text_LuisPostBattle, MSGBOX_AUTOCLOSE
 	end

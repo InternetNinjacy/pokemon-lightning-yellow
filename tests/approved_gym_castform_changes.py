@@ -14,6 +14,13 @@ def prior_gym_castform_source(path, text=None):
     from approved_special_weather_changes import prior_special_weather_source
     text=prior_special_weather_source(path,text)
     text=prior_opening_source(path, text)
+    # Reverse only Luis's approved Singles-to-Doubles script command for
+    # historical Gym Castform SHA checks. Preserve every unrelated byte.
+    if str(path) == "data/maps/CeruleanCity_Gym/scripts.inc":
+        before = "\ttrainerbattle_single TRAINER_SWIMMER_MALE_LUIS, CeruleanCity_Gym_Text_LuisIntro, CeruleanCity_Gym_Text_LuisDefeat"
+        after = "\ttrainerbattle_double TRAINER_SWIMMER_MALE_LUIS, CeruleanCity_Gym_Text_LuisIntro, CeruleanCity_Gym_Text_LuisDefeat, SaffronCity_Dojo_Text_NeedTwo"
+        assert text.count(after) == 1 and text.count(before) == 0, "Unreviewed Luis script delta"
+        text = text.replace(after, before, 1)
     for h in json.loads(Path('tests/specifications/approved_gym_castform_delta.json').read_text())['hunks'].get(str(path),[]):
         assert text.count(h['after'])==1, 'Unreviewed Gym Castform delta: '+str(path)
         text=text.replace(h['after'],h['before'],1)
