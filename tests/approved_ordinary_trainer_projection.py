@@ -39,7 +39,7 @@ def restore_ordinary_trainer_blocks(path):
     # Reverse exactly that one change before the frozen ordinary-Trainer audit;
     # any other mutation to this protected file still fails byte-exact review.
     if str(path) == "src/data/trainers.h":
-        misty_pattern = r"(\\[TRAINER_LEADER_MISTY\\]\\s*=\\s*\\{.*?\\n    \\},)"
+        misty_pattern = r"(\[TRAINER_LEADER_MISTY\]\s*=\s*\{.*?\n    \},)"
         old_misty = re.search(misty_pattern, original, re.S)
         new_misty = re.search(misty_pattern, result, re.S)
         assert old_misty is not None and new_misty is not None
