@@ -19,11 +19,7 @@ for name, (old, approved) in SLOTS.items():
     assert match and match.groups() == approved, (name, match.groups() if match else None)
 # The upstream source, including the earlier 35 approved typing changes and every
 # unrelated species field, must be byte-identical after reversing these 16 changes.
-# Reverse only exact currently authorized PKM-009 species-row changes before
-# checking the frozen pre-weather snapshot; other fields remain guarded.
-from approved_pkm009_ponyta_changes import prior_pkm009_ponyta_source
-source_for_hash = prior_pkm009_ponyta_source('src/data/pokemon/species_info.h', source)
-prior = prior_weather_species_source(source_for_hash)
+prior = prior_weather_species_source(source)
 prior_hash = json.loads(Path('tests/specifications/special_glalie_delta.json').read_text())['species_sha256']
 assert hashlib.sha256(prior.encode()).hexdigest() == prior_hash
 for name, required in {
