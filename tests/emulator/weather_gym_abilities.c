@@ -60,24 +60,45 @@ static void weatherGymAbilityTests(void)
    CHECK(core->busRead8(core,bmon(3)+ABI_BMON_ABILITY)==ABILITY_DRIZZLE);
    CHECK(core->busRead16(core,SYM_gBattleWeather)&B_WEATHER_RAIN_PERMANENT);
    CHECK(CALL(GetSav1Weather)==field);
-   // Both of Misty's Pokemon are already on the field; there is no reserve.
-   // Advance an ordinary Double turn through both real player controllers.
-   // The native cursor may carry over any valid slot after Brock.
-   // Select its real highlighted move; every slot is harmless Splash.
-   // This exercises both actual controllers without modifying any cursor or flag.
-   for(unsigned b=0;b<3;b+=2){
-    waitController(b,SYM_HandleInputChooseAction);press(1);
-    waitController(b,SYM_HandleInputChooseMove);
-    unsigned cursor=core->busRead8(core,SYM_gMoveSelectionCursor+b);
-    CHECK(cursor<4);
-    CHECK(core->busRead16(core,bmon(b)+ABI_BMON_MOVES+2*cursor)==MOVE_SPLASH);
-    press(1);
-    // In a genuine Double the move UI can require an enemy target
-    // before the other player controller receives action selection.
-    // Confirm the current native target with real A input, not a flag write.
-    if(controller(b)==SYM_HandleInputChooseTarget)press(1);
+   // Both Misty Pokemon lead the approved Double: there is no reserve.
+   // Dispatch native input only for the active player controller, as the
+   // existing gym_castform.c Double driver does. Waiting unconditionally
+   // for controller 2 stalls if controller 0 still owns an input callback.
+   unsigned pp0=core->busRead8(core,bmon(0)+ABI_BMON_PP);
+   unsigned pp2=core->busRead8(core,bmon(2)+ABI_BMON_PP);
+   CHECK(pp0>0);CHECK(pp2>0);
+   unsigned seen0=0,seen2=0,turnFrames;
+   for(turnFrames=0;turnFrames<2400;turnFrames++){
+    if(core->busRead8(core,bmon(0)+ABI_BMON_PP)<pp0
+       &&core->busRead8(core,bmon(2)+ABI_BMON_PP)<pp2
+       &&controller(0)==SYM_HandleInputChooseAction)break;
+    unsigned key=0;
+    if(turnFrames%8==0){
+     key=2;
+     unsigned exec=core->busRead32(core,SYM_gBattleControllerExecFlags);
+     for(unsigned b=0;b<4;b+=2)if(exec&(1U<<b)){
+      unsigned fn=controller(b),cursor;
+      if(fn==SYM_HandleInputChooseAction){
+       cursor=core->busRead8(core,SYM_gActionSelectionCursor+b);
+       CHECK(cursor<4);
+       key=cursor&2?64:cursor&1?32:1;break;
+      }
+      if(fn==SYM_HandleInputChooseMove){
+       cursor=core->busRead8(core,SYM_gMoveSelectionCursor+b);
+       CHECK(cursor<4);
+       CHECK(core->busRead16(core,bmon(b)+ABI_BMON_MOVES+2*cursor)==MOVE_SPLASH);
+       if(b==0)seen0=1;else seen2=1;
+       key=1;break;
+      }
+      if(fn==SYM_HandleInputChooseTarget){key=1;break;}
+     }
+    }
+    frames(1,key);
    }
-   waitAction();
+   CHECK(turnFrames<2400);
+   CHECK(seen0&&seen2);
+   CHECK(core->busRead8(core,bmon(0)+ABI_BMON_PP)<pp0);
+   CHECK(core->busRead8(core,bmon(2)+ABI_BMON_PP)<pp2);
    CHECK(core->busRead16(core,SYM_gBattleWeather)&B_WEATHER_RAIN_PERMANENT);
    CHECK(CALL(GetSav1Weather)==field);
    CHECK(!CALL(FlagGet,TRAINER_FLAGS_START+TRAINER_LEADER_MISTY));
