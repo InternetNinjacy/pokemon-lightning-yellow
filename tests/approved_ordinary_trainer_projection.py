@@ -19,7 +19,7 @@ def restore_ordinary_trainer_blocks(path):
         ["git", "show", BASE + ":" + str(path)], text=True)
     from approved_brock_weather_changes import prior_brock_weather_source
     from approved_gym002_changes import prior_gym002_source
-from approved_gym001_luis_changes import prior_luis_source
+    from approved_gym001_luis_changes import prior_luis_source
     from approved_gym002_koga_changes import prior_koga_gym002_source
     from approved_gym002_erika_changes import prior_erika_gym002_source
     from approved_gym001_tucker_changes import prior_gym001_tucker_source
