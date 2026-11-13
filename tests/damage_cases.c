@@ -211,6 +211,41 @@ int main(void)
         history.usedMoves[0].moves[0] = MOVE_SHADOW_BALL;
         sAIScriptPtr = hasSpecial; Cmd_has_move_category(); CHECK(thinking.funcResult);
     }
+    // Avalanche selects its actual damage source, even after another foe hits.
+    Reset();
+    {
+        s32 normal, boosted;
+        gBattleMons[0].attack = 200;gBattleMons[0].level = 50;gBattleMons[1].defense = 100;
+        normal = CalculateBaseDamage(&gBattleMons[0], &gBattleMons[1], MOVE_ICE_PUNCH, 0, 60, 0, 0, 1);
+        boosted = CalculateBaseDamage(&gBattleMons[0], &gBattleMons[1], MOVE_ICE_PUNCH, 0, 120, 0, 0, 1);
+        CHECK(boosted > normal);
+        for (int mask = 0; mask < 16; mask++)
+        {
+            gBattleStruct->damagedByBattlers[0] = mask;
+            CHECK(CalculateBaseDamage(&gBattleMons[0], &gBattleMons[1], MOVE_AVALANCHE, 0, 0, 0, 0, 1) == ((mask & 2) ? boosted : normal));
+            gCurrentMove = MOVE_AVALANCHE;
+            AI_CalcDmg(0, 1);
+            CHECK(gBattleMoveDamage == ((mask & 2) ? boosted : normal));
+        }
+        CHECK(!BattlerWasDamagedBy(4, 0));CHECK(!BattlerWasDamagedBy(0, 4));
+        CHECK(!BattlerWasDamagedBy(255, 255));
+    }
+    Reset();
+    {
+        s32 normal, boosted;
+        gBattleMons[0].attack = 200;gBattleMons[0].level = 50;gBattleMons[1].defense = 100;
+        normal = CalculateBaseDamage(&gBattleMons[0], &gBattleMons[1], MOVE_ICE_PUNCH, 0, 50, 0, 0, 1);
+        boosted = CalculateBaseDamage(&gBattleMons[0], &gBattleMons[1], MOVE_ICE_PUNCH, 0, 100, 0, 0, 1);
+        CHECK(boosted > normal);
+        for (int mask = 0; mask < 16; mask++)
+        {
+            gBattleStruct->actedThisTurn = mask;
+            CHECK(CalculateBaseDamage(&gBattleMons[0], &gBattleMons[1], MOVE_PAYBACK, 0, 0, 0, 0, 1) == ((mask & 2) ? boosted : normal));
+            gCurrentMove = MOVE_PAYBACK;AI_CalcDmg(0, 1);
+            CHECK(gBattleMoveDamage == ((mask & 2) ? boosted : normal));
+        }
+        CHECK(!BattlerHasActedThisTurn(4));CHECK(!BattlerHasActedThisTurn(255));
+    }
     printf("PASS: %u numeric/category/UI-helper assertions (production routines, stubbed environment)\n", checks);
     return 0;
 }

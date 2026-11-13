@@ -27,6 +27,10 @@ jobs:
         run: python3 -m py_compile tests/run_ordinary_trainer_tests.py
       - name: Reconcile 510 Trainer design records with committed source
         run: python3 tests/run_ordinary_trainer_tests.py
+      - name: Approved Vermilion Tucker and Baily source contracts
+        run: |
+          python3 tests/check_vermilion_tucker_approved_battle.py
+          python3 tests/check_vermilion_baily_approved_battle.py
       - name: Historical source preservation checks (no bypass)
         run: |
           python3 tests/run_elite_four_tests.py

@@ -41,20 +41,22 @@ shared = re.search(r'NewFireMove_Ember:\n(.*?)\n\treturn', asm, re.S)[1]
 hit = re.search(r'EmberFireHit:\n(.*?)\n\treturn', asm, re.S)[1]
 assert shared == ember.replace('\tcall EmberFireHit', hit) + '\n\twaitforvisualfinish'
 assert '\tcall ' not in shared  # FireRed animation interpreter has ONE return slot.
-# The original no-distribution gate remains intact except the two exact,
-# owner-locked 2026-10-31 Ponyta-family learnsets in PKM-009. Their exact
-# rows and other profile fields are independently tested; reversal asserts
-# each authorized array's exact contents before this legacy exclusion check.
-from approved_pkm009_ponyta_changes import prior_pkm009_ponyta_source
-for path in ['src/data/pokemon/level_up_learnsets.h', 'src/data/pokemon/tmhm_learnsets.h',
-             'src/data/trainer_parties.h']:
-    text = Path(path).read_text()
-    if path == 'src/data/pokemon/level_up_learnsets.h':
-        from approved_pkm009_eevee_water_fire_changes import prior_pkm009_eevee_water_fire_source
-        text = prior_pkm009_eevee_water_fire_source(path, text)
-        text = prior_pkm009_ponyta_source(path, text)
-    assert not any('MOVE_' + key in text for key, *_ in expected), path
-print('PASS: exact appended Fire designs; Ponyta/Rapidash-only owner-locked distribution, no unrelated natural/TM/trainer distribution; frozen historical preservation (source audit).')
+# The later owner-approved Erika leader contract explicitly grants exactly
+# one trainer-only Flashfire to her Rapidash. This is not species-wide
+# distribution and does not license either other new Fire move anywhere.
+for path in ['src/data/pokemon/level_up_learnsets.h', 'src/data/pokemon/tmhm_learnsets.h']:
+    assert not any('MOVE_' + key in Path(path).read_text() for key, *_ in expected), path
+party_source = Path('src/data/trainer_parties.h').read_text()
+assert 'MOVE_FLAME_FANG' not in party_source
+assert 'MOVE_BLAZE_RUSH' not in party_source
+erika = re.search(r'sParty_LeaderErika\[\] = \{(.*?)\n\};', party_source, re.S)
+assert erika is not None, 'approved Erika leader party missing'
+assert party_source.count('MOVE_FLASHFIRE') == 1
+assert erika.group(1).count('MOVE_FLASHFIRE') == 1
+assert re.search(r'\.species = SPECIES_RAPIDASH,\s*\.heldItem = ITEM_NONE,\s*'
+                 r'\.moves = \{MOVE_FLAME_WHEEL, MOVE_FLASHFIRE, MOVE_STOMP, MOVE_TAKE_DOWN\}',
+                 erika.group(1)), 'Flashfire must occur only on approved Rapidash'
+print('PASS: three appended owner Fire designs preserved; only later explicitly approved Erika Rapidash Flashfire distribution, no other trainer/species Fire move distribution (static).')
 
 # Execute the actual production chance routine with controlled rolls; only its
 # effect callback/RNG are stubbed, separately from the real battle acceptance.

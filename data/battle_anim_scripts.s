@@ -392,6 +392,41 @@ gBattleAnims_Moves::
 	.4byte Move_STONE_EDGE
 	.4byte Move_SCORCHING_SANDS
 	.4byte Move_EARTH_POWER
+	.4byte Move_ICE_FANG
+	.4byte Move_AVALANCHE
+	.4byte Move_ICICLE_CRASH
+	.4byte Move_DRAGON_PULSE
+	.4byte Move_DRAGON_RUSH
+	.4byte Move_SNARL
+	.4byte Move_DARK_PULSE
+	.4byte Move_NIGHT_DAZE
+	.4byte Move_NIGHT_SLASH
+	.4byte Move_PAYBACK
+	.4byte Move_FOUL_PLAY
+	.4byte Move_AQUA_JET
+	.4byte Move_LIQUIDATION
+	.4byte Move_VORTEX_SPIN
+	.4byte Move_TIDAL_CRASH
+	.4byte Move_NONE
+	.4byte Move_NONE
+	.4byte Move_NONE
+	.4byte Move_NONE
+	.4byte Move_SEED_BOMB
+	.4byte Move_PETAL_BLIZZARD
+	.4byte Move_NONE
+	.4byte Move_AURA_SPHERE
+	.4byte Move_FOCUS_BLAST
+	.4byte Move_NONE
+	.4byte Move_FLASH_CANNON
+	.4byte Move_MIRROR_SHOT
+	.4byte Move_IRON_HEAD
+	.4byte Move_BULLET_PUNCH
+	.4byte Move_AIR_SLASH
+	.4byte Move_NONE
+	.4byte Move_NONE
+	.4byte Move_NONE
+	.4byte Move_NONE
+	.4byte Move_HEART_STAMP
 	.4byte Move_COUNT @ cannot be reached, because last move is Psycho Boost
 
 	.align 2
@@ -11527,3 +11562,322 @@ Move_SCORCHING_SANDS:
 @ Owner-approved Earthquake artwork reuse for Earth Power #371; no actual weather/field change.
 Move_EARTH_POWER:
 	goto Move_EARTHQUAKE
+
+@ Ice Fang #372, approved existing Bite + Ice Punch art. Inline two bodies,
+@ preserving native call-slot semantics and ending once after both sequences.
+Move_ICE_FANG:
+	loadspritegfx ANIM_TAG_SHARP_TEETH
+	loadspritegfx ANIM_TAG_IMPACT
+	monbg ANIM_TARGET
+	setalpha 12, 8
+	playsewithpan SE_M_BITE, SOUND_PAN_TARGET
+	createsprite gSharpTeethSpriteTemplate, ANIM_ATTACKER, 2, 0, -32, 0, 0, 819, 10
+	createsprite gSharpTeethSpriteTemplate, ANIM_ATTACKER, 2, 0, 32, 4, 0, -819, 10
+	delay 10
+	createsprite gBasicHitSplatSpriteTemplate, ANIM_ATTACKER, 2, 0, 0, ANIM_TARGET, 2
+	createvisualtask AnimTask_ShakeMon, 5, ANIM_TARGET, 0, 4, 7, 1
+	waitforvisualfinish
+	clearmonbg ANIM_TARGET
+	blendoff
+	delay 1
+	monbg ANIM_DEF_PARTNER
+	setalpha 12, 8
+	loadspritegfx ANIM_TAG_ICE_CRYSTALS
+	loadspritegfx ANIM_TAG_IMPACT
+	loadspritegfx ANIM_TAG_HANDS_AND_FEET
+	createsprite gSimplePaletteBlendSpriteTemplate, ANIM_ATTACKER, 2, F_PAL_BG, 1, 0, 7, RGB_BLACK
+	createvisualtask AnimTask_BlendBattleAnimPal, 10, F_PAL_TARGET, 2, 0, 9, RGB(12, 26, 31)
+	delay 20
+	playsewithpan SE_M_STRING_SHOT, SOUND_PAN_TARGET
+	createsprite gIceCrystalSpiralInwardSmall, ANIM_ATTACKER, 2, 0
+	createsprite gIceCrystalSpiralInwardSmall, ANIM_ATTACKER, 2, 64
+	createsprite gIceCrystalSpiralInwardSmall, ANIM_ATTACKER, 2, 128
+	createsprite gIceCrystalSpiralInwardSmall, ANIM_ATTACKER, 2, 192
+	delay 5
+	createsprite gIceCrystalSpiralInwardLarge, ANIM_ATTACKER, 2, 32
+	createsprite gIceCrystalSpiralInwardLarge, ANIM_ATTACKER, 2, 96
+	createsprite gIceCrystalSpiralInwardLarge, ANIM_ATTACKER, 2, 160
+	createsprite gIceCrystalSpiralInwardLarge, ANIM_ATTACKER, 2, 224
+	delay 17
+	createsprite gFistFootSpriteTemplate, ANIM_ATTACKER, 4, 0, -10, 8, 1, 0
+	createsprite gBasicHitSplatSpriteTemplate, ANIM_ATTACKER, 3, 0, -10, ANIM_TARGET, 1
+	playsewithpan SE_M_COMET_PUNCH, SOUND_PAN_TARGET
+	delay 2
+	createvisualtask AnimTask_ShakeMon, 5, ANIM_TARGET, 0, 5, 3, 1
+	waitforvisualfinish
+	delay 15
+	call IceCrystalEffectShort
+	delay 5
+	createvisualtask AnimTask_BlendBattleAnimPal, 10, F_PAL_TARGET, 2, 9, 0, RGB(12, 26, 31)
+	waitforvisualfinish
+	createsprite gSimplePaletteBlendSpriteTemplate, ANIM_ATTACKER, 2, F_PAL_BG, 0, 7, 0, RGB_BLACK
+	waitforvisualfinish
+	clearmonbg ANIM_DEF_PARTNER
+	blendoff
+	end
+
+
+@ Avalanche #373: approved Rock Slide + Ice Beam existing art, inline bodies.
+@ Restrict the Rock Slide partner shake/background to the selected target.
+Move_AVALANCHE:
+	loadspritegfx ANIM_TAG_ROCKS
+	monbg ANIM_TARGET
+	createsprite gShakeMonOrTerrainSpriteTemplate, ANIM_ATTACKER, 2, 7, 1, 11, 1
+	createsprite gFallingRockSpriteTemplate, ANIM_TARGET, 2, -5, 1, -5, 1
+	playsewithpan SE_M_ROCK_THROW, SOUND_PAN_TARGET
+	delay 2
+	createsprite gFallingRockSpriteTemplate, ANIM_TARGET, 2, 5, 0, 6, 1
+	playsewithpan SE_M_ROCK_THROW, SOUND_PAN_TARGET
+	delay 2
+	createsprite gFallingRockSpriteTemplate, ANIM_TARGET, 2, 19, 1, 10, 1
+	playsewithpan SE_M_ROCK_THROW, SOUND_PAN_TARGET
+	delay 2
+	createsprite gFallingRockSpriteTemplate, ANIM_TARGET, 2, -23, 2, -10, 1
+	playsewithpan SE_M_ROCK_THROW, SOUND_PAN_TARGET
+	createvisualtask AnimTask_ShakeMon, 2, ANIM_TARGET, 0, 5, 50, 1
+	delay 2
+	call RockSlideRocks
+	call RockSlideRocks
+	waitforvisualfinish
+	clearmonbg ANIM_TARGET
+	monbg ANIM_TARGET
+	splitbgprio ANIM_TARGET
+	setalpha 12, 8
+	loadspritegfx ANIM_TAG_ICE_CRYSTALS
+	createsprite gSimplePaletteBlendSpriteTemplate, ANIM_ATTACKER, 2, F_PAL_BG, 1, 0, 7, RGB_BLACK
+	waitforvisualfinish
+	createsoundtask SoundTask_LoopSEAdjustPanning, SE_M_BUBBLE_BEAM2, SOUND_PAN_ATTACKER, SOUND_PAN_TARGET, 4, 4, 0, 10
+	createsprite gIceBeamOuterCrystalSpriteTemplate, ANIM_ATTACKER, 2, 20, 12, 0, 12, 20
+	createsprite gIceBeamOuterCrystalSpriteTemplate, ANIM_ATTACKER, 2, 20, -12, 0, -12, 20
+	delay 1
+	call IceBeamCreateCrystals
+	call IceBeamCreateCrystals
+	call IceBeamCreateCrystals
+	createsprite gSimplePaletteBlendSpriteTemplate, ANIM_ATTACKER, 2, F_PAL_TARGET, -31, 0, 7, RGB(0, 20, 31)
+	createvisualtask AnimTask_ShakeMon2, 2, ANIM_TARGET, 2, 0, 25, 1
+	call IceBeamCreateCrystals
+	call IceBeamCreateCrystals
+	call IceBeamCreateCrystals
+	call IceBeamCreateCrystals
+	call IceBeamCreateCrystals
+	call IceBeamCreateCrystals
+	call IceBeamCreateCrystals
+	call IceBeamCreateCrystals
+	createsprite gIceBeamInnerCrystalSpriteTemplate, ANIM_ATTACKER, 2, 20, 0, 0, 0, 11
+	delay 1
+	createsprite gIceBeamInnerCrystalSpriteTemplate, ANIM_ATTACKER, 2, 20, 0, 0, 0, 11
+	waitforvisualfinish
+	delay 20
+	call IceCrystalEffectShort
+	createsprite gSimplePaletteBlendSpriteTemplate, ANIM_ATTACKER, 2, F_PAL_TARGET, 5, 7, 0, RGB(0, 20, 31)
+	waitforvisualfinish
+	createsprite gSimplePaletteBlendSpriteTemplate, ANIM_ATTACKER, 2, F_PAL_BG, 0, 7, 0, RGB_BLACK
+	waitforvisualfinish
+	clearmonbg ANIM_TARGET
+	blendoff
+	end
+
+Move_ICICLE_CRASH:
+	goto Move_ICICLE_SPEAR
+
+Move_DRAGON_PULSE:
+	goto Move_DRAGON_BREATH
+
+@ Approved existing-art composite; inline bodies preserve the single return slot.
+Move_DRAGON_RUSH:
+	loadspritegfx ANIM_TAG_IMPACT
+	monbg ANIM_TARGET
+	setalpha 12, 8
+	playsewithpan SE_M_TAKE_DOWN, SOUND_PAN_ATTACKER
+	createvisualtask AnimTask_WindUpLunge, 5, ANIM_ATTACKER, -24, 8, 23, 10, 40, 10
+	delay 35
+	createsprite gComplexPaletteBlendSpriteTemplate, ANIM_ATTACKER, 2, F_PAL_BG | F_PAL_BATTLERS, 3, 1, RGB_BLACK, 10, RGB_BLACK, 0
+	createsprite gBasicHitSplatSpriteTemplate, ANIM_ATTACKER, 4, -10, 0, ANIM_TARGET, 0
+	playsewithpan SE_M_MEGA_KICK2, SOUND_PAN_TARGET
+	delay 1
+	createsprite gSlideMonToOffsetSpriteTemplate, ANIM_ATTACKER, 2, 1, -16, 0, 0, 4
+	waitforvisualfinish
+	createvisualtask AnimTask_ShakeMonInPlace, 2, ANIM_TARGET, 4, 0, 12, 1
+	waitforvisualfinish
+	delay 2
+	createsprite gSlideMonToOriginalPosSpriteTemplate, ANIM_ATTACKER, 2, 0, 0, 5
+	delay 3
+	createsprite gSlideMonToOriginalPosSpriteTemplate, ANIM_ATTACKER, 2, 1, 0, 7
+	waitforvisualfinish
+	clearmonbg ANIM_TARGET
+	blendoff
+	loadspritegfx ANIM_TAG_SMALL_EMBER
+	loadspritegfx ANIM_TAG_CLAW_SLASH
+	playsewithpan SE_M_SACRED_FIRE2, SOUND_PAN_ATTACKER
+	createvisualtask AnimTask_BlendBattleAnimPal, 10, F_PAL_ATTACKER, 4, 0, 8, RGB(31, 19, 0)
+	createvisualtask AnimTask_ShakeMon, 5, ANIM_ATTACKER, 0, 2, 15, 1
+	call DragonClawFireSpiral
+	call DragonClawFireSpiral
+	createsprite gHorizontalLungeSpriteTemplate, ANIM_ATTACKER, 2, 6, 4
+	createsprite gFireSpinSpriteTemplate, ANIM_ATTACKER, 2, 0, 28, 528, 30, 13, 50, ANIM_ATTACKER
+	delay 2
+	createvisualtask SoundTask_PlaySE1WithPanning, 5, SE_M_RAZOR_WIND, SOUND_PAN_TARGET
+	createsprite gClawSlashSpriteTemplate, ANIM_TARGET, 2, -10, -10, 0
+	createsprite gClawSlashSpriteTemplate, ANIM_TARGET, 2, -10, 10, 0
+	createsprite gShakeMonOrTerrainSpriteTemplate, ANIM_ATTACKER, 2, -4, 1, 10, 3, 1
+	createsprite gFireSpinSpriteTemplate, ANIM_ATTACKER, 2, 0, 32, 480, 20, 16, -46, ANIM_ATTACKER
+	delay 2
+	createsprite gFireSpinSpriteTemplate, ANIM_ATTACKER, 2, 0, 33, 576, 20, 8, 42, ANIM_ATTACKER
+	delay 2
+	createsprite gFireSpinSpriteTemplate, ANIM_ATTACKER, 2, 0, 31, 400, 25, 11, -42, ANIM_ATTACKER
+	delay 2
+	createsprite gHorizontalLungeSpriteTemplate, ANIM_ATTACKER, 2, 6, 4
+	createsprite gFireSpinSpriteTemplate, ANIM_ATTACKER, 2, 0, 28, 512, 25, 16, 46, ANIM_ATTACKER
+	delay 2
+	createvisualtask SoundTask_PlaySE1WithPanning, 5, SE_M_RAZOR_WIND, SOUND_PAN_TARGET
+	createsprite gClawSlashSpriteTemplate, ANIM_TARGET, 2, 10, -10, 1
+	createsprite gClawSlashSpriteTemplate, ANIM_TARGET, 2, 10, 10, 1
+	createsprite gShakeMonOrTerrainSpriteTemplate, ANIM_ATTACKER, 2, -4, 1, 10, 3, 1
+	createsprite gFireSpinSpriteTemplate, ANIM_ATTACKER, 2, 0, 33, 464, 30, 15, -50, ANIM_ATTACKER
+	delay 2
+	createsprite gFireSpinSpriteTemplate, ANIM_ATTACKER, 2, 0, 28, 528, 30, 13, 50, ANIM_ATTACKER
+	delay 2
+	createsprite gFireSpinSpriteTemplate, ANIM_ATTACKER, 2, 0, 32, 480, 20, 16, -46, ANIM_ATTACKER
+	delay 2
+	createsprite gFireSpinSpriteTemplate, ANIM_ATTACKER, 2, 0, 33, 576, 20, 8, 42, ANIM_ATTACKER
+	delay 2
+	createsprite gFireSpinSpriteTemplate, ANIM_ATTACKER, 2, 0, 31, 400, 25, 11, -42, ANIM_ATTACKER
+	delay 2
+	createsprite gFireSpinSpriteTemplate, ANIM_ATTACKER, 2, 0, 28, 512, 25, 16, 46, ANIM_ATTACKER
+	delay 2
+	createsprite gFireSpinSpriteTemplate, ANIM_ATTACKER, 2, 0, 33, 464, 30, 15, -50, ANIM_ATTACKER
+	createvisualtask AnimTask_BlendBattleAnimPal, 10, F_PAL_ATTACKER, 4, 8, 0, RGB(31, 19, 0)
+	waitforvisualfinish
+	end
+
+Move_SNARL:
+	goto Move_UPROAR
+
+Move_DARK_PULSE:
+	goto Move_NIGHT_SHADE
+
+Move_NIGHT_DAZE:
+	goto Move_FAINT_ATTACK
+
+Move_NIGHT_SLASH:
+	goto Move_SLASH
+
+Move_PAYBACK:
+	goto Move_REVENGE
+
+Move_FOUL_PLAY:
+	goto Move_THIEF
+
+@ Inline approved existing bodies: animation interpreter has one return slot.
+Move_AQUA_JET:
+	loadspritegfx ANIM_TAG_IMPACT
+	monbg ANIM_ATTACKER
+	setalpha 12, 8
+	createvisualtask AnimTask_TranslateMonEllipticalRespectSide, 2, ANIM_ATTACKER, 24, 6, 1, 5
+	createvisualtask AnimTask_TraceMonBlended, 2, 0, 4, 7, 3
+	playsewithpan SE_M_JUMP_KICK, SOUND_PAN_ATTACKER
+	delay 4
+	createvisualtask AnimTask_ShakeMon, 2, ANIM_TARGET, 5, 0, 6, 1
+	createsprite gBasicHitSplatSpriteTemplate, ANIM_TARGET, 4, 0, 0, ANIM_TARGET, 1
+	playsewithpan SE_M_VITAL_THROW2, SOUND_PAN_TARGET
+	waitforvisualfinish
+	clearmonbg ANIM_ATTACKER
+	blendoff
+	waitforvisualfinish
+	loadspritegfx ANIM_TAG_SMALL_BUBBLES
+	loadspritegfx ANIM_TAG_WATER_IMPACT
+	monbg ANIM_TARGET
+	splitbgprio ANIM_TARGET
+	setalpha 12, 8
+	createsprite gWaterGunProjectileSpriteTemplate, ANIM_ATTACKER, 2, 20, 0, 0, 0, 40, -25
+	playsewithpan SE_M_BUBBLE, SOUND_PAN_ATTACKER
+	waitforvisualfinish
+	createvisualtask AnimTask_ShakeMon2, 5, ANIM_TARGET, 1, 0, 8, 1
+	createsprite gWaterHitSplatSpriteTemplate, ANIM_ATTACKER, 4, 0, 0, ANIM_TARGET, 2
+	createsprite gWaterGunDropletSpriteTemplate, ANIM_ATTACKER, 2, 0, -15, 0, 15, 55
+	playsewithpan SE_M_CRABHAMMER, SOUND_PAN_TARGET
+	delay 10
+	createsprite gWaterGunDropletSpriteTemplate, ANIM_ATTACKER, 2, 15, -20, 0, 15, 50
+	playsewithpan SE_M_CRABHAMMER, SOUND_PAN_TARGET
+	delay 10
+	createsprite gWaterGunDropletSpriteTemplate, ANIM_ATTACKER, 2, -15, -10, 0, 10, 45
+	playsewithpan SE_M_CRABHAMMER, SOUND_PAN_TARGET
+	waitforvisualfinish
+	clearmonbg ANIM_TARGET
+	blendoff
+	end
+
+Move_LIQUIDATION:
+	goto Move_WATERFALL
+
+@ BTL-005 owner-approved Generation III art reuse; no trapping effect attached.
+Move_VORTEX_SPIN:
+	goto Move_WHIRLPOOL
+
+@ BTL-005 single-target Rollout mechanics with approved Surf animation.
+Move_TIDAL_CRASH:
+	goto Move_SURF
+
+
+@ BTL-005 Batch A: approved Gen III animation reuse. Unsupported
+@ intervening moves are reserved and never distributed from this branch.
+Move_SEED_BOMB:
+	goto Move_BULLET_SEED
+
+Move_PETAL_BLIZZARD:
+	goto Move_PETAL_DANCE
+
+Move_AURA_SPHERE:
+	goto Move_PSYCHIC
+
+Move_FOCUS_BLAST:
+	goto Move_HYPER_BEAM
+
+@ Flash Cannon: Hyper Beam energy followed by Metal Claw's metallic shimmer.
+Move_FLASH_CANNON:
+	loadspritegfx ANIM_TAG_ORBS
+	createvisualtask AnimTask_MetallicShine, 5, 0, 0, 0
+	waitforvisualfinish
+	playsewithpan SE_M_HYPER_BEAM, SOUND_PAN_ATTACKER
+	createvisualtask AnimTask_ShakeMon2, 2, ANIM_TARGET, 1, 0, 8, 1
+	waitforvisualfinish
+	end
+
+Move_MIRROR_SHOT:
+	goto Move_SWIFT
+
+Move_IRON_HEAD:
+	goto Move_HEADBUTT
+
+@ Bullet Punch: Mach Punch's fast fist impact with Metal Claw shine.
+Move_BULLET_PUNCH:
+	loadspritegfx ANIM_TAG_IMPACT
+	loadspritegfx ANIM_TAG_HANDS_AND_FEET
+	createvisualtask AnimTask_MetallicShine, 5, 0, 0, 0
+	waitforvisualfinish
+	createsprite gFistFootSpriteTemplate, ANIM_ATTACKER, 2, 0, 0, 8, 1, 0
+	playsewithpan SE_M_VITAL_THROW2, SOUND_PAN_TARGET
+	createvisualtask AnimTask_ShakeMon, 2, ANIM_TARGET, 3, 0, 5, 1
+	waitforvisualfinish
+	end
+
+Move_AIR_SLASH:
+	goto Move_AIR_CUTTER
+
+@ Heart Stamp: Stomp foot impact followed by Confusion-style psychic pulse.
+Move_HEART_STAMP:
+	loadspritegfx ANIM_TAG_HANDS_AND_FEET
+	loadspritegfx ANIM_TAG_IMPACT
+	monbg ANIM_TARGET
+	setalpha 12, 8
+	createsprite gStompFootSpriteTemplate, ANIM_ATTACKER, 3, 0, -32, 15
+	delay 19
+	createsprite gBasicHitSplatSpriteTemplate, ANIM_ATTACKER, 2, 0, -8, ANIM_TARGET, 1
+	playsewithpan SE_M_MEGA_KICK2, SOUND_PAN_TARGET
+	waitforvisualfinish
+	createvisualtask AnimTask_ShakeMon, 2, ANIM_TARGET, 3, 0, 15, 1
+	playsewithpan SE_M_SUPERSONIC, SOUND_PAN_TARGET
+	waitforvisualfinish
+	clearmonbg ANIM_TARGET
+	blendoff
+	end

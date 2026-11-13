@@ -172,10 +172,22 @@ print('PASS: static item routing, deferred consumption and unchanged cancellatio
 # item property (including all held effects) to the split branch baseline.
 from approved_ball_changes import prior_ball_source
 normalized = json.loads(prior_ball_source('src/data/items.json'))
+# WRL-003 approved price-only delta is independent of evolution Use-menu
+# behavior. Reverse exactly its five price changes before comparing the frozen
+# original item-table hash; all other item fields remain byte-exact guarded.
+prior_prices = {
+    'ITEM_MOON_STONE': 0,
+    'ITEM_KINGS_ROCK': 100,
+    'ITEM_METAL_COAT': 100,
+    'ITEM_DRAGON_SCALE': 2100,
+    'ITEM_UP_GRADE': 2100,
+}
 for item in normalized['items']:
     if item['itemId'] in ids:
         item['type'] = 'ITEM_TYPE_BAG_MENU'
         item['fieldUseFunc'] = 'FieldUseFunc_OakStopsYou'
+    if item['itemId'] in prior_prices:
+        item['price'] = prior_prices[item['itemId']]
 assert hashlib.sha256(json.dumps(normalized, sort_keys=True).encode()).hexdigest() == '14d96833271efdc07a8db346ccf695bf19450e9f57d92a2d40418dff96cd257d'
 print('PASS: all other item data and battle held effects match the PR #2 baseline (static audit)')
 
