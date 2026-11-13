@@ -6116,51 +6116,65 @@ static const struct TrainerMonNoItemCustomMoves sParty_LeaderLtSurge[] = {
     },
 };
 
-static const struct TrainerMonNoItemCustomMoves sParty_LeaderErika[] = {
+static const struct TrainerMonItemCustomMoves sParty_LeaderErika[] = {
     {
         .iv = 0,
         .lvl = 29,
-        .species = SPECIES_VICTREEBEL,
-        .moves = {MOVE_STUN_SPORE, MOVE_ACID, MOVE_POISON_POWDER, MOVE_GIGA_DRAIN},
+        .species = SPECIES_BELLOSSOM,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_SOLAR_BEAM, MOVE_SYNTHESIS, MOVE_SLEEP_POWDER, MOVE_MAGICAL_LEAF},
     },
     {
         .iv = 0,
-        .lvl = 24,
-        .species = SPECIES_TANGELA,
-        .moves = {MOVE_POISON_POWDER, MOVE_CONSTRICT, MOVE_INGRAIN, MOVE_GIGA_DRAIN},
+        .lvl = 30,
+        .species = SPECIES_RAPIDASH,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_FLAME_WHEEL, MOVE_FLASHFIRE, MOVE_STOMP, MOVE_TAKE_DOWN},
     },
     {
         .iv = 0,
-        .lvl = 29,
+        .lvl = 31,
+        .species = SPECIES_NINETALES,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_FIRE_SPIN, MOVE_ASTONISH, MOVE_CONFUSE_RAY, MOVE_WILL_O_WISP},
+    },
+    {
+        .iv = 0,
+        .lvl = 33,
         .species = SPECIES_VILEPLUME,
-        .moves = {MOVE_SLEEP_POWDER, MOVE_ACID, MOVE_STUN_SPORE, MOVE_GIGA_DRAIN},
+        .heldItem = ITEM_SITRUS_BERRY,
+        .moves = {MOVE_SLUDGE_BOMB, MOVE_MEGA_DRAIN, MOVE_SOLAR_BEAM, MOVE_MOONLIGHT},
     },
 };
 
-static const struct TrainerMonNoItemCustomMoves sParty_LeaderKoga[] = {
+static const struct TrainerMonItemCustomMoves sParty_LeaderKoga[] = {
     {
         .iv = 0,
         .lvl = 37,
-        .species = SPECIES_KOFFING,
-        .moves = {MOVE_SELF_DESTRUCT, MOVE_SLUDGE, MOVE_SMOKESCREEN, MOVE_TOXIC},
+        .species = SPECIES_SCYTHER,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_SLASH, MOVE_WING_ATTACK, MOVE_SWORDS_DANCE, MOVE_FOCUS_ENERGY},
     },
     {
         .iv = 0,
         .lvl = 39,
-        .species = SPECIES_MUK,
-        .moves = {MOVE_MINIMIZE, MOVE_SLUDGE, MOVE_ACID_ARMOR, MOVE_TOXIC},
+        .species = SPECIES_HERACROSS,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_BRICK_BREAK, MOVE_TAKE_DOWN, MOVE_COUNTER, MOVE_FURY_ATTACK},
     },
     {
         .iv = 0,
         .lvl = 37,
-        .species = SPECIES_KOFFING,
-        .moves = {MOVE_SELF_DESTRUCT, MOVE_SLUDGE, MOVE_SMOKESCREEN, MOVE_TOXIC},
+        .species = SPECIES_ARBOK,
+        .heldItem = ITEM_NONE,
+        .moves = {MOVE_BITE, MOVE_ACID, MOVE_SCREECH, MOVE_GLARE},
     },
     {
         .iv = 0,
         .lvl = 43,
-        .species = SPECIES_WEEZING,
-        .moves = {MOVE_TACKLE, MOVE_SLUDGE, MOVE_SMOKESCREEN, MOVE_TOXIC},
+        .species = SPECIES_CROBAT,
+        .heldItem = ITEM_SCOPE_LENS,
+        .moves = {MOVE_AIR_CUTTER, MOVE_WING_ATTACK, MOVE_CONFUSE_RAY, MOVE_BITE},
     },
 };
 
