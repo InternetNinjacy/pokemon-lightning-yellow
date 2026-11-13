@@ -10,11 +10,22 @@ def render(root=ROOT):
  overlay=json.loads((D/'approved-design-overlays.json').read_text())
  animation=json.loads((D/'animation-reuse.json').read_text())
  validate(root,overlay['new_moves'])
- const=(root/'include/constants/moves.h').read_text()
+ # The 385-386 implementation remains a separate unaccepted draft. Verify the
+ # ACTUAL appended source above, but retain the frozen, last-accepted move
+ # catalog projection until runtime acceptance and explicit reconciliation.
+ # Temporary fixture roots in move-catalog tests continue using their own
+ # source directly (including deliberate invalid fixtures).
+ if root == ROOT:
+  import sys
+  sys.path.insert(0,str(ROOT/'tests'))
+  from approved_water_moves385_changes import prior_water_moves385_source as before_water
+ else:
+  before_water=lambda path,text:text
+ const=before_water('include/constants/moves.h',(root/'include/constants/moves.h').read_text())
  ids={k:int(v) for k,v in re.findall(r'^#define MOVE_(\w+)\s+(\d+)\s*$',const,re.M)}
- raw=(root/'src/data/battle_moves.h').read_text()
- names=dict(re.findall(r'\[MOVE_(\w+)\]\s*= _\("(.*?)"\)',(root/'src/data/text/move_names.h').read_text()))
- asm=(root/'data/battle_anim_scripts.s').read_text()
+ raw=before_water('src/data/battle_moves.h',(root/'src/data/battle_moves.h').read_text())
+ names=dict(re.findall(r'\[MOVE_(\w+)\]\s*= _\("(.*?)"\)',before_water('src/data/text/move_names.h',(root/'src/data/text/move_names.h').read_text())))
+ asm=before_water('data/battle_anim_scripts.s',(root/'data/battle_anim_scripts.s').read_text())
  labels={m[1]:asm[:m.start()].count('\n')+1 for m in re.finditer(r'^(Move_\w+)::?',asm,re.M)}
  fields=['category','type','power','accuracy','pp','priority','target','effect','secondaryEffectChance','flags']
  rows=[]

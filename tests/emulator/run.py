@@ -11,6 +11,12 @@ import shutil
 
 # Generate ABI constants with the game's ARM compiler, never host offsetof.
 expressions = {
+ 'ACTION_NOTHING_FAINTED':'B_ACTION_NOTHING_FAINTED',
+ 'ACTION_SWITCH':'B_ACTION_SWITCH',
+ 'ACTION_MOVE':'B_ACTION_USE_MOVE',
+ 'BATTLESTRUCT_ACTED':'offsetof(struct BattleStruct,actedThisTurn)',
+ 'BATTLESTRUCT_SWITCH_IN':'offsetof(struct BattleStruct,monToSwitchIntoId)',
+ 'BATTLESTRUCT_DAMAGE_SOURCES':'offsetof(struct BattleStruct,damagedByBattlers)',
  'BATTLESTRUCT_SIZE':'sizeof(struct BattleStruct)',
  'BATTLESTRUCT_TW_USER':'offsetof(struct BattleStruct,thunderWaveUser)',
  'BATTLESTRUCT_TW_TARGETS':'offsetof(struct BattleStruct,thunderWaveTargets)',
@@ -79,6 +85,10 @@ expressions = {
     'BATTLESTRUCT_EXP_GETTER': 'offsetof(struct BattleStruct,expGetterMonId)',
     'BATTLESTRUCT_SENT_IN': 'offsetof(struct BattleStruct,sentInPokes)',
     'BATTLESTRUCT_WILD_SONG': 'offsetof(struct BattleStruct,wildVictorySong)',
+    'DISABLE_SIZE': 'sizeof(struct DisableStruct)',
+    'DISABLE_SUB_HP': 'offsetof(struct DisableStruct,substituteHP)',
+    'SIDE_TIMER_SIZE': 'sizeof(struct SideTimer)',
+    'SIDE_SAFEGUARD_TIMER': 'offsetof(struct SideTimer,safeguardTimer)',
     'WINDOW_SIZE': 'sizeof(struct Window)',
     'WINDOW_BG': 'offsetof(struct Window,window.bg)',
     'SCRIPT_MODE': 'offsetof(struct ScriptContext,mode)',
@@ -134,6 +144,8 @@ for key,expr in {
  'SAVE2_PLAYER_NAME':'offsetof(struct SaveBlock2,playerName)',
  'BAG_POCKET':'offsetof(struct BagStruct,pocket)',
  'SAVE1_LOCATION':'offsetof(struct SaveBlock1,location)',
+ 'SAVE1_POS_X':'offsetof(struct SaveBlock1,pos.x)',
+ 'SAVE1_POS_Y':'offsetof(struct SaveBlock1,pos.y)',
  'WILD_HEADER_SIZE':'sizeof(struct WildPokemonHeader)',
  'WILD_HEADER_LAND':'offsetof(struct WildPokemonHeader,landMonsInfo)',
  'BMON_SPEED':'offsetof(struct BattlePokemon,speed)',
@@ -207,7 +219,7 @@ required = [
     'Task_PCMainMenu', 'Task_PokeStorageMain', 'Task_OnSelectedMon', 'Task_DepositMenu', 'Task_OnBPressed',
     'SetLastHealLocationWarp',
 
-    "CheckBagHasItem", "RemoveBagItem", "Task_ShopMenu", "Task_BuyMenu", "Task_BuyHowManyDialogueHandleInput", "Task_CallYesOrNoCallback", "FindTaskIdByFunc", "VermilionCity_Mart_EventScript_Clerk", "gWishFutureKnock", "Cmd_setrain", "Cmd_setsandstorm", "AbilityBattleEffects", "gBattleMainFunc", "gLastUsedAbility", "GetBattlerInitialAbility", "SetSpecialEncounterAbility", "SetBoxMonAt", "PewterCity_Gym_EventScript_Brock", "CeruleanCity_Gym_EventScript_Misty", "CastformDataTypeChange", "Cmd_sethail", "Cmd_setsunny", "GetBallCatchMultiplier", "IsPokeBallItem", "BallItemToCaptureCode", "CaptureCodeToBallItem", "TryBuyBallsWithPremierBonus", "ItemIdToBallId", "gCaptureOrigin",
+    "CheckBagHasItem", "RemoveBagItem", "CreatePokemartMenu", "Task_ShopMenu", "Task_BuyMenu", "Task_BuyHowManyDialogueHandleInput", "Task_CallYesOrNoCallback", "FindTaskIdByFunc", "VermilionCity_Mart_EventScript_Clerk", "gWishFutureKnock", "Cmd_setrain", "Cmd_setsandstorm", "AbilityBattleEffects", "gBattleMainFunc", "gLastUsedAbility", "GetBattlerInitialAbility", "SetSpecialEncounterAbility", "SetBoxMonAt", "PewterCity_Gym_EventScript_Brock", "CeruleanCity_Gym_EventScript_Misty", "CastformDataTypeChange", "Cmd_sethail", "Cmd_setsunny", "GetBallCatchMultiplier", "IsPokeBallItem", "BallItemToCaptureCode", "CaptureCodeToBallItem", "TryBuyBallsWithPremierBonus", "ItemIdToBallId", "gCaptureOrigin",
     "PalletTown_ProfessorOaksLab_EventScript_ProfOak", "PalletTown_ProfessorOaksLab_EventScript_TryGiveNestBalls",
 
     'gSpeciesNames',
@@ -268,7 +280,7 @@ required = [
     'gRngValue', 'gSaveBlock1', 'gSaveBlock1Ptr', 'gSaveBlock2', 'gSaveBlock2Ptr',
     'gTasks', 'gWildMonHeaders', 'sEvoStructPtr', 'sPlttBufferTransferPending', 'sPokedexScreenData',
     'sEggHatchData', 'sGlobalScriptContext', 'sGlobalScriptContextStatus', 'EggHatch', 'CB2_EggHatch_0', 'CB2_EggHatch_1',
-    'CB2_UpdatePartyMenu', 'SetMoney', 'GetMoney', 'GetGameStat', 'SetGameStat',
+    'CB2_UpdatePartyMenu', 'SetMoney', 'GetMoney', 'ItemId_GetPrice', 'GetGameStat', 'SetGameStat',
     'ArePlayerFieldControlsLocked', 'gPlayerAvatar', 'gQuestLogState',
     'CB2_ContinueSavedGame', 'Route5DaycareNeedsMapRefresh', 'RemoveObjectEventByLocalIdAndMap', 'GetObjectEventIdByLocalIdAndMap',
     'GetRoute5Daycare', 'GetActiveDaycare', 'IsRoute5DaycareReady', 'TriggerPendingDaycareEgg',
@@ -276,7 +288,7 @@ required = [
     'StoreSelectedPokemonInDaycare', 'StorePokemonInDaycare', 'TakePokemonFromDaycare',
     'GetDaycareCost', 'GetNumLevelsGainedFromDaycare', 'GetDaycareState', 'GetDaycarePokemonCount',
     'GetDaycareCompatibilityScore', 'GiveMailToMon', 'GetCursorSelectionMonId', 'GetMonGender',
-    'IsMonShiny', 'ScriptHatchMon', 'CreateEgg', 'MapGridGetCollisionAt', 'MapGridGetElevationAt',
+    'IsMonShiny', 'ScriptHatchMon', 'CreateEgg', 'MapGridGetCollisionAt', 'MapGridGetElevationAt', 'MetatileBehavior_IsSurfable',
     'ScriptContext_SetupScript', 'ScriptContext_IsEnabled', 'EventScript_EggHatch',
     'Route5_PokemonDayCare_EventScript_DaycareWoman', 'Route5_PokemonDayCare_Egg_DaycareMan',
     'FourIsland_PokemonDayCare_EventScript_DaycareWoman', 'FourIsland_EventScript_DaycareMan',
@@ -288,6 +300,9 @@ required = [
     'ShowPokemonSummaryScreen', 'sMonSummaryScreen', 'sMoveSelectionCursorPos', 'gSideStatuses', 'gBattleStruct', 'gBattleScripting', 'gBattleMoveDamage', 'gDisplayedStringBattle',
 ]
 required += ['NextThunderWaveTarget','gAbsentBattlerFlags']
+required += ['Cmd_accuracycheck']
+required += ['BattlerHasActedThisTurn','RunTurnActionsFunctions','SetActionsAndBattlersTurnOrder','gBattleMainFunc','gCurrentActionFuncId','gChosenActionByBattler','gEnemyPartyCount','gBattlerPartyIndexes','gActionsByTurnOrder', 'BattlerWasDamagedBy','TurnValuesCleanUp','SwitchInClearSetData','gBattleMovePower','Cmd_datahpupdate']
+required += ['Cmd_seteffectwithchance','gBattleCommunication','gCurrentTurnActionNumber','gBattlerByTurnOrder','gSideTimers']
 required += ['Cmd_rolloutdamagecalculation','gDisableStructs','gLockedMoves','gLastMoves']
 required += ['BattleAI_SetupAIData','BattleAI_ChooseMoveOrAction','RecordAbilityBattle']
 required += ['Cmd_weatherdamage','Cmd_accuracycheck','gStatuses3','gHitMarker','gMoveResultFlags']
@@ -296,16 +311,20 @@ required += ['ViridianCity_EventScript_TrainerTips1','ViridianCity_EventScript_T
 required += ['CreateHalfShinyGiftEgg','ScriptGiveMagbyEgg','ScriptGiveTangoTangela','FiveIsland_WaterLabyrinth_EventScript_EggGentleman','CeladonCity_Condominiums_RoofRoom_EventScript_EeveeBall']
 
 required += ['PokemonLeague_LoreleisRoom_EventScript_Lorelei','PokemonLeague_BrunosRoom_EventScript_Bruno','PokemonLeague_AgathasRoom_EventScript_Agatha','PokemonLeague_LancesRoom_EventScript_Lance']
-required += ['PewterCity_Gym_EventScript_Liam','CeruleanCity_Gym_EventScript_Diana','CeladonCity_Gym_EventScript_Mary','Cmd_setweatherballtype','gBattleMonForms','SaffronCity_Dojo_Text_NeedTwo']
+required += ['PewterCity_Gym_EventScript_Liam','CeruleanCity_Gym_EventScript_Diana','CeruleanCity_Gym_EventScript_Luis','CeladonCity_Gym_EventScript_Mary','Cmd_setweatherballtype','gBattleMonForms','SaffronCity_Dojo_Text_NeedTwo']
 required += ['MonRestorePP','ExecuteTableBasedItemEffect']
 required += ['ClampApprovedMovePP','ClampApprovedDaycarePP','NormalizeLoadedMovePP','GetBoxMonData3','SetBoxMonData','SavePlayerParty','gSaveCounter']
 required += ['CalculatePPWithBonus','SetMonMoveSlot']
 required += ['GetWindowAttribute','MoveSelectionDisplayMoveNames','MoveSelectionDisplayPpString','MoveSelectionDisplayPpNumber','GetMoveTypeShortName','HandleMoveSwitching']
 required += ['TeachMoveRelearnerMove','CB2_MoveRelearner','GetBgTilemapBuffer']
+required += ['GetMoveRelearnerMoves', 'GetNumberOfRelearnableMoves', 'GiveMoveToMon']
 required += ['gMoveNames','GetStringWidth','StringCopy','AllocPSA','Free','AllocZeroed','sMoveRelearner','MoveRelearnerInitListMenuBuffersEtc','BufferStringBattle','gBattleTextBuff2','gBattleTextBuff3']
 required += ['LightingPreviewGetAppearance', 'LightingPreviewIsActive']  # preview-branch native assertions
 required += ['Task_StartMenuHandleInput','sStartMenuCursorPos','sStartMenuOrder','Task_BagMenu_HandleInput','Task_HandleChooseMonInput','Task_EvolutionScene']
-required += ['SpecialWeatherActivateScript','SpecialWeatherActivate','SpecialWeatherFinishAftermath','SpecialWeatherRestorationReady',
+required += ['PalletTown_ProfessorOaksLab_EventScript_RetryParcelGifts','SilphCo_7F_EventScript_LaprasGuy']
+required += ['CeladonCity_GameCorner_PrizeRoom_EventScript_PrizeClerkMons','GetCoins','SetCoins']
+required += ['Route12_EventScript_SowCorphish','Route21_North_EventScript_SowGlalie','Route23_EventScript_SowTyranitar',
+             'GetObjectEventIdByXY','CreateScriptedWildMon','SowPrepareScriptedEncounter','SpecialWeatherActivateScript','SpecialWeatherActivate','SpecialWeatherFinishAftermath','SpecialWeatherRestorationReady',
              'SpecialWeather_EventScript_FinishAftermath','Alloc']
 symbols={}
 end_ewram=0
@@ -318,6 +337,24 @@ for line in subprocess.check_output(['arm-none-eabi-nm','-n','pokefirered.elf'],
     fields=line.split()
     if len(fields)==3 and fields[2] in required:
         symbols.setdefault(fields[2],int(fields[0],16)) # first matching local symbol (player controller precedes tutorial controllers)
+# Read-only native controller address correlation for the dedicated Thunder Wave
+# regression. Use the actual built ELF rather than guessed ROM offsets.
+if os.environ.get('LIGHTNING_THUNDER_WAVE_ONLY'):
+    nm_rows = []
+    for line in subprocess.check_output(['arm-none-eabi-nm','-n','pokefirered.elf'],text=True).splitlines():
+        fields = line.split()
+        if len(fields)==3 and fields[1].lower() in ('t','w'):
+            try:
+                address = int(fields[0],16)
+            except ValueError:
+                continue
+            if 0x08000000 <= address < 0x0A000000:
+                nm_rows.append((address,fields[2]))
+    for observed in (0x08030d98,0x0802eb34,0x0803623c,0x081db917):
+        nearest = max((item for item in nm_rows if item[0]<=observed),default=None)
+        print('TW_ELF_SYMBOL observed=%08x nearest=%s offset=%s' %
+              (observed,nearest[1] if nearest else 'NONE',
+               ('%x'%(observed-nearest[0])) if nearest else 'NONE'),flush=True)
 assert set(required)<=symbols.keys(), set(required)-symbols.keys()
 # Private input function names also exist in tutorial controllers. Verify the
 # selected local symbols belong to the actual player controller's address range.

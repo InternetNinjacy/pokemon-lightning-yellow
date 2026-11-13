@@ -2242,10 +2242,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
     [SPECIES_PONYTA] =
     {
         .baseHP = 50,
-        .baseAttack = 100,
+        .baseAttack = 85,
         .baseDefense = 55,
         .baseSpeed = 90,
-        .baseSpAttack = 50,
+        .baseSpAttack = 65,
         .baseSpDefense = 65,
         .types = {TYPE_FIRE, TYPE_FIRE},
         .catchRate = 190,
@@ -2271,10 +2271,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
     [SPECIES_RAPIDASH] =
     {
         .baseHP = 65,
-        .baseAttack = 120,
+        .baseAttack = 100,
         .baseDefense = 70,
         .baseSpeed = 105,
-        .baseSpAttack = 60,
+        .baseSpAttack = 80,
         .baseSpDefense = 80,
         .types = {TYPE_FIRE, TYPE_FIRE},
         .catchRate = 60,
