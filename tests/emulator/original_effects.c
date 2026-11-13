@@ -119,7 +119,15 @@ static void spreadStatusTests(void){
 #include "new_bellow_rock.c"
 #include "new_scorching_sands.c"
 #include "new_earth_power.c"
+#include "new_ice_fang.c"
+#include "new_avalanche.c"
+#include "new_moves374.c"
+#include "new_payback.c"
+#include "new_moves382.c"
+#include "new_water_moves385.c"
+#include "btl_batch_a.c"
 static void originalEffectTests(void){
+ if(getenv("LIGHTNING_BTL_BATCH_A_ONLY")){batchAExactMechanics();batchANativeTests();batchAFlashPersistence();return;}
  if(getenv("LIGHTNING_SKITTER_SLASH_ONLY")){skitterSlashTests();return;}
  if(getenv("LIGHTNING_VENOM_WEB_ONLY")){venomWebTests();return;}
  if(getenv("LIGHTNING_BUG_STATDROPS_ONLY")){bugStatdropTests();return;}
@@ -128,6 +136,7 @@ static void originalEffectTests(void){
  if(getenv("LIGHTNING_BELLOW_ROCK_ONLY")){bellowRockTests();return;}
  if(getenv("LIGHTNING_SCORCHING_SANDS_ONLY")){scorchingSandsTests();return;}
  if(getenv("LIGHTNING_EARTH_POWER_ONLY")){earthPowerTests();return;}
+ if(getenv("LIGHTNING_ICE_FANG_ONLY")){iceFangTests();return;}
  if(getenv("LIGHTNING_NEW_GHOST_MOVES_ONLY")){newGhostMoveTests();return;}
  if(getenv("LIGHTNING_NEW_FIRE_MOVES_ONLY")){newFireMoveTests();return;}
  if(getenv("LIGHTNING_THUNDER_WAVE_ONLY")){thunderWaveTests();return;}
@@ -142,6 +151,17 @@ static void originalEffectTests(void){
  bellowRockTests();
  scorchingSandsTests();
  earthPowerTests();
+ iceFangTests();
+ avalancheTests();
+ moves374Tests();
+ paybackTests();
+ moves382Tests();
+ waterMoves385Tests();
+ waterMoves385Mechanics();
+ waterMoves385SavePersistence();
+ batchAExactMechanics();
+ batchANativeTests();
+ batchAFlashPersistence();
  thunderWaveTests();
  ghostReworkTests();
  spreadStatusTests();
