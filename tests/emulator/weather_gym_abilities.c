@@ -39,9 +39,11 @@ static void weatherGymAbilityTests(void)
   for(unsigned k=1;k<6;k++)clearBytes(player(k),ABI_MON_SIZE);
   core->busWrite8(core,SYM_gPlayerPartyCount,misty?2:1);
   CALL(CreateMon,player(0),SPECIES_MEWTWO,100,31,1,123,0,0);CALL(SetMonMoveSlot,player(0),MOVE_SWIFT,0);
-  if(misty){CALL(CreateMon,player(1),SPECIES_MEWTWO,100,31,1,124,0,0);CALL(SetMonMoveSlot,player(1),MOVE_SWIFT,0);
-   for(unsigned k=1;k<4;k++)CALL(SetMonMoveSlot,player(1),MOVE_SPLASH,k);}
-  for(unsigned k=1;k<4;k++)CALL(SetMonMoveSlot,player(0),MOVE_SPLASH,k);
+  if(misty){CALL(CreateMon,player(1),SPECIES_MEWTWO,100,31,1,124,0,0);
+   // All four legal moves are Splash: whichever native cursor slot is selected,
+   // the turn cannot prematurely defeat either of Misty's starting Pokemon.
+   for(unsigned k=0;k<4;k++){CALL(SetMonMoveSlot,player(0),MOVE_SPLASH,k);CALL(SetMonMoveSlot,player(1),MOVE_SPLASH,k);}
+  }else for(unsigned k=1;k<4;k++)CALL(SetMonMoveSlot,player(0),MOVE_SPLASH,k);
   unsigned map=misty?MAP_CERULEAN_CITY_GYM:MAP_PEWTER_CITY_GYM;
   fossilWarp(MAP_GROUP(map),MAP_NUM(map),misty?5:4,misty?9:10);
   unsigned obj=CALL(GetObjectEventIdByLocalIdAndMap,misty?3:1,MAP_NUM(map),MAP_GROUP(map));CHECK(obj<ABI_OBJECT_COUNT);core->busWrite8(core,SYM_gSelectedObjectEvent,obj);
@@ -60,25 +62,16 @@ static void weatherGymAbilityTests(void)
    CHECK(CALL(GetSav1Weather)==field);
    // Both of Misty's Pokemon are already on the field; there is no reserve.
    // Advance an ordinary Double turn through both real player controllers.
-   // The previous Brock test may leave the shared native move cursor in row 2.
-   // Navigate through the real menu instead of assuming the cursor starts at 0.
+   // The native cursor may carry over any valid slot after Brock.
+   // Select its real highlighted move; every slot is harmless Splash.
+   // This exercises both actual controllers without modifying any cursor or flag.
    for(unsigned b=0;b<3;b+=2){
     waitController(b,SYM_HandleInputChooseAction);press(1);
     waitController(b,SYM_HandleInputChooseMove);
     unsigned cursor=core->busRead8(core,SYM_gMoveSelectionCursor+b);
     CHECK(cursor<4);
-    if(cursor>=2)press(64); // Native UP, second row -> first row.
-    cursor=core->busRead8(core,SYM_gMoveSelectionCursor+b);
-    if(cursor==0)press(16); // Native RIGHT, first move -> Splash.
-    CHECK(core->busRead8(core,SYM_gMoveSelectionCursor+b)==1);
+    CHECK(core->busRead16(core,bmon(b)+ABI_BMON_MOVES+2*cursor)==MOVE_SPLASH);
     press(1);
-    if(controller(b)==SYM_HandleInputChooseTarget){
-     unsigned cursorTarget=core->busRead8(core,SYM_gMultiUsePlayerCursor);
-     for(unsigned steps=0;steps<4&&cursorTarget!=(b?3:1);steps++){
-      press(16);cursorTarget=core->busRead8(core,SYM_gMultiUsePlayerCursor);
-     }
-     CHECK(cursorTarget==(b?3:1));press(1);
-    }
    }
    waitAction();
    CHECK(core->busRead16(core,SYM_gBattleWeather)&B_WEATHER_RAIN_PERMANENT);
