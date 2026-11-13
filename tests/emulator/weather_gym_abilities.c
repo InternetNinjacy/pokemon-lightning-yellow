@@ -72,6 +72,10 @@ static void weatherGymAbilityTests(void)
     CHECK(cursor<4);
     CHECK(core->busRead16(core,bmon(b)+ABI_BMON_MOVES+2*cursor)==MOVE_SPLASH);
     press(1);
+    // In a genuine Double the move UI can require an enemy target
+    // before the other player controller receives action selection.
+    // Confirm the current native target with real A input, not a flag write.
+    if(controller(b)==SYM_HandleInputChooseTarget)press(1);
    }
    waitAction();
    CHECK(core->busRead16(core,SYM_gBattleWeather)&B_WEATHER_RAIN_PERMANENT);
