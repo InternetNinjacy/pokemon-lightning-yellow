@@ -44,8 +44,27 @@ assert '\tcall ' not in shared  # FireRed animation interpreter has ONE return s
 # The later owner-approved Erika leader contract explicitly grants exactly
 # one trainer-only Flashfire to her Rapidash. This is not species-wide
 # distribution and does not license either other new Fire move anywhere.
-for path in ['src/data/pokemon/level_up_learnsets.h', 'src/data/pokemon/tmhm_learnsets.h']:
-    assert not any('MOVE_' + key in Path(path).read_text() for key, *_ in expected), path
+# Later owner-approved Ponyta/Rapidash and Flareon profiles grant precisely
+# these natural learnset entries. Keep all other species and TM/HM distribution
+# prohibited; check the full learnset blocks, not just global move counts.
+level_source = Path('src/data/pokemon/level_up_learnsets.h').read_text()
+authorized_natural = {
+    'Ponyta': [(16, 'FLASHFIRE'), (34, 'FLAME_FANG'), (45, 'BLAZE_RUSH')],
+    'Rapidash': [(16, 'FLASHFIRE'), (36, 'FLAME_FANG'), (48, 'BLAZE_RUSH')],
+    'Flareon': [(8, 'FLASHFIRE'), (36, 'FLAME_FANG'), (54, 'BLAZE_RUSH')],
+}
+learnset_pattern = r's([A-Za-z0-9]+)LevelUpLearnset\\[\\]\\s*=\\s*\\{(.*?)\\};'
+learnsets = re.findall(learnset_pattern, level_source, re.S)
+assert len(learnsets) > 100, 'level-up learnset parsing failed'
+actual_natural = {}
+for species, block in learnsets:
+    entries = [(int(level), move) for level, move in re.findall(
+        r'LEVEL_UP_MOVE\\(\\s*(\\d+)\\s*,\\s*MOVE_(FLAME_FANG|FLASHFIRE|BLAZE_RUSH)\\s*\\)', block)]
+    if entries:
+        actual_natural[species] = entries
+assert actual_natural == authorized_natural, (actual_natural, authorized_natural)
+assert not any('MOVE_' + key in Path('src/data/pokemon/tmhm_learnsets.h').read_text()
+               for key, *_ in expected), 'unauthorized TM/HM Fire move distribution'
 party_source = Path('src/data/trainer_parties.h').read_text()
 assert 'MOVE_FLAME_FANG' not in party_source
 assert 'MOVE_BLAZE_RUSH' not in party_source
@@ -56,7 +75,7 @@ assert erika.group(1).count('MOVE_FLASHFIRE') == 1
 assert re.search(r'\.species = SPECIES_RAPIDASH,\s*\.heldItem = ITEM_NONE,\s*'
                  r'\.moves = \{MOVE_FLAME_WHEEL, MOVE_FLASHFIRE, MOVE_STOMP, MOVE_TAKE_DOWN\}',
                  erika.group(1)), 'Flashfire must occur only on approved Rapidash'
-print('PASS: three appended owner Fire designs preserved; only later explicitly approved Erika Rapidash Flashfire distribution, no other trainer/species Fire move distribution (static).')
+print('PASS: three appended owner Fire designs preserved; exact Ponyta/Rapidash/Flareon natural distribution and Erika trainer-only Flashfire; no other species/TM/trainer distribution (static).')
 
 # Execute the actual production chance routine with controlled rolls; only its
 # effect callback/RNG are stubbed, separately from the real battle acceptance.
