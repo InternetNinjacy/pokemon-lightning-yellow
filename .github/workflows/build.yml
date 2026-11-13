@@ -91,6 +91,8 @@ jobs:
           python3 tests/run_weather_ability_tests.py
           python3 tests/run_weather_species_tests.py
           python3 tests/run_brock_weather_tests.py
+          python3 tests/check_fuchsia_approved_pairs.py
+          python3 tests/check_celadon_approved_pairs.py
           python3 tests/check_viridian_cole_approved_pair.py
           python3 tests/check_viridian_atsushi_approved_pair.py
           python3 tests/check_viridian_takashi_approved_trio.py
