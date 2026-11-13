@@ -40,7 +40,7 @@ def restore_ordinary_trainer_blocks(path):
     # All other trainer fields and party records remain byte-exact protected.
     if str(path) in ("src/data/trainer_parties.h", "src/data/trainers.h"):
         if str(path) == "src/data/trainer_parties.h":
-            pattern = r"static const struct TrainerMon\\w+\\s+sParty_SwimmerMaleLuis\\[\\]\\s*=\\s*\\{.*?\\n\\};"
+            pattern = r"static const struct TrainerMon\w+\s+sParty_SwimmerMaleLuis\[\]\s*=\s*\{.*?\n\};"
             approved = """static const struct TrainerMonNoItemCustomMoves sParty_SwimmerMaleLuis[] = {
     {
         .iv = 0,
@@ -56,7 +56,7 @@ def restore_ordinary_trainer_blocks(path):
     },
 };"""
         else:
-            pattern = r"\\[TRAINER_SWIMMER_MALE_LUIS\\]\\s*=\\s*\\{.*?\\n    \\},"
+            pattern = r"\[TRAINER_SWIMMER_MALE_LUIS\]\s*=\s*\{.*?\n    \},"
             approved = None
         before = list(re.finditer(pattern, original, re.S))
         after = list(re.finditer(pattern, result, re.S))
