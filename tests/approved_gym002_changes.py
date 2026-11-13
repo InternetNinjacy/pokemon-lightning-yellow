@@ -58,4 +58,41 @@ def prior_gym002_source(path, source=None):
         assert len(gym_before) == len(gym_after) == 1, "TRAINER_LEADER_GIOVANNI: protected original/new block count"
         assert gym_after[0].group() == "[TRAINER_LEADER_GIOVANNI] = {\n        .trainerClass = TRAINER_CLASS_LEADER,\n        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_AQUA,\n        .trainerPic = TRAINER_PIC_LEADER_GIOVANNI,\n        .trainerName = _(\"GIOVANNI\"),\n        .items = {ITEM_MAX_POTION, ITEM_SUPER_POTION, ITEM_FULL_RESTORE},\n        .doubleBattle = FALSE,\n        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,\n        .party = ITEM_CUSTOM_MOVES(sParty_LeaderGiovanni),\n    },", "TRAINER_LEADER_GIOVANNI: source changed outside approved Gym contract"
         source = source[:gym_after[0].start()] + gym_before[0].group() + source[gym_after[0].end():]
+    # GYM-002 Luis: reverse ONLY the separately approved Cerulean Double
+    # and exact Slowpoke/Horsea party before frozen historical source audits.
+    # All other trainer fields and party records remain byte-exact protected.
+    if str(path) in ("src/data/trainer_parties.h", "src/data/trainers.h"):
+        if str(path) == "src/data/trainer_parties.h":
+            pattern = r"static const struct TrainerMon\w+\s+sParty_SwimmerMaleLuis\[\]\s*=\s*\{.*?\n\};"
+            approved = """static const struct TrainerMonNoItemCustomMoves sParty_SwimmerMaleLuis[] = {
+    {
+        .iv = 0,
+        .lvl = 17,
+        .species = SPECIES_SLOWPOKE,
+        .moves = {MOVE_WATER_GUN, MOVE_CONFUSION, MOVE_GROWL, MOVE_DISABLE},
+    },
+    {
+        .iv = 0,
+        .lvl = 17,
+        .species = SPECIES_HORSEA,
+        .moves = {MOVE_WATER_GUN, MOVE_BUBBLE, MOVE_SMOKESCREEN, MOVE_LEER},
+    },
+};"""
+        else:
+            pattern = r"\[TRAINER_SWIMMER_MALE_LUIS\]\s*=\s*\{.*?\n    \},"
+            approved = None
+        before = list(re.finditer(pattern, original, re.S))
+        after = list(re.finditer(pattern, source, re.S))
+        assert len(before) == len(after) == 1, (path, "Luis record count")
+        if approved is None:
+            expected = before[0].group().replace(
+                ".doubleBattle = FALSE,", ".doubleBattle = TRUE,", 1
+            ).replace("NO_ITEM_DEFAULT_MOVES(sParty_SwimmerMaleLuis)",
+                      "NO_ITEM_CUSTOM_MOVES(sParty_SwimmerMaleLuis)", 1)
+            assert before[0].group().count(".doubleBattle = FALSE,") == 1
+            assert before[0].group().count("NO_ITEM_DEFAULT_MOVES(sParty_SwimmerMaleLuis)") == 1
+        else:
+            expected = approved
+        assert after[0].group() == expected, "Luis changed outside approved exact Gym contract"
+        source = source[:after[0].start()] + before[0].group() + source[after[0].end():]
     return source
