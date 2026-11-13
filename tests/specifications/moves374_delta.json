@@ -1,0 +1,83 @@
+{
+  "scope": "BTL-005 #374\u2013380 exact production reversals",
+  "files": {
+    "include/constants/moves.h": {
+      "before_sha256": "96b0b1616c91b7f8d9ba1c2f76edb594d8bd207d9dd822728e2c3d122a6579e3",
+      "after_sha256": "3ca5ffc94f5ca11192e1915d974ce90e9adb2a4d9517d6cbd67472cdc032a8fd",
+      "hunks": [
+        {
+          "before": "\n#define MOVES_COUNT 374\n\n",
+          "after": "\n#define MOVE_ICICLE_CRASH 374\n\n#define MOVE_DRAGON_PULSE 375\n\n#define MOVE_DRAGON_RUSH 376\n\n#define MOVE_SNARL 377\n\n#define MOVE_DARK_PULSE 378\n\n#define MOVE_NIGHT_DAZE 379\n\n#define MOVE_NIGHT_SLASH 380\n\n#define MOVES_COUNT 381\n\n"
+        }
+      ]
+    },
+    "src/data/battle_moves.h": {
+      "before_sha256": "aad7dcc9e05eb9c82c53f4eff7c4a8f5a161d90da8d4192a4fb88aaa41a489e0",
+      "after_sha256": "f6dfd09c98436f130e19c14c65fc6d7a65d186308cc77ce8fc05952dc5eec93f",
+      "hunks": [
+        {
+          "before": "\n};\n",
+          "after": "\n    [MOVE_ICICLE_CRASH] =\n    {\n        .category = MOVE_CATEGORY_PHYSICAL,\n        .effect = EFFECT_FLINCH_HIT,\n        .power = 85,\n        .type = TYPE_ICE,\n        .accuracy = 90,\n        .pp = 10,\n        .secondaryEffectChance = 30,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = 0,\n        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,\n    },\n\n    [MOVE_DRAGON_PULSE] =\n    {\n        .category = MOVE_CATEGORY_SPECIAL,\n        .effect = EFFECT_HIT,\n        .power = 85,\n        .type = TYPE_DRAGON,\n        .accuracy = 100,\n        .pp = 10,\n        .secondaryEffectChance = 0,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = 0,\n        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,\n    },\n\n    [MOVE_DRAGON_RUSH] =\n    {\n        .category = MOVE_CATEGORY_PHYSICAL,\n        .effect = EFFECT_FLINCH_HIT,\n        .power = 100,\n        .type = TYPE_DRAGON,\n        .accuracy = 75,\n        .pp = 10,\n        .secondaryEffectChance = 20,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = 0,\n        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,\n    },\n\n    [MOVE_SNARL] =\n    {\n        .category = MOVE_CATEGORY_SPECIAL,\n        .effect = EFFECT_SPECIAL_ATTACK_DOWN_HIT,\n        .power = 55,\n        .type = TYPE_DARK,\n        .accuracy = 95,\n        .pp = 15,\n        .secondaryEffectChance = 100,\n        .target = MOVE_TARGET_BOTH,\n        .priority = 0,\n        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,\n    },\n\n    [MOVE_DARK_PULSE] =\n    {\n        .category = MOVE_CATEGORY_SPECIAL,\n        .effect = EFFECT_FLINCH_HIT,\n        .power = 80,\n        .type = TYPE_DARK,\n        .accuracy = 100,\n        .pp = 15,\n        .secondaryEffectChance = 20,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = 0,\n        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,\n    },\n\n    [MOVE_NIGHT_DAZE] =\n    {\n        .category = MOVE_CATEGORY_SPECIAL,\n        .effect = EFFECT_ACCURACY_DOWN_HIT,\n        .power = 85,\n        .type = TYPE_DARK,\n        .accuracy = 95,\n        .pp = 10,\n        .secondaryEffectChance = 40,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = 0,\n        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,\n    },\n\n    [MOVE_NIGHT_SLASH] =\n    {\n        .category = MOVE_CATEGORY_PHYSICAL,\n        .effect = EFFECT_HIGH_CRITICAL,\n        .power = 70,\n        .type = TYPE_DARK,\n        .accuracy = 100,\n        .pp = 15,\n        .secondaryEffectChance = 0,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = 0,\n        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,\n    },\n\n};\n"
+        }
+      ]
+    },
+    "src/data/text/move_names.h": {
+      "before_sha256": "d4a34cc609f3b7e438cfae9a88b86e77d5dd48a370346d4eeee231d8de869778",
+      "after_sha256": "e69fd2c7a887ef663ec6966f4ce26239b17cfde3b950eb1070a4417f778f577f",
+      "hunks": [
+        {
+          "before": "    [MOVE_AVALANCHE] = _(\"AVALANCHE\"),\n};\n",
+          "after": "    [MOVE_AVALANCHE] = _(\"AVALANCHE\"),\n    [MOVE_ICICLE_CRASH] = _(\"ICICLE CRASH\"),\n    [MOVE_DRAGON_PULSE] = _(\"DRAGON PULSE\"),\n    [MOVE_DRAGON_RUSH] = _(\"DRAGON RUSH\"),\n    [MOVE_SNARL] = _(\"SNARL\"),\n    [MOVE_DARK_PULSE] = _(\"DARK PULSE\"),\n    [MOVE_NIGHT_DAZE] = _(\"NIGHT DAZE\"),\n    [MOVE_NIGHT_SLASH] = _(\"NIGHT SLASH\"),\n};\n"
+        }
+      ]
+    },
+    "src/move_descriptions.c": {
+      "before_sha256": "b56f4d91b956338fe95d047eababc10224d5746c48ea336d04643c4348a77df9",
+      "after_sha256": "a6b0f5fd4d1d3f589f76e3a384f7886af8ace0c432522933c609335141c88d88",
+      "hunks": [
+        {
+          "before": "\nconst u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {\n",
+          "after": "\nconst u8 gMoveDescription_ICICLE_CRASH[] = _(\"Drops icicles that\\nmay make the foe\\nflinch.\");\n\nconst u8 gMoveDescription_DRAGON_PULSE[] = _(\"A powerful pulse\\nof energy strikes\\nthe foe.\");\n\nconst u8 gMoveDescription_DRAGON_RUSH[] = _(\"A reckless tackle\\nthat may make the\\nfoe flinch.\");\n\nconst u8 gMoveDescription_SNARL[] = _(\"A harsh yell hits\\nfoes and lowers\\ntheir SP. ATK.\");\n\nconst u8 gMoveDescription_DARK_PULSE[] = _(\"A dark pulse that\\nmay make the foe\\nflinch.\");\n\nconst u8 gMoveDescription_NIGHT_DAZE[] = _(\"A dark shock wave\\nthat may lower\\nfoe accuracy.\");\n\nconst u8 gMoveDescription_NIGHT_SLASH[] = _(\"Slashes the foe.\\nHigh critical-hit\\nratio.\");\n\nconst u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {\n"
+        },
+        {
+          "before": "    [MOVE_AVALANCHE - 1] = gMoveDescription_AVALANCHE,\n};\n",
+          "after": "    [MOVE_AVALANCHE - 1] = gMoveDescription_AVALANCHE,\n    [MOVE_ICICLE_CRASH - 1] = gMoveDescription_ICICLE_CRASH,\n    [MOVE_DRAGON_PULSE - 1] = gMoveDescription_DRAGON_PULSE,\n    [MOVE_DRAGON_RUSH - 1] = gMoveDescription_DRAGON_RUSH,\n    [MOVE_SNARL - 1] = gMoveDescription_SNARL,\n    [MOVE_DARK_PULSE - 1] = gMoveDescription_DARK_PULSE,\n    [MOVE_NIGHT_DAZE - 1] = gMoveDescription_NIGHT_DAZE,\n    [MOVE_NIGHT_SLASH - 1] = gMoveDescription_NIGHT_SLASH,\n};\n"
+        }
+      ]
+    },
+    "data/battle_anim_scripts.s": {
+      "before_sha256": "69f75e73eece666dfcbca2ed0932daa422cc1698e8a44c05c8262aecaf40ac31",
+      "after_sha256": "9f04cf343924ba2fe84b29f77aae8e1a66ca2719691ecc192d2abaf5b8dbf14c",
+      "hunks": [
+        {
+          "before": "\t.4byte Move_AVALANCHE\n\t.4byte Move_COUNT @ cannot be reached, because last move is Psycho Boost\n",
+          "after": "\t.4byte Move_AVALANCHE\n\t.4byte Move_ICICLE_CRASH\n\t.4byte Move_DRAGON_PULSE\n\t.4byte Move_DRAGON_RUSH\n\t.4byte Move_SNARL\n\t.4byte Move_DARK_PULSE\n\t.4byte Move_NIGHT_DAZE\n\t.4byte Move_NIGHT_SLASH\n\t.4byte Move_COUNT @ cannot be reached, because last move is Psycho Boost\n"
+        },
+        {
+          "before": "\tend\n",
+          "after": "\tend\n\nMove_ICICLE_CRASH:\n\tgoto Move_ICICLE_SPEAR\n\nMove_DRAGON_PULSE:\n\tgoto Move_DRAGON_BREATH\n\n@ Approved existing-art composite; inline bodies preserve the single return slot.\nMove_DRAGON_RUSH:\n\tloadspritegfx ANIM_TAG_IMPACT\n\tmonbg ANIM_TARGET\n\tsetalpha 12, 8\n\tplaysewithpan SE_M_TAKE_DOWN, SOUND_PAN_ATTACKER\n\tcreatevisualtask AnimTask_WindUpLunge, 5, ANIM_ATTACKER, -24, 8, 23, 10, 40, 10\n\tdelay 35\n\tcreatesprite gComplexPaletteBlendSpriteTemplate, ANIM_ATTACKER, 2, F_PAL_BG | F_PAL_BATTLERS, 3, 1, RGB_BLACK, 10, RGB_BLACK, 0\n\tcreatesprite gBasicHitSplatSpriteTemplate, ANIM_ATTACKER, 4, -10, 0, ANIM_TARGET, 0\n\tplaysewithpan SE_M_MEGA_KICK2, SOUND_PAN_TARGET\n\tdelay 1\n\tcreatesprite gSlideMonToOffsetSpriteTemplate, ANIM_ATTACKER, 2, 1, -16, 0, 0, 4\n\twaitforvisualfinish\n\tcreatevisualtask AnimTask_ShakeMonInPlace, 2, ANIM_TARGET, 4, 0, 12, 1\n\twaitforvisualfinish\n\tdelay 2\n\tcreatesprite gSlideMonToOriginalPosSpriteTemplate, ANIM_ATTACKER, 2, 0, 0, 5\n\tdelay 3\n\tcreatesprite gSlideMonToOriginalPosSpriteTemplate, ANIM_ATTACKER, 2, 1, 0, 7\n\twaitforvisualfinish\n\tclearmonbg ANIM_TARGET\n\tblendoff\n\tloadspritegfx ANIM_TAG_SMALL_EMBER\n\tloadspritegfx ANIM_TAG_CLAW_SLASH\n\tplaysewithpan SE_M_SACRED_FIRE2, SOUND_PAN_ATTACKER\n\tcreatevisualtask AnimTask_BlendBattleAnimPal, 10, F_PAL_ATTACKER, 4, 0, 8, RGB(31, 19, 0)\n\tcreatevisualtask AnimTask_ShakeMon, 5, ANIM_ATTACKER, 0, 2, 15, 1\n\tcall DragonClawFireSpiral\n\tcall DragonClawFireSpiral\n\tcreatesprite gHorizontalLungeSpriteTemplate, ANIM_ATTACKER, 2, 6, 4\n\tcreatesprite gFireSpinSpriteTemplate, ANIM_ATTACKER, 2, 0, 28, 528, 30, 13, 50, ANIM_ATTACKER\n\tdelay 2\n\tcreatevisualtask SoundTask_PlaySE1WithPanning, 5, SE_M_RAZOR_WIND, SOUND_PAN_TARGET\n\tcreatesprite gClawSlashSpriteTemplate, ANIM_TARGET, 2, -10, -10, 0\n\tcreatesprite gClawSlashSpriteTemplate, ANIM_TARGET, 2, -10, 10, 0\n\tcreatesprite gShakeMonOrTerrainSpriteTemplate, ANIM_ATTACKER, 2, -4, 1, 10, 3, 1\n\tcreatesprite gFireSpinSpriteTemplate, ANIM_ATTACKER, 2, 0, 32, 480, 20, 16, -46, ANIM_ATTACKER\n\tdelay 2\n\tcreatesprite gFireSpinSpriteTemplate, ANIM_ATTACKER, 2, 0, 33, 576, 20, 8, 42, ANIM_ATTACKER\n\tdelay 2\n\tcreatesprite gFireSpinSpriteTemplate, ANIM_ATTACKER, 2, 0, 31, 400, 25, 11, -42, ANIM_ATTACKER\n\tdelay 2\n\tcreatesprite gHorizontalLungeSpriteTemplate, ANIM_ATTACKER, 2, 6, 4\n\tcreatesprite gFireSpinSpriteTemplate, ANIM_ATTACKER, 2, 0, 28, 512, 25, 16, 46, ANIM_ATTACKER\n\tdelay 2\n\tcreatevisualtask SoundTask_PlaySE1WithPanning, 5, SE_M_RAZOR_WIND, SOUND_PAN_TARGET\n\tcreatesprite gClawSlashSpriteTemplate, ANIM_TARGET, 2, 10, -10, 1\n\tcreatesprite gClawSlashSpriteTemplate, ANIM_TARGET, 2, 10, 10, 1\n\tcreatesprite gShakeMonOrTerrainSpriteTemplate, ANIM_ATTACKER, 2, -4, 1, 10, 3, 1\n\tcreatesprite gFireSpinSpriteTemplate, ANIM_ATTACKER, 2, 0, 33, 464, 30, 15, -50, ANIM_ATTACKER\n\tdelay 2\n\tcreatesprite gFireSpinSpriteTemplate, ANIM_ATTACKER, 2, 0, 28, 528, 30, 13, 50, ANIM_ATTACKER\n\tdelay 2\n\tcreatesprite gFireSpinSpriteTemplate, ANIM_ATTACKER, 2, 0, 32, 480, 20, 16, -46, ANIM_ATTACKER\n\tdelay 2\n\tcreatesprite gFireSpinSpriteTemplate, ANIM_ATTACKER, 2, 0, 33, 576, 20, 8, 42, ANIM_ATTACKER\n\tdelay 2\n\tcreatesprite gFireSpinSpriteTemplate, ANIM_ATTACKER, 2, 0, 31, 400, 25, 11, -42, ANIM_ATTACKER\n\tdelay 2\n\tcreatesprite gFireSpinSpriteTemplate, ANIM_ATTACKER, 2, 0, 28, 512, 25, 16, 46, ANIM_ATTACKER\n\tdelay 2\n\tcreatesprite gFireSpinSpriteTemplate, ANIM_ATTACKER, 2, 0, 33, 464, 30, 15, -50, ANIM_ATTACKER\n\tcreatevisualtask AnimTask_BlendBattleAnimPal, 10, F_PAL_ATTACKER, 4, 8, 0, RGB(31, 19, 0)\n\twaitforvisualfinish\n\tend\n\nMove_SNARL:\n\tgoto Move_UPROAR\n\nMove_DARK_PULSE:\n\tgoto Move_NIGHT_SHADE\n\nMove_NIGHT_DAZE:\n\tgoto Move_FAINT_ATTACK\n\nMove_NIGHT_SLASH:\n\tgoto Move_SLASH\n"
+        }
+      ]
+    },
+    "src/battle_util.c": {
+      "before_sha256": "060b507321d73c22cb3bd3c5cdc9da502c9326ed483fc7a7f17bfceaba619993",
+      "after_sha256": "7bbb74d828995e99257fc968c0bec5827f3fce6d016fdb82ff799249b5e77839",
+      "hunks": [
+        {
+          "before": "    MOVE_GROWL, MOVE_ROAR, MOVE_SING, MOVE_SUPERSONIC, MOVE_SCREECH, MOVE_SNORE,\n    MOVE_UPROAR, MOVE_METAL_SOUND, MOVE_GRASS_WHISTLE, MOVE_HYPER_VOICE, MOVE_CHIRP, MOVE_BELLOW, SOUND_MOVES_END\n};\n",
+          "after": "    MOVE_GROWL, MOVE_ROAR, MOVE_SING, MOVE_SUPERSONIC, MOVE_SCREECH, MOVE_SNORE,\n    MOVE_UPROAR, MOVE_METAL_SOUND, MOVE_GRASS_WHISTLE, MOVE_HYPER_VOICE, MOVE_CHIRP, MOVE_BELLOW, MOVE_SNARL, SOUND_MOVES_END\n};\n"
+        }
+      ]
+    },
+    "data/battle_ai_scripts.s": {
+      "before_sha256": "f016a075885c1e949a912bca46afa9ea705cc4778bacd677b78416b042c3a38c",
+      "after_sha256": "f9ec414bfaa82996907a9cd1966299d1e61634bf5863353e53d593d0e1adbfe5",
+      "hunks": [
+        {
+          "before": "\tif_move MOVE_BELLOW, Score_Minus10\n\n",
+          "after": "\tif_move MOVE_BELLOW, Score_Minus10\n\tif_move MOVE_SNARL, Score_Minus10\n\n"
+        }
+      ]
+    }
+  }
+}

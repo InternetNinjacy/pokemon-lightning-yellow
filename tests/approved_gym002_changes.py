@@ -17,17 +17,57 @@ def prior_gym002_source(path, source=None):
     # The approved source-contract test checks each slot independently; this projection
     # additionally requires byte-for-byte agreement with the reviewed Gym block.
     if str(path) == "src/data/trainer_parties.h":
-        gym_pattern = r"static const struct TrainerMon\w+\s+sParty_LeaderSabrina\[\]\s*=\s*\{.*?\n\};"
+        gym_pattern = r"static const struct TrainerMon\w+\s+sParty_BossGiovanni\[\]\s*=\s*\{.*?\n\};"
         gym_before = list(re.finditer(gym_pattern, original, re.S))
         gym_after = list(re.finditer(gym_pattern, source, re.S))
-        assert len(gym_before) == len(gym_after) == 1, "LeaderSabrina: protected original/new block count"
-        assert gym_after[0].group() == "static const struct TrainerMonNoItemCustomMoves sParty_LeaderSabrina[] = {\n    {\n        .iv = 0,\n        .lvl = 43,\n        .species = SPECIES_GENGAR,\n        .moves = {MOVE_HYPNOSIS, MOVE_DREAM_EATER, MOVE_SHADOW_PUNCH, MOVE_DESTINY_BOND},\n    },\n    {\n        .iv = 0,\n        .lvl = 38,\n        .species = SPECIES_MACHAMP,\n        .moves = {MOVE_VITAL_THROW, MOVE_REVENGE, MOVE_FORESIGHT, MOVE_FOCUS_ENERGY},\n    },\n    {\n        .iv = 0,\n        .lvl = 38,\n        .species = SPECIES_DUSCLOPS,\n        .moves = {MOVE_SHADOW_PUNCH, MOVE_CONFUSE_RAY, MOVE_CURSE, MOVE_NIGHT_SHADE},\n    },\n    {\n        .iv = 0,\n        .lvl = 37,\n        .species = SPECIES_HITMONTOP,\n        .moves = {MOVE_TRIPLE_KICK, MOVE_COUNTER, MOVE_QUICK_ATTACK, MOVE_AGILITY},\n    },\n};", "LeaderSabrina: source changed outside approved Gym contract"
+        assert len(gym_before) == len(gym_after) == 1, "BossGiovanni: protected original/new block count"
+        assert gym_after[0].group() == "static const struct TrainerMonNoItemCustomMoves sParty_BossGiovanni[] = {\n    {\n        .iv = 250,\n        .lvl = 25,\n        .species = SPECIES_HOUNDOOM,\n        .moves = {MOVE_EMBER, MOVE_BITE, MOVE_SMOG, MOVE_HOWL},\n    },\n    {\n        .iv = 250,\n        .lvl = 26,\n        .species = SPECIES_SHARPEDO,\n        .moves = {MOVE_CRUNCH, MOVE_BITE, MOVE_FOCUS_ENERGY, MOVE_SCARY_FACE},\n    },\n    {\n        .iv = 250,\n        .lvl = 27,\n        .species = SPECIES_SHIFTRY,\n        .moves = {MOVE_NATURE_POWER, MOVE_FAKE_OUT, MOVE_GROWTH, MOVE_TORMENT},\n    },\n    {\n        .iv = 250,\n        .lvl = 29,\n        .species = SPECIES_TYRANITAR,\n        .moves = {MOVE_ROCK_SLIDE, MOVE_THRASH, MOVE_BITE, MOVE_DIG},\n    },\n};", "BossGiovanni: source changed outside approved Gym contract"
+        source = source[:gym_after[0].start()] + gym_before[0].group() + source[gym_after[0].end():]
+    if str(path) == "src/data/trainer_parties.h":
+        gym_pattern = r"static const struct TrainerMon\w+\s+sParty_BossGiovanni2\[\]\s*=\s*\{.*?\n\};"
+        gym_before = list(re.finditer(gym_pattern, original, re.S))
+        gym_after = list(re.finditer(gym_pattern, source, re.S))
+        assert len(gym_before) == len(gym_after) == 1, "BossGiovanni2: protected original/new block count"
+        assert gym_after[0].group() == "static const struct TrainerMonNoItemCustomMoves sParty_BossGiovanni2[] = {\n    {\n        .iv = 250,\n        .lvl = 35,\n        .species = SPECIES_HOUNDOOM,\n        .moves = {MOVE_EMBER, MOVE_BITE, MOVE_HOWL, MOVE_ROAR},\n    },\n    {\n        .iv = 250,\n        .lvl = 37,\n        .species = SPECIES_SHARPEDO,\n        .moves = {MOVE_CRUNCH, MOVE_SLASH, MOVE_SCREECH, MOVE_FOCUS_ENERGY},\n    },\n    {\n        .iv = 250,\n        .lvl = 38,\n        .species = SPECIES_SHIFTRY,\n        .moves = {MOVE_NATURE_POWER, MOVE_FAKE_OUT, MOVE_FAINT_ATTACK, MOVE_RAZOR_WIND},\n    },\n    {\n        .iv = 250,\n        .lvl = 36,\n        .species = SPECIES_SNEASEL,\n        .moves = {MOVE_FAINT_ATTACK, MOVE_FURY_SWIPES, MOVE_SCREECH, MOVE_AGILITY},\n    },\n    {\n        .iv = 250,\n        .lvl = 41,\n        .species = SPECIES_TYRANITAR,\n        .moves = {MOVE_ROCK_SLIDE, MOVE_THRASH, MOVE_DIG, MOVE_SCARY_FACE},\n    },\n};", "BossGiovanni2: source changed outside approved Gym contract"
+        source = source[:gym_after[0].start()] + gym_before[0].group() + source[gym_after[0].end():]
+    if str(path) == "src/data/trainer_parties.h":
+        gym_pattern = r"static const struct TrainerMon\w+\s+sParty_LeaderGiovanni\[\]\s*=\s*\{.*?\n\};"
+        gym_before = list(re.finditer(gym_pattern, original, re.S))
+        gym_after = list(re.finditer(gym_pattern, source, re.S))
+        assert len(gym_before) == len(gym_after) == 1, "LeaderGiovanni: protected original/new block count"
+        assert gym_after[0].group() == "static const struct TrainerMonItemCustomMoves sParty_LeaderGiovanni[] = {\n    {\n        .iv = 0,\n        .lvl = 44,\n        .species = SPECIES_HOUNDOOM,\n        .heldItem = ITEM_NONE,\n        .moves = {MOVE_FLAMETHROWER, MOVE_FAINT_ATTACK, MOVE_BITE, MOVE_HOWL},\n    },\n    {\n        .iv = 0,\n        .lvl = 45,\n        .species = SPECIES_SHARPEDO,\n        .heldItem = ITEM_NONE,\n        .moves = {MOVE_CRUNCH, MOVE_SLASH, MOVE_SCREECH, MOVE_SWAGGER},\n    },\n    {\n        .iv = 0,\n        .lvl = 46,\n        .species = SPECIES_SHIFTRY,\n        .heldItem = ITEM_NONE,\n        .moves = {MOVE_FAINT_ATTACK, MOVE_RAZOR_WIND, MOVE_FAKE_OUT, MOVE_NATURE_POWER},\n    },\n    {\n        .iv = 0,\n        .lvl = 43,\n        .species = SPECIES_SNEASEL,\n        .heldItem = ITEM_NONE,\n        .moves = {MOVE_ICY_WIND, MOVE_FAINT_ATTACK, MOVE_AGILITY, MOVE_SCREECH},\n    },\n    {\n        .iv = 0,\n        .lvl = 42,\n        .species = SPECIES_MURKROW,\n        .heldItem = ITEM_NONE,\n        .moves = {MOVE_FAINT_ATTACK, MOVE_NIGHT_SHADE, MOVE_TAUNT, MOVE_PURSUIT},\n    },\n    {\n        .iv = 0,\n        .lvl = 50,\n        .species = SPECIES_TYRANITAR,\n        .heldItem = ITEM_HARD_STONE,\n        .moves = {MOVE_ROCK_SLIDE, MOVE_CRUNCH, MOVE_DIG, MOVE_THRASH},\n    },\n};", "LeaderGiovanni: source changed outside approved Gym contract"
         source = source[:gym_after[0].start()] + gym_before[0].group() + source[gym_after[0].end():]
     if str(path) == "src/data/trainers.h":
-        gym_pattern = r"\[TRAINER_LEADER_SABRINA\]\s*=\s*\{.*?\n    \},"
+        gym_pattern = r"\[TRAINER_BOSS_GIOVANNI\]\s*=\s*\{.*?\n    \},"
         gym_before = list(re.finditer(gym_pattern, original, re.S))
         gym_after = list(re.finditer(gym_pattern, source, re.S))
-        assert len(gym_before) == len(gym_after) == 1, "TRAINER_LEADER_SABRINA: protected original/new block count"
-        assert gym_after[0].group() == "[TRAINER_LEADER_SABRINA] = {\n        .trainerClass = TRAINER_CLASS_LEADER,\n        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,\n        .trainerPic = TRAINER_PIC_LEADER_SABRINA,\n        .trainerName = _(\"SABRINA\"),\n        .items = {ITEM_HYPER_POTION, ITEM_HYPER_POTION, ITEM_FULL_HEAL},\n        .doubleBattle = TRUE,\n        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,\n        .party = NO_ITEM_CUSTOM_MOVES(sParty_LeaderSabrina),\n    },", "TRAINER_LEADER_SABRINA: source changed outside approved Gym contract"
+        assert len(gym_before) == len(gym_after) == 1, "TRAINER_BOSS_GIOVANNI: protected original/new block count"
+        assert gym_after[0].group() == "[TRAINER_BOSS_GIOVANNI] = {\n        .trainerClass = TRAINER_CLASS_BOSS,\n        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_AQUA,\n        .trainerPic = TRAINER_PIC_LEADER_GIOVANNI,\n        .trainerName = _(\"GIOVANNI\"),\n        .items = {},\n        .doubleBattle = FALSE,\n        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,\n        .party = NO_ITEM_CUSTOM_MOVES(sParty_BossGiovanni),\n    },", "TRAINER_BOSS_GIOVANNI: source changed outside approved Gym contract"
         source = source[:gym_after[0].start()] + gym_before[0].group() + source[gym_after[0].end():]
+    if str(path) == "src/data/trainers.h":
+        gym_pattern = r"\[TRAINER_BOSS_GIOVANNI_2\]\s*=\s*\{.*?\n    \},"
+        gym_before = list(re.finditer(gym_pattern, original, re.S))
+        gym_after = list(re.finditer(gym_pattern, source, re.S))
+        assert len(gym_before) == len(gym_after) == 1, "TRAINER_BOSS_GIOVANNI_2: protected original/new block count"
+        assert gym_after[0].group() == "[TRAINER_BOSS_GIOVANNI_2] = {\n        .trainerClass = TRAINER_CLASS_BOSS,\n        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_AQUA,\n        .trainerPic = TRAINER_PIC_LEADER_GIOVANNI,\n        .trainerName = _(\"GIOVANNI\"),\n        .items = {},\n        .doubleBattle = FALSE,\n        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,\n        .party = NO_ITEM_CUSTOM_MOVES(sParty_BossGiovanni2),\n    },", "TRAINER_BOSS_GIOVANNI_2: source changed outside approved Gym contract"
+        source = source[:gym_after[0].start()] + gym_before[0].group() + source[gym_after[0].end():]
+    if str(path) == "src/data/trainers.h":
+        gym_pattern = r"\[TRAINER_LEADER_GIOVANNI\]\s*=\s*\{.*?\n    \},"
+        gym_before = list(re.finditer(gym_pattern, original, re.S))
+        gym_after = list(re.finditer(gym_pattern, source, re.S))
+        assert len(gym_before) == len(gym_after) == 1, "TRAINER_LEADER_GIOVANNI: protected original/new block count"
+        assert gym_after[0].group() == "[TRAINER_LEADER_GIOVANNI] = {\n        .trainerClass = TRAINER_CLASS_LEADER,\n        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_AQUA,\n        .trainerPic = TRAINER_PIC_LEADER_GIOVANNI,\n        .trainerName = _(\"GIOVANNI\"),\n        .items = {ITEM_MAX_POTION, ITEM_SUPER_POTION, ITEM_FULL_RESTORE},\n        .doubleBattle = FALSE,\n        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,\n        .party = ITEM_CUSTOM_MOVES(sParty_LeaderGiovanni),\n    },", "TRAINER_LEADER_GIOVANNI: source changed outside approved Gym contract"
+        source = source[:gym_after[0].start()] + gym_before[0].group() + source[gym_after[0].end():]
+    # Approved Misty Doubles is a separate single-field GYM-002 delta.
+    # Project it away before historical SHA audits without changing frozen digests.
+    if str(path) == "src/data/trainers.h":
+        pattern = r"\[TRAINER_LEADER_MISTY\]\s*=\s*\{.*?\n    \},"
+        before = list(re.finditer(pattern, original, re.S))
+        after = list(re.finditer(pattern, source, re.S))
+        assert len(before) == len(after) == 1, "Misty: protected record count"
+        old_record, new_record = before[0].group(), after[0].group()
+        assert old_record.count(".doubleBattle = FALSE,") == 1
+        expected = old_record.replace(".doubleBattle = FALSE,", ".doubleBattle = TRUE,", 1)
+        assert new_record in (old_record, expected), "Misty: unexpected trainer record change"
+        source = source[:after[0].start()] + old_record + source[after[0].end():]
     return source

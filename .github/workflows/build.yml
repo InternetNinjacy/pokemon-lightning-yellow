@@ -17,12 +17,19 @@ jobs:
       matrix:
         target: [modified, upstream-baseline]
     runs-on: ubuntu-24.04
-    timeout-minutes: 60
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           persist-credentials: false
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 0 # Verify strict prechange source preservation against pinned gameplay main
+      - name: Confirm exact source commit
+        run: |
+          expected="${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}"
+          actual="$(git rev-parse HEAD)"
+          echo "ACCEPTANCE_SHA=$actual"
+          test "$actual" = "$expected"
       - name: Install upstream Linux dependencies and test runner
         run: |
           # Fetch all required packages before either expensive build. Bound
@@ -64,6 +71,15 @@ jobs:
           python3 tests/run_move_pp_tests.py
           python3 tests/run_roar_tests.py
 
+          python3 tests/run_ice_fang_tests.py
+          python3 tests/run_avalanche_tests.py
+          python3 tests/run_moves374_tests.py
+          python3 tests/run_payback_tests.py
+          python3 tests/run_moves382_tests.py
+          python3 tests/run_water_moves385_tests.py
+          python3 tests/run_btl_batch_a_staging_tests.py
+          python3 tests/run_btl_weather_integration_tests.py
+
           python3 tests/run_title_screen_tests.py
 
           python3 tests/run_approved_gift_tests.py
@@ -75,20 +91,38 @@ jobs:
           python3 tests/run_weather_ability_tests.py
           python3 tests/run_weather_species_tests.py
           python3 tests/run_brock_weather_tests.py
+          python3 tests/check_fuchsia_approved_pairs.py
+          python3 tests/check_celadon_approved_pairs.py
+          python3 tests/check_viridian_cole_approved_pair.py
+          python3 tests/check_viridian_atsushi_approved_pair.py
+          python3 tests/check_viridian_takashi_approved_trio.py
+          python3 tests/check_viridian_kiyo_approved_pair.py
+          python3 tests/check_viridian_jason_approved_pair.py
+          python3 tests/check_viridian_samuel_approved_pair.py
+          python3 tests/check_viridian_yuji_approved_pair.py
+          python3 tests/check_viridian_warren_approved_trio.py
+          python3 tests/check_viridian_bags_super_potion_full_heal.py
+          python3 tests/check_giovanni_approved_battles.py
+          python3 tests/check_koga_approved_battle.py
+          python3 tests/check_erika_approved_battle.py
+          python3 tests/check_wrl003_evolution_item_prices.py
           python3 tests/run_special_glalie_tests.py
+          python3 tests/run_special_corphish_tests.py
+          python3 tests/run_sow_event_tests.py
           python3 tests/run_original_effect_tests.py
           python3 tests/run_rtc_tests.py
           python3 tests/run_evolution_tests.py
+          python3 tests/check_center_move_reminder.py
           python3 tests/run_ponyta_tests.py
           python3 tests/run_pokedex_tests.py
           python3 tests/run_typing_tests.py
           python3 tests/run_wild_double_tests.py
           python3 tests/check_route1_encounters.py
-          python3 tests/check_route5_encounters.py
-          python3 tests/check_route8_drowzee.py
           python3 tests/check_route2_encounters.py
           python3 tests/check_route22_encounters.py
           python3 tests/check_route23_encounters.py
+          python3 tests/check_route5_encounters.py
+          python3 tests/check_route8_drowzee.py
           python3 tests/check_victory_road_encounters.py
           python3 tests/check_route3_encounters.py
           python3 tests/check_viridian_forest_encounters.py
@@ -107,13 +141,12 @@ jobs:
           python3 tests/run_vendor_tests.py
           python3 tests/run_capture_tests.py
           python3 tests/run_blaine_tests.py
-          python3 tests/check_sabrina_approved_battle.py
-          python3 tests/check_saffron_two_doubles.py
           python3 tests/run_ranger_tests.py
           python3 tests/run_ordinary_trainer_tests.py
           python3 tests/run_weather_tests.py
           python3 tests/run_special_weather_tests.py
           python3 tests/run_gym_castform_tests.py
+          python3 tests/check_cerulean_luis_approved_battle.py
           python3 tests/run_rival_tests.py
           python3 tests/run_rocket_hideout_roster_tests.py
           python3 tests/run_rocket_hideout_quest_tests.py
@@ -149,6 +182,14 @@ jobs:
           # Already installed with the initial dependencies; verify it remains
           # available without starting another late network/package transaction.
           dpkg-query -W libmgba-dev
+      - name: Focused Center Move Reminder native eligibility and flash acceptance
+        if: matrix.target == 'modified'
+        timeout-minutes: 10
+        run: LIGHTNING_CENTER_REMINDER_LEARNING_ONLY=1 python3 tests/emulator/run.py
+      - name: Focused free Center Move Reminder physical NPC checks in mGBA
+        if: matrix.target == 'modified'
+        timeout-minutes: 10
+        run: LIGHTNING_CENTER_REMINDER_PHYSICAL_ONLY=1 python3 tests/emulator/run.py
       - name: Focused Earth Power native battle tests in mGBA
         if: matrix.target == 'modified'
         timeout-minutes: 10
@@ -162,9 +203,27 @@ jobs:
         timeout-minutes: 10
         run: |
           LIGHTNING_SWARM_ONLY=1 python3 tests/emulator/run.py
+      - name: Focused owner-approved SOW actual native producers and all three walkable map events
+        if: matrix.target == 'modified'
+        timeout-minutes: 10
+        run: |
+          mkdir -p "$RUNNER_TEMP/sow-captures"
+          LIGHTNING_SOW_CAPTURE_DIR="$RUNNER_TEMP/sow-captures" LIGHTNING_SOW_PRODUCERS_ONLY=1 python3 tests/emulator/run.py
+      - name: Upload real SOW emulator framebuffer evidence (PPM only, no ROM)
+        if: matrix.target == 'modified' && always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sow-overworld-evidence-${{ github.sha }}
+          path: ${{ runner.temp }}/sow-captures/*.ppm
+          if-no-files-found: warn
+          retention-days: 14
+      - name: Focused WRL-009 native Route 5 and Route 8 live-access checks
+        if: matrix.target == 'modified'
+        timeout-minutes: 10
+        run: LIGHTNING_WRL_ROUTE_GRASS_ONLY=1 python3 tests/emulator/run.py
       - name: Execute ROM integration tests in mGBA
         if: matrix.target == 'modified'
-        timeout-minutes: 30
+        timeout-minutes: 45
         run: python3 tests/emulator/run.py
       - name: Verify original upstream SHA-1 twice from clean
         if: matrix.target == 'upstream-baseline'

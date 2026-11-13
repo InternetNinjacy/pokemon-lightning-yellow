@@ -2344,6 +2344,11 @@ void SwitchInClearSetData(void)
     s32 i;
     u8 *ptr;
 
+    // A replacement is a different Pokemon, even when it reuses a battler ID.
+    gBattleStruct->damagedByBattlers[gActiveBattler] = 0;
+    for (i = 0; i < MAX_BATTLERS_COUNT; i++)
+        gBattleStruct->damagedByBattlers[i] &= ~(1U << gActiveBattler);
+
     if (gBattleMoves[gCurrentMove].effect != EFFECT_BATON_PASS)
     {
         for (i = 0; i < NUM_BATTLE_STATS; i++)
@@ -3649,6 +3654,13 @@ static void TurnValuesCleanUp(bool8 var0)
     s32 i;
     u8 *dataPtr;
 
+    if (!var0)
+    {
+        gBattleStruct->actedThisTurn = 0;
+        for (i = 0; i < MAX_BATTLERS_COUNT; i++)
+            gBattleStruct->damagedByBattlers[i] = 0;
+    }
+
     for (gActiveBattler = 0; gActiveBattler < gBattlersCount; gActiveBattler++)
     {
         if (var0)
@@ -3731,6 +3743,12 @@ static void RunTurnActionsFunctions(void)
         gCurrentActionFuncId = B_ACTION_FINISHED;
     *(&gBattleStruct->savedTurnActionNumber) = gCurrentTurnActionNumber;
     sTurnActionsFuncsTable[gCurrentActionFuncId]();
+
+    // Mark completion, not selection or damage. Keep this slot marked when a
+    // replacement enters: Generation IV Payback also doubles against switches.
+    if (gBattleStruct->savedTurnActionNumber != gCurrentTurnActionNumber
+     && gBattleStruct->savedTurnActionNumber < gBattlersCount)
+        gBattleStruct->actedThisTurn |= 1U << gBattlerByTurnOrder[gBattleStruct->savedTurnActionNumber];
 
     if (gCurrentTurnActionNumber >= gBattlersCount) // everyone did their actions, turn finished
     {
