@@ -3865,12 +3865,12 @@ const struct SpeciesInfo gSpeciesInfo[] =
     },
     [SPECIES_EEVEE] =
     {
-        .baseHP = 55,
-        .baseAttack = 55,
-        .baseDefense = 50,
-        .baseSpeed = 55,
-        .baseSpAttack = 45,
-        .baseSpDefense = 65,
+        .baseHP = 95,
+        .baseAttack = 115,
+        .baseDefense = 85,
+        .baseSpeed = 95,
+        .baseSpAttack = 50,
+        .baseSpDefense = 85,
         .types = {TYPE_NORMAL, TYPE_NORMAL},
         .catchRate = 45,
         .expYield = 92,
@@ -3952,11 +3952,11 @@ const struct SpeciesInfo gSpeciesInfo[] =
     },
     [SPECIES_FLAREON] =
     {
-        .baseHP = 65,
+        .baseHP = 85,
         .baseAttack = 130,
-        .baseDefense = 60,
+        .baseDefense = 85,
         .baseSpeed = 65,
-        .baseSpAttack = 95,
+        .baseSpAttack = 50,
         .baseSpDefense = 110,
         .types = {TYPE_FIRE, TYPE_FIRE},
         .catchRate = 45,
