@@ -19,6 +19,8 @@ def restore_ordinary_trainer_blocks(path):
         ["git", "show", BASE + ":" + str(path)], text=True)
     from approved_brock_weather_changes import prior_brock_weather_source
     from approved_gym002_changes import prior_gym002_source
+    from approved_gym002_koga_changes import prior_koga_gym002_source
+    from approved_gym002_erika_changes import prior_erika_gym002_source
     from approved_gym001_tucker_changes import prior_gym001_tucker_source
     from approved_gym001_baily_changes import prior_gym001_baily_source
     from approved_fuchsia_three_changes import prior_fuchsia_three_source
@@ -32,7 +34,7 @@ def restore_ordinary_trainer_blocks(path):
     from approved_viridian_yuji_changes import prior_viridian_yuji_source
     from approved_viridian_warren_changes import prior_viridian_warren_source
     from approved_viridian_bags_changes import prior_viridian_bags_source
-    result = prior_celadon_four_source(path, prior_fuchsia_three_source(path, prior_gym001_baily_source(path, prior_gym001_tucker_source(path, prior_viridian_bags_source(path, prior_viridian_cole_source(path, prior_viridian_atsushi_source(path, prior_viridian_takashi_source(path, prior_viridian_warren_source(path, prior_viridian_yuji_source(path, prior_viridian_samuel_source(path, prior_viridian_jason_source(path, prior_viridian_kiyo_source(path, prior_brock_weather_source(path, prior_gym002_source(path)))))))))))))))
+    result = prior_erika_gym002_source(path, prior_koga_gym002_source(path, prior_celadon_four_source(path, prior_fuchsia_three_source(path, prior_gym001_baily_source(path, prior_gym001_tucker_source(path, prior_viridian_bags_source(path, prior_viridian_cole_source(path, prior_viridian_atsushi_source(path, prior_viridian_takashi_source(path, prior_viridian_warren_source(path, prior_viridian_yuji_source(path, prior_viridian_samuel_source(path, prior_viridian_jason_source(path, prior_viridian_kiyo_source(path, prior_brock_weather_source(path, prior_gym002_source(path)))))))))))))))))
     # Rocket Hideout #45 modifies only existing Grunt IDs 8–18. Revert
     # those exact approved records before the ordinary-Trainer baseline check;
     # unrelated changes still fail the final byte-for-byte comparison.

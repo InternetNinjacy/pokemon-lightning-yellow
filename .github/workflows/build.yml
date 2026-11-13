@@ -103,6 +103,8 @@ jobs:
           python3 tests/check_viridian_warren_approved_trio.py
           python3 tests/check_viridian_bags_super_potion_full_heal.py
           python3 tests/check_giovanni_approved_battles.py
+          python3 tests/check_koga_approved_battle.py
+          python3 tests/check_erika_approved_battle.py
           python3 tests/check_wrl003_evolution_item_prices.py
           python3 tests/run_special_glalie_tests.py
           python3 tests/run_special_corphish_tests.py
