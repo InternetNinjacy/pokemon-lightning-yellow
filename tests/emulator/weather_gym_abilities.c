@@ -68,7 +68,7 @@ static void weatherGymAbilityTests(void)
    unsigned pp2=core->busRead8(core,bmon(2)+ABI_BMON_PP);
    CHECK(pp0>0);CHECK(pp2>0);
    unsigned seen0=0,seen2=0,turnFrames;
-   for(turnFrames=0;turnFrames<24000;turnFrames++){
+   for(turnFrames=0;turnFrames<2400;turnFrames++){
     if(core->busRead8(core,bmon(0)+ABI_BMON_PP)<pp0
        &&core->busRead8(core,bmon(2)+ABI_BMON_PP)<pp2
        &&controller(0)==SYM_HandleInputChooseAction)break;
@@ -95,8 +95,8 @@ static void weatherGymAbilityTests(void)
     }
     frames(1,key);
    }
-   if(turnFrames==24000)fprintf(stderr,"Misty turn timeout: exec=%08x ctrl0=%08x ctrl2=%08x action0=%u action2=%u move0=%u move2=%u pp0=%u/%u pp2=%u/%u outcome=%u cb2=%08x seen=%u/%u\\n",core->busRead32(core,SYM_gBattleControllerExecFlags),controller(0),controller(2),core->busRead8(core,SYM_gActionSelectionCursor),core->busRead8(core,SYM_gActionSelectionCursor+2),core->busRead8(core,SYM_gMoveSelectionCursor),core->busRead8(core,SYM_gMoveSelectionCursor+2),core->busRead8(core,bmon(0)+ABI_BMON_PP),pp0,core->busRead8(core,bmon(2)+ABI_BMON_PP),pp2,core->busRead8(core,SYM_gBattleOutcome),core->busRead32(core,SYM_gMain+ABI_MAIN_CB2),seen0,seen2);
-   CHECK(turnFrames<24000);
+   if(turnFrames==2400)fprintf(stderr,"Misty turn timeout: exec=%08x ctrl0=%08x ctrl2=%08x action0=%u action2=%u move0=%u move2=%u pp0=%u/%u pp2=%u/%u outcome=%u cb2=%08x seen=%u/%u\\n",core->busRead32(core,SYM_gBattleControllerExecFlags),controller(0),controller(2),core->busRead8(core,SYM_gActionSelectionCursor),core->busRead8(core,SYM_gActionSelectionCursor+2),core->busRead8(core,SYM_gMoveSelectionCursor),core->busRead8(core,SYM_gMoveSelectionCursor+2),core->busRead8(core,bmon(0)+ABI_BMON_PP),pp0,core->busRead8(core,bmon(2)+ABI_BMON_PP),pp2,core->busRead8(core,SYM_gBattleOutcome),core->busRead32(core,SYM_gMain+ABI_MAIN_CB2),seen0,seen2);
+   CHECK(turnFrames<2400);
    CHECK(seen0&&seen2);
    CHECK(core->busRead8(core,bmon(0)+ABI_BMON_PP)<pp0);
    CHECK(core->busRead8(core,bmon(2)+ABI_BMON_PP)<pp2);
