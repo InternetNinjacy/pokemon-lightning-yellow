@@ -35,6 +35,19 @@ def restore_ordinary_trainer_blocks(path):
     from approved_viridian_warren_changes import prior_viridian_warren_source
     from approved_viridian_bags_changes import prior_viridian_bags_source
     result = prior_erika_gym002_source(path, prior_koga_gym002_source(path, prior_celadon_four_source(path, prior_fuchsia_three_source(path, prior_gym001_baily_source(path, prior_gym001_tucker_source(path, prior_viridian_bags_source(path, prior_viridian_cole_source(path, prior_viridian_atsushi_source(path, prior_viridian_takashi_source(path, prior_viridian_warren_source(path, prior_viridian_yuji_source(path, prior_viridian_samuel_source(path, prior_viridian_jason_source(path, prior_viridian_kiyo_source(path, prior_brock_weather_source(path, prior_gym002_source(path)))))))))))))))))
+    # GYM-002 Misty Double Battle is a separately approved leader-only flag.
+    # Reverse exactly that one change before the frozen ordinary-Trainer audit;
+    # any other mutation to this protected file still fails byte-exact review.
+    if str(path) == "src/data/trainers.h":
+        misty_pattern = r"(\\[TRAINER_LEADER_MISTY\\]\\s*=\\s*\\{.*?\\n    \\},)"
+        old_misty = re.search(misty_pattern, original, re.S)
+        new_misty = re.search(misty_pattern, result, re.S)
+        assert old_misty is not None and new_misty is not None
+        old_record, new_record = old_misty.group(1), new_misty.group(1)
+        assert old_record.count(".doubleBattle = FALSE,") == 1
+        assert new_record.count(".doubleBattle = TRUE,") == 1
+        assert new_record.replace(".doubleBattle = TRUE,", ".doubleBattle = FALSE,", 1) == old_record, "Misty leader has unexpected changes"
+        result = result[:new_misty.start(1)] + old_record + result[new_misty.end(1):]
     # Rocket Hideout #45 modifies only existing Grunt IDs 8–18. Revert
     # those exact approved records before the ordinary-Trainer baseline check;
     # unrelated changes still fail the final byte-for-byte comparison.
