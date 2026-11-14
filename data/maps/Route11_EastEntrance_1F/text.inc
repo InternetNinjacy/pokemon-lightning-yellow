@@ -21,13 +21,13 @@ Route11_EastEntrance_1F_Text_RockTunnelToReachLavender::
 
 
 Route11_EastEntrance_1F_Text_GoodRodBadgeReward::
-    .string "Three BADGES? You're ready for\\n"
+    .string "Three BADGES? You're ready for\n"
     .string "better fishing around ROUTE 11!$"
 
 Route11_EastEntrance_1F_Text_ReceivedGoodRod::
-    .string "{PLAYER} received a GOOD ROD\\n"
+    .string "{PLAYER} received a GOOD ROD\n"
     .string "at the ROUTE 11 gate.$"
 
 Route11_EastEntrance_1F_Text_NoRoomGoodRod::
-    .string "Your BAG is full. Make room\\n"
+    .string "Your BAG is full. Make room\n"
     .string "and come back for the GOOD ROD.$"
