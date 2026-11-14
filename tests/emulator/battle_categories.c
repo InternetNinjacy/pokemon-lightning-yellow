@@ -341,13 +341,15 @@ static void trainerAiCategoryAcceptance(void) {
     const unsigned physicalMoves[]={MOVE_FIRE_PUNCH,MOVE_EARTHQUAKE};
     const unsigned targetTypes[]={TYPE_GRASS,TYPE_ELECTRIC};
     for(unsigned i=0;i<2;i++) {
-        // FRLG's opponent AI infers an unobserved ability from the species
-        // table, not the raw battle-mon ability byte. Use actual single-ability
-        // species (Vulpix=Flash Fire, Gengar=Levitate) rather than an invented
-        // Flash Fire Gengar. The Doubles AI also randomly chooses target 0/2;
-        // pin the fixture's target after setup so it evaluates the controlled
-        // battler, without changing AI scores or its move-choice routine.
+        // FRLG's opponent AI infers unobserved abilities from the species
+        // table, not the raw battle-mon ability byte. Approved Vulpix has
+        // two real abilities: Flash Fire and Shadow Tag. Choose its actual
+        // primary slot for this controlled Flash Fire scenario. Gengar's
+        // primary ability is Levitate. Neither ability nor AI score is forged.
+        // Doubles AI can choose target 0/2; pin the target after setup.
         create(abilitySpecies[i],50);
+        monput(player(0),ABI_DATA_ABILITY_NUM,0);
+        CHECK(monget(player(0),ABI_DATA_ABILITY_NUM)==0);
         CALL(CopyPlayerPartyMonToBattleData,0,0);
         CHECK(core->busRead16(core,bmon(0)+ABI_BMON_SPECIES)==abilitySpecies[i]);
         CHECK(core->busRead8(core,bmon(0)+ABI_BMON_ABILITY)==abilities[i]);
