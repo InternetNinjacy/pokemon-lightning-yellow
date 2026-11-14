@@ -1,7 +1,6 @@
 .equ NUM_BOULDERS_PRESENT, VAR_TEMP_2
 
 SeafoamIslands_B4F_MapScripts::
-	map_script MAP_SCRIPT_ON_TRANSITION, SeafoamIslands_B4F_Lightning_OnTransition
 	map_script MAP_SCRIPT_ON_TRANSITION, SeafoamIslands_B4F_OnTransition
 	map_script MAP_SCRIPT_ON_RESUME, SeafoamIslands_B4F_OnResume
 	map_script MAP_SCRIPT_ON_LOAD, SeafoamIslands_B4F_OnLoad
@@ -20,6 +19,7 @@ SeafoamIslands_B4F_EventScript_TryRemoveArticuno::
 	return
 
 SeafoamIslands_B4F_OnTransition::
+	call SeafoamIslands_B4F_EventScript_ShowLightningSuicune
 	call_if_unset FLAG_FOUGHT_ARTICUNO, SeafoamIslands_B4F_EventScript_ShowArticuno
 	call_if_unset FLAG_STOPPED_SEAFOAM_B4F_CURRENT, SeafoamIslands_B4F_EventScript_CheckStoppedCurrent
 	call_if_set FLAG_STOPPED_SEAFOAM_B4F_CURRENT, SeafoamIslands_B4F_EventScript_SetNoCurrentLayout
@@ -196,9 +196,6 @@ SeafoamIslands_B4F_EventScript_FastCurrentSign::
 	msgbox SeafoamIslands_B4F_Text_DangerFastCurrent, MSGBOX_SIGN
 	end
 
-SeafoamIslands_B4F_Lightning_OnTransition::
-	call SeafoamIslands_B4F_EventScript_ShowLightningSuicune
-	end
 
 @ Issue #234: original FireRed-style post-League stationary encounter.
 @ The battle remains independent of all other legendary events.
