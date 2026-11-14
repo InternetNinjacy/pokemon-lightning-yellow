@@ -49,6 +49,9 @@ jobs:
         run: |
           scripts/prepare-baseline.sh
           make -j2
+      - name: Run real compiled four-legendary native changed-path acceptance
+        timeout-minutes: 15
+        run: LIGHTNING_LEGENDARY_ONLY=1 python3 tests/emulator/run.py
       - name: Run selected real-ROM headless mGBA regression
         timeout-minutes: 35
         run: python3 tests/emulator/run.py
