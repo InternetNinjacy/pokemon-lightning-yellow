@@ -13,7 +13,7 @@ PROFILES = ("VULPIX", "NINETALES", "PONYTA", "RAPIDASH", "EEVEE", "FLAREON")
 
 
 def _record(source, species):
-    pattern = r"\\[SPECIES_" + species + r"\\]\\s*=\\s*\\{.*?\\n    \\},"
+    pattern = r"\[SPECIES_" + species + r"\]\s*=\s*\{.*?\n    \},"
     entries = list(re.finditer(pattern, source, re.S))
     assert len(entries) == 1, "missing/duplicated species record: " + species
     return entries[0]
