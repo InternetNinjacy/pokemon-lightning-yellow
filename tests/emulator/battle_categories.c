@@ -337,15 +337,16 @@ static void trainerAiCategoryAcceptance(void) {
     // The ability-off control must restore the Physical score; do not forge
     // move scores or replace the AI's actual chosen action.
     const unsigned abilities[]={ABILITY_FLASH_FIRE,ABILITY_LEVITATE};
-    const unsigned abilitySpecies[]={SPECIES_VULPIX,SPECIES_GENGAR};
+    const unsigned abilitySpecies[]={SPECIES_FLAREON,SPECIES_GENGAR};
     const unsigned physicalMoves[]={MOVE_FIRE_PUNCH,MOVE_EARTHQUAKE};
     const unsigned targetTypes[]={TYPE_GRASS,TYPE_ELECTRIC};
     for(unsigned i=0;i<2;i++) {
-        // FRLG's opponent AI infers unobserved abilities from the species
-        // table, not the raw battle-mon ability byte. Approved Vulpix has
-        // two real abilities: Flash Fire and Shadow Tag. Choose its actual
-        // primary slot for this controlled Flash Fire scenario. Gengar's
-        // primary ability is Levitate. Neither ability nor AI score is forged.
+        // FRLG's opponent AI infers an unobserved ability from species
+        // data, not merely the raw battle-mon byte. Approved Vulpix can
+        // have Flash Fire OR Shadow Tag and is unsuitable for an unobserved
+        // immunity guarantee. Flareon genuinely has Flash Fire as its sole
+        // populated ability; Gengar genuinely has Levitate. Select the
+        // natural primary ability slot for each, without faking AI scores.
         // Doubles AI can choose target 0/2; pin the target after setup.
         create(abilitySpecies[i],50);
         monput(player(0),ABI_DATA_ABILITY_NUM,0);
