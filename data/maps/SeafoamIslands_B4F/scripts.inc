@@ -19,6 +19,7 @@ SeafoamIslands_B4F_EventScript_TryRemoveArticuno::
 	return
 
 SeafoamIslands_B4F_OnTransition::
+	call SeafoamIslands_B4F_EventScript_ShowLightningSuicune
 	call_if_unset FLAG_FOUGHT_ARTICUNO, SeafoamIslands_B4F_EventScript_ShowArticuno
 	call_if_unset FLAG_STOPPED_SEAFOAM_B4F_CURRENT, SeafoamIslands_B4F_EventScript_CheckStoppedCurrent
 	call_if_set FLAG_STOPPED_SEAFOAM_B4F_CURRENT, SeafoamIslands_B4F_EventScript_SetNoCurrentLayout
@@ -193,4 +194,58 @@ SeafoamIslands_B4F_EventScript_BoulderHintSign::
 
 SeafoamIslands_B4F_EventScript_FastCurrentSign::
 	msgbox SeafoamIslands_B4F_Text_DangerFastCurrent, MSGBOX_SIGN
+	end
+
+
+@ Issue #234: original FireRed-style post-League stationary encounter.
+@ The battle remains independent of all other legendary events.
+SeafoamIslands_B4F_EventScript_ShowLightningSuicune::
+	goto_if_unset FLAG_SYS_GAME_CLEAR, SeafoamIslands_B4F_EventScript_HideLightningSuicune
+	goto_if_set FLAG_FOUGHT_LIGHTNING_SUICUNE, SeafoamIslands_B4F_EventScript_HideLightningSuicune
+	clearflag FLAG_HIDE_LIGHTNING_SUICUNE
+	return
+
+SeafoamIslands_B4F_EventScript_HideLightningSuicune::
+	setflag FLAG_HIDE_LIGHTNING_SUICUNE
+	return
+
+SeafoamIslands_B4F_EventScript_LightningSuicune::
+	goto_if_questlog EventScript_ReleaseEnd
+	goto_if_unset FLAG_SYS_GAME_CLEAR, EventScript_ReleaseEnd
+	goto_if_set FLAG_FOUGHT_LIGHTNING_SUICUNE, EventScript_ReleaseEnd
+	special QuestLog_CutRecording
+	lock
+	faceplayer
+	setwildbattle SPECIES_SUICUNE, 50
+	waitse
+	playmoncry SPECIES_SUICUNE, CRY_MODE_ENCOUNTER
+	message Text_Gyaoo
+	waitmessage
+	waitmoncry
+	delay 10
+	playbgm MUS_ENCOUNTER_GYM_LEADER, 0
+	waitbuttonpress
+	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	special StartLegendaryBattle
+	waitstate
+	clearflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, SeafoamIslands_B4F_EventScript_DefeatedLightningSuicune
+	goto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, SeafoamIslands_B4F_EventScript_CaughtLightningSuicune
+	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, SeafoamIslands_B4F_EventScript_RanFromLightningSuicune
+	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, SeafoamIslands_B4F_EventScript_RanFromLightningSuicune
+	release
+	end
+
+SeafoamIslands_B4F_EventScript_CaughtLightningSuicune::
+	setflag FLAG_FOUGHT_LIGHTNING_SUICUNE
+	goto EventScript_RemoveStaticMon
+
+SeafoamIslands_B4F_EventScript_DefeatedLightningSuicune::
+	setflag FLAG_FOUGHT_LIGHTNING_SUICUNE
+	goto EventScript_RemoveStaticMon
+
+SeafoamIslands_B4F_EventScript_RanFromLightningSuicune::
+	setvar VAR_0x8004, SPECIES_SUICUNE
+	goto EventScript_MonFlewAway
 	end
