@@ -358,6 +358,7 @@ static void dexTests(void) {
 #include "sow_placement.c"
 #include "sow_producers.c"
 #include "legendary_statics.c"
+#include "legendary_physical_approach.c"
 #include "lighting_preview.c"
 #include "gym_castform.c"
 #include "rival.c"
@@ -501,6 +502,7 @@ int main(int argc,char **argv) {
     if(getenv("LIGHTNING_LEGENDARY_PHYSICAL_ONLY")){legendaryPhysicalInteractionTests();printf("PASS: %u physical legendary interaction assertions\\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_LEGENDARY_TELEPORT_ONLY")){legendaryTeleportNativeTests();printf("PASS: %u teleport legendary assertions\\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_LEGENDARY_WHITEOUT_ONLY")){legendaryWhiteoutNativeTests();printf("PASS: %u whiteout legendary assertions\\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_LEGENDARY_WALK_ONLY")){legendaryPhysicalDryApproachTests();printf("PASS: %u real physical legendary dry walking assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_LEGENDARY_APPROACH_ONLY")){legendaryMapApproachTests();printf("PASS: %u native legendary authored-entry reachability checks\\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_LEGENDARY_DEFEAT_ONLY")){legendaryDefeatNativeTests();printf("PASS: %u four native legendary KO assertions\\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_LEGENDARY_CAPTURE_ONLY")){legendaryFourCaptureOneSaveTests();printf("PASS: %u four-in-one-save legendary capture assertions\\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
