@@ -1,2 +1,60 @@
 MtEmber_SummitPath_1F_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, MtEmber_SummitPath_1F_Lightning_OnTransition
 	.byte 0
+
+MtEmber_SummitPath_1F_Lightning_OnTransition::
+	call MtEmber_SummitPath_1F_EventScript_ShowLightningEntei
+	end
+
+@ Issue #234: original FireRed-style post-League stationary encounter.
+@ The battle remains independent of all other legendary events.
+MtEmber_SummitPath_1F_EventScript_ShowLightningEntei::
+	goto_if_unset FLAG_SYS_GAME_CLEAR, MtEmber_SummitPath_1F_EventScript_HideLightningEntei
+	goto_if_set FLAG_FOUGHT_LIGHTNING_ENTEI, MtEmber_SummitPath_1F_EventScript_HideLightningEntei
+	clearflag FLAG_HIDE_LIGHTNING_ENTEI
+	return
+
+MtEmber_SummitPath_1F_EventScript_HideLightningEntei::
+	setflag FLAG_HIDE_LIGHTNING_ENTEI
+	return
+
+MtEmber_SummitPath_1F_EventScript_LightningEntei::
+	goto_if_questlog EventScript_ReleaseEnd
+	goto_if_unset FLAG_SYS_GAME_CLEAR, EventScript_ReleaseEnd
+	goto_if_set FLAG_FOUGHT_LIGHTNING_ENTEI, EventScript_ReleaseEnd
+	special QuestLog_CutRecording
+	lock
+	faceplayer
+	setwildbattle SPECIES_ENTEI, 50
+	waitse
+	playmoncry SPECIES_ENTEI, CRY_MODE_ENCOUNTER
+	message Text_Gyaoo
+	waitmessage
+	waitmoncry
+	delay 10
+	playbgm MUS_ENCOUNTER_GYM_LEADER, 0
+	waitbuttonpress
+	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	special StartLegendaryBattle
+	waitstate
+	clearflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, MtEmber_SummitPath_1F_EventScript_DefeatedLightningEntei
+	goto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, MtEmber_SummitPath_1F_EventScript_CaughtLightningEntei
+	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, MtEmber_SummitPath_1F_EventScript_RanFromLightningEntei
+	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, MtEmber_SummitPath_1F_EventScript_RanFromLightningEntei
+	release
+	end
+
+MtEmber_SummitPath_1F_EventScript_CaughtLightningEntei::
+	setflag FLAG_FOUGHT_LIGHTNING_ENTEI
+	goto EventScript_RemoveStaticMon
+
+MtEmber_SummitPath_1F_EventScript_DefeatedLightningEntei::
+	setflag FLAG_FOUGHT_LIGHTNING_ENTEI
+	goto EventScript_RemoveStaticMon
+
+MtEmber_SummitPath_1F_EventScript_RanFromLightningEntei::
+	setvar VAR_0x8004, SPECIES_ENTEI
+	goto EventScript_MonFlewAway
+	end
