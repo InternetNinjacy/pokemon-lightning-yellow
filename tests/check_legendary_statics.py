@@ -18,6 +18,7 @@ SPECS = {
 LAYOUTS = {
     item["id"]: item
     for item in json.loads((ROOT / "data/layouts/layouts.json").read_text())["layouts"]
+    if "id" in item
 }
 FLAGS = (ROOT / "include/constants/flags.h").read_text()
 all_flags = set()
