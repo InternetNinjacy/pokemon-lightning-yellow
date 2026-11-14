@@ -8,6 +8,7 @@ static void legendaryPhysicalDryApproachTests(void)
  static const unsigned widths[]={38,144},heights[]={24,20};
  static const unsigned goalX[]={29,104},goalY[]={9,12};
  for(unsigned caseId=0;caseId<2;caseId++){
+  if(getenv("LIGHTNING_LEGENDARY_WALK_MEW_ONLY") && caseId==0)continue;
   CHECK(core->loadState(core,bootState));
   daycareFixture(1);
   CALL(FlagSet,FLAG_SYS_GAME_CLEAR);
