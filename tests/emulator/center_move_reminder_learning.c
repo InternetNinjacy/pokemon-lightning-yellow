@@ -14,24 +14,24 @@ static void centerMoveReminderLearningTests(void) {
     vendorFixture();
     fossilWarp(MAP_GROUP(MAP_VIRIDIAN_CITY_POKEMON_CENTER_1F),
                MAP_NUM(MAP_VIRIDIAN_CITY_POKEMON_CENTER_1F), 10, 5);
-    // A Pokémon at level 15 cannot remember a level-16 evolved-species move.
-    CALL(CreateMon, player(0), SPECIES_VAPOREON, 15, 31, 1, 7, 0, 0);
+    // Vaporeon at Lv7 cannot remember its newly approved Lv8 Water Gun.
+    CALL(CreateMon, player(0), SPECIES_VAPOREON, 7, 31, 1, 7, 0, 0);
     for (unsigned i = 0; i < 4; i++)
         monput(player(0), ABI_DATA_MOVE1 + i, MOVE_SPLASH);
     unsigned n = centerEligible(player(0));
     CHECK(n > 0);
-    CHECK(centerHasMove(n, MOVE_TACKLE));
+    CHECK(centerHasMove(n, MOVE_BUBBLE));
     CHECK(!centerHasMove(n, MOVE_WATER_GUN));
-    CHECK(!centerHasMove(n, MOVE_GROWL)); // unevolved Eevee-only
+    CHECK(!centerHasMove(n, MOVE_TAIL_WHIP)); // unevolved Eevee-only
     CHECK(CALL(GetNumberOfRelearnableMoves, player(0)) == n);
 
-    // At level 16 Water Gun is eligible for Vaporeon, never Eevee's Growl.
-    CALL(CreateMon, player(0), SPECIES_VAPOREON, 16, 31, 1, 7, 0, 0);
+    // At Lv8 Water Gun is eligible for Vaporeon, never Eevee's Tail Whip.
+    CALL(CreateMon, player(0), SPECIES_VAPOREON, 8, 31, 1, 7, 0, 0);
     for (unsigned i = 0; i < 4; i++)
         monput(player(0), ABI_DATA_MOVE1 + i, MOVE_SPLASH);
     n = centerEligible(player(0));
     CHECK(centerHasMove(n, MOVE_WATER_GUN));
-    CHECK(!centerHasMove(n, MOVE_GROWL));
+    CHECK(!centerHasMove(n, MOVE_TAIL_WHIP));
     // Confirm known moves are excluded and full four-move slots do not
     // automatically overwrite or consume any original move.
     monput(player(0), ABI_DATA_MOVE1, MOVE_WATER_GUN);
@@ -40,27 +40,27 @@ static void centerMoveReminderLearningTests(void) {
     CHECK(monget(player(0), ABI_DATA_MOVE1) == MOVE_WATER_GUN);
     CHECK(monget(player(0), ABI_DATA_MOVE2) == MOVE_SPLASH);
 
-    // Espeon uses the same current-species rule, not Eevee's Growl.
-    CALL(CreateMon, player(0), SPECIES_ESPEON, 16, 31, 1, 7, 0, 0);
+    // Espeon uses the same current-species rule, not Eevee's Tail Whip.
+    CALL(CreateMon, player(0), SPECIES_ESPEON, 8, 31, 1, 7, 0, 0);
     for (unsigned i = 0; i < 4; i++)
         monput(player(0), ABI_DATA_MOVE1 + i, MOVE_SPLASH);
     n = centerEligible(player(0));
     CHECK(centerHasMove(n, MOVE_CONFUSION));
     CHECK(!centerHasMove(n, MOVE_WATER_GUN));
-    CHECK(!centerHasMove(n, MOVE_GROWL));
+    CHECK(!centerHasMove(n, MOVE_TAIL_WHIP));
 
     // No available move when the Pokémon knows every eligible level-1 move.
     CALL(CreateMon, player(0), SPECIES_EEVEE, 1, 31, 1, 7, 0, 0);
     monput(player(0), ABI_DATA_MOVE1, MOVE_TACKLE);
     monput(player(0), ABI_DATA_MOVE2, MOVE_TAIL_WHIP);
-    monput(player(0), ABI_DATA_MOVE3, MOVE_HELPING_HAND);
+    monput(player(0), ABI_DATA_MOVE3, MOVE_NONE);
     monput(player(0), ABI_DATA_MOVE4, MOVE_NONE);
     CHECK(centerEligible(player(0)) == 0);
     CHECK(CALL(GetNumberOfRelearnableMoves, player(0)) == 0);
 
     // The production learn-move routine actually modifies a slot, and flash
     // persistence protects the new move and leaves the original balance.
-    CALL(CreateMon, player(0), SPECIES_VAPOREON, 16, 31, 1, 7, 0, 0);
+    CALL(CreateMon, player(0), SPECIES_VAPOREON, 8, 31, 1, 7, 0, 0);
     for (unsigned i = 0; i < 4; i++)
         monput(player(0), ABI_DATA_MOVE1 + i, MOVE_NONE);
     unsigned money = CALL(GetMoney, careSave1() + ABI_SAVE1_MONEY);
@@ -79,10 +79,10 @@ static void centerMoveReminderLearningTests(void) {
     vendorFixture();
     fossilWarp(MAP_GROUP(MAP_VIRIDIAN_CITY_POKEMON_CENTER_1F),
                MAP_NUM(MAP_VIRIDIAN_CITY_POKEMON_CENTER_1F), 10, 5);
-    CALL(CreateMon, player(0), SPECIES_VAPOREON, 16, 31, 1, 7, 0, 0);
-    monput(player(0), ABI_DATA_MOVE1, MOVE_TACKLE);
+    CALL(CreateMon, player(0), SPECIES_VAPOREON, 8, 31, 1, 7, 0, 0);
+    monput(player(0), ABI_DATA_MOVE1, MOVE_HELPING_HAND);
     monput(player(0), ABI_DATA_MOVE2, MOVE_TAIL_WHIP);
-    monput(player(0), ABI_DATA_MOVE3, MOVE_HELPING_HAND);
+    monput(player(0), ABI_DATA_MOVE3, MOVE_SPLASH);
     monput(player(0), ABI_DATA_MOVE4, MOVE_NONE);
     CHECK(centerEligible(player(0)) == 2);
     CHECK(centerHasMove(2, MOVE_WATER_GUN));
@@ -145,15 +145,15 @@ static void centerMoveReminderLearningTests(void) {
     vendorFixture();
     fossilWarp(MAP_GROUP(MAP_VIRIDIAN_CITY_POKEMON_CENTER_1F),
                MAP_NUM(MAP_VIRIDIAN_CITY_POKEMON_CENTER_1F), 10, 5);
-    CALL(CreateMon, player(0), SPECIES_VAPOREON, 16, 31, 1, 7, 0, 0);
-    monput(player(0), ABI_DATA_MOVE1, MOVE_TACKLE);
+    CALL(CreateMon, player(0), SPECIES_VAPOREON, 8, 31, 1, 7, 0, 0);
+    monput(player(0), ABI_DATA_MOVE1, MOVE_HELPING_HAND);
     monput(player(0), ABI_DATA_MOVE2, MOVE_TAIL_WHIP);
-    monput(player(0), ABI_DATA_MOVE3, MOVE_HELPING_HAND);
-    monput(player(0), ABI_DATA_MOVE4, MOVE_SPLASH);
+    monput(player(0), ABI_DATA_MOVE3, MOVE_SPLASH);
+    monput(player(0), ABI_DATA_MOVE4, MOVE_TACKLE);
     CHECK(centerEligible(player(0)) == 2);
     CHECK(centerHasMove(2, MOVE_WATER_GUN));
     unsigned fullMoney = CALL(GetMoney, careSave1() + ABI_SAVE1_MONEY);
-    unsigned oldMoves[4] = {MOVE_TACKLE, MOVE_TAIL_WHIP, MOVE_HELPING_HAND, MOVE_SPLASH};
+    unsigned oldMoves[4] = {MOVE_HELPING_HAND, MOVE_TAIL_WHIP, MOVE_SPLASH, MOVE_TACKLE};
     unsigned fullNpc = CALL(GetObjectEventIdByXY, 17, 11);
     CHECK(fullNpc < ABI_OBJECT_COUNT);
     core->busWrite8(core, SYM_gSelectedObjectEvent, 0xFF);
@@ -215,7 +215,7 @@ static void centerMoveReminderLearningTests(void) {
             monget(player(0), ABI_DATA_MOVE1));
     CHECK(f < 6000);
     frames(240, 0); // wait for standard summary's palette and input setup
-    press(1); // select first move (Tackle) via actual summary A input
+    press(1); // select first move (Helping Hand) via actual summary A input
     for (f = 0; f < 6000; f++) {
         if ((core->busRead32(core, SYM_gMain + ABI_MAIN_CB2) & ~1U)
             == SYM_CB2_MoveRelearner) break;
