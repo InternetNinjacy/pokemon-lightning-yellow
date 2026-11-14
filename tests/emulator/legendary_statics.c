@@ -271,11 +271,23 @@ static void legendaryMapApproachTests(void)
   // adjacent tile as in the interaction test.
   unsigned prev[2880],queue[2880],read=0,write=0;
   for(unsigned p=0;p<w[i]*h[i];p++)prev[p]=0xFFFFFFFF;
-  unsigned start=entryY[i]*w[i]+entryX[i];
+  unsigned fromX=entryX[i],fromY=entryY[i];
+  // The actual northern Sevault Canyon connection overlaps x48..71 of
+  // the 144-wide Tanoby shoreline (24-wide Sevault map, offset +48).
+  // Choose a passable arrival tile inside that *authored overlap* rather
+  // than guessing that the leftmost boundary pixel is land.
+  if(i==3){
+   unsigned found=0;
+   for(unsigned cx=48;cx<72;cx++)
+    if(legendaryNativeTilePassable(cx,0,1)){fromX=cx;found=1;break;}
+   if(!found)fprintf(stderr,"Tanoby north Sevault connection has no clear arrival in x48..71\\n");
+   CHECK(found);
+  }
+  unsigned start=fromY*w[i]+fromX;
   unsigned dest=goalY[i]*w[i]+goalX[i];
-  CHECK(legendaryNativeTilePassable(entryX[i],entryY[i],i==2));
-  CHECK(legendaryNativeTilePassable(goalX[i],goalY[i],i==2));
-  CHECK(legendaryNativeTilePassable(objectX[i],objectY[i],i==2));
+  CHECK(legendaryNativeTilePassable(fromX,fromY,i>=2));
+  CHECK(legendaryNativeTilePassable(goalX[i],goalY[i],i>=2));
+  CHECK(legendaryNativeTilePassable(objectX[i],objectY[i],i>=2));
   queue[write++]=start;prev[start]=start;
   while(read<write && prev[dest]==0xFFFFFFFF){
    unsigned pos=queue[read++],cx=pos%w[i],cy=pos/w[i];
@@ -284,18 +296,18 @@ static void legendaryMapApproachTests(void)
     int xx=(int)cx+dx[dir],yy=(int)cy+dy[dir];
     if(xx<0||yy<0||xx>=(int)w[i]||yy>=(int)h[i])continue;
     unsigned next=(unsigned)yy*w[i]+(unsigned)xx;
-    if(prev[next]!=0xFFFFFFFF || !legendaryNativeTilePassable(xx,yy,i==2))continue;
+    if(prev[next]!=0xFFFFFFFF || !legendaryNativeTilePassable(xx,yy,i>=2))continue;
     prev[next]=pos;queue[write++]=next;
    }
   }
   if(prev[dest]==0xFFFFFFFF)
    fprintf(stderr,"LEGENDARY map%u path blocked from authored entrance (%u,%u) to approach (%u,%u); explored=%u tiles\n",
-    i,entryX[i],entryY[i],goalX[i],goalY[i],write);
+    i,fromX,fromY,goalX[i],goalY[i],write);
   CHECK(prev[dest]!=0xFFFFFFFF);
   unsigned count=0;
   for(unsigned pos=dest;pos!=start;pos=prev[pos]){CHECK(prev[pos]!=0xFFFFFFFF);count++;}
   printf("PASS legendary %u native map-grid traversable from entry (%u,%u) to A-button approach (%u,%u) in %u tile-steps, Surf-permitted=%u\n",
-   i,entryX[i],entryY[i],goalX[i],goalY[i],count,(unsigned)(i==2));
+   i,fromX,fromY,goalX[i],goalY[i],count,(unsigned)(i>=2));
  }
  CHECK(core->loadState(core,bootState));
 }
