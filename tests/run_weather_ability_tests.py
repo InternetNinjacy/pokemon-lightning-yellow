@@ -7,6 +7,7 @@ from pathlib import Path
 from approved_weather_ability_changes import prior_weather_ability_source
 from approved_special_glalie_changes import prior_special_glalie_source
 from approved_weather_species_slots import prior_weather_species_source
+from approved_six_species_profile_projection import prior_six_species_profile_source
 
 manifest = json.loads(Path('tests/specifications/weather_ability_delta.json').read_text())
 for path, row in manifest['files'].items():
@@ -26,5 +27,5 @@ for name in re.findall(r'\[ABILITY_\w+\] = _\("([^"]*)"\)', text):
     assert len(name) <= 12, name
 # No allocation or species/save schema changes in this mechanics-only slice.
 for path, digest in manifest['preserved'].items():
-    assert hashlib.sha256((prior_weather_species_source() if path == 'src/data/pokemon/species_info.h' else prior_special_glalie_source(path)).encode()).hexdigest() == digest, path
+    assert hashlib.sha256((prior_six_species_profile_source(prior_weather_species_source()) if path == 'src/data/pokemon/species_info.h' else prior_special_glalie_source(path)).encode()).hexdigest() == digest, path
 print('PASS:81 unique ability IDs with all78 original IDs unchanged, complete names/descriptions, exact frozen-source reversals and unchanged species/save data (static; native runtime required).')
