@@ -10,9 +10,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SPECS = {
-    "Raikou": ("Route10", "RAIKOU", 7, 39, 3),
-    "Entei": ("MtEmber_SummitPath_1F", "ENTEI", 4, 8, 0),
-    "Suicune": ("SeafoamIslands_B4F", "SUICUNE", 30, 9, 4),
+    "Raikou": ("Route10", "RAIKOU", 8, 41, 3),
+    "Entei": ("MtEmber_SummitPath_1F", "ENTEI", 4, 8, 3),
+    "Suicune": ("SeafoamIslands_B4F", "SUICUNE", 30, 9, 1),
     "Mew": ("SevenIsland_TanobyRuins", "MEW", 105, 12, 3),
 }
 LAYOUTS = {
@@ -54,6 +54,7 @@ def check_species(name, map_name, species, x, y, elevation):
     candidates.sort()
     print(f"CANDIDATE {name} current=({x},{y}) collision={collision_at(x,y)} alternatives={candidates[:18]}", flush=True)
     assert collision_at(x, y) == 0, (name, "object tile collision", x, y, collision_at(x, y))
+    assert ((cells[y * width + x] >> 12) & 15) == elevation, (name, "wrong elevation", x, y)
     neighbours = [(nx, ny) for nx, ny in
                   ((x-1, y), (x+1, y), (x, y-1), (x, y+1))
                   if 0 <= nx < width and 0 <= ny < height and collision_at(nx, ny) == 0]
