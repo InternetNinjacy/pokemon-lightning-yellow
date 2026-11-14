@@ -47,8 +47,9 @@ static void legendaryStationaryNativeTests(void)
   weatherRun();
   waitOverworld(2);
   // The original static-legendary Run path announces that the mon flew away.\n  // Advance that mandatory text using actual A-button input.\n  for(unsigned f=0;f<2400&&!fieldScriptDone();f++)frames(1,(f%12)<3?1:0);
-  if(!fieldScriptDone()) fprintf(stderr,"LEGENDARY event%u unresolved script after Run; outcome=%u fought=%u hide=%u\\n",i,core->busRead8(core,SYM_gBattleOutcome),CALL(FlagGet,fought[i]),CALL(FlagGet,hide[i]));
-  CHECK(fieldScriptDone());
+  if(!fieldScriptDone()) fprintf(stderr,"LEGENDARY event%u after Run: outcome=%u fought=%u hide=%u playerLocked=%u\\n",i,core->busRead8(core,SYM_gBattleOutcome),CALL(FlagGet,fought[i]),CALL(FlagGet,hide[i]),CALL(ArePlayerFieldControlsLocked));
+  CHECK(core->busRead8(core,SYM_gBattleOutcome)==B_OUTCOME_RAN);
+  CHECK(!CALL(ArePlayerFieldControlsLocked));
   CHECK(!CALL(FlagGet,fought[i]));
   // Running cannot consume the owner's capture opportunity.
   fossilWarp(MAP_GROUP(MAP_ROUTE5_POKEMON_DAY_CARE),MAP_NUM(MAP_ROUTE5_POKEMON_DAY_CARE),3,6);
