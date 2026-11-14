@@ -362,3 +362,51 @@ static void legendaryWhiteoutNativeTests(void)
  }
  CHECK(core->loadState(core,bootState));
 }
+
+
+/* Teleport is executed as a real battle move, not a forged outcome code. */
+static void legendaryTeleportNativeTests(void)
+{
+ static const unsigned maps[]={MAP_ROUTE10,MAP_MT_EMBER_SUMMIT_PATH_1F,
+                                MAP_SEAFOAM_ISLANDS_B4F,MAP_SEVEN_ISLAND_TANOBY_RUINS};
+ static const unsigned ids[]={11,1,5,5};
+ static const unsigned x[]={8,3,29,104},y[]={42,8,9,12};
+ static const unsigned species[]={SPECIES_RAIKOU,SPECIES_ENTEI,SPECIES_SUICUNE,SPECIES_MEW};
+ static const unsigned fought[]={FLAG_FOUGHT_LIGHTNING_RAIKOU,FLAG_FOUGHT_LIGHTNING_ENTEI,
+                                 FLAG_FOUGHT_LIGHTNING_SUICUNE,FLAG_FOUGHT_LIGHTNING_MEW};
+ static const unsigned scripts[]={SYM_Route10_EventScript_LightningRaikou,
+                                  SYM_MtEmber_SummitPath_1F_EventScript_LightningEntei,
+                                  SYM_SeafoamIslands_B4F_EventScript_LightningSuicune,
+                                  SYM_SevenIsland_TanobyRuins_EventScript_LightningMew};
+ for(unsigned i=0;i<4;i++){
+  CHECK(core->loadState(core,bootState));
+  daycareFixture(1);
+  CALL(FlagSet,FLAG_SYS_GAME_CLEAR);
+  CALL(CreateMon,player(0),SPECIES_ABRA,100,31,1,12345,0,1234);
+  monput(player(0),ABI_DATA_MOVE1,MOVE_TELEPORT);
+  monput(player(0),ABI_DATA_PP1,20);
+  fossilWarp(MAP_GROUP(maps[i]),MAP_NUM(maps[i]),x[i],y[i]);
+  unsigned object=CALL(GetObjectEventIdByLocalIdAndMap,ids[i],MAP_NUM(maps[i]),MAP_GROUP(maps[i]));
+  CHECK(object<ABI_OBJECT_COUNT);
+  core->busWrite8(core,SYM_gSelectedObjectEvent,object);
+  CALL(VarSet,VAR_LAST_TALKED,ids[i]);
+  fossilStart(scripts[i]);
+  waitAction();
+  CHECK(monget(enemy(0),ABI_DATA_SPECIES)==species[i]);
+  chooseMove(0,0,1);
+  waitOverworld(2);
+  unsigned outcome=core->busRead8(core,SYM_gBattleOutcome);
+  if(outcome!=B_OUTCOME_PLAYER_TELEPORTED)
+   fprintf(stderr,"LEGENDARY %u Teleport outcome=%u expected=%u\n",i,outcome,B_OUTCOME_PLAYER_TELEPORTED);
+  CHECK(outcome==B_OUTCOME_PLAYER_TELEPORTED);
+  for(unsigned frame=0;frame<3000&&!fieldScriptDone();frame++)
+   frames(1,(frame%12)<3?1:0);
+  CHECK(!CALL(FlagGet,fought[i]));
+  flashRoundTrip();
+  CHECK(!CALL(FlagGet,fought[i]));
+  fossilWarp(MAP_GROUP(maps[i]),MAP_NUM(maps[i]),x[i],y[i]);
+  CHECK(CALL(GetObjectEventIdByLocalIdAndMap,ids[i],MAP_NUM(maps[i]),MAP_GROUP(maps[i]))<ABI_OBJECT_COUNT);
+  printf("PASS legendary %u actual Teleport battle escape, saved unclaimed encounter and return\n",i);
+ }
+ CHECK(core->loadState(core,bootState));
+}
