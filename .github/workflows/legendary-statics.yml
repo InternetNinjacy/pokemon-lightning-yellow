@@ -61,6 +61,9 @@ jobs:
       - name: Four actual legendary battle KO and persisted encounter resolution
         timeout-minutes: 15
         run: LIGHTNING_LEGENDARY_DEFEAT_ONLY=1 python3 tests/emulator/run.py
+      - name: Live map-grid reachability from authored entrances to four interaction approaches
+        timeout-minutes: 15
+        run: LIGHTNING_LEGENDARY_APPROACH_ONLY=1 python3 tests/emulator/run.py
       - name: Run selected real-ROM headless mGBA regression
         timeout-minutes: 35
         run: python3 tests/emulator/run.py
