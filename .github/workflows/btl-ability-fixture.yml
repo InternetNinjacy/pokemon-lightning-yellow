@@ -30,6 +30,9 @@ jobs:
           p=Path("src/data/pokemon/species_info.h").read_text()
           a=p[p.index("[SPECIES_VULPIX] ="):p.index("[SPECIES_NINETALES] =")]
           assert ".abilities = {ABILITY_FLASH_FIRE, ABILITY_SHADOW_TAG}" in a
+          assert "SPECIES_FLAREON" in s
+          flareon=p[p.index("[SPECIES_FLAREON] ="):p.index("[SPECIES_PORYGON] =")]
+          assert ".abilities = {ABILITY_FLASH_FIRE, ABILITY_NONE}" in flareon
           print("PASS: real species ability slot and retained strict battle AI assertions")
           PY
       - name: Install native build packages
