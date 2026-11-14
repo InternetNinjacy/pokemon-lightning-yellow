@@ -5,6 +5,7 @@ import json
 import re
 from pathlib import Path
 from approved_weather_species_slots import SLOTS, prior_weather_species_source
+from approved_six_species_profile_projection import prior_six_species_profile_source
 from approved_weather_species_evolution_changes import (
     BEFORE, AFTER, prior_weather_species_evolution_source,
 )
@@ -19,7 +20,7 @@ for name, (old, approved) in SLOTS.items():
     assert match and match.groups() == approved, (name, match.groups() if match else None)
 # The upstream source, including the earlier 35 approved typing changes and every
 # unrelated species field, must be byte-identical after reversing these 16 changes.
-prior = prior_weather_species_source(source)
+prior = prior_six_species_profile_source(prior_weather_species_source(source))
 prior_hash = json.loads(Path('tests/specifications/special_glalie_delta.json').read_text())['species_sha256']
 assert hashlib.sha256(prior.encode()).hexdigest() == prior_hash
 for name, required in {
