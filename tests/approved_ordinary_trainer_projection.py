@@ -84,7 +84,7 @@ def restore_ordinary_trainer_blocks(path):
     # This projection does NOT modify the actual installed game Trainer data.
     if str(path) == "src/data/trainers.h":
         for trainer_id in ("TRAINER_PSYCHIC_TYRON", "TRAINER_CHANNELER_AMANDA"):
-            pattern = r"\\[" + re.escape(trainer_id) + r"\\]\\s*=\\s*\\{.*?\\n    \\},"
+            pattern = r"\[" + re.escape(trainer_id) + r"\]\s*=\s*\{.*?\n    \},"
             historical = list(re.finditer(pattern, original, re.S))
             current = list(re.finditer(pattern, result, re.S))
             assert len(historical) == len(current) == 1, (path, trainer_id)
