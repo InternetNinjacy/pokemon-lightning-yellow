@@ -3,11 +3,15 @@
 from pathlib import Path
 import re,json,hashlib,subprocess
 from approved_rival_changes import prior_rival_source
+from approved_twelve_learnset_projection import prior_twelve_learnsets_source
 from approved_dynamic_weather_changes import prior_dynamic_weather_source
 f=json.loads(Path('tests/specifications/approved_rival_parties.json').read_text())
 d=json.loads(Path('tests/specifications/approved_rival_delta.json').read_text())
 for path,digest in d['before_sha256'].items():
-    assert hashlib.sha256(prior_rival_source(path).encode()).hexdigest()==digest,path
+    original=prior_rival_source(path)
+    if path=='src/data/pokemon/level_up_learnsets.h':
+        original=prior_twelve_learnsets_source(original)
+    assert hashlib.sha256(original.encode()).hexdigest()==digest,path
 parties=Path('src/data/trainer_parties.h').read_text();trainers=Path('src/data/trainers.h').read_text()
 constants=Path('include/constants/moves.h').read_text();items=Path('include/constants/items.h').read_text()
 assert len(f['encounters'])==8
