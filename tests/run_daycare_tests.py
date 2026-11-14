@@ -133,8 +133,12 @@ with tempfile.TemporaryDirectory(prefix='lightning-daycare-') as temp:
 import json, hashlib
 snapshot=json.loads(Path('tests/specifications/daycare_preserved.json').read_text())
 from approved_sevii_water_second_changes import prior_sevii_water_second_source
+from approved_six_species_profile_projection import prior_six_species_profile_source
 for path,expected in snapshot['files'].items():
-    assert hashlib.sha256(prior_sevii_water_second_source(path)).hexdigest()==expected,path
+    historical = prior_sevii_water_second_source(path)
+    if path == 'src/data/pokemon/species_info.h':
+        historical = prior_six_species_profile_source(historical.decode()).encode()
+    assert hashlib.sha256(historical).hexdigest()==expected,path
 source=Path('src/daycare.c').read_text()
 for name,expected in snapshot['functions'].items():
     assert hashlib.sha256(extract_function(source,name).encode()).hexdigest()==expected,name
