@@ -112,9 +112,9 @@ FuchsiaCity_Text_MyFatherIsGymLeader::
 
 
 FuchsiaCity_Text_ReceivedSuperRod::
-    .string "{PLAYER} received a SUPER ROD\\n"
+    .string "{PLAYER} received a SUPER ROD\n"
     .string "on entering FUCHSIA CITY.$"
 
 FuchsiaCity_Text_NoRoomSuperRod::
-    .string "There's no room for a SUPER ROD.\\n"
+    .string "There's no room for a SUPER ROD.\n"
     .string "Make space and come back.$"
