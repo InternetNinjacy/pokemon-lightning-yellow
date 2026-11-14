@@ -237,3 +237,65 @@ static void legendaryDefeatNativeTests(void)
  }
  CHECK(core->loadState(core,bootState));
 }
+
+
+/*
+ * Verify actual loaded map-grid traversal from an existing entry/warp to a
+ * free adjacent interaction tile. This is native map geometry, NOT proof of
+ * an uninterrupted story traversal or a real Surf animation.
+ */
+static bool8 legendaryNativeTilePassable(unsigned x,unsigned y,bool8 allowSurf)
+{
+ if(CALL(MapGridGetCollisionAt,x+7,y+7))
+  return FALSE;
+ unsigned b=CALL(MapGridGetMetatileAttributeAt,x+7,y+7,ABI_META_BEHAVIOR);
+ if(!allowSurf && CALL(MetatileBehavior_IsSurfable,b))
+  return FALSE;
+ return TRUE;
+}
+static void legendaryMapApproachTests(void)
+{
+ static const unsigned maps[]={MAP_ROUTE10,MAP_MT_EMBER_SUMMIT_PATH_1F,
+                                MAP_SEAFOAM_ISLANDS_B4F,MAP_SEVEN_ISLAND_TANOBY_RUINS};
+ static const unsigned w[]={24,15,38,144},h[]={80,18,24,20};
+ static const unsigned entryX[]={7,2,32,48},entryY[]={40,15,5,0};
+ static const unsigned goalX[]={8,3,29,104},goalY[]={42,8,9,12};
+ static const unsigned objectX[]={8,4,30,105},objectY[]={41,8,9,12};
+ for(unsigned i=0;i<4;i++){
+  CHECK(core->loadState(core,bootState));
+  daycareFixture(1);
+  CALL(FlagSet,FLAG_SYS_GAME_CLEAR);
+  fossilWarp(MAP_GROUP(maps[i]),MAP_NUM(maps[i]),goalX[i],goalY[i]);
+  CHECK(w[i]*h[i]<=2880);
+  // The existing map connection/warp is the origin, not a teleported
+  // adjacent tile as in the interaction test.
+  unsigned prev[2880],queue[2880],read=0,write=0;
+  for(unsigned p=0;p<w[i]*h[i];p++)prev[p]=0xFFFFFFFF;
+  unsigned start=entryY[i]*w[i]+entryX[i];
+  unsigned dest=goalY[i]*w[i]+goalX[i];
+  CHECK(legendaryNativeTilePassable(entryX[i],entryY[i],i==2));
+  CHECK(legendaryNativeTilePassable(goalX[i],goalY[i],i==2));
+  CHECK(legendaryNativeTilePassable(objectX[i],objectY[i],i==2));
+  queue[write++]=start;prev[start]=start;
+  while(read<write && prev[dest]==0xFFFFFFFF){
+   unsigned pos=queue[read++],cx=pos%w[i],cy=pos/w[i];
+   const int dx[]={1,-1,0,0},dy[]={0,0,1,-1};
+   for(unsigned dir=0;dir<4;dir++){
+    int xx=(int)cx+dx[dir],yy=(int)cy+dy[dir];
+    if(xx<0||yy<0||xx>=(int)w[i]||yy>=(int)h[i])continue;
+    unsigned next=(unsigned)yy*w[i]+(unsigned)xx;
+    if(prev[next]!=0xFFFFFFFF || !legendaryNativeTilePassable(xx,yy,i==2))continue;
+    prev[next]=pos;queue[write++]=next;
+   }
+  }
+  if(prev[dest]==0xFFFFFFFF)
+   fprintf(stderr,"LEGENDARY map%u path blocked from authored entrance (%u,%u) to approach (%u,%u); explored=%u tiles\n",
+    i,entryX[i],entryY[i],goalX[i],goalY[i],write);
+  CHECK(prev[dest]!=0xFFFFFFFF);
+  unsigned count=0;
+  for(unsigned pos=dest;pos!=start;pos=prev[pos]){CHECK(prev[pos]!=0xFFFFFFFF);count++;}
+  printf("PASS legendary %u native map-grid traversable from entry (%u,%u) to A-button approach (%u,%u) in %u tile-steps, Surf-permitted=%u\n",
+   i,entryX[i],entryY[i],goalX[i],goalY[i],count,(unsigned)(i==2));
+ }
+ CHECK(core->loadState(core,bootState));
+}
