@@ -246,10 +246,14 @@ static void legendaryDefeatNativeTests(void)
  */
 static unsigned legendaryNativeTilePassable(unsigned x,unsigned y,unsigned allowSurf)
 {
- if(CALL(MapGridGetCollisionAt,x+7,y+7))
-  return 0;
  unsigned b=CALL(MapGridGetMetatileAttributeAt,x+7,y+7,ABI_META_BEHAVIOR);
- if(!allowSurf && CALL(MetatileBehavior_IsSurfable,b))
+ unsigned surfable=CALL(MetatileBehavior_IsSurfable,b);
+ // Native water metatiles can report standing/walking collision=1.
+ // A late-game Surf-capable path may cross them, but may not cross solid
+ // nonwater geometry; do not treat rocks or walls as passable.
+ if(CALL(MapGridGetCollisionAt,x+7,y+7) && !(allowSurf && surfable))
+  return 0;
+ if(!allowSurf && surfable)
   return 0;
  return 1;
 }
