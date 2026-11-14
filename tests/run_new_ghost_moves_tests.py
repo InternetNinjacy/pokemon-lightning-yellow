@@ -29,6 +29,20 @@ for key,parts in zip(['SOUL_DRAIN','WEARY_TOUCH','DREAM_HAUNT'],[['LICK','MEGA_D
  expected_body=''.join(re.search(r'Move_'+p+r':\n(.*?)\n\tend',asm,re.S)[1]+'\n\twaitforvisualfinish\n' for p in parts)
  actual=re.search(r'Move_'+key+r':\n(.*?)\tend',asm,re.S)[1]
  assert actual==expected_body,key
-for path in ['src/data/pokemon/level_up_learnsets.h','src/data/pokemon/tmhm_learnsets.h','src/data/trainer_parties.h']:
+# Subsequent owner-locked PKM-009 Vulpix/Ninetales profiles authorize
+# exactly two natural Dream Haunt entries; no other Ghost distributions.
+learnsets = Path('src/data/pokemon/level_up_learnsets.h').read_text()
+approved_learners = {
+ 'Vulpix': [(37, 'DREAM_HAUNT')],
+ 'Ninetales': [(44, 'DREAM_HAUNT')],
+}
+actual_learners = {}
+for species, body in re.findall(r'static const u16 s(\w+)LevelUpLearnset\[\] = \{(.*?)\n\};', learnsets, re.S):
+ moves = [(int(level), move) for level, move in re.findall(
+     r'LEVEL_UP_MOVE\((\d+), MOVE_(SOUL_DRAIN|WEARY_TOUCH|DREAM_HAUNT)\)', body)]
+ if moves:
+  actual_learners[species] = moves
+assert actual_learners == approved_learners, actual_learners
+for path in ['src/data/pokemon/tmhm_learnsets.h','src/data/trainer_parties.h']:
  assert not any('MOVE_'+k in Path(path).read_text() for k,*_ in expected),path
-print('PASS: exact three approved Ghost designs, complete appended sleep-hit dispatch, original bodies composed inline, exact old-source reversal and no distribution (static, not runtime proof).')
+print('PASS: exact approved Ghost designs and only owner-locked Vulpix/Ninetales natural Dream Haunt; no other learnset/TM/trainer distribution.')
