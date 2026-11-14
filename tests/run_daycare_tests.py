@@ -132,12 +132,17 @@ with tempfile.TemporaryDirectory(prefix='lightning-daycare-') as temp:
 # byte-identical to the reviewed integration base. Separate from execution.
 import json, hashlib
 snapshot=json.loads(Path('tests/specifications/daycare_preserved.json').read_text())
-from approved_sevii_water_second_changes import prior_sevii_water_second_source
+from approved_sevii_water_second_changes import prior_sevii_water_second_source, restore_prior_sevii_water_second_text
 from approved_six_species_profile_projection import prior_six_species_profile_source
 for path,expected in snapshot['files'].items():
-    historical = prior_sevii_water_second_source(path)
     if path == 'src/data/pokemon/species_info.h':
-        historical = prior_six_species_profile_source(historical.decode()).encode()
+        # Reverse six approved merged profiles while source is still exactly
+        # current, before downstream historical ecology/type normalization.
+        # Whole-record drift must fail rather than being silently discarded.
+        pinned = prior_six_species_profile_source(Path(path).read_text())
+        historical = restore_prior_sevii_water_second_text(path, pinned).encode()
+    else:
+        historical = prior_sevii_water_second_source(path)
     assert hashlib.sha256(historical).hexdigest()==expected,path
 source=Path('src/daycare.c').read_text()
 for name,expected in snapshot['functions'].items():
