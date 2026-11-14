@@ -169,3 +169,71 @@ static void legendaryFourCaptureOneSaveTests(void)
  CHECK(CALL(GetBoxMonDataAt,0,0,ABI_DATA_SPECIES)==SPECIES_MEW);
  CHECK(core->loadState(core,bootState));
 }
+
+/* Real battle KO, not a fabricated battle outcome or trainer flag. */
+static void legendaryDefeatNativeTests(void)
+{
+ static const unsigned maps[]={MAP_ROUTE10,MAP_MT_EMBER_SUMMIT_PATH_1F,
+                                MAP_SEAFOAM_ISLANDS_B4F,MAP_SEVEN_ISLAND_TANOBY_RUINS};
+ static const unsigned species[]={SPECIES_RAIKOU,SPECIES_ENTEI,SPECIES_SUICUNE,SPECIES_MEW};
+ static const unsigned ids[]={11,1,5,5};
+ static const unsigned x[]={8,3,29,104},y[]={42,8,9,12};
+ static const unsigned scripts[]={SYM_Route10_EventScript_LightningRaikou,
+                                  SYM_MtEmber_SummitPath_1F_EventScript_LightningEntei,
+                                  SYM_SeafoamIslands_B4F_EventScript_LightningSuicune,
+                                  SYM_SevenIsland_TanobyRuins_EventScript_LightningMew};
+ static const unsigned fought[]={FLAG_FOUGHT_LIGHTNING_RAIKOU,FLAG_FOUGHT_LIGHTNING_ENTEI,
+                                 FLAG_FOUGHT_LIGHTNING_SUICUNE,FLAG_FOUGHT_LIGHTNING_MEW};
+ for(unsigned i=0;i<4;i++){
+  CHECK(core->loadState(core,bootState));
+  daycareFixture(1);
+  CALL(FlagSet,FLAG_SYS_GAME_CLEAR);
+  CALL(CreateMon,player(0),SPECIES_JOLTEON,100,31,1,12345,0,1234);
+  monput(player(0),ABI_DATA_MOVE1,MOVE_SWIFT);
+  monput(player(0),ABI_DATA_PP1,20);
+  fossilWarp(MAP_GROUP(maps[i]),MAP_NUM(maps[i]),x[i],y[i]);
+  unsigned object=CALL(GetObjectEventIdByLocalIdAndMap,ids[i],MAP_NUM(maps[i]),MAP_GROUP(maps[i]));
+  CHECK(object<ABI_OBJECT_COUNT);
+  core->busWrite8(core,SYM_gSelectedObjectEvent,object);
+  CALL(VarSet,VAR_LAST_TALKED,ids[i]);
+  fossilStart(scripts[i]);
+  waitAction();
+  CHECK(monget(enemy(0),ABI_DATA_SPECIES)==species[i]);
+  CHECK(core->busRead16(core,bmon(1)+ABI_BMON_HP)>0);
+  core->busWrite16(core,bmon(1)+ABI_BMON_HP,1); // enemy HP is a test fixture only
+  unsigned attempts=0;
+  while(!core->busRead8(core,SYM_gBattleOutcome)
+     && core->busRead16(core,bmon(1)+ABI_BMON_HP)>0 && attempts<12){
+   chooseMove(0,0,1);
+   unsigned frame;
+   for(frame=0;frame<1600;frame++){
+    if(core->busRead16(core,bmon(1)+ABI_BMON_HP)==0
+       || core->busRead8(core,SYM_gBattleOutcome))break;
+    if(frame>20 && controller(0)==SYM_HandleInputChooseAction)break;
+    frames(1,(frame%12)<3?2:0);
+   }
+   CHECK(frame<1600);
+   attempts++;
+  }
+  CHECK(attempts>0 && attempts<12);
+  CHECK(core->busRead16(core,bmon(1)+ABI_BMON_HP)==0);
+  waitOverworld(2);
+  CHECK(core->busRead8(core,SYM_gBattleOutcome)==B_OUTCOME_WON);
+  unsigned done=0;
+  for(unsigned frame=0;frame<3600;frame++){
+   if(fieldScriptDone()){done=1;break;}
+   frames(1,(frame%12)<3?1:0);
+  }
+  CHECK(done);
+  CHECK(CALL(FlagGet,fought[i]));
+  CHECK(!CALL(ArePlayerFieldControlsLocked));
+  CHECK(CALL(GetObjectEventIdByLocalIdAndMap,ids[i],MAP_NUM(maps[i]),MAP_GROUP(maps[i]))==ABI_OBJECT_COUNT);
+  flashRoundTrip();
+  CHECK(CALL(FlagGet,fought[i]));
+  fossilWarp(MAP_GROUP(MAP_ROUTE5_POKEMON_DAY_CARE),MAP_NUM(MAP_ROUTE5_POKEMON_DAY_CARE),3,6);
+  fossilWarp(MAP_GROUP(maps[i]),MAP_NUM(maps[i]),x[i],y[i]);
+  CHECK(CALL(GetObjectEventIdByLocalIdAndMap,ids[i],MAP_NUM(maps[i]),MAP_GROUP(maps[i]))==ABI_OBJECT_COUNT);
+  printf("PASS legendary %u real native battle Swift KO, saved resolution and absence on reentry\n",i);
+ }
+ CHECK(core->loadState(core,bootState));
+}
