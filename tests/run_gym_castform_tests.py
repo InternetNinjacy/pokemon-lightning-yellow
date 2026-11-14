@@ -4,12 +4,24 @@ from pathlib import Path
 import subprocess,sys
 import json,re,hashlib
 from approved_gym_castform_changes import prior_gym_castform_source
+from approved_six_species_profile_projection import prior_six_species_profile_source
+from approved_twelve_learnset_projection import prior_twelve_learnsets_source
+from approved_legendary_flag_projection import prior_legendary_flag_names
 f=json.loads(Path('tests/specifications/approved_gym_castform.json').read_text())
 d=json.loads(Path('tests/specifications/approved_gym_castform_delta.json').read_text())
+def historical_gym_source(path):
+ source=prior_gym_castform_source(path)
+ if path=='src/data/pokemon/species_info.h':
+  source=prior_six_species_profile_source(source)
+ if path=='src/data/pokemon/level_up_learnsets.h':
+  source=prior_twelve_learnsets_source(source)
+ if path=='include/constants/flags.h':
+  source=prior_legendary_flag_names(source)
+ return source
 for p,h in d['before_sha256'].items():
- assert hashlib.sha256(prior_gym_castform_source(p).encode()).hexdigest()==h,p
+ assert hashlib.sha256(historical_gym_source(p).encode()).hexdigest()==h,p
 for p,h in d['unchanged_sha256'].items():
- assert hashlib.sha256(prior_gym_castform_source(p).encode()).hexdigest()==h,p
+ assert hashlib.sha256(historical_gym_source(p).encode()).hexdigest()==h,p
 parties=Path('src/data/trainer_parties.h').read_text();meta=Path('src/data/trainers.h').read_text();opponents=Path('include/constants/opponents.h').read_text()
 for t in f['trainers']:
  assert re.search(r'^#define '+t['constant']+r'\s+'+str(t['id'])+r'$',opponents,re.M)

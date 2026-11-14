@@ -20,6 +20,7 @@
 #include "constants/pokedex.h"
 #include "constants/time_of_day.h"
 #include "constants/vars.h"
+#include "constants/flags.h"
 #include "symbols.h"
 
 static struct mCore *core;
@@ -356,6 +357,7 @@ static void dexTests(void) {
 #include "wrl_route_grass.c"
 #include "sow_placement.c"
 #include "sow_producers.c"
+#include "legendary_statics.c"
 #include "lighting_preview.c"
 #include "gym_castform.c"
 #include "rival.c"
@@ -496,6 +498,13 @@ int main(int argc,char **argv) {
     if(getenv("LIGHTNING_WRL_AIDE_PHYSICAL_ONLY")){wrlAidePhysicalTests();printf("PASS: %u focused WRL-009 physical aide assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_WRL_NONWILD_GIFTS_ONLY")){wrlNonWildGiftTests();printf("PASS: %u focused WRL-009 non-wild gift assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_WRL_ROUTE_GRASS_ONLY")){wrlRouteNativeGrassTests();wrlRoute5NorthernLedgeWalkTests();wrlCeruleanToRoute5ConnectionTests();wrlLavenderToRoute8ConnectionTests();wrlLavenderToRoute8GrassWalkTests();printf("PASS: %u focused WRL-009 native route grass assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_LEGENDARY_PHYSICAL_ONLY")){legendaryPhysicalInteractionTests();printf("PASS: %u physical legendary interaction assertions\\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_LEGENDARY_TELEPORT_ONLY")){legendaryTeleportNativeTests();printf("PASS: %u teleport legendary assertions\\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_LEGENDARY_WHITEOUT_ONLY")){legendaryWhiteoutNativeTests();printf("PASS: %u whiteout legendary assertions\\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_LEGENDARY_APPROACH_ONLY")){legendaryMapApproachTests();printf("PASS: %u native legendary authored-entry reachability checks\\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_LEGENDARY_DEFEAT_ONLY")){legendaryDefeatNativeTests();printf("PASS: %u four native legendary KO assertions\\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_LEGENDARY_CAPTURE_ONLY")){legendaryFourCaptureOneSaveTests();printf("PASS: %u four-in-one-save legendary capture assertions\\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_LEGENDARY_ONLY")){legendaryStationaryNativeTests();printf("PASS: %u focused four-legendary native assertions\\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_SOW_PRODUCERS_ONLY")){sowPlacementTests();sowScriptedProducerTests();sowScriptedRunTests();sowScriptedCaptureTests();sowPhysicalInteractionTests();sowScriptedDefeatTests();sowScriptedWhiteoutTests();printf("PASS: %u native SOW placement, producer, Run/retry and capture/aftermath assertions\\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_SOW_PLACEMENT_ONLY")){sowPlacementTests();printf("PASS: %u native no-Surf placement assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_DYNAMIC_WEATHER_ONLY")){dynamicWeatherTests();printf("PASS: %u focused dynamic weather assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
