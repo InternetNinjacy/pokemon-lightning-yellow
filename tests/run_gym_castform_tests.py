@@ -5,12 +5,15 @@ import subprocess,sys
 import json,re,hashlib
 from approved_gym_castform_changes import prior_gym_castform_source
 from approved_six_species_profile_projection import prior_six_species_profile_source
+from approved_twelve_learnset_projection import prior_twelve_learnsets_source
 f=json.loads(Path('tests/specifications/approved_gym_castform.json').read_text())
 d=json.loads(Path('tests/specifications/approved_gym_castform_delta.json').read_text())
 def historical_gym_source(path):
  source=prior_gym_castform_source(path)
  if path=='src/data/pokemon/species_info.h':
   source=prior_six_species_profile_source(source)
+ if path=='src/data/pokemon/level_up_learnsets.h':
+  source=prior_twelve_learnsets_source(source)
  return source
 for p,h in d['before_sha256'].items():
  assert hashlib.sha256(historical_gym_source(p).encode()).hexdigest()==h,p
