@@ -34,6 +34,9 @@ jobs:
         run: |
           scripts/prepare-baseline.sh
           make -j2
+      - name: Independently attempt Mew's complete A-button Surf and D-pad route
+        timeout-minutes: 20
+        run: LIGHTNING_LEGENDARY_WALK_ONLY=1 LIGHTNING_LEGENDARY_WALK_MEW_ONLY=1 python3 tests/emulator/run.py
       - name: Walk real Suicune/Mew local dry route segments by D-pad
         timeout-minutes: 20
         run: LIGHTNING_LEGENDARY_WALK_ONLY=1 python3 tests/emulator/run.py
