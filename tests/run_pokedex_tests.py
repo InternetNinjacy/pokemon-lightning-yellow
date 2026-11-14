@@ -121,7 +121,8 @@ with tempfile.TemporaryDirectory() as temp:
 fixture=json.loads(Path('tests/specifications/approved_type_overrides.json').read_text())['species']
 assert len(fixture)==35
 from approved_weather_species_slots import prior_weather_species_source
-species_info=prior_weather_species_source()
+from approved_six_species_profile_projection import prior_six_species_profile_source
+species_info=prior_six_species_profile_source(prior_weather_species_source())
 for name,types in fixture.items():
  pattern=r'(\[SPECIES_'+name+r'\]\s*=\s*\{.*?\.types = \{)(TYPE_\w+), (TYPE_\w+)(\},)'
  match=re.search(pattern,species_info,re.S)
