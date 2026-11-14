@@ -68,6 +68,16 @@ def restore_ordinary_trainer_blocks(path):
             assert result.count(approved) == 1, symbol + ": approved party drift"
             assert historical not in result, symbol + ": historical party duplicated"
             result = result.replace(approved, historical, 1)
+    # Strictly reverse the approved Gym Leader trainer metadata as well as parties.
+    if str(path) == "src/data/trainers.h":
+        approved_leader_records = {
+            "TRAINER_LEADER_LT_SURGE": ("[TRAINER_LEADER_LT_SURGE] = {\n        .trainerClass = TRAINER_CLASS_LEADER,\n        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,\n        .trainerPic = TRAINER_PIC_LEADER_LT_SURGE,\n        .trainerName = _(\"LT. SURGE\"),\n        .items = {ITEM_SUPER_POTION, ITEM_FULL_HEAL},\n        .doubleBattle = TRUE,\n        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,\n        .party = NO_ITEM_CUSTOM_MOVES(sParty_LeaderLtSurge),\n    },", "[TRAINER_LEADER_LT_SURGE] = {\n        .trainerClass = TRAINER_CLASS_LEADER,\n        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,\n        .trainerPic = TRAINER_PIC_LEADER_LT_SURGE,\n        .trainerName = _(\"LT. SURGE\"),\n        .items = {ITEM_SUPER_POTION, ITEM_FULL_HEAL},\n        .doubleBattle = FALSE,\n        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,\n        .party = NO_ITEM_CUSTOM_MOVES(sParty_LeaderLtSurge),\n    },"),
+            "TRAINER_LEADER_SABRINA": ("[TRAINER_LEADER_SABRINA] = {\n        .trainerClass = TRAINER_CLASS_LEADER,\n        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,\n        .trainerPic = TRAINER_PIC_LEADER_SABRINA,\n        .trainerName = _(\"SABRINA\"),\n        .items = {ITEM_HYPER_POTION, ITEM_HYPER_POTION, ITEM_FULL_HEAL},\n        .doubleBattle = TRUE,\n        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,\n        .party = NO_ITEM_CUSTOM_MOVES(sParty_LeaderSabrina),\n    },", "[TRAINER_LEADER_SABRINA] = {\n        .trainerClass = TRAINER_CLASS_LEADER,\n        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_FEMALE | F_TRAINER_FEMALE,\n        .trainerPic = TRAINER_PIC_LEADER_SABRINA,\n        .trainerName = _(\"SABRINA\"),\n        .items = {ITEM_HYPER_POTION, ITEM_HYPER_POTION, ITEM_FULL_HEAL},\n        .doubleBattle = FALSE,\n        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,\n        .party = NO_ITEM_CUSTOM_MOVES(sParty_LeaderSabrina),\n    },"),
+        }
+        for trainer_id, (approved, historical) in approved_leader_records.items():
+            assert result.count(approved) == 1, trainer_id + ": approved metadata drift"
+            assert historical not in result, trainer_id + ": historical metadata duplicated"
+            result = result.replace(approved, historical, 1)
     for trainer_id, record in LOCK["entries"].items():
         if record["source_dummy"]:
             continue
