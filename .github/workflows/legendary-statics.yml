@@ -58,6 +58,9 @@ jobs:
       - name: Four successive Master Ball captures in one flash-backed save
         timeout-minutes: 15
         run: LIGHTNING_LEGENDARY_CAPTURE_ONLY=1 python3 tests/emulator/run.py
+      - name: Four actual legendary battle KO and persisted encounter resolution
+        timeout-minutes: 15
+        run: LIGHTNING_LEGENDARY_DEFEAT_ONLY=1 python3 tests/emulator/run.py
       - name: Run selected real-ROM headless mGBA regression
         timeout-minutes: 35
         run: python3 tests/emulator/run.py
