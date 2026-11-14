@@ -1,11 +1,38 @@
 FuchsiaCity_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, FuchsiaCity_OnTransition
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, FuchsiaCity_OnFrame
 	.byte 0
+
+FuchsiaCity_OnFrame::
+	map_script_2 VAR_TEMP_1, 1, FuchsiaCity_EventScript_ReceiveSuperRod
+	.2byte 0
 
 FuchsiaCity_OnTransition::
 	setworldmapflag FLAG_WORLD_MAP_FUCHSIA_CITY
 	call_if_set FLAG_GOT_DOME_FOSSIL, FuchsiaCity_EventScript_SetOmanyteGfx
 	call_if_unset FLAG_GOT_DOME_FOSSIL, FuchsiaCity_EventScript_SetKabutoGfx
+	call_if_unset FLAG_GOT_SUPER_ROD, FuchsiaCity_EventScript_StageSuperRod
+	end
+
+FuchsiaCity_EventScript_StageSuperRod::
+	setvar VAR_TEMP_1, 1
+	return
+
+FuchsiaCity_EventScript_ReceiveSuperRod::
+	lockall
+	setvar VAR_TEMP_1, 0
+	checkitemspace ITEM_SUPER_ROD
+	goto_if_eq VAR_RESULT, FALSE, FuchsiaCity_EventScript_NoRoomSuperRod
+	additem ITEM_SUPER_ROD
+	goto_if_eq VAR_RESULT, FALSE, FuchsiaCity_EventScript_NoRoomSuperRod
+	setflag FLAG_GOT_SUPER_ROD
+	msgreceiveditem FuchsiaCity_Text_ReceivedSuperRod, ITEM_SUPER_ROD
+	releaseall
+	end
+
+FuchsiaCity_EventScript_NoRoomSuperRod::
+	msgbox FuchsiaCity_Text_NoRoomSuperRod
+	releaseall
 	end
 
 FuchsiaCity_EventScript_SetOmanyteGfx::
