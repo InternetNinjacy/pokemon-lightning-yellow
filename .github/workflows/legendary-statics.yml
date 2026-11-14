@@ -1,0 +1,55 @@
+name: Legendary stationary encounter focused validation
+on:
+  push:
+    branches: ['feature/wrl-legendary-four-static-20261113']
+  pull_request:
+    paths:
+      - 'data/maps/**'
+      - 'include/constants/flags.h'
+      - 'src/roamer.c'
+      - 'tests/check_legendary_statics.py'
+      - '.github/workflows/legendary-statics.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: legends-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  source:
+    name: Legendary map/flag/collision source contract
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+      - name: Confirm exact commit and four stationary contracts
+        run: |
+          expected="${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}"
+          actual="$(git rev-parse HEAD)"
+          echo "LEGENDS_ACCEPTANCE_SHA=$actual"
+          test "$actual" = "$expected"
+          python3 tests/check_legendary_statics.py
+  build:
+    name: Focused compiled legendary ROM build
+    needs: source
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+      - name: Install base and native test dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends build-essential binutils-arm-none-eabi libpng-dev python3 libmgba-dev
+      - name: Prepare unchanged compiler inputs and build game
+        run: |
+          scripts/prepare-baseline.sh
+          make -j2
+      - name: Run selected real-ROM headless mGBA regression
+        timeout-minutes: 35
+        run: python3 tests/emulator/run.py
+      # Neither ROM nor proprietary inputs are uploaded.
