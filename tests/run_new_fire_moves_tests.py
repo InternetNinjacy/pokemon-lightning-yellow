@@ -54,9 +54,9 @@ approved_learners = {
     'Flareon': [(8, 'FLASHFIRE'), (36, 'FLAME_FANG'), (54, 'BLAZE_RUSH')],
 }
 actual_learners = {}
-for species, body in re.findall(r'static const u16 s(\\w+)LevelUpLearnset\\[\\] = \\{(.*?)\\n\\};', learnsets, re.S):
+for species, body in re.findall(r'static const u16 s(\w+)LevelUpLearnset\[\] = \{(.*?)\n\};', learnsets, re.S):
     moves = [(int(level), move) for level, move in re.findall(
-        r'LEVEL_UP_MOVE\\((\\d+), MOVE_(FLAME_FANG|FLASHFIRE|BLAZE_RUSH)\\)', body)]
+        r'LEVEL_UP_MOVE\((\d+), MOVE_(FLAME_FANG|FLASHFIRE|BLAZE_RUSH)\)', body)]
     if moves:
         actual_learners[species] = moves
 assert actual_learners == approved_learners, actual_learners
