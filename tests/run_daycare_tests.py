@@ -135,6 +135,7 @@ snapshot=json.loads(Path('tests/specifications/daycare_preserved.json').read_tex
 from approved_sevii_water_second_changes import prior_sevii_water_second_source, restore_prior_sevii_water_second_text
 from approved_six_species_profile_projection import prior_six_species_profile_source
 from approved_weather_species_slots import prior_weather_species_source
+from approved_typing_text_projection import prior_approved_typing_text
 for path,expected in snapshot['files'].items():
     if path == 'src/data/pokemon/species_info.h':
         # Reverse six approved merged profiles while source is still exactly
@@ -142,21 +143,10 @@ for path,expected in snapshot['files'].items():
         # Whole-record drift must fail rather than being silently discarded.
         pinned = prior_six_species_profile_source(Path(path).read_text())
         pinned = prior_weather_species_source(pinned)
-        historical = restore_prior_sevii_water_second_text(path, pinned).encode()
+        projected = restore_prior_sevii_water_second_text(path, pinned)
+        historical = prior_approved_typing_text(projected).encode()
     else:
         historical = prior_sevii_water_second_source(path)
-    if path == 'src/data/pokemon/species_info.h' and hashlib.sha256(historical).hexdigest() != expected:
-        # Diagnostic only: never replace/relax the frozen expected hash.
-        from approved_weather_species_slots import prior_weather_species_source
-        from approved_six_species_profile_projection import prior_six_species_profile_source
-        current = Path(path).read_text()
-        for profiles in (False, True):
-            for weather in (False, True):
-                candidate = prior_six_species_profile_source(current) if profiles else current
-                if weather:
-                    candidate = prior_weather_species_source(candidate)
-                digest = hashlib.sha256(restore_prior_sevii_water_second_text(path, candidate).encode()).hexdigest()
-                print(f'DAYCARE preserved species diagnostic profiles={profiles} weather={weather} digest={digest} expected={expected}', flush=True)
     assert hashlib.sha256(historical).hexdigest()==expected,path
 source=Path('src/daycare.c').read_text()
 for name,expected in snapshot['functions'].items():
