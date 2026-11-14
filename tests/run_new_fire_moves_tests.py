@@ -44,8 +44,24 @@ assert '\tcall ' not in shared  # FireRed animation interpreter has ONE return s
 # The later owner-approved Erika leader contract explicitly grants exactly
 # one trainer-only Flashfire to her Rapidash. This is not species-wide
 # distribution and does not license either other new Fire move anywhere.
-for path in ['src/data/pokemon/level_up_learnsets.h', 'src/data/pokemon/tmhm_learnsets.h']:
-    assert not any('MOVE_' + key in Path(path).read_text() for key, *_ in expected), path
+# Subsequent approved PKM-009 learnsets supersede the original
+# no-distribution assumption for exactly Ponyta, Rapidash and Flareon.
+# Preserve a strict no-unapproved-distribution check for every other species.
+learnsets = Path('src/data/pokemon/level_up_learnsets.h').read_text()
+approved_learners = {
+    'Ponyta': [(16, 'FLASHFIRE'), (34, 'FLAME_FANG'), (45, 'BLAZE_RUSH')],
+    'Rapidash': [(16, 'FLASHFIRE'), (36, 'FLAME_FANG'), (48, 'BLAZE_RUSH')],
+    'Flareon': [(8, 'FLASHFIRE'), (36, 'FLAME_FANG'), (54, 'BLAZE_RUSH')],
+}
+actual_learners = {}
+for species, body in re.findall(r'static const u16 s(\\w+)LevelUpLearnset\\[\\] = \\{(.*?)\\n\\};', learnsets, re.S):
+    moves = [(int(level), move) for level, move in re.findall(
+        r'LEVEL_UP_MOVE\\((\\d+), MOVE_(FLAME_FANG|FLASHFIRE|BLAZE_RUSH)\\)', body)]
+    if moves:
+        actual_learners[species] = moves
+assert actual_learners == approved_learners, actual_learners
+assert not any('MOVE_' + key in Path('src/data/pokemon/tmhm_learnsets.h').read_text()
+               for key, *_ in expected), 'src/data/pokemon/tmhm_learnsets.h'
 party_source = Path('src/data/trainer_parties.h').read_text()
 assert 'MOVE_FLAME_FANG' not in party_source
 assert 'MOVE_BLAZE_RUSH' not in party_source
