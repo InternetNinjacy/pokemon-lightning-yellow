@@ -1,0 +1,32 @@
+name: Legendary ordinary-story access source validation
+on:
+  push:
+    branches: ['integration/legendary-four-wild-roamer-fixture-20261114']
+    paths:
+      - 'tests/check_legendary_story_access.py'
+      - 'data/maps/**'
+      - 'data/scripts/seagallop.inc'
+      - 'src/party_menu.c'
+      - '.github/workflows/legendary-story-access.yml'
+  pull_request:
+    paths:
+      - 'tests/check_legendary_story_access.py'
+      - 'data/maps/**'
+      - 'data/scripts/seagallop.inc'
+      - 'src/party_menu.c'
+      - '.github/workflows/legendary-story-access.yml'
+permissions:
+  contents: read
+jobs:
+  access-source:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+      - name: Require tested branch commit and normal-access route contracts
+        run: |
+          expected="${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}"
+          test "$(git rev-parse HEAD)" = "$expected"
+          python3 tests/check_legendary_story_access.py
