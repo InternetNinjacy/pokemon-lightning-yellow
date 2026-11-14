@@ -299,3 +299,66 @@ static void legendaryMapApproachTests(void)
  }
  CHECK(core->loadState(core,bootState));
 }
+
+
+/* A real opponent-caused party wipe must preserve the unclaimed encounter. */
+static void legendaryWhiteoutNativeTests(void)
+{
+ static const unsigned maps[]={MAP_ROUTE10,MAP_MT_EMBER_SUMMIT_PATH_1F,
+                                MAP_SEAFOAM_ISLANDS_B4F,MAP_SEVEN_ISLAND_TANOBY_RUINS};
+ static const unsigned ids[]={11,1,5,5};
+ static const unsigned x[]={8,3,29,104},y[]={42,8,9,12};
+ static const unsigned species[]={SPECIES_RAIKOU,SPECIES_ENTEI,SPECIES_SUICUNE,SPECIES_MEW};
+ static const unsigned scripts[]={SYM_Route10_EventScript_LightningRaikou,
+                                  SYM_MtEmber_SummitPath_1F_EventScript_LightningEntei,
+                                  SYM_SeafoamIslands_B4F_EventScript_LightningSuicune,
+                                  SYM_SevenIsland_TanobyRuins_EventScript_LightningMew};
+ static const unsigned fought[]={FLAG_FOUGHT_LIGHTNING_RAIKOU,FLAG_FOUGHT_LIGHTNING_ENTEI,
+                                 FLAG_FOUGHT_LIGHTNING_SUICUNE,FLAG_FOUGHT_LIGHTNING_MEW};
+ for(unsigned i=0;i<4;i++){
+  CHECK(core->loadState(core,bootState));
+  daycareFixture(1);
+  CALL(FlagSet,FLAG_SYS_GAME_CLEAR);
+  CALL(ZeroPlayerPartyMons);
+  CALL(CreateMon,player(0),SPECIES_MAGIKARP,1,0,1,12345,0,1234);
+  monput(player(0),ABI_DATA_MOVE1,MOVE_SPLASH);
+  monput(player(0),ABI_DATA_PP1,40);
+  core->busWrite8(core,SYM_gPlayerPartyCount,1);
+  fossilWarp(MAP_GROUP(maps[i]),MAP_NUM(maps[i]),x[i],y[i]);
+  unsigned obj=CALL(GetObjectEventIdByLocalIdAndMap,ids[i],MAP_NUM(maps[i]),MAP_GROUP(maps[i]));
+  CHECK(obj<ABI_OBJECT_COUNT);
+  core->busWrite8(core,SYM_gSelectedObjectEvent,obj);
+  CALL(VarSet,VAR_LAST_TALKED,ids[i]);
+  fossilStart(scripts[i]);
+  waitAction();
+  CHECK(monget(enemy(0),ABI_DATA_SPECIES)==species[i]);
+  CHECK(core->busRead16(core,bmon(0)+ABI_BMON_HP)>0);
+  core->busWrite16(core,bmon(0)+ABI_BMON_HP,1);
+  unsigned turn=0;
+  for(;turn<16 && !core->busRead8(core,SYM_gBattleOutcome);turn++){
+   chooseMove(0,0,1);
+   unsigned frame;
+   for(frame=0;frame<1800;frame++){
+    if(core->busRead8(core,SYM_gBattleOutcome))break;
+    if(frame>20 && controller(0)==SYM_HandleInputChooseAction)break;
+    frames(1,(frame%10)<3?1:0);
+   }
+   CHECK(frame<1800);
+  }
+  CHECK(turn<16);
+  CHECK(core->busRead8(core,SYM_gBattleOutcome)==B_OUTCOME_LOST);
+  CHECK(core->busRead16(core,bmon(0)+ABI_BMON_HP)==0);
+  for(unsigned frame=0;frame<6000;frame++){
+   if((core->busRead32(core,SYM_gMain+ABI_MAIN_CB2)&~1U)==SYM_CB2_Overworld
+      && frame>120 && fieldScriptDone())break;
+   frames(1,(frame%12)<3?1:0);
+  }
+  CHECK(!CALL(FlagGet,fought[i]));
+  flashRoundTrip();
+  CHECK(!CALL(FlagGet,fought[i]));
+  fossilWarp(MAP_GROUP(maps[i]),MAP_NUM(maps[i]),x[i],y[i]);
+  CHECK(CALL(GetObjectEventIdByLocalIdAndMap,ids[i],MAP_NUM(maps[i]),MAP_GROUP(maps[i]))<ABI_OBJECT_COUNT);
+  printf("PASS legendary %u real opponent-caused loss, whiteout and flash retry keeps unclaimed encounter\n",i);
+ }
+ CHECK(core->loadState(core,bootState));
+}
