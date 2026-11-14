@@ -244,14 +244,14 @@ static void legendaryDefeatNativeTests(void)
  * free adjacent interaction tile. This is native map geometry, NOT proof of
  * an uninterrupted story traversal or a real Surf animation.
  */
-static bool8 legendaryNativeTilePassable(unsigned x,unsigned y,bool8 allowSurf)
+static unsigned legendaryNativeTilePassable(unsigned x,unsigned y,unsigned allowSurf)
 {
  if(CALL(MapGridGetCollisionAt,x+7,y+7))
-  return FALSE;
+  return 0;
  unsigned b=CALL(MapGridGetMetatileAttributeAt,x+7,y+7,ABI_META_BEHAVIOR);
  if(!allowSurf && CALL(MetatileBehavior_IsSurfable,b))
-  return FALSE;
- return TRUE;
+  return 0;
+ return 1;
 }
 static void legendaryMapApproachTests(void)
 {
