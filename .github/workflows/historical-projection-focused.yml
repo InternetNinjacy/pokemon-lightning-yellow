@@ -30,13 +30,100 @@ jobs:
         run: |
           expected="${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}"
           test "$(git rev-parse HEAD)" = "$expected"
-      - name: Verify strict unmodified frozen source hashes and original guards
+      - name: Run every unchanged modified source/data audit before any build
         run: |
+          python3 tests/run_split_tests.py
+          python3 tests/run_move_catalog_tests.py
           python3 tests/run_new_fire_moves_tests.py
           python3 tests/run_new_ghost_moves_tests.py
+          python3 tests/run_skitter_slash_tests.py
+          python3 tests/run_venom_web_tests.py
+          python3 tests/run_bug_statdrop_tests.py
+          python3 tests/run_chirp_tests.py
+          python3 tests/run_swarm_cloud_tests.py
+          python3 tests/run_bellow_rock_tests.py
+          python3 tests/run_scorching_sands_tests.py
+          python3 tests/run_earth_power_tests.py
+          python3 tests/run_move_foundation_tests.py
+          python3 tests/run_move_ui_tests.py
+          python3 tests/run_original_move_data_tests.py
+          python3 tests/run_move_pp_tests.py
+          python3 tests/run_roar_tests.py
+          python3 tests/run_ice_fang_tests.py
+          python3 tests/run_avalanche_tests.py
+          python3 tests/run_moves374_tests.py
+          python3 tests/run_payback_tests.py
+          python3 tests/run_moves382_tests.py
+          python3 tests/run_water_moves385_tests.py
+          python3 tests/run_btl_batch_a_staging_tests.py
+          python3 tests/run_btl_weather_integration_tests.py
+          python3 tests/run_title_screen_tests.py
+          python3 tests/run_approved_gift_tests.py
+          python3 tests/run_pikachu_opening_tests.py
           python3 tests/run_elite_four_tests.py
+          python3 tests/run_weather_move_tests.py
           python3 tests/run_weather_ability_tests.py
           python3 tests/run_weather_species_tests.py
-          python3 tests/run_typing_tests.py
           python3 tests/run_brock_weather_tests.py
+          python3 tests/check_fuchsia_approved_pairs.py
+          python3 tests/check_celadon_approved_pairs.py
+          python3 tests/check_viridian_cole_approved_pair.py
+          python3 tests/check_viridian_atsushi_approved_pair.py
+          python3 tests/check_viridian_takashi_approved_trio.py
+          python3 tests/check_viridian_kiyo_approved_pair.py
+          python3 tests/check_viridian_jason_approved_pair.py
+          python3 tests/check_viridian_samuel_approved_pair.py
+          python3 tests/check_viridian_yuji_approved_pair.py
+          python3 tests/check_viridian_warren_approved_trio.py
+          python3 tests/check_viridian_bags_super_potion_full_heal.py
+          python3 tests/check_giovanni_approved_battles.py
+          python3 tests/check_koga_approved_battle.py
+          python3 tests/check_erika_approved_battle.py
+          python3 tests/check_wrl003_evolution_item_prices.py
           python3 tests/run_special_glalie_tests.py
+          python3 tests/run_special_corphish_tests.py
+          python3 tests/run_sow_event_tests.py
+          python3 tests/run_original_effect_tests.py
+          python3 tests/run_rtc_tests.py
+          python3 tests/run_evolution_tests.py
+          python3 tests/check_center_move_reminder.py
+          python3 tests/run_ponyta_tests.py
+          python3 tests/run_pokedex_tests.py
+          python3 tests/run_typing_tests.py
+          python3 tests/run_wild_double_tests.py
+          python3 tests/check_route1_encounters.py
+          python3 tests/check_route2_encounters.py
+          python3 tests/check_route22_encounters.py
+          python3 tests/check_route23_encounters.py
+          python3 tests/check_route5_encounters.py
+          python3 tests/check_route8_drowzee.py
+          python3 tests/check_victory_road_encounters.py
+          python3 tests/check_route3_encounters.py
+          python3 tests/check_viridian_forest_encounters.py
+          python3 tests/check_mt_moon_encounters.py
+          python3 tests/check_bulk_approved_grass.py
+          python3 tests/check_bulk_kanto_central_grass.py
+          python3 tests/check_bulk_kanto_interiors.py
+          python3 tests/check_safari_zone_land.py
+          python3 tests/check_kanto_water_bulk.py
+          python3 tests/check_kanto_water_followup.py
+          python3 tests/check_bulk_sevii_land.py
+          python3 tests/check_bulk_sevii_water.py
+          python3 tests/check_bulk_sevii_water_second.py
+          python3 tests/run_daycare_tests.py
+          python3 tests/run_world_reward_tests.py
+          python3 tests/run_vendor_tests.py
+          python3 tests/run_capture_tests.py
+          python3 tests/run_blaine_tests.py
+          python3 tests/run_ranger_tests.py
+          python3 tests/run_ordinary_trainer_tests.py
+          python3 tests/run_weather_tests.py
+          python3 tests/run_special_weather_tests.py
+          python3 tests/run_gym_castform_tests.py
+          python3 tests/check_cerulean_luis_approved_battle.py
+          python3 tests/run_rival_tests.py
+          python3 tests/run_rocket_hideout_roster_tests.py
+          python3 tests/run_rocket_hideout_quest_tests.py
+          python3 scripts/check-integration-registrations.py
+          python3 scripts/check-move-reconciliation.py
+          python3 scripts/check-pewter-museum-trivia.py
