@@ -10,6 +10,8 @@ on:
       - 'tests/run_weather_ability_tests.py'
       - 'tests/run_weather_species_tests.py'
       - 'tests/run_typing_tests.py'
+      - 'tests/run_brock_weather_tests.py'
+      - 'tests/approved_two_leader_party_projection.py'
       - '.github/workflows/historical-projection-focused.yml'
 permissions:
   contents: read
@@ -35,3 +37,4 @@ jobs:
           python3 tests/run_weather_ability_tests.py
           python3 tests/run_weather_species_tests.py
           python3 tests/run_typing_tests.py
+          python3 tests/run_brock_weather_tests.py
