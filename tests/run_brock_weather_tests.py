@@ -24,9 +24,9 @@ from approved_two_leader_party_projection import prior_two_leader_party_source
 m=json.loads(Path('tests/specifications/brock_weather_party_delta.json').read_text())
 for path,row in m['files'].items():
     after_source = prior_erika_gym002_source(path, prior_koga_gym002_source(path, prior_celadon_four_source(path, prior_fuchsia_three_source(path, prior_gym001_baily_source(path, prior_gym001_tucker_source(path, prior_viridian_bags_source(path, prior_viridian_cole_source(path, prior_viridian_atsushi_source(path, prior_viridian_takashi_source(path, prior_viridian_warren_source(path, prior_viridian_yuji_source(path, prior_viridian_samuel_source(path, prior_viridian_jason_source(path, prior_viridian_kiyo_source(path, prior_gym002_source(path, prior_luis_source(path)))))))))))))))))
-    assert hashlib.sha256(prior_two_leader_party_source(after_source).encode()).hexdigest()==row['after_sha256'],path
+    assert hashlib.sha256((prior_two_leader_party_source(after_source) if path == 'src/data/trainer_parties.h' else after_source).encode()).hexdigest()==row['after_sha256'],path
     before_source = prior_erika_gym002_source(path, prior_koga_gym002_source(path, prior_celadon_four_source(path, prior_fuchsia_three_source(path, prior_gym001_baily_source(path, prior_gym001_tucker_source(path, prior_viridian_bags_source(path, prior_brock_weather_source(path, prior_viridian_cole_source(path, prior_viridian_atsushi_source(path, prior_viridian_takashi_source(path, prior_viridian_warren_source(path, prior_viridian_yuji_source(path, prior_viridian_samuel_source(path, prior_viridian_jason_source(path, prior_viridian_kiyo_source(path, prior_gym002_source(path, prior_luis_source(path))))))))))))))))))
-    assert hashlib.sha256(prior_two_leader_party_source(before_source).encode()).hexdigest()==row['before_sha256'],path
+    assert hashlib.sha256((prior_two_leader_party_source(before_source) if path == 'src/data/trainer_parties.h' else before_source).encode()).hexdigest()==row['before_sha256'],path
 s=Path('src/data/trainer_parties.h').read_text().split('sParty_LeaderBrock[] = {')[1].split('\n};',1)[0]
 assert re.findall(r'\.species = (\w+)',s)==['SPECIES_SNORUNT','SPECIES_ONIX']
 assert re.findall(r'\.lvl = (\d+)',s)==['14','16']
