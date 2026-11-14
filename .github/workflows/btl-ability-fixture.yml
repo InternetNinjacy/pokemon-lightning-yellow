@@ -1,0 +1,45 @@
+name: BTL-003 primary-ability AI fixture validation
+on:
+  push:
+    branches: ['validation/btl003-natural-ability-fixture-20261114']
+  pull_request:
+    paths:
+      - tests/emulator/battle_categories.c
+      - .github/workflows/btl-ability-fixture.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  focused:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 65
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+      - name: Verify exact source head and naturally selected real ability
+        run: |
+          expected="${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}"
+          test "$(git rev-parse HEAD)" = "$expected"
+          python3 - <<'PY'
+          from pathlib import Path
+          s=Path("tests/emulator/battle_categories.c").read_text()
+          assert "monput(player(0),ABI_DATA_ABILITY_NUM,0)" in s
+          assert "CHECK(core->busRead8(core,bmon(0)+ABI_BMON_ABILITY)==abilities[i])" in s
+          p=Path("src/data/pokemon/species_info.h").read_text()
+          a=p[p.index("[SPECIES_VULPIX] ="):p.index("[SPECIES_NINETALES] =")]
+          assert ".abilities = {ABILITY_FLASH_FIRE, ABILITY_SHADOW_TAG}" in a
+          print("PASS: real species ability slot and retained strict battle AI assertions")
+          PY
+      - name: Install native build packages
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends build-essential binutils-arm-none-eabi libpng-dev python3 libmgba-dev
+      - name: Build ROM without uploading copyrighted output
+        run: |
+          scripts/prepare-baseline.sh
+          make -j2
+      - name: Execute genuine BTL-003 trainer AI native immunity cases
+        timeout-minutes: 15
+        run: LIGHTNING_BTL003_AI_ONLY=1 python3 tests/emulator/run.py
