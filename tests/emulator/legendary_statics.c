@@ -46,7 +46,8 @@ static void legendaryStationaryNativeTests(void)
   CHECK(monget(enemy(0),ABI_DATA_LEVEL)==50);
   weatherRun();
   waitOverworld(2);
-  for(unsigned f=0;f<400&&!fieldScriptDone();f++)frames(1,0);
+  // The original static-legendary Run path announces that the mon flew away.\n  // Advance that mandatory text using actual A-button input.\n  for(unsigned f=0;f<2400&&!fieldScriptDone();f++)frames(1,(f%12)<3?1:0);
+  if(!fieldScriptDone()) fprintf(stderr,"LEGENDARY event%u unresolved script after Run; outcome=%u fought=%u hide=%u\\n",i,core->busRead8(core,SYM_gBattleOutcome),CALL(FlagGet,fought[i]),CALL(FlagGet,hide[i]));
   CHECK(fieldScriptDone());
   CHECK(!CALL(FlagGet,fought[i]));
   // Running cannot consume the owner's capture opportunity.
