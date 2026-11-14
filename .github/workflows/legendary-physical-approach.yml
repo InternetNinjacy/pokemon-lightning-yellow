@@ -1,0 +1,33 @@
+name: Legendary actual D-pad approach experiment
+on:
+  push:
+    branches: ['validation/legendary-physical-approach-20261114']
+    paths:
+      - 'tests/emulator/legendary_physical_approach.c'
+      - 'tests/emulator/runner.c'
+      - '.github/workflows/legendary-physical-approach.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  physical:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 65
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Confirm exact source SHA
+        run: |
+          test "$(git rev-parse HEAD)" = "${{ github.sha }}"
+      - name: Install native test environment
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends build-essential binutils-arm-none-eabi libpng-dev python3 libmgba-dev
+      - name: Compile the unmodified production game
+        run: |
+          scripts/prepare-baseline.sh
+          make -j2
+      - name: Walk real Suicune/Mew local dry route segments by D-pad
+        timeout-minutes: 20
+        run: LIGHTNING_LEGENDARY_WALK_ONLY=1 python3 tests/emulator/run.py
