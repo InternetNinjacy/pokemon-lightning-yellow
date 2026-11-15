@@ -1,3 +1,23 @@
+# Experimental Playtest 002 checkpoint — November 15, 2026
+
+Owner continued the smallest #248 snow particle persistence fix. Gameplay commit
+`b9af0975c4ba9a1b5d486c324928148686d14aa6` on experimental/playtest-2026-11-15 only.
+Single runtime change: increment snowflakeTimer once in Snow_Main, enabling the
+existing >18/reset/recycle path. Comment updated; no other gameplay/source rules.
+`make -j2` compilation SUCCESS, no automated tests/emulator/rain retest.
+Playtest 002 SHA-256 `230c9ec7d1e5376fb1489b10d5d88427cad56e7f8693670e42a83d89616081a3`,
+16,777,216 bytes. Full manifest docs/playtest/2026-11-15-playtest-002-snow.json.
+
+Next: owner observes snow persistence in Playtest 002. Do not claim runtime
+acceptance or close #248 from compilation. Rain and all other explicitly reported
+successful owner scenarios stay accepted: do NOT retest rain. No weakening or
+deleting assertions. Main and recovery/pre-playtest-2026-11-15 stay pinned
+02240690581eb70d70219024fb7f55da2882308b; do not promote the experimental build.
+WRL-010 and initial Pikachu player-OT/optional nickname + SUE Oak-OT/traded EXP/
+badge obedience remain queued. No earned points:50 permanent IDs,461/251/712.
+
+---
+
 # Codex execution handoff — verified November 7, 2026
 
 Standing AGENTS policy55 authorizes approved implementation and verified merges.

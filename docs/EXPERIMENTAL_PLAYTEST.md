@@ -39,3 +39,27 @@ No ROM, fetched build payload, generated binary or credential is committed to Gi
 ## Laptop walkthrough
 
 The owner uses Windows without administrator access and already has working emulators. Integration and compilation were completed in this environment. No laptop build-tool installation or emulator setup is needed. Download the ROM, start a fresh new game, retain separate saves and report the build ID with any reproduction steps. Distribution and proprietary asset constraints still apply; do not upload ROMs or proprietary assets into Git or Actions artifacts.
+
+
+## Playtest 002 — snow persistence correction
+
+Owner continued the source-identified #248 correction on November 15, 2026.
+Gameplay source commit: `b9af0975c4ba9a1b5d486c324928148686d14aa6`; parent Playtest 001 `07158082fb9dfc5c711b4732c9d7878f56d6fb8e`.
+
+Only `src/field_weather_effects.c` changes gameplay: advance the existing shared
+`snowflakeTimer` once in `Snow_Main`. Flakes can then pass the original `>18`
+restart gate and use their unchanged reset/movement/cleanup. Update the obsolete
+never-incremented comment. No rain, sunlight, palette, Hail, map weather weights,
+field-to-battle mechanics, particle artwork/count, tests, workflows or assertions
+changed. Main, recovery and original feature branches remain untouched.
+
+Compilation `make -j2` SUCCESS with the already-prepared pinned agbcc and binutils.
+No automated gameplay tests, emulator execution or rain retest. Build ID
+`LY-playtest-002-20261115`, file `Lightning_Yellow_Playtest_002.gba`,
+16,777,216 bytes, SHA-256 `230c9ec7d1e5376fb1489b10d5d88427cad56e7f8693670e42a83d89616081a3`.
+Exact details: [Playtest 002 manifest](playtest/2026-11-15-playtest-002-snow.json).
+Compilation is not a successful snow playtest: #248 remains open awaiting owner
+confirmation of sustained snowfall. Existing owner-approved successful rain/Sun,
+snow palette/battle Hail and Parcel/Pokedex/Eevee delivery remain accepted.
+WRL-010 and Pikachu/SUE OT corrections stay queued. No points awarded; 50 IDs,
+461 earned / 251 remaining / 712 total unchanged.

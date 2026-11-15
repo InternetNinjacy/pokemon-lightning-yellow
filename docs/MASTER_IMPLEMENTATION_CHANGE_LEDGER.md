@@ -1821,3 +1821,17 @@ PR #184 merged into main at `ae928a1d9eba3aed16f4252123027cb5413106a7`; its merg
 - **Stack disposition:** GitHub recognizes PR #136 as merged in ancestry. PRs #146, #174, #176 and #182 were proven exact-head ancestors of current main (each `behind_by=0` when compared to main), annotated, and CLOSED **without a redundant second merge**; review history remains intact. Their individual PR closed statuses are not new acceptance or a second source landing.
 - **Formal accounting and exclusions:** BTL-005 remains **32 earned/48 remaining within its fixed 80-point scope**. Overall project remains **461 earned/251 remaining/712 total**, with exactly 50 permanent IDs and all earned histories unchanged. No new points are granted for merging, documenting, or rerunning CI. Approved staged index entries do not establish complete 56-move mechanics, Phase Two distribution, exhaustive animation approval, full natural-story playthrough, hardware/link/save interruption, or INT-004/005 release certification. Future effort changes require scoped verified acceptance under existing owner accounting rules.
 
+
+
+## 2026-11-15 — Experimental Playtest 002: #248 snow persistence
+
+Owner-authorized snow-only correction at gameplay commit `b9af0975c4ba9a1b5d486c324928148686d14aa6`.
+Added one shared snowflakeTimer increment in Snow_Main, preserving existing >18
+restart, reset, particle/movement/cleanup, palette, weather selection and battle
+Hail. Corrected obsolete comment. `make -j2` compilation SUCCESS; no automated
+tests, emulator execution or rain retest. Tests, assertions, workflows, official
+tracker and main/recovery unchanged. Playtest 002 ROM SHA-256 `230c9ec7d1e5376fb1489b10d5d88427cad56e7f8693670e42a83d89616081a3`;
+16,777,216 bytes. See docs/playtest/2026-11-15-playtest-002-snow.json.
+Owner rain/Sun/Snow-palette/Hail/Parcel delivery passes preserved. Runtime snow
+persistence remains awaiting owner confirmation; #248 not closed. WRL-010 and
+Pikachu/SUE OT corrections queued. No new credit:50 IDs,461/251/712.
