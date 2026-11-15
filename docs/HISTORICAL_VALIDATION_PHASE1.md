@@ -136,3 +136,41 @@ Source facts below were read from **main** and the two pinned source commits. Th
 ### Remaining acceptance gaps
 
 Complete the full repository-wide map of historical guards, their original SHA manifests and owner approvals; explicitly execute the focused differential suite in a full GitHub checkout; prove unchanged *actual frozen project hashes* and expected rejection across all migrated downstream consumers; inspect CI for the latest exact head; and resolve the separate Fire distribution issue under proper authorization, outside this validation PR. PR #246 remains draft, not merge-ready; legendary PRs #245, #238, #243 are independent.
+
+## Full-repository verification handoff — 2026-11-14 (not yet executed)
+
+### Completed exact-head CI read
+
+- At exact head `48d3b0e13ef3bca5f2ac28f660fa210bec4ff414`, `Battle split validation` #43660370499 **FAILED**: modified job **132648203748 FAILED** first at `tests/run_new_fire_moves_tests.py:48` (`src/data/pokemon/level_up_learnsets.h` contains at least one prohibited new Fire move token); upstream-baseline job **132648203399 SUCCESS**. The focused BTL-005 job remained in progress at the early read; it was not called passing. This is a move-distribution contract, **not** a historical fingerprint failure and not in this PR's authorized correction scope.
+- No new CI topology, workflow registration, frozen hash, or gameplay exception is authorized for #246.
+
+### Pinned manifest immutability independently verified through GitHub reads
+
+| Frozen manifest | Blob at pinned owner-approved main `02240690581eb70d70219024fb7f55da2882308b` and live `main` |
+| --- | --- |
+| `tests/specifications/brock_weather_party_delta.json` | `46765e5462c32ad3bd7615ea78200f76499d6491` — byte-identical |
+| `tests/specifications/approved_elite_four_delta.json` | `28bb295294fb6ee521a887f6ea34de5fac5e6d75` — byte-identical |
+| `tests/specifications/approved_thunder_wave_delta.json` | `58540cf8a5048e31b530e37a29cc1eabd2f8d61f` — byte-identical |
+
+The files' pre-existing original SHA-256 values remain unchanged; Git blob IDs in this table are **not** substituted for any source SHA-256 manifest values.
+
+### Explicit full-checkout verification artifact and environment limitation
+
+Added `tests/test_historical_real_repo_equivalence.py` (opt-in, not inserted into the existing CI registration) to enforce:
+- Actual `git show` reads from the pinned approved/historical commits **in a full Git checkout**, not mocked history.
+- Exact current approved Baily/Tucker party and Tucker metadata records; old and migrated adapters produce identical **entire-file** strings, and unauthorized record mutations are rejected.
+- Original `brock_weather_party_delta.json`, `approved_elite_four_delta.json`, and `approved_thunder_wave_delta.json` remain byte-for-byte the same as the pinned approved-main copies; existing manifest fingerprints are validated as SHA-256-shaped.
+- Unexpected bytes outside the approved record are rejected by the whole-file digest helper. This is an *isolated negative mutation proof*; positive whole-file digest equivalence for all original nested historical chains still requires the full acceptance regression.
+
+The available local environment has only the isolated test-module copies; it does **not** contain a full repository checkout with the pinned commits, and direct GitHub DNS resolution failed. Thus **the real-history script could not be executed here**. Do not claim complete full-repository equivalence from its source or from the previous four passing mocked Python cases.
+
+Next precise execution in a properly provisioned full repository working tree with the two pinned commits present:
+
+```sh
+PYTHONPATH=tests python3 -m unittest -v tests/test_historical_real_repo_equivalence.py
+PYTHONPATH=tests python3 -m unittest -v tests/test_historical_reconstruction_equivalence.py
+```
+
+Both are test-only. Then run the applicable original registered host/battle/native acceptance and compare every original frozen SHA check without modifying the expected values. If the new full-checkout script fails, investigate only its validation logic; no gameplay changes or Fire distribution alteration under Phase 1.
+
+**Status:** partial approval-source inventory, isolated fixture differential 4/4 PASS, actual full checkout not run, broader integration failure unrelated and unwaived. Keep #246 draft and unmerged; legendary #245/#238/#243 independent.
