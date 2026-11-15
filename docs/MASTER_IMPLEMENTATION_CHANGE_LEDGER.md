@@ -1917,3 +1917,66 @@ amendment to existing draft PR250, retaining fixed WRL001 source and all existin
 workflows/gates/guards. PR249/233 ownership unchanged. Owner accepted weather/
 Parcel passes, #248 snow confirmation and WRL010 queue preserved. No points or
 task closure;50 IDs/461 earned/251 remaining/712 total unchanged.
+
+
+## 2026-11-15 — WRL-001 supplemental exact-commit CI proposal only
+
+Owner explicitly requested a separate reviewable supplemental WRL-001-only CI
+proposal, preserving every existing workflow, assertion, status and protection.
+Base main02240690581eb70d70219024fb7f55da2882308b; unchanged draft PR249 source
+0f693dd7bef4219e161b299f08a9a225ecdac9d6 is the sole executable source pin.
+PR233 remains draft dde9c7d245b3ed9cf21ec475c65b2651f4e07921 and owns historical
+reconciliation; no ownership transfer, Fire assertion import or gameplay edits.
+
+Added a dispatch-only supplemental workflow, source/selector/digest/version guard
+and mocked launcher-safety tests. Reuses original pinned agbcc preparation and
+approved mGBA0.10.5 release, source pinned26b7884bc25a5933960f3cdcd98bac1ae14d42e2.
+The only proposed game tests are run_pikachu_opening_tests.py and the original
+LIGHTNING_WRL001_ONLY native path after make-j2. No artifact uploads or caches.
+Existing seven workflows, source fixtures, tracker/dashboard and protections are
+unchanged. Full details: docs/WRL001_SUPPLEMENTAL_CI_PROPOSAL.md.
+
+Executed preparation checks: 11 mocked launcher-safety tests PASS; real pinned
+source preflight PASS; actionlint1.7.7 (without optional shellcheck/pyflakes),
+YAML/Python/Bash syntax, workflow byte-preservation/trigger audit, whitespace and
+accounting PASS. No dependency/game build or emulator run. Existing WRL001
+source/build/681-assertion evidence is reused, not a new CI pass.
+
+Publication uses [skip ci] on proposal/wrl001-exact-commit-ci-20261115 outside
+existing push filters. Proposed workflow has only manual dispatch. Activation is
+blocked pending review of a no-rain installation/trigger path: new dispatch
+workflows must exist on default branch, while a normal merge could trigger broad
+main-push tests. Do not merge/install or dispatch broad CI. No required-gate
+change: protection403 and rulesets[] remain inconclusive.
+
+Original PR249 run43754474983 modified132935433549 Fire48 FAILURE remains;
+upstream132935433210 SUCCESS. PR233 modified132895732192 Misty2400 FAILURE and
+upstream132895732475 SUCCESS remain; no rain rerun or timeout/gameplay edits.
+Owner-accepted rain/Sun/Snow-palette/Hail/Parcel delivery preserved; #248 awaits
+Playtest002 snow confirmation, WRL010 queued. No merge or points; preserve exactly
+50 permanent IDs / 461 earned / 251 remaining / 712 total.
+
+
+## 2026-11-15 — PR250 explicit review-command CI trigger amendment, unactivated
+
+After owner-directed catch125 merge PR251 and metadata closeout PR252, advanced
+existing draft PR250. Merged current main197d85ee1a61ac319f95fa65ab298bb126fe937d
+into its original0de0b1b3 history; two documentation conflicts preserve current
+main history plus original CI proposal entry. No duplicate catch/gameplay source.
+
+Dispatch-only would require default-branch installation; a label-only alternative
+would also be suppressed by the required [skip ci] head marker. Replaced the
+proposal trigger with pull_request_review/submitted, gated by owner actor/author,
+commented review, exact PR250/open/same-repo/branch, review commit_id matching head,
+and exact RUN WRL001 ONLY0f693dd7 command. Actual command contains a space between
+ONLY and full source SHA; see workflow/review record. Controller head and game
+source pins remain separately verified; all original launcher hashes/selector/
+return, pinned agbcc/mGBA0.10.5, no-artifact and read-only guards are retained.
+
+11 launcher unit tests and4 review-trigger tests PASS, including11 negative
+workflow-event guard cases; every original7 workflow byte preserved. No review
+submission or CI activation, dependency/game build, native/rain retest or artifact
+upload. Hosted trigger behavior is not newly validated. Draft stays reviewable,
+supplemental only; no full-CI replacement or blanket gate/merge-policy change.
+Preserve PR249/233 ownership and failures, weather/Parcel passes, #248 owner snow
+confirmation and WRL010 queue;50 IDs/461/251/712 unchanged, no points awarded.

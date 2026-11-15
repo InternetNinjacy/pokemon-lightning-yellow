@@ -1,3 +1,32 @@
+# PR250 review-command amendment — November 15, 2026
+
+- PR251 catch125 is merged at3ed6ac1e18cc774344c5f242cfdd5020e33b83b8;
+  metadata closeout PR252 merged at197d85ee1a61ac319f95fa65ab298bb126fe937d.
+  Production is unchanged by PR252; full/native/upstream CI remains unexecuted.
+- Existing draft PR250 now incorporates current main as a merge parent, preserving
+  the original proposal and all catch125 metadata. No new gameplay changes.
+- Replaced non-runnable dispatch-only plan with explicit owner COMMENT review
+  event on PR250/current controller head. Fixed WRL001 source0f693dd7 remains.
+  Exact command: RUN WRL001 ONLY 0f693dd7bef4219e161b299f08a9a225ecdac9d6
+- Job requires owner actor/review author, commented review, current commit_id,
+  PR250/open/same-repository/exact branch and command. Other events/review text/
+  actors/old heads/PRs/forks/branches fail closed. Controller checkout verifies
+  reviewed head SHA; game checkout verifies the fixed source separately.
+- Label-only option withdrawn: [skip ci] also suppresses pull_request:labeled.
+  Review events are distinct and use the PR merge branch per GitHub docs.
+  Actual hosted activation is untested; no success/runnability guarantee claimed.
+- Static verification:11 launcher tests plus4 review-trigger tests (including11
+  negative event guard cases) PASS; original7 workflows byte-identical; no new
+  production diff to current main. Actionlint/YAML/Bash/diff checks recorded in
+  PR250. No review submitted, workflow activated, native/build/rain test or upload.
+- Keep PR250 draft for trigger review. Supplementary evidence cannot replace
+  required full CI; no broad testing/gate/protection/Fire assertion changes.
+- PR249/233 heads/ownership and original Fire/Misty failures preserved; accepted
+  weather/Parcel passes retained. #248 awaits owner snow confirmation, WRL010
+  queued;50 permanent IDs/461 earned/251 remaining/712 total unchanged.
+
+---
+
 # PR251 catch125 merged — November 15, 2026
 
 - Owner reiterated lock13 catch rates125, implement/merge and proceed after the
