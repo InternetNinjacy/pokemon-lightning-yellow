@@ -336,3 +336,8 @@ separately reviewed CI-optimization PR has established the actual branch rules,
 fail-closed change classification and preserved high-risk/release gates. Keep all
 special-case acceptance (including WRL-002/009 actual Cut/grass, event/save, ABI,
 real gameplay and licensing) and do not claim green results for untested heads.
+
+
+## Owner experimental playtest direction — 2026-11-15
+
+On experimental/playtest-2026-11-15 only, the owner directs a separate integration and compilation workflow driven by manual playtesting, without automated gameplay tests as a prerequisite. Read docs/EXPERIMENTAL_PLAYTEST.md for the exact recovery commit and inclusion/build manifest requirements. This scoped instruction supersedes earlier routine test-before-integration requirements on this experimental branch only. Preserve tests/assertions, existing repository protections, design and asset-license holds, original PR branches and main. Do not promote experimental work to main or award acceptance points without the applicable main acceptance process. Never describe compilation or unexecuted tests as runtime validation. Do not modify recovery/pre-playtest-2026-11-15.
