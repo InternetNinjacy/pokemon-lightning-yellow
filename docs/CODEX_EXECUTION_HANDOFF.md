@@ -1,3 +1,71 @@
+# Owner-approved catch rates125 — November 15, 2026
+
+- Owner supersedes the draft tiers: set all13 previously proposed species to125,
+  lock the balance decision, implement/merge and continue. Merge is authorized;
+  required CI/protection and the separate no-rain directive are not waived.
+- Existing PR251 branch balance/early-catch-rates-through-misty-20261115.
+  Base main02240690581eb70d70219024fb7f55da2882308b unchanged.
+- Exactly13 catchRate values now125. Igglybuff170→125 is the explicit uniform-value
+  consequence; other12 increase. The remaining38 reviewed species stay unchanged,
+  including Electrike120. No encounter/stat/engine/gift/save changes.
+- Updated manifest, complete51-row review and new proposal-owned source check.
+  Exact125/value/scope/51-roster/preservation/accounting static check PASS;
+  whitespace PASS. Original main tests/assertions/workflows are unchanged.
+- Build/runtime not executed: pinned ARM assembler/compiler and libpng dev inputs
+  unavailable locally; apt metadata access fails Permission denied/no packages.
+  No unapproved replacement toolchain or ROM/BIOS/save artifact distribution.
+- Concrete merge blocker: exact-head required modified/upstream CI is unexecuted.
+  Existing broad CI includes prohibited rain tests; branch-protection read403,
+  rulesets[] not proof of absence. No safe checked merge is currently available.
+- Publish update [skip ci], retain pending statuses, no merge/bypass. Need an
+  explicit CI/no-rain policy resolution and verified protection information to
+  finish the authorized merge; do not ask for routine design approval again.
+- Next work is the CI conflict (PR250 trigger proposal does not replace required
+  full CI). Do not silently activate label-only or modify mandated gate topology.
+- Preserve PR233/249/250 ownership and heads, accepted weather/Parcel scenarios,
+  #248 owner Playtest002 snow result, queued WRL010 and50 IDs/461/251/712.
+
+---
+
+# Early catch-rate rebalance handoff — November 15, 2026
+
+- Main/recovery stays02240690581eb70d70219024fb7f55da2882308b.
+- Owner requests all obtainable Pokemon through Misty reviewed/rebalanced,
+  especially before Brock, on a separate draft with no encounter/unrelated edits.
+- Branch balance/early-catch-rates-through-misty-20261115 starts from main.
+  Exactly13 catchRate numbers change in src/data/pokemon/species_info.h;
+  all other species-file bytes and production paths are unchanged.
+- Source audit:51 directly catchable species,17 before Brock. Pre-Brock floor190;
+  later early-game floor120. No existing easier rate is reduced. Rates are
+  species-wide, so later wild instances of the same13 also become easier.
+- Changed: Igglybuff170→190, Teddiursa120→190, Elekid45→190, Tyrogue75→190;
+  Magby45→150, Castform45→120, Smoochum45→190, Sneasel60→150,
+  Onix45→120, Cloyster60→120, Ditto35→120, Farfetchd45→120, Dugtrio50→120.
+- Includes optional pre-Misty Bill/Routes5/6/Vermilion/Route11/Diglett travel,
+  actual Viridian Old Rod and enabled MtMoon1F Onix/Cloyster double pair.
+  Good Rod badge3/Surf/Super Rod/later Cut routes excluded. Source inventory,
+  not new natural accessibility acceptance; WRL002/009 ownership remains separate.
+- Gifts, Museum egg, vendor pool, trades and evolution reviewed as non-capture
+  channels. No unrelated species catch-rate adjustment or acquisition change.
+- PKM009 PR173 shares species file but has no catchRate diff; left untouched.
+  PR233 historical reconciliation, PR249 WRL001 and PR250 CI proposal unchanged.
+- Read docs/EARLY_CATCH_RATE_REBALANCE.md and full per-version/slot manifest
+  tests/specifications/early_catch_rates_through_misty.json.
+- Executed static check tests/check_early_catch_rates.py PASS: exact numeric
+  delta,51-source roster,17/34 stage floors, unchanged encounter/engine/checks/
+  workflows/tracking. git diff --check PASS. No build/native/weather/broad CI.
+- Publication [skip ci], balance/ branch outside existing push filters.
+  Required checks pending, not waived/green. Keep draft; no merge or points.
+- Old whole-file species fingerprints unchanged; need separately reviewed exact
+  delta reconciliation before mandatory CI. No Fire assertion/PR233 imports.
+- Preserve no-rain directive, original PR249 Fire failure and PR233 Misty2400
+  failure, owner weather/Parcel passes, #248 Playtest002 snow confirmation,
+  queued WRL010. Exactly50 IDs/461 earned/251 remaining/712 total.
+- Next: review the13 chosen rates and global carryover; after acceptance arrange
+  compliant focused build/runtime and required-CI/historical reconciliation.
+
+---
+
 # Codex execution handoff — verified November 7, 2026
 
 Standing AGENTS policy55 authorizes approved implementation and verified merges.
