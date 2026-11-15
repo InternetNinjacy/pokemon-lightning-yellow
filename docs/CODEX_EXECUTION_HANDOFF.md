@@ -1,3 +1,220 @@
+# PR #233 Vulpix ability fixture correction — November 15, 2026
+
+Owner explicitly authorized "Continue — correct Vulpix fixture" after source
+diagnosis. Starting head 5424687d136071a7f5d21ff6763c415d825f8572 on existing
+validation/combined-fire-ghost-trainer-projection-20261113. Draft/unmerged.
+
+## Existing failure and approved gameplay
+
+Battle split run 43733563183: modified job 132871111295 FAILURE at
+tests/emulator/battle_categories.c:353, ability equality assertion. Its host
+checks, clean reproducible builds and all preceding focused native steps passed.
+Independent upstream-baseline job 132871111434 SUCCESS. Existing focused BTL
+workflow 43733563184 SUCCESS. The old modified result remains FAILURE.
+
+Merged PR #150 (855333c25086753f42f5d8ddbf5e5efaefee3a39) explicitly approves
+Vulpix Flash Fire / Shadow Tag. Current species_info.h retains that pair.
+The shared create() helper supplies fixed personality 12345; CreateBoxMon uses
+personality & 1 when a second ability exists. Thus Shadow Tag is source-predicted
+for the old Vulpix fixture, not an actual ability value printed by the failed log.
+Gengar's later Levitate case was not reached by that failed loop.
+
+## Targeted existing-fixture correction
+
+Only the ability-immunity fixture changes:
+- Immediately after creating Vulpix, use existing put(ABI_DATA_ABILITY_NUM,0),
+  which calls production SetMonData, before CopyPlayerPartyMonToBattleData.
+  The shared helper/personality and all species/gameplay data are untouched.
+- Use existing production RecordAbilityBattle for the staged Flash Fire/Levitate
+  case and the Color Change control. Cmd_get_ability otherwise guesses between
+  Vulpix's two approved slots when unobserved. Recording the control's ability
+  replaces the prior case's observed history, preventing stale immunity.
+- Correct obsolete single-ability comments. Retain all original 72 CHECK calls
+  byte-for-byte, including species/loaded-ability, real AI score comparisons,
+  actual move choice and reciprocal nonimmune controls. No score fabrication,
+  changed expected result, assertion removal or new scenario.
+
+ABI_DATA_ABILITY_NUM and RecordAbilityBattle are already exported by run.py.
+BattleAI_SetupAIData clears thinking state, not observed ability history. This
+is fixture setup for existing known-ability immunity checks, not new AI gameplay.
+
+## Verification and next step
+
+Reviewed the exact source diff and existing production paths. Local
+git diff --no-index --check review/battle_categories.before.c
+review/battle_categories.after.c emitted no whitespace diagnostics (exit 1
+denotes the expected file difference). All 72 original CHECK expressions are
+identical. No manual ROM build, emulator run, new test, harness, workflow or
+rerun was initiated. Existing mandatory automatic PR workflows remain unchanged;
+their results must be read on the new exact head before claiming acceptance.
+
+Keep draft/unmerged. Inspect the new-head existing modified and independent
+upstream results at the next meaningful checkpoint. If another check fails,
+stop and consult the owner before troubleshooting. Do not reopen Misty/Surf or
+touch other specialist branches. No points awarded: 50 permanent IDs,
+461 earned / 251 remaining / 712 total. Tracker/dashboard accounting unchanged.
+
+---
+
+# PR #233 Move Reminder fixture reconciliation — November 15, 2026
+
+Owner requested continuation of the bundled review/correction after read-only
+diagnosis. Starting exact head 516bc2224f4a04bfed51b15cccc5b20dcfd7421b, draft and
+unmerged. Battle split 43730052511 modified job 132860306341 passed all existing
+host guards and clean reproducible ROM builds, then failed its focused existing
+Center Reminder assertion at center_move_reminder_learning.c:23 (Tackle).
+Independent upstream-baseline job 132860306569 SUCCESS; focused BTL run
+43730052533 SUCCESS. This is an obsolete fixture expectation, not a demonstrated
+gameplay failure. Do not relabel the old CI failure as success.
+
+## Approved requirements and existing correction reused
+
+Issue #191 locks free service, current-species level-limited eligibility, known
+move exclusion, zero/no-available cases, four-slot replacement, and persistence.
+The service was merged in PR #192. Merged PR #153 separately approves the current
+Eevee/Vaporeon/Espeon learnsets. Vaporeon learns Bubble/Helping Hand at Lv1,
+Water Gun at Lv8, Yawn at Lv14; Tackle is absent. Eevee has Tackle/Tail Whip
+at Lv1; Espeon has Confusion/Reflect at Lv1 and Swift at Lv8.
+
+An existing specialist fix already exists in draft PR #239, source commit
+331a99f2d2e5f9a22df7924d2bafa2199608df4c. Copied ONLY its existing native fixture
+file byte-for-byte. PR #239 and its separate workflow are untouched. No new
+scenario, workflow, game mechanic, learnset or source fingerprint was created.
+All 57 CHECK calls, 16 physical button presses and three save/reload operations
+are retained. The coordinated review covers the ENTIRE file:
+
+- Vaporeon Lv7/Lv8 now exercises the approved Water Gun eligibility boundary.
+- Bubble replaces obsolete Tackle expectation; Tail Whip is the actual
+  pre-evolution-only exclusion for Vaporeon/Espeon under current approval.
+- Eevee's no-eligible case knows its two current Lv1 moves, not obsolete Helping Hand.
+- The real NPC and full-slot fixtures stage known Helping Hand so the eligible
+  list remains exactly Bubble, Water Gun. Existing index1 physical menu choice,
+  actual selected-slot replacement, no-cost checks and flash persistence remain.
+
+## Evidence and limits
+
+PR #239 exact head d9f90011d83e35868126f7e2a8ea3d67a6705d7e focused native run
+43551267805 job 132314016122 SUCCESS, including a real ROM build and existing
+learning/physical UI flows. Confirmed identical relevant src/include, all 19
+Center map files, shared Center service, runner and physical fixture against
+#233; unrelated rod-event scripts differ and are NOT imported. This focused
+success is reusable evidence, not a substitute for required new-head CI.
+
+Local existing tests/check_center_move_reminder.py PASS; git diff --check PASS.
+The prior all-95-host success is reused because no host input/helper changed.
+No additional local ROM build or emulator run was initiated. All existing
+mandatory automatic checks must run on the new #233 head. Keep draft/unmerged;
+never weaken checks, change frozen hashes or touch #229/#246/legendary branches.
+Stop on unexplained failures and do not reopen Misty/Surf. No task credit.
+
+---
+
+# PR #233 historical correction checkpoint — November 15, 2026
+
+Scope: owner-authorized bundled validation-only correction on draft PR #233,
+branch `validation/combined-fire-ghost-trainer-projection-20261113`, starting
+at exact `ed38a682ac5d8578270394b91f08cd18d2d514db`. No merge authorization.
+PRs #229/#246 and legendary/policy branches are independent and untouched.
+
+## Actual execution and correction
+
+A complete fresh local Git checkout was obtained through the normal HTTPS
+origin. Both pinned commits and original frozen sources are accessible. Earlier
+reports of unavailable local execution no longer describe this environment.
+Read AGENTS.md, PR #233 discussion, current ownership comments in issue #105,
+and the terminal old-head Actions logs before editing.
+
+Old-head Battle split run 43716545377: modified job 132819225507 FAILURE,
+first assertion in run_brock_weather_tests.py:25; upstream-baseline job
+132819225744 SUCCESS. Focused BTL run 43716545380 SUCCESS.
+
+The EXACT Brock reconstruction (existing imports and both existing expression
+chains evaluated without running CI/emulators) leaves only these residuals:
+
+- trainer_parties.h: sParty_LeaderLtSurge, sParty_LeaderSabrina (2 records).
+- trainers.h: TRAINER_LEADER_LT_SURGE, TRAINER_LEADER_SABRINA,
+  TRAINER_PSYCHIC_TYRON, TRAINER_CHANNELER_AMANDA (4 records).
+- No additions/deletions of records or differences outside records, for either
+  before/after comparison. There are 644 parties and 748 metadata records.
+- ZERO ordinary-lock or Rocket Hideout residual records. The earlier suggestion
+  of a 513-record Brock residual was incorrect: those changes already belong to
+  the Brock frozen source and must NOT be reverted for this comparison.
+- The entire restore_ordinary_trainer_blocks() result has a different historical
+  target and cannot replace Brock's frozen reference.
+
+Approval provenance: merged PR #157 (Surge, e7b328ad6a3a92d4ccc0fb104a277fc62bd2d571),
+#148 (Sabrina, b26198f0aa08e26a5c17ff0f94df5fcb8c7a801d), and #203
+(Tyron/Amanda Double metadata, dbd67b61a7fa19942d1fc2998b20652d1554c69b).
+Reused byte-identical existing helpers approved_two_leader_party_projection.py
+and approved_four_trainer_metadata_projection.py and existing Brock caller from
+5ec10a8c0b282b7c75a618eeb793ca473be6312e. They compare entire records against
+pinned approved main 02240690581eb70d70219024fb7f55da2882308b before restoration.
+
+## Computed fingerprints (original expected values unchanged)
+
+Brock historical sources are 368b3119c7c50c251324f76573d232cdb035e8bd (before)
+and 6a8b8010834e5e84c5bd00a90d217c389d9a7e53 (after).
+
+| File/state | Old incomplete reconstruction | Corrected and original frozen SHA-256 |
+| --- | --- | --- |
+| trainer_parties.h after | 988db2813972b68f19bc66977c23e20d1dc57e0196f698d9e748327b51aa1ec9 | 7492be71499ad7281010b0197ee19ca5dd82341babba833ab319fa88b5ef8938 |
+| trainer_parties.h before | 798a4891691ed4f1d3107db7d3cf493a70e86703e5ec762ad348b42e8a787778 | 3ef0ccce270c2e5cd854b2712b2acf8b48a32261d78875b67fb6e52985efc659 |
+| trainers.h after | 90deb5315ea1d275e6bed93beeb84844258ff516ff657508f0bb5ecb9d0ad42f | cd23c29c2b19955e4b57435f88c034d45de283b8d24b69bea24ffc9b000f880e |
+| trainers.h before | 6f6722ce10a7e2029d392a04e31b43fe23afa4e455b7a481d960711ccd935c0d | 251e6a22e9882641cce980c45ff01a45e5cc3da465f2e84532b31bce445ac739 |
+
+## Coordinated existing-caller inventory and confirmed additional fixes
+
+All 95 existing host commands registered in build.yml were inspected and executed
+in their existing order. Corrections only explain exact approved later deltas:
+
+- Special Glalie, custom Dex and typing callers: reuse the existing strict six
+  complete-record PKM-009 helper already on #233. Original hashes match exactly.
+- Shared pre-typing projection: apply six-profile reversal BEFORE typing reversal;
+  the latter legitimately changes Vulpix/Ninetales Fire/Ghost to historical Fire.
+  This repairs daycare and its downstream preservation consumers without
+  accepting hybrid or unexpected species records.
+- Gym Castform historical helper: same strict six-profile reversal and the
+  existing strict twelve-learnset helper. The latter is copied byte-identically
+  from d1e578631578628f5a015db364446854b422c944, not a new test scenario.
+  Rival historical checks inherit this same exact source reconstruction.
+- Twelve complete learnsets: Oddish/Gloom/Vileplume/Bellossom (#144),
+  Ponyta/Rapidash (#149), Vulpix/Ninetales (#150),
+  Eevee/Vaporeon/Flareon/Espeon (#153), all merged owner-locked approvals.
+  After existing rival reversals these are the only 12 differing arrays, with no
+  non-record difference from the original frozen file at e04252ea0783510000e634486c0f2526a736f506.
+
+Computed six-profile/weather result (Glalie/Castform):
+`e37cfe0a03344890eb7c95ddf6193e635eb726e08c7198b7b7062c715ac5f267`.
+Custom Dex species result:
+`9c2da1284f7859700b315abda0499334c422f2c6776d576c788fcd1e4050f71e`.
+Typing/daycare whole-file result:
+`10021c12ed42a009e6a7a9d75a7439a9ff802f23c972559757bbbd989e4db3d6`.
+Typing non-type result:
+`a2cbf1d6340fab9a9bf7aaf7e0e4c7e20fb047739bccbfa42404c0a6382b3e99`.
+Castform/rival learnset result:
+`d6563a88fa893d1433a02027cb13ba9574a6828a96b1a730b1d767fd7c5a0cc6`.
+Every listed computed value equals its unchanged original expected digest.
+
+## Verification, remaining work and safeguards
+
+Final local sequence: ALL 95 EXISTING workflow host commands PASS on the combined
+working tree; earlier pre-correction local failures are superseded only for
+this working tree, not retrospectively relabeled. Existing registration/move
+reconciliation/Museum checkers also PASS. git diff --check PASS.
+No new test scenarios, game source, frozen manifests, workflow registrations,
+required statuses, branch protections, ROM builds or emulator runs changed.
+Whole-record equality, exactly-one-record checks and whole-file hashes remain.
+No new mutation suite was created or claimed executed. Local host success does
+not establish native gameplay/build acceptance or exact-new-head Actions success.
+
+Next: inspect actual new-head mandatory Actions; keep draft and unmerged. Do not
+rerun successful batches without a new change/failure. Resolve only independently
+approved historical deltas; stop on an unexplained failure. No Misty/Surf
+investigation or exemption, no interaction with #229/#246 or legendary branches.
+Permanent accounting remains 50 task IDs, 461 earned /251 remaining /712 total.
+
+---
+
 # Codex execution handoff — verified November 7, 2026
 
 Standing AGENTS policy55 authorizes approved implementation and verified merges.

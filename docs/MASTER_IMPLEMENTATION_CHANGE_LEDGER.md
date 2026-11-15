@@ -1821,3 +1821,52 @@ PR #184 merged into main at `ae928a1d9eba3aed16f4252123027cb5413106a7`; its merg
 - **Stack disposition:** GitHub recognizes PR #136 as merged in ancestry. PRs #146, #174, #176 and #182 were proven exact-head ancestors of current main (each `behind_by=0` when compared to main), annotated, and CLOSED **without a redundant second merge**; review history remains intact. Their individual PR closed statuses are not new acceptance or a second source landing.
 - **Formal accounting and exclusions:** BTL-005 remains **32 earned/48 remaining within its fixed 80-point scope**. Overall project remains **461 earned/251 remaining/712 total**, with exactly 50 permanent IDs and all earned histories unchanged. No new points are granted for merging, documenting, or rerunning CI. Approved staged index entries do not establish complete 56-move mechanics, Phase Two distribution, exhaustive animation approval, full natural-story playthrough, hardware/link/save interruption, or INT-004/005 release certification. Future effort changes require scoped verified acceptance under existing owner accounting rules.
 
+
+
+## 2026-11-15 — Draft #233 coordinated historical comparisons, local verification
+
+Owner-authorized bundled correction from ed38a682ac5d8578270394b91f08cd18d2d514db.
+Full Git checkout obtained. Exact Brock residual is two approved leader parties
+and four approved Double metadata records, with no ordinary/Rocket or non-record
+residual. Both original before/after hashes for both files match after existing
+strict helpers. Additional independently proven stale six-profile and twelve-
+learnset assumptions corrected in existing Glalie/Dex/typing/pre-typing/Castform
+paths, preserving original hashes and approved game source. Source approvals are
+merged #157/#148/#203 and #144/#149/#150/#153. Reused existing helpers only; no
+new test scenarios or workflow changes. Final combined local run: all 95 existing
+build.yml host commands PASS; git diff --check PASS. New-head mandatory build/
+native/upstream CI remains a separate unverified gate. Draft/unmerged; #229/#246
+and legendary branches untouched. No effort credit or acceptance exemption.
+Full source refs, exact hashes and gaps are in docs/CODEX_EXECUTION_HANDOFF.md.
+
+
+## 2026-11-15 — Draft #233 reuses existing approved Move Reminder fixture
+
+After owner continuation, reviewed exact-head modified failure 132860306341
+(line23 obsolete Vaporeon Tackle expectation) against issue #191 and merged
+#153/#192. Copied only existing PR #239 native fixture at 331a99f2 byte-identically
+onto #233. Full-file review reconciles approved Lv7/Lv8 boundary, species-only
+exclusions, Eevee no-move case, empty/full-slot menu fixtures. All57 CHECKs,16
+physical presses,3 flash roundtrips retained. Existing focused PR239 native
+43551267805/132314016122 SUCCESS with matching relevant production sources;
+no new workflow or test scenario, no local build/emulator rerun. Existing static
+19-Center service check and diff check PASS. New-head required CI pending, not
+claimed successful. Draft/unmerged; other PRs untouched, no points/exemptions.
+
+
+## 2026-11-15 — Draft #233 targeted Vulpix immunity fixture correction
+
+Owner authorized the correction after diagnosis. Starting head 5424687d136071a7f5d21ff6763c415d825f8572:
+Battle split 43733563183 modified 132871111295 FAILURE at battle_categories.c:353;
+independent upstream 132871111434 SUCCESS; focused BTL 43733563184 SUCCESS.
+Approved merged #150 retains Vulpix Flash Fire / Shadow Tag; fixed personality
+12345 predicts slot2, without an actual ability value in the old failure log.
+Existing fixture now explicitly selects Vulpix slot0 through SetMonData and
+records staged immunity/control abilities through existing RecordAbilityBattle,
+so native AI does not guess an unobserved dual-slot ability or retain stale
+control history. All72 CHECK expressions and real AI scoring/choice controls
+unchanged. Shared helper, gameplay, ABI exports, workflows and frozen guards
+untouched. Exact diff/whitespace inspection only; no manual build/native run,
+new test or rerun. Required automatic new-head CI remains unverified. Draft,
+unmerged; no effort credit or tracker/dashboard accounting change. Full source
+reasoning and next owner consultation stop condition in CODEX_EXECUTION_HANDOFF.

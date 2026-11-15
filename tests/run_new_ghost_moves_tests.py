@@ -29,6 +29,17 @@ for key,parts in zip(['SOUL_DRAIN','WEARY_TOUCH','DREAM_HAUNT'],[['LICK','MEGA_D
  expected_body=''.join(re.search(r'Move_'+p+r':\n(.*?)\n\tend',asm,re.S)[1]+'\n\twaitforvisualfinish\n' for p in parts)
  actual=re.search(r'Move_'+key+r':\n(.*?)\tend',asm,re.S)[1]
  assert actual==expected_body,key
-for path in ['src/data/pokemon/level_up_learnsets.h','src/data/pokemon/tmhm_learnsets.h','src/data/trainer_parties.h']:
+# Later owner-approved Vulpix/Ninetales profiles (merged PR #150) grant
+# exactly two natural Dream Haunt entries; other Ghost distributions stay banned.
+level_source=Path('src/data/pokemon/level_up_learnsets.h').read_text()
+learnsets=re.findall(r's([A-Za-z0-9]+)LevelUpLearnset\[\]\s*=\s*\{(.*?)\};',level_source,re.S)
+assert len(learnsets)>100,'level-up learnset parsing failed'
+actual={}
+for species,block in learnsets:
+ entries=[(int(level),move) for level,move in re.findall(
+  r'LEVEL_UP_MOVE\(\s*(\d+)\s*,\s*MOVE_(SOUL_DRAIN|WEARY_TOUCH|DREAM_HAUNT)\s*\)',block)]
+ if entries: actual[species]=entries
+assert actual=={'Vulpix':[(37,'DREAM_HAUNT')], 'Ninetales':[(44,'DREAM_HAUNT')]},actual
+for path in ['src/data/pokemon/tmhm_learnsets.h','src/data/trainer_parties.h']:
  assert not any('MOVE_'+k in Path(path).read_text() for k,*_ in expected),path
-print('PASS: exact three approved Ghost designs, complete appended sleep-hit dispatch, original bodies composed inline, exact old-source reversal and no distribution (static, not runtime proof).')
+print('PASS: exact three approved Ghost designs, complete appended sleep-hit dispatch, original bodies composed inline, exact old-source reversal and only Vulpix/Ninetales Dream Haunt natural distribution (static, not runtime proof).')
