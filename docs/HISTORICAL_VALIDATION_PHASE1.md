@@ -79,3 +79,28 @@ Source facts below were read from **main** and the two pinned source commits. Th
 - An isolated Python unittest of the shared helper's record-reversal and digest-check logic, with controlled mock pinned sources (not a full repo checkout), passed **4 cases** covering positive exact equivalence, Baily illegal edits/duplicates, bad allowlists, and unrelated-byte SHA rejection. This is useful algorithm-level evidence but **not** exact-head repository CI, actual full-helper integration, or complete regression equivalence.
 - Only `tests/approved_gym001_baily_changes.py` was migrated: original `BEFORE` and `AFTER` literal contracts and their count/duplicate assertions are unchanged; final substitution is performed by the additional pinned strict record helper. Source hash manifests, run_brock_weather_tests.py and all other runners stay unchanged. This migration deliberately fails closed on any unverified approved record drift.
 - **Open proof gap:** exact-head host test executions and downstream Brock/E4 source digest checks on the new branch must finish, and the broad current-main historical failure outside Baily must be separately classified. Until then keep draft and do not merge.
+
+## Phase 1 continuation — exact-head CI and Tucker equivalence (2026-11-14)
+
+### Existing CI on prior exact head `529bfd29711b962661d95c72156222e697a7e657`
+
+- `Battle split validation` run **43657299764**: **FAILURE**: independent upstream-baseline job **132638633044 SUCCESS**, modified job **132638633260 FAILURE**.
+- First modified error: `tests/run_new_fire_moves_tests.py:48` found a `MOVE_FLAME_FANG` / `MOVE_FLASHFIRE` / `MOVE_BLAZE_RUSH` reference in `src/data/pokemon/level_up_learnsets.h` where the existing test demands **none**. The generic `any()` assertion does **not** identify which of those three move tokens caused the failure. Do not infer authorization, dismiss the failure as a stale hash, or change the move data/test in this validation PR.
+- `BTL-005 Batch A focused native validation` run **43657299771**: **SUCCESS**.
+- No claim of complete modified-game acceptance or passing checks not reached after the first failure. This unrelated blocker stays open for owner-scoped review outside Phase 1.
+
+### Second scoped adapter: Gentleman Tucker
+
+- Verified the **entire** `sParty_GentlemanTucker` and `TRAINER_GENTLEMAN_TUCKER` records at pinned historical `21a3630b3d51481ab10a1af9637fa1ced73722cc`, approved `02240690581eb70d70219024fb7f55da2882308b`, and live main. Exactly **one** occurrence of each was found in each version. Approved-main and current-main records were byte-identical.
+- The reviewed party is Voltorb Lv22 with Charge, Spark and two empty move slots; the original was Pikachu Lv23. Trainer metadata changes only the party binding from `NO_ITEM_DEFAULT_MOVES` to `NO_ITEM_CUSTOM_MOVES`; original trainer class, items, Singles setting and other fields remain protected.
+- The existing `tests/approved_gym001_tucker_changes.py` accepts either exactly approved current content (reverse to historical) **or** already-historical content (leave unchanged). This is different from the Baily helper and was explicitly preserved.
+- Read-only source-equivalent differential comparison on both actual full `trainer_parties.h` and `trainers.h` showed old/new **identical whole-file output** for approved current and already-historical Tucker records. Altered party species was rejected by both; duplicate approved record was rejected by both. Changes to unrelated records were tolerated by **both scoped adapters**, and still require the original final whole-file SHA checks. A change matching an **exact original** metadata record is accepted by both, by the pre-existing historical-input contract—not a new exception.
+- Migrated only the Tucker historical adapter's exact-approved branch to `reverse_pinned_records`. Its original two `REVIEWED` before/after literal records, approved-or-historical selection, count checks, and unrelated-path behavior remain untouched. The shared helper independently checks that both current and historical records match their pinned approved snapshots before reversal.
+- **Limit:** This read-only JS comparison checks equivalent source logic and real pinned source records; it is not an execution of the new Python helper in the full GitHub runner and not full coverage of all adversarial inputs. Further targeted differential tests and final strict original-digest/CI evidence remain required. No merge is authorized.
+
+### Updated unresolved gaps
+
+- Full inventory of all historical adapters, protected files, manifests and owner-approved record identities; current table remains partial.
+- Explicit negative mutation fixture suite exercising the **actual imported Python helper and migrated adapters**, including outside-record edits rejected at final SHA; compare against baseline old runner behavior.
+- Exact-head mandatory checks after the Tucker adapter change; the previous head has a separate Fire move distribution failure and cannot certify this head.
+- Check and preserve exact original frozen fingerprints and policy; investigate Fire distribution separately under its own owner-approved work, not here.
