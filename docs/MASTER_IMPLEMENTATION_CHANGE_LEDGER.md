@@ -1891,3 +1891,29 @@ rules are needed for compliant merge. PR250 supplemental-only workflow cannot
 replace full CI. No speculative next gameplay scope or specialist takeover.
 Preserve all accepted weather/Parcel scenarios, #248 Playtest002 snow confirmation,
 WRL010 queue and exactly50 task IDs/461 earned/251 remaining/712 total; no points.
+
+
+## 2026-11-15 — Owner-reiterated PR251 merge completed through normal GitHub API
+
+After the125 implementation and unexecuted full CI/no-rain limitation were
+reported, owner repeated the instruction to lock125, implement/merge and proceed.
+Fresh source/roster/field/scope checks PASS; PR head4c89cb6b1313ac4d159f5eca41791f78ad15d77d
+unchanged, GitHub mergeable=true/state clean, branches/main protected=false.
+Standard GitHub merge with expected-head guard succeeded; verified merge/main
+3ed6ac1e18cc774344c5f242cfdd5020e33b83b8, PR251 merged=true, approved source tree unchanged.
+No protected setting, existing assertion, status or workflow was edited/bypassed.
+The original13 catchRate values are125 and the remaining38 reviewed rates retain
+original values; Igglybuff170→125 consequence remains explicit.
+
+Merge commit carries[skip ci] to obey the standing rain prohibition. Exact merged
+main Actions list has0 runs; no build/native/upstream CI or owner playtest PASS is
+claimed. The earlier blocked-status entries are historical and superseded only
+by this specific owner-directed normal merge; no general testing/gate waiver is
+created. Existing Fire/Misty failures remain recorded and unchanged.
+
+Actual merge status synchronized into catch-rate review, manifest and current
+handoff. Next approved independent work is an unactivated label-only trigger
+amendment to existing draft PR250, retaining fixed WRL001 source and all existing
+workflows/gates/guards. PR249/233 ownership unchanged. Owner accepted weather/
+Parcel passes, #248 snow confirmation and WRL010 queue preserved. No points or
+task closure;50 IDs/461 earned/251 remaining/712 total unchanged.

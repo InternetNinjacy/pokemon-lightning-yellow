@@ -1,6 +1,6 @@
 # Early catch rates through Misty
 
-Status: owner-approved uniform125 implementation; merge requested, not yet merged or owner playtested. Prepared November 15, 2026 from main `02240690581eb70d70219024fb7f55da2882308b`.
+Status: owner-directed merge completed in PR251 at `3ed6ac1e18cc774344c5f242cfdd5020e33b83b8`; static source checks passed, full/native/upstream CI and owner playtest not newly executed. Prepared November 15, 2026 from main `02240690581eb70d70219024fb7f55da2882308b`.
 
 The owner approved setting all 13 previously proposed catch-rate changes to **125** and requested implementation and merging. This supersedes the draft190/150/120 tiers. The other38 directly catchable species keep their original rates. All17 pre-Brock direct catches have rates of at least125; the complete early review still contains51 species. Electrike remains120 because it was not one of the13 proposed changes.
 
@@ -117,7 +117,7 @@ The existing capture engine reads `gSpeciesInfo[species].catchRate` in `src/batt
 
 Old whole-file species fingerprint assertions are deliberately unchanged. This new data delta will require separately reviewed exact reconciliation before mandatory CI can accept an integrated candidate; existing failures are neither fixed nor waived here. Do not import Fire assertions or PR233 adapters. Required exact-head modified/upstream CI, a build and focused changed-rate gameplay verification remain pending before any merge/acceptance.
 
-Publication uses `[skip ci]` on a `balance/` branch outside the existing push filters to honor the no-rain directive. Existing required checks remain pending, not green. No workflow/status/protection changes or artifact uploads. Owner now authorizes merge after applicable checks. Actual merge remains blocked by unexecuted required CI and the no-rain boundary; no gate waiver is inferred. Preserve owner rain/Sun/Snow-palette/Hail/Parcel acceptance, #248 Playtest002 snow-persistence confirmation and queued WRL010.
+Publication uses `[skip ci]` on a `balance/` branch outside the existing push filters to honor the no-rain directive. Existing required checks remain pending, not green. No workflow/status/protection changes or artifact uploads. After disclosure of unexecuted full CI and the no-rain restriction, the owner reiterated the merge instruction. Standard GitHub merge with exact head guard succeeded at `3ed6ac1e18cc774344c5f242cfdd5020e33b83b8`. The fresh branches/main response reported protected=false and GitHub mergeable_state=clean; no security setting, status or assertion was changed. This records the owner-directed merge, not full/native/upstream CI acceptance. Exact merged-main Actions list was empty; the merge commit carries [skip ci] to avoid rain reruns. This specific action is not general authority to waive tests or alter required gates on other work. Preserve owner rain/Sun/Snow-palette/Hail/Parcel acceptance, #248 Playtest002 snow-persistence confirmation and queued WRL010.
 
 Accounting remains exactly 50 permanent task IDs / 461 earned / 251 remaining / 712 total. No new points or task closure. This is a PKM-009 catch-rate balance proposal with WRL acquisition evidence, not a new permanent task.
 

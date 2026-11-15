@@ -1,5 +1,5 @@
 {
-  "status": "owner_approved_125_implementation_merge_requested",
+  "status": "merged_owner_directed_static_validated_remote_ci_unexecuted",
   "base_sha": "02240690581eb70d70219024fb7f55da2882308b",
   "authority": "Owner 2026-11-15: Set them at 125 instead. Lock in. Implement merge and move forward. Applies to the 13 proposed species; every other species remains unchanged. Merge authorization does not waive existing CI/protection or no-rain boundaries.",
   "scope_definition": "Normal source-accessible early-game frontier before defeating Misty, including optional Bill/Route5/6/Vermilion/Route11/Digletts Cave travel; no glitches, trades with external players, later badge, Cut, Surf or stronger rods. Gifts/trades/evolutions reviewed separately because no capture roll. Source inventory is not a new native traversal certificate.",
@@ -1674,5 +1674,8 @@
     }
   ],
   "approved_changed_species_rate": 125,
-  "owner_exception": "Igglybuff original170 becomes125 under the explicit uniform-value approval. The other12 changes increase original rates. Electrike120 is one of38 unchanged reviewed species."
+  "owner_exception": "Igglybuff original170 becomes125 under the explicit uniform-value approval. The other12 changes increase original rates. Electrike120 is one of38 unchanged reviewed species.",
+  "merge_sha": "3ed6ac1e18cc774344c5f242cfdd5020e33b83b8",
+  "merge_pr": 251,
+  "merge_evidence": "Standard GitHub exact-head merge succeeded after owner reiterated merge instruction following disclosure of unexecuted CI. Fresh main protected=false. No security/CI/assertion changes. Exact merged-main Actions list empty, not success."
 }
