@@ -78,6 +78,21 @@ def restore_ordinary_trainer_blocks(path):
             assert result.count(approved) == 1, trainer_id + ": approved metadata drift"
             assert historical not in result, trainer_id + ": historical metadata duplicated"
             result = result.replace(approved, historical, 1)
+    # GYM-001 PR #203: two owner-approved Saffron Gym ordinary trainers
+    # changed ONLY their existing Single->Double metadata. Recover these
+    # exact prior records for the original frozen trainer-source baseline.
+    # Entire-record equality rejects any unapproved trainer metadata drift.
+    if str(path) == "src/data/trainers.h":
+        for trainer_id in ("TRAINER_PSYCHIC_TYRON", "TRAINER_CHANNELER_AMANDA"):
+            pattern = r"\[" + re.escape(trainer_id) + r"\]\s*=\s*\{.*?\n    \},"
+            historical = list(re.finditer(pattern, original, re.S))
+            current = list(re.finditer(pattern, result, re.S))
+            assert len(historical) == len(current) == 1, (trainer_id, "protected record count")
+            before = historical[0].group()
+            assert before.count(".doubleBattle = FALSE,") == 1, trainer_id
+            approved = before.replace(".doubleBattle = FALSE,", ".doubleBattle = TRUE,", 1)
+            assert current[0].group() == approved, (trainer_id, "unapproved trainer change")
+            result = result[:current[0].start()] + before + result[current[0].end():]
     for trainer_id, record in LOCK["entries"].items():
         if record["source_dummy"]:
             continue
