@@ -1,6 +1,6 @@
 # WRL-001 supplemental exact-commit CI proposal
 
-Status: separate review-only draft, not activated or executed. Prepared on
+Status: separate review-only draft with owner review-command activation proposed; not activated or executed. Prepared on
 November 15, 2026 under the owner's explicit instruction to prepare this proposal.
 No gameplay, existing workflow, assertion, required status or protection changes.
 
@@ -20,7 +20,7 @@ relabel an earlier failure, approve a merge, or award points.
 | Approved mGBA 0.10.5 release commit | `26b7884bc25a5933960f3cdcd98bac1ae14d42e2` |
 | Pinned checkout action v4.2.2 | `11bd71901bbe5b1630ceea73d27597364c9af683` |
 
-This branch starts from main, not PR #249 or PR #233. It contains no gift,
+This branch retains its original proposal commit and now merges current main197d85ee1a61ac319f95fa65ab298bb126fe937d as a parent; no PR #249 or PR #233 gameplay/assertion changes are imported. It contains no gift,
 Pikachu, weather, Fire assertion or historical projection changes. The workflow
 checks out the independent PR #249 source SHA into `source/`; it never tests a
 moving branch or a synthetic PR merge commit. The controller checkout is separately
@@ -36,8 +36,7 @@ Previously acquired SUE is still not migrated.
 ## Proposed execution
 
 `.github/workflows/wrl001-supplemental.yml` has one distinct job,
-`supplemental-wrl001-only`, with read-only contents permission. A dispatch must
-explicitly request the approved full source SHA; any different or absent SHA fails.
+`supplemental-wrl001-only`, with read-only contents permission. Execution requires the exact owner-authored COMMENT review command and matching controller head described below. The game source is a fixed literal SHA, not a reviewer-supplied ref.
 
 Before dependencies, build or native execution, the controller verifies exact
 source HEAD, clean tracked source and SHA-256 fingerprints of the reviewed Python
@@ -79,36 +78,48 @@ reference ROM, BIOS, ELF or save is committed or uploaded as an artifact.
 
 ## Publication and activation boundary
 
-The proposal branch is `proposal/wrl001-exact-commit-ci-20261115`, outside every
-existing push branch filter. Its publication commit carries `[skip ci]`, which
-suppresses existing `push`/`pull_request` triggers on this draft. The new workflow
-itself has only `workflow_dispatch`: no `push`, `pull_request`, schedule,
-`workflow_run`, `pull_request_target` or comment trigger. None of the seven
-existing workflows has an event that escapes the publication controls. Creating
-this draft must be followed by an exact-head run-list readback.
+Only `pull_request_review: types: [submitted]` is configured. The one job requires
+all of the following: repository InternetNinjacy/pokemon-lightning-yellow, PR250,
+open same-repository branch proposal/wrl001-exact-commit-ci-20261115, actor and
+review author InternetNinjacy, review state commented, review commit_id equal to
+the current PR head, and this exact review body:
 
-Existing workflows are byte-identical to main. Their status names, assertions,
-upstream checksum, triggers and gates remain in force. Suppressed/pending checks
-are not green. Do not strip `[skip ci]`, push a replacement commit, retarget,
-promote, merge or dispatch as a routine follow-up that would start broad tests.
+```text
+RUN WRL001 ONLY 0f693dd7bef4219e161b299f08a9a225ecdac9d6
+```
 
-**Activation is a separate review decision.** GitHub requires a manual-dispatch
-workflow to exist on the default branch. This new workflow does not exist there;
-the draft therefore supplies no claim that it is runnable now. A normal merge
-to main could trigger the unchanged broad main-push workflow and prohibited rain
-tests. Do not merge to install it or dispatch any existing broad workflow. The
-review must establish an installation/trigger path consistent with the owner's
-no-rain direction before execution. An explicit PR-label-only opt-in could be a
-separately reviewed alternative, because current PR workflows use only default
-opened/synchronize/reopened events; it is not implemented or authorized here.
+The controller checkout pins the reviewed PR head rather than the synthetic merge
+commit. Its SHA is verified and logged separately from the fixed game-source SHA.
+An old-head review, another actor, ordinary review text, another PR/fork/branch,
+closed PR, approving review or other event cannot start the native job. A normal
+conversation comment or label is not this activation action. Publishing this
+amendment does not submit a review or execute the workflow.
+
+This replaces the earlier dispatch-only proposal: manual dispatch requires a
+workflow on the default branch, and installation by a normal main merge risks
+starting broad tests. The suggested label-only alternative is also withdrawn:
+labels are pull_request activities and [skip ci] suppresses that event family.
+Review events are distinct; GitHub documents their PR merge-branch context and
+limits commit-message skip instructions to push/pull_request. Actual hosted
+activation has not been tested and is not claimed as successful here.
+
+The proposal branch matches no existing push filter. Publication retains [skip ci]
+to suppress old push/pull_request runs. None of the seven existing workflows
+subscribes to pull_request_review; their files/statuses/assertions/gates are
+byte-identical to current main. There are no default-branch installation, new
+labels, review submissions, dispatch calls or required-gate changes in this work.
+Full/native/upstream CI remains separate and unresolved; supplemental success
+would not replace it. Do not merge or activate this proposal without reviewing
+the exact controller head and opt-in action.
 
 References:
+[GitHub review events](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#pull_request_review),
 [GitHub skip semantics](https://docs.github.com/en/actions/how-tos/manage-workflow-runs/skip-workflow-runs),
-[manual dispatch default-branch requirement](https://docs.github.com/en/actions/how-tos/manage-workflow-runs/manually-run-a-workflow),
-[Ubuntu mGBA package versions](https://packages.ubuntu.com/search?keywords=mgba),
-[mGBA 0.10.5 source](https://github.com/mgba-emu/mgba/tree/26b7884bc25a5933960f3cdcd98bac1ae14d42e2).
+[manual dispatch requirement](https://docs.github.com/en/actions/how-tos/manage-workflow-runs/manually-run-a-workflow).
 
 ## Verification of this proposal
+
+Amendment: 11 launcher tests and4 review-trigger tests (including11 negative guard cases) PASS without submitting a review or executing hosted CI. Approved catch125 changes are current-main ancestors, not additional CI-proposal gameplay edits.
 
 - `python3 tests/test_wrl001_ci_guard.py -v`: 11 launcher-safety checks PASS.
   Real pinned file bytes are inspected; Git metadata, dynamic-library loading
@@ -120,7 +131,7 @@ References:
 - Actionlint 1.7.7: PASS for the proposed workflow; YAML and Python syntax PASS.
   Shellcheck/pyflakes integrations were unavailable; actionlint ran with those
   integrations disabled. Bash steps are additionally syntax checked locally.
-- Existing workflow byte comparison and trigger/no-upload audit: PASS.
+- Existing workflow byte comparison, review-command event guard cases and trigger/no-upload audit: PASS.
 - Diff/whitespace and unchanged 50-ID / 461-earned / 251-remaining / 712-total
   accounting checks: PASS. Tracker/dashboard unchanged.
 - Proposed dependency installation/build and hosted source/build/native path:
@@ -141,8 +152,7 @@ Misty 2400-frame assertion and upstream `132895732475` succeeded. Existing
 is preserved. No rain rerun, timeout change or gameplay investigation is authorized
 by this proposal.
 
-Branch-protection reads returned 403; `rulesets=[]` does not establish absence of
-classic protection. No actual required-check list is claimed. Required-gate changes
+Branch-protection-detail reads returned403, while the fresh main branch metadata reports protected=false. The owner-directed normal PR251 merge succeeded after the merge instruction was reiterated; it does not create a general workflow/gate waiver. No detailed required-check configuration is claimed. Required-gate changes
 need separate policy review and verified protection information; supplemental
 success, if later obtained, does not resolve that requirement.
 

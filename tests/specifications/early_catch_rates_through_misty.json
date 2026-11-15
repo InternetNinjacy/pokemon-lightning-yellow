@@ -1,0 +1,1681 @@
+{
+  "status": "merged_owner_directed_static_validated_remote_ci_unexecuted",
+  "base_sha": "02240690581eb70d70219024fb7f55da2882308b",
+  "authority": "Owner 2026-11-15: Set them at 125 instead. Lock in. Implement merge and move forward. Applies to the 13 proposed species; every other species remains unchanged. Merge authorization does not waive existing CI/protection or no-rain boundaries.",
+  "scope_definition": "Normal source-accessible early-game frontier before defeating Misty, including optional Bill/Route5/6/Vermilion/Route11/Digletts Cave travel; no glitches, trades with external players, later badge, Cut, Surf or stronger rods. Gifts/trades/evolutions reviewed separately because no capture roll. Source inventory is not a new native traversal certificate.",
+  "map_stages": {
+    "MAP_PALLET_TOWN": "before_brock",
+    "MAP_VIRIDIAN_CITY": "before_brock",
+    "MAP_ROUTE1": "before_brock",
+    "MAP_ROUTE2": "before_brock",
+    "MAP_ROUTE22": "before_brock",
+    "MAP_VIRIDIAN_FOREST": "before_brock",
+    "MAP_PEWTER_CITY": "before_brock",
+    "MAP_ROUTE3": "through_misty",
+    "MAP_ROUTE4": "through_misty",
+    "MAP_MT_MOON_1F": "through_misty",
+    "MAP_MT_MOON_B1F": "through_misty",
+    "MAP_MT_MOON_B2F": "through_misty",
+    "MAP_CERULEAN_CITY": "through_misty",
+    "MAP_ROUTE24": "through_misty",
+    "MAP_ROUTE25": "through_misty",
+    "MAP_ROUTE5": "through_misty",
+    "MAP_ROUTE6": "through_misty",
+    "MAP_VERMILION_CITY": "through_misty",
+    "MAP_ROUTE11": "through_misty",
+    "MAP_DIGLETTS_CAVE_B1F": "through_misty"
+  },
+  "minimum_before_brock": 125,
+  "minimum_through_misty": 120,
+  "species_info_before_sha256": "a82ee89bdd90075a185b1058b9a459480b78c8504bbfc446e275ca350f2e0680",
+  "changes": [
+    {
+      "species": "SPECIES_IGGLYBUFF",
+      "before": 170,
+      "after": 125
+    },
+    {
+      "species": "SPECIES_TEDDIURSA",
+      "before": 120,
+      "after": 125
+    },
+    {
+      "species": "SPECIES_ELEKID",
+      "before": 45,
+      "after": 125
+    },
+    {
+      "species": "SPECIES_TYROGUE",
+      "before": 75,
+      "after": 125
+    },
+    {
+      "species": "SPECIES_MAGBY",
+      "before": 45,
+      "after": 125
+    },
+    {
+      "species": "SPECIES_CASTFORM",
+      "before": 45,
+      "after": 125
+    },
+    {
+      "species": "SPECIES_SMOOCHUM",
+      "before": 45,
+      "after": 125
+    },
+    {
+      "species": "SPECIES_SNEASEL",
+      "before": 60,
+      "after": 125
+    },
+    {
+      "species": "SPECIES_ONIX",
+      "before": 45,
+      "after": 125
+    },
+    {
+      "species": "SPECIES_CLOYSTER",
+      "before": 60,
+      "after": 125
+    },
+    {
+      "species": "SPECIES_DITTO",
+      "before": 35,
+      "after": 125
+    },
+    {
+      "species": "SPECIES_FARFETCHD",
+      "before": 45,
+      "after": 125
+    },
+    {
+      "species": "SPECIES_DUGTRIO",
+      "before": 50,
+      "after": 125
+    }
+  ],
+  "direct_catchable_species": [
+    {
+      "species": "SPECIES_ABRA",
+      "before": 200,
+      "proposed": 200,
+      "earliest_stage": "through_misty",
+      "sources": [
+        {
+          "map": "MAP_ROUTE24",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 35,
+          "min_level": 11,
+          "max_level": 15
+        },
+        {
+          "map": "MAP_ROUTE24",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 35,
+          "min_level": 11,
+          "max_level": 15
+        }
+      ]
+    },
+    {
+      "species": "SPECIES_BELLSPROUT",
+      "before": 255,
+      "proposed": 255,
+      "earliest_stage": "through_misty",
+      "sources": [
+        {
+          "map": "MAP_ROUTE25",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 40,
+          "min_level": 12,
+          "max_level": 15
+        },
+        {
+          "map": "MAP_ROUTE25",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 40,
+          "min_level": 12,
+          "max_level": 15
+        }
+      ]
+    },
+    {
+      "species": "SPECIES_CASTFORM",
+      "before": 45,
+      "proposed": 125,
+      "earliest_stage": "through_misty",
+      "sources": [
+        {
+          "map": "MAP_ROUTE3",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 10,
+          "min_level": 7,
+          "max_level": 9
+        },
+        {
+          "map": "MAP_ROUTE3",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 10,
+          "min_level": 7,
+          "max_level": 9
+        }
+      ]
+    },
+    {
+      "species": "SPECIES_CATERPIE",
+      "before": 255,
+      "proposed": 255,
+      "earliest_stage": "before_brock",
+      "sources": [
+        {
+          "map": "MAP_VIRIDIAN_FOREST",
+          "stage": "before_brock",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 30,
+          "min_level": 4,
+          "max_level": 5
+        },
+        {
+          "map": "MAP_VIRIDIAN_FOREST",
+          "stage": "before_brock",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 30,
+          "min_level": 4,
+          "max_level": 5
+        }
+      ]
+    },
+    {
+      "species": "SPECIES_CLEFFA",
+      "before": 150,
+      "proposed": 150,
+      "earliest_stage": "through_misty",
+      "sources": [
+        {
+          "map": "MAP_MT_MOON_1F",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 10,
+          "min_level": 7,
+          "max_level": 9
+        },
+        {
+          "map": "MAP_MT_MOON_1F",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 10,
+          "min_level": 7,
+          "max_level": 9
+        }
+      ]
+    },
+    {
+      "species": "SPECIES_CLOYSTER",
+      "before": 60,
+      "proposed": 125,
+      "earliest_stage": "through_misty",
+      "sources": [
+        {
+          "map": "MAP_MT_MOON_1F",
+          "stage": "through_misty",
+          "method": "existing_special_double_pair",
+          "pair_percent": 5,
+          "condition": "two usable party Pokemon; existing survivor capture policy",
+          "version": "both"
+        }
+      ]
+    },
+    {
+      "species": "SPECIES_DIGLETT",
+      "before": 255,
+      "proposed": 255,
+      "earliest_stage": "through_misty",
+      "sources": [
+        {
+          "map": "MAP_DIGLETTS_CAVE_B1F",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 95,
+          "min_level": 15,
+          "max_level": 22
+        },
+        {
+          "map": "MAP_DIGLETTS_CAVE_B1F",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 95,
+          "min_level": 15,
+          "max_level": 22
+        }
+      ]
+    },
+    {
+      "species": "SPECIES_DITTO",
+      "before": 35,
+      "proposed": 125,
+      "earliest_stage": "through_misty",
+      "sources": [
+        {
+          "map": "MAP_ROUTE5",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 10,
+          "min_level": 13,
+          "max_level": 15
+        },
+        {
+          "map": "MAP_ROUTE5",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 10,
+          "min_level": 13,
+          "max_level": 15
+        }
+      ]
+    },
+    {
+      "species": "SPECIES_DUGTRIO",
+      "before": 50,
+      "proposed": 125,
+      "earliest_stage": "through_misty",
+      "sources": [
+        {
+          "map": "MAP_DIGLETTS_CAVE_B1F",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 5,
+          "min_level": 29,
+          "max_level": 31
+        },
+        {
+          "map": "MAP_DIGLETTS_CAVE_B1F",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 5,
+          "min_level": 29,
+          "max_level": 31
+        }
+      ]
+    },
+    {
+      "species": "SPECIES_EKANS",
+      "before": 255,
+      "proposed": 255,
+      "earliest_stage": "through_misty",
+      "sources": [
+        {
+          "map": "MAP_ROUTE4",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 40,
+          "min_level": 9,
+          "max_level": 12
+        },
+        {
+          "map": "MAP_ROUTE4",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 40,
+          "min_level": 9,
+          "max_level": 12
+        }
+      ]
+    },
+    {
+      "species": "SPECIES_ELECTRIKE",
+      "before": 120,
+      "proposed": 120,
+      "earliest_stage": "through_misty",
+      "sources": [
+        {
+          "map": "MAP_ROUTE11",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 35,
+          "min_level": 13,
+          "max_level": 16
+        },
+        {
+          "map": "MAP_ROUTE11",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 35,
+          "min_level": 13,
+          "max_level": 16
+        }
+      ]
+    },
+    {
+      "species": "SPECIES_ELEKID",
+      "before": 45,
+      "proposed": 125,
+      "earliest_stage": "before_brock",
+      "sources": [
+        {
+          "map": "MAP_VIRIDIAN_FOREST",
+          "stage": "before_brock",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 15,
+          "min_level": 4,
+          "max_level": 5
+        },
+        {
+          "map": "MAP_VIRIDIAN_FOREST",
+          "stage": "before_brock",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 15,
+          "min_level": 4,
+          "max_level": 5
+        }
+      ]
+    },
+    {
+      "species": "SPECIES_FARFETCHD",
+      "before": 45,
+      "proposed": 125,
+      "earliest_stage": "through_misty",
+      "sources": [
+        {
+          "map": "MAP_ROUTE11",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 15,
+          "min_level": 13,
+          "max_level": 17
+        },
+        {
+          "map": "MAP_ROUTE11",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 15,
+          "min_level": 13,
+          "max_level": 17
+        }
+      ]
+    },
+    {
+      "species": "SPECIES_GEODUDE",
+      "before": 255,
+      "proposed": 255,
+      "earliest_stage": "through_misty",
+      "sources": [
+        {
+          "map": "MAP_MT_MOON_1F",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 30,
+          "min_level": 7,
+          "max_level": 9
+        },
+        {
+          "map": "MAP_MT_MOON_B1F",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 25,
+          "min_level": 9,
+          "max_level": 11
+        },
+        {
+          "map": "MAP_MT_MOON_1F",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 30,
+          "min_level": 7,
+          "max_level": 9
+        },
+        {
+          "map": "MAP_MT_MOON_B1F",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 25,
+          "min_level": 9,
+          "max_level": 11
+        }
+      ]
+    },
+    {
+      "species": "SPECIES_HOOTHOOT",
+      "before": 255,
+      "proposed": 255,
+      "earliest_stage": "before_brock",
+      "sources": [
+        {
+          "map": "MAP_ROUTE2",
+          "stage": "before_brock",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 40,
+          "min_level": 3,
+          "max_level": 5
+        },
+        {
+          "map": "MAP_ROUTE2",
+          "stage": "before_brock",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 40,
+          "min_level": 3,
+          "max_level": 5
+        }
+      ]
+    },
+    {
+      "species": "SPECIES_IGGLYBUFF",
+      "before": 170,
+      "proposed": 125,
+      "earliest_stage": "before_brock",
+      "sources": [
+        {
+          "map": "MAP_ROUTE1",
+          "stage": "before_brock",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 10,
+          "min_level": 3,
+          "max_level": 4
+        },
+        {
+          "map": "MAP_ROUTE1",
+          "stage": "before_brock",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 10,
+          "min_level": 3,
+          "max_level": 4
+        }
+      ]
+    },
+    {
+      "species": "SPECIES_MAGBY",
+      "before": 45,
+      "proposed": 125,
+      "earliest_stage": "through_misty",
+      "sources": [
+        {
+          "map": "MAP_ROUTE3",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 15,
+          "min_level": 7,
+          "max_level": 8
+        },
+        {
+          "map": "MAP_ROUTE3",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 15,
+          "min_level": 7,
+          "max_level": 8
+        }
+      ]
+    },
+    {
+      "species": "SPECIES_MAGIKARP",
+      "before": 255,
+      "proposed": 255,
+      "earliest_stage": "before_brock",
+      "sources": [
+        {
+          "map": "MAP_ROUTE4",
+          "stage": "through_misty",
+          "method": "old_rod",
+          "version": "FireRed",
+          "weight_percent": 100,
+          "min_level": 5,
+          "max_level": 5
+        },
+        {
+          "map": "MAP_ROUTE6",
+          "stage": "through_misty",
+          "method": "old_rod",
+          "version": "FireRed",
+          "weight_percent": 100,
+          "min_level": 5,
+          "max_level": 5
+        },
+        {
+          "map": "MAP_ROUTE11",
+          "stage": "through_misty",
+          "method": "old_rod",
+          "version": "FireRed",
+          "weight_percent": 100,
+          "min_level": 5,
+          "max_level": 5
+        },
+        {
+          "map": "MAP_ROUTE22",
+          "stage": "before_brock",
+          "method": "old_rod",
+          "version": "FireRed",
+          "weight_percent": 100,
+          "min_level": 5,
+          "max_level": 5
+        },
+        {
+          "map": "MAP_ROUTE24",
+          "stage": "through_misty",
+          "method": "old_rod",
+          "version": "FireRed",
+          "weight_percent": 100,
+          "min_level": 5,
+          "max_level": 5
+        },
+        {
+          "map": "MAP_ROUTE25",
+          "stage": "through_misty",
+          "method": "old_rod",
+          "version": "FireRed",
+          "weight_percent": 100,
+          "min_level": 5,
+          "max_level": 5
+        },
+        {
+          "map": "MAP_PALLET_TOWN",
+          "stage": "before_brock",
+          "method": "old_rod",
+          "version": "FireRed",
+          "weight_percent": 100,
+          "min_level": 5,
+          "max_level": 10
+        },
+        {
+          "map": "MAP_VIRIDIAN_CITY",
+          "stage": "before_brock",
+          "method": "old_rod",
+          "version": "FireRed",
+          "weight_percent": 100,
+          "min_level": 5,
+          "max_level": 5
+        },
+        {
+          "map": "MAP_CERULEAN_CITY",
+          "stage": "through_misty",
+          "method": "old_rod",
+          "version": "FireRed",
+          "weight_percent": 100,
+          "min_level": 5,
+          "max_level": 5
+        },
+        {
+          "map": "MAP_VERMILION_CITY",
+          "stage": "through_misty",
+          "method": "old_rod",
+          "version": "FireRed",
+          "weight_percent": 100,
+          "min_level": 5,
+          "max_level": 5
+        },
+        {
+          "map": "MAP_ROUTE4",
+          "stage": "through_misty",
+          "method": "old_rod",
+          "version": "LeafGreen",
+          "weight_percent": 100,
+          "min_level": 5,
+          "max_level": 5
+        },
+        {
+          "map": "MAP_ROUTE6",
+          "stage": "through_misty",
+          "method": "old_rod",
+          "version": "LeafGreen",
+          "weight_percent": 100,
+          "min_level": 5,
+          "max_level": 5
+        },
+        {
+          "map": "MAP_ROUTE11",
+          "stage": "through_misty",
+          "method": "old_rod",
+          "version": "LeafGreen",
+          "weight_percent": 100,
+          "min_level": 5,
+          "max_level": 5
+        },
+        {
+          "map": "MAP_ROUTE22",
+          "stage": "before_brock",
+          "method": "old_rod",
+          "version": "LeafGreen",
+          "weight_percent": 100,
+          "min_level": 5,
+          "max_level": 5
+        },
+        {
+          "map": "MAP_ROUTE24",
+          "stage": "through_misty",
+          "method": "old_rod",
+          "version": "LeafGreen",
+          "weight_percent": 100,
+          "min_level": 5,
+          "max_level": 5
+        },
+        {
+          "map": "MAP_ROUTE25",
+          "stage": "through_misty",
+          "method": "old_rod",
+          "version": "LeafGreen",
+          "weight_percent": 100,
+          "min_level": 5,
+          "max_level": 5
+        },
+        {
+          "map": "MAP_PALLET_TOWN",
+          "stage": "before_brock",
+          "method": "old_rod",
+          "version": "LeafGreen",
+          "weight_percent": 100,
+          "min_level": 5,
+          "max_level": 10
+        },
+        {
+          "map": "MAP_VIRIDIAN_CITY",
+          "stage": "before_brock",
+          "method": "old_rod",
+          "version": "LeafGreen",
+          "weight_percent": 100,
+          "min_level": 5,
+          "max_level": 5
+        },
+        {
+          "map": "MAP_CERULEAN_CITY",
+          "stage": "through_misty",
+          "method": "old_rod",
+          "version": "LeafGreen",
+          "weight_percent": 100,
+          "min_level": 5,
+          "max_level": 5
+        },
+        {
+          "map": "MAP_VERMILION_CITY",
+          "stage": "through_misty",
+          "method": "old_rod",
+          "version": "LeafGreen",
+          "weight_percent": 100,
+          "min_level": 5,
+          "max_level": 5
+        }
+      ]
+    },
+    {
+      "species": "SPECIES_MANKEY",
+      "before": 190,
+      "proposed": 190,
+      "earliest_stage": "before_brock",
+      "sources": [
+        {
+          "map": "MAP_ROUTE22",
+          "stage": "before_brock",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 15,
+          "min_level": 3,
+          "max_level": 5
+        },
+        {
+          "map": "MAP_ROUTE22",
+          "stage": "before_brock",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 15,
+          "min_level": 3,
+          "max_level": 5
+        }
+      ]
+    },
+    {
+      "species": "SPECIES_MAREEP",
+      "before": 235,
+      "proposed": 235,
+      "earliest_stage": "through_misty",
+      "sources": [
+        {
+          "map": "MAP_ROUTE6",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 35,
+          "min_level": 12,
+          "max_level": 16
+        },
+        {
+          "map": "MAP_ROUTE6",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 35,
+          "min_level": 12,
+          "max_level": 16
+        }
+      ]
+    },
+    {
+      "species": "SPECIES_MEOWTH",
+      "before": 255,
+      "proposed": 255,
+      "earliest_stage": "through_misty",
+      "sources": [
+        {
+          "map": "MAP_ROUTE3",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 30,
+          "min_level": 6,
+          "max_level": 7
+        },
+        {
+          "map": "MAP_ROUTE3",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 30,
+          "min_level": 6,
+          "max_level": 7
+        }
+      ]
+    },
+    {
+      "species": "SPECIES_NIDORAN_F",
+      "before": 235,
+      "proposed": 235,
+      "earliest_stage": "before_brock",
+      "sources": [
+        {
+          "map": "MAP_ROUTE22",
+          "stage": "before_brock",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 25,
+          "min_level": 3,
+          "max_level": 4
+        },
+        {
+          "map": "MAP_ROUTE22",
+          "stage": "before_brock",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 25,
+          "min_level": 3,
+          "max_level": 4
+        }
+      ]
+    },
+    {
+      "species": "SPECIES_NIDORAN_M",
+      "before": 235,
+      "proposed": 235,
+      "earliest_stage": "before_brock",
+      "sources": [
+        {
+          "map": "MAP_ROUTE22",
+          "stage": "before_brock",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 20,
+          "min_level": 3,
+          "max_level": 4
+        },
+        {
+          "map": "MAP_ROUTE22",
+          "stage": "before_brock",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 20,
+          "min_level": 3,
+          "max_level": 4
+        }
+      ]
+    },
+    {
+      "species": "SPECIES_NUMEL",
+      "before": 255,
+      "proposed": 255,
+      "earliest_stage": "through_misty",
+      "sources": [
+        {
+          "map": "MAP_ROUTE11",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 30,
+          "min_level": 13,
+          "max_level": 17
+        },
+        {
+          "map": "MAP_ROUTE11",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 30,
+          "min_level": 13,
+          "max_level": 17
+        }
+      ]
+    },
+    {
+      "species": "SPECIES_ODDISH",
+      "before": 255,
+      "proposed": 255,
+      "earliest_stage": "through_misty",
+      "sources": [
+        {
+          "map": "MAP_ROUTE24",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 40,
+          "min_level": 11,
+          "max_level": 14
+        },
+        {
+          "map": "MAP_ROUTE24",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 40,
+          "min_level": 11,
+          "max_level": 14
+        }
+      ]
+    },
+    {
+      "species": "SPECIES_ONIX",
+      "before": 45,
+      "proposed": 125,
+      "earliest_stage": "through_misty",
+      "sources": [
+        {
+          "map": "MAP_MT_MOON_1F",
+          "stage": "through_misty",
+          "method": "existing_special_double_pair",
+          "pair_percent": 5,
+          "condition": "two usable party Pokemon; existing survivor capture policy",
+          "version": "both"
+        }
+      ]
+    },
+    {
+      "species": "SPECIES_PARAS",
+      "before": 190,
+      "proposed": 190,
+      "earliest_stage": "through_misty",
+      "sources": [
+        {
+          "map": "MAP_MT_MOON_1F",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 20,
+          "min_level": 7,
+          "max_level": 10
+        },
+        {
+          "map": "MAP_MT_MOON_B1F",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 30,
+          "min_level": 8,
+          "max_level": 9
+        },
+        {
+          "map": "MAP_MT_MOON_1F",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 20,
+          "min_level": 7,
+          "max_level": 10
+        },
+        {
+          "map": "MAP_MT_MOON_B1F",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 30,
+          "min_level": 8,
+          "max_level": 9
+        }
+      ]
+    },
+    {
+      "species": "SPECIES_PICHU",
+      "before": 190,
+      "proposed": 190,
+      "earliest_stage": "before_brock",
+      "sources": [
+        {
+          "map": "MAP_ROUTE2",
+          "stage": "before_brock",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 25,
+          "min_level": 2,
+          "max_level": 4
+        },
+        {
+          "map": "MAP_ROUTE2",
+          "stage": "before_brock",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 25,
+          "min_level": 2,
+          "max_level": 4
+        }
+      ]
+    },
+    {
+      "species": "SPECIES_PIDGEY",
+      "before": 255,
+      "proposed": 255,
+      "earliest_stage": "before_brock",
+      "sources": [
+        {
+          "map": "MAP_ROUTE1",
+          "stage": "before_brock",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 50,
+          "min_level": 2,
+          "max_level": 5
+        },
+        {
+          "map": "MAP_ROUTE1",
+          "stage": "before_brock",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 50,
+          "min_level": 2,
+          "max_level": 5
+        }
+      ]
+    },
+    {
+      "species": "SPECIES_PINECO",
+      "before": 190,
+      "proposed": 190,
+      "earliest_stage": "before_brock",
+      "sources": [
+        {
+          "map": "MAP_VIRIDIAN_FOREST",
+          "stage": "before_brock",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 10,
+          "min_level": 4,
+          "max_level": 6
+        },
+        {
+          "map": "MAP_VIRIDIAN_FOREST",
+          "stage": "before_brock",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 10,
+          "min_level": 4,
+          "max_level": 6
+        }
+      ]
+    },
+    {
+      "species": "SPECIES_POLIWAG",
+      "before": 255,
+      "proposed": 255,
+      "earliest_stage": "through_misty",
+      "sources": [
+        {
+          "map": "MAP_ROUTE24",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 25,
+          "min_level": 11,
+          "max_level": 15
+        },
+        {
+          "map": "MAP_ROUTE25",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 25,
+          "min_level": 12,
+          "max_level": 16
+        },
+        {
+          "map": "MAP_ROUTE24",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 25,
+          "min_level": 11,
+          "max_level": 15
+        },
+        {
+          "map": "MAP_ROUTE25",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 25,
+          "min_level": 12,
+          "max_level": 16
+        }
+      ]
+    },
+    {
+      "species": "SPECIES_PSYDUCK",
+      "before": 190,
+      "proposed": 190,
+      "earliest_stage": "through_misty",
+      "sources": [
+        {
+          "map": "MAP_ROUTE4",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 35,
+          "min_level": 10,
+          "max_level": 12
+        },
+        {
+          "map": "MAP_ROUTE4",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 35,
+          "min_level": 10,
+          "max_level": 12
+        }
+      ]
+    },
+    {
+      "species": "SPECIES_RALTS",
+      "before": 235,
+      "proposed": 235,
+      "earliest_stage": "through_misty",
+      "sources": [
+        {
+          "map": "MAP_ROUTE4",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 25,
+          "min_level": 9,
+          "max_level": 12
+        },
+        {
+          "map": "MAP_ROUTE4",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 25,
+          "min_level": 9,
+          "max_level": 12
+        }
+      ]
+    },
+    {
+      "species": "SPECIES_RATTATA",
+      "before": 255,
+      "proposed": 255,
+      "earliest_stage": "before_brock",
+      "sources": [
+        {
+          "map": "MAP_ROUTE1",
+          "stage": "before_brock",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 40,
+          "min_level": 2,
+          "max_level": 5
+        },
+        {
+          "map": "MAP_ROUTE5",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 50,
+          "min_level": 10,
+          "max_level": 13
+        },
+        {
+          "map": "MAP_ROUTE1",
+          "stage": "before_brock",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 40,
+          "min_level": 2,
+          "max_level": 5
+        },
+        {
+          "map": "MAP_ROUTE5",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 50,
+          "min_level": 10,
+          "max_level": 13
+        }
+      ]
+    },
+    {
+      "species": "SPECIES_SANDSHREW",
+      "before": 255,
+      "proposed": 255,
+      "earliest_stage": "through_misty",
+      "sources": [
+        {
+          "map": "MAP_ROUTE6",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 40,
+          "min_level": 12,
+          "max_level": 15
+        },
+        {
+          "map": "MAP_ROUTE6",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 40,
+          "min_level": 12,
+          "max_level": 15
+        }
+      ]
+    },
+    {
+      "species": "SPECIES_SHROOMISH",
+      "before": 255,
+      "proposed": 255,
+      "earliest_stage": "before_brock",
+      "sources": [
+        {
+          "map": "MAP_VIRIDIAN_FOREST",
+          "stage": "before_brock",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 15,
+          "min_level": 4,
+          "max_level": 5
+        },
+        {
+          "map": "MAP_VIRIDIAN_FOREST",
+          "stage": "before_brock",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 15,
+          "min_level": 4,
+          "max_level": 5
+        }
+      ]
+    },
+    {
+      "species": "SPECIES_SKITTY",
+      "before": 255,
+      "proposed": 255,
+      "earliest_stage": "through_misty",
+      "sources": [
+        {
+          "map": "MAP_ROUTE5",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 40,
+          "min_level": 12,
+          "max_level": 14
+        },
+        {
+          "map": "MAP_ROUTE5",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 40,
+          "min_level": 12,
+          "max_level": 14
+        }
+      ]
+    },
+    {
+      "species": "SPECIES_SLOWPOKE",
+      "before": 190,
+      "proposed": 190,
+      "earliest_stage": "through_misty",
+      "sources": [
+        {
+          "map": "MAP_ROUTE25",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 35,
+          "min_level": 12,
+          "max_level": 16
+        },
+        {
+          "map": "MAP_ROUTE25",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 35,
+          "min_level": 12,
+          "max_level": 16
+        }
+      ]
+    },
+    {
+      "species": "SPECIES_SLUGMA",
+      "before": 190,
+      "proposed": 190,
+      "earliest_stage": "through_misty",
+      "sources": [
+        {
+          "map": "MAP_ROUTE3",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 20,
+          "min_level": 7,
+          "max_level": 8
+        },
+        {
+          "map": "MAP_ROUTE3",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 20,
+          "min_level": 7,
+          "max_level": 8
+        }
+      ]
+    },
+    {
+      "species": "SPECIES_SMOOCHUM",
+      "before": 45,
+      "proposed": 125,
+      "earliest_stage": "through_misty",
+      "sources": [
+        {
+          "map": "MAP_MT_MOON_B2F",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 30,
+          "min_level": 10,
+          "max_level": 12
+        },
+        {
+          "map": "MAP_MT_MOON_B2F",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 30,
+          "min_level": 10,
+          "max_level": 12
+        }
+      ]
+    },
+    {
+      "species": "SPECIES_SNEASEL",
+      "before": 60,
+      "proposed": 125,
+      "earliest_stage": "through_misty",
+      "sources": [
+        {
+          "map": "MAP_MT_MOON_B2F",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 25,
+          "min_level": 11,
+          "max_level": 12
+        },
+        {
+          "map": "MAP_MT_MOON_B2F",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 25,
+          "min_level": 11,
+          "max_level": 12
+        }
+      ]
+    },
+    {
+      "species": "SPECIES_SNORUNT",
+      "before": 190,
+      "proposed": 190,
+      "earliest_stage": "through_misty",
+      "sources": [
+        {
+          "map": "MAP_MT_MOON_B2F",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 20,
+          "min_level": 10,
+          "max_level": 13
+        },
+        {
+          "map": "MAP_MT_MOON_B2F",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 20,
+          "min_level": 10,
+          "max_level": 13
+        }
+      ]
+    },
+    {
+      "species": "SPECIES_SPEAROW",
+      "before": 255,
+      "proposed": 255,
+      "earliest_stage": "before_brock",
+      "sources": [
+        {
+          "map": "MAP_ROUTE22",
+          "stage": "before_brock",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 30,
+          "min_level": 3,
+          "max_level": 4
+        },
+        {
+          "map": "MAP_ROUTE22",
+          "stage": "before_brock",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 30,
+          "min_level": 3,
+          "max_level": 4
+        }
+      ]
+    },
+    {
+      "species": "SPECIES_SUNKERN",
+      "before": 235,
+      "proposed": 235,
+      "earliest_stage": "through_misty",
+      "sources": [
+        {
+          "map": "MAP_ROUTE3",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 25,
+          "min_level": 6,
+          "max_level": 7
+        },
+        {
+          "map": "MAP_ROUTE3",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 25,
+          "min_level": 6,
+          "max_level": 7
+        }
+      ]
+    },
+    {
+      "species": "SPECIES_SWINUB",
+      "before": 225,
+      "proposed": 225,
+      "earliest_stage": "through_misty",
+      "sources": [
+        {
+          "map": "MAP_MT_MOON_B1F",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 10,
+          "min_level": 8,
+          "max_level": 11
+        },
+        {
+          "map": "MAP_MT_MOON_B2F",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 25,
+          "min_level": 10,
+          "max_level": 13
+        },
+        {
+          "map": "MAP_MT_MOON_B1F",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 10,
+          "min_level": 8,
+          "max_level": 11
+        },
+        {
+          "map": "MAP_MT_MOON_B2F",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 25,
+          "min_level": 10,
+          "max_level": 13
+        }
+      ]
+    },
+    {
+      "species": "SPECIES_TAILLOW",
+      "before": 200,
+      "proposed": 200,
+      "earliest_stage": "through_misty",
+      "sources": [
+        {
+          "map": "MAP_ROUTE6",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 25,
+          "min_level": 12,
+          "max_level": 16
+        },
+        {
+          "map": "MAP_ROUTE6",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 25,
+          "min_level": 12,
+          "max_level": 16
+        }
+      ]
+    },
+    {
+      "species": "SPECIES_TEDDIURSA",
+      "before": 120,
+      "proposed": 125,
+      "earliest_stage": "before_brock",
+      "sources": [
+        {
+          "map": "MAP_ROUTE2",
+          "stage": "before_brock",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 35,
+          "min_level": 3,
+          "max_level": 5
+        },
+        {
+          "map": "MAP_ROUTE2",
+          "stage": "before_brock",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 35,
+          "min_level": 3,
+          "max_level": 5
+        }
+      ]
+    },
+    {
+      "species": "SPECIES_TRAPINCH",
+      "before": 255,
+      "proposed": 255,
+      "earliest_stage": "through_misty",
+      "sources": [
+        {
+          "map": "MAP_ROUTE11",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 20,
+          "min_level": 15,
+          "max_level": 17
+        },
+        {
+          "map": "MAP_ROUTE11",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 20,
+          "min_level": 15,
+          "max_level": 17
+        }
+      ]
+    },
+    {
+      "species": "SPECIES_TYROGUE",
+      "before": 75,
+      "proposed": 125,
+      "earliest_stage": "before_brock",
+      "sources": [
+        {
+          "map": "MAP_ROUTE22",
+          "stage": "before_brock",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 10,
+          "min_level": 4,
+          "max_level": 5
+        },
+        {
+          "map": "MAP_ROUTE22",
+          "stage": "before_brock",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 10,
+          "min_level": 4,
+          "max_level": 5
+        }
+      ]
+    },
+    {
+      "species": "SPECIES_WEEDLE",
+      "before": 255,
+      "proposed": 255,
+      "earliest_stage": "before_brock",
+      "sources": [
+        {
+          "map": "MAP_VIRIDIAN_FOREST",
+          "stage": "before_brock",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 30,
+          "min_level": 4,
+          "max_level": 5
+        },
+        {
+          "map": "MAP_VIRIDIAN_FOREST",
+          "stage": "before_brock",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 30,
+          "min_level": 4,
+          "max_level": 5
+        }
+      ]
+    },
+    {
+      "species": "SPECIES_ZUBAT",
+      "before": 255,
+      "proposed": 255,
+      "earliest_stage": "through_misty",
+      "sources": [
+        {
+          "map": "MAP_MT_MOON_1F",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 40,
+          "min_level": 7,
+          "max_level": 8
+        },
+        {
+          "map": "MAP_MT_MOON_B1F",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "FireRed",
+          "weight_percent": 35,
+          "min_level": 8,
+          "max_level": 10
+        },
+        {
+          "map": "MAP_MT_MOON_1F",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 40,
+          "min_level": 7,
+          "max_level": 8
+        },
+        {
+          "map": "MAP_MT_MOON_B1F",
+          "stage": "through_misty",
+          "method": "land",
+          "version": "LeafGreen",
+          "weight_percent": 35,
+          "min_level": 8,
+          "max_level": 10
+        }
+      ]
+    }
+  ],
+  "approved_changed_species_rate": 125,
+  "owner_exception": "Igglybuff original170 becomes125 under the explicit uniform-value approval. The other12 changes increase original rates. Electrike120 is one of38 unchanged reviewed species.",
+  "merge_sha": "3ed6ac1e18cc774344c5f242cfdd5020e33b83b8",
+  "merge_pr": 251,
+  "merge_evidence": "Standard GitHub exact-head merge succeeded after owner reiterated merge instruction following disclosure of unexecuted CI. Fresh main protected=false. No security/CI/assertion changes. Exact merged-main Actions list empty, not success."
+}

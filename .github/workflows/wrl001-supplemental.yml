@@ -1,14 +1,10 @@
-# Review-only proposal. No automatic event; do not merge/dispatch without review.
+# Review-only proposal. Only an explicit owner review command can run this job.
 name: WRL-001 supplemental exact-commit evidence
-run-name: WRL-001 source 0f693dd7 / workflow ${{ github.sha }}
+run-name: WRL-001 source 0f693dd7 / controller ${{ github.event.pull_request.head.sha }}
 
 on:
-  workflow_dispatch:
-    inputs:
-      source_sha:
-        description: 'Reviewed source SHA (only 0f693dd7bef4219e161b299f08a9a225ecdac9d6 is allowed)'
-        required: true
-        type: string
+  pull_request_review:
+    types: [submitted]
 
 permissions:
   contents: read
@@ -24,26 +20,35 @@ defaults:
 jobs:
   supplemental-wrl001:
     name: supplemental-wrl001-only
-    if: github.event_name == 'workflow_dispatch' && github.repository == 'InternetNinjacy/pokemon-lightning-yellow'
+    if: >-
+      github.event_name == 'pull_request_review' &&
+      github.repository == 'InternetNinjacy/pokemon-lightning-yellow' &&
+      github.actor == 'InternetNinjacy' &&
+      github.event.review.user.login == 'InternetNinjacy' &&
+      github.event.review.state == 'commented' &&
+      github.event.review.body == 'RUN WRL001 ONLY 0f693dd7bef4219e161b299f08a9a225ecdac9d6' &&
+      github.event.review.commit_id == github.event.pull_request.head.sha &&
+      github.event.pull_request.number == 250 &&
+      github.event.pull_request.state == 'open' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.head.ref == 'proposal/wrl001-exact-commit-ci-20261115'
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     env:
+      WRL001_CONTROLLER_SHA: ${{ github.event.pull_request.head.sha }}
       WRL001_SOURCE_SHA: 0f693dd7bef4219e161b299f08a9a225ecdac9d6
       WRL001_MGBA_SHA: 26b7884bc25a5933960f3cdcd98bac1ae14d42e2
       PYTHONDONTWRITEBYTECODE: '1'
     steps:
-      - name: Reject any unreviewed source request
-        env:
-          REQUESTED_SOURCE_SHA: ${{ inputs.source_sha }}
+      - name: Record the reviewed controller and fixed source
         run: |
-          test "$REQUESTED_SOURCE_SHA" = "$WRL001_SOURCE_SHA"
-          echo "SUPPLEMENTAL_WORKFLOW_SHA=$GITHUB_SHA"
+          echo "SUPPLEMENTAL_WORKFLOW_SHA=$WRL001_CONTROLLER_SHA"
           echo "SUPPLEMENTAL_SOURCE_SHA=$WRL001_SOURCE_SHA"
 
       - name: Check out the workflow controller at its immutable event SHA
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
-          ref: ${{ github.sha }}
+          ref: ${{ github.event.pull_request.head.sha }}
           path: controller
           persist-credentials: false
 
@@ -57,7 +62,7 @@ jobs:
 
       - name: Fail closed before installing or building anything
         run: |
-          test "$(git -C controller rev-parse HEAD)" = "$GITHUB_SHA"
+          test "$(git -C controller rev-parse HEAD)" = "$WRL001_CONTROLLER_SHA"
           python3 controller/scripts/wrl001_ci_guard.py --source source --phase preflight
 
       - name: Install the established compiler prerequisites and headless mGBA build tools
@@ -117,7 +122,7 @@ jobs:
           {
             echo 'WRL-001 supplemental evidence only; no required CI replacement.'
             echo "Source: $WRL001_SOURCE_SHA"
-            echo "Workflow: $GITHUB_SHA"
+            echo "Workflow: $WRL001_CONTROLLER_SHA"
             echo "mGBA 0.10.5: $WRL001_MGBA_SHA"
             echo 'Required modified/upstream gates remain separately unresolved.'
           } >> "$GITHUB_STEP_SUMMARY"

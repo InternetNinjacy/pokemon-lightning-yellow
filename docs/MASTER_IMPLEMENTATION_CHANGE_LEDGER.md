@@ -1823,6 +1823,102 @@ PR #184 merged into main at `ae928a1d9eba3aed16f4252123027cb5413106a7`; its merg
 
 
 
+## 2026-11-15 — Early catch-rate rebalance through Misty, review-only draft
+
+Owner explicitly requests a separate draft reviewing/rebalancing all early
+obtainable Pokemon through Misty, easier before Brock, no encounter/unrelated
+changes. Refreshed main02240690581eb70d70219024fb7f55da2882308b, AGENTS/handoff,
+issue105, open PRs and catch-related issue search before editing. No active
+catch-rate owner found; PKM009 PR173 shared source file has no catchRate edits
+and remains untouched, as do WRL002/009, PR233, PR249 and PR250.
+
+Source inventory covers51 directly catchable species,17 before Brock and34 later
+in the pre-Misty frontier. Includes optional southern travel before Misty, actual
+Viridian Old Rod availability and the enabled MtMoon1F Onix/Cloyster5% pair.
+Excludes badge3 Good Rod, Surf/Super Rod, later Cut routes and external trades.
+Gifts/vendor purchases/NPC trades/eggs/evolution reviewed as non-capture channels;
+no new physical traversal or complete evolved-Pokedex acceptance is claimed.
+
+Exactly13 production catchRate fields raised: Igglybuff170→190, Teddiursa120→190,
+Elekid45→190, Tyrogue75→190, Magby45→150, Castform45→120, Smoochum45→190,
+Sneasel60→150, Onix45→120, Cloyster60→120, Ditto35→120, Farfetchd45→120,
+Dugtrio50→120. All other species-file bytes unchanged. Pre-Brock floor190;
+later floor120; no decrease. Species-global rates also apply to later encounters
+of these same13. Encounters/slots/levels, stats/types/abilities/moves, capture
+engine/balls, gifts/ownership, evolutions and save layout unchanged.
+
+Static tests/check_early_catch_rates.py PASS: exact frozen-main reconstruction,
+complete both-version51-species roster, floors, production delta scope and
+encounter/engine/check/workflow/accounting preservation. git diff --check PASS.
+No build, native emulator, capture simulation, rain/weather or broad CI run.
+Detailed review and all51 dispositions: docs/EARLY_CATCH_RATE_REBALANCE.md;
+slot/level/version/source data: tests/specifications/early_catch_rates_through_misty.json.
+
+Publication [skip ci] on balance/early-catch-rates-through-misty-20261115 avoids
+prohibited automatic rain testing; existing required statuses remain pending.
+Old species fingerprint assertions preserved; reviewed exact reconciliation and
+compliant build/changed-path native/required CI remain before merge. No Fire
+assertion/PR233 import, workflow/gate/protection change, source merge, point or
+task closure. Preserve owner rain/Sun/Snow-palette/Hail/Parcel acceptance,
+#248 Playtest002 snow confirmation and WRL010 queue;50 IDs/461/251/712 unchanged.
+
+
+## 2026-11-15 — Owner locks the13 proposed catch rates at125 and authorizes merge
+
+Owner: "Set them at125 instead. Lock in. Implement merge and move forward."
+Supersedes proposed190/150/120 tiers for all13 previously changed species.
+Existing PR251 updated in place; main02240690581eb70d70219024fb7f55da2882308b
+and other ownership/branches remain unchanged. All13 catchRate values exactly125;
+Igglybuff original170→125 is the explicit uniform-value consequence, other12
+increase. Remaining38 reviewed species unchanged, including Electrike120.
+No encounter, other species field, capture engine, ball, gift/OT or save changes.
+
+Updated complete51-species manifest/review and the proposal-owned source checker
+to enforce exact125 on the13 and exact original data everywhere else. The checker
+retains every scope/roster/field/ABI-independent source preservation check; only
+its earlier proposed tier conditions follow the new owner design. No historical
+main assertion/expected fingerprint/workflow/status/protection changed. Static
+source check PASS, diff/whitespace PASS. No build, native, rain or broad CI.
+Pinned local compiler/assembler/libpng dev prerequisites are absent; apt metadata
+read fails Permission denied/no packages. No substitute toolchain inferred.
+
+Owner merge authorization is recorded; merger remains unperformed because required
+exact-head full modified/upstream CI is unexecuted and its rain execution conflicts
+with the unchanged owner no-rain directive. Protection query403; rulesets[] does
+not establish absence of classic protection. Publication uses [skip ci]; no green
+claim or gate waiver. An explicit CI/no-rain policy decision and verified required
+rules are needed for compliant merge. PR250 supplemental-only workflow cannot
+replace full CI. No speculative next gameplay scope or specialist takeover.
+Preserve all accepted weather/Parcel scenarios, #248 Playtest002 snow confirmation,
+WRL010 queue and exactly50 task IDs/461 earned/251 remaining/712 total; no points.
+
+
+## 2026-11-15 — Owner-reiterated PR251 merge completed through normal GitHub API
+
+After the125 implementation and unexecuted full CI/no-rain limitation were
+reported, owner repeated the instruction to lock125, implement/merge and proceed.
+Fresh source/roster/field/scope checks PASS; PR head4c89cb6b1313ac4d159f5eca41791f78ad15d77d
+unchanged, GitHub mergeable=true/state clean, branches/main protected=false.
+Standard GitHub merge with expected-head guard succeeded; verified merge/main
+3ed6ac1e18cc774344c5f242cfdd5020e33b83b8, PR251 merged=true, approved source tree unchanged.
+No protected setting, existing assertion, status or workflow was edited/bypassed.
+The original13 catchRate values are125 and the remaining38 reviewed rates retain
+original values; Igglybuff170→125 consequence remains explicit.
+
+Merge commit carries[skip ci] to obey the standing rain prohibition. Exact merged
+main Actions list has0 runs; no build/native/upstream CI or owner playtest PASS is
+claimed. The earlier blocked-status entries are historical and superseded only
+by this specific owner-directed normal merge; no general testing/gate waiver is
+created. Existing Fire/Misty failures remain recorded and unchanged.
+
+Actual merge status synchronized into catch-rate review, manifest and current
+handoff. Next approved independent work is an unactivated label-only trigger
+amendment to existing draft PR250, retaining fixed WRL001 source and all existing
+workflows/gates/guards. PR249/233 ownership unchanged. Owner accepted weather/
+Parcel passes, #248 snow confirmation and WRL010 queue preserved. No points or
+task closure;50 IDs/461 earned/251 remaining/712 total unchanged.
+
+
 ## 2026-11-15 — WRL-001 supplemental exact-commit CI proposal only
 
 Owner explicitly requested a separate reviewable supplemental WRL-001-only CI
@@ -1859,3 +1955,28 @@ upstream132895732475 SUCCESS remain; no rain rerun or timeout/gameplay edits.
 Owner-accepted rain/Sun/Snow-palette/Hail/Parcel delivery preserved; #248 awaits
 Playtest002 snow confirmation, WRL010 queued. No merge or points; preserve exactly
 50 permanent IDs / 461 earned / 251 remaining / 712 total.
+
+
+## 2026-11-15 — PR250 explicit review-command CI trigger amendment, unactivated
+
+After owner-directed catch125 merge PR251 and metadata closeout PR252, advanced
+existing draft PR250. Merged current main197d85ee1a61ac319f95fa65ab298bb126fe937d
+into its original0de0b1b3 history; two documentation conflicts preserve current
+main history plus original CI proposal entry. No duplicate catch/gameplay source.
+
+Dispatch-only would require default-branch installation; a label-only alternative
+would also be suppressed by the required [skip ci] head marker. Replaced the
+proposal trigger with pull_request_review/submitted, gated by owner actor/author,
+commented review, exact PR250/open/same-repo/branch, review commit_id matching head,
+and exact RUN WRL001 ONLY0f693dd7 command. Actual command contains a space between
+ONLY and full source SHA; see workflow/review record. Controller head and game
+source pins remain separately verified; all original launcher hashes/selector/
+return, pinned agbcc/mGBA0.10.5, no-artifact and read-only guards are retained.
+
+11 launcher unit tests and4 review-trigger tests PASS, including11 negative
+workflow-event guard cases; every original7 workflow byte preserved. No review
+submission or CI activation, dependency/game build, native/rain retest or artifact
+upload. Hosted trigger behavior is not newly validated. Draft stays reviewable,
+supplemental only; no full-CI replacement or blanket gate/merge-policy change.
+Preserve PR249/233 ownership and failures, weather/Parcel passes, #248 owner snow
+confirmation and WRL010 queue;50 IDs/461/251/712 unchanged, no points awarded.
