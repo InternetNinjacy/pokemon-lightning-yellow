@@ -37,8 +37,12 @@ def check():
     choice = block("PalletTown_ProfessorOaksLab_EventScript_ChoseStarter")
     assert "givemon PLAYER_STARTER_SPECIES, 5" in choice
     assert "copyvar VAR_STARTER_MON, PLAYER_STARTER_NUM" in choice
-    assert "special ScriptNameSocketStarterPikachu" in choice
-    assert "Text_GiveNicknameToThisMon" not in choice
+    assert "goto EventScript_GiveNicknameToStarter" in choice
+    assert "special ScriptNameSocketStarterPikachu" not in choice
+    nickname = block("EventScript_GiveNicknameToStarter")
+    assert "setvar VAR_0x8004, 0" in nickname
+    assert "call EventScript_ChangePokemonNickname" in nickname
+    assert "goto PalletTown_ProfessorOaksLab_EventScript_RivalPicksStarter" in nickname
     assert "setflag FLAG_SYS_POKEMON_GET" in choice
 
     rival = block("PalletTown_ProfessorOaksLab_EventScript_RivalPicksStarter")
@@ -51,10 +55,9 @@ def check():
 
     assert "PalletTown_ProfessorOaksLab_Text_OakChoosingPikachu::" in TEXT
     assert "PalletTown_ProfessorOaksLab_Text_ReservedPokeBall::" in TEXT
-    assert "def_special ScriptNameSocketStarterPikachu" in SPECIALS
-    assert "void ScriptNameSocketStarterPikachu(void)" in GIFTS
-    assert '_("SOCKET")' in GIFTS
-    assert "SPECIES_PIKACHU" in GIFTS
+    assert "def_special ScriptNameSocketStarterPikachu" not in SPECIALS
+    assert "void ScriptNameSocketStarterPikachu(void)" not in GIFTS
+    assert '_("SOCKET")' not in GIFTS
     flags = (ROOT / "include/constants/flags.h").read_text()
     assert "#define FLAG_OAK_EEVEE_PENDING                   0x31C" in flags
     assert "#define FLAG_GOT_OAK_PARCEL_EEVEE                0x31D" in flags
@@ -76,7 +79,12 @@ def check():
         assert "clearflag FLAG_OAK_EEVEE_PENDING" in success
     assert "call_if_set FLAG_OAK_EEVEE_PENDING" in block("PalletTown_ProfessorOaksLab_EventScript_RetryParcelGifts")
     assert "call_if_set FLAG_OAK_NEST_BALLS_PENDING" in block("PalletTown_ProfessorOaksLab_EventScript_RetryParcelGifts")
-    assert 'CreateMon(mon, SPECIES_EEVEE, 5, USE_RANDOM_IVS, FALSE, 0, OT_ID_PLAYER_ID, 0)' in GIFTS
+    assert 'CreateMon(mon, SPECIES_EEVEE, 5, USE_RANDOM_IVS, FALSE, 0, OT_ID_PRESET, oakOtId)' in GIFTS
+    assert 'u32 oakOtId = ~playerOtId;' in GIFTS
+    assert 'SetMonData(mon, MON_DATA_OT_NAME, oakName);' in GIFTS
+    assert 'static const u8 oakName[] = _("OAK");' in GIFTS
+    assert 'SetMonData(mon, MON_DATA_NICKNAME, nickname);' in GIFTS
+    assert 'result = GiveMonToPlayer(mon);' in GIFTS
     assert '_("SUE")' in GIFTS
     assert "def_special ScriptGiveSueEevee" in SPECIALS
     assert "FLAG_OAK_NEST_BALLS_PENDING" in SCRIPT
