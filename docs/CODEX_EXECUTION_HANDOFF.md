@@ -1,3 +1,56 @@
+# PR #233 Move Reminder fixture reconciliation — November 15, 2026
+
+Owner requested continuation of the bundled review/correction after read-only
+diagnosis. Starting exact head 516bc2224f4a04bfed51b15cccc5b20dcfd7421b, draft and
+unmerged. Battle split 43730052511 modified job 132860306341 passed all existing
+host guards and clean reproducible ROM builds, then failed its focused existing
+Center Reminder assertion at center_move_reminder_learning.c:23 (Tackle).
+Independent upstream-baseline job 132860306569 SUCCESS; focused BTL run
+43730052533 SUCCESS. This is an obsolete fixture expectation, not a demonstrated
+gameplay failure. Do not relabel the old CI failure as success.
+
+## Approved requirements and existing correction reused
+
+Issue #191 locks free service, current-species level-limited eligibility, known
+move exclusion, zero/no-available cases, four-slot replacement, and persistence.
+The service was merged in PR #192. Merged PR #153 separately approves the current
+Eevee/Vaporeon/Espeon learnsets. Vaporeon learns Bubble/Helping Hand at Lv1,
+Water Gun at Lv8, Yawn at Lv14; Tackle is absent. Eevee has Tackle/Tail Whip
+at Lv1; Espeon has Confusion/Reflect at Lv1 and Swift at Lv8.
+
+An existing specialist fix already exists in draft PR #239, source commit
+331a99f2d2e5f9a22df7924d2bafa2199608df4c. Copied ONLY its existing native fixture
+file byte-for-byte. PR #239 and its separate workflow are untouched. No new
+scenario, workflow, game mechanic, learnset or source fingerprint was created.
+All 57 CHECK calls, 16 physical button presses and three save/reload operations
+are retained. The coordinated review covers the ENTIRE file:
+
+- Vaporeon Lv7/Lv8 now exercises the approved Water Gun eligibility boundary.
+- Bubble replaces obsolete Tackle expectation; Tail Whip is the actual
+  pre-evolution-only exclusion for Vaporeon/Espeon under current approval.
+- Eevee's no-eligible case knows its two current Lv1 moves, not obsolete Helping Hand.
+- The real NPC and full-slot fixtures stage known Helping Hand so the eligible
+  list remains exactly Bubble, Water Gun. Existing index1 physical menu choice,
+  actual selected-slot replacement, no-cost checks and flash persistence remain.
+
+## Evidence and limits
+
+PR #239 exact head d9f90011d83e35868126f7e2a8ea3d67a6705d7e focused native run
+43551267805 job 132314016122 SUCCESS, including a real ROM build and existing
+learning/physical UI flows. Confirmed identical relevant src/include, all 19
+Center map files, shared Center service, runner and physical fixture against
+#233; unrelated rod-event scripts differ and are NOT imported. This focused
+success is reusable evidence, not a substitute for required new-head CI.
+
+Local existing tests/check_center_move_reminder.py PASS; git diff --check PASS.
+The prior all-95-host success is reused because no host input/helper changed.
+No additional local ROM build or emulator run was initiated. All existing
+mandatory automatic checks must run on the new #233 head. Keep draft/unmerged;
+never weaken checks, change frozen hashes or touch #229/#246/legendary branches.
+Stop on unexplained failures and do not reopen Misty/Surf. No task credit.
+
+---
+
 # PR #233 historical correction checkpoint — November 15, 2026
 
 Scope: owner-authorized bundled validation-only correction on draft PR #233,
