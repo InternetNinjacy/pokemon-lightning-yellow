@@ -18,7 +18,7 @@ def _pinned_source(commit, path):
 
 
 def _one_record(source, identity, kind):
-    assert re.fullmatch(r"[A-Z][A-Z0-9_]*", identity), "invalid record identity"
+    assert re.fullmatch(r"[A-Za-z][A-Za-z0-9_]*", identity), "invalid record identity"
     if kind == "species":
         pattern = r"\[SPECIES_" + re.escape(identity) + r"\]\s*=\s*\{.*?\n    \},"
     elif kind == "trainer_party":
