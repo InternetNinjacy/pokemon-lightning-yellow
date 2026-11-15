@@ -1821,3 +1821,20 @@ PR #184 merged into main at `ae928a1d9eba3aed16f4252123027cb5413106a7`; its merg
 - **Stack disposition:** GitHub recognizes PR #136 as merged in ancestry. PRs #146, #174, #176 and #182 were proven exact-head ancestors of current main (each `behind_by=0` when compared to main), annotated, and CLOSED **without a redundant second merge**; review history remains intact. Their individual PR closed statuses are not new acceptance or a second source landing.
 - **Formal accounting and exclusions:** BTL-005 remains **32 earned/48 remaining within its fixed 80-point scope**. Overall project remains **461 earned/251 remaining/712 total**, with exactly 50 permanent IDs and all earned histories unchanged. No new points are granted for merging, documenting, or rerunning CI. Approved staged index entries do not establish complete 56-move mechanics, Phase Two distribution, exhaustive animation approval, full natural-story playthrough, hardware/link/save interruption, or INT-004/005 release certification. Future effort changes require scoped verified acceptance under existing owner accounting rules.
 
+
+
+## 2026-11-15 — Draft #233 coordinated historical comparisons, local verification
+
+Owner-authorized bundled correction from ed38a682ac5d8578270394b91f08cd18d2d514db.
+Full Git checkout obtained. Exact Brock residual is two approved leader parties
+and four approved Double metadata records, with no ordinary/Rocket or non-record
+residual. Both original before/after hashes for both files match after existing
+strict helpers. Additional independently proven stale six-profile and twelve-
+learnset assumptions corrected in existing Glalie/Dex/typing/pre-typing/Castform
+paths, preserving original hashes and approved game source. Source approvals are
+merged #157/#148/#203 and #144/#149/#150/#153. Reused existing helpers only; no
+new test scenarios or workflow changes. Final combined local run: all 95 existing
+build.yml host commands PASS; git diff --check PASS. New-head mandatory build/
+native/upstream CI remains a separate unverified gate. Draft/unmerged; #229/#246
+and legendary branches untouched. No effort credit or acceptance exemption.
+Full source refs, exact hashes and gaps are in docs/CODEX_EXECUTION_HANDOFF.md.

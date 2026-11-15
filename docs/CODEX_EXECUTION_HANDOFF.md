@@ -1,3 +1,109 @@
+# PR #233 historical correction checkpoint — November 15, 2026
+
+Scope: owner-authorized bundled validation-only correction on draft PR #233,
+branch `validation/combined-fire-ghost-trainer-projection-20261113`, starting
+at exact `ed38a682ac5d8578270394b91f08cd18d2d514db`. No merge authorization.
+PRs #229/#246 and legendary/policy branches are independent and untouched.
+
+## Actual execution and correction
+
+A complete fresh local Git checkout was obtained through the normal HTTPS
+origin. Both pinned commits and original frozen sources are accessible. Earlier
+reports of unavailable local execution no longer describe this environment.
+Read AGENTS.md, PR #233 discussion, current ownership comments in issue #105,
+and the terminal old-head Actions logs before editing.
+
+Old-head Battle split run 43716545377: modified job 132819225507 FAILURE,
+first assertion in run_brock_weather_tests.py:25; upstream-baseline job
+132819225744 SUCCESS. Focused BTL run 43716545380 SUCCESS.
+
+The EXACT Brock reconstruction (existing imports and both existing expression
+chains evaluated without running CI/emulators) leaves only these residuals:
+
+- trainer_parties.h: sParty_LeaderLtSurge, sParty_LeaderSabrina (2 records).
+- trainers.h: TRAINER_LEADER_LT_SURGE, TRAINER_LEADER_SABRINA,
+  TRAINER_PSYCHIC_TYRON, TRAINER_CHANNELER_AMANDA (4 records).
+- No additions/deletions of records or differences outside records, for either
+  before/after comparison. There are 644 parties and 748 metadata records.
+- ZERO ordinary-lock or Rocket Hideout residual records. The earlier suggestion
+  of a 513-record Brock residual was incorrect: those changes already belong to
+  the Brock frozen source and must NOT be reverted for this comparison.
+- The entire restore_ordinary_trainer_blocks() result has a different historical
+  target and cannot replace Brock's frozen reference.
+
+Approval provenance: merged PR #157 (Surge, e7b328ad6a3a92d4ccc0fb104a277fc62bd2d571),
+#148 (Sabrina, b26198f0aa08e26a5c17ff0f94df5fcb8c7a801d), and #203
+(Tyron/Amanda Double metadata, dbd67b61a7fa19942d1fc2998b20652d1554c69b).
+Reused byte-identical existing helpers approved_two_leader_party_projection.py
+and approved_four_trainer_metadata_projection.py and existing Brock caller from
+5ec10a8c0b282b7c75a618eeb793ca473be6312e. They compare entire records against
+pinned approved main 02240690581eb70d70219024fb7f55da2882308b before restoration.
+
+## Computed fingerprints (original expected values unchanged)
+
+Brock historical sources are 368b3119c7c50c251324f76573d232cdb035e8bd (before)
+and 6a8b8010834e5e84c5bd00a90d217c389d9a7e53 (after).
+
+| File/state | Old incomplete reconstruction | Corrected and original frozen SHA-256 |
+| --- | --- | --- |
+| trainer_parties.h after | 988db2813972b68f19bc66977c23e20d1dc57e0196f698d9e748327b51aa1ec9 | 7492be71499ad7281010b0197ee19ca5dd82341babba833ab319fa88b5ef8938 |
+| trainer_parties.h before | 798a4891691ed4f1d3107db7d3cf493a70e86703e5ec762ad348b42e8a787778 | 3ef0ccce270c2e5cd854b2712b2acf8b48a32261d78875b67fb6e52985efc659 |
+| trainers.h after | 90deb5315ea1d275e6bed93beeb84844258ff516ff657508f0bb5ecb9d0ad42f | cd23c29c2b19955e4b57435f88c034d45de283b8d24b69bea24ffc9b000f880e |
+| trainers.h before | 6f6722ce10a7e2029d392a04e31b43fe23afa4e455b7a481d960711ccd935c0d | 251e6a22e9882641cce980c45ff01a45e5cc3da465f2e84532b31bce445ac739 |
+
+## Coordinated existing-caller inventory and confirmed additional fixes
+
+All 95 existing host commands registered in build.yml were inspected and executed
+in their existing order. Corrections only explain exact approved later deltas:
+
+- Special Glalie, custom Dex and typing callers: reuse the existing strict six
+  complete-record PKM-009 helper already on #233. Original hashes match exactly.
+- Shared pre-typing projection: apply six-profile reversal BEFORE typing reversal;
+  the latter legitimately changes Vulpix/Ninetales Fire/Ghost to historical Fire.
+  This repairs daycare and its downstream preservation consumers without
+  accepting hybrid or unexpected species records.
+- Gym Castform historical helper: same strict six-profile reversal and the
+  existing strict twelve-learnset helper. The latter is copied byte-identically
+  from d1e578631578628f5a015db364446854b422c944, not a new test scenario.
+  Rival historical checks inherit this same exact source reconstruction.
+- Twelve complete learnsets: Oddish/Gloom/Vileplume/Bellossom (#144),
+  Ponyta/Rapidash (#149), Vulpix/Ninetales (#150),
+  Eevee/Vaporeon/Flareon/Espeon (#153), all merged owner-locked approvals.
+  After existing rival reversals these are the only 12 differing arrays, with no
+  non-record difference from the original frozen file at e04252ea0783510000e634486c0f2526a736f506.
+
+Computed six-profile/weather result (Glalie/Castform):
+`e37cfe0a03344890eb7c95ddf6193e635eb726e08c7198b7b7062c715ac5f267`.
+Custom Dex species result:
+`9c2da1284f7859700b315abda0499334c422f2c6776d576c788fcd1e4050f71e`.
+Typing/daycare whole-file result:
+`10021c12ed42a009e6a7a9d75a7439a9ff802f23c972559757bbbd989e4db3d6`.
+Typing non-type result:
+`a2cbf1d6340fab9a9bf7aaf7e0e4c7e20fb047739bccbfa42404c0a6382b3e99`.
+Castform/rival learnset result:
+`d6563a88fa893d1433a02027cb13ba9574a6828a96b1a730b1d767fd7c5a0cc6`.
+Every listed computed value equals its unchanged original expected digest.
+
+## Verification, remaining work and safeguards
+
+Final local sequence: ALL 95 EXISTING workflow host commands PASS on the combined
+working tree; earlier pre-correction local failures are superseded only for
+this working tree, not retrospectively relabeled. Existing registration/move
+reconciliation/Museum checkers also PASS. git diff --check PASS.
+No new test scenarios, game source, frozen manifests, workflow registrations,
+required statuses, branch protections, ROM builds or emulator runs changed.
+Whole-record equality, exactly-one-record checks and whole-file hashes remain.
+No new mutation suite was created or claimed executed. Local host success does
+not establish native gameplay/build acceptance or exact-new-head Actions success.
+
+Next: inspect actual new-head mandatory Actions; keep draft and unmerged. Do not
+rerun successful batches without a new change/failure. Resolve only independently
+approved historical deltas; stop on an unexplained failure. No Misty/Surf
+investigation or exemption, no interaction with #229/#246 or legendary branches.
+Permanent accounting remains 50 task IDs, 461 earned /251 remaining /712 total.
+
+---
+
 # Codex execution handoff — verified November 7, 2026
 
 Standing AGENTS policy55 authorizes approved implementation and verified merges.

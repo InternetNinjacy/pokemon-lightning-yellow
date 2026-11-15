@@ -10,7 +10,11 @@ def prior_gym_castform_source(path, text=None):
         text=prior_rival_source(path, prior_move_foundation_source(path))
     if str(path) == "src/data/pokemon/species_info.h":
         from approved_weather_species_slots import prior_weather_species_source
-        text = prior_weather_species_source(text)
+        from approved_six_locked_species_source import prior_six_locked_species_source
+        text = prior_six_locked_species_source(prior_weather_species_source(text))
+    if str(path) == "src/data/pokemon/level_up_learnsets.h":
+        from approved_twelve_learnset_projection import prior_twelve_learnsets_source
+        text = prior_twelve_learnsets_source(text)
     from approved_gym001_luis_changes import prior_luis_source
     text = prior_luis_source(path, text)
     from approved_special_weather_changes import prior_special_weather_source
