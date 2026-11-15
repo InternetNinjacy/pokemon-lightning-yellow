@@ -104,3 +104,35 @@ Source facts below were read from **main** and the two pinned source commits. Th
 - Explicit negative mutation fixture suite exercising the **actual imported Python helper and migrated adapters**, including outside-record edits rejected at final SHA; compare against baseline old runner behavior.
 - Exact-head mandatory checks after the Tucker adapter change; the previous head has a separate Fire move distribution failure and cannot certify this head.
 - Check and preserve exact original frozen fingerprints and policy; investigate Fire distribution separately under its own owner-approved work, not here.
+
+## Executed differential Python suite and broader dependency inventory — 2026-11-14
+
+### Exact-head CI interpretation
+
+- At prior exact head `82d17a0407c457304cd6b986dd28fee4e74e2eba`, BTL-005 workflow **43659983166 SUCCESS** and broader `Battle split validation` workflow **43659983151 CANCELLED** after a newer draft-branch commit superseded it. A cancelled workflow is **not PASS**. No terminal modified failure for that head is claimed.
+- The earlier exact head `529bfd29711b962661d95c72156222e697a7e657` already had a **different** failed integration test: unapproved-or-unclassified new Fire move reference in level-up learnsets. Nothing about Phase 1 waives or edits that failure.
+
+### Actual Python module verification
+
+- Added `tests/test_historical_reconstruction_equivalence.py` containing four `unittest` cases. Ran **`python3 -m unittest discover -s . -p 'test_historical_reconstruction_equivalence.py' -v`** in an isolated local folder containing byte-for-byte copies of the exact GitHub sources for `approved_historical_reconstruction.py`, `approved_gym001_baily_changes.py`, `approved_gym001_tucker_changes.py`, and this new suite. **4 tests / 4 PASS**, no failures or errors.
+- Provenance: local `git hash-object` checks matched GitHub blob IDs exactly: shared helper `7d180a50730392a54bcab17d872cb3ad6aa50ebf`; Baily `c4a275a94635019732a0d1bd16ebbfd5f281b970`; Tucker `ceba0ef1bb0f4310a1ca54a580bdace573cd6106`; test suite `5e60c60769282e5e80d454f0966926f7b001eb43`.
+- These tests import **the actual migrated Python code** and compare its source output and failure behavior to the original adapter algorithms using controlled `git show` mocks. Baily exact approved input passes and the wrong species, wrong level, both new/historical duplicate entries and already-historical Baily (not authorized as a fallback) all fail equivalently. Tucker exact approved input, already-historical fallback, invalid edits/duplicates and unrelated path pass-through match old behavior for both Trainer party and metadata. The common helper rejects unpinned commit, unknown/duplicated allowlist identities, unsupported record kinds and unapproved hunks. The explicit complete-file digest guard rejects unrelated-byte mutations when the protected digest remains fixed.
+- **Scope qualification:** pinned `git show` responses were test fixtures assembled from committed literal Baily/Tucker records; this was not an online full-repository Python test execution. The earlier real-source read-only comparison verified that the pinned Baily/Tucker records actually exist and match the exact snapshot at `21a363...` and `022406...`. Final CI and full repository regression still must pass; fixture-computed expected hashes are never substituted for project frozen SHA-256 values.
+
+### Additional existing guards inventoried (not migrated)
+
+| Guard | Approval / historical-protection behavior | Deferred risk |
+| --- | --- | --- |
+| `tests/approved_gym002_changes.py` | Baseline pinned to `21a3630b3d51481ab10a1af9637fa1ced73722cc`; byte-exact approved Gym 002 Giovanni and related changed party/Trainer blocks | Multi-path party, metadata and progression; must inventory entire allowlist and preserve event behavior |
+| `tests/approved_gym002_koga_changes.py` | Same pinned baseline; explicit byte-exact Koga party against original and approved source | Exact boss party and unrelated-byte preservation |
+| `tests/approved_gym002_erika_changes.py` | Same pinned baseline; explicit Erika party and metadata, including owner-approved Rapidash `MOVE_FLASHFIRE` | Do not conflate approved *trainer-only* move with **unapproved species-wide level-up distribution** |
+| `tests/approved_gym001_luis_changes.py` | Baseline `37230a9c513ed013fc6b402ec800bd1d13960492`; exact Luis party, metadata, and Cerulean Gym battle event script command; accepts narrow original/approved variants | Script trigger and native Doubles conditions are not reducible to Trainer record-only substitutions |
+| `tests/approved_viridian_bags_changes.py` | Eight explicit reviewed Viridian trainer IDs with exact reviewed inventory `ITEM_SUPER_POTION, ITEM_FULL_HEAL`; restores individually defined original inventories | Must not blanket-revert other bag entries or infer permission from matching value alone |
+| `tests/approved_celadon_four_changes.py` | Four named exact before/after Trainer parties; accepts the pre-existing old-state branch | Must preserve old/current input allowance and frozen whole-file downstream checks |
+| `tests/approved_fuchsia_three_changes.py` | Three named exact before/after Trainer party pairs; accepts the pre-existing old-state branch | Same original-state allowance; not equivalent to unconditional current-only helper |
+| `tests/approved_gym001_tucker_changes.py` | Pinned approved-current or exact already-historical Tucker party and Trainer metadata | Migrated only under original logic; the new helper applies to verified current path only |
+| `tests/approved_gym001_baily_changes.py` | Exact current-only Baily party; original state is deliberately rejected | Migrated and different from Tucker fallback; strict retained |
+
+### Remaining acceptance gaps
+
+Complete the full repository-wide map of historical guards, their original SHA manifests and owner approvals; explicitly execute the focused differential suite in a full GitHub checkout; prove unchanged *actual frozen project hashes* and expected rejection across all migrated downstream consumers; inspect CI for the latest exact head; and resolve the separate Fire distribution issue under proper authorization, outside this validation PR. PR #246 remains draft, not merge-ready; legendary PRs #245, #238, #243 are independent.
