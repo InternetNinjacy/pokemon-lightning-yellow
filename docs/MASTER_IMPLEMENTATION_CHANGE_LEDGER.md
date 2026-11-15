@@ -1821,3 +1821,43 @@ PR #184 merged into main at `ae928a1d9eba3aed16f4252123027cb5413106a7`; its merg
 - **Stack disposition:** GitHub recognizes PR #136 as merged in ancestry. PRs #146, #174, #176 and #182 were proven exact-head ancestors of current main (each `behind_by=0` when compared to main), annotated, and CLOSED **without a redundant second merge**; review history remains intact. Their individual PR closed statuses are not new acceptance or a second source landing.
 - **Formal accounting and exclusions:** BTL-005 remains **32 earned/48 remaining within its fixed 80-point scope**. Overall project remains **461 earned/251 remaining/712 total**, with exactly 50 permanent IDs and all earned histories unchanged. No new points are granted for merging, documenting, or rerunning CI. Approved staged index entries do not establish complete 56-move mechanics, Phase Two distribution, exhaustive animation approval, full natural-story playthrough, hardware/link/save interruption, or INT-004/005 release certification. Future effort changes require scoped verified acceptance under existing owner accounting rules.
 
+
+
+## 2026-11-15 — Early catch-rate rebalance through Misty, review-only draft
+
+Owner explicitly requests a separate draft reviewing/rebalancing all early
+obtainable Pokemon through Misty, easier before Brock, no encounter/unrelated
+changes. Refreshed main02240690581eb70d70219024fb7f55da2882308b, AGENTS/handoff,
+issue105, open PRs and catch-related issue search before editing. No active
+catch-rate owner found; PKM009 PR173 shared source file has no catchRate edits
+and remains untouched, as do WRL002/009, PR233, PR249 and PR250.
+
+Source inventory covers51 directly catchable species,17 before Brock and34 later
+in the pre-Misty frontier. Includes optional southern travel before Misty, actual
+Viridian Old Rod availability and the enabled MtMoon1F Onix/Cloyster5% pair.
+Excludes badge3 Good Rod, Surf/Super Rod, later Cut routes and external trades.
+Gifts/vendor purchases/NPC trades/eggs/evolution reviewed as non-capture channels;
+no new physical traversal or complete evolved-Pokedex acceptance is claimed.
+
+Exactly13 production catchRate fields raised: Igglybuff170→190, Teddiursa120→190,
+Elekid45→190, Tyrogue75→190, Magby45→150, Castform45→120, Smoochum45→190,
+Sneasel60→150, Onix45→120, Cloyster60→120, Ditto35→120, Farfetchd45→120,
+Dugtrio50→120. All other species-file bytes unchanged. Pre-Brock floor190;
+later floor120; no decrease. Species-global rates also apply to later encounters
+of these same13. Encounters/slots/levels, stats/types/abilities/moves, capture
+engine/balls, gifts/ownership, evolutions and save layout unchanged.
+
+Static tests/check_early_catch_rates.py PASS: exact frozen-main reconstruction,
+complete both-version51-species roster, floors, production delta scope and
+encounter/engine/check/workflow/accounting preservation. git diff --check PASS.
+No build, native emulator, capture simulation, rain/weather or broad CI run.
+Detailed review and all51 dispositions: docs/EARLY_CATCH_RATE_REBALANCE.md;
+slot/level/version/source data: tests/specifications/early_catch_rates_through_misty.json.
+
+Publication [skip ci] on balance/early-catch-rates-through-misty-20261115 avoids
+prohibited automatic rain testing; existing required statuses remain pending.
+Old species fingerprint assertions preserved; reviewed exact reconciliation and
+compliant build/changed-path native/required CI remain before merge. No Fire
+assertion/PR233 import, workflow/gate/protection change, source merge, point or
+task closure. Preserve owner rain/Sun/Snow-palette/Hail/Parcel acceptance,
+#248 Playtest002 snow confirmation and WRL010 queue;50 IDs/461/251/712 unchanged.
