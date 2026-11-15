@@ -341,14 +341,16 @@ static void trainerAiCategoryAcceptance(void) {
     const unsigned physicalMoves[]={MOVE_FIRE_PUNCH,MOVE_EARTHQUAKE};
     const unsigned targetTypes[]={TYPE_GRASS,TYPE_ELECTRIC};
     for(unsigned i=0;i<2;i++) {
-        // FRLG's opponent AI infers an unobserved ability from the species
-        // table, not the raw battle-mon ability byte. Use actual single-ability
-        // species (Vulpix=Flash Fire, Gengar=Levitate) rather than an invented
-        // Flash Fire Gengar. The Doubles AI also randomly chooses target 0/2;
+        // FRLG's opponent AI guesses an unobserved dual-slot ability from
+        // the species table. Explicitly select Vulpix's approved Flash Fire
+        // slot and record the staged ability as observed for the real AI.
+        // Gengar retains Levitate. The Doubles AI randomly chooses target 0/2;
         // pin the fixture's target after setup so it evaluates the controlled
         // battler, without changing AI scores or its move-choice routine.
         create(abilitySpecies[i],50);
+        if(abilitySpecies[i]==SPECIES_VULPIX)put(ABI_DATA_ABILITY_NUM,0);
         CALL(CopyPlayerPartyMonToBattleData,0,0);
+        CALL(RecordAbilityBattle,0,abilities[i]);
         CHECK(core->busRead16(core,bmon(0)+ABI_BMON_SPECIES)==abilitySpecies[i]);
         CHECK(core->busRead8(core,bmon(0)+ABI_BMON_ABILITY)==abilities[i]);
         core->busWrite8(core,bmon(0)+ABI_BMON_TYPE1,targetTypes[i]);
@@ -370,10 +372,11 @@ static void trainerAiCategoryAcceptance(void) {
         CHECK(viable>blocked);
         CHECK(chosen==1);
         // Control with the same effective types and moves, but an actual
-        // nonimmune Color Change species. Merely clearing gBattleMons.ability
-        // would be invalid: this AI still infers Vulpix/Gengar's species ability.
+        // nonimmune Color Change species. Record its observed ability too,
+        // replacing the immunity case's history before the control AI runs.
         create(SPECIES_KECLEON,50);
         CALL(CopyPlayerPartyMonToBattleData,0,0);
+        CALL(RecordAbilityBattle,0,ABILITY_COLOR_CHANGE);
         CHECK(core->busRead16(core,bmon(0)+ABI_BMON_SPECIES)==SPECIES_KECLEON);
         core->busWrite8(core,bmon(0)+ABI_BMON_TYPE1,targetTypes[i]);
         core->busWrite8(core,bmon(0)+ABI_BMON_TYPE2,targetTypes[i]);

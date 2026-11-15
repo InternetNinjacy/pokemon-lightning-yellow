@@ -1852,3 +1852,21 @@ physical presses,3 flash roundtrips retained. Existing focused PR239 native
 no new workflow or test scenario, no local build/emulator rerun. Existing static
 19-Center service check and diff check PASS. New-head required CI pending, not
 claimed successful. Draft/unmerged; other PRs untouched, no points/exemptions.
+
+
+## 2026-11-15 — Draft #233 targeted Vulpix immunity fixture correction
+
+Owner authorized the correction after diagnosis. Starting head 5424687d136071a7f5d21ff6763c415d825f8572:
+Battle split 43733563183 modified 132871111295 FAILURE at battle_categories.c:353;
+independent upstream 132871111434 SUCCESS; focused BTL 43733563184 SUCCESS.
+Approved merged #150 retains Vulpix Flash Fire / Shadow Tag; fixed personality
+12345 predicts slot2, without an actual ability value in the old failure log.
+Existing fixture now explicitly selects Vulpix slot0 through SetMonData and
+records staged immunity/control abilities through existing RecordAbilityBattle,
+so native AI does not guess an unobserved dual-slot ability or retain stale
+control history. All72 CHECK expressions and real AI scoring/choice controls
+unchanged. Shared helper, gameplay, ABI exports, workflows and frozen guards
+untouched. Exact diff/whitespace inspection only; no manual build/native run,
+new test or rerun. Required automatic new-head CI remains unverified. Draft,
+unmerged; no effort credit or tracker/dashboard accounting change. Full source
+reasoning and next owner consultation stop condition in CODEX_EXECUTION_HANDOFF.

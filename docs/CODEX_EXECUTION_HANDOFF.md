@@ -1,3 +1,61 @@
+# PR #233 Vulpix ability fixture correction — November 15, 2026
+
+Owner explicitly authorized "Continue — correct Vulpix fixture" after source
+diagnosis. Starting head 5424687d136071a7f5d21ff6763c415d825f8572 on existing
+validation/combined-fire-ghost-trainer-projection-20261113. Draft/unmerged.
+
+## Existing failure and approved gameplay
+
+Battle split run 43733563183: modified job 132871111295 FAILURE at
+tests/emulator/battle_categories.c:353, ability equality assertion. Its host
+checks, clean reproducible builds and all preceding focused native steps passed.
+Independent upstream-baseline job 132871111434 SUCCESS. Existing focused BTL
+workflow 43733563184 SUCCESS. The old modified result remains FAILURE.
+
+Merged PR #150 (855333c25086753f42f5d8ddbf5e5efaefee3a39) explicitly approves
+Vulpix Flash Fire / Shadow Tag. Current species_info.h retains that pair.
+The shared create() helper supplies fixed personality 12345; CreateBoxMon uses
+personality & 1 when a second ability exists. Thus Shadow Tag is source-predicted
+for the old Vulpix fixture, not an actual ability value printed by the failed log.
+Gengar's later Levitate case was not reached by that failed loop.
+
+## Targeted existing-fixture correction
+
+Only the ability-immunity fixture changes:
+- Immediately after creating Vulpix, use existing put(ABI_DATA_ABILITY_NUM,0),
+  which calls production SetMonData, before CopyPlayerPartyMonToBattleData.
+  The shared helper/personality and all species/gameplay data are untouched.
+- Use existing production RecordAbilityBattle for the staged Flash Fire/Levitate
+  case and the Color Change control. Cmd_get_ability otherwise guesses between
+  Vulpix's two approved slots when unobserved. Recording the control's ability
+  replaces the prior case's observed history, preventing stale immunity.
+- Correct obsolete single-ability comments. Retain all original 72 CHECK calls
+  byte-for-byte, including species/loaded-ability, real AI score comparisons,
+  actual move choice and reciprocal nonimmune controls. No score fabrication,
+  changed expected result, assertion removal or new scenario.
+
+ABI_DATA_ABILITY_NUM and RecordAbilityBattle are already exported by run.py.
+BattleAI_SetupAIData clears thinking state, not observed ability history. This
+is fixture setup for existing known-ability immunity checks, not new AI gameplay.
+
+## Verification and next step
+
+Reviewed the exact source diff and existing production paths. Local
+git diff --no-index --check review/battle_categories.before.c
+review/battle_categories.after.c emitted no whitespace diagnostics (exit 1
+denotes the expected file difference). All 72 original CHECK expressions are
+identical. No manual ROM build, emulator run, new test, harness, workflow or
+rerun was initiated. Existing mandatory automatic PR workflows remain unchanged;
+their results must be read on the new exact head before claiming acceptance.
+
+Keep draft/unmerged. Inspect the new-head existing modified and independent
+upstream results at the next meaningful checkpoint. If another check fails,
+stop and consult the owner before troubleshooting. Do not reopen Misty/Surf or
+touch other specialist branches. No points awarded: 50 permanent IDs,
+461 earned / 251 remaining / 712 total. Tracker/dashboard accounting unchanged.
+
+---
+
 # PR #233 Move Reminder fixture reconciliation — November 15, 2026
 
 Owner requested continuation of the bundled review/correction after read-only
