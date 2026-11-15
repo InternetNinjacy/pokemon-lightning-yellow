@@ -1,3 +1,28 @@
+# PR251 catch125 merged — November 15, 2026
+
+- Owner reiterated lock13 catch rates125, implement/merge and proceed after the
+  unexecuted-CI/no-rain limitation had been disclosed. Normal GitHub merge with
+  expected head4c89cb6b1313ac4d159f5eca41791f78ad15d77d succeeded.
+- Verified merge/main `3ed6ac1e18cc774344c5f242cfdd5020e33b83b8`; PR251 merged=true,
+  source tree byte-identical to approved PR head; all13 values125 and all38
+  other reviewed rates unchanged. Static51-roster/scope check PASS on main.
+- Fresh branches/main protected=false, mergeable_state=clean; no protection,
+  status, assertion or workflow edits. This is a specific owner-directed merge,
+  not global permission for unchecked merges or a claim of CI acceptance.
+- Merge message [skip ci] obeys no-rain directive. Exact merged-main Actions
+  list:0 runs. No full/native/upstream CI, build, owner playtest or points claimed.
+- Update docs/EARLY_CATCH_RATE_REBALANCE.md and manifest to actual merged status;
+  old blocked entries below are historical, superseded by this recorded merge.
+- Next independent task: amend existing draft CI proposal PR250 with explicit
+  label-only WRL001 opt-in so it need not be installed by a main merge. Preserve
+  exact source0f693dd7, existing workflows/gates/guards and no artifacts. Prepare
+  reviewable amendment only; do not activate/run before its trigger review.
+- PR249 and PR233 remain unchanged/draft. Keep their Fire/Misty failures and
+  owner weather/Parcel passes; #248 Playtest002 snow confirmation and WRL010
+  remain pending. Preserve exactly50 IDs/461 earned/251 remaining/712 total.
+
+---
+
 # Owner-approved catch rates125 — November 15, 2026
 
 - Owner supersedes the draft tiers: set all13 previously proposed species to125,
