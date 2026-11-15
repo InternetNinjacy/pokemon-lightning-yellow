@@ -1861,3 +1861,33 @@ compliant build/changed-path native/required CI remain before merge. No Fire
 assertion/PR233 import, workflow/gate/protection change, source merge, point or
 task closure. Preserve owner rain/Sun/Snow-palette/Hail/Parcel acceptance,
 #248 Playtest002 snow confirmation and WRL010 queue;50 IDs/461/251/712 unchanged.
+
+
+## 2026-11-15 — Owner locks the13 proposed catch rates at125 and authorizes merge
+
+Owner: "Set them at125 instead. Lock in. Implement merge and move forward."
+Supersedes proposed190/150/120 tiers for all13 previously changed species.
+Existing PR251 updated in place; main02240690581eb70d70219024fb7f55da2882308b
+and other ownership/branches remain unchanged. All13 catchRate values exactly125;
+Igglybuff original170→125 is the explicit uniform-value consequence, other12
+increase. Remaining38 reviewed species unchanged, including Electrike120.
+No encounter, other species field, capture engine, ball, gift/OT or save changes.
+
+Updated complete51-species manifest/review and the proposal-owned source checker
+to enforce exact125 on the13 and exact original data everywhere else. The checker
+retains every scope/roster/field/ABI-independent source preservation check; only
+its earlier proposed tier conditions follow the new owner design. No historical
+main assertion/expected fingerprint/workflow/status/protection changed. Static
+source check PASS, diff/whitespace PASS. No build, native, rain or broad CI.
+Pinned local compiler/assembler/libpng dev prerequisites are absent; apt metadata
+read fails Permission denied/no packages. No substitute toolchain inferred.
+
+Owner merge authorization is recorded; merger remains unperformed because required
+exact-head full modified/upstream CI is unexecuted and its rain execution conflicts
+with the unchanged owner no-rain directive. Protection query403; rulesets[] does
+not establish absence of classic protection. Publication uses [skip ci]; no green
+claim or gate waiver. An explicit CI/no-rain policy decision and verified required
+rules are needed for compliant merge. PR250 supplemental-only workflow cannot
+replace full CI. No speculative next gameplay scope or specialist takeover.
+Preserve all accepted weather/Parcel scenarios, #248 Playtest002 snow confirmation,
+WRL010 queue and exactly50 task IDs/461 earned/251 remaining/712 total; no points.

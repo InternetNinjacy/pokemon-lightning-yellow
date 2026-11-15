@@ -1,3 +1,32 @@
+# Owner-approved catch rates125 — November 15, 2026
+
+- Owner supersedes the draft tiers: set all13 previously proposed species to125,
+  lock the balance decision, implement/merge and continue. Merge is authorized;
+  required CI/protection and the separate no-rain directive are not waived.
+- Existing PR251 branch balance/early-catch-rates-through-misty-20261115.
+  Base main02240690581eb70d70219024fb7f55da2882308b unchanged.
+- Exactly13 catchRate values now125. Igglybuff170→125 is the explicit uniform-value
+  consequence; other12 increase. The remaining38 reviewed species stay unchanged,
+  including Electrike120. No encounter/stat/engine/gift/save changes.
+- Updated manifest, complete51-row review and new proposal-owned source check.
+  Exact125/value/scope/51-roster/preservation/accounting static check PASS;
+  whitespace PASS. Original main tests/assertions/workflows are unchanged.
+- Build/runtime not executed: pinned ARM assembler/compiler and libpng dev inputs
+  unavailable locally; apt metadata access fails Permission denied/no packages.
+  No unapproved replacement toolchain or ROM/BIOS/save artifact distribution.
+- Concrete merge blocker: exact-head required modified/upstream CI is unexecuted.
+  Existing broad CI includes prohibited rain tests; branch-protection read403,
+  rulesets[] not proof of absence. No safe checked merge is currently available.
+- Publish update [skip ci], retain pending statuses, no merge/bypass. Need an
+  explicit CI/no-rain policy resolution and verified protection information to
+  finish the authorized merge; do not ask for routine design approval again.
+- Next work is the CI conflict (PR250 trigger proposal does not replace required
+  full CI). Do not silently activate label-only or modify mandated gate topology.
+- Preserve PR233/249/250 ownership and heads, accepted weather/Parcel scenarios,
+  #248 owner Playtest002 snow result, queued WRL010 and50 IDs/461/251/712.
+
+---
+
 # Early catch-rate rebalance handoff — November 15, 2026
 
 - Main/recovery stays02240690581eb70d70219024fb7f55da2882308b.

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check the bounded catch-rate draft and complete early direct-capture roster.
+"""Check the approved catch-rate implementation and complete early direct-capture roster.
 
 Static source checks only. No emulator, weather test or game build is launched.
 """
@@ -26,7 +26,12 @@ expected = original
 changes = {x["species"]: x for x in M["changes"]}
 assert len(changes) == len(M["changes"]) == 13
 for species, change in changes.items():
-    assert 1 <= change["before"] < change["after"] <= 255
+    assert 1 <= change["before"] <= 255
+    assert change["after"] == M["approved_changed_species_rate"] == 125
+    if species == "SPECIES_IGGLYBUFF":
+        assert change["before"] == 170  # Explicit owner-approved uniform125 exception.
+    else:
+        assert change["before"] < change["after"]
     pattern = r'(\[' + re.escape(species) + r'\] =\s*\{.*?\.catchRate = )' + str(change["before"]) + r'(,)'
     expected, count = re.subn(pattern, lambda m: m[1] + str(change["after"]) + m[2], expected, count=1, flags=re.S)
     assert count == 1, species
@@ -83,7 +88,11 @@ for species, sources in roster.items():
     assert row["earliest_stage"] == ("before_brock" if early else "through_misty")
     assert row["before"] == old_rates[species]
     assert row["proposed"] == current_rates[species]
-    assert current_rates[species] >= (190 if early else 120), species
+    assert current_rates[species] >= (125 if early else 120), species
+    if species in changes:
+        assert current_rates[species] == 125, species
+    else:
+        assert current_rates[species] == old_rates[species], species
 assert before_brock == 17
 
 # Preserve all original sources and checks, including every encounter and gate.
@@ -102,7 +111,7 @@ tracking = json.loads((ROOT / "docs/project-tracking.json").read_text())
 assert len(tracking["tasks"]) == 50
 assert sum(t["effort"]["earned"] for t in tracking["tasks"]) == 461
 assert sum(t["effort"]["remaining"] for t in tracking["tasks"]) == 251
-print("PASS: 51 direct-capture species audited; 17 before Brock >=190; remaining >=120")
-print("PASS: exactly 13 increasing catchRate values; every other species-file byte unchanged")
+print("PASS: 51 direct-capture species audited; 17 before Brock >=125; other reviewed rates preserved")
+print("PASS: exactly 13 owner-approved catchRate values set to125; every other species-file byte unchanged")
 print("PASS: encounters, capture engine, existing checks/workflows and 50 IDs/461/251/712 preserved")
-print("Static proposal evidence only; no native, build or required-CI success claimed")
+print("Static implementation evidence only; no native, build or required-CI success claimed")

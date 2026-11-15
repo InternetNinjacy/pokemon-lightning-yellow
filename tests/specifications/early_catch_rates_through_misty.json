@@ -1,7 +1,7 @@
 {
-  "status": "reviewable_draft_not_merged",
+  "status": "owner_approved_125_implementation_merge_requested",
   "base_sha": "02240690581eb70d70219024fb7f55da2882308b",
-  "authority": "Owner request 2026-11-15: rebalance all Pokemon obtainable through Misty; easier before Brock; separate draft; no encounter or unrelated gameplay changes.",
+  "authority": "Owner 2026-11-15: Set them at 125 instead. Lock in. Implement merge and move forward. Applies to the 13 proposed species; every other species remains unchanged. Merge authorization does not waive existing CI/protection or no-rain boundaries.",
   "scope_definition": "Normal source-accessible early-game frontier before defeating Misty, including optional Bill/Route5/6/Vermilion/Route11/Digletts Cave travel; no glitches, trades with external players, later badge, Cut, Surf or stronger rods. Gifts/trades/evolutions reviewed separately because no capture roll. Source inventory is not a new native traversal certificate.",
   "map_stages": {
     "MAP_PALLET_TOWN": "before_brock",
@@ -25,74 +25,74 @@
     "MAP_ROUTE11": "through_misty",
     "MAP_DIGLETTS_CAVE_B1F": "through_misty"
   },
-  "minimum_before_brock": 190,
+  "minimum_before_brock": 125,
   "minimum_through_misty": 120,
   "species_info_before_sha256": "a82ee89bdd90075a185b1058b9a459480b78c8504bbfc446e275ca350f2e0680",
   "changes": [
     {
       "species": "SPECIES_IGGLYBUFF",
       "before": 170,
-      "after": 190
+      "after": 125
     },
     {
       "species": "SPECIES_TEDDIURSA",
       "before": 120,
-      "after": 190
+      "after": 125
     },
     {
       "species": "SPECIES_ELEKID",
       "before": 45,
-      "after": 190
+      "after": 125
     },
     {
       "species": "SPECIES_TYROGUE",
       "before": 75,
-      "after": 190
+      "after": 125
     },
     {
       "species": "SPECIES_MAGBY",
       "before": 45,
-      "after": 150
+      "after": 125
     },
     {
       "species": "SPECIES_CASTFORM",
       "before": 45,
-      "after": 120
+      "after": 125
     },
     {
       "species": "SPECIES_SMOOCHUM",
       "before": 45,
-      "after": 190
+      "after": 125
     },
     {
       "species": "SPECIES_SNEASEL",
       "before": 60,
-      "after": 150
+      "after": 125
     },
     {
       "species": "SPECIES_ONIX",
       "before": 45,
-      "after": 120
+      "after": 125
     },
     {
       "species": "SPECIES_CLOYSTER",
       "before": 60,
-      "after": 120
+      "after": 125
     },
     {
       "species": "SPECIES_DITTO",
       "before": 35,
-      "after": 120
+      "after": 125
     },
     {
       "species": "SPECIES_FARFETCHD",
       "before": 45,
-      "after": 120
+      "after": 125
     },
     {
       "species": "SPECIES_DUGTRIO",
       "before": 50,
-      "after": 120
+      "after": 125
     }
   ],
   "direct_catchable_species": [
@@ -151,7 +151,7 @@
     {
       "species": "SPECIES_CASTFORM",
       "before": 45,
-      "proposed": 120,
+      "proposed": 125,
       "earliest_stage": "through_misty",
       "sources": [
         {
@@ -229,7 +229,7 @@
     {
       "species": "SPECIES_CLOYSTER",
       "before": 60,
-      "proposed": 120,
+      "proposed": 125,
       "earliest_stage": "through_misty",
       "sources": [
         {
@@ -271,7 +271,7 @@
     {
       "species": "SPECIES_DITTO",
       "before": 35,
-      "proposed": 120,
+      "proposed": 125,
       "earliest_stage": "through_misty",
       "sources": [
         {
@@ -297,7 +297,7 @@
     {
       "species": "SPECIES_DUGTRIO",
       "before": 50,
-      "proposed": 120,
+      "proposed": 125,
       "earliest_stage": "through_misty",
       "sources": [
         {
@@ -375,7 +375,7 @@
     {
       "species": "SPECIES_ELEKID",
       "before": 45,
-      "proposed": 190,
+      "proposed": 125,
       "earliest_stage": "before_brock",
       "sources": [
         {
@@ -401,7 +401,7 @@
     {
       "species": "SPECIES_FARFETCHD",
       "before": 45,
-      "proposed": 120,
+      "proposed": 125,
       "earliest_stage": "through_misty",
       "sources": [
         {
@@ -497,7 +497,7 @@
     {
       "species": "SPECIES_IGGLYBUFF",
       "before": 170,
-      "proposed": 190,
+      "proposed": 125,
       "earliest_stage": "before_brock",
       "sources": [
         {
@@ -523,7 +523,7 @@
     {
       "species": "SPECIES_MAGBY",
       "before": 45,
-      "proposed": 150,
+      "proposed": 125,
       "earliest_stage": "through_misty",
       "sources": [
         {
@@ -919,7 +919,7 @@
     {
       "species": "SPECIES_ONIX",
       "before": 45,
-      "proposed": 120,
+      "proposed": 125,
       "earliest_stage": "through_misty",
       "sources": [
         {
@@ -1327,7 +1327,7 @@
     {
       "species": "SPECIES_SMOOCHUM",
       "before": 45,
-      "proposed": 190,
+      "proposed": 125,
       "earliest_stage": "through_misty",
       "sources": [
         {
@@ -1353,7 +1353,7 @@
     {
       "species": "SPECIES_SNEASEL",
       "before": 60,
-      "proposed": 150,
+      "proposed": 125,
       "earliest_stage": "through_misty",
       "sources": [
         {
@@ -1527,7 +1527,7 @@
     {
       "species": "SPECIES_TEDDIURSA",
       "before": 120,
-      "proposed": 190,
+      "proposed": 125,
       "earliest_stage": "before_brock",
       "sources": [
         {
@@ -1579,7 +1579,7 @@
     {
       "species": "SPECIES_TYROGUE",
       "before": 75,
-      "proposed": 190,
+      "proposed": 125,
       "earliest_stage": "before_brock",
       "sources": [
         {
@@ -1672,5 +1672,7 @@
         }
       ]
     }
-  ]
+  ],
+  "approved_changed_species_rate": 125,
+  "owner_exception": "Igglybuff original170 becomes125 under the explicit uniform-value approval. The other12 changes increase original rates. Electrike120 is one of38 unchanged reviewed species."
 }

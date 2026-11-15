@@ -1,10 +1,12 @@
 # Early catch rates through Misty
 
-Status: reviewable balance draft, not merged or owner playtested. Prepared November 15, 2026 from main `02240690581eb70d70219024fb7f55da2882308b`.
+Status: owner-approved uniform125 implementation; merge requested, not yet merged or owner playtested. Prepared November 15, 2026 from main `02240690581eb70d70219024fb7f55da2882308b`.
 
-The owner authorized an early-game catch-rate rebalance through Misty, prioritizing easier catches before Brock. This draft reviews all 51 directly catchable species in the source-defined early frontier and raises 13 low catch rates. Seventeen species are directly catchable before Brock; every one will have a rate of at least 190. Later early-game species retain a floor of 120, with common catches at 190 or higher and selected uncommon catches at 150. No rate is lowered.
+The owner approved setting all 13 previously proposed catch-rate changes to **125** and requested implementation and merging. This supersedes the draft190/150/120 tiers. The other38 directly catchable species keep their original rates. All17 pre-Brock direct catches have rates of at least125; the complete early review still contains51 species. Electrike remains120 because it was not one of the13 proposed changes.
 
-These are internal values on a 1–255 scale, not percentages. Ball type, current HP, status, and the unchanged capture formula still determine a throw’s actual outcome. A rate of 190 does not mean a guaranteed catch.
+Igglybuff is an explicit consequence of the uniform-value instruction: its original170 becomes125, making it harder than original main but easier than many low-rate early replacements. The other12 changes increase their original rates. No unrelated species is reduced.
+
+These are internal values on a 1–255 scale, not percentages. Ball type, current HP, status, and the unchanged capture formula still determine a throw’s actual outcome. A rate of 125 does not mean a guaranteed catch.
 
 ## Scope and availability
 
@@ -16,47 +18,47 @@ The boundary is the normal progression frontier available before defeating Misty
 - `src/wild_double_battle.c` plus `include/wild_double_battle.h` still enable the Mt. Moon 1F 5% Onix/Cloyster special pair when two party Pokémon are usable. Both species are included; pair frequency and survivor capture rules are unchanged. The temporary pair is existing code, not a newly approved permanent encounter.
 - Route 9/Cut-dependent travel, Route 23 badge-gated grass, Surf-only table rows, stationary later-story specials and external/link trades are excluded. Early shops, rod rewards, NPC routes, levels and flags are unchanged.
 
-## Proposed changes
+## Owner-approved changes
 
-| Pokémon | Earliest catch venue | Current | Draft | Reason |
+| Pokémon | Earliest catch venue | Original main | Approved | Authority |
 |---|---|---:|---:|---|
-| Igglybuff | Route1 | 170 | **190** | Bring every pre-Brock catch to the early floor. |
-| Teddiursa | Route2 | 120 | **190** | Common Route 2 catch should be approachable. |
-| Elekid | Viridian Forest | 45 | **190** | Remove starter-like 45 rate from a Lv4–5 forest catch. |
-| Tyrogue | Route22 | 75 | **190** | Remove difficult 75 rate from an opening-route catch. |
-| Magby | Route3 | 45 | **150** | Approachable baby encounter after Brock; retain some distinction. |
-| Castform | Route3 | 45 | **120** | Keep a little challenge for the 10% Route 3 encounter. |
-| Smoochum | Mt. Moon B2F | 45 | **190** | Its 30% cave encounter is common; use an easy catch rate. |
-| Sneasel | Mt. Moon B2F | 60 | **150** | 25% cave encounter; moderate capture difficulty. |
-| Onix | Mt. Moon 1F | 45 | **120** | Existing rare double pair; remove 45-rate frustration. |
-| Cloyster | Mt. Moon 1F | 60 | **120** | Existing rare evolved double catch; retain a moderate challenge. |
-| Ditto | Route5 | 35 | **120** | Rare early encounter should not also use the punishing 35 rate. |
-| Farfetch’d | Route11 | 45 | **120** | 15% Route 11 encounter; remove 45-rate frustration. |
-| Dugtrio | Digletts Cave B1F | 50 | **120** | Rare evolved cave encounter; retain a moderate challenge. |
+| Igglybuff | Route1 | 170 | **125** | Owner instruction: uniform125 for all13 proposed species. |
+| Teddiursa | Route2 | 120 | **125** | Owner instruction: uniform125 for all13 proposed species. |
+| Elekid | Viridian Forest | 45 | **125** | Owner instruction: uniform125 for all13 proposed species. |
+| Tyrogue | Route22 | 75 | **125** | Owner instruction: uniform125 for all13 proposed species. |
+| Magby | Route3 | 45 | **125** | Owner instruction: uniform125 for all13 proposed species. |
+| Castform | Route3 | 45 | **125** | Owner instruction: uniform125 for all13 proposed species. |
+| Smoochum | Mt. Moon B2F | 45 | **125** | Owner instruction: uniform125 for all13 proposed species. |
+| Sneasel | Mt. Moon B2F | 60 | **125** | Owner instruction: uniform125 for all13 proposed species. |
+| Onix | Mt. Moon 1F | 45 | **125** | Owner instruction: uniform125 for all13 proposed species. |
+| Cloyster | Mt. Moon 1F | 60 | **125** | Owner instruction: uniform125 for all13 proposed species. |
+| Ditto | Route5 | 35 | **125** | Owner instruction: uniform125 for all13 proposed species. |
+| Farfetch’d | Route11 | 45 | **125** | Owner instruction: uniform125 for all13 proposed species. |
+| Dugtrio | Digletts Cave B1F | 50 | **125** | Owner instruction: uniform125 for all13 proposed species. |
 
-The only production delta is these 13 `.catchRate` numbers in `src/data/pokemon/species_info.h`. All other species-file bytes are identical to pinned main. Catch rates are species-wide, so later encounters with these same 13 species also become easier. This is intentional carryover of the chosen data-only approach; no per-map capture rule or engine override is introduced. Stats, types, abilities, moves, held items, EXP yield, evolution, encounter tables, gift ownership and save layout do not change.
+The only production delta is these 13 owner-approved `.catchRate` numbers in `src/data/pokemon/species_info.h`. All other species-file bytes are identical to pinned main. Catch rates are species-wide, so later encounters use these same approved rates; Igglybuff becomes harder than its original170 and the other12 species become easier. This is intentional carryover of the chosen data-only approach; no per-map capture rule or engine override is introduced. Stats, types, abilities, moves, held items, EXP yield, evolution, encounter tables, gift ownership and save layout do not change.
 
 ## Complete direct-capture review
 
-| Pokémon | Earliest stage | Catch venues | Current → draft |
+| Pokémon | Earliest stage | Catch venues | Original → approved |
 |---|---|---|---:|
 | Abra | Through Misty | Route24 | 200 → 200 |
 | Bellsprout | Through Misty | Route25 | 255 → 255 |
-| Castform | Through Misty | Route3 | 45 → 120 |
+| Castform | Through Misty | Route3 | 45 → 125 |
 | Caterpie | Before Brock | Viridian Forest | 255 → 255 |
 | Cleffa | Through Misty | Mt. Moon 1F | 150 → 150 |
-| Cloyster | Through Misty | Mt. Moon 1F | 60 → 120 |
+| Cloyster | Through Misty | Mt. Moon 1F | 60 → 125 |
 | Diglett | Through Misty | Digletts Cave B1F | 255 → 255 |
-| Ditto | Through Misty | Route5 | 35 → 120 |
-| Dugtrio | Through Misty | Digletts Cave B1F | 50 → 120 |
+| Ditto | Through Misty | Route5 | 35 → 125 |
+| Dugtrio | Through Misty | Digletts Cave B1F | 50 → 125 |
 | Ekans | Through Misty | Route4 | 255 → 255 |
 | Electrike | Through Misty | Route11 | 120 → 120 |
-| Elekid | Before Brock | Viridian Forest | 45 → 190 |
-| Farfetch’d | Through Misty | Route11 | 45 → 120 |
+| Elekid | Before Brock | Viridian Forest | 45 → 125 |
+| Farfetch’d | Through Misty | Route11 | 45 → 125 |
 | Geodude | Through Misty | Mt. Moon 1F, Mt. Moon B1F | 255 → 255 |
 | Hoothoot | Before Brock | Route2 | 255 → 255 |
-| Igglybuff | Before Brock | Route1 | 170 → 190 |
-| Magby | Through Misty | Route3 | 45 → 150 |
+| Igglybuff | Before Brock | Route1 | 170 → 125 |
+| Magby | Through Misty | Route3 | 45 → 125 |
 | Magikarp | Before Brock | Cerulean City, Pallet Town, Route11, Route22, Route24, Route25, Route4, Route6, Vermilion City, Viridian City | 255 → 255 |
 | Mankey | Before Brock | Route22 | 190 → 190 |
 | Mareep | Through Misty | Route6 | 235 → 235 |
@@ -65,7 +67,7 @@ The only production delta is these 13 `.catchRate` numbers in `src/data/pokemon/
 | Nidoran♂ | Before Brock | Route22 | 235 → 235 |
 | Numel | Through Misty | Route11 | 255 → 255 |
 | Oddish | Through Misty | Route24 | 255 → 255 |
-| Onix | Through Misty | Mt. Moon 1F | 45 → 120 |
+| Onix | Through Misty | Mt. Moon 1F | 45 → 125 |
 | Paras | Through Misty | Mt. Moon 1F, Mt. Moon B1F | 190 → 190 |
 | Pichu | Before Brock | Route2 | 190 → 190 |
 | Pidgey | Before Brock | Route1 | 255 → 255 |
@@ -79,16 +81,16 @@ The only production delta is these 13 `.catchRate` numbers in `src/data/pokemon/
 | Skitty | Through Misty | Route5 | 255 → 255 |
 | Slowpoke | Through Misty | Route25 | 190 → 190 |
 | Slugma | Through Misty | Route3 | 190 → 190 |
-| Smoochum | Through Misty | Mt. Moon B2F | 45 → 190 |
-| Sneasel | Through Misty | Mt. Moon B2F | 60 → 150 |
+| Smoochum | Through Misty | Mt. Moon B2F | 45 → 125 |
+| Sneasel | Through Misty | Mt. Moon B2F | 60 → 125 |
 | Snorunt | Through Misty | Mt. Moon B2F | 190 → 190 |
 | Spearow | Before Brock | Route22 | 255 → 255 |
 | Sunkern | Through Misty | Route3 | 235 → 235 |
 | Swinub | Through Misty | Mt. Moon B1F, Mt. Moon B2F | 225 → 225 |
 | Taillow | Through Misty | Route6 | 200 → 200 |
-| Teddiursa | Before Brock | Route2 | 120 → 190 |
+| Teddiursa | Before Brock | Route2 | 120 → 125 |
 | Trapinch | Through Misty | Route11 | 255 → 255 |
-| Tyrogue | Before Brock | Route22 | 75 → 190 |
+| Tyrogue | Before Brock | Route22 | 75 → 125 |
 | Weedle | Before Brock | Viridian Forest | 255 → 255 |
 | Zubat | Through Misty | Mt. Moon 1F, Mt. Moon B1F | 255 → 255 |
 
@@ -109,13 +111,13 @@ The non-capture channel review does not imply every evolution/item combination w
 
 Live main, AGENTS, handoff, issue105, current open PRs and catch-related issue search were refreshed before editing. No active catch-rate work was found. PKM-009 PR173 is an older stats/learnset integration candidate sharing the species file; its patch has no catchRate additions/removals. That ownership is preserved: this draft does not import, modify or merge it. WRL-002/009 accessibility, PR233 historical reconciliation, WRL001 PR249 and CI proposal PR250 remain separate.
 
-`PYTHONDONTWRITEBYTECODE=1 python3 tests/check_early_catch_rates.py`: PASS. The check reconstructs all 13 increasing numeric changes from frozen main, requires every other byte of the species file unchanged, recomputes the full 51-species inventory from both version tables plus the existing special pair, checks the 17/34 stage split and floors, and verifies production-path/encounter/engine/workflow/accounting preservation. `git diff --check`: PASS. No game build, capture simulation, weather test, native mGBA or broad CI was run.
+`PYTHONDONTWRITEBYTECODE=1 python3 tests/check_early_catch_rates.py`: PASS. The check reconstructs all 13 approved numeric changes from frozen main, requires every other byte of the species file unchanged, recomputes the full 51-species inventory from both version tables plus the existing special pair, checks the17/34 stage split, all13 exact125 values, the explicit Igglybuff exception and unchanged remaining38 species, and verifies production-path/encounter/engine/workflow/accounting preservation. `git diff --check`: PASS. No game build, capture simulation, weather test, native mGBA or broad CI was run.
 
 The existing capture engine reads `gSpeciesInfo[species].catchRate` in `src/battle_script_commands.c` and uses the existing HP/status/ball calculation. That mechanism is byte-identical; this draft changes the data it reads. Source preservation is not a new native gameplay or subjective balance PASS.
 
 Old whole-file species fingerprint assertions are deliberately unchanged. This new data delta will require separately reviewed exact reconciliation before mandatory CI can accept an integrated candidate; existing failures are neither fixed nor waived here. Do not import Fire assertions or PR233 adapters. Required exact-head modified/upstream CI, a build and focused changed-rate gameplay verification remain pending before any merge/acceptance.
 
-Publication uses `[skip ci]` on a `balance/` branch outside the existing push filters to honor the no-rain directive. Existing required checks remain pending, not green. No workflow/status/protection changes or artifact uploads. Keep the PR draft and unmerged; preserve owner rain/Sun/Snow-palette/Hail/Parcel acceptance, #248 Playtest002 snow-persistence confirmation and queued WRL010.
+Publication uses `[skip ci]` on a `balance/` branch outside the existing push filters to honor the no-rain directive. Existing required checks remain pending, not green. No workflow/status/protection changes or artifact uploads. Owner now authorizes merge after applicable checks. Actual merge remains blocked by unexecuted required CI and the no-rain boundary; no gate waiver is inferred. Preserve owner rain/Sun/Snow-palette/Hail/Parcel acceptance, #248 Playtest002 snow-persistence confirmation and queued WRL010.
 
 Accounting remains exactly 50 permanent task IDs / 461 earned / 251 remaining / 712 total. No new points or task closure. This is a PKM-009 catch-rate balance proposal with WRL acquisition evidence, not a new permanent task.
 
