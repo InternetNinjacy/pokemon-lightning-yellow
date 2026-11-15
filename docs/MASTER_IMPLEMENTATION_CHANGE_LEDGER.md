@@ -1821,3 +1821,41 @@ PR #184 merged into main at `ae928a1d9eba3aed16f4252123027cb5413106a7`; its merg
 - **Stack disposition:** GitHub recognizes PR #136 as merged in ancestry. PRs #146, #174, #176 and #182 were proven exact-head ancestors of current main (each `behind_by=0` when compared to main), annotated, and CLOSED **without a redundant second merge**; review history remains intact. Their individual PR closed statuses are not new acceptance or a second source landing.
 - **Formal accounting and exclusions:** BTL-005 remains **32 earned/48 remaining within its fixed 80-point scope**. Overall project remains **461 earned/251 remaining/712 total**, with exactly 50 permanent IDs and all earned histories unchanged. No new points are granted for merging, documenting, or rerunning CI. Approved staged index entries do not establish complete 56-move mechanics, Phase Two distribution, exhaustive animation approval, full natural-story playthrough, hardware/link/save interruption, or INT-004/005 release certification. Future effort changes require scoped verified acceptance under existing owner accounting rules.
 
+
+
+## 2026-11-15 — WRL-001 supplemental exact-commit CI proposal only
+
+Owner explicitly requested a separate reviewable supplemental WRL-001-only CI
+proposal, preserving every existing workflow, assertion, status and protection.
+Base main02240690581eb70d70219024fb7f55da2882308b; unchanged draft PR249 source
+0f693dd7bef4219e161b299f08a9a225ecdac9d6 is the sole executable source pin.
+PR233 remains draft dde9c7d245b3ed9cf21ec475c65b2651f4e07921 and owns historical
+reconciliation; no ownership transfer, Fire assertion import or gameplay edits.
+
+Added a dispatch-only supplemental workflow, source/selector/digest/version guard
+and mocked launcher-safety tests. Reuses original pinned agbcc preparation and
+approved mGBA0.10.5 release, source pinned26b7884bc25a5933960f3cdcd98bac1ae14d42e2.
+The only proposed game tests are run_pikachu_opening_tests.py and the original
+LIGHTNING_WRL001_ONLY native path after make-j2. No artifact uploads or caches.
+Existing seven workflows, source fixtures, tracker/dashboard and protections are
+unchanged. Full details: docs/WRL001_SUPPLEMENTAL_CI_PROPOSAL.md.
+
+Executed preparation checks: 11 mocked launcher-safety tests PASS; real pinned
+source preflight PASS; actionlint1.7.7 (without optional shellcheck/pyflakes),
+YAML/Python/Bash syntax, workflow byte-preservation/trigger audit, whitespace and
+accounting PASS. No dependency/game build or emulator run. Existing WRL001
+source/build/681-assertion evidence is reused, not a new CI pass.
+
+Publication uses [skip ci] on proposal/wrl001-exact-commit-ci-20261115 outside
+existing push filters. Proposed workflow has only manual dispatch. Activation is
+blocked pending review of a no-rain installation/trigger path: new dispatch
+workflows must exist on default branch, while a normal merge could trigger broad
+main-push tests. Do not merge/install or dispatch broad CI. No required-gate
+change: protection403 and rulesets[] remain inconclusive.
+
+Original PR249 run43754474983 modified132935433549 Fire48 FAILURE remains;
+upstream132935433210 SUCCESS. PR233 modified132895732192 Misty2400 FAILURE and
+upstream132895732475 SUCCESS remain; no rain rerun or timeout/gameplay edits.
+Owner-accepted rain/Sun/Snow-palette/Hail/Parcel delivery preserved; #248 awaits
+Playtest002 snow confirmation, WRL010 queued. No merge or points; preserve exactly
+50 permanent IDs / 461 earned / 251 remaining / 712 total.

@@ -1,4 +1,39 @@
-# Codex execution handoff — verified November 7, 2026
+# WRL-001 supplemental CI proposal handoff — November 15, 2026
+
+- Main/recovery: `02240690581eb70d70219024fb7f55da2882308b`.
+- PR #249 remains draft, `0f693dd7bef4219e161b299f08a9a225ecdac9d6`.
+  Its source/build/681 focused mGBA assertions are reused, not rerun. Read
+  `docs/WRL001_GIFT_OWNERSHIP_VALIDATION.md` at that source SHA.
+- Separate proposal branch: `proposal/wrl001-exact-commit-ci-20261115`, based
+  on main. Only supplemental workflow/launcher/guard tests and documentation.
+  See `docs/WRL001_SUPPLEMENTAL_CI_PROPOSAL.md` for full scope and review.
+- Workflow is dispatch-only, exact source pinned, selector/digest/early-return
+  fail-closed, approved agbcc and mGBA0.10.5 pinned, no uploads. Distinct
+  supplemental status; every existing workflow/gate/assertion is unchanged.
+- Preparation checks: 11 mocked launcher-safety tests, real pinned-checkout
+  preflight, actionlint, YAML/Python/Bash syntax, byte-preservation/trigger audit,
+  whitespace and accounting PASS. No game/dependency build or emulator run.
+- Publication uses `[skip ci]` on a branch outside existing push filters to
+  avoid prohibited rain/full-native execution. Required checks remain pending.
+- **Actual activation blocker:** a new dispatch workflow must exist on default
+  branch; a normal merge could start broad main-push CI. Do not merge/install
+  or dispatch broad CI. Review this draft and decide a no-rain activation path
+  before execution (a PR-label-only opt-in is a possible separate amendment).
+- Preserve PR249 run43754474983 modified132935433549 Fire assertion FAILURE
+  at tests/run_new_fire_moves_tests.py:48; upstream132935433210 SUCCESS.
+  PR233 owns reconciliation; do not import its assertions/adapters.
+- PR233 remains draft `dde9c7d245b3ed9cf21ec475c65b2651f4e07921`;
+  modified132895732192 unchanged Misty2400 timeout, upstream132895732475
+  SUCCESS; existing diagnostic6899437328. No rain rerun/timeout/gameplay edits.
+- Protection403 remains unresolved; rulesets[] proves no absence of classic
+  protection. Required-gate changes need separate review and verified rules.
+- No merge/points. Preserve50 IDs/461 earned/251 remaining/712 total and
+  owner-accepted rain/Sun/Snow-palette/Hail/Parcel/Pokédex/Eevee delivery.
+  #248 awaits Playtest002 snow persistence; WRL-010 queued; old SUE not migrated.
+
+---
+
+# Historical Codex execution handoff — verified November 7, 2026
 
 Standing AGENTS policy55 authorizes approved implementation and verified merges.
 Preserve design/asset holds, guards, provenance and security protections. No
