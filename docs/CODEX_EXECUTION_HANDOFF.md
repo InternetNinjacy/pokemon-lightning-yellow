@@ -1,3 +1,28 @@
+# WRL-001 focused handoff — November 15, 2026
+
+- Main/recovery remain `02240690581eb70d70219024fb7f55da2882308b`;
+  experimental Playtest002 remains `153cb092be8b399eba8dc23111e1e0dae8d86bf3`.
+- PR #249 is draft. Fixed agbcc declaration ordering and actual delivered SUE
+  Oak OT via established secure rekey. Global capture/gift routines unchanged.
+- Source checks/build PASS; focused mGBA0.10.5 **681 assertions PASS**:
+  party/PC/full-storage retry, collision-safe OAK/player IDs, flash persistence,
+  traded EXP and badge obedience, player-owned Pikachu naming/retain behavior.
+- Gift-wide source audit found no other configured foreign gift with this defect;
+  Mystery/PARK/PAIGE/JULIA already preserve identity. Existing own-OT policies
+  and previously acquired Pokémon are not rewritten. See
+  `docs/WRL001_GIFT_OWNERSHIP_VALIDATION.md` for exact scope/evidence/limits.
+- Preserve original CI run43754474983 modified job132935433549 failure at
+  `tests/run_new_fire_moves_tests.py:48`; upstream132935433210 SUCCESS.
+  PR #233 owns unrelated historical reconciliation/Misty timing work.
+- Publication uses `[skip ci]` to obey no rain retesting. Required CI remains
+  pending, not waived/green. No workflow/assertion changes or main merge.
+- Next: owner review of WRL-001; resolve required CI/rain boundary before broad
+  acceptance; WTH-002 #248 awaits snow-particle persistence on Playtest002.
+  Rain/Sun/Snow-palette/Hail/Parcel delivery acceptance is preserved.
+- WRL-010 queued. No points: 50 IDs / 461 earned / 251 remaining / 712 total.
+
+---
+
 # Codex execution handoff — verified November 7, 2026
 
 Standing AGENTS policy55 authorizes approved implementation and verified merges.

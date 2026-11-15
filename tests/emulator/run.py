@@ -326,6 +326,7 @@ required += ['CeladonCity_GameCorner_PrizeRoom_EventScript_PrizeClerkMons','GetC
 required += ['Route12_EventScript_SowCorphish','Route21_North_EventScript_SowGlalie','Route23_EventScript_SowTyranitar',
              'GetObjectEventIdByXY','CreateScriptedWildMon','SowPrepareScriptedEncounter','SpecialWeatherActivateScript','SpecialWeatherActivate','SpecialWeatherFinishAftermath','SpecialWeatherRestorationReady',
              'SpecialWeather_EventScript_FinishAftermath','Alloc']
+required += ['ScriptGiveSueEevee', 'ScriptGiveMon', 'EventScript_ChangePokemonNickname']
 symbols={}
 end_ewram=0
 for line in subprocess.check_output(['arm-none-eabi-nm','-S','pokefirered.elf'],text=True).splitlines():

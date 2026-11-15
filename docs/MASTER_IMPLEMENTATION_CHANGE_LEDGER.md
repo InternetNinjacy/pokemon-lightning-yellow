@@ -1821,3 +1821,24 @@ PR #184 merged into main at `ae928a1d9eba3aed16f4252123027cb5413106a7`; its merg
 - **Stack disposition:** GitHub recognizes PR #136 as merged in ancestry. PRs #146, #174, #176 and #182 were proven exact-head ancestors of current main (each `behind_by=0` when compared to main), annotated, and CLOSED **without a redundant second merge**; review history remains intact. Their individual PR closed statuses are not new acceptance or a second source landing.
 - **Formal accounting and exclusions:** BTL-005 remains **32 earned/48 remaining within its fixed 80-point scope**. Overall project remains **461 earned/251 remaining/712 total**, with exactly 50 permanent IDs and all earned histories unchanged. No new points are granted for merging, documenting, or rerunning CI. Approved staged index entries do not establish complete 56-move mechanics, Phase Two distribution, exhaustive animation approval, full natural-story playthrough, hardware/link/save interruption, or INT-004/005 release certification. Future effort changes require scoped verified acceptance under existing owner accounting rules.
 
+
+## 2026-11-15 — PR #249 focused gift ownership correction (unmerged)
+
+Owner continued the WRL-001 blocker correction and requested a game-wide gift
+ownership audit. Corrected pinned-agbcc declaration ordering and SUE's native
+OT-overwrite/secure-key issue using existing Mystery/Rocket actual-record rekey.
+Other configured foreign gifts already preserve identity; own-OT rewards remain
+under existing contracts. No global delivery, weather, Fire assertions or flags
+changed. Source/build PASS; **681 focused mGBA0.10.5 assertions PASS** covering
+SUE party/PC/full-storage retry/flash, OAK collision safety, traded EXP/obedience,
+and player-owned Pikachu keyboard rename/retain/flash. Detailed evidence and
+scope: `docs/WRL001_GIFT_OWNERSHIP_VALIDATION.md`.
+
+Original CI run43754474983 modified132935433549 first Fire guard failure at
+`tests/run_new_fire_moves_tests.py:48` is preserved, independent upstream132935433210
+SUCCESS; PR #233 owns unrelated reconciliation. Automatic CI suppressed on this
+publication via `[skip ci]` to honor no rain retesting; checks remain pending,
+not green/waived. PR remains draft, no merge or acceptance points. Preserve
+owner-accepted rain/Sun/Snow-palette/Hail/Parcel delivery; #248 snow persistence
+and WRL-010 remain pending. Already-owned SUE is not migrated. Project remains
+50 IDs / 461 earned / 251 remaining / 712 total.

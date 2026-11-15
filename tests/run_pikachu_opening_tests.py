@@ -79,9 +79,14 @@ def check():
         assert "clearflag FLAG_OAK_EEVEE_PENDING" in success
     assert "call_if_set FLAG_OAK_EEVEE_PENDING" in block("PalletTown_ProfessorOaksLab_EventScript_RetryParcelGifts")
     assert "call_if_set FLAG_OAK_NEST_BALLS_PENDING" in block("PalletTown_ProfessorOaksLab_EventScript_RetryParcelGifts")
-    assert 'CreateMon(mon, SPECIES_EEVEE, 5, USE_RANDOM_IVS, FALSE, 0, OT_ID_PRESET, oakOtId)' in GIFTS
-    assert 'u32 oakOtId = ~playerOtId;' in GIFTS
-    assert 'SetMonData(mon, MON_DATA_OT_NAME, oakName);' in GIFTS
+    assert 'CreateMon(mon, SPECIES_EEVEE, 5, USE_RANDOM_IVS, FALSE, 0, OT_ID_PLAYER_ID, 0)' in GIFTS
+    assert 'oakOtId = ~playerOtId;' in GIFTS
+    assert 'SetBoxMonData(delivered, MON_DATA_OT_NAME, oakName);' in GIFTS
+    assert 'SetBoxMonData(delivered, MON_DATA_OT_ID, &oakOtId);' in GIFTS
+    assert 'delivered->secure.raw[i] ^= delivered->otId ^ oakOtId;' in GIFTS
+    assert 'delivered = &gPlayerParty[gPlayerPartyCount - 1].box;' in GIFTS
+    assert 'delivered = GetBoxedMonPtr(gSpecialVar_MonBoxId, gSpecialVar_MonBoxPos);' in GIFTS
+    assert GIFTS.index('result = GiveMonToPlayer(mon);', GIFTS.index('u16 ScriptGiveSueEevee')) < GIFTS.index('SetBoxMonData(delivered, MON_DATA_OT_ID, &oakOtId);')
     assert 'static const u8 oakName[] = _("OAK");' in GIFTS
     assert 'SetMonData(mon, MON_DATA_NICKNAME, nickname);' in GIFTS
     assert 'result = GiveMonToPlayer(mon);' in GIFTS

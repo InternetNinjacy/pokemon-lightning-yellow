@@ -395,6 +395,8 @@ static void captureTitleFrame(const char *prefix,const char *name) {
     printf("TITLE_CAPTURE: %s\n",path);
 }
 
+#include "wrl001_identity.c"
+
 int main(int argc,char **argv) {
     setvbuf(stdout,NULL,_IONBF,0);
     printf("mGBA core version: %s\n",projectVersion);
@@ -439,6 +441,8 @@ int main(int argc,char **argv) {
     printf("RTC autodetected: %s\n",(gba->memory.hw.devices&HW_RTC)?"yes":"no");
     CHECK(gba->memory.hw.devices&HW_RTC);
     bootState=malloc(core->stateSize(core));CHECK(bootState && core->saveState(core,bootState));
+    if(getenv("LIGHTNING_WRL001_ONLY")){wrl001Tests();printf("PASS: %u focused WRL-001 assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_WRL001_IDENTITY_ONLY")){wrl001SueIdentityTests();core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_BALL_WEATHER_ONLY")){captureWeatherTests();printf("PASS: %u focused weather assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_BALL_SHOP_ONLY")){captureShopTests();printf("PASS: %u focused shop assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_BALLS_ONLY")){captureTests();printf("PASS: %u focused capture assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
@@ -615,6 +619,7 @@ int main(int argc,char **argv) {
     rangerTests();
     dynamicWeatherTests();
     wrlNonWildGiftTests();
+    wrl001Tests();
     wrlVendorPhysicalTalkTests();
     wrlAidePhysicalTests();
     wrlLaprasPhysicalTests();
