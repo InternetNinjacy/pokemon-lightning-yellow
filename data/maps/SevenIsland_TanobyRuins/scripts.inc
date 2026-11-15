@@ -1,2 +1,60 @@
 SevenIsland_TanobyRuins_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, SevenIsland_TanobyRuins_Lightning_OnTransition
 	.byte 0
+
+SevenIsland_TanobyRuins_Lightning_OnTransition::
+	call SevenIsland_TanobyRuins_EventScript_ShowLightningMew
+	end
+
+@ Issue #234: original FireRed-style post-League stationary encounter.
+@ The battle remains independent of all other legendary events.
+SevenIsland_TanobyRuins_EventScript_ShowLightningMew::
+	goto_if_unset FLAG_SYS_GAME_CLEAR, SevenIsland_TanobyRuins_EventScript_HideLightningMew
+	goto_if_set FLAG_FOUGHT_LIGHTNING_MEW, SevenIsland_TanobyRuins_EventScript_HideLightningMew
+	clearflag FLAG_HIDE_LIGHTNING_MEW
+	return
+
+SevenIsland_TanobyRuins_EventScript_HideLightningMew::
+	setflag FLAG_HIDE_LIGHTNING_MEW
+	return
+
+SevenIsland_TanobyRuins_EventScript_LightningMew::
+	goto_if_questlog EventScript_ReleaseEnd
+	goto_if_unset FLAG_SYS_GAME_CLEAR, EventScript_ReleaseEnd
+	goto_if_set FLAG_FOUGHT_LIGHTNING_MEW, EventScript_ReleaseEnd
+	special QuestLog_CutRecording
+	lock
+	faceplayer
+	setwildbattle SPECIES_MEW, 50
+	waitse
+	playmoncry SPECIES_MEW, CRY_MODE_ENCOUNTER
+	message Text_Gyaoo
+	waitmessage
+	waitmoncry
+	delay 10
+	playbgm MUS_ENCOUNTER_GYM_LEADER, 0
+	waitbuttonpress
+	setflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	special StartLegendaryBattle
+	waitstate
+	clearflag FLAG_SYS_SPECIAL_WILD_BATTLE
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, SevenIsland_TanobyRuins_EventScript_DefeatedLightningMew
+	goto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, SevenIsland_TanobyRuins_EventScript_CaughtLightningMew
+	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, SevenIsland_TanobyRuins_EventScript_RanFromLightningMew
+	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, SevenIsland_TanobyRuins_EventScript_RanFromLightningMew
+	release
+	end
+
+SevenIsland_TanobyRuins_EventScript_CaughtLightningMew::
+	setflag FLAG_FOUGHT_LIGHTNING_MEW
+	goto EventScript_RemoveStaticMon
+
+SevenIsland_TanobyRuins_EventScript_DefeatedLightningMew::
+	setflag FLAG_FOUGHT_LIGHTNING_MEW
+	goto EventScript_RemoveStaticMon
+
+SevenIsland_TanobyRuins_EventScript_RanFromLightningMew::
+	setvar VAR_0x8004, SPECIES_MEW
+	goto EventScript_MonFlewAway
+	end

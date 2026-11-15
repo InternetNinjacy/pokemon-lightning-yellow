@@ -1,0 +1,463 @@
+{
+  "build_id": "LY-playtest-001-20261115",
+  "baseline_sha": "02240690581eb70d70219024fb7f55da2882308b",
+  "recovery_branch": "recovery/pre-playtest-2026-11-15",
+  "experimental_branch": "experimental/playtest-2026-11-15",
+  "owner_authorization": "2026-11-15 explicit separate experimental branch and compilation without automated testing; all work performed here until owner downloads build. Owner uses Windows without administrator access and already has emulators.",
+  "integration_method": "Production-only three-way deltas, with exact source record composition for overlapping move tables. Original PR branches, main, recovery snapshot, existing tests, workflows and formal accounting preserved. This is not a main acceptance merge.",
+  "conflict_resolutions": [
+    "Keep accepted main Batch A data, definitions and descriptions for Seed Bomb, Petal Blizzard, Aura Sphere and the other existing entries.",
+    "Replace only inert numeric placeholders for integrated move IDs; preserve existing IDs. Use dedicated Thunder Fang effect from PR 181 rather than conflicting alternate dispatch from PR 183.",
+    "Retain main spread replay guard and extend it to Discharge/Petal Blizzard using the same shared all-other-recipient controller; avoid replay by both controllers.",
+    "Remove duplicate Seed Bomb/Petal Blizzard/Aura Sphere description declarations reported by first compilation, retaining existing main text."
+  ],
+  "known_incomplete": [
+    "Follower external artwork is not bundled or fetched: registry has zero entries, so this build does not provide visible following sprites.",
+    "Move IDs 402, 404 and 405 remain unimplemented/inert; no new move mechanics or distributions invented.",
+    "No full natural story, boot, save compatibility, hardware or link behavior has been tested on this integration."
+  ],
+  "verification": {
+    "automated_tests_run": false,
+    "emulator_run": false,
+    "build_status": "SUCCESS",
+    "build_command": "scripts/prepare-baseline.sh; make -j2 (local PATH/CPATH/LIBRARY_PATH/LD_LIBRARY_PATH/PKG_CONFIG_PATH point to extracted Debian dependencies)",
+    "compiler_commit": "da598c1d918402c42c0c0d7128ba14567f3175e9",
+    "upstream_build_inputs_commit": "ce6406d8c2eaf46d543c8a2606de0c3cb1951982",
+    "binutils_version": "2.44-3+23+b1",
+    "rom_filename": "Lightning_Yellow_Playtest_001.gba",
+    "rom_bytes": 16777216,
+    "rom_sha256": "603dc71f8b059b65a678dd4b8785dc60be0f6548b7548b610e6d4bc9fb1ea852",
+    "compilation_attempts": 2,
+    "first_compilation": "FAILED on duplicate declarations from overlapping move description additions; resolved by retaining original main strings.",
+    "second_compilation": "SUCCESS; ROM generated. No tests/emulator execution."
+  },
+  "prs": [
+    {
+      "pr": 54,
+      "title": "WRL-010 WIP: selectable follower state, party controls and graphics safety",
+      "source_sha": "ed250d6c95a7293159ca192297a6ae926bb9a4eb",
+      "disposition": "integrated_production_delta",
+      "reason": "Follower state, UI, controller and graphics modules only; zero-entry artwork registry retained. No external sprite sheets downloaded."
+    },
+    {
+      "pr": 82,
+      "title": "Implement approved Soul Drain Weary Touch and Dream Haunt",
+      "source_sha": "0aaead07bb3694f1d14085136feb2045768bbbce",
+      "disposition": "superseded_by_main",
+      "reason": "Earlier move implementations already integrated through later consolidated batches; retain current main mechanics."
+    },
+    {
+      "pr": 84,
+      "title": "Run complete validation once per feature PR head",
+      "source_sha": "d9c37dbe7a7053b0c507062aca8b5119c11be66d",
+      "disposition": "no_new_gameplay",
+      "reason": "Validation, source audit, tracking, policy, CI or documentation only; left on original PR. Existing main tests and workflows are unchanged."
+    },
+    {
+      "pr": 85,
+      "title": "BTL-005: append Skitter Slash #361 (stacked on Ghost #82)",
+      "source_sha": "a4b1f3d29c5726bf0d9df07e0d7c6f02256343c3",
+      "disposition": "superseded_by_main",
+      "reason": "Earlier move implementations already integrated through later consolidated batches; retain current main mechanics."
+    },
+    {
+      "pr": 89,
+      "title": "BTL-005: implement approved Venom Web #362 (stacked Bug batch)",
+      "source_sha": "c985609c20dbcb8d3c17f2d9ced1c0ac485f24c1",
+      "disposition": "superseded_by_main",
+      "reason": "Earlier move implementations already integrated through later consolidated batches; retain current main mechanics."
+    },
+    {
+      "pr": 91,
+      "title": "BTL-005: approved Bug Bite #363 and Chitin Crush #364",
+      "source_sha": "151765d49292e880a9163c3aef7fdc810fe146c6",
+      "disposition": "superseded_by_main",
+      "reason": "Earlier move implementations already integrated through later consolidated batches; retain current main mechanics."
+    },
+    {
+      "pr": 92,
+      "title": "BTL-005: approved Chirp #365 with Soundproof and trainer AI",
+      "source_sha": "92049ffed59929dcc8459d6f156a4f5df8f624d0",
+      "disposition": "superseded_by_main",
+      "reason": "Earlier move implementations already integrated through later consolidated batches; retain current main mechanics."
+    },
+    {
+      "pr": 93,
+      "title": "BTL-005: implement Swarm Cloud #366 with independent confusion/poison",
+      "source_sha": "651175cce268607309fbc4c2264ab619c11631b5",
+      "disposition": "superseded_by_main",
+      "reason": "Earlier move implementations already integrated through later consolidated batches; retain current main mechanics."
+    },
+    {
+      "pr": 126,
+      "title": "Weather: integrate approved Brock Snorunt and Onix party",
+      "source_sha": "6a8b8010834e5e84c5bd00a90d217c389d9a7e53",
+      "disposition": "already_in_main_ancestry",
+      "reason": "No repeated integration."
+    },
+    {
+      "pr": 127,
+      "title": "Weather: preserve individual Glalie Snow Warning through capture PC and saves",
+      "source_sha": "1cfe57704b255986e656ef09d1b487fb467fc4d8",
+      "disposition": "already_in_main_ancestry",
+      "reason": "No repeated integration."
+    },
+    {
+      "pr": 131,
+      "title": "BTL-005: Avalanche373 target-specific same-turn damage ledger",
+      "source_sha": "05f26bcb4d45cf110118c76a05b0e5ba5e035435",
+      "disposition": "already_in_main_ancestry",
+      "reason": "No repeated integration."
+    },
+    {
+      "pr": 133,
+      "title": "BTL-005: implement moves374\u2013380 with existing effects and native acceptance",
+      "source_sha": "03b4fef90c377b4c7a5a3f62d48861452d6e08e5",
+      "disposition": "already_in_main_ancestry",
+      "reason": "No repeated integration."
+    },
+    {
+      "pr": 134,
+      "title": "BTL-005: implement GenIV Payback381 including target switches",
+      "source_sha": "67ff1954c1e0db927c66f04b5dc6970dd052394c",
+      "disposition": "already_in_main_ancestry",
+      "reason": "No repeated integration."
+    },
+    {
+      "pr": 135,
+      "title": "BTL-005: implement Foul Play382, Aqua Jet383 and Liquidation384",
+      "source_sha": "f04c1bed79baaa2b9b21ce56624631033f7055ff",
+      "disposition": "already_in_main_ancestry",
+      "reason": "No repeated integration."
+    },
+    {
+      "pr": 140,
+      "title": "CI regression: align Mt. Moon native wild-double fixture with merged ecology",
+      "source_sha": "ebff0ae597ac4dac8ce83e3e580d5aa0b4dadec6",
+      "disposition": "no_new_gameplay",
+      "reason": "Validation, source audit, tracking, policy, CI or documentation only; left on original PR. Existing main tests and workflows are unchanged."
+    },
+    {
+      "pr": 145,
+      "title": "GYM-002: implement Giovanni's three November 6-approved battle parties",
+      "source_sha": "e4961921dcfd0d69462317a03bcffe8899cb95c5",
+      "disposition": "already_in_main_production",
+      "reason": "Approved affected party/Trainer records already match current main; retain later reconciled source."
+    },
+    {
+      "pr": 147,
+      "title": "GYM-002: implement November 6-approved Koga leader battle",
+      "source_sha": "bbaa5194a2eda7012a32dd038d5db7a73feea304",
+      "disposition": "already_in_main_production",
+      "reason": "Approved affected party/Trainer records already match current main; retain later reconciled source."
+    },
+    {
+      "pr": 151,
+      "title": "GYM-002: implement owner-approved Erika four-member leader battle",
+      "source_sha": "8e37d85e6414e07ea44e157a4e3ae61d82cc3a57",
+      "disposition": "already_in_main_production",
+      "reason": "Approved affected party/Trainer records already match current main; retain later reconciled source."
+    },
+    {
+      "pr": 154,
+      "title": "PKM-009: 252-species source reconciliation \u2014 four reviewable snapshot shards",
+      "source_sha": "2870ddeff6779063ca62b217b7ad7de2d608a41c",
+      "disposition": "no_new_gameplay",
+      "reason": "Validation, source audit, tracking, policy, CI or documentation only; left on original PR. Existing main tests and workflows are unchanged."
+    },
+    {
+      "pr": 158,
+      "title": "GYM-002: implement approved Misty four-member Double with scoped abilities",
+      "source_sha": "3c21494e35b3be77e2f468d68bb9bf90f7f483a9",
+      "disposition": "integrated_production_delta",
+      "reason": "Approved four-member Misty party and scoped abilities; existing Double interaction/metadata retained."
+    },
+    {
+      "pr": 159,
+      "title": "GYM-001: approved Vermilion Gentleman Tucker Lv22 Voltorb",
+      "source_sha": "3092fb1cceed3541a438c8ad7cb015a4db3ffef1",
+      "disposition": "already_in_main_production",
+      "reason": "Approved affected party/Trainer records already match current main; retain later reconciled source."
+    },
+    {
+      "pr": 160,
+      "title": "GYM-001: implement three approved Fuchsia ordinary Gym Trainer pairs",
+      "source_sha": "c4c9865c598b9204d7e44ac6589f2a42c984ef2d",
+      "disposition": "already_in_main_production",
+      "reason": "Approved affected party/Trainer records already match current main; retain later reconciled source."
+    },
+    {
+      "pr": 162,
+      "title": "GYM-001: approved four Celadon ordinary Grass/Fire pairs",
+      "source_sha": "659db04768116ee7762d94afbea66d1d7c149eba",
+      "disposition": "already_in_main_production",
+      "reason": "Approved affected party/Trainer records already match current main; retain later reconciled source."
+    },
+    {
+      "pr": 164,
+      "title": "PKM-009: delegated early-Bug timing for Butterfree/Beedrill (#012/#015)",
+      "source_sha": "7f6d5f265ac5fd464799e7178151c8e36f99136f",
+      "disposition": "covered_by_173_or_main",
+      "reason": "Stacked/superseded species source; use combined candidate and current locked profiles, not duplicate old snapshots."
+    },
+    {
+      "pr": 165,
+      "title": "PKM-009: delegated Pidgey, Rattata and Spearow family progression (#016\u2013022)",
+      "source_sha": "0a9988ec74e13548a029c66ce964ad15223cbc70",
+      "disposition": "covered_by_173_or_main",
+      "reason": "Stacked/superseded species source; use combined candidate and current locked profiles, not duplicate old snapshots."
+    },
+    {
+      "pr": 166,
+      "title": "PKM-009: 74 delegated natural-learnset profiles (#001\u2013126)",
+      "source_sha": "7d3f7c2e48a557ecbb1fb5cf883b99eb3328fce2",
+      "disposition": "covered_by_173_or_main",
+      "reason": "Stacked/superseded species source; use combined candidate and current locked profiles, not duplicate old snapshots."
+    },
+    {
+      "pr": 167,
+      "title": "PKM-009: 72 delegated natural-learnset profiles (#127\u2013252)",
+      "source_sha": "011fc99ff77d101153b2dce30aa978b5e0720eec",
+      "disposition": "covered_by_173_or_main",
+      "reason": "Stacked/superseded species source; use combined candidate and current locked profiles, not duplicate old snapshots."
+    },
+    {
+      "pr": 171,
+      "title": "PKM-009: validate combined 146 delegated learnsets on current main",
+      "source_sha": "6947f559c2c213e0fa76d39789b7b8671824165f",
+      "disposition": "covered_by_173_or_main",
+      "reason": "Stacked/superseded species source; use combined candidate and current locked profiles, not duplicate old snapshots."
+    },
+    {
+      "pr": 172,
+      "title": "PKM-009: reconcile all 12 owner-locked profiles on current main",
+      "source_sha": "93b9586d0c05d5a3a7740dbb3d1148384bc5228d",
+      "disposition": "covered_by_173_or_main",
+      "reason": "Stacked/superseded species source; use combined candidate and current locked profiles, not duplicate old snapshots."
+    },
+    {
+      "pr": 173,
+      "title": "PKM-009: integrated 158-species acceptance candidate (146 delegated + 12 locked)",
+      "source_sha": "86f4f73a0e2767984cfc15fe52a3abe0a7396017",
+      "disposition": "integrated_production_delta",
+      "reason": "146 delegated natural learnsets; the 12 locked profiles already in main are preserved."
+    },
+    {
+      "pr": 175,
+      "title": "PKM-009: exact all-252 TM/HM parity and TM51 integration-blocker contract",
+      "source_sha": "e211cf0dceccf7f06c85922d0757c3ed6e8d8e2a",
+      "disposition": "no_new_gameplay",
+      "reason": "Validation, source audit, tracking, policy, CI or documentation only; left on original PR. Existing main tests and workflows are unchanged."
+    },
+    {
+      "pr": 177,
+      "title": "BTL-005: strict native five-hit Tidal Crash acceptance and Rollout diagnostics",
+      "source_sha": "9a1fae49a2c3c74e9f431025bdfef85d3fa67d87",
+      "disposition": "no_new_gameplay",
+      "reason": "Validation, source audit, tracking, policy, CI or documentation only; left on original PR. Existing main tests and workflows are unchanged."
+    },
+    {
+      "pr": 181,
+      "title": "[DRAFT BTL-005] Implement approved #387\u2013394 Electric/Grass/Fighting batch",
+      "source_sha": "5e714eafa5a4a29bf443b380d7f465ec8ecacdb8",
+      "disposition": "integrated_production_delta",
+      "reason": "Discharge, Volt Switch, Thunder Fang, Wild Charge and Wood Hammer plus required effect/target/pivot source. Existing Batch A move data retained."
+    },
+    {
+      "pr": 183,
+      "title": "BTL-005 Batch B \u2014 10 mechanics-grouped moves (native acceptance pending)",
+      "source_sha": "d83e182f819580861f3c5f497542a61905553204",
+      "disposition": "integrated_production_delta",
+      "reason": "Six nonoverlapping moves: Drain Punch, Brave Bird, Zen Headbutt, Cross Poison, Poison Jab, Gunk Shot. Four overlapping Batch B entries use PR 181 implementation."
+    },
+    {
+      "pr": 196,
+      "title": "GYM-001: approved Vermilion Engineer Baily Pichu/Flaaffy paralysis Singles",
+      "source_sha": "d36ca0057e4f2c9a47e9ac01e982de3741bee9d5",
+      "disposition": "already_in_main_production",
+      "reason": "Approved affected party/Trainer records already match current main; retain later reconciled source."
+    },
+    {
+      "pr": 197,
+      "title": "GYM-001: owner-approved Viridian Tamer Cole Raticate/Houndour",
+      "source_sha": "03e9ef61dac85d9f4e4444751c949267e78e95a2",
+      "disposition": "already_in_main_production",
+      "reason": "Approved affected party/Trainer records already match current main; retain later reconciled source."
+    },
+    {
+      "pr": 199,
+      "title": "GYM-001: approved Viridian Black Belt Atsushi Houndour/Arbok (stacked on Cole)",
+      "source_sha": "29fd8860f90f51c5df2d11d460781174f9b7c98c",
+      "disposition": "already_in_main_production",
+      "reason": "Approved affected party/Trainer records already match current main; retain later reconciled source."
+    },
+    {
+      "pr": 200,
+      "title": "GYM-001: approved Viridian Black Belt Takashi Dark trio (stacked on Atsushi)",
+      "source_sha": "538c7b47ce64a3281dae48ad8ebc49883cdc6e44",
+      "disposition": "already_in_main_production",
+      "reason": "Approved affected party/Trainer records already match current main; retain later reconciled source."
+    },
+    {
+      "pr": 201,
+      "title": "GYM-001: approved Viridian Black Belt Kiyo Nuzleaf/Carvanha (stacked on Takashi)",
+      "source_sha": "d68c50d4926d0f08beade765bf13216eb11e9a1b",
+      "disposition": "already_in_main_production",
+      "reason": "Approved affected party/Trainer records already match current main; retain later reconciled source."
+    },
+    {
+      "pr": 202,
+      "title": "GYM-001: approved Viridian Tamer Jason Carvanha/Umbreon (stacked on Kiyo)",
+      "source_sha": "e478044cc50df847d1bf02c22aac32f66bb59549",
+      "disposition": "already_in_main_production",
+      "reason": "Approved affected party/Trainer records already match current main; retain later reconciled source."
+    },
+    {
+      "pr": 204,
+      "title": "GYM-001: Viridian Cooltrainer Samuel approved Arbok/Cacturne pair (stacked on Jason)",
+      "source_sha": "232c046904bee3ce937ec2c833d51825d3073396",
+      "disposition": "already_in_main_production",
+      "reason": "Approved affected party/Trainer records already match current main; retain later reconciled source."
+    },
+    {
+      "pr": 205,
+      "title": "GYM-001: approved Viridian Cooltrainer Yuji Umbreon/Absol pair (stacked on Samuel)",
+      "source_sha": "138860989c8f28b31832cd686b84e55e4879bd0f",
+      "disposition": "already_in_main_production",
+      "reason": "Approved affected party/Trainer records already match current main; retain later reconciled source."
+    },
+    {
+      "pr": 206,
+      "title": "GYM-001: Viridian Cooltrainer Warren approved Dark trio (stacked on Yuji)",
+      "source_sha": "343a0846c064b766012faee1a025195e7b4be169",
+      "disposition": "already_in_main_production",
+      "reason": "Approved affected party/Trainer records already match current main; retain later reconciled source."
+    },
+    {
+      "pr": 210,
+      "title": "GYM-001: replace Viridian ordinary trainer Revives with Super Potion + Full Heal",
+      "source_sha": "8e1470187d726ecfe7d5e7577ee1beac6bc8776e",
+      "disposition": "already_in_main_production",
+      "reason": "Approved affected party/Trainer records already match current main; retain later reconciled source."
+    },
+    {
+      "pr": 213,
+      "title": "[DRAFT TRACKING] WRL-005 Route 5 Ditto scoped closeout evidence \u2014 proposed +2 only",
+      "source_sha": "6193235545c4e2e4c8f50ed336b63a1a8acadb77",
+      "disposition": "no_new_gameplay",
+      "reason": "Validation, source audit, tracking, policy, CI or documentation only; left on original PR. Existing main tests and workflows are unchanged."
+    },
+    {
+      "pr": 225,
+      "title": "GYM-002: implement approved Swimmer Luis double battle and exact team",
+      "source_sha": "13784226a6c4a1f8d2354a8409fe43c1a7ae6a44",
+      "disposition": "already_in_main_production",
+      "reason": "Approved affected party/Trainer records already match current main; retain later reconciled source."
+    },
+    {
+      "pr": 229,
+      "title": "tests: enforce exact approved natural distribution of new Fire moves",
+      "source_sha": "a6ad9034a87f0b13f5924378741dec043a6f397d",
+      "disposition": "no_new_gameplay",
+      "reason": "Validation, source audit, tracking, policy, CI or documentation only; left on original PR. Existing main tests and workflows are unchanged."
+    },
+    {
+      "pr": 232,
+      "title": "Validation: strict historical reversal for approved Surge and Sabrina parties",
+      "source_sha": "41efa96d0f305718a37908b9aa4a3c2affc12879",
+      "disposition": "no_new_gameplay",
+      "reason": "Validation, source audit, tracking, policy, CI or documentation only; left on original PR. Existing main tests and workflows are unchanged."
+    },
+    {
+      "pr": 233,
+      "title": "Validation: reconcile approved history and Center Move Reminder fixtures",
+      "source_sha": "dde9c7d245b3ed9cf21ec475c65b2651f4e07921",
+      "disposition": "no_new_gameplay",
+      "reason": "Validation, source audit, tracking, policy, CI or documentation only; left on original PR. Existing main tests and workflows are unchanged."
+    },
+    {
+      "pr": 235,
+      "title": "[DRAFT] WRL: four independent Lv50 post-League legendary stationary encounters (#234)",
+      "source_sha": "cefd2a46d9b97b39a30b2f1b1903ec845979a258",
+      "disposition": "integrated_production_delta",
+      "reason": "Four independent stationary Lv50 post-League legendary encounters; original beast roamer disabled as specified."
+    },
+    {
+      "pr": 236,
+      "title": "[DRAFT] BTL-003: use genuine Flash Fire-only Flareon for strict unobserved-ability AI fixture",
+      "source_sha": "b8390e1aa47ae84951c7263696dc0b1ac9093fe6",
+      "disposition": "no_new_gameplay",
+      "reason": "Validation, source audit, tracking, policy, CI or documentation only; left on original PR. Existing main tests and workflows are unchanged."
+    },
+    {
+      "pr": 237,
+      "title": "[DRAFT] Validation: strictly reverse Tyron/Amanda historical Singles metadata in projection",
+      "source_sha": "a1adc8e19208e270842b471ebbb1c78d78c055dd",
+      "disposition": "no_new_gameplay",
+      "reason": "Validation, source audit, tracking, policy, CI or documentation only; left on original PR. Existing main tests and workflows are unchanged."
+    },
+    {
+      "pr": 238,
+      "title": "[DRAFT] Integration preview: four stationary legends + strict historical CI + native BTL fixture",
+      "source_sha": "6d72c55445285fc24796f22389ff7587024e659b",
+      "disposition": "production_covered_by_235",
+      "reason": "Same legendary production scope; remaining differences are validation/history work and are not required for this no-test build."
+    },
+    {
+      "pr": 239,
+      "title": "[DRAFT] Center Reminder: align native eligibility and physical UI fixtures with approved Eevee learnsets",
+      "source_sha": "d9f90011d83e35868126f7e2a8ea3d67a6705d7e",
+      "disposition": "no_new_gameplay",
+      "reason": "Validation, source audit, tracking, policy, CI or documentation only; left on original PR. Existing main tests and workflows are unchanged."
+    },
+    {
+      "pr": 240,
+      "title": "[DRAFT] Legendary compatibility: validate no duplicate beast roamer in wild-double native test",
+      "source_sha": "75b4ce173853f8cef18a7102f36459f96a7c6045",
+      "disposition": "production_covered_by_235",
+      "reason": "Same legendary production scope; remaining differences are validation/history work and are not required for this no-test build."
+    },
+    {
+      "pr": 241,
+      "title": "[DRAFT] WRL-010 follower implementation: source feasibility gate",
+      "source_sha": "d58dea1020e59c90dcc8eb8f8868a5577f158e47",
+      "disposition": "no_new_gameplay",
+      "reason": "Validation, source audit, tracking, policy, CI or documentation only; left on original PR. Existing main tests and workflows are unchanged."
+    },
+    {
+      "pr": 242,
+      "title": "[DRAFT] WRL-003 tracker: recognize merged price-only implementation without awarding points",
+      "source_sha": "7d0b85bf70ba89c77b16353c1e1299367a746614",
+      "disposition": "no_new_gameplay",
+      "reason": "Validation, source audit, tracking, policy, CI or documentation only; left on original PR. Existing main tests and workflows are unchanged."
+    },
+    {
+      "pr": 243,
+      "title": "[DRAFT] Legendary integration: retain wild-double checks without obsolete roaming beast",
+      "source_sha": "71f25df94c38ebf4d5c46ad8f7978e76b42944a0",
+      "disposition": "production_covered_by_235",
+      "reason": "Same legendary production scope; remaining differences are validation/history work and are not required for this no-test build."
+    },
+    {
+      "pr": 245,
+      "title": "Document owner-approved legendary-only acceptance scope for unrelated Misty timeout",
+      "source_sha": "e22e8908a2bd69e2b6ea5f2a828aa1ebe5a8c509",
+      "disposition": "no_new_gameplay",
+      "reason": "Validation, source audit, tracking, policy, CI or documentation only; left on original PR. Existing main tests and workflows are unchanged."
+    },
+    {
+      "pr": 246,
+      "title": "Validation Phase 1 (draft): inventory and strict shared historical reconstruction",
+      "source_sha": "42e4ea83dec7eb171d1a9e005d3ced5468a958a6",
+      "disposition": "no_new_gameplay",
+      "reason": "Validation, source audit, tracking, policy, CI or documentation only; left on original PR. Existing main tests and workflows are unchanged."
+    },
+    {
+      "pr": 247,
+      "title": "docs(WTH-002): recognize merged Mansion fog without claiming visual acceptance",
+      "source_sha": "825ea4996b2383375c7a27e6fbae556341b7aa1a",
+      "disposition": "no_new_gameplay",
+      "reason": "Validation, source audit, tracking, policy, CI or documentation only; left on original PR. Existing main tests and workflows are unchanged."
+    }
+  ]
+}

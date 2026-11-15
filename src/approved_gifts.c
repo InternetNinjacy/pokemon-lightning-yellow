@@ -1,4 +1,6 @@
 #include "global.h"
+#include "follower_state.h"
+#include "follower_controller.h"
 #include "gflib.h"
 #include "daycare.h"
 #include "pokedex.h"
@@ -48,7 +50,13 @@ void ScriptNameSocketStarterPikachu(void)
     static const u8 nickname[] = _("SOCKET");
 
     if (gPlayerPartyCount != 0 && GetMonData(&gPlayerParty[0], MON_DATA_SPECIES) == SPECIES_PIKACHU)
+    {
         SetMonData(&gPlayerParty[0], MON_DATA_NICKNAME, nickname);
+        // WRL-010: the approved one-time opening gift is the sole automatic
+        // follower assignment. Do not duplicate or re-award the Pokémon.
+        if (FollowerState_SelectPartySlot(0))
+            FollowerController_RequestRefresh();
+    }
 }
 
 // One-time Oak parcel gift, sharing the proven Tangela party/PC path.

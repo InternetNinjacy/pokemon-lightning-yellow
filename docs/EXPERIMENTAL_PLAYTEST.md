@@ -24,12 +24,18 @@ To resume the original development state, use the recovery branch or create a ne
 
 Existing main acceptance rules remain applicable to any later promotion back to main. This experiment does not award completion points or certify a release. Preserve all 50 permanent IDs and the current 461 earned / 251 remaining / 712 total accounting.
 
-## Setup status
+## Playtest 001 build status
 
-Both remote branches were created at the pinned main commit and read back through git ls-remote. This setup commit changes instructions and documentation only. No feature integrations, automated tests, compilation or ROM generation have occurred yet. No PR was opened for this setup because existing pull_request workflows would initiate tests. Existing workflows remain unchanged; their observed push filters do not match experimental/** or recovery/**.
+Compilation SUCCESS. Build ID: LY-playtest-001-20261115. The output is Lightning_Yellow_Playtest_001.gba (16,777,216 bytes). Automated tests and emulator execution were deliberately not run. Compilation does not establish boot or playthrough success.
 
-Live open-PR inspection found overlapping gameplay stacks and validation-only drafts. The next engineering task is a pinned inclusion manifest, with duplicate/superseded changes resolved before integration. The next owner setup input is the laptop operating system, to select appropriate emulator and build instructions.
+The pinned [61-PR inclusion manifest](playtest/2026-11-15-inclusion-manifest.json) records exact reviewed source heads, existing-main/superseded implementations, selected production deltas, conflict resolutions, known gaps and the ROM SHA-256. Production deltas came from #173, #235, #158, #181, #183 and #54. Original PR branches, main and the exact recovery branch remain unchanged. Existing tests, workflows and formal task accounting are byte-identical to the starting baseline; new PR validation files were not imported for this experimental build.
+
+The first compilation rejected duplicate move description declarations, which were resolved by retaining accepted main descriptions. The second compilation completed successfully. The shared all-other-recipient loop and existing main spread replay guard were composed explicitly so the added Discharge/Petal Blizzard do not use both recipient controllers. These are source integration decisions, not gameplay test evidence.
+
+Follower code is present, but its external art registry remains empty. Move IDs 402, 404 and 405 remain inert/unimplemented. No missing design, artwork permission or distribution was inferred.
+
+No ROM, fetched build payload, generated binary or credential is committed to Git or Actions. The owner explicitly requested a private downloadable playtest ROM in the originating conversation.
 
 ## Laptop walkthrough
 
-The immediate owner task is to open ChatGPT on the laptop, sign in to GitHub if needed, and identify Windows, macOS or Linux. Then select the matching setup instructions. No source upload or terminal work is required to create these branches; they already exist remotely. Build tooling is needed only if compiling locally. Distribution and proprietary asset constraints still apply; do not upload ROMs or proprietary assets into Git or Actions artifacts.
+The owner uses Windows without administrator access and already has working emulators. Integration and compilation were completed in this environment. No laptop build-tool installation or emulator setup is needed. Download the ROM, start a fresh new game, retain separate saves and report the build ID with any reproduction steps. Distribution and proprietary asset constraints still apply; do not upload ROMs or proprietary assets into Git or Actions artifacts.

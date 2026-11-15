@@ -238,6 +238,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectSleepHit
 	.4byte BattleScript_EffectSwarmCloud               @ EFFECT_SWARM_CLOUD
 	.4byte BattleScript_EffectIceFang                  @ EFFECT_ICE_FANG
+	.4byte BattleScript_EffectThunderFang              @ EFFECT_THUNDER_FANG
 
 BattleScript_EffectHit::
 	jumpifnotmove MOVE_SURF, BattleScript_HitFromAtkCanceler
@@ -270,6 +271,7 @@ BattleScript_HitFromAtkAnimation::
 	waitmessage B_WAIT_TIME_LONG
 	seteffectwithchance
 	jumpifmove MOVE_ICE_FANG, BattleScript_IceFangFlinch
+	jumpifmove MOVE_THUNDER_FANG, BattleScript_IceFangFlinch
 	jumpifnotmove MOVE_SWARM_CLOUD, BattleScript_AfterSwarmCloud
 	setmoveeffect MOVE_EFFECT_POISON
 	seteffectwithchance
@@ -279,6 +281,28 @@ BattleScript_IceFangFlinch::
 	seteffectwithchance
 BattleScript_AfterSwarmCloud::
 	tryfaintmon BS_TARGET
+	jumpifmove MOVE_VOLT_SWITCH, BattleScript_VoltSwitchPivot
+	goto BattleScript_MoveEnd
+BattleScript_VoltSwitchPivot::
+	@ Damage and its resulting faint effects have already resolved. Do not
+	@ replace the attacking Pokemon after a miss, immunity or failed hit.
+	jumpifmovehadnoeffect BattleScript_MoveEnd
+	jumpifhasnohp BS_ATTACKER, BattleScript_MoveEnd
+	jumpifcantswitch SWITCH_IGNORE_ESCAPE_PREVENTION | BS_ATTACKER, BattleScript_MoveEnd
+	openpartyscreen BS_ATTACKER, BattleScript_MoveEnd
+	switchoutabilities BS_ATTACKER
+	waitstate
+	switchhandleorder BS_ATTACKER, 2
+	returntoball BS_ATTACKER
+	getswitchedmondata BS_ATTACKER
+	switchindataupdate BS_ATTACKER
+	hpthresholds BS_ATTACKER
+	printstring STRINGID_SWITCHINMON
+	switchinanim BS_ATTACKER, TRUE
+	waitstate
+	switchineffects BS_ATTACKER
+	goto BattleScript_MoveEnd
+
 BattleScript_MoveEnd::
 	moveendall
 	end
@@ -4432,4 +4456,9 @@ BattleScript_EffectSwarmCloud::
 @ The same 10-percent chance byte is rolled separately by each seteffectwithchance.
 BattleScript_EffectIceFang::
 	setmoveeffect MOVE_EFFECT_FREEZE
+	goto BattleScript_EffectHit
+
+@ Thunder Fang independently rolls paralysis first, flinch second.
+BattleScript_EffectThunderFang::
+	setmoveeffect MOVE_EFFECT_PARALYSIS
 	goto BattleScript_EffectHit

@@ -5,6 +5,9 @@
 #ifndef GUARD_EVENT_SCRIPTS_H
 #define GUARD_EVENT_SCRIPTS_H
 
+// WRL-010: dynamic follower visual interaction script.
+extern const u8 EventScript_FollowerInteraction[];
+
 #include "global.h"
 
 extern const u8 gTVBravoTrainerText00[];

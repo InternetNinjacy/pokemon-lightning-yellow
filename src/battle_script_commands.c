@@ -853,7 +853,8 @@ static void Cmd_attackcanceler(void)
         gBattlescriptCurrInstr = BattleScript_MoveEnd;
         return;
     }
-    if (gCurrentMove == MOVE_THUNDER_WAVE && !gBattleStruct->thunderWaveActive)
+    if ((gCurrentMove == MOVE_THUNDER_WAVE || gCurrentMove == MOVE_DISCHARGE || gCurrentMove == MOVE_PETAL_BLIZZARD)
+     && !gBattleStruct->thunderWaveActive)
     {
         u8 nextTarget;
 
@@ -878,7 +879,7 @@ static void Cmd_attackcanceler(void)
     {
         gBattlescriptCurrInstr = BattleScript_NoPPForMove;
         gMoveResultFlags |= MOVE_RESULT_MISSED;
-        if (gCurrentMove == MOVE_THUNDER_WAVE)
+        if (gCurrentMove == MOVE_THUNDER_WAVE || gCurrentMove == MOVE_DISCHARGE || gCurrentMove == MOVE_PETAL_BLIZZARD)
             gBattleStruct->thunderWaveActive = FALSE;
         return;
     }
@@ -4352,7 +4353,7 @@ static void Cmd_moveend(void)
         case MOVEEND_NEXT_TARGET: // For moves hitting two opposing Pokemon.
             if (gBattleStruct->thunderWaveActive)
             {
-                if (gCurrentMove == MOVE_THUNDER_WAVE)
+                if (gCurrentMove == MOVE_THUNDER_WAVE || gCurrentMove == MOVE_DISCHARGE || gCurrentMove == MOVE_PETAL_BLIZZARD)
                 {
                     u8 nextTarget;
 
@@ -4397,10 +4398,12 @@ static void Cmd_moveend(void)
             // A move targeting every other battler must visit the second foe
             // and then the user's ally. Retain MOVE_TARGET_BOTH's original
             // two-opponent handling and its normal 50% damage behavior.
-            // Thunder Wave already consumed its three recipients above. The
+            // These three moves already consumed their recipients above. The
             // ordinary spread-move loop would otherwise replay the ally after
             // the final foe, extending battle text and applying the effect twice.
             if (gCurrentMove != MOVE_THUNDER_WAVE
+                && gCurrentMove != MOVE_DISCHARGE
+                && gCurrentMove != MOVE_PETAL_BLIZZARD
                 && !(gHitMarker & HITMARKER_UNABLE_TO_USE_MOVE)
                 && (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
                 && !gProtectStructs[gBattlerAttacker].chargingTurn
