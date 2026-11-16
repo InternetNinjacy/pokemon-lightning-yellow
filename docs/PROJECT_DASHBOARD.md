@@ -4,7 +4,7 @@ Canonical branch: `main`. Updated 2026-11-15. Audited gameplay revision: `197d85
 
 Overall: `[######----]` **64.75% complete /35.25% remaining** (461 earned +251 remaining;712 provisional effort points).
 
-SOW-002 draft PR254 / issue253: production source a9198e74158f5be9d6b7d35d565a7dc3cffc2f5f source/build/native3505 PASS, supplemental run43784608441; native separate resolved4AD/hide4AE and party/PC capture/defeat/flee/loss/NPC/save/retry validated. Required CI/integration/protection unresolved; Glalie hash/world-reward trainer host failures reproduce on main. No merge/Playtest002 update/points. Remaining SOW001/003/005/006 and separate legendary234 audited in docs/SOW_MISSING_ENCOUNTER_AUDIT.md.50 tasks461/251/712 unchanged.
+SOW002 draft254 blocker follow-up: code238ec53 strict14 catch reversal/17 negative controls PASS; exact run43786553053 modified clean133035404503 and independent vanilla133035404219 SUCCESS. Native3505 a9198e7 reused with identical game/native inputs. Required-CI/protection/no-rain decision and233-owned six-species/trainer/Fire dependencies remain; no merge/Playtest002 update/points. RemainingSOW audit identifies Onix-room Grunt2 and actual243/244 legendary ownership/terminal physical failure.50 IDs461/251/712 preserved.
 
 These are estimates of tracked work, not elapsed hours or release certification. Every permanent ID and earned-history entry is retained. Approved Ponyta and Ranger work expanded the scope; the denominator is the sum of the current task effort estimates. Adding scope changes it without erasing completed work. Repeated regression is not duplicate implementation credit.
 

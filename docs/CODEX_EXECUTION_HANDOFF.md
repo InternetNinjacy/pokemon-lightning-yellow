@@ -1,3 +1,14 @@
+## PR254 blocker follow-up — 2026-11-15 (latest)
+
+- Main197d85ee1a61ac319f95fa65ab298bb126fe937d unchanged; PR254 remains draft/unmerged on feature/sow002-viridian-heracross-20261115. No Playtest002 update or points.
+- Code238ec53ac058fc715d883336337909065f21f180: strict14 approved catch-field reverse layer,3 complete stages,17 negative controls. Every existing assertion/frozen hash retained. Remaining weather-species mismatch is exactly6 approved records and trainer projection, owned by233; no Fire/233 assertion import.
+- Exact code238ec53 run43786553053 SUCCESS: modified clean proof133035404503 (source checks/two builds SHA256 match), independent vanilla proof133035404219 (pinned upstream/agbcc/twice-clean compare). Supplemental names do not replace required statuses. Existing workflows byte-identical; no native/rain executed in this run.
+- Reuse3505 native PASS at a9198e7/run43784608441: all game/native runner/fixture/compiler inputs unchanged. Final evidence-only docs do not imply current-head required CI success.
+- Actual blocker: authenticated required-check/protection information (API403, browser logged out) plus owner resolution of no-rain versus unchanged full required CI; historical reconciliation remains233-owned. Do not merge, relabel statuses or waive gates.
+- Remaining SOW audit advanced: correct Onix-room guard local7 Grunt2 / room warp17,31; raw-collision113-cell component, not native traversal.005 needs scripted double/party eligibility/joint cleanup;003/006 exact battle/tile details deferred.
+- Legendary ownership already active on24371f25df and2440d3ceb8. Latest243 full43639203124 modified132582692188 FAILURE/upstream132582692424 SUCCESS, focused SUCCESS.244 Mew experiment43631949077 failed physical water step67,4 at unchanged96-frame guard after7 dry steps and Surf08; no unreachable/root-cause claim or edits/reruns.
+- Canonical50 tasks461/251/712 unchanged. Details in SOW002_HERACROSS_VALIDATION.md and SOW_MISSING_ENCOUNTER_AUDIT.md.
+
 ## SOW-002 active checkpoint — 2026-11-15
 
 - Main197d85ee1a61ac319f95fa65ab298bb126fe937d verified; no workflow runs listed for that head. Protection-detail access403; do not infer absent protections.
