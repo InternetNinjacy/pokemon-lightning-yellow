@@ -1,0 +1,132 @@
+# Review-only proposal. Only an explicit owner review command can run this job.
+name: SOW-002 supplemental exact-commit evidence
+run-name: SOW-002 reviewed source ${{ github.event.review.commit_id }}
+
+on:
+  pull_request_review:
+    types: [submitted]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: sow002-supplemental-${{ github.run_id }}-${{ github.run_attempt }}
+  cancel-in-progress: false
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  supplemental-sow002:
+    name: supplemental-sow002-only
+    if: >-
+      github.event_name == 'pull_request_review' &&
+      github.repository == 'InternetNinjacy/pokemon-lightning-yellow' &&
+      github.actor == 'InternetNinjacy' &&
+      github.event.review.user.login == 'InternetNinjacy' &&
+      github.event.review.state == 'commented' &&
+      github.event.review.body == format('RUN SOW002 ONLY {0}', github.event.pull_request.head.sha) &&
+      github.event.review.commit_id == github.event.pull_request.head.sha &&
+      github.event.pull_request.state == 'open' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.head.ref == 'feature/sow002-viridian-heracross-20261115'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      SOW002_CONTROLLER_SHA: ${{ github.event.pull_request.head.sha }}
+      SOW002_SOURCE_SHA: ${{ github.event.review.commit_id }}
+      SOW002_MGBA_SHA: 26b7884bc25a5933960f3cdcd98bac1ae14d42e2
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - name: Record the reviewed controller and fixed source
+        run: |
+          echo "SUPPLEMENTAL_WORKFLOW_SHA=$SOW002_CONTROLLER_SHA"
+          echo "SUPPLEMENTAL_SOURCE_SHA=$SOW002_SOURCE_SHA"
+
+      - name: Check out the workflow controller at its immutable event SHA
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          path: controller
+          persist-credentials: false
+
+      - name: Check out only the reviewed SOW-002 source commit
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.event.review.commit_id }}
+          path: source
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Fail closed before installing or building anything
+        run: |
+          test "$(git -C controller rev-parse HEAD)" = "$SOW002_CONTROLLER_SHA"
+          python3 controller/scripts/sow002_ci_guard.py --source source
+
+      - name: Install the established compiler prerequisites and headless mGBA build tools
+        run: |
+          lightning_apt_options=(-o Acquire::Retries=3 -o Acquire::http::Timeout=30 -o Acquire::https::Timeout=30 -o DPkg::Lock::Timeout=120)
+          sudo apt-get "${lightning_apt_options[@]}" update
+          sudo apt-get "${lightning_apt_options[@]}" install -y --no-install-recommends build-essential binutils-arm-none-eabi git libpng-dev python3 cmake zlib1g-dev
+          gcc --version
+          arm-none-eabi-as --version
+          dpkg-query -W build-essential binutils-arm-none-eabi git libpng-dev python3 cmake zlib1g-dev
+
+      - name: Check out the approved mGBA 0.10.5 release by commit
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          repository: mgba-emu/mgba
+          ref: 26b7884bc25a5933960f3cdcd98bac1ae14d42e2
+          path: mgba-dependency
+          persist-credentials: false
+
+      - name: Build only the pinned headless mGBA library
+        run: |
+          test "$(git -C mgba-dependency rev-parse HEAD)" = "$SOW002_MGBA_SHA"
+          echo "SUPPLEMENTAL_MGBA_SHA=$SOW002_MGBA_SHA"
+          cmake -S mgba-dependency -B "$RUNNER_TEMP/sow002-mgba-build" \
+            -DCMAKE_INSTALL_PREFIX="$RUNNER_TEMP/sow002-mgba/usr" \
+            -DCMAKE_INSTALL_LIBDIR=lib/x86_64-linux-gnu \
+            -DCMAKE_BUILD_TYPE=Release -DLIBMGBA_ONLY=ON \
+            -DBUILD_SHARED=ON -DBUILD_STATIC=OFF \
+            -DBUILD_QT=OFF -DBUILD_SDL=OFF -DBUILD_TEST=OFF \
+            -DBUILD_SUITE=OFF -DBUILD_CINEMA=OFF -DBUILD_ROM_TEST=OFF \
+            -DBUILD_PYTHON=OFF -DBUILD_EXAMPLE=OFF -DBUILD_PERF=OFF \
+            -DBUILD_GL=OFF -DBUILD_GLES2=OFF -DBUILD_GLES3=OFF \
+            -DUSE_FFMPEG=OFF -DUSE_LIBZIP=OFF -DUSE_MINIZIP=OFF \
+            -DUSE_SQLITE3=OFF -DUSE_ELF=OFF -DUSE_LUA=OFF \
+            -DUSE_LZMA=OFF -DUSE_DISCORD_RPC=OFF -DUSE_EDITLINE=OFF
+          cmake --build "$RUNNER_TEMP/sow002-mgba-build" --parallel 2
+          cmake --install "$RUNNER_TEMP/sow002-mgba-build"
+
+      - name: Run only the focused SOW-002 source contract
+        working-directory: source
+        run: python3 tests/check_sow002.py
+
+      - name: Preserve the three existing special weather encounter source contracts
+        working-directory: source
+        run: python3 tests/run_sow_event_tests.py
+
+      - name: Prepare the unchanged pinned agbcc inputs and build once
+        working-directory: source
+        run: |
+          scripts/prepare-baseline.sh
+          make -j2
+
+      - name: Execute only LIGHTNING_SOW002_ONLY with no selector fallback
+        timeout-minutes: 15
+        run: |
+          python3 controller/scripts/sow002_ci_guard.py --source source --run \
+            --mgba-prefix "$RUNNER_TEMP/sow002-mgba"
+
+      - name: Record the supplemental boundary in the run summary
+        run: |
+          {
+            echo 'SOW-002 supplemental evidence only; no required CI replacement.'
+            echo "Source: $SOW002_SOURCE_SHA"
+            echo "Workflow: $SOW002_CONTROLLER_SHA"
+            echo "mGBA 0.10.5: $SOW002_MGBA_SHA"
+            echo 'Required modified/upstream gates remain separately unresolved.'
+          } >> "$GITHUB_STEP_SUMMARY"
+      # No uploads, caches, releases, dispatches, repository writes or ROM/BIOS/saves.

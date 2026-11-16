@@ -7,7 +7,8 @@ ViridianForest_OnTransition::
 	end
 
 ViridianForest_EventScript_Youngster::
-	msgbox ViridianForest_Text_FriendsItchingToBattle, MSGBOX_NPC
+	goto_if_set FLAG_SOW_HERACROSS_RESOLVED, ViridianForest_EventScript_SowThanks
+	msgbox ViridianForest_Text_SowWarning, MSGBOX_NPC
 	end
 
 ViridianForest_EventScript_Boy::
@@ -61,4 +62,38 @@ ViridianForest_EventScript_Anthony::
 ViridianForest_EventScript_Charlie::
 	trainerbattle_single TRAINER_BUG_CATCHER_CHARLIE, ViridianForest_Text_CharlieIntro, ViridianForest_Text_CharlieDefeat
 	msgbox ViridianForest_Text_CharliePostBattle, MSGBOX_AUTOCLOSE
+	end
+
+@ SOW-002: no facing, movement, weather override or special ability injection.
+ViridianForest_EventScript_SowHeracross::
+	goto_if_questlog EventScript_ReleaseEnd
+	special QuestLog_CutRecording
+	lock
+	setwildbattle SPECIES_HERACROSS, 12
+	waitse
+	playmoncry SPECIES_HERACROSS, CRY_MODE_ENCOUNTER
+	waitmoncry
+	delay 10
+	special StartLegendaryBattle
+	waitstate
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, ViridianForest_EventScript_SowResolved
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, ViridianForest_EventScript_SowResolved
+	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, ViridianForest_EventScript_SowFled
+	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, ViridianForest_EventScript_SowFled
+	release
+	end
+
+ViridianForest_EventScript_SowResolved::
+	setflag FLAG_SOW_HERACROSS_RESOLVED
+	goto EventScript_RemoveStaticMon
+	end
+
+ViridianForest_EventScript_SowFled::
+	setvar VAR_0x8004, SPECIES_HERACROSS
+	goto EventScript_MonFlewAway
+	end
+
+ViridianForest_EventScript_SowThanks::
+	msgbox ViridianForest_Text_SowThanks, MSGBOX_NPC
 	end

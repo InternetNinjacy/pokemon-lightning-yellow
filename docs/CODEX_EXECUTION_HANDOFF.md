@@ -1,3 +1,15 @@
+## SOW-002 active checkpoint — 2026-11-15
+
+- Main197d85ee1a61ac319f95fa65ab298bb126fe937d verified; no workflow runs listed for that head. Protection-detail access403; do not infer absent protections.
+- Branch feature/sow002-viridian-heracross-20261115, issue253: missing Forest Heracross implemented; see docs/SOW002_HERACROSS_VALIDATION.md for exact contract and remaining checks. No merge before required evidence.
+- Source checks: python3 tests/check_sow002.py and python3 tests/run_sow_event_tests.py PASS. Build/native pending; focused LIGHTNING_SOW002_ONLY=1 only. Never run rain or the old broad SOW weather native selector.
+- Existing PR233/249/250 retained; no Fire assertion changes, rain reruns, WRL ownership duplication or required-gate replacement. Original PR249 failure43754474983/modified132935433549 at run_new_fire_moves_tests.py:48 preserved; upstream132935433210 success. PR233 unchanged Misty2400 failure132895732192/upstream132895732475 success.
+- PR251 catch125 and PR252 metadata merged at3ed6ac1e /197d85ee under specific owner direction; not a global CI waiver. PR249 remains draft.
+- Remaining missing SOW001 Onix/MtMoonB2F;003 Electabuzz/Route10;005 Miltank+Tauros/Route15;006 Noctowl/Route16. Existing004/007/008 present; do not retest accepted rain. WTH002 Playtest002 snow-particle persistence awaits owner confirmation; WRL010 queued.
+-50 permanent tasks461/251/712 preserved.
+
+## Historical checkpoint (retained)
+
 # PR251 catch125 merged — November 15, 2026
 
 - Owner reiterated lock13 catch rates125, implement/merge and proceed after the

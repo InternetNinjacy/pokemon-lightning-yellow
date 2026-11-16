@@ -1917,3 +1917,10 @@ amendment to existing draft PR250, retaining fixed WRL001 source and all existin
 workflows/gates/guards. PR249/233 ownership unchanged. Owner accepted weather/
 Parcel passes, #248 snow confirmation and WRL010 queue preserved. No points or
 task closure;50 IDs/461 earned/251 remaining/712 total unchanged.
+
+
+### 2026-11-15 — SOW-002 implementation, issue #253 (unmerged)
+
+Main197d85ee and Playtest002 have no Heracross object/script. Owner explicitly authorizes finalizing/implementing SOW-002, with no merge before required evidence. Canonical Special Overworld register1yTOKL8qr5_3sX6Fpk9WEzTBw9c6IwoDVWLULJtTIXm8 and final digest1toiE5HMe9b1Wa5IVytgM2LIHTT8_v05jkVgfPURYsH4: stationary/nonreactive northeast clearing; southern existing NPC warning without species spoiler, then thanks; native static capture/defeat resolution and flee/loss retry. Current delegated finalization chooses(49,6),Lv12,Tackle/Leer/Horn Attack/Endure,native Swarm/Guts,no item. Catch125 extends the owner's early-catch instruction to this newly installed early source; this changes the species-wide catch field. These exact engineering/balance values were deferred historically, not claimed as earlier approval.
+
+Separate branch feature/sow002-viridian-heracross-20261115; issue253 scopes this main-thread owner without duplicating WRL002/009 or BTL specialists. Native icon palette2, static first frame, one unused flag4AD; no old objects/terrain/weather/lighting/encounter tables/trainers changed. Exact old SOW graphics-count assertion increases155→156 for the appended graphic; all old assertions and registrations retained. Focused source and old SOW source checks PASS; compiled/native evidence pending. Supplemental exact-reviewed-head workflow only, no existing workflow/status/protection changes or ROM/BIOS/save uploads. Existing required CI remains unresolved; no merge, no points.50 IDs461 earned/251 remaining/712 total unchanged.

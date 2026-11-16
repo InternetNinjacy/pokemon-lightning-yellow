@@ -1,3 +1,4 @@
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SowHeracross;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SowCorphish;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SowGlalie;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SowTyranitar;
@@ -308,6 +309,7 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_DEOXYS_A]                 = &gObjectEventGraphicsInfo_DeoxysA,
     [OBJ_EVENT_GFX_DEOXYS_N]                 = &gObjectEventGraphicsInfo_DeoxysN,
     [OBJ_EVENT_GFX_SS_ANNE]                  = &gObjectEventGraphicsInfo_SSAnne,
+    [OBJ_EVENT_GFX_SOW_HERACROSS]             = &gObjectEventGraphicsInfo_SowHeracross,
     [OBJ_EVENT_GFX_SOW_CORPHISH]              = &gObjectEventGraphicsInfo_SowCorphish,
     [OBJ_EVENT_GFX_SOW_GLALIE]                = &gObjectEventGraphicsInfo_SowGlalie,
     [OBJ_EVENT_GFX_SOW_TYRANITAR]            = &gObjectEventGraphicsInfo_SowTyranitar,
