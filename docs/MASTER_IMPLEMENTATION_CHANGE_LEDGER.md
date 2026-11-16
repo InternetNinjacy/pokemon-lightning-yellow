@@ -1917,3 +1917,12 @@ amendment to existing draft PR250, retaining fixed WRL001 source and all existin
 workflows/gates/guards. PR249/233 ownership unchanged. Owner accepted weather/
 Parcel passes, #248 snow confirmation and WRL010 queue preserved. No points or
 task closure;50 IDs/461 earned/251 remaining/712 total unchanged.
+
+
+### 2026-11-15 — owner correction: starting PC Exp.Share and persistent response contract
+
+Owner explicitly requests replacing the initial PC Potion with Exp.Share and fixing the recurring nonfunctional Continue-button prompt, not merely printing another button. Main197d85ee refreshed; no competing open Exp.Share implementation found. Separate branch feature/new-game-pc-exp-share-20261115 changes only the one new-game PC table item ID to ITEM_EXP_SHARE182, quantity1/terminator/initializer/storage/withdrawal/held effect/existing-save inventories unchanged. Exact whole-file approved-delta and source checks PASS; no new tests/harness/workflow, build, emulator or rain run. Keep draft/unmerged under existing CI/access boundaries; Playtest002 unchanged.
+
+Root prompt cause found in active Master Pipeline automation: explicit functioning Continue Execution button demand. Removed that contradictory sentence and added a persistent response contract to both active project automation prompts. Verified saved prompts; schedules and enabled states preserved. No unsupported UI action is invented; if no verified native submit control exists, use a clearly labeled fenced copyable Next prompt, never a fake button. Canonical START HERE front notice supersedes older bracket-button instructions; Change Intake and proposed AGENTS.md persist same owner rule. This does not change ChatGPT's interface capabilities.
+
+Existing SOW002/WRL/BTL/historical/legendary ownership and proofs preserved;50 tasks461/251/712 unchanged. No merge or points.

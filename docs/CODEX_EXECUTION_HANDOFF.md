@@ -1,3 +1,11 @@
+## Owner starting-PC / response contract correction — 2026-11-15 (latest)
+
+- Main197d85ee unchanged. Independent branch feature/new-game-pc-exp-share-20261115 starts from main; only gameplay delta is gNewGamePCItems Potion1→Exp.Share1. Existing saves are not migrated. No engine, quantity, terminator or tutorial reward edit.
+- Exact source-delta/ID/table/initializer preservation checks PASS; no build/native/new harness/workflow or rain tests initiated for this one-field unchanged-mechanism change. Required CI unresolved; keep reviewable/unmerged. No ROM update/release.
+- Persistent response fix: removed contradictory functioning-button demand from Master Pipeline automation; added verified continuation response contract to both active project automation prompts, preserving schedules/enabled state/all unrelated instructions. Canonical START HERE front notice and Change Intake record the owner correction. Matching AGENTS rule forbids fake bracket/Markdown buttons; use only verified native control, otherwise a clearly labeled copyable Next prompt. Do not claim to have changed ChatGPT interface capabilities.
+- Existing SOW002 PR254c984bee5 remains draft; native3505 a9198e7 and source238ec53 clean/upstream43786553053 PASS. Required CI/protection and233-owned history remain unresolved. No changes to254/233/249/250/243/244 or their tests.
+-50 IDs461/251/712 unchanged. No point award or merge.
+
 # PR251 catch125 merged — November 15, 2026
 
 - Owner reiterated lock13 catch rates125, implement/merge and proceed after the
