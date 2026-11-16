@@ -3,6 +3,18 @@ include config.mk
 # Default make rule
 all: rom
 
+# Explicit, local-only private follower-art build. Normal 'make' remains source-only.
+# This target cannot silently compile the zero-entry follower registry.
+# Owner permission confirmation is recorded; artist/source notice is a separate
+# local record and must not be committed with copyrighted graphics or a ROM.
+.PHONY: private-followers-rom
+private-followers-rom:
+	@test "$(FOLLOWER_ART_PERMISSION_CONFIRMED)" = "1" || (echo "Set FOLLOWER_ART_PERMISSION_CONFIRMED=1 only when the pinned source is cleared for this FireRed/AI-assisted use"; exit 1)
+	@test -n "$(FOLLOWER_ATTRIBUTION_FILE)" || (echo "Set FOLLOWER_ATTRIBUTION_FILE to the local grant-scope/credit notice"; exit 1)
+	python3 scripts/build-follower-assets.py --confirmed-scope
+	python3 scripts/check-follower-build-readiness.py --attribution "$(FOLLOWER_ATTRIBUTION_FILE)"
+	$(MAKE) rom
+
 # Toolchain selection
 TOOLCHAIN := $(DEVKITARM)
 # don't use dkP's base_tools anymore
