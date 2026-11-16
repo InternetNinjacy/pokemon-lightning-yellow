@@ -567,7 +567,7 @@ PalletTown_ProfessorOaksLab_EventScript_RivalChoseStarter::
 PalletTown_ProfessorOaksLab_EventScript_ProfOak::
 	lock
 	faceplayer
-	goto_if_set FLAG_OAK_EEVEE_PENDING, PalletTown_ProfessorOaksLab_EventScript_RetryParcelGifts
+	goto_if_set FLAG_OAK_EEVEE_PENDING, PalletTown_ProfessorOaksLab_EventScript_OakSueWaiting
 	goto_if_set FLAG_OAK_NEST_BALLS_PENDING, PalletTown_ProfessorOaksLab_EventScript_RetryParcelGifts
 	goto_if_set SHOWED_OAK_COMPLETE_DEX, PalletTown_ProfessorOaksLab_EventScript_OakJustShownCompleteDex
 	goto_if_eq VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 9, PalletTown_ProfessorOaksLab_EventScript_RatePokedex
@@ -660,7 +660,6 @@ PalletTown_ProfessorOaksLab_EventScript_ReceiveDexScene::
 	setvar VAR_MAP_SCENE_POKEMON_CENTER_TEALA, 1
 	msgbox PalletTown_ProfessorOaksLab_Text_OakGiftEevee
 	setflag FLAG_OAK_EEVEE_PENDING
-	call PalletTown_ProfessorOaksLab_EventScript_TryGiveEevee
 	msgbox PalletTown_ProfessorOaksLab_Text_OakCatchMonsForDataTakeThese
 	setflag FLAG_OAK_NEST_BALLS_PENDING
 	call PalletTown_ProfessorOaksLab_EventScript_TryGiveNestBalls
@@ -1075,7 +1074,15 @@ PalletTown_ProfessorOaksLab_Movement_RivalExit::
 PalletTown_ProfessorOaksLab_EventScript_BulbasaurBall::
 	lock
 	faceplayer
+	@ Final leftmost ball becomes Sue's gift only after Oak gives permission.
+	goto_if_set FLAG_GOT_OAK_PARCEL_EEVEE, PalletTown_ProfessorOaksLab_EventScript_ReservedPokeBall
+	goto_if_set FLAG_OAK_EEVEE_PENDING, PalletTown_ProfessorOaksLab_EventScript_PickUpSueEevee
 	goto PalletTown_ProfessorOaksLab_EventScript_ReservedPokeBall
+	end
+
+PalletTown_ProfessorOaksLab_EventScript_PickUpSueEevee::
+	call PalletTown_ProfessorOaksLab_EventScript_TryGiveEevee
+	release
 	end
 
 PalletTown_ProfessorOaksLab_EventScript_ConfirmStarterChoice::
@@ -1211,7 +1218,7 @@ PalletTown_ProfessorOaksLab_EventScript_SquirtleBall::
 	lock
 	faceplayer
 	setvar PLAYER_STARTER_NUM, 0
-	setvar PLAYER_STARTER_SPECIES, SPECIES_PIKACHU
+	setvar PLAYER_STARTER_SPECIES, SPECIES_PICHU
 	setvar RIVAL_STARTER_SPECIES, SPECIES_DRATINI
 	setvar RIVAL_STARTER_ID, LOCALID_CHARMANDER_BALL
 	goto_if_ge VAR_MAP_SCENE_PALLET_TOWN_PROFESSOR_OAKS_LAB, 3, PalletTown_ProfessorOaksLab_EventScript_LastPokeBall
@@ -1296,9 +1303,13 @@ PalletTown_ProfessorOaksLab_EventScript_RightSignAlt::
 	releaseall
 	end
 
-@ Oak's parcel gifts have independent persistent pending flags.
+@ Sue is picked up from the remaining ball; Oak only retries the independent Nest Balls.
+PalletTown_ProfessorOaksLab_EventScript_OakSueWaiting::
+	msgbox PalletTown_ProfessorOaksLab_Text_OakSueWaiting
+	release
+	end
+
 PalletTown_ProfessorOaksLab_EventScript_RetryParcelGifts::
-	call_if_set FLAG_OAK_EEVEE_PENDING, PalletTown_ProfessorOaksLab_EventScript_TryGiveEevee
 	call_if_set FLAG_OAK_NEST_BALLS_PENDING, PalletTown_ProfessorOaksLab_EventScript_TryGiveNestBalls
 	release
 	end
@@ -1314,6 +1325,8 @@ PalletTown_ProfessorOaksLab_EventScript_TryGiveEevee::
 PalletTown_ProfessorOaksLab_EventScript_EeveeDelivered::
 	setflag FLAG_GOT_OAK_PARCEL_EEVEE
 	clearflag FLAG_OAK_EEVEE_PENDING
+	setflag FLAG_HIDE_BULBASAUR_BALL
+	removeobject LOCALID_BULBASAUR_BALL
 	playfanfare MUS_LEVEL_UP
 	message PalletTown_ProfessorOaksLab_Text_ReceivedSueEevee
 	waitmessage
@@ -1323,6 +1336,8 @@ PalletTown_ProfessorOaksLab_EventScript_EeveeDelivered::
 PalletTown_ProfessorOaksLab_EventScript_EeveeStored::
 	setflag FLAG_GOT_OAK_PARCEL_EEVEE
 	clearflag FLAG_OAK_EEVEE_PENDING
+	setflag FLAG_HIDE_BULBASAUR_BALL
+	removeobject LOCALID_BULBASAUR_BALL
 	playfanfare MUS_LEVEL_UP
 	message PalletTown_ProfessorOaksLab_Text_ReceivedSueEevee
 	waitmessage

@@ -363,17 +363,17 @@ PalletTown_ProfessorOaksLab_Text_OakPikachuIntroduction::
     .string "OAK: {RIVAL}?\n"
     .string "Oh, that's right! You came, too.\p"
     .string "Now, {PLAYER}, I've set aside a\n"
-    .string "PIKACHU for you.\p"
+    .string "PICHU for you.\p"
     .string "It's in the middle POKé BALL.\p"
     .string "{RIVAL}, be patient. Your turn\n"
     .string "will come!$"
 
 PalletTown_ProfessorOaksLab_Text_OakPikachuWaiting::
-    .string "OAK: {PLAYER}, the PIKACHU is\n"
+    .string "OAK: {PLAYER}, the PICHU is\n"
     .string "waiting in the middle ball.$"
 
 PalletTown_ProfessorOaksLab_Text_OakChoosingPikachu::
-    .string "OAK: So, you'll take PIKACHU?\n"
+    .string "OAK: So, you'll take PICHU?\n"
     .string "It's full of energy!$"
 
 PalletTown_ProfessorOaksLab_Text_ReservedPokeBall::
@@ -383,14 +383,21 @@ PalletTown_ProfessorOaksLab_Text_ReservedPokeBall::
 PalletTown_ProfessorOaksLab_Text_OakGiftEevee::
     .string "OAK: Thanks for bringing my\n"
     .string "parcel, {PLAYER}!\p"
-    .string "I have another POKéMON for you:\n"
-    .string "an EEVEE named SUE.$"
+    .string "You may take the last POKé BALL\n"
+    .string "on the table.\p"
+    .string "Inside is my EEVEE, SUE.\n"
+    .string "Take good care of her!$"
+
+PalletTown_ProfessorOaksLab_Text_OakSueWaiting::
+    .string "OAK: SUE is waiting for you in\n"
+    .string "the last POKé BALL on the table.$"
 
 PalletTown_ProfessorOaksLab_Text_ReceivedSueEevee::
     .string "{PLAYER} received SUE the EEVEE\n"
     .string "from PROF. OAK!$"
 
 PalletTown_ProfessorOaksLab_Text_EeveeNoRoom::
-    .string "OAK: There isn't room in your\n"
-    .string "party or PC for SUE right now.\p"
-    .string "Come back when there's space.$"
+    .string "There isn't room in your party\n"
+    .string "or PC for SUE right now.\p"
+    .string "Make room and return to this\n"
+    .string "POKé BALL to collect her.$"
