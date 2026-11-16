@@ -131,10 +131,15 @@ static void PrepareAssetForSlot(s8 slot)
 
     if (!FollowerAssets_Resolve(species, form, shiny, &asset))
     {
-        // No imported artwork, out-of-capacity sheet or invalid resolver:
-        // suppress graphics, retain the exact selected Pokémon.
+        // No usable artwork for this selected Pokémon. Release any previous
+        // follower's sprite and palette rather than leaving a hidden old
+        // species occupying the very resources a later selection needs.
+        // The saved party selection is intentionally not changed.
         sPendingAsset = FALSE;
         sBoundAsset = FALSE;
+        if (FollowerGraphics_GetSpriteId() < MAX_SPRITES)
+            FollowerGraphics_Release();
+        ResetTrail();
         return;
     }
     sPendingGraphics = asset;
