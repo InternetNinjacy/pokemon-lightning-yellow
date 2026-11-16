@@ -36,20 +36,35 @@ def main():
         rows = list(csv.DictReader(f))
     if len(rows) != 252 or rows[232]["species"] != "CASTFORM":
         raise ValueError("wrong approved roster; refusing sprite build")
+    pins_path = ROOT / "docs/followers/expected-source-blobs.json"
+    pins = json.loads(pins_path.read_text(encoding="utf-8"))
+    if (pins.get("pinned_commit") != audit.REV or pins.get("tree_sha") != audit.REV
+        or pins.get("tree_truncated") is not False or pins.get("entries_count") != 765):
+        raise ValueError("full artwork source-blob manifest does not match pinned revision")
+    expected_entries = pins["entries"]
+    expected_map = {item["path"]: item for item in expected_entries}
+    if len(expected_map) != 765:
+        raise ValueError("duplicate paths in pinned source-blob manifest")
     records = []
     input_files = []
 
-    def get_source(path, expected_blob=None):
+    def get_source(path, inventory_blob=None):
+        pin = expected_map.get(path)
+        if pin is None:
+            raise ValueError("source asset is not in pinned Git tree manifest: " + path)
+        expected_blob = pin["git_blob_sha1"]
+        if inventory_blob is not None and inventory_blob != expected_blob:
+            raise ValueError("existing 252-species PNG pin conflicts with upstream tree: " + path)
         raw = audit.fetch(path)
         actual_blob = audit.git_blob_sha(raw)
-        if expected_blob is not None and actual_blob != expected_blob:
-            raise ValueError("pinned Git blob mismatch: " + path)
+        if actual_blob != expected_blob or len(raw) != pin["bytes"]:
+            raise ValueError("source bytes do not match the independently pinned upstream Git tree: " + path)
         input_files.append({
             "path": path,
             "git_blob_sha1": actual_blob,
             "sha256": hashlib.sha256(raw).hexdigest(),
             "bytes": len(raw),
-            "pinned_blob_verified": expected_blob is not None,
+            "pinned_blob_verified": True,
         })
         return raw
 
@@ -114,10 +129,14 @@ def main():
     args.output.write_text(content)
     if len(input_files) != 765 or len({item["path"] for item in input_files}) != 765:
         raise ValueError("expected exactly 765 distinct pinned source paths for 255 graphics descriptors")
+    if [item["path"] for item in input_files] != [item["path"] for item in expected_entries]:
+        raise ValueError("source asset order differs from exact pinned upstream inventory")
     report={"base_source":audit.BASE,"base_species_count":252,"castform_form_count":3,
             "graphics_records":len(records),"generated_sha256":hashlib.sha256(content.encode()).hexdigest(),
             "source_file_count":len(input_files), "source_files":input_files,
-            "notice":"metadata records observed local source hashes, not grants or independent palette blob pin verification"}
+            "source_blob_manifest":"docs/followers/expected-source-blobs.json",
+            "upstream_git_tree":pins["tree_sha"],
+            "notice":"all 765 source blobs checked against pinned upstream Git tree; no contributor license grant or gameplay acceptance asserted"}
     args.report.parent.mkdir(parents=True,exist_ok=True)
     args.report.write_text(json.dumps(report,indent=2)+"\n")
     print(json.dumps(report,indent=2))
