@@ -1125,13 +1125,13 @@ PalletTown_ProfessorOaksLab_EventScript_ChoseStarter::
 	waitmessage
 	playfanfare MUS_OBTAIN_KEY_ITEM
 	waitfanfare
-	special ScriptNameSocketStarterPikachu
-	goto PalletTown_ProfessorOaksLab_EventScript_RivalPicksStarter
+	goto EventScript_GiveNicknameToStarter
 	end
 
 EventScript_GiveNicknameToStarter::
 	setvar VAR_0x8004, 0
 	call EventScript_ChangePokemonNickname
+	special ScriptSelectStarterPikachuFollower
 	goto PalletTown_ProfessorOaksLab_EventScript_RivalPicksStarter
 	end
 

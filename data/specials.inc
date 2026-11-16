@@ -459,7 +459,7 @@ gSpecials::
 	def_special RangerGiveGift
 	def_special ScriptGiveMagbyEgg
 	def_special ScriptGiveTangoTangela
-	def_special ScriptNameSocketStarterPikachu
+	def_special ScriptSelectStarterPikachuFollower
 	def_special ScriptGiveSueEevee
 	def_special RocketRescueStatus
 	def_special RocketRescueGive
