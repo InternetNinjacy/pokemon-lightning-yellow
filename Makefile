@@ -285,6 +285,10 @@ clean-generated:
 	@echo "rm -f <AUTO_GEN_TARGETS>"
 
 ifeq ($(MODERN),0)
+# The locally generated 252-species graphics registry is a real C dependency.
+# Without this edge an incremental private build may reuse a zero-art object.
+$(C_BUILDDIR)/follower_assets.o: src/follower_assets_generated.inc
+
 $(C_BUILDDIR)/agb_flash.o: CFLAGS := -O -mthumb-interwork
 $(C_BUILDDIR)/agb_flash_1m.o: CFLAGS := -O -mthumb-interwork
 $(C_BUILDDIR)/agb_flash_mx.o: CFLAGS := -O -mthumb-interwork
