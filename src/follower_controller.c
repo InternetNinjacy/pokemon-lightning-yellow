@@ -125,6 +125,13 @@ static void PrepareAssetForSlot(s8 slot)
     // Castform's battle-only forms are not persisted on the party Pokémon;
     // base field artwork is correct outside battle. Its sunny/rainy/snowy
     // descriptors are registered for explicitly validated form resolution.
+    if (sPendingAsset
+     && (species != sDesiredSpecies || shiny != sDesiredShiny || form != sDesiredForm))
+    {
+        // The player changed the selected Pokémon before the pending graphic
+        // was attached. Never display that previous choice after the switch.
+        sPendingAsset = FALSE;
+    }
     if (sBoundAsset && species == sBoundSpecies
      && shiny == sBoundShiny && form == sBoundForm
      && FollowerGraphics_GetSpriteId() < MAX_SPRITES
