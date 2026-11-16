@@ -12,10 +12,13 @@ VermilionCity_Gym_Text_LtSurgeIntro::
     .string "coordinated attack!{PLAY_BGM}{MUS_ENCOUNTER_GYM_LEADER}$"
 
 VermilionCity_Gym_Text_LtSurgePostBattle::
-    .string "A little word of advice, kid!\p"
-    .string "Electricity is sure powerful!\p"
-    .string "But, it's useless against GROUND-\n"
-    .string "type POKéMON!$"
+    .string "Not bad, kid! You've got the\n"
+    .string "makings of a great commander!\p"
+    .string "You knew when to attack and how\n"
+    .string "to handle my team's strategy.\p"
+    .string "That's what winning battles is\n"
+    .string "all about!\p"
+    .string "You've earned the THUNDERBADGE!$"
 
 VermilionCity_Gym_Text_ExplainThunderBadgeTakeThis::
     .string "The THUNDERBADGE cranks up your\n"
