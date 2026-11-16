@@ -5,6 +5,7 @@ This is a build-input check, not gameplay testing or license certification.
 The contributor's actual permission scope still has to be reviewed separately.
 """
 import argparse
+import csv
 import hashlib
 import json
 import re
@@ -44,12 +45,16 @@ def main():
                          source, flags=re.MULTILINE)
     if len(records) != 255:
         parser.error("expected 255 generated base/form graphics descriptors, got %d" % len(records))
-    bases = [(species, form) for species, form, _ in records if form == "0"]
-    if len(bases) != 252 or len(set(species for species, _ in bases)) != 252:
-        parser.error("base species entries are missing, duplicated, or not unique")
-    if {(species, form) for species, form, _ in records if form != "0"} != {
-        ("CASTFORM", "1"), ("CASTFORM", "2"), ("CASTFORM", "3")}:
-        parser.error("unexpected non-base follower forms")
+    bases = [(species, form, int(size)) for species, form, size in records if form == "0"]
+    with Path("docs/followers/252-species-coverage.csv").open(newline="", encoding="utf-8") as stream:
+        roster = [row["species"] for row in csv.DictReader(stream)]
+    if len(roster) != 252 or [species for species, _, _ in bases] != roster:
+        parser.error("generated base species do not match the exact approved 252 roster/order")
+    if any(size != (64 if species == "STEELIX" else 32) for species, _, size in bases):
+        parser.error("one or more sprite frame dimensions differ from approved native art sizes")
+    if [(species, form, size) for species, form, size in records if form != "0"] != [
+        ("CASTFORM", "1", "32"), ("CASTFORM", "2", "32"), ("CASTFORM", "3", "32")]:
+        parser.error("unexpected Castform form descriptors or frame dimensions")
     print("BUILD INPUT READY: 252 species plus three Castform forms are registered.")
     print("Source attribution/permission record was supplied locally.")
     print("Not a runtime follower PASS or an independent grant/rights certification.")
