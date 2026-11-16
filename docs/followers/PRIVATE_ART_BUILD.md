@@ -88,3 +88,29 @@ is nonempty **before** downloading or converting any art. Its content must still
 be examined for actual artist, source, and scope information; a text-file size
 check does not itself prove legal authorization. Cache-only cannot fabricate
 missing pixels or permission and does not produce a ROM in this environment.
+
+### Incremental compilation and 765-input provenance
+
+The Makefile explicitly declares `src/follower_assets_generated.inc` as a
+dependency of the compiled `follower_assets.o` object. The private target
+updates that generated file before calling `make rom`, preventing a previously
+compiled zero-art follower resolver object from being reused merely because
+the main C source did not change.
+
+The converter's **local-only** metadata now inventories 765 distinct inputs
+(252 base sprites and 3 Castform forms, each with one PNG and two palette files).
+For each input, it records path, observed Git blob SHA-1, SHA-256, byte count,
+and whether an explicit inventory blob pin was checked. Only the 252 base PNGs
+have recorded per-file Git blob pins in the existing 252-species inventory;
+the two palettes per base species and the three Castform-form triples are
+identified by their pinned *repository revision and path* but not separately
+cross-checked against a pre-recorded blob ID. Those values must not be described
+as independently cryptographically pinned to upstream until a trusted per-file
+expected hash inventory has been obtained.
+
+The pre-build readiness gate checks that the 765 source paths are complete,
+unique, and in the exact approved inventory/form order, plus source digest
+formatting, byte counts, and the truthful pin-verification flags. It checks the
+generated table hash and all 255 entries, but cannot by itself verify that the
+un-pinned palette bytes match the upstream revision. This intentionally
+documents the remaining provenance gap instead of hiding it.
