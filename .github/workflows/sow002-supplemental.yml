@@ -88,7 +88,7 @@ jobs:
           cmake -S mgba-dependency -B "$RUNNER_TEMP/sow002-mgba-build" \
             -DCMAKE_INSTALL_PREFIX="$RUNNER_TEMP/sow002-mgba/usr" \
             -DCMAKE_INSTALL_LIBDIR=lib/x86_64-linux-gnu \
-            -DCMAKE_BUILD_TYPE=Release -DLIBMGBA_ONLY=ON \
+            -DCMAKE_BUILD_TYPE=Release -DLIBMGBA_ONLY=OFF \
             -DBUILD_SHARED=ON -DBUILD_STATIC=OFF \
             -DBUILD_QT=OFF -DBUILD_SDL=OFF -DBUILD_TEST=OFF \
             -DBUILD_SUITE=OFF -DBUILD_CINEMA=OFF -DBUILD_ROM_TEST=OFF \

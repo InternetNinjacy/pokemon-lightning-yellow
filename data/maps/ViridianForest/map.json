@@ -181,7 +181,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "ViridianForest_EventScript_SowHeracross",
-      "flag": "FLAG_SOW_HERACROSS_RESOLVED"
+      "flag": "FLAG_HIDE_SOW_HERACROSS"
     }
   ],
   "warp_events": [

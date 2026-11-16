@@ -13,6 +13,7 @@ static void sow002Reentry(unsigned resolved)
  fossilWarp(MAP_GROUP(MAP_VIRIDIAN_CITY),MAP_NUM(MAP_VIRIDIAN_CITY),18,20);
  sow002Warp();
  CHECK(!!CALL(FlagGet,FLAG_SOW_HERACROSS_RESOLVED)==resolved);
+ CHECK(!!CALL(FlagGet,FLAG_HIDE_SOW_HERACROSS)==resolved);
  CHECK((sow002Object()==ABI_OBJECT_COUNT)==resolved);
 }
 static void sow002Close(void)
@@ -30,6 +31,15 @@ static void sow002Data(unsigned mon)
  unsigned ability=CALL(GetMonAbility,mon);
  CHECK(ability==ABILITY_SWARM||ability==ABILITY_GUTS);
  for(unsigned i=0;i<4;i++)CHECK(monget(mon,ABI_DATA_MOVE1+i)==moves[i]);
+}
+static void sow002Npc(unsigned resolved)
+{
+ fossilWarp(MAP_GROUP(MAP_VIRIDIAN_FOREST),MAP_NUM(MAP_VIRIDIAN_FOREST),29,59);
+ press(64);frames(12,0);press(1);frames(30,0);
+ CHECK(CALL(VarGet,VAR_LAST_TALKED)==1);
+ unsigned text=resolved?SYM_ViridianForest_Text_SowThanks:SYM_ViridianForest_Text_SowWarning;
+ for(unsigned i=0;i<32;i++)CHECK(core->busRead8(core,SYM_gStringVar4+i)==core->busRead8(core,text+i));
+ sow002Close();
 }
 static void sow002Start(void)
 {
@@ -63,6 +73,7 @@ static void sow002Visible(void)
 static void sow002Tests(void)
 {
  daycareFixture(1);
+ sow002Npc(0);
  sowCheckLandRoute(MAP_VIRIDIAN_FOREST,54,69,29,61,49,7);
  CHECK(sowWalkable(49,6));
  CHECK(core->loadState(core,bootState));
@@ -84,6 +95,7 @@ static void sow002Tests(void)
   openBagUse();waitOverworld(2);sow002Close();
   CHECK(core->busRead8(core,SYM_gBattleOutcome)==B_OUTCOME_CAUGHT);
   CHECK(CALL(FlagGet,FLAG_SOW_HERACROSS_RESOLVED));
+  CHECK(CALL(FlagGet,FLAG_HIDE_SOW_HERACROSS));
   CHECK(sow002Object()==ABI_OBJECT_COUNT);
   CHECK(core->busRead8(core,SYM_gPlayerPartyCount)==(pc?6:4));
   unsigned mon=pc?enemy(0):player(3);
@@ -96,6 +108,7 @@ static void sow002Tests(void)
   CHECK(monget(mon,ABI_DATA_PERSONALITY)==pid&&monget(mon,ABI_DATA_OT_ID)==ot);
   CHECK(CALL(GetMonAbility,mon)==ability);
   sow002Reentry(1);
+  sow002Npc(1);
  }
  printf("PASS: Heracross real party/PC capture, permanent removal, identity/ability/moves and flash persistence\n");
 

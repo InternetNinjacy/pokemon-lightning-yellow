@@ -4,6 +4,9 @@ ViridianForest_MapScripts::
 
 ViridianForest_OnTransition::
 	setworldmapflag FLAG_WORLD_MAP_VIRIDIAN_FOREST
+	goto_if_set FLAG_SOW_HERACROSS_RESOLVED, ViridianForest_EventScript_SowTransitionEnd
+	clearflag FLAG_HIDE_SOW_HERACROSS
+ViridianForest_EventScript_SowTransitionEnd::
 	end
 
 ViridianForest_EventScript_Youngster::

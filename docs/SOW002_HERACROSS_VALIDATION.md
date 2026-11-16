@@ -12,7 +12,7 @@ The owner explicitly requests finalization, implementation and validation of the
 | Level / moves |12; native level-up Tackle, Leer, Horn Attack, Endure |
 | Ability / item | Native Swarm or Guts; no forced selector, held item or custom persistence |
 | Catch rate |125; species-wide45→125, applying owner's early-catch125 instruction to this newly installed early source |
-| Capture / defeat | Permanent flag alias4AD, native static removal, no return after save/reentry |
+| Capture / defeat | Permanent resolved flag4AD, separate native hide flag4AE, static removal, no return after save/reentry |
 | Flee / Teleport | Native static temporary removal and fled message; return on reentry, no resolved flag |
 | Loss | Native whiteout; remains unresolved and available on return |
 | NPC | Existing non-battling Youngster29,58: unusually strong Pokémon attacking travelers; northeast hint, no species name; thanks/safe passage after capture/defeat |
@@ -27,3 +27,5 @@ Exact level/moves/item/coordinate were historically deferred. The current explic
 Commands executed: source checker PASS; existing `run_sow_event_tests.py` PASS; Python parse and `git diff --check` PASS. Build/native pending. No rain/full-native test run. All existing workflow files are byte-identical. New `sow002-supplemental.yml` is review-event-only, owner/exact-branch/same-repo/current-head gated, with explicit `RUN SOW002 ONLY <40-char-reviewed-head>` command. It verifies checkout SHA and the exact early-return selector before build/run; pinned approved agbcc and mGBA0.10.5 dependencies. No uploads/caches/releases or write permissions. Publish commits use `[skip ci]` so existing push/PR workflows cannot initiate prohibited rain. The supplemental job is evidence only and cannot replace required modified/upstream gates.
 
 Required checks/protection information and full impacted integration/reproducibility remain separate merge requirements. Protection-details read403 and empty rulesets do not establish absent protections. This draft must remain unmerged while those requirements are unresolved.
+
+Source review caught the native removeobject command also setting its map hide flag. Separate resolved4AD/hide4AE flags and original-bird-style transition reset prevent a fled event being mistaken for permanent success. Initial0df463d run43784089671 passed source checks and ROM build, then native runner linking failed: LIBMGBA_ONLY forces a static mGBA archive despite BUILD_SHARED=ON, producing unresolved exp2f/sincosf. LIBMGBA_ONLY=OFF with all frontends/tests disabled builds the intended headless shared library. No native assertions executed on that run. The corrected event/setup requires fresh exact-head evidence.

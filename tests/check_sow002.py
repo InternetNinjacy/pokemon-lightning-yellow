@@ -17,8 +17,9 @@ assert obj == dict(type='object', graphics_id='OBJ_EVENT_GFX_SOW_HERACROSS',
     x=49, y=6, elevation=3, movement_type='MOVEMENT_TYPE_FACE_DOWN',
     movement_range_x=0, movement_range_y=0, trainer_type='TRAINER_TYPE_NONE',
     trainer_sight_or_berry_tree_id='0', script='ViridianForest_EventScript_SowHeracross',
-    flag='FLAG_SOW_HERACROSS_RESOLVED')
+    flag='FLAG_HIDE_SOW_HERACROSS')
 s = Path('data/maps/ViridianForest/scripts.inc').read_text()
+assert 'goto_if_set FLAG_SOW_HERACROSS_RESOLVED, ViridianForest_EventScript_SowTransitionEnd\n\tclearflag FLAG_HIDE_SOW_HERACROSS' in s
 event = s.split('ViridianForest_EventScript_SowHeracross::')[1]
 assert 'setwildbattle SPECIES_HERACROSS, 12' in event
 assert 'special StartLegendaryBattle\n\twaitstate' in event
