@@ -4,7 +4,7 @@ Canonical branch: `main`. Updated 2026-11-15. Audited gameplay revision: `197d85
 
 Overall: `[######----]` **64.75% complete /35.25% remaining** (461 earned +251 remaining;712 provisional effort points).
 
-SOW-002 / issue #253: implement missing Viridian Forest Heracross on feature/sow002-viridian-heracross-20261115; canonical stationary northeast encounter and southern NPC warning/thanks. Owner-finalized Lv12/native four moves/no item/Swarm-Guts/catch125. Source checks pass; build/focused native and required CI pending. No merge or points; original50 tasks461/251/712. Remaining SOW001/003/005/006 map/script audit follows. PR233/249/250 ownership and rain ban preserved.
+SOW-002 draft PR254 / issue253: production source a9198e74158f5be9d6b7d35d565a7dc3cffc2f5f source/build/native3505 PASS, supplemental run43784608441; native separate resolved4AD/hide4AE and party/PC capture/defeat/flee/loss/NPC/save/retry validated. Required CI/integration/protection unresolved; Glalie hash/world-reward trainer host failures reproduce on main. No merge/Playtest002 update/points. Remaining SOW001/003/005/006 and separate legendary234 audited in docs/SOW_MISSING_ENCOUNTER_AUDIT.md.50 tasks461/251/712 unchanged.
 
 These are estimates of tracked work, not elapsed hours or release certification. Every permanent ID and earned-history entry is retained. Approved Ponyta and Ranger work expanded the scope; the denominator is the sum of the current task effort estimates. Adding scope changes it without erasing completed work. Repeated regression is not duplicate implementation credit.
 
