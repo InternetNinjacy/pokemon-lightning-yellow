@@ -68,15 +68,34 @@ def main():
         expected_paths += [prefix + ".png", prefix + "_normal.pal", prefix + "_shiny.pal"]
     if [entry.get("path") for entry in files] != expected_paths:
         parser.error("local source artwork paths/order differ from approved pinned inventory")
-    for i, entry in enumerate(files):
+    manifest_path = Path("docs/followers/expected-source-blobs.json")
+    expected_manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    pinned_revision = "cbe04a7a2ef645bee19d159876da074154ccf1f2"
+    if (expected_manifest.get("pinned_commit") != pinned_revision
+        or expected_manifest.get("tree_sha") != pinned_revision
+        or expected_manifest.get("tree_truncated") is not False
+        or expected_manifest.get("entries_count") != 765):
+        parser.error("incomplete or wrong pinned upstream Git tree manifest")
+    if metadata.get("source_blob_manifest") != str(manifest_path):
+        parser.error("generated metadata does not identify the source manifest")
+    if metadata.get("upstream_git_tree") != pinned_revision:
+        parser.error("generated metadata does not match exact pinned upstream tree")
+    expected_files = expected_manifest["entries"]
+    if len(expected_files) != 765 or len({x["path"] for x in expected_files}) != 765:
+        parser.error("pinned upstream tree manifest has missing or repeated blobs")
+    if [entry["path"] for entry in expected_files] != expected_paths:
+        parser.error("pinned Git blob manifest differs from exact approved roster/order")
+    for entry, expected in zip(files, expected_files):
         if not re.fullmatch(r"[0-9a-f]{40}", entry.get("git_blob_sha1", "")):
             parser.error("invalid local source Git blob digest")
         if not re.fullmatch(r"[0-9a-f]{64}", entry.get("sha256", "")):
             parser.error("invalid local source SHA-256 digest")
         if not isinstance(entry.get("bytes"), int) or entry["bytes"] <= 0:
             parser.error("invalid local source file byte count")
-        if entry.get("pinned_blob_verified") is not (i < 756 and i % 3 == 0):
-            parser.error("base PNG source pin-check declaration is inconsistent")
+        if entry["git_blob_sha1"] != expected["git_blob_sha1"] or entry["bytes"] != expected["bytes"]:
+            parser.error("generated artwork differs from pinned upstream source bytes")
+        if entry.get("pinned_blob_verified") is not True:
+            parser.error("one or more source files was not checked against its pinned Git blob")
 
     if any(size != (64 if species == "STEELIX" else 32) for species, _, size in bases):
         parser.error("one or more sprite frame dimensions differ from approved native art sizes")
