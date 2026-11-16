@@ -1835,3 +1835,10 @@ tracker and main/recovery unchanged. Playtest 002 ROM SHA-256 `230c9ec7d1e5376fb
 Owner rain/Sun/Snow-palette/Hail/Parcel delivery passes preserved. Runtime snow
 persistence remains awaiting owner confirmation; #248 not closed. WRL-010 and
 Pikachu/SUE OT corrections queued. No new credit:50 IDs,461/251/712.
+
+
+### 2026-11-15 — Private Playtest003: owner notes combined and compiled
+
+Owner directs only reported playtest corrections and a new private ROM. Experimental source1a8b36de from002153cb092 combines exact production deltas:13catch125/main197d85ee;2490f693dd7 SUE/OAK/Pikachu naming;254c984bee5 Heracross;2556c94e8a1 PCExp.Share1. Existing Snow correction and accepted weather/Parcel behavior/source preserved. Resolve the one starter-hook conflict by separating existing follower selection from forcedSOCKET naming, maintaining original special slot after native nickname editor. No new external art, altered tests/assertions/workflows, main/recovery/PR edits or points.
+
+Pinned source build SUCCESS;16MiB private Lightning_Yellow_Playtest_003.gba SHA256eecfbe7268877993f786451a8082273bc4a53e958c1b083ad6f809a8307fdcd1. Static header/compiledPC table182,1,0,0/event symbols PASS. No emulator/automated gameplay/rain runs; compile not runtime certification. Fresh game/manual owner confirmation next; oldSUE/PC inventories not migrated. Full manifest underdocs/playtest/2026-11-15-playtest-003-notes.json. No ROM Git/Actions upload.50 IDs461/251/712 remain.

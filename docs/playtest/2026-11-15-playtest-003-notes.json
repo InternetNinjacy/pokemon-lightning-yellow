@@ -1,0 +1,133 @@
+{
+  "build_id": "LY-playtest-003-20261115",
+  "previous_playtest_commit": "153cb092be8b399eba8dc23111e1e0dae8d86bf3",
+  "previous_rom_sha256": "230c9ec7d1e5376fb1489b10d5d88427cad56e7f8693670e42a83d89616081a3",
+  "gameplay_source_commit": "1a8b36de9d8689e98fcccdec38fbff98c617f1d0",
+  "experimental_branch": "experimental/playtest-2026-11-15",
+  "owner_scope": "Combine only approved owner playtest notes and provide a new private downloadable playtest; keep main/recovery/original PRs and formal acceptance unchanged.",
+  "included_corrections": [
+    "13 early catch-rate fields set to125 plus Heracross125",
+    "Pikachu native naming screen and player ownership",
+    "Delivered SUE Eevee securely receives OAK foreign OT, retaining native traded EXP/obedience",
+    "Stationary Lv12 Heracross at ViridianForest49,6 with warning/thanks, normal capture/defeat/flee/loss state handling",
+    "New-game player PC contains one Exp.Share instead of Potion"
+  ],
+  "preserved": [
+    "Playtest002 existing snowflakeTimer increment and every Snow/Rain/Sun/Hail/lighting source",
+    "All prior Playtest001/002 integrated content, existing Parcel/Pokedex/Eevee delivery and world/trainer/encounter data",
+    "Existing tests, assertions and workflows are byte-identical to Playtest002; no new validation files imported",
+    "Main197d85ee and recovery02240690, original PR249/254/255 heads,50 IDs461/251/712"
+  ],
+  "source_patches": [
+    {
+      "name": "catch125",
+      "base": "02240690581eb70d70219024fb7f55da2882308b",
+      "source": "197d85ee1a61ac319f95fa65ab298bb126fe937d",
+      "paths": [
+        "src/data/pokemon/species_info.h"
+      ],
+      "patch_sha256": "3ee9516e47716f26641c11897fe44b58ab5aae93dd581ff18f139b1f3b4f0f36"
+    },
+    {
+      "name": "wrl001",
+      "base": "02240690581eb70d70219024fb7f55da2882308b",
+      "source": "0f693dd7bef4219e161b299f08a9a225ecdac9d6",
+      "paths": [
+        "src/approved_gifts.c",
+        "data/specials.inc",
+        "data/maps/PalletTown_ProfessorOaksLab/scripts.inc"
+      ],
+      "patch_sha256": "c104627a0ba1f6d7664ecc624426addc2c2b5a8904bb8a086183d45acdaa65a2"
+    },
+    {
+      "name": "sow002",
+      "base": "197d85ee1a61ac319f95fa65ab298bb126fe937d",
+      "source": "c984bee54b66f86f4e2b8db306fc17b417669b33",
+      "paths": [
+        "data/maps/ViridianForest/map.json",
+        "data/maps/ViridianForest/scripts.inc",
+        "data/maps/ViridianForest/text.inc",
+        "include/constants/event_objects.h",
+        "include/constants/flags.h",
+        "src/data/object_events/object_event_graphics_info.h",
+        "src/data/object_events/object_event_graphics_info_pointers.h",
+        "src/data/object_events/object_event_pic_tables.h",
+        "src/data/pokemon/species_info.h",
+        "src/event_object_movement.c"
+      ],
+      "patch_sha256": "8556fdb909b56a4d48ef201512649213f73e4f0bbfed47710f2ff036a5c051fc"
+    },
+    {
+      "name": "pc-exp-share",
+      "base": "197d85ee1a61ac319f95fa65ab298bb126fe937d",
+      "source": "6c94e8a130a70b7d71548c36288570a9ec0dbfc0",
+      "paths": [
+        "src/player_pc.c"
+      ],
+      "patch_sha256": "2bcacc2ae4c0d89927e7da9101f4e178eee97b711d5c3922256a30a2e57dbc5b"
+    }
+  ],
+  "conflict_resolution": "PR249 removes the forced-SOCKET helper, which also held the experimental opening follower selection. Preserve the existing slot0 selection/refresh under renamed ScriptSelectStarterPikachuFollower, in the original special slot and called after the native starter nickname editor. No forced nickname or external art added; SUE function and crypto exactly match validated249.",
+  "verification": {
+    "source_scope_checks": "PASS",
+    "build_command": "source /tmp/ly3-env.sh; scripts/prepare-baseline.sh; make -j2",
+    "compiler_commit": "da598c1d918402c42c0c0d7128ba14567f3175e9",
+    "upstream_build_inputs_commit": "ce6406d8c2eaf46d543c8a2606de0c3cb1951982",
+    "dependencies": [
+      {
+        "Package": "binutils-arm-none-eabi",
+        "Version": "2.44-3+23+b1",
+        "Filename": "pool/main/b/binutils-arm-none-eabi/binutils-arm-none-eabi_2.44-3+23+b1_amd64.deb",
+        "SHA256": "c9c4944e54de852536b4f6a238a682c38a6243cdc2843dd1c4f587e046c0615b",
+        "Depends": "libc6 (>= 2.38), libzstd1 (>= 1.5.5), zlib1g (>= 1:1.2.0)"
+      },
+      {
+        "Package": "libpng-dev",
+        "Version": "1.6.48-1+deb13u5",
+        "Filename": "pool/main/libp/libpng1.6/libpng-dev_1.6.48-1+deb13u5_amd64.deb",
+        "SHA256": "9027d5ace59ce266124c87054302805f49f9cb1ec4a6c8264a64596c7916fbff",
+        "Depends": "libpng16-16t64 (= 1.6.48-1+deb13u5), zlib1g-dev"
+      },
+      {
+        "Package": "libpng16-16t64",
+        "Version": "1.6.48-1+deb13u5",
+        "Filename": "pool/main/libp/libpng1.6/libpng16-16t64_1.6.48-1+deb13u5_amd64.deb",
+        "SHA256": "2465b4e9fa85cff54dc10a6da3e64074d8d9292c86e4a8f989b809d6b158e97e",
+        "Depends": "libc6 (>= 2.29), zlib1g (>= 1:1.2.3.4)"
+      },
+      {
+        "Package": "zlib1g-dev",
+        "Version": "1:1.3.dfsg+really1.3.1-1+b1",
+        "Filename": "pool/main/z/zlib/zlib1g-dev_1.3.dfsg+really1.3.1-1+b1_amd64.deb",
+        "SHA256": "76ed5c858e1aef38b7be93acce5910e457e77bd6271471b9d05fb42e78826224",
+        "Depends": "zlib1g (= 1:1.3.dfsg+really1.3.1-1+b1), libc6-dev | libc-dev"
+      }
+    ],
+    "build_status": "SUCCESS",
+    "automated_gameplay_tests_run": false,
+    "emulator_run": false,
+    "rain_retested": false,
+    "rom_filename": "Lightning_Yellow_Playtest_003.gba",
+    "rom_bytes": 16777216,
+    "rom_sha256": "eecfbe7268877993f786451a8082273bc4a53e958c1b083ad6f809a8307fdcd1",
+    "header_check": "PASS:16MiB/BPRE/fixed byte/header complement",
+    "compiled_pc_table_check": "PASS:182,1,0,0 from gNewGamePCItems ROM symbol",
+    "compiled_event_symbols": "PASS:Heracross script/graphics,SUE delivery and preserved opening hook"
+  },
+  "prior_accepted_feature_evidence_reused": {
+    "WRL001": "source0f693dd7 focused681 native assertions",
+    "SOW002": "sourcea9198e7 focused3505 native assertions;238ec53 clean/upstream43786553053 SUCCESS"
+  },
+  "limitations": [
+    "Combined private integration has not run automated gameplay tests or emulator/boot/playthrough acceptance; compilation is not runtime certification",
+    "Start a fresh game; no migration for an already-acquired player-owned SUE or old PC inventories",
+    "Snow-particle persistence still awaits owner gameplay confirmation",
+    "Existing missing follower artwork, unimplemented moves402/404/405 and other unfinished special statics remain outside these notes"
+  ],
+  "accounting": {
+    "permanent_task_ids": 50,
+    "earned": 461,
+    "remaining": 251,
+    "total": 712
+  }
+}

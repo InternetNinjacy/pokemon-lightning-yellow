@@ -63,3 +63,34 @@ confirmation of sustained snowfall. Existing owner-approved successful rain/Sun,
 snow palette/battle Hail and Parcel/Pokedex/Eevee delivery remain accepted.
 WRL-010 and Pikachu/SUE OT corrections stay queued. No points awarded; 50 IDs,
 461 earned / 251 remaining / 712 total unchanged.
+
+
+## Playtest003 — owner playtest-note updates
+
+Owner explicitly requests combining their reported playtest corrections and a new
+private downloadable ROM before continuing broader development. This update starts
+from Playtest002 source153cb092 and preserves its Snow timer repair and all prior
+experimental content. Gameplay source1a8b36de9d8689e98fcccdec38fbff98c617f1d0.
+
+Included: approved13 catch125 fields plus Heracross125; PR249 delivered SUE/OAK
+foreign ownership and player-owned Pikachu naming; PR254 stationary Lv12 Forest
+Heracross at49,6 with NPC/state handling; PR255 new-game PC Exp.Share1. Production
+deltas only, from exact recorded PR sources; no tests/CI/policy assertion changes
+imported. Existing opening follower selection is preserved independently of the
+removed forced SOCKET nickname, using the renamed special at its original slot
+after the native nickname editor. No external follower artwork added.
+
+Build SUCCESS with pinned agbccda598c1d and checksum-verified extracted Debian
+binutils2.44/libpng dependencies. Lightning_Yellow_Playtest_003.gba:16,777,216 bytes;
+SHA256 eecfbe7268877993f786451a8082273bc4a53e958c1b083ad6f809a8307fdcd1.
+Header/BPRE/header-complement and compiled PC table182,1,0,0 checks PASS. Heracross
+script/graphics and gift/hook symbols are present in the built ELF/ROM.
+No emulator/automated gameplay/rain tests executed. Previous681/3505 focused native
+proofs are reused feature evidence, not a combined integration or boot pass.
+
+Use a fresh new game and separate save files. Existing SUE and PC inventories are
+not migrated. Snow-particle persistence awaits owner confirmation; other unfinished
+work remains unchanged. Main197d85ee, recovery02240690 and original PR branches stay
+unchanged; no formal merge/acceptance/points. Detailed source/build provenance:
+[Playtest003 manifest](playtest/2026-11-15-playtest-003-notes.json). No ROM or generated
+artifact is committed to Git or uploaded to Actions; private user download only.

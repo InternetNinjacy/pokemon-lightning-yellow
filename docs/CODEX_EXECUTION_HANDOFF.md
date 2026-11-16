@@ -1,3 +1,12 @@
+## Private Playtest003 — 2026-11-15 (current experimental branch)
+
+- Owner requests only their playtest-note fixes, a private playable download, then manual testing before broader work.
+- Experimental gameplay1a8b36de9d8689e98fcccdec38fbff98c617f1d0 starts from002153cb092. Includes13catch125+Heracross125,249SUE/OAK/Pikachu naming,254Heracross,255PCExp.Share1; keeps002snow fix and all earlier content.
+- One integration conflict: separate existing opening follower selection from forcedSOCKET; preserve original special slot, run selection after native nickname editor. SUE function exactly249. No external art.
+- make-j2 SUCCESS. Output Lightning_Yellow_Playtest_003.gba16MiB, SHA256eecfbe7268877993f786451a8082273bc4a53e958c1b083ad6f809a8307fdcd1. Header/compiledPC182,1,0,0/event symbols PASS. No automated gameplay/emulator/rain test. Owner runtime confirmation pending, fresh game needed.
+- See docs/playtest/2026-11-15-playtest-003-notes.json and docs/EXPERIMENTAL_PLAYTEST.md. Private artifact delivered in originating chat; no ROM Git/Actions upload.
+- Main197d85ee/recovery02240690/original249254255 unchanged. Tests/workflows/tracker byte-identical to002.50 IDs461/251/712; no points/formal merge/acceptance.
+
 # Experimental Playtest 002 checkpoint — November 15, 2026
 
 Owner continued the smallest #248 snow particle persistence fix. Gameplay commit
