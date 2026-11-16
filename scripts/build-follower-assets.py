@@ -10,6 +10,8 @@ import csv
 import hashlib
 import importlib.util
 import json
+import os
+import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -144,7 +146,20 @@ def main():
     args.report.parent.mkdir(parents=True,exist_ok=True)
     args.report.write_text(json.dumps(report,indent=2)+"\n")
     args.output.parent.mkdir(parents=True,exist_ok=True)
-    args.output.write_text(content)
+    # Atomic replacement avoids leaving a partially written tracked include
+    # if the file system fails partway through a large private art write.
+    temporary = None
+    try:
+        with tempfile.NamedTemporaryFile(
+            mode="w", encoding="utf-8", dir=args.output.parent,
+            prefix=".follower-registry-", suffix=".tmp", delete=False
+        ) as stream:
+            temporary = Path(stream.name)
+            stream.write(content)
+        os.replace(temporary, args.output)
+    finally:
+        if temporary is not None:
+            temporary.unlink(missing_ok=True)
     print(json.dumps(report,indent=2))
 if __name__=="__main__":
     main()
