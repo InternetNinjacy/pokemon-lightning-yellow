@@ -1,0 +1,98 @@
+# PRIVATE REPOSITORY ONLY. The source PR is public but this workflow must
+# be copied into a private full-history mirror before it can produce a ROM.
+# Do not add pull_request or push triggers: manual, owner-approved build only.
+name: Private Playtest004 ROM build
+
+on:
+  workflow_dispatch:
+    inputs:
+      rights_confirmed:
+        description: 'I have verified artwork permissions and attribution for this project'
+        required: true
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  private-build:
+    name: Compile private Playtest004 (no gameplay tests)
+    if: ${{ github.event.repository.private == true && inputs.rights_confirmed == true && github.ref == 'refs/heads/integration/playtest004-pichu-sue-follower-private-build-20261116' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - name: Checkout exact integration history
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Check source and private permission record are available
+        env:
+          PRIVATE_ATTRIBUTION_B64: ${{ secrets.PRIVATE_FOLLOWER_ATTRIBUTION_B64 }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "${{ github.event.repository.private }}" = "true"
+          test "${{ github.ref }}" = "refs/heads/integration/playtest004-pichu-sue-follower-private-build-20261116"
+          test -n "$PRIVATE_ATTRIBUTION_B64" || { echo "Missing private artist rights/attribution secret."; exit 1; }
+          git merge-base --is-ancestor 1ea7c53c3ec0044e2343a96611c95a6dec07e4c7 HEAD
+          python3 - <<'PY'
+          import base64, os
+          from pathlib import Path
+          secret = os.environ["PRIVATE_ATTRIBUTION_B64"]
+          try:
+              decoded = base64.b64decode(secret, validate=True).decode("utf-8")
+          except (ValueError, UnicodeDecodeError) as exc:
+              raise SystemExit("Private attribution secret must contain valid base64 UTF-8 text") from exc
+          if len(decoded.strip()) < 40:
+              raise SystemExit("Private artist rights/attribution record is missing or incomplete")
+          file = Path(os.environ["RUNNER_TEMP"]) / "follower-permissions.txt"
+          file.write_text(decoded, encoding="utf-8")
+          file.chmod(0o600)
+          print("Private attribution record supplied. This does not independently certify legal scope.")
+          PY
+          unset PRIVATE_ATTRIBUTION_B64
+
+      - name: Install native build dependencies (no emulator)
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends build-essential binutils-arm-none-eabi git libpng-dev python3
+          command -v arm-none-eabi-as
+          command -v arm-none-eabi-ld
+
+      - name: Prepare exact pinned original compiler and build inputs
+        run: |
+          set -euo pipefail
+          bash scripts/prepare-baseline.sh
+          test -x tools/agbcc/bin/agbcc
+
+      - name: Build permission-cleared private ROM (no gameplay testing)
+        env:
+          FOLLOWER_CACHE_ONLY: "0"
+        run: |
+          set -euo pipefail
+          python3 scripts/build-private-playtest004.py \
+            --attribution "$RUNNER_TEMP/follower-permissions.txt" \
+            --output-dir "$RUNNER_TEMP/private-playtest004"
+          test -s "$RUNNER_TEMP/private-playtest004/Playtest004.gba"
+          test -s "$RUNNER_TEMP/private-playtest004/Playtest004.build.json"
+
+      - name: Upload ROM privately with one-day retention
+        if: ${{ success() && github.event.repository.private == true }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: owner-private-playtest004-${{ github.sha }}
+          path: |
+            ${{ runner.temp }}/private-playtest004/Playtest004.gba
+            ${{ runner.temp }}/private-playtest004/Playtest004.build.json
+          if-no-files-found: error
+          retention-days: 1
+
+      - name: Delete private workspace files from runner
+        if: always()
+        shell: bash
+        run: |
+          rm -rf "$RUNNER_TEMP/private-playtest004" "$RUNNER_TEMP/follower-permissions.txt"
