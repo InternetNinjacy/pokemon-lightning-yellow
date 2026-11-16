@@ -31,6 +31,8 @@ def fetch(path):
     dest = CACHE / path
     if dest.is_file():
         return dest.read_bytes()
+    if os.environ.get("FOLLOWER_CACHE_ONLY") == "1":
+        raise FileNotFoundError("pinned follower asset not found in offline cache: " + path)
     url = BASE + path
     for attempt in range(4):
         try:
