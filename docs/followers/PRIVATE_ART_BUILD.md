@@ -100,17 +100,19 @@ the main C source did not change.
 The converter's **local-only** metadata now inventories 765 distinct inputs
 (252 base sprites and 3 Castform forms, each with one PNG and two palette files).
 For each input, it records path, observed Git blob SHA-1, SHA-256, byte count,
-and whether an explicit inventory blob pin was checked. Only the 252 base PNGs
-have recorded per-file Git blob pins in the existing 252-species inventory;
-the two palettes per base species and the three Castform-form triples are
-identified by their pinned *repository revision and path* but not separately
-cross-checked against a pre-recorded blob ID. Those values must not be described
-as independently cryptographically pinned to upstream until a trusted per-file
-expected hash inventory has been obtained.
+and whether the input was checked against a pinned upstream Git blob. The new
+text-only `docs/followers/expected-source-blobs.json` records all **765** expected
+blob SHA-1 hashes and lengths from the exact upstream Git tree at commit
+`cbe04a7a2ef645bee19d159876da074154ccf1f2`. The GitHub tree returned
+`truncated=false` with 25,529 entries; the original 252 base PNG pins matched
+that tree exactly. Thus every palette and Castform-form asset now has an
+independently obtained expected Git blob hash, rather than relying only on path.
 
 The pre-build readiness gate checks that the 765 source paths are complete,
-unique, and in the exact approved inventory/form order, plus source digest
-formatting, byte counts, and the truthful pin-verification flags. It checks the
-generated table hash and all 255 entries, but cannot by itself verify that the
-un-pinned palette bytes match the upstream revision. This intentionally
-documents the remaining provenance gap instead of hiding it.
+unique, and in the exact approved inventory/form order, plus source digests,
+recorded byte counts, and affirmative per-file upstream pin verification.
+It checks the generated table SHA-256 and all 255 entries. The converter
+compares the bytes of every fetched or locally cached source file against
+its expected Git blob SHA-1 and expected byte length, including palettes.
+These checks verify file identity **only**; they do not grant permission,
+prove artist ownership, validate gameplay, or guarantee a ROM build.
