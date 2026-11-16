@@ -46,6 +46,9 @@ def main():
     subprocess.run(["git", "merge-base", "--is-ancestor", PR256_ANCHOR, "HEAD"],
                    cwd=ROOT, check=True)
     source = command("git", "rev-parse", "HEAD")
+    dirty = command("git", "status", "--porcelain", "--untracked-files=no")
+    if dirty:
+        parser.error("working source is modified; use a clean private checkout to protect the Pichu/Sue build")
     if not (ROOT / "docs/followers/expected-source-blobs.json").is_file():
         parser.error("252-follower pinned asset inventory missing from this checkout")
     if not (ROOT / "docs/playtest/2026-11-15-playtest-004-staging.json").is_file():
@@ -61,6 +64,14 @@ def main():
                                 "arm-none-eabi-objcopy") if shutil.which(name, path=tool_path) is None]
     if missing:
         parser.error("missing required native GBA tools: " + ", ".join(missing))
+    # The project defaults to the pinned non-modern compiler, not host gcc.
+    # Modern builds must explicitly select their own compiler/toolchain path.
+    if os.environ.get("MODERN", "0") != "1":
+        compiler = ROOT / "tools/agbcc/bin/agbcc"
+        if not compiler.is_file() or not os.access(compiler, os.X_OK):
+            parser.error("missing pinned FireRed agbcc compiler; prepare the approved toolchain before importing artwork")
+    elif shutil.which("arm-none-eabi-gcc", path=tool_path) is None:
+        parser.error("MODERN=1 requires arm-none-eabi-gcc")
 
     output = args.output_dir.resolve()
     if os.path.commonpath([str(ROOT), str(output)]) == str(ROOT):
