@@ -192,7 +192,7 @@
 // Unused?
 #define FLAG_PEWTER_MUSEUM_TRIVIA_WON                   0x0AF
 #define FLAG_PEWTER_MUSEUM_SHINY_EGG_RECEIVED          0x0B0
-#define FLAG_0x0B1               0x0B1
+#define FLAG_HIDE_ROUTE6_TM34                         0x0B1
 #define FLAG_0x0B2               0x0B2
 #define FLAG_0x0B3               0x0B3
 #define FLAG_0x0B4               0x0B4
@@ -1232,7 +1232,7 @@
 #define FLAG_UNUSED_0x4AC               0x4AC // Unused Flag
 #define FLAG_UNUSED_0x4AD               0x4AD // Unused Flag
 #define FLAG_UNUSED_0x4AE               0x4AE // Unused Flag
-#define FLAG_UNUSED_0x4AF               0x4AF // Unused Flag
+#define FLAG_GOT_ROUTE6_TM34                           0x4AF
 
 // Boss clear flags, 1200
 #define FLAG_DEFEATED_BROCK           0x4B0

@@ -1917,3 +1917,7 @@ amendment to existing draft PR250, retaining fixed WRL001 source and all existin
 workflows/gates/guards. PR249/233 ownership unchanged. Owner accepted weather/
 Parcel passes, #248 snow confirmation and WRL010 queue preserved. No points or
 task closure;50 IDs/461 earned/251 remaining/712 total unchanged.
+
+## 2026-11-16 — Implementation-first: Route 6 Shock Wave item ball
+
+Actual gameplay source added on `implementation/route6-shock-wave-pickup-20261116` from main `197d85ee1a61ac319f95fa65ab298bb126fe937d`: Route6 object 7 at (18,15), native item-ball art and `finditem ITEM_TM34`, existing Misty-defeat unlock, independent visibility/claim flags 0x0B1/0x4AF, native full-pocket retry. Production files: `data/maps/Route6/map.json`, `data/maps/Route6/scripts.inc`, `include/constants/flags.h`. Original route content/ecology and other owners untouched. Reuses original Std_FindItem/Route9 TM40 mechanisms; new behavior is approved post-Misty appearance/one-save pickup. Exact source authority and integration boundary in `docs/ROUTE6_SHOCK_WAVE_PICKUP.md`. TM51/Surge reward conversion remains separate; existing temporary Surge TM34 source is preserved pending that integration. No tests, builds, emulator/diagnostic runs, workflow edits, merge or point award; [skip ci] preserves no-test directive without bypassing merge gates. 50 IDs / 461 earned / 251 remaining / 712 total unchanged.
