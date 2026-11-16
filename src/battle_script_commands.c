@@ -5439,6 +5439,16 @@ static void Cmd_getmoneyreward(void)
         {
             moneyReward = gBattleResources->secretBase->party.levels[0] * 20 * gBattleStruct->moneyMultiplier;
         }
+        else if (gTrainerBattleOpponent_A == TRAINER_LEADER_BROCK)
+        {
+            // Approved prize, independent of the revised party's final level.
+            moneyReward = 1400 * gBattleStruct->moneyMultiplier;
+        }
+        else if (gTrainerBattleOpponent_A == TRAINER_LEADER_MISTY)
+        {
+            // Approved total for this battle; do not double it for Doubles.
+            moneyReward = 3000 * gBattleStruct->moneyMultiplier;
+        }
         else
         {
             switch (gTrainers[gTrainerBattleOpponent_A].partyFlags)
