@@ -73,3 +73,18 @@ Integrate this narrow build hook into the existing WRL-010 implementation
 branch **after** checking for head drift; do not duplicate or replace its
 follower state, movement, menu, PC, save or sprite-loader code. PR #256
 Pichu/Sue changes and Playtest004 staging remain independent.
+
+### Offline private builds from a previously populated pinned cache
+
+To avoid network dependency when the permission-cleared source files are already
+stored in the build machine's local cache, add `FOLLOWER_CACHE_ONLY=1` to the
+`make private-followers-rom` invocation. The existing converter's verifier will
+then refuse any missing source file without trying GitHub. Its pinned PNG Git blob
+checks still run on cached source bytes. Configure `FOLLOWER_CACHE` to the local
+cache directory if the default temporary cache does not contain the files.
+
+The Makefile now checks that the local permission/attribution record exists and
+is nonempty **before** downloading or converting any art. Its content must still
+be examined for actual artist, source, and scope information; a text-file size
+check does not itself prove legal authorization. Cache-only cannot fabricate
+missing pixels or permission and does not produce a ROM in this environment.
