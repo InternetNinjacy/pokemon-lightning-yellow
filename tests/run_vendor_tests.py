@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 from approved_sevii_water_second_changes import prior_sevii_water_second_source
+from approved_pre_typing_species_projection import prior_pre_typing_species_bytes
 from approved_museum_changes import prior_museum_source
 """Executable production RNG mapping and separate static scope checks.
 
@@ -43,7 +44,8 @@ with tempfile.TemporaryDirectory(prefix='lightning-vendor-') as temp:
 
 fixture=json.loads(Path('tests/specifications/mystery_vendor_preserved.json').read_text())
 for path,digest in fixture['files'].items():
-    assert hashlib.sha256(prior_sevii_water_second_source(path)).hexdigest()==digest,path
+    original = (prior_pre_typing_species_bytes() if path == 'src/data/pokemon/species_info.h' else prior_sevii_water_second_source(path))
+    assert hashlib.sha256(original).hexdigest()==digest,path
 blocks=lambda s:dict(re.findall(r'^(\w+)::\n(.*?)(?=^\w+::|\Z)',s,re.M|re.S))
 for path,items in fixture['blocks'].items():
     current=blocks(Path(path).read_text())
