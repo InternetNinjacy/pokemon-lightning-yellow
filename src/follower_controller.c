@@ -286,6 +286,11 @@ void FollowerController_Tick(void)
     followerSprite->x2 = playerSprite->x2;
     followerSprite->y2 = playerSprite->y2;
     followerSprite->oam.priority = playerSprite->oam.priority;
+    // The player's depth can change while walking behind trees, terrain,
+    // or bridges. Keep the follower just behind the player rather than
+    // retaining its initial draw order for the entire map.
+    followerSprite->subpriority = playerSprite->subpriority == 255
+                               ? 255 : playerSprite->subpriority + 1;
     followerSprite->invisible = FALSE;
 
     // Face the direction the follower actually walked. Turning the player
