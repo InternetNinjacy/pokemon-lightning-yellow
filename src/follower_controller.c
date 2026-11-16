@@ -112,8 +112,13 @@ static void PrepareAssetForSlot(s8 slot)
     // The approved roster is authoritative; do not load off-roster data.
     if (SpeciesToCustomPokedexNum(species) == 0)
     {
+        // An unsupported species cannot use the last Pokémon's image.
+        // Keep the player's choice, but free the old follower's resources.
         sPendingAsset = FALSE;
         sBoundAsset = FALSE;
+        if (FollowerGraphics_GetSpriteId() < MAX_SPRITES)
+            FollowerGraphics_Release();
+        ResetTrail();
         return;
     }
     shiny = IsMonShiny(mon);
@@ -199,6 +204,10 @@ void FollowerController_Tick(void)
         }
     }
     PrepareAssetForSlot(slot);
+    // Preparing artwork can release an outdated follower. Never continue
+    // using sprite/event numbers captured before that release.
+    spriteId = FollowerGraphics_GetSpriteId();
+    eventId = FollowerGraphics_GetObjectEventId();
     if (spriteId >= MAX_SPRITES || eventId >= OBJECT_EVENTS_COUNT)
     {
         sBoundAsset = FALSE;
