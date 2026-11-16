@@ -1917,3 +1917,7 @@ amendment to existing draft PR250, retaining fixed WRL001 source and all existin
 workflows/gates/guards. PR249/233 ownership unchanged. Owner accepted weather/
 Parcel passes, #248 snow confirmation and WRL010 queue preserved. No points or
 task closure;50 IDs/461 earned/251 remaining/712 total unchanged.
+
+## 2026-11-16 — Implementation-first: Pewter approved reward/name/dialogue
+
+Independent `implementation/pewter-approved-rewards-dialogue-20261116` from main `197d85ee1a61ac319f95fa65ab298bb126fe937d` implements TM07 Hail instead of TM39 Rock Tomb, the Avalanche Badge shared display name with original art, verbatim owner-approved Brock and Liam dialogue. Actual gameplay files: `data/maps/PewterCity_Gym/scripts.inc`, `data/maps/PewterCity_Gym/text.inc`, `src/strings.c`. Reuses native leader victory, one-time/full-pocket reward, existing original reward flag/save bit and badge text/music mechanisms; no party/AI/weather/terrain changes. Exact authority in `docs/PEWTER_APPROVED_REWARDS_DIALOGUE.md`; PR126 explicitly excluded this slice. No tests/builds/emulator/diagnostic workflows or failed-test investigations, no gates changed, no merge or points; [skip ci]. Independent Route6 pickup PR259 is separately committed, not included here. 50 IDs / 461 earned / 251 remaining / 712 total preserved.

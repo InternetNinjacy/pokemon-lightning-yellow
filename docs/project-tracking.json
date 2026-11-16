@@ -1307,7 +1307,7 @@
       "dependencies": [],
       "status": {
         "design": "All eight Gym/41 Gym Trainer species approved; ordinary class eligibility41/41 closed",
-        "implementation": "not started",
+        "implementation": "not started; independent Pewter TM07/Avalanche Badge/verbatim dialogue source staged 2026-11-16, untested/unmerged",
         "automated": "not executed for new work",
         "emulator": "not executed",
         "pull_request": "not created",
@@ -1319,7 +1319,7 @@
       "ci_url": null,
       "blocker": "Final individual levels/moves for many trainers remain unassigned; Castform replacements supersede Swinub/Staryu. Eligibility pools do not assign510 non-Gym parties. Exports are available.",
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Use final Gym handoff and41-class final handoff; implement only exact complete battle sets after their engine dependencies; no invented teams.",
+      "next_action": "Use final Gym handoff and41-class final handoff; implement only exact complete battle sets after their engine dependencies; no invented teams. Preserve independently staged Pewter reward/name/dialogue branch; source-ID mapping of remaining ordinary Gym species pairs needs reconciliation.",
       "checkpoint": "2026-11-04 supplied-export reconciliation; old unavailable-document claims superseded; no implementation/test credit from availability.",
       "scope_note": "All ordinary Gym/class work except separately tracked Blaine GYM-004 and Ranger Base Camp GYM-005; preserve pending ordinary Trainer scope. Excludes the five points transferred to GYM-007.",
       "source_exports": [
@@ -1329,7 +1329,21 @@
         "04_SPECIES_EVOLUTION_WORLD/Pokémon Lightning Yellow — Trainer Class Eligibility FINAL Handoff — 2026-11-03.txt",
         "02_GYMS/Pokémon Lightning Yellow — Vermilion Gym Approved Design Handoff — 2026-10-29.txt"
       ],
-      "source_status": "available locally; checksums verified; precise approvals/read scope in reconciliation report"
+      "source_status": "available locally; checksums verified; precise approvals/read scope in reconciliation report",
+      "implementation_increments": [
+        {
+          "date": "2026-11-16",
+          "feature": "Pewter approved TM07 Hail reward, Avalanche Badge name, Brock/Liam exact dialogue",
+          "branch": "implementation/pewter-approved-rewards-dialogue-20261116",
+          "base_sha": "197d85ee1a61ac319f95fa65ab298bb126fe937d",
+          "status": "source implemented; no tests/build/CI/merge or acceptance credit",
+          "source_files": [
+            "data/maps/PewterCity_Gym/scripts.inc",
+            "data/maps/PewterCity_Gym/text.inc",
+            "src/strings.c"
+          ]
+        }
+      ]
     },
     {
       "id": "GYM-002",
