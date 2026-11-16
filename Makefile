@@ -15,6 +15,11 @@ private-followers-rom:
 	@command -v $(AS) >/dev/null 2>&1 || (echo "Missing GBA assembler $(AS); refusing asset download"; exit 1)
 	@command -v $(LD) >/dev/null 2>&1 || (echo "Missing GBA linker $(LD); refusing asset download"; exit 1)
 	@command -v $(OBJCOPY) >/dev/null 2>&1 || (echo "Missing GBA ROM converter $(OBJCOPY); refusing asset download"; exit 1)
+ifeq ($(MODERN),0)
+	@test -x tools/agbcc/bin/agbcc$(EXE) || (echo "Missing pinned agbcc compiler; run the approved private toolchain preparation before importing art"; exit 1)
+else
+	@command -v $(PREFIX)gcc >/dev/null 2>&1 || (echo "Missing modern GBA C compiler $(PREFIX)gcc; refusing asset download"; exit 1)
+endif
 	FOLLOWER_CACHE_ONLY="$(FOLLOWER_CACHE_ONLY)" python3 scripts/build-follower-assets.py --confirmed-scope
 	python3 scripts/check-follower-build-readiness.py --attribution "$(FOLLOWER_ATTRIBUTION_FILE)"
 	$(MAKE) rom
