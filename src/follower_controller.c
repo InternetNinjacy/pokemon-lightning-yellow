@@ -37,11 +37,17 @@ static u8 sLastCopiedFrame;
 static bool8 sHasCopiedFrame;
 static bool8 sFrameMirrored;
 static u8 sWalkFrameCounter;
+static u8 sLastFollowerDirection;
+static bool8 sHasFollowerDirection;
 
 static void ResetTrail(void)
 {
     sHasTrailAnchor = FALSE;
     sLastPlayerObjectId = OBJECT_EVENTS_COUNT;
+    // An old direction cannot carry across a map load, follower change,
+    // or a period when the selected Pokémon is not visible.
+    sHasFollowerDirection = FALSE;
+    sWalkFrameCounter = 0;
 }
 
 void FollowerController_RequestRefresh(void)
@@ -277,9 +283,10 @@ void FollowerController_Tick(void)
     followerSprite->oam.priority = playerSprite->oam.priority;
     followerSprite->invisible = FALSE;
 
-    // Follow the direction of the follower's own completed tile step, not
-    // the player's current facing: after a corner those are often different.
-    // While stationary, retain the existing player-facing fallback.
+    // Face the direction the follower actually walked. Turning the player
+    // in place must not rotate a stationary Pokémon or make it look as though
+    // it took the player's next turn before moving around the corner.
+    // On a fresh map/follower, use the player-facing direction once.
     // Six-cell art contract: south 0/1, north 2/3, west 4/5,
     // east mirrored west. Frame bytes copy in VBlank only.
     if (follower->currentCoords.x > follower->previousCoords.x)
@@ -290,8 +297,12 @@ void FollowerController_Tick(void)
         direction = DIR_SOUTH;
     else if (follower->currentCoords.y < follower->previousCoords.y)
         direction = DIR_NORTH;
+    else if (sHasFollowerDirection)
+        direction = sLastFollowerDirection;
     else
         direction = GetPlayerFacingDirection();
+    sLastFollowerDirection = direction;
+    sHasFollowerDirection = TRUE;
     sFrameMirrored = (direction == DIR_EAST);
     if (direction == DIR_NORTH)
         sFrameToCopy = 2;
