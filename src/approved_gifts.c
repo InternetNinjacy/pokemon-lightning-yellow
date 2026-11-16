@@ -49,7 +49,7 @@ u16 ScriptGiveTangoTangela(void)
 // Native givemon and the naming editor retain the player's ownership/name.
 void ScriptSelectStarterPikachuFollower(void)
 {
-    if (gPlayerPartyCount != 0 && GetMonData(&gPlayerParty[0], MON_DATA_SPECIES) == SPECIES_PIKACHU)
+    if (gPlayerPartyCount != 0 && GetMonData(&gPlayerParty[0], MON_DATA_SPECIES) == SPECIES_PICHU)
     {
         if (FollowerState_SelectPartySlot(0))
             FollowerController_RequestRefresh();
