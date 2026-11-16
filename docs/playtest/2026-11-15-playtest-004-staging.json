@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "build_id": "LY-playtest-004-STAGED-20261115",
+  "status": "SOURCE_STAGED_NOT_BUILT",
+  "source_branch": "feature/playtest003-pichu-starter-balance-20261115",
+  "source_commit": "b1035a3a1496c1a0796b6449a55ce8115b301a3f",
+  "base_playtest_branch": "experimental/playtest-2026-11-15",
+  "base_playtest_commit": "0e1b2f584ab3961d15e0080cec4e596f0aa862c5",
+  "base_playtest_gameplay_commit": "1a8b36de9d8689e98fcccdec38fbff98c617f1d0",
+  "prior_playtest_rom_sha256": "eecfbe7268877993f786451a8082273bc4a53e958c1b083ad6f809a8307fdcd1",
+  "included_owner_changes": [
+    "Oak gives Lv5 Pichu (not Pikachu) using existing native starter dialogue/naming/follower path",
+    "Pichu initial moves Tackle, Thunder Wave, Growl; no fourth move",
+    "Pichu HP45 Atk52 Def45 Speed65 SpAtk55 SpDef47 = 309",
+    "Pikachu HP60 Atk70 Def55 Speed90 SpAtk75 SpDef55 = 405",
+    "Raichu HP80 Atk95 Def75 Speed110 SpAtk100 SpDef74 = 534",
+    "After Oak Parcel/Pokedex scene, Oak grants permission for last table Poke Ball; no immediate gift",
+    "Leftmost existing Oak lab ball (8,4) delivers Lv5 SUE Eevee through unchanged secure Oak foreign OT function, with traded EXP/obedience",
+    "Successful party or PC gift removes ball and sets completed flag; no room preserves pickup"
+  ],
+  "preserved": [
+    "Playtest003 Heracross, catch125, Exp.Share in new-game PC, snow timer, prior approved maps/weather/content",
+    "Existing rival Lv5 Dratini species, level and moves",
+    "Original Eevee OT secure rekey / party and PC delivery function unchanged",
+    "Main branch, original Playtest003 binary, other feature PR branches and accounting"
+  ],
+  "change_summary": {
+    "commits_ahead_of_base": 7,
+    "changed_paths": [
+      "data/maps/PalletTown_ProfessorOaksLab/scripts.inc",
+      "data/maps/PalletTown_ProfessorOaksLab/text.inc",
+      "src/approved_gifts.c",
+      "src/data/pokemon/level_up_learnsets.h",
+      "src/data/pokemon/species_info.h"
+    ]
+  },
+  "build": {
+    "status": "NOT_BUILT",
+    "rom_filename": null,
+    "rom_sha256": null,
+    "commands_from_prior_manifest": [
+      "scripts/prepare-baseline.sh",
+      "make -j2"
+    ],
+    "blocker": "Current assistant container cannot resolve github.com to retrieve the repository and lacks installed arm-none-eabi compiler; connected GitHub API supports source changes but cannot invoke native builds.",
+    "no_rom_or_proprietary_artifact_in_git": true
+  },
+  "owner_testing": {
+    "responsible": "owner",
+    "assistant_gameplay_testing_requested": false,
+    "gameplay_tests_run": false,
+    "emulator_run": false,
+    "rain_retested": false
+  },
+  "accounting": {
+    "permanent_ids": 50,
+    "earned": 461,
+    "remaining": 251,
+    "total": 712
+  },
+  "note": "This is a proposed next-playtest source manifest, NOT a completed, downloadable, gameplay-validated ROM."
+}
