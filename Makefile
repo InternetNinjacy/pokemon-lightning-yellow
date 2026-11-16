@@ -12,6 +12,9 @@ private-followers-rom:
 	@test "$(FOLLOWER_ART_PERMISSION_CONFIRMED)" = "1" || (echo "Set FOLLOWER_ART_PERMISSION_CONFIRMED=1 only when the pinned source is cleared for this FireRed/AI-assisted use"; exit 1)
 	@test -n "$(FOLLOWER_ATTRIBUTION_FILE)" || (echo "Set FOLLOWER_ATTRIBUTION_FILE to the local grant-scope/credit notice"; exit 1)
 	@test -s "$(FOLLOWER_ATTRIBUTION_FILE)" || (echo "Missing or empty local attribution/permission record; refusing asset download"; exit 1)
+	@command -v $(AS) >/dev/null 2>&1 || (echo "Missing GBA assembler $(AS); refusing asset download"; exit 1)
+	@command -v $(LD) >/dev/null 2>&1 || (echo "Missing GBA linker $(LD); refusing asset download"; exit 1)
+	@command -v $(OBJCOPY) >/dev/null 2>&1 || (echo "Missing GBA ROM converter $(OBJCOPY); refusing asset download"; exit 1)
 	FOLLOWER_CACHE_ONLY="$(FOLLOWER_CACHE_ONLY)" python3 scripts/build-follower-assets.py --confirmed-scope
 	python3 scripts/check-follower-build-readiness.py --attribution "$(FOLLOWER_ATTRIBUTION_FILE)"
 	$(MAKE) rom
