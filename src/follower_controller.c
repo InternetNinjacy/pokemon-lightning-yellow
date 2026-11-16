@@ -313,6 +313,11 @@ void FollowerController_Tick(void)
         direction = GetPlayerFacingDirection();
     sLastFollowerDirection = direction;
     sHasFollowerDirection = TRUE;
+    // The engine also consults an object's logical facing when determining
+    // which way it looks during interactions. Keep that in step with the
+    // actual follower image, including mirrored east-facing artwork.
+    follower->facingDirection = direction;
+    follower->movementDirection = direction;
     sFrameMirrored = (direction == DIR_EAST);
     if (direction == DIR_NORTH)
         sFrameToCopy = 2;
