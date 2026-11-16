@@ -37,6 +37,22 @@ def main():
     if len(rows) != 252 or rows[232]["species"] != "CASTFORM":
         raise ValueError("wrong approved roster; refusing sprite build")
     records = []
+    input_files = []
+
+    def get_source(path, expected_blob=None):
+        raw = audit.fetch(path)
+        actual_blob = audit.git_blob_sha(raw)
+        if expected_blob is not None and actual_blob != expected_blob:
+            raise ValueError("pinned Git blob mismatch: " + path)
+        input_files.append({
+            "path": path,
+            "git_blob_sha1": actual_blob,
+            "sha256": hashlib.sha256(raw).hexdigest(),
+            "bytes": len(raw),
+            "pinned_blob_verified": expected_blob is not None,
+        })
+        return raw
+
     generated = ["// GENERATED LOCALLY; do not commit this file with source-art bytes.",
                  "// Pinned source: " + audit.BASE,
                  "// Frames: south0/1 north0/1 west0/1; east mirrors west.",
@@ -45,9 +61,7 @@ def main():
         name = row["species"]
         species = "SPECIES_" + name
         asset_name = "sFollowerArt_%03d" % index
-        png = audit.fetch(row["kasenn_sheet"])
-        if audit.git_blob_sha(png) != row["kasenn_blob_sha"]:
-            raise ValueError("pinned blob mismatch for " + name)
+        png = get_source(row["kasenn_sheet"], row["kasenn_blob_sha"])
         details = audit.read_png(png, include_gba_frames=True)
         size = details["frame_cell_size"][0]
         if size not in (32,64):
@@ -58,7 +72,7 @@ def main():
             raise ValueError("nonzero transparent-background corner: " + name)
         palettes = {}
         for variant in ("normal", "shiny"):
-            palettes[variant] = audit.read_pal(audit.fetch(row["kasenn_" + variant + "_palette"]))
+            palettes[variant] = audit.read_pal(get_source(row["kasenn_" + variant + "_palette"]))
         blob = b"".join(details["gba_frames"])
         if len(blob) != size*size*3:
             raise ValueError("bad six-frame size: "+name)
@@ -73,14 +87,14 @@ def main():
     # Only Castform has approved form-specific source art. No new weather logic.
     for form_id, form in enumerate(("sunny","rainy","snowy"),1):
         prefix="graphics/pokemon/castform/"+form+"/overworld"
-        raw=audit.fetch(prefix+".png")
+        raw=get_source(prefix+".png")
         details=audit.read_png(raw,include_gba_frames=True)
         if details["frame_cell_size"] != [32,32]:
             raise ValueError("unexpected Castform form size "+form)
         blob=b"".join(details["gba_frames"])
         name="sFollowerCastform_"+form
-        normal=audit.read_pal(audit.fetch(prefix+"_normal.pal"))
-        shiny=audit.read_pal(audit.fetch(prefix+"_shiny.pal"))
+        normal=audit.read_pal(get_source(prefix+"_normal.pal"))
+        shiny=audit.read_pal(get_source(prefix+"_shiny.pal"))
         generated += [
             "static const u8 %s_pixels[%d] __attribute__((aligned(4))) = {\n%s\n};" %
                 (name,len(blob),words(blob)),
@@ -98,9 +112,12 @@ def main():
     content="\n".join(generated)+"\n"
     args.output.parent.mkdir(parents=True,exist_ok=True)
     args.output.write_text(content)
+    if len(input_files) != 765 or len({item["path"] for item in input_files}) != 765:
+        raise ValueError("expected exactly 765 distinct pinned source paths for 255 graphics descriptors")
     report={"base_source":audit.BASE,"base_species_count":252,"castform_form_count":3,
             "graphics_records":len(records),"generated_sha256":hashlib.sha256(content.encode()).hexdigest(),
-            "notice":"metadata only; does not certify an individual artist's permission or native gameplay acceptance"}
+            "source_file_count":len(input_files), "source_files":input_files,
+            "notice":"metadata records observed local source hashes, not grants or independent palette blob pin verification"}
     args.report.parent.mkdir(parents=True,exist_ok=True)
     args.report.write_text(json.dumps(report,indent=2)+"\n")
     print(json.dumps(report,indent=2))
