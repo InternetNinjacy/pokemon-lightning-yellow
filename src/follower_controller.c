@@ -123,7 +123,9 @@ static void PrepareAssetForSlot(s8 slot)
     if (sBoundAsset && species == sBoundSpecies
      && shiny == sBoundShiny && form == sBoundForm
      && FollowerGraphics_GetSpriteId() < MAX_SPRITES
-     && FollowerGraphics_GetObjectEventId() < OBJECT_EVENTS_COUNT)
+     && gSprites[FollowerGraphics_GetSpriteId()].inUse
+     && FollowerGraphics_GetObjectEventId() < OBJECT_EVENTS_COUNT
+     && gObjectEvents[FollowerGraphics_GetObjectEventId()].active)
         return;
     if (sPendingAsset && species == sDesiredSpecies
      && shiny == sDesiredShiny && form == sDesiredForm)
