@@ -125,10 +125,11 @@ def main():
         "static const u16 sFollowerArtCount = sizeof(sFollowerArtTable)/sizeof(sFollowerArtTable[0]);",
     ]
     content="\n".join(generated)+"\n"
-    args.output.parent.mkdir(parents=True,exist_ok=True)
-    args.output.write_text(content)
-    if len(input_files) != 765 or len({item["path"] for item in input_files}) != 765:
-        raise ValueError("expected exactly 765 distinct pinned source paths for 255 graphics descriptors")
+    # Validate the complete approved source inventory BEFORE replacing the
+    # tracked zero-art fallback. A failed conversion must not leave a partial
+    # follower registry that could be compiled by the next ordinary build.
+    if len(records) != 255 or len(input_files) != 765 or len({item["path"] for item in input_files}) != 765:
+        raise ValueError("expected 255 descriptors and 765 distinct pinned source files")
     if [item["path"] for item in input_files] != [item["path"] for item in expected_entries]:
         raise ValueError("source asset order differs from exact pinned upstream inventory")
     report={"base_source":audit.BASE,"base_species_count":252,"castform_form_count":3,
@@ -137,8 +138,13 @@ def main():
             "source_blob_manifest":"docs/followers/expected-source-blobs.json",
             "upstream_git_tree":pins["tree_sha"],
             "notice":"all 765 source blobs checked against pinned upstream Git tree; no contributor license grant or gameplay acceptance asserted"}
+    # Keep source and metadata in sync; only publish the generated registry
+    # after its metadata has been written successfully. The metadata is local,
+    # ignored by Git, and is rechecked by the private build gate.
     args.report.parent.mkdir(parents=True,exist_ok=True)
     args.report.write_text(json.dumps(report,indent=2)+"\n")
+    args.output.parent.mkdir(parents=True,exist_ok=True)
+    args.output.write_text(content)
     print(json.dumps(report,indent=2))
 if __name__=="__main__":
     main()
