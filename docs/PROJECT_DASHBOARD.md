@@ -4,7 +4,7 @@ Canonical branch: `main`. Updated 2026-11-15. Audited gameplay revision: `1f2252
 
 Overall: `[######----]` **64.75% complete /35.25% remaining** (461 earned +251 remaining;712 provisional effort points).
 
-Owner2026-11-15: independent new-game PC Potion1→Exp.Share1 table change, exact source-delta checks PASS; no existing-save migration/engine or reward changes, build/native/required CI unexecuted, keep draft/unmerged. Persistent continuation prompt corrected in both active automation prompts and canonical START HERE; proposed AGENTS rule forbids fake buttons and uses documented verified native control or clearly labeled copyable Next prompt. Existing SOW254c984bee5/233/249/250/243/244 remain separate;50 IDs461/251/712 unchanged.
+MasterControl review: PR255 exact Potion1→Exp.Share1/source/test/workflow preservation PASS; no exact-head CI or SHA-specific merge authorization.254 native3505 and238ec53 clean/upstream evidence reused;245e22e8908 full43654474642 modified132629868493 Brock host25 failure/upstream132629868370 success, no new investigation. SOW001/003/005/006 deferred designs/technical gates and existing owners preserved. GenUI.issueNewTurn response requirement recorded; action unavailable in current runtime, no simulated substitute. No merge/tests/rain/points;50 IDs461/251/712.
 
 These are estimates of tracked work, not elapsed hours or release certification. Every permanent ID and earned-history entry is retained. Approved Ponyta and Ranger work expanded the scope; the denominator is the sum of the current task effort estimates. Adding scope changes it without erasing completed work. Repeated regression is not duplicate implementation credit.
 

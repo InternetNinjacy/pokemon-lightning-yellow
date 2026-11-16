@@ -1,3 +1,12 @@
+## Master Control review — 2026-11-15 (latest)
+
+- Main197d85ee unchanged. PR255 reviewed at35f003315c13f997b631774e2d7e16dd4f6223a2: exact Potion1→Exp.Share1 PASS; every existing test/script/workflow unchanged.0 exact-head Actions/check-runs/statuses; combined statuspending. Draft/mergeable=true is not acceptance. No SHA-specific owner merge authorization; no merge/test run.
+- Matching proposed response rule now names owner-required GenUI.issueNewTurn and forbids Markdown/bracket/copy substitutes. Both active automation prompts updated; schedules/enabled states retained. Runtime has no exposed GenUI action/tool/documentation, so genuine continuation UI remains a capability blocker, never claimed fixed.
+- PR254c984bee5 unchanged: reuse native3505 at a9198e7/run43784608441 and clean/upstream proof238ec53/run43786553053 SUCCESS. No required CI substitution or rain rerun.
+- Policy245 has advanced toe22e8908a2bd69e2b6ea5f2a828aa1ebe5a8c509. Latest full43654474642: modified132629868493 FAILURE at run_brock_weather_tests.py:25, trainer_parties.h assertion; upstream132629868370 SUCCESS. Focused43654474723 SUCCESS. Read existing first failure only; no new troubleshooting/tests/edits under stop-on-new-failure policy. Ownership retained.
+- SOW001/003/005/006 remain missing onmain; levels/moves/items except Onix18 are deferred. Do not invent combat designs.005 requires scripted double/party/joint persistence path;243/244 legendary work already owned, closed Surf experiment not reopened. Raw collision graphs alone do not prove route access: door/Cut/ledge/Surf/object behavior must remain separate.
+- Protection403/rulesets[] inconclusive; no-rain/full-required-CI conflict unresolved.50 IDs461/251/712 unchanged; Playtest002 unchanged.
+
 ## Owner starting-PC / response contract correction — 2026-11-15 (latest)
 
 - Main197d85ee unchanged. Independent branch feature/new-game-pc-exp-share-20261115 starts from main; only gameplay delta is gNewGamePCItems Potion1→Exp.Share1. Existing saves are not migrated. No engine, quantity, terminator or tutorial reward edit.

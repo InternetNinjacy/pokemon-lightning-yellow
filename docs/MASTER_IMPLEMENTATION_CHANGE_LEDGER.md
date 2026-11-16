@@ -1926,3 +1926,14 @@ Owner explicitly requests replacing the initial PC Potion with Exp.Share and fix
 Root prompt cause found in active Master Pipeline automation: explicit functioning Continue Execution button demand. Removed that contradictory sentence and added a persistent response contract to both active project automation prompts. Verified saved prompts; schedules and enabled states preserved. No unsupported UI action is invented; if no verified native submit control exists, use a clearly labeled fenced copyable Next prompt, never a fake button. Canonical START HERE front notice supersedes older bracket-button instructions; Change Intake and proposed AGENTS.md persist same owner rule. This does not change ChatGPT's interface capabilities.
 
 Existing SOW002/WRL/BTL/historical/legendary ownership and proofs preserved;50 tasks461/251/712 unchanged. No merge or points.
+
+
+### 2026-11-15 — Master Control current-head review, no merge
+
+Refreshed canonical START HERE/Master Plan/Change Intake/succession handoff, main197d85ee, AGENTS/tracker/dashboard/ledger,105/comments/open owners. PR25535f00331 exact table-only Potion1→Exp.Share1 and every existing test/script/workflow preservation PASS. No exact-head Actions/check-runs/statuses; statuspending, draft/mergeable=true. No SHA-specific owner merge authorization. No build/native/rain/new tests or merge; upstream successes from another source are not255 exact-head status.
+
+PR254c984bee5 and accepted3505 native /238ec53 clean+independent upstream evidence reused without repeated runs. PR233dde9c7d historical ownership preserved. New policy245 head e22e8908 latest full43654474642 modified132629868493 FAILED at tests/run_brock_weather_tests.py:25 (trainer_parties.h), upstream132629868370 SUCCESS; focused43654474723 SUCCESS. Recorded first existing failure only; stop-on-new-failure policy respected, no investigation/fix/rerun or assertion import. No legendary/closed Surf experiment reopened or ownership duplicated.
+
+Remaining SOW audit: missing001/003/005/006 still require deferred combat decisions/native source acceptance; raw collision components omit door/Cut/ledge/Surf/object behavior and cannot prove accessibility. Existing Onix-room Grunt2 identification and scripted-double technical gate retained. No unapproved gameplay invented to fill these gaps.
+
+Owner now explicitly requires real GenUI.issueNewTurn continuation control and rejects earlier copy fallback. Updated proposed AGENTS and both active automation prompts to named native action/complete context, no simulated substitutes; preserve schedules and unrelated instructions. Runtime tools and instructions expose no GenUI.issueNewTurn callable, and local/official documentation lookup found none, so do not claim a genuine control was rendered or repaired. Canonical response notice updated with this precise capability boundary.50 IDs461/251/712 unchanged; main/Playtest002 unchanged.

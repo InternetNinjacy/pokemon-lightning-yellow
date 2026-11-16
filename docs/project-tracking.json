@@ -3,7 +3,7 @@
   "updated": "2026-11-15",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "Owner2026-11-15: independent new-game PC Potion1→Exp.Share1 table change, exact source-delta checks PASS; no existing-save migration/engine or reward changes, build/native/required CI unexecuted, keep draft/unmerged. Persistent continuation prompt corrected in both active automation prompts and canonical START HERE; proposed AGENTS rule forbids fake buttons and uses documented verified native control or clearly labeled copyable Next prompt. Existing SOW254c984bee5/233/249/250/243/244 remain separate;50 IDs461/251/712 unchanged.",
+  "current_focus": "MasterControl review: PR255 exact Potion1→Exp.Share1/source/test/workflow preservation PASS; no exact-head CI or SHA-specific merge authorization.254 native3505 and238ec53 clean/upstream evidence reused;245e22e8908 full43654474642 modified132629868493 Brock host25 failure/upstream132629868370 success, no new investigation. SOW001/003/005/006 deferred designs/technical gates and existing owners preserved. GenUI.issueNewTurn response requirement recorded; action unavailable in current runtime, no simulated substitute. No merge/tests/rain/points;50 IDs461/251/712.",
   "main_sha": "1f225205111c1703aa7895240f90f129a53f8210",
   "drive_sync": {
     "status": "2026-11-10 WTH-001 and WRL-008 closeout PRs #170/#184 merged and verified; corresponding existing Google Drive Progress, START HERE and vendor register synchronized with definitive completion evidence.",

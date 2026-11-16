@@ -340,16 +340,15 @@ real gameplay and licensing) and do not claim green results for untested heads.
 
 ## Continuation response contract — owner correction 2026-11-15
 
-This supersedes every older request to end with bracketed Continue text or a
-Markdown pseudo-button. Never present plain text, brackets or Markdown as a
-working button. Use a native continuation/prompt-suggestion control only when
-the current interface exposes a documented action that submits the exact next
-prompt and its behavior can be verified. Otherwise state once that no working
-continuation control is available, and provide the next specific instruction in
-a fenced, copyable block labeled "Next prompt". Do not call that block a button
-or promise the UI has been repaired. Continue routine authorized work without
-permission loops; request input only for a genuine decision/access blocker.
-Apply this contract on every future run, not just the next reply.
+The owner requires a genuine clickable Continue control invoking
+GenUI.issueNewTurn with a complete, current, context-specific continuation
+instruction. Never substitute bracketed text, a Markdown link or a copy-paste
+prompt. First verify the current runtime exposes the documented native action.
+If unavailable, report that concrete capability blocker and leave the requested
+control unfulfilled; do not invent a control or claim it works. Include exact
+current refs, CI evidence, ownership, constraints and next action in the
+continuation instruction. Continue routine authorized work autonomously. This
+supersedes the earlier copyable-prompt fallback on every future turn/run.
 
 Owner also explicitly approves replacing the new-game player PC's one Potion
 with one Exp. Share. Change only the starting item table; preserve quantity1,
