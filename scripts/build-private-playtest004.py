@@ -54,8 +54,11 @@ def main():
     notice = args.attribution.resolve()
     if not notice.is_file() or len(notice.read_text(encoding="utf-8").strip()) < 40:
         parser.error("a complete local artist permission/attribution record is required")
+    devkitarm = os.environ.get("DEVKITARM")
+    tool_dirs = [str(Path(devkitarm) / "bin")] if devkitarm else []
+    tool_path = os.pathsep.join(tool_dirs + [os.environ.get("PATH", "")])
     missing = [name for name in ("make", "arm-none-eabi-as", "arm-none-eabi-ld",
-                                "arm-none-eabi-objcopy") if shutil.which(name) is None]
+                                "arm-none-eabi-objcopy") if shutil.which(name, path=tool_path) is None]
     if missing:
         parser.error("missing required native GBA tools: " + ", ".join(missing))
 
@@ -69,6 +72,8 @@ def main():
         parser.error("refusing to overwrite an existing owner's Playtest004 ROM/manifest")
 
     env = os.environ.copy()
+    if tool_dirs:
+        env["PATH"] = tool_path
     env["FOLLOWER_ART_PERMISSION_CONFIRMED"] = "1"
     env["FOLLOWER_ATTRIBUTION_FILE"] = str(notice)
     if args.offline:
