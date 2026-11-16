@@ -179,6 +179,7 @@ void FollowerController_Tick(void)
     s8 slot = FollowerState_ResolvePartySlot();
     s16 dx, dy;
     u8 direction;
+    bool8 followerStepped;
 
     if (slot < 0)
     {
@@ -272,6 +273,10 @@ void FollowerController_Tick(void)
 
     follower->previousCoords = follower->currentCoords;
     follower->currentCoords = sTrailTile;
+    // Count real follower tile changes, not how many field callbacks
+    // happened while the player was partway through one tile.
+    followerStepped = follower->currentCoords.x != follower->previousCoords.x
+                   || follower->currentCoords.y != follower->previousCoords.y;
     follower->currentElevation = player->previousElevation;
     follower->previousElevation = player->previousElevation;
     dx = sTrailTile.x - player->currentCoords.x;
@@ -310,13 +315,12 @@ void FollowerController_Tick(void)
         sFrameToCopy = 4;
     else
         sFrameToCopy = 0;
-    // Animate at one native walking frame per alternating tile; no large
-    // per-frame DMA copy is performed from the field callback.
-    if (player->currentCoords.x != player->previousCoords.x
-     || player->currentCoords.y != player->previousCoords.y)
-        sFrameToCopy += (++sWalkFrameCounter >> 3) & 1;
-    else
-        sWalkFrameCounter = 0;
+    // Alternate the two native walking poses when the follower actually
+    // reaches its next tile. This does not depend on the number of callbacks
+    // between tiles; copying the selected frame still happens in VBlank.
+    if (followerStepped)
+        sWalkFrameCounter ^= 1;
+    sFrameToCopy += sWalkFrameCounter;
 }
 
 void FollowerController_VBlank(void)
