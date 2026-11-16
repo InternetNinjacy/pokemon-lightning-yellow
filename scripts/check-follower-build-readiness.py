@@ -50,6 +50,34 @@ def main():
         roster = [row["species"] for row in csv.DictReader(stream)]
     if len(roster) != 252 or [species for species, _, _ in bases] != roster:
         parser.error("generated base species do not match the exact approved 252 roster/order")
+    if metadata.get("source_file_count") != 765:
+        parser.error("private source manifest must list 765 base/form PNG and palette files")
+    files = metadata.get("source_files")
+    if not isinstance(files, list) or len(files) != 765:
+        parser.error("private source manifest is missing per-file provenance")
+    expected_paths = []
+    with Path("docs/followers/252-species-coverage.csv").open(newline="", encoding="utf-8") as stream:
+        for row in csv.DictReader(stream):
+            expected_paths += [
+                row["kasenn_sheet"],
+                row["kasenn_normal_palette"],
+                row["kasenn_shiny_palette"],
+            ]
+    for form in ("sunny", "rainy", "snowy"):
+        prefix = "graphics/pokemon/castform/" + form + "/overworld"
+        expected_paths += [prefix + ".png", prefix + "_normal.pal", prefix + "_shiny.pal"]
+    if [entry.get("path") for entry in files] != expected_paths:
+        parser.error("local source artwork paths/order differ from approved pinned inventory")
+    for i, entry in enumerate(files):
+        if not re.fullmatch(r"[0-9a-f]{40}", entry.get("git_blob_sha1", "")):
+            parser.error("invalid local source Git blob digest")
+        if not re.fullmatch(r"[0-9a-f]{64}", entry.get("sha256", "")):
+            parser.error("invalid local source SHA-256 digest")
+        if not isinstance(entry.get("bytes"), int) or entry["bytes"] <= 0:
+            parser.error("invalid local source file byte count")
+        if entry.get("pinned_blob_verified") is not (i < 756 and i % 3 == 0):
+            parser.error("base PNG source pin-check declaration is inconsistent")
+
     if any(size != (64 if species == "STEELIX" else 32) for species, _, size in bases):
         parser.error("one or more sprite frame dimensions differ from approved native art sizes")
     if [(species, form, size) for species, form, size in records if form != "0"] != [
