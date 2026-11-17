@@ -1,3 +1,31 @@
+## Private Playtest004-r3 — locked Jolteon/Umbreon backport
+
+Actual compiled source `579ef016def8116a2ecf44acccd0e5e72f501247`, based on prior private `0dbb79c35dd06cdb17f3348e743ba612ca9fbbef`.
+Main implementation is PR268, merge `c5c4dd038edac02737a1fba088d6107902136c56`. Only two natural
+learnset arrays were backported. Exact inverse restores the entire previous
+private learnset file, preserving Pichu/SUE, all other private/experimental
+learnsets,stats,follower/runtime,snow,events,art and game systems. This does not
+adopt146 working profiles into production or grant TM51 compatibility.
+
+Private incremental pinned-agbcc build **PASS**.16MiB ROM SHA256 `05c85f5cece8366e9a8f612a5d87f213d127de5a892255b9fd03aec86a4b9efe`.
+255 follower descriptors and765 pinned inputs still pass the private readiness
+gate; no sprite regeneration needed. All10385 tracked source files match
+the built Git revision except2614 palettes with build-tool CRLF-only
+rewrites. This is source/build evidence, not in-game acceptance.
+
+Owner output: `/tmp/ly-owner-playtest004-r3/Playtest004.gba`, with build JSON and
+local credits. Prior r1/r2 outputs preserved for rollback. No pixels,ROM,BIOS,
+save,cache or private correspondence committed or publicly uploaded.
+
+No gameplay/emulator/simulation/CI dispatch performed. Main's6 new source tests,
+2 TMHM checks,focused source checks and build passed; broader Gym/E4 audits have
+an unchanged trainer-history failure reproduced before this pair. No assertions
+or frozen hashes weakened. Private runtime still awaits owner playtesting of
+leveling/reminder/evolution/save behavior alongside the existing follower/game
+scope. Current owned Pokémon/moves are not automatically rewritten.461/712
+unchanged.146 working-profile final approval and TM51 eligibility were requested
+through Master Control105; no settled family decision reopened.
+
 ## Updated private Playtest004 — current-main integration
 
 This revision combines main `351932f8fe7c439b84a7c7fc555a914ba56b18e8` (PR265 complete410-move source and PR254
