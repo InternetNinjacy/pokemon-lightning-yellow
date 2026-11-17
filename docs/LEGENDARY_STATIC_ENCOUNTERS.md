@@ -13,6 +13,12 @@ reusing prepared source `cefd2a46d9b97b39a30b2f1b1903ec845979a258`.
 | Suicune | 50 | SeafoamIslands_B4F | 30,9 | 1 |
 | Mew | 50 | SevenIsland_TanobyRuins | 105,12 | 3 |
 
+Engineering source/build scope merged normally through PR235 at
+`7ccecca72e58217dfe5064e89d58bb936c4ba669` from source
+`07bf1db9b88406c5f667a4c7b294412b7881f8ab`. The merged Git tree exactly matches
+the source/build-checked PR tree. Owner physical-device acceptance remains
+outstanding, not passed.
+
 All four are independent stationary encounters, available only after the League
 (`FLAG_SYS_GAME_CLEAR`). They use existing species overworld graphics, map assets,
 `setwildbattle` and `StartLegendaryBattle`; no new artwork, distribution, weather,

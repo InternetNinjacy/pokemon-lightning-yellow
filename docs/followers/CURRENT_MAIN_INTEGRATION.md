@@ -6,6 +6,10 @@ their evidence or certify gameplay acceptance.
 
 ## Scope and provenance
 
+Engineering source/build scope merged normally in PR54 at
+`28dd82b5d9a684455a36f6458ac88a3e7e45d4ed`, after the owner explicitly delegated
+physical-device testing. Runtime acceptance is outstanding, not passed.
+
 The implementation PR is [PR54](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/54),
 branch `feature/selectable-following-pokemon`, refreshed from main
 `b45e6c6e9cebb24ce8b7c36599f388375243c31b`. It reuses PR54 runtime source and PR257

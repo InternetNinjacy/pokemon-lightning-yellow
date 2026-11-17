@@ -3,7 +3,7 @@
   "updated": "2026-11-17",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "Follower PR54 normal-merged28dd82b5 under owner-deferred physical-device testing. Four approved post-League Lv50 legends refreshed on that main for existingPR235; source/build/compile-only checks PASS, normal merge pending. No current gameplay/CI acceptance or points.",
+  "current_focus": "PR54followers and PR235fourpostLeaguelegends engineering-merged normally; full merged source tree equals checked/built source. Ownerphysicaltesting remainsdeferred/unaccepted. ViridianeightTrainer/baggroup isALREADYIMPLEMENTEDexactly, notduplicated.461/251/712 unchanged.",
   "main_sha": "28dd82b5d9a684455a36f6458ac88a3e7e45d4ed",
   "drive_sync": {
     "status": "2026-11-10 WTH-001 and WRL-008 closeout PRs #170/#184 merged and verified; corresponding existing Google Drive Progress, START HERE and vendor register synchronized with definitive completion evidence.",
@@ -1343,6 +1343,162 @@
             "src/strings.c"
           ]
         }
+      ],
+      "source_reconciliations": [
+        {
+          "date": "2026-11-17",
+          "scope": "EightViridianordinaryTrainerparties+approvedhealingbags",
+          "verified_main": "7ccecca72e58217dfe5064e89d58bb936c4ba669",
+          "finding": "ALREADY IMPLEMENTED; no new gameplay delta; do not reimplement or merge stale whole branches",
+          "authority_bag_pr": {
+            "number": 210,
+            "head": "8e1470187d726ecfe7d5e7577ee1beac6bc8776e",
+            "all_eight_correct": true
+          },
+          "records": [
+            {
+              "pr": 197,
+              "prepared_head": "03e9ef61dac85d9f4e4444751c949267e78e95a2",
+              "trainer": "TAMER_COLE",
+              "party_byte_exact": true,
+              "metadata_except_later_bag_byte_exact": true,
+              "current_bag": "ITEM_SUPER_POTION, ITEM_FULL_HEAL",
+              "party_species": [
+                "RATICATE",
+                "HOUNDOUR"
+              ],
+              "levels": [
+                39,
+                39
+              ],
+              "battle_double": "FALSE"
+            },
+            {
+              "pr": 199,
+              "prepared_head": "29fd8860f90f51c5df2d11d460781174f9b7c98c",
+              "trainer": "BLACK_BELT_ATSUSHI",
+              "party_byte_exact": true,
+              "metadata_except_later_bag_byte_exact": true,
+              "current_bag": "ITEM_SUPER_POTION, ITEM_FULL_HEAL",
+              "party_species": [
+                "HOUNDOUR",
+                "ARBOK"
+              ],
+              "levels": [
+                40,
+                40
+              ],
+              "battle_double": "FALSE"
+            },
+            {
+              "pr": 200,
+              "prepared_head": "538c7b47ce64a3281dae48ad8ebc49883cdc6e44",
+              "trainer": "BLACK_BELT_TAKASHI",
+              "party_byte_exact": true,
+              "metadata_except_later_bag_byte_exact": true,
+              "current_bag": "ITEM_SUPER_POTION, ITEM_FULL_HEAL",
+              "party_species": [
+                "CACTURNE",
+                "UMBREON",
+                "ABSOL"
+              ],
+              "levels": [
+                38,
+                38,
+                38
+              ],
+              "battle_double": "FALSE"
+            },
+            {
+              "pr": 201,
+              "prepared_head": "d68c50d4926d0f08beade765bf13216eb11e9a1b",
+              "trainer": "BLACK_BELT_KIYO",
+              "party_byte_exact": true,
+              "metadata_except_later_bag_byte_exact": true,
+              "current_bag": "ITEM_SUPER_POTION, ITEM_FULL_HEAL",
+              "party_species": [
+                "NUZLEAF",
+                "CARVANHA"
+              ],
+              "levels": [
+                43,
+                43
+              ],
+              "battle_double": "FALSE"
+            },
+            {
+              "pr": 202,
+              "prepared_head": "e478044cc50df847d1bf02c22aac32f66bb59549",
+              "trainer": "TAMER_JASON",
+              "party_byte_exact": true,
+              "metadata_except_later_bag_byte_exact": true,
+              "current_bag": "ITEM_SUPER_POTION, ITEM_FULL_HEAL",
+              "party_species": [
+                "CARVANHA",
+                "UMBREON"
+              ],
+              "levels": [
+                43,
+                43
+              ],
+              "battle_double": "FALSE"
+            },
+            {
+              "pr": 204,
+              "prepared_head": "232c046904bee3ce937ec2c833d51825d3073396",
+              "trainer": "COOLTRAINER_SAMUEL",
+              "party_byte_exact": true,
+              "metadata_except_later_bag_byte_exact": true,
+              "current_bag": "ITEM_SUPER_POTION, ITEM_FULL_HEAL",
+              "party_species": [
+                "ARBOK",
+                "CACTURNE"
+              ],
+              "levels": [
+                37,
+                37
+              ],
+              "battle_double": "FALSE"
+            },
+            {
+              "pr": 205,
+              "prepared_head": "138860989c8f28b31832cd686b84e55e4879bd0f",
+              "trainer": "COOLTRAINER_YUJI",
+              "party_byte_exact": true,
+              "metadata_except_later_bag_byte_exact": true,
+              "current_bag": "ITEM_SUPER_POTION, ITEM_FULL_HEAL",
+              "party_species": [
+                "UMBREON",
+                "ABSOL"
+              ],
+              "levels": [
+                38,
+                38
+              ],
+              "battle_double": "FALSE"
+            },
+            {
+              "pr": 206,
+              "prepared_head": "343a0846c064b766012faee1a025195e7b4be169",
+              "trainer": "COOLTRAINER_WARREN",
+              "party_byte_exact": true,
+              "metadata_except_later_bag_byte_exact": true,
+              "current_bag": "ITEM_SUPER_POTION, ITEM_FULL_HEAL",
+              "party_species": [
+                "NUZLEAF",
+                "RATICATE",
+                "ABSOL"
+              ],
+              "levels": [
+                37,
+                37,
+                38
+              ],
+              "battle_double": "FALSE"
+            }
+          ],
+          "runtime": "NOT RUN / owner physical-device testing; no new implementation or points"
+        }
       ]
     },
     {
@@ -1655,7 +1811,7 @@
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41765403411",
       "blocker": "No Museum blocker. Other unfinished placements and general SOW HOLD remain outside issue234's exactly four authorized post-League legends. New legend source/build checks are PENDING; historical PR244 physical Surf/water-entry probe failure remains an explicit owner-playtest access risk, not a proven production cause or fabricated pass.",
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending. Issue234 specifically authorizes the independent four post-League Lv50 statics; this supersedes general SOW HOLD only for Raikou/Entei/Suicune/Mew, not other deferred encounters.",
-      "next_action": "Complete scoped PR235 current-main integration for Raikou/Entei/Suicune/Mew Lv50 after League, preserving independent flags/native outcomes and suppressing obsolete starter-dependent beast roamer on new/old saves. Root must fill exact new-head source/build evidence before engineering approval/normal merge. Exclude PR243's nine unrelated NPC production files and diagnostic workflows. Keep historical244 water-entry failure visible for owner physical-device route checks; do not alter approved placements or weaken assertions to mask it. Remaining TM51/other SOW design holds remain separate.",
+      "next_action": "Four scoped issue234legends are engineering-merged; owner physical-device traversal/outcome/save checks pending. Continue independent approved work. Other SOW/item-placement design holds remain; do not invent missing data.",
       "checkpoint": "2026-11-04 supplied-export reconciliation; old unavailable-document claims superseded; no implementation/test credit from availability.",
       "scope_note": "Other item/story events excluding fossils, completed Museum subfeature and separately budgeted Ranger GYM-005. No duplicate implementation credit.",
       "source_exports": [
@@ -1718,14 +1874,17 @@
             "MEW"
           ],
           "level": 50,
-          "status": "ENGINEERING SOURCE/BUILD APPROVED; NORMAL MERGE PENDING",
+          "status": "MERGED ENGINEERING SOURCE/BUILD SCOPE; PHYSICAL ACCEPTANCE OUTSTANDING",
           "scope": "10 approved production paths only; four independent post-League static encounters plus flags/legacy beast-roamer suppression for new/old saves. Prepared native fixtures retained separately; no new native execution.",
           "excluded": "Nine unrelated PR243 NPC production files; diagnostic workflows; unrelated encounters, weather, maps, parties, art and outstanding SOW designs",
           "historical_evidence": "PR235 seven focused native groups/upstream results belong to their original old heads only; not current candidate acceptance.",
           "physical_access_risk": "Historical PR244 Surf activation/water-entry probe failed; no proven production cause, no fabricated pass or workaround. Owner physical-device traversal remains outstanding.",
           "checks": "PASS4-map source/flag/geometry contracts,7 current-main source cases,48 pure-source runners,10 follower integration,5 lifecycle,25 history; ABI/native harness COMPILED ONLY, not launched",
           "rom_sha256": "4fd065a5bef6243c45b135b0af33d6cec887e2aa4ba6a7895667f03d96e8b1ac",
-          "documentation": "docs/LEGENDARY_STATIC_ENCOUNTERS.md"
+          "documentation": "docs/LEGENDARY_STATIC_ENCOUNTERS.md",
+          "source_commit": "07bf1db9b88406c5f667a4c7b294412b7881f8ab",
+          "merge_commit": "7ccecca72e58217dfe5064e89d58bb936c4ba669",
+          "post_merge_verification": "PASS full main Git tree equals checked/source-built PR235 tree; no current gameplay/CI run"
         }
       ]
     },
@@ -2861,8 +3020,8 @@
         "implementation": "MERGED engineering source/build scope via PR54 sourcec9ead336 at main28dd82b5; normal GitHub merge, no admin bypass. Follower identity/menu/controller/PC/trade/daycare/Rocket/save/opening and pinned-art build pipeline integrated. Runtime is owner-deferred and not gameplay accepted.",
         "automated": "PASS48 selected pure-source runners;10 integration/pipeline,5 lifecycle,15 PNG-tooling,25 history,5 approved146,5 WRL source cases. Zero-art and full255 variants compile/link16MiB; make clean + make -j2 full-art rebuild matches incremental SHA256 add0b0151c0a69a82b1061146b9c73ef05a4d005469c012465505f36ebc11b30. EWRAM1076/IWRAM2736 free. Exact64-path publication readback PASS; mandatory upstream workflow preserved, not rerun.",
         "emulator": "NOT RUN by Codex. Owner will conduct physical-device ROM playtest; selection/emergence/movement/maps/faint/heal/removal/evolution/save/all252 visuals remain outstanding and are explicitly deferred/nonblocking. No runtime pass or gameplay acceptance claimed.",
-        "pull_request": "PR54 merged normally at28dd82b5 fromc9ead336 on feature/selectable-following-pokemon; no auto-merge/admin bypass or diagnostic dispatch.",
-        "merge": "MERGED ENGINEERING SOURCE/BUILD SCOPE:28dd82b5d9a684455a36f6458ac88a3e7e45d4ed. Normal server-enforced merge succeeded. Owner physical-device runtime and current CI unrun; no gameplay acceptance or points."
+        "pull_request": "PR54 merged fromc9ead336; no auto-merge/admin bypass; physical acceptance outstanding.",
+        "merge": "MERGED engineering source/build scope via normal PR54 merge28dd82b5d9a684455a36f6458ac88a3e7e45d4ed. Owner-deferred physical-device runtime remains unaccepted; no points."
       },
       "branch": "feature/selectable-following-pokemon",
       "commit": "c9ead336faf551eee1506b71e4656e81da7f5ee8",
@@ -2870,7 +3029,7 @@
       "ci_url": null,
       "blocker": null,
       "design_authority": "Lightning Yellow canonical Drive specialist registers and November 5 change intake",
-      "next_action": "Owner physical-device playtest remains outstanding/nonblocking: initial Pikachu emergence, set/stop/reorder/duplicates, faint/heal, deposit/trade/removal, evolution, maps/interactions and save/load/all252 visuals. Record actual results without inferring acceptance from source/build/merge. Continue other approved source work; no CI/gameplay dispatch or earned-credit change.",
+      "next_action": "Owner physical-device checklist; report real regressions for source fixes. Pending tests alone do not block independent approved implementation.",
       "checkpoint": "PR54 sourcec9ead336 normal-merged28dd82b5; production/build proof from539a8f34 retained under policy/evidence-only updates. Existing clean full255 build hash/source checks remain evidence for checked source; no new physical-device/native/RNG/model/CI execution or green-CI claim. Source/build engineering merged, runtime not passed/accepted;461/251/712 unchanged.",
       "spec_pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/52",
       "specification": "implementation/selectable-following-pokemon.md",
@@ -3330,7 +3489,7 @@
     "scope": "Exact b9af0975 shared timer only; no private per-flake redesign",
     "owner_runtime": "Issue248 OPEN; sustained snow/post-battle playtest pending"
   },
-  "next_independent_source_work": "Finish exactly four issue234 post-League Lv50 stationary legends in existing PR235 on merged follower main28dd82b5. Source/build checks PENDING, normal merge only after root engineering review; no new native/CI dispatch. Preserve explicit historical244 Surf/water-entry risk for owner physical-device tests, unrelated PR243 NPC changes excluded and all other design holds intact.",
+  "next_independent_source_work": "CompleteboundedapprovedGymleader/Luis sourceparity check beforeselectinganotheractualdelta. Do notmergeoldwholebrancheswhoseapprovedchangesalreadyexist. Pendingownerphysicaltestsremainnonblocking; TM51exactmatrix/othermissingdesignsremainholds.",
   "follower_asset_preparation": {
     "source_commit": "e7d388810de0b0964a46afaaf3d012f7e666aad5",
     "upstream_art_pin": "cbe04a7a2ef645bee19d159876da074154ccf1f2",
@@ -3403,7 +3562,7 @@
     "merge_commit": "28dd82b5d9a684455a36f6458ac88a3e7e45d4ed"
   },
   "stationary_legend_integration_candidate": {
-    "status": "ENGINEERING SOURCE/BUILD APPROVED; NORMAL MERGE PENDING",
+    "status": "MERGED ENGINEERING SOURCE/BUILD SCOPE; PHYSICAL ACCEPTANCE OUTSTANDING",
     "task_id": "WRL-004",
     "authority_issue": 234,
     "reuse_pr": 235,
@@ -3432,6 +3591,16 @@
       "iwram_free": 2736
     },
     "runtime_ci": "NOT RUN / owner-deferred physical-device acceptance; no CI dispatch/green claim",
-    "normalization": "Exact12-path source/registration inverse plus pinned wild-double fixture contract; older hashes unchanged"
+    "normalization": "Exact12-path source/registration inverse plus pinned wild-double fixture contract; older hashes unchanged",
+    "source_commit": "07bf1db9b88406c5f667a4c7b294412b7881f8ab",
+    "merge_commit": "7ccecca72e58217dfe5064e89d58bb936c4ba669",
+    "post_merge_verification": "PASS full main Git tree equals checked/source-built PR235 tree; no current gameplay/CI run"
+  },
+  "owner_physical_device_testing_delegation": {
+    "date": "2026-11-17",
+    "authority": "Owner explicitly grants100%engineeringapproval/continue whenonlytestingblocks; owner performsphysicaldeviceplaytestandreturnsdefects",
+    "policy_commit": "c9ead336faf551eee1506b71e4656e81da7f5ee8",
+    "merged_via": 54,
+    "rules": "NOT RUN neverPASS; no knownbroken source/missingdesign/checkbypass/automerge/ROMrelease;461712unchanged"
   }
 }
