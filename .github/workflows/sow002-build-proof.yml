@@ -1,0 +1,130 @@
+# Supplemental evidence only. Required workflows/statuses remain unchanged.
+name: SOW-002 isolated clean and upstream evidence
+run-name: SOW-002 build proof ${{ github.event.review.commit_id }}
+on:
+  pull_request_review:
+    types: [submitted]
+permissions:
+  contents: read
+concurrency:
+  group: sow002-build-proof-${{ github.run_id }}-${{ github.run_attempt }}
+  cancel-in-progress: false
+defaults:
+  run:
+    shell: bash
+jobs:
+  modified-clean:
+    name: supplemental-sow002-clean-proof
+    if: >-
+      github.event_name == 'pull_request_review' &&
+      github.repository == 'InternetNinjacy/pokemon-lightning-yellow' &&
+      github.actor == 'InternetNinjacy' &&
+      github.event.review.user.login == 'InternetNinjacy' &&
+      github.event.review.state == 'commented' &&
+      github.event.review.body == format('RUN SOW002 BUILD PROOF {0}', github.event.pull_request.head.sha) &&
+      github.event.review.commit_id == github.event.pull_request.head.sha &&
+      github.event.pull_request.number == 254 &&
+      github.event.pull_request.state == 'open' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.head.ref == 'feature/sow002-viridian-heracross-20261115'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      SOW002_SOURCE_SHA: ${{ github.event.review.commit_id }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - name: Check out exact reviewed source
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.event.review.commit_id }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Verify source and frozen compiler preparation before dependencies
+        run: |
+          test "$(git rev-parse HEAD)" = "$SOW002_SOURCE_SHA"
+          python3 scripts/sow002_ci_guard.py --source .
+          git show 197d85ee1a61ac319f95fa65ab298bb126fe937d:scripts/prepare-baseline.sh > "$RUNNER_TEMP/sow002-prepare-baseline.sh"
+          cmp scripts/prepare-baseline.sh "$RUNNER_TEMP/sow002-prepare-baseline.sh"
+      - name: Install established upstream compiler prerequisites
+        run: |
+          lightning_apt_options=(-o Acquire::Retries=3 -o Acquire::http::Timeout=30 -o Acquire::https::Timeout=30 -o DPkg::Lock::Timeout=120)
+          sudo apt-get "${lightning_apt_options[@]}" update
+          sudo apt-get "${lightning_apt_options[@]}" install -y --no-install-recommends build-essential binutils-arm-none-eabi git libpng-dev python3
+          dpkg-query -W build-essential binutils-arm-none-eabi git libpng-dev python3
+      - name: Focused unchanged and new source contracts only
+        run: |
+          python3 tests/check_sow002.py
+          python3 tests/run_sow_event_tests.py
+          python3 tests/check_catch_rate_projection.py
+      - name: Build modified game twice from clean and compare SHA256
+        run: |
+          scripts/prepare-baseline.sh
+          make -j2
+          sha256sum pokefirered.gba > "$RUNNER_TEMP/sow002-modified.sha256"
+          make clean
+          make -j2
+          sha256sum -c "$RUNNER_TEMP/sow002-modified.sha256"
+          git diff --exit-code
+      - name: Record evidence boundary
+        run: |
+          echo "Supplemental build proof only. Reviewed source $SOW002_SOURCE_SHA." >> "$GITHUB_STEP_SUMMARY"
+          echo 'Required modified/upstream gates remain separate. No native or rain tests executed.' >> "$GITHUB_STEP_SUMMARY"
+  vanilla-clean:
+    name: supplemental-sow002-vanilla-proof
+    if: >-
+      github.event_name == 'pull_request_review' &&
+      github.repository == 'InternetNinjacy/pokemon-lightning-yellow' &&
+      github.actor == 'InternetNinjacy' &&
+      github.event.review.user.login == 'InternetNinjacy' &&
+      github.event.review.state == 'commented' &&
+      github.event.review.body == format('RUN SOW002 BUILD PROOF {0}', github.event.pull_request.head.sha) &&
+      github.event.review.commit_id == github.event.pull_request.head.sha &&
+      github.event.pull_request.number == 254 &&
+      github.event.pull_request.state == 'open' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.head.ref == 'feature/sow002-viridian-heracross-20261115'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      SOW002_SOURCE_SHA: ${{ github.event.review.commit_id }}
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - name: Check out exact reviewed source
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.event.review.commit_id }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Verify source and frozen compiler preparation before dependencies
+        run: |
+          test "$(git rev-parse HEAD)" = "$SOW002_SOURCE_SHA"
+          python3 scripts/sow002_ci_guard.py --source .
+          git show 197d85ee1a61ac319f95fa65ab298bb126fe937d:scripts/prepare-baseline.sh > "$RUNNER_TEMP/sow002-prepare-baseline.sh"
+          cmp scripts/prepare-baseline.sh "$RUNNER_TEMP/sow002-prepare-baseline.sh"
+      - name: Install established upstream compiler prerequisites
+        run: |
+          lightning_apt_options=(-o Acquire::Retries=3 -o Acquire::http::Timeout=30 -o Acquire::https::Timeout=30 -o DPkg::Lock::Timeout=120)
+          sudo apt-get "${lightning_apt_options[@]}" update
+          sudo apt-get "${lightning_apt_options[@]}" install -y --no-install-recommends build-essential binutils-arm-none-eabi git libpng-dev python3
+          dpkg-query -W build-essential binutils-arm-none-eabi git libpng-dev python3
+      - name: Independent original upstream source
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          repository: pret/pokefirered
+          ref: ce6406d8c2eaf46d543c8a2606de0c3cb1951982
+          path: vanilla
+          persist-credentials: false
+      - name: Verify original upstream SHA1 twice from clean
+        working-directory: vanilla
+        run: |
+          test "$(git rev-parse HEAD)" = ce6406d8c2eaf46d543c8a2606de0c3cb1951982
+          "$GITHUB_WORKSPACE/scripts/prepare-baseline.sh"
+          make -j2 compare
+          make clean
+          make -j2 compare
+          sha1sum -c firered.sha1
+      - name: Record evidence boundary
+        run: |
+          echo "Supplemental build proof only. Reviewed source $SOW002_SOURCE_SHA." >> "$GITHUB_STEP_SUMMARY"
+          echo 'Required modified/upstream gates remain separate. No native or rain tests executed.' >> "$GITHUB_STEP_SUMMARY"
+# No emulator execution, uploads, caches, releases, write permissions or required-status aliases.

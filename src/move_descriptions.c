@@ -407,11 +407,6 @@ const u8 gMoveDescription_LIQUIDATION[] = _("A water strike\nthat may lower\nthe
 
 const u8 gMoveDescription_VORTEX_SPIN[] = _("A swirling water\nstrike that may\nconfuse the foe.");
 const u8 gMoveDescription_TIDAL_CRASH[] = _("A 5-turn water\nattack that grows\nstronger each hit.");
-const u8 gMoveDescription_DISCHARGE[] = _("Electricity hits\nall other foes.\nMay paralyze.");
-const u8 gMoveDescription_VOLT_SWITCH[] = _("An electric hit\nthat switches the\nuser out.");
-const u8 gMoveDescription_THUNDER_FANG[] = _("Sharp fangs may\nparalyze or cause\nthe foe to flinch.");
-const u8 gMoveDescription_WILD_CHARGE[] = _("An electric rush\nthat hurts the\nuser in recoil.");
-const u8 gMoveDescription_WOOD_HAMMER[] = _("A heavy blow that\nalso damages the\nuser on impact.");
 
 const u8 gMoveDescription_SEED_BOMB[] = _("Strikes the foe\nwith a hard seed.");
 const u8 gMoveDescription_PETAL_BLIZZARD[] = _("A storm of petals\nstrikes everyone\naround the user.");
@@ -424,17 +419,33 @@ const u8 gMoveDescription_BULLET_PUNCH[] = _("A fast punch that\nstrikes first."
 const u8 gMoveDescription_AIR_SLASH[] = _("Sharp wind blades\nmay cause flinching.");
 const u8 gMoveDescription_HEART_STAMP[] = _("A heart-stopping\nstrike that may\ncause flinching.");
 
-const u8 gMoveDescription_DRAIN_PUNCH[] = _("A draining punch\nthat restores HP.");
+const u8 gMoveDescription_DISCHARGE[] = _("Electricity hits\nall others. May\ncause paralysis.");
 
-const u8 gMoveDescription_BRAVE_BIRD[] = _("A fierce flying\nattack with recoil.");
+const u8 gMoveDescription_VOLT_SWITCH[] = _("An electric hit.\nThen switches out\nif able.");
 
-const u8 gMoveDescription_ZEN_HEADBUTT[] = _("A psychic strike\nthat may cause\nflinching.");
+const u8 gMoveDescription_THUNDER_FANG[] = _("A charged bite. May\nparalyze or make\nthe foe flinch.");
 
-const u8 gMoveDescription_CROSS_POISON[] = _("A high-critical\nstrike that may\npoison the foe.");
+const u8 gMoveDescription_WILD_CHARGE[] = _("An electric tackle\nthat also hurts\nthe user.");
 
-const u8 gMoveDescription_POISON_JAB[] = _("A poisonous jab\nthat may poison.");
+const u8 gMoveDescription_WOOD_HAMMER[] = _("A heavy slam that\nalso hurts the\nuser.");
 
-const u8 gMoveDescription_GUNK_SHOT[] = _("Filthy sludge that\nmay poison the foe.");
+const u8 gMoveDescription_DRAIN_PUNCH[] = _("A punch that\nrestores HP by\nhalf the damage.");
+
+const u8 gMoveDescription_HURRICANE[] = _("A fierce wind may\nconfuse. Accurate\nin rain, less in sun.");
+
+const u8 gMoveDescription_BRAVE_BIRD[] = _("A brave charge\nthat also hurts\nthe user.");
+
+const u8 gMoveDescription_ACROBATICS[] = _("An agile strike.\nStronger without\na held item.");
+
+const u8 gMoveDescription_DUAL_WINGBEAT[] = _("Strikes the foe\ntwice using\npowerful wings.");
+
+const u8 gMoveDescription_ZEN_HEADBUTT[] = _("A focused headbutt\nthat may make\nthe foe flinch.");
+
+const u8 gMoveDescription_CROSS_POISON[] = _("A poisonous cut.\nHigh critical-hit\nratio. May poison.");
+
+const u8 gMoveDescription_POISON_JAB[] = _("A toxic jab that\nmay poison\nthe foe.");
+
+const u8 gMoveDescription_GUNK_SHOT[] = _("Hurls filthy waste\nthat may poison\nthe foe.");
 
 const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_POUND         - 1] = gMoveDescription_Pound,
@@ -839,7 +850,10 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_WILD_CHARGE - 1] = gMoveDescription_WILD_CHARGE,
     [MOVE_WOOD_HAMMER - 1] = gMoveDescription_WOOD_HAMMER,
     [MOVE_DRAIN_PUNCH - 1] = gMoveDescription_DRAIN_PUNCH,
+    [MOVE_HURRICANE - 1] = gMoveDescription_HURRICANE,
     [MOVE_BRAVE_BIRD - 1] = gMoveDescription_BRAVE_BIRD,
+    [MOVE_ACROBATICS - 1] = gMoveDescription_ACROBATICS,
+    [MOVE_DUAL_WINGBEAT - 1] = gMoveDescription_DUAL_WINGBEAT,
     [MOVE_ZEN_HEADBUTT - 1] = gMoveDescription_ZEN_HEADBUTT,
     [MOVE_CROSS_POISON - 1] = gMoveDescription_CROSS_POISON,
     [MOVE_POISON_JAB - 1] = gMoveDescription_POISON_JAB,

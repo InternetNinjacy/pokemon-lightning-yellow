@@ -15,7 +15,8 @@ assert "FLAG_MAKES_CONTACT" in block and "FLAG_PROTECT_AFFECTED" in block
 assert '    [MOVE_ICE_FANG] = _("ICE FANG")' in read("src/data/text/move_names.h")
 assert "gMoveDescription_ICE_FANG[]" in read("src/move_descriptions.c")
 assert "[MOVE_ICE_FANG - 1] = gMoveDescription_ICE_FANG" in read("src/move_descriptions.c")
-scripts=read("data/battle_scripts_1.s")
+from approved_remaining_moves import prior_remaining_source
+scripts=prior_remaining_source("data/battle_scripts_1.s",read("data/battle_scripts_1.s"))
 assert "#define EFFECT_ICE_FANG 216" in read("include/constants/battle_move_effects.h")
 assert "BattleScript_EffectIceFang::\n\tsetmoveeffect MOVE_EFFECT_FREEZE" in scripts
 assert "\tgoto BattleScript_AfterSwarmCloud\nBattleScript_IceFangFlinch::\n\tsetmoveeffect MOVE_EFFECT_FLINCH\n\tseteffectwithchance" in scripts

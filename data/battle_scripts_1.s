@@ -238,7 +238,7 @@ gBattleScriptsForMoveEffects::
 	.4byte BattleScript_EffectSleepHit
 	.4byte BattleScript_EffectSwarmCloud               @ EFFECT_SWARM_CLOUD
 	.4byte BattleScript_EffectIceFang                  @ EFFECT_ICE_FANG
-	.4byte BattleScript_EffectThunderFang              @ EFFECT_THUNDER_FANG
+	.4byte BattleScript_EffectHit                       @ EFFECT_SWITCH_HIT
 
 BattleScript_EffectHit::
 	jumpifnotmove MOVE_SURF, BattleScript_HitFromAtkCanceler
@@ -281,15 +281,13 @@ BattleScript_IceFangFlinch::
 	seteffectwithchance
 BattleScript_AfterSwarmCloud::
 	tryfaintmon BS_TARGET
-	jumpifmove MOVE_VOLT_SWITCH, BattleScript_VoltSwitchPivot
-	goto BattleScript_MoveEnd
-BattleScript_VoltSwitchPivot::
-	@ Damage and its resulting faint effects have already resolved. Do not
-	@ replace the attacking Pokemon after a miss, immunity or failed hit.
-	jumpifmovehadnoeffect BattleScript_MoveEnd
-	jumpifhasnohp BS_ATTACKER, BattleScript_MoveEnd
-	jumpifcantswitch SWITCH_IGNORE_ESCAPE_PREVENTION | BS_ATTACKER, BattleScript_MoveEnd
-	openpartyscreen BS_ATTACKER, BattleScript_MoveEnd
+BattleScript_MoveEnd::
+	moveendall
+	jumpifnotmove MOVE_VOLT_SWITCH, BattleScript_HitSwitchEnd
+	various BS_ATTACKER, VARIOUS_PREPARE_HIT_SWITCH
+	jumpifbyte CMP_EQUAL, gBattleCommunication, FALSE, BattleScript_HitSwitchEnd
+	jumpifcantswitch SWITCH_IGNORE_ESCAPE_PREVENTION | BS_ATTACKER, BattleScript_HitSwitchEnd
+	openpartyscreen BS_ATTACKER, BattleScript_HitSwitchEnd
 	switchoutabilities BS_ATTACKER
 	waitstate
 	switchhandleorder BS_ATTACKER, 2
@@ -301,10 +299,7 @@ BattleScript_VoltSwitchPivot::
 	switchinanim BS_ATTACKER, TRUE
 	waitstate
 	switchineffects BS_ATTACKER
-	goto BattleScript_MoveEnd
-
-BattleScript_MoveEnd::
-	moveendall
+BattleScript_HitSwitchEnd::
 	end
 
 BattleScript_MakeMoveMissed::
@@ -1104,6 +1099,9 @@ BattleScript_EffectSkyAttack::
 
 BattleScript_EffectConfuseHit::
 	setmoveeffect MOVE_EFFECT_CONFUSION
+	jumpifnotmove MOVE_HURRICANE, BattleScript_ConfuseHitStart
+	orword gHitMarker, HITMARKER_IGNORE_ON_AIR
+BattleScript_ConfuseHitStart::
 	goto BattleScript_EffectHit
 
 BattleScript_EffectTwineedle::
@@ -4455,10 +4453,10 @@ BattleScript_EffectSwarmCloud::
 @ Ice Fang independent on-hit rolls: freeze first, flinch second.
 @ The same 10-percent chance byte is rolled separately by each seteffectwithchance.
 BattleScript_EffectIceFang::
+	jumpifmove MOVE_THUNDER_FANG, BattleScript_ThunderFangStart
 	setmoveeffect MOVE_EFFECT_FREEZE
 	goto BattleScript_EffectHit
-
-@ Thunder Fang independently rolls paralysis first, flinch second.
-BattleScript_EffectThunderFang::
+BattleScript_ThunderFangStart::
 	setmoveeffect MOVE_EFFECT_PARALYSIS
 	goto BattleScript_EffectHit
+
