@@ -3,8 +3,8 @@
   "updated": "2026-11-16",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "PR276 merged: remaining move catalog/distribution and Glalie/weather-ability source guards repaired, with no gameplay changes. Selected38 pure-source runners now pass (33 initial plus5 fixed); six additional preservation cases and unchanged410-move regeneration pass. Final146-profile approval and exact TM51 matrix still requested from Master Control; source readiness is not owner gameplay acceptance.461/712 unchanged.",
-  "main_sha": "61e5c17efc3d747a87d606f78761b116398673e2",
+  "current_focus": "WRL001 prepared correction PR249 merged on current main: Oak-owned SUE delivery and Pikachu naming restored; no Pichu/follower experiment imported. Clean pinned build,46 selected source runners and5 integration controls PASS. No current-head gameplay or CI run;461/712 unchanged. Final146-profile authority and TM51 matrix still pending with Master Control.",
+  "main_sha": "0f20626111adec8e9eb23f2b525581271d36225b",
   "drive_sync": {
     "status": "2026-11-10 WTH-001 and WRL-008 closeout PRs #170/#184 merged and verified; corresponding existing Google Drive Progress, START HERE and vendor register synchronized with definitive completion evidence.",
     "folder": "https://drive.google.com/drive/folders/1N_n0Ke48jBbdhUWSZWzwR6rpPFqpDUpl"
@@ -1495,19 +1495,19 @@
       "dependencies": [],
       "status": {
         "design": "approved: exclusive Pikachu Lv5 SOCKET starter, one-time Oak parcel Eevee Lv5 SUE with native Run Away, normal traits/no held item, existing five Nest Balls preserved",
-        "implementation": "complete and merged to main: Oak lab starter/rival narrative/parcel gift, dedicated save flags 0x31C/0x31D, independent retry and no duplication; PR88",
+        "implementation": "Approved opening plus prepared Oak identity/naming correction integrated; source/build verified",
         "automated": "source-contract and all inherited host/data/audit checks PASS; clean modified ROM rebuilt twice with matching checksum; Rocket flag and original gift protections PASS",
         "emulator": "existing full headless mGBA real-ROM integration suite PASS (final PR88 head); organic uninterrupted New Game→Oak parcel, full-party/full-PC and save/Continue paths not individually demonstrated",
         "pull_request": "PR#88 merged; branch retained for history",
-        "merge": "merged to main at 1cc82d53c7ef3c6c0b3d9798b4eacacebdc4f6b1; feature-level owner closeout 2026-11-07; release-wide QA separate"
+        "merge": "PR249 merged0f206261; runtime acceptance remains owner playtest"
       },
       "branch": "feature/wrl-001-pikachu-opening",
       "commit": "1cc82d53c7ef3c6c0b3d9798b4eacacebdc4f6b1",
-      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/88",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/249",
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/42391263876",
-      "blocker": null,
+      "blocker": "Current-head gameplay acceptance outstanding; previously acquired SUE is not migrated by this delivery-only correction.",
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "CLOSED for WRL-001 implementation. Keep native feature source checks; natural intro-to-parcel progression, full PC/Bag retry, save/reload/duplicate and subjective presentation in shared INT-005 release QA. Early Eevee evolution stone placement remains separate WRL-003.",
+      "next_action": "Owner ROM playtest: Pikachu naming/default-name flow and Oak SUE party/PC delivery, pending/full-storage retry, saved ownership, traded EXP and obedience. PR249 source correction merged0f206261; exact prepared production files retained,46 source checks/5 integration tests/clean build PASS. Historical681 native assertions are not current-head acceptance; old received SUE is not migrated. No new credit.",
       "checkpoint": "2026-11-07: PR88 code merged 1cc82d53c7ef3c6c0b3d9798b4eacacebdc4f6b1; Actions42391263876 and42391258878 both complete SUCCESS on final head a24cb8cffbebf6004b1da80f87ee49a8cdb6adbf. Source/host/full existing native mGBA accepted; organic event path not specifically exercised.",
       "source_exports": [
         "00_GOVERNANCE/Pokemon Lightning Yellow — Master Plan & Project Rules.txt",
@@ -3196,5 +3196,17 @@
     "logs": "/workspace/scratch/ly-source-logs (initial and final results retained separately)",
     "runtime_and_ci": "No gameplay, emulator, RNG or workflow dispatch; skipped CI not successful CI",
     "accounting": "50 task IDs;461/251/712 unchanged"
+  },
+  "wrl001_identity_integration_checkpoint": {
+    "starting_main": "21d597b178327e706b015c61643f4489e0d8c4cb",
+    "source_head": "2737a3dca159d1fc8965b197cbb4d24f15e671e1",
+    "merged_main": "0f20626111adec8e9eb23f2b525581271d36225b",
+    "pr": 249,
+    "production": "Exact prepared0f693dd7 gameplay in3 files, no private Pichu/follower integration",
+    "checks": "46 selected source runners PASS;5 new source integration tests PASS; native registrations inverse-byte-preserved",
+    "build": "Clean pinned-agbcc make -j2 PASS,16MiB ROM SHA25686a91b37de6ff1cb72a95ffdf707ec6a2492d04fb33a8763015a4e8f928c68bd; EWRAM1076 bytes free",
+    "acceptance": "No gameplay/emulator/RNG tests or workflow dispatch;0 current-head CI checks/skipped; historical681 native assertions not reused as current-head result",
+    "save_limit": "Previously acquired SUE not migrated; unchanged save layout and existing Pokémon",
+    "accounting": "50 IDs461/251/712 unchanged"
   }
 }
