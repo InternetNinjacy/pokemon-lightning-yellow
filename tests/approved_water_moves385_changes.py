@@ -55,6 +55,9 @@ HUNKS = {
 def prior_water_moves385_source(path, text=None):
     if text is None:
         text=Path(path).read_text()
+    from approved_remaining_moves import prior_remaining_source
+    text=prior_remaining_source(path,text)
+
     from approved_batch_a_changes import HUNKS as BATCH_A_HUNKS, prior_batch_a_source
     # Some historical callers already received a strict Batch A projection.
     # Only project the full staged delta when its source hunks remain.

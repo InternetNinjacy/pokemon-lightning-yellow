@@ -17,6 +17,11 @@ def _blob(text):
     return hashlib.sha1(b"blob " + str(len(data)).encode() + b"\0" + data).hexdigest()
 
 def prior_thunder_wave_completion_source(path, text):
+
+    from approved_remaining_moves import prior_remaining_source
+    text=prior_remaining_source(path,text)
+    from approved_gym_prize_changes import prior_gym_prize_source
+    text=prior_gym_prize_source(path,text)
     if str(path) != PATH:
         return text
     if AFTER not in text:
@@ -25,7 +30,7 @@ def prior_thunder_wave_completion_source(path, text):
     # Nested historical guards may supply already-projected intermediate source.
     # Verify the live full file exactly, while every projection still requires
     # this single known hunk; ancestor guards verify their own frozen digests.
-    live = Path(PATH).read_text()
+    live = prior_gym_prize_source(PATH,prior_remaining_source(PATH,Path(PATH).read_text()))
     if text == live:
         assert _blob(text) == STAGED_BLOB, "Unapproved live Thunder Wave production source"
     previous = text.replace(AFTER, BEFORE, 1)

@@ -126,6 +126,7 @@ static void spreadStatusTests(void){
 #include "new_moves382.c"
 #include "new_water_moves385.c"
 #include "btl_batch_a.c"
+#include "remaining_moves.c"
 static void originalEffectTests(void){
  if(getenv("LIGHTNING_BTL_BATCH_A_ONLY")){batchAExactMechanics();batchANativeTests();batchAFlashPersistence();return;}
  if(getenv("LIGHTNING_SKITTER_SLASH_ONLY")){skitterSlashTests();return;}
@@ -162,6 +163,7 @@ static void originalEffectTests(void){
  batchAExactMechanics();
  batchANativeTests();
  batchAFlashPersistence();
+ remainingMoveTests();
  thunderWaveTests();
  ghostReworkTests();
  spreadStatusTests();

@@ -4,7 +4,7 @@ PewterCity_Gym_MapScripts::
 PewterCity_Gym_EventScript_Brock::
 	famechecker FAMECHECKER_BROCK, FCPICKSTATE_COLORED, UpdatePickStateFromSpecialVar8005
 	trainerbattle_single TRAINER_LEADER_BROCK, PewterCity_Gym_Text_BrockIntro, PewterCity_Gym_Text_BrockDefeat, PewterCity_Gym_EventScript_DefeatedBrock, NO_MUSIC
-	goto_if_unset FLAG_GOT_TM39_FROM_BROCK, PewterCity_Gym_EventScript_GiveTM39
+	goto_if_unset FLAG_GOT_TM39_FROM_BROCK, PewterCity_Gym_EventScript_GiveTM07
 	msgbox PewterCity_Gym_Text_BrockPostBattle
 	release
 	end
@@ -17,20 +17,21 @@ PewterCity_Gym_EventScript_DefeatedBrock::
 	setflag FLAG_HIDE_PEWTER_CITY_GYM_GUIDE
 	clearflag FLAG_HIDE_PEWTER_CITY_RUNNING_SHOES_GUY
 	set_gym_trainers 1
-	goto PewterCity_Gym_EventScript_GiveTM39
+	msgbox PewterCity_Gym_Text_TakeThisWithYou
+	goto PewterCity_Gym_EventScript_GiveTM07
 	end
 
-PewterCity_Gym_EventScript_GiveTM39::
-	msgbox PewterCity_Gym_Text_TakeThisWithYou
-	checkitemspace ITEM_TM39
-	goto_if_eq VAR_RESULT, FALSE, PewterCity_Gym_EventScript_NoRoomForTM39
-	giveitem_msg PewterCity_Gym_Text_ReceivedTM39FromBrock, ITEM_TM39
+@ Retain the original reward flag/save bit, now tracking Brock's approved Hail TM.
+PewterCity_Gym_EventScript_GiveTM07::
+	msgbox PewterCity_Gym_Text_ExplainTM07
+	checkitemspace ITEM_TM07
+	goto_if_eq VAR_RESULT, FALSE, PewterCity_Gym_EventScript_NoRoomForTM07
+	giveitem_msg PewterCity_Gym_Text_ReceivedTM07FromBrock, ITEM_TM07
 	setflag FLAG_GOT_TM39_FROM_BROCK
-	msgbox PewterCity_Gym_Text_ExplainTM39
 	release
 	end
 
-PewterCity_Gym_EventScript_NoRoomForTM39::
+PewterCity_Gym_EventScript_NoRoomForTM07::
 	msgbox PewterCity_Gym_Text_DontHaveRoomForThis
 	release
 	end

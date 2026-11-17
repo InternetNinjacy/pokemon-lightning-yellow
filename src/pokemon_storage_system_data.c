@@ -1,4 +1,5 @@
 #include "global.h"
+#include "follower_state.h"
 #include "gflib.h"
 #include "data.h"
 #include "item.h"
@@ -628,6 +629,9 @@ static void SetPlacedMonData(u8 boxId, u8 position)
         gPlayerParty[position] = gStorage->movingMon;
     else
     {
+        // Clear only on real box placement, not on cursor pickup/reorder.
+        if (sMovingMonOrigBoxId == TOTAL_BOXES_COUNT)
+            FollowerState_BeforeBoxDeposit(&gStorage->movingMon);
         BoxMonRestorePP(&gStorage->movingMon.box);
         SetBoxMonAt(boxId, position, &gStorage->movingMon.box);
     }
@@ -717,6 +721,13 @@ void ReleaseMon(void)
 {
     u8 boxId;
 
+    if (sIsMonBeingMoved)
+    {
+        if (sMovingMonOrigBoxId == TOTAL_BOXES_COUNT)
+            FollowerState_BeforeBoxDeposit(&gStorage->movingMon);
+    }
+    else if (sCursorArea == CURSOR_AREA_IN_PARTY)
+        FollowerState_BeforePartyRemoval(sCursorPosition);
     DestroyReleaseMonIcon();
     if (sIsMonBeingMoved)
         sIsMonBeingMoved = FALSE;

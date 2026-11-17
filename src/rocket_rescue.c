@@ -1,6 +1,7 @@
 #include "global.h"
 #include "gflib.h"
 #include "event_data.h"
+#include "follower_state.h"
 #include "item.h"
 #include "pokemon.h"
 #include "pokemon_storage_system.h"
@@ -182,6 +183,7 @@ u16 RocketRescueReturn(void)
         return 2;
     if (inParty)
     {
+        FollowerState_BeforePartyRemoval(slot);
         for (i = slot; i + 1 < gPlayerPartyCount; i++)
             gPlayerParty[i] = gPlayerParty[i + 1];
         ZeroMonData(&gPlayerParty[gPlayerPartyCount - 1]);

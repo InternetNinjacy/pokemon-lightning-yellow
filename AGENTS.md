@@ -336,3 +336,64 @@ separately reviewed CI-optimization PR has established the actual branch rules,
 fail-closed change classification and preserved high-risk/release gates. Keep all
 special-case acceptance (including WRL-002/009 actual Cut/grass, event/save, ABI,
 real gameplay and licensing) and do not claim green results for untested heads.
+
+
+## Continuation response contract — owner correction 2026-11-15
+
+The owner requires a genuine clickable Continue control invoking
+GenUI.issueNewTurn with a complete, current, context-specific continuation
+instruction. Never substitute bracketed text, a Markdown link or a copy-paste
+prompt. First verify the current runtime exposes the documented native action.
+If unavailable, report that concrete capability blocker and leave the requested
+control unfulfilled; do not invent a control or claim it works. Include exact
+current refs, CI evidence, ownership, constraints and next action in the
+continuation instruction. Continue routine authorized work autonomously. This
+supersedes the earlier copyable-prompt fallback on every future turn/run.
+
+Owner also explicitly approves replacing the new-game player PC's one Potion
+with one Exp. Share. Change only the starting item table; preserve quantity1,
+its terminator, existing-save inventories, ordinary withdrawal and held-item
+behavior, and unrelated rewards. Keep this independently reviewable from SOW002
+and the historical CI/policy/legendary specialists.
+
+
+## Current standing owner execution direction
+
+Continue the fully approved, unblocked backlog autonomously on reviewable branches.
+The owner permits merging source-ready approved changes under existing GitHub
+permissions/protections. This supersedes older routine owner-merge permission
+requirements, not gameplay design holds or asset attribution requirements.
+Current owner direction reserves gameplay testing for their real ROM playtest:
+do not run emulator/gameplay tests or dispatch diagnostic workflows. Source and
+build checks are permitted; never claim compilation proves gameplay acceptance.
+Do not disable assertions, checks, protection or security settings. Do not commit
+or publicly upload ROMs, generated artwork, BIOS, saves or credentials. Preserve
+461/712 accounting until accepted; missing designs are blockers, not inventions.
+
+
+## Physical-device playtesting delegation — 2026-11-17
+
+The owner will perform gameplay testing on a physical device and report defects.
+When pending testing is the ONLY remaining obstacle, Codex has explicit authority
+to give engineering approval and continue implementation/integration without
+waiting for another owner reply or runtime acceptance. This supersedes older
+blanket requirements in this file and historical reports to stop solely for
+playtesting, native emulator execution, or unrun CI testing. Source-ready approved
+features may proceed through normal reviewable PR merges under existing GitHub
+permissions and protections. No direct gameplay pushes to main.
+
+Retain appropriate source/build validation. Do not merge known broken code or
+invent missing gameplay specifications. Do not disable or alter tests, required
+checks, protections or security settings, and do not use an admin/bypass merge.
+If GitHub rejects an ordinary merge because a required check is missing, report
+that concrete external constraint and continue independent approved work.
+
+Continue to reserve actual gameplay/emulator tests and diagnostic workflow
+dispatch for the owner's physical-device playtest unless later instructed.
+Record NOT RUN / OWNER-DEFERRED honestly; engineering approval, merge, successful
+build and pending physical-device acceptance are distinct states. Never turn an
+unrun test into a PASS. This delegation does not award acceptance points: preserve
+all50 permanent task histories and461/712 accounting until explicit acceptance.
+Do not enable auto-merge, release ROMs, or commit/upload generated art, ROM/BIOS,
+saves, private correspondence or credentials. Preserve approved design, source
+provenance, notices, reproducible builds and rollback history.

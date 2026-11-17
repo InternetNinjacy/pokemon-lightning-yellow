@@ -6,6 +6,8 @@
 #include "event_data.h"
 #include "event_object_movement.h"
 #include "event_scripts.h"
+#include "follower_graphics.h"
+#include "follower_controller.h"
 #include "fieldmap.h"
 #include "field_control_avatar.h"
 #include "field_fadetransition.h"
@@ -432,6 +434,7 @@ const u8 *GetInteractedLinkPlayerScript(struct MapPosition *position, u8 metatil
 static const u8 *GetInteractedObjectEventScript(struct MapPosition *position, u8 metatileBehavior, u8 direction)
 {
     u8 objectEventId;
+    u8 i;
     const u8 *script;
 
     objectEventId = GetObjectEventIdByPosition(position->x, position->y, position->elevation);
@@ -444,6 +447,39 @@ static const u8 *GetInteractedObjectEventScript(struct MapPosition *position, u8
         objectEventId = GetObjectEventIdByPosition(position->x + gDirectionToVectors[direction].x, position->y + gDirectionToVectors[direction].y, position->elevation);
         if (objectEventId == OBJECT_EVENTS_COUNT || gObjectEvents[objectEventId].localId == LOCALID_PLAYER)
             return NULL;
+    }
+
+    // Dynamic follower is a visual ObjectEvent, not a map-template NPC.
+    // Never call GetObjectEventScriptPointerByObjectEventId on its local ID.
+    // If an NPC shares the follower tile, the actual NPC gets precedence.
+    if (objectEventId == FollowerGraphics_GetObjectEventId())
+    {
+        for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
+        {
+            if (i != objectEventId && gObjectEvents[i].active
+             && gObjectEvents[i].localId != LOCALID_PLAYER
+             && gObjectEvents[i].currentCoords.x == gObjectEvents[objectEventId].currentCoords.x
+             && gObjectEvents[i].currentCoords.y == gObjectEvents[objectEventId].currentCoords.y
+             && (gObjectEvents[i].currentElevation == 0 || position->elevation == 0
+              || gObjectEvents[i].currentElevation == position->elevation))
+            {
+                objectEventId = i;
+                break;
+            }
+        }
+        if (objectEventId == FollowerGraphics_GetObjectEventId())
+        {
+            if (gObjectEvents[objectEventId].spriteId >= MAX_SPRITES
+             || !gSprites[gObjectEvents[objectEventId].spriteId].inUse
+             || gSprites[gObjectEvents[objectEventId].spriteId].invisible)
+                return NULL;
+            // lock/release require a valid selected object, just like an NPC.
+            gSelectedObjectEvent = objectEventId;
+            gSpecialVar_LastTalked = gObjectEvents[objectEventId].localId;
+            gSpecialVar_Facing = direction;
+            FollowerSpecial_PlayCry();
+            return EventScript_FollowerInteraction;
+        }
     }
 
     if (InUnionRoom() == TRUE && !ObjectEventCheckHeldMovementStatus(&gObjectEvents[objectEventId]))

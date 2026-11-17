@@ -11,9 +11,17 @@ import shutil
 
 # Generate ABI constants with the game's ARM compiler, never host offsetof.
 expressions = {
+ 'SOW002_OBJ_SIZE':'sizeof(struct ObjectEvent)',
+ 'SOW002_OBJ_COORDS':'offsetof(struct ObjectEvent,currentCoords)',
+ 'SOW002_OBJ_SPRITE':'offsetof(struct ObjectEvent,spriteId)',
+ 'SOW002_SPR_SIZE':'sizeof(struct Sprite)',
+ 'SOW002_SPR_IMAGES':'offsetof(struct Sprite,images)',
+ 'SOW002_SPR_OAM':'offsetof(struct Sprite,oam)',
  'ACTION_NOTHING_FAINTED':'B_ACTION_NOTHING_FAINTED',
  'ACTION_SWITCH':'B_ACTION_SWITCH',
  'ACTION_MOVE':'B_ACTION_USE_MOVE',
+ 'PREPARE_HIT_SWITCH':'VARIOUS_PREPARE_HIT_SWITCH',
+ 'BATTLESTRUCT_SWITCH_PENDING':'offsetof(struct BattleStruct,switchAfterHit)',
  'BATTLESTRUCT_ACTED':'offsetof(struct BattleStruct,actedThisTurn)',
  'BATTLESTRUCT_SWITCH_IN':'offsetof(struct BattleStruct,monToSwitchIntoId)',
  'BATTLESTRUCT_DAMAGE_SOURCES':'offsetof(struct BattleStruct,damagedByBattlers)',
@@ -27,6 +35,11 @@ expressions = {
  'BMON_MAX_HP':'offsetof(struct BattlePokemon,maxHP)',
  'BOX_SECURE':'offsetof(struct BoxPokemon,secure)',
  'SAVE1_PARTY':'offsetof(struct SaveBlock1,playerParty)',
+ 'SAVE1_FOLLOWER_RECORD':'offsetof(struct SaveBlock1,unused_3A94)',
+ 'POKEMON_SIZE':'sizeof(struct Pokemon)',
+ 'FOLLOWER_ASSET_SIZE':'sizeof(struct FollowerGraphicsAsset)',
+ 'FOLLOW_SPRITE_SIZE':'sizeof(struct Sprite)',
+ 'FOLLOW_SPRITE_OAM':'offsetof(struct Sprite,oam)',
  'R5_VERSION':'offsetof(struct Route5DaycareSave,version)',
  'SECTOR_SIZE':'SECTOR_SIZE',
  'SECTOR_SIGNATURE':'offsetof(struct SaveSector,signature)',
@@ -175,6 +188,9 @@ for key,expr in {
  'TEMPLATE_SIZE':'sizeof(struct ObjectEventTemplate)',
  'TEMPLATE_GRAPHICS':'offsetof(struct ObjectEventTemplate,graphicsId)',
  'OBJECT_COUNT':'OBJECT_EVENTS_COUNT',
+ 'OBJECT_EVENT_SIZE':'sizeof(struct ObjectEvent)',
+ 'OBJECT_EVENT_COORDS':'offsetof(struct ObjectEvent,currentCoords)',
+ 'AVATAR_EVENT_ID':'offsetof(struct PlayerAvatar,objectEventId)',
  'CARE_SIZE':'sizeof(struct DayCare)',
  'CARE_MON_SIZE':'sizeof(struct DaycareMon)',
  'BOX_SIZE':'sizeof(struct BoxPokemon)',
@@ -301,7 +317,7 @@ required = [
 ]
 required += ['NextThunderWaveTarget','gAbsentBattlerFlags']
 required += ['Cmd_accuracycheck']
-required += ['BattlerHasActedThisTurn','RunTurnActionsFunctions','SetActionsAndBattlersTurnOrder','gBattleMainFunc','gCurrentActionFuncId','gChosenActionByBattler','gEnemyPartyCount','gBattlerPartyIndexes','gActionsByTurnOrder', 'BattlerWasDamagedBy','TurnValuesCleanUp','SwitchInClearSetData','gBattleMovePower','Cmd_datahpupdate']
+required += ['Cmd_various','BattlerHasActedThisTurn','RunTurnActionsFunctions','SetActionsAndBattlersTurnOrder','gBattleMainFunc','gCurrentActionFuncId','gChosenActionByBattler','gEnemyPartyCount','gBattlerPartyIndexes','gActionsByTurnOrder', 'BattlerWasDamagedBy','TurnValuesCleanUp','SwitchInClearSetData','gBattleMovePower','Cmd_datahpupdate']
 required += ['Cmd_seteffectwithchance','gBattleCommunication','gCurrentTurnActionNumber','gBattlerByTurnOrder','gSideTimers']
 required += ['Cmd_rolloutdamagecalculation','gDisableStructs','gLockedMoves','gLastMoves']
 required += ['BattleAI_SetupAIData','BattleAI_ChooseMoveOrAction','RecordAbilityBattle']
@@ -323,11 +339,18 @@ required += ['LightingPreviewGetAppearance', 'LightingPreviewIsActive']  # previ
 required += ['Task_StartMenuHandleInput','sStartMenuCursorPos','sStartMenuOrder','Task_BagMenu_HandleInput','Task_HandleChooseMonInput','Task_EvolutionScene']
 required += ['PalletTown_ProfessorOaksLab_EventScript_RetryParcelGifts','SilphCo_7F_EventScript_LaprasGuy']
 required += ['CeladonCity_GameCorner_PrizeRoom_EventScript_PrizeClerkMons','GetCoins','SetCoins']
-required += ['Route10_EventScript_LightningRaikou','MtEmber_SummitPath_1F_EventScript_LightningEntei',
-             'SeafoamIslands_B4F_EventScript_LightningSuicune','SevenIsland_TanobyRuins_EventScript_LightningMew']
 required += ['Route12_EventScript_SowCorphish','Route21_North_EventScript_SowGlalie','Route23_EventScript_SowTyranitar',
              'GetObjectEventIdByXY','CreateScriptedWildMon','SowPrepareScriptedEncounter','SpecialWeatherActivateScript','SpecialWeatherActivate','SpecialWeatherFinishAftermath','SpecialWeatherRestorationReady',
              'SpecialWeather_EventScript_FinishAftermath','Alloc']
+required += ['ViridianForest_EventScript_SowHeracross', 'ViridianForest_EventScript_Youngster',
+             'ViridianForest_Text_SowWarning','ViridianForest_Text_SowThanks',
+             'gObjectEvents','gSprites','gMonIcon_Heracross','sPicTable_SowHeracross']
+required += ['ScriptGiveSueEevee', 'ScriptGiveMon', 'EventScript_ChangePokemonNickname']
+required += ['ScriptSelectStarterPikachuFollower','ScriptStartStarterFollowerEmergence','gObjectEvents','gPlayerAvatar']
+required += ['FollowerGraphics_GetSize','FollowerController_RequestRefresh','FollowerGraphics_Swap','FollowerGraphics_SetFrame','FollowerGraphics_Release','FollowerGraphics_GetPaletteSlot','gSprites','gPlttBufferUnfaded']
+required += ['FollowerGraphics_GetSpriteId','FollowerGraphics_GetObjectEventId','FollowerSpecial_PlayCry','FollowerState_ResolvePartySlot','FollowerState_SelectPartySlot','FollowerState_CanDisplay','FollowerState_BeforePartyRemoval','FollowerState_Clear','FollowerAssets_Count','FollowerAssets_Resolve','CustomPokedexNumToSpecies','gStringVar4','CB2_PartyMenuFromStartMenu']
+required += ['Route10_EventScript_LightningRaikou','MtEmber_SummitPath_1F_EventScript_LightningEntei',
+             'SeafoamIslands_B4F_EventScript_LightningSuicune','SevenIsland_TanobyRuins_EventScript_LightningMew']
 symbols={}
 end_ewram=0
 for line in subprocess.check_output(['arm-none-eabi-nm','-S','pokefirered.elf'],text=True).splitlines():
@@ -365,6 +388,8 @@ for name in ['HandleInputChooseAction','HandleInputChooseMove','HandleInputChoos
 with tempfile.TemporaryDirectory(prefix='lightning-emulator-') as temp:
     temp=Path(temp)
     source='#include "save.h"\n#include "field_weather.h"\n#include <stddef.h>\n#include "global.h"\n#include "pokemon.h"\n#include "main.h"\n#include "task.h"\n'
+    source+='#include "sprite.h"\n'
+    source+='#include "follower_graphics.h"\n#include "sprite.h"\n'
     source+='#include "text.h"\n#include "pokedex.h"\n#include "battle_controllers.h"\n#include "item_menu.h"\n#include "wild_encounter.h"\n#include "battle.h"\n#include "list_menu.h"\n#include "party_menu.h"\n#include "script.h"\n#include "field_player_avatar.h"\n'+screen_struct+'\n'+summary_struct+'\n'
     learn=Path('src/learn_move.c').read_text();learn=learn[learn.index('struct LearnMoveGfxResources\n'):];learn=learn[:learn.index('\n};')+3]
     source+='#include "battle_message.h"\n#include "pokemon_special_anim_internal.h"\n'+learn+'\n'

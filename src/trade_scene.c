@@ -1,4 +1,5 @@
 #include "global.h"
+#include "follower_state.h"
 #include "gflib.h"
 #include "task.h"
 #include "util.h"
@@ -1066,6 +1067,9 @@ static void TradeMons(u8 playerPartyIdx, u8 partnerPartyIdx)
     if (playerMail != MAIL_NONE)
         ClearMailStruct(&gSaveBlock1Ptr->mail[playerMail]);
 
+    // Clear before the actual exchange, including a same-identity incoming mon.
+    // Trade cancellation never reaches this committed replacement path.
+    FollowerState_BeforePartyRemoval(playerPartyIdx);
     SWAP(*playerMon, *partnerMon, sTradeAnim->tempMon);
 
     // By default, a Pokemon received from a trade will have 70 Friendship.

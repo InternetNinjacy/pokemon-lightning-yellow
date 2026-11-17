@@ -1,0 +1,156 @@
+{
+  "base_commit": "eb4f0296add8a431029ee4f7c7f6c726fcf256f3",
+  "authority_export": "Pok\u00e9mon Lightning Yellow \u2014 Eevee Family Design.txt",
+  "authority_export_sha256": "82e9ed31e38ed30b1daa811158b9d9d4b28d009804ea10457ab5e4c95d18ec8c",
+  "snapshot_ref": "2870ddeff6779063ca62b217b7ad7de2d608a41c",
+  "snapshot_path": "docs/pkm009/source-reconciliation-127-189.json",
+  "scope": "Owner-locked Jolteon and Umbreon natural learnsets only; no delegated recommendations or TM permissions",
+  "before_sha256": "1848f39b82fdc4aeb5725737b80d870b3b2a346c9b2f157fe2cd574b1bcc67ba",
+  "rows": [
+    {
+      "species": "SPECIES_JOLTEON",
+      "pointer": "sJolteonLevelUpLearnset",
+      "regional_dex": 151,
+      "approval_origin": "Owner-locked individual/Eevee-family profiles, 2026-10-31",
+      "stats": [
+        65,
+        65,
+        60,
+        110,
+        95,
+        130
+      ],
+      "abilities": [
+        "VOLT_ABSORB",
+        "NONE"
+      ],
+      "after": [
+        [
+          1,
+          "THUNDER_SHOCK"
+        ],
+        [
+          1,
+          "CHARGE"
+        ],
+        [
+          8,
+          "THUNDER_WAVE"
+        ],
+        [
+          14,
+          "DOUBLE_KICK"
+        ],
+        [
+          18,
+          "SHOCK_WAVE"
+        ],
+        [
+          24,
+          "ENCORE"
+        ],
+        [
+          30,
+          "VOLT_SWITCH"
+        ],
+        [
+          36,
+          "DISCHARGE"
+        ],
+        [
+          42,
+          "RAIN_DANCE"
+        ],
+        [
+          48,
+          "THUNDERBOLT"
+        ],
+        [
+          54,
+          "THUNDER"
+        ]
+      ],
+      "before_body": "\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_TAIL_WHIP),\n    LEVEL_UP_MOVE(1, MOVE_HELPING_HAND),\n    LEVEL_UP_MOVE(8, MOVE_SAND_ATTACK),\n    LEVEL_UP_MOVE(16, MOVE_THUNDER_SHOCK),\n    LEVEL_UP_MOVE(23, MOVE_QUICK_ATTACK),\n    LEVEL_UP_MOVE(30, MOVE_DOUBLE_KICK),\n    LEVEL_UP_MOVE(36, MOVE_PIN_MISSILE),\n    LEVEL_UP_MOVE(42, MOVE_THUNDER_WAVE),\n    LEVEL_UP_MOVE(47, MOVE_AGILITY),\n    LEVEL_UP_MOVE(52, MOVE_THUNDER),\n    LEVEL_UP_END",
+      "after_body": "\n    LEVEL_UP_MOVE(1, MOVE_THUNDER_SHOCK),\n    LEVEL_UP_MOVE(1, MOVE_CHARGE),\n    LEVEL_UP_MOVE(8, MOVE_THUNDER_WAVE),\n    LEVEL_UP_MOVE(14, MOVE_DOUBLE_KICK),\n    LEVEL_UP_MOVE(18, MOVE_SHOCK_WAVE),\n    LEVEL_UP_MOVE(24, MOVE_ENCORE),\n    LEVEL_UP_MOVE(30, MOVE_VOLT_SWITCH),\n    LEVEL_UP_MOVE(36, MOVE_DISCHARGE),\n    LEVEL_UP_MOVE(42, MOVE_RAIN_DANCE),\n    LEVEL_UP_MOVE(48, MOVE_THUNDERBOLT),\n    LEVEL_UP_MOVE(54, MOVE_THUNDER),\n    LEVEL_UP_END"
+    },
+    {
+      "species": "SPECIES_UMBREON",
+      "pointer": "sUmbreonLevelUpLearnset",
+      "regional_dex": 154,
+      "approval_origin": "Owner-locked individual/Eevee-family profiles, 2026-10-31",
+      "stats": [
+        95,
+        65,
+        110,
+        60,
+        130,
+        65
+      ],
+      "abilities": [
+        "SYNCHRONIZE",
+        "NONE"
+      ],
+      "after": [
+        [
+          1,
+          "PURSUIT"
+        ],
+        [
+          1,
+          "SAND_ATTACK"
+        ],
+        [
+          8,
+          "SNARL"
+        ],
+        [
+          14,
+          "TAUNT"
+        ],
+        [
+          18,
+          "CONFUSE_RAY"
+        ],
+        [
+          24,
+          "FAINT_ATTACK"
+        ],
+        [
+          30,
+          "MOONLIGHT"
+        ],
+        [
+          36,
+          "PAYBACK"
+        ],
+        [
+          42,
+          "TORMENT"
+        ],
+        [
+          48,
+          "MEAN_LOOK"
+        ],
+        [
+          54,
+          "FOUL_PLAY"
+        ]
+      ],
+      "before_body": "\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_TAIL_WHIP),\n    LEVEL_UP_MOVE(1, MOVE_HELPING_HAND),\n    LEVEL_UP_MOVE(8, MOVE_SAND_ATTACK),\n    LEVEL_UP_MOVE(16, MOVE_PURSUIT),\n    LEVEL_UP_MOVE(23, MOVE_QUICK_ATTACK),\n    LEVEL_UP_MOVE(30, MOVE_CONFUSE_RAY),\n    LEVEL_UP_MOVE(36, MOVE_FAINT_ATTACK),\n    LEVEL_UP_MOVE(42, MOVE_MEAN_LOOK),\n    LEVEL_UP_MOVE(47, MOVE_SCREECH),\n    LEVEL_UP_MOVE(52, MOVE_MOONLIGHT),\n    LEVEL_UP_END",
+      "after_body": "\n    LEVEL_UP_MOVE(1, MOVE_PURSUIT),\n    LEVEL_UP_MOVE(1, MOVE_SAND_ATTACK),\n    LEVEL_UP_MOVE(8, MOVE_SNARL),\n    LEVEL_UP_MOVE(14, MOVE_TAUNT),\n    LEVEL_UP_MOVE(18, MOVE_CONFUSE_RAY),\n    LEVEL_UP_MOVE(24, MOVE_FAINT_ATTACK),\n    LEVEL_UP_MOVE(30, MOVE_MOONLIGHT),\n    LEVEL_UP_MOVE(36, MOVE_PAYBACK),\n    LEVEL_UP_MOVE(42, MOVE_TORMENT),\n    LEVEL_UP_MOVE(48, MOVE_MEAN_LOOK),\n    LEVEL_UP_MOVE(54, MOVE_FOUL_PLAY),\n    LEVEL_UP_END"
+    }
+  ],
+  "after_sha256": "273851e1c4e6d5f9ed08efa6f42621cb7bdccbb0f2013c081bed9c0576c0edc6",
+  "unchanged_sha256": {
+    "src/data/pokemon/species_info.h": "b5114bfa7dd5bcddc8aa4278ccaf411bdaba311fe0799ad3824d43989b357d97",
+    "src/data/pokemon/tmhm_learnsets.h": "92bf603f90469ccae0398902db943770e2cb12cb910883b42a552cff07cff31f",
+    "src/data/pokemon/level_up_learnset_pointers.h": "7a85513797da2a2ebdf7893ce58d94f99aee07deb1aec4f0d7a31422dc8040de",
+    "src/data/pokemon/evolution.h": "71f8cee289005eb90cf16bac5f6bd2576ceb6b492dca1639de3f2af249ae5f2d",
+    "src/data/battle_moves.h": "7b62adc4123c457897531d5e5d38dac1e470a289adc99d885ebf987804ffbccf",
+    "src/data/trainers.h": "8a3c07f0084caa81071c158c7cfc2b384d938629c6fc3ccf268db56fe003b6b7",
+    "src/data/trainer_parties.h": "ead7fe5bc9eb88e6e92ef3d84f8009bf5e62792d1e60c3cc69e109a4269ba7be",
+    "src/data/wild_encounters.json": "2fae61fc6feed5366e1ba4af056a8ddf31303f89d14904fe202f4c31798302e7",
+    "include/global.h": "23fa42f2fcf687daf2347f45465e828364cc1ad310aef8d91be093f2675f53a1",
+    "include/pokemon.h": "91443aa25df557597f7bcfe8ed0e4a988b0bafcaf4885322c2c841d00fc8cc6f"
+  }
+}

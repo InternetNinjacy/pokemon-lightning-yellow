@@ -56,6 +56,14 @@ def restore_ordinary_trainer_blocks(path):
             after = list(re.finditer(pattern, result, re.S))
             assert len(before) == len(after) == 1, (path, n)
             result = result[:after[0].start()] + before[0].group() + result[after[0].end():]
+    # Reuse PR233's exact pinned approved/historical whole-record mappings.
+    # Later party/metadata drift must fail, never be silently normalized away.
+    if str(path) == "src/data/trainer_parties.h":
+        from approved_two_leader_party_projection import prior_two_leader_party_source
+        result = prior_two_leader_party_source(result)
+    elif str(path) == "src/data/trainers.h":
+        from approved_four_trainer_metadata_projection import prior_four_trainer_metadata_source
+        result = prior_four_trainer_metadata_source(result)
     for trainer_id, record in LOCK["entries"].items():
         if record["source_dummy"]:
             continue

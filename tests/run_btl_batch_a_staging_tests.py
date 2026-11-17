@@ -4,13 +4,16 @@ from pathlib import Path
 import json,re
 
 R=Path(__file__).resolve().parents[1]
+from approved_remaining_moves import prior_remaining_source
+def staged_source(path):
+ return prior_remaining_source(path,(R/path).read_text())
 spec={m["proposed_id"]:m for m in json.loads((R/"docs/moves/approved-design-overlays.json").read_text())["new_moves"]}
 anim={m["key"]:m for m in json.loads((R/"docs/moves/animation-reuse.json").read_text())["entries"]}
-ids=(R/"include/constants/moves.h").read_text()
-data=(R/"src/data/battle_moves.h").read_text()
-names=(R/"src/data/text/move_names.h").read_text()
-desc=(R/"src/move_descriptions.c").read_text()
-art=(R/"data/battle_anim_scripts.s").read_text()
+ids=staged_source("include/constants/moves.h")
+data=staged_source("src/data/battle_moves.h")
+names=staged_source("src/data/text/move_names.h")
+desc=staged_source("src/move_descriptions.c")
+art=staged_source("data/battle_anim_scripts.s")
 cases={
 391:("EFFECT_HIT","MOVE_TARGET_SELECTED",False),
 392:("EFFECT_HIT","MOVE_TARGET_FOES_AND_ALLY",False),

@@ -79,6 +79,13 @@ jobs:
           python3 tests/run_water_moves385_tests.py
           python3 tests/run_btl_batch_a_staging_tests.py
           python3 tests/run_btl_weather_integration_tests.py
+          python3 tests/run_remaining_moves_tests.py
+          python3 tests/test_pkm009_approved146_source.py
+          python3 tests/test_pkm009_eevee_water_fire.py
+          python3 tests/test_pkm009_oddish_family.py
+          python3 tests/test_pkm009_ponyta_family.py
+          python3 tests/test_pkm009_vulpix_family.py
+          python3 tests/test_pkm009_jolteon_umbreon.py
 
           python3 tests/run_title_screen_tests.py
 
@@ -109,7 +116,6 @@ jobs:
           python3 tests/run_special_glalie_tests.py
           python3 tests/run_special_corphish_tests.py
           python3 tests/run_sow_event_tests.py
-          python3 tests/check_legendary_statics.py
           python3 tests/run_original_effect_tests.py
           python3 tests/run_rtc_tests.py
           python3 tests/run_evolution_tests.py
@@ -149,6 +155,13 @@ jobs:
           python3 tests/run_gym_castform_tests.py
           python3 tests/check_cerulean_luis_approved_battle.py
           python3 tests/run_rival_tests.py
+          python3 tests/run_follower_state_tests.py
+          python3 tests/run_follower_graphics_resource_tests.py
+          python3 tests/run_follower_asset_validator_tests.py
+          python3 tests/test_follower_integration_source.py
+          python3 tests/test_follower_lifecycle_source.py
+          python3 tests/check_legendary_statics.py
+          python3 tests/test_legendary_current_main_source.py
           python3 tests/run_rocket_hideout_roster_tests.py
           python3 tests/run_rocket_hideout_quest_tests.py
           python3 scripts/check-integration-registrations.py
@@ -168,6 +181,48 @@ jobs:
         run: |
           if [ "$TARGET" = upstream-baseline ]; then cd vanilla; fi
           "$GITHUB_WORKSPACE/scripts/prepare-baseline.sh"
+      - name: Prepare pinned ephemeral follower build inputs
+        if: matrix.target == 'modified'
+        timeout-minutes: 15
+        env:
+          FOLLOWER_CACHE: ${{ runner.temp }}/lightning-follower-cache
+        run: |
+          mkdir -p "$RUNNER_TEMP/follower-art"
+          # Preserve the literal checkout stub for the existing final source-diff
+          # guard. Generated pixels/cache/notice stay local to this runner.
+          cp src/follower_assets_generated.inc "$RUNNER_TEMP/follower-art/checkout-stub.inc"
+          cat > "$RUNNER_TEMP/follower-art/owner-scope-and-credits.txt" <<'NOTICE'
+          Owner-reported permission: "We got permission for the artwork, so it's not an issue there."
+          This records the owner's accepted permission claim for Pokemon Lightning Yellow's
+          FireRed-derived, noncommercial, AI-assisted build. It is not an independently
+          verified legal grant or permission to publish the artwork or a ROM.
+          Pinned source: Kasenn/pokeemerald-expansion-kasen at cbe04a7a2ef645bee19d159876da074154ccf1f2.
+          Preserve RHH and aarant follower/source credits and the complete pinned upstream
+          README/credit notices retained beside this file. No private correspondence is uploaded.
+          NOTICE
+          python3 - <<'PYTHON'
+          import hashlib
+          import os
+          import urllib.request
+          from pathlib import Path
+          base = 'https://raw.githubusercontent.com/Kasenn/pokeemerald-expansion-kasen/cbe04a7a2ef645bee19d159876da074154ccf1f2/'
+          credits = {
+              'README.md': (12975, '453a3dfd6321ffcf33dd2984b51d298a44cf5a916a7ed4f78bd4badbc24cf758'),
+              'docs/README.md': (26, 'd58c4b2a10ba12c3f62a7df43407ae780d8ed25478a2a1670d50fb330d293beb'),
+              'src/data/credits.h': (45956, 'fb7809ae2fb3968e16d0de58c53e25aa1c86e2239d718235c8176e0d12068537'),
+              'src/credits.c': (47051, '747a89612a772c0ff52ff2b61f7976e3b2c6bd9a94ff51b88bbb8044a8f981e2'),
+          }
+          for name, (size, digest) in credits.items():
+              request = urllib.request.Request(base + name, headers={'User-Agent': 'LightningYellow-Follower-Attribution/1'})
+              with urllib.request.urlopen(request, timeout=35) as response:
+                  notice = response.read(size + 1)
+              assert len(notice) == size and hashlib.sha256(notice).hexdigest() == digest, 'pinned upstream notice differs: ' + name
+              target = Path(os.environ['RUNNER_TEMP'], 'follower-art', 'upstream-credit-records', name)
+              target.parent.mkdir(parents=True, exist_ok=True)
+              target.write_bytes(notice)
+          PYTHON
+          python3 scripts/build-follower-assets.py --confirmed-scope > "$RUNNER_TEMP/follower-art/conversion.json"
+          python3 scripts/check-follower-build-readiness.py --attribution "$RUNNER_TEMP/follower-art/owner-scope-and-credits.txt"
       - name: Build modified game and verify clean reproducibility
         if: matrix.target == 'modified'
         run: |
@@ -175,6 +230,20 @@ jobs:
           sha256sum pokefirered.gba > /tmp/modified.sha256
           make clean
           make -j2
+          sha256sum -c /tmp/modified.sha256
+          python3 scripts/check-follower-build-readiness.py --attribution "$RUNNER_TEMP/follower-art/owner-scope-and-credits.txt"
+          # Confirm the actual ELF linked all 255 native 16-byte descriptors,
+          # not the checked-in empty registry. No art/ROM artifacts are uploaded.
+          python3 - <<'PYTHON'
+          import subprocess
+          rows = [line.split() for line in subprocess.check_output(
+              ['arm-none-eabi-nm', '-S', '--defined-only', 'pokefirered.elf'], text=True).splitlines()]
+          table = [row for row in rows if len(row) == 4 and row[3] == 'sFollowerArtTable']
+          assert len(table) == 1 and int(table[0][1], 16) == 255 * 16, 'complete follower registry not linked'
+          PYTHON
+          # Cleanup only the deliberately generated tracked input. Native steps
+          # below use the already-built ROM/ELF; they do not invoke make again.
+          cp "$RUNNER_TEMP/follower-art/checkout-stub.inc" src/follower_assets_generated.inc
           sha256sum -c /tmp/modified.sha256
           git diff --exit-code
       - name: Install headless mGBA core

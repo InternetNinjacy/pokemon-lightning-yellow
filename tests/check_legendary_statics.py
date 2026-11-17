@@ -2,7 +2,7 @@
 """Source-level review gates for owner-approved four post-League legendary statics.
 
 This is NOT gameplay reachability proof: native D-pad/object interaction and outcome
-acceptance are separately required before PR #235 can merge.
+acceptance remain owner-deferred physical-device testing, not source-check results.
 """
 import json
 import struct
@@ -52,7 +52,6 @@ def check_species(name, map_name, species, x, y, elevation):
             if options:
                 candidates.append((abs(px-x)+abs(py-y), px, py, (cells[py*width+px]>>12)&15, options[:2]))
     candidates.sort()
-    print(f"CANDIDATE {name} current=({x},{y}) collision={collision_at(x,y)} alternatives={candidates[:18]}", flush=True)
     assert collision_at(x, y) == 0, (name, "object tile collision", x, y, collision_at(x, y))
     assert ((cells[y * width + x] >> 12) & 15) == elevation, (name, "wrong elevation", x, y)
     neighbours = [(nx, ny) for nx, ny in
