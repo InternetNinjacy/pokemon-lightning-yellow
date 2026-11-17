@@ -48,6 +48,11 @@ static void ResetTrail(void)
     // or a period when the selected Pokémon is not visible.
     sHasFollowerDirection = FALSE;
     sWalkFrameCounter = 0;
+    // A newly bound asset must not inherit the old follower's walking cell
+    // or mirrored direction before its own trail is established.
+    sFrameToCopy = 0;
+    sFrameMirrored = FALSE;
+    sHasCopiedFrame = FALSE;
 }
 
 void FollowerController_RequestRefresh(void)
@@ -287,7 +292,11 @@ void FollowerController_Tick(void)
     dx = sTrailTile.x - player->currentCoords.x;
     dy = sTrailTile.y - player->currentCoords.y;
     followerSprite->x = playerSprite->x + dx * 16;
-    followerSprite->y = playerSprite->y + dy * 16;
+    // Align ground contact, not sprite centers: the approved 64px Steelix
+    // canvas would otherwise put its feet16px below a32px player/follower.
+    followerSprite->y = playerSprite->y + dy * 16
+                      + followerSprite->centerToCornerVecY
+                      - playerSprite->centerToCornerVecY;
     followerSprite->x2 = playerSprite->x2;
     followerSprite->y2 = playerSprite->y2;
     followerSprite->oam.priority = playerSprite->oam.priority;
