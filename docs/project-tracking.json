@@ -3,8 +3,8 @@
   "updated": "2026-11-16",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "Approved early-game source integration: PR255 new-game PC Exp.Share; PR259 Route6 post-Misty TM34 pickup; PR260 Pewter Hail TM07/Avalanche Badge/exact dialogue. Combined compilation pending; owner manual gameplay acceptance pending. Source integration does not award points. Preserve461/712 and all existing task history.",
-  "main_sha": "d1b5020b3fff3219ffcadc321d436fc3d2f40eeb",
+  "current_focus": "Approved early-game source corrections integrated via PR264 after combined pinned-toolchain compilation. Main421cecfc retains461/712; owner gameplay acceptance pending. BTL-005 complete410-ID source candidate compiled on PR265/7511b353, not integrated: nine current-main conflicts require source reconciliation. Follower private252-art build in PR258 completed; owner runtime acceptance pending. Continue independent approved work; no invented designs or unexecuted tests counted.",
+  "main_sha": "421cecfc4c75f53e67690fc594aa93a8016c90ba",
   "drive_sync": {
     "status": "2026-11-10 WTH-001 and WRL-008 closeout PRs #170/#184 merged and verified; corresponding existing Google Drive Progress, START HERE and vendor register synchronized with definitive completion evidence.",
     "folder": "https://drive.google.com/drive/folders/1N_n0Ke48jBbdhUWSZWzwR6rpPFqpDUpl"
@@ -628,7 +628,7 @@
       ],
       "status": {
         "design": "Owner approved; November5 Curse/animation/GenIV edge choices resolved; PhaseTwo distribution remains separate",
-        "implementation": "Approved BTL-005 move work now incorporated on main through source-integrated PR #208: original moves plus approved additions through #386, staged Batch A indexed entries and Thunder Wave corrective tests. Reserved move slots, exhaustive effects/animation acceptance, Phase Two distribution and remaining 56-move scope still require separate exact verification; this is NOT full BTL-005 completion.",
+        "implementation": "Approved BTL-005 move work now incorporated on main through source-integrated PR #208: original moves plus approved additions through #386, staged Batch A indexed entries and Thunder Wave corrective tests. Reserved move slots, exhaustive effects/animation acceptance, Phase Two distribution and remaining 56-move scope still require separate exact verification; this is NOT full BTL-005 completion. New separate source candidate PR265 at7511b353 includes all410 move IDs; it is not merged into current main.",
         "automated": "PR #208 exact-head full modified and upstream CI #43145871878 SUCCESS, focused four-job CI #43145871735 SUCCESS (Thunder Wave, Batch A, Blaine, host), title #43145871696 SUCCESS. Exact merged-main #43210695582 SUCCESS both modified native mGBA and independent upstream; preserve scope limitations.",
         "emulator": "Real exact-head modified native mGBA SUCCESS on PR #208 and merged-main 7996795c; focused Thunder Wave, Batch A, Blaine and historical Swarm Cloud corrections SUCCESS. Full natural story, exhaustive moves/animation visuals, release hardware/link/save-power-loss acceptance NOT certified.",
         "pull_request": "PR #208 owner-authorized integration MERGED into main as 7996795c85f9707da7b8fe832b086a2438ba39a0; PR #136 GitHub recognizes merged via ancestry, and stacked PRs #146/#174/#176/#182 closed without redundant merges after verified ancestors of main.",
@@ -638,8 +638,8 @@
       "commit": "1951766a",
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Continue specialist-owned remaining moves/engine and distribution source-and-native audits; obtain scoped formal acceptance before reallocating BTL-005's 48 remaining points. Retain separate INT-004/005 release gates and protected SOW/WRL/GYM scope.",
-      "checkpoint": "2026-11-12 Master Control post-merge evidence: PR #208 merged 7996795c; CI #43210695582 both exact merged-main modified/upstream SUCCESS, focused #43145871735 SUCCESS; ancestors #146/#174/#176/#182 superseded/closed without merge. Earned remains 32/48 within BTL-005 and 461/251/712 overall pending formal scoped accounting.",
+      "next_action": "Reconcile PR265 final-catalog source with current main, preserving existing BatchA moves/animations, water mechanics and all validation registrations/guards. Nine conflicts listed in PR. Standalone pinned-agbcc build PASS; combined build/runtime acceptance still outstanding. No new distribution/learnsets invented.",
+      "checkpoint": "PR265 7511b353fbf7fb26545c989731be7d282aa784ff: static final-nine approved data/flags/category checks and410-ID/data/animation presence; standalone build PASS, no gameplay tests. Nine integration conflicts remain. Formal32 earned/48 remaining unchanged.",
       "source_exports": [
         "03_MOVES/Pokémon Lightning Yellow — Approved Move Change Ledger — Source Verbatim v0.1.txt",
         "03_MOVES/Pokémon Lightning Yellow — Complete TM & Move Register — v1 (2026-10-29).txt",
@@ -1336,7 +1336,7 @@
           "feature": "Pewter approved TM07 Hail reward, Avalanche Badge name, Brock/Liam exact dialogue",
           "branch": "implementation/pewter-approved-rewards-dialogue-20261116",
           "base_sha": "197d85ee1a61ac319f95fa65ab298bb126fe937d",
-          "status": "source integrated for combined compilation; owner gameplay acceptance pending; no point award",
+          "status": "merged via PR264 after combined pinned-toolchain compile PASS; gameplay acceptance pending, no point award",
           "source_files": [
             "data/maps/PewterCity_Gym/scripts.inc",
             "data/maps/PewterCity_Gym/text.inc",
@@ -1688,7 +1688,7 @@
           "feature": "Route 6 TM34 Shock Wave item ball after Misty",
           "branch": "implementation/route6-shock-wave-pickup-20261116",
           "base_sha": "197d85ee1a61ac319f95fa65ab298bb126fe937d",
-          "status": "source integrated for combined compilation; owner gameplay acceptance pending; no point award",
+          "status": "merged via PR264 after combined pinned-toolchain compile PASS; gameplay acceptance pending, no point award",
           "source_files": [
             "data/maps/Route6/map.json",
             "data/maps/Route6/scripts.inc",
