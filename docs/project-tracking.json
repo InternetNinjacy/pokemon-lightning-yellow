@@ -3,8 +3,8 @@
   "updated": "2026-11-16",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "Approved issue248 Snow particle restart clock corrected using exact previously authorized one-line source;4 source controls and pinned incremental build PASS. Owner also approved exact146 natural learnsets (issue105 comment6951068928); source implementation underway, TM51 remains separate. No gameplay tests/acceptance points;461/712 unchanged.",
-  "main_sha": "28cf138cfcd19ee8f742fdd12b4bec1793b39cf4",
+  "current_focus": "Owner-approved exact146 natural learnsets implemented on refreshed PR173, preserving14 locked profiles/current stats/abilities/catch rates/TMHM. Clean pinned build,46 source runners,5 new146 cases,6 locked-pair,25 history and4 Snow controls PASS. Snow fix already merged PR279. No runtime/CI acceptance or points;461/712 unchanged. TM51 and10 separate proposals excluded.",
+  "main_sha": "93cc930335b6941fed3c0ab6e7d567288b5fccc0",
   "drive_sync": {
     "status": "2026-11-10 WTH-001 and WRL-008 closeout PRs #170/#184 merged and verified; corresponding existing Google Drive Progress, START HERE and vendor register synchronized with definitive completion evidence.",
     "folder": "https://drive.google.com/drive/folders/1N_n0Ke48jBbdhUWSZWzwR6rpPFqpDUpl"
@@ -2662,19 +2662,19 @@
       "dependencies": [],
       "status": {
         "design": "owner-approved or delegated design recorded in Drive",
-        "implementation": "Twelve owner-locked profiles already match main. Approved Jolteon/Umbreon natural learnsets now implemented in this scoped source increment, without stat,ability,catch,TM-HM or save changes.146 working-design recommendations remain distinct from finalized approval.",
-        "automated": "not verified as full feature",
+        "implementation": "Exact146 adopted natural arrays plus14 locked profiles implemented; remaining species/TM51 scope separate",
+        "automated": "Source/build only:146 exact contracts,46 source runners,5 new cases,6 locked-pair and25 history cases pass; no native/gameplay run",
         "emulator": "not verified as complete feature",
         "pull_request": "Scoped locked-pair PR268 merged; earlier146-working candidates remain separate",
         "merge": "Approved pair source merged PR268/c5c4dd03; full252-species work and owner acceptance incomplete"
       },
       "branch": null,
       "commit": null,
-      "pr_url": null,
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/173",
       "ci_url": null,
-      "blocker": "TM51 eligibility matrix remains missing. Exact146 natural-learnset recommendations newly owner-approved through issue105 comment6951068928 and being implemented; no longer a design hold. Native/owner acceptance remains separate.",
+      "blocker": "TM51 ZapCannon eligibility matrix remains missing; separate10 later proposals are excluded. Exact146 natural rows now explicitly approved and source-implemented, no longer a WORKING hold. Owner gameplay/native/release acceptance remains outstanding.",
       "design_authority": "Lightning Yellow canonical Drive specialist registers and November 5 change intake",
-      "next_action": "Use already-implemented14 locked profiles; obtain final146-profile authority and exact TM51 matrix from Master Control. Reminder fixture source now matches approved Vaporeon7/8, Eevee1 and Espeon8 data in PR239; native menu/save execution remains unrun. Do not invent distribution or request the locked14 approval again.",
+      "next_action": "Owner playtest representative level-up/Move Reminder/evolution/save behavior for exact146 adoption; implementation/source preservation/build checks pass. Preserve14 locked profiles/current stats/abilities/catch rates. Obtain TM51 matrix separately; do not add10 later proposals or retroactively rewrite existing Pokémon moves.",
       "checkpoint": "PR268 new6 source tests,2 original TMHM tests,focused preservation checks and pinned-agbcc build PASS. Broad Gym/E4 static trainer-history failure reproduced on prior source.146 candidate profiles:0 source drift/missing IDs in read-only preflight. No runtime or points.",
       "implementation_increments": [
         {
@@ -3231,6 +3231,21 @@
   "approved_146_owner_decision": {
     "reference": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/issues/105#issuecomment-6951068928",
     "scope": "Exact74+72 manifests at86f4f73a only; preserve14 locked/current stats/abilities/catch rates; excludeTM51/separate10laterproposals",
-    "status": "Owner approved; source implementation in progress"
+    "status": "Exact adopted rows source-implemented; clean build/source controls passed, owner gameplay acceptance pending"
+  },
+  "approved_146_implementation": {
+    "pr": 173,
+    "starting_main": "93cc930335b6941fed3c0ab6e7d567288b5fccc0",
+    "approval": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/issues/105#issuecomment-6951068928",
+    "source_design": "86f4f73a0e2767984cfc15fe52a3abe0a7396017",
+    "production_scope": "146 natural arrays ONLY,14 locked and10excluded untouched; no stats/abilities/catch/TMHM/save/Trainer changes",
+    "before_sha256": "273851e1c4e6d5f9ed08efa6f42621cb7bdccbb0f2013c081bed9c0576c0edc6",
+    "after_sha256": "5218c2c3d82984bd86c7f2943fda57d6066f56dbe10ed492fbf2c7a0aefa281f",
+    "capacity": "MAX_LEVEL_UP_MOVES20; max adopted19 (Medicham); no buffer changes",
+    "build": "Clean make -j2 PASS;16MiB ROM SHA256774a0437a919b00e57862fd41f21a863153bf7c3c3de3555fabbf200ab6d377d; EWRAM1076 free",
+    "source_checks": "46 runners,5 approved146,6 locked-pair,25 history,4 Snow cases and SOW002 contract PASS;11 preserved locked-family cases PASS",
+    "ci": "Adds5 pure-source checks (146 plus4 preserved locked-family suites); retains every old workflow step/check; not dispatched, skipped not green",
+    "runtime": "No gameplay/emulator/RNG runs; owner acceptance pending",
+    "accounting": "50 IDs461/251/712 unchanged"
   }
 }

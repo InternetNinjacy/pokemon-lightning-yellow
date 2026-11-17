@@ -2,6 +2,7 @@
 """Actual source vs approved385–410 overlay, with exact original-source reversals."""
 from pathlib import Path
 from approved_jolteon_umbreon_changes import prior_locked_pair_source
+from approved_146_learnset_changes import prior_146_learnset_source
 import re,json,hashlib
 from approved_remaining_moves import prior_remaining_source
 m=json.loads(Path('tests/specifications/remaining_moves_current_main_delta.json').read_text())
@@ -18,7 +19,7 @@ for r in overlay['new_moves']:
  if key=='THUNDER_FANG':chance=10
  assert f'.secondaryEffectChance = {chance},' in block,key
  assert anim.count('.4byte Move_'+key+'\n')==1 and anim.count('Move_'+key+':')==1,key
- for p in ['src/data/pokemon/level_up_learnsets.h','src/data/pokemon/tmhm_learnsets.h','src/data/trainer_parties.h']:assert 'MOVE_'+key not in prior_locked_pair_source(p,Path(p).read_text()),(key,p)
+ for p in ['src/data/pokemon/level_up_learnsets.h','src/data/pokemon/tmhm_learnsets.h','src/data/trainer_parties.h']:assert 'MOVE_'+key not in prior_locked_pair_source(p,prior_146_learnset_source(p,Path(p).read_text())),(key,p)
 for key in ['VORTEX_SPIN','TIDAL_CRASH']:
  r=next(r for r in overlay['new_moves'] if r['key']==key);assert r['field_basis']['priority']=='OWNER_EXPLICIT_NORMAL_PRIORITY_2026_11_08'
 print(f'PASS: approved remaining source385–{count-1}, data/categories/flags/art pointers/no invented distribution and exact original-source preservation. Static; native execution separate.')

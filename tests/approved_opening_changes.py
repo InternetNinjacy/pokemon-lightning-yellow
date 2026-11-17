@@ -8,6 +8,8 @@ import json
 from pathlib import Path
 
 def prior_opening_source(path, text):
+    from approved_146_learnset_changes import prior_146_learnset_source
+    text=prior_146_learnset_source(path,text)
     from approved_wrl001_identity_changes import prior_wrl001_identity_source
     text=prior_wrl001_identity_source(path,text)
     from approved_jolteon_umbreon_changes import prior_locked_pair_source

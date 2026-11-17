@@ -2,6 +2,7 @@
 """Exact approved GenIV Payback source contract; native tests prove execution."""
 from pathlib import Path
 from approved_jolteon_umbreon_changes import prior_locked_pair_source
+from approved_146_learnset_changes import prior_146_learnset_source
 import json,hashlib
 from approved_payback_changes import prior_payback_source
 from approved_moves382_changes import prior_moves382_source
@@ -17,5 +18,5 @@ a=Path('data/battle_anim_scripts.s').read_text();assert a.count('.4byte Move_PAY
 p=Path('src/pokemon.c').read_text();assert 'move == MOVE_PAYBACK && BattlerHasActedThisTurn(battlerIdDef)' in p
 main=Path('src/battle_main.c').read_text();assert 'gBattleStruct->actedThisTurn = 0;' in main and 'gBattleStruct->actedThisTurn |= 1U << gBattlerByTurnOrder[gBattleStruct->savedTurnActionNumber];' in main
 assert 'actedThisTurn' not in main.split('void SwitchInClearSetData(void)')[1].split('void FaintClearSetData')[0] # switching retains GenIV slot history
-for p in ['src/data/pokemon/level_up_learnsets.h','src/data/pokemon/tmhm_learnsets.h','src/data/trainer_parties.h']:assert 'MOVE_PAYBACK' not in prior_locked_pair_source(p,Path(p).read_text())
+for p in ['src/data/pokemon/level_up_learnsets.h','src/data/pokemon/tmhm_learnsets.h','src/data/trainer_parties.h']:assert 'MOVE_PAYBACK' not in prior_locked_pair_source(p,prior_146_learnset_source(p,Path(p).read_text()))
 print('PASS: exact Payback381 data, original-ID/source reversals, completed selected-target action/switch context, native Revenge artwork and no distribution (static).')

@@ -2,6 +2,7 @@
 """SOW-002 source contract; runtime acceptance is a separate native gate."""
 import hashlib
 from approved_jolteon_umbreon_changes import prior_locked_pair_source
+from approved_146_learnset_changes import prior_146_learnset_source
 import json
 import re
 from pathlib import Path
@@ -9,7 +10,7 @@ from pathlib import Path
 lock = json.loads(Path('tests/specifications/sow002_preservation.json').read_text())
 for name, digest in lock['unchanged'].items():
     actual=Path(name).read_bytes()
-    if name=='src/data/pokemon/level_up_learnsets.h':actual=prior_locked_pair_source(name,actual.decode()).encode()
+    if name=='src/data/pokemon/level_up_learnsets.h':actual=prior_locked_pair_source(name,prior_146_learnset_source(name,actual.decode())).encode()
     assert hashlib.sha256(actual).hexdigest() == digest, name
 forest = json.loads(Path('data/maps/ViridianForest/map.json').read_text())
 original = lock['original_forest']

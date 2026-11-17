@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """Exact source contracts only; no battle, save, emulator or RNG simulation."""
 from pathlib import Path
+from approved_146_learnset_changes import prior_146_learnset_source
 import hashlib,json,re,unittest
 from approved_jolteon_umbreon_changes import contract,prior_locked_pair_source,PATH
 ROOT=Path(__file__).resolve().parents[1]
 SPEC=contract()
-SOURCE=(ROOT/PATH).read_text()
+SOURCE=prior_146_learnset_source(PATH,(ROOT/PATH).read_text())
 class LockedPairSource(unittest.TestCase):
  def test_exact_approved_sequences_and_ids(self):
   ids={k:int(v) for k,v in re.findall(r'^#define MOVE_(\w+)\s+(\d+)\s*$',(ROOT/'include/constants/moves.h').read_text(),re.M)}

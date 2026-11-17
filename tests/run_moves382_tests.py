@@ -2,6 +2,7 @@
 """Exact source contract for approved382–384, not an emulator substitute."""
 from pathlib import Path
 from approved_jolteon_umbreon_changes import prior_locked_pair_source
+from approved_146_learnset_changes import prior_146_learnset_source
 import json,hashlib,re
 from approved_moves382_changes import prior_moves382_source
 from approved_remaining_moves import prior_remaining_source
@@ -17,7 +18,7 @@ for key,idx,typ,power,acc,pp,priority,effect,chance,king in rows:
  for f,v in dict(category='MOVE_CATEGORY_PHYSICAL',effect='EFFECT_'+effect,type='TYPE_'+typ,power=power,accuracy=acc,pp=pp,secondaryEffectChance=chance,target='MOVE_TARGET_SELECTED',priority=priority).items():assert f'.{f} = {v},' in b,(key,f)
  assert 'FLAG_MAKES_CONTACT' in b and ('FLAG_KINGS_ROCK_AFFECTED' in b)==king
  assert '#define MOVE_'+key+' '+str(idx) in c and a.count('.4byte Move_'+key+'\n')==1
- for p in ['src/data/pokemon/level_up_learnsets.h','src/data/pokemon/tmhm_learnsets.h','src/data/trainer_parties.h']:assert 'MOVE_'+key not in prior_locked_pair_source(p,Path(p).read_text()),p
+ for p in ['src/data/pokemon/level_up_learnsets.h','src/data/pokemon/tmhm_learnsets.h','src/data/trainer_parties.h']:assert 'MOVE_'+key not in prior_locked_pair_source(p,prior_146_learnset_source(p,Path(p).read_text())),p
 from approved_batch_a_changes import prior_batch_a_source
 assert '#define MOVES_COUNT 387' in prior_batch_a_source('include/constants/moves.h',c)  # exact accepted #385-386 projection
 assert 'Move_FOUL_PLAY:\n\tgoto Move_THIEF\n' in a and 'Move_LIQUIDATION:\n\tgoto Move_WATERFALL\n' in a
