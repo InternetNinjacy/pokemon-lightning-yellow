@@ -30,6 +30,8 @@ SLOTS = {
 def prior_weather_species_source(text=None):
     if text is None:
         text = Path("src/data/pokemon/species_info.h").read_text()
+    from approved_catch_rate_changes import prior_approved_catch_rates
+    text = prior_approved_catch_rates(text)
     for species, (old, approved) in SLOTS.items():
         pat = r"(\[SPECIES_" + species + r"\]\s*=\s*\{.*?\.abilities = \{)(ABILITY_\w+), (ABILITY_\w+)(\})"
         found = re.search(pat, text, re.S)

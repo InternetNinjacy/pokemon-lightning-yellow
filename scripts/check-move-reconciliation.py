@@ -20,7 +20,10 @@ assert len(rows)==410 and len(keys)==410
 sys.path.insert(0,str(R/'tests'))
 from approved_water_moves385_changes import prior_water_moves385_source
 catalog_source=prior_water_moves385_source('src/data/battle_moves.h',(R/'src/data/battle_moves.h').read_text())
-assert d['current_battle_moves_sha256']==hashlib.sha256(catalog_source.encode()).hexdigest()
+# The ledger now describes actual complete source; retain the prior accepted
+# catalog digest as a second independent historical assertion.
+assert d['current_battle_moves_sha256']==hashlib.sha256((R/'src/data/battle_moves.h').read_bytes()).hexdigest()
+assert hashlib.sha256(catalog_source.encode()).hexdigest()=='57d0de62bb963bb9a8132ef8f8dd5f51b4d0fdbee74adab88974061007683c3b'
 old=[r for r in rows if r['identity'] in ['ORIGINAL','REWORKED_ORIGINAL']];new=[r for r in rows if r['identity'].startswith('NEW_')]
 assert len(old)==354 and {r['id'] for r in old}==set(range(1,355))
 assert len(new)==56 and {r['proposed_id'] for r in new}==set(range(355,411))

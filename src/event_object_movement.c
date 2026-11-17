@@ -472,6 +472,7 @@ static const u8 gInitialMovementTypeFacingDirections[MOVEMENT_TYPES_COUNT] = {
 #define OBJ_EVENT_PAL_TAG_RS_SUBMARINE_SHADOW         0x111B
 #define OBJ_EVENT_PAL_TAG_SOW_ICON_0 0x111C
 #define OBJ_EVENT_PAL_TAG_SOW_ICON_1 0x111D
+#define OBJ_EVENT_PAL_TAG_SOW_ICON_2 0x111E
 #define OBJ_EVENT_PAL_TAG_NONE                        0x11FF
 
 #include "data/object_events/object_event_graphics_info_pointers.h"
@@ -503,6 +504,7 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_Seagallop,               OBJ_EVENT_PAL_TAG_SEAGALLOP},
     {gMonIconPalettes[0],                     OBJ_EVENT_PAL_TAG_SOW_ICON_0},
     {gMonIconPalettes[1],                     OBJ_EVENT_PAL_TAG_SOW_ICON_1},
+    {gMonIconPalettes[2],                     OBJ_EVENT_PAL_TAG_SOW_ICON_2},
     {},
 };
 
