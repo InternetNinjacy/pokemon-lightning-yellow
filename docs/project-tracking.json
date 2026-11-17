@@ -3,8 +3,8 @@
   "updated": "2026-11-16",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "Source-only historical acceptance repair: PR270 trainer reconstruction and PR271 Elite Four species projection merged. Eight pure-source regression cases and complete Elite Four source audit pass; Gym source audit still fails at historical event-flag projection. No gameplay acceptance or new points.",
-  "main_sha": "38efadc2010a62754eaf306207f82a2a99979e81",
+  "current_focus": "Completed connected source-history repair: PR273 Gym/typing/Brock and PR274 weather-species merged; 19 pure-source cases and eight source runners pass. Exact integrated test files verified; no gameplay/CI acceptance claimed. Remaining PKM009 final146 working-profile approval and TM51 exact252-species matrix are with Master Control. Owner ROM acceptance pending;461/712 unchanged.",
+  "main_sha": "c97440cbe1d64ed84803973b13ca13c8f15a34b4",
   "drive_sync": {
     "status": "2026-11-10 WTH-001 and WRL-008 closeout PRs #170/#184 merged and verified; corresponding existing Google Drive Progress, START HERE and vendor register synchronized with definitive completion evidence.",
     "folder": "https://drive.google.com/drive/folders/1N_n0Ke48jBbdhUWSZWzwR6rpPFqpDUpl"
@@ -1907,7 +1907,7 @@
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/35/checks",
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Continue source-only Gym historical reconstruction: flags.h residual is limited to approved Route6 TM34 and SOW002 Heracross allocations; use exact pinned inverse mappings and retain frozen hashes. Trainer whole-file reconstruction and Elite Four source audit repaired in PR270/271. Gameplay/emulator acceptance remains with owner; no workflow dispatch. Preserve 461/712.",
+      "next_action": "Source-only Gym/typing/Brock/weather-species history repaired in PR273/274 after PR270/271. All selected eight source runners pass; runtime/full-CI/progression/link acceptance remains unexecuted under owner playtest direction. Keep strict frozen guards. Master Control must distinguish source readiness from gameplay acceptance and provide missing146-profile/TM51 authority before PKM009 distribution edits.",
       "checkpoint": "2026-11-04 combined typing regression; no duplicated integration effort credit.",
       "coverage_gap": "Full natural playthrough, hardware/link, interrupted saves, full quest-log/weather/lighting/move-redesign acceptance remain. Exact three-feature source combination now tested separately; live full/CI results inPR35.",
       "merged_reference": {
@@ -3151,14 +3151,27 @@
   },
   "current_weather_move_branch": "feature/weather-move-completion",
   "source_history_repair_checkpoint": {
-    "main_sha": "38efadc2010a62754eaf306207f82a2a99979e81",
+    "main_sha": "c97440cbe1d64ed84803973b13ca13c8f15a34b4",
     "prs": [
       270,
-      271
+      271,
+      273,
+      274
     ],
-    "source_tests": "8 PASS; full Elite Four source runner PASS",
-    "remaining": "Gym historical flags projection; further guards not yet certified",
-    "gameplay": "Not run, owner playtest reserved",
-    "accounting": "461/251/712 unchanged"
+    "source_tests": "19 PASS, including provenance and unauthorized-drift negatives; eight source runners PASS",
+    "runners": [
+      "run_gym_castform_tests.py",
+      "run_typing_tests.py",
+      "run_brock_weather_tests.py",
+      "run_weather_species_tests.py",
+      "run_elite_four_tests.py",
+      "run_ordinary_trainer_tests.py",
+      "run_rival_tests.py",
+      "run_world_reward_tests.py"
+    ],
+    "remaining": "Owner gameplay/full integration acceptance; final146-profile approval and exact TM51 matrix. Existing205 authored off-Dex findings remain unresolved, not waived.",
+    "gameplay": "Not run; reserved for owner ROM playtest",
+    "ci": "No workflow dispatch; [skip ci], not successful CI",
+    "accounting": "50 permanent tasks;461/251/712 unchanged"
   }
 }
