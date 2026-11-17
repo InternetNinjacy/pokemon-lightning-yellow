@@ -337,6 +337,7 @@ required += ['Route12_EventScript_SowCorphish','Route21_North_EventScript_SowGla
 required += ['ViridianForest_EventScript_SowHeracross', 'ViridianForest_EventScript_Youngster',
              'ViridianForest_Text_SowWarning','ViridianForest_Text_SowThanks',
              'gObjectEvents','gSprites','gMonIcon_Heracross','sPicTable_SowHeracross']
+required += ['ScriptGiveSueEevee', 'ScriptGiveMon', 'EventScript_ChangePokemonNickname']
 symbols={}
 end_ewram=0
 for line in subprocess.check_output(['arm-none-eabi-nm','-S','pokefirered.elf'],text=True).splitlines():
