@@ -3,8 +3,8 @@
   "updated": "2026-11-16",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "Completed connected source-history repair: PR273 Gym/typing/Brock and PR274 weather-species merged; 19 pure-source cases and eight source runners pass. Exact integrated test files verified; no gameplay/CI acceptance claimed. Remaining PKM009 final146 working-profile approval and TM51 exact252-species matrix are with Master Control. Owner ROM acceptance pending;461/712 unchanged.",
-  "main_sha": "c97440cbe1d64ed84803973b13ca13c8f15a34b4",
+  "current_focus": "PR276 merged: remaining move catalog/distribution and Glalie/weather-ability source guards repaired, with no gameplay changes. Selected38 pure-source runners now pass (33 initial plus5 fixed); six additional preservation cases and unchanged410-move regeneration pass. Final146-profile approval and exact TM51 matrix still requested from Master Control; source readiness is not owner gameplay acceptance.461/712 unchanged.",
+  "main_sha": "61e5c17efc3d747a87d606f78761b116398673e2",
   "drive_sync": {
     "status": "2026-11-10 WTH-001 and WRL-008 closeout PRs #170/#184 merged and verified; corresponding existing Google Drive Progress, START HERE and vendor register synchronized with definitive completion evidence.",
     "folder": "https://drive.google.com/drive/folders/1N_n0Ke48jBbdhUWSZWzwR6rpPFqpDUpl"
@@ -1907,7 +1907,7 @@
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/35/checks",
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Source-only Gym/typing/Brock/weather-species history repaired in PR273/274 after PR270/271. All selected eight source runners pass; runtime/full-CI/progression/link acceptance remains unexecuted under owner playtest direction. Keep strict frozen guards. Master Control must distinguish source readiness from gameplay acceptance and provide missing146-profile/TM51 authority before PKM009 distribution edits.",
+      "next_action": "Connected source-only checks repaired through PR276; retain strict history and current410 catalog. Source batch38 passed, with six new preservation cases and catalog6 cases. Native/full CI/progression/link acceptance not executed under owner playtest policy. Proceed only with independent approved scope; PKM009146 WORKING profiles/TM51 need Master Control authority, and private/specialist branches must not be blindly merged.",
       "checkpoint": "2026-11-04 combined typing regression; no duplicated integration effort credit.",
       "coverage_gap": "Full natural playthrough, hardware/link, interrupted saves, full quest-log/weather/lighting/move-redesign acceptance remain. Exact three-feature source combination now tested separately; live full/CI results inPR35.",
       "merged_reference": {
@@ -3173,5 +3173,28 @@
     "gameplay": "Not run; reserved for owner ROM playtest",
     "ci": "No workflow dispatch; [skip ci], not successful CI",
     "accounting": "50 permanent tasks;461/251/712 unchanged"
+  },
+  "move_catalog_source_audit_checkpoint": {
+    "starting_main": "777b2f655365cecd484236f5fbe83b298d9b8f69",
+    "integrated_main": "61e5c17efc3d747a87d606f78761b116398673e2",
+    "pr": 276,
+    "source_head": "457f08aa59d6773a9553543f529a2d597b2de27a",
+    "source_batch": {
+      "selected": 38,
+      "initial_pass": 33,
+      "initial_fail": 5,
+      "repaired_runners": [
+        "run_move_catalog_tests.py",
+        "run_moves374_tests.py",
+        "run_new_ghost_moves_tests.py",
+        "run_special_glalie_tests.py",
+        "run_weather_ability_tests.py"
+      ],
+      "final": "All38 passed; prior33 unchanged, final5 focused reruns pass"
+    },
+    "additional": "6 preservation tests PASS; Fire structural prefix only, numerical/RNG harness not run; catalog --check PASS",
+    "logs": "/workspace/scratch/ly-source-logs (initial and final results retained separately)",
+    "runtime_and_ci": "No gameplay, emulator, RNG or workflow dispatch; skipped CI not successful CI",
+    "accounting": "50 task IDs;461/251/712 unchanged"
   }
 }
