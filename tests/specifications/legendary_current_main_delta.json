@@ -1,0 +1,162 @@
+{
+  "base_main": "28dd82b5d9a684455a36f6458ac88a3e7e45d4ed",
+  "authority": "Owner issue234; November17 owner-deferred physical-device testing",
+  "source235": "cefd2a46d9b97b39a30b2f1b1903ec845979a258",
+  "scope": "Exact10 production paths plus additive native registration; no older expected hash rewritten",
+  "files": {
+    "data/maps/Route10/map.json": {
+      "before_sha256": "2a150cbfeb76e832d6b3d7f0c5f2023efb3e6df5084f445863dc7bf6e679e7ee",
+      "after_sha256": "badd110b680a1c96cfd45cea6e19b8df749634229e2b9d0e0a8d6f1a84441c88",
+      "hunks": [
+        {
+          "before": "      \"trainer_sight_or_berry_tree_id\": \"0\",\n      \"script\": \"EventScript_CutTree\",\n      \"flag\": \"FLAG_TEMP_15\"\n    }\n  ],\n  \"warp_events\": [\n",
+          "after": "      \"trainer_sight_or_berry_tree_id\": \"0\",\n      \"script\": \"EventScript_CutTree\",\n      \"flag\": \"FLAG_TEMP_15\"\n    },\n    {\n      \"type\": \"object\",\n      \"graphics_id\": \"OBJ_EVENT_GFX_RAIKOU\",\n      \"x\": 8,\n      \"y\": 41,\n      \"elevation\": 3,\n      \"movement_type\": \"MOVEMENT_TYPE_FACE_DOWN\",\n      \"movement_range_x\": 0,\n      \"movement_range_y\": 0,\n      \"trainer_type\": \"TRAINER_TYPE_NONE\",\n      \"trainer_sight_or_berry_tree_id\": \"0\",\n      \"script\": \"Route10_EventScript_LightningRaikou\",\n      \"flag\": \"FLAG_HIDE_LIGHTNING_RAIKOU\"\n    }\n  ],\n  \"warp_events\": [\n"
+        }
+      ]
+    },
+    "data/maps/Route10/scripts.inc": {
+      "before_sha256": "08161cdc4246161020d873c7fc7aab403f9b0b0e484f1030dca8614e4dafbca4",
+      "after_sha256": "28ba3ea2b356a05427917c143a232c514a95cf4be369b283bac7e8d77cb20d7e",
+      "hunks": [
+        {
+          "before": "Route10_MapScripts::\n\t.byte 0\n\nRoute10_EventScript_Unused::\n",
+          "after": "Route10_MapScripts::\n\tmap_script MAP_SCRIPT_ON_TRANSITION, Route10_Lightning_OnTransition\n\t.byte 0\n\nRoute10_EventScript_Unused::\n"
+        },
+        {
+          "before": "Route10_EventScript_PowerPlantSign::\n\tmsgbox Route10_Text_PowerPlant, MSGBOX_SIGN\n\tend\n",
+          "after": "Route10_EventScript_PowerPlantSign::\n\tmsgbox Route10_Text_PowerPlant, MSGBOX_SIGN\n\tend\n\nRoute10_Lightning_OnTransition::\n\tcall Route10_EventScript_ShowLightningRaikou\n\tend\n\n@ Issue #234: original FireRed-style post-League stationary encounter.\n@ The battle remains independent of all other legendary events.\nRoute10_EventScript_ShowLightningRaikou::\n\tgoto_if_unset FLAG_SYS_GAME_CLEAR, Route10_EventScript_HideLightningRaikou\n\tgoto_if_set FLAG_FOUGHT_LIGHTNING_RAIKOU, Route10_EventScript_HideLightningRaikou\n\tclearflag FLAG_HIDE_LIGHTNING_RAIKOU\n\treturn\n\nRoute10_EventScript_HideLightningRaikou::\n\tsetflag FLAG_HIDE_LIGHTNING_RAIKOU\n\treturn\n\nRoute10_EventScript_LightningRaikou::\n\tgoto_if_questlog EventScript_ReleaseEnd\n\tgoto_if_unset FLAG_SYS_GAME_CLEAR, EventScript_ReleaseEnd\n\tgoto_if_set FLAG_FOUGHT_LIGHTNING_RAIKOU, EventScript_ReleaseEnd\n\tspecial QuestLog_CutRecording\n\tlock\n\tfaceplayer\n\tsetwildbattle SPECIES_RAIKOU, 50\n\twaitse\n\tplaymoncry SPECIES_RAIKOU, CRY_MODE_ENCOUNTER\n\tmessage Text_Gyaoo\n\twaitmessage\n\twaitmoncry\n\tdelay 10\n\tplaybgm MUS_ENCOUNTER_GYM_LEADER, 0\n\twaitbuttonpress\n\tsetflag FLAG_SYS_SPECIAL_WILD_BATTLE\n\tspecial StartLegendaryBattle\n\twaitstate\n\tclearflag FLAG_SYS_SPECIAL_WILD_BATTLE\n\tspecialvar VAR_RESULT, GetBattleOutcome\n\tgoto_if_eq VAR_RESULT, B_OUTCOME_WON, Route10_EventScript_DefeatedLightningRaikou\n\tgoto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, Route10_EventScript_CaughtLightningRaikou\n\tgoto_if_eq VAR_RESULT, B_OUTCOME_RAN, Route10_EventScript_RanFromLightningRaikou\n\tgoto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, Route10_EventScript_RanFromLightningRaikou\n\trelease\n\tend\n\nRoute10_EventScript_CaughtLightningRaikou::\n\tsetflag FLAG_FOUGHT_LIGHTNING_RAIKOU\n\tgoto EventScript_RemoveStaticMon\n\nRoute10_EventScript_DefeatedLightningRaikou::\n\tsetflag FLAG_FOUGHT_LIGHTNING_RAIKOU\n\tgoto EventScript_RemoveStaticMon\n\nRoute10_EventScript_RanFromLightningRaikou::\n\tsetvar VAR_0x8004, SPECIES_RAIKOU\n\tgoto EventScript_MonFlewAway\n\tend\n"
+        }
+      ]
+    },
+    "data/maps/MtEmber_SummitPath_1F/map.json": {
+      "before_sha256": "130f2cce595bd0829be8a1e397f8618f3190cfc63fb1bc9182cd5f25362f56e6",
+      "after_sha256": "cc31c961173abbec0cd02dd2ef04fae0bc0c681c83c7c5735c5da4a21d99ae12",
+      "hunks": [
+        {
+          "before": "  \"floor_number\": 0,\n  \"battle_scene\": \"MAP_BATTLE_SCENE_NORMAL\",\n  \"connections\": null,\n  \"object_events\": [],\n  \"warp_events\": [\n    {\n      \"x\": 2,\n",
+          "after": "  \"floor_number\": 0,\n  \"battle_scene\": \"MAP_BATTLE_SCENE_NORMAL\",\n  \"connections\": null,\n  \"object_events\": [\n    {\n      \"type\": \"object\",\n      \"graphics_id\": \"OBJ_EVENT_GFX_ENTEI\",\n      \"x\": 4,\n      \"y\": 8,\n      \"elevation\": 3,\n      \"movement_type\": \"MOVEMENT_TYPE_FACE_DOWN\",\n      \"movement_range_x\": 0,\n      \"movement_range_y\": 0,\n      \"trainer_type\": \"TRAINER_TYPE_NONE\",\n      \"trainer_sight_or_berry_tree_id\": \"0\",\n      \"script\": \"MtEmber_SummitPath_1F_EventScript_LightningEntei\",\n      \"flag\": \"FLAG_HIDE_LIGHTNING_ENTEI\"\n    }\n  ],\n  \"warp_events\": [\n    {\n      \"x\": 2,\n"
+        }
+      ]
+    },
+    "data/maps/MtEmber_SummitPath_1F/scripts.inc": {
+      "before_sha256": "4204fd59d54ba4b55f0ac68d4de5c220abdb861827a3260be0e160a27ddaea95",
+      "after_sha256": "2948f70094e29dca99f3c56e751638b4e53aceae9d2b47283bfa84830044fdfb",
+      "hunks": [
+        {
+          "before": "MtEmber_SummitPath_1F_MapScripts::\n\t.byte 0\n",
+          "after": "MtEmber_SummitPath_1F_MapScripts::\n\tmap_script MAP_SCRIPT_ON_TRANSITION, MtEmber_SummitPath_1F_Lightning_OnTransition\n\t.byte 0\n\nMtEmber_SummitPath_1F_Lightning_OnTransition::\n\tcall MtEmber_SummitPath_1F_EventScript_ShowLightningEntei\n\tend\n\n@ Issue #234: original FireRed-style post-League stationary encounter.\n@ The battle remains independent of all other legendary events.\nMtEmber_SummitPath_1F_EventScript_ShowLightningEntei::\n\tgoto_if_unset FLAG_SYS_GAME_CLEAR, MtEmber_SummitPath_1F_EventScript_HideLightningEntei\n\tgoto_if_set FLAG_FOUGHT_LIGHTNING_ENTEI, MtEmber_SummitPath_1F_EventScript_HideLightningEntei\n\tclearflag FLAG_HIDE_LIGHTNING_ENTEI\n\treturn\n\nMtEmber_SummitPath_1F_EventScript_HideLightningEntei::\n\tsetflag FLAG_HIDE_LIGHTNING_ENTEI\n\treturn\n\nMtEmber_SummitPath_1F_EventScript_LightningEntei::\n\tgoto_if_questlog EventScript_ReleaseEnd\n\tgoto_if_unset FLAG_SYS_GAME_CLEAR, EventScript_ReleaseEnd\n\tgoto_if_set FLAG_FOUGHT_LIGHTNING_ENTEI, EventScript_ReleaseEnd\n\tspecial QuestLog_CutRecording\n\tlock\n\tfaceplayer\n\tsetwildbattle SPECIES_ENTEI, 50\n\twaitse\n\tplaymoncry SPECIES_ENTEI, CRY_MODE_ENCOUNTER\n\tmessage Text_Gyaoo\n\twaitmessage\n\twaitmoncry\n\tdelay 10\n\tplaybgm MUS_ENCOUNTER_GYM_LEADER, 0\n\twaitbuttonpress\n\tsetflag FLAG_SYS_SPECIAL_WILD_BATTLE\n\tspecial StartLegendaryBattle\n\twaitstate\n\tclearflag FLAG_SYS_SPECIAL_WILD_BATTLE\n\tspecialvar VAR_RESULT, GetBattleOutcome\n\tgoto_if_eq VAR_RESULT, B_OUTCOME_WON, MtEmber_SummitPath_1F_EventScript_DefeatedLightningEntei\n\tgoto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, MtEmber_SummitPath_1F_EventScript_CaughtLightningEntei\n\tgoto_if_eq VAR_RESULT, B_OUTCOME_RAN, MtEmber_SummitPath_1F_EventScript_RanFromLightningEntei\n\tgoto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, MtEmber_SummitPath_1F_EventScript_RanFromLightningEntei\n\trelease\n\tend\n\nMtEmber_SummitPath_1F_EventScript_CaughtLightningEntei::\n\tsetflag FLAG_FOUGHT_LIGHTNING_ENTEI\n\tgoto EventScript_RemoveStaticMon\n\nMtEmber_SummitPath_1F_EventScript_DefeatedLightningEntei::\n\tsetflag FLAG_FOUGHT_LIGHTNING_ENTEI\n\tgoto EventScript_RemoveStaticMon\n\nMtEmber_SummitPath_1F_EventScript_RanFromLightningEntei::\n\tsetvar VAR_0x8004, SPECIES_ENTEI\n\tgoto EventScript_MonFlewAway\n\tend\n"
+        }
+      ]
+    },
+    "data/maps/SeafoamIslands_B4F/map.json": {
+      "before_sha256": "34d63e32310a54b52f0e188f0c06a05e5a57f6e57a46598e24137d16af30df71",
+      "after_sha256": "dd07180e88c437f118b60e42b0cc5877d6ad81849bfa6138d2d0f1f41b6607c9",
+      "hunks": [
+        {
+          "before": "      \"trainer_sight_or_berry_tree_id\": \"0\",\n      \"script\": \"SeafoamIslands_B4F_EventScript_ItemUltraBall\",\n      \"flag\": \"FLAG_HIDE_SEAFOAM_ISLANDS_B4F_ULTRA_BALL\"\n    }\n  ],\n  \"warp_events\": [\n",
+          "after": "      \"trainer_sight_or_berry_tree_id\": \"0\",\n      \"script\": \"SeafoamIslands_B4F_EventScript_ItemUltraBall\",\n      \"flag\": \"FLAG_HIDE_SEAFOAM_ISLANDS_B4F_ULTRA_BALL\"\n    },\n    {\n      \"type\": \"object\",\n      \"graphics_id\": \"OBJ_EVENT_GFX_SUICUNE\",\n      \"x\": 30,\n      \"y\": 9,\n      \"elevation\": 1,\n      \"movement_type\": \"MOVEMENT_TYPE_FACE_DOWN\",\n      \"movement_range_x\": 0,\n      \"movement_range_y\": 0,\n      \"trainer_type\": \"TRAINER_TYPE_NONE\",\n      \"trainer_sight_or_berry_tree_id\": \"0\",\n      \"script\": \"SeafoamIslands_B4F_EventScript_LightningSuicune\",\n      \"flag\": \"FLAG_HIDE_LIGHTNING_SUICUNE\"\n    }\n  ],\n  \"warp_events\": [\n"
+        }
+      ]
+    },
+    "data/maps/SeafoamIslands_B4F/scripts.inc": {
+      "before_sha256": "f269137e533de5e32c2b90fe281a9b16017cdfbc5a1aa8cdf2754feff2b2bacd",
+      "after_sha256": "491312212c798a3408a741476a2a64f3f2a11561b2bbd6cb10195fab810da66c",
+      "hunks": [
+        {
+          "before": "\treturn\n\nSeafoamIslands_B4F_OnTransition::\n\tcall_if_unset FLAG_FOUGHT_ARTICUNO, SeafoamIslands_B4F_EventScript_ShowArticuno\n\tcall_if_unset FLAG_STOPPED_SEAFOAM_B4F_CURRENT, SeafoamIslands_B4F_EventScript_CheckStoppedCurrent\n\tcall_if_set FLAG_STOPPED_SEAFOAM_B4F_CURRENT, SeafoamIslands_B4F_EventScript_SetNoCurrentLayout\n",
+          "after": "\treturn\n\nSeafoamIslands_B4F_OnTransition::\n\tcall SeafoamIslands_B4F_EventScript_ShowLightningSuicune\n\tcall_if_unset FLAG_FOUGHT_ARTICUNO, SeafoamIslands_B4F_EventScript_ShowArticuno\n\tcall_if_unset FLAG_STOPPED_SEAFOAM_B4F_CURRENT, SeafoamIslands_B4F_EventScript_CheckStoppedCurrent\n\tcall_if_set FLAG_STOPPED_SEAFOAM_B4F_CURRENT, SeafoamIslands_B4F_EventScript_SetNoCurrentLayout\n"
+        },
+        {
+          "before": "SeafoamIslands_B4F_EventScript_FastCurrentSign::\n\tmsgbox SeafoamIslands_B4F_Text_DangerFastCurrent, MSGBOX_SIGN\n\tend\n",
+          "after": "SeafoamIslands_B4F_EventScript_FastCurrentSign::\n\tmsgbox SeafoamIslands_B4F_Text_DangerFastCurrent, MSGBOX_SIGN\n\tend\n\n\n@ Issue #234: original FireRed-style post-League stationary encounter.\n@ The battle remains independent of all other legendary events.\nSeafoamIslands_B4F_EventScript_ShowLightningSuicune::\n\tgoto_if_unset FLAG_SYS_GAME_CLEAR, SeafoamIslands_B4F_EventScript_HideLightningSuicune\n\tgoto_if_set FLAG_FOUGHT_LIGHTNING_SUICUNE, SeafoamIslands_B4F_EventScript_HideLightningSuicune\n\tclearflag FLAG_HIDE_LIGHTNING_SUICUNE\n\treturn\n\nSeafoamIslands_B4F_EventScript_HideLightningSuicune::\n\tsetflag FLAG_HIDE_LIGHTNING_SUICUNE\n\treturn\n\nSeafoamIslands_B4F_EventScript_LightningSuicune::\n\tgoto_if_questlog EventScript_ReleaseEnd\n\tgoto_if_unset FLAG_SYS_GAME_CLEAR, EventScript_ReleaseEnd\n\tgoto_if_set FLAG_FOUGHT_LIGHTNING_SUICUNE, EventScript_ReleaseEnd\n\tspecial QuestLog_CutRecording\n\tlock\n\tfaceplayer\n\tsetwildbattle SPECIES_SUICUNE, 50\n\twaitse\n\tplaymoncry SPECIES_SUICUNE, CRY_MODE_ENCOUNTER\n\tmessage Text_Gyaoo\n\twaitmessage\n\twaitmoncry\n\tdelay 10\n\tplaybgm MUS_ENCOUNTER_GYM_LEADER, 0\n\twaitbuttonpress\n\tsetflag FLAG_SYS_SPECIAL_WILD_BATTLE\n\tspecial StartLegendaryBattle\n\twaitstate\n\tclearflag FLAG_SYS_SPECIAL_WILD_BATTLE\n\tspecialvar VAR_RESULT, GetBattleOutcome\n\tgoto_if_eq VAR_RESULT, B_OUTCOME_WON, SeafoamIslands_B4F_EventScript_DefeatedLightningSuicune\n\tgoto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, SeafoamIslands_B4F_EventScript_CaughtLightningSuicune\n\tgoto_if_eq VAR_RESULT, B_OUTCOME_RAN, SeafoamIslands_B4F_EventScript_RanFromLightningSuicune\n\tgoto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, SeafoamIslands_B4F_EventScript_RanFromLightningSuicune\n\trelease\n\tend\n\nSeafoamIslands_B4F_EventScript_CaughtLightningSuicune::\n\tsetflag FLAG_FOUGHT_LIGHTNING_SUICUNE\n\tgoto EventScript_RemoveStaticMon\n\nSeafoamIslands_B4F_EventScript_DefeatedLightningSuicune::\n\tsetflag FLAG_FOUGHT_LIGHTNING_SUICUNE\n\tgoto EventScript_RemoveStaticMon\n\nSeafoamIslands_B4F_EventScript_RanFromLightningSuicune::\n\tsetvar VAR_0x8004, SPECIES_SUICUNE\n\tgoto EventScript_MonFlewAway\n\tend\n"
+        }
+      ]
+    },
+    "data/maps/SevenIsland_TanobyRuins/map.json": {
+      "before_sha256": "bb06dcdb276dac53d3c2c75b3fbc47f25352f393af98ae09d597f3af0a786a8e",
+      "after_sha256": "392fd369c4bb993f39b9c5a6656bdfedaa4bf2ac0a0d242f0110602e3f84aa9d",
+      "hunks": [
+        {
+          "before": "      \"trainer_sight_or_berry_tree_id\": \"1\",\n      \"script\": \"SevenIsland_TanobyRuins_EventScript_Clifford\",\n      \"flag\": \"0\"\n    }\n  ],\n  \"warp_events\": [\n",
+          "after": "      \"trainer_sight_or_berry_tree_id\": \"1\",\n      \"script\": \"SevenIsland_TanobyRuins_EventScript_Clifford\",\n      \"flag\": \"0\"\n    },\n    {\n      \"type\": \"object\",\n      \"graphics_id\": \"OBJ_EVENT_GFX_MEW\",\n      \"x\": 105,\n      \"y\": 12,\n      \"elevation\": 3,\n      \"movement_type\": \"MOVEMENT_TYPE_FACE_DOWN\",\n      \"movement_range_x\": 0,\n      \"movement_range_y\": 0,\n      \"trainer_type\": \"TRAINER_TYPE_NONE\",\n      \"trainer_sight_or_berry_tree_id\": \"0\",\n      \"script\": \"SevenIsland_TanobyRuins_EventScript_LightningMew\",\n      \"flag\": \"FLAG_HIDE_LIGHTNING_MEW\"\n    }\n  ],\n  \"warp_events\": [\n"
+        }
+      ]
+    },
+    "data/maps/SevenIsland_TanobyRuins/scripts.inc": {
+      "before_sha256": "e6ab24b80c3c484efe15406e9cb4a51fe4e443ee5a7029726b8c0703c68a930d",
+      "after_sha256": "212a27b77e0ea154bcb75910897d9a6b3cce52276b70a565aa123402b2340768",
+      "hunks": [
+        {
+          "before": "SevenIsland_TanobyRuins_MapScripts::\n\t.byte 0\n",
+          "after": "SevenIsland_TanobyRuins_MapScripts::\n\tmap_script MAP_SCRIPT_ON_TRANSITION, SevenIsland_TanobyRuins_Lightning_OnTransition\n\t.byte 0\n\nSevenIsland_TanobyRuins_Lightning_OnTransition::\n\tcall SevenIsland_TanobyRuins_EventScript_ShowLightningMew\n\tend\n\n@ Issue #234: original FireRed-style post-League stationary encounter.\n@ The battle remains independent of all other legendary events.\nSevenIsland_TanobyRuins_EventScript_ShowLightningMew::\n\tgoto_if_unset FLAG_SYS_GAME_CLEAR, SevenIsland_TanobyRuins_EventScript_HideLightningMew\n\tgoto_if_set FLAG_FOUGHT_LIGHTNING_MEW, SevenIsland_TanobyRuins_EventScript_HideLightningMew\n\tclearflag FLAG_HIDE_LIGHTNING_MEW\n\treturn\n\nSevenIsland_TanobyRuins_EventScript_HideLightningMew::\n\tsetflag FLAG_HIDE_LIGHTNING_MEW\n\treturn\n\nSevenIsland_TanobyRuins_EventScript_LightningMew::\n\tgoto_if_questlog EventScript_ReleaseEnd\n\tgoto_if_unset FLAG_SYS_GAME_CLEAR, EventScript_ReleaseEnd\n\tgoto_if_set FLAG_FOUGHT_LIGHTNING_MEW, EventScript_ReleaseEnd\n\tspecial QuestLog_CutRecording\n\tlock\n\tfaceplayer\n\tsetwildbattle SPECIES_MEW, 50\n\twaitse\n\tplaymoncry SPECIES_MEW, CRY_MODE_ENCOUNTER\n\tmessage Text_Gyaoo\n\twaitmessage\n\twaitmoncry\n\tdelay 10\n\tplaybgm MUS_ENCOUNTER_GYM_LEADER, 0\n\twaitbuttonpress\n\tsetflag FLAG_SYS_SPECIAL_WILD_BATTLE\n\tspecial StartLegendaryBattle\n\twaitstate\n\tclearflag FLAG_SYS_SPECIAL_WILD_BATTLE\n\tspecialvar VAR_RESULT, GetBattleOutcome\n\tgoto_if_eq VAR_RESULT, B_OUTCOME_WON, SevenIsland_TanobyRuins_EventScript_DefeatedLightningMew\n\tgoto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, SevenIsland_TanobyRuins_EventScript_CaughtLightningMew\n\tgoto_if_eq VAR_RESULT, B_OUTCOME_RAN, SevenIsland_TanobyRuins_EventScript_RanFromLightningMew\n\tgoto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, SevenIsland_TanobyRuins_EventScript_RanFromLightningMew\n\trelease\n\tend\n\nSevenIsland_TanobyRuins_EventScript_CaughtLightningMew::\n\tsetflag FLAG_FOUGHT_LIGHTNING_MEW\n\tgoto EventScript_RemoveStaticMon\n\nSevenIsland_TanobyRuins_EventScript_DefeatedLightningMew::\n\tsetflag FLAG_FOUGHT_LIGHTNING_MEW\n\tgoto EventScript_RemoveStaticMon\n\nSevenIsland_TanobyRuins_EventScript_RanFromLightningMew::\n\tsetvar VAR_0x8004, SPECIES_MEW\n\tgoto EventScript_MonFlewAway\n\tend\n"
+        }
+      ]
+    },
+    "include/constants/flags.h": {
+      "before_sha256": "5f5c918dcaf4f09f98a94854449196410d4bc9a8ac67b403d2240f6fb7a90485",
+      "after_sha256": "b6560479475492e2af5204fa7bf8827fa06b9e7da0e197c49ff6e3e519b7cabc",
+      "hunks": [
+        {
+          "before": "#define FLAG_0x322               0x322\n#define FLAG_0x323               0x323\n#define FLAG_0x324               0x324\n#define FLAG_0x325               0x325\n#define FLAG_0x326               0x326\n#define FLAG_0x327               0x327\n#define FLAG_0x328               0x328\n#define FLAG_0x329               0x329\n#define FLAG_0x32A               0x32A\n#define FLAG_0x32B               0x32B\n#define FLAG_0x32C               0x32C\n#define FLAG_0x32D               0x32D\n#define FLAG_0x32E               0x32E\n#define FLAG_0x32F               0x32F\n",
+          "after": "#define FLAG_0x322               0x322\n#define FLAG_0x323               0x323\n#define FLAG_0x324               0x324\n#define FLAG_FOUGHT_LIGHTNING_RAIKOU 0x325\n#define FLAG_FOUGHT_LIGHTNING_ENTEI 0x326\n#define FLAG_FOUGHT_LIGHTNING_SUICUNE 0x327\n#define FLAG_FOUGHT_LIGHTNING_MEW 0x328\n#define FLAG_HIDE_LIGHTNING_RAIKOU 0x329\n#define FLAG_HIDE_LIGHTNING_ENTEI 0x32A\n#define FLAG_HIDE_LIGHTNING_SUICUNE 0x32B\n#define FLAG_HIDE_LIGHTNING_MEW 0x32C\n#define FLAG_0x32D               0x32D\n#define FLAG_0x32E               0x32E\n#define FLAG_0x32F               0x32F\n"
+        }
+      ]
+    },
+    "src/roamer.c": {
+      "before_sha256": "b72cd17c1e668b8d483953dd85cc6f0e02c54a1a022f4fabe743841867b9877f",
+      "after_sha256": "e7eb02b46f0bab4d7f43006da16fccaca7f9f8e84a88e600a1387874cb37d4c1",
+      "hunks": [
+        {
+          "before": "    sRoamerLocation[MAP_NUM] = sRoamerLocations[Random() % NUM_LOCATION_SETS][0];\n}\n\nvoid InitRoamer(void)\n{\n    ClearRoamerData();\n    CreateInitialRoamerMon();\n}\n\nvoid UpdateLocationHistoryForRoamer(void)\n",
+          "after": "    sRoamerLocation[MAP_NUM] = sRoamerLocations[Random() % NUM_LOCATION_SETS][0];\n}\n\n// The four approved post-League legendaries are independent stationary events.\n// Do not instantiate the old one-of-three starter-dependent roamer on new saves.\nvoid InitRoamer(void)\n{\n    ClearRoamerData();\n}\n\nvoid UpdateLocationHistoryForRoamer(void)\n"
+        },
+        {
+          "before": "    }\n}\n\nbool8 IsRoamerAt(u8 mapGroup, u8 mapNum)\n{\n    if (ROAMER->active && mapGroup == sRoamerLocation[MAP_GRP] && mapNum == sRoamerLocation[MAP_NUM])\n        return TRUE;\n    else\n",
+          "after": "    }\n}\n\n// StaticBeastsSupersedeRoamer: old-save roamers must not duplicate the new statics.\nstatic bool8 StaticBeastsSupersedeRoamer(void)\n{\n    return ROAMER->species == SPECIES_RAIKOU\n        || ROAMER->species == SPECIES_ENTEI\n        || ROAMER->species == SPECIES_SUICUNE;\n}\n\nbool8 IsRoamerAt(u8 mapGroup, u8 mapNum)\n{\n    if (StaticBeastsSupersedeRoamer())\n        return FALSE;\n    if (ROAMER->active && mapGroup == sRoamerLocation[MAP_GRP] && mapNum == sRoamerLocation[MAP_NUM])\n        return TRUE;\n    else\n"
+        },
+        {
+          "before": "\nu16 GetRoamerLocationMapSectionId(void)\n{\n    if (!ROAMER->active)\n        return MAPSEC_NONE;\n    return Overworld_GetMapHeaderByGroupAndId(sRoamerLocation[MAP_GRP], sRoamerLocation[MAP_NUM])->regionMapSectionId;\n}\n",
+          "after": "\nu16 GetRoamerLocationMapSectionId(void)\n{\n    if (!ROAMER->active || StaticBeastsSupersedeRoamer())\n        return MAPSEC_NONE;\n    return Overworld_GetMapHeaderByGroupAndId(sRoamerLocation[MAP_GRP], sRoamerLocation[MAP_NUM])->regionMapSectionId;\n}\n"
+        }
+      ]
+    },
+    "tests/emulator/run.py": {
+      "before_sha256": "bfd04ace6eb62f8c6ba634d4b3da309c5a136d7aaf43b81019ded4d575b1f039",
+      "after_sha256": "1de979d9d2dbead29cf4c10c78788df08b5a29b239f0901582e1fcb778fa243a",
+      "hunks": [
+        {
+          "before": "required += ['ScriptSelectStarterPikachuFollower','ScriptStartStarterFollowerEmergence','gObjectEvents','gPlayerAvatar']\nrequired += ['FollowerGraphics_GetSize','FollowerController_RequestRefresh','FollowerGraphics_Swap','FollowerGraphics_SetFrame','FollowerGraphics_Release','FollowerGraphics_GetPaletteSlot','gSprites','gPlttBufferUnfaded']\nrequired += ['FollowerGraphics_GetSpriteId','FollowerGraphics_GetObjectEventId','FollowerSpecial_PlayCry','FollowerState_ResolvePartySlot','FollowerState_SelectPartySlot','FollowerState_CanDisplay','FollowerState_BeforePartyRemoval','FollowerState_Clear','FollowerAssets_Count','FollowerAssets_Resolve','CustomPokedexNumToSpecies','gStringVar4','CB2_PartyMenuFromStartMenu']\nsymbols={}\nend_ewram=0\nfor line in subprocess.check_output(['arm-none-eabi-nm','-S','pokefirered.elf'],text=True).splitlines():\n",
+          "after": "required += ['ScriptSelectStarterPikachuFollower','ScriptStartStarterFollowerEmergence','gObjectEvents','gPlayerAvatar']\nrequired += ['FollowerGraphics_GetSize','FollowerController_RequestRefresh','FollowerGraphics_Swap','FollowerGraphics_SetFrame','FollowerGraphics_Release','FollowerGraphics_GetPaletteSlot','gSprites','gPlttBufferUnfaded']\nrequired += ['FollowerGraphics_GetSpriteId','FollowerGraphics_GetObjectEventId','FollowerSpecial_PlayCry','FollowerState_ResolvePartySlot','FollowerState_SelectPartySlot','FollowerState_CanDisplay','FollowerState_BeforePartyRemoval','FollowerState_Clear','FollowerAssets_Count','FollowerAssets_Resolve','CustomPokedexNumToSpecies','gStringVar4','CB2_PartyMenuFromStartMenu']\nrequired += ['Route10_EventScript_LightningRaikou','MtEmber_SummitPath_1F_EventScript_LightningEntei',\n             'SeafoamIslands_B4F_EventScript_LightningSuicune','SevenIsland_TanobyRuins_EventScript_LightningMew']\nsymbols={}\nend_ewram=0\nfor line in subprocess.check_output(['arm-none-eabi-nm','-S','pokefirered.elf'],text=True).splitlines():\n"
+        }
+      ]
+    },
+    "tests/emulator/runner.c": {
+      "before_sha256": "0653bae8b7e6f808e72a1b04ee5b66c9a033e41977999c84178d72e11ba6d32e",
+      "after_sha256": "bb777527a78362ef62e77ef4449eadc6084f8b52fd87171c405700fb6007fb7e",
+      "hunks": [
+        {
+          "before": "#include \"constants/pokedex.h\"\n#include \"constants/time_of_day.h\"\n#include \"constants/vars.h\"\n#include \"symbols.h\"\n\nstatic struct mCore *core;\n",
+          "after": "#include \"constants/pokedex.h\"\n#include \"constants/time_of_day.h\"\n#include \"constants/vars.h\"\n#include \"constants/flags.h\"\n#include \"symbols.h\"\n\nstatic struct mCore *core;\n"
+        },
+        {
+          "before": "#include \"wrl_route_grass.c\"\n#include \"sow_placement.c\"\n#include \"sow_producers.c\"\n#include \"sow002_heracross.c\"\n#include \"lighting_preview.c\"\n#include \"gym_castform.c\"\n",
+          "after": "#include \"wrl_route_grass.c\"\n#include \"sow_placement.c\"\n#include \"sow_producers.c\"\n#include \"legendary_statics.c\"\n#include \"sow002_heracross.c\"\n#include \"lighting_preview.c\"\n#include \"gym_castform.c\"\n"
+        },
+        {
+          "before": "    if(getenv(\"LIGHTNING_WRL_AIDE_PHYSICAL_ONLY\")){wrlAidePhysicalTests();printf(\"PASS: %u focused WRL-009 physical aide assertions\\n\",checks);core->deinit(core);free(pixels);free(bootState);return 0;}\n    if(getenv(\"LIGHTNING_WRL_NONWILD_GIFTS_ONLY\")){wrlNonWildGiftTests();printf(\"PASS: %u focused WRL-009 non-wild gift assertions\\n\",checks);core->deinit(core);free(pixels);free(bootState);return 0;}\n    if(getenv(\"LIGHTNING_WRL_ROUTE_GRASS_ONLY\")){wrlRouteNativeGrassTests();wrlRoute5NorthernLedgeWalkTests();wrlCeruleanToRoute5ConnectionTests();wrlLavenderToRoute8ConnectionTests();wrlLavenderToRoute8GrassWalkTests();printf(\"PASS: %u focused WRL-009 native route grass assertions\\n\",checks);core->deinit(core);free(pixels);free(bootState);return 0;}\n    if(getenv(\"LIGHTNING_SOW_PRODUCERS_ONLY\")){sowPlacementTests();sowScriptedProducerTests();sowScriptedRunTests();sowScriptedCaptureTests();sowPhysicalInteractionTests();sowScriptedDefeatTests();sowScriptedWhiteoutTests();printf(\"PASS: %u native SOW placement, producer, Run/retry and capture/aftermath assertions\\\\n\",checks);core->deinit(core);free(pixels);free(bootState);return 0;}\n    if(getenv(\"LIGHTNING_SOW_PLACEMENT_ONLY\")){sowPlacementTests();printf(\"PASS: %u native no-Surf placement assertions\\n\",checks);core->deinit(core);free(pixels);free(bootState);return 0;}\n    if(getenv(\"LIGHTNING_DYNAMIC_WEATHER_ONLY\")){dynamicWeatherTests();printf(\"PASS: %u focused dynamic weather assertions\\n\",checks);core->deinit(core);free(pixels);free(bootState);return 0;}\n",
+          "after": "    if(getenv(\"LIGHTNING_WRL_AIDE_PHYSICAL_ONLY\")){wrlAidePhysicalTests();printf(\"PASS: %u focused WRL-009 physical aide assertions\\n\",checks);core->deinit(core);free(pixels);free(bootState);return 0;}\n    if(getenv(\"LIGHTNING_WRL_NONWILD_GIFTS_ONLY\")){wrlNonWildGiftTests();printf(\"PASS: %u focused WRL-009 non-wild gift assertions\\n\",checks);core->deinit(core);free(pixels);free(bootState);return 0;}\n    if(getenv(\"LIGHTNING_WRL_ROUTE_GRASS_ONLY\")){wrlRouteNativeGrassTests();wrlRoute5NorthernLedgeWalkTests();wrlCeruleanToRoute5ConnectionTests();wrlLavenderToRoute8ConnectionTests();wrlLavenderToRoute8GrassWalkTests();printf(\"PASS: %u focused WRL-009 native route grass assertions\\n\",checks);core->deinit(core);free(pixels);free(bootState);return 0;}\n    if(getenv(\"LIGHTNING_LEGENDARY_PHYSICAL_ONLY\")){legendaryPhysicalInteractionTests();printf(\"PASS: %u physical legendary interaction assertions\\\\n\",checks);core->deinit(core);free(pixels);free(bootState);return 0;}\n    if(getenv(\"LIGHTNING_LEGENDARY_TELEPORT_ONLY\")){legendaryTeleportNativeTests();printf(\"PASS: %u teleport legendary assertions\\\\n\",checks);core->deinit(core);free(pixels);free(bootState);return 0;}\n    if(getenv(\"LIGHTNING_LEGENDARY_WHITEOUT_ONLY\")){legendaryWhiteoutNativeTests();printf(\"PASS: %u whiteout legendary assertions\\\\n\",checks);core->deinit(core);free(pixels);free(bootState);return 0;}\n    if(getenv(\"LIGHTNING_LEGENDARY_APPROACH_ONLY\")){legendaryMapApproachTests();printf(\"PASS: %u native legendary authored-entry reachability checks\\\\n\",checks);core->deinit(core);free(pixels);free(bootState);return 0;}\n    if(getenv(\"LIGHTNING_LEGENDARY_DEFEAT_ONLY\")){legendaryDefeatNativeTests();printf(\"PASS: %u four native legendary KO assertions\\\\n\",checks);core->deinit(core);free(pixels);free(bootState);return 0;}\n    if(getenv(\"LIGHTNING_LEGENDARY_CAPTURE_ONLY\")){legendaryFourCaptureOneSaveTests();printf(\"PASS: %u four-in-one-save legendary capture assertions\\\\n\",checks);core->deinit(core);free(pixels);free(bootState);return 0;}\n    if(getenv(\"LIGHTNING_LEGENDARY_ONLY\")){legendaryStationaryNativeTests();printf(\"PASS: %u focused four-legendary native assertions\\\\n\",checks);core->deinit(core);free(pixels);free(bootState);return 0;}\n    if(getenv(\"LIGHTNING_SOW_PRODUCERS_ONLY\")){sowPlacementTests();sowScriptedProducerTests();sowScriptedRunTests();sowScriptedCaptureTests();sowPhysicalInteractionTests();sowScriptedDefeatTests();sowScriptedWhiteoutTests();printf(\"PASS: %u native SOW placement, producer, Run/retry and capture/aftermath assertions\\\\n\",checks);core->deinit(core);free(pixels);free(bootState);return 0;}\n    if(getenv(\"LIGHTNING_SOW_PLACEMENT_ONLY\")){sowPlacementTests();printf(\"PASS: %u native no-Surf placement assertions\\n\",checks);core->deinit(core);free(pixels);free(bootState);return 0;}\n    if(getenv(\"LIGHTNING_DYNAMIC_WEATHER_ONLY\")){dynamicWeatherTests();printf(\"PASS: %u focused dynamic weather assertions\\n\",checks);core->deinit(core);free(pixels);free(bootState);return 0;}\n"
+        },
+        {
+          "before": "    sowPhysicalInteractionTests();\n    sowScriptedDefeatTests();\n    sowScriptedWhiteoutTests();\n    gymCastformTests();\n    rivalTests();\n    wildNicknameTests();\n",
+          "after": "    sowPhysicalInteractionTests();\n    sowScriptedDefeatTests();\n    sowScriptedWhiteoutTests();\n    legendaryStationaryNativeTests();\n    gymCastformTests();\n    rivalTests();\n    wildNicknameTests();\n"
+        }
+      ]
+    }
+  },
+  "wild_double_fixture": {
+    "source_commit": "71f25df94c38ebf4d5c46ad8f7978e76b42944a0",
+    "path": "tests/emulator/wild_double.c",
+    "after_sha256": "1aa25e0dee31ca5d7df68e5421d873d5e999af977c4dc458ec801b8e2bebad64",
+    "scope": "Exact prepared no-old-beast-roamer compatibility fixture, no other243production source/history imported"
+  }
+}

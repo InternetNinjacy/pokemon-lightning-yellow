@@ -160,6 +160,8 @@ jobs:
           python3 tests/run_follower_asset_validator_tests.py
           python3 tests/test_follower_integration_source.py
           python3 tests/test_follower_lifecycle_source.py
+          python3 tests/check_legendary_statics.py
+          python3 tests/test_legendary_current_main_source.py
           python3 tests/run_rocket_hideout_roster_tests.py
           python3 tests/run_rocket_hideout_quest_tests.py
           python3 scripts/check-integration-registrations.py

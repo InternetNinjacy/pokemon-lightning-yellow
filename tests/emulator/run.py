@@ -349,6 +349,8 @@ required += ['ScriptGiveSueEevee', 'ScriptGiveMon', 'EventScript_ChangePokemonNi
 required += ['ScriptSelectStarterPikachuFollower','ScriptStartStarterFollowerEmergence','gObjectEvents','gPlayerAvatar']
 required += ['FollowerGraphics_GetSize','FollowerController_RequestRefresh','FollowerGraphics_Swap','FollowerGraphics_SetFrame','FollowerGraphics_Release','FollowerGraphics_GetPaletteSlot','gSprites','gPlttBufferUnfaded']
 required += ['FollowerGraphics_GetSpriteId','FollowerGraphics_GetObjectEventId','FollowerSpecial_PlayCry','FollowerState_ResolvePartySlot','FollowerState_SelectPartySlot','FollowerState_CanDisplay','FollowerState_BeforePartyRemoval','FollowerState_Clear','FollowerAssets_Count','FollowerAssets_Resolve','CustomPokedexNumToSpecies','gStringVar4','CB2_PartyMenuFromStartMenu']
+required += ['Route10_EventScript_LightningRaikou','MtEmber_SummitPath_1F_EventScript_LightningEntei',
+             'SeafoamIslands_B4F_EventScript_LightningSuicune','SevenIsland_TanobyRuins_EventScript_LightningMew']
 symbols={}
 end_ewram=0
 for line in subprocess.check_output(['arm-none-eabi-nm','-S','pokefirered.elf'],text=True).splitlines():

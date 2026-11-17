@@ -8,6 +8,8 @@ import json
 from pathlib import Path
 
 def prior_opening_source(path, text):
+    from approved_stationary_changes import prior_stationary_source
+    text=prior_stationary_source(path,text)
     from approved_follower_changes import prior_follower_source
     text=prior_follower_source(path,text)
     from approved_146_learnset_changes import prior_146_learnset_source

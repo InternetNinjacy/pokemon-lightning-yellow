@@ -32,7 +32,8 @@ class FollowerIntegrationSourceTests(unittest.TestCase):
         spec = json.loads(Path('tests/specifications/follower_current_main_delta.json').read_text())
         for path, row in spec['files'].items():
             with self.subTest(path=path):
-                text = Path(path).read_text()
+                from approved_stationary_changes import prior_stationary_source
+                text = prior_stationary_source(path, Path(path).read_text())
                 self.assertEqual(hashlib.sha256(text.encode()).hexdigest(), row['after_sha256'])
                 self.assertEqual(prior_follower_source(path, text), old(path))
                 self.assertEqual(prior_follower_source(path, old(path)), old(path))

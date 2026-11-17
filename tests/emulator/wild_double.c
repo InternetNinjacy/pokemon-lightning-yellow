@@ -373,24 +373,24 @@ static void wildTests(void){
  CHECK(CALL(GetBoxMonDataAt,0,0,ABI_DATA_SPECIES)==SPECIES_CLOYSTER);
  CHECK(CALL(BagGetQuantityByItemId,ITEM_MASTER_BALL)==0);
  printf("PASS: full-party capture sent right-side Cloyster to PC with correct species and one ball consumed\n");
- wildFixture(MAP_GROUP(MAP_MT_MOON_1F),MAP_NUM(MAP_MT_MOON_1F),1);warpGrass();
- CALL(InitRoamer);
- // Inject the roamer onto the double-enabled fixture to verify that it
- // preempts doubles. Production roaming routes are unchanged.
- core->busWrite8(core,SYM_sRoamerLocation,MAP_GROUP(MAP_MT_MOON_1F));
- core->busWrite8(core,SYM_sRoamerLocation+1,MAP_NUM(MAP_MT_MOON_1F));
- unsigned found=0;
- for(unsigned n=0;n<100;n++){
+ // The four owner-approved stationary legendaries supersede the original
+ // starter-chosen beast roamer. Real ordinary cave double battles must still
+ // work; a stale roamer from an earlier save must not preempt this pathway.
+ for(unsigned attempt=0;attempt<4;attempt++){
+  wildFixture(MAP_GROUP(MAP_MT_MOON_1F),MAP_NUM(MAP_MT_MOON_1F),1);
+  warpGrass();
+  CALL(InitRoamer);
+  core->busWrite8(core,SYM_sRoamerLocation,MAP_GROUP(MAP_MT_MOON_1F));
+  core->busWrite8(core,SYM_sRoamerLocation+1,MAP_NUM(MAP_MT_MOON_1F));
   CHECK(CALL(SweetScentWildEncounter));
-  if(core->busRead32(core,SYM_gBattleTypeFlags)&BATTLE_TYPE_ROAMER){found=1;break;}
-  CALL(ResetTasks);
+  CHECK(!(core->busRead32(core,SYM_gBattleTypeFlags)&BATTLE_TYPE_ROAMER));
+  CHECK(core->busRead32(core,SYM_gBattleTypeFlags)&BATTLE_TYPE_DOUBLE);
+  waitAction();
+  CHECK(core->busRead8(core,SYM_gBattlersCount)==4);
+  press(128);press(16);press(1);waitOverworld(1);
+  CHECK(core->busRead8(core,SYM_gBattleOutcome)==B_OUTCOME_RAN);
  }
- CHECK(found);CHECK(!(core->busRead32(core,SYM_gBattleTypeFlags)&BATTLE_TYPE_DOUBLE));
- CHECK(monget(enemy(1),ABI_DATA_SPECIES)==0);waitAction();
- CHECK(core->busRead8(core,SYM_gBattlersCount)==2);
- chooseMove(0,1,1);waitOverworld(1);
- CHECK(core->busRead8(core,SYM_gBattleOutcome)==B_OUTCOME_MON_FLED);
- printf("PASS: roaming Pokemon preempted double policy, entered single battle and fled normally\n");
+ printf("PASS: original Roamer init cannot duplicate post-League stationary beasts; native Mt Moon double battles and Run remain usable\n");
 }
 
 static void wildHardeningTests(void) {
