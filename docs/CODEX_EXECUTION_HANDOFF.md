@@ -1,3 +1,11 @@
+## PKM-009 scoped source and owner-build checkpoint
+
+- Main gameplay `c5c4dd038edac02737a1fba088d6107902136c56`: PR268 approved Jolteon/Umbreon natural rows merged; six other-family identities remain distinct(66 total moves), all other species/TMHM/encounter/save/engine files preserved. No catch-rate rollback from older PR173.6 new pure-source tests,2 all252 TMHM tests,focused source checks and native compilation PASS.
+- Broad Gym/E4 static audits still fail on unchanged trainer-history reconstruction. Same failure confirmed in prior source cache; no assertion or historical hash weakened. No gameplay/emulator/simulation/CI dispatch run.
+- Private r3 actually compiled from `579ef016def8116a2ecf44acccd0e5e72f501247`, documented at `2133ccea2aa9d6a87a36f6fc3c523769215f99e6` in PR258. Only the two approved arrays backported; exact inverse preserves every other existing private learnset/Pichu/experimental feature.255 follower descriptors/765 pinned inputs retained.16MiB ROM SHA256 `05c85f5cece8366e9a8f612a5d87f213d127de5a892255b9fd03aec86a4b9efe`. Local owner output `/tmp/ly-owner-playtest004-r3/Playtest004.gba` plus build JSON/credits; previous r1/r2 preserved. No ROM/pixels/private permission record uploaded or committed.
+- Read-only preflight of all146 PR173 working recommendations:0 before-row drift and0 missing move IDs; still not production approval. Master Control105 now holds consolidated requests for exact final146-profile authority and TM51 ZapCannon species eligibility. Do not request approval again for already locked fourteen profiles; do not invent TM grants,ability slots or finalized working proposals.
+- Next eligible implementation depends on that design reconciliation. Continue independent fully approved source work when available; existing trainer-history reconciliation remains separate.461/712 and all50 earned histories unchanged. Drive synchronization not performed or claimed. Original dirty BTL checkout/index and18 files retained.
+
 ## PKM-009 locked-pair source continuation
 
 Starting main `eb4f0296add8a431029ee4f7c7f6c726fcf256f3`. PR173 inspection found12 locked profiles already matching
