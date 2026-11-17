@@ -249,6 +249,27 @@ u8 FollowerGraphics_GetObjectEventId(void)
     return sFollowerEventId;
 }
 
+// A map load or another system may reuse an old object-event slot. Its
+// "active" bit alone does not prove that it is still our Pokémon. In
+// particular, never let the controller reposition an unrelated NPC.
+bool8 FollowerGraphics_HasValidObjectEvent(void)
+{
+    const struct FollowerGraphicsSlot *slot;
+    const struct ObjectEvent *event;
+
+    if (!sFollowerEventBound || !sFollowerHasActive
+     || sFollowerEventId >= OBJECT_EVENTS_COUNT)
+        return FALSE;
+    slot = &sFollowerSlots[sFollowerActive];
+    if (!slot->owned || slot->spriteId >= MAX_SPRITES
+     || !gSprites[slot->spriteId].inUse)
+        return FALSE;
+    event = &gObjectEvents[sFollowerEventId];
+    return event->active
+        && event->localId == FOLLOWER_GFX_LOCAL_ID
+        && event->spriteId == slot->spriteId;
+}
+
 bool8 FollowerGraphics_BindObjectEvent(u8 mapGroup, u8 mapNum,
                                         s16 mapX, s16 mapY, u8 elevation)
 {
