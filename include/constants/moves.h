@@ -411,20 +411,58 @@
 #define MOVE_LIQUIDATION 384
 
 #define MOVE_VORTEX_SPIN 385
+
 #define MOVE_TIDAL_CRASH 386
 
-// BTL-005 Batch A staging: approved fixed IDs; intervening IDs remain reserved for B/C.
+#define MOVE_DISCHARGE 387
+
+#define MOVE_VOLT_SWITCH 388
+
+#define MOVE_THUNDER_FANG 389
+
+#define MOVE_WILD_CHARGE 390
+
 #define MOVE_SEED_BOMB 391
+
 #define MOVE_PETAL_BLIZZARD 392
+
+#define MOVE_WOOD_HAMMER 393
+
 #define MOVE_AURA_SPHERE 394
+
 #define MOVE_FOCUS_BLAST 395
+
+#define MOVE_DRAIN_PUNCH 396
+
 #define MOVE_FLASH_CANNON 397
+
 #define MOVE_MIRROR_SHOT 398
+
 #define MOVE_IRON_HEAD 399
+
 #define MOVE_BULLET_PUNCH 400
+
 #define MOVE_AIR_SLASH 401
+
+#define MOVE_HURRICANE 402
+
+#define MOVE_BRAVE_BIRD 403
+
+#define MOVE_ACROBATICS 404
+
+#define MOVE_DUAL_WINGBEAT 405
+
 #define MOVE_HEART_STAMP 406
-#define MOVES_COUNT 407
+
+#define MOVE_ZEN_HEADBUTT 407
+
+#define MOVE_CROSS_POISON 408
+
+#define MOVE_POISON_JAB 409
+
+#define MOVE_GUNK_SHOT 410
+
+#define MOVES_COUNT 411
 
 // Used for checks for moves affected by Disable, Mimic, etc.
 #define MOVE_UNAVAILABLE 0xFFFF

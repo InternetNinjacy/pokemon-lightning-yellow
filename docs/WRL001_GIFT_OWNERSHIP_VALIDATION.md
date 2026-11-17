@@ -94,3 +94,12 @@ checks remain unchanged; skipped/pending CI is not green, waived or accepted.
 Full required exact-head CI, organic gameplay acceptance, and any migration of
 previously acquired SUE remain unverified. No merge or points awarded:
 50 permanent IDs / 461 earned / 251 remaining / 712 total.
+
+
+## Current-main source integration checkpoint
+
+Refreshed onto main21d597b178327e706b015c61643f4489e0d8c4cb using the same prepared gameplay files from0f693dd7bef4219e161b299f08a9a225ecdac9d6. No Pichu/follower prototype imported. Resolved append-only documentation/native registration conflicts; every pre-existing native selector/default call/required symbol is preserved by exact inverse comparison. Frozen old gift manifests retained with a new strict, pinned reversible source delta.
+
+PASS46 selected pure-source runners and5 new preservation/provenance checks. New unauthenticated mutations/partial reversals are rejected. Clean pinned-agbcc `make -j2` PASS;16MiB ROM SHA25686a91b37de6ff1cb72a95ffdf707ec6a2492d04fb33a8763015a4e8f928c68bd. EWRAM261068/262144 bytes (1076 free),IWRAM29824/32768,ROM15412584 bytes before padding. Build log /workspace/scratch/wrl001-build.log; source logs /workspace/scratch/wrl001-source-logs. ROM remains private/uncommitted.
+
+No gameplay/emulator/RNG tests or workflow dispatch in this continuation. The681 native assertions above are historical evidence for the original exact head, not a new result for this integration. CI intentionally skipped, not green. Full owner ROM/save/nickname/party/PC/EXP/obedience acceptance remains separate. Previously acquired SUE is not migrated. Existing50 task IDs461/251/712 unchanged. Source-ready merge permitted by latest standing owner policy, superseding the old draft-only/no-merge wording above; no acceptance points assigned. Rollback uses PR249 merge revert; no save layout change.

@@ -18,6 +18,9 @@ def _blob(text):
 
 
 def prior_batch_a_traversal_source(path, text):
+
+    from approved_remaining_moves import prior_remaining_source
+    text=prior_remaining_source(path,text)
     if str(path) != PATH:
         return text
     if HUNK not in text:

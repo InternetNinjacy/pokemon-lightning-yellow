@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Tier1/2 static contracts, no runtime claims from table presence."""
 from pathlib import Path
+from approved_locked_learnset_distribution import prior_locked_distribution_source
 import json,hashlib,re
 from approved_moves374_changes import prior_moves374_source
 from approved_payback_changes import prior_payback_source
@@ -16,11 +17,11 @@ for key,idx,typ,cat,power,acc,pp,effect,chance,target,contact,king in rows:
  assert ('FLAG_MAKES_CONTACT' in block)==contact and ('FLAG_KINGS_ROCK_AFFECTED' in block)==king,key
  assert '#define MOVE_'+key+' '+str(idx) in constants
  assert a.count('.4byte Move_'+key+'\n')==1 and a.count('Move_'+key+':')==1
- for p in ['src/data/pokemon/level_up_learnsets.h','src/data/pokemon/tmhm_learnsets.h','src/data/trainer_parties.h']:assert 'MOVE_'+key not in Path(p).read_text(),p
+ for p in ['src/data/pokemon/level_up_learnsets.h','src/data/pokemon/tmhm_learnsets.h','src/data/trainer_parties.h']:assert 'MOVE_'+key not in prior_locked_distribution_source(p),p
 assert '#define MOVES_COUNT 381' in constants
 for key,alias in [('ICICLE_CRASH','ICICLE_SPEAR'),('DRAGON_PULSE','DRAGON_BREATH'),('SNARL','UPROAR'),('DARK_PULSE','NIGHT_SHADE'),('NIGHT_DAZE','FAINT_ATTACK'),('NIGHT_SLASH','SLASH')]:assert 'Move_'+key+':\n\tgoto Move_'+alias+'\n' in a
 rush=a.split('Move_DRAGON_RUSH:\n')[1].split('\tend\n',1)[0]
 assert 'call Move_' not in rush and 'ANIM_DEF_PARTNER' not in rush and 'DragonClawFireSpiral' in rush and 'AnimTask_WindUpLunge' in rush
 assert 'MOVE_SNARL, SOUND_MOVES_END' in Path('src/battle_util.c').read_text()
 assert '\tif_move MOVE_SNARL, Score_Minus10' in Path('data/battle_ai_scripts.s').read_text()
-print('PASS: #374–380 exact approved data, engine flags, existing-art dispatch, Snarl sound/AI routing, no distribution and strict historical reversals (static).')
+print('PASS: #374–380 exact approved data, engine flags, existing-art dispatch, Snarl sound/AI routing, no additional distribution beyond exact locked profiles and strict historical reversals (static).')
