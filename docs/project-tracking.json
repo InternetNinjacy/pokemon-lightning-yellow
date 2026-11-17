@@ -3257,5 +3257,26 @@
     "scope": "Exact b9af0975 shared timer only; no private per-flake redesign",
     "owner_runtime": "Issue248 OPEN; sustained snow/post-battle playtest pending"
   },
-  "next_independent_source_work": "Followers: PR54 runtime+PR257 private765-pin tooling, preserve current main Pikachu naming/OAK-SUE and146 rows. Refill persistent private cache, verify255 descriptors, integrate on own branch, source/build audit; no artwork/ROM commit or gameplay test. No fresh permission letter needed."
+  "next_independent_source_work": "Follower asset prerequisite READY:765 pinned inputs in persistent /workspace/scratch/follower-private-cache;255 descriptors generated and checked privately. Next integrate PR54/257 source on current main, preserve optional Pikachu/OAK-SUE/new146, resolve4 source conflicts, private build and source audit. No gameplay tests, artwork/ROM commits or promotion of Pichu experiments.",
+  "follower_asset_preparation": {
+    "source_commit": "e7d388810de0b0964a46afaaf3d012f7e666aad5",
+    "upstream_art_pin": "cbe04a7a2ef645bee19d159876da074154ccf1f2",
+    "private_cache": "/workspace/scratch/follower-private-cache",
+    "private_source_snapshot": "/workspace/scratch/ly-follower-assets-prep",
+    "private_records": "/workspace/scratch/follower-private-records",
+    "inputs": 765,
+    "descriptors": 255,
+    "base_species": 252,
+    "castform_forms": 3,
+    "generated_sha256": "196a74da8a37623c7178d9e976b585e8b592038ccbba2ea22af86654d061d0e3",
+    "gate": "BUILD INPUT READY; no runtime PASS",
+    "permission": "Owner-provided permission statement accepted; no private correspondence requested or committed",
+    "runtime_merge": "Not integrated; no new follower ROM, gameplay test or merge",
+    "next_conflicts": [
+      ".github/workflows/build.yml",
+      "src/approved_gifts.c",
+      "tests/emulator/run.py",
+      "tests/emulator/runner.c"
+    ]
+  }
 }
