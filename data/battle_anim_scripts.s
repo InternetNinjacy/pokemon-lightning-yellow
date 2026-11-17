@@ -11814,16 +11814,83 @@ Move_AQUA_JET:
 Move_LIQUIDATION:
 	goto Move_WATERFALL
 
+@ BTL-005 owner-approved Generation III art reuse; no trapping effect attached.
 Move_VORTEX_SPIN:
 	goto Move_WHIRLPOOL
 
+@ BTL-005 single-target Rollout mechanics with approved Surf animation.
 Move_TIDAL_CRASH:
 	goto Move_SURF
+
+
+@ BTL-005 Batch A: approved Gen III animation reuse. Unsupported
+@ intervening moves are reserved and never distributed from this branch.
+Move_SEED_BOMB:
+	goto Move_BULLET_SEED
+
+Move_PETAL_BLIZZARD:
+	goto Move_PETAL_DANCE
+
+Move_AURA_SPHERE:
+	goto Move_PSYCHIC
+
+Move_FOCUS_BLAST:
+	goto Move_HYPER_BEAM
+
+@ Flash Cannon: Hyper Beam energy followed by Metal Claw's metallic shimmer.
+Move_FLASH_CANNON:
+	loadspritegfx ANIM_TAG_ORBS
+	createvisualtask AnimTask_MetallicShine, 5, 0, 0, 0
+	waitforvisualfinish
+	playsewithpan SE_M_HYPER_BEAM, SOUND_PAN_ATTACKER
+	createvisualtask AnimTask_ShakeMon2, 2, ANIM_TARGET, 1, 0, 8, 1
+	waitforvisualfinish
+	end
+
+Move_MIRROR_SHOT:
+	goto Move_SWIFT
+
+Move_IRON_HEAD:
+	goto Move_HEADBUTT
+
+@ Bullet Punch: Mach Punch's fast fist impact with Metal Claw shine.
+Move_BULLET_PUNCH:
+	loadspritegfx ANIM_TAG_IMPACT
+	loadspritegfx ANIM_TAG_HANDS_AND_FEET
+	createvisualtask AnimTask_MetallicShine, 5, 0, 0, 0
+	waitforvisualfinish
+	createsprite gFistFootSpriteTemplate, ANIM_ATTACKER, 2, 0, 0, 8, 1, 0
+	playsewithpan SE_M_VITAL_THROW2, SOUND_PAN_TARGET
+	createvisualtask AnimTask_ShakeMon, 2, ANIM_TARGET, 3, 0, 5, 1
+	waitforvisualfinish
+	end
+
+Move_AIR_SLASH:
+	goto Move_AIR_CUTTER
+
+@ Heart Stamp: Stomp foot impact followed by Confusion-style psychic pulse.
+Move_HEART_STAMP:
+	loadspritegfx ANIM_TAG_HANDS_AND_FEET
+	loadspritegfx ANIM_TAG_IMPACT
+	monbg ANIM_TARGET
+	setalpha 12, 8
+	createsprite gStompFootSpriteTemplate, ANIM_ATTACKER, 3, 0, -32, 15
+	delay 19
+	createsprite gBasicHitSplatSpriteTemplate, ANIM_ATTACKER, 2, 0, -8, ANIM_TARGET, 1
+	playsewithpan SE_M_MEGA_KICK2, SOUND_PAN_TARGET
+	waitforvisualfinish
+	createvisualtask AnimTask_ShakeMon, 2, ANIM_TARGET, 3, 0, 15, 1
+	playsewithpan SE_M_SUPERSONIC, SOUND_PAN_TARGET
+	waitforvisualfinish
+	clearmonbg ANIM_TARGET
+	blendoff
+	end
 
 Move_DISCHARGE:
 	goto Move_THUNDERBOLT
 
 @ Approved existing-art inline composite; no nested Move calls.
+
 Move_VOLT_SWITCH:
 	loadspritegfx ANIM_TAG_IMPACT
 	loadspritegfx ANIM_TAG_SPARK_2
@@ -11877,6 +11944,7 @@ Move_VOLT_SWITCH:
 	end
 
 @ Approved existing-art inline composite; no nested Move calls.
+
 Move_THUNDER_FANG:
 	loadspritegfx ANIM_TAG_SHARP_TEETH
 	loadspritegfx ANIM_TAG_IMPACT
@@ -11924,16 +11992,11 @@ Move_THUNDER_FANG:
 	blendoff
 	end
 
+
 Move_WILD_CHARGE:
 	goto Move_VOLT_TACKLE
 
-Move_SEED_BOMB:
-	goto Move_BULLET_SEED
 
-Move_PETAL_BLIZZARD:
-	goto Move_PETAL_DANCE
-
-@ Approved existing-art inline composite; no nested Move calls.
 Move_WOOD_HAMMER:
 	loadspritegfx ANIM_TAG_IMPACT
 	monbg ANIM_TARGET
@@ -11997,13 +12060,7 @@ Move_WOOD_HAMMER:
 	blendoff
 	end
 
-Move_AURA_SPHERE:
-	goto Move_PSYCHIC
 
-Move_FOCUS_BLAST:
-	goto Move_HYPER_BEAM
-
-@ Approved existing-art inline composite; no nested Move calls.
 Move_DRAIN_PUNCH:
 	loadspritegfx ANIM_TAG_IMPACT
 	loadspritegfx ANIM_TAG_HANDS_AND_FEET
@@ -12053,131 +12110,7 @@ Move_DRAIN_PUNCH:
 	end
 
 @ Approved existing-art inline composite; no nested Move calls.
-Move_FLASH_CANNON:
-	loadspritegfx ANIM_TAG_ORBS
-	createsprite gSimplePaletteBlendSpriteTemplate, ANIM_ATTACKER, 2, F_PAL_BG, 4, 0, 16, RGB_BLACK
-	waitforvisualfinish
-	delay 10
-	playsewithpan SE_M_HYPER_BEAM, SOUND_PAN_ATTACKER
-	createvisualtask AnimTask_ShakeMon2, 2, ANIM_ATTACKER, 1, 0, 4, 1
-	waitforvisualfinish
-	delay 30
-	createsoundtask SoundTask_LoopSEAdjustPanning, SE_M_HYPER_BEAM2, SOUND_PAN_ATTACKER, SOUND_PAN_TARGET, 1, 15, 0, 5
-	createvisualtask AnimTask_ShakeMon, 2, ANIM_ATTACKER, 0, 4, 50, 1
-	createvisualtask AnimTask_FlashAnimTagWithColor, 2, ANIM_TAG_ORBS, 1, 12, RGB(31, 0, 0), 16, 0, 0
-	call HyperBeamOrbs
-	call HyperBeamOrbs
-	call HyperBeamOrbs
-	call HyperBeamOrbs
-	call HyperBeamOrbs
-	createvisualtask AnimTask_ShakeMon2, 2, ANIM_TARGET, 4, 0, 50, 1
-	createvisualtask AnimTask_BlendBattleAnimPal, 10, F_PAL_TARGET, 2, 0, 11, RGB(25, 25, 25)
-	call HyperBeamOrbs
-	call HyperBeamOrbs
-	call HyperBeamOrbs
-	call HyperBeamOrbs
-	call HyperBeamOrbs
-	call HyperBeamOrbs
-	call HyperBeamOrbs
-	call HyperBeamOrbs
-	call HyperBeamOrbs
-	call HyperBeamOrbs
-	call HyperBeamOrbs
-	call HyperBeamOrbs
-	call HyperBeamOrbs
-	call HyperBeamOrbs
-	call HyperBeamOrbs
-	call HyperBeamOrbs
-	call HyperBeamOrbs
-	call HyperBeamOrbs
-	call HyperBeamOrbs
-	call HyperBeamOrbs
-	call HyperBeamOrbs
-	createvisualtask AnimTask_BlendBattleAnimPal, 10, F_PAL_TARGET, 2, 11, 0, RGB(25, 25, 25)
-	waitforvisualfinish
-	createsprite gSimplePaletteBlendSpriteTemplate, ANIM_ATTACKER, 2, F_PAL_BG, 4, 16, 0, RGB_BLACK
-	loadspritegfx ANIM_TAG_CLAW_SLASH
-	loopsewithpan SE_M_HARDEN, SOUND_PAN_ATTACKER, 28, 2
-	createvisualtask AnimTask_MetallicShine, 5, 0, 0, 0
-	waitforvisualfinish
-	createsprite gHorizontalLungeSpriteTemplate, ANIM_ATTACKER, 2, 6, 4
-	delay 2
-	playsewithpan SE_M_RAZOR_WIND, SOUND_PAN_TARGET
-	createsprite gClawSlashSpriteTemplate, ANIM_TARGET, 2, -10, -10, 0
-	createsprite gClawSlashSpriteTemplate, ANIM_TARGET, 2, -10, 10, 0
-	createsprite gShakeMonOrTerrainSpriteTemplate, ANIM_ATTACKER, 2, -4, 1, 10, 3, 1
-	delay 8
-	createsprite gHorizontalLungeSpriteTemplate, ANIM_ATTACKER, 2, 6, 4
-	delay 2
-	playsewithpan SE_M_RAZOR_WIND, SOUND_PAN_TARGET
-	createsprite gClawSlashSpriteTemplate, ANIM_TARGET, 2, 10, -10, 1
-	createsprite gClawSlashSpriteTemplate, ANIM_TARGET, 2, 10, 10, 1
-	createsprite gShakeMonOrTerrainSpriteTemplate, ANIM_ATTACKER, 2, -4, 1, 10, 3, 1
-	waitforvisualfinish
-	end
 
-Move_MIRROR_SHOT:
-	goto Move_SWIFT
-
-Move_IRON_HEAD:
-	goto Move_HEADBUTT
-
-@ Approved existing-art inline composite; no nested Move calls.
-Move_BULLET_PUNCH:
-	loadspritegfx ANIM_TAG_IMPACT
-	loadspritegfx ANIM_TAG_HANDS_AND_FEET
-	monbg ANIM_ATTACKER
-	createvisualtask AnimTask_GetAttackerSide, 2
-	jumprettrue BulletPunchAgainstPlayer
-	fadetobg BG_HIGHSPEED_OPPONENT
-BulletPunchContinue:
-	waitbgfadeout
-	createvisualtask AnimTask_StartSlidingBg, 5, -2304, 0, 1, -1
-	waitbgfadein
-	delay 0
-	setalpha 9, 8
-	createvisualtask AnimTask_AttackerPunchWithTrace, 2, RGB(8, 9, 28), 10
-	playsewithpan SE_M_JUMP_KICK, SOUND_PAN_ATTACKER
-	delay 6
-	createsprite gBasicHitSplatSpriteTemplate, ANIM_TARGET, 3, 0, 0, ANIM_TARGET, 1
-	createsprite gFistFootSpriteTemplate, ANIM_TARGET, 4, 0, 0, 8, 1, 0
-	playsewithpan SE_M_COMET_PUNCH, SOUND_PAN_TARGET
-	createvisualtask AnimTask_ShakeMon, 2, ANIM_TARGET, 3, 0, 6, 1
-	waitforvisualfinish
-	clearmonbg ANIM_ATTACKER
-	blendoff
-	restorebg
-	waitbgfadeout
-	setarg 7, 0xFFFF
-	waitbgfadein
-	loadspritegfx ANIM_TAG_CLAW_SLASH
-	loopsewithpan SE_M_HARDEN, SOUND_PAN_ATTACKER, 28, 2
-	createvisualtask AnimTask_MetallicShine, 5, 0, 0, 0
-	waitforvisualfinish
-	createsprite gHorizontalLungeSpriteTemplate, ANIM_ATTACKER, 2, 6, 4
-	delay 2
-	playsewithpan SE_M_RAZOR_WIND, SOUND_PAN_TARGET
-	createsprite gClawSlashSpriteTemplate, ANIM_TARGET, 2, -10, -10, 0
-	createsprite gClawSlashSpriteTemplate, ANIM_TARGET, 2, -10, 10, 0
-	createsprite gShakeMonOrTerrainSpriteTemplate, ANIM_ATTACKER, 2, -4, 1, 10, 3, 1
-	delay 8
-	createsprite gHorizontalLungeSpriteTemplate, ANIM_ATTACKER, 2, 6, 4
-	delay 2
-	playsewithpan SE_M_RAZOR_WIND, SOUND_PAN_TARGET
-	createsprite gClawSlashSpriteTemplate, ANIM_TARGET, 2, 10, -10, 1
-	createsprite gClawSlashSpriteTemplate, ANIM_TARGET, 2, 10, 10, 1
-	createsprite gShakeMonOrTerrainSpriteTemplate, ANIM_ATTACKER, 2, -4, 1, 10, 3, 1
-	waitforvisualfinish
-	end
-
-BulletPunchAgainstPlayer:
-	fadetobg BG_HIGHSPEED_PLAYER
-	goto BulletPunchContinue
-
-Move_AIR_SLASH:
-	goto Move_AIR_CUTTER
-
-@ Approved existing-art inline composite; no nested Move calls.
 Move_HURRICANE:
 	loadspritegfx ANIM_TAG_GUST
 	loadspritegfx ANIM_TAG_IMPACT
@@ -12239,47 +12172,20 @@ Move_HURRICANE:
 	blendoff
 	end
 
+
 Move_BRAVE_BIRD:
 	goto SkyAttackUnleash
 
+
 Move_ACROBATICS:
 	goto Move_AERIAL_ACE
+
 
 Move_DUAL_WINGBEAT:
 	goto Move_WING_ATTACK
 
 @ Approved existing-art inline composite; no nested Move calls.
-Move_HEART_STAMP:
-	loadspritegfx ANIM_TAG_HANDS_AND_FEET
-	loadspritegfx ANIM_TAG_IMPACT
-	monbg ANIM_TARGET
-	setalpha 12, 8
-	playsewithpan SE_M_DOUBLE_TEAM, SOUND_PAN_TARGET
-	createsprite gStompFootSpriteTemplate, ANIM_ATTACKER, 3, 0, -32, 15
-	delay 19
-	createsprite gBasicHitSplatSpriteTemplate, ANIM_ATTACKER, 2, 0, -8, ANIM_TARGET, 1
-	createvisualtask AnimTask_ShakeMon, 2, ANIM_TARGET, 0, 4, 9, 1
-	playsewithpan SE_M_MEGA_KICK2, SOUND_PAN_TARGET
-	waitforvisualfinish
-	clearmonbg ANIM_TARGET
-	blendoff
-	monbg ANIM_TARGET
-	call SetPsychicBackground
-	setalpha 8, 8
-	createvisualtask AnimTask_ShakeMon2, 2, ANIM_ATTACKER, 1, 0, 10, 1
-	createvisualtask AnimTask_BlendColorCycle, 2, F_PAL_ATTACKER, 0, 2, 0, 8, RGB_WHITE
-	waitforvisualfinish
-	playsewithpan SE_M_SUPERSONIC, SOUND_PAN_TARGET
-	createvisualtask AnimTask_ShakeMon, 2, ANIM_TARGET, 3, 0, 15, 1
-	createvisualtask AnimTask_ScaleMonAndRestore, 5, -4, -4, 15, ANIM_TARGET, 1
-	waitforvisualfinish
-	clearmonbg ANIM_TARGET
-	blendoff
-	delay 1
-	call UnsetPsychicBackground
-	end
 
-@ Approved existing-art inline composite; no nested Move calls.
 Move_ZEN_HEADBUTT:
 	loadspritegfx ANIM_TAG_IMPACT
 	createsprite gBowMonSpriteTemplate, ANIM_ATTACKER, 2, 0
@@ -12310,11 +12216,14 @@ Move_ZEN_HEADBUTT:
 	call UnsetPsychicBackground
 	end
 
+
 Move_CROSS_POISON:
 	goto Move_POISON_TAIL
 
+
 Move_POISON_JAB:
 	goto Move_POISON_STING
+
 
 Move_GUNK_SHOT:
 	goto Move_SLUDGE_BOMB

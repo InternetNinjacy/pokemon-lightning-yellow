@@ -3,6 +3,7 @@
 import hashlib,json,re
 from pathlib import Path
 from approved_gift_changes import prior_gift_source
+from approved_sow_producer_changes import prior_sow_producer_source
 m=json.loads(Path('tests/specifications/approved_gift_delta.json').read_text())
 # The separate Rocket Hideout scope appends exactly three new registered
 # specials. Normalize only those reviewed lines; every earlier gift byte remains
@@ -13,7 +14,7 @@ rocket_registration = (
  "\tdef_special RocketRescueReturn\n"
 )
 for path,v in m['files'].items():
- current = Path(path).read_text()
+ current = prior_sow_producer_source(path)
  if path == 'data/specials.inc':
   assert current.count(rocket_registration)==1,'Unreviewed Rocket special registration'
   current=current.replace(rocket_registration,'',1)

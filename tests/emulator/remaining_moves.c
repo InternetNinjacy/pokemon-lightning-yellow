@@ -23,17 +23,18 @@ static void waterDischargeTests(void){
   }
   CHECK(hit);free(state);printf("PASS: actual %s move%u damage/target scope/onePP/existing art; no Vortex trap and retained Tidal rollout power\n",two?"Doubles":"Singles",moves[m]);
  }
- // The unmodified native Rollout command supplies all five powers and Curl.
+ // Both native paths retain five powers; only Rollout gets the approved Curl bonus.
  remainingFixture(0,MOVE_TIDAL_CRASH);unsigned script=CALL(AllocZeroed,16);CHECK(script);
- for(unsigned curl=0;curl<2;curl++){
-  core->busWrite8(core,SYM_gBattlerAttacker,0);core->busWrite16(core,SYM_gCurrentMove,MOVE_TIDAL_CRASH);core->busWrite32(core,bmon(0)+ABI_BMON_STATUS2,curl?STATUS2_DEFENSE_CURL:0);core->busWrite8(core,SYM_gMoveResultFlags,0);
-  for(unsigned turn=0;turn<5;turn++){core->busWrite32(core,SYM_gBattlescriptCurrInstr,script);CALL(Cmd_rolloutdamagecalculation);CHECK(core->busRead16(core,SYM_gDynamicBasePower)==(30U<<turn)*(curl?2:1));CHECK(!!(core->busRead32(core,bmon(0)+ABI_BMON_STATUS2)&STATUS2_MULTIPLETURNS)==(turn<4));CHECK(core->busRead16(core,SYM_gLockedMoves)==MOVE_TIDAL_CRASH);}
+ for(unsigned rollout=0;rollout<2;rollout++)for(unsigned curl=0;curl<2;curl++){
+  unsigned testedMove=rollout?MOVE_ROLLOUT:MOVE_TIDAL_CRASH;
+  core->busWrite8(core,SYM_gBattlerAttacker,0);core->busWrite16(core,SYM_gCurrentMove,testedMove);core->busWrite32(core,bmon(0)+ABI_BMON_STATUS2,curl?STATUS2_DEFENSE_CURL:0);core->busWrite8(core,SYM_gMoveResultFlags,0);
+  for(unsigned turn=0;turn<5;turn++){core->busWrite32(core,SYM_gBattlescriptCurrInstr,script);CALL(Cmd_rolloutdamagecalculation);CHECK(core->busRead16(core,SYM_gDynamicBasePower)==(30U<<turn)*((rollout&&curl)?2:1));CHECK(!!(core->busRead32(core,bmon(0)+ABI_BMON_STATUS2)&STATUS2_MULTIPLETURNS)==(turn<4));CHECK(core->busRead16(core,SYM_gLockedMoves)==testedMove);}
  }
- core->busWrite8(core,SYM_gMoveResultFlags,MOVE_RESULT_MISSED);core->busWrite32(core,SYM_gBattlescriptCurrInstr,script);CALL(Cmd_rolloutdamagecalculation);CHECK(!(core->busRead32(core,bmon(0)+ABI_BMON_STATUS2)&STATUS2_MULTIPLETURNS));CALL(Free,script);
+ core->busWrite16(core,SYM_gCurrentMove,MOVE_TIDAL_CRASH);core->busWrite8(core,SYM_gMoveResultFlags,MOVE_RESULT_MISSED);core->busWrite32(core,SYM_gBattlescriptCurrInstr,script);CALL(Cmd_rolloutdamagecalculation);CHECK(!(core->busRead32(core,bmon(0)+ABI_BMON_STATUS2)&STATUS2_MULTIPLETURNS));CALL(Free,script);
  // Ground immunity, Electric paralysis immunity and per-recipient Volt Absorb.
  remainingFixture(1,MOVE_DISCHARGE);core->busWrite8(core,bmon(1)+ABI_BMON_TYPE1,TYPE_GROUND);core->busWrite8(core,bmon(2)+ABI_BMON_TYPE1,TYPE_ELECTRIC);core->busWrite8(core,bmon(3)+ABI_BMON_ABILITY,ABILITY_VOLT_ABSORB);
  chooseMove(0,0,1);chooseMove(2,0,1);waitAction();CHECK(core->busRead16(core,bmon(1)+ABI_BMON_HP)==1000);CHECK(core->busRead16(core,bmon(2)+ABI_BMON_HP)<1000);CHECK(core->busRead32(core,bmon(2)+ABI_BMON_STATUS1)==0);CHECK(core->busRead16(core,bmon(3)+ABI_BMON_HP)==1000);CHECK(monget(player(0),ABI_DATA_PP1)==14);
- CHECK(core->loadState(core,bootState));printf("PASS: native Tidal five-power/Curl/lock/miss mechanics and actual Discharge independent Ground/Electric/VoltAbsorb controls\n");
+ CHECK(core->loadState(core,bootState));printf("PASS: native Tidal five-power/no-Curl and Rollout positive-Curl/lock/miss mechanics and actual Discharge independent Ground/Electric/VoltAbsorb controls\n");
 }
 static void voltSwitchTests(void){
  // Real native turns: no reserve, valid switch, Substitute, Ground, absorption,

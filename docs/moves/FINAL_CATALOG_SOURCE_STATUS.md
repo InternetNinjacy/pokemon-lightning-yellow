@@ -1,38 +1,34 @@
-# BTL-005 — final catalog source candidate through move410
+# BTL-005 — complete catalog integrated with current main source
 
-This preserves the existing remaining-moves implementation and finishes the
-pending nine entries402–410: Hurricane, Brave Bird, Acrobatics, Dual Wingbeat,
-Heart Stamp, Zen Headbutt, Cross Poison, Poison Jab and Gunk Shot.
+The original standalone candidate is7511b353 (history retained). Current
+integration preserves all397 existing main move rows and fills14 previously
+reserved/missing slots, for NONE plus410 approved moves. Main's existing BatchA
+animations, main event/species/trainer changes, weather behavior and validation
+registrations are retained. No move distribution or new artwork is added.
 
-Authority remains docs/moves/approved-design-overlays.json, move-specification
-and animation-reuse records plus their supplied owner decisions. No distribution,
-learnset, TM, species or trainer allocation is invented. Existing IDs1–401 are
-preserved; MOVES_COUNT411 represents NONE plus410 moves.
+The older alternate spread script was removed: Discharge now uses the existing
+PARALYZE_HIT effect and main's all-other-target traversal; PetalBlizzard keeps
+main's exact HIT path. Thus the two implementations cannot iterate targets
+twice. VoltSwitch remains the dedicated real-damage switch mechanism; ThunderFang
+reuses the independently rolled fang effect, and Acrobatics/Hurricane retain the
+approved item/weather behavior. TidalCrash keeps the later Nov10 NO DefenseCurl
+rule; the unexecuted native fixture now checks that negative and retains a
+positive Curl control for ordinary Rollout.
 
-The final nine use existing hit/drain/recoil/double-hit/flinch/poison effects
-where applicable. Acrobatics doubles base power only with ITEM_NONE. Hurricane
-uses approved Rain bypass/Sun50 accuracy, normal protection/type checks and its
-airborne-hit path. Existing-art animation reuse/composition adds no new pixels.
-The source branch also retains prior385–401 mechanisms (all-other-active hits,
-Volt Switch, Thunder Fang and the existing-effects batch); inspect these commits
-rather than reimplementing them or merging older overlapping PRs blindly.
+Compilation PASS in an isolated archive snapshot with pinned agbcc. Static
+catalog/source-preservation checks PASS: check-move-reconciliation,
+run_remaining_moves_tests and run_btl_weather_integration_tests, including
+rejection of novel mutations. No gameplay/emulator tests or diagnostic workflows
+run. The exact build head/hash and subsequent integration result are in PR265.
+Runtime acceptance,animation playback,save/link and full410-move release
+certification remain outstanding, handled separately from source integration.
 
-Static reconciliation executed for all nine: exact owner-approved type,category,
-power,accuracy,PP,priority,secondary chance and translated effect/target/flags;
-name,description and animation entries present. Source has contiguous IDs1–410
-and a data/animation entry for each. This is source inspection, not a battle test.
-Private pinned-toolchain compilation is in progress at initial publication.
-No current gameplay/emulator tests or diagnostic workflows were executed.
-
-This candidate originates on the preserved older remaining-moves development
-stack; current-main content and overlapping PR181/183/other BTL changes must be
-reconciled before merging. Do not overwrite newer trainers,events,weather,
-followers or preservation guards with this branch's older versions. Compile
-success alone does not certify Singles/Doubles,AI,effects,visual playback,
-Substitute/Safeguard,save/link compatibility or full410-move acceptance.
-
-Original working checkout/index and its18 pending files remain untouched; this
-snapshot is committed on a separate review branch through a temporary Git index.
-No generated outputs,ROM,artwork,BIOS or credentials are committed. Formal project
-accounting remains461/712 until acceptance. GitHub PR records carry exact build
-results and next source-integration work; no routine duplicate handoff is needed.
+All existing main tests/specifications files remain byte-identical. New exact
+remaining_moves_current_main_delta.json reverses only this layer to verified
+main; old remaining_moves_delta.json is retained as standalone history. Existing
+BatchA/Water/ThunderWave/weather projections and expected hashes are preserved.
+A narrow exact PR263 prize reversal allows those historical checks to see their
+original source without changing actual1400/3000 rewards. Current catalog
+validation checks actual411 entries; a second assertion retains the previous
+accepted catalog hash. Original working checkout/index and18 pending source
+files remain untouched. No points awarded:461/712 until owner acceptance.

@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "baseline_source_commit": "92838e5eb64d19942cb5c51cfdef6991503ac3ad",
-  "current_battle_moves_sha256": "158cb7511ef46ed8aa1df581fbfe0bbdb6d450205f0ca8fae00fb54d720afa6c",
+  "current_battle_moves_sha256": "7b62adc4123c457897531d5e5d38dac1e470a289adc99d885ebf987804ffbccf",
   "scope": "Reconciliation only, no gameplay edits. Numeric proposed IDs/semantic effects/target values are NOT compiled constants. Runtime_verified false is not a failure claim.",
   "sources": {
     "register": {
@@ -22475,11 +22475,11 @@
         "target": "MOVE_TARGET_SELECTED",
         "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       },
-      "source_line": 5394,
+      "source_line": 5395,
       "animation": {
         "assignment": "Move_VORTEX_SPIN",
         "approval": "APPROVED_EXISTING_ART_CANDIDATE",
-        "source_line": 11817,
+        "source_line": 11818,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -22528,7 +22528,7 @@
         "pp": 20,
         "priority": 0,
         "target": "SELECTED",
-        "effect": "NATIVE_ROLLOUT_INCLUDING_DEFENSE_CURL",
+        "effect": "NATIVE_ROLLOUT_WITHOUT_DEFENSE_CURL",
         "secondaryEffectChance": 0,
         "flags": null
       },
@@ -22557,13 +22557,14 @@
         "flags": "REQUIRES_ENGINE_TRANSLATION"
       },
       "mechanic_notes": [
-        "NATIVE_ROLLOUT_INCLUDING_DEFENSE_CURL",
+        "2026-11-10 newer owner correction: Defense Curl bonus exclusively applies to original Rollout; Tidal Crash and other Rollout-derived moves do not inherit it.",
+        "NATIVE_ROLLOUT_WITHOUT_DEFENSE_CURL",
         "Normal priority0 is proposed technical translation; source approves the listed custom attack mechanics, not an explicit priority statement."
       ],
       "implementation_status": "SOURCE_DATA_PRESENT_RUNTIME_UNVERIFIED",
       "delta": {},
       "effect_rules": {
-        "semantic": "NATIVE_ROLLOUT_INCLUDING_DEFENSE_CURL",
+        "semantic": "NATIVE_ROLLOUT_WITHOUT_DEFENSE_CURL",
         "power_sequence": [
           30,
           60,
@@ -22571,7 +22572,7 @@
           240,
           480
         ],
-        "defense_curl_bonus": true,
+        "defense_curl_bonus": false,
         "ends_on_miss": true,
         "surf_spread_mechanics": false
       },
@@ -22580,11 +22581,11 @@
         "target": "MOVE_TARGET_SELECTED",
         "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       },
-      "source_line": 5408,
+      "source_line": 5410,
       "animation": {
         "assignment": "Move_TIDAL_CRASH",
         "approval": "APPROVED_EXISTING_ART_CANDIDATE",
-        "source_line": 11820,
+        "source_line": 11822,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -22621,7 +22622,7 @@
         "pp": 15,
         "priority": 0,
         "target": "MOVE_TARGET_FOES_AND_ALLY",
-        "effect": "EFFECT_HIT_ALL_OTHERS",
+        "effect": "EFFECT_PARALYZE_HIT",
         "secondaryEffectChance": 30,
         "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
       },
@@ -22666,15 +22667,15 @@
         "secondary_percent": 30
       },
       "engine_translation": {
-        "effect": "EFFECT_HIT_ALL_OTHERS",
+        "effect": "EFFECT_PARALYZE_HIT",
         "target": "MOVE_TARGET_FOES_AND_ALLY",
         "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
       },
-      "source_line": 5422,
+      "source_line": 5603,
       "animation": {
         "assignment": "Move_DISCHARGE",
         "approval": "APPROVED_EXISTING_ART_CANDIDATE",
-        "source_line": 11823,
+        "source_line": 11889,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -22761,11 +22762,11 @@
         "target": "MOVE_TARGET_SELECTED",
         "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       },
-      "source_line": 5436,
+      "source_line": 5617,
       "animation": {
         "assignment": "Move_VOLT_SWITCH",
         "approval": "APPROVED_EXISTING_ART_CANDIDATE",
-        "source_line": 11827,
+        "source_line": 11894,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -22871,11 +22872,11 @@
         "target": "MOVE_TARGET_SELECTED",
         "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
       },
-      "source_line": 5450,
+      "source_line": 5631,
       "animation": {
         "assignment": "Move_THUNDER_FANG",
         "approval": "APPROVED_EXISTING_ART_CANDIDATE",
-        "source_line": 11880,
+        "source_line": 11948,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -22966,11 +22967,11 @@
         "target": "MOVE_TARGET_SELECTED",
         "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       },
-      "source_line": 5464,
+      "source_line": 5645,
       "animation": {
         "assignment": "Move_WILD_CHARGE",
         "approval": "APPROVED_EXISTING_ART_CANDIDATE",
-        "source_line": 11927,
+        "source_line": 11996,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -23057,11 +23058,11 @@
         "target": "MOVE_TARGET_SELECTED",
         "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       },
-      "source_line": 5478,
+      "source_line": 5445,
       "animation": {
         "assignment": "Move_SEED_BOMB",
         "approval": "APPROVED_EXISTING_ART_CANDIDATE",
-        "source_line": 11930,
+        "source_line": 11828,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -23100,7 +23101,7 @@
         "pp": 15,
         "priority": 0,
         "target": "MOVE_TARGET_FOES_AND_ALLY",
-        "effect": "EFFECT_HIT_ALL_OTHERS",
+        "effect": "EFFECT_HIT",
         "secondaryEffectChance": 0,
         "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       },
@@ -23144,15 +23145,15 @@
         "semantic": "HIT"
       },
       "engine_translation": {
-        "effect": "EFFECT_HIT_ALL_OTHERS",
+        "effect": "EFFECT_HIT",
         "target": "MOVE_TARGET_FOES_AND_ALLY",
         "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       },
-      "source_line": 5492,
+      "source_line": 5461,
       "animation": {
         "assignment": "Move_PETAL_BLIZZARD",
         "approval": "APPROVED_EXISTING_ART_CANDIDATE",
-        "source_line": 11933,
+        "source_line": 11831,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -23239,11 +23240,11 @@
         "target": "MOVE_TARGET_SELECTED",
         "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       },
-      "source_line": 5506,
+      "source_line": 5659,
       "animation": {
         "assignment": "Move_WOOD_HAMMER",
         "approval": "APPROVED_EXISTING_ART_CANDIDATE",
-        "source_line": 11937,
+        "source_line": 12000,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -23334,11 +23335,11 @@
         "target": "MOVE_TARGET_SELECTED",
         "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       },
-      "source_line": 5520,
+      "source_line": 5477,
       "animation": {
         "assignment": "Move_AURA_SPHERE",
         "approval": "APPROVED_EXISTING_ART_CANDIDATE",
-        "source_line": 12000,
+        "source_line": 11834,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -23379,7 +23380,7 @@
         "target": "MOVE_TARGET_SELECTED",
         "effect": "EFFECT_SPECIAL_DEFENSE_DOWN_HIT",
         "secondaryEffectChance": 10,
-        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
+        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       },
       "approved": {
         "type": "FIGHTING",
@@ -23424,13 +23425,13 @@
       "engine_translation": {
         "effect": "EFFECT_SPECIAL_DEFENSE_DOWN_HIT",
         "target": "MOVE_TARGET_SELECTED",
-        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
+        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       },
-      "source_line": 5534,
+      "source_line": 5493,
       "animation": {
         "assignment": "Move_FOCUS_BLAST",
         "approval": "APPROVED_EXISTING_ART_CANDIDATE",
-        "source_line": 12003,
+        "source_line": 11837,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -23517,11 +23518,11 @@
         "target": "MOVE_TARGET_SELECTED",
         "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
       },
-      "source_line": 5548,
+      "source_line": 5673,
       "animation": {
         "assignment": "Move_DRAIN_PUNCH",
         "approval": "APPROVED_EXISTING_ART_CANDIDATE",
-        "source_line": 12007,
+        "source_line": 12064,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -23566,7 +23567,7 @@
         "target": "MOVE_TARGET_SELECTED",
         "effect": "EFFECT_SPECIAL_DEFENSE_DOWN_HIT",
         "secondaryEffectChance": 10,
-        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
+        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       },
       "approved": {
         "type": "STEEL",
@@ -23611,13 +23612,13 @@
       "engine_translation": {
         "effect": "EFFECT_SPECIAL_DEFENSE_DOWN_HIT",
         "target": "MOVE_TARGET_SELECTED",
-        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
+        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       },
-      "source_line": 5562,
+      "source_line": 5509,
       "animation": {
         "assignment": "Move_FLASH_CANNON",
         "approval": "APPROVED_EXISTING_ART_CANDIDATE",
-        "source_line": 12056,
+        "source_line": 11841,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -23662,7 +23663,7 @@
         "target": "MOVE_TARGET_SELECTED",
         "effect": "EFFECT_ACCURACY_DOWN_HIT",
         "secondaryEffectChance": 30,
-        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
+        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       },
       "approved": {
         "type": "STEEL",
@@ -23707,13 +23708,13 @@
       "engine_translation": {
         "effect": "EFFECT_ACCURACY_DOWN_HIT",
         "target": "MOVE_TARGET_SELECTED",
-        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
+        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       },
-      "source_line": 5576,
+      "source_line": 5525,
       "animation": {
         "assignment": "Move_MIRROR_SHOT",
         "approval": "APPROVED_EXISTING_ART_CANDIDATE",
-        "source_line": 12119,
+        "source_line": 11850,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -23754,7 +23755,7 @@
         "target": "MOVE_TARGET_SELECTED",
         "effect": "EFFECT_FLINCH_HIT",
         "secondaryEffectChance": 30,
-        "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
+        "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       },
       "approved": {
         "type": "STEEL",
@@ -23799,13 +23800,13 @@
       "engine_translation": {
         "effect": "EFFECT_FLINCH_HIT",
         "target": "MOVE_TARGET_SELECTED",
-        "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
+        "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       },
-      "source_line": 5590,
+      "source_line": 5541,
       "animation": {
         "assignment": "Move_IRON_HEAD",
         "approval": "APPROVED_EXISTING_ART_CANDIDATE",
-        "source_line": 12122,
+        "source_line": 11853,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -23892,11 +23893,11 @@
         "target": "MOVE_TARGET_SELECTED",
         "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       },
-      "source_line": 5604,
+      "source_line": 5557,
       "animation": {
         "assignment": "Move_BULLET_PUNCH",
         "approval": "APPROVED_EXISTING_ART_CANDIDATE",
-        "source_line": 12126,
+        "source_line": 11857,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -23941,7 +23942,7 @@
         "target": "MOVE_TARGET_SELECTED",
         "effect": "EFFECT_FLINCH_HIT",
         "secondaryEffectChance": 30,
-        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
+        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       },
       "approved": {
         "type": "FLYING",
@@ -23986,13 +23987,13 @@
       "engine_translation": {
         "effect": "EFFECT_FLINCH_HIT",
         "target": "MOVE_TARGET_SELECTED",
-        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
+        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       },
-      "source_line": 5618,
+      "source_line": 5573,
       "animation": {
         "assignment": "Move_AIR_SLASH",
         "approval": "APPROVED_EXISTING_ART_CANDIDATE",
-        "source_line": 12177,
+        "source_line": 11868,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -24082,11 +24083,11 @@
         "target": "MOVE_TARGET_SELECTED",
         "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       },
-      "source_line": 5632,
+      "source_line": 5687,
       "animation": {
         "assignment": "Move_HURRICANE",
         "approval": "APPROVED_EXISTING_ART_CANDIDATE",
-        "source_line": 12181,
+        "source_line": 12114,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -24177,11 +24178,11 @@
         "target": "MOVE_TARGET_SELECTED",
         "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       },
-      "source_line": 5646,
+      "source_line": 5701,
       "animation": {
         "assignment": "Move_BRAVE_BIRD",
         "approval": "APPROVED_EXISTING_ART_CANDIDATE",
-        "source_line": 12242,
+        "source_line": 12176,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -24268,11 +24269,11 @@
         "target": "MOVE_TARGET_SELECTED",
         "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       },
-      "source_line": 5660,
+      "source_line": 5715,
       "animation": {
         "assignment": "Move_ACROBATICS",
         "approval": "APPROVED_EXISTING_ART_CANDIDATE",
-        "source_line": 12245,
+        "source_line": 12180,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -24359,11 +24360,11 @@
         "target": "MOVE_TARGET_SELECTED",
         "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       },
-      "source_line": 5674,
+      "source_line": 5729,
       "animation": {
         "assignment": "Move_DUAL_WINGBEAT",
         "approval": "APPROVED_EXISTING_ART_CANDIDATE",
-        "source_line": 12248,
+        "source_line": 12184,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -24404,7 +24405,7 @@
         "target": "MOVE_TARGET_SELECTED",
         "effect": "EFFECT_FLINCH_HIT",
         "secondaryEffectChance": 30,
-        "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
+        "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       },
       "approved": {
         "type": "PSYCHIC",
@@ -24449,13 +24450,13 @@
       "engine_translation": {
         "effect": "EFFECT_FLINCH_HIT",
         "target": "MOVE_TARGET_SELECTED",
-        "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
+        "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       },
-      "source_line": 5688,
+      "source_line": 5589,
       "animation": {
         "assignment": "Move_HEART_STAMP",
         "approval": "APPROVED_EXISTING_ART_CANDIDATE",
-        "source_line": 12252,
+        "source_line": 11872,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -24547,11 +24548,11 @@
         "target": "MOVE_TARGET_SELECTED",
         "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
       },
-      "source_line": 5702,
+      "source_line": 5743,
       "animation": {
         "assignment": "Move_ZEN_HEADBUTT",
         "approval": "APPROVED_EXISTING_ART_CANDIDATE",
-        "source_line": 12283,
+        "source_line": 12189,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -24643,11 +24644,11 @@
         "target": "MOVE_TARGET_SELECTED",
         "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       },
-      "source_line": 5716,
+      "source_line": 5757,
       "animation": {
         "assignment": "Move_CROSS_POISON",
         "approval": "APPROVED_EXISTING_ART_CANDIDATE",
-        "source_line": 12313,
+        "source_line": 12220,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -24735,11 +24736,11 @@
         "target": "MOVE_TARGET_SELECTED",
         "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       },
-      "source_line": 5730,
+      "source_line": 5771,
       "animation": {
         "assignment": "Move_POISON_JAB",
         "approval": "APPROVED_EXISTING_ART_CANDIDATE",
-        "source_line": 12316,
+        "source_line": 12224,
         "source_exists": true,
         "runtime_verified": false
       },
@@ -24827,11 +24828,11 @@
         "target": "MOVE_TARGET_SELECTED",
         "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       },
-      "source_line": 5744,
+      "source_line": 5785,
       "animation": {
         "assignment": "Move_GUNK_SHOT",
         "approval": "APPROVED_EXISTING_ART_CANDIDATE",
-        "source_line": 12319,
+        "source_line": 12228,
         "source_exists": true,
         "runtime_verified": false
       },

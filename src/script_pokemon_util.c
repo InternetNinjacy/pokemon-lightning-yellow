@@ -10,6 +10,10 @@
 #include "script_pokemon_util.h"
 #include "constants/items.h"
 #include "constants/pokemon.h"
+#include "pokemon.h"
+#include "constants/moves.h"
+#include "constants/abilities.h"
+#include "constants/special_weather.h"
 
 static void CB2_ReturnFromChooseHalfParty(void);
 static void CB2_ReturnFromChooseBattleTowerParty(void);
@@ -156,6 +160,44 @@ void CreateScriptedWildMon(u16 species, u8 level, u16 item)
         heldItem[1] = item >> 8;
         SetMonData(&gEnemyParty[0], MON_DATA_HELD_ITEM, heldItem);
     }
+}
+
+// Configure the already-created (setwildbattle) *single* special encounter.
+// Never recreate the monster after choosing its personality/individual ability.
+// No held items or species-wide ability replacement is permitted here.
+void SowPrepareScriptedEncounter(void)
+{
+    static const struct
+    {
+        u16 species;
+        u8 level;
+        u16 moves[MAX_MON_MOVES];
+    } eventData[SPECIAL_WEATHER_COUNT] =
+    {
+        [SPECIAL_WEATHER_CORPHISH] = {SPECIES_CORPHISH, 30, {MOVE_BUBBLE_BEAM, MOVE_KNOCK_OFF, MOVE_PROTECT, MOVE_VICE_GRIP}},
+        [SPECIAL_WEATHER_GLALIE] = {SPECIES_GLALIE, 40, {MOVE_ICE_BEAM, MOVE_CRUNCH, MOVE_HEADBUTT, MOVE_PROTECT}},
+        [SPECIAL_WEATHER_TYRANITAR] = {SPECIES_TYRANITAR, 55, {MOVE_CRUNCH, MOVE_ROCK_SLIDE, MOVE_THRASH, MOVE_SCARY_FACE}},
+    };
+    u16 event = gSpecialVar_0x8004;
+    u8 slot;
+    gSpecialVar_Result = FALSE;
+    if (event >= SPECIAL_WEATHER_COUNT
+     || GetMonData(&gEnemyParty[0], MON_DATA_SPECIES) != eventData[event].species
+     || GetMonData(&gEnemyParty[0], MON_DATA_LEVEL) != eventData[event].level
+     || GetMonData(&gEnemyParty[0], MON_DATA_HELD_ITEM) != ITEM_NONE)
+        return;
+    for (slot = 0; slot < MAX_MON_MOVES; slot++)
+        SetMonMoveSlot(&gEnemyParty[0], eventData[event].moves[slot], slot);
+    if (event == SPECIAL_WEATHER_CORPHISH
+     && !SetSpecialEncounterAbility(&gEnemyParty[0], ABILITY_DRIZZLE))
+        return;
+    if (event == SPECIAL_WEATHER_GLALIE
+     && !SetSpecialEncounterAbility(&gEnemyParty[0], ABILITY_SNOW_WARNING))
+        return;
+    if (event == SPECIAL_WEATHER_TYRANITAR
+     && GetMonAbility(&gEnemyParty[0]) != ABILITY_SAND_STREAM)
+        return;
+    gSpecialVar_Result = TRUE;
 }
 
 void ScriptSetMonMoveSlot(u8 monIndex, u16 move, u8 slot)

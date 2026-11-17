@@ -22,7 +22,9 @@ static void swarmCloudTests(void){
   CHECK(core->busRead32(core,SYM_gBattleMoveDamage)==expected);
   void *snapshot=malloc(core->stateSize(core));CHECK(snapshot&&core->saveState(core,snapshot));
   unsigned combinations=0,misses=0;
-  for(unsigned trial=0;trial<100&&combinations!=15;trial++){
+  // Require BOTH four independent effect combinations and at least one real miss.
+  // Stopping as soon as the fourth hit status appears can leave misses untested.
+  for(unsigned trial=0;trial<100&&(combinations!=15||misses==0);trial++){
    CHECK(core->loadState(core,snapshot));
    core->busWrite32(core,SYM_gRngValue,0x2ABA0000+trial*7919);
    chooseMove(0,0,1);if(two)chooseMove(2,0,1);

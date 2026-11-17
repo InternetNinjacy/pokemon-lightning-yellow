@@ -2235,7 +2235,7 @@
         "pp": 20,
         "priority": 0,
         "target": "SELECTED",
-        "effect": "NATIVE_ROLLOUT_INCLUDING_DEFENSE_CURL",
+        "effect": "NATIVE_ROLLOUT_WITHOUT_DEFENSE_CURL",
         "secondaryEffectChance": 0,
         "flags": null
       },
@@ -2264,13 +2264,14 @@
         "flags": "REQUIRES_ENGINE_TRANSLATION"
       },
       "mechanic_notes": [
-        "NATIVE_ROLLOUT_INCLUDING_DEFENSE_CURL",
+        "2026-11-10 newer owner correction: Defense Curl bonus exclusively applies to original Rollout; Tidal Crash and other Rollout-derived moves do not inherit it.",
+        "NATIVE_ROLLOUT_WITHOUT_DEFENSE_CURL",
         "Normal priority0 is proposed technical translation; source approves the listed custom attack mechanics, not an explicit priority statement."
       ],
       "implementation_status": "NOT_IMPLEMENTED",
       "delta": null,
       "effect_rules": {
-        "semantic": "NATIVE_ROLLOUT_INCLUDING_DEFENSE_CURL",
+        "semantic": "NATIVE_ROLLOUT_WITHOUT_DEFENSE_CURL",
         "power_sequence": [
           30,
           60,
@@ -2278,7 +2279,7 @@
           240,
           480
         ],
-        "defense_curl_bonus": true,
+        "defense_curl_bonus": false,
         "ends_on_miss": true,
         "surf_spread_mechanics": false
       },
@@ -2336,7 +2337,7 @@
         "secondary_percent": 30
       },
       "engine_translation": {
-        "effect": "EFFECT_HIT_ALL_OTHERS",
+        "effect": "EFFECT_PARALYZE_HIT",
         "target": "MOVE_TARGET_FOES_AND_ALLY",
         "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
       }
@@ -2606,7 +2607,7 @@
         "semantic": "HIT"
       },
       "engine_translation": {
-        "effect": "EFFECT_HIT_ALL_OTHERS",
+        "effect": "EFFECT_HIT",
         "target": "MOVE_TARGET_FOES_AND_ALLY",
         "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       }
@@ -2765,7 +2766,7 @@
       "engine_translation": {
         "effect": "EFFECT_SPECIAL_DEFENSE_DOWN_HIT",
         "target": "MOVE_TARGET_SELECTED",
-        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
+        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       }
     },
     {
@@ -2870,7 +2871,7 @@
       "engine_translation": {
         "effect": "EFFECT_SPECIAL_DEFENSE_DOWN_HIT",
         "target": "MOVE_TARGET_SELECTED",
-        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
+        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       }
     },
     {
@@ -2923,7 +2924,7 @@
       "engine_translation": {
         "effect": "EFFECT_ACCURACY_DOWN_HIT",
         "target": "MOVE_TARGET_SELECTED",
-        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
+        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       }
     },
     {
@@ -2976,7 +2977,7 @@
       "engine_translation": {
         "effect": "EFFECT_FLINCH_HIT",
         "target": "MOVE_TARGET_SELECTED",
-        "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
+        "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       }
     },
     {
@@ -3081,7 +3082,7 @@
       "engine_translation": {
         "effect": "EFFECT_FLINCH_HIT",
         "target": "MOVE_TARGET_SELECTED",
-        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
+        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       }
     },
     {
@@ -3345,7 +3346,7 @@
       "engine_translation": {
         "effect": "EFFECT_FLINCH_HIT",
         "target": "MOVE_TARGET_SELECTED",
-        "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
+        "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       }
     },
     {

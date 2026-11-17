@@ -4,7 +4,7 @@ import json,hashlib
 
 def prior_remaining_source(path,text=None):
     if text is None:text=Path(path).read_text()
-    row=json.loads(Path('tests/specifications/remaining_moves_delta.json').read_text())['files'].get(str(path))
+    row=json.loads(Path('tests/specifications/remaining_moves_current_main_delta.json').read_text())['files'].get(str(path))
     if row is None:return text
     if hashlib.sha256(text.encode()).hexdigest()==row['before_sha256']:return text
     # Older composed guards can call this after all new hunks were reversed.

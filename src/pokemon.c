@@ -2584,9 +2584,15 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
                 damage /= 2;
         }
 
-        // Moves hitting both targets do half damage in double battles
-        if ((gBattleTypeFlags & BATTLE_TYPE_DOUBLE) && gBattleMoves[move].target == MOVE_TARGET_BOTH && CountAliveMonsInBattle(BATTLE_ALIVE_DEF_SIDE) == 2)
-            damage /= 2;
+        // Preserve Gen III's half damage for both-foe moves, while
+        // all-other-battler moves use their approved 75% spread damage.
+        if ((gBattleTypeFlags & BATTLE_TYPE_DOUBLE) && CountAliveMonsInBattle(BATTLE_ALIVE_DEF_SIDE) == 2)
+        {
+            if (gBattleMoves[move].target == MOVE_TARGET_BOTH)
+                damage /= 2;
+            else if (gBattleMoves[move].target == MOVE_TARGET_FOES_AND_ALLY)
+                damage = damage * 3 / 4;
+        }
 
         // Moves always do at least 1 damage.
         if (damage == 0)
@@ -2632,9 +2638,15 @@ s32 CalculateBaseDamage(struct BattlePokemon *attacker, struct BattlePokemon *de
                 damage /= 2;
         }
 
-        // Moves hitting both targets do half damage in double battles
-        if ((gBattleTypeFlags & BATTLE_TYPE_DOUBLE) && gBattleMoves[move].target == MOVE_TARGET_BOTH && CountAliveMonsInBattle(BATTLE_ALIVE_DEF_SIDE) == 2)
-            damage /= 2;
+        // Preserve Gen III's half damage for both-foe moves, while
+        // all-other-battler moves use their approved 75% spread damage.
+        if ((gBattleTypeFlags & BATTLE_TYPE_DOUBLE) && CountAliveMonsInBattle(BATTLE_ALIVE_DEF_SIDE) == 2)
+        {
+            if (gBattleMoves[move].target == MOVE_TARGET_BOTH)
+                damage /= 2;
+            else if (gBattleMoves[move].target == MOVE_TARGET_FOES_AND_ALLY)
+                damage = damage * 3 / 4;
+        }
     }
 
     // Are effects of weather negated with cloud nine or air lock
@@ -3011,6 +3023,7 @@ u32 GetMonData2(struct Pokemon *mon, s32 field) __attribute__((alias("GetMonData
  * number of arguments. */
 // Exact opt-in Glalie tag; legacy zero filler is unchanged. No slot migration.
 #define GLALIE_SNOW_WARNING_TAG 0x57A1
+#define CORPHISH_DRIZZLE_TAG 0xD122
 
 u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
 {
@@ -3222,9 +3235,14 @@ u32 GetBoxMonData3(struct BoxPokemon *boxMon, s32 field, u8 *data)
         retVal = substruct3->isEgg;
         break;
     case MON_DATA_INDIVIDUAL_ABILITY:
-        if (!boxMon->isBadEgg && !substruct3->isEgg && substruct0->species == SPECIES_GLALIE
-         && substruct0->filler == GLALIE_SNOW_WARNING_TAG)
-            retVal = ABILITY_SNOW_WARNING;
+        if (!boxMon->isBadEgg && !substruct3->isEgg)
+        {
+            if (substruct0->species == SPECIES_GLALIE && substruct0->filler == GLALIE_SNOW_WARNING_TAG)
+                retVal = ABILITY_SNOW_WARNING;
+            else if ((substruct0->species == SPECIES_CORPHISH || substruct0->species == SPECIES_CRAWDAUNT)
+                  && substruct0->filler == CORPHISH_DRIZZLE_TAG)
+                retVal = ABILITY_DRIZZLE;
+        }
         break;
     case MON_DATA_ABILITY_NUM:
         retVal = substruct3->abilityNum;
@@ -3645,6 +3663,16 @@ void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
             else if (*data == ABILITY_NONE)
                 substruct0->filler = 0;
         }
+        else if (!substruct3->isEgg
+              && (substruct0->species == SPECIES_CORPHISH || substruct0->species == SPECIES_CRAWDAUNT)
+              && (substruct0->filler == 0 || substruct0->filler == CORPHISH_DRIZZLE_TAG))
+        {
+            // Only the special Corphish can gain Drizzle; its evolution retains the tag.
+            if (*data == ABILITY_DRIZZLE && substruct0->species == SPECIES_CORPHISH)
+                substruct0->filler = CORPHISH_DRIZZLE_TAG;
+            else if (*data == ABILITY_NONE)
+                substruct0->filler = 0;
+        }
         break;
     case MON_DATA_ABILITY_NUM:
         SET8(substruct3->abilityNum);
@@ -3868,9 +3896,10 @@ u8 GetMonAbility(struct Pokemon *mon)
 
 bool8 SetSpecialEncounterAbility(struct Pokemon *mon, u8 ability)
 {
-    if (GetMonData(mon, MON_DATA_SPECIES) != SPECIES_GLALIE
-     || GetMonData(mon, MON_DATA_IS_EGG) || GetMonData(mon, MON_DATA_SANITY_IS_BAD_EGG)
-     || (ability != ABILITY_SNOW_WARNING && ability != ABILITY_NONE))
+    u16 species = GetMonData(mon, MON_DATA_SPECIES);
+    if (GetMonData(mon, MON_DATA_IS_EGG) || GetMonData(mon, MON_DATA_SANITY_IS_BAD_EGG)
+     || !((species == SPECIES_GLALIE && (ability == ABILITY_SNOW_WARNING || ability == ABILITY_NONE))
+       || (species == SPECIES_CORPHISH && (ability == ABILITY_DRIZZLE || ability == ABILITY_NONE))))
         return FALSE;
     SetMonData(mon, MON_DATA_INDIVIDUAL_ABILITY, &ability);
     return GetMonData(mon, MON_DATA_INDIVIDUAL_ABILITY) == ability;

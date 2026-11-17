@@ -1,26 +1,31 @@
 CeruleanCity_Gym_Text_MistyIntro::
-    .string "Hi, you're a new face!\p"
-    .string "Only those TRAINERS who have a\n"
-    .string "policy about POKéMON can turn pro.\p"
-    .string "What is your approach when you\n"
-    .string "catch and train POKéMON?\p"
-    .string "My policy is an all-out offensive\n"
-    .string "with WATER-type POKéMON!{PLAY_BGM}{MUS_ENCOUNTER_GYM_LEADER}$"
+    .string "So, you actually made it to me!\p"
+    .string "I'm Misty, the Cerulean Gym\n"
+    .string "Leader!\p"
+    .string "You might've beaten my Trainers,\n"
+    .string "but don't think that means\n"
+    .string "you're ready for me!\p"
+    .string "My Water and Psychic Pokémon are\n"
+    .string "a perfect team! And around here,\n"
+    .string "we battle two-on-two!\p"
+    .string "Think you can keep up with both\n"
+    .string "of us? Heh! I'd like to see you\n"
+    .string "try!{PLAY_BGM}{MUS_ENCOUNTER_GYM_LEADER}$"
 
 CeruleanCity_Gym_Text_ExplainTM03::
-    .string "TM03 teaches WATER PULSE.\p"
-    .string "Use it on an aquatic POKéMON!$"
+    .string "Don't let it go to your head,\n"
+    .string "though! Next time, I won't go so\n"
+    .string "easy on you!$"
 
 CeruleanCity_Gym_Text_ExplainCascadeBadge::
-    .string "The CASCADEBADGE makes all\n"
-    .string "POKéMON up to Lv. 30 obey.\p"
-    .string "That includes even outsiders you\n"
-    .string "got in trades.\p"
-    .string "There's more. You can now use CUT\n"
-    .string "anytime, even out of battle.\p"
-    .string "You can CUT down small trees to\n"
-    .string "open new pathways.\p"
-    .string "You can also have my favorite TM.$"
+    .string "Okay, okay! You win!\p"
+    .string "Guess you've got more talent\n"
+    .string "than I gave you credit for!\p"
+    .string "You've earned the Cascade Badge!\p"
+    .string "Here, take this TM, too! It\n"
+    .string "contains Water Pulse. It's a\n"
+    .string "Water-type move that can confuse\n"
+    .string "your opponent!$"
 
 CeruleanCity_Gym_Text_ReceivedTM03FromMisty::
     .string "{PLAYER} received TM03\n"
@@ -30,36 +35,36 @@ CeruleanCity_Gym_Text_BetterMakeRoomForThis::
     .string "You better make room for this!$"
 
 CeruleanCity_Gym_Text_MistyDefeat::
-    .string "Wow!\n"
-    .string "You're too much!\p"
-    .string "All right!\p"
-    .string "You can have the CASCADEBADGE to\n"
-    .string "show you beat me.$"
+    .string "What?! No way! You actually beat\n"
+    .string "me?!$"
 
 CeruleanCity_Gym_Text_DianaIntro::
-    .string "What? You?\n"
-    .string "I'm more than good enough for you!\p"
-    .string "MISTY won't have to be bothered.$"
+    .string "You got past our Swimmer? Not\n"
+    .string "bad! But two Pokémon working\n"
+    .string "together are a whole different\n"
+    .string "challenge!$"
 
 CeruleanCity_Gym_Text_DianaDefeat::
-    .string "You overwhelmed me!$"
+    .string "Aw, man! You beat both of us!$"
 
 CeruleanCity_Gym_Text_DianaPostBattle::
-    .string "You have to face other TRAINERS\n"
-    .string "to see how good you really are.$"
+    .string "Misty's Pokémon are even\n"
+    .string "stronger! Watch out when her\n"
+    .string "Starmie enters the battle!$"
 
 CeruleanCity_Gym_Text_LuisIntro::
-    .string "Splash!\p"
-    .string "I'm first up!\n"
-    .string "Let's do it!$"
+    .string "Hey! Think you can handle two\n"
+    .string "Pokémon at once? Let's see how\n"
+    .string "well you swim against the\n"
+    .string "current!$"
 
 CeruleanCity_Gym_Text_LuisDefeat::
-    .string "That can't be!$"
+    .string "Whoa! You really made a splash!$"
 
 CeruleanCity_Gym_Text_LuisPostBattle::
-    .string "MISTY is a TRAINER who's going to\n"
-    .string "keep improving.\p"
-    .string "She won't lose to someone like you!$"
+    .string "Misty's no ordinary Water\n"
+    .string "Pokémon Trainer! Her Psychic\n"
+    .string "Pokémon will keep you guessing!$"
 
 CeruleanCity_Gym_Text_GymGuyAdvice::
     .string "Yo!\n"

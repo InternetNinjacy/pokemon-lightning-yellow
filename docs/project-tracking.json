@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated": "2026-11-07",
+  "updated": "2026-11-16",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "Master Control formally closes INT-003 at 16 earned/0 remaining after PR117 GitHub/Drive reconciliation; project 456 earned/256 remaining of712 (64.04%). Preserve 50 permanent IDs and all prior histories, no duplicate Rocket/lighting/title credit. Remaining gameplay, move, ecology and shared release QA continue under their independent owners.",
-  "main_sha": "b29f0863bc57013cad28b0e51da03a0ab67e1628",
+  "current_focus": "Approved early-game source corrections integrated via PR264 after combined pinned-toolchain compilation. Main421cecfc retains461/712; owner gameplay acceptance pending. BTL-005 complete410-ID source candidate compiled on PR265/7511b353, not integrated: nine current-main conflicts require source reconciliation. Follower private252-art build in PR258 completed; owner runtime acceptance pending. Continue independent approved work; no invented designs or unexecuted tests counted.",
+  "main_sha": "421cecfc4c75f53e67690fc594aa93a8016c90ba",
   "drive_sync": {
-    "status": "2026-11-07 INT-003 GitHub governance PR117 merged and existing Project Progress, START HERE and Change Intake docs synchronized/read back. Master Control final four-point award authorized; final closure append to existing Drive docs in progress.",
+    "status": "2026-11-10 WTH-001 and WRL-008 closeout PRs #170/#184 merged and verified; corresponding existing Google Drive Progress, START HERE and vendor register synchronized with definitive completion evidence.",
     "folder": "https://drive.google.com/drive/folders/1N_n0Ke48jBbdhUWSZWzwR6rpPFqpDUpl"
   },
   "areas": [
@@ -628,18 +628,18 @@
       ],
       "status": {
         "design": "Owner approved; November5 Curse/animation/GenIV edge choices resolved; PhaseTwo distribution remains separate",
-        "implementation": "Partial approved move system implemented on main; latest Earth Power #371 PR110 merged; additional Bug/Ghost and other move batches remain open and unaccepted as complete",
-        "automated": "Main tooling79:27 hosts and both full CI PASS before documentation-only main integration. Feature80:28 hosts/3 checkers, production chance numeric controls and clean hash a90ef372…b730 PASS; latest CI pending.",
-        "emulator": "PR80 latest focused517 native assertions PASS including real Singles/Doubles/composite animation completion/physical stats/AI/PP/flinch/recoil/priority/guards and exact encrypted flash reload. Latest full suite pending. Not full campaign/peer link/hardware or pixel-approval certification.",
-        "pull_request": "Recent Earth Power PR110 merged; additional PR82/85/89/91/92/93 open and other move work pending",
-        "merge": "Partial approved move batches merged including PR110 at 3fbc7b94; BTL-005 full 80-point scope not closed"
+        "implementation": "Approved BTL-005 move work now incorporated on main through source-integrated PR #208: original moves plus approved additions through #386, staged Batch A indexed entries and Thunder Wave corrective tests. Reserved move slots, exhaustive effects/animation acceptance, Phase Two distribution and remaining 56-move scope still require separate exact verification; this is NOT full BTL-005 completion. New separate source candidate PR265 at7511b353 includes all410 move IDs; it is not merged into current main.",
+        "automated": "PR #208 exact-head full modified and upstream CI #43145871878 SUCCESS, focused four-job CI #43145871735 SUCCESS (Thunder Wave, Batch A, Blaine, host), title #43145871696 SUCCESS. Exact merged-main #43210695582 SUCCESS both modified native mGBA and independent upstream; preserve scope limitations.",
+        "emulator": "Real exact-head modified native mGBA SUCCESS on PR #208 and merged-main 7996795c; focused Thunder Wave, Batch A, Blaine and historical Swarm Cloud corrections SUCCESS. Full natural story, exhaustive moves/animation visuals, release hardware/link/save-power-loss acceptance NOT certified.",
+        "pull_request": "PR #208 owner-authorized integration MERGED into main as 7996795c85f9707da7b8fe832b086a2438ba39a0; PR #136 GitHub recognizes merged via ancestry, and stacked PRs #146/#174/#176/#182 closed without redundant merges after verified ancestors of main.",
+        "merge": "Approved BTL-005 stack through Thunder Wave integrated via PR #208 and exact merged-main modified/upstream CI SUCCESS. Remaining 80-point BTL-005 task NOT fully closed; no progress points credited for integration alone."
       },
       "branch": "feature/approved-fire-move-batch",
       "commit": "1951766a",
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Continue specialist-owned source/acceptance work. Audit pending move PR stack against current main before merge; do not award further BTL-005 points without scoped approval.",
-      "checkpoint": "2026-11-07 INT-003 status-only update following PR110 Earth Power merge; effort remains 32/48 pending specialist acceptance.",
+      "next_action": "Reconcile PR265 final-catalog source with current main, preserving existing BatchA moves/animations, water mechanics and all validation registrations/guards. Nine conflicts listed in PR. Standalone pinned-agbcc build PASS; combined build/runtime acceptance still outstanding. No new distribution/learnsets invented.",
+      "checkpoint": "PR265 7511b353fbf7fb26545c989731be7d282aa784ff: static final-nine approved data/flags/category checks and410-ID/data/animation presence; standalone build PASS, no gameplay tests. Nine integration conflicts remain. Formal32 earned/48 remaining unchanged.",
       "source_exports": [
         "03_MOVES/Pokémon Lightning Yellow — Approved Move Change Ledger — Source Verbatim v0.1.txt",
         "03_MOVES/Pokémon Lightning Yellow — Complete TM & Move Register — v1 (2026-10-29).txt",
@@ -863,8 +863,8 @@
       "title": "Map weather selection and persistent state",
       "aliases": [],
       "effort": {
-        "earned": 24,
-        "remaining": 4,
+        "earned": 28,
+        "remaining": 0,
         "unit": "provisional relative planning point",
         "confidence": "medium",
         "history": [
@@ -879,6 +879,12 @@
             "earned": 24,
             "remaining": 4,
             "reason": "Scoped weather core/native callback/render stability acceptance in PR29; independent task scopes, no new credit for pre-existing Snow/Hail bridge. Final broad integration/review/remaining rendering retained."
+          },
+          {
+            "date": "2026-11-09",
+            "earned": 28,
+            "remaining": 0,
+            "reason": "Master Control WTH-001 scoped closeout: PR139 merged4e73c908, final PR-head workflows42666339237/42666327883 and title42666338673 successful, merged-commit modified/upstream SUCCESS42666557371, accepted SOW-004/007/008 actual A-interaction/capture/defeat/flee/loss/save/reentry/weather native tests, locked Route23 Tyranitar(13,142). Four previously reserved WTH-001 points awarded, denominator712 unchanged; WTH-002 visual/fog and INT release QA explicitly not certified."
           }
         ]
       },
@@ -887,20 +893,20 @@
       ],
       "status": {
         "design": "Weighted maps/entry/reentry/night conversion/RTC recovery supplied and approved",
-        "implementation": "implemented83 explicit policy/context/RTC core; scoped acceptance passed",
-        "automated": "14 host suites/Museum PASS;10880936 exhaustive accepted-roll plus state/rejection checks; clean reproducibility PASS; live CI inPR29",
-        "emulator": "focused128355 PASS with6 local captures; full default evidence/results maintained inPR29",
-        "pull_request": "PR#29 merged; historical branch evidence retained",
-        "merge": "merged to main; remaining feature scope/coverage is not inferred complete"
+        "implementation": "COMPLETE: regional policy/core, approved SOW-004 Route12(19,87), SOW-007 Route21 North(13,7), SOW-008 Route23(13,142) visible events, native abilities and capture/defeat/Run/loss weather lifecycle merged to main",
+        "automated": "PR139 final exact-head split CI42666339237 and42666327883 SUCCESS; title42666338673 SUCCESS; merged commit4e73c908 modified and upstream-baseline SUCCESS42666557371, host/source-contract guards preserved",
+        "emulator": "Actual mGBA overworld A-interaction, party/PC captures, defeat/Run/loss, permanent flags, flash save/reentry and weather activation/restoration verified for three SOW; approved Tyranitar(13,142) land reachable; physical hardware/full story/visual-fog release QA separate",
+        "pull_request": "PR139 merged; PR137/138 superseded closed unmerged; isolated diagnostic PR163 closed unmerged",
+        "merge": "main merge4e73c90831baa9ff989f60c3c1908844956ed1ed; owner-approved exact Tyranitar(13,142) locked"
       },
-      "branch": "feature/dynamic-map-weather",
-      "commit": "e04a7bc6369e47fa363631208547d6724629f9bc",
-      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/29",
-      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/29/checks",
+      "branch": "main",
+      "commit": "4e73c90831baa9ff989f60c3c1908844956ed1ed",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/139",
+      "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/42666557371",
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Review scoped PR29 after full checks; preserve remaining rendering/lighting/fog and broader regional/manual/integration acceptance. Reviewed-head registration conflicts resolved in PR35; review combined acceptance and preserve remaining manual/hardware coverage.",
-      "checkpoint": "2026-11-04 resumed scoped acceptance; full results/live checks inPR29",
+      "next_action": "CLOSED WTH-001 scoped implementation; specialist retired. Preserve SOW-004/007/008 and Route23(13,142). Any broad fog/lighting presentation belongs WTH-002; release/hardware/natural-play acceptance INT-004/005; no redundant weather PR merges.",
+      "checkpoint": "2026-11-09 PR139 merged and exact merged-main checks SUCCESS; final prior PR head split/title workflows SUCCESS.",
       "source_exports": [
         "05_WEATHER_LIGHTING/Pokémon Lightning Yellow — Lighting & Weather Decision Handoff and Next Steps — 2026-10-28.txt",
         "05_WEATHER_LIGHTING/Pokémon Lightning Yellow — Lighting & Weather Decision Register — 2026-10-28.txt",
@@ -910,9 +916,25 @@
       "source_status": "available locally; checksums verified; precise approvals/read scope in reconciliation report",
       "combined_acceptance": "Exact reviewed27/29/31 heads reconciled inPR35;16 hosts/clean/upstream/full local+CI463243 PASS. No main/feature PR merge; future head changes require reconciliation.",
       "merged_reference": {
-        "pr": 29,
-        "merge_commit": "cd7be97ef57c3636523ae54aaeb31a7085d7f275",
-        "verified_main": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c"
+        "pr": 139,
+        "merge_commit": "4e73c90831baa9ff989f60c3c1908844956ed1ed",
+        "verified_main": "4e73c90831baa9ff989f60c3c1908844956ed1ed",
+        "approved_tyranitar": {
+          "map": "MAP_ROUTE23",
+          "x": 13,
+          "y": 142
+        },
+        "superseded_prs": [
+          137,
+          138,
+          163
+        ],
+        "ci_run_ids": [
+          42666339237,
+          42666327883,
+          42666338673,
+          42666557371
+        ]
       }
     },
     {
@@ -1285,7 +1307,7 @@
       "dependencies": [],
       "status": {
         "design": "All eight Gym/41 Gym Trainer species approved; ordinary class eligibility41/41 closed",
-        "implementation": "not started",
+        "implementation": "not started; independent Pewter TM07/Avalanche Badge/verbatim dialogue source staged 2026-11-16, untested/unmerged; Pewter reward/name/dialogue integrated for compile-only review; no runtime acceptance",
         "automated": "not executed for new work",
         "emulator": "not executed",
         "pull_request": "not created",
@@ -1297,7 +1319,7 @@
       "ci_url": null,
       "blocker": "Final individual levels/moves for many trainers remain unassigned; Castform replacements supersede Swinub/Staryu. Eligibility pools do not assign510 non-Gym parties. Exports are available.",
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Use final Gym handoff and41-class final handoff; implement only exact complete battle sets after their engine dependencies; no invented teams.",
+      "next_action": "Use final Gym handoff and41-class final handoff; implement only exact complete battle sets after their engine dependencies; no invented teams. Preserve independently staged Pewter reward/name/dialogue branch; source-ID mapping of remaining ordinary Gym species pairs needs reconciliation.",
       "checkpoint": "2026-11-04 supplied-export reconciliation; old unavailable-document claims superseded; no implementation/test credit from availability.",
       "scope_note": "All ordinary Gym/class work except separately tracked Blaine GYM-004 and Ranger Base Camp GYM-005; preserve pending ordinary Trainer scope. Excludes the five points transferred to GYM-007.",
       "source_exports": [
@@ -1307,7 +1329,21 @@
         "04_SPECIES_EVOLUTION_WORLD/Pokémon Lightning Yellow — Trainer Class Eligibility FINAL Handoff — 2026-11-03.txt",
         "02_GYMS/Pokémon Lightning Yellow — Vermilion Gym Approved Design Handoff — 2026-10-29.txt"
       ],
-      "source_status": "available locally; checksums verified; precise approvals/read scope in reconciliation report"
+      "source_status": "available locally; checksums verified; precise approvals/read scope in reconciliation report",
+      "implementation_increments": [
+        {
+          "date": "2026-11-16",
+          "feature": "Pewter approved TM07 Hail reward, Avalanche Badge name, Brock/Liam exact dialogue",
+          "branch": "implementation/pewter-approved-rewards-dialogue-20261116",
+          "base_sha": "197d85ee1a61ac319f95fa65ab298bb126fe937d",
+          "status": "merged via PR264 after combined pinned-toolchain compile PASS; gameplay acceptance pending, no point award",
+          "source_files": [
+            "data/maps/PewterCity_Gym/scripts.inc",
+            "data/maps/PewterCity_Gym/text.inc",
+            "src/strings.c"
+          ]
+        }
+      ]
     },
     {
       "id": "GYM-002",
@@ -1337,7 +1373,7 @@
       "dependencies": [],
       "status": {
         "design": "Leader/Rocket/Giovanni species progressions supplied; rivals/Elite Four exact teams separate",
-        "implementation": "not started",
+        "implementation": "not started Independent 2026-11-16 source increment fixes Brock/Misty base prizes at 1400/3000 on implementation/approved-brock-misty-prize-money-20261116; untested/unmerged, no points.",
         "automated": "not executed for new work",
         "emulator": "not executed",
         "pull_request": "not created",
@@ -1349,7 +1385,7 @@
       "ci_url": null,
       "blocker": "Remaining other leader/important-battle configurations need exact source/design reconciliation. Rival decisions are finalized in merged PR25 and tracked separately as GYM-006.",
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Reconcile approved leader/Giovanni/important-battle scope excluding separately tracked Blaine, Ranger and rival tasks.",
+      "next_action": "Reconcile approved leader/Giovanni/important-battle scope excluding separately tracked Blaine, Ranger and rival tasks. Preserve the separate fixed-prize source increment; do not duplicate the reward calculation.",
       "checkpoint": "2026-11-04 supplied-export reconciliation; old unavailable-document claims superseded; no implementation/test credit from availability.",
       "source_exports": [
         "02_GYMS/Pokémon Lightning Yellow — Eight-Gym Leader & Trainer Roster — Final Design Handoff (2026-11-01).txt",
@@ -1357,7 +1393,21 @@
         "04_SPECIES_EVOLUTION_WORLD/Pokémon Lightning Yellow — Trainer Class Eligibility FINAL Handoff — 2026-11-03.txt"
       ],
       "source_status": "available locally; checksums verified; precise approvals/read scope in reconciliation report",
-      "scope_note": "Excludes GYM-004 Blaine, GYM-005 Ranger and GYM-006 eight-rival scope."
+      "scope_note": "Excludes GYM-004 Blaine, GYM-005 Ranger and GYM-006 eight-rival scope.",
+      "implementation_increments": [
+        {
+          "date": "2026-11-16",
+          "feature": "Approved Brock 1400 and Misty 3000 base prize money",
+          "branch": "implementation/approved-brock-misty-prize-money-20261116",
+          "base_sha": "197d85ee1a61ac319f95fa65ab298bb126fe937d",
+          "source_files": [
+            "src/battle_script_commands.c"
+          ],
+          "status": "Implemented on independent source branch; untested, unmerged, no acceptance credit",
+          "reused_behavior": "Native win gate, moneyMultiplier, AddMoney wallet cap, result message and script advancement",
+          "remaining": "Required merge checks/authorization; no runtime or payout acceptance claimed"
+        }
+      ]
     },
     {
       "id": "GYM-003",
@@ -1585,7 +1635,7 @@
       "dependencies": [],
       "status": {
         "design": "World/item/event approvals available individually; reconcile exact effective versions",
-        "implementation": "Legacy Museum Feebas reward code remains; newly approved Aron/Magby/Tangela/quest content is separately tracked in WRL-011, not implemented by documentation",
+        "implementation": "Main source already includes Museum Aron Egg,Water Labyrinth Magby Egg and rooftop TANGO TangelaLv25 per docs/APPROVED_GIFT_REVISIONS.md; preserve these implemented gifts. Remaining quests/placements require individual reconciliation; Route6 TM34 pickup source staged on independent implementation branch 2026-11-16, untested/unmerged; starting-PC Exp.Share and Route6 pickup integrated for compile-only review; no runtime acceptance",
         "automated": "11 host suites/Museum static/full combined Actions PASS",
         "emulator": "Museum1307 focused and full combined276132 native assertions PASS",
         "pull_request": "PR#14 merged; historical branch evidence retained",
@@ -1597,7 +1647,7 @@
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41765403411",
       "blocker": "No Museum blocker. Other unfinished placements and SOW HOLD remain; Ranger Base Camp separately tracked as GYM-005.",
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Use WRL-011 exact approved gift/quest contracts; preserve legacy code until those replacements are implemented/tested. Do not invent missing levels/placements.",
+      "next_action": "Use WRL-011 exact approved gift/quest contracts; preserve legacy code until those replacements are implemented/tested. Do not invent missing levels/placements. Preserve separately staged Route6 TM34 item-ball implementation; finish separate TM51/Surge reward integration without inventing compatibility.",
       "checkpoint": "2026-11-04 supplied-export reconciliation; old unavailable-document claims superseded; no implementation/test credit from availability.",
       "scope_note": "Other item/story events excluding fossils, completed Museum subfeature and separately budgeted Ranger GYM-005. No duplicate implementation credit.",
       "source_exports": [
@@ -1631,7 +1681,22 @@
       },
       "subtasks": {
         "WRL-004-SIGN": "Approved PR28 tip implemented on standalone feature/viridian-move-category-sign; build/exact-text/focused native463 PASS, full CI pending; no double-counted scope"
-      }
+      },
+      "implementation_increments": [
+        {
+          "date": "2026-11-16",
+          "feature": "Route 6 TM34 Shock Wave item ball after Misty",
+          "branch": "implementation/route6-shock-wave-pickup-20261116",
+          "base_sha": "197d85ee1a61ac319f95fa65ab298bb126fe937d",
+          "status": "merged via PR264 after combined pinned-toolchain compile PASS; gameplay acceptance pending, no point award",
+          "source_files": [
+            "data/maps/Route6/map.json",
+            "data/maps/Route6/scripts.inc",
+            "include/constants/flags.h"
+          ],
+          "remaining": "Review/integration; TM51/Surge reward conversion is separate; runtime untested"
+        }
+      ]
     },
     {
       "id": "INT-001",
@@ -2226,8 +2291,8 @@
       "title": "Mystery Pokémon Vendor Network",
       "aliases": [],
       "effort": {
-        "earned": 19,
-        "remaining": 1,
+        "earned": 20,
+        "remaining": 0,
         "unit": "provisional relative planning point",
         "confidence": "low",
         "history": [
@@ -2236,17 +2301,23 @@
             "earned": 19,
             "remaining": 1,
             "reason": "New separately approved feature scope20; implemented transaction/UI/persistence and executed scoped tests. One point reserved for starter integration acceptance; no duplicate INT-004 feature-test credit."
+          },
+          {
+            "date": "2026-11-10",
+            "earned": 20,
+            "remaining": 0,
+            "reason": "Proposed Master Control closeout: independent vendor-starter boundary approved in owner handoff, vendor PR12 merged and validated native/CI, WRL-001 Pikachu/Eevee PR88 independently merged; current-main source confirms separate pool/gifts/flags/OT and no shared acquisition hook. Final reserved point only; full-game acquisition and release QA remain separate. See docs/WRL008_STARTER_BOUNDARY_ACCEPTANCE.md."
           }
         ]
       },
       "dependencies": [],
       "status": {
         "design": "approved owner handoff v1.0 and vendor CSV; independent starter boundary explicitly approved",
-        "implementation": "implemented and merged into main; starter integration acceptance remains",
+        "implementation": "Complete and merged; independent starter boundary inspected against merged WRL-001 PR88; no vendor code changes required",
         "automated": "eight host suites PASS; local clean repeatability PASS; final Actions modified/upstream SUCCESS",
         "emulator": "full local mGBA PASS; vendor transaction/UI/10000 purchases/EXP/obedience plus existing stack; external gaps retained",
-        "pull_request": "PR#12 merged; historical branch evidence retained",
-        "merge": "merged to main; remaining feature scope/coverage is not inferred complete"
+        "pull_request": "Gameplay PR12 merged; final accounting and starter-boundary acceptance PR184 merged; no gameplay source change",
+        "merge": "PR12 gameplay merged ef98140d; WRL-001 PR88 merged 1cc82d53; final starter-boundary tracking PR184 merged ae928a1d9eba3aed16f4252123027cb5413106a7, exact merged-main checks SUCCESS"
       },
       "branch": "main",
       "commit": "d54f7a8e85d38b8fa304399dcb4d14778396d5cd",
@@ -2254,9 +2325,9 @@
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41673840642",
       "blocker": null,
       "design_authority": "DES-008 owner supplied Mystery Vendor Codex Implementation Handoff v1.0, approved pool CSV, explicit independent starter boundary. Approved700/level5/90%/OT Mystery; no new design inferred.",
-      "next_action": "Preserve implemented scoped behavior on main; remaining expanded acceptance is tracked separately.",
-      "checkpoint": "2026-11-04 PR#12 head includes owner-authorized#13 merge; vendor itself remains open, not main.",
-      "coverage_gap": "Manual full progression, actual two-peer trade/hardware, flash power-loss injection, exhaustive quest-log replay and independent Shiny-summary visual approval unverified. Starter exclusivity awaits WRL-001; source preservation is not runtime story acceptance.",
+      "next_action": "CLOSED: WRL-008 20/0. Preserve vendor sales, 90% Shiny and separate Pikachu/Eevee starter paths. Broader natural-acquisition/release QA stays PKM/WRL ecology and INT-004/005.",
+      "checkpoint": "2026-11-10 PR184 merged and accepted. Final reserved point transferred; no extra scope or denominator change.",
+      "coverage_gap": "Starter-boundary source integration verified after WRL-001 merge; independent global acquisition/ecology, manual full progression, two-peer trade/hardware, flash power-loss, exhaustive quest-log replay and Shiny-summary presentation remain separate owners/release QA.",
       "implementation_ref": {
         "branch": "feature/mystery-vendor-network",
         "commit": "d54f7a8e85d38b8fa304399dcb4d14778396d5cd"
@@ -2265,6 +2336,12 @@
         "pr": 12,
         "merge_commit": "ef98140d1e0248995ae0ada2782244b6c4e7955d",
         "verified_main": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c"
+      },
+      "closure_reference": {
+        "pr": 184,
+        "merge_commit": "ae928a1d9eba3aed16f4252123027cb5413106a7",
+        "prior_gameplay_pr": 12,
+        "starter_pr": 88
       }
     },
     {
@@ -2737,20 +2814,20 @@
       "dependencies": [],
       "status": {
         "design": "Owner approved Nov5; specification PR52 merged and owner explicitly requested implementation Nov6",
-        "implementation": "Not implemented; next workstream is the required bounded source/252-asset/license/save/event feasibility gate",
-        "automated": "Not run for follower gameplay",
-        "emulator": "Not run for follower gameplay",
-        "pull_request": "Spec52 merged; separate gameplay PR to be created",
-        "merge": "Specification merged; follower gameplay not merged"
+        "implementation": "Follower state/menu/controller and graphics source implemented on PR258; permission-confirmed private conversion completed for252 species plus3 Castform forms. Not merged as complete feature.",
+        "automated": "765 exact artwork inputs hash/size checked;255 descriptors passed build-input gate; source e94cba8e private ROM compilation PASS. No current gameplay tests.",
+        "emulator": "No current emulator run; owner manual follower playtesting pending. Historical loader evidence is not full252-feature acceptance.",
+        "pull_request": "Gameplay/private integration PR258 open at b2e212b; original PR54/257 branches preserved.",
+        "merge": "Follower implementation remains open; no acceptance or effort credit."
       },
-      "branch": null,
-      "commit": null,
-      "pr_url": null,
+      "branch": "integration/playtest004-pichu-sue-follower-private-build-20261116",
+      "commit": "e94cba8e9257e9e9c41bb0ee797c66d25f556b16",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/258",
       "ci_url": null,
-      "blocker": null,
+      "blocker": "Owner runtime acceptance pending; permission upload no longer requested. EWRAM1076-byte headroom requires care for further engine growth.",
       "design_authority": "Lightning Yellow canonical Drive specialist registers and November 5 change intake",
-      "next_action": "Read merged contract from current main, audit all252 assets/licenses and existing engine/save/opening hooks; implement approved increments and report concrete blockers without placeholders.",
-      "checkpoint": "2026-11-06 fixed-scope intake; no gameplay implementation credit",
+      "next_action": "Owner playtest private Playtest004 compiled from e94cba8e: follower selection/visibility,252 artwork,Shiny colors,Steelix,map transitions,party/PC/faint/revive. Record acceptance without inferring it from compilation.",
+      "checkpoint": "Private ROM compiled:16777216 bytes, SHA256 efb4aadb2c2d32eefc0033998454489c012d7f295d509dd6413e8f188afbf010. Artwork remains ignored locally; full evidence in PR258.",
       "spec_pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/52",
       "specification": "implementation/selectable-following-pokemon.md"
     },
@@ -2969,7 +3046,7 @@
   },
   "progress_accounting": {
     "rule": "EARNED estimates include verified scoped native/build work in OPEN PRs when explicitly flagged; not equivalent to code merged to main. Review and release gates retained. Documentation-only PRs get zero gameplay implementation credit. New scope tasks record net extra workload beyond existing broad task buckets.",
-    "as_of": "2026-11-07",
+    "as_of": "2026-11-10",
     "main_evidence": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c",
     "known_merged_code_credit_separate_from_open": "Open PR evidence credited only once to corresponding permanent task. No separate points awarded merely for large assertion counts.",
     "reconciliation": {
@@ -2998,6 +3075,29 @@
       "area_gym_earned_after": 102,
       "area_gym_remaining_after": 20,
       "release_qa": "INT-004/INT-005 retained; newest checked main CI 42387190568 in progress at review; no new emulator run claimed"
+    },
+    "wth001_closure": {
+      "date": "2026-11-09",
+      "earned_before": 456,
+      "remaining_before": 256,
+      "earned_after": 460,
+      "remaining_after": 252,
+      "total_unchanged": 712,
+      "points_reassigned": 4,
+      "source": "PR139 merge 4e73c908 and split/title/merged checks, owner specialist handoff",
+      "limits": "WTH-002 visual-fog and INT-004/005 broad tests excluded"
+    },
+    "wrl008_closure": {
+      "date": "2026-11-10",
+      "pr": 184,
+      "merge_commit": "ae928a1d9eba3aed16f4252123027cb5413106a7",
+      "earned_before": 460,
+      "remaining_before": 252,
+      "earned_after": 461,
+      "remaining_after": 251,
+      "points_reassigned": 1,
+      "denominator_unchanged": 712,
+      "limits": "Vendor independent starter boundary only; global acquisition/complete story/hardware under other tasks"
     }
   },
   "latest_consolidation": {

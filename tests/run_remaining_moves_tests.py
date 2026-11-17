@@ -3,7 +3,7 @@
 from pathlib import Path
 import re,json,hashlib
 from approved_remaining_moves import prior_remaining_source
-m=json.loads(Path('tests/specifications/remaining_moves_delta.json').read_text())
+m=json.loads(Path('tests/specifications/remaining_moves_current_main_delta.json').read_text())
 for p,r in m['files'].items():
  assert hashlib.sha256(Path(p).read_bytes()).hexdigest()==r['after_sha256'],p
  assert hashlib.sha256(prior_remaining_source(p).encode()).hexdigest()==r['before_sha256'],p

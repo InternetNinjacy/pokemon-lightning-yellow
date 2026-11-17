@@ -17,6 +17,31 @@ def before_species_evolution(path,text):
     return text
 
 def project(path,text,view):
+    from approved_remaining_moves import prior_remaining_source
+    text=prior_remaining_source(path,text)
+    # Source views predating the separately approved water move append must be
+    # byte-exact, even when a guard invokes without_weather() directly.
+    # Reversal of a present append is strict; absent append is left untouched.
+    # Reverse the exact new Batch A damage delta before checking frozen
+    # weather-integration source hashes; rejects altered staged source blobs.
+    # Reverse only the newly reviewed Thunder Wave completion delta first;
+    # the existing Batch A and weather source guards retain their exact hashes.
+    from approved_thunder_wave_completion_changes import prior_thunder_wave_completion_source
+    text=prior_thunder_wave_completion_source(path,text)
+    from approved_batch_a_traversal_changes import prior_batch_a_traversal_source
+    text=prior_batch_a_traversal_source(path,text)
+    from approved_batch_a_spread_changes import prior_batch_a_spread_source
+    text=prior_batch_a_spread_source(path,text)
+    from approved_batch_a_changes import HUNKS as BATCH_A_HUNKS, prior_batch_a_source
+    # Ancestor guards may call this view *after* a prior projection. Restore
+    # Batch A only when its complete staged hunk is actually present. The
+    # unprojected live source is separately subjected to strict blob guards
+    # in check-move-reconciliation.py; never alter frozen manifests.
+    if str(path) in BATCH_A_HUNKS and any(after in text for after,_ in BATCH_A_HUNKS[str(path)]):
+        text=prior_batch_a_source(path,text)
+    from approved_water_moves385_changes import HUNKS, prior_water_moves385_source
+    if str(path) in HUNKS and any(after in text for after,_ in HUNKS[str(path)]):
+        text=prior_water_moves385_source(path,text)
     text=before_species_evolution(path,text)
     row=json.loads(Path('tests/specifications/btl_weather_integration_delta.json').read_text())['files'].get(str(path))
     if row is None:return text

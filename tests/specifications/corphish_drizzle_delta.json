@@ -1,0 +1,22 @@
+{
+  "authority": "2026-11-08 user approval SOW-004 Corphish Drizzle after Crawdaunt evolution",
+  "source": "src/pokemon.c",
+  "hunks": [
+    {
+      "before": "#define GLALIE_SNOW_WARNING_TAG 0x57A1\n\n",
+      "after": "#define GLALIE_SNOW_WARNING_TAG 0x57A1\n#define CORPHISH_DRIZZLE_TAG 0xD122\n\n"
+    },
+    {
+      "before": "case MON_DATA_INDIVIDUAL_ABILITY:\n        if (!boxMon->isBadEgg && !substruct3->isEgg && substruct0->species == SPECIES_GLALIE\n         && substruct0->filler == GLALIE_SNOW_WARNING_TAG)\n            retVal = ABILITY_SNOW_WARNING;\n        break;\n    ",
+      "after": "case MON_DATA_INDIVIDUAL_ABILITY:\n        if (!boxMon->isBadEgg && !substruct3->isEgg)\n        {\n            if (substruct0->species == SPECIES_GLALIE && substruct0->filler == GLALIE_SNOW_WARNING_TAG)\n                retVal = ABILITY_SNOW_WARNING;\n            else if ((substruct0->species == SPECIES_CORPHISH || substruct0->species == SPECIES_CRAWDAUNT)\n                  && substruct0->filler == CORPHISH_DRIZZLE_TAG)\n                retVal = ABILITY_DRIZZLE;\n        }\n        break;\n    "
+    },
+    {
+      "before": "case MON_DATA_INDIVIDUAL_ABILITY:\n        if (!substruct3->isEgg && substruct0->species == SPECIES_GLALIE\n         && (substruct0->filler == 0 || substruct0->filler == GLALIE_SNOW_WARNING_TAG))\n        {\n            if (*data == ABILITY_SNOW_WARNING)\n                substruct0->filler = GLALIE_SNOW_WARNING_TAG;\n            else if (*data == ABILITY_NONE)\n                substruct0->filler = 0;\n        }\n        break;\n    ",
+      "after": "case MON_DATA_INDIVIDUAL_ABILITY:\n        if (!substruct3->isEgg && substruct0->species == SPECIES_GLALIE\n         && (substruct0->filler == 0 || substruct0->filler == GLALIE_SNOW_WARNING_TAG))\n        {\n            if (*data == ABILITY_SNOW_WARNING)\n                substruct0->filler = GLALIE_SNOW_WARNING_TAG;\n            else if (*data == ABILITY_NONE)\n                substruct0->filler = 0;\n        }\n        else if (!substruct3->isEgg\n              && (substruct0->species == SPECIES_CORPHISH || substruct0->species == SPECIES_CRAWDAUNT)\n              && (substruct0->filler == 0 || substruct0->filler == CORPHISH_DRIZZLE_TAG))\n        {\n            // Only the special Corphish can gain Drizzle; its evolution retains the tag.\n            if (*data == ABILITY_DRIZZLE && substruct0->species == SPECIES_CORPHISH)\n                substruct0->filler = CORPHISH_DRIZZLE_TAG;\n            else if (*data == ABILITY_NONE)\n                substruct0->filler = 0;\n        }\n        break;\n    "
+    },
+    {
+      "before": "bool8 SetSpecialEncounterAbility(struct Pokemon *mon, u8 ability)\n{\n    if (GetMonData(mon, MON_DATA_SPECIES) != SPECIES_GLALIE\n     || GetMonData(mon, MON_DATA_IS_EGG) || GetMonData(mon, MON_DATA_SANITY_IS_BAD_EGG)\n     || (ability != ABILITY_SNOW_WARNING && ability != ABILITY_NONE))\n        return FALSE;\n    SetMonData(mon, MON_DATA_INDIVIDUAL_ABILITY, &ability);\n    return GetMonData(mon, MON_DATA_INDIVIDUAL_ABILITY) == ability;\n}\n\n",
+      "after": "bool8 SetSpecialEncounterAbility(struct Pokemon *mon, u8 ability)\n{\n    u16 species = GetMonData(mon, MON_DATA_SPECIES);\n    if (GetMonData(mon, MON_DATA_IS_EGG) || GetMonData(mon, MON_DATA_SANITY_IS_BAD_EGG)\n     || !((species == SPECIES_GLALIE && (ability == ABILITY_SNOW_WARNING || ability == ABILITY_NONE))\n       || (species == SPECIES_CORPHISH && (ability == ABILITY_DRIZZLE || ability == ABILITY_NONE))))\n        return FALSE;\n    SetMonData(mon, MON_DATA_INDIVIDUAL_ABILITY, &ability);\n    return GetMonData(mon, MON_DATA_INDIVIDUAL_ABILITY) == ability;\n}\n\n"
+    }
+  ]
+}

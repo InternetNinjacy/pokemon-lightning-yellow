@@ -405,9 +405,19 @@ const u8 gMoveDescription_AQUA_JET[] = _("A water rush that\nstrikes the foe\nwi
 
 const u8 gMoveDescription_LIQUIDATION[] = _("A water strike\nthat may lower\nthe foe's DEFENSE.");
 
-const u8 gMoveDescription_VORTEX_SPIN[] = _("A spinning water\nstrike that may\nconfuse the foe.");
+const u8 gMoveDescription_VORTEX_SPIN[] = _("A swirling water\nstrike that may\nconfuse the foe.");
+const u8 gMoveDescription_TIDAL_CRASH[] = _("A 5-turn water\nattack that grows\nstronger each hit.");
 
-const u8 gMoveDescription_TIDAL_CRASH[] = _("A rolling wave\nattack that grows\nover five turns.");
+const u8 gMoveDescription_SEED_BOMB[] = _("Strikes the foe\nwith a hard seed.");
+const u8 gMoveDescription_PETAL_BLIZZARD[] = _("A storm of petals\nstrikes everyone\naround the user.");
+const u8 gMoveDescription_AURA_SPHERE[] = _("An aura attack\nthat never misses.");
+const u8 gMoveDescription_FOCUS_BLAST[] = _("May lower the\nfoe's SP. DEF.");
+const u8 gMoveDescription_FLASH_CANNON[] = _("May lower the\nfoe's SP. DEF.");
+const u8 gMoveDescription_MIRROR_SHOT[] = _("May lower the\nfoe's accuracy.");
+const u8 gMoveDescription_IRON_HEAD[] = _("A head strike that\nmay cause flinching.");
+const u8 gMoveDescription_BULLET_PUNCH[] = _("A fast punch that\nstrikes first.");
+const u8 gMoveDescription_AIR_SLASH[] = _("Sharp wind blades\nmay cause flinching.");
+const u8 gMoveDescription_HEART_STAMP[] = _("A heart-stopping\nstrike that may\ncause flinching.");
 
 const u8 gMoveDescription_DISCHARGE[] = _("Electricity hits\nall others. May\ncause paralysis.");
 
@@ -417,27 +427,9 @@ const u8 gMoveDescription_THUNDER_FANG[] = _("A charged bite. May\nparalyze or m
 
 const u8 gMoveDescription_WILD_CHARGE[] = _("An electric tackle\nthat also hurts\nthe user.");
 
-const u8 gMoveDescription_SEED_BOMB[] = _("Hurls a cluster\nof hard seeds at\nthe foe.");
-
-const u8 gMoveDescription_PETAL_BLIZZARD[] = _("A petal storm\nstrikes every\nother battler.");
-
 const u8 gMoveDescription_WOOD_HAMMER[] = _("A heavy slam that\nalso hurts the\nuser.");
 
-const u8 gMoveDescription_AURA_SPHERE[] = _("A sphere of power\nthat bypasses\naccuracy checks.");
-
-const u8 gMoveDescription_FOCUS_BLAST[] = _("A focused blast.\nMay lower the\nfoe's SP. DEF.");
-
 const u8 gMoveDescription_DRAIN_PUNCH[] = _("A punch that\nrestores HP by\nhalf the damage.");
-
-const u8 gMoveDescription_FLASH_CANNON[] = _("A flash of energy\nthat may lower\nthe foe's SP. DEF.");
-
-const u8 gMoveDescription_MIRROR_SHOT[] = _("A metallic flash\nthat may lower\nfoe accuracy.");
-
-const u8 gMoveDescription_IRON_HEAD[] = _("A hard headbutt\nthat may make\nthe foe flinch.");
-
-const u8 gMoveDescription_BULLET_PUNCH[] = _("A fast steel\npunch that strikes\nwith priority.");
-
-const u8 gMoveDescription_AIR_SLASH[] = _("A blade of air\nthat may make\nthe foe flinch.");
 
 const u8 gMoveDescription_HURRICANE[] = _("A fierce wind may\nconfuse. Accurate\nin rain, less in sun.");
 
@@ -446,8 +438,6 @@ const u8 gMoveDescription_BRAVE_BIRD[] = _("A brave charge\nthat also hurts\nthe
 const u8 gMoveDescription_ACROBATICS[] = _("An agile strike.\nStronger without\na held item.");
 
 const u8 gMoveDescription_DUAL_WINGBEAT[] = _("Strikes the foe\ntwice using\npowerful wings.");
-
-const u8 gMoveDescription_HEART_STAMP[] = _("A surprise strike\nthat may make\nthe foe flinch.");
 
 const u8 gMoveDescription_ZEN_HEADBUTT[] = _("A focused headbutt\nthat may make\nthe foe flinch.");
 
@@ -844,26 +834,26 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {
     [MOVE_LIQUIDATION - 1] = gMoveDescription_LIQUIDATION,
     [MOVE_VORTEX_SPIN - 1] = gMoveDescription_VORTEX_SPIN,
     [MOVE_TIDAL_CRASH - 1] = gMoveDescription_TIDAL_CRASH,
-    [MOVE_DISCHARGE - 1] = gMoveDescription_DISCHARGE,
-    [MOVE_VOLT_SWITCH - 1] = gMoveDescription_VOLT_SWITCH,
-    [MOVE_THUNDER_FANG - 1] = gMoveDescription_THUNDER_FANG,
-    [MOVE_WILD_CHARGE - 1] = gMoveDescription_WILD_CHARGE,
     [MOVE_SEED_BOMB - 1] = gMoveDescription_SEED_BOMB,
     [MOVE_PETAL_BLIZZARD - 1] = gMoveDescription_PETAL_BLIZZARD,
-    [MOVE_WOOD_HAMMER - 1] = gMoveDescription_WOOD_HAMMER,
     [MOVE_AURA_SPHERE - 1] = gMoveDescription_AURA_SPHERE,
     [MOVE_FOCUS_BLAST - 1] = gMoveDescription_FOCUS_BLAST,
-    [MOVE_DRAIN_PUNCH - 1] = gMoveDescription_DRAIN_PUNCH,
     [MOVE_FLASH_CANNON - 1] = gMoveDescription_FLASH_CANNON,
     [MOVE_MIRROR_SHOT - 1] = gMoveDescription_MIRROR_SHOT,
     [MOVE_IRON_HEAD - 1] = gMoveDescription_IRON_HEAD,
     [MOVE_BULLET_PUNCH - 1] = gMoveDescription_BULLET_PUNCH,
     [MOVE_AIR_SLASH - 1] = gMoveDescription_AIR_SLASH,
+    [MOVE_HEART_STAMP - 1] = gMoveDescription_HEART_STAMP,
+    [MOVE_DISCHARGE - 1] = gMoveDescription_DISCHARGE,
+    [MOVE_VOLT_SWITCH - 1] = gMoveDescription_VOLT_SWITCH,
+    [MOVE_THUNDER_FANG - 1] = gMoveDescription_THUNDER_FANG,
+    [MOVE_WILD_CHARGE - 1] = gMoveDescription_WILD_CHARGE,
+    [MOVE_WOOD_HAMMER - 1] = gMoveDescription_WOOD_HAMMER,
+    [MOVE_DRAIN_PUNCH - 1] = gMoveDescription_DRAIN_PUNCH,
     [MOVE_HURRICANE - 1] = gMoveDescription_HURRICANE,
     [MOVE_BRAVE_BIRD - 1] = gMoveDescription_BRAVE_BIRD,
     [MOVE_ACROBATICS - 1] = gMoveDescription_ACROBATICS,
     [MOVE_DUAL_WINGBEAT - 1] = gMoveDescription_DUAL_WINGBEAT,
-    [MOVE_HEART_STAMP - 1] = gMoveDescription_HEART_STAMP,
     [MOVE_ZEN_HEADBUTT - 1] = gMoveDescription_ZEN_HEADBUTT,
     [MOVE_CROSS_POISON - 1] = gMoveDescription_CROSS_POISON,
     [MOVE_POISON_JAB - 1] = gMoveDescription_POISON_JAB,

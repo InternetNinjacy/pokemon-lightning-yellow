@@ -522,3 +522,5 @@ Movement_JumpInPlaceLeft:
 Movement_JumpInPlaceRight:
 	jump_in_place_right
 	step_end
+
+	.include "data/scripts/free_center_move_reminder.inc"

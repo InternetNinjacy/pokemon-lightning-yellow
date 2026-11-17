@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Exact approved parties/metadata/maps plus byte preservation. Not battle tests."""
 from pathlib import Path
+import subprocess,sys
 import json,re,hashlib
 from approved_gym_castform_changes import prior_gym_castform_source
 f=json.loads(Path('tests/specifications/approved_gym_castform.json').read_text())
@@ -27,3 +28,6 @@ assert 'trainerbattle_double TRAINER_PICNICKER_DIANA, CeruleanCity_Gym_Text_Dian
 # including every other party/leader/AI/IV, Castform learnset and original events.
 print('PASS: exact six approved Pokemon/levels/24 move slots, unchanged Trainer IDs/IV/AI and unrelated parties; ordinary no held/bag items; native Diana Double command/refusal and three map weather headers (static).')
 print('Runtime Forecast, Weather Ball, weather persistence, targeting and event completion require mGBA; this audit does not substitute for them.')
+
+# Historical source-only all-252 TM/HM parity guard; not TM51 gameplay.
+subprocess.run([sys.executable, 'tests/test_pkm009_tmhm_252_source.py'], check=True)
