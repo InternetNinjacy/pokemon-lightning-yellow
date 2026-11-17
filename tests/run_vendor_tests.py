@@ -43,11 +43,7 @@ with tempfile.TemporaryDirectory(prefix='lightning-vendor-') as temp:
 
 fixture=json.loads(Path('tests/specifications/mystery_vendor_preserved.json').read_text())
 for path,digest in fixture['files'].items():
-    previous=prior_sevii_water_second_source(path)
-    if path=='src/data/pokemon/species_info.h':
-        from approved_pkm009_locked_12_changes import prior_pkm009_locked_12_source
-        previous=prior_pkm009_locked_12_source(path,previous.decode('utf-8')).encode('utf-8')
-    assert hashlib.sha256(previous).hexdigest()==digest,path
+    assert hashlib.sha256(prior_sevii_water_second_source(path)).hexdigest()==digest,path
 blocks=lambda s:dict(re.findall(r'^(\w+)::\n(.*?)(?=^\w+::|\Z)',s,re.M|re.S))
 for path,items in fixture['blocks'].items():
     current=blocks(Path(path).read_text())

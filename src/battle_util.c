@@ -33,8 +33,20 @@
 static const u16 sSoundMovesTable[] =
 {
     MOVE_GROWL, MOVE_ROAR, MOVE_SING, MOVE_SUPERSONIC, MOVE_SCREECH, MOVE_SNORE,
-    MOVE_UPROAR, MOVE_METAL_SOUND, MOVE_GRASS_WHISTLE, MOVE_HYPER_VOICE, MOVE_CHIRP, MOVE_BELLOW, SOUND_MOVES_END
+    MOVE_UPROAR, MOVE_METAL_SOUND, MOVE_GRASS_WHISTLE, MOVE_HYPER_VOICE, MOVE_CHIRP, MOVE_BELLOW, MOVE_SNARL, SOUND_MOVES_END
 };
+
+bool8 BattlerHasActedThisTurn(u8 battler)
+{
+    return battler < MAX_BATTLERS_COUNT
+        && (gBattleStruct->actedThisTurn & (1U << battler)) != 0;
+}
+
+bool8 BattlerWasDamagedBy(u8 recipient, u8 source)
+{
+    return recipient < MAX_BATTLERS_COUNT && source < MAX_BATTLERS_COUNT
+        && (gBattleStruct->damagedByBattlers[recipient] & (1U << source)) != 0;
+}
 
 // Approved individual Gym abilities; never edit species slots or party data.
 // Applied only when native battler data is loaded, so Skill Swap/Trace persist

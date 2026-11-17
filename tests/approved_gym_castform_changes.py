@@ -10,18 +10,31 @@ def prior_gym_castform_source(path, text=None):
         text=prior_rival_source(path, prior_move_foundation_source(path))
     if str(path) == "src/data/pokemon/species_info.h":
         from approved_weather_species_slots import prior_weather_species_source
-        text = prior_weather_species_source(text)
-    if str(path) == 'src/data/pokemon/level_up_learnsets.h':
-        from approved_pkm009_delegated_001_126_changes import prior_pkm009_delegated_001_126_source
-        from approved_pkm009_delegated_127_252_changes import prior_pkm009_delegated_127_252_source
-        text=prior_pkm009_delegated_001_126_source(str(path),text)
-        text=prior_pkm009_delegated_127_252_source(str(path),text)
-    if str(path) in ("src/data/pokemon/species_info.h", "src/data/pokemon/level_up_learnsets.h"):
-        from approved_pkm009_locked_12_changes import prior_pkm009_locked_12_source
-        text=prior_pkm009_locked_12_source(str(path),text)
+        from approved_six_locked_species_source import prior_six_locked_species_source
+        text = prior_six_locked_species_source(prior_weather_species_source(text))
+    if str(path) == "src/data/pokemon/level_up_learnsets.h":
+        from approved_twelve_learnset_projection import prior_twelve_learnsets_source
+        text = prior_twelve_learnsets_source(text)
+    if str(path) == "include/constants/flags.h":
+        from approved_later_event_flags_projection import prior_later_event_flags_source
+        text = prior_later_event_flags_source(text)
+    if str(path) == "data/maps/PewterCity_Gym/scripts.inc":
+        reward = json.loads(Path('tests/specifications/approved_brock_reward_projection.json').read_text())
+        assert text == reward['after'], 'Brock approved reward script changed'
+        text = reward['before']
+    from approved_gym001_luis_changes import prior_luis_source
+    text = prior_luis_source(path, text)
     from approved_special_weather_changes import prior_special_weather_source
     text=prior_special_weather_source(path,text)
     text=prior_opening_source(path, text)
+    # Reverse ONLY the separately approved Misty entry before the older
+    # Gym Castform/Diana byte-for-byte historical source projection.
+    if str(path) == "data/maps/CeruleanCity_Gym/scripts.inc":
+        old_misty = "\ttrainerbattle_single TRAINER_LEADER_MISTY, CeruleanCity_Gym_Text_MistyIntro, CeruleanCity_Gym_Text_MistyDefeat, CeruleanCity_Gym_EventScript_MistyDefeated, NO_MUSIC"
+        new_misty = "\ttrainerbattle_double TRAINER_LEADER_MISTY, CeruleanCity_Gym_Text_MistyIntro, CeruleanCity_Gym_Text_MistyDefeat, SaffronCity_Dojo_Text_NeedTwo, CeruleanCity_Gym_EventScript_MistyDefeated, NO_MUSIC"
+        assert text.count(new_misty) == 1, "Misty: unexpected Double battle command"
+        assert text.count(old_misty) == 0, "Misty: duplicate original battle command"
+        text = text.replace(new_misty, old_misty, 1)
     for h in json.loads(Path('tests/specifications/approved_gym_castform_delta.json').read_text())['hunks'].get(str(path),[]):
         assert text.count(h['after'])==1, 'Unreviewed Gym Castform delta: '+str(path)
         text=text.replace(h['after'],h['before'],1)

@@ -19,6 +19,7 @@
 #include "constants/battle.h"
 #include "constants/pokedex.h"
 #include "constants/time_of_day.h"
+#include "constants/vars.h"
 #include "symbols.h"
 
 static struct mCore *core;
@@ -344,9 +345,18 @@ static void dexTests(void) {
 #include "ranger.c"
 #include "dynamic_weather.c"
 #include "wrl_nonwild_gifts.c"
+#include "wrl_vendor_physical.c"
+#include "wrl_aide_physical.c"
+#include "wrl_lapras_physical.c"
+#include "wrl_oak_eevee_physical.c"
+#include "wrl_scientist_physical.c"
+#include "wrl_porygon_physical.c"
+#include "center_move_reminder_physical.c"
+#include "center_move_reminder_learning.c"
 #include "wrl_route_grass.c"
 #include "sow_placement.c"
 #include "sow_producers.c"
+#include "sow002_heracross.c"
 #include "lighting_preview.c"
 #include "gym_castform.c"
 #include "rival.c"
@@ -385,6 +395,8 @@ static void captureTitleFrame(const char *prefix,const char *name) {
     CHECK(!ferror(file));CHECK(fclose(file)==0);
     printf("TITLE_CAPTURE: %s\n",path);
 }
+
+#include "wrl001_identity.c"
 
 int main(int argc,char **argv) {
     setvbuf(stdout,NULL,_IONBF,0);
@@ -430,6 +442,14 @@ int main(int argc,char **argv) {
     printf("RTC autodetected: %s\n",(gba->memory.hw.devices&HW_RTC)?"yes":"no");
     CHECK(gba->memory.hw.devices&HW_RTC);
     bootState=malloc(core->stateSize(core));CHECK(bootState && core->saveState(core,bootState));
+    if(getenv("LIGHTNING_WRL001_ONLY")){wrl001Tests();printf("PASS: %u focused WRL-001 assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_WRL001_IDENTITY_ONLY")){wrl001SueIdentityTests();core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_SOW002_ONLY")){
+        CHECK(strcmp(getenv("LIGHTNING_SOW002_ONLY"),"1")==0);
+        sow002Tests();
+        printf("PASS: %u focused SOW-002 assertions\n",checks);
+        core->deinit(core);free(pixels);free(bootState);return 0;
+    }
     if(getenv("LIGHTNING_BALL_WEATHER_ONLY")){captureWeatherTests();printf("PASS: %u focused weather assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_BALL_SHOP_ONLY")){captureShopTests();printf("PASS: %u focused shop assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_BALLS_ONLY")){captureTests();printf("PASS: %u focused capture assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
@@ -442,6 +462,7 @@ int main(int argc,char **argv) {
     if(getenv("LIGHTNING_DAYCARE_ONLY")){daycareTests();printf("PASS: %u focused daycare assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_WILD_HARDENING_ONLY")){wildHardeningTests();printf("PASS: %u focused wild hardening assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_SUMMARY_ONLY")){summaryTests();printf("PASS: %u focused summary assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_BTL003_AI_ONLY")){trainerAiCategoryAcceptance();printf("PASS: %u focused trainer AI assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_BATTLE_ONLY")){categoryTests();printf("PASS: %u focused battle assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_WILD_ONLY")){wildTests();printf("PASS: %u focused wild assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_DEX_ONLY")){dexTests();printf("PASS: focused Dex diagnostic\n");core->deinit(core);free(pixels);free(bootState);return 0;}
@@ -464,14 +485,29 @@ int main(int argc,char **argv) {
     if(getenv("LIGHTNING_MOVE_FOUNDATION_ONLY")){moveFoundationTests();printf("PASS: %u focused move-foundation assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_BAG_EVOLUTION_ONLY")){bagEvolutionTests();printf("PASS: %u focused Bag evolution assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_WILD_NICKNAME_ONLY")){wildNicknameTests();printf("PASS: %u focused capture nickname assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_BTL_CURRENT_MAIN_ONLY")){iceFangTests();avalancheTests();moves374Tests();paybackTests();moves382Tests();weatherSpeciesAbilityTests();weatherAbilityTests();weatherGymAbilityTests();specialGlalieTests();specialWeatherTests();printf("PASS: %u focused current-main BTL/weather integration assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_REMAINING_MOVES_ONLY")){remainingMoveTests();printf("PASS: %u focused remaining-move assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_MOVES382_ONLY")){moves382Tests();printf("PASS: %u focused moves382–384 assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_PAYBACK_ONLY")){paybackTests();printf("PASS: %u focused Payback assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_MOVES374_ONLY")){moves374Tests();printf("PASS: %u focused moves374–380 assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_AVALANCHE_ONLY")){avalancheTests();printf("PASS: %u focused Avalanche assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_ICE_FANG_ONLY")){iceFangTests();printf("PASS: %u focused Ice Fang assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_EARTH_POWER_ONLY")){earthPowerTests();printf("PASS: %u focused Earth Power assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_SCORCHING_SANDS_ONLY")){scorchingSandsTests();printf("PASS: %u focused Scorching Sands assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_SWARM_ONLY")){swarmCloudTests();printf("PASS: %u focused Swarm Cloud assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_BLAINE_ONLY")){blaineTests();printf("PASS: %u focused Blaine assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_GYM_CASTFORM_ONLY")){gymCastformTests();printf("PASS: %u focused Gym Castform assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_LIGHTING_CAPTURE_DIR")){lightingPreviewCaptures();printf("PASS: %u native lighting capture assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_WRL_VENDOR_PHYSICAL_ONLY")){wrlVendorPhysicalTalkTests();printf("PASS: %u focused WRL-009 physical vendor assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_WRL_SCIENTIST_PHYSICAL_ONLY")){wrlScientistPhysicalTests();printf("PASS: %u focused WRL-009 physical Cinnabar scientist assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_WRL_OAK_EEVEE_PHYSICAL_ONLY")){wrlOakEeveePhysicalTests();printf("PASS: %u focused WRL-009 physical Oak Eevee assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_CENTER_REMINDER_LEARNING_ONLY")){centerMoveReminderLearningTests();printf("PASS: %u focused Center Reminder eligibility/persistence assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_CENTER_REMINDER_PHYSICAL_ONLY")){centerMoveReminderPhysicalTests();printf("PASS: %u focused physical Center Move Reminder assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_WRL_PORYGON_PHYSICAL_ONLY")){wrlPorygonPhysicalTests();printf("PASS: %u focused WRL-009 physical Porygon assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_WRL_LAPRAS_PHYSICAL_ONLY")){wrlLaprasPhysicalTests();printf("PASS: %u focused WRL-009 physical Lapras assertions\\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_WRL_AIDE_PHYSICAL_ONLY")){wrlAidePhysicalTests();printf("PASS: %u focused WRL-009 physical aide assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_WRL_NONWILD_GIFTS_ONLY")){wrlNonWildGiftTests();printf("PASS: %u focused WRL-009 non-wild gift assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
-    if(getenv("LIGHTNING_WRL_ROUTE_GRASS_ONLY")){wrlRouteNativeGrassTests();printf("PASS: %u focused WRL-009 native route grass assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_WRL_ROUTE_GRASS_ONLY")){wrlRouteNativeGrassTests();wrlRoute5NorthernLedgeWalkTests();wrlCeruleanToRoute5ConnectionTests();wrlLavenderToRoute8ConnectionTests();wrlLavenderToRoute8GrassWalkTests();printf("PASS: %u focused WRL-009 native route grass assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_SOW_PRODUCERS_ONLY")){sowPlacementTests();sowScriptedProducerTests();sowScriptedRunTests();sowScriptedCaptureTests();sowPhysicalInteractionTests();sowScriptedDefeatTests();sowScriptedWhiteoutTests();printf("PASS: %u native SOW placement, producer, Run/retry and capture/aftermath assertions\\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_SOW_PLACEMENT_ONLY")){sowPlacementTests();printf("PASS: %u native no-Surf placement assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_DYNAMIC_WEATHER_ONLY")){dynamicWeatherTests();printf("PASS: %u focused dynamic weather assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
@@ -486,6 +522,8 @@ int main(int argc,char **argv) {
     if(getenv("LIGHTNING_WILD_NICKNAME_ONLY")){wildNicknameTests();printf("PASS: %u focused capture nickname assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_BLAINE_ONLY")){blaineTests();printf("PASS: %u focused Blaine assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     if(getenv("LIGHTNING_MUSEUM_ONLY")){museumTests();printf("PASS: %u focused Museum assertions\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_THUNDER_WAVE_ONLY")){thunderWaveTests();printf("PASS: %u focused Thunder Wave native assertions\\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
+    if(getenv("LIGHTNING_BATCH_A_ONLY")){batchANativeTests();batchAExactMechanics();batchAFlashPersistence();printf("PASS: %u focused Batch A native mGBA assertions\\n",checks);core->deinit(core);free(pixels);free(bootState);return 0;}
     initSave();
     for(unsigned h=0;h<24;h++) {
         clockAt(h);core->busWrite8(core,scratch,255);
@@ -573,6 +611,7 @@ int main(int argc,char **argv) {
     levelScene(SPECIES_TYROGUE,16,SPECIES_HITMONTOP,2,2,100,100);
     dexTests();
     categoryTests();
+    trainerAiCategoryAcceptance();
     summaryTests();
     wildTests();
     wildHardeningTests();
@@ -588,8 +627,17 @@ int main(int argc,char **argv) {
     rangerTests();
     dynamicWeatherTests();
     wrlNonWildGiftTests();
+    wrl001Tests();
+    wrlVendorPhysicalTalkTests();
+    wrlAidePhysicalTests();
+    wrlLaprasPhysicalTests();
+    wrlOakEeveePhysicalTests();
+    wrlScientistPhysicalTests();
+    wrlPorygonPhysicalTests();
     wrlRouteNativeGrassTests();
+    wrlRoute5NorthernLedgeWalkTests();wrlCeruleanToRoute5ConnectionTests();
     sowPlacementTests();
+    sow002Tests();
     sowScriptedProducerTests();
     sowScriptedRunTests();
     sowScriptedCaptureTests();

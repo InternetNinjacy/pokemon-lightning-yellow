@@ -4,6 +4,8 @@ from pathlib import Path
 
 def prior_gift_source(path,text=None):
     if text is None:text=Path(path).read_text()
+    from approved_wrl001_identity_changes import prior_wrl001_identity_source
+    text=prior_wrl001_identity_source(path,text)
     from approved_sow_producer_changes import prior_sow_producer_source
     text = prior_sow_producer_source(path,text)
     if str(path) == 'data/specials.inc':

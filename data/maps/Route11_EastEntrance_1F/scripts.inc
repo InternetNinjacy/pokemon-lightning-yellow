@@ -6,5 +6,21 @@ Route11_EastEntrance_1F_EventScript_TopGuard::
 	end
 
 Route11_EastEntrance_1F_EventScript_BottomGuard::
-	msgbox Route11_EastEntrance_1F_Text_RockTunnelToReachLavender, MSGBOX_NPC
+	lock
+	faceplayer
+	goto_if_set FLAG_GOT_GOOD_ROD, Route11_EastEntrance_1F_EventScript_GuardAdvice
+	goto_if_unset FLAG_BADGE03_GET, Route11_EastEntrance_1F_EventScript_GuardAdvice
+	msgbox Route11_EastEntrance_1F_Text_GoodRodBadgeReward
+	checkitemspace ITEM_GOOD_ROD
+	goto_if_eq VAR_RESULT, FALSE, Route11_EastEntrance_1F_EventScript_NoRoomGoodRod
+	giveitem_msg Route11_EastEntrance_1F_Text_ReceivedGoodRod, ITEM_GOOD_ROD
+	setflag FLAG_GOT_GOOD_ROD
+Route11_EastEntrance_1F_EventScript_GuardAdvice::
+	msgbox Route11_EastEntrance_1F_Text_RockTunnelToReachLavender
+	release
+	end
+
+Route11_EastEntrance_1F_EventScript_NoRoomGoodRod::
+	msgbox Route11_EastEntrance_1F_Text_NoRoomGoodRod
+	release
 	end

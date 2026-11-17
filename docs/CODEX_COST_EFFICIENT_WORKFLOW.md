@@ -22,6 +22,36 @@ Spend Codex usage implementing and testing source changes, rather than repeatedl
 
 ## Validation
 
+## Risk-based batch validation — owner directive 2026-11-12
+
+This implements the **existing owner-approved November 7 TEST EQUIVALENCE POLICY** from the canonical Master Control succession handoff. It changes development/review process only. The currently enabled `Battle split validation` workflow still runs both matrix jobs on PRs and pushes; **this policy change does not remove, skip, disable, alter or re-label any CI job, assertion, mGBA group, checksum, GitHub status, protection or merge gate.** Branch-protection details could not be read through the GitHub integration (403), so requirements must be confirmed with a properly authorized maintainer *before* an independent workflow-optimization PR changes gate topology.
+
+### Impact tiers and minimum local review evidence
+
+| Tier | Scope | During PR development | Additional acceptance |
+| --- | --- | --- | --- |
+| 0 | Documentation, index, tracking metadata only | Link/readback, canonical references, accounting, lint where applicable | No local ROM build; obey automatic/required GitHub checks |
+| 1 | Data-only, same previously verified native effect/path (trainer party, allowed item price, original machine parity) | Exact approved source delta/normalizers, focused host/source checks; minimal ROM smoke when typing, target, AI, animation or damage path differs | Reuse *unchanged* mechanism evidence with exact source SHA + workflow run; run every currently required check |
+| 2 | New composition or changed type/flag/status/target interactions | Build, focused source/host and targeted native Singles/Doubles, changed conditional behavior | Cross-system test on genuinely changed route; required CI |
+| 3 | Novel battle engine/effect, RNG, selected-target or save/event persistence, new assets | Build + deterministic native positive/negative, ABI/source guards, affected regressions | Full impacted integration and required clean/upstream checks |
+| 4 | Map-system/progression, RTC, weather/lighting, rendering hooks, global save layout, releases | Full affected native map/asset/traversal and integration checks; release includes full suite/upstream | Real path/manual or hardware/playthrough evidence where contract demands; no waiver based on a compile |
+
+When a PR combines tiers, use the highest tier and protect each affected contract. A PR must state **changed path, exact source/owner authority, equivalence precedent SHA/run, newly affected interactions, focused tests executed, CI status, tests not performed, and release/organic acceptance still pending**. Copy this short impact note into the PR description. Do not treat previous test success for a different changed head as exact-head success.
+
+### Integration and CI economy
+
+1. Prepare compatible, already approved changes on scoped branches; consolidate through a clearly reviewed integration PR and single combined-head validation where dependencies overlap. Do not double-merge original stacked/specialist PRs or silently absorb unrelated edits.
+2. While iterating, run only relevant focused host/native tests. Avoid repeating long random-sample suites when the exact compiled behavior and pathways are already natively evidenced; do not assume type, immunity, weather, AI or animation are irrelevant.
+3. **Do not poll running workflow jobs in a repeated conversation loop.** Record CI links once, progress independent approved work, then return only at a meaningful status or true failure. An automation may report terminal events if explicitly configured.
+4. Every GitHub required status still must succeed; no manual green label, no permissive error handling, no `continue-on-error`, no disabled assertions, no green test stand-in or workflow-filter bypass. A completed PR run does not certify a subsequent merged-main SHA when merged-main CI is explicitly required.
+5. Native Cut-tree removal and physical Route 8 grass arrival (WRL-002/009), other route access, real map events, save persistence, ABI, SOW visual/asset and link/hardware contracts remain distinct and cannot be inferred from data, build, or unrelated tests.
+6. Full production integration/regression is performed for release candidates, tier 3/4 changes, and any currently mandated CI; isolated tier 0/1 work should not initiate additional manual full-suite executions **beyond** the repository workflows unless an explicit contract demands them.
+7. **Separate workflow optimization PR required** to make full-suite native/upstream checks conditional for low-risk PRs. Before implementation, inspect actual required check names/rulesets with authorized access; choose a strategy that leaves required status names and security policies intact, retains full-suite validation for tier 3/4/release, compares changed paths against trusted base and fails closed on unknown impacts. Supply a measured run-time saving and green before/after evidence; rollback if protections or acceptance break. Until that PR is reviewed/merged, current automatic CI is authoritative.
+
+### Merge and reporting discipline
+
+One merge per proven dependency-safe step with SHA guard, owner-approved source, updated live main, and existing required status checks. Do not claim owner acceptance, task closure, gameplay completion or ROM release from a passing workflow alone. Keep the 50 task IDs and 461 earned / 251 remaining / 712 total unless separately verified acceptance warrants an accounting change. Report actual merges and blockers, not recurring 'still running' checks.
+
 - Run focused tests while iterating; run the applicable full host/mGBA/CI gates before a production merge.
 - Preserve baseline, ABI guards, save layouts, licensing and the no-ROM-artifact rule.
 - A CI workflow can run without an agent manually inspecting each interim build; only invoke Codex again for failures that need judgment.

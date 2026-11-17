@@ -1,0 +1,40 @@
+{
+  "base": "21d597b178327e706b015c61643f4489e0d8c4cb",
+  "approved_implementation": "0f693dd7bef4219e161b299f08a9a225ecdac9d6",
+  "files": {
+    "src/approved_gifts.c": {
+      "before_sha256": "c71e79712625e7795dc08be4f9e047205a8fc37a0c636231b00c15b6dbbfb406",
+      "after_sha256": "c8f121e2030f904f7785423a08a00d56c46f82c1355947141aa372af0b269ac3",
+      "hunks": [
+        {
+          "before": "#include \"global.h\"\n#include \"gflib.h\"\n#include \"daycare.h\"\n#include \"pokedex.h\"\n#include \"pokemon.h\"\n#include \"constants/species.h\"\n\n// Only the approved Water Labyrinth gift; never deliver an Egg to the PC.\n",
+          "after": "#include \"global.h\"\n#include \"gflib.h\"\n#include \"daycare.h\"\n#include \"event_data.h\"\n#include \"pokedex.h\"\n#include \"pokemon.h\"\n#include \"pokemon_storage_system.h\"\n#include \"constants/species.h\"\n\n// Only the approved Water Labyrinth gift; never deliver an Egg to the PC.\n"
+        },
+        {
+          "before": "    return result;\n}\n\n// WRL-001: fixed nickname for the approved Pikachu starter; gift is still made\n// by FireRed's original givemon script, so its party/ownership behavior stays intact.\nvoid ScriptNameSocketStarterPikachu(void)\n{\n    static const u8 nickname[] = _(\"SOCKET\");\n\n    if (gPlayerPartyCount != 0 && GetMonData(&gPlayerParty[0], MON_DATA_SPECIES) == SPECIES_PIKACHU)\n        SetMonData(&gPlayerParty[0], MON_DATA_NICKNAME, nickname);\n}\n\n// One-time Oak parcel gift, sharing the proven Tangela party/PC path.\n// Eevee has Run Away as its only current source ability.\nu16 ScriptGiveSueEevee(void)\n{\n    static const u8 nickname[] = _(\"SUE\");\n    struct Pokemon *mon = AllocZeroed(sizeof(*mon));\n    u16 result;\n    if (mon == NULL)\n        return MON_CANT_GIVE;\n    CreateMon(mon, SPECIES_EEVEE, 5, USE_RANDOM_IVS, FALSE, 0, OT_ID_PLAYER_ID, 0);\n    SetMonData(mon, MON_DATA_NICKNAME, nickname);\n    result = GiveMonToPlayer(mon);\n    if (result != MON_CANT_GIVE)\n    {\n        u16 dex = SpeciesToNationalPokedexNum(SPECIES_EEVEE);\n        GetSetPokedexFlag(dex, FLAG_SET_SEEN);\n        GetSetPokedexFlag(dex, FLAG_SET_CAUGHT);\n    }\n",
+          "after": "    return result;\n}\n\n// One-time Oak parcel gift, sharing the proven Tangela party/PC path.\n// Eevee has Run Away as its only current source ability.\nu16 ScriptGiveSueEevee(void)\n{\n    static const u8 nickname[] = _(\"SUE\");\n    static const u8 oakName[] = _(\"OAK\");\n    struct Pokemon *mon = AllocZeroed(sizeof(*mon));\n    struct BoxPokemon *delivered;\n    u32 playerOtId, oakOtId, i;\n    u8 gender = MALE;\n    u16 result;\n    if (mon == NULL)\n        return MON_CANT_GIVE;\n    // Oak's gift must be foreign-OT for native traded EXP and badge obedience.\n    // No canonical Oak numeric trainer ID exists in this gift contract: derive\n    // a stable, guaranteed non-player ID from the save's player trainer ID.\n    // The bitwise complement also handles a player whose name is OAK.\n    playerOtId = (u32)gSaveBlock2Ptr->playerTrainerId[0]\n               | ((u32)gSaveBlock2Ptr->playerTrainerId[1] << 8)\n               | ((u32)gSaveBlock2Ptr->playerTrainerId[2] << 16)\n               | ((u32)gSaveBlock2Ptr->playerTrainerId[3] << 24);\n    oakOtId = ~playerOtId;\n\n    // As with Mystery Vendor and Rocket rescue gifts, native delivery must\n    // receive player-keyed data before the actual party/PC record is rekeyed.\n    CreateMon(mon, SPECIES_EEVEE, 5, USE_RANDOM_IVS, FALSE, 0, OT_ID_PLAYER_ID, 0);\n    SetMonData(mon, MON_DATA_NICKNAME, nickname);\n    result = GiveMonToPlayer(mon);\n    if (result == MON_GIVEN_TO_PARTY || result == MON_GIVEN_TO_PC)\n    {\n        u16 dex = SpeciesToNationalPokedexNum(SPECIES_EEVEE);\n        if (result == MON_GIVEN_TO_PARTY)\n            delivered = &gPlayerParty[gPlayerPartyCount - 1].box;\n        else\n            delivered = GetBoxedMonPtr(gSpecialVar_MonBoxId, gSpecialVar_MonBoxPos);\n        // OT_ID is a header field; its setter does not re-encrypt secure data.\n        for (i = 0; i < ARRAY_COUNT(delivered->secure.raw); i++)\n            delivered->secure.raw[i] ^= delivered->otId ^ oakOtId;\n        SetBoxMonData(delivered, MON_DATA_OT_ID, &oakOtId);\n        SetBoxMonData(delivered, MON_DATA_OT_NAME, oakName);\n        SetBoxMonData(delivered, MON_DATA_OT_GENDER, &gender);\n        GetSetPokedexFlag(dex, FLAG_SET_SEEN);\n        GetSetPokedexFlag(dex, FLAG_SET_CAUGHT);\n    }\n"
+        }
+      ]
+    },
+    "data/maps/PalletTown_ProfessorOaksLab/scripts.inc": {
+      "before_sha256": "4e4e6f7ff73c2230366b2701f9a7610b6fdf3e4a1b1636666854ea34c1b5a445",
+      "after_sha256": "7268a39634a044b7b0b48f4d004d232a727084068f4eb6bbf7aabb76516f8b2e",
+      "hunks": [
+        {
+          "before": "\twaitmessage\n\tplayfanfare MUS_OBTAIN_KEY_ITEM\n\twaitfanfare\n\tspecial ScriptNameSocketStarterPikachu\n\tgoto PalletTown_ProfessorOaksLab_EventScript_RivalPicksStarter\n\tend\n\nEventScript_GiveNicknameToStarter::\n",
+          "after": "\twaitmessage\n\tplayfanfare MUS_OBTAIN_KEY_ITEM\n\twaitfanfare\n\tgoto EventScript_GiveNicknameToStarter\n\tend\n\nEventScript_GiveNicknameToStarter::\n"
+        }
+      ]
+    },
+    "data/specials.inc": {
+      "before_sha256": "bb90940e099daeabebc32fbd4b6ddfdc790bd7f1d818cc78f9c22bf032b852b4",
+      "after_sha256": "7d1147ad68f48cc19cc7aa7652d4b2ff8934254a31020be5ebf30c7c6f31f5b7",
+      "hunks": [
+        {
+          "before": "\tdef_special RangerGiveGift\n\tdef_special ScriptGiveMagbyEgg\n\tdef_special ScriptGiveTangoTangela\n\tdef_special ScriptNameSocketStarterPikachu\n\tdef_special ScriptGiveSueEevee\n\tdef_special RocketRescueStatus\n\tdef_special RocketRescueGive\n",
+          "after": "\tdef_special RangerGiveGift\n\tdef_special ScriptGiveMagbyEgg\n\tdef_special ScriptGiveTangoTangela\n\tdef_special ScriptGiveSueEevee\n\tdef_special RocketRescueStatus\n\tdef_special RocketRescueGive\n"
+        }
+      ]
+    }
+  }
+}

@@ -29,9 +29,5 @@ assert 'trainerbattle_double TRAINER_PICNICKER_DIANA, CeruleanCity_Gym_Text_Dian
 print('PASS: exact six approved Pokemon/levels/24 move slots, unchanged Trainer IDs/IV/AI and unrelated parties; ordinary no held/bag items; native Diana Double command/refusal and three map weather headers (static).')
 print('Runtime Forecast, Weather Ball, weather persistence, targeting and event completion require mGBA; this audit does not substitute for them.')
 
-subprocess.run([sys.executable,'tests/test_pkm009_delegated_001_126.py'],check=True)
-subprocess.run([sys.executable,'tests/test_pkm009_delegated_127_252.py'],check=True)
-subprocess.run([sys.executable,'tests/test_pkm009_oddish_family.py'],check=True)
-subprocess.run([sys.executable,'tests/test_pkm009_ponyta_family.py'],check=True)
-subprocess.run([sys.executable,'tests/test_pkm009_vulpix_family.py'],check=True)
-subprocess.run([sys.executable,'tests/test_pkm009_eevee_water_fire.py'],check=True)
+# Historical source-only all-252 TM/HM parity guard; not TM51 gameplay.
+subprocess.run([sys.executable, 'tests/test_pkm009_tmhm_252_source.py'], check=True)

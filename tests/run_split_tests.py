@@ -33,8 +33,11 @@ def run_numeric_tests():
     for name in ['gStatStageRatios', 'sHoldEffectToType']:
         parts.append(re.search(r'^(?:static )?const u8 ' + name + r'\[.*?\n\};', pokemon, re.M | re.S)[0])
     parts.append(pokemon[pokemon.index('#define APPLY_STAT_MOD'):pokemon.index('s32 CalculateBaseDamage(')])
+    parts.append(extract_function(Path('src/battle_util.c').read_text(), 'BattlerWasDamagedBy'))
+    parts.append(extract_function(Path('src/battle_util.c').read_text(), 'BattlerHasActedThisTurn'))
     parts.append(extract_function(pokemon, 'CalculateBaseDamage'))
     commands = Path('src/battle_script_commands.c').read_text()
+    parts.append(extract_function(commands, 'RecordSwitchHit'))
     for name in ['AI_CalcDmg', 'Cmd_dmgtolevel', 'Cmd_damagetohalftargethp', 'Cmd_psywavedamageeffect',
                  'Cmd_counterdamagecalculator', 'Cmd_mirrorcoatdamagecalculator', 'Cmd_datahpupdate']:
         parts.append(extract_function(commands, name))

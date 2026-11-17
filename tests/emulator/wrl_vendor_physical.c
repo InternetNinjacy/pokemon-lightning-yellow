@@ -1,0 +1,93 @@
+// WRL-009: staged physical NPC interaction for the ten existing Mystery Vendors.
+// Unlike vendorUiTests(), this does not call ScriptContext_SetupScript,
+// preselect an object, or inject a purchase. It is NOT a new-game route proof.
+static void wrlVendorPhysicalTalkTests(void) {
+    for (unsigned v = 0; v < MYSTERY_VENDOR_COUNT; v++) {
+        const struct VendorSite *site = &vendorSites[v];
+        vendorFixture();
+        // Saffron's civilians are story-hidden until the relevant event.
+        // This staged fixture tests an explicitly visible NPC, not story access.
+        if (v == 7)
+            CALL(FlagClear, FLAG_HIDE_SAFFRON_CIVILIANS);
+        fossilWarp(site->group, site->map, site->x, site->y + 1);
+        // CB2_LoadMap can reset the staged encrypted save state. Set the
+        // vendor funds after entering the map, before any physical dialogue.
+        CALL(SetMoney, careSave1() + ABI_SAVE1_MONEY, 70000);
+        CHECK(CALL(GetMoney, careSave1() + ABI_SAVE1_MONEY) == 70000);
+        unsigned object = CALL(GetObjectEventIdByLocalIdAndMap,
+                               site->local, site->map, site->group);
+        CHECK(object < ABI_OBJECT_COUNT);
+        CALL(PlayerGetDestCoords, scratch, scratch + 2);
+        unsigned px = core->busRead16(core, scratch);
+        unsigned py = core->busRead16(core, scratch + 2);
+        CHECK(px == site->x + 7 && py == site->y + 8);
+        // Deliberately poison the selected-object slot: only the actual
+        // player-facing A-button interaction may choose the vendor.
+        core->busWrite8(core, SYM_gSelectedObjectEvent, 0xFF);
+        // Route 10's salesman (and some outdoor vendors) wander in the
+        // unmodified map. Wait for the actual object to stand north of the
+        // player before using the real D-pad/A interaction; never move it,
+        // inject a script, or preselect the object in test RAM.
+        unsigned stable = 0, wait;
+        for (wait = 0; wait < 6000 && stable < 24; wait++) {
+            if (CALL(GetObjectEventIdByXY, site->x + 7, site->y + 7) == object)
+                stable++;
+            else
+                stable = 0;
+            frames(1, 0);
+        }
+        if (stable != 24)
+            fprintf(stderr, "WRL vendor physical NPC never returned site=%u object=%u at=(%u,%u) waited=%u\\n",
+                    v + 1, object, site->x + 7, site->y + 7, wait);
+        CHECK(stable == 24);
+        frames(6, 64); // Real D-pad UP to face the NPC to the north.
+        frames(6, 0);
+        press(1);      // Real A-button interaction, no direct script call.
+        unsigned f;
+        for (f = 0; f < 6000; f++) {
+            if (CALL(FuncIsActiveTask, SYM_Task_YesNoMenu_HandleInput | 1U))
+                break;
+            frames(1, (f % 12) == 0 && fossilTextPaused() ? 1 : 0);
+        }
+        if (f == 6000) {
+            CALL(PlayerGetDestCoords, scratch, scratch + 2);
+            fprintf(stderr, "WRL vendor physical talk failed site=%u object=%u selected=%u map=(%u,%u) grid=(%u,%u) script=%08x status=%u\\n",
+                    v + 1, object, core->busRead8(core, SYM_gSelectedObjectEvent),
+                    site->group, site->map,
+                    core->busRead16(core, scratch), core->busRead16(core, scratch + 2),
+                    core->busRead32(core, SYM_sGlobalScriptContext + ABI_SCRIPT_PTR),
+                    core->busRead8(core, SYM_sGlobalScriptContextStatus));
+        }
+        CHECK(f < 6000);
+        // Match fossilWaitMenu(): the task can be registered before its first
+        // input-ready frame. Let it settle before sending the decline key.
+        frames(10, 0);
+        CHECK(core->busRead8(core, SYM_gSelectedObjectEvent) == object);
+        CHECK(core->busRead16(core, SYM_gSpecialVar_0x8009) == v);
+        vendorTextMatches(vendorIntros[v]);
+        // Diagnose a changed balance without relaxing the no-purchase gate.
+        // Distinguish an accidental Yes purchase from a save-pointer reset.
+        unsigned menuMoney = CALL(GetMoney, careSave1() + ABI_SAVE1_MONEY);
+        if (menuMoney != 70000)
+            fprintf(stderr, "WRL vendor physical unexpected pre-decline money site=%u cash=%u party=%u status=%u selected=%u menu=%u save1=%08x script=%08x\\n",
+                    v + 1, menuMoney, core->busRead8(core, SYM_gPlayerPartyCount),
+                    CALL(MysteryVendorStatus), core->busRead8(core, SYM_gSelectedObjectEvent),
+                    CALL(FuncIsActiveTask, SYM_Task_YesNoMenu_HandleInput | 1U),
+                    careSave1(), core->busRead32(core, SYM_sGlobalScriptContext + ABI_SCRIPT_PTR));
+        CHECK(menuMoney == 70000);
+        press(2); // Decline purchase via the real Yes/No menu.
+        // Do not inject A during cleanup: if B was too early, A could buy.
+        fossilClose(2);
+        unsigned closedMoney = CALL(GetMoney, careSave1() + ABI_SAVE1_MONEY);
+        if (closedMoney != 70000)
+            fprintf(stderr, "WRL vendor physical post-decline site=%u cash=%u party=%u status=%u menu=%u script=%08x\n",
+                    v + 1, closedMoney, core->busRead8(core, SYM_gPlayerPartyCount),
+                    CALL(MysteryVendorStatus), CALL(FuncIsActiveTask, SYM_Task_YesNoMenu_HandleInput | 1U),
+                    core->busRead32(core, SYM_sGlobalScriptContext + ABI_SCRIPT_PTR));
+        CHECK(closedMoney == 70000);
+        CHECK(!CALL(MysteryVendorStatus));
+        CHECK(core->busRead8(core, SYM_gPlayerPartyCount) == 3);
+        printf("PASS: WRL vendor%u staged physical UP/A NPC interaction, correct seller and no-charge decline\\n", v + 1);
+    }
+    CHECK(core->loadState(core, bootState));
+}
