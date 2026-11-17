@@ -3,8 +3,8 @@
   "updated": "2026-11-16",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "Owner-approved exact146 natural learnsets implemented on refreshed PR173, preserving14 locked profiles/current stats/abilities/catch rates/TMHM. Clean pinned build,46 source runners,5 new146 cases,6 locked-pair,25 history and4 Snow controls PASS. Snow fix already merged PR279. No runtime/CI acceptance or points;461/712 unchanged. TM51 and10 separate proposals excluded.",
-  "main_sha": "93cc930335b6941fed3c0ab6e7d567288b5fccc0",
+  "current_focus": "Merged PR173 exact146 owner-approved natural learnsets atf223bf8b and PR279 Snow timer at93cc9303; source/clean-build checks pass, owner gameplay acceptance remains. Follower private asset prerequisite now READY (765 inputs/255 descriptors), source integration still pending4 conflicts; preserve Pikachu/OAK-SUE/146 and exclude Pichu experiments. TM51 remains separate;50 IDs461/251/712 unchanged.",
+  "main_sha": "f223bf8b6bd31ff18cc93318c38877ca421c7036",
   "drive_sync": {
     "status": "2026-11-10 WTH-001 and WRL-008 closeout PRs #170/#184 merged and verified; corresponding existing Google Drive Progress, START HERE and vendor register synchronized with definitive completion evidence.",
     "folder": "https://drive.google.com/drive/folders/1N_n0Ke48jBbdhUWSZWzwR6rpPFqpDUpl"
@@ -2666,7 +2666,7 @@
         "automated": "Source/build only:146 exact contracts,46 source runners,5 new cases,6 locked-pair and25 history cases pass; no native/gameplay run",
         "emulator": "not verified as complete feature",
         "pull_request": "Scoped locked-pair PR268 merged; earlier146-working candidates remain separate",
-        "merge": "Approved pair source merged PR268/c5c4dd03; full252-species work and owner acceptance incomplete"
+        "merge": "PR173 exact146 source merged f223bf8b;14 locked profiles retained; remaining scope/runtime separate"
       },
       "branch": null,
       "commit": null,
@@ -2845,9 +2845,9 @@
       "commit": "ca0de4a5c182019d408b8063fe892b018f588c18",
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/258",
       "ci_url": null,
-      "blocker": "Owner runtime acceptance pending; permission upload no longer requested. EWRAM1076-byte headroom requires care for further engine growth.",
+      "blocker": "Main follower source integration is pending; persistent private765-input cache and255-descriptor readiness gate now pass. Owner runtime acceptance remains outstanding; no new permission-letter upload requested.",
       "design_authority": "Lightning Yellow canonical Drive specialist registers and November 5 change intake",
-      "next_action": "Owner playtest updated private Playtest004-r3 for follower behavior and Jolteon/Umbreon leveling/reminder/evolution/save behavior; previous builds retained. Source/private integration remains PR258, not promoted wholesale to main.",
+      "next_action": "Integrate PR54/257 source against current main while preserving Pikachu naming/OAK-SUE/new146/Snow. Reuse /workspace/scratch/follower-private-cache and pinned generated registry from ly-follower-assets-prep; resolve4 known conflicts, preserve all native registrations/guards, compile a private full252 build, leave gameplay acceptance to owner. Private Pichu/old experiments must not be promoted wholesale.",
       "checkpoint": "Private r3 source 579ef016def8116a2ecf44acccd0e5e72f501247 compiled with owner-locked Jolteon/Umbreon rows;255 descriptors/765 pinned inputs retained, ROM SHA256 05c85f5cece8366e9a8f612a5d87f213d127de5a892255b9fd03aec86a4b9efe. No current gameplay tests or acceptance points.",
       "spec_pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/52",
       "specification": "implementation/selectable-following-pokemon.md"
@@ -3246,6 +3246,37 @@
     "source_checks": "46 runners,5 approved146,6 locked-pair,25 history,4 Snow cases and SOW002 contract PASS;11 preserved locked-family cases PASS",
     "ci": "Adds5 pure-source checks (146 plus4 preserved locked-family suites); retains every old workflow step/check; not dispatched, skipped not green",
     "runtime": "No gameplay/emulator/RNG runs; owner acceptance pending",
-    "accounting": "50 IDs461/251/712 unchanged"
+    "accounting": "50 IDs461/251/712 unchanged",
+    "source_head": "538ba2862ac099556a395f02c995e3f898de75b3",
+    "merged_main": "f223bf8b6bd31ff18cc93318c38877ca421c7036"
+  },
+  "snow_persistence_merge": {
+    "pr": 279,
+    "source_head": "5a61f34cc0342d5657f79ef6d14ee169f7016f13",
+    "merged_main": "93cc930335b6941fed3c0ab6e7d567288b5fccc0",
+    "scope": "Exact b9af0975 shared timer only; no private per-flake redesign",
+    "owner_runtime": "Issue248 OPEN; sustained snow/post-battle playtest pending"
+  },
+  "next_independent_source_work": "Follower asset prerequisite READY:765 pinned inputs in persistent /workspace/scratch/follower-private-cache;255 descriptors generated and checked privately. Next integrate PR54/257 source on current main, preserve optional Pikachu/OAK-SUE/new146, resolve4 source conflicts, private build and source audit. No gameplay tests, artwork/ROM commits or promotion of Pichu experiments.",
+  "follower_asset_preparation": {
+    "source_commit": "e7d388810de0b0964a46afaaf3d012f7e666aad5",
+    "upstream_art_pin": "cbe04a7a2ef645bee19d159876da074154ccf1f2",
+    "private_cache": "/workspace/scratch/follower-private-cache",
+    "private_source_snapshot": "/workspace/scratch/ly-follower-assets-prep",
+    "private_records": "/workspace/scratch/follower-private-records",
+    "inputs": 765,
+    "descriptors": 255,
+    "base_species": 252,
+    "castform_forms": 3,
+    "generated_sha256": "196a74da8a37623c7178d9e976b585e8b592038ccbba2ea22af86654d061d0e3",
+    "gate": "BUILD INPUT READY; no runtime PASS",
+    "permission": "Owner-provided permission statement accepted; no private correspondence requested or committed",
+    "runtime_merge": "Not integrated; no new follower ROM, gameplay test or merge",
+    "next_conflicts": [
+      ".github/workflows/build.yml",
+      "src/approved_gifts.c",
+      "tests/emulator/run.py",
+      "tests/emulator/runner.c"
+    ]
   }
 }
