@@ -3,8 +3,8 @@
   "updated": "2026-11-16",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "Approved early-game source corrections integrated via PR264 after combined pinned-toolchain compilation. Main421cecfc retains461/712; owner gameplay acceptance pending. BTL-005 complete410-ID source candidate compiled on PR265/7511b353, not integrated: nine current-main conflicts require source reconciliation. Follower private252-art build in PR258 completed; owner runtime acceptance pending. Continue independent approved work; no invented designs or unexecuted tests counted.",
-  "main_sha": "421cecfc4c75f53e67690fc594aa93a8016c90ba",
+  "current_focus": "410-move source catalog merged PR265 after combined compile/static checks. SOW002 Heracross reconciled on current main: exact source/preservation/catch projections and combined compile PASS; source integration next, owner gameplay acceptance pending.461/712 unchanged.",
+  "main_sha": "20ae65d3e85f57c4868569ec036e7f87b0460651",
   "drive_sync": {
     "status": "2026-11-10 WTH-001 and WRL-008 closeout PRs #170/#184 merged and verified; corresponding existing Google Drive Progress, START HERE and vendor register synchronized with definitive completion evidence.",
     "folder": "https://drive.google.com/drive/folders/1N_n0Ke48jBbdhUWSZWzwR6rpPFqpDUpl"
@@ -628,18 +628,18 @@
       ],
       "status": {
         "design": "Owner approved; November5 Curse/animation/GenIV edge choices resolved; PhaseTwo distribution remains separate",
-        "implementation": "Approved BTL-005 move work now incorporated on main through source-integrated PR #208: original moves plus approved additions through #386, staged Batch A indexed entries and Thunder Wave corrective tests. Reserved move slots, exhaustive effects/animation acceptance, Phase Two distribution and remaining 56-move scope still require separate exact verification; this is NOT full BTL-005 completion. New separate source candidate PR265 at7511b353 includes all410 move IDs; it is not merged into current main.",
-        "automated": "PR #208 exact-head full modified and upstream CI #43145871878 SUCCESS, focused four-job CI #43145871735 SUCCESS (Thunder Wave, Batch A, Blaine, host), title #43145871696 SUCCESS. Exact merged-main #43210695582 SUCCESS both modified native mGBA and independent upstream; preserve scope limitations.",
-        "emulator": "Real exact-head modified native mGBA SUCCESS on PR #208 and merged-main 7996795c; focused Thunder Wave, Batch A, Blaine and historical Swarm Cloud corrections SUCCESS. Full natural story, exhaustive moves/animation visuals, release hardware/link/save-power-loss acceptance NOT certified.",
-        "pull_request": "PR #208 owner-authorized integration MERGED into main as 7996795c85f9707da7b8fe832b086a2438ba39a0; PR #136 GitHub recognizes merged via ancestry, and stacked PRs #146/#174/#176/#182 closed without redundant merges after verified ancestors of main.",
-        "merge": "Approved BTL-005 stack through Thunder Wave integrated via PR #208 and exact merged-main modified/upstream CI SUCCESS. Remaining 80-point BTL-005 task NOT fully closed; no progress points credited for integration alone."
+        "implementation": "All410 approved move IDs represented in main via PR265, including14 final gaps; existing moves/animations retained. Source integrated, not full runtime/release acceptance.",
+        "automated": "PR265 combined native compilation PASS; static410-catalog, BatchA historical reconstruction and dual weather/battle projections PASS.61 existing specification files unchanged. No current gameplay/emulator tests or CI dispatch.",
+        "emulator": "No emulator/gameplay run for current410-move integration; owner manual acceptance pending. Historical evidence is not current-head acceptance.",
+        "pull_request": "PR265 merged; original development history retained",
+        "merge": "Source merged20ae65d3; runtime/release acceptance outstanding"
       },
-      "branch": "feature/approved-fire-move-batch",
-      "commit": "1951766a",
+      "branch": "main",
+      "commit": "20ae65d3e85f57c4868569ec036e7f87b0460651",
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Reconcile PR265 final-catalog source with current main, preserving existing BatchA moves/animations, water mechanics and all validation registrations/guards. Nine conflicts listed in PR. Standalone pinned-agbcc build PASS; combined build/runtime acceptance still outstanding. No new distribution/learnsets invented.",
-      "checkpoint": "PR265 7511b353fbf7fb26545c989731be7d282aa784ff: static final-nine approved data/flags/category checks and410-ID/data/animation presence; standalone build PASS, no gameplay tests. Nine integration conflicts remain. Formal32 earned/48 remaining unchanged.",
+      "next_action": "Owner acceptance and permitted future native410-move validation, especially Discharge,VoltSwitch,ThunderFang,Hurricane,Acrobatics,AI,animations,save/link. No invented distribution or acceptance points.",
+      "checkpoint": "PR265 source merge20ae65d3, compiled/audited head4c74d02e. No catalog merge conflicts;61 frozen specs retained.32/48 effort unchanged.",
       "source_exports": [
         "03_MOVES/Pokémon Lightning Yellow — Approved Move Change Ledger — Source Verbatim v0.1.txt",
         "03_MOVES/Pokémon Lightning Yellow — Complete TM & Move Register — v1 (2026-10-29).txt",
@@ -664,7 +664,7 @@
         "BTL-005-M2A": "PR42 complete within eight-data-row scope, full513952/focus100 and both review/push CI SUCCESS at51df94f7; merged in owner-authorized Nov6 consolidation",
         "BTL-005-M2B": "PR43 merged through consolidated main; final review/push full534051 PASS,20 hosts/3 checkers, final focus20105 and clean identical8162003f…9822c"
       },
-      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/80",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/265",
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/42381346263",
       "ui_ref": {
         "branch": "feature/move-engine-long-name-ui",
@@ -1562,7 +1562,15 @@
         "04_SPECIES_EVOLUTION_WORLD/Pokémon Lightning Yellow — Special Overworld Pokémon & Environmental Events Register.txt",
         "06_ENCOUNTERS_PHASE_TWO/Pokémon Lightning Yellow — Wild Encounter Ecology — 252-Species Proposed Placement Matrix — 2026-11-02.txt"
       ],
-      "source_status": "available locally; checksums verified; precise approvals/read scope in reconciliation report"
+      "source_status": "available locally; checksums verified; precise approvals/read scope in reconciliation report",
+      "implementation_increments": [
+        {
+          "feature": "SOW-002 Viridian Forest Heracross",
+          "pr": 254,
+          "source_commit": "c984bee54b66f86f4e2b8db306fc17b417669b33",
+          "status": "current-main source checks and combined410-move compile PASS; owner runtime acceptance pending; no points"
+        }
+      ]
     },
     {
       "id": "WRL-003",

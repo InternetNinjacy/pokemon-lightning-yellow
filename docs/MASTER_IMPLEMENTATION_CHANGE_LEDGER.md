@@ -1976,3 +1976,41 @@ Follower/artwork tracker reconciliation: WRL-010 now records actual PR258 privat
 - Resume reads: `git fetch origin main feature/btl005-final-catalog-through-410`; `git merge-tree --write-tree --name-only origin/main origin/feature/btl005-final-catalog-through-410` in the existing repository (read-only conflict preview, no checkout). Original dirty branch/index preserved; never reset it or create a worktree without authorization. Existing source candidate PR body contains exact scope/build evidence.
 - Current owner reserves gameplay tests for personal ROM playtesting; no automated gameplay/emulator/diagnostic workflow dispatch. Compilation/source checks permitted. No check/security/protection changes. Source-ready approved merges authorized; missing gameplay designs are not filled by assumptions.50 permanent tasks461 earned/251 remaining/712 total unchanged. Full712 cannot be marked accepted from source presence/compilation.
 
+
+
+
+### 2026-11-15 — SOW-002 implementation, issue #253 (unmerged)
+
+Main197d85ee and Playtest002 have no Heracross object/script. Owner explicitly authorizes finalizing/implementing SOW-002, with no merge before required evidence. Canonical Special Overworld register1yTOKL8qr5_3sX6Fpk9WEzTBw9c6IwoDVWLULJtTIXm8 and final digest1toiE5HMe9b1Wa5IVytgM2LIHTT8_v05jkVgfPURYsH4: stationary/nonreactive northeast clearing; southern existing NPC warning without species spoiler, then thanks; native static capture/defeat resolution and flee/loss retry. Current delegated finalization chooses(49,6),Lv12,Tackle/Leer/Horn Attack/Endure,native Swarm/Guts,no item. Catch125 extends the owner's early-catch instruction to this newly installed early source; this changes the species-wide catch field. These exact engineering/balance values were deferred historically, not claimed as earlier approval.
+
+Separate branch feature/sow002-viridian-heracross-20261115; issue253 scopes this main-thread owner without duplicating WRL002/009 or BTL specialists. Native icon palette2, static first frame, one unused flag4AD; no old objects/terrain/weather/lighting/encounter tables/trainers changed. Exact old SOW graphics-count assertion increases155→156 for the appended graphic; all old assertions and registrations retained. Focused source and old SOW source checks PASS; compiled/native evidence pending. Supplemental exact-reviewed-head workflow only, no existing workflow/status/protection changes or ROM/BIOS/save uploads. Existing required CI remains unresolved; no merge, no points.50 IDs461 earned/251 remaining/712 total unchanged.
+
+SOW002 follow-up source review: native removeobject also sets the map hide flag, so retain native bird semantics with separate resolved4AD/hide4AE and unresolved transition reset. Added physical southern NPC warning/thanks buffer checks. Initial exact head0df463d run43784089671: source contracts and game build SUCCESS; runner native link FAILURE (static mGBA archive needs libm). No native pass claimed. Pinned mGBA recipe corrected to shared-library build by LIBMGBA_ONLY=OFF, with all frontends/tests disabled. Existing workflows unchanged. Audit docs/SOW_MISSING_ENCOUNTER_AUDIT.md covers four remaining missing SOW scopes plus separate legendary issue234; PR7 is actually merged55665c6d, but has no scripted-double producer/return/joint resolution. Source clone Cut tree onRoute15 is valid, not a missing script. No other gameplay implemented.
+
+SOW002 executed evidence: exact source/workflowa9198e74158f5be9d6b7d35d565a7dc3cffc2f5f, isolated run43784608441/job133029340512 SUCCESS: strict source+originalSOW contracts, ROM build and3505 native assertions. Actual loaded icon/stationary coordinates,74-tile native collision connection, physical A battle, real party/PC captures, actual defeat/Run/loss, flash/reentry and physical NPC warning/thanks pass. Native weather/rain suites not executed. See validation doc for fixture/manual/Teleport limits. Extra Glalie species-hash20 and world-reward trainer-projection73 host failures reproduce on exact main197d85ee controls; no assertion changes. Required CI/integration/reproducibility/protection remain separate blockers; no merge or Playtest002 update. Subsequent evidence-only docs preserve all compiled/test/workflow inputs; no unnecessary native repeat. Canonical Drive register/intake updated and read back;50 IDs461/251/712 unchanged.
+
+
+### 2026-11-15 — PR254 CI blockers advanced; clean/upstream evidence closes
+
+Refreshed canonical Drive START HERE/Master Plan/Change Intake/succession handoff/SOW register; main197d85ee and drafts254/233/249/250 ownership unchanged. Protection403 and logged-out browser settings404 leave authenticated required-check configuration unavailable; no absent-protection inference or security change.
+
+Code238ec53 adds strict exact13 merged PR251+Heracross catch normalization before existing weather reversal, with original assertions/frozen hashes retained.3 complete stages/17 negative controls/exact frozen022 source and source-equivalence checks PASS. Remaining historical mismatch isolated to6 previously approved species;233 retains six-species/trainer/Fire reconciliation. No assertion imports, Misty2400 change or rain rerun. Exact new isolated run43786553053 SUCCESS: clean modified133035404503 twice-build SHA256/source checks and independent unchanged upstream133035404219 twice-clean make compare/SHA1. All existing workflows byte-identical; distinct supplemental statuses do not replace required gates.3505 native a9198e7 reused with unchanged game/native/compiler inputs.
+
+Audit advance: Onix StarPiece raw-collision113-cell component identifies correct local7 Grunt2 and warp17,31, not other Rocket37,21; native ordering still pending. SOW005 natural-double map eligibility cannot serve Route15 scripted pair or fewer-than2 parties; no invented fallback. Existing legendary owners24371f25df/2440d3ceb8 confirmed:243 focused success/full modified132582692188 failure/upstream132582692424 success;244 terminal Mew-only43631949077 failed water step67,4 under original96-frame guard after7 dry steps and Surf08. No production-unreachable/root-cause inference, duplicate branch or rerun.
+
+PR254 remains draft/unmerged. Genuine remaining decision/access: verified required-check/protection information and explicit resolution of no-rain versus unchanged full required workflow, plus233 dependency closure. No CI waiver, point award, main or Playtest002 update.50 IDs461/251/712 retained.
+
+
+### Source integration continuation — catalog and Heracross
+
+## Current source integration checkpoint
+
+PR265 merged main20ae65d3: complete410-move source, combined compile and static
+catalog/frozen-history checks PASS; no gameplay tests or accepted points.
+PR254 Heracross is reconciled on that main: resolved4AD/hide4AE and Route6 claim4AF
+retained; all other flags unchanged. Prior254 native evidence remains historical.
+Current combined build and source checks PASS; no CI dispatch or guard weakening.
+461/712 preserved. Runtime acceptance remains owner-run.
+
+
+Current-main source integration: exact Heracross placement/data/script/art contract PASS; original objects,terrain,weather,battle paths and learnsets preserved. Catch projection PASS:14 approved fields,3 complete stages,17 negative preservation controls.410-move catalog and dual frozen BTL/weather checks PASS. Combined pinned-agbcc compilation PASS; private engineering ROM SHA256 `fdea969f7b086f743ccc268eb5b2d1249a8e82c279fa96f2294cd5ecba7f2559`. No gameplay/emulator tests or CI dispatch. Historical3505 native assertions remain historical, not current-head acceptance. Existing Route6 claim4AF and Heracross4AD/4AE all retained.461/712 unchanged.

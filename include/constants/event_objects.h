@@ -163,7 +163,8 @@
 #define OBJ_EVENT_GFX_SOW_CORPHISH 152
 #define OBJ_EVENT_GFX_SOW_GLALIE 153
 #define OBJ_EVENT_GFX_SOW_TYRANITAR 154
-#define NUM_OBJ_EVENT_GFX     155
+#define OBJ_EVENT_GFX_SOW_HERACROSS 155
+#define NUM_OBJ_EVENT_GFX     156
 
 // These are dynamic object gfx ids.
 // They correspond with the values of the VAR_OBJ_GFX_ID_X vars.

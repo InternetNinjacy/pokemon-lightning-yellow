@@ -1,3 +1,12 @@
+## Current source integration checkpoint
+
+PR265 merged main20ae65d3: complete410-move source, combined compile and static
+catalog/frozen-history checks PASS; no gameplay tests or accepted points.
+PR254 Heracross is reconciled on that main: resolved4AD/hide4AE and Route6 claim4AF
+retained; all other flags unchanged. Prior254 native evidence remains historical.
+Current combined build and source checks PASS; no CI dispatch or guard weakening.
+461/712 preserved. Runtime acceptance remains owner-run.
+
 ## Current autonomous execution checkpoint
 
 - Integrated main `421cecfc4c75f53e67690fc594aa93a8016c90ba`: PR264 combines255/259/260 with original source histories retained. New-game PC Exp.Share, Route6 post-Misty TM34 pickup, Pewter TM07/Avalanche Badge/exact dialogue. Combined native compilation PASS; readback confirms merged gameplay blobs match the compiled source. No gameplay/emulator tests or owner acceptance claimed.
@@ -260,3 +269,31 @@ Owner now directs actual approved gameplay implementation without tests, ROM bui
 ## 2026-11-16 — Implementation-first production continuation
 
 Owner directs actual approved gameplay source without tests/builds/emulator/diagnostics or failed-test investigation; no merge. Main `197d85ee1a61ac319f95fa65ab298bb126fe937d`. Route6 TM34 after Misty is separate draft PR259 at `3a40f893d6a7862d90dd3b129f4150653df7286b`; its two new flags0x0B1/0x4AF are reserved even though absent on this independent branch. Current independent `implementation/pewter-approved-rewards-dialogue-20261116` implements Hail TM07 reward, Avalanche Badge display and all six verbatim approved Brock/Liam dialogue sections. See `docs/PEWTER_APPROVED_REWARDS_DIALOGUE.md`. Untested/unmerged; no CI acceptance/points. Preserve 50 IDs461/251/712. Existing TM reward flag bit prevents duplicate reward in old saves; no migration or old-item deletion. Do not duplicate follower/Pichu/Heracross/Exp.Share/legendary/WRL002/009 or PR245 ownership. Next choose another exact approved unowned Gym reward/dialogue slice; ordinary Saffron species-to-source-ID mapping remains unresolved, do not guess it. Keep required checks unmodified and do not merge.
+
+## PR254 blocker follow-up — 2026-11-15 (latest)
+
+- Main197d85ee1a61ac319f95fa65ab298bb126fe937d unchanged; PR254 remains draft/unmerged on feature/sow002-viridian-heracross-20261115. No Playtest002 update or points.
+- Code238ec53ac058fc715d883336337909065f21f180: strict14 approved catch-field reverse layer,3 complete stages,17 negative controls. Every existing assertion/frozen hash retained. Remaining weather-species mismatch is exactly6 approved records and trainer projection, owned by233; no Fire/233 assertion import.
+- Exact code238ec53 run43786553053 SUCCESS: modified clean proof133035404503 (source checks/two builds SHA256 match), independent vanilla proof133035404219 (pinned upstream/agbcc/twice-clean compare). Supplemental names do not replace required statuses. Existing workflows byte-identical; no native/rain executed in this run.
+- Reuse3505 native PASS at a9198e7/run43784608441: all game/native runner/fixture/compiler inputs unchanged. Final evidence-only docs do not imply current-head required CI success.
+- Actual blocker: authenticated required-check/protection information (API403, browser logged out) plus owner resolution of no-rain versus unchanged full required CI; historical reconciliation remains233-owned. Do not merge, relabel statuses or waive gates.
+- Remaining SOW audit advanced: correct Onix-room guard local7 Grunt2 / room warp17,31; raw-collision113-cell component, not native traversal.005 needs scripted double/party eligibility/joint cleanup;003/006 exact battle/tile details deferred.
+- Legendary ownership already active on24371f25df and2440d3ceb8. Latest243 full43639203124 modified132582692188 FAILURE/upstream132582692424 SUCCESS, focused SUCCESS.244 Mew experiment43631949077 failed physical water step67,4 at unchanged96-frame guard after7 dry steps and Surf08; no unreachable/root-cause claim or edits/reruns.
+- Canonical50 tasks461/251/712 unchanged. Details in SOW002_HERACROSS_VALIDATION.md and SOW_MISSING_ENCOUNTER_AUDIT.md.
+
+## SOW-002 active checkpoint — 2026-11-15
+
+- Main197d85ee1a61ac319f95fa65ab298bb126fe937d verified; no workflow runs listed for that head. Protection-detail access403; do not infer absent protections.
+- Branch feature/sow002-viridian-heracross-20261115, issue253: missing Forest Heracross implemented; see docs/SOW002_HERACROSS_VALIDATION.md for exact contract and remaining checks. No merge before required evidence.
+- Source a9198e74158f5be9d6b7d35d565a7dc3cffc2f5f: source/build/native3505 PASS, run43784608441/job133029340512; focused LIGHTNING_SOW002_ONLY=1 only. Never run rain or the old broad SOW weather native selector.
+- Main baseline host controls reproduce Glalie species-hash20 and world-reward trainer-projection73 failures; no assertion changes. Required CI/integration/clean/protection remain unresolved. No merge or Playtest002 update.
+- docs/SOW_MISSING_ENCOUNTER_AUDIT.md covers remaining4 SOW and separate legendary issue234; current PR7 merged55665c6d does not provide scripted doubles.
+- Existing PR233/249/250 retained; no Fire assertion changes, rain reruns, WRL ownership duplication or required-gate replacement. Original PR249 failure43754474983/modified132935433549 at run_new_fire_moves_tests.py:48 preserved; upstream132935433210 success. PR233 unchanged Misty2400 failure132895732192/upstream132895732475 success.
+- PR251 catch125 and PR252 metadata merged at3ed6ac1e /197d85ee under specific owner direction; not a global CI waiver. PR249 remains draft.
+- Remaining missing SOW001 Onix/MtMoonB2F;003 Electabuzz/Route10;005 Miltank+Tauros/Route15;006 Noctowl/Route16. Existing004/007/008 present; do not retest accepted rain. WTH002 Playtest002 snow-particle persistence awaits owner confirmation; WRL010 queued.
+-50 permanent tasks461/251/712 preserved.
+
+## Historical checkpoint (retained)
+
+
+Current-main source integration: exact Heracross placement/data/script/art contract PASS; original objects,terrain,weather,battle paths and learnsets preserved. Catch projection PASS:14 approved fields,3 complete stages,17 negative preservation controls.410-move catalog and dual frozen BTL/weather checks PASS. Combined pinned-agbcc compilation PASS; private engineering ROM SHA256 `fdea969f7b086f743ccc268eb5b2d1249a8e82c279fa96f2294cd5ecba7f2559`. No gameplay/emulator tests or CI dispatch. Historical3505 native assertions remain historical, not current-head acceptance. Existing Route6 claim4AF and Heracross4AD/4AE all retained.461/712 unchanged.
