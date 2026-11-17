@@ -3,8 +3,8 @@
   "updated": "2026-11-16",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "Prepared native fixture source maintenance: PR236 single-ability AI fixture merged9bb5cc7e; PR239 Reminder fixture aligned with approved Lv7/Lv8 Vaporeon, Eevee and Espeon data. Seven source checks across both repairs pass; no game data, native/gameplay execution, workflow or points changed. Missing146-profile/TM51 authority remains with Master Control.",
-  "main_sha": "9bb5cc7eecba911f19d7e8839463edebf25b06d4",
+  "current_focus": "Approved issue248 Snow particle restart clock corrected using exact previously authorized one-line source;4 source controls and pinned incremental build PASS. Owner also approved exact146 natural learnsets (issue105 comment6951068928); source implementation underway, TM51 remains separate. No gameplay tests/acceptance points;461/712 unchanged.",
+  "main_sha": "28cf138cfcd19ee8f742fdd12b4bec1793b39cf4",
   "drive_sync": {
     "status": "2026-11-10 WTH-001 and WRL-008 closeout PRs #170/#184 merged and verified; corresponding existing Google Drive Progress, START HERE and vendor register synchronized with definitive completion evidence.",
     "folder": "https://drive.google.com/drive/folders/1N_n0Ke48jBbdhUWSZWzwR6rpPFqpDUpl"
@@ -980,7 +980,7 @@
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/29/checks",
       "blocker": "Technical rendering/fade/fog/lighting interaction validation remains; final visual palette choices are separate, not missing-export blockers.",
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Review scoped PR29 after full checks; preserve remaining rendering/lighting/fog and broader regional/manual/integration acceptance. Resolve known test/tracker registration conflicts when combining withPR27.",
+      "next_action": "Snow_Main now advances the existing shared snowflakeTimer once per update; exact approved b9af0975 fix, original threshold/reset/movement/cleanup preserved. Owner sustained-Snow/post-battle playtest remains outstanding; do not retest accepted Rain/Sun/palette/Hail or confuse this with final lighting. Other WTH rendering work remains separate.",
       "checkpoint": "2026-11-04 resumed scoped acceptance; full results/live checks inPR29",
       "source_exports": [
         "05_WEATHER_LIGHTING/Pokémon Lightning Yellow — Lighting & Weather Decision Handoff and Next Steps — 2026-10-28.txt",
@@ -2672,7 +2672,7 @@
       "commit": null,
       "pr_url": null,
       "ci_url": null,
-      "blocker": "Final TM51 ZapCannon species eligibility matrix and later final approval for146 delegated WORKING recommendations remain missing. Trainer-history source failures are repaired through PR270–276; they are no longer a static blocker. Owner/current-head runtime acceptance remains separate.",
+      "blocker": "TM51 eligibility matrix remains missing. Exact146 natural-learnset recommendations newly owner-approved through issue105 comment6951068928 and being implemented; no longer a design hold. Native/owner acceptance remains separate.",
       "design_authority": "Lightning Yellow canonical Drive specialist registers and November 5 change intake",
       "next_action": "Use already-implemented14 locked profiles; obtain final146-profile authority and exact TM51 matrix from Master Control. Reminder fixture source now matches approved Vaporeon7/8, Eevee1 and Espeon8 data in PR239; native menu/save execution remains unrun. Do not invent distribution or request the locked14 approval again.",
       "checkpoint": "PR268 new6 source tests,2 original TMHM tests,focused preservation checks and pinned-agbcc build PASS. Broad Gym/E4 static trainer-history failure reproduced on prior source.146 candidate profiles:0 source drift/missing IDs in read-only preflight. No runtime or points.",
@@ -3227,5 +3227,10 @@
     "checks": "4 pure-source cases PASS: pinned file identity, approved level/move premises, all CHECK assertions preserved with documented data-name substitutions, all native press/frames/noncreation CALL sequences unchanged",
     "current_runtime": "Not run; source eligibility inspection is not native gameplay or UI proof",
     "accounting": "50 IDs461/251/712 unchanged"
+  },
+  "approved_146_owner_decision": {
+    "reference": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/issues/105#issuecomment-6951068928",
+    "scope": "Exact74+72 manifests at86f4f73a only; preserve14 locked/current stats/abilities/catch rates; excludeTM51/separate10laterproposals",
+    "status": "Owner approved; source implementation in progress"
   }
 }
