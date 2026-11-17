@@ -23,6 +23,8 @@ for p,h in m['preserved_files'].items():
  source=prior_thunder_wave_source(p,source)
  if p=='src/data/pokemon/species_info.h':
   source=prior_weather_species_source(source)
+  from approved_six_locked_species_source import prior_six_locked_species_source
+  source=prior_six_locked_species_source(source)
  if p=='src/battle_main.c':
   approved_selector='''                // Use the existing native ability slot field only for Agatha's Alakazam.
                 // This preserves its original PID, nature, gender and species ability table.
