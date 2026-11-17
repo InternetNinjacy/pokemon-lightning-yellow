@@ -1,3 +1,10 @@
+## Current source/build continuation
+
+- Main `351932f8fe7c439b84a7c7fc555a914ba56b18e8` contains merged PR265410-move source and PR254Heracross. Both combined source builds and focused static preservation checks passed. No current gameplay/emulator tests, CI dispatch or runtime acceptance claimed.
+- PR258 private r2 actual build source `ca0de4a5c182019d408b8063fe892b018f588c18` integrates that main with unchanged Pichu/Oak-ownedSUE, private stats/learnsets,follower controller and snowfall.252 base species+3Castform descriptors,765 pinned inputs;16MiB ROM SHA256 `26e52c729d822de37e1c53c5136f38669ed8c5e79a94728c722a2eab4e330b47`. Local owner files `/tmp/ly-owner-playtest004-r2`; previous private build preserved. No pixels/ROM/correspondence in Git.
+- Source integration discovered missing map_events.o dependency on flags.h: restoring private legendary flag names did not rebuild its cached map object, leaving unresolved FLAG_HIDE_LIGHTNING_* symbols. The exact one-input dependency fix reassembled the object and final private build passed. Commands/data/flags are unchanged by this build-only repair; no workflow/security/assertion changes.
+-461/712 and all50 task effort histories remain unchanged. Owner runtime/release acceptance is separate. Next approved technical queue: reconcile remaining species/learnset/TM-HM candidates against current main (PR173/175, preserving owner-locked profiles and anatomical restrictions); never invent missing distributions/ability slots. Existing open implementation/spec branches must be compared, not blindly merged. Source-only checks/builds allowed; no emulator/gameplay runs under current owner direction. Original dirty BTL checkout and18 files remain untouched.
+
 ## Current source integration checkpoint
 
 PR265 merged main20ae65d3: complete410-move source, combined compile and static

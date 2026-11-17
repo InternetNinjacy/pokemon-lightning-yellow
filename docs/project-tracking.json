@@ -3,8 +3,8 @@
   "updated": "2026-11-16",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "410-move source catalog merged PR265 after combined compile/static checks. SOW002 Heracross reconciled on current main: exact source/preservation/catch projections and combined compile PASS; source integration next, owner gameplay acceptance pending.461/712 unchanged.",
-  "main_sha": "20ae65d3e85f57c4868569ec036e7f87b0460651",
+  "current_focus": "PR265410-move source and PR254Heracross merged after combined builds/static preservation checks. Private PR258 r2 compiled with current main and252 follower artwork; owner gameplay acceptance pending. Build-only map flag dependency repair follows actual incremental linker failure. No emulator/CI dispatch or accepted points:461/712.",
+  "main_sha": "351932f8fe7c439b84a7c7fc555a914ba56b18e8",
   "drive_sync": {
     "status": "2026-11-10 WTH-001 and WRL-008 closeout PRs #170/#184 merged and verified; corresponding existing Google Drive Progress, START HERE and vendor register synchronized with definitive completion evidence.",
     "folder": "https://drive.google.com/drive/folders/1N_n0Ke48jBbdhUWSZWzwR6rpPFqpDUpl"
@@ -1568,7 +1568,7 @@
           "feature": "SOW-002 Viridian Forest Heracross",
           "pr": 254,
           "source_commit": "c984bee54b66f86f4e2b8db306fc17b417669b33",
-          "status": "current-main source checks and combined410-move compile PASS; owner runtime acceptance pending; no points"
+          "status": "Source merged main351932f8 through PR254; combined410-move compilation and source/catch-preservation checks PASS. Historical3505 native evidence retained; current owner runtime acceptance pending."
         }
       ]
     },
@@ -2829,13 +2829,13 @@
         "merge": "Follower implementation remains open; no acceptance or effort credit."
       },
       "branch": "integration/playtest004-pichu-sue-follower-private-build-20261116",
-      "commit": "e94cba8e9257e9e9c41bb0ee797c66d25f556b16",
+      "commit": "ca0de4a5c182019d408b8063fe892b018f588c18",
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/258",
       "ci_url": null,
       "blocker": "Owner runtime acceptance pending; permission upload no longer requested. EWRAM1076-byte headroom requires care for further engine growth.",
       "design_authority": "Lightning Yellow canonical Drive specialist registers and November 5 change intake",
-      "next_action": "Owner playtest private Playtest004 compiled from e94cba8e: follower selection/visibility,252 artwork,Shiny colors,Steelix,map transitions,party/PC/faint/revive. Record acceptance without inferring it from compilation.",
-      "checkpoint": "Private ROM compiled:16777216 bytes, SHA256 efb4aadb2c2d32eefc0033998454489c012d7f295d509dd6413e8f188afbf010. Artwork remains ignored locally; full evidence in PR258.",
+      "next_action": "Owner playtest updated private r2 ROM for252 followers,selection/party/PC/warps/Steelix/colors and410-move interactions. Preserve prior build for rollback; source remains open in PR258.",
+      "checkpoint": "Private Playtest004-r2 sourceca0de4a5 compiled:410 moves plus255 follower descriptors,765 pinned artwork inputs, SHA256 26e52c729d822de37e1c53c5136f38669ed8c5e79a94728c722a2eab4e330b47. No gameplay/emulator acceptance or points.",
       "spec_pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/52",
       "specification": "implementation/selectable-following-pokemon.md"
     },
