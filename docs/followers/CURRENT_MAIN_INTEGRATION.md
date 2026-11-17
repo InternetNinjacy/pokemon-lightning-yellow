@@ -140,7 +140,7 @@ Record the candidate hash and the last successful action for any failure.
   normal/Shiny palettes, Castform base appearance, Rain/Snow and crowded NPC
   maps. Complete visual review of all252 remains outstanding.
 
-## Next gates and rollback
+## Physical-device acceptance and rollback
 
 The modified-ROM Actions job now generates its ephemeral artwork from the exact
 765 pinned inputs, retains four pinned upstream credit texts, gates all255
@@ -160,7 +160,12 @@ Representative tiny/large/flying/water/shiny sprites and all-252 coverage need
 actual in-game inspection. Native fixtures remain available for a later
 explicitly authorized emulator-testing run, not a claimed result now.
 
-Keep PR54 draft/unmerged until the remaining gates are documented. Rollback is
+The owner's November17 physical-device testing delegation makes pending runtime
+acceptance a nonblocking engineering risk, rather than a reason to retain this
+PR as draft. Source/build scope may receive Codex engineering approval and proceed
+through a normal GitHub merge if server-side rules permit. No test is converted
+to PASS, no required check is bypassed, and runtime/release acceptance and points
+remain outstanding. Rollback is
 reverting the follower PR; no Pokémon/save-layout migration is required. Older
 builds ignore the reserved selection record. Do not erase party, PC or daycare
 records during rollback. All 50 permanent tasks and 461/712 earned accounting
