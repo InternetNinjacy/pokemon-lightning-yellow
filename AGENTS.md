@@ -369,3 +369,31 @@ build checks are permitted; never claim compilation proves gameplay acceptance.
 Do not disable assertions, checks, protection or security settings. Do not commit
 or publicly upload ROMs, generated artwork, BIOS, saves or credentials. Preserve
 461/712 accounting until accepted; missing designs are blockers, not inventions.
+
+
+## Physical-device playtesting delegation — 2026-11-17
+
+The owner will perform gameplay testing on a physical device and report defects.
+When pending testing is the ONLY remaining obstacle, Codex has explicit authority
+to give engineering approval and continue implementation/integration without
+waiting for another owner reply or runtime acceptance. This supersedes older
+blanket requirements in this file and historical reports to stop solely for
+playtesting, native emulator execution, or unrun CI testing. Source-ready approved
+features may proceed through normal reviewable PR merges under existing GitHub
+permissions and protections. No direct gameplay pushes to main.
+
+Retain appropriate source/build validation. Do not merge known broken code or
+invent missing gameplay specifications. Do not disable or alter tests, required
+checks, protections or security settings, and do not use an admin/bypass merge.
+If GitHub rejects an ordinary merge because a required check is missing, report
+that concrete external constraint and continue independent approved work.
+
+Continue to reserve actual gameplay/emulator tests and diagnostic workflow
+dispatch for the owner's physical-device playtest unless later instructed.
+Record NOT RUN / OWNER-DEFERRED honestly; engineering approval, merge, successful
+build and pending physical-device acceptance are distinct states. Never turn an
+unrun test into a PASS. This delegation does not award acceptance points: preserve
+all50 permanent task histories and461/712 accounting until explicit acceptance.
+Do not enable auto-merge, release ROMs, or commit/upload generated art, ROM/BIOS,
+saves, private correspondence or credentials. Preserve approved design, source
+provenance, notices, reproducible builds and rollback history.

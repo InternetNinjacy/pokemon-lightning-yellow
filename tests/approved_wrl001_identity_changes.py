@@ -5,6 +5,8 @@ from pathlib import Path
 
 
 def prior_wrl001_identity_source(path, text):
+    from approved_follower_changes import prior_follower_source
+    text=prior_follower_source(path,text)
     row = json.loads(Path('tests/specifications/wrl001_identity_delta.json').read_text())['files'].get(str(path))
     if row is None:
         return text

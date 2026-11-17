@@ -1125,6 +1125,7 @@ PalletTown_ProfessorOaksLab_EventScript_ChoseStarter::
 	waitmessage
 	playfanfare MUS_OBTAIN_KEY_ITEM
 	waitfanfare
+	call PalletTown_ProfessorOaksLab_EventScript_StarterFollowerEmergence
 	goto EventScript_GiveNicknameToStarter
 	end
 
@@ -1345,3 +1346,12 @@ PalletTown_ProfessorOaksLab_EventScript_NestBallsDone::
 PalletTown_ProfessorOaksLab_EventScript_NestBallsFull::
     msgbox Text_TooBadBagFull
     return
+
+@ One-time gift call only. Failed resource acquisition never blocks the story.
+PalletTown_ProfessorOaksLab_EventScript_StarterFollowerEmergence::
+	special ScriptSelectStarterPikachuFollower
+	specialvar VAR_RESULT, ScriptStartStarterFollowerEmergence
+	goto_if_eq VAR_RESULT, FALSE, PalletTown_ProfessorOaksLab_EventScript_StarterFollowerEmergenceEnd
+	waitstate
+PalletTown_ProfessorOaksLab_EventScript_StarterFollowerEmergenceEnd::
+	return

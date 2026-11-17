@@ -1,0 +1,3836 @@
+{
+  "schema_version": 1,
+  "source": "Kasenn/pokeemerald-expansion-kasen",
+  "pinned_commit": "cbe04a7a2ef645bee19d159876da074154ccf1f2",
+  "tree_sha": "cbe04a7a2ef645bee19d159876da074154ccf1f2",
+  "tree_truncated": false,
+  "method": "GitHub REST git trees recursive endpoint at exact pinned commit; verified complete tree and existing 252 PNG pins",
+  "entries_count": 765,
+  "entries": [
+    {
+      "path": "graphics/pokemon/bulbasaur/overworld.png",
+      "git_blob_sha1": "3eb99143e0f2b7e1df044b19374419c4a977b874",
+      "bytes": 722
+    },
+    {
+      "path": "graphics/pokemon/bulbasaur/overworld_normal.pal",
+      "git_blob_sha1": "1e893b858b860a7e44d566f34caa537f228b723b",
+      "bytes": 164
+    },
+    {
+      "path": "graphics/pokemon/bulbasaur/overworld_shiny.pal",
+      "git_blob_sha1": "cf17aebf6bf62ee7d1f4e3fd3c1fc47f29d8bb0e",
+      "bytes": 163
+    },
+    {
+      "path": "graphics/pokemon/ivysaur/overworld.png",
+      "git_blob_sha1": "03e9ca56fc3536136812f05251e8a45e84f04a5b",
+      "bytes": 838
+    },
+    {
+      "path": "graphics/pokemon/ivysaur/overworld_normal.pal",
+      "git_blob_sha1": "c1f09aeed63b61ac55c8b90371a357e6b7eac77c",
+      "bytes": 184
+    },
+    {
+      "path": "graphics/pokemon/ivysaur/overworld_shiny.pal",
+      "git_blob_sha1": "28a0371d2590f63db4199593cb938b04722f51a5",
+      "bytes": 178
+    },
+    {
+      "path": "graphics/pokemon/venusaur/overworld.png",
+      "git_blob_sha1": "7ae681a895e34976eaa87bb9970328a984eeb27b",
+      "bytes": 1002
+    },
+    {
+      "path": "graphics/pokemon/venusaur/overworld_normal.pal",
+      "git_blob_sha1": "19b75679eaedc2ef67d6801edf80e9027fd58203",
+      "bytes": 187
+    },
+    {
+      "path": "graphics/pokemon/venusaur/overworld_shiny.pal",
+      "git_blob_sha1": "0ca20763bd57b536a01ddbfb10cd1b6abb99e009",
+      "bytes": 183
+    },
+    {
+      "path": "graphics/pokemon/charmander/overworld.png",
+      "git_blob_sha1": "0767ffa89a216c22436098bd397ea01db082be91",
+      "bytes": 700
+    },
+    {
+      "path": "graphics/pokemon/charmander/overworld_normal.pal",
+      "git_blob_sha1": "4926f9a8bc526f4f2682d4506e4749688e25b9a4",
+      "bytes": 155
+    },
+    {
+      "path": "graphics/pokemon/charmander/overworld_shiny.pal",
+      "git_blob_sha1": "776dfabd59ee09793dc4cf15f47b6312ea1fbf58",
+      "bytes": 156
+    },
+    {
+      "path": "graphics/pokemon/charmeleon/overworld.png",
+      "git_blob_sha1": "810d66835630e0e5671525882453c6988344f756",
+      "bytes": 795
+    },
+    {
+      "path": "graphics/pokemon/charmeleon/overworld_normal.pal",
+      "git_blob_sha1": "47a74de14a55b9d6282f4e952db640f5fe8b05ee",
+      "bytes": 169
+    },
+    {
+      "path": "graphics/pokemon/charmeleon/overworld_shiny.pal",
+      "git_blob_sha1": "618bbe9b3cc16446c357463c19c41bd04022d19b",
+      "bytes": 170
+    },
+    {
+      "path": "graphics/pokemon/charizard/overworld.png",
+      "git_blob_sha1": "274e65ccf7188eb009620c61957f7a14dbc6a00f",
+      "bytes": 1303
+    },
+    {
+      "path": "graphics/pokemon/charizard/overworld_normal.pal",
+      "git_blob_sha1": "537b696731721a9fe8d022119a08ca3ad0533533",
+      "bytes": 176
+    },
+    {
+      "path": "graphics/pokemon/charizard/overworld_shiny.pal",
+      "git_blob_sha1": "0ec7fa25f520de8014d0eb64a826f0db69f136ce",
+      "bytes": 179
+    },
+    {
+      "path": "graphics/pokemon/squirtle/overworld.png",
+      "git_blob_sha1": "bbc5861ff123697e7f1835eea42c8cb1e6136ac6",
+      "bytes": 584
+    },
+    {
+      "path": "graphics/pokemon/squirtle/overworld_normal.pal",
+      "git_blob_sha1": "ed2ae724b8e19602279ee154fc2b1579b7e83e0a",
+      "bytes": 163
+    },
+    {
+      "path": "graphics/pokemon/squirtle/overworld_shiny.pal",
+      "git_blob_sha1": "95b812e82c3c367caa709c95f314859f7c757448",
+      "bytes": 165
+    },
+    {
+      "path": "graphics/pokemon/wartortle/overworld.png",
+      "git_blob_sha1": "53c5c24a05840e266e8f749cea5b391849e059da",
+      "bytes": 870
+    },
+    {
+      "path": "graphics/pokemon/wartortle/overworld_normal.pal",
+      "git_blob_sha1": "d421a7063e2501743f74adffc8bc772f3000db62",
+      "bytes": 170
+    },
+    {
+      "path": "graphics/pokemon/wartortle/overworld_shiny.pal",
+      "git_blob_sha1": "32dbf8ab5ca9f22b224d48517a4a814565c39aa5",
+      "bytes": 170
+    },
+    {
+      "path": "graphics/pokemon/blastoise/overworld.png",
+      "git_blob_sha1": "80d48304a68fbb9c894a5528444df39dba7d98f0",
+      "bytes": 1135
+    },
+    {
+      "path": "graphics/pokemon/blastoise/overworld_normal.pal",
+      "git_blob_sha1": "f86c7621ef5683eaa5d58cc43d20fbcdf1568e50",
+      "bytes": 178
+    },
+    {
+      "path": "graphics/pokemon/blastoise/overworld_shiny.pal",
+      "git_blob_sha1": "11143b11cb99e89a020df9d4198693f00abee1b4",
+      "bytes": 180
+    },
+    {
+      "path": "graphics/pokemon/caterpie/overworld.png",
+      "git_blob_sha1": "8c023b59d5255c8b28e44173571c73da1b086f04",
+      "bytes": 739
+    },
+    {
+      "path": "graphics/pokemon/caterpie/overworld_normal.pal",
+      "git_blob_sha1": "fc939ec4d4d1a67a6746c26899a93cf3d0e8360d",
+      "bytes": 159
+    },
+    {
+      "path": "graphics/pokemon/caterpie/overworld_shiny.pal",
+      "git_blob_sha1": "e013fd7cbb1c01f8e5c335bcc7c9761b67874f2e",
+      "bytes": 158
+    },
+    {
+      "path": "graphics/pokemon/metapod/overworld.png",
+      "git_blob_sha1": "1e1d363f8a9f92593ae4be4a3521b26e19dec921",
+      "bytes": 647
+    },
+    {
+      "path": "graphics/pokemon/metapod/overworld_normal.pal",
+      "git_blob_sha1": "c0903a0f6b4af43883186b31c870ced04d69b810",
+      "bytes": 144
+    },
+    {
+      "path": "graphics/pokemon/metapod/overworld_shiny.pal",
+      "git_blob_sha1": "a2eb3c155458fe17879f8c3ec10178c8276fc62f",
+      "bytes": 144
+    },
+    {
+      "path": "graphics/pokemon/butterfree/overworld.png",
+      "git_blob_sha1": "c29f337badf4912319c3e17c26923f16279cbe80",
+      "bytes": 1053
+    },
+    {
+      "path": "graphics/pokemon/butterfree/overworld_normal.pal",
+      "git_blob_sha1": "1ce5a15e5d707635d8efa842f544387afb3355ae",
+      "bytes": 179
+    },
+    {
+      "path": "graphics/pokemon/butterfree/overworld_shiny.pal",
+      "git_blob_sha1": "222adecce1f002cdc390a0541eb765b8b2b54f83",
+      "bytes": 178
+    },
+    {
+      "path": "graphics/pokemon/weedle/overworld.png",
+      "git_blob_sha1": "dd0679be626d0fa55b4f65ebd059331595845287",
+      "bytes": 538
+    },
+    {
+      "path": "graphics/pokemon/weedle/overworld_normal.pal",
+      "git_blob_sha1": "be7742350ce3a80645ba873adeb570d7c7e66e3f",
+      "bytes": 172
+    },
+    {
+      "path": "graphics/pokemon/weedle/overworld_shiny.pal",
+      "git_blob_sha1": "eb8ffc26db133338290f1c72454c72b667fee9ba",
+      "bytes": 174
+    },
+    {
+      "path": "graphics/pokemon/kakuna/overworld.png",
+      "git_blob_sha1": "327951e5c3ffdad9077aa3974a6cfd32cfdd0ea9",
+      "bytes": 646
+    },
+    {
+      "path": "graphics/pokemon/kakuna/overworld_normal.pal",
+      "git_blob_sha1": "8cdc6d8be9b0a6b28dff03bc18e8ec0e33666d28",
+      "bytes": 146
+    },
+    {
+      "path": "graphics/pokemon/kakuna/overworld_shiny.pal",
+      "git_blob_sha1": "5955987512b2ff7dc23acaa68185ebf678f60e89",
+      "bytes": 146
+    },
+    {
+      "path": "graphics/pokemon/beedrill/overworld.png",
+      "git_blob_sha1": "2c840cd2780f79d7e46a3a0e57a4244602b85b44",
+      "bytes": 993
+    },
+    {
+      "path": "graphics/pokemon/beedrill/overworld_normal.pal",
+      "git_blob_sha1": "68b54715f30dfb3dc51e41e57a612a7de90e5054",
+      "bytes": 158
+    },
+    {
+      "path": "graphics/pokemon/beedrill/overworld_shiny.pal",
+      "git_blob_sha1": "b876e92f0886d62f638f10ab85efcb6f23849341",
+      "bytes": 158
+    },
+    {
+      "path": "graphics/pokemon/pidgey/overworld.png",
+      "git_blob_sha1": "3cb825fe501a0b1908bdaa8de796dea764a909e7",
+      "bytes": 595
+    },
+    {
+      "path": "graphics/pokemon/pidgey/overworld_normal.pal",
+      "git_blob_sha1": "8b05a034ff3d7c691f72bb3209727b439370bb80",
+      "bytes": 164
+    },
+    {
+      "path": "graphics/pokemon/pidgey/overworld_shiny.pal",
+      "git_blob_sha1": "ef1db93a7a650aea38e1065bf729ef69ac7be61c",
+      "bytes": 163
+    },
+    {
+      "path": "graphics/pokemon/pidgeotto/overworld.png",
+      "git_blob_sha1": "af229ff1b34d57d1a3ba7f88fdaeee1d7e7668b6",
+      "bytes": 1046
+    },
+    {
+      "path": "graphics/pokemon/pidgeotto/overworld_normal.pal",
+      "git_blob_sha1": "efbf3d6d17d95263cc5c89f7e8874e842b3950d8",
+      "bytes": 175
+    },
+    {
+      "path": "graphics/pokemon/pidgeotto/overworld_shiny.pal",
+      "git_blob_sha1": "70e760e9da25c378d459a4819ef885ab65dd152e",
+      "bytes": 174
+    },
+    {
+      "path": "graphics/pokemon/pidgeot/overworld.png",
+      "git_blob_sha1": "a918b8ce1ae95938f9f4a521859ec4e83ae85c0e",
+      "bytes": 1335
+    },
+    {
+      "path": "graphics/pokemon/pidgeot/overworld_normal.pal",
+      "git_blob_sha1": "000c8125049d320fd36c1077b6f7b434c89ebe86",
+      "bytes": 188
+    },
+    {
+      "path": "graphics/pokemon/pidgeot/overworld_shiny.pal",
+      "git_blob_sha1": "fcbef2a8ad9098e450958639baf54358488fa207",
+      "bytes": 187
+    },
+    {
+      "path": "graphics/pokemon/rattata/overworld.png",
+      "git_blob_sha1": "b708b3862c9d221934d872d1954deb091b740006",
+      "bytes": 725
+    },
+    {
+      "path": "graphics/pokemon/rattata/overworld_normal.pal",
+      "git_blob_sha1": "2c8f5294d4287f425c68da390cea0c0823e19d0d",
+      "bytes": 166
+    },
+    {
+      "path": "graphics/pokemon/rattata/overworld_shiny.pal",
+      "git_blob_sha1": "8812ad877a0a068decf71331869eafa3637d0099",
+      "bytes": 167
+    },
+    {
+      "path": "graphics/pokemon/raticate/overworld.png",
+      "git_blob_sha1": "4ad2fd4be5e544c88828da5df5ec0c574119f620",
+      "bytes": 758
+    },
+    {
+      "path": "graphics/pokemon/raticate/overworld_normal.pal",
+      "git_blob_sha1": "bc5f7de1ee0c6eed83f36d4ac931bd5754180c2d",
+      "bytes": 160
+    },
+    {
+      "path": "graphics/pokemon/raticate/overworld_shiny.pal",
+      "git_blob_sha1": "abeb7d1f5837f16857c3839c72cce2717548551e",
+      "bytes": 160
+    },
+    {
+      "path": "graphics/pokemon/spearow/overworld.png",
+      "git_blob_sha1": "f6f2039aabe1cf6f509746f88e7d8ca5d0bee693",
+      "bytes": 665
+    },
+    {
+      "path": "graphics/pokemon/spearow/overworld_normal.pal",
+      "git_blob_sha1": "dd5a891a7190ee85a1a11dc71c00734da3518bc5",
+      "bytes": 175
+    },
+    {
+      "path": "graphics/pokemon/spearow/overworld_shiny.pal",
+      "git_blob_sha1": "d38bddb6510dc4b13c903772b05929ecda17332f",
+      "bytes": 174
+    },
+    {
+      "path": "graphics/pokemon/fearow/overworld.png",
+      "git_blob_sha1": "ef6825b1c5647c1eb3609e7a8f3b74f7ab6b486c",
+      "bytes": 1257
+    },
+    {
+      "path": "graphics/pokemon/fearow/overworld_normal.pal",
+      "git_blob_sha1": "9bb484e708bb492483634b34d413bdfcd8ea1e5c",
+      "bytes": 180
+    },
+    {
+      "path": "graphics/pokemon/fearow/overworld_shiny.pal",
+      "git_blob_sha1": "fbd9f3c707159cb6aca707eadc018239a71c1889",
+      "bytes": 179
+    },
+    {
+      "path": "graphics/pokemon/ekans/overworld.png",
+      "git_blob_sha1": "d592065d67c97247b115fb6b73cd58a076cb3f5a",
+      "bytes": 792
+    },
+    {
+      "path": "graphics/pokemon/ekans/overworld_normal.pal",
+      "git_blob_sha1": "460fe3d3dc38a65233da9a1c3f0c4783989a342a",
+      "bytes": 153
+    },
+    {
+      "path": "graphics/pokemon/ekans/overworld_shiny.pal",
+      "git_blob_sha1": "a7c3c199eb70f229fa1687e4a2a39b31babe4d60",
+      "bytes": 153
+    },
+    {
+      "path": "graphics/pokemon/arbok/overworld.png",
+      "git_blob_sha1": "e639051e86186ad7525fdebe10a74eb198a1c3a5",
+      "bytes": 908
+    },
+    {
+      "path": "graphics/pokemon/arbok/overworld_normal.pal",
+      "git_blob_sha1": "0dd2215e03c89d26485e5a1e4d580b02a909a7c7",
+      "bytes": 151
+    },
+    {
+      "path": "graphics/pokemon/arbok/overworld_shiny.pal",
+      "git_blob_sha1": "cf52ee55506b2efd11a5f06dee280f8d2d0a8e0a",
+      "bytes": 151
+    },
+    {
+      "path": "graphics/pokemon/pichu/overworld.png",
+      "git_blob_sha1": "6384dc22517aab7e73e2dccaa9c4657f31ef4b7d",
+      "bytes": 635
+    },
+    {
+      "path": "graphics/pokemon/pichu/overworld_normal.pal",
+      "git_blob_sha1": "6c8a5df97879be2231d71d7e8cf0a9027320ac65",
+      "bytes": 164
+    },
+    {
+      "path": "graphics/pokemon/pichu/overworld_shiny.pal",
+      "git_blob_sha1": "7738ce634c183b4222c73a938e72fea0211781b3",
+      "bytes": 155
+    },
+    {
+      "path": "graphics/pokemon/pikachu/overworld.png",
+      "git_blob_sha1": "c1389cdce3241c39b5b50668a585838157db8b11",
+      "bytes": 713
+    },
+    {
+      "path": "graphics/pokemon/pikachu/overworld_normal.pal",
+      "git_blob_sha1": "36deaad99d353723d3db014947d7eba37e667502",
+      "bytes": 155
+    },
+    {
+      "path": "graphics/pokemon/pikachu/overworld_shiny.pal",
+      "git_blob_sha1": "f62dd068ce6880ab5ae2c68de55a7102d34b5100",
+      "bytes": 154
+    },
+    {
+      "path": "graphics/pokemon/raichu/overworld.png",
+      "git_blob_sha1": "19f6f277939f41b049e7cd9e494b563dcfa5164b",
+      "bytes": 1034
+    },
+    {
+      "path": "graphics/pokemon/raichu/overworld_normal.pal",
+      "git_blob_sha1": "28ccb30b24d7d71ff9bbcbbfa2376a628b0f7df0",
+      "bytes": 176
+    },
+    {
+      "path": "graphics/pokemon/raichu/overworld_shiny.pal",
+      "git_blob_sha1": "38bc7a623eeae1225c32db46c4ab09b1fc12a8b2",
+      "bytes": 179
+    },
+    {
+      "path": "graphics/pokemon/sandshrew/overworld.png",
+      "git_blob_sha1": "cc4652b276b512a4d93b401b1c60c1e4c1810a4d",
+      "bytes": 676
+    },
+    {
+      "path": "graphics/pokemon/sandshrew/overworld_normal.pal",
+      "git_blob_sha1": "f6548e6301730d74edd65d433d11499db3e8ebae",
+      "bytes": 165
+    },
+    {
+      "path": "graphics/pokemon/sandshrew/overworld_shiny.pal",
+      "git_blob_sha1": "25eadc3f708bd2341d56eb694325460e3edddf75",
+      "bytes": 164
+    },
+    {
+      "path": "graphics/pokemon/sandslash/overworld.png",
+      "git_blob_sha1": "efe541d2ada9e16657f05ba821d2f77f2f3dce0b",
+      "bytes": 897
+    },
+    {
+      "path": "graphics/pokemon/sandslash/overworld_normal.pal",
+      "git_blob_sha1": "72ee2e31ef004e482b7c386b2bf50763462cc370",
+      "bytes": 184
+    },
+    {
+      "path": "graphics/pokemon/sandslash/overworld_shiny.pal",
+      "git_blob_sha1": "b78acc2d4e70060e0e7daffc8ed10cccc81b2c61",
+      "bytes": 180
+    },
+    {
+      "path": "graphics/pokemon/nidoran_f/overworld.png",
+      "git_blob_sha1": "a9657b4c57540f627cab5bd4cb7581888a2be43c",
+      "bytes": 659
+    },
+    {
+      "path": "graphics/pokemon/nidoran_f/overworld_normal.pal",
+      "git_blob_sha1": "a16477056b971261209107bc8a0af54e470e3ff8",
+      "bytes": 175
+    },
+    {
+      "path": "graphics/pokemon/nidoran_f/overworld_shiny.pal",
+      "git_blob_sha1": "56a71febd0c0c8af63e0f0ee0147af0133bcfd5d",
+      "bytes": 175
+    },
+    {
+      "path": "graphics/pokemon/nidorina/overworld.png",
+      "git_blob_sha1": "9fc5626cafe3ebb5bd30d02397a49e2aa8ead59f",
+      "bytes": 833
+    },
+    {
+      "path": "graphics/pokemon/nidorina/overworld_normal.pal",
+      "git_blob_sha1": "96baf3c7e74db848f357553f3f9196caab08bed8",
+      "bytes": 171
+    },
+    {
+      "path": "graphics/pokemon/nidorina/overworld_shiny.pal",
+      "git_blob_sha1": "6a5df389b3263ee8299555178d46d4d4cb1282c4",
+      "bytes": 170
+    },
+    {
+      "path": "graphics/pokemon/nidoqueen/overworld.png",
+      "git_blob_sha1": "e6792eb29522dfef53169b1ac42503263f6a6229",
+      "bytes": 996
+    },
+    {
+      "path": "graphics/pokemon/nidoqueen/overworld_normal.pal",
+      "git_blob_sha1": "126361ae602af682ac35c49f44b75ad6ea76b21a",
+      "bytes": 173
+    },
+    {
+      "path": "graphics/pokemon/nidoqueen/overworld_shiny.pal",
+      "git_blob_sha1": "09a3d2ba8d24578206ab60931d1064ef5c6ef33a",
+      "bytes": 170
+    },
+    {
+      "path": "graphics/pokemon/nidoran_m/overworld.png",
+      "git_blob_sha1": "f03fdfe7ded911864ffe3621b0258e9d97a1516d",
+      "bytes": 687
+    },
+    {
+      "path": "graphics/pokemon/nidoran_m/overworld_normal.pal",
+      "git_blob_sha1": "9b5d39aa5a87678c6668c3c4398bfc6cdcb151e8",
+      "bytes": 169
+    },
+    {
+      "path": "graphics/pokemon/nidoran_m/overworld_shiny.pal",
+      "git_blob_sha1": "7f0f15d9ee4f4b861abe2673f83d3df3311c2ad6",
+      "bytes": 166
+    },
+    {
+      "path": "graphics/pokemon/nidorino/overworld.png",
+      "git_blob_sha1": "a79e2a3aaf99e085d5fd833c1ddfa859a7a3e74a",
+      "bytes": 860
+    },
+    {
+      "path": "graphics/pokemon/nidorino/overworld_normal.pal",
+      "git_blob_sha1": "18f4ee815f015b4e6c296f54387ffa9853fb5915",
+      "bytes": 164
+    },
+    {
+      "path": "graphics/pokemon/nidorino/overworld_shiny.pal",
+      "git_blob_sha1": "d7555a29908cebc88d678dd78d8d238c1a7bc9d3",
+      "bytes": 161
+    },
+    {
+      "path": "graphics/pokemon/nidoking/overworld.png",
+      "git_blob_sha1": "9755872d50129f1b1036e5a74f12423137040ca6",
+      "bytes": 981
+    },
+    {
+      "path": "graphics/pokemon/nidoking/overworld_normal.pal",
+      "git_blob_sha1": "7ece70c16abcfa606de69bff7c1d8b3393eaeb36",
+      "bytes": 183
+    },
+    {
+      "path": "graphics/pokemon/nidoking/overworld_shiny.pal",
+      "git_blob_sha1": "05bc10e756f5c55fb639bc49b9df6f98d73a972f",
+      "bytes": 178
+    },
+    {
+      "path": "graphics/pokemon/cleffa/overworld.png",
+      "git_blob_sha1": "76c754fb44ab98323aa487b4bc79dc2263cfced5",
+      "bytes": 619
+    },
+    {
+      "path": "graphics/pokemon/cleffa/overworld_normal.pal",
+      "git_blob_sha1": "a8e2c0ada64ebd9fc38f3a684003b6c0aa4bf608",
+      "bytes": 161
+    },
+    {
+      "path": "graphics/pokemon/cleffa/overworld_shiny.pal",
+      "git_blob_sha1": "598cce7acedbcdcde39214ad3488307245b7d988",
+      "bytes": 165
+    },
+    {
+      "path": "graphics/pokemon/clefairy/overworld.png",
+      "git_blob_sha1": "92487e3fea8bc449b980ebfdd2439c31cd1f9eaa",
+      "bytes": 653
+    },
+    {
+      "path": "graphics/pokemon/clefairy/overworld_normal.pal",
+      "git_blob_sha1": "9da22f51ac3e3eaa3727ac98863d4c94f4c05b4d",
+      "bytes": 154
+    },
+    {
+      "path": "graphics/pokemon/clefairy/overworld_shiny.pal",
+      "git_blob_sha1": "e47b5bc8d76a97066c96335394603c37d8402651",
+      "bytes": 155
+    },
+    {
+      "path": "graphics/pokemon/clefable/overworld.png",
+      "git_blob_sha1": "90b47b2a5a92b9a075b969d2cffd795ba53ef49e",
+      "bytes": 819
+    },
+    {
+      "path": "graphics/pokemon/clefable/overworld_normal.pal",
+      "git_blob_sha1": "4aee1f611b3fce83a9adbc571314e8f2181d629d",
+      "bytes": 159
+    },
+    {
+      "path": "graphics/pokemon/clefable/overworld_shiny.pal",
+      "git_blob_sha1": "5ce44f0909076b7c6f7242580baeb19bb7db2d45",
+      "bytes": 161
+    },
+    {
+      "path": "graphics/pokemon/vulpix/overworld.png",
+      "git_blob_sha1": "e8db777a00507c8c66d57780d929fe8e53b34935",
+      "bytes": 818
+    },
+    {
+      "path": "graphics/pokemon/vulpix/overworld_normal.pal",
+      "git_blob_sha1": "6b9a00fded3d4847533baa735657a7ae8746b648",
+      "bytes": 163
+    },
+    {
+      "path": "graphics/pokemon/vulpix/overworld_shiny.pal",
+      "git_blob_sha1": "634302db6f2819aa11ecd943b95f8fd11f980c74",
+      "bytes": 167
+    },
+    {
+      "path": "graphics/pokemon/ninetales/overworld.png",
+      "git_blob_sha1": "4c9deb6873b3fac8820a3b766df0e3ff0599dec1",
+      "bytes": 984
+    },
+    {
+      "path": "graphics/pokemon/ninetales/overworld_normal.pal",
+      "git_blob_sha1": "577135efc5eb345bddf2a267682a2e9a608bd8ea",
+      "bytes": 158
+    },
+    {
+      "path": "graphics/pokemon/ninetales/overworld_shiny.pal",
+      "git_blob_sha1": "ef406e51160703c0e5371fbb5b2240200f82a0ed",
+      "bytes": 161
+    },
+    {
+      "path": "graphics/pokemon/igglybuff/overworld.png",
+      "git_blob_sha1": "ab5af8ee16e16d6e8446965863c368ca0368af96",
+      "bytes": 614
+    },
+    {
+      "path": "graphics/pokemon/igglybuff/overworld_normal.pal",
+      "git_blob_sha1": "9d3a3a4ebc22c2eb5351559a56d0e80b8590aa69",
+      "bytes": 160
+    },
+    {
+      "path": "graphics/pokemon/igglybuff/overworld_shiny.pal",
+      "git_blob_sha1": "d9e101639e09ac4ead75808cf397f3747267ffc7",
+      "bytes": 161
+    },
+    {
+      "path": "graphics/pokemon/jigglypuff/overworld.png",
+      "git_blob_sha1": "7da20e473409f714120841e877deb0b62f7c1705",
+      "bytes": 639
+    },
+    {
+      "path": "graphics/pokemon/jigglypuff/overworld_normal.pal",
+      "git_blob_sha1": "ff0e5bdb50852437f63dcce405d60ae8c8f43077",
+      "bytes": 157
+    },
+    {
+      "path": "graphics/pokemon/jigglypuff/overworld_shiny.pal",
+      "git_blob_sha1": "7567d53695a0627e3ccff03c9887f5d18d4403f3",
+      "bytes": 156
+    },
+    {
+      "path": "graphics/pokemon/wigglytuff/overworld.png",
+      "git_blob_sha1": "c89239412b1bfeb0e5c2a2e1574101154ff52c82",
+      "bytes": 756
+    },
+    {
+      "path": "graphics/pokemon/wigglytuff/overworld_normal.pal",
+      "git_blob_sha1": "a04a0b9f2ebef1657b74a1bb22040614c6f94d8a",
+      "bytes": 160
+    },
+    {
+      "path": "graphics/pokemon/wigglytuff/overworld_shiny.pal",
+      "git_blob_sha1": "6a51c7dcd6df4f40bbd9421097d8d1d8e3f5b4ea",
+      "bytes": 159
+    },
+    {
+      "path": "graphics/pokemon/zubat/overworld.png",
+      "git_blob_sha1": "3b51b35c6ccdbdae18e7b2e0c49e9e7d1a117460",
+      "bytes": 772
+    },
+    {
+      "path": "graphics/pokemon/zubat/overworld_normal.pal",
+      "git_blob_sha1": "96f060973c8d814401affa1e121c86fcdb5e2429",
+      "bytes": 147
+    },
+    {
+      "path": "graphics/pokemon/zubat/overworld_shiny.pal",
+      "git_blob_sha1": "59cd81a4a9fa58bdf0cb1b1a2c50abe060d178f3",
+      "bytes": 149
+    },
+    {
+      "path": "graphics/pokemon/golbat/overworld.png",
+      "git_blob_sha1": "9ec0ecc2d8e72dc644e47fdb8f0659771a3b26e9",
+      "bytes": 990
+    },
+    {
+      "path": "graphics/pokemon/golbat/overworld_normal.pal",
+      "git_blob_sha1": "cd9ef090691d0ca3bf72a15f54527ec487606d7b",
+      "bytes": 164
+    },
+    {
+      "path": "graphics/pokemon/golbat/overworld_shiny.pal",
+      "git_blob_sha1": "ebc603b29b891688fcdc18267af886c529d3c6a0",
+      "bytes": 167
+    },
+    {
+      "path": "graphics/pokemon/crobat/overworld.png",
+      "git_blob_sha1": "28add5ba23cad0af04eb10ddcb8ca0ecc4d09b41",
+      "bytes": 1148
+    },
+    {
+      "path": "graphics/pokemon/crobat/overworld_normal.pal",
+      "git_blob_sha1": "1fe057d5614f7dfad0418f0bea02c63c7219c32e",
+      "bytes": 164
+    },
+    {
+      "path": "graphics/pokemon/crobat/overworld_shiny.pal",
+      "git_blob_sha1": "bf03b689ca64e503e3f912856a80f1fed9310407",
+      "bytes": 163
+    },
+    {
+      "path": "graphics/pokemon/oddish/overworld.png",
+      "git_blob_sha1": "30d68bfe9f30a7eb88e16c868f57b3a076faaef5",
+      "bytes": 556
+    },
+    {
+      "path": "graphics/pokemon/oddish/overworld_normal.pal",
+      "git_blob_sha1": "929feadb480e690bdf67ef2b7088b3af531f5c8e",
+      "bytes": 147
+    },
+    {
+      "path": "graphics/pokemon/oddish/overworld_shiny.pal",
+      "git_blob_sha1": "14a0ae3eadf1f938892791ae821013a2764c7f12",
+      "bytes": 147
+    },
+    {
+      "path": "graphics/pokemon/gloom/overworld.png",
+      "git_blob_sha1": "349429731a0a9d84860dc78e3d00577801fb9c00",
+      "bytes": 700
+    },
+    {
+      "path": "graphics/pokemon/gloom/overworld_normal.pal",
+      "git_blob_sha1": "d519e23b1ca88f429c917f884b7ce20d0b871fde",
+      "bytes": 170
+    },
+    {
+      "path": "graphics/pokemon/gloom/overworld_shiny.pal",
+      "git_blob_sha1": "1bef80553895ac9bc6fe1d7b9387441fc85620a8",
+      "bytes": 170
+    },
+    {
+      "path": "graphics/pokemon/vileplume/overworld.png",
+      "git_blob_sha1": "8d9728feffb73eb24f8b695afff10eb7f5b2b63f",
+      "bytes": 780
+    },
+    {
+      "path": "graphics/pokemon/vileplume/overworld_normal.pal",
+      "git_blob_sha1": "f803547b53fbdc6315e742d99375a7a514959975",
+      "bytes": 160
+    },
+    {
+      "path": "graphics/pokemon/vileplume/overworld_shiny.pal",
+      "git_blob_sha1": "7ed5503f4ad89d0e297af9c768ba7f200e8f2211",
+      "bytes": 159
+    },
+    {
+      "path": "graphics/pokemon/bellossom/overworld.png",
+      "git_blob_sha1": "dc57c73f18a0b15a4ca622493ad054aff865696b",
+      "bytes": 863
+    },
+    {
+      "path": "graphics/pokemon/bellossom/overworld_normal.pal",
+      "git_blob_sha1": "466de3fca1a4bb10be33fb17aa8fd7cd61dbf026",
+      "bytes": 172
+    },
+    {
+      "path": "graphics/pokemon/bellossom/overworld_shiny.pal",
+      "git_blob_sha1": "25df85d13e9148bc3ba30acb984c6b461d3eb1ed",
+      "bytes": 177
+    },
+    {
+      "path": "graphics/pokemon/paras/overworld.png",
+      "git_blob_sha1": "d3e8f893e751bcb43fb59dce6731c29af1c42db2",
+      "bytes": 785
+    },
+    {
+      "path": "graphics/pokemon/paras/overworld_normal.pal",
+      "git_blob_sha1": "89076990a5b0ba4d47532722eaba8726703143d7",
+      "bytes": 163
+    },
+    {
+      "path": "graphics/pokemon/paras/overworld_shiny.pal",
+      "git_blob_sha1": "d2aeb4b21c45ae6c843514dafbe89047bb4ce158",
+      "bytes": 162
+    },
+    {
+      "path": "graphics/pokemon/parasect/overworld.png",
+      "git_blob_sha1": "78cd7da4ec4d7917079d50e3a031cc38c636e31b",
+      "bytes": 929
+    },
+    {
+      "path": "graphics/pokemon/parasect/overworld_normal.pal",
+      "git_blob_sha1": "b93ab4303f1ee7c23d0e966be541e536eba36d14",
+      "bytes": 162
+    },
+    {
+      "path": "graphics/pokemon/parasect/overworld_shiny.pal",
+      "git_blob_sha1": "8d6d542b4053acdf6c632a5b8731cd0913ae5897",
+      "bytes": 164
+    },
+    {
+      "path": "graphics/pokemon/venonat/overworld.png",
+      "git_blob_sha1": "d872137dbf352ab42ee59598c84df5d61a82880b",
+      "bytes": 759
+    },
+    {
+      "path": "graphics/pokemon/venonat/overworld_normal.pal",
+      "git_blob_sha1": "d88c0e21b29609308200fd465b978fed1d1fffcb",
+      "bytes": 188
+    },
+    {
+      "path": "graphics/pokemon/venonat/overworld_shiny.pal",
+      "git_blob_sha1": "7d8d9dec20036e7dd24fd8b21928d0a5f994a72d",
+      "bytes": 188
+    },
+    {
+      "path": "graphics/pokemon/venomoth/overworld.png",
+      "git_blob_sha1": "69c7ae22eb5136111840252357e3b277b41ac9fb",
+      "bytes": 1224
+    },
+    {
+      "path": "graphics/pokemon/venomoth/overworld_normal.pal",
+      "git_blob_sha1": "81d74a59b965ed93e7cdfd35773374ba422b3bd3",
+      "bytes": 174
+    },
+    {
+      "path": "graphics/pokemon/venomoth/overworld_shiny.pal",
+      "git_blob_sha1": "954f2a52324ceea4651eed99abd0c6323aa534f4",
+      "bytes": 175
+    },
+    {
+      "path": "graphics/pokemon/diglett/overworld.png",
+      "git_blob_sha1": "e1dd33f63ec3ae5939ef2902c51f80005d52bf31",
+      "bytes": 643
+    },
+    {
+      "path": "graphics/pokemon/diglett/overworld_normal.pal",
+      "git_blob_sha1": "ed1417709e1c82aa39ed904af3d33893ca1ad503",
+      "bytes": 170
+    },
+    {
+      "path": "graphics/pokemon/diglett/overworld_shiny.pal",
+      "git_blob_sha1": "f93b4caa0759c38c23bad13dd64f22864059d588",
+      "bytes": 169
+    },
+    {
+      "path": "graphics/pokemon/dugtrio/overworld.png",
+      "git_blob_sha1": "997c8b5f7e06f72ac396755dd770cedf5c657a21",
+      "bytes": 936
+    },
+    {
+      "path": "graphics/pokemon/dugtrio/overworld_normal.pal",
+      "git_blob_sha1": "487bcf3ac0cdc4efc8a0313a7e7b75a6cb066eba",
+      "bytes": 176
+    },
+    {
+      "path": "graphics/pokemon/dugtrio/overworld_shiny.pal",
+      "git_blob_sha1": "a11109d5e7a71902ec44c82e69d6375993fcc378",
+      "bytes": 174
+    },
+    {
+      "path": "graphics/pokemon/meowth/overworld.png",
+      "git_blob_sha1": "4961e2ce85f43748baa63eb65cf56908c6c25e03",
+      "bytes": 869
+    },
+    {
+      "path": "graphics/pokemon/meowth/overworld_normal.pal",
+      "git_blob_sha1": "cc95ce267c33b34e4043dc6914224fef3ef63cd4",
+      "bytes": 173
+    },
+    {
+      "path": "graphics/pokemon/meowth/overworld_shiny.pal",
+      "git_blob_sha1": "b73f08732fd8b1d1077a2a11ee9a9ba05e797a03",
+      "bytes": 176
+    },
+    {
+      "path": "graphics/pokemon/persian/overworld.png",
+      "git_blob_sha1": "5d4af3cc5e173057e2cacc0839164bd9236f8fbe",
+      "bytes": 911
+    },
+    {
+      "path": "graphics/pokemon/persian/overworld_normal.pal",
+      "git_blob_sha1": "cb528441bf3851fa7ae92d2be1c38b6cd2ae723e",
+      "bytes": 167
+    },
+    {
+      "path": "graphics/pokemon/persian/overworld_shiny.pal",
+      "git_blob_sha1": "579e732fea27c798259fe8b38d7b33bc16b11451",
+      "bytes": 167
+    },
+    {
+      "path": "graphics/pokemon/psyduck/overworld.png",
+      "git_blob_sha1": "5544c1942c5b228bbb81787a86649fe90268eb24",
+      "bytes": 682
+    },
+    {
+      "path": "graphics/pokemon/psyduck/overworld_normal.pal",
+      "git_blob_sha1": "95885505d7d1c063692810ac55f132988d1425e8",
+      "bytes": 157
+    },
+    {
+      "path": "graphics/pokemon/psyduck/overworld_shiny.pal",
+      "git_blob_sha1": "e4543a27ae8366af2028024f1d9d9c8496d47f90",
+      "bytes": 158
+    },
+    {
+      "path": "graphics/pokemon/golduck/overworld.png",
+      "git_blob_sha1": "4eccae74c417aaa3876389539f31f66325304a05",
+      "bytes": 803
+    },
+    {
+      "path": "graphics/pokemon/golduck/overworld_normal.pal",
+      "git_blob_sha1": "ffe2669450363d86a138f56bd9adfc95576cfed5",
+      "bytes": 172
+    },
+    {
+      "path": "graphics/pokemon/golduck/overworld_shiny.pal",
+      "git_blob_sha1": "fa8c9b31c522eb9146d8e0ed9ade75366f5e1652",
+      "bytes": 173
+    },
+    {
+      "path": "graphics/pokemon/mankey/overworld.png",
+      "git_blob_sha1": "cc6f9ba54ee591ab1c3bf2ea322ee92f4c14a04c",
+      "bytes": 811
+    },
+    {
+      "path": "graphics/pokemon/mankey/overworld_normal.pal",
+      "git_blob_sha1": "3a603bc91058e0fc37eafdfff2daa90edfbed483",
+      "bytes": 181
+    },
+    {
+      "path": "graphics/pokemon/mankey/overworld_shiny.pal",
+      "git_blob_sha1": "57a55b3e92fb638d4f735d51450cdef4bb3aae51",
+      "bytes": 181
+    },
+    {
+      "path": "graphics/pokemon/primeape/overworld.png",
+      "git_blob_sha1": "16fec225f61fdc93ad159d4a9446f0b1383de6d8",
+      "bytes": 975
+    },
+    {
+      "path": "graphics/pokemon/primeape/overworld_normal.pal",
+      "git_blob_sha1": "05a7d68a5b167a3da560fc215d262013f50fab8c",
+      "bytes": 183
+    },
+    {
+      "path": "graphics/pokemon/primeape/overworld_shiny.pal",
+      "git_blob_sha1": "6d10d495dcc0bcfade1c4bf8a9c1935ad2652c68",
+      "bytes": 182
+    },
+    {
+      "path": "graphics/pokemon/growlithe/overworld.png",
+      "git_blob_sha1": "76265d1687426f258f05f8d183c9203c1974f526",
+      "bytes": 820
+    },
+    {
+      "path": "graphics/pokemon/growlithe/overworld_normal.pal",
+      "git_blob_sha1": "8c0ab3d8bc3e1cf7a9861daf2e1b1ea501264f17",
+      "bytes": 165
+    },
+    {
+      "path": "graphics/pokemon/growlithe/overworld_shiny.pal",
+      "git_blob_sha1": "0745fb2a999f0bda822523038c28aed5f3b737ae",
+      "bytes": 167
+    },
+    {
+      "path": "graphics/pokemon/arcanine/overworld.png",
+      "git_blob_sha1": "31eef58c1b3829f573512b9e70b937702b173dc2",
+      "bytes": 1194
+    },
+    {
+      "path": "graphics/pokemon/arcanine/overworld_normal.pal",
+      "git_blob_sha1": "e093b2e2bceed2d3352cd574536ca8a31019f0a9",
+      "bytes": 169
+    },
+    {
+      "path": "graphics/pokemon/arcanine/overworld_shiny.pal",
+      "git_blob_sha1": "779b10b4aa65d5e1005e063344a1c345093b993f",
+      "bytes": 171
+    },
+    {
+      "path": "graphics/pokemon/poliwag/overworld.png",
+      "git_blob_sha1": "217c3aa99815c52f834b006560c5d3bcb2f90a09",
+      "bytes": 688
+    },
+    {
+      "path": "graphics/pokemon/poliwag/overworld_normal.pal",
+      "git_blob_sha1": "34df16304cea2db6f6cb158e55d64294326e70b6",
+      "bytes": 176
+    },
+    {
+      "path": "graphics/pokemon/poliwag/overworld_shiny.pal",
+      "git_blob_sha1": "4606909696cc5119f73e440068e36f9aa596e770",
+      "bytes": 177
+    },
+    {
+      "path": "graphics/pokemon/poliwhirl/overworld.png",
+      "git_blob_sha1": "6600795f055d86b9fe61ba41c2a8d81f3587a9de",
+      "bytes": 743
+    },
+    {
+      "path": "graphics/pokemon/poliwhirl/overworld_normal.pal",
+      "git_blob_sha1": "b58c05f41697e3e67388bab41d99d001b62eb2d8",
+      "bytes": 160
+    },
+    {
+      "path": "graphics/pokemon/poliwhirl/overworld_shiny.pal",
+      "git_blob_sha1": "0078e3a56a7d47b6632bd8d390aff597f82534e6",
+      "bytes": 161
+    },
+    {
+      "path": "graphics/pokemon/poliwrath/overworld.png",
+      "git_blob_sha1": "144d1194686d1cc62f240d5f4c377d23fc254b9a",
+      "bytes": 903
+    },
+    {
+      "path": "graphics/pokemon/poliwrath/overworld_normal.pal",
+      "git_blob_sha1": "fe70d0036ed0735990e877f2acf444b0cf478e16",
+      "bytes": 162
+    },
+    {
+      "path": "graphics/pokemon/poliwrath/overworld_shiny.pal",
+      "git_blob_sha1": "be550c3110267ae6bd3d4a5aed83cd368dc5029a",
+      "bytes": 163
+    },
+    {
+      "path": "graphics/pokemon/politoed/overworld.png",
+      "git_blob_sha1": "aadde5b61471b7ffc29a1602c3007223559e03a2",
+      "bytes": 968
+    },
+    {
+      "path": "graphics/pokemon/politoed/overworld_normal.pal",
+      "git_blob_sha1": "e7b45a11d748673c95252dd3c200a082b1d6ef8f",
+      "bytes": 186
+    },
+    {
+      "path": "graphics/pokemon/politoed/overworld_shiny.pal",
+      "git_blob_sha1": "08604be146eb1b2df42dadefff8105e783ca311f",
+      "bytes": 190
+    },
+    {
+      "path": "graphics/pokemon/abra/overworld.png",
+      "git_blob_sha1": "d1bbbae17cee26f44056f0bff46f3d497a5306f6",
+      "bytes": 671
+    },
+    {
+      "path": "graphics/pokemon/abra/overworld_normal.pal",
+      "git_blob_sha1": "15a18286c03c1e2a8f80543cdd75bd66f278767c",
+      "bytes": 141
+    },
+    {
+      "path": "graphics/pokemon/abra/overworld_shiny.pal",
+      "git_blob_sha1": "7c7f962e4c55f260259f4cb7961d1b083bee5b0d",
+      "bytes": 145
+    },
+    {
+      "path": "graphics/pokemon/kadabra/overworld.png",
+      "git_blob_sha1": "99b95ad6abdb99185c0b4815a887ee8f5de8e8d6",
+      "bytes": 930
+    },
+    {
+      "path": "graphics/pokemon/kadabra/overworld_normal.pal",
+      "git_blob_sha1": "cc955b59a3c64668f6e6d3ef0d1943498f936b05",
+      "bytes": 175
+    },
+    {
+      "path": "graphics/pokemon/kadabra/overworld_shiny.pal",
+      "git_blob_sha1": "cd209cc4b60b0036f3c72d136664c558bdd34496",
+      "bytes": 181
+    },
+    {
+      "path": "graphics/pokemon/alakazam/overworld.png",
+      "git_blob_sha1": "31b59e0fb5311f63e3ec4347f21857320db02954",
+      "bytes": 963
+    },
+    {
+      "path": "graphics/pokemon/alakazam/overworld_normal.pal",
+      "git_blob_sha1": "2a496932872af2574ec5aebf92abda538de7880c",
+      "bytes": 164
+    },
+    {
+      "path": "graphics/pokemon/alakazam/overworld_shiny.pal",
+      "git_blob_sha1": "12277196af3c35fd8c2c79bb591f243f39e90a3e",
+      "bytes": 163
+    },
+    {
+      "path": "graphics/pokemon/machop/overworld.png",
+      "git_blob_sha1": "d4692e70c1348d26416ade8e9857bccd35b9d17b",
+      "bytes": 627
+    },
+    {
+      "path": "graphics/pokemon/machop/overworld_normal.pal",
+      "git_blob_sha1": "26eb0ad6144e336d634db4faf733a7646087b07a",
+      "bytes": 160
+    },
+    {
+      "path": "graphics/pokemon/machop/overworld_shiny.pal",
+      "git_blob_sha1": "01e6fea80d86f8a8f339123803a8f5e271445257",
+      "bytes": 158
+    },
+    {
+      "path": "graphics/pokemon/machoke/overworld.png",
+      "git_blob_sha1": "76579aa262267c1c1b491421b3efcbb8341d9674",
+      "bytes": 853
+    },
+    {
+      "path": "graphics/pokemon/machoke/overworld_normal.pal",
+      "git_blob_sha1": "ca64380358af5f27f0f146d3b101b740a9307693",
+      "bytes": 178
+    },
+    {
+      "path": "graphics/pokemon/machoke/overworld_shiny.pal",
+      "git_blob_sha1": "e45567a3572c51197356d845559558444c0d72d5",
+      "bytes": 175
+    },
+    {
+      "path": "graphics/pokemon/machamp/overworld.png",
+      "git_blob_sha1": "846ecd72ce35a59c6195de471e6061b71ce13660",
+      "bytes": 1156
+    },
+    {
+      "path": "graphics/pokemon/machamp/overworld_normal.pal",
+      "git_blob_sha1": "f93181182fe1b7923c8b13a07ce987b10fed6773",
+      "bytes": 186
+    },
+    {
+      "path": "graphics/pokemon/machamp/overworld_shiny.pal",
+      "git_blob_sha1": "110331435e19ed2846c8459f1fc5788bbf943ba3",
+      "bytes": 185
+    },
+    {
+      "path": "graphics/pokemon/bellsprout/overworld.png",
+      "git_blob_sha1": "4a509105d4e8e118c96b74c220843b7dce59663c",
+      "bytes": 599
+    },
+    {
+      "path": "graphics/pokemon/bellsprout/overworld_normal.pal",
+      "git_blob_sha1": "4f3c8d426fb6b06441fb215858cabc510a2d9980",
+      "bytes": 158
+    },
+    {
+      "path": "graphics/pokemon/bellsprout/overworld_shiny.pal",
+      "git_blob_sha1": "723a5c485f0ced4b48a0627916f0cc066c403724",
+      "bytes": 161
+    },
+    {
+      "path": "graphics/pokemon/weepinbell/overworld.png",
+      "git_blob_sha1": "4f96c0973d7326684b90ee968726a7274b7cfc10",
+      "bytes": 867
+    },
+    {
+      "path": "graphics/pokemon/weepinbell/overworld_normal.pal",
+      "git_blob_sha1": "866d6941aa86b7df89f09861d3f3ce510bc99a39",
+      "bytes": 180
+    },
+    {
+      "path": "graphics/pokemon/weepinbell/overworld_shiny.pal",
+      "git_blob_sha1": "35014b32d92ee2c72806e721d4b9520dfffbefae",
+      "bytes": 183
+    },
+    {
+      "path": "graphics/pokemon/victreebel/overworld.png",
+      "git_blob_sha1": "58079e2cd4290440633fe24fa4f421cc3cd49ea2",
+      "bytes": 1151
+    },
+    {
+      "path": "graphics/pokemon/victreebel/overworld_normal.pal",
+      "git_blob_sha1": "3e00a8ecaf592b45e2b01067bc7af419b8ab90b2",
+      "bytes": 180
+    },
+    {
+      "path": "graphics/pokemon/victreebel/overworld_shiny.pal",
+      "git_blob_sha1": "ae4a85f8ef25ec689217eb73ccbb21b274ab9261",
+      "bytes": 183
+    },
+    {
+      "path": "graphics/pokemon/tentacool/overworld.png",
+      "git_blob_sha1": "4c626599f1bc9edbde140453b191d06a9a7ad0a1",
+      "bytes": 694
+    },
+    {
+      "path": "graphics/pokemon/tentacool/overworld_normal.pal",
+      "git_blob_sha1": "f9f57b53462a6376de58d024fe58b122732e7694",
+      "bytes": 182
+    },
+    {
+      "path": "graphics/pokemon/tentacool/overworld_shiny.pal",
+      "git_blob_sha1": "7f2681d5e7be544184bb52edd127752c0b1ed02d",
+      "bytes": 183
+    },
+    {
+      "path": "graphics/pokemon/tentacruel/overworld.png",
+      "git_blob_sha1": "fa10e84a2d43abf99ab4d358bdf3a04a6653fe58",
+      "bytes": 913
+    },
+    {
+      "path": "graphics/pokemon/tentacruel/overworld_normal.pal",
+      "git_blob_sha1": "653e3ecd8a9423ef700d9debad287c69d91fb71d",
+      "bytes": 180
+    },
+    {
+      "path": "graphics/pokemon/tentacruel/overworld_shiny.pal",
+      "git_blob_sha1": "671f4748c544710629bd2e39fc92347f63a1ec02",
+      "bytes": 183
+    },
+    {
+      "path": "graphics/pokemon/geodude/overworld.png",
+      "git_blob_sha1": "b3410ecca1fed2901fd5bf7ee24ac218b188831e",
+      "bytes": 584
+    },
+    {
+      "path": "graphics/pokemon/geodude/overworld_normal.pal",
+      "git_blob_sha1": "94158f3e268b561033caae589af3bcb6b5e7d37f",
+      "bytes": 139
+    },
+    {
+      "path": "graphics/pokemon/geodude/overworld_shiny.pal",
+      "git_blob_sha1": "c548276f7b2f351f40695cf890ba0cf31e06572c",
+      "bytes": 138
+    },
+    {
+      "path": "graphics/pokemon/graveler/overworld.png",
+      "git_blob_sha1": "41ce30ae1b015edb02b391e35f76d550d1a098d0",
+      "bytes": 846
+    },
+    {
+      "path": "graphics/pokemon/graveler/overworld_normal.pal",
+      "git_blob_sha1": "e9b28a20d6896bd1fda2287358dcc9997b13d254",
+      "bytes": 159
+    },
+    {
+      "path": "graphics/pokemon/graveler/overworld_shiny.pal",
+      "git_blob_sha1": "7a75636b5af9d99b919635ee25fc53888619bb11",
+      "bytes": 156
+    },
+    {
+      "path": "graphics/pokemon/golem/overworld.png",
+      "git_blob_sha1": "9400d2d42926d2348f7ffe56c55a22b57676c31a",
+      "bytes": 958
+    },
+    {
+      "path": "graphics/pokemon/golem/overworld_normal.pal",
+      "git_blob_sha1": "d05008296afd7611d67d953c0079833faf453ab2",
+      "bytes": 179
+    },
+    {
+      "path": "graphics/pokemon/golem/overworld_shiny.pal",
+      "git_blob_sha1": "6bba9477df56c8508119cd6529d0fb6c38bb8480",
+      "bytes": 178
+    },
+    {
+      "path": "graphics/pokemon/ponyta/overworld.png",
+      "git_blob_sha1": "79a20ab366da0608b773ea18c77e5099db5b5524",
+      "bytes": 852
+    },
+    {
+      "path": "graphics/pokemon/ponyta/overworld_normal.pal",
+      "git_blob_sha1": "525ebd64e2839fae42e87513e94a281134f82e47",
+      "bytes": 168
+    },
+    {
+      "path": "graphics/pokemon/ponyta/overworld_shiny.pal",
+      "git_blob_sha1": "9ae14f9cbf1b63ce9e53e84bfcf3bba61e71b467",
+      "bytes": 171
+    },
+    {
+      "path": "graphics/pokemon/rapidash/overworld.png",
+      "git_blob_sha1": "f63e4811b2ee2b7042810c05d34a5d1620bbaba1",
+      "bytes": 1081
+    },
+    {
+      "path": "graphics/pokemon/rapidash/overworld_normal.pal",
+      "git_blob_sha1": "1282bee0c37fa625c8cbb3607772e3cbe9d83a25",
+      "bytes": 164
+    },
+    {
+      "path": "graphics/pokemon/rapidash/overworld_shiny.pal",
+      "git_blob_sha1": "bb41fdb95be635376774497c7e68ffa6913ebb0e",
+      "bytes": 170
+    },
+    {
+      "path": "graphics/pokemon/slowpoke/overworld.png",
+      "git_blob_sha1": "7c2a0369fe6f526ad62154f601fed8f22c02cd37",
+      "bytes": 810
+    },
+    {
+      "path": "graphics/pokemon/slowpoke/overworld_normal.pal",
+      "git_blob_sha1": "85748434bac2f786ef4e03db9836bcf25feb912d",
+      "bytes": 177
+    },
+    {
+      "path": "graphics/pokemon/slowpoke/overworld_shiny.pal",
+      "git_blob_sha1": "f321ac09b66be8d7fe3fdad11e33442be454353e",
+      "bytes": 179
+    },
+    {
+      "path": "graphics/pokemon/slowbro/overworld.png",
+      "git_blob_sha1": "553c4df7f6217d56177bad41e41de9e2859954fe",
+      "bytes": 795
+    },
+    {
+      "path": "graphics/pokemon/slowbro/overworld_normal.pal",
+      "git_blob_sha1": "f1a3ea572f457dd6a9d04c87c965825cdb72be97",
+      "bytes": 192
+    },
+    {
+      "path": "graphics/pokemon/slowbro/overworld_shiny.pal",
+      "git_blob_sha1": "8ee36f1fb36eda7a7df98eec6ae3ea10d884426c",
+      "bytes": 189
+    },
+    {
+      "path": "graphics/pokemon/slowking/overworld.png",
+      "git_blob_sha1": "3d5dde2e49e0e8198f1a4333644fff2f83bc96c2",
+      "bytes": 981
+    },
+    {
+      "path": "graphics/pokemon/slowking/overworld_normal.pal",
+      "git_blob_sha1": "ec617c434801d9204b3513316e889e75a2d13611",
+      "bytes": 187
+    },
+    {
+      "path": "graphics/pokemon/slowking/overworld_shiny.pal",
+      "git_blob_sha1": "8c5a6a3cf74afd1021eada0a62936ab819162c48",
+      "bytes": 190
+    },
+    {
+      "path": "graphics/pokemon/magnemite/overworld.png",
+      "git_blob_sha1": "3956750a8974f32acf24f804cc2a8d50ddc04f1c",
+      "bytes": 652
+    },
+    {
+      "path": "graphics/pokemon/magnemite/overworld_normal.pal",
+      "git_blob_sha1": "eed58a5b5308c525e65f5a47c4cf943245577c04",
+      "bytes": 170
+    },
+    {
+      "path": "graphics/pokemon/magnemite/overworld_shiny.pal",
+      "git_blob_sha1": "9186eeb9c660665a9366c9b216ce8b528cb7a90e",
+      "bytes": 173
+    },
+    {
+      "path": "graphics/pokemon/magneton/overworld.png",
+      "git_blob_sha1": "692f46111a65835e6f26d84fca757da1f1fbc365",
+      "bytes": 1030
+    },
+    {
+      "path": "graphics/pokemon/magneton/overworld_normal.pal",
+      "git_blob_sha1": "ade63a0f30c626ca15fff11a2a3e982c341361d9",
+      "bytes": 170
+    },
+    {
+      "path": "graphics/pokemon/magneton/overworld_shiny.pal",
+      "git_blob_sha1": "63034b4473cd9142d9c2af02525c52b04081dd47",
+      "bytes": 173
+    },
+    {
+      "path": "graphics/pokemon/farfetchd/overworld.png",
+      "git_blob_sha1": "530741a8732ad080501b4248ffcb3800e7fdd189",
+      "bytes": 799
+    },
+    {
+      "path": "graphics/pokemon/farfetchd/overworld_normal.pal",
+      "git_blob_sha1": "0acf61c8df06050ce4bc9ff770945c822eea9a6e",
+      "bytes": 191
+    },
+    {
+      "path": "graphics/pokemon/farfetchd/overworld_shiny.pal",
+      "git_blob_sha1": "269b9ef2718ee61ecabc126ad7d2f95a2072cba7",
+      "bytes": 193
+    },
+    {
+      "path": "graphics/pokemon/doduo/overworld.png",
+      "git_blob_sha1": "5877cb1e7bdc76374137af4437166e1499a31791",
+      "bytes": 713
+    },
+    {
+      "path": "graphics/pokemon/doduo/overworld_normal.pal",
+      "git_blob_sha1": "6a2e2d3e46b0c32544ac34be09affc2157e44ca9",
+      "bytes": 151
+    },
+    {
+      "path": "graphics/pokemon/doduo/overworld_shiny.pal",
+      "git_blob_sha1": "f1d64b254cf55d8c1d4c582c082ff66db47c5906",
+      "bytes": 153
+    },
+    {
+      "path": "graphics/pokemon/dodrio/overworld.png",
+      "git_blob_sha1": "b9d1b7ffb16bf964433d39df4c5cbf9449cc6dfe",
+      "bytes": 1300
+    },
+    {
+      "path": "graphics/pokemon/dodrio/overworld_normal.pal",
+      "git_blob_sha1": "b636b4382add294e043d69c8cb01e594ac882ac0",
+      "bytes": 184
+    },
+    {
+      "path": "graphics/pokemon/dodrio/overworld_shiny.pal",
+      "git_blob_sha1": "e153881f09dd99037a97250f9cb36d2668f82252",
+      "bytes": 186
+    },
+    {
+      "path": "graphics/pokemon/seel/overworld.png",
+      "git_blob_sha1": "cc9dbad620dcb544390594bee47c9f27b9054e83",
+      "bytes": 856
+    },
+    {
+      "path": "graphics/pokemon/seel/overworld_normal.pal",
+      "git_blob_sha1": "2e2dac942ead3b7d378fae22e0a07452557b831c",
+      "bytes": 179
+    },
+    {
+      "path": "graphics/pokemon/seel/overworld_shiny.pal",
+      "git_blob_sha1": "88001511f5e34484721a0c0f7ad54104d64d9ea0",
+      "bytes": 180
+    },
+    {
+      "path": "graphics/pokemon/dewgong/overworld.png",
+      "git_blob_sha1": "1959cc4fb3b6bcb2d284efc7457f71d7a226122b",
+      "bytes": 983
+    },
+    {
+      "path": "graphics/pokemon/dewgong/overworld_normal.pal",
+      "git_blob_sha1": "0c2bd6a12cbbeb883b5902487768f8159c90bf4f",
+      "bytes": 150
+    },
+    {
+      "path": "graphics/pokemon/dewgong/overworld_shiny.pal",
+      "git_blob_sha1": "8473af74eb6d7bb716741acdad72d8b71f90dc33",
+      "bytes": 151
+    },
+    {
+      "path": "graphics/pokemon/grimer/overworld.png",
+      "git_blob_sha1": "a8639d44669a432bfa15ef9745056b025e995dab",
+      "bytes": 740
+    },
+    {
+      "path": "graphics/pokemon/grimer/overworld_normal.pal",
+      "git_blob_sha1": "c80dd2ef0c8d69c955f1ba3af03e03555837ffb2",
+      "bytes": 156
+    },
+    {
+      "path": "graphics/pokemon/grimer/overworld_shiny.pal",
+      "git_blob_sha1": "f886e1cd897313dab0b81998d267064979298113",
+      "bytes": 155
+    },
+    {
+      "path": "graphics/pokemon/muk/overworld.png",
+      "git_blob_sha1": "892e670a68e4df7f03cd26519b0543b3dd1514b7",
+      "bytes": 886
+    },
+    {
+      "path": "graphics/pokemon/muk/overworld_normal.pal",
+      "git_blob_sha1": "758e33481564576fbb24ba3461739487af75e450",
+      "bytes": 160
+    },
+    {
+      "path": "graphics/pokemon/muk/overworld_shiny.pal",
+      "git_blob_sha1": "9c379a865a3b69643c24d42a311a0a350dd4a24a",
+      "bytes": 160
+    },
+    {
+      "path": "graphics/pokemon/shellder/overworld.png",
+      "git_blob_sha1": "53176ade73905c9cacdb9ab96d9faa2b864283f1",
+      "bytes": 739
+    },
+    {
+      "path": "graphics/pokemon/shellder/overworld_normal.pal",
+      "git_blob_sha1": "65fff3e0c3489c27b743dd6348302dbf0c29508b",
+      "bytes": 167
+    },
+    {
+      "path": "graphics/pokemon/shellder/overworld_shiny.pal",
+      "git_blob_sha1": "a1954294aef69733de11779088139be8e3c30f80",
+      "bytes": 163
+    },
+    {
+      "path": "graphics/pokemon/cloyster/overworld.png",
+      "git_blob_sha1": "e01669bf69a2f4216999cb2e8685e1454476af63",
+      "bytes": 1287
+    },
+    {
+      "path": "graphics/pokemon/cloyster/overworld_normal.pal",
+      "git_blob_sha1": "f98a54cdd97558f9ff0cf2fa0423aae703831e20",
+      "bytes": 159
+    },
+    {
+      "path": "graphics/pokemon/cloyster/overworld_shiny.pal",
+      "git_blob_sha1": "d58b2584e066152730e46697602ff44611de1e9d",
+      "bytes": 160
+    },
+    {
+      "path": "graphics/pokemon/gastly/overworld.png",
+      "git_blob_sha1": "4df5a7740ca685866342428604eda5522b24ab65",
+      "bytes": 834
+    },
+    {
+      "path": "graphics/pokemon/gastly/overworld_normal.pal",
+      "git_blob_sha1": "e4e4f4b6db964d8085d6c12f8646581379c31d47",
+      "bytes": 167
+    },
+    {
+      "path": "graphics/pokemon/gastly/overworld_shiny.pal",
+      "git_blob_sha1": "154bd818a3ed9c07c7d373adc59e9bacba534f54",
+      "bytes": 167
+    },
+    {
+      "path": "graphics/pokemon/haunter/overworld.png",
+      "git_blob_sha1": "0f2f1534e93a4832a9308c61f446c6fdc68072d0",
+      "bytes": 782
+    },
+    {
+      "path": "graphics/pokemon/haunter/overworld_normal.pal",
+      "git_blob_sha1": "d097313995043f1f4744b01e5b8acbfece369073",
+      "bytes": 164
+    },
+    {
+      "path": "graphics/pokemon/haunter/overworld_shiny.pal",
+      "git_blob_sha1": "23b14b673b53eeff5503fd6b93338c0cc875d243",
+      "bytes": 166
+    },
+    {
+      "path": "graphics/pokemon/gengar/overworld.png",
+      "git_blob_sha1": "514d080e1cc42e1c6d828171c53d95c5232c15eb",
+      "bytes": 850
+    },
+    {
+      "path": "graphics/pokemon/gengar/overworld_normal.pal",
+      "git_blob_sha1": "5450ef839ca04a6e3726e291c1697b84a957bbb3",
+      "bytes": 162
+    },
+    {
+      "path": "graphics/pokemon/gengar/overworld_shiny.pal",
+      "git_blob_sha1": "b0bf73361671ec33b9c01bd960d8f12373f3c7ee",
+      "bytes": 165
+    },
+    {
+      "path": "graphics/pokemon/onix/overworld.png",
+      "git_blob_sha1": "521bf80e1d5f3a65f044d68df3de2ab9e7e73256",
+      "bytes": 1187
+    },
+    {
+      "path": "graphics/pokemon/onix/overworld_normal.pal",
+      "git_blob_sha1": "a476b6606b5920a35b1416a235103af23ab45883",
+      "bytes": 153
+    },
+    {
+      "path": "graphics/pokemon/onix/overworld_shiny.pal",
+      "git_blob_sha1": "31db7daf66e63e523e9d908d1521a83ef074372b",
+      "bytes": 150
+    },
+    {
+      "path": "graphics/pokemon/steelix/overworld.png",
+      "git_blob_sha1": "1a0ff067983d294ce1534674efa91c697c4db794",
+      "bytes": 1584
+    },
+    {
+      "path": "graphics/pokemon/steelix/overworld_normal.pal",
+      "git_blob_sha1": "e951d3e46ef6beabb0f79c342afd5a7bb2295241",
+      "bytes": 155
+    },
+    {
+      "path": "graphics/pokemon/steelix/overworld_shiny.pal",
+      "git_blob_sha1": "ca3b5dd5ba0f89ee4f20b3444edfd4d72a7088df",
+      "bytes": 155
+    },
+    {
+      "path": "graphics/pokemon/drowzee/overworld.png",
+      "git_blob_sha1": "0d34c68c7f7aa676e0c2156b4ee2826831bf7cf8",
+      "bytes": 744
+    },
+    {
+      "path": "graphics/pokemon/drowzee/overworld_normal.pal",
+      "git_blob_sha1": "53a5a66ac623e034bf6466854909e5328cca20cc",
+      "bytes": 154
+    },
+    {
+      "path": "graphics/pokemon/drowzee/overworld_shiny.pal",
+      "git_blob_sha1": "68dbf146621ffd69210da8cc088936c2c2b95671",
+      "bytes": 156
+    },
+    {
+      "path": "graphics/pokemon/hypno/overworld.png",
+      "git_blob_sha1": "1ef615b2a36e71109becffebaff1c5bef650192d",
+      "bytes": 852
+    },
+    {
+      "path": "graphics/pokemon/hypno/overworld_normal.pal",
+      "git_blob_sha1": "88d4aed1e0323f8a476d1249ae2bfc344881a97c",
+      "bytes": 163
+    },
+    {
+      "path": "graphics/pokemon/hypno/overworld_shiny.pal",
+      "git_blob_sha1": "345a52c295dd955268a6dd8ed658e2c86e95157e",
+      "bytes": 165
+    },
+    {
+      "path": "graphics/pokemon/krabby/overworld.png",
+      "git_blob_sha1": "abe66ceb6f23e5f1a2767efd0237941f3c5e1255",
+      "bytes": 728
+    },
+    {
+      "path": "graphics/pokemon/krabby/overworld_normal.pal",
+      "git_blob_sha1": "0c429de50a4e671986acb3297c3727a2a5d3f7f8",
+      "bytes": 153
+    },
+    {
+      "path": "graphics/pokemon/krabby/overworld_shiny.pal",
+      "git_blob_sha1": "2285ef39740ba3d7cb52b212a543a767fab54e3e",
+      "bytes": 155
+    },
+    {
+      "path": "graphics/pokemon/kingler/overworld.png",
+      "git_blob_sha1": "4538f564cf6c82b54f6fb79dff60f39b480a6c4d",
+      "bytes": 837
+    },
+    {
+      "path": "graphics/pokemon/kingler/overworld_normal.pal",
+      "git_blob_sha1": "f79648f08ba60cec94a314094ade2962ab0562da",
+      "bytes": 160
+    },
+    {
+      "path": "graphics/pokemon/kingler/overworld_shiny.pal",
+      "git_blob_sha1": "e95a5b2ab96455ac4996367ef2333ac6cf0eb351",
+      "bytes": 162
+    },
+    {
+      "path": "graphics/pokemon/voltorb/overworld.png",
+      "git_blob_sha1": "365e07ca263558a2ade4c11b1cf35de00aff4ebf",
+      "bytes": 494
+    },
+    {
+      "path": "graphics/pokemon/voltorb/overworld_normal.pal",
+      "git_blob_sha1": "bdc59b6fb90b0168d819bc9e6487f95d6421876d",
+      "bytes": 158
+    },
+    {
+      "path": "graphics/pokemon/voltorb/overworld_shiny.pal",
+      "git_blob_sha1": "a906eed532024a4465cc27a9a793d5570e988277",
+      "bytes": 160
+    },
+    {
+      "path": "graphics/pokemon/electrode/overworld.png",
+      "git_blob_sha1": "50f5298950655bec3d73ff2ac8a4b9fad0940e16",
+      "bytes": 593
+    },
+    {
+      "path": "graphics/pokemon/electrode/overworld_normal.pal",
+      "git_blob_sha1": "760c7082a1e99ff39c11b0ea399d6886b7a964bd",
+      "bytes": 156
+    },
+    {
+      "path": "graphics/pokemon/electrode/overworld_shiny.pal",
+      "git_blob_sha1": "12c20793b21556b352a07fc9bb0e1086a7e51ae4",
+      "bytes": 157
+    },
+    {
+      "path": "graphics/pokemon/exeggcute/overworld.png",
+      "git_blob_sha1": "002ffd58229b6437bf3b33a0be1843506f9d9c55",
+      "bytes": 1033
+    },
+    {
+      "path": "graphics/pokemon/exeggcute/overworld_normal.pal",
+      "git_blob_sha1": "a86c530ffbf404de4706dbad79a692b3fd6521dc",
+      "bytes": 156
+    },
+    {
+      "path": "graphics/pokemon/exeggcute/overworld_shiny.pal",
+      "git_blob_sha1": "347796436cf9a3e363fca47cb854b02ae90ca708",
+      "bytes": 153
+    },
+    {
+      "path": "graphics/pokemon/exeggutor/overworld.png",
+      "git_blob_sha1": "7ab99d1faba9d4cf3cd30cc985bdd4d6acb0dc61",
+      "bytes": 1022
+    },
+    {
+      "path": "graphics/pokemon/exeggutor/overworld_normal.pal",
+      "git_blob_sha1": "89e31c5e63bd53fb24c880c0fda359785bb50c0f",
+      "bytes": 171
+    },
+    {
+      "path": "graphics/pokemon/exeggutor/overworld_shiny.pal",
+      "git_blob_sha1": "86399820cc8deb3344665c96dc93deb1c58a4922",
+      "bytes": 175
+    },
+    {
+      "path": "graphics/pokemon/cubone/overworld.png",
+      "git_blob_sha1": "26802dc5aea337b0a9ca76d1d8df427eb836013b",
+      "bytes": 789
+    },
+    {
+      "path": "graphics/pokemon/cubone/overworld_normal.pal",
+      "git_blob_sha1": "955a43e179a9c675101250076d9d2555edd96ffd",
+      "bytes": 170
+    },
+    {
+      "path": "graphics/pokemon/cubone/overworld_shiny.pal",
+      "git_blob_sha1": "84e8a88a933d7c30514022a83adab57eda94ee6e",
+      "bytes": 170
+    },
+    {
+      "path": "graphics/pokemon/marowak/overworld.png",
+      "git_blob_sha1": "d37ef573093733f62e47e4c90449eb8414163773",
+      "bytes": 875
+    },
+    {
+      "path": "graphics/pokemon/marowak/overworld_normal.pal",
+      "git_blob_sha1": "44ae1c4ae99bf5223bdfbd1bbb171cb7d94d5920",
+      "bytes": 171
+    },
+    {
+      "path": "graphics/pokemon/marowak/overworld_shiny.pal",
+      "git_blob_sha1": "312939d9bc49467a18f247fdd0acbd9ff33c8c0d",
+      "bytes": 170
+    },
+    {
+      "path": "graphics/pokemon/tyrogue/overworld.png",
+      "git_blob_sha1": "f66fab64fb4264d5463ac158e80dd4745c99bc4a",
+      "bytes": 675
+    },
+    {
+      "path": "graphics/pokemon/tyrogue/overworld_normal.pal",
+      "git_blob_sha1": "889ba9d6da2cf93012df0f70dbadc381f9bfde13",
+      "bytes": 176
+    },
+    {
+      "path": "graphics/pokemon/tyrogue/overworld_shiny.pal",
+      "git_blob_sha1": "b4a1b2d1c0149b71238a91c9cb92f7c147083d3d",
+      "bytes": 178
+    },
+    {
+      "path": "graphics/pokemon/hitmonlee/overworld.png",
+      "git_blob_sha1": "2cb159d14f36df7805c19ba164823334e51e2814",
+      "bytes": 800
+    },
+    {
+      "path": "graphics/pokemon/hitmonlee/overworld_normal.pal",
+      "git_blob_sha1": "3de1f1f732ac3d923e5bc582848e2b0d04a88b9e",
+      "bytes": 171
+    },
+    {
+      "path": "graphics/pokemon/hitmonlee/overworld_shiny.pal",
+      "git_blob_sha1": "9bfdbab384ddf8fde08c13eea9c45670220df186",
+      "bytes": 172
+    },
+    {
+      "path": "graphics/pokemon/hitmonchan/overworld.png",
+      "git_blob_sha1": "3fceca61d1ec316e03642f8bf192b0942c713353",
+      "bytes": 804
+    },
+    {
+      "path": "graphics/pokemon/hitmonchan/overworld_normal.pal",
+      "git_blob_sha1": "de26d921b2dc633b8facdea52b62238f4e00b62e",
+      "bytes": 166
+    },
+    {
+      "path": "graphics/pokemon/hitmonchan/overworld_shiny.pal",
+      "git_blob_sha1": "48bfc8d625e3f34b0796d9db4589ff1d57c70f3d",
+      "bytes": 166
+    },
+    {
+      "path": "graphics/pokemon/hitmontop/overworld.png",
+      "git_blob_sha1": "5708d9b8181a864a0b1dd705b3fbcd08a9b60427",
+      "bytes": 757
+    },
+    {
+      "path": "graphics/pokemon/hitmontop/overworld_normal.pal",
+      "git_blob_sha1": "1450180c7fa7c306ba35402b2817ba89d6eafdef",
+      "bytes": 163
+    },
+    {
+      "path": "graphics/pokemon/hitmontop/overworld_shiny.pal",
+      "git_blob_sha1": "1e47650f4507fe5fbdfd4b9ca7a68a1d3d4fe1a4",
+      "bytes": 167
+    },
+    {
+      "path": "graphics/pokemon/lickitung/overworld.png",
+      "git_blob_sha1": "95e4d09088d45df6e4394b9773de02ce8c4ca8a5",
+      "bytes": 808
+    },
+    {
+      "path": "graphics/pokemon/lickitung/overworld_normal.pal",
+      "git_blob_sha1": "47cb91d329f59f0dc3c4c5f607dabbd423db54aa",
+      "bytes": 173
+    },
+    {
+      "path": "graphics/pokemon/lickitung/overworld_shiny.pal",
+      "git_blob_sha1": "e55cb9067bcbcc008d57b3600ce93956fa08d170",
+      "bytes": 172
+    },
+    {
+      "path": "graphics/pokemon/koffing/overworld.png",
+      "git_blob_sha1": "33fefbdcae7d557b1affd22af994762579fb7f3e",
+      "bytes": 797
+    },
+    {
+      "path": "graphics/pokemon/koffing/overworld_normal.pal",
+      "git_blob_sha1": "cbc0980a5bc10361ac2e174ece5860857de139d7",
+      "bytes": 175
+    },
+    {
+      "path": "graphics/pokemon/koffing/overworld_shiny.pal",
+      "git_blob_sha1": "ad161817b013d6857c555f55e47dec6f0f36e05f",
+      "bytes": 175
+    },
+    {
+      "path": "graphics/pokemon/weezing/overworld.png",
+      "git_blob_sha1": "f5ddcfe4fb939161bc07868d008caf14023cab6a",
+      "bytes": 1116
+    },
+    {
+      "path": "graphics/pokemon/weezing/overworld_normal.pal",
+      "git_blob_sha1": "357fa9a4eefcb3621f27668c52a7811eddd21fb0",
+      "bytes": 173
+    },
+    {
+      "path": "graphics/pokemon/weezing/overworld_shiny.pal",
+      "git_blob_sha1": "d43b58cd8238ed69c4b7dbd18bc2db7f4ea12638",
+      "bytes": 173
+    },
+    {
+      "path": "graphics/pokemon/rhyhorn/overworld.png",
+      "git_blob_sha1": "d4d50881c82c123e7732eed85bf26a72dc79826b",
+      "bytes": 813
+    },
+    {
+      "path": "graphics/pokemon/rhyhorn/overworld_normal.pal",
+      "git_blob_sha1": "192337d89f79fe58ea61c404f18371b7ff3c86a0",
+      "bytes": 156
+    },
+    {
+      "path": "graphics/pokemon/rhyhorn/overworld_shiny.pal",
+      "git_blob_sha1": "915c27a76d0b10807500a2c9583042a1228fd4a5",
+      "bytes": 153
+    },
+    {
+      "path": "graphics/pokemon/rhydon/overworld.png",
+      "git_blob_sha1": "c2dbf762864111e847d91e6b5cb124fb8798383c",
+      "bytes": 971
+    },
+    {
+      "path": "graphics/pokemon/rhydon/overworld_normal.pal",
+      "git_blob_sha1": "cab1a73a81eff0efc1bfe5631b13641e83728a85",
+      "bytes": 168
+    },
+    {
+      "path": "graphics/pokemon/rhydon/overworld_shiny.pal",
+      "git_blob_sha1": "858452f8d4e5e1c8be6301168f5490ec40e7c476",
+      "bytes": 168
+    },
+    {
+      "path": "graphics/pokemon/chansey/overworld.png",
+      "git_blob_sha1": "c5827a299ba3d80545bb3827b0149fcb7c28238e",
+      "bytes": 721
+    },
+    {
+      "path": "graphics/pokemon/chansey/overworld_normal.pal",
+      "git_blob_sha1": "32559fd2e1fdcc45e84e014e6db1f0d66630ee5e",
+      "bytes": 157
+    },
+    {
+      "path": "graphics/pokemon/chansey/overworld_shiny.pal",
+      "git_blob_sha1": "fe2e8c734ba7e218b903623c83b641ce95242a1d",
+      "bytes": 158
+    },
+    {
+      "path": "graphics/pokemon/blissey/overworld.png",
+      "git_blob_sha1": "490eeb038fb373a6afdb578451150a14fd12c78d",
+      "bytes": 825
+    },
+    {
+      "path": "graphics/pokemon/blissey/overworld_normal.pal",
+      "git_blob_sha1": "cd5d1b7c39637965f3bbade2047a780a239ec639",
+      "bytes": 176
+    },
+    {
+      "path": "graphics/pokemon/blissey/overworld_shiny.pal",
+      "git_blob_sha1": "6cad84283ade1e2c3c504789b4c56a703e82fe6c",
+      "bytes": 180
+    },
+    {
+      "path": "graphics/pokemon/tangela/overworld.png",
+      "git_blob_sha1": "d2105e40894176f08498104795a91238d5f2cbde",
+      "bytes": 803
+    },
+    {
+      "path": "graphics/pokemon/tangela/overworld_normal.pal",
+      "git_blob_sha1": "6c3d79edc5119bbac7d8ed6fd6041b18b4d416b7",
+      "bytes": 163
+    },
+    {
+      "path": "graphics/pokemon/tangela/overworld_shiny.pal",
+      "git_blob_sha1": "fddc5dd45f9179905e477fdf88330fbee09080a5",
+      "bytes": 159
+    },
+    {
+      "path": "graphics/pokemon/kangaskhan/overworld.png",
+      "git_blob_sha1": "2b1f21c66dfc8212fbad00af6e976fbd700a211a",
+      "bytes": 1021
+    },
+    {
+      "path": "graphics/pokemon/kangaskhan/overworld_normal.pal",
+      "git_blob_sha1": "9defd5939ff92450bbf9f2198fb1b258dd63a2ba",
+      "bytes": 184
+    },
+    {
+      "path": "graphics/pokemon/kangaskhan/overworld_shiny.pal",
+      "git_blob_sha1": "d295826d50110c1f2a96067077b8d8cdbc9c2aca",
+      "bytes": 185
+    },
+    {
+      "path": "graphics/pokemon/horsea/overworld.png",
+      "git_blob_sha1": "6c291b7d932827d243a5a8e7c269571981961edf",
+      "bytes": 723
+    },
+    {
+      "path": "graphics/pokemon/horsea/overworld_normal.pal",
+      "git_blob_sha1": "54a5cf1d3f6ac3019e06df7b37cc3980f1fb1199",
+      "bytes": 167
+    },
+    {
+      "path": "graphics/pokemon/horsea/overworld_shiny.pal",
+      "git_blob_sha1": "28bd790daa838eaa1fc629ed034c301b5f5b1690",
+      "bytes": 169
+    },
+    {
+      "path": "graphics/pokemon/seadra/overworld.png",
+      "git_blob_sha1": "47179a2b8cee0ba85cc7a0eefb7b3672850d16d1",
+      "bytes": 976
+    },
+    {
+      "path": "graphics/pokemon/seadra/overworld_normal.pal",
+      "git_blob_sha1": "affd77c8f5b72f6f3a91b79c70f75e838c7137dd",
+      "bytes": 165
+    },
+    {
+      "path": "graphics/pokemon/seadra/overworld_shiny.pal",
+      "git_blob_sha1": "b8760607cf1537fcb53bba98cb204ab3ee887f8e",
+      "bytes": 164
+    },
+    {
+      "path": "graphics/pokemon/kingdra/overworld.png",
+      "git_blob_sha1": "86a8e4f58a0998a3c34e92555880db7f2f8dffb7",
+      "bytes": 1014
+    },
+    {
+      "path": "graphics/pokemon/kingdra/overworld_normal.pal",
+      "git_blob_sha1": "dbb4f4a0b32a08558da09ac3196db1009064391f",
+      "bytes": 182
+    },
+    {
+      "path": "graphics/pokemon/kingdra/overworld_shiny.pal",
+      "git_blob_sha1": "a33944d237569017cf40d48e15a82706b8d48275",
+      "bytes": 183
+    },
+    {
+      "path": "graphics/pokemon/goldeen/overworld.png",
+      "git_blob_sha1": "a8f8ac58a30fbd1e42662e45a880a60f7e30a8ae",
+      "bytes": 951
+    },
+    {
+      "path": "graphics/pokemon/goldeen/overworld_normal.pal",
+      "git_blob_sha1": "98c9aeb76f44d41f59c4f0ad6791816454701045",
+      "bytes": 171
+    },
+    {
+      "path": "graphics/pokemon/goldeen/overworld_shiny.pal",
+      "git_blob_sha1": "a3932f12c40cab8e564b86e31e316e824468b4ab",
+      "bytes": 174
+    },
+    {
+      "path": "graphics/pokemon/seaking/overworld.png",
+      "git_blob_sha1": "2f335978ed8ea0ae9717da2015dc5e0d85887fd2",
+      "bytes": 1222
+    },
+    {
+      "path": "graphics/pokemon/seaking/overworld_normal.pal",
+      "git_blob_sha1": "40f1f30b982054456539c9b1087b2936c7e09583",
+      "bytes": 171
+    },
+    {
+      "path": "graphics/pokemon/seaking/overworld_shiny.pal",
+      "git_blob_sha1": "4d5bb5463688def103e4f4a92fbe36fe415f87f2",
+      "bytes": 170
+    },
+    {
+      "path": "graphics/pokemon/staryu/overworld.png",
+      "git_blob_sha1": "d9a7d5c0cf427aabb6f0039dce00ed05d44159a7",
+      "bytes": 657
+    },
+    {
+      "path": "graphics/pokemon/staryu/overworld_normal.pal",
+      "git_blob_sha1": "b87941ed30339ca10be0258ea45b527805ef27dd",
+      "bytes": 155
+    },
+    {
+      "path": "graphics/pokemon/staryu/overworld_shiny.pal",
+      "git_blob_sha1": "a954fc80ce649f931477b7e08ac5005c0293c49c",
+      "bytes": 163
+    },
+    {
+      "path": "graphics/pokemon/starmie/overworld.png",
+      "git_blob_sha1": "b1098f1f7ac12d7f150c7a817ab79f3b2f9d406d",
+      "bytes": 874
+    },
+    {
+      "path": "graphics/pokemon/starmie/overworld_normal.pal",
+      "git_blob_sha1": "b14064097e9da679ee917d2667d8918e607fb9ce",
+      "bytes": 161
+    },
+    {
+      "path": "graphics/pokemon/starmie/overworld_shiny.pal",
+      "git_blob_sha1": "17a3770e10d12f5b60769c5cd87ca64d3ab1780a",
+      "bytes": 167
+    },
+    {
+      "path": "graphics/pokemon/mr_mime/overworld.png",
+      "git_blob_sha1": "b7b4f63e0412935f87d607b258af312a8feac6f5",
+      "bytes": 938
+    },
+    {
+      "path": "graphics/pokemon/mr_mime/overworld_normal.pal",
+      "git_blob_sha1": "a577002298441f76761f673e59866bde61bf9bc9",
+      "bytes": 182
+    },
+    {
+      "path": "graphics/pokemon/mr_mime/overworld_shiny.pal",
+      "git_blob_sha1": "bb272636b3fa7df1922a721d0527e1fb6030c86d",
+      "bytes": 182
+    },
+    {
+      "path": "graphics/pokemon/scyther/overworld.png",
+      "git_blob_sha1": "ed45062aaef50695c43f797dfa93fbc50468669b",
+      "bytes": 780
+    },
+    {
+      "path": "graphics/pokemon/scyther/overworld_normal.pal",
+      "git_blob_sha1": "76744263f157d140f9765f1f32bdc9067e3d698d",
+      "bytes": 171
+    },
+    {
+      "path": "graphics/pokemon/scyther/overworld_shiny.pal",
+      "git_blob_sha1": "f3bdc007f9cd490e4da0e933e44837626fc39620",
+      "bytes": 170
+    },
+    {
+      "path": "graphics/pokemon/scizor/overworld.png",
+      "git_blob_sha1": "2b88f0e58aad5f4ccaf52d3084dca94a658dbf13",
+      "bytes": 1083
+    },
+    {
+      "path": "graphics/pokemon/scizor/overworld_normal.pal",
+      "git_blob_sha1": "0defd9ccf1fe206748b345f5f8ece6d72139afd2",
+      "bytes": 171
+    },
+    {
+      "path": "graphics/pokemon/scizor/overworld_shiny.pal",
+      "git_blob_sha1": "bff595c2fe2184943ee4657cd33fba9a9b85d65d",
+      "bytes": 174
+    },
+    {
+      "path": "graphics/pokemon/smoochum/overworld.png",
+      "git_blob_sha1": "ccee071741cbf2c7da496bb3b7f3812b7a6452b5",
+      "bytes": 716
+    },
+    {
+      "path": "graphics/pokemon/smoochum/overworld_normal.pal",
+      "git_blob_sha1": "ad1fb9a48f8b1cad72d0693e589e076fc5307113",
+      "bytes": 183
+    },
+    {
+      "path": "graphics/pokemon/smoochum/overworld_shiny.pal",
+      "git_blob_sha1": "0c4052b9cce2b0eb1a007b3900da9724ed0d9dfd",
+      "bytes": 186
+    },
+    {
+      "path": "graphics/pokemon/jynx/overworld.png",
+      "git_blob_sha1": "d53ff2d3c10c9df0165b26b42312199c23509ee2",
+      "bytes": 1032
+    },
+    {
+      "path": "graphics/pokemon/jynx/overworld_normal.pal",
+      "git_blob_sha1": "801b1bb0f96448caa7905145870a9acdfb64113f",
+      "bytes": 190
+    },
+    {
+      "path": "graphics/pokemon/jynx/overworld_shiny.pal",
+      "git_blob_sha1": "dea4bbb264cc019290104ca586629ea72dbde769",
+      "bytes": 196
+    },
+    {
+      "path": "graphics/pokemon/elekid/overworld.png",
+      "git_blob_sha1": "ea838908cd858b8308d125ee34f8410524b0bd53",
+      "bytes": 713
+    },
+    {
+      "path": "graphics/pokemon/elekid/overworld_normal.pal",
+      "git_blob_sha1": "16204e870a56142a49ab22ff26631a547ab95f7c",
+      "bytes": 144
+    },
+    {
+      "path": "graphics/pokemon/elekid/overworld_shiny.pal",
+      "git_blob_sha1": "85143102e02a97f3df283f79d6cd02ee346a2a07",
+      "bytes": 143
+    },
+    {
+      "path": "graphics/pokemon/electabuzz/overworld.png",
+      "git_blob_sha1": "8eabb6c8ff40b4dbab23a0e3ceb2efd238fab2f7",
+      "bytes": 842
+    },
+    {
+      "path": "graphics/pokemon/electabuzz/overworld_normal.pal",
+      "git_blob_sha1": "9d1762d9a4e4bf20fcdf8fa6684d031cc10e3cf0",
+      "bytes": 149
+    },
+    {
+      "path": "graphics/pokemon/electabuzz/overworld_shiny.pal",
+      "git_blob_sha1": "b7418ac89b4cfd6b9f5535947535ee57920fb1ff",
+      "bytes": 149
+    },
+    {
+      "path": "graphics/pokemon/magby/overworld.png",
+      "git_blob_sha1": "6b3efd8585e41754475cb10faf3e56e9d2e14e61",
+      "bytes": 701
+    },
+    {
+      "path": "graphics/pokemon/magby/overworld_normal.pal",
+      "git_blob_sha1": "e1a3accf884310eb7e7a36fcbd718df209475145",
+      "bytes": 167
+    },
+    {
+      "path": "graphics/pokemon/magby/overworld_shiny.pal",
+      "git_blob_sha1": "3ce78722f8bba89affeaaaf30b88f24720794566",
+      "bytes": 168
+    },
+    {
+      "path": "graphics/pokemon/magmar/overworld.png",
+      "git_blob_sha1": "dd186f16abfa247c941b41b6ca535aacd7c64790",
+      "bytes": 1063
+    },
+    {
+      "path": "graphics/pokemon/magmar/overworld_normal.pal",
+      "git_blob_sha1": "3b0b823e98d589394787e614fa5d87df009adeae",
+      "bytes": 182
+    },
+    {
+      "path": "graphics/pokemon/magmar/overworld_shiny.pal",
+      "git_blob_sha1": "6b847ea300ef3a239ab205ec40695e01af3b160e",
+      "bytes": 188
+    },
+    {
+      "path": "graphics/pokemon/pinsir/overworld.png",
+      "git_blob_sha1": "3ac6218fe732c084f495b24eefd28773831de9fb",
+      "bytes": 974
+    },
+    {
+      "path": "graphics/pokemon/pinsir/overworld_normal.pal",
+      "git_blob_sha1": "d88051943db421734bdae0d954b460688dbf10c1",
+      "bytes": 162
+    },
+    {
+      "path": "graphics/pokemon/pinsir/overworld_shiny.pal",
+      "git_blob_sha1": "0488359dbb754cdcdf56b93f19cf3ba65e0ec9b7",
+      "bytes": 164
+    },
+    {
+      "path": "graphics/pokemon/tauros/overworld.png",
+      "git_blob_sha1": "589016e044b56c3a288ccd440820fd9bfc542380",
+      "bytes": 1079
+    },
+    {
+      "path": "graphics/pokemon/tauros/overworld_normal.pal",
+      "git_blob_sha1": "9068909bcbbe8cc7eb1b7ac5fcb80228c234d646",
+      "bytes": 172
+    },
+    {
+      "path": "graphics/pokemon/tauros/overworld_shiny.pal",
+      "git_blob_sha1": "93c18b805fa09d3dafea927da41c66e2e5900c1e",
+      "bytes": 174
+    },
+    {
+      "path": "graphics/pokemon/magikarp/overworld.png",
+      "git_blob_sha1": "debcdb492539c67c6272045ac766e78b79b8a550",
+      "bytes": 1003
+    },
+    {
+      "path": "graphics/pokemon/magikarp/overworld_normal.pal",
+      "git_blob_sha1": "7475ba359d0815c8158116e7129a92bc1eeecc76",
+      "bytes": 185
+    },
+    {
+      "path": "graphics/pokemon/magikarp/overworld_shiny.pal",
+      "git_blob_sha1": "43cbfeca884795540fc47571e946d8c3396f807d",
+      "bytes": 183
+    },
+    {
+      "path": "graphics/pokemon/gyarados/overworld.png",
+      "git_blob_sha1": "7c0400b1e5b7c40125191ded554f49d34140cf63",
+      "bytes": 1650
+    },
+    {
+      "path": "graphics/pokemon/gyarados/overworld_normal.pal",
+      "git_blob_sha1": "fca7fbe01ac5188a31bf78c675cded6ee0a7cb95",
+      "bytes": 188
+    },
+    {
+      "path": "graphics/pokemon/gyarados/overworld_shiny.pal",
+      "git_blob_sha1": "8c0963eef73e248d1198f31810d44e366deeb64b",
+      "bytes": 181
+    },
+    {
+      "path": "graphics/pokemon/lapras/overworld.png",
+      "git_blob_sha1": "f8bb74e3624373d427f9654dcddadf3e3ddae65f",
+      "bytes": 1081
+    },
+    {
+      "path": "graphics/pokemon/lapras/overworld_normal.pal",
+      "git_blob_sha1": "712bf6a44cbf14bc403ec68f6cc90da4353282ea",
+      "bytes": 175
+    },
+    {
+      "path": "graphics/pokemon/lapras/overworld_shiny.pal",
+      "git_blob_sha1": "05c23238aaa60c1dd9795849d0c4289f4e2439e7",
+      "bytes": 177
+    },
+    {
+      "path": "graphics/pokemon/ditto/overworld.png",
+      "git_blob_sha1": "a74652588e5c0d39384b0042aebb24cee9bce6a2",
+      "bytes": 556
+    },
+    {
+      "path": "graphics/pokemon/ditto/overworld_normal.pal",
+      "git_blob_sha1": "d21458714fa3a6332d295f40b08395cd71f22c29",
+      "bytes": 145
+    },
+    {
+      "path": "graphics/pokemon/ditto/overworld_shiny.pal",
+      "git_blob_sha1": "b5f8d3f9b145030317eceda7b893a2cddb42f995",
+      "bytes": 145
+    },
+    {
+      "path": "graphics/pokemon/eevee/overworld.png",
+      "git_blob_sha1": "9b29013b43b0d5bc810ce308777d75b9f92e2392",
+      "bytes": 712
+    },
+    {
+      "path": "graphics/pokemon/eevee/overworld_normal.pal",
+      "git_blob_sha1": "aae9670b783220f5303dee5646bfdb8794978277",
+      "bytes": 160
+    },
+    {
+      "path": "graphics/pokemon/eevee/overworld_shiny.pal",
+      "git_blob_sha1": "266ba6885b732907b95c3c405d0572f9470f5342",
+      "bytes": 168
+    },
+    {
+      "path": "graphics/pokemon/vaporeon/overworld.png",
+      "git_blob_sha1": "beec2a377559ce82e95273be362239f6aa66849a",
+      "bytes": 1092
+    },
+    {
+      "path": "graphics/pokemon/vaporeon/overworld_normal.pal",
+      "git_blob_sha1": "03347d86c19df09b7c1352c1b62d3dbbb2904967",
+      "bytes": 188
+    },
+    {
+      "path": "graphics/pokemon/vaporeon/overworld_shiny.pal",
+      "git_blob_sha1": "12e395a0866354e6213aee1e3882f0cf096529bc",
+      "bytes": 190
+    },
+    {
+      "path": "graphics/pokemon/jolteon/overworld.png",
+      "git_blob_sha1": "0c739e25ca9b4b87af32366552d9811f85f0738b",
+      "bytes": 923
+    },
+    {
+      "path": "graphics/pokemon/jolteon/overworld_normal.pal",
+      "git_blob_sha1": "4c5e10bff713d08947f87973c435c152ab8bb41d",
+      "bytes": 163
+    },
+    {
+      "path": "graphics/pokemon/jolteon/overworld_shiny.pal",
+      "git_blob_sha1": "226c0bedb5efaa46cb994797393bf767f9ee00ea",
+      "bytes": 164
+    },
+    {
+      "path": "graphics/pokemon/flareon/overworld.png",
+      "git_blob_sha1": "c32cab6f9d2ab66830cd2cab9b97d87555c7a93b",
+      "bytes": 1016
+    },
+    {
+      "path": "graphics/pokemon/flareon/overworld_normal.pal",
+      "git_blob_sha1": "ccc4e87016666aad9fc9a5969c744de3077f4f51",
+      "bytes": 170
+    },
+    {
+      "path": "graphics/pokemon/flareon/overworld_shiny.pal",
+      "git_blob_sha1": "b2cdf694c90f8e671500f6435f58e20894f04dcf",
+      "bytes": 172
+    },
+    {
+      "path": "graphics/pokemon/espeon/overworld.png",
+      "git_blob_sha1": "158ba055c9b3a0566a469bdecca8ac25000e6ef0",
+      "bytes": 983
+    },
+    {
+      "path": "graphics/pokemon/espeon/overworld_normal.pal",
+      "git_blob_sha1": "80d1e3988e6e833b64848a0fdc5447ea7a707c39",
+      "bytes": 172
+    },
+    {
+      "path": "graphics/pokemon/espeon/overworld_shiny.pal",
+      "git_blob_sha1": "308eb31594e6e46d070cd558541c394c5b4b5df8",
+      "bytes": 165
+    },
+    {
+      "path": "graphics/pokemon/umbreon/overworld.png",
+      "git_blob_sha1": "6bf726c2ced102a56124bf48d4cfb066cc6c46e5",
+      "bytes": 922
+    },
+    {
+      "path": "graphics/pokemon/umbreon/overworld_normal.pal",
+      "git_blob_sha1": "c44e7b2e122323dbc168bf30e41711015254e160",
+      "bytes": 164
+    },
+    {
+      "path": "graphics/pokemon/umbreon/overworld_shiny.pal",
+      "git_blob_sha1": "f4379a6c6a60c204b305cf56e7fed4969d642ebb",
+      "bytes": 171
+    },
+    {
+      "path": "graphics/pokemon/porygon/overworld.png",
+      "git_blob_sha1": "37e9a634929721d93b97b124c75a5d7929e17603",
+      "bytes": 788
+    },
+    {
+      "path": "graphics/pokemon/porygon/overworld_normal.pal",
+      "git_blob_sha1": "c14e3e9b530ca640dfef5244c887f97a130d9d55",
+      "bytes": 177
+    },
+    {
+      "path": "graphics/pokemon/porygon/overworld_shiny.pal",
+      "git_blob_sha1": "eab5a782e858ffff394d8ad542eb1a36a649083b",
+      "bytes": 186
+    },
+    {
+      "path": "graphics/pokemon/porygon2/overworld.png",
+      "git_blob_sha1": "4a89c2234a5be004359a2b17610a52bb9ecd3b81",
+      "bytes": 786
+    },
+    {
+      "path": "graphics/pokemon/porygon2/overworld_normal.pal",
+      "git_blob_sha1": "95d5df7259c301af3379e45275c7c5f6d59a81f3",
+      "bytes": 182
+    },
+    {
+      "path": "graphics/pokemon/porygon2/overworld_shiny.pal",
+      "git_blob_sha1": "0067839935e80960e571cbf01c1eb1d2239ca29a",
+      "bytes": 186
+    },
+    {
+      "path": "graphics/pokemon/omanyte/overworld.png",
+      "git_blob_sha1": "3fc090727e267342fa353871bf656b6451daf16a",
+      "bytes": 730
+    },
+    {
+      "path": "graphics/pokemon/omanyte/overworld_normal.pal",
+      "git_blob_sha1": "618b1acffcf703f128687919f31728b48456ef1a",
+      "bytes": 176
+    },
+    {
+      "path": "graphics/pokemon/omanyte/overworld_shiny.pal",
+      "git_blob_sha1": "19bd4cc79f297f8ef8d4df3459f8dd032e1acb5c",
+      "bytes": 178
+    },
+    {
+      "path": "graphics/pokemon/omastar/overworld.png",
+      "git_blob_sha1": "dbc1bf40d45452182be8c069d1977c1d57a56cb0",
+      "bytes": 1000
+    },
+    {
+      "path": "graphics/pokemon/omastar/overworld_normal.pal",
+      "git_blob_sha1": "1cf029320da626afe85b4410d5a8ca115e81ba24",
+      "bytes": 181
+    },
+    {
+      "path": "graphics/pokemon/omastar/overworld_shiny.pal",
+      "git_blob_sha1": "dd8055f9ba81cd842564e793163770adee70cd52",
+      "bytes": 182
+    },
+    {
+      "path": "graphics/pokemon/kabuto/overworld.png",
+      "git_blob_sha1": "d13b97f85542f81feafa039137ac5250aad5c64a",
+      "bytes": 665
+    },
+    {
+      "path": "graphics/pokemon/kabuto/overworld_normal.pal",
+      "git_blob_sha1": "9b372b52296d8a3dd2109c7feb9e0087ef22f854",
+      "bytes": 155
+    },
+    {
+      "path": "graphics/pokemon/kabuto/overworld_shiny.pal",
+      "git_blob_sha1": "39c845e290f54c046dc51b1fd9af9a819b5eeca4",
+      "bytes": 156
+    },
+    {
+      "path": "graphics/pokemon/kabutops/overworld.png",
+      "git_blob_sha1": "084d6339b7df34b0b3c321acc61ce9819dcd69c5",
+      "bytes": 785
+    },
+    {
+      "path": "graphics/pokemon/kabutops/overworld_normal.pal",
+      "git_blob_sha1": "04f6316663cf21f86be71d4b2f08ffb96c12b40a",
+      "bytes": 165
+    },
+    {
+      "path": "graphics/pokemon/kabutops/overworld_shiny.pal",
+      "git_blob_sha1": "f53dd0d57a1f1550cf1f3e41b9ece09989b4777a",
+      "bytes": 168
+    },
+    {
+      "path": "graphics/pokemon/aerodactyl/overworld.png",
+      "git_blob_sha1": "78e3e13bbc470ff67baa6bcaf289a33e4e7a1193",
+      "bytes": 1180
+    },
+    {
+      "path": "graphics/pokemon/aerodactyl/overworld_normal.pal",
+      "git_blob_sha1": "17f2adc12400cb11e97f0cc27f1eb253b911cdde",
+      "bytes": 166
+    },
+    {
+      "path": "graphics/pokemon/aerodactyl/overworld_shiny.pal",
+      "git_blob_sha1": "04475bec283557ed08d7f64015b80ecb23315137",
+      "bytes": 167
+    },
+    {
+      "path": "graphics/pokemon/snorlax/overworld.png",
+      "git_blob_sha1": "41399029910702486944d5fc85c40a10d3fb21da",
+      "bytes": 1069
+    },
+    {
+      "path": "graphics/pokemon/snorlax/overworld_normal.pal",
+      "git_blob_sha1": "b3f5917464fce5eac073840695c81f67bb9fa404",
+      "bytes": 178
+    },
+    {
+      "path": "graphics/pokemon/snorlax/overworld_shiny.pal",
+      "git_blob_sha1": "f0cd65c757e90deb3cec04db01f81a2514fc2c97",
+      "bytes": 180
+    },
+    {
+      "path": "graphics/pokemon/dratini/overworld.png",
+      "git_blob_sha1": "1a744c59f10bc8dacf30ada5896b9b39f5739a0c",
+      "bytes": 852
+    },
+    {
+      "path": "graphics/pokemon/dratini/overworld_normal.pal",
+      "git_blob_sha1": "dd8d13fb5641da40c8579a9323e02cac75f390cd",
+      "bytes": 170
+    },
+    {
+      "path": "graphics/pokemon/dratini/overworld_shiny.pal",
+      "git_blob_sha1": "de765381648016085270aec25fb6cd26dd4e0798",
+      "bytes": 171
+    },
+    {
+      "path": "graphics/pokemon/dragonair/overworld.png",
+      "git_blob_sha1": "6186bbad5aff7957be74df304b6fc063beb0fe84",
+      "bytes": 1291
+    },
+    {
+      "path": "graphics/pokemon/dragonair/overworld_normal.pal",
+      "git_blob_sha1": "50e4ce59c79bca0e7710d591c31a494de4a25fcf",
+      "bytes": 186
+    },
+    {
+      "path": "graphics/pokemon/dragonair/overworld_shiny.pal",
+      "git_blob_sha1": "9ba2f48f7d0b3387d39fd97c5a3b712b3c8a8914",
+      "bytes": 188
+    },
+    {
+      "path": "graphics/pokemon/dragonite/overworld.png",
+      "git_blob_sha1": "fbb49598d3d3a3559f04d74c71897af2cc0c15a1",
+      "bytes": 1153
+    },
+    {
+      "path": "graphics/pokemon/dragonite/overworld_normal.pal",
+      "git_blob_sha1": "d0b3851741dbf32257e36bc8722880c0eed77f4a",
+      "bytes": 182
+    },
+    {
+      "path": "graphics/pokemon/dragonite/overworld_shiny.pal",
+      "git_blob_sha1": "9957a95f9804094a0243c18b6e1355daada0a430",
+      "bytes": 182
+    },
+    {
+      "path": "graphics/pokemon/hoothoot/overworld.png",
+      "git_blob_sha1": "72ccbdc9d56f318510eb41242416df027c491159",
+      "bytes": 834
+    },
+    {
+      "path": "graphics/pokemon/hoothoot/overworld_normal.pal",
+      "git_blob_sha1": "3c77d7c67c7c67085263868617d5d0c60aec16e7",
+      "bytes": 178
+    },
+    {
+      "path": "graphics/pokemon/hoothoot/overworld_shiny.pal",
+      "git_blob_sha1": "f19b0baa4c0cf4669873b36a5cf279ea4a029856",
+      "bytes": 179
+    },
+    {
+      "path": "graphics/pokemon/noctowl/overworld.png",
+      "git_blob_sha1": "c8942ec37950824f0c44160e0fda3a6175cac460",
+      "bytes": 1280
+    },
+    {
+      "path": "graphics/pokemon/noctowl/overworld_normal.pal",
+      "git_blob_sha1": "8a1f15100fdb31012ab28526827413b26911737c",
+      "bytes": 187
+    },
+    {
+      "path": "graphics/pokemon/noctowl/overworld_shiny.pal",
+      "git_blob_sha1": "e50163e37a3bc195d85990189466f8194a224df3",
+      "bytes": 189
+    },
+    {
+      "path": "graphics/pokemon/spinarak/overworld.png",
+      "git_blob_sha1": "235adf07389c047337e4b418ae4a7cd46faf2c9f",
+      "bytes": 824
+    },
+    {
+      "path": "graphics/pokemon/spinarak/overworld_normal.pal",
+      "git_blob_sha1": "8ef381be2cd2d5e9092bdec68d82fead4fa8c3b5",
+      "bytes": 174
+    },
+    {
+      "path": "graphics/pokemon/spinarak/overworld_shiny.pal",
+      "git_blob_sha1": "2a3ead998b22875c0f79dd7e002e69ab7d12e476",
+      "bytes": 183
+    },
+    {
+      "path": "graphics/pokemon/ariados/overworld.png",
+      "git_blob_sha1": "4508799e7164e5855105f438171b81cd8bc60d31",
+      "bytes": 1228
+    },
+    {
+      "path": "graphics/pokemon/ariados/overworld_normal.pal",
+      "git_blob_sha1": "02d8dc3c4001c517c0781a827cde968816169103",
+      "bytes": 169
+    },
+    {
+      "path": "graphics/pokemon/ariados/overworld_shiny.pal",
+      "git_blob_sha1": "c8c750e902cf59f75646b3a7ec14f59b26fdf575",
+      "bytes": 173
+    },
+    {
+      "path": "graphics/pokemon/natu/overworld.png",
+      "git_blob_sha1": "8941c2402ac086d1f31e3c50b27afe3eb83fc1d4",
+      "bytes": 639
+    },
+    {
+      "path": "graphics/pokemon/natu/overworld_normal.pal",
+      "git_blob_sha1": "a2e624a97cede7deeb4e60b5691862c5f4796263",
+      "bytes": 180
+    },
+    {
+      "path": "graphics/pokemon/natu/overworld_shiny.pal",
+      "git_blob_sha1": "a8638a811f9cd7709a62052c5a2c6564ad5a5f50",
+      "bytes": 181
+    },
+    {
+      "path": "graphics/pokemon/xatu/overworld.png",
+      "git_blob_sha1": "70b4c85391e89052b27e907d34ef22feb26676b2",
+      "bytes": 864
+    },
+    {
+      "path": "graphics/pokemon/xatu/overworld_normal.pal",
+      "git_blob_sha1": "e163237491fa94e407ffbc625ff6741e865ed775",
+      "bytes": 178
+    },
+    {
+      "path": "graphics/pokemon/xatu/overworld_shiny.pal",
+      "git_blob_sha1": "0601667385147e1ad52d19d898c48279a520ff83",
+      "bytes": 180
+    },
+    {
+      "path": "graphics/pokemon/mareep/overworld.png",
+      "git_blob_sha1": "7a3e4ad1d0f12e52b88280cb7c2a42479c0352de",
+      "bytes": 920
+    },
+    {
+      "path": "graphics/pokemon/mareep/overworld_normal.pal",
+      "git_blob_sha1": "1de585f7aa8b9b6c73d4aa1521c0180a67eebc8f",
+      "bytes": 183
+    },
+    {
+      "path": "graphics/pokemon/mareep/overworld_shiny.pal",
+      "git_blob_sha1": "eb79f7951b39a971d81b8a86af8be7073d62d666",
+      "bytes": 187
+    },
+    {
+      "path": "graphics/pokemon/flaaffy/overworld.png",
+      "git_blob_sha1": "e13f4b730084550ce65bc2128e0edf9d7ebd1015",
+      "bytes": 955
+    },
+    {
+      "path": "graphics/pokemon/flaaffy/overworld_normal.pal",
+      "git_blob_sha1": "225e4789351f5e88d9e771afffd6521ba5d667c6",
+      "bytes": 180
+    },
+    {
+      "path": "graphics/pokemon/flaaffy/overworld_shiny.pal",
+      "git_blob_sha1": "060d27de6a2524e6f5a7c649dc4c7416c1e2b83f",
+      "bytes": 180
+    },
+    {
+      "path": "graphics/pokemon/ampharos/overworld.png",
+      "git_blob_sha1": "f5fd21424994fa48321c704aee01427fedffd000",
+      "bytes": 981
+    },
+    {
+      "path": "graphics/pokemon/ampharos/overworld_normal.pal",
+      "git_blob_sha1": "6aa9ad55c1df26cfc741eaa95781b9dad3bd1155",
+      "bytes": 173
+    },
+    {
+      "path": "graphics/pokemon/ampharos/overworld_shiny.pal",
+      "git_blob_sha1": "c130ea87db63e59c5b0a7344d33252ca190c9bc7",
+      "bytes": 177
+    },
+    {
+      "path": "graphics/pokemon/sudowoodo/overworld.png",
+      "git_blob_sha1": "58dceaf06728c49865c57e6ef56621311a46bb77",
+      "bytes": 832
+    },
+    {
+      "path": "graphics/pokemon/sudowoodo/overworld_normal.pal",
+      "git_blob_sha1": "068f66d77275e061f35f0dfd37d1f1ce4bda08d5",
+      "bytes": 168
+    },
+    {
+      "path": "graphics/pokemon/sudowoodo/overworld_shiny.pal",
+      "git_blob_sha1": "688e5b7769fabd067c69c5f6da48c91a272cc2b3",
+      "bytes": 167
+    },
+    {
+      "path": "graphics/pokemon/sunkern/overworld.png",
+      "git_blob_sha1": "7482251893ced754b553a1fffe6751fd51f114bf",
+      "bytes": 575
+    },
+    {
+      "path": "graphics/pokemon/sunkern/overworld_normal.pal",
+      "git_blob_sha1": "85a9e8187132bac574b0f0b2fc473f99da29db24",
+      "bytes": 164
+    },
+    {
+      "path": "graphics/pokemon/sunkern/overworld_shiny.pal",
+      "git_blob_sha1": "8256fa6706bdf24d7bb065dc4dec9856c863e66e",
+      "bytes": 166
+    },
+    {
+      "path": "graphics/pokemon/sunflora/overworld.png",
+      "git_blob_sha1": "2870eb32a20220ce8c586bcd1a9248546250c89b",
+      "bytes": 779
+    },
+    {
+      "path": "graphics/pokemon/sunflora/overworld_normal.pal",
+      "git_blob_sha1": "15ecb4f27630015e76e7523892b5bc74f564d324",
+      "bytes": 163
+    },
+    {
+      "path": "graphics/pokemon/sunflora/overworld_shiny.pal",
+      "git_blob_sha1": "8a3f67ad50c9ef67fb3ffc033d1625a9eb0c9c4c",
+      "bytes": 161
+    },
+    {
+      "path": "graphics/pokemon/yanma/overworld.png",
+      "git_blob_sha1": "4f9e45ea9579d09ca2a20503f0339e39abc25916",
+      "bytes": 1148
+    },
+    {
+      "path": "graphics/pokemon/yanma/overworld_normal.pal",
+      "git_blob_sha1": "576f73c2f7bcaf8c5a9123249ba5a210ab12d9b0",
+      "bytes": 174
+    },
+    {
+      "path": "graphics/pokemon/yanma/overworld_shiny.pal",
+      "git_blob_sha1": "29807c87b350c59694823e9d2e503d16c2c092b1",
+      "bytes": 182
+    },
+    {
+      "path": "graphics/pokemon/murkrow/overworld.png",
+      "git_blob_sha1": "c70c19ba2cbf690bdaab021932ddf4ab52457ffb",
+      "bytes": 674
+    },
+    {
+      "path": "graphics/pokemon/murkrow/overworld_normal.pal",
+      "git_blob_sha1": "6a4790eae2d7cde20ab6168195726778993ec636",
+      "bytes": 175
+    },
+    {
+      "path": "graphics/pokemon/murkrow/overworld_shiny.pal",
+      "git_blob_sha1": "54e704e6ba078a7808e2d195c9bc677817887c62",
+      "bytes": 180
+    },
+    {
+      "path": "graphics/pokemon/misdreavus/overworld.png",
+      "git_blob_sha1": "fbb6a2341b1ab9fdf1f28e3d8c42cc0192636a0a",
+      "bytes": 1065
+    },
+    {
+      "path": "graphics/pokemon/misdreavus/overworld_normal.pal",
+      "git_blob_sha1": "de9938bb7f831a7c5459a253ad39c0d4b438350e",
+      "bytes": 175
+    },
+    {
+      "path": "graphics/pokemon/misdreavus/overworld_shiny.pal",
+      "git_blob_sha1": "1b9716b3ab383d351209e12ec35a1c1046fde88e",
+      "bytes": 173
+    },
+    {
+      "path": "graphics/pokemon/pineco/overworld.png",
+      "git_blob_sha1": "2107344189a542d9bf2a3b4bd3539182e8d2a749",
+      "bytes": 561
+    },
+    {
+      "path": "graphics/pokemon/pineco/overworld_normal.pal",
+      "git_blob_sha1": "4659770069c0f57793513faf99ff3dc4a9d6619a",
+      "bytes": 156
+    },
+    {
+      "path": "graphics/pokemon/pineco/overworld_shiny.pal",
+      "git_blob_sha1": "7cc52c90851363dc156b0beac696eef23373257f",
+      "bytes": 159
+    },
+    {
+      "path": "graphics/pokemon/forretress/overworld.png",
+      "git_blob_sha1": "f3994240fab38b0e9f34c0fd810b4b8a74b5094e",
+      "bytes": 762
+    },
+    {
+      "path": "graphics/pokemon/forretress/overworld_normal.pal",
+      "git_blob_sha1": "b213db8f92003a836310e97f32a931d464f99fd4",
+      "bytes": 174
+    },
+    {
+      "path": "graphics/pokemon/forretress/overworld_shiny.pal",
+      "git_blob_sha1": "8dd78f9ff78f8565df2cd5466891a73e3ee6b746",
+      "bytes": 172
+    },
+    {
+      "path": "graphics/pokemon/heracross/overworld.png",
+      "git_blob_sha1": "4ce6d4a0443202b2707e67adda8a97de275f2286",
+      "bytes": 1029
+    },
+    {
+      "path": "graphics/pokemon/heracross/overworld_normal.pal",
+      "git_blob_sha1": "6ba2873796d63fe2316786934ba10240a9f4fce9",
+      "bytes": 180
+    },
+    {
+      "path": "graphics/pokemon/heracross/overworld_shiny.pal",
+      "git_blob_sha1": "6fc7816a97f41235f7d334e757ea4c4114796a44",
+      "bytes": 185
+    },
+    {
+      "path": "graphics/pokemon/sneasel/overworld.png",
+      "git_blob_sha1": "3cabd75c549331f9bb086923c93c217572576fc4",
+      "bytes": 788
+    },
+    {
+      "path": "graphics/pokemon/sneasel/overworld_normal.pal",
+      "git_blob_sha1": "7a4190d087f9ced67264d9428f70e26bff68d9c8",
+      "bytes": 182
+    },
+    {
+      "path": "graphics/pokemon/sneasel/overworld_shiny.pal",
+      "git_blob_sha1": "d84067f4bc7055d173f5cd07fc3af27c875ebfe2",
+      "bytes": 192
+    },
+    {
+      "path": "graphics/pokemon/teddiursa/overworld.png",
+      "git_blob_sha1": "1246941c742fde63b56b7b526c86ca732d67211d",
+      "bytes": 741
+    },
+    {
+      "path": "graphics/pokemon/teddiursa/overworld_normal.pal",
+      "git_blob_sha1": "e80627f613bed74e4c8e382f908f699b721a694f",
+      "bytes": 174
+    },
+    {
+      "path": "graphics/pokemon/teddiursa/overworld_shiny.pal",
+      "git_blob_sha1": "3a2c814db4283e92e494e9e241968bc7a573834b",
+      "bytes": 175
+    },
+    {
+      "path": "graphics/pokemon/ursaring/overworld.png",
+      "git_blob_sha1": "193585e6b0b1aae7104991c173b23377e57123f0",
+      "bytes": 1014
+    },
+    {
+      "path": "graphics/pokemon/ursaring/overworld_normal.pal",
+      "git_blob_sha1": "763e99e6ce36696af176b32e631c6ba2c4ff981c",
+      "bytes": 177
+    },
+    {
+      "path": "graphics/pokemon/ursaring/overworld_shiny.pal",
+      "git_blob_sha1": "222323119b26d9ea2b374e84b84f5d79b5015b9f",
+      "bytes": 175
+    },
+    {
+      "path": "graphics/pokemon/slugma/overworld.png",
+      "git_blob_sha1": "61439bc0fbcb3c70a3f08d611d00f15dee13f812",
+      "bytes": 837
+    },
+    {
+      "path": "graphics/pokemon/slugma/overworld_normal.pal",
+      "git_blob_sha1": "da10c73e9dfc3ccd08a0aca1133816884b421521",
+      "bytes": 147
+    },
+    {
+      "path": "graphics/pokemon/slugma/overworld_shiny.pal",
+      "git_blob_sha1": "ee33de70cb54af07a7c3a8827899aa9e8efe0816",
+      "bytes": 154
+    },
+    {
+      "path": "graphics/pokemon/magcargo/overworld.png",
+      "git_blob_sha1": "10f1b74ea3498c6bc7fce3ac4cc0403c927dfd43",
+      "bytes": 1102
+    },
+    {
+      "path": "graphics/pokemon/magcargo/overworld_normal.pal",
+      "git_blob_sha1": "ae59bf42fa258d378cb71e96006ca67d64bdc69e",
+      "bytes": 158
+    },
+    {
+      "path": "graphics/pokemon/magcargo/overworld_shiny.pal",
+      "git_blob_sha1": "b2c613353e20d3f13ecaf6d5c6158b30f75906be",
+      "bytes": 159
+    },
+    {
+      "path": "graphics/pokemon/swinub/overworld.png",
+      "git_blob_sha1": "60bad0ef611873c47a10a9dce39b93f6648f92fd",
+      "bytes": 662
+    },
+    {
+      "path": "graphics/pokemon/swinub/overworld_normal.pal",
+      "git_blob_sha1": "e5b76b22ba78d40f85686711118096f551bde959",
+      "bytes": 155
+    },
+    {
+      "path": "graphics/pokemon/swinub/overworld_shiny.pal",
+      "git_blob_sha1": "fa2d2fec7181583ccbe5c7a6ab06bfe2471d219b",
+      "bytes": 156
+    },
+    {
+      "path": "graphics/pokemon/piloswine/overworld.png",
+      "git_blob_sha1": "d063c3da8b1fbfc926d214bf0b8c169bf264563f",
+      "bytes": 809
+    },
+    {
+      "path": "graphics/pokemon/piloswine/overworld_normal.pal",
+      "git_blob_sha1": "c8f0d9fb48ca8105a79189dee983a1790e78eef8",
+      "bytes": 165
+    },
+    {
+      "path": "graphics/pokemon/piloswine/overworld_shiny.pal",
+      "git_blob_sha1": "6709eb7cc8c951087b29fe9f963f44c711325dea",
+      "bytes": 167
+    },
+    {
+      "path": "graphics/pokemon/houndour/overworld.png",
+      "git_blob_sha1": "664fab3f83a2be04f76779b2caa65c6ebd0d7610",
+      "bytes": 795
+    },
+    {
+      "path": "graphics/pokemon/houndour/overworld_normal.pal",
+      "git_blob_sha1": "e8f3ee64e9338a4cd4010602a5888f0235c13fbd",
+      "bytes": 181
+    },
+    {
+      "path": "graphics/pokemon/houndour/overworld_shiny.pal",
+      "git_blob_sha1": "8d7f91222cc07a5ca180dcecc1568bcf4c22c91d",
+      "bytes": 182
+    },
+    {
+      "path": "graphics/pokemon/houndoom/overworld.png",
+      "git_blob_sha1": "96212ee3e5eab091a8f67cc3f4e7ec66964d8c99",
+      "bytes": 952
+    },
+    {
+      "path": "graphics/pokemon/houndoom/overworld_normal.pal",
+      "git_blob_sha1": "c3468aa5b0b000e5fdb6fdccf0f25220d6924f8c",
+      "bytes": 179
+    },
+    {
+      "path": "graphics/pokemon/houndoom/overworld_shiny.pal",
+      "git_blob_sha1": "05b66d6ede380334e47a70c20a59bb951ee75885",
+      "bytes": 180
+    },
+    {
+      "path": "graphics/pokemon/phanpy/overworld.png",
+      "git_blob_sha1": "49f93d5b45dc8642fbc29bc27aa67dfb31cd05a7",
+      "bytes": 624
+    },
+    {
+      "path": "graphics/pokemon/phanpy/overworld_normal.pal",
+      "git_blob_sha1": "9bd5ef77238305102ce405ad1bf83cc9a5e4b5b8",
+      "bytes": 158
+    },
+    {
+      "path": "graphics/pokemon/phanpy/overworld_shiny.pal",
+      "git_blob_sha1": "5d8160680a481abd6fb586a302ed328e98b6cd4a",
+      "bytes": 159
+    },
+    {
+      "path": "graphics/pokemon/donphan/overworld.png",
+      "git_blob_sha1": "e6afdd6f2f761d781fcb1d286cbe93b81f8c1668",
+      "bytes": 940
+    },
+    {
+      "path": "graphics/pokemon/donphan/overworld_normal.pal",
+      "git_blob_sha1": "e90107418931885ad25f8a90bff19315ccd21320",
+      "bytes": 176
+    },
+    {
+      "path": "graphics/pokemon/donphan/overworld_shiny.pal",
+      "git_blob_sha1": "22f9a2b5d8271ce2a518acb20da6487dbefa5af1",
+      "bytes": 175
+    },
+    {
+      "path": "graphics/pokemon/miltank/overworld.png",
+      "git_blob_sha1": "351fc02f878fad696d6c4b818ea75be073cdbd14",
+      "bytes": 980
+    },
+    {
+      "path": "graphics/pokemon/miltank/overworld_normal.pal",
+      "git_blob_sha1": "84739e680fb9d086f64b4731eee679cab27d17f6",
+      "bytes": 182
+    },
+    {
+      "path": "graphics/pokemon/miltank/overworld_shiny.pal",
+      "git_blob_sha1": "83eb27dce68b20fe9ef873a27755c22e6475e47c",
+      "bytes": 184
+    },
+    {
+      "path": "graphics/pokemon/larvitar/overworld.png",
+      "git_blob_sha1": "04d3285142f43a61aa725f8a10dc1c8abfdd1e6f",
+      "bytes": 637
+    },
+    {
+      "path": "graphics/pokemon/larvitar/overworld_normal.pal",
+      "git_blob_sha1": "956a461b8bdac0bec48588ab43619095a67785ca",
+      "bytes": 158
+    },
+    {
+      "path": "graphics/pokemon/larvitar/overworld_shiny.pal",
+      "git_blob_sha1": "69bc93e53d87e0e997aa078e1504a7455278a4a7",
+      "bytes": 155
+    },
+    {
+      "path": "graphics/pokemon/pupitar/overworld.png",
+      "git_blob_sha1": "e9906838a444c517354c0436e9a7658a25d8dc19",
+      "bytes": 761
+    },
+    {
+      "path": "graphics/pokemon/pupitar/overworld_normal.pal",
+      "git_blob_sha1": "72e3521e589586c8df434ac8f2059b82a8fe33b8",
+      "bytes": 156
+    },
+    {
+      "path": "graphics/pokemon/pupitar/overworld_shiny.pal",
+      "git_blob_sha1": "062065a7bede73859237e7bdd298656f87d8b2c4",
+      "bytes": 158
+    },
+    {
+      "path": "graphics/pokemon/tyranitar/overworld.png",
+      "git_blob_sha1": "5743028ae3b8ce47f700738281fd5fdbc7ba3edf",
+      "bytes": 1131
+    },
+    {
+      "path": "graphics/pokemon/tyranitar/overworld_normal.pal",
+      "git_blob_sha1": "a01ad1769851561f71b215721706a464489ccfb2",
+      "bytes": 181
+    },
+    {
+      "path": "graphics/pokemon/tyranitar/overworld_shiny.pal",
+      "git_blob_sha1": "b04f1f2cc317087f685c16d66b9504f3b9177229",
+      "bytes": 180
+    },
+    {
+      "path": "graphics/pokemon/seedot/overworld.png",
+      "git_blob_sha1": "91fe482aa40ff380796b7eb53f8aee32b23f0b2d",
+      "bytes": 603
+    },
+    {
+      "path": "graphics/pokemon/seedot/overworld_normal.pal",
+      "git_blob_sha1": "e4f984725d46a3871648164aae58f68c475fec91",
+      "bytes": 167
+    },
+    {
+      "path": "graphics/pokemon/seedot/overworld_shiny.pal",
+      "git_blob_sha1": "858d0016b71005e1128c6d89014f6e3d3c2b8971",
+      "bytes": 174
+    },
+    {
+      "path": "graphics/pokemon/nuzleaf/overworld.png",
+      "git_blob_sha1": "220e6320736cc8ec8dddefb74e902b3994cdb6fb",
+      "bytes": 805
+    },
+    {
+      "path": "graphics/pokemon/nuzleaf/overworld_normal.pal",
+      "git_blob_sha1": "e029d06670d5ad3b9a763e0ebdd66bda83521ffe",
+      "bytes": 165
+    },
+    {
+      "path": "graphics/pokemon/nuzleaf/overworld_shiny.pal",
+      "git_blob_sha1": "76b413c7cceab55eea844060f4661c27ec71e19a",
+      "bytes": 162
+    },
+    {
+      "path": "graphics/pokemon/shiftry/overworld.png",
+      "git_blob_sha1": "2716938e6ee4994144001753ddf0f4fe90969c2e",
+      "bytes": 1109
+    },
+    {
+      "path": "graphics/pokemon/shiftry/overworld_normal.pal",
+      "git_blob_sha1": "43fe40217d645339ddb77934befbd96969170665",
+      "bytes": 173
+    },
+    {
+      "path": "graphics/pokemon/shiftry/overworld_shiny.pal",
+      "git_blob_sha1": "e4ea6e4dcac1b6cf9a9ea5213c3558e7af8a7037",
+      "bytes": 174
+    },
+    {
+      "path": "graphics/pokemon/taillow/overworld.png",
+      "git_blob_sha1": "c6ee696ace2b141f8e3d6dfe21ce3d91922c5b4a",
+      "bytes": 643
+    },
+    {
+      "path": "graphics/pokemon/taillow/overworld_normal.pal",
+      "git_blob_sha1": "9a576c9f8f190980e523568cbe7dc18e2527564e",
+      "bytes": 186
+    },
+    {
+      "path": "graphics/pokemon/taillow/overworld_shiny.pal",
+      "git_blob_sha1": "b7e2aaa47dcac1608d807fd0c1a3a2d1ed7bbdcb",
+      "bytes": 184
+    },
+    {
+      "path": "graphics/pokemon/swellow/overworld.png",
+      "git_blob_sha1": "06c500273119d58a234bce8ef09cfdfa00fd54f3",
+      "bytes": 1236
+    },
+    {
+      "path": "graphics/pokemon/swellow/overworld_normal.pal",
+      "git_blob_sha1": "eefe0950b8a65a2f1a57ceacff6a4d5148b18cbb",
+      "bytes": 183
+    },
+    {
+      "path": "graphics/pokemon/swellow/overworld_shiny.pal",
+      "git_blob_sha1": "d1b1e053948ad5bb46ff569f3a89c3bfa053dd1b",
+      "bytes": 182
+    },
+    {
+      "path": "graphics/pokemon/ralts/overworld.png",
+      "git_blob_sha1": "a698d6a274a8cb28643a1eae8cde849247b4371b",
+      "bytes": 645
+    },
+    {
+      "path": "graphics/pokemon/ralts/overworld_normal.pal",
+      "git_blob_sha1": "21ab5072b0a55fd16e2f2085d3142eb467a4954a",
+      "bytes": 175
+    },
+    {
+      "path": "graphics/pokemon/ralts/overworld_shiny.pal",
+      "git_blob_sha1": "339ddeebedc6eebc88f08c32a2397c761d140f74",
+      "bytes": 180
+    },
+    {
+      "path": "graphics/pokemon/kirlia/overworld.png",
+      "git_blob_sha1": "6536e6c1211ce09558d4640d3427bb096dfb928f",
+      "bytes": 718
+    },
+    {
+      "path": "graphics/pokemon/kirlia/overworld_normal.pal",
+      "git_blob_sha1": "519ef3335d3aea65e05a1e44d952f64e1c1f7143",
+      "bytes": 177
+    },
+    {
+      "path": "graphics/pokemon/kirlia/overworld_shiny.pal",
+      "git_blob_sha1": "f09a89f875554e66f965cc0ced7a73276936191c",
+      "bytes": 180
+    },
+    {
+      "path": "graphics/pokemon/gardevoir/overworld.png",
+      "git_blob_sha1": "d09e002a8be4c6d2d5f5595910741aa35ed5ca4a",
+      "bytes": 950
+    },
+    {
+      "path": "graphics/pokemon/gardevoir/overworld_normal.pal",
+      "git_blob_sha1": "3b82b2d5c8b44ccffa1d82328dce304ae9af6963",
+      "bytes": 175
+    },
+    {
+      "path": "graphics/pokemon/gardevoir/overworld_shiny.pal",
+      "git_blob_sha1": "21ce10171773f14fead1f540e0ba5f533f050263",
+      "bytes": 180
+    },
+    {
+      "path": "graphics/pokemon/shroomish/overworld.png",
+      "git_blob_sha1": "3443ccc814b74c754c1c4703fcc2d9ed8d711a67",
+      "bytes": 551
+    },
+    {
+      "path": "graphics/pokemon/shroomish/overworld_normal.pal",
+      "git_blob_sha1": "1af76d8bba51c933ab025c96aefda09cfa71b75e",
+      "bytes": 154
+    },
+    {
+      "path": "graphics/pokemon/shroomish/overworld_shiny.pal",
+      "git_blob_sha1": "56d66604d4b5eb88547f4bfee1f2d3a02025867e",
+      "bytes": 154
+    },
+    {
+      "path": "graphics/pokemon/breloom/overworld.png",
+      "git_blob_sha1": "b398f72f5d02a4e35a205e9a4b021165d2ce71ec",
+      "bytes": 837
+    },
+    {
+      "path": "graphics/pokemon/breloom/overworld_normal.pal",
+      "git_blob_sha1": "3f05a222b66aeb2924f823f29870e3f2c76d4f6d",
+      "bytes": 179
+    },
+    {
+      "path": "graphics/pokemon/breloom/overworld_shiny.pal",
+      "git_blob_sha1": "76694dd38e92818814faed2b4c66c5198a0a18da",
+      "bytes": 179
+    },
+    {
+      "path": "graphics/pokemon/skitty/overworld.png",
+      "git_blob_sha1": "7c1d5ebadd41294ecc75c0aa85f13e01f959d4d1",
+      "bytes": 726
+    },
+    {
+      "path": "graphics/pokemon/skitty/overworld_normal.pal",
+      "git_blob_sha1": "d4f33d46f5e5339d264783d370185920ca98409a",
+      "bytes": 151
+    },
+    {
+      "path": "graphics/pokemon/skitty/overworld_shiny.pal",
+      "git_blob_sha1": "73758858995fe1f83c7db66fcd602a539385541c",
+      "bytes": 151
+    },
+    {
+      "path": "graphics/pokemon/delcatty/overworld.png",
+      "git_blob_sha1": "0e4a1b0ed53e0f28fd3b28ba357952b7e846a15c",
+      "bytes": 949
+    },
+    {
+      "path": "graphics/pokemon/delcatty/overworld_normal.pal",
+      "git_blob_sha1": "119d3d3b01c95a9710d744a10d89ee1aa2db35e4",
+      "bytes": 164
+    },
+    {
+      "path": "graphics/pokemon/delcatty/overworld_shiny.pal",
+      "git_blob_sha1": "4ff5fe6bd42b352cbe80aa57b5e370c15726bd40",
+      "bytes": 162
+    },
+    {
+      "path": "graphics/pokemon/aron/overworld.png",
+      "git_blob_sha1": "5dcc4313caeeaac61e8b2dfb910b1914b45bbb61",
+      "bytes": 612
+    },
+    {
+      "path": "graphics/pokemon/aron/overworld_normal.pal",
+      "git_blob_sha1": "cc8c78a53eed47c7e0b25ee796d6ecfdff555592",
+      "bytes": 162
+    },
+    {
+      "path": "graphics/pokemon/aron/overworld_shiny.pal",
+      "git_blob_sha1": "d9cd225fe2fd1390aba7a646ea835e85eb812519",
+      "bytes": 159
+    },
+    {
+      "path": "graphics/pokemon/lairon/overworld.png",
+      "git_blob_sha1": "059d0edd64c650a400a629baabd72bdf97184884",
+      "bytes": 1027
+    },
+    {
+      "path": "graphics/pokemon/lairon/overworld_normal.pal",
+      "git_blob_sha1": "ce484a1eada5657021503bcf20d19652b4df9ee3",
+      "bytes": 170
+    },
+    {
+      "path": "graphics/pokemon/lairon/overworld_shiny.pal",
+      "git_blob_sha1": "aff583b754a43dfc5dd914b0df230213215038a4",
+      "bytes": 168
+    },
+    {
+      "path": "graphics/pokemon/aggron/overworld.png",
+      "git_blob_sha1": "a4f67709464fa4af47c604054f58fb2d5a8b0018",
+      "bytes": 1414
+    },
+    {
+      "path": "graphics/pokemon/aggron/overworld_normal.pal",
+      "git_blob_sha1": "03296403febc2743cb85ebbab44fc3c8fbdf4d80",
+      "bytes": 178
+    },
+    {
+      "path": "graphics/pokemon/aggron/overworld_shiny.pal",
+      "git_blob_sha1": "86805ca8cf0aa91a702da3b9320ae730185959af",
+      "bytes": 175
+    },
+    {
+      "path": "graphics/pokemon/meditite/overworld.png",
+      "git_blob_sha1": "53adfb2b00d5acc39740ca7f26c1b63307f4dbb7",
+      "bytes": 693
+    },
+    {
+      "path": "graphics/pokemon/meditite/overworld_normal.pal",
+      "git_blob_sha1": "c588d242654711e0b74216b8e1f8f06073ea52e6",
+      "bytes": 172
+    },
+    {
+      "path": "graphics/pokemon/meditite/overworld_shiny.pal",
+      "git_blob_sha1": "7c76a3780f46124659b2de3d83457e98b3597f80",
+      "bytes": 171
+    },
+    {
+      "path": "graphics/pokemon/medicham/overworld.png",
+      "git_blob_sha1": "01bb389c079cb33793639b6a23095e0da5bc5900",
+      "bytes": 838
+    },
+    {
+      "path": "graphics/pokemon/medicham/overworld_normal.pal",
+      "git_blob_sha1": "08d2ee0e18ed54b1c07604e3965dcd33325e0a80",
+      "bytes": 187
+    },
+    {
+      "path": "graphics/pokemon/medicham/overworld_shiny.pal",
+      "git_blob_sha1": "483d63dd6a59471987d85da7a9f917ee44c7a584",
+      "bytes": 187
+    },
+    {
+      "path": "graphics/pokemon/electrike/overworld.png",
+      "git_blob_sha1": "265a1a63b6e5bbf3c101be5da4c0c3ded96e31a9",
+      "bytes": 788
+    },
+    {
+      "path": "graphics/pokemon/electrike/overworld_normal.pal",
+      "git_blob_sha1": "c5769b84996a1ee283908d19f6fae26aa75da9ca",
+      "bytes": 159
+    },
+    {
+      "path": "graphics/pokemon/electrike/overworld_shiny.pal",
+      "git_blob_sha1": "90eb2cd788fc3e115754dc1368622f7be83dac30",
+      "bytes": 163
+    },
+    {
+      "path": "graphics/pokemon/manectric/overworld.png",
+      "git_blob_sha1": "2daf99e0c785dcd3043d13689fb0c048c8f130ec",
+      "bytes": 986
+    },
+    {
+      "path": "graphics/pokemon/manectric/overworld_normal.pal",
+      "git_blob_sha1": "9fcad2a9942e40062ad239dbea66d332d37473df",
+      "bytes": 182
+    },
+    {
+      "path": "graphics/pokemon/manectric/overworld_shiny.pal",
+      "git_blob_sha1": "4a9add35713207c3bb1b3f5507a7f6be7b0d2fae",
+      "bytes": 179
+    },
+    {
+      "path": "graphics/pokemon/carvanha/overworld.png",
+      "git_blob_sha1": "2591306f44ee1b399d9deba80f39c57da312c381",
+      "bytes": 965
+    },
+    {
+      "path": "graphics/pokemon/carvanha/overworld_normal.pal",
+      "git_blob_sha1": "12e11c88d62a87f44c5d68a7b6e48ea2e28b6143",
+      "bytes": 174
+    },
+    {
+      "path": "graphics/pokemon/carvanha/overworld_shiny.pal",
+      "git_blob_sha1": "8cbd2af9ddcb045d68cc30d540a745c32deff492",
+      "bytes": 178
+    },
+    {
+      "path": "graphics/pokemon/sharpedo/overworld.png",
+      "git_blob_sha1": "246fa5118d0989c816f7ae18956b12e5814f7c77",
+      "bytes": 943
+    },
+    {
+      "path": "graphics/pokemon/sharpedo/overworld_normal.pal",
+      "git_blob_sha1": "f49ff824f150e92f159882b81523b03a205426ba",
+      "bytes": 183
+    },
+    {
+      "path": "graphics/pokemon/sharpedo/overworld_shiny.pal",
+      "git_blob_sha1": "d4d877c675795165996b1f70d751fb5a2ae6163b",
+      "bytes": 186
+    },
+    {
+      "path": "graphics/pokemon/numel/overworld.png",
+      "git_blob_sha1": "38b5a2421d3b492942836fb16410207563d71c68",
+      "bytes": 1036
+    },
+    {
+      "path": "graphics/pokemon/numel/overworld_normal.pal",
+      "git_blob_sha1": "4838cb78e9102816027c134165a642cfdc33c9c6",
+      "bytes": 180
+    },
+    {
+      "path": "graphics/pokemon/numel/overworld_shiny.pal",
+      "git_blob_sha1": "e85a11f2c8e05e51c2d0f8b29514cea7dd683d7e",
+      "bytes": 189
+    },
+    {
+      "path": "graphics/pokemon/camerupt/overworld.png",
+      "git_blob_sha1": "291156bd797133f125d9b8bc2e54c55480b9c702",
+      "bytes": 1168
+    },
+    {
+      "path": "graphics/pokemon/camerupt/overworld_normal.pal",
+      "git_blob_sha1": "36e4a6a04b27b5b394cc43dd1a0555dddb760943",
+      "bytes": 180
+    },
+    {
+      "path": "graphics/pokemon/camerupt/overworld_shiny.pal",
+      "git_blob_sha1": "6b8e3ea3fe6692dd11c462ca12dbaf0e03247ca0",
+      "bytes": 180
+    },
+    {
+      "path": "graphics/pokemon/trapinch/overworld.png",
+      "git_blob_sha1": "f42dd92999e82d411a270c52f10915035a032c75",
+      "bytes": 622
+    },
+    {
+      "path": "graphics/pokemon/trapinch/overworld_normal.pal",
+      "git_blob_sha1": "e9cda1118b019c6ecccf01f82060fb241e0c5c80",
+      "bytes": 162
+    },
+    {
+      "path": "graphics/pokemon/trapinch/overworld_shiny.pal",
+      "git_blob_sha1": "6e8291cb15c24a6d9ef3b555d9897fa2a6ef9a70",
+      "bytes": 164
+    },
+    {
+      "path": "graphics/pokemon/vibrava/overworld.png",
+      "git_blob_sha1": "feea84430f81206288a9dff185c157c6d89ea9fe",
+      "bytes": 1089
+    },
+    {
+      "path": "graphics/pokemon/vibrava/overworld_normal.pal",
+      "git_blob_sha1": "edd646d95440b1ba499df3a6d49b4e2be2382396",
+      "bytes": 180
+    },
+    {
+      "path": "graphics/pokemon/vibrava/overworld_shiny.pal",
+      "git_blob_sha1": "59288c990b362911aade15d744ea74686e83ff71",
+      "bytes": 180
+    },
+    {
+      "path": "graphics/pokemon/flygon/overworld.png",
+      "git_blob_sha1": "eac77815f61147c42cdb1e179037c31ef743aaab",
+      "bytes": 1175
+    },
+    {
+      "path": "graphics/pokemon/flygon/overworld_normal.pal",
+      "git_blob_sha1": "e3d9262d5473c2ff47992fc9955c98f22de233d1",
+      "bytes": 182
+    },
+    {
+      "path": "graphics/pokemon/flygon/overworld_shiny.pal",
+      "git_blob_sha1": "8accf94da7c9ba2338e377c146e35572bef5a711",
+      "bytes": 185
+    },
+    {
+      "path": "graphics/pokemon/cacnea/overworld.png",
+      "git_blob_sha1": "3344958768ed60cd5799bd35f8e960e6918d2ccd",
+      "bytes": 762
+    },
+    {
+      "path": "graphics/pokemon/cacnea/overworld_normal.pal",
+      "git_blob_sha1": "1ebe5943730e77bcace6d35b638d9bddfdb5ad32",
+      "bytes": 169
+    },
+    {
+      "path": "graphics/pokemon/cacnea/overworld_shiny.pal",
+      "git_blob_sha1": "bb2a62a1be1e0a5dc3371132fa319c31c8c8921a",
+      "bytes": 171
+    },
+    {
+      "path": "graphics/pokemon/cacturne/overworld.png",
+      "git_blob_sha1": "7084b00283afd5e357726ea879e62e1766e809d5",
+      "bytes": 728
+    },
+    {
+      "path": "graphics/pokemon/cacturne/overworld_normal.pal",
+      "git_blob_sha1": "6e76ee1e28ff53cc459d1b6a65409e9f22c4301f",
+      "bytes": 154
+    },
+    {
+      "path": "graphics/pokemon/cacturne/overworld_shiny.pal",
+      "git_blob_sha1": "85ac2ca6d8994788fb4272331c223d8e039b7682",
+      "bytes": 152
+    },
+    {
+      "path": "graphics/pokemon/corphish/overworld.png",
+      "git_blob_sha1": "a930c891bddf3173cb5fe34c504cb40ac6146c7a",
+      "bytes": 1063
+    },
+    {
+      "path": "graphics/pokemon/corphish/overworld_normal.pal",
+      "git_blob_sha1": "3cf33df08c27df2e6d17a96ec04857a63cff5a2e",
+      "bytes": 173
+    },
+    {
+      "path": "graphics/pokemon/corphish/overworld_shiny.pal",
+      "git_blob_sha1": "b8de31ba4319d457b0329cdebedac121d9fdf508",
+      "bytes": 175
+    },
+    {
+      "path": "graphics/pokemon/crawdaunt/overworld.png",
+      "git_blob_sha1": "4f9acced445041dc0c7aa6c074a35dedf66d359f",
+      "bytes": 1163
+    },
+    {
+      "path": "graphics/pokemon/crawdaunt/overworld_normal.pal",
+      "git_blob_sha1": "d530da4af8b69e7923f83b1e25a0e705ee4f788c",
+      "bytes": 182
+    },
+    {
+      "path": "graphics/pokemon/crawdaunt/overworld_shiny.pal",
+      "git_blob_sha1": "16f9fad35d82917d6d0f3e5ab12fa82979a160ba",
+      "bytes": 184
+    },
+    {
+      "path": "graphics/pokemon/anorith/overworld.png",
+      "git_blob_sha1": "1391d768d1ac6efd68e5326108081ddfb31c8ae1",
+      "bytes": 1029
+    },
+    {
+      "path": "graphics/pokemon/anorith/overworld_normal.pal",
+      "git_blob_sha1": "59624f77d7a086a3502d005d2146a0d47a057e73",
+      "bytes": 183
+    },
+    {
+      "path": "graphics/pokemon/anorith/overworld_shiny.pal",
+      "git_blob_sha1": "00a0b571580915706d6189d3edafb7d929facf65",
+      "bytes": 183
+    },
+    {
+      "path": "graphics/pokemon/armaldo/overworld.png",
+      "git_blob_sha1": "e270df81be0ef490bb300d3107e573697b3fcaf5",
+      "bytes": 1196
+    },
+    {
+      "path": "graphics/pokemon/armaldo/overworld_normal.pal",
+      "git_blob_sha1": "5c8e2c01da3e75df8526776eab34b47c72288173",
+      "bytes": 186
+    },
+    {
+      "path": "graphics/pokemon/armaldo/overworld_shiny.pal",
+      "git_blob_sha1": "46fd73a79ff75f626db7dd1df63d468c32ef9e2f",
+      "bytes": 186
+    },
+    {
+      "path": "graphics/pokemon/feebas/overworld.png",
+      "git_blob_sha1": "096d67682d8e7dc87f85cba8b61cd414649b1ab8",
+      "bytes": 774
+    },
+    {
+      "path": "graphics/pokemon/feebas/overworld_normal.pal",
+      "git_blob_sha1": "3b33f32c956afa6317efedcc12667a3fc98bce81",
+      "bytes": 177
+    },
+    {
+      "path": "graphics/pokemon/feebas/overworld_shiny.pal",
+      "git_blob_sha1": "f7fb5580a0efa33c88166538762bfdb48e976fd4",
+      "bytes": 182
+    },
+    {
+      "path": "graphics/pokemon/milotic/overworld.png",
+      "git_blob_sha1": "55a0fa432cdb678faa7d9d1a8e2370ee5b81b47b",
+      "bytes": 1319
+    },
+    {
+      "path": "graphics/pokemon/milotic/overworld_normal.pal",
+      "git_blob_sha1": "c704285eb7aca0bd41f390991bd81b2ebbb43bf3",
+      "bytes": 185
+    },
+    {
+      "path": "graphics/pokemon/milotic/overworld_shiny.pal",
+      "git_blob_sha1": "bee7d440aef06538aaede73c4e8306258c92c979",
+      "bytes": 181
+    },
+    {
+      "path": "graphics/pokemon/castform/overworld.png",
+      "git_blob_sha1": "377ea45b3dd433cddd413deac65e2aa7a0508d4f",
+      "bytes": 333
+    },
+    {
+      "path": "graphics/pokemon/castform/overworld_normal.pal",
+      "git_blob_sha1": "4d2ffa5c055db856f1d7656c5e03f1bba9650d31",
+      "bytes": 156
+    },
+    {
+      "path": "graphics/pokemon/castform/overworld_shiny.pal",
+      "git_blob_sha1": "b634a3dee33bcd853845e3d9014543da3bb8cf43",
+      "bytes": 156
+    },
+    {
+      "path": "graphics/pokemon/kecleon/overworld.png",
+      "git_blob_sha1": "b41cf688403469a2cec159db5d02397da51cc95d",
+      "bytes": 892
+    },
+    {
+      "path": "graphics/pokemon/kecleon/overworld_normal.pal",
+      "git_blob_sha1": "036c5783a994b3c5f028b275ca9e1c6cddc973ba",
+      "bytes": 174
+    },
+    {
+      "path": "graphics/pokemon/kecleon/overworld_shiny.pal",
+      "git_blob_sha1": "77cc0112e01f5c4abd2abadea855f013eb493931",
+      "bytes": 175
+    },
+    {
+      "path": "graphics/pokemon/shuppet/overworld.png",
+      "git_blob_sha1": "5aa4529e3576c4b9f8199011b57d2014a1b479a9",
+      "bytes": 649
+    },
+    {
+      "path": "graphics/pokemon/shuppet/overworld_normal.pal",
+      "git_blob_sha1": "e5daac6903b613e7ecdda744c8cd5642fac51d16",
+      "bytes": 156
+    },
+    {
+      "path": "graphics/pokemon/shuppet/overworld_shiny.pal",
+      "git_blob_sha1": "18c6d9659ee60fd4354747dfcbd8850a6db80341",
+      "bytes": 157
+    },
+    {
+      "path": "graphics/pokemon/banette/overworld.png",
+      "git_blob_sha1": "4a153522395d6d86caa6881b6db4c4db9ea818b9",
+      "bytes": 778
+    },
+    {
+      "path": "graphics/pokemon/banette/overworld_normal.pal",
+      "git_blob_sha1": "4666298524de60f0799a46181f3ee5e5f5901936",
+      "bytes": 164
+    },
+    {
+      "path": "graphics/pokemon/banette/overworld_shiny.pal",
+      "git_blob_sha1": "c10d6fb149fe9be3790a91aacdace15ec55f38ac",
+      "bytes": 165
+    },
+    {
+      "path": "graphics/pokemon/duskull/overworld.png",
+      "git_blob_sha1": "5b19b52f0fe768b8114a2ef70d9e7ee9564f62f2",
+      "bytes": 706
+    },
+    {
+      "path": "graphics/pokemon/duskull/overworld_normal.pal",
+      "git_blob_sha1": "3a1ef1c57ecb3667a4209ba2df3a6a44eab66054",
+      "bytes": 170
+    },
+    {
+      "path": "graphics/pokemon/duskull/overworld_shiny.pal",
+      "git_blob_sha1": "a6aec56f90f026ac5f157d5e2db0233255f1514f",
+      "bytes": 166
+    },
+    {
+      "path": "graphics/pokemon/dusclops/overworld.png",
+      "git_blob_sha1": "1efad8ec93fdbf555cf5d8349eaaaddf64765867",
+      "bytes": 1102
+    },
+    {
+      "path": "graphics/pokemon/dusclops/overworld_normal.pal",
+      "git_blob_sha1": "5639076ddebaf0786289a07d0bd3d004d177d057",
+      "bytes": 185
+    },
+    {
+      "path": "graphics/pokemon/dusclops/overworld_shiny.pal",
+      "git_blob_sha1": "814235da231a57dfa6184f2b65103bac856df435",
+      "bytes": 182
+    },
+    {
+      "path": "graphics/pokemon/absol/overworld.png",
+      "git_blob_sha1": "3d6c0269e59606436cb121f0c3fd67a3bd3b9710",
+      "bytes": 821
+    },
+    {
+      "path": "graphics/pokemon/absol/overworld_normal.pal",
+      "git_blob_sha1": "863d0a3a206621fbdd51cdfd80bbaf764f8aa2bf",
+      "bytes": 173
+    },
+    {
+      "path": "graphics/pokemon/absol/overworld_shiny.pal",
+      "git_blob_sha1": "267ac973f754dbe94bf6438cffeef5976e7567de",
+      "bytes": 172
+    },
+    {
+      "path": "graphics/pokemon/snorunt/overworld.png",
+      "git_blob_sha1": "42f666151921dfae04c4a70de1d8840b57c0a714",
+      "bytes": 624
+    },
+    {
+      "path": "graphics/pokemon/snorunt/overworld_normal.pal",
+      "git_blob_sha1": "15886e0c4c2782c8119cee32094172e8e3c1cc83",
+      "bytes": 180
+    },
+    {
+      "path": "graphics/pokemon/snorunt/overworld_shiny.pal",
+      "git_blob_sha1": "baf242ad241f4b716f57d9648c74bc2301b11563",
+      "bytes": 181
+    },
+    {
+      "path": "graphics/pokemon/glalie/overworld.png",
+      "git_blob_sha1": "3ce1fda91ed2c7a25e4e5b37ab95369730bfd140",
+      "bytes": 764
+    },
+    {
+      "path": "graphics/pokemon/glalie/overworld_normal.pal",
+      "git_blob_sha1": "7784213a6dc6ec8a4b1806538fee078cfd86557f",
+      "bytes": 151
+    },
+    {
+      "path": "graphics/pokemon/glalie/overworld_shiny.pal",
+      "git_blob_sha1": "a02592dd4d99de4e0849c57bd80a1a3a065facfc",
+      "bytes": 151
+    },
+    {
+      "path": "graphics/pokemon/spheal/overworld.png",
+      "git_blob_sha1": "dc394187ec54099b0acf4f86182098eaeaa825b1",
+      "bytes": 758
+    },
+    {
+      "path": "graphics/pokemon/spheal/overworld_normal.pal",
+      "git_blob_sha1": "4f5810be70538475cda51f2d844b2909e600a9ca",
+      "bytes": 187
+    },
+    {
+      "path": "graphics/pokemon/spheal/overworld_shiny.pal",
+      "git_blob_sha1": "9c797970b85bd2cb74ae196d2d06bd4f1966f2ec",
+      "bytes": 188
+    },
+    {
+      "path": "graphics/pokemon/sealeo/overworld.png",
+      "git_blob_sha1": "ac18313c679c54c97a1fe8e4eba7a5b1bc87d795",
+      "bytes": 1023
+    },
+    {
+      "path": "graphics/pokemon/sealeo/overworld_normal.pal",
+      "git_blob_sha1": "4f9f3585486ed4dcbec86069d28027b279a55bad",
+      "bytes": 187
+    },
+    {
+      "path": "graphics/pokemon/sealeo/overworld_shiny.pal",
+      "git_blob_sha1": "b7da8547101ae4e590ddd0b0f9ba673bcd9c673e",
+      "bytes": 188
+    },
+    {
+      "path": "graphics/pokemon/walrein/overworld.png",
+      "git_blob_sha1": "e6d9ae8b0493d7cb096617543aabf4d15562efde",
+      "bytes": 1235
+    },
+    {
+      "path": "graphics/pokemon/walrein/overworld_normal.pal",
+      "git_blob_sha1": "ab057a2c2b19934776bccbe64c4b1857b7041a33",
+      "bytes": 175
+    },
+    {
+      "path": "graphics/pokemon/walrein/overworld_shiny.pal",
+      "git_blob_sha1": "070b7487981a300dd63ac1dc0955880deeb2f262",
+      "bytes": 175
+    },
+    {
+      "path": "graphics/pokemon/articuno/overworld.png",
+      "git_blob_sha1": "e5e101e259cfe35e583da895d700f43071fdaef4",
+      "bytes": 1458
+    },
+    {
+      "path": "graphics/pokemon/articuno/overworld_normal.pal",
+      "git_blob_sha1": "d55b7a123583f666f6fcf601d3297ce8b64029f9",
+      "bytes": 190
+    },
+    {
+      "path": "graphics/pokemon/articuno/overworld_shiny.pal",
+      "git_blob_sha1": "26cc442ff75e7889692c489f01e0067811a50984",
+      "bytes": 191
+    },
+    {
+      "path": "graphics/pokemon/zapdos/overworld.png",
+      "git_blob_sha1": "cac1899cdb488bf56fc23074f68f7b3e7215b7d6",
+      "bytes": 1185
+    },
+    {
+      "path": "graphics/pokemon/zapdos/overworld_normal.pal",
+      "git_blob_sha1": "33f5fe77565b6572531d80f94cb67017a7187d80",
+      "bytes": 168
+    },
+    {
+      "path": "graphics/pokemon/zapdos/overworld_shiny.pal",
+      "git_blob_sha1": "094c2a747450a287cfb9f3f5ab103f4254217e8a",
+      "bytes": 167
+    },
+    {
+      "path": "graphics/pokemon/moltres/overworld.png",
+      "git_blob_sha1": "df9a412f110ef376a1d995fd75e49427a9a0dcc6",
+      "bytes": 1323
+    },
+    {
+      "path": "graphics/pokemon/moltres/overworld_normal.pal",
+      "git_blob_sha1": "c289d6fa5b98949db4ef970cb1f8f8c1631177db",
+      "bytes": 186
+    },
+    {
+      "path": "graphics/pokemon/moltres/overworld_shiny.pal",
+      "git_blob_sha1": "657e060567a06f99a0cfbc4dc898c1a93943ff6b",
+      "bytes": 189
+    },
+    {
+      "path": "graphics/pokemon/raikou/overworld.png",
+      "git_blob_sha1": "8936847f40555b74edf01630d394e1e823a4e8eb",
+      "bytes": 1210
+    },
+    {
+      "path": "graphics/pokemon/raikou/overworld_normal.pal",
+      "git_blob_sha1": "3db57948b895de4a68cbe3eb2cfd18c227ae3115",
+      "bytes": 180
+    },
+    {
+      "path": "graphics/pokemon/raikou/overworld_shiny.pal",
+      "git_blob_sha1": "e460feaf0cf3ebb33f1c6bf60a676b8a3880b0af",
+      "bytes": 182
+    },
+    {
+      "path": "graphics/pokemon/entei/overworld.png",
+      "git_blob_sha1": "2b9bc83f4fa789e286549b3d8411afa66b0f7562",
+      "bytes": 1292
+    },
+    {
+      "path": "graphics/pokemon/entei/overworld_normal.pal",
+      "git_blob_sha1": "a6231855f054f671e0b568822b364cfeefa9b65e",
+      "bytes": 179
+    },
+    {
+      "path": "graphics/pokemon/entei/overworld_shiny.pal",
+      "git_blob_sha1": "800f56ef16d472bd56756fe0d0bf86379590e904",
+      "bytes": 188
+    },
+    {
+      "path": "graphics/pokemon/suicune/overworld.png",
+      "git_blob_sha1": "8c7070c238a4e159c5b7762f869eb3bfd116c887",
+      "bytes": 1270
+    },
+    {
+      "path": "graphics/pokemon/suicune/overworld_normal.pal",
+      "git_blob_sha1": "2cb612185f54fe30b50a09f7ff67850fb58a1568",
+      "bytes": 179
+    },
+    {
+      "path": "graphics/pokemon/suicune/overworld_shiny.pal",
+      "git_blob_sha1": "cd3ee9091d52d0da82b6976850125ae18145128f",
+      "bytes": 180
+    },
+    {
+      "path": "graphics/pokemon/mewtwo/overworld.png",
+      "git_blob_sha1": "dbd7d5b76fcb5275e566be7c5b7d30d66f240f5d",
+      "bytes": 1034
+    },
+    {
+      "path": "graphics/pokemon/mewtwo/overworld_normal.pal",
+      "git_blob_sha1": "1f11ddbb6522f13ed7f801953a6a7d89e9cf1e9b",
+      "bytes": 162
+    },
+    {
+      "path": "graphics/pokemon/mewtwo/overworld_shiny.pal",
+      "git_blob_sha1": "965e699ed35ce17a76128a36d1dca89829804b2b",
+      "bytes": 163
+    },
+    {
+      "path": "graphics/pokemon/mew/overworld.png",
+      "git_blob_sha1": "067d6c83d67ba0b141628556654bfdf076e21e02",
+      "bytes": 795
+    },
+    {
+      "path": "graphics/pokemon/mew/overworld_normal.pal",
+      "git_blob_sha1": "59b29db91da0a598a79ed550bf988150b3b1d839",
+      "bytes": 165
+    },
+    {
+      "path": "graphics/pokemon/mew/overworld_shiny.pal",
+      "git_blob_sha1": "daf7559247f54a294810dd2c9ff6e1f1683eb434",
+      "bytes": 165
+    },
+    {
+      "path": "graphics/pokemon/castform/sunny/overworld.png",
+      "git_blob_sha1": "adafc6de76d653d873e645f0e7306d01cc785241",
+      "bytes": 653
+    },
+    {
+      "path": "graphics/pokemon/castform/sunny/overworld_normal.pal",
+      "git_blob_sha1": "5f4c2ae5f0995b51b3e5cc179549a928d409fc01",
+      "bytes": 178
+    },
+    {
+      "path": "graphics/pokemon/castform/sunny/overworld_shiny.pal",
+      "git_blob_sha1": "7b6e2f1fb8cc12e071b97ffa561bc7730f410465",
+      "bytes": 177
+    },
+    {
+      "path": "graphics/pokemon/castform/rainy/overworld.png",
+      "git_blob_sha1": "bdbf1c83432ab5b923d1dad3b91c385201c3ca4a",
+      "bytes": 580
+    },
+    {
+      "path": "graphics/pokemon/castform/rainy/overworld_normal.pal",
+      "git_blob_sha1": "95df630d9babc2ccbdab5f4aa750b1f62642d4a2",
+      "bytes": 192
+    },
+    {
+      "path": "graphics/pokemon/castform/rainy/overworld_shiny.pal",
+      "git_blob_sha1": "6fa0fa1ac21e16ebacfa42d84cd1cd475c8fbecf",
+      "bytes": 191
+    },
+    {
+      "path": "graphics/pokemon/castform/snowy/overworld.png",
+      "git_blob_sha1": "a5ffd5f54cc9ffecbae982388e26c5736dd7526c",
+      "bytes": 768
+    },
+    {
+      "path": "graphics/pokemon/castform/snowy/overworld_normal.pal",
+      "git_blob_sha1": "e795605be53f485457d076210d6085d30fac711a",
+      "bytes": 187
+    },
+    {
+      "path": "graphics/pokemon/castform/snowy/overworld_shiny.pal",
+      "git_blob_sha1": "e9b66e635079ad3c494b537a536831a951c87d40",
+      "bytes": 183
+    }
+  ]
+}

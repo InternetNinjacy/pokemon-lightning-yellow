@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "updated": "2026-11-16",
+  "updated": "2026-11-17",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "Merged PR173 exact146 owner-approved natural learnsets atf223bf8b and PR279 Snow timer at93cc9303; source/clean-build checks pass, owner gameplay acceptance remains. Follower private asset prerequisite now READY (765 inputs/255 descriptors), source integration still pending4 conflicts; preserve Pikachu/OAK-SUE/146 and exclude Pichu experiments. TM51 remains separate;50 IDs461/251/712 unchanged.",
-  "main_sha": "f223bf8b6bd31ff18cc93318c38877ca421c7036",
+  "current_focus": "Owner explicitly deferred runtime testing to physical-device playtest and authorized Codex engineering approval/continuation when testing alone blocks. PR54 source/build scope is ENGINEERING APPROVED; normal GitHub merge remains pending under existing server rules, with no bypass or CI dispatch. Owner physical-device gameplay testing is outstanding, not passed or accepted.50 IDs461/251/712 unchanged.",
+  "main_sha": "b45e6c6e9cebb24ce8b7c36599f388375243c31b",
   "drive_sync": {
     "status": "2026-11-10 WTH-001 and WRL-008 closeout PRs #170/#184 merged and verified; corresponding existing Google Drive Progress, START HERE and vendor register synchronized with definitive completion evidence.",
     "folder": "https://drive.google.com/drive/folders/1N_n0Ke48jBbdhUWSZWzwR6rpPFqpDUpl"
@@ -2835,22 +2835,57 @@
       "dependencies": [],
       "status": {
         "design": "Owner approved Nov5; specification PR52 merged and owner explicitly requested implementation Nov6",
-        "implementation": "Follower state/menu/controller and graphics source implemented on PR258; permission-confirmed private conversion completed for252 species plus3 Castform forms. Not merged as complete feature.",
-        "automated": "765 exact artwork inputs hash/size checked;255 descriptors passed build-input gate; source e94cba8e private ROM compilation PASS. No current gameplay tests.",
-        "emulator": "No current emulator run; owner manual follower playtesting pending. Historical loader evidence is not full252-feature acceptance.",
-        "pull_request": "Gameplay/private integration PR258 open at b2e212b; original PR54/257 branches preserved.",
-        "merge": "Follower implementation remains open; no acceptance or effort credit."
+        "implementation": "ENGINEERING APPROVED source/build scope: PR54 current-main follower implementation at539a8f34 (evidence head74f3ac29 before policy update). Runtime testing is owner-deferred and nonblocking for this source integration; not yet merged or gameplay accepted.",
+        "automated": "PASS48 selected pure-source runners;10 integration/pipeline,5 lifecycle,15 PNG-tooling,25 history,5 approved146,5 WRL source cases. Zero-art and full255 variants compile/link16MiB; make clean + make -j2 full-art rebuild matches incremental SHA256 add0b0151c0a69a82b1061146b9c73ef05a4d005469c012465505f36ebc11b30. EWRAM1076/IWRAM2736 free. Exact64-path publication readback PASS; mandatory upstream workflow preserved, not rerun.",
+        "emulator": "NOT RUN by Codex. Owner will conduct physical-device ROM playtest; selection/emergence/movement/maps/faint/heal/removal/evolution/save/all252 visuals remain outstanding and are explicitly deferred/nonblocking. No runtime pass or gameplay acceptance claimed.",
+        "pull_request": "Existing PR54 branch feature/selectable-following-pokemon: source/build engineering-approved; normal GitHub merge pending. No auto-merge or diagnostic workflow dispatch.",
+        "merge": "PENDING NORMAL GITHUB MERGE. Owner explicitly authorized engineering approval when testing alone blocks; existing server-side checks/protections still apply, never bypassed. No merged claim yet."
       },
-      "branch": "integration/playtest004-pichu-sue-follower-private-build-20261116",
-      "commit": "ca0de4a5c182019d408b8063fe892b018f588c18",
-      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/258",
+      "branch": "feature/selectable-following-pokemon",
+      "commit": "539a8f34fd053321cff9d3259763aabb922b04db",
+      "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/54",
       "ci_url": null,
-      "blocker": "Main follower source integration is pending; persistent private765-input cache and255-descriptor readiness gate now pass. Owner runtime acceptance remains outstanding; no new permission-letter upload requested.",
+      "blocker": null,
       "design_authority": "Lightning Yellow canonical Drive specialist registers and November 5 change intake",
-      "next_action": "Integrate PR54/257 source against current main while preserving Pikachu naming/OAK-SUE/new146/Snow. Reuse /workspace/scratch/follower-private-cache and pinned generated registry from ly-follower-assets-prep; resolve4 known conflicts, preserve all native registrations/guards, compile a private full252 build, leave gameplay acceptance to owner. Private Pichu/old experiments must not be promoted wholesale.",
-      "checkpoint": "Private r3 source 579ef016def8116a2ecf44acccd0e5e72f501247 compiled with owner-locked Jolteon/Umbreon rows;255 descriptors/765 pinned inputs retained, ROM SHA256 05c85f5cece8366e9a8f612a5d87f213d127de5a892255b9fd03aec86a4b9efe. No current gameplay tests or acceptance points.",
+      "next_action": "Record the owner runtime-deferral policy and attempt the standard GitHub PR54 merge under existing server rules. Do not bypass a required check/protection or dispatch CI. If permitted, integrate source/build-approved scope and continue independent approved work; owner physical-device playtest remains outstanding/nonblocking, not passed or accepted. Preserve earned accounting until separately accepted.",
+      "checkpoint": "PR54 production/tooling source539a8f34, evidence head74f3ac29 before owner-policy update, based on mainb45e6c6e. Existing source/clean-build proof retained; source/build engineering-approved under explicit owner physical-device testing deferral.0 current-head check-runs; no CI dispatch or green-CI claim. Standard merge pending; protection-detail read403 means unknown, not absent. Runtime results remain outstanding; no points awarded.",
       "spec_pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/52",
-      "specification": "implementation/selectable-following-pokemon.md"
+      "specification": "implementation/selectable-following-pokemon.md",
+      "historical_source_checkpoints": [
+        {
+          "context": "Prior private Playtest004 record, retained as history before current-main PR54 integration",
+          "branch": "integration/playtest004-pichu-sue-follower-private-build-20261116",
+          "commit": "ca0de4a5c182019d408b8063fe892b018f588c18",
+          "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/258",
+          "checkpoint": "Private r3 source 579ef016def8116a2ecf44acccd0e5e72f501247 compiled with owner-locked Jolteon/Umbreon rows;255 descriptors/765 pinned inputs retained, ROM SHA256 05c85f5cece8366e9a8f612a5d87f213d127de5a892255b9fd03aec86a4b9efe. No current gameplay tests or acceptance points.",
+          "blocker": "Main follower source integration is pending; persistent private765-input cache and255-descriptor readiness gate now pass. Owner runtime acceptance remains outstanding; no new permission-letter upload requested.",
+          "next_action": "Integrate PR54/257 source against current main while preserving Pikachu naming/OAK-SUE/new146/Snow. Reuse /workspace/scratch/follower-private-cache and pinned generated registry from ly-follower-assets-prep; resolve4 known conflicts, preserve all native registrations/guards, compile a private full252 build, leave gameplay acceptance to owner. Private Pichu/old experiments must not be promoted wholesale."
+        },
+        {
+          "context": "Prior testing-gated checkpoint before explicit owner physical-device runtime deferral",
+          "status": {
+            "design": "Owner approved Nov5; specification PR52 merged and owner explicitly requested implementation Nov6",
+            "implementation": "Published current-main follower SOURCE IMPLEMENTATION on PR54 at539a8f34, with reused PR54/257 history and corrected state/menu/controller/PC/trade/daycare/Rocket/save/opening hooks. Not merged or runtime-accepted.",
+            "automated": "PASS48 selected pure-source runners;10 integration/pipeline,5 lifecycle,15 PNG-tooling,25 history,5 approved146,5 WRL source cases. Zero-art and full255 variants compile/link16MiB; make clean + make -j2 full-art rebuild matches incremental SHA256 add0b0151c0a69a82b1061146b9c73ef05a4d005469c012465505f36ebc11b30. EWRAM1076/IWRAM2736 free. Exact64-path publication readback PASS; mandatory upstream workflow preserved, not rerun.",
+            "emulator": "No new gameplay/native emulator/RNG/C-model execution; owner runtime acceptance outstanding for selection, emergence, movement, maps, faint/heal, deposit/trade, evolution/save and all252 visual coverage.",
+            "pull_request": "Published to existing draft PR54, branch feature/selectable-following-pokemon; source539a8f34 plus evidence checkpoint. No merge/auto-merge.",
+            "merge": "NOT MERGED. Source integration/build readiness is distinct from owner runtime acceptance and earned credit."
+          },
+          "blocker": "Owner gameplay acceptance and current-head CI remain outstanding. Modified pinned-art pipeline source is prepared and structurally checked, but not dispatched. Public registry is zero-art; private full255 build and clean equality verified.",
+          "next_action": "Owner playtest full-art candidate using docs/followers/CURRENT_MAIN_INTEGRATION.md checklist; record actual selection/emergence/movement/save/faint/removal/evolution/all252 visual results. Current policy excludes Codex gameplay tests and CI dispatch; do not claim green CI or merge/release acceptance.",
+          "checkpoint": "PR54 source539a8f34 on mainb45e6c6e; full252 source implementation and255 descriptors/765 input pins. Full-art clean/incremental ROM equality PASS SHA256 add0b0151c0a69a82b1061146b9c73ef05a4d005469c012465505f36ebc11b30.48 source runners/10 integration+pipeline/5 lifecycle PASS; owner runtime and current-head CI NOT RUN. No earned credit or merge."
+        }
+      ],
+      "source_base": "b45e6c6e9cebb24ce8b7c36599f388375243c31b",
+      "runtime_testing_disposition": {
+        "owner_direction": "Owner will physical-device playtest and authorizes Codex100% engineering approval/continuation when testing alone blocks",
+        "engineering_scope": "Source/build approved; runtime testing alone is nonblocking",
+        "physical_device_testing": "OUTSTANDING; not passed or accepted",
+        "merge": "Pending standard GitHub merge; no bypass and no auto-merge",
+        "ci": "0 current-head check-runs; no workflow dispatch; no successful CI claim",
+        "protection_readback": "403; server rules unknown and still enforced by standard merge",
+        "accounting": "No earned-credit change;50 IDs461/251/712 preserved"
+      }
     },
     {
       "id": "WRL-011",
@@ -3257,7 +3292,7 @@
     "scope": "Exact b9af0975 shared timer only; no private per-flake redesign",
     "owner_runtime": "Issue248 OPEN; sustained snow/post-battle playtest pending"
   },
-  "next_independent_source_work": "Follower asset prerequisite READY:765 pinned inputs in persistent /workspace/scratch/follower-private-cache;255 descriptors generated and checked privately. Next integrate PR54/257 source on current main, preserve optional Pikachu/OAK-SUE/new146, resolve4 source conflicts, private build and source audit. No gameplay tests, artwork/ROM commits or promotion of Pichu experiments.",
+  "next_independent_source_work": "Attempt the standard GitHub PR54 merge for engineering-approved source/build scope after owner runtime-deferral policy is recorded, without bypass or CI dispatch. If server rules permit, continue independent approved work; owner physical-device playtest remains outstanding/nonblocking and never treated as passed/accepted. Preserve all effort/earned histories.",
   "follower_asset_preparation": {
     "source_commit": "e7d388810de0b0964a46afaaf3d012f7e666aad5",
     "upstream_art_pin": "cbe04a7a2ef645bee19d159876da074154ccf1f2",
@@ -3271,12 +3306,61 @@
     "generated_sha256": "196a74da8a37623c7178d9e976b585e8b592038ccbba2ea22af86654d061d0e3",
     "gate": "BUILD INPUT READY; no runtime PASS",
     "permission": "Owner-provided permission statement accepted; no private correspondence requested or committed",
-    "runtime_merge": "Not integrated; no new follower ROM, gameplay test or merge",
-    "next_conflicts": [
+    "runtime_merge": "PR54 source539a8f34 source/build engineering-approved; normal merge pending. Owner physical-device runtime testing explicitly deferred/nonblocking and not passed/accepted.",
+    "next_conflicts": [],
+    "historical_integration_checkpoint": {
+      "runtime_merge": "Not integrated; no new follower ROM, gameplay test or merge",
+      "next_conflicts": [
+        ".github/workflows/build.yml",
+        "src/approved_gifts.c",
+        "tests/emulator/run.py",
+        "tests/emulator/runner.c"
+      ]
+    },
+    "resolved_conflicts": [
       ".github/workflows/build.yml",
       "src/approved_gifts.c",
       "tests/emulator/run.py",
       "tests/emulator/runner.c"
     ]
+  },
+  "follower_source_integration_candidate": {
+    "status": "ENGINEERING APPROVED SOURCE/BUILD SCOPE; NORMAL GITHUB MERGE PENDING",
+    "base_main": "b45e6c6e9cebb24ce8b7c36599f388375243c31b",
+    "branch": "feature/selectable-following-pokemon",
+    "pr": 54,
+    "reused_prs": [
+      54,
+      257
+    ],
+    "roster_species": 252,
+    "private_descriptors": 255,
+    "pinned_private_inputs": 765,
+    "preserved": "Optional Pikachu nickname and player ownership; secure OAK-SUE gift; exact approved146 learnsets; approved shared Snow timer; all prior native registrations and guards",
+    "excluded": "Private Pichu starter/stat and other stale experimental changes; no generated art/ROM/private permission data in Git",
+    "source_checks": {
+      "selected_runners": 48,
+      "integration_cases": 10,
+      "lifecycle_cases": 5,
+      "png_tooling_cases": 15,
+      "history_cases": 25,
+      "approved146_cases": 5,
+      "wrl_source_cases": 5,
+      "result": "PASS; same production/tooling sources as published539a8f34, plus one source-only pipeline contract"
+    },
+    "builds": {
+      "zero_art_stub": "COMPILED/LINKED16MiB",
+      "full255_art": "COMPILED/LINKED16MiB",
+      "ewram_free_bytes": 1076,
+      "iwram_free_bytes": 2736,
+      "clean_reproducibility": "PASS make clean + make -j2 equals prior incremental full255 ROM",
+      "final_hash": "add0b0151c0a69a82b1061146b9c73ef05a4d005469c012465505f36ebc11b30"
+    },
+    "runtime_ci": "Runtime owner-deferred/nonblocking; owner physical-device playtest OUTSTANDING, not passed/accepted. No Codex gameplay/emulator/RNG/C-model or workflow dispatch;0 current-head checks/skipped CI is not green.",
+    "pipeline": "Modified-only765-pin ephemeral art/4-credit preparation and255-entry ELF assertion source-validated; literal stub restored before existing source-diff guard; no CI dispatch",
+    "accounting": "50 IDs461earned251remaining712total unchanged",
+    "source_commit": "539a8f34fd053321cff9d3259763aabb922b04db",
+    "remote_readback": "PASS64 reviewed Git blobs match published539a8f34; original dirty18 BTL files/index preserved",
+    "merge_authority": "Owner explicit authority to approve/continue when testing alone blocks. Standard GitHub merge must enforce existing server rules; no bypass, auto-merge or merged claim."
   }
 }

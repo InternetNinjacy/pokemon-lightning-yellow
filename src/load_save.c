@@ -2,6 +2,7 @@
 #include "gflib.h"
 #include "gba/flash_internal.h"
 #include "load_save.h"
+#include "follower_graphics.h"
 #include "pokemon.h"
 #include "pokemon_storage_system.h"
 #include "random.h"
@@ -180,9 +181,16 @@ void LoadPlayerParty(void)
 void SaveObjectEvents(void)
 {
     int i;
+    u8 followerId = FollowerGraphics_GetObjectEventId();
 
     for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
+    {
         gSaveBlock1Ptr->objectEvents[i] = gObjectEvents[i];
+        // Only selection persists. An active dynamic object cannot be
+        // restored as a map-template NPC after sprite ownership is reset.
+        if (i == followerId)
+            gSaveBlock1Ptr->objectEvents[i].active = FALSE;
+    }
 }
 
 void LoadObjectEvents(void)

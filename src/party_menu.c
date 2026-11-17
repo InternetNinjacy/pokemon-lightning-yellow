@@ -41,6 +41,8 @@
 #include "player_pc.h"
 #include "pokedex.h"
 #include "pokemon.h"
+#include "follower_state.h"
+#include "follower_controller.h"
 #include "pokemon_icon.h"
 #include "pokemon_jump.h"
 #include "pokemon_special_anim.h"
@@ -130,7 +132,7 @@ struct PartyMenuInternal
     u32 spriteIdCancelPokeball:7;
     u32 messageId:14;
     u8 windowId[3];
-    u8 actions[8];
+    u8 actions[10];
     u8 numActions;
     u16 palBuffer[BG_PLTT_SIZE / sizeof(u16)];
     s16 data[16];
@@ -150,6 +152,8 @@ struct PartyMenuBox
 static void BlitBitmapToPartyWindow_LeftColumn(u8 windowId, u8 x, u8 y, u8 width, u8 height, bool8 hideHP);
 static void BlitBitmapToPartyWindow_RightColumn(u8 windowId, u8 x, u8 y, u8 width, u8 height, bool8 hideHP);
 static void CursorCB_Summary(u8 taskId);
+static void CursorCB_SetFollower(u8 taskId);
+static void CursorCB_StopFollowing(u8 taskId);
 static void CursorCB_Switch(u8 taskId);
 static void CursorCB_Cancel1(u8 taskId);
 static void CursorCB_Item(u8 taskId);
@@ -419,6 +423,8 @@ ALIGNED(4) EWRAM_DATA u8 gBattlePartyCurrentOrder[PARTY_SIZE / 2] = {0}; // bits
 COMMON_DATA void (*gItemUseCB)(u8, TaskFunc) = NULL;
 
 #include "data/pokemon/tutor_learnsets.h"
+static const u8 sText_SetFollower[] = _("Set as Follower");
+static const u8 sText_StopFollowing[] = _("Stop Following");
 #include "data/party_menu.h"
 
 void InitPartyMenu(u8 menuType, u8 layout, u8 partyAction, bool8 keepCursorPos, u8 messageId, TaskFunc task, MainCallback callback)
@@ -2536,11 +2542,25 @@ static u8 DisplaySelectionWindow(u8 windowType)
     u8 cursorDimension;
     u8 fontAttribute;
     u8 i;
+    u8 actionWidth = 10;
+    u32 textWidth;
 
+    cursorDimension = GetMenuCursorDimensionByFont(FONT_NORMAL, 0);
+    fontAttribute = GetFontAttribute(FONT_NORMAL, FONTATTR_LETTER_SPACING);
     switch (windowType)
     {
     case SELECTWINDOW_ACTIONS:
-        window = SetWindowTemplateFields(2, 19, 19 - (sPartyMenuInternal->numActions * 2), 10, sPartyMenuInternal->numActions * 2, 14, 0x2BF);
+        // Keep the original right edge/minimum while fitting explicit follower
+        // labels using the same native font/cursor metrics used for printing.
+        for (i = 0; i < sPartyMenuInternal->numActions; i++)
+        {
+            textWidth = (GetStringWidth(FONT_NORMAL,
+                sCursorOptions[sPartyMenuInternal->actions[i]].text, fontAttribute)
+                + cursorDimension + 7) / 8;
+            if (textWidth > actionWidth)
+                actionWidth = textWidth;
+        }
+        window = SetWindowTemplateFields(2, 29 - actionWidth, 19 - (sPartyMenuInternal->numActions * 2), actionWidth, sPartyMenuInternal->numActions * 2, 14, 0x2BF);
         break;
     case SELECTWINDOW_ITEM:
         window = sItemGiveTakeWindowTemplate;
@@ -2556,8 +2576,6 @@ static u8 DisplaySelectionWindow(u8 windowType)
     DrawStdFrameWithCustomTileAndPalette(sPartyMenuInternal->windowId[0], FALSE, 0x4F, 13);
     if (windowType == SELECTWINDOW_MOVES)
         return sPartyMenuInternal->windowId[0];
-    cursorDimension = GetMenuCursorDimensionByFont(FONT_NORMAL, 0);
-    fontAttribute = GetFontAttribute(FONT_NORMAL, FONTATTR_LETTER_SPACING);
     for (i = 0; i < sPartyMenuInternal->numActions; ++i)
     {
         u8 fontColorsId = (sPartyMenuInternal->actions[i] >= CURSOR_OPTION_FIELD_MOVES) ? 4 : 3;
@@ -2986,6 +3004,12 @@ static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
         AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, CURSOR_OPTION_MAIL);
     else
         AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, CURSOR_OPTION_ITEM);
+    // Exactly one explicit follower action, always before Cancel. Does not
+    // mutate party order, battle lead, or the selected instance until chosen.
+    if (FollowerState_IsSelectedPartySlot(slotId))
+        AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, CURSOR_OPTION_STOP_FOLLOWING);
+    else if (FollowerState_CanSelectPartySlot(slotId))
+        AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, CURSOR_OPTION_SET_FOLLOWER);
     AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, CURSOR_OPTION_CANCEL1);
 }
 
@@ -3389,6 +3413,22 @@ static void FinishTwoMonAction(u8 taskId)
 #undef tSlot2Offset
 #undef tSlot1SlideDir
 #undef tSlot2SlideDir
+
+static void CursorCB_SetFollower(u8 taskId)
+{
+    PlaySE(SE_SELECT);
+    if (FollowerState_SelectPartySlot(gPartyMenu.slotId))
+        FollowerController_RequestRefresh();
+    CursorCB_Cancel1(taskId);
+}
+
+static void CursorCB_StopFollowing(u8 taskId)
+{
+    PlaySE(SE_SELECT);
+    FollowerState_Clear();
+    FollowerController_RequestRefresh();
+    CursorCB_Cancel1(taskId);
+}
 
 static void CursorCB_Cancel1(u8 taskId)
 {

@@ -1,4 +1,7 @@
 #include "global.h"
+#include "follower_graphics.h"
+#include "follower_controller.h"
+#include "follower_state.h"
 #include "gflib.h"
 #include "event_data.h"
 #include "event_object_movement.h"
@@ -1521,6 +1524,16 @@ static bool8 GetAvailableObjectEventId(u16 localId, u8 mapNum, u8 mapGroup, u8 *
 
 static void RemoveObjectEvent(struct ObjectEvent *objectEvent)
 {
+    u8 followerId = FollowerGraphics_GetObjectEventId();
+
+    // Dynamic follower sheets own their allocation, not the placeholder
+    // Snorlax/Seagallop descriptor used by ordinary map-object teardown.
+    if (followerId < OBJECT_EVENTS_COUNT && objectEvent == &gObjectEvents[followerId])
+    {
+        FollowerController_RequestRefresh();
+        FollowerGraphics_Release();
+        return;
+    }
     objectEvent->active = FALSE;
     RemoveObjectEventInternal(objectEvent);
 }
@@ -1530,7 +1543,9 @@ void RemoveObjectEventByLocalIdAndMap(u8 localId, u8 mapNum, u8 mapGroup)
     u8 objectEventId;
     if (!TryGetObjectEventIdByLocalIdAndMap(localId, mapNum, mapGroup, &objectEventId))
     {
-        FlagSet(GetObjectEventFlagIdByObjectEventId(objectEventId));
+        // No map-template flag exists for the owned dynamic follower.
+        if (objectEventId != FollowerGraphics_GetObjectEventId())
+            FlagSet(GetObjectEventFlagIdByObjectEventId(objectEventId));
         RemoveObjectEvent(&gObjectEvents[objectEventId]);
     }
 }
@@ -1862,10 +1877,47 @@ static void RemoveObjectEventIfOutsideView(struct ObjectEvent *objectEvent)
     RemoveObjectEvent(objectEvent);
 }
 
+// Private follower builds serialized their dynamic placeholder ObjectEvent.
+// Do not treat a restored copy as an authored Snorlax/Seagallop map NPC.
+// This historical identifier is deliberately not a generic local-ID exemption.
+#define LEGACY_FOLLOWER_LOCAL_ID 126
+static void DiscardLegacyFollowerObjectOnReturnToField(void)
+{
+    u8 i;
+    struct ObjectEvent *objectEvent;
+
+    // A real, checksum-valid selected party instance is required. Invalid or
+    // absent records never authorize removing an object from an older save.
+    if (FollowerState_ResolvePartySlot() < 0)
+        return;
+    for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
+    {
+        objectEvent = &gObjectEvents[i];
+        if (objectEvent->active && !objectEvent->isPlayer
+         && objectEvent->localId == LEGACY_FOLLOWER_LOCAL_ID
+         && objectEvent->mapNum == gSaveBlock1Ptr->location.mapNum
+         && objectEvent->mapGroup == gSaveBlock1Ptr->location.mapGroup
+         && (objectEvent->graphicsId == OBJ_EVENT_GFX_SNORLAX
+          || objectEvent->graphicsId == OBJ_EVENT_GFX_SEAGALLOP)
+         && objectEvent->movementType == MOVEMENT_TYPE_FACE_DOWN
+         && objectEvent->trainerType == TRAINER_TYPE_NONE
+         && GetObjectEventTemplateByLocalIdAndMap(objectEvent->localId,
+                                                 objectEvent->mapNum,
+                                                 objectEvent->mapGroup) == NULL)
+        {
+            // Sprite data has been reset; do not free an old sprite ID.
+            // Selection survives and the controller supplies the new object.
+            objectEvent->active = FALSE;
+        }
+    }
+}
+#undef LEGACY_FOLLOWER_LOCAL_ID
+
 void SpawnObjectEventsOnReturnToField(s16 x, s16 y)
 {
     u8 i;
 
+    DiscardLegacyFollowerObjectOnReturnToField();
     ClearPlayerAvatarInfo();
     for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
     {
@@ -4912,6 +4964,12 @@ static bool8 DoesObjectCollideWithObjectAt(struct ObjectEvent *objectEvent, s16 
     for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
     {
         curObject = &gObjectEvents[i];
+        // The follower owns a real ObjectEvent slot only for sprite lifetime.
+        // It is visual and must never become an impassable NPC for the player,
+        // NPCs, doors or forced movements. Compare the owned slot, not local ID:
+        // an unrelated object using that identifier is not exempt.
+        if (i == FollowerGraphics_GetObjectEventId())
+            continue;
         if (curObject->active && curObject != objectEvent)
         {
             if ((curObject->currentCoords.x == x && curObject->currentCoords.y == y) || (curObject->previousCoords.x == x && curObject->previousCoords.y == y))

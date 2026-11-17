@@ -5,6 +5,7 @@ import subprocess
 import unittest
 from pathlib import Path
 from approved_wrl001_identity_changes import prior_wrl001_identity_source
+from approved_follower_changes import prior_follower_source
 
 BASE = '21d597b178327e706b015c61643f4489e0d8c4cb'
 PREPARED = '0f693dd7bef4219e161b299f08a9a225ecdac9d6'
@@ -18,7 +19,7 @@ class Wrl001IdentityProjectionTests(unittest.TestCase):
     def test_gameplay_is_exact_prepared_implementation_and_reverses(self):
         spec = json.loads(Path('tests/specifications/wrl001_identity_delta.json').read_text())
         for path, row in spec['files'].items():
-            actual = Path(path).read_text()
+            actual = prior_follower_source(path, Path(path).read_text())
             with self.subTest(path=path):
                 self.assertEqual(actual, source(PREPARED, path))
                 self.assertEqual(hashlib.sha256(actual.encode()).hexdigest(), row['after_sha256'])
@@ -30,7 +31,7 @@ class Wrl001IdentityProjectionTests(unittest.TestCase):
         spec = json.loads(Path('tests/specifications/wrl001_identity_delta.json').read_text())
         partial_checked = False
         for path, row in spec['files'].items():
-            actual = Path(path).read_text()
+            actual = prior_follower_source(path, Path(path).read_text())
             for hunk in row['hunks']:
                 with self.subTest(path=path), self.assertRaises(AssertionError):
                     prior_wrl001_identity_source(path, actual.replace(hunk['after'], '', 1))
@@ -47,12 +48,12 @@ class Wrl001IdentityProjectionTests(unittest.TestCase):
 
     def test_existing_native_registration_and_guards_preserved(self):
         path = 'tests/emulator/run.py'
-        new = Path(path).read_text()
+        new = prior_follower_source(path, Path(path).read_text())
         line = "required += ['ScriptGiveSueEevee', 'ScriptGiveMon', 'EventScript_ChangePokemonNickname']\n"
         self.assertEqual(new.count(line), 1)
         self.assertEqual(new.replace(line, '', 1), source(BASE, path))
         path = 'tests/emulator/runner.c'
-        new = Path(path).read_text()
+        new = prior_follower_source(path, Path(path).read_text())
         additions = ['#include "wrl001_identity.c"\n\n', '    wrl001Tests();\n']
         additions += [line + '\n' for line in new.splitlines()
                       if 'if(getenv("LIGHTNING_WRL001_' in line]

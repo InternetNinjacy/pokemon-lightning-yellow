@@ -463,4 +463,6 @@ gSpecials::
 	def_special RocketRescueStatus
 	def_special RocketRescueGive
 	def_special RocketRescueReturn
+	def_special ScriptSelectStarterPikachuFollower
+	def_special ScriptStartStarterFollowerEmergence
 gSpecialsEnd::

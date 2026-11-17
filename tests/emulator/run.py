@@ -35,6 +35,11 @@ expressions = {
  'BMON_MAX_HP':'offsetof(struct BattlePokemon,maxHP)',
  'BOX_SECURE':'offsetof(struct BoxPokemon,secure)',
  'SAVE1_PARTY':'offsetof(struct SaveBlock1,playerParty)',
+ 'SAVE1_FOLLOWER_RECORD':'offsetof(struct SaveBlock1,unused_3A94)',
+ 'POKEMON_SIZE':'sizeof(struct Pokemon)',
+ 'FOLLOWER_ASSET_SIZE':'sizeof(struct FollowerGraphicsAsset)',
+ 'FOLLOW_SPRITE_SIZE':'sizeof(struct Sprite)',
+ 'FOLLOW_SPRITE_OAM':'offsetof(struct Sprite,oam)',
  'R5_VERSION':'offsetof(struct Route5DaycareSave,version)',
  'SECTOR_SIZE':'SECTOR_SIZE',
  'SECTOR_SIGNATURE':'offsetof(struct SaveSector,signature)',
@@ -183,6 +188,9 @@ for key,expr in {
  'TEMPLATE_SIZE':'sizeof(struct ObjectEventTemplate)',
  'TEMPLATE_GRAPHICS':'offsetof(struct ObjectEventTemplate,graphicsId)',
  'OBJECT_COUNT':'OBJECT_EVENTS_COUNT',
+ 'OBJECT_EVENT_SIZE':'sizeof(struct ObjectEvent)',
+ 'OBJECT_EVENT_COORDS':'offsetof(struct ObjectEvent,currentCoords)',
+ 'AVATAR_EVENT_ID':'offsetof(struct PlayerAvatar,objectEventId)',
  'CARE_SIZE':'sizeof(struct DayCare)',
  'CARE_MON_SIZE':'sizeof(struct DaycareMon)',
  'BOX_SIZE':'sizeof(struct BoxPokemon)',
@@ -338,6 +346,9 @@ required += ['ViridianForest_EventScript_SowHeracross', 'ViridianForest_EventScr
              'ViridianForest_Text_SowWarning','ViridianForest_Text_SowThanks',
              'gObjectEvents','gSprites','gMonIcon_Heracross','sPicTable_SowHeracross']
 required += ['ScriptGiveSueEevee', 'ScriptGiveMon', 'EventScript_ChangePokemonNickname']
+required += ['ScriptSelectStarterPikachuFollower','ScriptStartStarterFollowerEmergence','gObjectEvents','gPlayerAvatar']
+required += ['FollowerGraphics_GetSize','FollowerController_RequestRefresh','FollowerGraphics_Swap','FollowerGraphics_SetFrame','FollowerGraphics_Release','FollowerGraphics_GetPaletteSlot','gSprites','gPlttBufferUnfaded']
+required += ['FollowerGraphics_GetSpriteId','FollowerGraphics_GetObjectEventId','FollowerSpecial_PlayCry','FollowerState_ResolvePartySlot','FollowerState_SelectPartySlot','FollowerState_CanDisplay','FollowerState_BeforePartyRemoval','FollowerState_Clear','FollowerAssets_Count','FollowerAssets_Resolve','CustomPokedexNumToSpecies','gStringVar4','CB2_PartyMenuFromStartMenu']
 symbols={}
 end_ewram=0
 for line in subprocess.check_output(['arm-none-eabi-nm','-S','pokefirered.elf'],text=True).splitlines():
@@ -376,6 +387,7 @@ with tempfile.TemporaryDirectory(prefix='lightning-emulator-') as temp:
     temp=Path(temp)
     source='#include "save.h"\n#include "field_weather.h"\n#include <stddef.h>\n#include "global.h"\n#include "pokemon.h"\n#include "main.h"\n#include "task.h"\n'
     source+='#include "sprite.h"\n'
+    source+='#include "follower_graphics.h"\n#include "sprite.h"\n'
     source+='#include "text.h"\n#include "pokedex.h"\n#include "battle_controllers.h"\n#include "item_menu.h"\n#include "wild_encounter.h"\n#include "battle.h"\n#include "list_menu.h"\n#include "party_menu.h"\n#include "script.h"\n#include "field_player_avatar.h"\n'+screen_struct+'\n'+summary_struct+'\n'
     learn=Path('src/learn_move.c').read_text();learn=learn[learn.index('struct LearnMoveGfxResources\n'):];learn=learn[:learn.index('\n};')+3]
     source+='#include "battle_message.h"\n#include "pokemon_special_anim_internal.h"\n'+learn+'\n'
