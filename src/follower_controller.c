@@ -148,8 +148,7 @@ static void PrepareAssetForSlot(s8 slot)
      && shiny == sBoundShiny && form == sBoundForm
      && FollowerGraphics_GetSpriteId() < MAX_SPRITES
      && gSprites[FollowerGraphics_GetSpriteId()].inUse
-     && FollowerGraphics_GetObjectEventId() < OBJECT_EVENTS_COUNT
-     && gObjectEvents[FollowerGraphics_GetObjectEventId()].active)
+     && FollowerGraphics_HasValidObjectEvent())
         return;
     if (sPendingAsset && species == sDesiredSpecies
      && shiny == sDesiredShiny && form == sDesiredForm)
@@ -212,7 +211,7 @@ void FollowerController_Tick(void)
         // Seamless map connections can change map identity without the usual
         // sprite reset. Do not let the follower remain in the old map.
         follower = &gObjectEvents[eventId];
-        if (!follower->active
+        if (!FollowerGraphics_HasValidObjectEvent()
          || follower->mapGroup != gSaveBlock1Ptr->location.mapGroup
          || follower->mapNum != gSaveBlock1Ptr->location.mapNum)
         {
