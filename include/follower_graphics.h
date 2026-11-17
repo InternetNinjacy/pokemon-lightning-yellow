@@ -42,6 +42,8 @@ u8 FollowerGraphics_GetSize(void);
 bool8 FollowerGraphics_BindObjectEvent(u8 mapGroup, u8 mapNum,
                                         s16 mapX, s16 mapY, u8 elevation);
 u8 FollowerGraphics_GetObjectEventId(void);
+// True only while the active map object still belongs to our follower sprite.
+bool8 FollowerGraphics_HasValidObjectEvent(void);
 
 
 #endif
