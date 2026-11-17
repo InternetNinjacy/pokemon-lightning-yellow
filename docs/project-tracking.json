@@ -3,7 +3,7 @@
   "updated": "2026-11-16",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "Merged PR173 exact146 newly owner-adopted natural learnsets at f223bf8b and PR279 approved Snow restart timer at93cc9303. Source/build gates passed; actual owner gameplay acceptance and TM51 design matrix remain separate. Preparing persistent private765-input follower cache for next independent integration; exclude Pichu/old private stats.50 tasks461/251/712 unchanged.",
+  "current_focus": "Merged PR173 exact146 owner-approved natural learnsets atf223bf8b and PR279 Snow timer at93cc9303; source/clean-build checks pass, owner gameplay acceptance remains. Follower private asset prerequisite now READY (765 inputs/255 descriptors), source integration still pending4 conflicts; preserve Pikachu/OAK-SUE/146 and exclude Pichu experiments. TM51 remains separate;50 IDs461/251/712 unchanged.",
   "main_sha": "f223bf8b6bd31ff18cc93318c38877ca421c7036",
   "drive_sync": {
     "status": "2026-11-10 WTH-001 and WRL-008 closeout PRs #170/#184 merged and verified; corresponding existing Google Drive Progress, START HERE and vendor register synchronized with definitive completion evidence.",
@@ -2845,9 +2845,9 @@
       "commit": "ca0de4a5c182019d408b8063fe892b018f588c18",
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/258",
       "ci_url": null,
-      "blocker": "Owner runtime acceptance pending; permission upload no longer requested. EWRAM1076-byte headroom requires care for further engine growth.",
+      "blocker": "Main follower source integration is pending; persistent private765-input cache and255-descriptor readiness gate now pass. Owner runtime acceptance remains outstanding; no new permission-letter upload requested.",
       "design_authority": "Lightning Yellow canonical Drive specialist registers and November 5 change intake",
-      "next_action": "Owner playtest updated private Playtest004-r3 for follower behavior and Jolteon/Umbreon leveling/reminder/evolution/save behavior; previous builds retained. Source/private integration remains PR258, not promoted wholesale to main.",
+      "next_action": "Integrate PR54/257 source against current main while preserving Pikachu naming/OAK-SUE/new146/Snow. Reuse /workspace/scratch/follower-private-cache and pinned generated registry from ly-follower-assets-prep; resolve4 known conflicts, preserve all native registrations/guards, compile a private full252 build, leave gameplay acceptance to owner. Private Pichu/old experiments must not be promoted wholesale.",
       "checkpoint": "Private r3 source 579ef016def8116a2ecf44acccd0e5e72f501247 compiled with owner-locked Jolteon/Umbreon rows;255 descriptors/765 pinned inputs retained, ROM SHA256 05c85f5cece8366e9a8f612a5d87f213d127de5a892255b9fd03aec86a4b9efe. No current gameplay tests or acceptance points.",
       "spec_pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/52",
       "specification": "implementation/selectable-following-pokemon.md"
