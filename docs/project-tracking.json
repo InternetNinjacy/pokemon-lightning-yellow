@@ -3,8 +3,8 @@
   "updated": "2026-11-16",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "PKM-009 locked Jolteon/Umbreon source merged PR268; private follower Playtest004-r3 compiled with the same two approved rows. Scope checks/build PASS; baseline trainer-history Gym/E4 failure retained.146 candidates pass read-only technical preflight but remain WORKING authority; TM51 eligibility still absent. No gameplay tests,Drive sync or accepted-point changes:461/712.",
-  "main_sha": "c5c4dd038edac02737a1fba088d6107902136c56",
+  "current_focus": "Source-only historical acceptance repair: PR270 trainer reconstruction and PR271 Elite Four species projection merged. Eight pure-source regression cases and complete Elite Four source audit pass; Gym source audit still fails at historical event-flag projection. No gameplay acceptance or new points.",
+  "main_sha": "38efadc2010a62754eaf306207f82a2a99979e81",
   "drive_sync": {
     "status": "2026-11-10 WTH-001 and WRL-008 closeout PRs #170/#184 merged and verified; corresponding existing Google Drive Progress, START HERE and vendor register synchronized with definitive completion evidence.",
     "folder": "https://drive.google.com/drive/folders/1N_n0Ke48jBbdhUWSZWzwR6rpPFqpDUpl"
@@ -1907,7 +1907,7 @@
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/35/checks",
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Review combined acceptance PR35 without automatically merging feature PRs; retain broader acceptance scope.",
+      "next_action": "Continue source-only Gym historical reconstruction: flags.h residual is limited to approved Route6 TM34 and SOW002 Heracross allocations; use exact pinned inverse mappings and retain frozen hashes. Trainer whole-file reconstruction and Elite Four source audit repaired in PR270/271. Gameplay/emulator acceptance remains with owner; no workflow dispatch. Preserve 461/712.",
       "checkpoint": "2026-11-04 combined typing regression; no duplicated integration effort credit.",
       "coverage_gap": "Full natural playthrough, hardware/link, interrupted saves, full quest-log/weather/lighting/move-redesign acceptance remain. Exact three-feature source combination now tested separately; live full/CI results inPR35.",
       "merged_reference": {
@@ -3149,5 +3149,16 @@
     "main_before_tracking": "eb838a5c2a3c0d6987063f7b1771efcbe39ae94c",
     "source_tree_verified": true
   },
-  "current_weather_move_branch": "feature/weather-move-completion"
+  "current_weather_move_branch": "feature/weather-move-completion",
+  "source_history_repair_checkpoint": {
+    "main_sha": "38efadc2010a62754eaf306207f82a2a99979e81",
+    "prs": [
+      270,
+      271
+    ],
+    "source_tests": "8 PASS; full Elite Four source runner PASS",
+    "remaining": "Gym historical flags projection; further guards not yet certified",
+    "gameplay": "Not run, owner playtest reserved",
+    "accounting": "461/251/712 unchanged"
+  }
 }

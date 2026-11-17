@@ -339,3 +339,12 @@ Owner directs actual approved gameplay source without tests/builds/emulator/diag
 
 
 Current-main source integration: exact Heracross placement/data/script/art contract PASS; original objects,terrain,weather,battle paths and learnsets preserved. Catch projection PASS:14 approved fields,3 complete stages,17 negative preservation controls.410-move catalog and dual frozen BTL/weather checks PASS. Combined pinned-agbcc compilation PASS; private engineering ROM SHA256 `fdea969f7b086f743ccc268eb5b2d1249a8e82c279fa96f2294cd5ecba7f2559`. No gameplay/emulator tests or CI dispatch. Historical3505 native assertions remain historical, not current-head acceptance. Existing Route6 claim4AF and Heracross4AD/4AE all retained.461/712 unchanged.
+
+
+## Source-only historical acceptance repair — PR270/271
+
+- Starting main562aed6e828178aed5f59661e1f27c45047495bc; integrated main38efadc2010a62754eaf306207f82a2a99979e81. PR270 merged169a01c4c5899d332e49e61444c0b6fc868828f4; PR271 merged38efadc2010a62754eaf306207f82a2a99979e81.
+- Reused three strict helpers byte-for-byte from PR233 head dde9c7d245b3ed9cf21ec475c65b2651f4e07921: two leader parties, four Double metadata records, six locked species records. Preserved existing final whole-file comparisons, pinned history, frozen digests and current Jolteon/Umbreon projection. No gameplay, native fixture, workflow or save changes.
+- PASS8 source unittest cases, including exact full trainer reconstruction, each six-species drift rejection, missing/duplicate records, leader-level/Double metadata drift and outside-record mutations. PASS run_elite_four_tests.py: all eight exact parties plus frozen constructor/source checks. Command: GIT_DIR=/workspace/pokemon-lightning-yellow/.git python3 -m unittest discover -s tests -p '*history_projection.py' -v; same environment python3 tests/run_elite_four_tests.py.
+- Gym runner still FAILS include/constants/flags.h. Investigated residual against approved weather dependency061f878: only Route6 TM34 symbols0B1/4AF and SOW002 Heracross aliases4AD/4AE. No flag edit, hash rewrite or bypass. Next: exact approved inverse mappings, then inspect subsequent failures without claiming full acceptance.
+- No gameplay/emulator/RNG simulation, workflow dispatch or repeated ROM build for test-only changes. CI0 check runs, intentionally skipped, not successful CI. Owner playtest/release certification outstanding. 50 IDs and461/251/712 unchanged; Drive synchronization not performed. Original dirty BTL checkout/index preserved.
