@@ -3132,6 +3132,11 @@
         "secondary_percent": 30,
         "rain_accuracy_bypass": true,
         "sun_accuracy_percent": 50
+      },
+      "engine_translation": {
+        "effect": "EFFECT_CONFUSE_HIT",
+        "target": "MOVE_TARGET_SELECTED",
+        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       }
     },
     {
@@ -3179,6 +3184,11 @@
       "delta": null,
       "effect_rules": {
         "semantic": "RECOIL_ONE_THIRD"
+      },
+      "engine_translation": {
+        "effect": "EFFECT_DOUBLE_EDGE",
+        "target": "MOVE_TARGET_SELECTED",
+        "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       }
     },
     {
@@ -3226,6 +3236,11 @@
       "delta": null,
       "effect_rules": {
         "semantic": "DOUBLE_WITHOUT_HELD_ITEM"
+      },
+      "engine_translation": {
+        "effect": "EFFECT_HIT",
+        "target": "MOVE_TARGET_SELECTED",
+        "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       }
     },
     {
@@ -3273,6 +3288,11 @@
       "delta": null,
       "effect_rules": {
         "semantic": "TWO_HITS_WING_ANATOMY"
+      },
+      "engine_translation": {
+        "effect": "EFFECT_DOUBLE_HIT",
+        "target": "MOVE_TARGET_SELECTED",
+        "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       }
     },
     {
@@ -3321,6 +3341,11 @@
       "effect_rules": {
         "semantic": "FLINCH_30",
         "secondary_percent": 30
+      },
+      "engine_translation": {
+        "effect": "EFFECT_FLINCH_HIT",
+        "target": "MOVE_TARGET_SELECTED",
+        "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
       }
     },
     {
@@ -3369,6 +3394,11 @@
       "effect_rules": {
         "semantic": "FLINCH_20",
         "secondary_percent": 20
+      },
+      "engine_translation": {
+        "effect": "EFFECT_FLINCH_HIT",
+        "target": "MOVE_TARGET_SELECTED",
+        "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED"
       }
     },
     {
@@ -3417,6 +3447,11 @@
       "effect_rules": {
         "semantic": "HIGH_CRITICAL_AND_POISON_10",
         "secondary_percent": 10
+      },
+      "engine_translation": {
+        "effect": "EFFECT_POISON_TAIL",
+        "target": "MOVE_TARGET_SELECTED",
+        "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       }
     },
     {
@@ -3465,6 +3500,11 @@
       "effect_rules": {
         "semantic": "POISON_30",
         "secondary_percent": 30
+      },
+      "engine_translation": {
+        "effect": "EFFECT_POISON_HIT",
+        "target": "MOVE_TARGET_SELECTED",
+        "flags": "FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       }
     },
     {
@@ -3513,6 +3553,11 @@
       "effect_rules": {
         "semantic": "POISON_30",
         "secondary_percent": 30
+      },
+      "engine_translation": {
+        "effect": "EFFECT_POISON_HIT",
+        "target": "MOVE_TARGET_SELECTED",
+        "flags": "FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED"
       }
     }
   ]

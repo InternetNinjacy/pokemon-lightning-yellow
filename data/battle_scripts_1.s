@@ -1100,6 +1100,9 @@ BattleScript_EffectSkyAttack::
 
 BattleScript_EffectConfuseHit::
 	setmoveeffect MOVE_EFFECT_CONFUSION
+	jumpifnotmove MOVE_HURRICANE, BattleScript_ConfuseHitStart
+	orword gHitMarker, HITMARKER_IGNORE_ON_AIR
+BattleScript_ConfuseHitStart::
 	goto BattleScript_EffectHit
 
 BattleScript_EffectTwineedle::

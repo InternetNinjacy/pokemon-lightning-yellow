@@ -444,7 +444,25 @@
 
 #define MOVE_AIR_SLASH 401
 
-#define MOVES_COUNT 402
+#define MOVE_HURRICANE 402
+
+#define MOVE_BRAVE_BIRD 403
+
+#define MOVE_ACROBATICS 404
+
+#define MOVE_DUAL_WINGBEAT 405
+
+#define MOVE_HEART_STAMP 406
+
+#define MOVE_ZEN_HEADBUTT 407
+
+#define MOVE_CROSS_POISON 408
+
+#define MOVE_POISON_JAB 409
+
+#define MOVE_GUNK_SHOT 410
+
+#define MOVES_COUNT 411
 
 // Used for checks for moves affected by Disable, Mimic, etc.
 #define MOVE_UNAVAILABLE 0xFFFF
