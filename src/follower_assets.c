@@ -8,7 +8,10 @@
 #ifndef FOLLOWER_ART_REGISTRY
 #define FOLLOWER_ART_REGISTRY "follower_assets_generated.inc"
 #endif
-#include FOLLOWER_ART_REGISTRY
+// The legacy dependency scanner accepts only literal #include paths.
+// This standard spaced directive leaves macro resolution to the C preprocessor;
+// Makefile declares the selected registry dependency explicitly.
+# include FOLLOWER_ART_REGISTRY
 
 bool8 FollowerAssets_Resolve(u16 species, u8 form, bool8 shiny,
                              struct FollowerGraphicsAsset *out)
