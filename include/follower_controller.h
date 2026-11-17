@@ -11,6 +11,10 @@ void FollowerController_Tick(void);
 void FollowerController_VBlank(void);
 // Explicit UI selection/dismissal can invalidate an old visual immediately.
 void FollowerController_RequestRefresh(void);
+// Only the one-time approved opening may render while a script owns controls.
+// Enabling the window leaves the sprite hidden until the ball opens.
+void FollowerController_SetIntroDisplay(bool8 enabled);
+void FollowerController_SetIntroVisible(bool8 visible);
 void FollowerSpecial_PlayCry(void);
 // Requires a caller-supplied, previously validated species/form asset.
 // Must be invoked during graphics-safe VBlank; never from Tick.

@@ -1,3 +1,9 @@
+> Current-main steps1/2 integration: see [CURRENT_MAIN_INTEGRATION.md](CURRENT_MAIN_INTEGRATION.md).
+> Owner confirms artwork permission; do not request private correspondence again.
+> Historical blockers below describe earlier candidate/private branches. Current
+> canonical integration preserves Pikachu, optional naming, OAK-owned SUE and
+> approved146 learnsets; it does not promote the experimental Pichu build.
+
 # Selectable followers — required preimplementation audit
 
 WRL-010 · 2026-11-06 · audited main `69c8240654e742603d9868717c03c204f4bdacf7`.

@@ -1,0 +1,126 @@
+{
+  "files": {
+    "include/constants/moves.h": {
+      "before_sha256": "21a628d8d6dfb2935183ddd32b9d5c92b9b6506321aedc3ce2b3ad6d6ca2112d",
+      "after_sha256": "96b0b1616c91b7f8d9ba1c2f76edb594d8bd207d9dd822728e2c3d122a6579e3",
+      "hunks": [
+        {
+          "before": "\n#define MOVE_ICE_FANG 372\n\n#define MOVES_COUNT 373\n\n// Used for checks for moves affected by Disable, Mimic, etc.\n#define MOVE_UNAVAILABLE 0xFFFF\n",
+          "after": "\n#define MOVE_ICE_FANG 372\n\n#define MOVE_AVALANCHE 373\n\n#define MOVES_COUNT 374\n\n// Used for checks for moves affected by Disable, Mimic, etc.\n#define MOVE_UNAVAILABLE 0xFFFF\n"
+        }
+      ]
+    },
+    "include/battle.h": {
+      "before_sha256": "7d096a2ab62dc724f887836995c84041096c97014b5800d95bcfe46ce1e452a3",
+      "after_sha256": "94bbd98c7c2b009f6339c1b86ba35843224bf51419af347e83ec2ecf61a5ac72",
+      "hunks": [
+        {
+          "before": "    u8 thunderWaveTargets;\n    u8 thunderWaveTarget;\n    bool8 thunderWaveActive;\n    u8 padding_1E8[0x18];\n}; // size == 0x200 bytes\n\nextern struct BattleStruct *gBattleStruct;\n",
+          "after": "    u8 thunderWaveTargets;\n    u8 thunderWaveTarget;\n    bool8 thunderWaveActive;\n    // Sources of actual direct HP damage this turn, one bit per battler.\n    u8 damagedByBattlers[MAX_BATTLERS_COUNT];\n    u8 padding_1EC[0x14];\n}; // size == 0x200 bytes\n\nextern struct BattleStruct *gBattleStruct;\n"
+        }
+      ]
+    },
+    "include/battle_util.h": {
+      "before_sha256": "38d93e081d1886494489c0fc44bf7d77c0753b096a29f2f327a6b2909b112370",
+      "after_sha256": "0ee7b7ac3c2c9f3a8debe447d8f72c31059ee4016c5f68d499beb58f36e55a7e",
+      "hunks": [
+        {
+          "before": "#define BS_GET_PLAYER2                  13\n#define BS_GET_OPPONENT2                14\n\nu8 GetBattlerForBattleScript(u8 caseId);\nvoid PressurePPLose(u8 target, u8 attacker, u16 move);\nvoid PressurePPLoseOnUsingImprison(u8 attacker);\n",
+          "after": "#define BS_GET_PLAYER2                  13\n#define BS_GET_OPPONENT2                14\n\nbool8 BattlerWasDamagedBy(u8 recipient, u8 source);\nu8 GetBattlerForBattleScript(u8 caseId);\nvoid PressurePPLose(u8 target, u8 attacker, u16 move);\nvoid PressurePPLoseOnUsingImprison(u8 attacker);\n"
+        }
+      ]
+    },
+    "src/battle_util.c": {
+      "before_sha256": "93da6e4a379e19c33f953ceda664744d5f348efd32e9255b11b3ec38f56230e5",
+      "after_sha256": "060b507321d73c22cb3bd3c5cdc9da502c9326ed483fc7a7f17bfceaba619993",
+      "hunks": [
+        {
+          "before": "    MOVE_GROWL, MOVE_ROAR, MOVE_SING, MOVE_SUPERSONIC, MOVE_SCREECH, MOVE_SNORE,\n    MOVE_UPROAR, MOVE_METAL_SOUND, MOVE_GRASS_WHISTLE, MOVE_HYPER_VOICE, MOVE_CHIRP, MOVE_BELLOW, SOUND_MOVES_END\n};\n\nu8 GetBattlerForBattleScript(u8 caseId)\n{\n",
+          "after": "    MOVE_GROWL, MOVE_ROAR, MOVE_SING, MOVE_SUPERSONIC, MOVE_SCREECH, MOVE_SNORE,\n    MOVE_UPROAR, MOVE_METAL_SOUND, MOVE_GRASS_WHISTLE, MOVE_HYPER_VOICE, MOVE_CHIRP, MOVE_BELLOW, SOUND_MOVES_END\n};\n\nbool8 BattlerWasDamagedBy(u8 recipient, u8 source)\n{\n    return recipient < MAX_BATTLERS_COUNT && source < MAX_BATTLERS_COUNT\n        && (gBattleStruct->damagedByBattlers[recipient] & (1U << source)) != 0;\n}\n\nu8 GetBattlerForBattleScript(u8 caseId)\n{\n"
+        }
+      ]
+    },
+    "src/battle_main.c": {
+      "before_sha256": "23928df7927ae73172601cab3fcc218e9a1c081e6e51a23aa5f7827f1e8e3607",
+      "after_sha256": "dba594c7ac65566d069e867e741977b7e3fe0811c68701fe79e18b2df065dacd",
+      "hunks": [
+        {
+          "before": "    s32 i;\n    u8 *ptr;\n\n    if (gBattleMoves[gCurrentMove].effect != EFFECT_BATON_PASS)\n    {\n        for (i = 0; i < NUM_BATTLE_STATS; i++)\n",
+          "after": "    s32 i;\n    u8 *ptr;\n\n    // A replacement is a different Pokemon, even when it reuses a battler ID.\n    gBattleStruct->damagedByBattlers[gActiveBattler] = 0;\n    for (i = 0; i < MAX_BATTLERS_COUNT; i++)\n        gBattleStruct->damagedByBattlers[i] &= ~(1U << gActiveBattler);\n\n    if (gBattleMoves[gCurrentMove].effect != EFFECT_BATON_PASS)\n    {\n        for (i = 0; i < NUM_BATTLE_STATS; i++)\n"
+        },
+        {
+          "before": "    s32 i;\n    u8 *dataPtr;\n\n    for (gActiveBattler = 0; gActiveBattler < gBattlersCount; gActiveBattler++)\n    {\n        if (var0)\n",
+          "after": "    s32 i;\n    u8 *dataPtr;\n\n    if (!var0)\n        for (i = 0; i < MAX_BATTLERS_COUNT; i++)\n            gBattleStruct->damagedByBattlers[i] = 0;\n\n    for (gActiveBattler = 0; gActiveBattler < gBattlersCount; gActiveBattler++)\n    {\n        if (var0)\n"
+        }
+      ]
+    },
+    "src/battle_script_commands.c": {
+      "before_sha256": "cbb92694f5be3e2d515d039bd94f099b513d95c786d357a213ef396700947d66",
+      "after_sha256": "e18afc3452082b7afce21e1d5e3fed77356ab664919aecbd6aab9c6cbb32ce20",
+      "hunks": [
+        {
+          "before": "                    gHpDealt = gBattleMons[gActiveBattler].hp;\n                    gBattleMons[gActiveBattler].hp = 0;\n                }\n\n                if (!gSpecialStatuses[gActiveBattler].dmg && !(gHitMarker & HITMARKER_PASSIVE_DAMAGE))\n                    gSpecialStatuses[gActiveBattler].dmg = gHpDealt;\n",
+          "after": "                    gHpDealt = gBattleMons[gActiveBattler].hp;\n                    gBattleMons[gActiveBattler].hp = 0;\n                }\n\n                // Track only real direct move HP loss, never Substitute, healing,\n                // recoil/confusion on the user, status effects or passive damage.\n                if (gHpDealt > 0 && gBattlescriptCurrInstr[1] == BS_TARGET\n                 && gBattlerAttacker < MAX_BATTLERS_COUNT && gBattlerAttacker != gActiveBattler\n                 && !(gHitMarker & HITMARKER_PASSIVE_DAMAGE) && !IS_MOVE_STATUS(gCurrentMove))\n                    gBattleStruct->damagedByBattlers[gActiveBattler] |= 1U << gBattlerAttacker;\n\n                if (!gSpecialStatuses[gActiveBattler].dmg && !(gHitMarker & HITMARKER_PASSIVE_DAMAGE))\n                    gSpecialStatuses[gActiveBattler].dmg = gHpDealt;\n"
+        }
+      ]
+    },
+    "src/pokemon.c": {
+      "before_sha256": "c77fc8b947864cdb5bd28e95ea84c968c1384307021f0051e804d72df5558e94",
+      "after_sha256": "5a3c6fb08ea59241ad98d0e6d4b4869bce5b9f5e1dcfccda67bba96dcf094956",
+      "hunks": [
+        {
+          "before": "        gBattleMovePower = gBattleMoves[move].power;\n    else\n        gBattleMovePower = powerOverride;\n\n    // Dream Haunt doubles power against sleep without draining or waking.\n    if (move == MOVE_DREAM_HAUNT && (defender->status1 & STATUS1_SLEEP))\n",
+          "after": "        gBattleMovePower = gBattleMoves[move].power;\n    else\n        gBattleMovePower = powerOverride;\n\n    // Shared live/AI calculation uses the selected target, not last damage source.\n    if (move == MOVE_AVALANCHE && BattlerWasDamagedBy(battlerIdAtk, battlerIdDef))\n        gBattleMovePower *= 2;\n\n    // Dream Haunt doubles power against sleep without draining or waking.\n    if (move == MOVE_DREAM_HAUNT && (defender->status1 & STATUS1_SLEEP))\n"
+        }
+      ]
+    },
+    "src/data/battle_moves.h": {
+      "before_sha256": "f00a35313c7a3aab67c7a3188a76e02fa5f2773978f667e0629d14ef48d069a3",
+      "after_sha256": "aad7dcc9e05eb9c82c53f4eff7c4a8f5a161d90da8d4192a4fb88aaa41a489e0",
+      "hunks": [
+        {
+          "before": "        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,\n    },\n\n};\n",
+          "after": "        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,\n    },\n\n    [MOVE_AVALANCHE] =\n    {\n        .category = MOVE_CATEGORY_PHYSICAL,\n        .effect = EFFECT_HIT,\n        .power = 60,\n        .type = TYPE_ICE,\n        .accuracy = 100,\n        .pp = 10,\n        .secondaryEffectChance = 0,\n        .target = MOVE_TARGET_SELECTED,\n        .priority = -4,\n        .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,\n    },\n\n};\n"
+        }
+      ]
+    },
+    "src/data/text/move_names.h": {
+      "before_sha256": "962916854b61e7778d3380d60d06339eb643e7ff5a634b4984083248b8b2f5d7",
+      "after_sha256": "d4a34cc609f3b7e438cfae9a88b86e77d5dd48a370346d4eeee231d8de869778",
+      "hunks": [
+        {
+          "before": "    [MOVE_SCORCHING_SANDS] = _(\"SCORCHING SANDS\"),\n    [MOVE_EARTH_POWER] = _(\"EARTH POWER\"),\n    [MOVE_ICE_FANG] = _(\"ICE FANG\"),\n};\n",
+          "after": "    [MOVE_SCORCHING_SANDS] = _(\"SCORCHING SANDS\"),\n    [MOVE_EARTH_POWER] = _(\"EARTH POWER\"),\n    [MOVE_ICE_FANG] = _(\"ICE FANG\"),\n    [MOVE_AVALANCHE] = _(\"AVALANCHE\"),\n};\n"
+        }
+      ]
+    },
+    "src/move_descriptions.c": {
+      "before_sha256": "891ad65431a7f4d0f930b4e6f21d5929d53f98ca90ec29917d3ff9af9c75c6e3",
+      "after_sha256": "b56f4d91b956338fe95d047eababc10224d5746c48ea336d04643c4348a77df9",
+      "hunks": [
+        {
+          "before": "const u8 gMoveDescription_STONE_EDGE[] = _(\"Sharp stones hit\\nthe foe. High\\ncritical-hit ratio.\");\nconst u8 gMoveDescription_SCORCHING_SANDS[] = _(\"Scorching sand\\nmay leave the foe\\nwith a burn.\");\nconst u8 gMoveDescription_EARTH_POWER[] = _(\"The ground erupts\\nwith power. May\\nlower Sp. Def.\");\nconst u8 gMoveDescription_ICE_FANG[] = _(\"An icy bite may\\nfreeze the foe or\\nmake it flinch.\");\n\nconst u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {\n",
+          "after": "const u8 gMoveDescription_STONE_EDGE[] = _(\"Sharp stones hit\\nthe foe. High\\ncritical-hit ratio.\");\nconst u8 gMoveDescription_SCORCHING_SANDS[] = _(\"Scorching sand\\nmay leave the foe\\nwith a burn.\");\nconst u8 gMoveDescription_EARTH_POWER[] = _(\"The ground erupts\\nwith power. May\\nlower Sp. Def.\");\nconst u8 gMoveDescription_AVALANCHE[] = _(\"Strikes harder if\\nhurt by the foe\\nthis same turn.\");\nconst u8 gMoveDescription_ICE_FANG[] = _(\"An icy bite may\\nfreeze the foe or\\nmake it flinch.\");\n\nconst u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] = {\n"
+        },
+        {
+          "before": "    [MOVE_SCORCHING_SANDS - 1] = gMoveDescription_SCORCHING_SANDS,\n    [MOVE_EARTH_POWER - 1] = gMoveDescription_EARTH_POWER,\n    [MOVE_ICE_FANG - 1] = gMoveDescription_ICE_FANG,\n};\n",
+          "after": "    [MOVE_SCORCHING_SANDS - 1] = gMoveDescription_SCORCHING_SANDS,\n    [MOVE_EARTH_POWER - 1] = gMoveDescription_EARTH_POWER,\n    [MOVE_ICE_FANG - 1] = gMoveDescription_ICE_FANG,\n    [MOVE_AVALANCHE - 1] = gMoveDescription_AVALANCHE,\n};\n"
+        }
+      ]
+    },
+    "data/battle_anim_scripts.s": {
+      "before_sha256": "4eed70241ad215cd235806844f755d16a67c65965a1549a8d8e0b0b0785d294a",
+      "after_sha256": "69f75e73eece666dfcbca2ed0932daa422cc1698e8a44c05c8262aecaf40ac31",
+      "hunks": [
+        {
+          "before": "\t.4byte Move_SCORCHING_SANDS\n\t.4byte Move_EARTH_POWER\n\t.4byte Move_ICE_FANG\n\t.4byte Move_COUNT @ cannot be reached, because last move is Psycho Boost\n\n\t.align 2\n",
+          "after": "\t.4byte Move_SCORCHING_SANDS\n\t.4byte Move_EARTH_POWER\n\t.4byte Move_ICE_FANG\n\t.4byte Move_AVALANCHE\n\t.4byte Move_COUNT @ cannot be reached, because last move is Psycho Boost\n\n\t.align 2\n"
+        },
+        {
+          "before": "\tblendoff\n\tend\n\n",
+          "after": "\tblendoff\n\tend\n\n\n@ Avalanche #373: approved Rock Slide + Ice Beam existing art, inline bodies.\n@ Restrict the Rock Slide partner shake/background to the selected target.\nMove_AVALANCHE:\n\tloadspritegfx ANIM_TAG_ROCKS\n\tmonbg ANIM_TARGET\n\tcreatesprite gShakeMonOrTerrainSpriteTemplate, ANIM_ATTACKER, 2, 7, 1, 11, 1\n\tcreatesprite gFallingRockSpriteTemplate, ANIM_TARGET, 2, -5, 1, -5, 1\n\tplaysewithpan SE_M_ROCK_THROW, SOUND_PAN_TARGET\n\tdelay 2\n\tcreatesprite gFallingRockSpriteTemplate, ANIM_TARGET, 2, 5, 0, 6, 1\n\tplaysewithpan SE_M_ROCK_THROW, SOUND_PAN_TARGET\n\tdelay 2\n\tcreatesprite gFallingRockSpriteTemplate, ANIM_TARGET, 2, 19, 1, 10, 1\n\tplaysewithpan SE_M_ROCK_THROW, SOUND_PAN_TARGET\n\tdelay 2\n\tcreatesprite gFallingRockSpriteTemplate, ANIM_TARGET, 2, -23, 2, -10, 1\n\tplaysewithpan SE_M_ROCK_THROW, SOUND_PAN_TARGET\n\tcreatevisualtask AnimTask_ShakeMon, 2, ANIM_TARGET, 0, 5, 50, 1\n\tdelay 2\n\tcall RockSlideRocks\n\tcall RockSlideRocks\n\twaitforvisualfinish\n\tclearmonbg ANIM_TARGET\n\tmonbg ANIM_TARGET\n\tsplitbgprio ANIM_TARGET\n\tsetalpha 12, 8\n\tloadspritegfx ANIM_TAG_ICE_CRYSTALS\n\tcreatesprite gSimplePaletteBlendSpriteTemplate, ANIM_ATTACKER, 2, F_PAL_BG, 1, 0, 7, RGB_BLACK\n\twaitforvisualfinish\n\tcreatesoundtask SoundTask_LoopSEAdjustPanning, SE_M_BUBBLE_BEAM2, SOUND_PAN_ATTACKER, SOUND_PAN_TARGET, 4, 4, 0, 10\n\tcreatesprite gIceBeamOuterCrystalSpriteTemplate, ANIM_ATTACKER, 2, 20, 12, 0, 12, 20\n\tcreatesprite gIceBeamOuterCrystalSpriteTemplate, ANIM_ATTACKER, 2, 20, -12, 0, -12, 20\n\tdelay 1\n\tcall IceBeamCreateCrystals\n\tcall IceBeamCreateCrystals\n\tcall IceBeamCreateCrystals\n\tcreatesprite gSimplePaletteBlendSpriteTemplate, ANIM_ATTACKER, 2, F_PAL_TARGET, -31, 0, 7, RGB(0, 20, 31)\n\tcreatevisualtask AnimTask_ShakeMon2, 2, ANIM_TARGET, 2, 0, 25, 1\n\tcall IceBeamCreateCrystals\n\tcall IceBeamCreateCrystals\n\tcall IceBeamCreateCrystals\n\tcall IceBeamCreateCrystals\n\tcall IceBeamCreateCrystals\n\tcall IceBeamCreateCrystals\n\tcall IceBeamCreateCrystals\n\tcall IceBeamCreateCrystals\n\tcreatesprite gIceBeamInnerCrystalSpriteTemplate, ANIM_ATTACKER, 2, 20, 0, 0, 0, 11\n\tdelay 1\n\tcreatesprite gIceBeamInnerCrystalSpriteTemplate, ANIM_ATTACKER, 2, 20, 0, 0, 0, 11\n\twaitforvisualfinish\n\tdelay 20\n\tcall IceCrystalEffectShort\n\tcreatesprite gSimplePaletteBlendSpriteTemplate, ANIM_ATTACKER, 2, F_PAL_TARGET, 5, 7, 0, RGB(0, 20, 31)\n\twaitforvisualfinish\n\tcreatesprite gSimplePaletteBlendSpriteTemplate, ANIM_ATTACKER, 2, F_PAL_BG, 0, 7, 0, RGB_BLACK\n\twaitforvisualfinish\n\tclearmonbg ANIM_TARGET\n\tblendoff\n\tend\n"
+        }
+      ]
+    }
+  }
+}

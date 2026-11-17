@@ -46,13 +46,15 @@ static void gymBallType(unsigned type,unsigned doubled){
  CALL(Cmd_setweatherballtype);CHECK((core->busRead8(core,bs+ABI_BATTLESTRUCT_DYNAMIC_TYPE)&0x3f)==type);CHECK(core->busRead8(core,SYM_gBattleScripting+ABI_SCRIPTING_MULTIPLIER)==(doubled?2:1));
  core->busWrite8(core,bs+ABI_BATTLESTRUCT_DYNAMIC_TYPE,oldType);core->busWrite8(core,SYM_gBattleScripting+ABI_SCRIPTING_MULTIPLIER,oldMult);core->busWrite32(core,SYM_gBattlescriptCurrInstr,instr);
 }
-static void gymFinish(unsigned t){
- unsigned f,quiet=0,seen=0;
+// Shared native victory driver: weather-form proof applies to the original three Castform fixtures;
+// Luis is a separate ordinary Double with no Castform and must still reach a real saved victory.
+static void gymFinish(unsigned t,unsigned trainer,unsigned requireCastform){
+ unsigned f,quiet=0,seen=!requireCastform;
  for(f=0;f<30000;f++){
   if(fieldScriptDone()){if(++quiet==30)break;frames(1,0);continue;}quiet=0;
   unsigned key=0;
   if((core->busRead32(core,SYM_gMain+ABI_MAIN_CB2)&~1U)==SYM_BattleMainCB2){
-   if(core->busRead16(core,bmon(1)+ABI_BMON_SPECIES)==SPECIES_CASTFORM && core->busRead16(core,bmon(1)+ABI_BMON_HP) && core->busRead8(core,bmon(1)+ABI_BMON_TYPE1)==gymType[t] && (t!=2 || core->busRead8(core,SYM_gBattleMonForms+1)==1))seen=1;
+   if(requireCastform && core->busRead16(core,bmon(1)+ABI_BMON_SPECIES)==SPECIES_CASTFORM && core->busRead16(core,bmon(1)+ABI_BMON_HP) && core->busRead8(core,bmon(1)+ABI_BMON_TYPE1)==gymType[t] && (t!=2 || core->busRead8(core,SYM_gBattleMonForms+1)==1))seen=1;
    if(f%8==0){
     key=2;unsigned exec=core->busRead32(core,SYM_gBattleControllerExecFlags);
     for(unsigned b=0;b<4;b+=2)if(exec&(1U<<b)){
@@ -66,12 +68,70 @@ static void gymFinish(unsigned t){
   frames(1,key);
  }
  if(f==30000)fprintf(stderr,"Gym%u timeout outcome%u callback%08x\n",t,core->busRead8(core,SYM_gBattleOutcome),core->busRead32(core,SYM_gMain+ABI_MAIN_CB2));
- CHECK(f<30000);CHECK(seen);CHECK(CALL(FlagGet,TRAINER_FLAGS_START+gymTrainers[t]));CHECK(CALL(GetSav1Weather)==gymWeather[t]);
- flashRoundTrip();CHECK(CALL(FlagGet,TRAINER_FLAGS_START+gymTrainers[t]));
- printf("PASS: native Gym%u victory, correct Castform weather type, field return and saved defeat flag in%u frames\n",t,f);
+ CHECK(f<30000);CHECK(seen);CHECK(CALL(FlagGet,TRAINER_FLAGS_START+trainer));CHECK(CALL(GetSav1Weather)==gymWeather[t]);
+ flashRoundTrip();CHECK(CALL(FlagGet,TRAINER_FLAGS_START+trainer));
+ printf("PASS: native Gym%u trainer%u victory, %s, field return and saved defeat flag in%u frames\n",t,trainer,requireCastform?"correct Castform weather type":"unchanged weather",f);
+}
+// Cerulean Luis is a separately approved ordinary Trainer Double, not Diana.
+// Exercise the real map script and native party constructor, including the
+// original two-usable-Pokemon refusal path, without modifying opponent data.
+static void ceruleanLuisNativeTests(void){
+ const unsigned trainer=TRAINER_SWIMMER_MALE_LUIS;
+ const unsigned script=SYM_CeruleanCity_Gym_EventScript_Luis;
+ const unsigned species[]={SPECIES_SLOWPOKE,SPECIES_HORSEA};
+ const unsigned moves[2][4]={
+  {MOVE_WATER_GUN,MOVE_CONFUSION,MOVE_GROWL,MOVE_DISABLE},
+  {MOVE_WATER_GUN,MOVE_BUBBLE,MOVE_SMOKESCREEN,MOVE_LEER}
+ };
+ for(unsigned n=0;n<2;n++){
+  gymFixture(1,n?2:1);
+  if(n)monput(player(1),ABI_DATA_HP,0);
+  unsigned obj=CALL(GetObjectEventIdByLocalIdAndMap,1,
+      MAP_NUM(MAP_CERULEAN_CITY_GYM),MAP_GROUP(MAP_CERULEAN_CITY_GYM));
+  CHECK(obj<ABI_OBJECT_COUNT);
+  core->busWrite8(core,SYM_gSelectedObjectEvent,obj);
+  fossilStart(script);fossilClose(1);
+  CHECK(!(core->busRead32(core,SYM_gBattleTypeFlags)&BATTLE_TYPE_TRAINER));
+  CHECK(!CALL(FlagGet,TRAINER_FLAGS_START+trainer));
+  vendorTextMatches(SYM_SaffronCity_Dojo_Text_NeedTwo);
+ }
+ gymFixture(1,2);
+ unsigned obj=CALL(GetObjectEventIdByLocalIdAndMap,1,
+     MAP_NUM(MAP_CERULEAN_CITY_GYM),MAP_GROUP(MAP_CERULEAN_CITY_GYM));
+ CHECK(obj<ABI_OBJECT_COUNT);
+ core->busWrite8(core,SYM_gSelectedObjectEvent,obj);
+ fossilStart(script);waitAction();
+ CHECK(core->busRead16(core,SYM_gTrainerBattleOpponent_A)==trainer);
+ CHECK(core->busRead32(core,SYM_gBattleTypeFlags)&BATTLE_TYPE_TRAINER);
+ CHECK(core->busRead32(core,SYM_gBattleTypeFlags)&BATTLE_TYPE_DOUBLE);
+ CHECK(core->busRead8(core,SYM_gBattlersCount)==4);
+ CHECK(core->busRead16(core,SYM_gBattleWeather)==0);
+ for(unsigned i=0;i<2;i++){
+  unsigned mon=enemy(i);
+  CHECK(monget(mon,ABI_DATA_SPECIES)==species[i]);
+  CHECK(monget(mon,ABI_DATA_LEVEL)==17);
+  CHECK(monget(mon,ABI_DATA_HELD_ITEM)==ITEM_NONE);
+  for(unsigned iv=0;iv<6;iv++)CHECK(monget(mon,ABI_DATA_HP_IV+iv)==0);
+  for(unsigned slot=0;slot<4;slot++){
+   unsigned move=monget(mon,ABI_DATA_MOVE1+slot);
+   CHECK(move==moves[i][slot]);
+   CHECK(monget(mon,ABI_DATA_PP1+slot)==core->busRead8(core,
+       SYM_gBattleMoves+ABI_BMOVE_SIZE*move+ABI_BMOVE_PP));
+  }
+ }
+ CHECK(core->busRead16(core,bmon(1)+ABI_BMON_SPECIES)==SPECIES_SLOWPOKE);
+ CHECK(core->busRead16(core,bmon(3)+ABI_BMON_SPECIES)==SPECIES_HORSEA);
+ CHECK(!CALL(FlagGet,TRAINER_FLAGS_START+trainer));
+ printf("PASS: native Cerulean Luis real Gym script rejects one usable Pokemon/fainted partner, starts approved Slowpoke/Horsea Lv17 Double with exact moves, IVs, items and PP\n");
+ // Finish the real battle through ordinary controller inputs; do not force outcome or trainer flags.
+ gymFinish(1,trainer,0);
+ // Original post-defeat dialogue must return to the field without another battle.
+ fossilStart(script);fossilClose(1);CHECK(CALL(FlagGet,TRAINER_FLAGS_START+trainer));
+ printf("PASS: native Cerulean Luis legitimate Double victory, post-battle interaction and flash-saved defeat flag\n");
+ CHECK(core->loadState(core,bootState));
 }
 static void gymCastformTests(void){
- gymDataTests();gymLegacyWeatherTests();
+ gymDataTests();gymLegacyWeatherTests();ceruleanLuisNativeTests();
  // Native Double script must reject one usable mon, including a fainted second.
  for(unsigned n=0;n<2;n++){
   gymFixture(1,n?2:1);if(n)monput(player(1),ABI_DATA_HP,0);
@@ -110,7 +170,7 @@ static void gymCastformTests(void){
    printf("PASS: actual unmodified Diana AI uses Rain Dance in%u frames; Rainy Form animation and Water Weather Ball opcode; field stays clear\n",elapsed);
    // Remaining fight has rainy Castform; finishing monitor uses its current type.
   }
-  gymFinish(t);
+  gymFinish(t,gymTrainers[t],1);
   // Post-defeat interaction runs the original dialogue without a new battle.
   fossilStart(gymEntry[t]);fossilClose(1);CHECK(CALL(FlagGet,TRAINER_FLAGS_START+gymTrainers[t]));
  }

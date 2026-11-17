@@ -8,6 +8,14 @@ import json
 from pathlib import Path
 
 def prior_opening_source(path, text):
+    from approved_follower_changes import prior_follower_source
+    text=prior_follower_source(path,text)
+    from approved_146_learnset_changes import prior_146_learnset_source
+    text=prior_146_learnset_source(path,text)
+    from approved_wrl001_identity_changes import prior_wrl001_identity_source
+    text=prior_wrl001_identity_source(path,text)
+    from approved_jolteon_umbreon_changes import prior_locked_pair_source
+    text=prior_locked_pair_source(path,text)
     hunks = json.loads(Path('tests/specifications/wrl001_opening_delta.json').read_text())['files'].get(str(path), [])
     for hunk in reversed(hunks):
         if text.count(hunk['after']) == 1:

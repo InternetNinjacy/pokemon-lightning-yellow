@@ -2542,11 +2542,25 @@ static u8 DisplaySelectionWindow(u8 windowType)
     u8 cursorDimension;
     u8 fontAttribute;
     u8 i;
+    u8 actionWidth = 10;
+    u32 textWidth;
 
+    cursorDimension = GetMenuCursorDimensionByFont(FONT_NORMAL, 0);
+    fontAttribute = GetFontAttribute(FONT_NORMAL, FONTATTR_LETTER_SPACING);
     switch (windowType)
     {
     case SELECTWINDOW_ACTIONS:
-        window = SetWindowTemplateFields(2, 19, 19 - (sPartyMenuInternal->numActions * 2), 10, sPartyMenuInternal->numActions * 2, 14, 0x2BF);
+        // Keep the original right edge/minimum while fitting explicit follower
+        // labels using the same native font/cursor metrics used for printing.
+        for (i = 0; i < sPartyMenuInternal->numActions; i++)
+        {
+            textWidth = (GetStringWidth(FONT_NORMAL,
+                sCursorOptions[sPartyMenuInternal->actions[i]].text, fontAttribute)
+                + cursorDimension + 7) / 8;
+            if (textWidth > actionWidth)
+                actionWidth = textWidth;
+        }
+        window = SetWindowTemplateFields(2, 29 - actionWidth, 19 - (sPartyMenuInternal->numActions * 2), actionWidth, sPartyMenuInternal->numActions * 2, 14, 0x2BF);
         break;
     case SELECTWINDOW_ITEM:
         window = sItemGiveTakeWindowTemplate;
@@ -2562,8 +2576,6 @@ static u8 DisplaySelectionWindow(u8 windowType)
     DrawStdFrameWithCustomTileAndPalette(sPartyMenuInternal->windowId[0], FALSE, 0x4F, 13);
     if (windowType == SELECTWINDOW_MOVES)
         return sPartyMenuInternal->windowId[0];
-    cursorDimension = GetMenuCursorDimensionByFont(FONT_NORMAL, 0);
-    fontAttribute = GetFontAttribute(FONT_NORMAL, FONTATTR_LETTER_SPACING);
     for (i = 0; i < sPartyMenuInternal->numActions; ++i)
     {
         u8 fontColorsId = (sPartyMenuInternal->actions[i] >= CURSOR_OPTION_FIELD_MOVES) ? 4 : 3;
@@ -2996,7 +3008,7 @@ static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
     // mutate party order, battle lead, or the selected instance until chosen.
     if (FollowerState_IsSelectedPartySlot(slotId))
         AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, CURSOR_OPTION_STOP_FOLLOWING);
-    else
+    else if (FollowerState_CanSelectPartySlot(slotId))
         AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, CURSOR_OPTION_SET_FOLLOWER);
     AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, CURSOR_OPTION_CANCEL1);
 }

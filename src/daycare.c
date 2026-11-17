@@ -1,5 +1,6 @@
 #include "global.h"
 #include "route5_daycare.h"
+#include "follower_state.h"
 #include "gflib.h"
 #include "data.h"
 #include "battle.h"
@@ -442,6 +443,8 @@ static void StorePokemonInDaycare(struct Pokemon *mon, struct DaycareMon *daycar
     daycareMon->mon = mon->box;
     BoxMonRestorePP(&daycareMon->mon);
     daycareMon->steps = 0;
+    // Clear only after a real parent deposit has committed its saved data.
+    FollowerState_BeforeBoxDeposit(mon);
     ZeroMonData(mon);
     CompactPartySlots();
     CalculatePlayerPartyCount();

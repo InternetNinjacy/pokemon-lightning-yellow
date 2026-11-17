@@ -759,6 +759,7 @@ void Snow_InitAll(void)
 
 void Snow_Main(void)
 {
+    ++gWeatherPtr->snowflakeTimer;
     if (gWeatherPtr->initStep == 0 && !UpdateVisibleSnowflakeSprites())
     {
         gWeatherPtr->weatherGfxLoaded = TRUE;
@@ -904,7 +905,7 @@ static void InitSnowflakeSpriteMovement(struct Sprite *sprite)
 
 static void WaitSnowflakeSprite(struct Sprite *sprite)
 {
-    // Timer is never incremented
+    // Snow_Main advances the shared restart timer.
     if (gWeatherPtr->snowflakeTimer > 18)
     {
         sprite->invisible = FALSE;

@@ -1,0 +1,1053 @@
+{
+  "schema": 1,
+  "title": "PKM009 exact owner-approved146 natural-learnset source delta",
+  "approval": {
+    "date": "2026-11-17",
+    "record": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/issues/105#issuecomment-6951068928",
+    "scope": "Adopt exact74+72 recommendations only; preserve14 locked profiles and every other source byte; noTM51 or separate10 proposals",
+    "supersedes": "Historical WORKING labels only for these146 exact rows"
+  },
+  "base_main": "28cf138cfcd19ee8f742fdd12b4bec1793b39cf4",
+  "source_path": "src/data/pokemon/level_up_learnsets.h",
+  "before_sha256": "273851e1c4e6d5f9ed08efa6f42621cb7bdccbb0f2013c081bed9c0576c0edc6",
+  "source_commit": "86f4f73a0e2767984cfc15fe52a3abe0a7396017",
+  "source_manifests": [
+    {
+      "path": "tests/specifications/pkm009_delegated_001_126.json",
+      "git_blob_sha1": "d2b94722bfc85688e90ad89e07fbc95d5a12effc",
+      "sha256": "7e194ed5ddab2c20e9a6414c1782cf5e034a495cd2242026c957899d93027981",
+      "count": 74
+    },
+    {
+      "path": "tests/specifications/pkm009_delegated_127_252.json",
+      "git_blob_sha1": "03b61ba01f28cdb4261e7066678bd7c18ca6f1b2",
+      "sha256": "4ab2b5cde56137d37eccdb47c145245b218aba506d8e09171783d9dcc7bab2ad",
+      "count": 72
+    }
+  ],
+  "rows": [
+    {
+      "dex": 4,
+      "species": "CHARMANDER",
+      "pointer": "sCharmanderLevelUpLearnset",
+      "before_body": "static const u16 sCharmanderLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_SCRATCH),\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(7, MOVE_EMBER),\n    LEVEL_UP_MOVE(13, MOVE_METAL_CLAW),\n    LEVEL_UP_MOVE(19, MOVE_SMOKESCREEN),\n    LEVEL_UP_MOVE(25, MOVE_SCARY_FACE),\n    LEVEL_UP_MOVE(31, MOVE_FLAMETHROWER),\n    LEVEL_UP_MOVE(37, MOVE_SLASH),\n    LEVEL_UP_MOVE(43, MOVE_DRAGON_RAGE),\n    LEVEL_UP_MOVE(49, MOVE_FIRE_SPIN),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sCharmanderLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_SCRATCH),\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(7, MOVE_EMBER),\n    LEVEL_UP_MOVE(12, MOVE_FLAME_WHEEL),\n    LEVEL_UP_MOVE(13, MOVE_METAL_CLAW),\n    LEVEL_UP_MOVE(19, MOVE_SMOKESCREEN),\n    LEVEL_UP_MOVE(25, MOVE_SCARY_FACE),\n    LEVEL_UP_MOVE(26, MOVE_FLAME_FANG),\n    LEVEL_UP_MOVE(31, MOVE_FLAMETHROWER),\n    LEVEL_UP_MOVE(37, MOVE_SLASH),\n    LEVEL_UP_MOVE(43, MOVE_DRAGON_RAGE),\n    LEVEL_UP_MOVE(49, MOVE_FIRE_SPIN),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 5,
+      "species": "CHARMELEON",
+      "pointer": "sCharmeleonLevelUpLearnset",
+      "before_body": "static const u16 sCharmeleonLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_SCRATCH),\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(1, MOVE_EMBER),\n    LEVEL_UP_MOVE(7, MOVE_EMBER),\n    LEVEL_UP_MOVE(13, MOVE_METAL_CLAW),\n    LEVEL_UP_MOVE(20, MOVE_SMOKESCREEN),\n    LEVEL_UP_MOVE(27, MOVE_SCARY_FACE),\n    LEVEL_UP_MOVE(34, MOVE_FLAMETHROWER),\n    LEVEL_UP_MOVE(41, MOVE_SLASH),\n    LEVEL_UP_MOVE(48, MOVE_DRAGON_RAGE),\n    LEVEL_UP_MOVE(55, MOVE_FIRE_SPIN),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sCharmeleonLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_SCRATCH),\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(1, MOVE_EMBER),\n    LEVEL_UP_MOVE(7, MOVE_EMBER),\n    LEVEL_UP_MOVE(13, MOVE_METAL_CLAW),\n    LEVEL_UP_MOVE(18, MOVE_FLAME_WHEEL),\n    LEVEL_UP_MOVE(20, MOVE_SMOKESCREEN),\n    LEVEL_UP_MOVE(27, MOVE_SCARY_FACE),\n    LEVEL_UP_MOVE(29, MOVE_FLAME_FANG),\n    LEVEL_UP_MOVE(34, MOVE_FLAMETHROWER),\n    LEVEL_UP_MOVE(41, MOVE_SLASH),\n    LEVEL_UP_MOVE(48, MOVE_DRAGON_RAGE),\n    LEVEL_UP_MOVE(55, MOVE_FIRE_SPIN),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 6,
+      "species": "CHARIZARD",
+      "pointer": "sCharizardLevelUpLearnset",
+      "before_body": "static const u16 sCharizardLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_HEAT_WAVE),\n    LEVEL_UP_MOVE(1, MOVE_SCRATCH),\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(1, MOVE_EMBER),\n    LEVEL_UP_MOVE(1, MOVE_METAL_CLAW),\n    LEVEL_UP_MOVE(7, MOVE_EMBER),\n    LEVEL_UP_MOVE(13, MOVE_METAL_CLAW),\n    LEVEL_UP_MOVE(20, MOVE_SMOKESCREEN),\n    LEVEL_UP_MOVE(27, MOVE_SCARY_FACE),\n    LEVEL_UP_MOVE(34, MOVE_FLAMETHROWER),\n    LEVEL_UP_MOVE(36, MOVE_WING_ATTACK),\n    LEVEL_UP_MOVE(44, MOVE_SLASH),\n    LEVEL_UP_MOVE(54, MOVE_DRAGON_RAGE),\n    LEVEL_UP_MOVE(64, MOVE_FIRE_SPIN),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sCharizardLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_HEAT_WAVE),\n    LEVEL_UP_MOVE(1, MOVE_SCRATCH),\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(1, MOVE_EMBER),\n    LEVEL_UP_MOVE(1, MOVE_METAL_CLAW),\n    LEVEL_UP_MOVE(7, MOVE_EMBER),\n    LEVEL_UP_MOVE(13, MOVE_METAL_CLAW),\n    LEVEL_UP_MOVE(20, MOVE_SMOKESCREEN),\n    LEVEL_UP_MOVE(27, MOVE_SCARY_FACE),\n    LEVEL_UP_MOVE(34, MOVE_FLAMETHROWER),\n    LEVEL_UP_MOVE(36, MOVE_WING_ATTACK),\n    LEVEL_UP_MOVE(38, MOVE_DRAGON_BREATH),\n    LEVEL_UP_MOVE(44, MOVE_SLASH),\n    LEVEL_UP_MOVE(46, MOVE_DRAGON_CLAW),\n    LEVEL_UP_MOVE(54, MOVE_DRAGON_RAGE),\n    LEVEL_UP_MOVE(64, MOVE_FIRE_SPIN),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 7,
+      "species": "SQUIRTLE",
+      "pointer": "sSquirtleLevelUpLearnset",
+      "before_body": "static const u16 sSquirtleLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(4, MOVE_TAIL_WHIP),\n    LEVEL_UP_MOVE(7, MOVE_BUBBLE),\n    LEVEL_UP_MOVE(10, MOVE_WITHDRAW),\n    LEVEL_UP_MOVE(13, MOVE_WATER_GUN),\n    LEVEL_UP_MOVE(18, MOVE_BITE),\n    LEVEL_UP_MOVE(23, MOVE_RAPID_SPIN),\n    LEVEL_UP_MOVE(28, MOVE_PROTECT),\n    LEVEL_UP_MOVE(33, MOVE_RAIN_DANCE),\n    LEVEL_UP_MOVE(40, MOVE_SKULL_BASH),\n    LEVEL_UP_MOVE(47, MOVE_HYDRO_PUMP),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sSquirtleLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(4, MOVE_TAIL_WHIP),\n    LEVEL_UP_MOVE(7, MOVE_BUBBLE),\n    LEVEL_UP_MOVE(10, MOVE_WITHDRAW),\n    LEVEL_UP_MOVE(12, MOVE_WATER_GUN),\n    LEVEL_UP_MOVE(18, MOVE_BITE),\n    LEVEL_UP_MOVE(23, MOVE_RAPID_SPIN),\n    LEVEL_UP_MOVE(24, MOVE_BUBBLE_BEAM),\n    LEVEL_UP_MOVE(28, MOVE_PROTECT),\n    LEVEL_UP_MOVE(33, MOVE_RAIN_DANCE),\n    LEVEL_UP_MOVE(40, MOVE_SKULL_BASH),\n    LEVEL_UP_MOVE(47, MOVE_HYDRO_PUMP),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 8,
+      "species": "WARTORTLE",
+      "pointer": "sWartortleLevelUpLearnset",
+      "before_body": "static const u16 sWartortleLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_TAIL_WHIP),\n    LEVEL_UP_MOVE(1, MOVE_BUBBLE),\n    LEVEL_UP_MOVE(4, MOVE_TAIL_WHIP),\n    LEVEL_UP_MOVE(7, MOVE_BUBBLE),\n    LEVEL_UP_MOVE(10, MOVE_WITHDRAW),\n    LEVEL_UP_MOVE(13, MOVE_WATER_GUN),\n    LEVEL_UP_MOVE(19, MOVE_BITE),\n    LEVEL_UP_MOVE(25, MOVE_RAPID_SPIN),\n    LEVEL_UP_MOVE(31, MOVE_PROTECT),\n    LEVEL_UP_MOVE(37, MOVE_RAIN_DANCE),\n    LEVEL_UP_MOVE(45, MOVE_SKULL_BASH),\n    LEVEL_UP_MOVE(53, MOVE_HYDRO_PUMP),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sWartortleLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_TAIL_WHIP),\n    LEVEL_UP_MOVE(1, MOVE_BUBBLE),\n    LEVEL_UP_MOVE(4, MOVE_TAIL_WHIP),\n    LEVEL_UP_MOVE(7, MOVE_BUBBLE),\n    LEVEL_UP_MOVE(10, MOVE_WITHDRAW),\n    LEVEL_UP_MOVE(13, MOVE_WATER_GUN),\n    LEVEL_UP_MOVE(19, MOVE_BITE),\n    LEVEL_UP_MOVE(23, MOVE_BUBBLE_BEAM),\n    LEVEL_UP_MOVE(25, MOVE_RAPID_SPIN),\n    LEVEL_UP_MOVE(31, MOVE_PROTECT),\n    LEVEL_UP_MOVE(37, MOVE_RAIN_DANCE),\n    LEVEL_UP_MOVE(45, MOVE_SKULL_BASH),\n    LEVEL_UP_MOVE(53, MOVE_HYDRO_PUMP),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 9,
+      "species": "BLASTOISE",
+      "pointer": "sBlastoiseLevelUpLearnset",
+      "before_body": "static const u16 sBlastoiseLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_TAIL_WHIP),\n    LEVEL_UP_MOVE(1, MOVE_BUBBLE),\n    LEVEL_UP_MOVE(1, MOVE_WITHDRAW),\n    LEVEL_UP_MOVE(4, MOVE_TAIL_WHIP),\n    LEVEL_UP_MOVE(7, MOVE_BUBBLE),\n    LEVEL_UP_MOVE(10, MOVE_WITHDRAW),\n    LEVEL_UP_MOVE(13, MOVE_WATER_GUN),\n    LEVEL_UP_MOVE(19, MOVE_BITE),\n    LEVEL_UP_MOVE(25, MOVE_RAPID_SPIN),\n    LEVEL_UP_MOVE(31, MOVE_PROTECT),\n    LEVEL_UP_MOVE(42, MOVE_RAIN_DANCE),\n    LEVEL_UP_MOVE(55, MOVE_SKULL_BASH),\n    LEVEL_UP_MOVE(68, MOVE_HYDRO_PUMP),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sBlastoiseLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_TAIL_WHIP),\n    LEVEL_UP_MOVE(1, MOVE_BUBBLE),\n    LEVEL_UP_MOVE(1, MOVE_WITHDRAW),\n    LEVEL_UP_MOVE(4, MOVE_TAIL_WHIP),\n    LEVEL_UP_MOVE(7, MOVE_BUBBLE),\n    LEVEL_UP_MOVE(10, MOVE_WITHDRAW),\n    LEVEL_UP_MOVE(13, MOVE_WATER_GUN),\n    LEVEL_UP_MOVE(19, MOVE_BITE),\n    LEVEL_UP_MOVE(25, MOVE_RAPID_SPIN),\n    LEVEL_UP_MOVE(31, MOVE_PROTECT),\n    LEVEL_UP_MOVE(37, MOVE_SURF),\n    LEVEL_UP_MOVE(42, MOVE_RAIN_DANCE),\n    LEVEL_UP_MOVE(49, MOVE_HYDRO_PUMP),\n    LEVEL_UP_MOVE(55, MOVE_SKULL_BASH),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 12,
+      "species": "BUTTERFREE",
+      "pointer": "sButterfreeLevelUpLearnset",
+      "before_body": "static const u16 sButterfreeLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_CONFUSION),\n    LEVEL_UP_MOVE(10, MOVE_CONFUSION),\n    LEVEL_UP_MOVE(13, MOVE_POISON_POWDER),\n    LEVEL_UP_MOVE(14, MOVE_STUN_SPORE),\n    LEVEL_UP_MOVE(15, MOVE_SLEEP_POWDER),\n    LEVEL_UP_MOVE(18, MOVE_SUPERSONIC),\n    LEVEL_UP_MOVE(23, MOVE_WHIRLWIND),\n    LEVEL_UP_MOVE(28, MOVE_GUST),\n    LEVEL_UP_MOVE(34, MOVE_PSYBEAM),\n    LEVEL_UP_MOVE(40, MOVE_SAFEGUARD),\n    LEVEL_UP_MOVE(47, MOVE_SILVER_WIND),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sButterfreeLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_CONFUSION),\n    LEVEL_UP_MOVE(10, MOVE_CONFUSION),\n    LEVEL_UP_MOVE(13, MOVE_POISON_POWDER),\n    LEVEL_UP_MOVE(14, MOVE_STUN_SPORE),\n    LEVEL_UP_MOVE(15, MOVE_SLEEP_POWDER),\n    LEVEL_UP_MOVE(18, MOVE_SUPERSONIC),\n    LEVEL_UP_MOVE(23, MOVE_WHIRLWIND),\n    LEVEL_UP_MOVE(23, MOVE_GUST),\n    LEVEL_UP_MOVE(32, MOVE_SILVER_WIND),\n    LEVEL_UP_MOVE(34, MOVE_PSYBEAM),\n    LEVEL_UP_MOVE(40, MOVE_SAFEGUARD),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 15,
+      "species": "BEEDRILL",
+      "pointer": "sBeedrillLevelUpLearnset",
+      "before_body": "static const u16 sBeedrillLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_FURY_ATTACK),\n    LEVEL_UP_MOVE(10, MOVE_FURY_ATTACK),\n    LEVEL_UP_MOVE(15, MOVE_FOCUS_ENERGY),\n    LEVEL_UP_MOVE(20, MOVE_TWINEEDLE),\n    LEVEL_UP_MOVE(25, MOVE_RAGE),\n    LEVEL_UP_MOVE(30, MOVE_PURSUIT),\n    LEVEL_UP_MOVE(35, MOVE_PIN_MISSILE),\n    LEVEL_UP_MOVE(40, MOVE_AGILITY),\n    LEVEL_UP_MOVE(45, MOVE_ENDEAVOR),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sBeedrillLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_FURY_ATTACK),\n    LEVEL_UP_MOVE(10, MOVE_FURY_ATTACK),\n    LEVEL_UP_MOVE(15, MOVE_FOCUS_ENERGY),\n    LEVEL_UP_MOVE(20, MOVE_TWINEEDLE),\n    LEVEL_UP_MOVE(25, MOVE_RAGE),\n    LEVEL_UP_MOVE(30, MOVE_PURSUIT),\n    LEVEL_UP_MOVE(34, MOVE_AERIAL_ACE),\n    LEVEL_UP_MOVE(35, MOVE_PIN_MISSILE),\n    LEVEL_UP_MOVE(40, MOVE_AGILITY),\n    LEVEL_UP_MOVE(45, MOVE_ENDEAVOR),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 16,
+      "species": "PIDGEY",
+      "pointer": "sPidgeyLevelUpLearnset",
+      "before_body": "static const u16 sPidgeyLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(5, MOVE_SAND_ATTACK),\n    LEVEL_UP_MOVE(9, MOVE_GUST),\n    LEVEL_UP_MOVE(13, MOVE_QUICK_ATTACK),\n    LEVEL_UP_MOVE(19, MOVE_WHIRLWIND),\n    LEVEL_UP_MOVE(25, MOVE_WING_ATTACK),\n    LEVEL_UP_MOVE(31, MOVE_FEATHER_DANCE),\n    LEVEL_UP_MOVE(39, MOVE_AGILITY),\n    LEVEL_UP_MOVE(47, MOVE_MIRROR_MOVE),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sPidgeyLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(5, MOVE_SAND_ATTACK),\n    LEVEL_UP_MOVE(9, MOVE_GUST),\n    LEVEL_UP_MOVE(13, MOVE_QUICK_ATTACK),\n    LEVEL_UP_MOVE(13, MOVE_WING_ATTACK),\n    LEVEL_UP_MOVE(19, MOVE_WHIRLWIND),\n    LEVEL_UP_MOVE(31, MOVE_FEATHER_DANCE),\n    LEVEL_UP_MOVE(39, MOVE_AGILITY),\n    LEVEL_UP_MOVE(47, MOVE_MIRROR_MOVE),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 17,
+      "species": "PIDGEOTTO",
+      "pointer": "sPidgeottoLevelUpLearnset",
+      "before_body": "static const u16 sPidgeottoLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_SAND_ATTACK),\n    LEVEL_UP_MOVE(1, MOVE_GUST),\n    LEVEL_UP_MOVE(5, MOVE_SAND_ATTACK),\n    LEVEL_UP_MOVE(9, MOVE_GUST),\n    LEVEL_UP_MOVE(13, MOVE_QUICK_ATTACK),\n    LEVEL_UP_MOVE(20, MOVE_WHIRLWIND),\n    LEVEL_UP_MOVE(27, MOVE_WING_ATTACK),\n    LEVEL_UP_MOVE(34, MOVE_FEATHER_DANCE),\n    LEVEL_UP_MOVE(43, MOVE_AGILITY),\n    LEVEL_UP_MOVE(52, MOVE_MIRROR_MOVE),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sPidgeottoLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_SAND_ATTACK),\n    LEVEL_UP_MOVE(1, MOVE_GUST),\n    LEVEL_UP_MOVE(5, MOVE_SAND_ATTACK),\n    LEVEL_UP_MOVE(9, MOVE_GUST),\n    LEVEL_UP_MOVE(13, MOVE_QUICK_ATTACK),\n    LEVEL_UP_MOVE(20, MOVE_WHIRLWIND),\n    LEVEL_UP_MOVE(20, MOVE_WING_ATTACK),\n    LEVEL_UP_MOVE(32, MOVE_AERIAL_ACE),\n    LEVEL_UP_MOVE(34, MOVE_FEATHER_DANCE),\n    LEVEL_UP_MOVE(43, MOVE_AGILITY),\n    LEVEL_UP_MOVE(52, MOVE_MIRROR_MOVE),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 18,
+      "species": "PIDGEOT",
+      "pointer": "sPidgeotLevelUpLearnset",
+      "before_body": "static const u16 sPidgeotLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_SAND_ATTACK),\n    LEVEL_UP_MOVE(1, MOVE_GUST),\n    LEVEL_UP_MOVE(1, MOVE_QUICK_ATTACK),\n    LEVEL_UP_MOVE(5, MOVE_SAND_ATTACK),\n    LEVEL_UP_MOVE(9, MOVE_GUST),\n    LEVEL_UP_MOVE(13, MOVE_QUICK_ATTACK),\n    LEVEL_UP_MOVE(20, MOVE_WHIRLWIND),\n    LEVEL_UP_MOVE(27, MOVE_WING_ATTACK),\n    LEVEL_UP_MOVE(34, MOVE_FEATHER_DANCE),\n    LEVEL_UP_MOVE(48, MOVE_AGILITY),\n    LEVEL_UP_MOVE(62, MOVE_MIRROR_MOVE),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sPidgeotLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_SAND_ATTACK),\n    LEVEL_UP_MOVE(1, MOVE_GUST),\n    LEVEL_UP_MOVE(1, MOVE_QUICK_ATTACK),\n    LEVEL_UP_MOVE(5, MOVE_SAND_ATTACK),\n    LEVEL_UP_MOVE(9, MOVE_GUST),\n    LEVEL_UP_MOVE(13, MOVE_QUICK_ATTACK),\n    LEVEL_UP_MOVE(20, MOVE_WHIRLWIND),\n    LEVEL_UP_MOVE(27, MOVE_WING_ATTACK),\n    LEVEL_UP_MOVE(34, MOVE_FEATHER_DANCE),\n    LEVEL_UP_MOVE(38, MOVE_AERIAL_ACE),\n    LEVEL_UP_MOVE(48, MOVE_AGILITY),\n    LEVEL_UP_MOVE(49, MOVE_AIR_CUTTER),\n    LEVEL_UP_MOVE(62, MOVE_MIRROR_MOVE),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 19,
+      "species": "RATTATA",
+      "pointer": "sRattataLevelUpLearnset",
+      "before_body": "static const u16 sRattataLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_TAIL_WHIP),\n    LEVEL_UP_MOVE(7, MOVE_QUICK_ATTACK),\n    LEVEL_UP_MOVE(13, MOVE_HYPER_FANG),\n    LEVEL_UP_MOVE(20, MOVE_FOCUS_ENERGY),\n    LEVEL_UP_MOVE(27, MOVE_PURSUIT),\n    LEVEL_UP_MOVE(34, MOVE_SUPER_FANG),\n    LEVEL_UP_MOVE(41, MOVE_ENDEAVOR),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sRattataLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_TAIL_WHIP),\n    LEVEL_UP_MOVE(7, MOVE_QUICK_ATTACK),\n    LEVEL_UP_MOVE(12, MOVE_BITE),\n    LEVEL_UP_MOVE(13, MOVE_HYPER_FANG),\n    LEVEL_UP_MOVE(20, MOVE_FOCUS_ENERGY),\n    LEVEL_UP_MOVE(27, MOVE_PURSUIT),\n    LEVEL_UP_MOVE(34, MOVE_SUPER_FANG),\n    LEVEL_UP_MOVE(41, MOVE_ENDEAVOR),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 20,
+      "species": "RATICATE",
+      "pointer": "sRaticateLevelUpLearnset",
+      "before_body": "static const u16 sRaticateLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_TAIL_WHIP),\n    LEVEL_UP_MOVE(1, MOVE_QUICK_ATTACK),\n    LEVEL_UP_MOVE(7, MOVE_QUICK_ATTACK),\n    LEVEL_UP_MOVE(13, MOVE_HYPER_FANG),\n    LEVEL_UP_MOVE(20, MOVE_SCARY_FACE),\n    LEVEL_UP_MOVE(30, MOVE_PURSUIT),\n    LEVEL_UP_MOVE(40, MOVE_SUPER_FANG),\n    LEVEL_UP_MOVE(50, MOVE_ENDEAVOR),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sRaticateLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_TAIL_WHIP),\n    LEVEL_UP_MOVE(1, MOVE_QUICK_ATTACK),\n    LEVEL_UP_MOVE(7, MOVE_QUICK_ATTACK),\n    LEVEL_UP_MOVE(13, MOVE_HYPER_FANG),\n    LEVEL_UP_MOVE(20, MOVE_SCARY_FACE),\n    LEVEL_UP_MOVE(25, MOVE_CRUNCH),\n    LEVEL_UP_MOVE(30, MOVE_PURSUIT),\n    LEVEL_UP_MOVE(40, MOVE_SUPER_FANG),\n    LEVEL_UP_MOVE(50, MOVE_ENDEAVOR),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 22,
+      "species": "FEAROW",
+      "pointer": "sFearowLevelUpLearnset",
+      "before_body": "static const u16 sFearowLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_PECK),\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(1, MOVE_FURY_ATTACK),\n    LEVEL_UP_MOVE(7, MOVE_LEER),\n    LEVEL_UP_MOVE(13, MOVE_FURY_ATTACK),\n    LEVEL_UP_MOVE(26, MOVE_PURSUIT),\n    LEVEL_UP_MOVE(32, MOVE_MIRROR_MOVE),\n    LEVEL_UP_MOVE(40, MOVE_DRILL_PECK),\n    LEVEL_UP_MOVE(47, MOVE_AGILITY),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sFearowLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_PECK),\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(1, MOVE_FURY_ATTACK),\n    LEVEL_UP_MOVE(7, MOVE_LEER),\n    LEVEL_UP_MOVE(13, MOVE_FURY_ATTACK),\n    LEVEL_UP_MOVE(26, MOVE_PURSUIT),\n    LEVEL_UP_MOVE(27, MOVE_AERIAL_ACE),\n    LEVEL_UP_MOVE(32, MOVE_MIRROR_MOVE),\n    LEVEL_UP_MOVE(39, MOVE_DRILL_PECK),\n    LEVEL_UP_MOVE(47, MOVE_AGILITY),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 23,
+      "species": "EKANS",
+      "pointer": "sEkansLevelUpLearnset",
+      "before_body": "static const u16 sEkansLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_WRAP),\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(8, MOVE_POISON_STING),\n    LEVEL_UP_MOVE(13, MOVE_BITE),\n    LEVEL_UP_MOVE(20, MOVE_GLARE),\n    LEVEL_UP_MOVE(25, MOVE_SCREECH),\n    LEVEL_UP_MOVE(32, MOVE_ACID),\n    LEVEL_UP_MOVE(37, MOVE_STOCKPILE),\n    LEVEL_UP_MOVE(37, MOVE_SWALLOW),\n    LEVEL_UP_MOVE(37, MOVE_SPIT_UP),\n    LEVEL_UP_MOVE(44, MOVE_HAZE),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sEkansLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_WRAP),\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(8, MOVE_POISON_STING),\n    LEVEL_UP_MOVE(13, MOVE_BITE),\n    LEVEL_UP_MOVE(20, MOVE_GLARE),\n    LEVEL_UP_MOVE(22, MOVE_POISON_FANG),\n    LEVEL_UP_MOVE(25, MOVE_SCREECH),\n    LEVEL_UP_MOVE(32, MOVE_ACID),\n    LEVEL_UP_MOVE(37, MOVE_STOCKPILE),\n    LEVEL_UP_MOVE(37, MOVE_SWALLOW),\n    LEVEL_UP_MOVE(37, MOVE_SPIT_UP),\n    LEVEL_UP_MOVE(44, MOVE_HAZE),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 26,
+      "species": "PIKACHU",
+      "pointer": "sPikachuLevelUpLearnset",
+      "before_body": "static const u16 sPikachuLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_THUNDER_SHOCK),\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(6, MOVE_TAIL_WHIP),\n    LEVEL_UP_MOVE(8, MOVE_THUNDER_WAVE),\n    LEVEL_UP_MOVE(11, MOVE_QUICK_ATTACK),\n    LEVEL_UP_MOVE(15, MOVE_DOUBLE_TEAM),\n    LEVEL_UP_MOVE(20, MOVE_SLAM),\n    LEVEL_UP_MOVE(26, MOVE_THUNDERBOLT),\n    LEVEL_UP_MOVE(33, MOVE_AGILITY),\n    LEVEL_UP_MOVE(41, MOVE_THUNDER),\n    LEVEL_UP_MOVE(50, MOVE_LIGHT_SCREEN),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sPikachuLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_THUNDER_SHOCK),\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(6, MOVE_TAIL_WHIP),\n    LEVEL_UP_MOVE(8, MOVE_THUNDER_WAVE),\n    LEVEL_UP_MOVE(11, MOVE_QUICK_ATTACK),\n    LEVEL_UP_MOVE(15, MOVE_DOUBLE_TEAM),\n    LEVEL_UP_MOVE(20, MOVE_SLAM),\n    LEVEL_UP_MOVE(26, MOVE_THUNDERBOLT),\n    LEVEL_UP_MOVE(29, MOVE_SPARK),\n    LEVEL_UP_MOVE(33, MOVE_AGILITY),\n    LEVEL_UP_MOVE(41, MOVE_THUNDER),\n    LEVEL_UP_MOVE(50, MOVE_LIGHT_SCREEN),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 28,
+      "species": "SANDSHREW",
+      "pointer": "sSandshrewLevelUpLearnset",
+      "before_body": "static const u16 sSandshrewLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_SCRATCH),\n    LEVEL_UP_MOVE(6, MOVE_DEFENSE_CURL),\n    LEVEL_UP_MOVE(11, MOVE_SAND_ATTACK),\n    LEVEL_UP_MOVE(17, MOVE_POISON_STING),\n    LEVEL_UP_MOVE(23, MOVE_SLASH),\n    LEVEL_UP_MOVE(30, MOVE_SWIFT),\n    LEVEL_UP_MOVE(37, MOVE_FURY_SWIPES),\n    LEVEL_UP_MOVE(45, MOVE_SAND_TOMB),\n    LEVEL_UP_MOVE(53, MOVE_SANDSTORM),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sSandshrewLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_SCRATCH),\n    LEVEL_UP_MOVE(6, MOVE_DEFENSE_CURL),\n    LEVEL_UP_MOVE(11, MOVE_SAND_ATTACK),\n    LEVEL_UP_MOVE(16, MOVE_DIG),\n    LEVEL_UP_MOVE(17, MOVE_POISON_STING),\n    LEVEL_UP_MOVE(23, MOVE_SLASH),\n    LEVEL_UP_MOVE(30, MOVE_SWIFT),\n    LEVEL_UP_MOVE(37, MOVE_FURY_SWIPES),\n    LEVEL_UP_MOVE(45, MOVE_SAND_TOMB),\n    LEVEL_UP_MOVE(53, MOVE_SANDSTORM),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 29,
+      "species": "SANDSLASH",
+      "pointer": "sSandslashLevelUpLearnset",
+      "before_body": "static const u16 sSandslashLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_SCRATCH),\n    LEVEL_UP_MOVE(1, MOVE_DEFENSE_CURL),\n    LEVEL_UP_MOVE(1, MOVE_SAND_ATTACK),\n    LEVEL_UP_MOVE(6, MOVE_DEFENSE_CURL),\n    LEVEL_UP_MOVE(11, MOVE_SAND_ATTACK),\n    LEVEL_UP_MOVE(17, MOVE_POISON_STING),\n    LEVEL_UP_MOVE(24, MOVE_SLASH),\n    LEVEL_UP_MOVE(33, MOVE_SWIFT),\n    LEVEL_UP_MOVE(42, MOVE_FURY_SWIPES),\n    LEVEL_UP_MOVE(52, MOVE_SAND_TOMB),\n    LEVEL_UP_MOVE(62, MOVE_SANDSTORM),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sSandslashLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_SCRATCH),\n    LEVEL_UP_MOVE(1, MOVE_DEFENSE_CURL),\n    LEVEL_UP_MOVE(1, MOVE_SAND_ATTACK),\n    LEVEL_UP_MOVE(6, MOVE_DEFENSE_CURL),\n    LEVEL_UP_MOVE(11, MOVE_SAND_ATTACK),\n    LEVEL_UP_MOVE(17, MOVE_POISON_STING),\n    LEVEL_UP_MOVE(24, MOVE_SLASH),\n    LEVEL_UP_MOVE(33, MOVE_SWIFT),\n    LEVEL_UP_MOVE(38, MOVE_DIG),\n    LEVEL_UP_MOVE(42, MOVE_FURY_SWIPES),\n    LEVEL_UP_MOVE(47, MOVE_IRON_TAIL),\n    LEVEL_UP_MOVE(52, MOVE_SAND_TOMB),\n    LEVEL_UP_MOVE(62, MOVE_SANDSTORM),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 32,
+      "species": "NIDOQUEEN",
+      "pointer": "sNidoqueenLevelUpLearnset",
+      "before_body": "static const u16 sNidoqueenLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_SCRATCH),\n    LEVEL_UP_MOVE(1, MOVE_TAIL_WHIP),\n    LEVEL_UP_MOVE(1, MOVE_DOUBLE_KICK),\n    LEVEL_UP_MOVE(1, MOVE_POISON_STING),\n    LEVEL_UP_MOVE(22, MOVE_BODY_SLAM),\n    LEVEL_UP_MOVE(43, MOVE_SUPERPOWER),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sNidoqueenLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_SCRATCH),\n    LEVEL_UP_MOVE(1, MOVE_TAIL_WHIP),\n    LEVEL_UP_MOVE(1, MOVE_DOUBLE_KICK),\n    LEVEL_UP_MOVE(1, MOVE_POISON_STING),\n    LEVEL_UP_MOVE(22, MOVE_BODY_SLAM),\n    LEVEL_UP_MOVE(34, MOVE_SLUDGE),\n    LEVEL_UP_MOVE(43, MOVE_SUPERPOWER),\n    LEVEL_UP_MOVE(44, MOVE_EARTHQUAKE),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 37,
+      "species": "CLEFAIRY",
+      "pointer": "sClefairyLevelUpLearnset",
+      "before_body": "static const u16 sClefairyLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_POUND),\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(5, MOVE_ENCORE),\n    LEVEL_UP_MOVE(9, MOVE_SING),\n    LEVEL_UP_MOVE(13, MOVE_DOUBLE_SLAP),\n    LEVEL_UP_MOVE(17, MOVE_FOLLOW_ME),\n    LEVEL_UP_MOVE(21, MOVE_MINIMIZE),\n    LEVEL_UP_MOVE(25, MOVE_DEFENSE_CURL),\n    LEVEL_UP_MOVE(29, MOVE_METRONOME),\n    LEVEL_UP_MOVE(33, MOVE_COSMIC_POWER),\n    LEVEL_UP_MOVE(37, MOVE_MOONLIGHT),\n    LEVEL_UP_MOVE(41, MOVE_LIGHT_SCREEN),\n    LEVEL_UP_MOVE(45, MOVE_METEOR_MASH),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sClefairyLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_POUND),\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(5, MOVE_ENCORE),\n    LEVEL_UP_MOVE(9, MOVE_SING),\n    LEVEL_UP_MOVE(13, MOVE_DOUBLE_SLAP),\n    LEVEL_UP_MOVE(17, MOVE_FOLLOW_ME),\n    LEVEL_UP_MOVE(21, MOVE_MINIMIZE),\n    LEVEL_UP_MOVE(23, MOVE_METRONOME),\n    LEVEL_UP_MOVE(25, MOVE_DEFENSE_CURL),\n    LEVEL_UP_MOVE(33, MOVE_COSMIC_POWER),\n    LEVEL_UP_MOVE(37, MOVE_MOONLIGHT),\n    LEVEL_UP_MOVE(41, MOVE_LIGHT_SCREEN),\n    LEVEL_UP_MOVE(45, MOVE_METEOR_MASH),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 38,
+      "species": "CLEFABLE",
+      "pointer": "sClefableLevelUpLearnset",
+      "before_body": "static const u16 sClefableLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_SING),\n    LEVEL_UP_MOVE(1, MOVE_DOUBLE_SLAP),\n    LEVEL_UP_MOVE(1, MOVE_MINIMIZE),\n    LEVEL_UP_MOVE(1, MOVE_METRONOME),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sClefableLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_SING),\n    LEVEL_UP_MOVE(1, MOVE_DOUBLE_SLAP),\n    LEVEL_UP_MOVE(1, MOVE_MINIMIZE),\n    LEVEL_UP_MOVE(1, MOVE_METRONOME),\n    LEVEL_UP_MOVE(34, MOVE_MOONLIGHT),\n    LEVEL_UP_MOVE(44, MOVE_RETURN),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 42,
+      "species": "JIGGLYPUFF",
+      "pointer": "sJigglypuffLevelUpLearnset",
+      "before_body": "static const u16 sJigglypuffLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_SING),\n    LEVEL_UP_MOVE(4, MOVE_DEFENSE_CURL),\n    LEVEL_UP_MOVE(9, MOVE_POUND),\n    LEVEL_UP_MOVE(14, MOVE_DISABLE),\n    LEVEL_UP_MOVE(19, MOVE_ROLLOUT),\n    LEVEL_UP_MOVE(24, MOVE_DOUBLE_SLAP),\n    LEVEL_UP_MOVE(29, MOVE_REST),\n    LEVEL_UP_MOVE(34, MOVE_BODY_SLAM),\n    LEVEL_UP_MOVE(39, MOVE_MIMIC),\n    LEVEL_UP_MOVE(44, MOVE_HYPER_VOICE),\n    LEVEL_UP_MOVE(49, MOVE_DOUBLE_EDGE),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sJigglypuffLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_SING),\n    LEVEL_UP_MOVE(4, MOVE_DEFENSE_CURL),\n    LEVEL_UP_MOVE(9, MOVE_POUND),\n    LEVEL_UP_MOVE(14, MOVE_DISABLE),\n    LEVEL_UP_MOVE(19, MOVE_ROLLOUT),\n    LEVEL_UP_MOVE(22, MOVE_DOUBLE_SLAP),\n    LEVEL_UP_MOVE(29, MOVE_REST),\n    LEVEL_UP_MOVE(34, MOVE_BODY_SLAM),\n    LEVEL_UP_MOVE(39, MOVE_MIMIC),\n    LEVEL_UP_MOVE(44, MOVE_HYPER_VOICE),\n    LEVEL_UP_MOVE(49, MOVE_DOUBLE_EDGE),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 43,
+      "species": "WIGGLYTUFF",
+      "pointer": "sWigglytuffLevelUpLearnset",
+      "before_body": "static const u16 sWigglytuffLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_SING),\n    LEVEL_UP_MOVE(1, MOVE_DISABLE),\n    LEVEL_UP_MOVE(1, MOVE_DEFENSE_CURL),\n    LEVEL_UP_MOVE(1, MOVE_DOUBLE_SLAP),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sWigglytuffLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_SING),\n    LEVEL_UP_MOVE(1, MOVE_DISABLE),\n    LEVEL_UP_MOVE(1, MOVE_DEFENSE_CURL),\n    LEVEL_UP_MOVE(1, MOVE_DOUBLE_SLAP),\n    LEVEL_UP_MOVE(32, MOVE_BODY_SLAM),\n    LEVEL_UP_MOVE(42, MOVE_HYPER_VOICE),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 44,
+      "species": "ZUBAT",
+      "pointer": "sZubatLevelUpLearnset",
+      "before_body": "static const u16 sZubatLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_LEECH_LIFE),\n    LEVEL_UP_MOVE(6, MOVE_ASTONISH),\n    LEVEL_UP_MOVE(11, MOVE_SUPERSONIC),\n    LEVEL_UP_MOVE(16, MOVE_BITE),\n    LEVEL_UP_MOVE(21, MOVE_WING_ATTACK),\n    LEVEL_UP_MOVE(26, MOVE_CONFUSE_RAY),\n    LEVEL_UP_MOVE(31, MOVE_AIR_CUTTER),\n    LEVEL_UP_MOVE(36, MOVE_MEAN_LOOK),\n    LEVEL_UP_MOVE(41, MOVE_POISON_FANG),\n    LEVEL_UP_MOVE(46, MOVE_HAZE),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sZubatLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_LEECH_LIFE),\n    LEVEL_UP_MOVE(6, MOVE_ASTONISH),\n    LEVEL_UP_MOVE(11, MOVE_SUPERSONIC),\n    LEVEL_UP_MOVE(13, MOVE_BITE),\n    LEVEL_UP_MOVE(21, MOVE_WING_ATTACK),\n    LEVEL_UP_MOVE(26, MOVE_CONFUSE_RAY),\n    LEVEL_UP_MOVE(31, MOVE_AIR_CUTTER),\n    LEVEL_UP_MOVE(36, MOVE_MEAN_LOOK),\n    LEVEL_UP_MOVE(41, MOVE_POISON_FANG),\n    LEVEL_UP_MOVE(46, MOVE_HAZE),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 46,
+      "species": "CROBAT",
+      "pointer": "sCrobatLevelUpLearnset",
+      "before_body": "static const u16 sCrobatLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_SCREECH),\n    LEVEL_UP_MOVE(1, MOVE_LEECH_LIFE),\n    LEVEL_UP_MOVE(1, MOVE_ASTONISH),\n    LEVEL_UP_MOVE(1, MOVE_SUPERSONIC),\n    LEVEL_UP_MOVE(6, MOVE_ASTONISH),\n    LEVEL_UP_MOVE(11, MOVE_SUPERSONIC),\n    LEVEL_UP_MOVE(16, MOVE_BITE),\n    LEVEL_UP_MOVE(21, MOVE_WING_ATTACK),\n    LEVEL_UP_MOVE(28, MOVE_CONFUSE_RAY),\n    LEVEL_UP_MOVE(35, MOVE_AIR_CUTTER),\n    LEVEL_UP_MOVE(42, MOVE_MEAN_LOOK),\n    LEVEL_UP_MOVE(49, MOVE_POISON_FANG),\n    LEVEL_UP_MOVE(56, MOVE_HAZE),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sCrobatLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_SCREECH),\n    LEVEL_UP_MOVE(1, MOVE_LEECH_LIFE),\n    LEVEL_UP_MOVE(1, MOVE_ASTONISH),\n    LEVEL_UP_MOVE(1, MOVE_SUPERSONIC),\n    LEVEL_UP_MOVE(6, MOVE_ASTONISH),\n    LEVEL_UP_MOVE(11, MOVE_SUPERSONIC),\n    LEVEL_UP_MOVE(16, MOVE_BITE),\n    LEVEL_UP_MOVE(21, MOVE_WING_ATTACK),\n    LEVEL_UP_MOVE(28, MOVE_CONFUSE_RAY),\n    LEVEL_UP_MOVE(35, MOVE_AIR_CUTTER),\n    LEVEL_UP_MOVE(35, MOVE_AERIAL_ACE),\n    LEVEL_UP_MOVE(42, MOVE_MEAN_LOOK),\n    LEVEL_UP_MOVE(45, MOVE_POISON_FANG),\n    LEVEL_UP_MOVE(56, MOVE_HAZE),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 51,
+      "species": "PARAS",
+      "pointer": "sParasLevelUpLearnset",
+      "before_body": "static const u16 sParasLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_SCRATCH),\n    LEVEL_UP_MOVE(7, MOVE_STUN_SPORE),\n    LEVEL_UP_MOVE(13, MOVE_POISON_POWDER),\n    LEVEL_UP_MOVE(19, MOVE_LEECH_LIFE),\n    LEVEL_UP_MOVE(25, MOVE_SPORE),\n    LEVEL_UP_MOVE(31, MOVE_SLASH),\n    LEVEL_UP_MOVE(37, MOVE_GROWTH),\n    LEVEL_UP_MOVE(43, MOVE_GIGA_DRAIN),\n    LEVEL_UP_MOVE(49, MOVE_AROMATHERAPY),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sParasLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_SCRATCH),\n    LEVEL_UP_MOVE(7, MOVE_STUN_SPORE),\n    LEVEL_UP_MOVE(13, MOVE_POISON_POWDER),\n    LEVEL_UP_MOVE(16, MOVE_MEGA_DRAIN),\n    LEVEL_UP_MOVE(19, MOVE_LEECH_LIFE),\n    LEVEL_UP_MOVE(25, MOVE_SPORE),\n    LEVEL_UP_MOVE(31, MOVE_SLASH),\n    LEVEL_UP_MOVE(37, MOVE_GROWTH),\n    LEVEL_UP_MOVE(43, MOVE_GIGA_DRAIN),\n    LEVEL_UP_MOVE(49, MOVE_AROMATHERAPY),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 52,
+      "species": "PARASECT",
+      "pointer": "sParasectLevelUpLearnset",
+      "before_body": "static const u16 sParasectLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_SCRATCH),\n    LEVEL_UP_MOVE(1, MOVE_STUN_SPORE),\n    LEVEL_UP_MOVE(1, MOVE_POISON_POWDER),\n    LEVEL_UP_MOVE(7, MOVE_STUN_SPORE),\n    LEVEL_UP_MOVE(13, MOVE_POISON_POWDER),\n    LEVEL_UP_MOVE(19, MOVE_LEECH_LIFE),\n    LEVEL_UP_MOVE(27, MOVE_SPORE),\n    LEVEL_UP_MOVE(35, MOVE_SLASH),\n    LEVEL_UP_MOVE(43, MOVE_GROWTH),\n    LEVEL_UP_MOVE(51, MOVE_GIGA_DRAIN),\n    LEVEL_UP_MOVE(59, MOVE_AROMATHERAPY),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sParasectLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_SCRATCH),\n    LEVEL_UP_MOVE(1, MOVE_STUN_SPORE),\n    LEVEL_UP_MOVE(1, MOVE_POISON_POWDER),\n    LEVEL_UP_MOVE(7, MOVE_STUN_SPORE),\n    LEVEL_UP_MOVE(13, MOVE_POISON_POWDER),\n    LEVEL_UP_MOVE(19, MOVE_LEECH_LIFE),\n    LEVEL_UP_MOVE(27, MOVE_SPORE),\n    LEVEL_UP_MOVE(35, MOVE_SLASH),\n    LEVEL_UP_MOVE(39, MOVE_GIGA_DRAIN),\n    LEVEL_UP_MOVE(43, MOVE_GROWTH),\n    LEVEL_UP_MOVE(59, MOVE_AROMATHERAPY),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 54,
+      "species": "VENOMOTH",
+      "pointer": "sVenomothLevelUpLearnset",
+      "before_body": "static const u16 sVenomothLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_SILVER_WIND),\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_DISABLE),\n    LEVEL_UP_MOVE(1, MOVE_FORESIGHT),\n    LEVEL_UP_MOVE(1, MOVE_SUPERSONIC),\n    LEVEL_UP_MOVE(9, MOVE_SUPERSONIC),\n    LEVEL_UP_MOVE(17, MOVE_CONFUSION),\n    LEVEL_UP_MOVE(20, MOVE_POISON_POWDER),\n    LEVEL_UP_MOVE(25, MOVE_LEECH_LIFE),\n    LEVEL_UP_MOVE(28, MOVE_STUN_SPORE),\n    LEVEL_UP_MOVE(31, MOVE_GUST),\n    LEVEL_UP_MOVE(36, MOVE_PSYBEAM),\n    LEVEL_UP_MOVE(42, MOVE_SLEEP_POWDER),\n    LEVEL_UP_MOVE(52, MOVE_PSYCHIC),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sVenomothLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_SILVER_WIND),\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_DISABLE),\n    LEVEL_UP_MOVE(1, MOVE_FORESIGHT),\n    LEVEL_UP_MOVE(1, MOVE_SUPERSONIC),\n    LEVEL_UP_MOVE(9, MOVE_SUPERSONIC),\n    LEVEL_UP_MOVE(17, MOVE_CONFUSION),\n    LEVEL_UP_MOVE(20, MOVE_POISON_POWDER),\n    LEVEL_UP_MOVE(25, MOVE_LEECH_LIFE),\n    LEVEL_UP_MOVE(28, MOVE_STUN_SPORE),\n    LEVEL_UP_MOVE(31, MOVE_GUST),\n    LEVEL_UP_MOVE(33, MOVE_PSYBEAM),\n    LEVEL_UP_MOVE(42, MOVE_SLEEP_POWDER),\n    LEVEL_UP_MOVE(44, MOVE_SLUDGE_BOMB),\n    LEVEL_UP_MOVE(52, MOVE_PSYCHIC),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 58,
+      "species": "PERSIAN",
+      "pointer": "sPersianLevelUpLearnset",
+      "before_body": "static const u16 sPersianLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_SCRATCH),\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(1, MOVE_BITE),\n    LEVEL_UP_MOVE(10, MOVE_BITE),\n    LEVEL_UP_MOVE(18, MOVE_PAY_DAY),\n    LEVEL_UP_MOVE(25, MOVE_FAINT_ATTACK),\n    LEVEL_UP_MOVE(34, MOVE_SCREECH),\n    LEVEL_UP_MOVE(42, MOVE_FURY_SWIPES),\n    LEVEL_UP_MOVE(49, MOVE_SLASH),\n    LEVEL_UP_MOVE(55, MOVE_FAKE_OUT),\n    LEVEL_UP_MOVE(61, MOVE_SWAGGER),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sPersianLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_SCRATCH),\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(1, MOVE_BITE),\n    LEVEL_UP_MOVE(10, MOVE_BITE),\n    LEVEL_UP_MOVE(18, MOVE_PAY_DAY),\n    LEVEL_UP_MOVE(25, MOVE_FAINT_ATTACK),\n    LEVEL_UP_MOVE(31, MOVE_SLASH),\n    LEVEL_UP_MOVE(34, MOVE_SCREECH),\n    LEVEL_UP_MOVE(42, MOVE_FURY_SWIPES),\n    LEVEL_UP_MOVE(55, MOVE_FAKE_OUT),\n    LEVEL_UP_MOVE(61, MOVE_SWAGGER),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 60,
+      "species": "GOLDUCK",
+      "pointer": "sGolduckLevelUpLearnset",
+      "before_body": "static const u16 sGolduckLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_WATER_SPORT),\n    LEVEL_UP_MOVE(1, MOVE_SCRATCH),\n    LEVEL_UP_MOVE(1, MOVE_TAIL_WHIP),\n    LEVEL_UP_MOVE(1, MOVE_DISABLE),\n    LEVEL_UP_MOVE(5, MOVE_TAIL_WHIP),\n    LEVEL_UP_MOVE(10, MOVE_DISABLE),\n    LEVEL_UP_MOVE(16, MOVE_CONFUSION),\n    LEVEL_UP_MOVE(23, MOVE_SCREECH),\n    LEVEL_UP_MOVE(31, MOVE_PSYCH_UP),\n    LEVEL_UP_MOVE(44, MOVE_FURY_SWIPES),\n    LEVEL_UP_MOVE(58, MOVE_HYDRO_PUMP),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sGolduckLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_WATER_SPORT),\n    LEVEL_UP_MOVE(1, MOVE_SCRATCH),\n    LEVEL_UP_MOVE(1, MOVE_TAIL_WHIP),\n    LEVEL_UP_MOVE(1, MOVE_DISABLE),\n    LEVEL_UP_MOVE(5, MOVE_TAIL_WHIP),\n    LEVEL_UP_MOVE(10, MOVE_DISABLE),\n    LEVEL_UP_MOVE(16, MOVE_CONFUSION),\n    LEVEL_UP_MOVE(23, MOVE_SCREECH),\n    LEVEL_UP_MOVE(31, MOVE_PSYCH_UP),\n    LEVEL_UP_MOVE(34, MOVE_PSYBEAM),\n    LEVEL_UP_MOVE(44, MOVE_FURY_SWIPES),\n    LEVEL_UP_MOVE(44, MOVE_SURF),\n    LEVEL_UP_MOVE(58, MOVE_HYDRO_PUMP),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 62,
+      "species": "PRIMEAPE",
+      "pointer": "sPrimeapeLevelUpLearnset",
+      "before_body": "static const u16 sPrimeapeLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_SCRATCH),\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(1, MOVE_LOW_KICK),\n    LEVEL_UP_MOVE(1, MOVE_RAGE),\n    LEVEL_UP_MOVE(6, MOVE_LOW_KICK),\n    LEVEL_UP_MOVE(11, MOVE_KARATE_CHOP),\n    LEVEL_UP_MOVE(16, MOVE_FURY_SWIPES),\n    LEVEL_UP_MOVE(21, MOVE_FOCUS_ENERGY),\n    LEVEL_UP_MOVE(26, MOVE_SEISMIC_TOSS),\n    LEVEL_UP_MOVE(28, MOVE_RAGE),\n    LEVEL_UP_MOVE(35, MOVE_CROSS_CHOP),\n    LEVEL_UP_MOVE(44, MOVE_SWAGGER),\n    LEVEL_UP_MOVE(53, MOVE_SCREECH),\n    LEVEL_UP_MOVE(62, MOVE_THRASH),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sPrimeapeLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_SCRATCH),\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(1, MOVE_LOW_KICK),\n    LEVEL_UP_MOVE(1, MOVE_RAGE),\n    LEVEL_UP_MOVE(6, MOVE_LOW_KICK),\n    LEVEL_UP_MOVE(11, MOVE_KARATE_CHOP),\n    LEVEL_UP_MOVE(16, MOVE_FURY_SWIPES),\n    LEVEL_UP_MOVE(21, MOVE_FOCUS_ENERGY),\n    LEVEL_UP_MOVE(26, MOVE_SEISMIC_TOSS),\n    LEVEL_UP_MOVE(28, MOVE_RAGE),\n    LEVEL_UP_MOVE(31, MOVE_BRICK_BREAK),\n    LEVEL_UP_MOVE(35, MOVE_CROSS_CHOP),\n    LEVEL_UP_MOVE(44, MOVE_SWAGGER),\n    LEVEL_UP_MOVE(53, MOVE_SCREECH),\n    LEVEL_UP_MOVE(62, MOVE_THRASH),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 63,
+      "species": "GROWLITHE",
+      "pointer": "sGrowlitheLevelUpLearnset",
+      "before_body": "static const u16 sGrowlitheLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_BITE),\n    LEVEL_UP_MOVE(1, MOVE_ROAR),\n    LEVEL_UP_MOVE(7, MOVE_EMBER),\n    LEVEL_UP_MOVE(13, MOVE_LEER),\n    LEVEL_UP_MOVE(19, MOVE_ODOR_SLEUTH),\n    LEVEL_UP_MOVE(25, MOVE_TAKE_DOWN),\n    LEVEL_UP_MOVE(31, MOVE_FLAME_WHEEL),\n    LEVEL_UP_MOVE(37, MOVE_HELPING_HAND),\n    LEVEL_UP_MOVE(43, MOVE_AGILITY),\n    LEVEL_UP_MOVE(49, MOVE_FLAMETHROWER),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sGrowlitheLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_BITE),\n    LEVEL_UP_MOVE(1, MOVE_ROAR),\n    LEVEL_UP_MOVE(7, MOVE_EMBER),\n    LEVEL_UP_MOVE(13, MOVE_LEER),\n    LEVEL_UP_MOVE(17, MOVE_FLAME_WHEEL),\n    LEVEL_UP_MOVE(19, MOVE_ODOR_SLEUTH),\n    LEVEL_UP_MOVE(25, MOVE_TAKE_DOWN),\n    LEVEL_UP_MOVE(27, MOVE_FLAME_FANG),\n    LEVEL_UP_MOVE(37, MOVE_HELPING_HAND),\n    LEVEL_UP_MOVE(43, MOVE_AGILITY),\n    LEVEL_UP_MOVE(49, MOVE_FLAMETHROWER),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 64,
+      "species": "ARCANINE",
+      "pointer": "sArcanineLevelUpLearnset",
+      "before_body": "static const u16 sArcanineLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_BITE),\n    LEVEL_UP_MOVE(1, MOVE_ROAR),\n    LEVEL_UP_MOVE(1, MOVE_EMBER),\n    LEVEL_UP_MOVE(1, MOVE_ODOR_SLEUTH),\n    LEVEL_UP_MOVE(49, MOVE_EXTREME_SPEED),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sArcanineLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_BITE),\n    LEVEL_UP_MOVE(1, MOVE_ROAR),\n    LEVEL_UP_MOVE(1, MOVE_EMBER),\n    LEVEL_UP_MOVE(1, MOVE_ODOR_SLEUTH),\n    LEVEL_UP_MOVE(35, MOVE_FLAMETHROWER),\n    LEVEL_UP_MOVE(48, MOVE_EXTREME_SPEED),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 65,
+      "species": "POLIWAG",
+      "pointer": "sPoliwagLevelUpLearnset",
+      "before_body": "static const u16 sPoliwagLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_BUBBLE),\n    LEVEL_UP_MOVE(7, MOVE_HYPNOSIS),\n    LEVEL_UP_MOVE(13, MOVE_WATER_GUN),\n    LEVEL_UP_MOVE(19, MOVE_DOUBLE_SLAP),\n    LEVEL_UP_MOVE(25, MOVE_RAIN_DANCE),\n    LEVEL_UP_MOVE(31, MOVE_BODY_SLAM),\n    LEVEL_UP_MOVE(37, MOVE_BELLY_DRUM),\n    LEVEL_UP_MOVE(43, MOVE_HYDRO_PUMP),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sPoliwagLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_BUBBLE),\n    LEVEL_UP_MOVE(7, MOVE_HYPNOSIS),\n    LEVEL_UP_MOVE(13, MOVE_WATER_GUN),\n    LEVEL_UP_MOVE(19, MOVE_DOUBLE_SLAP),\n    LEVEL_UP_MOVE(24, MOVE_BUBBLE_BEAM),\n    LEVEL_UP_MOVE(25, MOVE_RAIN_DANCE),\n    LEVEL_UP_MOVE(31, MOVE_BODY_SLAM),\n    LEVEL_UP_MOVE(37, MOVE_BELLY_DRUM),\n    LEVEL_UP_MOVE(43, MOVE_HYDRO_PUMP),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 66,
+      "species": "POLIWHIRL",
+      "pointer": "sPoliwhirlLevelUpLearnset",
+      "before_body": "static const u16 sPoliwhirlLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_BUBBLE),\n    LEVEL_UP_MOVE(1, MOVE_HYPNOSIS),\n    LEVEL_UP_MOVE(1, MOVE_WATER_GUN),\n    LEVEL_UP_MOVE(7, MOVE_HYPNOSIS),\n    LEVEL_UP_MOVE(13, MOVE_WATER_GUN),\n    LEVEL_UP_MOVE(19, MOVE_DOUBLE_SLAP),\n    LEVEL_UP_MOVE(27, MOVE_RAIN_DANCE),\n    LEVEL_UP_MOVE(35, MOVE_BODY_SLAM),\n    LEVEL_UP_MOVE(43, MOVE_BELLY_DRUM),\n    LEVEL_UP_MOVE(51, MOVE_HYDRO_PUMP),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sPoliwhirlLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_BUBBLE),\n    LEVEL_UP_MOVE(1, MOVE_HYPNOSIS),\n    LEVEL_UP_MOVE(1, MOVE_WATER_GUN),\n    LEVEL_UP_MOVE(7, MOVE_HYPNOSIS),\n    LEVEL_UP_MOVE(13, MOVE_WATER_GUN),\n    LEVEL_UP_MOVE(19, MOVE_DOUBLE_SLAP),\n    LEVEL_UP_MOVE(26, MOVE_BUBBLE_BEAM),\n    LEVEL_UP_MOVE(27, MOVE_RAIN_DANCE),\n    LEVEL_UP_MOVE(33, MOVE_BODY_SLAM),\n    LEVEL_UP_MOVE(43, MOVE_BELLY_DRUM),\n    LEVEL_UP_MOVE(51, MOVE_HYDRO_PUMP),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 67,
+      "species": "POLIWRATH",
+      "pointer": "sPoliwrathLevelUpLearnset",
+      "before_body": "static const u16 sPoliwrathLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_WATER_GUN),\n    LEVEL_UP_MOVE(1, MOVE_HYPNOSIS),\n    LEVEL_UP_MOVE(1, MOVE_DOUBLE_SLAP),\n    LEVEL_UP_MOVE(1, MOVE_SUBMISSION),\n    LEVEL_UP_MOVE(35, MOVE_SUBMISSION),\n    LEVEL_UP_MOVE(51, MOVE_MIND_READER),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sPoliwrathLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_WATER_GUN),\n    LEVEL_UP_MOVE(1, MOVE_HYPNOSIS),\n    LEVEL_UP_MOVE(1, MOVE_DOUBLE_SLAP),\n    LEVEL_UP_MOVE(1, MOVE_SUBMISSION),\n    LEVEL_UP_MOVE(35, MOVE_SUBMISSION),\n    LEVEL_UP_MOVE(36, MOVE_BRICK_BREAK),\n    LEVEL_UP_MOVE(47, MOVE_SURF),\n    LEVEL_UP_MOVE(51, MOVE_MIND_READER),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 68,
+      "species": "POLITOED",
+      "pointer": "sPolitoedLevelUpLearnset",
+      "before_body": "static const u16 sPolitoedLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_WATER_GUN),\n    LEVEL_UP_MOVE(1, MOVE_HYPNOSIS),\n    LEVEL_UP_MOVE(1, MOVE_DOUBLE_SLAP),\n    LEVEL_UP_MOVE(1, MOVE_PERISH_SONG),\n    LEVEL_UP_MOVE(35, MOVE_PERISH_SONG),\n    LEVEL_UP_MOVE(51, MOVE_SWAGGER),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sPolitoedLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_WATER_GUN),\n    LEVEL_UP_MOVE(1, MOVE_HYPNOSIS),\n    LEVEL_UP_MOVE(1, MOVE_DOUBLE_SLAP),\n    LEVEL_UP_MOVE(1, MOVE_PERISH_SONG),\n    LEVEL_UP_MOVE(35, MOVE_PERISH_SONG),\n    LEVEL_UP_MOVE(36, MOVE_HYPER_VOICE),\n    LEVEL_UP_MOVE(47, MOVE_HYDRO_PUMP),\n    LEVEL_UP_MOVE(51, MOVE_SWAGGER),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 69,
+      "species": "ABRA",
+      "pointer": "sAbraLevelUpLearnset",
+      "before_body": "static const u16 sAbraLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TELEPORT),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sAbraLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TELEPORT),\n    LEVEL_UP_MOVE(14, MOVE_CONFUSION),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 73,
+      "species": "MACHOKE",
+      "pointer": "sMachokeLevelUpLearnset",
+      "before_body": "static const u16 sMachokeLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_LOW_KICK),\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(1, MOVE_FOCUS_ENERGY),\n    LEVEL_UP_MOVE(7, MOVE_FOCUS_ENERGY),\n    LEVEL_UP_MOVE(13, MOVE_KARATE_CHOP),\n    LEVEL_UP_MOVE(19, MOVE_SEISMIC_TOSS),\n    LEVEL_UP_MOVE(22, MOVE_FORESIGHT),\n    LEVEL_UP_MOVE(25, MOVE_REVENGE),\n    LEVEL_UP_MOVE(33, MOVE_VITAL_THROW),\n    LEVEL_UP_MOVE(41, MOVE_SUBMISSION),\n    LEVEL_UP_MOVE(46, MOVE_CROSS_CHOP),\n    LEVEL_UP_MOVE(51, MOVE_SCARY_FACE),\n    LEVEL_UP_MOVE(59, MOVE_DYNAMIC_PUNCH),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sMachokeLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_LOW_KICK),\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(1, MOVE_FOCUS_ENERGY),\n    LEVEL_UP_MOVE(7, MOVE_FOCUS_ENERGY),\n    LEVEL_UP_MOVE(13, MOVE_KARATE_CHOP),\n    LEVEL_UP_MOVE(19, MOVE_SEISMIC_TOSS),\n    LEVEL_UP_MOVE(22, MOVE_FORESIGHT),\n    LEVEL_UP_MOVE(25, MOVE_REVENGE),\n    LEVEL_UP_MOVE(30, MOVE_BRICK_BREAK),\n    LEVEL_UP_MOVE(33, MOVE_VITAL_THROW),\n    LEVEL_UP_MOVE(41, MOVE_SUBMISSION),\n    LEVEL_UP_MOVE(46, MOVE_CROSS_CHOP),\n    LEVEL_UP_MOVE(51, MOVE_SCARY_FACE),\n    LEVEL_UP_MOVE(59, MOVE_DYNAMIC_PUNCH),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 74,
+      "species": "MACHAMP",
+      "pointer": "sMachampLevelUpLearnset",
+      "before_body": "static const u16 sMachampLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_LOW_KICK),\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(1, MOVE_FOCUS_ENERGY),\n    LEVEL_UP_MOVE(7, MOVE_FOCUS_ENERGY),\n    LEVEL_UP_MOVE(13, MOVE_KARATE_CHOP),\n    LEVEL_UP_MOVE(19, MOVE_SEISMIC_TOSS),\n    LEVEL_UP_MOVE(22, MOVE_FORESIGHT),\n    LEVEL_UP_MOVE(25, MOVE_REVENGE),\n    LEVEL_UP_MOVE(33, MOVE_VITAL_THROW),\n    LEVEL_UP_MOVE(41, MOVE_SUBMISSION),\n    LEVEL_UP_MOVE(46, MOVE_CROSS_CHOP),\n    LEVEL_UP_MOVE(51, MOVE_SCARY_FACE),\n    LEVEL_UP_MOVE(59, MOVE_DYNAMIC_PUNCH),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sMachampLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_LOW_KICK),\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(1, MOVE_FOCUS_ENERGY),\n    LEVEL_UP_MOVE(7, MOVE_FOCUS_ENERGY),\n    LEVEL_UP_MOVE(13, MOVE_KARATE_CHOP),\n    LEVEL_UP_MOVE(19, MOVE_SEISMIC_TOSS),\n    LEVEL_UP_MOVE(22, MOVE_FORESIGHT),\n    LEVEL_UP_MOVE(25, MOVE_REVENGE),\n    LEVEL_UP_MOVE(33, MOVE_VITAL_THROW),\n    LEVEL_UP_MOVE(41, MOVE_SUBMISSION),\n    LEVEL_UP_MOVE(42, MOVE_CROSS_CHOP),\n    LEVEL_UP_MOVE(49, MOVE_EARTHQUAKE),\n    LEVEL_UP_MOVE(51, MOVE_SCARY_FACE),\n    LEVEL_UP_MOVE(59, MOVE_DYNAMIC_PUNCH),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 76,
+      "species": "WEEPINBELL",
+      "pointer": "sWeepinbellLevelUpLearnset",
+      "before_body": "static const u16 sWeepinbellLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_VINE_WHIP),\n    LEVEL_UP_MOVE(1, MOVE_GROWTH),\n    LEVEL_UP_MOVE(1, MOVE_WRAP),\n    LEVEL_UP_MOVE(6, MOVE_GROWTH),\n    LEVEL_UP_MOVE(11, MOVE_WRAP),\n    LEVEL_UP_MOVE(15, MOVE_SLEEP_POWDER),\n    LEVEL_UP_MOVE(17, MOVE_POISON_POWDER),\n    LEVEL_UP_MOVE(19, MOVE_STUN_SPORE),\n    LEVEL_UP_MOVE(24, MOVE_ACID),\n    LEVEL_UP_MOVE(33, MOVE_SWEET_SCENT),\n    LEVEL_UP_MOVE(42, MOVE_RAZOR_LEAF),\n    LEVEL_UP_MOVE(54, MOVE_SLAM),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sWeepinbellLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_VINE_WHIP),\n    LEVEL_UP_MOVE(1, MOVE_GROWTH),\n    LEVEL_UP_MOVE(1, MOVE_WRAP),\n    LEVEL_UP_MOVE(6, MOVE_GROWTH),\n    LEVEL_UP_MOVE(11, MOVE_WRAP),\n    LEVEL_UP_MOVE(15, MOVE_SLEEP_POWDER),\n    LEVEL_UP_MOVE(17, MOVE_POISON_POWDER),\n    LEVEL_UP_MOVE(19, MOVE_STUN_SPORE),\n    LEVEL_UP_MOVE(24, MOVE_ACID),\n    LEVEL_UP_MOVE(27, MOVE_RAZOR_LEAF),\n    LEVEL_UP_MOVE(33, MOVE_SWEET_SCENT),\n    LEVEL_UP_MOVE(54, MOVE_SLAM),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 77,
+      "species": "VICTREEBEL",
+      "pointer": "sVictreebelLevelUpLearnset",
+      "before_body": "static const u16 sVictreebelLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_STOCKPILE),\n    LEVEL_UP_MOVE(1, MOVE_SPIT_UP),\n    LEVEL_UP_MOVE(1, MOVE_SWALLOW),\n    LEVEL_UP_MOVE(1, MOVE_VINE_WHIP),\n    LEVEL_UP_MOVE(1, MOVE_SLEEP_POWDER),\n    LEVEL_UP_MOVE(1, MOVE_SWEET_SCENT),\n    LEVEL_UP_MOVE(1, MOVE_RAZOR_LEAF),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sVictreebelLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_STOCKPILE),\n    LEVEL_UP_MOVE(1, MOVE_SPIT_UP),\n    LEVEL_UP_MOVE(1, MOVE_SWALLOW),\n    LEVEL_UP_MOVE(1, MOVE_VINE_WHIP),\n    LEVEL_UP_MOVE(1, MOVE_SLEEP_POWDER),\n    LEVEL_UP_MOVE(1, MOVE_SWEET_SCENT),\n    LEVEL_UP_MOVE(1, MOVE_RAZOR_LEAF),\n    LEVEL_UP_MOVE(37, MOVE_SLUDGE),\n    LEVEL_UP_MOVE(45, MOVE_GIGA_DRAIN),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 78,
+      "species": "TENTACOOL",
+      "pointer": "sTentacoolLevelUpLearnset",
+      "before_body": "static const u16 sTentacoolLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_POISON_STING),\n    LEVEL_UP_MOVE(6, MOVE_SUPERSONIC),\n    LEVEL_UP_MOVE(12, MOVE_CONSTRICT),\n    LEVEL_UP_MOVE(19, MOVE_ACID),\n    LEVEL_UP_MOVE(25, MOVE_BUBBLE_BEAM),\n    LEVEL_UP_MOVE(30, MOVE_WRAP),\n    LEVEL_UP_MOVE(36, MOVE_BARRIER),\n    LEVEL_UP_MOVE(43, MOVE_SCREECH),\n    LEVEL_UP_MOVE(49, MOVE_HYDRO_PUMP),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sTentacoolLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_POISON_STING),\n    LEVEL_UP_MOVE(6, MOVE_SUPERSONIC),\n    LEVEL_UP_MOVE(12, MOVE_CONSTRICT),\n    LEVEL_UP_MOVE(17, MOVE_ACID),\n    LEVEL_UP_MOVE(25, MOVE_BUBBLE_BEAM),\n    LEVEL_UP_MOVE(30, MOVE_WRAP),\n    LEVEL_UP_MOVE(36, MOVE_BARRIER),\n    LEVEL_UP_MOVE(43, MOVE_SCREECH),\n    LEVEL_UP_MOVE(49, MOVE_HYDRO_PUMP),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 79,
+      "species": "TENTACRUEL",
+      "pointer": "sTentacruelLevelUpLearnset",
+      "before_body": "static const u16 sTentacruelLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_POISON_STING),\n    LEVEL_UP_MOVE(1, MOVE_SUPERSONIC),\n    LEVEL_UP_MOVE(1, MOVE_CONSTRICT),\n    LEVEL_UP_MOVE(6, MOVE_SUPERSONIC),\n    LEVEL_UP_MOVE(12, MOVE_CONSTRICT),\n    LEVEL_UP_MOVE(19, MOVE_ACID),\n    LEVEL_UP_MOVE(25, MOVE_BUBBLE_BEAM),\n    LEVEL_UP_MOVE(30, MOVE_WRAP),\n    LEVEL_UP_MOVE(38, MOVE_BARRIER),\n    LEVEL_UP_MOVE(47, MOVE_SCREECH),\n    LEVEL_UP_MOVE(55, MOVE_HYDRO_PUMP),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sTentacruelLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_POISON_STING),\n    LEVEL_UP_MOVE(1, MOVE_SUPERSONIC),\n    LEVEL_UP_MOVE(1, MOVE_CONSTRICT),\n    LEVEL_UP_MOVE(6, MOVE_SUPERSONIC),\n    LEVEL_UP_MOVE(12, MOVE_CONSTRICT),\n    LEVEL_UP_MOVE(19, MOVE_ACID),\n    LEVEL_UP_MOVE(25, MOVE_BUBBLE_BEAM),\n    LEVEL_UP_MOVE(30, MOVE_WRAP),\n    LEVEL_UP_MOVE(38, MOVE_BARRIER),\n    LEVEL_UP_MOVE(45, MOVE_SLUDGE_BOMB),\n    LEVEL_UP_MOVE(47, MOVE_SCREECH),\n    LEVEL_UP_MOVE(55, MOVE_HYDRO_PUMP),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 81,
+      "species": "GRAVELER",
+      "pointer": "sGravelerLevelUpLearnset",
+      "before_body": "static const u16 sGravelerLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_DEFENSE_CURL),\n    LEVEL_UP_MOVE(1, MOVE_MUD_SPORT),\n    LEVEL_UP_MOVE(1, MOVE_ROCK_THROW),\n    LEVEL_UP_MOVE(6, MOVE_MUD_SPORT),\n    LEVEL_UP_MOVE(11, MOVE_ROCK_THROW),\n    LEVEL_UP_MOVE(16, MOVE_MAGNITUDE),\n    LEVEL_UP_MOVE(21, MOVE_SELF_DESTRUCT),\n    LEVEL_UP_MOVE(29, MOVE_ROLLOUT),\n    LEVEL_UP_MOVE(37, MOVE_ROCK_BLAST),\n    LEVEL_UP_MOVE(45, MOVE_EARTHQUAKE),\n    LEVEL_UP_MOVE(53, MOVE_EXPLOSION),\n    LEVEL_UP_MOVE(62, MOVE_DOUBLE_EDGE),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sGravelerLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_DEFENSE_CURL),\n    LEVEL_UP_MOVE(1, MOVE_MUD_SPORT),\n    LEVEL_UP_MOVE(1, MOVE_ROCK_THROW),\n    LEVEL_UP_MOVE(6, MOVE_MUD_SPORT),\n    LEVEL_UP_MOVE(11, MOVE_ROCK_THROW),\n    LEVEL_UP_MOVE(16, MOVE_MAGNITUDE),\n    LEVEL_UP_MOVE(21, MOVE_SELF_DESTRUCT),\n    LEVEL_UP_MOVE(29, MOVE_ROLLOUT),\n    LEVEL_UP_MOVE(29, MOVE_ROCK_SLIDE),\n    LEVEL_UP_MOVE(37, MOVE_ROCK_BLAST),\n    LEVEL_UP_MOVE(45, MOVE_EARTHQUAKE),\n    LEVEL_UP_MOVE(53, MOVE_EXPLOSION),\n    LEVEL_UP_MOVE(62, MOVE_DOUBLE_EDGE),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 82,
+      "species": "GOLEM",
+      "pointer": "sGolemLevelUpLearnset",
+      "before_body": "static const u16 sGolemLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_DEFENSE_CURL),\n    LEVEL_UP_MOVE(1, MOVE_MUD_SPORT),\n    LEVEL_UP_MOVE(1, MOVE_ROCK_THROW),\n    LEVEL_UP_MOVE(6, MOVE_MUD_SPORT),\n    LEVEL_UP_MOVE(11, MOVE_ROCK_THROW),\n    LEVEL_UP_MOVE(16, MOVE_MAGNITUDE),\n    LEVEL_UP_MOVE(21, MOVE_SELF_DESTRUCT),\n    LEVEL_UP_MOVE(29, MOVE_ROLLOUT),\n    LEVEL_UP_MOVE(37, MOVE_ROCK_BLAST),\n    LEVEL_UP_MOVE(45, MOVE_EARTHQUAKE),\n    LEVEL_UP_MOVE(53, MOVE_EXPLOSION),\n    LEVEL_UP_MOVE(62, MOVE_DOUBLE_EDGE),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sGolemLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_DEFENSE_CURL),\n    LEVEL_UP_MOVE(1, MOVE_MUD_SPORT),\n    LEVEL_UP_MOVE(1, MOVE_ROCK_THROW),\n    LEVEL_UP_MOVE(6, MOVE_MUD_SPORT),\n    LEVEL_UP_MOVE(11, MOVE_ROCK_THROW),\n    LEVEL_UP_MOVE(16, MOVE_MAGNITUDE),\n    LEVEL_UP_MOVE(21, MOVE_SELF_DESTRUCT),\n    LEVEL_UP_MOVE(29, MOVE_ROLLOUT),\n    LEVEL_UP_MOVE(37, MOVE_ROCK_BLAST),\n    LEVEL_UP_MOVE(42, MOVE_ROCK_SLIDE),\n    LEVEL_UP_MOVE(45, MOVE_EARTHQUAKE),\n    LEVEL_UP_MOVE(53, MOVE_EXPLOSION),\n    LEVEL_UP_MOVE(62, MOVE_DOUBLE_EDGE),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 86,
+      "species": "SLOWBRO",
+      "pointer": "sSlowbroLevelUpLearnset",
+      "before_body": "static const u16 sSlowbroLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_CURSE),\n    LEVEL_UP_MOVE(1, MOVE_YAWN),\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(6, MOVE_GROWL),\n    LEVEL_UP_MOVE(13, MOVE_WATER_GUN),\n    LEVEL_UP_MOVE(17, MOVE_CONFUSION),\n    LEVEL_UP_MOVE(24, MOVE_DISABLE),\n    LEVEL_UP_MOVE(29, MOVE_HEADBUTT),\n    LEVEL_UP_MOVE(36, MOVE_AMNESIA),\n    LEVEL_UP_MOVE(37, MOVE_WITHDRAW),\n    LEVEL_UP_MOVE(44, MOVE_PSYCHIC),\n    LEVEL_UP_MOVE(55, MOVE_PSYCH_UP),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sSlowbroLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_CURSE),\n    LEVEL_UP_MOVE(1, MOVE_YAWN),\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(6, MOVE_GROWL),\n    LEVEL_UP_MOVE(13, MOVE_WATER_GUN),\n    LEVEL_UP_MOVE(17, MOVE_CONFUSION),\n    LEVEL_UP_MOVE(24, MOVE_DISABLE),\n    LEVEL_UP_MOVE(29, MOVE_HEADBUTT),\n    LEVEL_UP_MOVE(36, MOVE_AMNESIA),\n    LEVEL_UP_MOVE(37, MOVE_WITHDRAW),\n    LEVEL_UP_MOVE(39, MOVE_PSYBEAM),\n    LEVEL_UP_MOVE(44, MOVE_PSYCHIC),\n    LEVEL_UP_MOVE(46, MOVE_SURF),\n    LEVEL_UP_MOVE(55, MOVE_PSYCH_UP),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 87,
+      "species": "SLOWKING",
+      "pointer": "sSlowkingLevelUpLearnset",
+      "before_body": "static const u16 sSlowkingLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_CURSE),\n    LEVEL_UP_MOVE(1, MOVE_YAWN),\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(6, MOVE_GROWL),\n    LEVEL_UP_MOVE(13, MOVE_WATER_GUN),\n    LEVEL_UP_MOVE(17, MOVE_CONFUSION),\n    LEVEL_UP_MOVE(24, MOVE_DISABLE),\n    LEVEL_UP_MOVE(29, MOVE_HEADBUTT),\n    LEVEL_UP_MOVE(36, MOVE_SWAGGER),\n    LEVEL_UP_MOVE(40, MOVE_PSYCHIC),\n    LEVEL_UP_MOVE(47, MOVE_PSYCH_UP),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sSlowkingLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_CURSE),\n    LEVEL_UP_MOVE(1, MOVE_YAWN),\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(6, MOVE_GROWL),\n    LEVEL_UP_MOVE(13, MOVE_WATER_GUN),\n    LEVEL_UP_MOVE(17, MOVE_CONFUSION),\n    LEVEL_UP_MOVE(24, MOVE_DISABLE),\n    LEVEL_UP_MOVE(29, MOVE_HEADBUTT),\n    LEVEL_UP_MOVE(34, MOVE_PSYBEAM),\n    LEVEL_UP_MOVE(36, MOVE_SWAGGER),\n    LEVEL_UP_MOVE(40, MOVE_PSYCHIC),\n    LEVEL_UP_MOVE(47, MOVE_PSYCH_UP),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 89,
+      "species": "MAGNETON",
+      "pointer": "sMagnetonLevelUpLearnset",
+      "before_body": "static const u16 sMagnetonLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_METAL_SOUND),\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_THUNDER_SHOCK),\n    LEVEL_UP_MOVE(1, MOVE_SUPERSONIC),\n    LEVEL_UP_MOVE(6, MOVE_THUNDER_SHOCK),\n    LEVEL_UP_MOVE(11, MOVE_SUPERSONIC),\n    LEVEL_UP_MOVE(16, MOVE_SONIC_BOOM),\n    LEVEL_UP_MOVE(21, MOVE_THUNDER_WAVE),\n    LEVEL_UP_MOVE(26, MOVE_SPARK),\n    LEVEL_UP_MOVE(35, MOVE_LOCK_ON),\n    LEVEL_UP_MOVE(44, MOVE_TRI_ATTACK),\n    LEVEL_UP_MOVE(53, MOVE_SCREECH),\n    LEVEL_UP_MOVE(62, MOVE_ZAP_CANNON),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sMagnetonLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_METAL_SOUND),\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_THUNDER_SHOCK),\n    LEVEL_UP_MOVE(1, MOVE_SUPERSONIC),\n    LEVEL_UP_MOVE(6, MOVE_THUNDER_SHOCK),\n    LEVEL_UP_MOVE(11, MOVE_SUPERSONIC),\n    LEVEL_UP_MOVE(16, MOVE_SONIC_BOOM),\n    LEVEL_UP_MOVE(21, MOVE_THUNDER_WAVE),\n    LEVEL_UP_MOVE(26, MOVE_SPARK),\n    LEVEL_UP_MOVE(35, MOVE_LOCK_ON),\n    LEVEL_UP_MOVE(44, MOVE_TRI_ATTACK),\n    LEVEL_UP_MOVE(45, MOVE_THUNDERBOLT),\n    LEVEL_UP_MOVE(53, MOVE_SCREECH),\n    LEVEL_UP_MOVE(62, MOVE_ZAP_CANNON),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 90,
+      "species": "FARFETCHD",
+      "pointer": "sFarfetchdLevelUpLearnset",
+      "before_body": "static const u16 sFarfetchdLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_PECK),\n    LEVEL_UP_MOVE(6, MOVE_SAND_ATTACK),\n    LEVEL_UP_MOVE(11, MOVE_LEER),\n    LEVEL_UP_MOVE(16, MOVE_FURY_ATTACK),\n    LEVEL_UP_MOVE(21, MOVE_KNOCK_OFF),\n    LEVEL_UP_MOVE(26, MOVE_FURY_CUTTER),\n    LEVEL_UP_MOVE(31, MOVE_SWORDS_DANCE),\n    LEVEL_UP_MOVE(36, MOVE_AGILITY),\n    LEVEL_UP_MOVE(41, MOVE_SLASH),\n    LEVEL_UP_MOVE(46, MOVE_FALSE_SWIPE),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sFarfetchdLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_PECK),\n    LEVEL_UP_MOVE(6, MOVE_SAND_ATTACK),\n    LEVEL_UP_MOVE(11, MOVE_LEER),\n    LEVEL_UP_MOVE(16, MOVE_FURY_ATTACK),\n    LEVEL_UP_MOVE(21, MOVE_KNOCK_OFF),\n    LEVEL_UP_MOVE(23, MOVE_AERIAL_ACE),\n    LEVEL_UP_MOVE(26, MOVE_FURY_CUTTER),\n    LEVEL_UP_MOVE(31, MOVE_SWORDS_DANCE),\n    LEVEL_UP_MOVE(36, MOVE_AGILITY),\n    LEVEL_UP_MOVE(36, MOVE_SLASH),\n    LEVEL_UP_MOVE(46, MOVE_FALSE_SWIPE),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 92,
+      "species": "DODRIO",
+      "pointer": "sDodrioLevelUpLearnset",
+      "before_body": "static const u16 sDodrioLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_PECK),\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(1, MOVE_PURSUIT),\n    LEVEL_UP_MOVE(1, MOVE_FURY_ATTACK),\n    LEVEL_UP_MOVE(9, MOVE_PURSUIT),\n    LEVEL_UP_MOVE(13, MOVE_FURY_ATTACK),\n    LEVEL_UP_MOVE(21, MOVE_TRI_ATTACK),\n    LEVEL_UP_MOVE(25, MOVE_RAGE),\n    LEVEL_UP_MOVE(38, MOVE_UPROAR),\n    LEVEL_UP_MOVE(47, MOVE_DRILL_PECK),\n    LEVEL_UP_MOVE(60, MOVE_AGILITY),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sDodrioLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_PECK),\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(1, MOVE_PURSUIT),\n    LEVEL_UP_MOVE(1, MOVE_FURY_ATTACK),\n    LEVEL_UP_MOVE(9, MOVE_PURSUIT),\n    LEVEL_UP_MOVE(13, MOVE_FURY_ATTACK),\n    LEVEL_UP_MOVE(21, MOVE_TRI_ATTACK),\n    LEVEL_UP_MOVE(25, MOVE_RAGE),\n    LEVEL_UP_MOVE(38, MOVE_UPROAR),\n    LEVEL_UP_MOVE(44, MOVE_DRILL_PECK),\n    LEVEL_UP_MOVE(60, MOVE_AGILITY),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 93,
+      "species": "SEEL",
+      "pointer": "sSeelLevelUpLearnset",
+      "before_body": "static const u16 sSeelLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_HEADBUTT),\n    LEVEL_UP_MOVE(9, MOVE_GROWL),\n    LEVEL_UP_MOVE(17, MOVE_ICY_WIND),\n    LEVEL_UP_MOVE(21, MOVE_AURORA_BEAM),\n    LEVEL_UP_MOVE(29, MOVE_REST),\n    LEVEL_UP_MOVE(37, MOVE_TAKE_DOWN),\n    LEVEL_UP_MOVE(41, MOVE_ICE_BEAM),\n    LEVEL_UP_MOVE(49, MOVE_SAFEGUARD),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sSeelLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_HEADBUTT),\n    LEVEL_UP_MOVE(9, MOVE_GROWL),\n    LEVEL_UP_MOVE(17, MOVE_ICY_WIND),\n    LEVEL_UP_MOVE(18, MOVE_AURORA_BEAM),\n    LEVEL_UP_MOVE(29, MOVE_REST),\n    LEVEL_UP_MOVE(37, MOVE_TAKE_DOWN),\n    LEVEL_UP_MOVE(41, MOVE_ICE_BEAM),\n    LEVEL_UP_MOVE(49, MOVE_SAFEGUARD),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 94,
+      "species": "DEWGONG",
+      "pointer": "sDewgongLevelUpLearnset",
+      "before_body": "static const u16 sDewgongLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_SIGNAL_BEAM),\n    LEVEL_UP_MOVE(1, MOVE_HEADBUTT),\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(1, MOVE_ICY_WIND),\n    LEVEL_UP_MOVE(1, MOVE_AURORA_BEAM),\n    LEVEL_UP_MOVE(9, MOVE_GROWL),\n    LEVEL_UP_MOVE(17, MOVE_ICY_WIND),\n    LEVEL_UP_MOVE(21, MOVE_AURORA_BEAM),\n    LEVEL_UP_MOVE(29, MOVE_REST),\n    LEVEL_UP_MOVE(34, MOVE_SHEER_COLD),\n    LEVEL_UP_MOVE(42, MOVE_TAKE_DOWN),\n    LEVEL_UP_MOVE(51, MOVE_ICE_BEAM),\n    LEVEL_UP_MOVE(64, MOVE_SAFEGUARD),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sDewgongLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_SIGNAL_BEAM),\n    LEVEL_UP_MOVE(1, MOVE_HEADBUTT),\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(1, MOVE_ICY_WIND),\n    LEVEL_UP_MOVE(1, MOVE_AURORA_BEAM),\n    LEVEL_UP_MOVE(9, MOVE_GROWL),\n    LEVEL_UP_MOVE(17, MOVE_ICY_WIND),\n    LEVEL_UP_MOVE(21, MOVE_AURORA_BEAM),\n    LEVEL_UP_MOVE(29, MOVE_REST),\n    LEVEL_UP_MOVE(34, MOVE_SHEER_COLD),\n    LEVEL_UP_MOVE(35, MOVE_ICE_BEAM),\n    LEVEL_UP_MOVE(42, MOVE_TAKE_DOWN),\n    LEVEL_UP_MOVE(46, MOVE_SURF),\n    LEVEL_UP_MOVE(64, MOVE_SAFEGUARD),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 96,
+      "species": "MUK",
+      "pointer": "sMukLevelUpLearnset",
+      "before_body": "static const u16 sMukLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_POISON_GAS),\n    LEVEL_UP_MOVE(1, MOVE_POUND),\n    LEVEL_UP_MOVE(1, MOVE_HARDEN),\n    LEVEL_UP_MOVE(4, MOVE_HARDEN),\n    LEVEL_UP_MOVE(8, MOVE_DISABLE),\n    LEVEL_UP_MOVE(13, MOVE_SLUDGE),\n    LEVEL_UP_MOVE(19, MOVE_MINIMIZE),\n    LEVEL_UP_MOVE(26, MOVE_SCREECH),\n    LEVEL_UP_MOVE(34, MOVE_ACID_ARMOR),\n    LEVEL_UP_MOVE(47, MOVE_SLUDGE_BOMB),\n    LEVEL_UP_MOVE(61, MOVE_MEMENTO),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sMukLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_POISON_GAS),\n    LEVEL_UP_MOVE(1, MOVE_POUND),\n    LEVEL_UP_MOVE(1, MOVE_HARDEN),\n    LEVEL_UP_MOVE(4, MOVE_HARDEN),\n    LEVEL_UP_MOVE(8, MOVE_DISABLE),\n    LEVEL_UP_MOVE(13, MOVE_SLUDGE),\n    LEVEL_UP_MOVE(19, MOVE_MINIMIZE),\n    LEVEL_UP_MOVE(26, MOVE_SCREECH),\n    LEVEL_UP_MOVE(34, MOVE_ACID_ARMOR),\n    LEVEL_UP_MOVE(46, MOVE_SLUDGE_BOMB),\n    LEVEL_UP_MOVE(61, MOVE_MEMENTO),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 98,
+      "species": "CLOYSTER",
+      "pointer": "sCloysterLevelUpLearnset",
+      "before_body": "static const u16 sCloysterLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_WITHDRAW),\n    LEVEL_UP_MOVE(1, MOVE_SUPERSONIC),\n    LEVEL_UP_MOVE(1, MOVE_AURORA_BEAM),\n    LEVEL_UP_MOVE(1, MOVE_PROTECT),\n    LEVEL_UP_MOVE(36, MOVE_SPIKES),\n    LEVEL_UP_MOVE(43, MOVE_SPIKE_CANNON),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sCloysterLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_WITHDRAW),\n    LEVEL_UP_MOVE(1, MOVE_SUPERSONIC),\n    LEVEL_UP_MOVE(1, MOVE_AURORA_BEAM),\n    LEVEL_UP_MOVE(1, MOVE_PROTECT),\n    LEVEL_UP_MOVE(35, MOVE_ICE_BEAM),\n    LEVEL_UP_MOVE(36, MOVE_SPIKES),\n    LEVEL_UP_MOVE(43, MOVE_SPIKE_CANNON),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 101,
+      "species": "GENGAR",
+      "pointer": "sGengarLevelUpLearnset",
+      "before_body": "static const u16 sGengarLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_HYPNOSIS),\n    LEVEL_UP_MOVE(1, MOVE_LICK),\n    LEVEL_UP_MOVE(1, MOVE_SPITE),\n    LEVEL_UP_MOVE(8, MOVE_SPITE),\n    LEVEL_UP_MOVE(13, MOVE_CURSE),\n    LEVEL_UP_MOVE(16, MOVE_NIGHT_SHADE),\n    LEVEL_UP_MOVE(21, MOVE_CONFUSE_RAY),\n    LEVEL_UP_MOVE(25, MOVE_SHADOW_PUNCH),\n    LEVEL_UP_MOVE(31, MOVE_DREAM_EATER),\n    LEVEL_UP_MOVE(39, MOVE_DESTINY_BOND),\n    LEVEL_UP_MOVE(45, MOVE_SHADOW_BALL),\n    LEVEL_UP_MOVE(53, MOVE_NIGHTMARE),\n    LEVEL_UP_MOVE(64, MOVE_MEAN_LOOK),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sGengarLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_HYPNOSIS),\n    LEVEL_UP_MOVE(1, MOVE_LICK),\n    LEVEL_UP_MOVE(1, MOVE_SPITE),\n    LEVEL_UP_MOVE(8, MOVE_SPITE),\n    LEVEL_UP_MOVE(13, MOVE_CURSE),\n    LEVEL_UP_MOVE(16, MOVE_NIGHT_SHADE),\n    LEVEL_UP_MOVE(21, MOVE_CONFUSE_RAY),\n    LEVEL_UP_MOVE(25, MOVE_SHADOW_PUNCH),\n    LEVEL_UP_MOVE(31, MOVE_DREAM_EATER),\n    LEVEL_UP_MOVE(39, MOVE_DESTINY_BOND),\n    LEVEL_UP_MOVE(42, MOVE_SHADOW_BALL),\n    LEVEL_UP_MOVE(48, MOVE_SLUDGE_BOMB),\n    LEVEL_UP_MOVE(53, MOVE_NIGHTMARE),\n    LEVEL_UP_MOVE(64, MOVE_MEAN_LOOK),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 102,
+      "species": "ONIX",
+      "pointer": "sOnixLevelUpLearnset",
+      "before_body": "static const u16 sOnixLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_SCREECH),\n    LEVEL_UP_MOVE(8, MOVE_BIND),\n    LEVEL_UP_MOVE(12, MOVE_ROCK_THROW),\n    LEVEL_UP_MOVE(19, MOVE_HARDEN),\n    LEVEL_UP_MOVE(23, MOVE_RAGE),\n    LEVEL_UP_MOVE(30, MOVE_DRAGON_BREATH),\n    LEVEL_UP_MOVE(34, MOVE_SANDSTORM),\n    LEVEL_UP_MOVE(41, MOVE_SLAM),\n    LEVEL_UP_MOVE(45, MOVE_IRON_TAIL),\n    LEVEL_UP_MOVE(52, MOVE_SAND_TOMB),\n    LEVEL_UP_MOVE(56, MOVE_DOUBLE_EDGE),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sOnixLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_SCREECH),\n    LEVEL_UP_MOVE(8, MOVE_BIND),\n    LEVEL_UP_MOVE(12, MOVE_ROCK_THROW),\n    LEVEL_UP_MOVE(19, MOVE_HARDEN),\n    LEVEL_UP_MOVE(22, MOVE_ROCK_SLIDE),\n    LEVEL_UP_MOVE(23, MOVE_RAGE),\n    LEVEL_UP_MOVE(30, MOVE_DRAGON_BREATH),\n    LEVEL_UP_MOVE(34, MOVE_SANDSTORM),\n    LEVEL_UP_MOVE(41, MOVE_SLAM),\n    LEVEL_UP_MOVE(45, MOVE_IRON_TAIL),\n    LEVEL_UP_MOVE(52, MOVE_SAND_TOMB),\n    LEVEL_UP_MOVE(56, MOVE_DOUBLE_EDGE),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 103,
+      "species": "STEELIX",
+      "pointer": "sSteelixLevelUpLearnset",
+      "before_body": "static const u16 sSteelixLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_SCREECH),\n    LEVEL_UP_MOVE(8, MOVE_BIND),\n    LEVEL_UP_MOVE(12, MOVE_ROCK_THROW),\n    LEVEL_UP_MOVE(19, MOVE_HARDEN),\n    LEVEL_UP_MOVE(23, MOVE_RAGE),\n    LEVEL_UP_MOVE(30, MOVE_DRAGON_BREATH),\n    LEVEL_UP_MOVE(34, MOVE_SANDSTORM),\n    LEVEL_UP_MOVE(41, MOVE_SLAM),\n    LEVEL_UP_MOVE(45, MOVE_IRON_TAIL),\n    LEVEL_UP_MOVE(52, MOVE_CRUNCH),\n    LEVEL_UP_MOVE(56, MOVE_DOUBLE_EDGE),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sSteelixLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_SCREECH),\n    LEVEL_UP_MOVE(8, MOVE_BIND),\n    LEVEL_UP_MOVE(12, MOVE_ROCK_THROW),\n    LEVEL_UP_MOVE(19, MOVE_HARDEN),\n    LEVEL_UP_MOVE(23, MOVE_RAGE),\n    LEVEL_UP_MOVE(30, MOVE_DRAGON_BREATH),\n    LEVEL_UP_MOVE(34, MOVE_SANDSTORM),\n    LEVEL_UP_MOVE(35, MOVE_IRON_TAIL),\n    LEVEL_UP_MOVE(41, MOVE_SLAM),\n    LEVEL_UP_MOVE(46, MOVE_ROCK_SLIDE),\n    LEVEL_UP_MOVE(52, MOVE_CRUNCH),\n    LEVEL_UP_MOVE(56, MOVE_DOUBLE_EDGE),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 105,
+      "species": "HYPNO",
+      "pointer": "sHypnoLevelUpLearnset",
+      "before_body": "static const u16 sHypnoLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_NIGHTMARE),\n    LEVEL_UP_MOVE(1, MOVE_POUND),\n    LEVEL_UP_MOVE(1, MOVE_HYPNOSIS),\n    LEVEL_UP_MOVE(1, MOVE_DISABLE),\n    LEVEL_UP_MOVE(1, MOVE_CONFUSION),\n    LEVEL_UP_MOVE(7, MOVE_DISABLE),\n    LEVEL_UP_MOVE(11, MOVE_CONFUSION),\n    LEVEL_UP_MOVE(17, MOVE_HEADBUTT),\n    LEVEL_UP_MOVE(21, MOVE_POISON_GAS),\n    LEVEL_UP_MOVE(29, MOVE_MEDITATE),\n    LEVEL_UP_MOVE(35, MOVE_PSYCHIC),\n    LEVEL_UP_MOVE(43, MOVE_PSYCH_UP),\n    LEVEL_UP_MOVE(49, MOVE_SWAGGER),\n    LEVEL_UP_MOVE(57, MOVE_FUTURE_SIGHT),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sHypnoLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_NIGHTMARE),\n    LEVEL_UP_MOVE(1, MOVE_POUND),\n    LEVEL_UP_MOVE(1, MOVE_HYPNOSIS),\n    LEVEL_UP_MOVE(1, MOVE_DISABLE),\n    LEVEL_UP_MOVE(1, MOVE_CONFUSION),\n    LEVEL_UP_MOVE(7, MOVE_DISABLE),\n    LEVEL_UP_MOVE(11, MOVE_CONFUSION),\n    LEVEL_UP_MOVE(17, MOVE_HEADBUTT),\n    LEVEL_UP_MOVE(21, MOVE_POISON_GAS),\n    LEVEL_UP_MOVE(29, MOVE_MEDITATE),\n    LEVEL_UP_MOVE(33, MOVE_PSYBEAM),\n    LEVEL_UP_MOVE(35, MOVE_PSYCHIC),\n    LEVEL_UP_MOVE(43, MOVE_PSYCH_UP),\n    LEVEL_UP_MOVE(49, MOVE_SWAGGER),\n    LEVEL_UP_MOVE(57, MOVE_FUTURE_SIGHT),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 107,
+      "species": "KINGLER",
+      "pointer": "sKinglerLevelUpLearnset",
+      "before_body": "static const u16 sKinglerLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_METAL_CLAW),\n    LEVEL_UP_MOVE(1, MOVE_BUBBLE),\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(1, MOVE_VICE_GRIP),\n    LEVEL_UP_MOVE(1, MOVE_HARDEN),\n    LEVEL_UP_MOVE(5, MOVE_LEER),\n    LEVEL_UP_MOVE(12, MOVE_VICE_GRIP),\n    LEVEL_UP_MOVE(16, MOVE_HARDEN),\n    LEVEL_UP_MOVE(23, MOVE_MUD_SHOT),\n    LEVEL_UP_MOVE(27, MOVE_STOMP),\n    LEVEL_UP_MOVE(38, MOVE_GUILLOTINE),\n    LEVEL_UP_MOVE(42, MOVE_PROTECT),\n    LEVEL_UP_MOVE(57, MOVE_CRABHAMMER),\n    LEVEL_UP_MOVE(65, MOVE_FLAIL),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sKinglerLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_METAL_CLAW),\n    LEVEL_UP_MOVE(1, MOVE_BUBBLE),\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(1, MOVE_VICE_GRIP),\n    LEVEL_UP_MOVE(1, MOVE_HARDEN),\n    LEVEL_UP_MOVE(5, MOVE_LEER),\n    LEVEL_UP_MOVE(12, MOVE_VICE_GRIP),\n    LEVEL_UP_MOVE(16, MOVE_HARDEN),\n    LEVEL_UP_MOVE(23, MOVE_MUD_SHOT),\n    LEVEL_UP_MOVE(27, MOVE_STOMP),\n    LEVEL_UP_MOVE(34, MOVE_CRABHAMMER),\n    LEVEL_UP_MOVE(38, MOVE_GUILLOTINE),\n    LEVEL_UP_MOVE(42, MOVE_PROTECT),\n    LEVEL_UP_MOVE(45, MOVE_RETURN),\n    LEVEL_UP_MOVE(65, MOVE_FLAIL),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 108,
+      "species": "VOLTORB",
+      "pointer": "sVoltorbLevelUpLearnset",
+      "before_body": "static const u16 sVoltorbLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_CHARGE),\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(8, MOVE_SCREECH),\n    LEVEL_UP_MOVE(15, MOVE_SONIC_BOOM),\n    LEVEL_UP_MOVE(21, MOVE_SPARK),\n    LEVEL_UP_MOVE(27, MOVE_SELF_DESTRUCT),\n    LEVEL_UP_MOVE(32, MOVE_ROLLOUT),\n    LEVEL_UP_MOVE(37, MOVE_LIGHT_SCREEN),\n    LEVEL_UP_MOVE(42, MOVE_SWIFT),\n    LEVEL_UP_MOVE(46, MOVE_EXPLOSION),\n    LEVEL_UP_MOVE(49, MOVE_MIRROR_COAT),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sVoltorbLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_CHARGE),\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(8, MOVE_SCREECH),\n    LEVEL_UP_MOVE(15, MOVE_SONIC_BOOM),\n    LEVEL_UP_MOVE(18, MOVE_SPARK),\n    LEVEL_UP_MOVE(27, MOVE_SELF_DESTRUCT),\n    LEVEL_UP_MOVE(32, MOVE_ROLLOUT),\n    LEVEL_UP_MOVE(37, MOVE_LIGHT_SCREEN),\n    LEVEL_UP_MOVE(42, MOVE_SWIFT),\n    LEVEL_UP_MOVE(46, MOVE_EXPLOSION),\n    LEVEL_UP_MOVE(49, MOVE_MIRROR_COAT),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 109,
+      "species": "ELECTRODE",
+      "pointer": "sElectrodeLevelUpLearnset",
+      "before_body": "static const u16 sElectrodeLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_CHARGE),\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_SCREECH),\n    LEVEL_UP_MOVE(1, MOVE_SONIC_BOOM),\n    LEVEL_UP_MOVE(8, MOVE_SCREECH),\n    LEVEL_UP_MOVE(15, MOVE_SONIC_BOOM),\n    LEVEL_UP_MOVE(21, MOVE_SPARK),\n    LEVEL_UP_MOVE(27, MOVE_SELF_DESTRUCT),\n    LEVEL_UP_MOVE(34, MOVE_ROLLOUT),\n    LEVEL_UP_MOVE(41, MOVE_LIGHT_SCREEN),\n    LEVEL_UP_MOVE(48, MOVE_SWIFT),\n    LEVEL_UP_MOVE(54, MOVE_EXPLOSION),\n    LEVEL_UP_MOVE(59, MOVE_MIRROR_COAT),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sElectrodeLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_CHARGE),\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_SCREECH),\n    LEVEL_UP_MOVE(1, MOVE_SONIC_BOOM),\n    LEVEL_UP_MOVE(8, MOVE_SCREECH),\n    LEVEL_UP_MOVE(15, MOVE_SONIC_BOOM),\n    LEVEL_UP_MOVE(21, MOVE_SPARK),\n    LEVEL_UP_MOVE(27, MOVE_SELF_DESTRUCT),\n    LEVEL_UP_MOVE(34, MOVE_ROLLOUT),\n    LEVEL_UP_MOVE(41, MOVE_LIGHT_SCREEN),\n    LEVEL_UP_MOVE(44, MOVE_THUNDERBOLT),\n    LEVEL_UP_MOVE(48, MOVE_SWIFT),\n    LEVEL_UP_MOVE(54, MOVE_EXPLOSION),\n    LEVEL_UP_MOVE(59, MOVE_MIRROR_COAT),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 110,
+      "species": "EXEGGCUTE",
+      "pointer": "sExeggcuteLevelUpLearnset",
+      "before_body": "static const u16 sExeggcuteLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_BARRAGE),\n    LEVEL_UP_MOVE(1, MOVE_UPROAR),\n    LEVEL_UP_MOVE(1, MOVE_HYPNOSIS),\n    LEVEL_UP_MOVE(7, MOVE_REFLECT),\n    LEVEL_UP_MOVE(13, MOVE_LEECH_SEED),\n    LEVEL_UP_MOVE(19, MOVE_CONFUSION),\n    LEVEL_UP_MOVE(25, MOVE_STUN_SPORE),\n    LEVEL_UP_MOVE(31, MOVE_POISON_POWDER),\n    LEVEL_UP_MOVE(37, MOVE_SLEEP_POWDER),\n    LEVEL_UP_MOVE(43, MOVE_SOLAR_BEAM),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sExeggcuteLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_BARRAGE),\n    LEVEL_UP_MOVE(1, MOVE_UPROAR),\n    LEVEL_UP_MOVE(1, MOVE_HYPNOSIS),\n    LEVEL_UP_MOVE(7, MOVE_REFLECT),\n    LEVEL_UP_MOVE(13, MOVE_LEECH_SEED),\n    LEVEL_UP_MOVE(18, MOVE_CONFUSION),\n    LEVEL_UP_MOVE(25, MOVE_STUN_SPORE),\n    LEVEL_UP_MOVE(31, MOVE_POISON_POWDER),\n    LEVEL_UP_MOVE(37, MOVE_SLEEP_POWDER),\n    LEVEL_UP_MOVE(43, MOVE_SOLAR_BEAM),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 111,
+      "species": "EXEGGUTOR",
+      "pointer": "sExeggutorLevelUpLearnset",
+      "before_body": "static const u16 sExeggutorLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_BARRAGE),\n    LEVEL_UP_MOVE(1, MOVE_HYPNOSIS),\n    LEVEL_UP_MOVE(1, MOVE_CONFUSION),\n    LEVEL_UP_MOVE(19, MOVE_STOMP),\n    LEVEL_UP_MOVE(31, MOVE_EGG_BOMB),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sExeggutorLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_BARRAGE),\n    LEVEL_UP_MOVE(1, MOVE_HYPNOSIS),\n    LEVEL_UP_MOVE(1, MOVE_CONFUSION),\n    LEVEL_UP_MOVE(19, MOVE_STOMP),\n    LEVEL_UP_MOVE(31, MOVE_EGG_BOMB),\n    LEVEL_UP_MOVE(33, MOVE_PSYBEAM),\n    LEVEL_UP_MOVE(45, MOVE_SOLAR_BEAM),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 113,
+      "species": "MAROWAK",
+      "pointer": "sMarowakLevelUpLearnset",
+      "before_body": "static const u16 sMarowakLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(1, MOVE_TAIL_WHIP),\n    LEVEL_UP_MOVE(1, MOVE_BONE_CLUB),\n    LEVEL_UP_MOVE(1, MOVE_HEADBUTT),\n    LEVEL_UP_MOVE(5, MOVE_TAIL_WHIP),\n    LEVEL_UP_MOVE(9, MOVE_BONE_CLUB),\n    LEVEL_UP_MOVE(13, MOVE_HEADBUTT),\n    LEVEL_UP_MOVE(17, MOVE_LEER),\n    LEVEL_UP_MOVE(21, MOVE_FOCUS_ENERGY),\n    LEVEL_UP_MOVE(25, MOVE_BONEMERANG),\n    LEVEL_UP_MOVE(32, MOVE_RAGE),\n    LEVEL_UP_MOVE(39, MOVE_FALSE_SWIPE),\n    LEVEL_UP_MOVE(46, MOVE_THRASH),\n    LEVEL_UP_MOVE(53, MOVE_BONE_RUSH),\n    LEVEL_UP_MOVE(61, MOVE_DOUBLE_EDGE),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sMarowakLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(1, MOVE_TAIL_WHIP),\n    LEVEL_UP_MOVE(1, MOVE_BONE_CLUB),\n    LEVEL_UP_MOVE(1, MOVE_HEADBUTT),\n    LEVEL_UP_MOVE(5, MOVE_TAIL_WHIP),\n    LEVEL_UP_MOVE(9, MOVE_BONE_CLUB),\n    LEVEL_UP_MOVE(13, MOVE_HEADBUTT),\n    LEVEL_UP_MOVE(17, MOVE_LEER),\n    LEVEL_UP_MOVE(21, MOVE_FOCUS_ENERGY),\n    LEVEL_UP_MOVE(25, MOVE_BONEMERANG),\n    LEVEL_UP_MOVE(32, MOVE_RAGE),\n    LEVEL_UP_MOVE(39, MOVE_FALSE_SWIPE),\n    LEVEL_UP_MOVE(45, MOVE_EARTHQUAKE),\n    LEVEL_UP_MOVE(46, MOVE_THRASH),\n    LEVEL_UP_MOVE(53, MOVE_BONE_RUSH),\n    LEVEL_UP_MOVE(61, MOVE_DOUBLE_EDGE),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 114,
+      "species": "TYROGUE",
+      "pointer": "sTyrogueLevelUpLearnset",
+      "before_body": "static const u16 sTyrogueLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sTyrogueLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(12, MOVE_MACH_PUNCH),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 118,
+      "species": "LICKITUNG",
+      "pointer": "sLickitungLevelUpLearnset",
+      "before_body": "static const u16 sLickitungLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_LICK),\n    LEVEL_UP_MOVE(7, MOVE_SUPERSONIC),\n    LEVEL_UP_MOVE(12, MOVE_DEFENSE_CURL),\n    LEVEL_UP_MOVE(18, MOVE_KNOCK_OFF),\n    LEVEL_UP_MOVE(23, MOVE_STOMP),\n    LEVEL_UP_MOVE(29, MOVE_WRAP),\n    LEVEL_UP_MOVE(34, MOVE_DISABLE),\n    LEVEL_UP_MOVE(40, MOVE_SLAM),\n    LEVEL_UP_MOVE(45, MOVE_SCREECH),\n    LEVEL_UP_MOVE(51, MOVE_REFRESH),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sLickitungLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_LICK),\n    LEVEL_UP_MOVE(7, MOVE_SUPERSONIC),\n    LEVEL_UP_MOVE(12, MOVE_DEFENSE_CURL),\n    LEVEL_UP_MOVE(18, MOVE_KNOCK_OFF),\n    LEVEL_UP_MOVE(23, MOVE_STOMP),\n    LEVEL_UP_MOVE(29, MOVE_WRAP),\n    LEVEL_UP_MOVE(34, MOVE_DISABLE),\n    LEVEL_UP_MOVE(39, MOVE_SHADOW_BALL),\n    LEVEL_UP_MOVE(40, MOVE_SLAM),\n    LEVEL_UP_MOVE(45, MOVE_SCREECH),\n    LEVEL_UP_MOVE(51, MOVE_REFRESH),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 119,
+      "species": "KOFFING",
+      "pointer": "sKoffingLevelUpLearnset",
+      "before_body": "static const u16 sKoffingLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_POISON_GAS),\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(9, MOVE_SMOG),\n    LEVEL_UP_MOVE(17, MOVE_SELF_DESTRUCT),\n    LEVEL_UP_MOVE(21, MOVE_SLUDGE),\n    LEVEL_UP_MOVE(25, MOVE_SMOKESCREEN),\n    LEVEL_UP_MOVE(33, MOVE_HAZE),\n    LEVEL_UP_MOVE(41, MOVE_EXPLOSION),\n    LEVEL_UP_MOVE(45, MOVE_DESTINY_BOND),\n    LEVEL_UP_MOVE(49, MOVE_MEMENTO),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sKoffingLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_POISON_GAS),\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(9, MOVE_SMOG),\n    LEVEL_UP_MOVE(17, MOVE_SELF_DESTRUCT),\n    LEVEL_UP_MOVE(19, MOVE_SLUDGE),\n    LEVEL_UP_MOVE(25, MOVE_SMOKESCREEN),\n    LEVEL_UP_MOVE(33, MOVE_HAZE),\n    LEVEL_UP_MOVE(41, MOVE_EXPLOSION),\n    LEVEL_UP_MOVE(45, MOVE_DESTINY_BOND),\n    LEVEL_UP_MOVE(49, MOVE_MEMENTO),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 120,
+      "species": "WEEZING",
+      "pointer": "sWeezingLevelUpLearnset",
+      "before_body": "static const u16 sWeezingLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_POISON_GAS),\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_SMOG),\n    LEVEL_UP_MOVE(1, MOVE_SELF_DESTRUCT),\n    LEVEL_UP_MOVE(9, MOVE_SMOG),\n    LEVEL_UP_MOVE(17, MOVE_SELF_DESTRUCT),\n    LEVEL_UP_MOVE(21, MOVE_SLUDGE),\n    LEVEL_UP_MOVE(25, MOVE_SMOKESCREEN),\n    LEVEL_UP_MOVE(33, MOVE_HAZE),\n    LEVEL_UP_MOVE(44, MOVE_EXPLOSION),\n    LEVEL_UP_MOVE(51, MOVE_DESTINY_BOND),\n    LEVEL_UP_MOVE(58, MOVE_MEMENTO),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sWeezingLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_POISON_GAS),\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_SMOG),\n    LEVEL_UP_MOVE(1, MOVE_SELF_DESTRUCT),\n    LEVEL_UP_MOVE(9, MOVE_SMOG),\n    LEVEL_UP_MOVE(17, MOVE_SELF_DESTRUCT),\n    LEVEL_UP_MOVE(21, MOVE_SLUDGE),\n    LEVEL_UP_MOVE(25, MOVE_SMOKESCREEN),\n    LEVEL_UP_MOVE(33, MOVE_HAZE),\n    LEVEL_UP_MOVE(44, MOVE_EXPLOSION),\n    LEVEL_UP_MOVE(45, MOVE_SLUDGE_BOMB),\n    LEVEL_UP_MOVE(51, MOVE_DESTINY_BOND),\n    LEVEL_UP_MOVE(58, MOVE_MEMENTO),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 121,
+      "species": "RHYHORN",
+      "pointer": "sRhyhornLevelUpLearnset",
+      "before_body": "static const u16 sRhyhornLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_HORN_ATTACK),\n    LEVEL_UP_MOVE(1, MOVE_TAIL_WHIP),\n    LEVEL_UP_MOVE(10, MOVE_STOMP),\n    LEVEL_UP_MOVE(15, MOVE_FURY_ATTACK),\n    LEVEL_UP_MOVE(24, MOVE_SCARY_FACE),\n    LEVEL_UP_MOVE(29, MOVE_ROCK_BLAST),\n    LEVEL_UP_MOVE(38, MOVE_HORN_DRILL),\n    LEVEL_UP_MOVE(43, MOVE_TAKE_DOWN),\n    LEVEL_UP_MOVE(52, MOVE_EARTHQUAKE),\n    LEVEL_UP_MOVE(57, MOVE_MEGAHORN),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sRhyhornLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_HORN_ATTACK),\n    LEVEL_UP_MOVE(1, MOVE_TAIL_WHIP),\n    LEVEL_UP_MOVE(10, MOVE_STOMP),\n    LEVEL_UP_MOVE(15, MOVE_FURY_ATTACK),\n    LEVEL_UP_MOVE(19, MOVE_ROCK_BLAST),\n    LEVEL_UP_MOVE(24, MOVE_SCARY_FACE),\n    LEVEL_UP_MOVE(38, MOVE_HORN_DRILL),\n    LEVEL_UP_MOVE(43, MOVE_TAKE_DOWN),\n    LEVEL_UP_MOVE(52, MOVE_EARTHQUAKE),\n    LEVEL_UP_MOVE(57, MOVE_MEGAHORN),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 122,
+      "species": "RHYDON",
+      "pointer": "sRhydonLevelUpLearnset",
+      "before_body": "static const u16 sRhydonLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_HORN_ATTACK),\n    LEVEL_UP_MOVE(1, MOVE_TAIL_WHIP),\n    LEVEL_UP_MOVE(1, MOVE_STOMP),\n    LEVEL_UP_MOVE(1, MOVE_FURY_ATTACK),\n    LEVEL_UP_MOVE(10, MOVE_STOMP),\n    LEVEL_UP_MOVE(15, MOVE_FURY_ATTACK),\n    LEVEL_UP_MOVE(24, MOVE_SCARY_FACE),\n    LEVEL_UP_MOVE(29, MOVE_ROCK_BLAST),\n    LEVEL_UP_MOVE(38, MOVE_HORN_DRILL),\n    LEVEL_UP_MOVE(46, MOVE_TAKE_DOWN),\n    LEVEL_UP_MOVE(58, MOVE_EARTHQUAKE),\n    LEVEL_UP_MOVE(66, MOVE_MEGAHORN),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sRhydonLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_HORN_ATTACK),\n    LEVEL_UP_MOVE(1, MOVE_TAIL_WHIP),\n    LEVEL_UP_MOVE(1, MOVE_STOMP),\n    LEVEL_UP_MOVE(1, MOVE_FURY_ATTACK),\n    LEVEL_UP_MOVE(10, MOVE_STOMP),\n    LEVEL_UP_MOVE(15, MOVE_FURY_ATTACK),\n    LEVEL_UP_MOVE(24, MOVE_SCARY_FACE),\n    LEVEL_UP_MOVE(29, MOVE_ROCK_BLAST),\n    LEVEL_UP_MOVE(38, MOVE_HORN_DRILL),\n    LEVEL_UP_MOVE(43, MOVE_ROCK_SLIDE),\n    LEVEL_UP_MOVE(46, MOVE_TAKE_DOWN),\n    LEVEL_UP_MOVE(47, MOVE_EARTHQUAKE),\n    LEVEL_UP_MOVE(66, MOVE_MEGAHORN),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 124,
+      "species": "BLISSEY",
+      "pointer": "sBlisseyLevelUpLearnset",
+      "before_body": "static const u16 sBlisseyLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_POUND),\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(4, MOVE_TAIL_WHIP),\n    LEVEL_UP_MOVE(7, MOVE_REFRESH),\n    LEVEL_UP_MOVE(10, MOVE_SOFT_BOILED),\n    LEVEL_UP_MOVE(13, MOVE_DOUBLE_SLAP),\n    LEVEL_UP_MOVE(18, MOVE_MINIMIZE),\n    LEVEL_UP_MOVE(23, MOVE_SING),\n    LEVEL_UP_MOVE(28, MOVE_EGG_BOMB),\n    LEVEL_UP_MOVE(33, MOVE_DEFENSE_CURL),\n    LEVEL_UP_MOVE(40, MOVE_LIGHT_SCREEN),\n    LEVEL_UP_MOVE(47, MOVE_DOUBLE_EDGE),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sBlisseyLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_POUND),\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(4, MOVE_TAIL_WHIP),\n    LEVEL_UP_MOVE(7, MOVE_REFRESH),\n    LEVEL_UP_MOVE(10, MOVE_SOFT_BOILED),\n    LEVEL_UP_MOVE(13, MOVE_DOUBLE_SLAP),\n    LEVEL_UP_MOVE(18, MOVE_MINIMIZE),\n    LEVEL_UP_MOVE(23, MOVE_SING),\n    LEVEL_UP_MOVE(28, MOVE_EGG_BOMB),\n    LEVEL_UP_MOVE(33, MOVE_DEFENSE_CURL),\n    LEVEL_UP_MOVE(40, MOVE_LIGHT_SCREEN),\n    LEVEL_UP_MOVE(47, MOVE_DOUBLE_EDGE),\n    LEVEL_UP_MOVE(48, MOVE_HEAL_BELL),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 125,
+      "species": "TANGELA",
+      "pointer": "sTangelaLevelUpLearnset",
+      "before_body": "static const u16 sTangelaLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_INGRAIN),\n    LEVEL_UP_MOVE(1, MOVE_CONSTRICT),\n    LEVEL_UP_MOVE(4, MOVE_SLEEP_POWDER),\n    LEVEL_UP_MOVE(10, MOVE_ABSORB),\n    LEVEL_UP_MOVE(13, MOVE_GROWTH),\n    LEVEL_UP_MOVE(19, MOVE_POISON_POWDER),\n    LEVEL_UP_MOVE(22, MOVE_VINE_WHIP),\n    LEVEL_UP_MOVE(28, MOVE_BIND),\n    LEVEL_UP_MOVE(31, MOVE_MEGA_DRAIN),\n    LEVEL_UP_MOVE(37, MOVE_STUN_SPORE),\n    LEVEL_UP_MOVE(40, MOVE_SLAM),\n    LEVEL_UP_MOVE(46, MOVE_TICKLE),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sTangelaLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_INGRAIN),\n    LEVEL_UP_MOVE(1, MOVE_CONSTRICT),\n    LEVEL_UP_MOVE(4, MOVE_SLEEP_POWDER),\n    LEVEL_UP_MOVE(10, MOVE_ABSORB),\n    LEVEL_UP_MOVE(13, MOVE_GROWTH),\n    LEVEL_UP_MOVE(19, MOVE_POISON_POWDER),\n    LEVEL_UP_MOVE(22, MOVE_VINE_WHIP),\n    LEVEL_UP_MOVE(24, MOVE_MEGA_DRAIN),\n    LEVEL_UP_MOVE(28, MOVE_BIND),\n    LEVEL_UP_MOVE(37, MOVE_STUN_SPORE),\n    LEVEL_UP_MOVE(37, MOVE_GIGA_DRAIN),\n    LEVEL_UP_MOVE(40, MOVE_SLAM),\n    LEVEL_UP_MOVE(46, MOVE_TICKLE),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 126,
+      "species": "KANGASKHAN",
+      "pointer": "sKangaskhanLevelUpLearnset",
+      "before_body": "static const u16 sKangaskhanLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_COMET_PUNCH),\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(7, MOVE_BITE),\n    LEVEL_UP_MOVE(13, MOVE_TAIL_WHIP),\n    LEVEL_UP_MOVE(19, MOVE_FAKE_OUT),\n    LEVEL_UP_MOVE(25, MOVE_MEGA_PUNCH),\n    LEVEL_UP_MOVE(31, MOVE_RAGE),\n    LEVEL_UP_MOVE(37, MOVE_ENDURE),\n    LEVEL_UP_MOVE(43, MOVE_DIZZY_PUNCH),\n    LEVEL_UP_MOVE(49, MOVE_REVERSAL),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sKangaskhanLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_COMET_PUNCH),\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(7, MOVE_BITE),\n    LEVEL_UP_MOVE(13, MOVE_TAIL_WHIP),\n    LEVEL_UP_MOVE(19, MOVE_FAKE_OUT),\n    LEVEL_UP_MOVE(25, MOVE_MEGA_PUNCH),\n    LEVEL_UP_MOVE(31, MOVE_RAGE),\n    LEVEL_UP_MOVE(37, MOVE_ENDURE),\n    LEVEL_UP_MOVE(38, MOVE_BODY_SLAM),\n    LEVEL_UP_MOVE(43, MOVE_DIZZY_PUNCH),\n    LEVEL_UP_MOVE(49, MOVE_REVERSAL),\n    LEVEL_UP_MOVE(49, MOVE_CRUNCH),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 127,
+      "species": "HORSEA",
+      "pointer": "sHorseaLevelUpLearnset",
+      "before_body": "static const u16 sHorseaLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_BUBBLE),\n    LEVEL_UP_MOVE(8, MOVE_SMOKESCREEN),\n    LEVEL_UP_MOVE(15, MOVE_LEER),\n    LEVEL_UP_MOVE(22, MOVE_WATER_GUN),\n    LEVEL_UP_MOVE(29, MOVE_TWISTER),\n    LEVEL_UP_MOVE(36, MOVE_AGILITY),\n    LEVEL_UP_MOVE(43, MOVE_HYDRO_PUMP),\n    LEVEL_UP_MOVE(50, MOVE_DRAGON_DANCE),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sHorseaLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_BUBBLE),\n    LEVEL_UP_MOVE(8, MOVE_SMOKESCREEN),\n    LEVEL_UP_MOVE(15, MOVE_LEER),\n    LEVEL_UP_MOVE(18, MOVE_WATER_GUN),\n    LEVEL_UP_MOVE(29, MOVE_TWISTER),\n    LEVEL_UP_MOVE(36, MOVE_AGILITY),\n    LEVEL_UP_MOVE(43, MOVE_HYDRO_PUMP),\n    LEVEL_UP_MOVE(50, MOVE_DRAGON_DANCE),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 128,
+      "species": "SEADRA",
+      "pointer": "sSeadraLevelUpLearnset",
+      "before_body": "static const u16 sSeadraLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_BUBBLE),\n    LEVEL_UP_MOVE(1, MOVE_SMOKESCREEN),\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(1, MOVE_WATER_GUN),\n    LEVEL_UP_MOVE(8, MOVE_SMOKESCREEN),\n    LEVEL_UP_MOVE(15, MOVE_LEER),\n    LEVEL_UP_MOVE(22, MOVE_WATER_GUN),\n    LEVEL_UP_MOVE(29, MOVE_TWISTER),\n    LEVEL_UP_MOVE(40, MOVE_AGILITY),\n    LEVEL_UP_MOVE(51, MOVE_HYDRO_PUMP),\n    LEVEL_UP_MOVE(62, MOVE_DRAGON_DANCE),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sSeadraLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_BUBBLE),\n    LEVEL_UP_MOVE(1, MOVE_SMOKESCREEN),\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(1, MOVE_WATER_GUN),\n    LEVEL_UP_MOVE(8, MOVE_SMOKESCREEN),\n    LEVEL_UP_MOVE(15, MOVE_LEER),\n    LEVEL_UP_MOVE(22, MOVE_WATER_GUN),\n    LEVEL_UP_MOVE(29, MOVE_TWISTER),\n    LEVEL_UP_MOVE(31, MOVE_BUBBLE_BEAM),\n    LEVEL_UP_MOVE(40, MOVE_AGILITY),\n    LEVEL_UP_MOVE(51, MOVE_HYDRO_PUMP),\n    LEVEL_UP_MOVE(62, MOVE_DRAGON_DANCE),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 129,
+      "species": "KINGDRA",
+      "pointer": "sKingdraLevelUpLearnset",
+      "before_body": "static const u16 sKingdraLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_BUBBLE),\n    LEVEL_UP_MOVE(1, MOVE_SMOKESCREEN),\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(1, MOVE_WATER_GUN),\n    LEVEL_UP_MOVE(8, MOVE_SMOKESCREEN),\n    LEVEL_UP_MOVE(15, MOVE_LEER),\n    LEVEL_UP_MOVE(22, MOVE_WATER_GUN),\n    LEVEL_UP_MOVE(29, MOVE_TWISTER),\n    LEVEL_UP_MOVE(40, MOVE_AGILITY),\n    LEVEL_UP_MOVE(51, MOVE_HYDRO_PUMP),\n    LEVEL_UP_MOVE(62, MOVE_DRAGON_DANCE),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sKingdraLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_BUBBLE),\n    LEVEL_UP_MOVE(1, MOVE_SMOKESCREEN),\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(1, MOVE_WATER_GUN),\n    LEVEL_UP_MOVE(8, MOVE_SMOKESCREEN),\n    LEVEL_UP_MOVE(15, MOVE_LEER),\n    LEVEL_UP_MOVE(22, MOVE_WATER_GUN),\n    LEVEL_UP_MOVE(29, MOVE_TWISTER),\n    LEVEL_UP_MOVE(39, MOVE_DRAGON_BREATH),\n    LEVEL_UP_MOVE(40, MOVE_AGILITY),\n    LEVEL_UP_MOVE(49, MOVE_SURF),\n    LEVEL_UP_MOVE(51, MOVE_HYDRO_PUMP),\n    LEVEL_UP_MOVE(62, MOVE_DRAGON_DANCE),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 130,
+      "species": "GOLDEEN",
+      "pointer": "sGoldeenLevelUpLearnset",
+      "before_body": "static const u16 sGoldeenLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_PECK),\n    LEVEL_UP_MOVE(1, MOVE_TAIL_WHIP),\n    LEVEL_UP_MOVE(1, MOVE_WATER_SPORT),\n    LEVEL_UP_MOVE(10, MOVE_SUPERSONIC),\n    LEVEL_UP_MOVE(15, MOVE_HORN_ATTACK),\n    LEVEL_UP_MOVE(24, MOVE_FLAIL),\n    LEVEL_UP_MOVE(29, MOVE_FURY_ATTACK),\n    LEVEL_UP_MOVE(38, MOVE_WATERFALL),\n    LEVEL_UP_MOVE(43, MOVE_HORN_DRILL),\n    LEVEL_UP_MOVE(52, MOVE_AGILITY),\n    LEVEL_UP_MOVE(57, MOVE_MEGAHORN),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sGoldeenLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_PECK),\n    LEVEL_UP_MOVE(1, MOVE_TAIL_WHIP),\n    LEVEL_UP_MOVE(1, MOVE_WATER_SPORT),\n    LEVEL_UP_MOVE(10, MOVE_SUPERSONIC),\n    LEVEL_UP_MOVE(15, MOVE_HORN_ATTACK),\n    LEVEL_UP_MOVE(19, MOVE_WATER_PULSE),\n    LEVEL_UP_MOVE(24, MOVE_FLAIL),\n    LEVEL_UP_MOVE(29, MOVE_FURY_ATTACK),\n    LEVEL_UP_MOVE(38, MOVE_WATERFALL),\n    LEVEL_UP_MOVE(43, MOVE_HORN_DRILL),\n    LEVEL_UP_MOVE(52, MOVE_AGILITY),\n    LEVEL_UP_MOVE(57, MOVE_MEGAHORN),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 131,
+      "species": "SEAKING",
+      "pointer": "sSeakingLevelUpLearnset",
+      "before_body": "static const u16 sSeakingLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_PECK),\n    LEVEL_UP_MOVE(1, MOVE_TAIL_WHIP),\n    LEVEL_UP_MOVE(1, MOVE_WATER_SPORT),\n    LEVEL_UP_MOVE(1, MOVE_SUPERSONIC),\n    LEVEL_UP_MOVE(10, MOVE_SUPERSONIC),\n    LEVEL_UP_MOVE(15, MOVE_HORN_ATTACK),\n    LEVEL_UP_MOVE(24, MOVE_FLAIL),\n    LEVEL_UP_MOVE(29, MOVE_FURY_ATTACK),\n    LEVEL_UP_MOVE(41, MOVE_WATERFALL),\n    LEVEL_UP_MOVE(49, MOVE_HORN_DRILL),\n    LEVEL_UP_MOVE(61, MOVE_AGILITY),\n    LEVEL_UP_MOVE(69, MOVE_MEGAHORN),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sSeakingLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_PECK),\n    LEVEL_UP_MOVE(1, MOVE_TAIL_WHIP),\n    LEVEL_UP_MOVE(1, MOVE_WATER_SPORT),\n    LEVEL_UP_MOVE(1, MOVE_SUPERSONIC),\n    LEVEL_UP_MOVE(10, MOVE_SUPERSONIC),\n    LEVEL_UP_MOVE(15, MOVE_HORN_ATTACK),\n    LEVEL_UP_MOVE(24, MOVE_FLAIL),\n    LEVEL_UP_MOVE(29, MOVE_FURY_ATTACK),\n    LEVEL_UP_MOVE(34, MOVE_WATER_PULSE),\n    LEVEL_UP_MOVE(41, MOVE_WATERFALL),\n    LEVEL_UP_MOVE(49, MOVE_HORN_DRILL),\n    LEVEL_UP_MOVE(61, MOVE_AGILITY),\n    LEVEL_UP_MOVE(69, MOVE_MEGAHORN),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 132,
+      "species": "STARYU",
+      "pointer": "sStaryuLevelUpLearnset",
+      "before_body": "static const u16 sStaryuLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_HARDEN),\n    LEVEL_UP_MOVE(6, MOVE_WATER_GUN),\n    LEVEL_UP_MOVE(10, MOVE_RAPID_SPIN),\n    LEVEL_UP_MOVE(15, MOVE_RECOVER),\n    LEVEL_UP_MOVE(19, MOVE_CAMOUFLAGE),\n    LEVEL_UP_MOVE(24, MOVE_SWIFT),\n    LEVEL_UP_MOVE(28, MOVE_BUBBLE_BEAM),\n    LEVEL_UP_MOVE(33, MOVE_MINIMIZE),\n    LEVEL_UP_MOVE(37, MOVE_LIGHT_SCREEN),\n    LEVEL_UP_MOVE(42, MOVE_COSMIC_POWER),\n    LEVEL_UP_MOVE(46, MOVE_HYDRO_PUMP),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sStaryuLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_HARDEN),\n    LEVEL_UP_MOVE(6, MOVE_WATER_GUN),\n    LEVEL_UP_MOVE(10, MOVE_RAPID_SPIN),\n    LEVEL_UP_MOVE(15, MOVE_RECOVER),\n    LEVEL_UP_MOVE(19, MOVE_CAMOUFLAGE),\n    LEVEL_UP_MOVE(24, MOVE_SWIFT),\n    LEVEL_UP_MOVE(24, MOVE_WATER_PULSE),\n    LEVEL_UP_MOVE(28, MOVE_BUBBLE_BEAM),\n    LEVEL_UP_MOVE(33, MOVE_MINIMIZE),\n    LEVEL_UP_MOVE(37, MOVE_LIGHT_SCREEN),\n    LEVEL_UP_MOVE(42, MOVE_COSMIC_POWER),\n    LEVEL_UP_MOVE(46, MOVE_HYDRO_PUMP),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 133,
+      "species": "STARMIE",
+      "pointer": "sStarmieLevelUpLearnset",
+      "before_body": "static const u16 sStarmieLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_WATER_GUN),\n    LEVEL_UP_MOVE(1, MOVE_RAPID_SPIN),\n    LEVEL_UP_MOVE(1, MOVE_RECOVER),\n    LEVEL_UP_MOVE(1, MOVE_SWIFT),\n    LEVEL_UP_MOVE(33, MOVE_CONFUSE_RAY),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sStarmieLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_WATER_GUN),\n    LEVEL_UP_MOVE(1, MOVE_RAPID_SPIN),\n    LEVEL_UP_MOVE(1, MOVE_RECOVER),\n    LEVEL_UP_MOVE(1, MOVE_SWIFT),\n    LEVEL_UP_MOVE(33, MOVE_CONFUSE_RAY),\n    LEVEL_UP_MOVE(35, MOVE_PSYCHIC),\n    LEVEL_UP_MOVE(46, MOVE_SURF),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 134,
+      "species": "MR_MIME",
+      "pointer": "sMrMimeLevelUpLearnset",
+      "before_body": "static const u16 sMrMimeLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_BARRIER),\n    LEVEL_UP_MOVE(5, MOVE_CONFUSION),\n    LEVEL_UP_MOVE(8, MOVE_SUBSTITUTE),\n    LEVEL_UP_MOVE(12, MOVE_MEDITATE),\n    LEVEL_UP_MOVE(15, MOVE_DOUBLE_SLAP),\n    LEVEL_UP_MOVE(19, MOVE_LIGHT_SCREEN),\n    LEVEL_UP_MOVE(19, MOVE_REFLECT),\n    LEVEL_UP_MOVE(22, MOVE_MAGICAL_LEAF),\n    LEVEL_UP_MOVE(26, MOVE_ENCORE),\n    LEVEL_UP_MOVE(29, MOVE_PSYBEAM),\n    LEVEL_UP_MOVE(33, MOVE_RECYCLE),\n    LEVEL_UP_MOVE(36, MOVE_TRICK),\n    LEVEL_UP_MOVE(40, MOVE_ROLE_PLAY),\n    LEVEL_UP_MOVE(43, MOVE_PSYCHIC),\n    LEVEL_UP_MOVE(47, MOVE_BATON_PASS),\n    LEVEL_UP_MOVE(50, MOVE_SAFEGUARD),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sMrMimeLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_BARRIER),\n    LEVEL_UP_MOVE(5, MOVE_CONFUSION),\n    LEVEL_UP_MOVE(8, MOVE_SUBSTITUTE),\n    LEVEL_UP_MOVE(12, MOVE_MEDITATE),\n    LEVEL_UP_MOVE(15, MOVE_DOUBLE_SLAP),\n    LEVEL_UP_MOVE(19, MOVE_LIGHT_SCREEN),\n    LEVEL_UP_MOVE(19, MOVE_REFLECT),\n    LEVEL_UP_MOVE(22, MOVE_MAGICAL_LEAF),\n    LEVEL_UP_MOVE(24, MOVE_PSYBEAM),\n    LEVEL_UP_MOVE(26, MOVE_ENCORE),\n    LEVEL_UP_MOVE(33, MOVE_RECYCLE),\n    LEVEL_UP_MOVE(36, MOVE_TRICK),\n    LEVEL_UP_MOVE(40, MOVE_ROLE_PLAY),\n    LEVEL_UP_MOVE(43, MOVE_PSYCHIC),\n    LEVEL_UP_MOVE(47, MOVE_BATON_PASS),\n    LEVEL_UP_MOVE(50, MOVE_SAFEGUARD),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 135,
+      "species": "SCYTHER",
+      "pointer": "sScytherLevelUpLearnset",
+      "before_body": "static const u16 sScytherLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_QUICK_ATTACK),\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(6, MOVE_FOCUS_ENERGY),\n    LEVEL_UP_MOVE(11, MOVE_PURSUIT),\n    LEVEL_UP_MOVE(16, MOVE_FALSE_SWIPE),\n    LEVEL_UP_MOVE(21, MOVE_AGILITY),\n    LEVEL_UP_MOVE(26, MOVE_WING_ATTACK),\n    LEVEL_UP_MOVE(31, MOVE_SLASH),\n    LEVEL_UP_MOVE(36, MOVE_SWORDS_DANCE),\n    LEVEL_UP_MOVE(41, MOVE_DOUBLE_TEAM),\n    LEVEL_UP_MOVE(46, MOVE_FURY_CUTTER),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sScytherLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_QUICK_ATTACK),\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(6, MOVE_FOCUS_ENERGY),\n    LEVEL_UP_MOVE(11, MOVE_PURSUIT),\n    LEVEL_UP_MOVE(16, MOVE_FALSE_SWIPE),\n    LEVEL_UP_MOVE(21, MOVE_AGILITY),\n    LEVEL_UP_MOVE(25, MOVE_AERIAL_ACE),\n    LEVEL_UP_MOVE(26, MOVE_WING_ATTACK),\n    LEVEL_UP_MOVE(31, MOVE_SLASH),\n    LEVEL_UP_MOVE(36, MOVE_SWORDS_DANCE),\n    LEVEL_UP_MOVE(41, MOVE_DOUBLE_TEAM),\n    LEVEL_UP_MOVE(46, MOVE_FURY_CUTTER),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 137,
+      "species": "SMOOCHUM",
+      "pointer": "sSmoochumLevelUpLearnset",
+      "before_body": "static const u16 sSmoochumLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_POUND),\n    LEVEL_UP_MOVE(1, MOVE_LICK),\n    LEVEL_UP_MOVE(9, MOVE_SWEET_KISS),\n    LEVEL_UP_MOVE(13, MOVE_POWDER_SNOW),\n    LEVEL_UP_MOVE(21, MOVE_CONFUSION),\n    LEVEL_UP_MOVE(25, MOVE_SING),\n    LEVEL_UP_MOVE(33, MOVE_MEAN_LOOK),\n    LEVEL_UP_MOVE(37, MOVE_FAKE_TEARS),\n    LEVEL_UP_MOVE(45, MOVE_PSYCHIC),\n    LEVEL_UP_MOVE(49, MOVE_PERISH_SONG),\n    LEVEL_UP_MOVE(57, MOVE_BLIZZARD),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sSmoochumLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_POUND),\n    LEVEL_UP_MOVE(1, MOVE_LICK),\n    LEVEL_UP_MOVE(9, MOVE_SWEET_KISS),\n    LEVEL_UP_MOVE(13, MOVE_POWDER_SNOW),\n    LEVEL_UP_MOVE(15, MOVE_CONFUSION),\n    LEVEL_UP_MOVE(25, MOVE_SING),\n    LEVEL_UP_MOVE(33, MOVE_MEAN_LOOK),\n    LEVEL_UP_MOVE(37, MOVE_FAKE_TEARS),\n    LEVEL_UP_MOVE(45, MOVE_PSYCHIC),\n    LEVEL_UP_MOVE(49, MOVE_PERISH_SONG),\n    LEVEL_UP_MOVE(57, MOVE_BLIZZARD),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 138,
+      "species": "JYNX",
+      "pointer": "sJynxLevelUpLearnset",
+      "before_body": "static const u16 sJynxLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_POUND),\n    LEVEL_UP_MOVE(1, MOVE_LICK),\n    LEVEL_UP_MOVE(1, MOVE_LOVELY_KISS),\n    LEVEL_UP_MOVE(1, MOVE_POWDER_SNOW),\n    LEVEL_UP_MOVE(9, MOVE_LOVELY_KISS),\n    LEVEL_UP_MOVE(13, MOVE_POWDER_SNOW),\n    LEVEL_UP_MOVE(21, MOVE_DOUBLE_SLAP),\n    LEVEL_UP_MOVE(25, MOVE_ICE_PUNCH),\n    LEVEL_UP_MOVE(35, MOVE_MEAN_LOOK),\n    LEVEL_UP_MOVE(41, MOVE_FAKE_TEARS),\n    LEVEL_UP_MOVE(51, MOVE_BODY_SLAM),\n    LEVEL_UP_MOVE(57, MOVE_PERISH_SONG),\n    LEVEL_UP_MOVE(67, MOVE_BLIZZARD),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sJynxLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_POUND),\n    LEVEL_UP_MOVE(1, MOVE_LICK),\n    LEVEL_UP_MOVE(1, MOVE_LOVELY_KISS),\n    LEVEL_UP_MOVE(1, MOVE_POWDER_SNOW),\n    LEVEL_UP_MOVE(9, MOVE_LOVELY_KISS),\n    LEVEL_UP_MOVE(13, MOVE_POWDER_SNOW),\n    LEVEL_UP_MOVE(21, MOVE_DOUBLE_SLAP),\n    LEVEL_UP_MOVE(25, MOVE_ICE_PUNCH),\n    LEVEL_UP_MOVE(35, MOVE_MEAN_LOOK),\n    LEVEL_UP_MOVE(41, MOVE_FAKE_TEARS),\n    LEVEL_UP_MOVE(44, MOVE_PSYCHIC),\n    LEVEL_UP_MOVE(51, MOVE_BODY_SLAM),\n    LEVEL_UP_MOVE(57, MOVE_PERISH_SONG),\n    LEVEL_UP_MOVE(67, MOVE_BLIZZARD),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 139,
+      "species": "ELEKID",
+      "pointer": "sElekidLevelUpLearnset",
+      "before_body": "static const u16 sElekidLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_QUICK_ATTACK),\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(9, MOVE_THUNDER_PUNCH),\n    LEVEL_UP_MOVE(17, MOVE_LIGHT_SCREEN),\n    LEVEL_UP_MOVE(25, MOVE_SWIFT),\n    LEVEL_UP_MOVE(33, MOVE_SCREECH),\n    LEVEL_UP_MOVE(41, MOVE_THUNDERBOLT),\n    LEVEL_UP_MOVE(49, MOVE_THUNDER),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sElekidLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_QUICK_ATTACK),\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(9, MOVE_THUNDER_PUNCH),\n    LEVEL_UP_MOVE(15, MOVE_SPARK),\n    LEVEL_UP_MOVE(17, MOVE_LIGHT_SCREEN),\n    LEVEL_UP_MOVE(25, MOVE_SWIFT),\n    LEVEL_UP_MOVE(33, MOVE_SCREECH),\n    LEVEL_UP_MOVE(41, MOVE_THUNDERBOLT),\n    LEVEL_UP_MOVE(49, MOVE_THUNDER),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 140,
+      "species": "ELECTABUZZ",
+      "pointer": "sElectabuzzLevelUpLearnset",
+      "before_body": "static const u16 sElectabuzzLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_QUICK_ATTACK),\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(1, MOVE_THUNDER_PUNCH),\n    LEVEL_UP_MOVE(9, MOVE_THUNDER_PUNCH),\n    LEVEL_UP_MOVE(17, MOVE_LIGHT_SCREEN),\n    LEVEL_UP_MOVE(25, MOVE_SWIFT),\n    LEVEL_UP_MOVE(36, MOVE_SCREECH),\n    LEVEL_UP_MOVE(47, MOVE_THUNDERBOLT),\n    LEVEL_UP_MOVE(58, MOVE_THUNDER),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sElectabuzzLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_QUICK_ATTACK),\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(1, MOVE_THUNDER_PUNCH),\n    LEVEL_UP_MOVE(9, MOVE_THUNDER_PUNCH),\n    LEVEL_UP_MOVE(17, MOVE_LIGHT_SCREEN),\n    LEVEL_UP_MOVE(25, MOVE_SWIFT),\n    LEVEL_UP_MOVE(36, MOVE_SCREECH),\n    LEVEL_UP_MOVE(45, MOVE_THUNDERBOLT),\n    LEVEL_UP_MOVE(58, MOVE_THUNDER),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 143,
+      "species": "PINSIR",
+      "pointer": "sPinsirLevelUpLearnset",
+      "before_body": "static const u16 sPinsirLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_VICE_GRIP),\n    LEVEL_UP_MOVE(1, MOVE_FOCUS_ENERGY),\n    LEVEL_UP_MOVE(7, MOVE_BIND),\n    LEVEL_UP_MOVE(13, MOVE_SEISMIC_TOSS),\n    LEVEL_UP_MOVE(19, MOVE_HARDEN),\n    LEVEL_UP_MOVE(25, MOVE_REVENGE),\n    LEVEL_UP_MOVE(31, MOVE_BRICK_BREAK),\n    LEVEL_UP_MOVE(37, MOVE_GUILLOTINE),\n    LEVEL_UP_MOVE(43, MOVE_SUBMISSION),\n    LEVEL_UP_MOVE(49, MOVE_SWORDS_DANCE),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sPinsirLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_VICE_GRIP),\n    LEVEL_UP_MOVE(1, MOVE_FOCUS_ENERGY),\n    LEVEL_UP_MOVE(7, MOVE_BIND),\n    LEVEL_UP_MOVE(13, MOVE_SEISMIC_TOSS),\n    LEVEL_UP_MOVE(19, MOVE_HARDEN),\n    LEVEL_UP_MOVE(25, MOVE_REVENGE),\n    LEVEL_UP_MOVE(28, MOVE_BRICK_BREAK),\n    LEVEL_UP_MOVE(37, MOVE_GUILLOTINE),\n    LEVEL_UP_MOVE(43, MOVE_SUBMISSION),\n    LEVEL_UP_MOVE(43, MOVE_MEGAHORN),\n    LEVEL_UP_MOVE(49, MOVE_SWORDS_DANCE),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 144,
+      "species": "TAUROS",
+      "pointer": "sTaurosLevelUpLearnset",
+      "before_body": "static const u16 sTaurosLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_TAIL_WHIP),\n    LEVEL_UP_MOVE(4, MOVE_RAGE),\n    LEVEL_UP_MOVE(8, MOVE_HORN_ATTACK),\n    LEVEL_UP_MOVE(13, MOVE_SCARY_FACE),\n    LEVEL_UP_MOVE(19, MOVE_PURSUIT),\n    LEVEL_UP_MOVE(26, MOVE_SWAGGER),\n    LEVEL_UP_MOVE(34, MOVE_REST),\n    LEVEL_UP_MOVE(43, MOVE_THRASH),\n    LEVEL_UP_MOVE(53, MOVE_TAKE_DOWN),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sTaurosLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_TAIL_WHIP),\n    LEVEL_UP_MOVE(4, MOVE_RAGE),\n    LEVEL_UP_MOVE(8, MOVE_HORN_ATTACK),\n    LEVEL_UP_MOVE(13, MOVE_SCARY_FACE),\n    LEVEL_UP_MOVE(19, MOVE_PURSUIT),\n    LEVEL_UP_MOVE(26, MOVE_SWAGGER),\n    LEVEL_UP_MOVE(34, MOVE_REST),\n    LEVEL_UP_MOVE(42, MOVE_THRASH),\n    LEVEL_UP_MOVE(53, MOVE_TAKE_DOWN),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 146,
+      "species": "GYARADOS",
+      "pointer": "sGyaradosLevelUpLearnset",
+      "before_body": "static const u16 sGyaradosLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_THRASH),\n    LEVEL_UP_MOVE(20, MOVE_BITE),\n    LEVEL_UP_MOVE(25, MOVE_DRAGON_RAGE),\n    LEVEL_UP_MOVE(30, MOVE_LEER),\n    LEVEL_UP_MOVE(35, MOVE_TWISTER),\n    LEVEL_UP_MOVE(40, MOVE_HYDRO_PUMP),\n    LEVEL_UP_MOVE(45, MOVE_RAIN_DANCE),\n    LEVEL_UP_MOVE(50, MOVE_DRAGON_DANCE),\n    LEVEL_UP_MOVE(55, MOVE_HYPER_BEAM),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sGyaradosLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_THRASH),\n    LEVEL_UP_MOVE(20, MOVE_BITE),\n    LEVEL_UP_MOVE(25, MOVE_DRAGON_RAGE),\n    LEVEL_UP_MOVE(30, MOVE_LEER),\n    LEVEL_UP_MOVE(35, MOVE_TWISTER),\n    LEVEL_UP_MOVE(40, MOVE_HYDRO_PUMP),\n    LEVEL_UP_MOVE(42, MOVE_DRAGON_BREATH),\n    LEVEL_UP_MOVE(45, MOVE_RAIN_DANCE),\n    LEVEL_UP_MOVE(50, MOVE_DRAGON_DANCE),\n    LEVEL_UP_MOVE(55, MOVE_HYPER_BEAM),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 147,
+      "species": "LAPRAS",
+      "pointer": "sLaprasLevelUpLearnset",
+      "before_body": "static const u16 sLaprasLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_WATER_GUN),\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(1, MOVE_SING),\n    LEVEL_UP_MOVE(7, MOVE_MIST),\n    LEVEL_UP_MOVE(13, MOVE_BODY_SLAM),\n    LEVEL_UP_MOVE(19, MOVE_CONFUSE_RAY),\n    LEVEL_UP_MOVE(25, MOVE_PERISH_SONG),\n    LEVEL_UP_MOVE(31, MOVE_ICE_BEAM),\n    LEVEL_UP_MOVE(37, MOVE_RAIN_DANCE),\n    LEVEL_UP_MOVE(43, MOVE_SAFEGUARD),\n    LEVEL_UP_MOVE(49, MOVE_HYDRO_PUMP),\n    LEVEL_UP_MOVE(55, MOVE_SHEER_COLD),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sLaprasLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_WATER_GUN),\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(1, MOVE_SING),\n    LEVEL_UP_MOVE(7, MOVE_MIST),\n    LEVEL_UP_MOVE(13, MOVE_BODY_SLAM),\n    LEVEL_UP_MOVE(19, MOVE_CONFUSE_RAY),\n    LEVEL_UP_MOVE(25, MOVE_PERISH_SONG),\n    LEVEL_UP_MOVE(29, MOVE_AURORA_BEAM),\n    LEVEL_UP_MOVE(31, MOVE_ICE_BEAM),\n    LEVEL_UP_MOVE(37, MOVE_RAIN_DANCE),\n    LEVEL_UP_MOVE(40, MOVE_SURF),\n    LEVEL_UP_MOVE(43, MOVE_SAFEGUARD),\n    LEVEL_UP_MOVE(49, MOVE_HYDRO_PUMP),\n    LEVEL_UP_MOVE(55, MOVE_SHEER_COLD),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 156,
+      "species": "PORYGON2",
+      "pointer": "sPorygon2LevelUpLearnset",
+      "before_body": "static const u16 sPorygon2LevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_CONVERSION_2),\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_CONVERSION),\n    LEVEL_UP_MOVE(9, MOVE_AGILITY),\n    LEVEL_UP_MOVE(12, MOVE_PSYBEAM),\n    LEVEL_UP_MOVE(20, MOVE_RECOVER),\n    LEVEL_UP_MOVE(24, MOVE_DEFENSE_CURL),\n    LEVEL_UP_MOVE(32, MOVE_LOCK_ON),\n    LEVEL_UP_MOVE(36, MOVE_TRI_ATTACK),\n    LEVEL_UP_MOVE(44, MOVE_RECYCLE),\n    LEVEL_UP_MOVE(48, MOVE_ZAP_CANNON),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sPorygon2LevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_CONVERSION_2),\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_CONVERSION),\n    LEVEL_UP_MOVE(9, MOVE_AGILITY),\n    LEVEL_UP_MOVE(12, MOVE_PSYBEAM),\n    LEVEL_UP_MOVE(20, MOVE_RECOVER),\n    LEVEL_UP_MOVE(24, MOVE_DEFENSE_CURL),\n    LEVEL_UP_MOVE(32, MOVE_LOCK_ON),\n    LEVEL_UP_MOVE(35, MOVE_TRI_ATTACK),\n    LEVEL_UP_MOVE(44, MOVE_RECYCLE),\n    LEVEL_UP_MOVE(48, MOVE_ZAP_CANNON),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 158,
+      "species": "OMASTAR",
+      "pointer": "sOmastarLevelUpLearnset",
+      "before_body": "static const u16 sOmastarLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_CONSTRICT),\n    LEVEL_UP_MOVE(1, MOVE_WITHDRAW),\n    LEVEL_UP_MOVE(1, MOVE_BITE),\n    LEVEL_UP_MOVE(1, MOVE_WATER_GUN),\n    LEVEL_UP_MOVE(13, MOVE_BITE),\n    LEVEL_UP_MOVE(19, MOVE_WATER_GUN),\n    LEVEL_UP_MOVE(25, MOVE_MUD_SHOT),\n    LEVEL_UP_MOVE(31, MOVE_LEER),\n    LEVEL_UP_MOVE(37, MOVE_PROTECT),\n    LEVEL_UP_MOVE(40, MOVE_SPIKE_CANNON),\n    LEVEL_UP_MOVE(46, MOVE_TICKLE),\n    LEVEL_UP_MOVE(55, MOVE_ANCIENT_POWER),\n    LEVEL_UP_MOVE(65, MOVE_HYDRO_PUMP),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sOmastarLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_CONSTRICT),\n    LEVEL_UP_MOVE(1, MOVE_WITHDRAW),\n    LEVEL_UP_MOVE(1, MOVE_BITE),\n    LEVEL_UP_MOVE(1, MOVE_WATER_GUN),\n    LEVEL_UP_MOVE(13, MOVE_BITE),\n    LEVEL_UP_MOVE(19, MOVE_WATER_GUN),\n    LEVEL_UP_MOVE(25, MOVE_MUD_SHOT),\n    LEVEL_UP_MOVE(31, MOVE_LEER),\n    LEVEL_UP_MOVE(37, MOVE_PROTECT),\n    LEVEL_UP_MOVE(40, MOVE_SPIKE_CANNON),\n    LEVEL_UP_MOVE(42, MOVE_ROCK_SLIDE),\n    LEVEL_UP_MOVE(46, MOVE_TICKLE),\n    LEVEL_UP_MOVE(53, MOVE_HYDRO_PUMP),\n    LEVEL_UP_MOVE(55, MOVE_ANCIENT_POWER),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 160,
+      "species": "KABUTOPS",
+      "pointer": "sKabutopsLevelUpLearnset",
+      "before_body": "static const u16 sKabutopsLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_FURY_CUTTER),\n    LEVEL_UP_MOVE(1, MOVE_SCRATCH),\n    LEVEL_UP_MOVE(1, MOVE_HARDEN),\n    LEVEL_UP_MOVE(1, MOVE_ABSORB),\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(13, MOVE_ABSORB),\n    LEVEL_UP_MOVE(19, MOVE_LEER),\n    LEVEL_UP_MOVE(25, MOVE_MUD_SHOT),\n    LEVEL_UP_MOVE(31, MOVE_SAND_ATTACK),\n    LEVEL_UP_MOVE(37, MOVE_ENDURE),\n    LEVEL_UP_MOVE(40, MOVE_SLASH),\n    LEVEL_UP_MOVE(46, MOVE_METAL_SOUND),\n    LEVEL_UP_MOVE(55, MOVE_MEGA_DRAIN),\n    LEVEL_UP_MOVE(65, MOVE_ANCIENT_POWER),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sKabutopsLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_FURY_CUTTER),\n    LEVEL_UP_MOVE(1, MOVE_SCRATCH),\n    LEVEL_UP_MOVE(1, MOVE_HARDEN),\n    LEVEL_UP_MOVE(1, MOVE_ABSORB),\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(13, MOVE_ABSORB),\n    LEVEL_UP_MOVE(19, MOVE_LEER),\n    LEVEL_UP_MOVE(25, MOVE_MUD_SHOT),\n    LEVEL_UP_MOVE(31, MOVE_SAND_ATTACK),\n    LEVEL_UP_MOVE(37, MOVE_ENDURE),\n    LEVEL_UP_MOVE(40, MOVE_SLASH),\n    LEVEL_UP_MOVE(46, MOVE_METAL_SOUND),\n    LEVEL_UP_MOVE(53, MOVE_ROCK_SLIDE),\n    LEVEL_UP_MOVE(55, MOVE_MEGA_DRAIN),\n    LEVEL_UP_MOVE(65, MOVE_ANCIENT_POWER),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 161,
+      "species": "AERODACTYL",
+      "pointer": "sAerodactylLevelUpLearnset",
+      "before_body": "static const u16 sAerodactylLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_WING_ATTACK),\n    LEVEL_UP_MOVE(8, MOVE_AGILITY),\n    LEVEL_UP_MOVE(15, MOVE_BITE),\n    LEVEL_UP_MOVE(22, MOVE_SUPERSONIC),\n    LEVEL_UP_MOVE(29, MOVE_ANCIENT_POWER),\n    LEVEL_UP_MOVE(36, MOVE_SCARY_FACE),\n    LEVEL_UP_MOVE(43, MOVE_TAKE_DOWN),\n    LEVEL_UP_MOVE(50, MOVE_HYPER_BEAM),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sAerodactylLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_WING_ATTACK),\n    LEVEL_UP_MOVE(8, MOVE_AGILITY),\n    LEVEL_UP_MOVE(15, MOVE_BITE),\n    LEVEL_UP_MOVE(22, MOVE_SUPERSONIC),\n    LEVEL_UP_MOVE(29, MOVE_ANCIENT_POWER),\n    LEVEL_UP_MOVE(36, MOVE_SCARY_FACE),\n    LEVEL_UP_MOVE(43, MOVE_TAKE_DOWN),\n    LEVEL_UP_MOVE(48, MOVE_AERIAL_ACE),\n    LEVEL_UP_MOVE(50, MOVE_HYPER_BEAM),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 166,
+      "species": "HOOTHOOT",
+      "pointer": "sHoothootLevelUpLearnset",
+      "before_body": "static const u16 sHoothootLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(6, MOVE_FORESIGHT),\n    LEVEL_UP_MOVE(11, MOVE_PECK),\n    LEVEL_UP_MOVE(16, MOVE_HYPNOSIS),\n    LEVEL_UP_MOVE(22, MOVE_REFLECT),\n    LEVEL_UP_MOVE(28, MOVE_TAKE_DOWN),\n    LEVEL_UP_MOVE(34, MOVE_CONFUSION),\n    LEVEL_UP_MOVE(48, MOVE_DREAM_EATER),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sHoothootLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(6, MOVE_FORESIGHT),\n    LEVEL_UP_MOVE(11, MOVE_PECK),\n    LEVEL_UP_MOVE(16, MOVE_HYPNOSIS),\n    LEVEL_UP_MOVE(18, MOVE_CONFUSION),\n    LEVEL_UP_MOVE(22, MOVE_REFLECT),\n    LEVEL_UP_MOVE(28, MOVE_TAKE_DOWN),\n    LEVEL_UP_MOVE(48, MOVE_DREAM_EATER),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 167,
+      "species": "NOCTOWL",
+      "pointer": "sNoctowlLevelUpLearnset",
+      "before_body": "static const u16 sNoctowlLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(1, MOVE_FORESIGHT),\n    LEVEL_UP_MOVE(1, MOVE_PECK),\n    LEVEL_UP_MOVE(6, MOVE_FORESIGHT),\n    LEVEL_UP_MOVE(11, MOVE_PECK),\n    LEVEL_UP_MOVE(16, MOVE_HYPNOSIS),\n    LEVEL_UP_MOVE(25, MOVE_REFLECT),\n    LEVEL_UP_MOVE(33, MOVE_TAKE_DOWN),\n    LEVEL_UP_MOVE(41, MOVE_CONFUSION),\n    LEVEL_UP_MOVE(57, MOVE_DREAM_EATER),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sNoctowlLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(1, MOVE_FORESIGHT),\n    LEVEL_UP_MOVE(1, MOVE_PECK),\n    LEVEL_UP_MOVE(6, MOVE_FORESIGHT),\n    LEVEL_UP_MOVE(11, MOVE_PECK),\n    LEVEL_UP_MOVE(16, MOVE_HYPNOSIS),\n    LEVEL_UP_MOVE(25, MOVE_REFLECT),\n    LEVEL_UP_MOVE(32, MOVE_PSYBEAM),\n    LEVEL_UP_MOVE(33, MOVE_TAKE_DOWN),\n    LEVEL_UP_MOVE(41, MOVE_CONFUSION),\n    LEVEL_UP_MOVE(43, MOVE_PSYCHIC),\n    LEVEL_UP_MOVE(57, MOVE_DREAM_EATER),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 170,
+      "species": "NATU",
+      "pointer": "sNatuLevelUpLearnset",
+      "before_body": "static const u16 sNatuLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_PECK),\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(10, MOVE_NIGHT_SHADE),\n    LEVEL_UP_MOVE(20, MOVE_TELEPORT),\n    LEVEL_UP_MOVE(30, MOVE_WISH),\n    LEVEL_UP_MOVE(30, MOVE_FUTURE_SIGHT),\n    LEVEL_UP_MOVE(40, MOVE_CONFUSE_RAY),\n    LEVEL_UP_MOVE(50, MOVE_PSYCHIC),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sNatuLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_PECK),\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(10, MOVE_NIGHT_SHADE),\n    LEVEL_UP_MOVE(18, MOVE_CONFUSION),\n    LEVEL_UP_MOVE(20, MOVE_TELEPORT),\n    LEVEL_UP_MOVE(30, MOVE_WISH),\n    LEVEL_UP_MOVE(30, MOVE_FUTURE_SIGHT),\n    LEVEL_UP_MOVE(40, MOVE_CONFUSE_RAY),\n    LEVEL_UP_MOVE(50, MOVE_PSYCHIC),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 171,
+      "species": "XATU",
+      "pointer": "sXatuLevelUpLearnset",
+      "before_body": "static const u16 sXatuLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_PECK),\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(10, MOVE_NIGHT_SHADE),\n    LEVEL_UP_MOVE(20, MOVE_TELEPORT),\n    LEVEL_UP_MOVE(35, MOVE_WISH),\n    LEVEL_UP_MOVE(35, MOVE_FUTURE_SIGHT),\n    LEVEL_UP_MOVE(50, MOVE_CONFUSE_RAY),\n    LEVEL_UP_MOVE(65, MOVE_PSYCHIC),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sXatuLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_PECK),\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(10, MOVE_NIGHT_SHADE),\n    LEVEL_UP_MOVE(20, MOVE_TELEPORT),\n    LEVEL_UP_MOVE(33, MOVE_PSYBEAM),\n    LEVEL_UP_MOVE(35, MOVE_WISH),\n    LEVEL_UP_MOVE(35, MOVE_FUTURE_SIGHT),\n    LEVEL_UP_MOVE(46, MOVE_PSYCHIC),\n    LEVEL_UP_MOVE(50, MOVE_CONFUSE_RAY),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 173,
+      "species": "FLAAFFY",
+      "pointer": "sFlaaffyLevelUpLearnset",
+      "before_body": "static const u16 sFlaaffyLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(1, MOVE_THUNDER_SHOCK),\n    LEVEL_UP_MOVE(9, MOVE_THUNDER_SHOCK),\n    LEVEL_UP_MOVE(18, MOVE_THUNDER_WAVE),\n    LEVEL_UP_MOVE(27, MOVE_COTTON_SPORE),\n    LEVEL_UP_MOVE(36, MOVE_LIGHT_SCREEN),\n    LEVEL_UP_MOVE(45, MOVE_THUNDER),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sFlaaffyLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(1, MOVE_THUNDER_SHOCK),\n    LEVEL_UP_MOVE(9, MOVE_THUNDER_SHOCK),\n    LEVEL_UP_MOVE(18, MOVE_THUNDER_WAVE),\n    LEVEL_UP_MOVE(27, MOVE_COTTON_SPORE),\n    LEVEL_UP_MOVE(29, MOVE_SPARK),\n    LEVEL_UP_MOVE(36, MOVE_LIGHT_SCREEN),\n    LEVEL_UP_MOVE(45, MOVE_THUNDER),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 174,
+      "species": "AMPHAROS",
+      "pointer": "sAmpharosLevelUpLearnset",
+      "before_body": "static const u16 sAmpharosLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(1, MOVE_THUNDER_SHOCK),\n    LEVEL_UP_MOVE(1, MOVE_THUNDER_WAVE),\n    LEVEL_UP_MOVE(9, MOVE_THUNDER_SHOCK),\n    LEVEL_UP_MOVE(18, MOVE_THUNDER_WAVE),\n    LEVEL_UP_MOVE(27, MOVE_COTTON_SPORE),\n    LEVEL_UP_MOVE(30, MOVE_THUNDER_PUNCH),\n    LEVEL_UP_MOVE(42, MOVE_LIGHT_SCREEN),\n    LEVEL_UP_MOVE(57, MOVE_THUNDER),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sAmpharosLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(1, MOVE_THUNDER_SHOCK),\n    LEVEL_UP_MOVE(1, MOVE_THUNDER_WAVE),\n    LEVEL_UP_MOVE(9, MOVE_THUNDER_SHOCK),\n    LEVEL_UP_MOVE(18, MOVE_THUNDER_WAVE),\n    LEVEL_UP_MOVE(27, MOVE_COTTON_SPORE),\n    LEVEL_UP_MOVE(30, MOVE_THUNDER_PUNCH),\n    LEVEL_UP_MOVE(37, MOVE_DRAGON_BREATH),\n    LEVEL_UP_MOVE(42, MOVE_LIGHT_SCREEN),\n    LEVEL_UP_MOVE(48, MOVE_THUNDERBOLT),\n    LEVEL_UP_MOVE(57, MOVE_THUNDER),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 175,
+      "species": "SUDOWOODO",
+      "pointer": "sSudowoodoLevelUpLearnset",
+      "before_body": "static const u16 sSudowoodoLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_ROCK_THROW),\n    LEVEL_UP_MOVE(1, MOVE_MIMIC),\n    LEVEL_UP_MOVE(9, MOVE_FLAIL),\n    LEVEL_UP_MOVE(17, MOVE_LOW_KICK),\n    LEVEL_UP_MOVE(25, MOVE_ROCK_SLIDE),\n    LEVEL_UP_MOVE(33, MOVE_BLOCK),\n    LEVEL_UP_MOVE(41, MOVE_FAINT_ATTACK),\n    LEVEL_UP_MOVE(49, MOVE_SLAM),\n    LEVEL_UP_MOVE(57, MOVE_DOUBLE_EDGE),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sSudowoodoLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_ROCK_THROW),\n    LEVEL_UP_MOVE(1, MOVE_MIMIC),\n    LEVEL_UP_MOVE(9, MOVE_FLAIL),\n    LEVEL_UP_MOVE(17, MOVE_LOW_KICK),\n    LEVEL_UP_MOVE(25, MOVE_ROCK_SLIDE),\n    LEVEL_UP_MOVE(33, MOVE_BLOCK),\n    LEVEL_UP_MOVE(41, MOVE_FAINT_ATTACK),\n    LEVEL_UP_MOVE(43, MOVE_DOUBLE_EDGE),\n    LEVEL_UP_MOVE(49, MOVE_SLAM),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 177,
+      "species": "SUNFLORA",
+      "pointer": "sSunfloraLevelUpLearnset",
+      "before_body": "static const u16 sSunfloraLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_ABSORB),\n    LEVEL_UP_MOVE(1, MOVE_POUND),\n    LEVEL_UP_MOVE(6, MOVE_GROWTH),\n    LEVEL_UP_MOVE(13, MOVE_RAZOR_LEAF),\n    LEVEL_UP_MOVE(18, MOVE_INGRAIN),\n    LEVEL_UP_MOVE(25, MOVE_BULLET_SEED),\n    LEVEL_UP_MOVE(30, MOVE_SUNNY_DAY),\n    LEVEL_UP_MOVE(37, MOVE_PETAL_DANCE),\n    LEVEL_UP_MOVE(42, MOVE_SOLAR_BEAM),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sSunfloraLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_ABSORB),\n    LEVEL_UP_MOVE(1, MOVE_POUND),\n    LEVEL_UP_MOVE(6, MOVE_GROWTH),\n    LEVEL_UP_MOVE(13, MOVE_RAZOR_LEAF),\n    LEVEL_UP_MOVE(18, MOVE_INGRAIN),\n    LEVEL_UP_MOVE(25, MOVE_BULLET_SEED),\n    LEVEL_UP_MOVE(30, MOVE_SUNNY_DAY),\n    LEVEL_UP_MOVE(32, MOVE_GIGA_DRAIN),\n    LEVEL_UP_MOVE(37, MOVE_PETAL_DANCE),\n    LEVEL_UP_MOVE(42, MOVE_SOLAR_BEAM),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 178,
+      "species": "YANMA",
+      "pointer": "sYanmaLevelUpLearnset",
+      "before_body": "static const u16 sYanmaLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_FORESIGHT),\n    LEVEL_UP_MOVE(6, MOVE_QUICK_ATTACK),\n    LEVEL_UP_MOVE(12, MOVE_DOUBLE_TEAM),\n    LEVEL_UP_MOVE(17, MOVE_SONIC_BOOM),\n    LEVEL_UP_MOVE(23, MOVE_HYPNOSIS),\n    LEVEL_UP_MOVE(28, MOVE_DETECT),\n    LEVEL_UP_MOVE(34, MOVE_UPROAR),\n    LEVEL_UP_MOVE(39, MOVE_WING_ATTACK),\n    LEVEL_UP_MOVE(45, MOVE_SUPERSONIC),\n    LEVEL_UP_MOVE(50, MOVE_SCREECH),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sYanmaLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_FORESIGHT),\n    LEVEL_UP_MOVE(6, MOVE_QUICK_ATTACK),\n    LEVEL_UP_MOVE(12, MOVE_DOUBLE_TEAM),\n    LEVEL_UP_MOVE(17, MOVE_SONIC_BOOM),\n    LEVEL_UP_MOVE(23, MOVE_HYPNOSIS),\n    LEVEL_UP_MOVE(26, MOVE_WING_ATTACK),\n    LEVEL_UP_MOVE(28, MOVE_DETECT),\n    LEVEL_UP_MOVE(34, MOVE_UPROAR),\n    LEVEL_UP_MOVE(38, MOVE_ANCIENT_POWER),\n    LEVEL_UP_MOVE(45, MOVE_SUPERSONIC),\n    LEVEL_UP_MOVE(50, MOVE_SCREECH),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 179,
+      "species": "MURKROW",
+      "pointer": "sMurkrowLevelUpLearnset",
+      "before_body": "static const u16 sMurkrowLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_PECK),\n    LEVEL_UP_MOVE(9, MOVE_ASTONISH),\n    LEVEL_UP_MOVE(14, MOVE_PURSUIT),\n    LEVEL_UP_MOVE(22, MOVE_HAZE),\n    LEVEL_UP_MOVE(27, MOVE_NIGHT_SHADE),\n    LEVEL_UP_MOVE(35, MOVE_FAINT_ATTACK),\n    LEVEL_UP_MOVE(40, MOVE_TAUNT),\n    LEVEL_UP_MOVE(48, MOVE_MEAN_LOOK),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sMurkrowLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_PECK),\n    LEVEL_UP_MOVE(9, MOVE_ASTONISH),\n    LEVEL_UP_MOVE(14, MOVE_PURSUIT),\n    LEVEL_UP_MOVE(22, MOVE_HAZE),\n    LEVEL_UP_MOVE(27, MOVE_NIGHT_SHADE),\n    LEVEL_UP_MOVE(29, MOVE_FAINT_ATTACK),\n    LEVEL_UP_MOVE(40, MOVE_TAUNT),\n    LEVEL_UP_MOVE(41, MOVE_SHADOW_BALL),\n    LEVEL_UP_MOVE(48, MOVE_MEAN_LOOK),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 180,
+      "species": "MISDREAVUS",
+      "pointer": "sMisdreavusLevelUpLearnset",
+      "before_body": "static const u16 sMisdreavusLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(1, MOVE_PSYWAVE),\n    LEVEL_UP_MOVE(6, MOVE_SPITE),\n    LEVEL_UP_MOVE(11, MOVE_ASTONISH),\n    LEVEL_UP_MOVE(17, MOVE_CONFUSE_RAY),\n    LEVEL_UP_MOVE(23, MOVE_MEAN_LOOK),\n    LEVEL_UP_MOVE(30, MOVE_PSYBEAM),\n    LEVEL_UP_MOVE(37, MOVE_PAIN_SPLIT),\n    LEVEL_UP_MOVE(45, MOVE_PERISH_SONG),\n    LEVEL_UP_MOVE(53, MOVE_GRUDGE),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sMisdreavusLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(1, MOVE_PSYWAVE),\n    LEVEL_UP_MOVE(6, MOVE_SPITE),\n    LEVEL_UP_MOVE(11, MOVE_ASTONISH),\n    LEVEL_UP_MOVE(17, MOVE_CONFUSE_RAY),\n    LEVEL_UP_MOVE(23, MOVE_MEAN_LOOK),\n    LEVEL_UP_MOVE(29, MOVE_PSYBEAM),\n    LEVEL_UP_MOVE(37, MOVE_PAIN_SPLIT),\n    LEVEL_UP_MOVE(42, MOVE_SHADOW_BALL),\n    LEVEL_UP_MOVE(45, MOVE_PERISH_SONG),\n    LEVEL_UP_MOVE(53, MOVE_GRUDGE),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 182,
+      "species": "FORRETRESS",
+      "pointer": "sForretressLevelUpLearnset",
+      "before_body": "static const u16 sForretressLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_PROTECT),\n    LEVEL_UP_MOVE(1, MOVE_SELF_DESTRUCT),\n    LEVEL_UP_MOVE(8, MOVE_SELF_DESTRUCT),\n    LEVEL_UP_MOVE(15, MOVE_TAKE_DOWN),\n    LEVEL_UP_MOVE(22, MOVE_RAPID_SPIN),\n    LEVEL_UP_MOVE(29, MOVE_BIDE),\n    LEVEL_UP_MOVE(31, MOVE_ZAP_CANNON),\n    LEVEL_UP_MOVE(39, MOVE_EXPLOSION),\n    LEVEL_UP_MOVE(49, MOVE_SPIKES),\n    LEVEL_UP_MOVE(59, MOVE_DOUBLE_EDGE),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sForretressLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_PROTECT),\n    LEVEL_UP_MOVE(1, MOVE_SELF_DESTRUCT),\n    LEVEL_UP_MOVE(8, MOVE_SELF_DESTRUCT),\n    LEVEL_UP_MOVE(15, MOVE_TAKE_DOWN),\n    LEVEL_UP_MOVE(22, MOVE_RAPID_SPIN),\n    LEVEL_UP_MOVE(29, MOVE_BIDE),\n    LEVEL_UP_MOVE(31, MOVE_ZAP_CANNON),\n    LEVEL_UP_MOVE(33, MOVE_SPIKES),\n    LEVEL_UP_MOVE(39, MOVE_EXPLOSION),\n    LEVEL_UP_MOVE(45, MOVE_IRON_DEFENSE),\n    LEVEL_UP_MOVE(59, MOVE_DOUBLE_EDGE),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 183,
+      "species": "HERACROSS",
+      "pointer": "sHeracrossLevelUpLearnset",
+      "before_body": "static const u16 sHeracrossLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(6, MOVE_HORN_ATTACK),\n    LEVEL_UP_MOVE(11, MOVE_ENDURE),\n    LEVEL_UP_MOVE(17, MOVE_FURY_ATTACK),\n    LEVEL_UP_MOVE(23, MOVE_BRICK_BREAK),\n    LEVEL_UP_MOVE(30, MOVE_COUNTER),\n    LEVEL_UP_MOVE(37, MOVE_TAKE_DOWN),\n    LEVEL_UP_MOVE(45, MOVE_REVERSAL),\n    LEVEL_UP_MOVE(53, MOVE_MEGAHORN),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sHeracrossLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(6, MOVE_HORN_ATTACK),\n    LEVEL_UP_MOVE(11, MOVE_ENDURE),\n    LEVEL_UP_MOVE(17, MOVE_FURY_ATTACK),\n    LEVEL_UP_MOVE(23, MOVE_BRICK_BREAK),\n    LEVEL_UP_MOVE(30, MOVE_COUNTER),\n    LEVEL_UP_MOVE(37, MOVE_TAKE_DOWN),\n    LEVEL_UP_MOVE(43, MOVE_MEGAHORN),\n    LEVEL_UP_MOVE(45, MOVE_REVERSAL),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 184,
+      "species": "SNEASEL",
+      "pointer": "sSneaselLevelUpLearnset",
+      "before_body": "static const u16 sSneaselLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_SCRATCH),\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(1, MOVE_TAUNT),\n    LEVEL_UP_MOVE(8, MOVE_QUICK_ATTACK),\n    LEVEL_UP_MOVE(15, MOVE_SCREECH),\n    LEVEL_UP_MOVE(22, MOVE_FAINT_ATTACK),\n    LEVEL_UP_MOVE(29, MOVE_FURY_SWIPES),\n    LEVEL_UP_MOVE(36, MOVE_AGILITY),\n    LEVEL_UP_MOVE(43, MOVE_ICY_WIND),\n    LEVEL_UP_MOVE(50, MOVE_SLASH),\n    LEVEL_UP_MOVE(57, MOVE_BEAT_UP),\n    LEVEL_UP_MOVE(64, MOVE_METAL_CLAW),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sSneaselLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_SCRATCH),\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(1, MOVE_TAUNT),\n    LEVEL_UP_MOVE(8, MOVE_QUICK_ATTACK),\n    LEVEL_UP_MOVE(15, MOVE_SCREECH),\n    LEVEL_UP_MOVE(22, MOVE_FAINT_ATTACK),\n    LEVEL_UP_MOVE(29, MOVE_FURY_SWIPES),\n    LEVEL_UP_MOVE(29, MOVE_ICE_PUNCH),\n    LEVEL_UP_MOVE(36, MOVE_AGILITY),\n    LEVEL_UP_MOVE(43, MOVE_ICY_WIND),\n    LEVEL_UP_MOVE(50, MOVE_SLASH),\n    LEVEL_UP_MOVE(57, MOVE_BEAT_UP),\n    LEVEL_UP_MOVE(64, MOVE_METAL_CLAW),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 185,
+      "species": "TEDDIURSA",
+      "pointer": "sTeddiursaLevelUpLearnset",
+      "before_body": "static const u16 sTeddiursaLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_SCRATCH),\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(7, MOVE_LICK),\n    LEVEL_UP_MOVE(13, MOVE_FURY_SWIPES),\n    LEVEL_UP_MOVE(19, MOVE_FAKE_TEARS),\n    LEVEL_UP_MOVE(25, MOVE_FAINT_ATTACK),\n    LEVEL_UP_MOVE(31, MOVE_REST),\n    LEVEL_UP_MOVE(37, MOVE_SLASH),\n    LEVEL_UP_MOVE(43, MOVE_SNORE),\n    LEVEL_UP_MOVE(49, MOVE_THRASH),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sTeddiursaLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_SCRATCH),\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(7, MOVE_LICK),\n    LEVEL_UP_MOVE(13, MOVE_FURY_SWIPES),\n    LEVEL_UP_MOVE(19, MOVE_FAKE_TEARS),\n    LEVEL_UP_MOVE(21, MOVE_FAINT_ATTACK),\n    LEVEL_UP_MOVE(31, MOVE_REST),\n    LEVEL_UP_MOVE(37, MOVE_SLASH),\n    LEVEL_UP_MOVE(43, MOVE_SNORE),\n    LEVEL_UP_MOVE(49, MOVE_THRASH),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 186,
+      "species": "URSARING",
+      "pointer": "sUrsaringLevelUpLearnset",
+      "before_body": "static const u16 sUrsaringLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_SCRATCH),\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(1, MOVE_LICK),\n    LEVEL_UP_MOVE(1, MOVE_FURY_SWIPES),\n    LEVEL_UP_MOVE(7, MOVE_LICK),\n    LEVEL_UP_MOVE(13, MOVE_FURY_SWIPES),\n    LEVEL_UP_MOVE(19, MOVE_FAKE_TEARS),\n    LEVEL_UP_MOVE(25, MOVE_FAINT_ATTACK),\n    LEVEL_UP_MOVE(31, MOVE_REST),\n    LEVEL_UP_MOVE(37, MOVE_SLASH),\n    LEVEL_UP_MOVE(43, MOVE_SNORE),\n    LEVEL_UP_MOVE(49, MOVE_THRASH),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sUrsaringLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_SCRATCH),\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(1, MOVE_LICK),\n    LEVEL_UP_MOVE(1, MOVE_FURY_SWIPES),\n    LEVEL_UP_MOVE(7, MOVE_LICK),\n    LEVEL_UP_MOVE(13, MOVE_FURY_SWIPES),\n    LEVEL_UP_MOVE(19, MOVE_FAKE_TEARS),\n    LEVEL_UP_MOVE(25, MOVE_FAINT_ATTACK),\n    LEVEL_UP_MOVE(31, MOVE_REST),\n    LEVEL_UP_MOVE(35, MOVE_SLASH),\n    LEVEL_UP_MOVE(43, MOVE_SNORE),\n    LEVEL_UP_MOVE(47, MOVE_THRASH),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 188,
+      "species": "MAGCARGO",
+      "pointer": "sMagcargoLevelUpLearnset",
+      "before_body": "static const u16 sMagcargoLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_YAWN),\n    LEVEL_UP_MOVE(1, MOVE_SMOG),\n    LEVEL_UP_MOVE(1, MOVE_EMBER),\n    LEVEL_UP_MOVE(1, MOVE_ROCK_THROW),\n    LEVEL_UP_MOVE(8, MOVE_EMBER),\n    LEVEL_UP_MOVE(15, MOVE_ROCK_THROW),\n    LEVEL_UP_MOVE(22, MOVE_HARDEN),\n    LEVEL_UP_MOVE(29, MOVE_AMNESIA),\n    LEVEL_UP_MOVE(36, MOVE_FLAMETHROWER),\n    LEVEL_UP_MOVE(48, MOVE_ROCK_SLIDE),\n    LEVEL_UP_MOVE(60, MOVE_BODY_SLAM),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sMagcargoLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_YAWN),\n    LEVEL_UP_MOVE(1, MOVE_SMOG),\n    LEVEL_UP_MOVE(1, MOVE_EMBER),\n    LEVEL_UP_MOVE(1, MOVE_ROCK_THROW),\n    LEVEL_UP_MOVE(8, MOVE_EMBER),\n    LEVEL_UP_MOVE(15, MOVE_ROCK_THROW),\n    LEVEL_UP_MOVE(22, MOVE_HARDEN),\n    LEVEL_UP_MOVE(29, MOVE_AMNESIA),\n    LEVEL_UP_MOVE(36, MOVE_FLAMETHROWER),\n    LEVEL_UP_MOVE(40, MOVE_ROCK_SLIDE),\n    LEVEL_UP_MOVE(60, MOVE_BODY_SLAM),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 189,
+      "species": "SWINUB",
+      "pointer": "sSwinubLevelUpLearnset",
+      "before_body": "static const u16 sSwinubLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_ODOR_SLEUTH),\n    LEVEL_UP_MOVE(10, MOVE_POWDER_SNOW),\n    LEVEL_UP_MOVE(19, MOVE_ENDURE),\n    LEVEL_UP_MOVE(28, MOVE_TAKE_DOWN),\n    LEVEL_UP_MOVE(37, MOVE_MIST),\n    LEVEL_UP_MOVE(46, MOVE_BLIZZARD),\n    LEVEL_UP_MOVE(55, MOVE_AMNESIA),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sSwinubLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_ODOR_SLEUTH),\n    LEVEL_UP_MOVE(10, MOVE_POWDER_SNOW),\n    LEVEL_UP_MOVE(19, MOVE_ENDURE),\n    LEVEL_UP_MOVE(20, MOVE_MUD_SHOT),\n    LEVEL_UP_MOVE(28, MOVE_TAKE_DOWN),\n    LEVEL_UP_MOVE(37, MOVE_MIST),\n    LEVEL_UP_MOVE(46, MOVE_BLIZZARD),\n    LEVEL_UP_MOVE(55, MOVE_AMNESIA),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 190,
+      "species": "PILOSWINE",
+      "pointer": "sPiloswineLevelUpLearnset",
+      "before_body": "static const u16 sPiloswineLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_HORN_ATTACK),\n    LEVEL_UP_MOVE(1, MOVE_ODOR_SLEUTH),\n    LEVEL_UP_MOVE(1, MOVE_POWDER_SNOW),\n    LEVEL_UP_MOVE(1, MOVE_ENDURE),\n    LEVEL_UP_MOVE(10, MOVE_POWDER_SNOW),\n    LEVEL_UP_MOVE(19, MOVE_ENDURE),\n    LEVEL_UP_MOVE(28, MOVE_TAKE_DOWN),\n    LEVEL_UP_MOVE(33, MOVE_FURY_ATTACK),\n    LEVEL_UP_MOVE(42, MOVE_MIST),\n    LEVEL_UP_MOVE(56, MOVE_BLIZZARD),\n    LEVEL_UP_MOVE(70, MOVE_AMNESIA),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sPiloswineLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_HORN_ATTACK),\n    LEVEL_UP_MOVE(1, MOVE_ODOR_SLEUTH),\n    LEVEL_UP_MOVE(1, MOVE_POWDER_SNOW),\n    LEVEL_UP_MOVE(1, MOVE_ENDURE),\n    LEVEL_UP_MOVE(10, MOVE_POWDER_SNOW),\n    LEVEL_UP_MOVE(19, MOVE_ENDURE),\n    LEVEL_UP_MOVE(28, MOVE_TAKE_DOWN),\n    LEVEL_UP_MOVE(33, MOVE_FURY_ATTACK),\n    LEVEL_UP_MOVE(36, MOVE_EARTHQUAKE),\n    LEVEL_UP_MOVE(42, MOVE_MIST),\n    LEVEL_UP_MOVE(48, MOVE_ICE_BEAM),\n    LEVEL_UP_MOVE(56, MOVE_BLIZZARD),\n    LEVEL_UP_MOVE(70, MOVE_AMNESIA),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 191,
+      "species": "HOUNDOUR",
+      "pointer": "sHoundourLevelUpLearnset",
+      "before_body": "static const u16 sHoundourLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(1, MOVE_EMBER),\n    LEVEL_UP_MOVE(7, MOVE_HOWL),\n    LEVEL_UP_MOVE(13, MOVE_SMOG),\n    LEVEL_UP_MOVE(19, MOVE_ROAR),\n    LEVEL_UP_MOVE(25, MOVE_BITE),\n    LEVEL_UP_MOVE(31, MOVE_ODOR_SLEUTH),\n    LEVEL_UP_MOVE(37, MOVE_FAINT_ATTACK),\n    LEVEL_UP_MOVE(43, MOVE_FLAMETHROWER),\n    LEVEL_UP_MOVE(49, MOVE_CRUNCH),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sHoundourLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(1, MOVE_EMBER),\n    LEVEL_UP_MOVE(7, MOVE_HOWL),\n    LEVEL_UP_MOVE(13, MOVE_SMOG),\n    LEVEL_UP_MOVE(19, MOVE_ROAR),\n    LEVEL_UP_MOVE(22, MOVE_BITE),\n    LEVEL_UP_MOVE(31, MOVE_ODOR_SLEUTH),\n    LEVEL_UP_MOVE(37, MOVE_FAINT_ATTACK),\n    LEVEL_UP_MOVE(43, MOVE_FLAMETHROWER),\n    LEVEL_UP_MOVE(49, MOVE_CRUNCH),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 192,
+      "species": "HOUNDOOM",
+      "pointer": "sHoundoomLevelUpLearnset",
+      "before_body": "static const u16 sHoundoomLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(1, MOVE_EMBER),\n    LEVEL_UP_MOVE(1, MOVE_HOWL),\n    LEVEL_UP_MOVE(7, MOVE_HOWL),\n    LEVEL_UP_MOVE(13, MOVE_SMOG),\n    LEVEL_UP_MOVE(19, MOVE_ROAR),\n    LEVEL_UP_MOVE(27, MOVE_BITE),\n    LEVEL_UP_MOVE(35, MOVE_ODOR_SLEUTH),\n    LEVEL_UP_MOVE(43, MOVE_FAINT_ATTACK),\n    LEVEL_UP_MOVE(51, MOVE_FLAMETHROWER),\n    LEVEL_UP_MOVE(59, MOVE_CRUNCH),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sHoundoomLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(1, MOVE_EMBER),\n    LEVEL_UP_MOVE(1, MOVE_HOWL),\n    LEVEL_UP_MOVE(7, MOVE_HOWL),\n    LEVEL_UP_MOVE(13, MOVE_SMOG),\n    LEVEL_UP_MOVE(19, MOVE_ROAR),\n    LEVEL_UP_MOVE(27, MOVE_BITE),\n    LEVEL_UP_MOVE(35, MOVE_ODOR_SLEUTH),\n    LEVEL_UP_MOVE(36, MOVE_CRUNCH),\n    LEVEL_UP_MOVE(43, MOVE_FAINT_ATTACK),\n    LEVEL_UP_MOVE(47, MOVE_FLAMETHROWER),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 193,
+      "species": "PHANPY",
+      "pointer": "sPhanpyLevelUpLearnset",
+      "before_body": "static const u16 sPhanpyLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_ODOR_SLEUTH),\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(9, MOVE_DEFENSE_CURL),\n    LEVEL_UP_MOVE(17, MOVE_FLAIL),\n    LEVEL_UP_MOVE(25, MOVE_TAKE_DOWN),\n    LEVEL_UP_MOVE(33, MOVE_ROLLOUT),\n    LEVEL_UP_MOVE(41, MOVE_ENDURE),\n    LEVEL_UP_MOVE(49, MOVE_DOUBLE_EDGE),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sPhanpyLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_ODOR_SLEUTH),\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(9, MOVE_DEFENSE_CURL),\n    LEVEL_UP_MOVE(17, MOVE_FLAIL),\n    LEVEL_UP_MOVE(21, MOVE_ROLLOUT),\n    LEVEL_UP_MOVE(25, MOVE_TAKE_DOWN),\n    LEVEL_UP_MOVE(41, MOVE_ENDURE),\n    LEVEL_UP_MOVE(49, MOVE_DOUBLE_EDGE),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 194,
+      "species": "DONPHAN",
+      "pointer": "sDonphanLevelUpLearnset",
+      "before_body": "static const u16 sDonphanLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_ODOR_SLEUTH),\n    LEVEL_UP_MOVE(1, MOVE_HORN_ATTACK),\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(9, MOVE_DEFENSE_CURL),\n    LEVEL_UP_MOVE(17, MOVE_FLAIL),\n    LEVEL_UP_MOVE(25, MOVE_FURY_ATTACK),\n    LEVEL_UP_MOVE(33, MOVE_ROLLOUT),\n    LEVEL_UP_MOVE(41, MOVE_RAPID_SPIN),\n    LEVEL_UP_MOVE(49, MOVE_EARTHQUAKE),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sDonphanLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_ODOR_SLEUTH),\n    LEVEL_UP_MOVE(1, MOVE_HORN_ATTACK),\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(9, MOVE_DEFENSE_CURL),\n    LEVEL_UP_MOVE(17, MOVE_FLAIL),\n    LEVEL_UP_MOVE(25, MOVE_FURY_ATTACK),\n    LEVEL_UP_MOVE(33, MOVE_ROLLOUT),\n    LEVEL_UP_MOVE(36, MOVE_EARTHQUAKE),\n    LEVEL_UP_MOVE(41, MOVE_RAPID_SPIN),\n    LEVEL_UP_MOVE(47, MOVE_ROCK_SLIDE),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 195,
+      "species": "MILTANK",
+      "pointer": "sMiltankLevelUpLearnset",
+      "before_body": "static const u16 sMiltankLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(4, MOVE_GROWL),\n    LEVEL_UP_MOVE(8, MOVE_DEFENSE_CURL),\n    LEVEL_UP_MOVE(13, MOVE_STOMP),\n    LEVEL_UP_MOVE(19, MOVE_MILK_DRINK),\n    LEVEL_UP_MOVE(26, MOVE_BIDE),\n    LEVEL_UP_MOVE(34, MOVE_ROLLOUT),\n    LEVEL_UP_MOVE(43, MOVE_BODY_SLAM),\n    LEVEL_UP_MOVE(53, MOVE_HEAL_BELL),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sMiltankLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(4, MOVE_GROWL),\n    LEVEL_UP_MOVE(8, MOVE_DEFENSE_CURL),\n    LEVEL_UP_MOVE(13, MOVE_STOMP),\n    LEVEL_UP_MOVE(19, MOVE_MILK_DRINK),\n    LEVEL_UP_MOVE(26, MOVE_BIDE),\n    LEVEL_UP_MOVE(31, MOVE_BODY_SLAM),\n    LEVEL_UP_MOVE(34, MOVE_ROLLOUT),\n    LEVEL_UP_MOVE(53, MOVE_HEAL_BELL),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 196,
+      "species": "LARVITAR",
+      "pointer": "sLarvitarLevelUpLearnset",
+      "before_body": "static const u16 sLarvitarLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_BITE),\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(8, MOVE_SANDSTORM),\n    LEVEL_UP_MOVE(15, MOVE_SCREECH),\n    LEVEL_UP_MOVE(22, MOVE_ROCK_SLIDE),\n    LEVEL_UP_MOVE(29, MOVE_THRASH),\n    LEVEL_UP_MOVE(36, MOVE_SCARY_FACE),\n    LEVEL_UP_MOVE(43, MOVE_CRUNCH),\n    LEVEL_UP_MOVE(50, MOVE_EARTHQUAKE),\n    LEVEL_UP_MOVE(57, MOVE_HYPER_BEAM),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sLarvitarLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_BITE),\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(8, MOVE_SANDSTORM),\n    LEVEL_UP_MOVE(15, MOVE_SCREECH),\n    LEVEL_UP_MOVE(21, MOVE_ROCK_SLIDE),\n    LEVEL_UP_MOVE(29, MOVE_THRASH),\n    LEVEL_UP_MOVE(36, MOVE_SCARY_FACE),\n    LEVEL_UP_MOVE(43, MOVE_CRUNCH),\n    LEVEL_UP_MOVE(50, MOVE_EARTHQUAKE),\n    LEVEL_UP_MOVE(57, MOVE_HYPER_BEAM),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 198,
+      "species": "TYRANITAR",
+      "pointer": "sTyranitarLevelUpLearnset",
+      "before_body": "static const u16 sTyranitarLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_BITE),\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(1, MOVE_SANDSTORM),\n    LEVEL_UP_MOVE(1, MOVE_SCREECH),\n    LEVEL_UP_MOVE(8, MOVE_SANDSTORM),\n    LEVEL_UP_MOVE(15, MOVE_SCREECH),\n    LEVEL_UP_MOVE(22, MOVE_ROCK_SLIDE),\n    LEVEL_UP_MOVE(29, MOVE_THRASH),\n    LEVEL_UP_MOVE(38, MOVE_SCARY_FACE),\n    LEVEL_UP_MOVE(47, MOVE_CRUNCH),\n    LEVEL_UP_MOVE(61, MOVE_EARTHQUAKE),\n    LEVEL_UP_MOVE(75, MOVE_HYPER_BEAM),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sTyranitarLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_BITE),\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(1, MOVE_SANDSTORM),\n    LEVEL_UP_MOVE(1, MOVE_SCREECH),\n    LEVEL_UP_MOVE(8, MOVE_SANDSTORM),\n    LEVEL_UP_MOVE(15, MOVE_SCREECH),\n    LEVEL_UP_MOVE(22, MOVE_ROCK_SLIDE),\n    LEVEL_UP_MOVE(29, MOVE_THRASH),\n    LEVEL_UP_MOVE(38, MOVE_SCARY_FACE),\n    LEVEL_UP_MOVE(47, MOVE_CRUNCH),\n    LEVEL_UP_MOVE(60, MOVE_EARTHQUAKE),\n    LEVEL_UP_MOVE(75, MOVE_HYPER_BEAM),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 199,
+      "species": "SEEDOT",
+      "pointer": "sSeedotLevelUpLearnset",
+      "before_body": "static const u16 sSeedotLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_BIDE),\n    LEVEL_UP_MOVE(3, MOVE_HARDEN),\n    LEVEL_UP_MOVE(7, MOVE_GROWTH),\n    LEVEL_UP_MOVE(13, MOVE_NATURE_POWER),\n    LEVEL_UP_MOVE(21, MOVE_SYNTHESIS),\n    LEVEL_UP_MOVE(31, MOVE_SUNNY_DAY),\n    LEVEL_UP_MOVE(43, MOVE_EXPLOSION),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sSeedotLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_BIDE),\n    LEVEL_UP_MOVE(3, MOVE_HARDEN),\n    LEVEL_UP_MOVE(7, MOVE_GROWTH),\n    LEVEL_UP_MOVE(13, MOVE_NATURE_POWER),\n    LEVEL_UP_MOVE(19, MOVE_BULLET_SEED),\n    LEVEL_UP_MOVE(21, MOVE_SYNTHESIS),\n    LEVEL_UP_MOVE(31, MOVE_SUNNY_DAY),\n    LEVEL_UP_MOVE(43, MOVE_EXPLOSION),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 203,
+      "species": "SWELLOW",
+      "pointer": "sSwellowLevelUpLearnset",
+      "before_body": "static const u16 sSwellowLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_PECK),\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(1, MOVE_FOCUS_ENERGY),\n    LEVEL_UP_MOVE(1, MOVE_QUICK_ATTACK),\n    LEVEL_UP_MOVE(4, MOVE_FOCUS_ENERGY),\n    LEVEL_UP_MOVE(8, MOVE_QUICK_ATTACK),\n    LEVEL_UP_MOVE(13, MOVE_WING_ATTACK),\n    LEVEL_UP_MOVE(19, MOVE_DOUBLE_TEAM),\n    LEVEL_UP_MOVE(28, MOVE_ENDEAVOR),\n    LEVEL_UP_MOVE(38, MOVE_AERIAL_ACE),\n    LEVEL_UP_MOVE(49, MOVE_AGILITY),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sSwellowLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_PECK),\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(1, MOVE_FOCUS_ENERGY),\n    LEVEL_UP_MOVE(1, MOVE_QUICK_ATTACK),\n    LEVEL_UP_MOVE(4, MOVE_FOCUS_ENERGY),\n    LEVEL_UP_MOVE(8, MOVE_QUICK_ATTACK),\n    LEVEL_UP_MOVE(13, MOVE_WING_ATTACK),\n    LEVEL_UP_MOVE(19, MOVE_DOUBLE_TEAM),\n    LEVEL_UP_MOVE(28, MOVE_ENDEAVOR),\n    LEVEL_UP_MOVE(29, MOVE_AERIAL_ACE),\n    LEVEL_UP_MOVE(49, MOVE_AGILITY),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 205,
+      "species": "KIRLIA",
+      "pointer": "sKirliaLevelUpLearnset",
+      "before_body": "static const u16 sKirliaLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_MAGICAL_LEAF),\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(1, MOVE_CONFUSION),\n    LEVEL_UP_MOVE(1, MOVE_DOUBLE_TEAM),\n    LEVEL_UP_MOVE(1, MOVE_TELEPORT),\n    LEVEL_UP_MOVE(6, MOVE_CONFUSION),\n    LEVEL_UP_MOVE(11, MOVE_DOUBLE_TEAM),\n    LEVEL_UP_MOVE(16, MOVE_TELEPORT),\n    LEVEL_UP_MOVE(21, MOVE_CALM_MIND),\n    LEVEL_UP_MOVE(26, MOVE_PSYCHIC),\n    LEVEL_UP_MOVE(33, MOVE_IMPRISON),\n    LEVEL_UP_MOVE(40, MOVE_FUTURE_SIGHT),\n    LEVEL_UP_MOVE(47, MOVE_HYPNOSIS),\n    LEVEL_UP_MOVE(54, MOVE_DREAM_EATER),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sKirliaLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_MAGICAL_LEAF),\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(1, MOVE_CONFUSION),\n    LEVEL_UP_MOVE(1, MOVE_DOUBLE_TEAM),\n    LEVEL_UP_MOVE(1, MOVE_TELEPORT),\n    LEVEL_UP_MOVE(6, MOVE_CONFUSION),\n    LEVEL_UP_MOVE(11, MOVE_DOUBLE_TEAM),\n    LEVEL_UP_MOVE(16, MOVE_TELEPORT),\n    LEVEL_UP_MOVE(21, MOVE_CALM_MIND),\n    LEVEL_UP_MOVE(26, MOVE_PSYCHIC),\n    LEVEL_UP_MOVE(30, MOVE_PSYBEAM),\n    LEVEL_UP_MOVE(33, MOVE_IMPRISON),\n    LEVEL_UP_MOVE(40, MOVE_FUTURE_SIGHT),\n    LEVEL_UP_MOVE(47, MOVE_HYPNOSIS),\n    LEVEL_UP_MOVE(54, MOVE_DREAM_EATER),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 210,
+      "species": "DELCATTY",
+      "pointer": "sDelcattyLevelUpLearnset",
+      "before_body": "static const u16 sDelcattyLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(1, MOVE_ATTRACT),\n    LEVEL_UP_MOVE(1, MOVE_SING),\n    LEVEL_UP_MOVE(1, MOVE_DOUBLE_SLAP),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sDelcattyLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(1, MOVE_ATTRACT),\n    LEVEL_UP_MOVE(1, MOVE_SING),\n    LEVEL_UP_MOVE(1, MOVE_DOUBLE_SLAP),\n    LEVEL_UP_MOVE(34, MOVE_BODY_SLAM),\n    LEVEL_UP_MOVE(45, MOVE_FAINT_ATTACK),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 213,
+      "species": "AGGRON",
+      "pointer": "sAggronLevelUpLearnset",
+      "before_body": "static const u16 sAggronLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_HARDEN),\n    LEVEL_UP_MOVE(1, MOVE_MUD_SLAP),\n    LEVEL_UP_MOVE(1, MOVE_HEADBUTT),\n    LEVEL_UP_MOVE(4, MOVE_HARDEN),\n    LEVEL_UP_MOVE(7, MOVE_MUD_SLAP),\n    LEVEL_UP_MOVE(10, MOVE_HEADBUTT),\n    LEVEL_UP_MOVE(13, MOVE_METAL_CLAW),\n    LEVEL_UP_MOVE(17, MOVE_IRON_DEFENSE),\n    LEVEL_UP_MOVE(21, MOVE_ROAR),\n    LEVEL_UP_MOVE(25, MOVE_TAKE_DOWN),\n    LEVEL_UP_MOVE(29, MOVE_IRON_TAIL),\n    LEVEL_UP_MOVE(37, MOVE_PROTECT),\n    LEVEL_UP_MOVE(50, MOVE_METAL_SOUND),\n    LEVEL_UP_MOVE(63, MOVE_DOUBLE_EDGE),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sAggronLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_HARDEN),\n    LEVEL_UP_MOVE(1, MOVE_MUD_SLAP),\n    LEVEL_UP_MOVE(1, MOVE_HEADBUTT),\n    LEVEL_UP_MOVE(4, MOVE_HARDEN),\n    LEVEL_UP_MOVE(7, MOVE_MUD_SLAP),\n    LEVEL_UP_MOVE(10, MOVE_HEADBUTT),\n    LEVEL_UP_MOVE(13, MOVE_METAL_CLAW),\n    LEVEL_UP_MOVE(17, MOVE_IRON_DEFENSE),\n    LEVEL_UP_MOVE(21, MOVE_ROAR),\n    LEVEL_UP_MOVE(25, MOVE_TAKE_DOWN),\n    LEVEL_UP_MOVE(29, MOVE_IRON_TAIL),\n    LEVEL_UP_MOVE(37, MOVE_PROTECT),\n    LEVEL_UP_MOVE(50, MOVE_METAL_SOUND),\n    LEVEL_UP_MOVE(53, MOVE_ROCK_SLIDE),\n    LEVEL_UP_MOVE(63, MOVE_DOUBLE_EDGE),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 215,
+      "species": "MEDICHAM",
+      "pointer": "sMedichamLevelUpLearnset",
+      "before_body": "static const u16 sMedichamLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_FIRE_PUNCH),\n    LEVEL_UP_MOVE(1, MOVE_THUNDER_PUNCH),\n    LEVEL_UP_MOVE(1, MOVE_ICE_PUNCH),\n    LEVEL_UP_MOVE(1, MOVE_BIDE),\n    LEVEL_UP_MOVE(1, MOVE_MEDITATE),\n    LEVEL_UP_MOVE(1, MOVE_CONFUSION),\n    LEVEL_UP_MOVE(1, MOVE_DETECT),\n    LEVEL_UP_MOVE(4, MOVE_MEDITATE),\n    LEVEL_UP_MOVE(9, MOVE_CONFUSION),\n    LEVEL_UP_MOVE(12, MOVE_DETECT),\n    LEVEL_UP_MOVE(17, MOVE_HIDDEN_POWER),\n    LEVEL_UP_MOVE(20, MOVE_SWAGGER),\n    LEVEL_UP_MOVE(25, MOVE_MIND_READER),\n    LEVEL_UP_MOVE(28, MOVE_CALM_MIND),\n    LEVEL_UP_MOVE(33, MOVE_HI_JUMP_KICK),\n    LEVEL_UP_MOVE(36, MOVE_PSYCH_UP),\n    LEVEL_UP_MOVE(47, MOVE_REVERSAL),\n    LEVEL_UP_MOVE(56, MOVE_RECOVER),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sMedichamLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_FIRE_PUNCH),\n    LEVEL_UP_MOVE(1, MOVE_THUNDER_PUNCH),\n    LEVEL_UP_MOVE(1, MOVE_ICE_PUNCH),\n    LEVEL_UP_MOVE(1, MOVE_BIDE),\n    LEVEL_UP_MOVE(1, MOVE_MEDITATE),\n    LEVEL_UP_MOVE(1, MOVE_CONFUSION),\n    LEVEL_UP_MOVE(1, MOVE_DETECT),\n    LEVEL_UP_MOVE(4, MOVE_MEDITATE),\n    LEVEL_UP_MOVE(9, MOVE_CONFUSION),\n    LEVEL_UP_MOVE(12, MOVE_DETECT),\n    LEVEL_UP_MOVE(17, MOVE_HIDDEN_POWER),\n    LEVEL_UP_MOVE(20, MOVE_SWAGGER),\n    LEVEL_UP_MOVE(25, MOVE_MIND_READER),\n    LEVEL_UP_MOVE(28, MOVE_CALM_MIND),\n    LEVEL_UP_MOVE(33, MOVE_HI_JUMP_KICK),\n    LEVEL_UP_MOVE(36, MOVE_PSYCH_UP),\n    LEVEL_UP_MOVE(47, MOVE_REVERSAL),\n    LEVEL_UP_MOVE(47, MOVE_PSYCHIC),\n    LEVEL_UP_MOVE(56, MOVE_RECOVER),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 217,
+      "species": "MANECTRIC",
+      "pointer": "sManectricLevelUpLearnset",
+      "before_body": "static const u16 sManectricLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_THUNDER_WAVE),\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(1, MOVE_HOWL),\n    LEVEL_UP_MOVE(4, MOVE_THUNDER_WAVE),\n    LEVEL_UP_MOVE(9, MOVE_LEER),\n    LEVEL_UP_MOVE(12, MOVE_HOWL),\n    LEVEL_UP_MOVE(17, MOVE_QUICK_ATTACK),\n    LEVEL_UP_MOVE(20, MOVE_SPARK),\n    LEVEL_UP_MOVE(25, MOVE_ODOR_SLEUTH),\n    LEVEL_UP_MOVE(31, MOVE_ROAR),\n    LEVEL_UP_MOVE(39, MOVE_BITE),\n    LEVEL_UP_MOVE(45, MOVE_THUNDER),\n    LEVEL_UP_MOVE(53, MOVE_CHARGE),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sManectricLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_THUNDER_WAVE),\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(1, MOVE_HOWL),\n    LEVEL_UP_MOVE(4, MOVE_THUNDER_WAVE),\n    LEVEL_UP_MOVE(9, MOVE_LEER),\n    LEVEL_UP_MOVE(12, MOVE_HOWL),\n    LEVEL_UP_MOVE(17, MOVE_QUICK_ATTACK),\n    LEVEL_UP_MOVE(20, MOVE_SPARK),\n    LEVEL_UP_MOVE(25, MOVE_ODOR_SLEUTH),\n    LEVEL_UP_MOVE(31, MOVE_ROAR),\n    LEVEL_UP_MOVE(35, MOVE_THUNDERBOLT),\n    LEVEL_UP_MOVE(39, MOVE_BITE),\n    LEVEL_UP_MOVE(45, MOVE_THUNDER),\n    LEVEL_UP_MOVE(53, MOVE_CHARGE),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 219,
+      "species": "SHARPEDO",
+      "pointer": "sSharpedoLevelUpLearnset",
+      "before_body": "static const u16 sSharpedoLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(1, MOVE_BITE),\n    LEVEL_UP_MOVE(1, MOVE_RAGE),\n    LEVEL_UP_MOVE(1, MOVE_FOCUS_ENERGY),\n    LEVEL_UP_MOVE(7, MOVE_RAGE),\n    LEVEL_UP_MOVE(13, MOVE_FOCUS_ENERGY),\n    LEVEL_UP_MOVE(16, MOVE_SCARY_FACE),\n    LEVEL_UP_MOVE(22, MOVE_CRUNCH),\n    LEVEL_UP_MOVE(28, MOVE_SCREECH),\n    LEVEL_UP_MOVE(33, MOVE_SLASH),\n    LEVEL_UP_MOVE(38, MOVE_TAUNT),\n    LEVEL_UP_MOVE(43, MOVE_SWAGGER),\n    LEVEL_UP_MOVE(48, MOVE_SKULL_BASH),\n    LEVEL_UP_MOVE(53, MOVE_AGILITY),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sSharpedoLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(1, MOVE_BITE),\n    LEVEL_UP_MOVE(1, MOVE_RAGE),\n    LEVEL_UP_MOVE(1, MOVE_FOCUS_ENERGY),\n    LEVEL_UP_MOVE(7, MOVE_RAGE),\n    LEVEL_UP_MOVE(13, MOVE_FOCUS_ENERGY),\n    LEVEL_UP_MOVE(16, MOVE_SCARY_FACE),\n    LEVEL_UP_MOVE(22, MOVE_CRUNCH),\n    LEVEL_UP_MOVE(28, MOVE_SCREECH),\n    LEVEL_UP_MOVE(33, MOVE_SLASH),\n    LEVEL_UP_MOVE(38, MOVE_TAUNT),\n    LEVEL_UP_MOVE(43, MOVE_SWAGGER),\n    LEVEL_UP_MOVE(46, MOVE_SURF),\n    LEVEL_UP_MOVE(48, MOVE_SKULL_BASH),\n    LEVEL_UP_MOVE(53, MOVE_AGILITY),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 221,
+      "species": "CAMERUPT",
+      "pointer": "sCameruptLevelUpLearnset",
+      "before_body": "static const u16 sCameruptLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_EMBER),\n    LEVEL_UP_MOVE(1, MOVE_MAGNITUDE),\n    LEVEL_UP_MOVE(11, MOVE_EMBER),\n    LEVEL_UP_MOVE(19, MOVE_MAGNITUDE),\n    LEVEL_UP_MOVE(25, MOVE_FOCUS_ENERGY),\n    LEVEL_UP_MOVE(29, MOVE_TAKE_DOWN),\n    LEVEL_UP_MOVE(31, MOVE_AMNESIA),\n    LEVEL_UP_MOVE(33, MOVE_ROCK_SLIDE),\n    LEVEL_UP_MOVE(37, MOVE_EARTHQUAKE),\n    LEVEL_UP_MOVE(45, MOVE_ERUPTION),\n    LEVEL_UP_MOVE(55, MOVE_FISSURE),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sCameruptLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(1, MOVE_EMBER),\n    LEVEL_UP_MOVE(1, MOVE_MAGNITUDE),\n    LEVEL_UP_MOVE(11, MOVE_EMBER),\n    LEVEL_UP_MOVE(19, MOVE_MAGNITUDE),\n    LEVEL_UP_MOVE(25, MOVE_FOCUS_ENERGY),\n    LEVEL_UP_MOVE(29, MOVE_TAKE_DOWN),\n    LEVEL_UP_MOVE(31, MOVE_AMNESIA),\n    LEVEL_UP_MOVE(33, MOVE_ROCK_SLIDE),\n    LEVEL_UP_MOVE(36, MOVE_EARTHQUAKE),\n    LEVEL_UP_MOVE(45, MOVE_ERUPTION),\n    LEVEL_UP_MOVE(47, MOVE_FLAMETHROWER),\n    LEVEL_UP_MOVE(55, MOVE_FISSURE),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 224,
+      "species": "FLYGON",
+      "pointer": "sFlygonLevelUpLearnset",
+      "before_body": "static const u16 sFlygonLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_BITE),\n    LEVEL_UP_MOVE(1, MOVE_SAND_ATTACK),\n    LEVEL_UP_MOVE(1, MOVE_FAINT_ATTACK),\n    LEVEL_UP_MOVE(1, MOVE_SAND_TOMB),\n    LEVEL_UP_MOVE(9, MOVE_SAND_ATTACK),\n    LEVEL_UP_MOVE(17, MOVE_FAINT_ATTACK),\n    LEVEL_UP_MOVE(25, MOVE_SAND_TOMB),\n    LEVEL_UP_MOVE(33, MOVE_CRUNCH),\n    LEVEL_UP_MOVE(35, MOVE_DRAGON_BREATH),\n    LEVEL_UP_MOVE(41, MOVE_SCREECH),\n    LEVEL_UP_MOVE(53, MOVE_SANDSTORM),\n    LEVEL_UP_MOVE(65, MOVE_HYPER_BEAM),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sFlygonLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_BITE),\n    LEVEL_UP_MOVE(1, MOVE_SAND_ATTACK),\n    LEVEL_UP_MOVE(1, MOVE_FAINT_ATTACK),\n    LEVEL_UP_MOVE(1, MOVE_SAND_TOMB),\n    LEVEL_UP_MOVE(9, MOVE_SAND_ATTACK),\n    LEVEL_UP_MOVE(17, MOVE_FAINT_ATTACK),\n    LEVEL_UP_MOVE(25, MOVE_SAND_TOMB),\n    LEVEL_UP_MOVE(33, MOVE_CRUNCH),\n    LEVEL_UP_MOVE(35, MOVE_DRAGON_BREATH),\n    LEVEL_UP_MOVE(41, MOVE_SCREECH),\n    LEVEL_UP_MOVE(46, MOVE_DRAGON_CLAW),\n    LEVEL_UP_MOVE(53, MOVE_SANDSTORM),\n    LEVEL_UP_MOVE(56, MOVE_EARTHQUAKE),\n    LEVEL_UP_MOVE(65, MOVE_HYPER_BEAM),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 225,
+      "species": "CACNEA",
+      "pointer": "sCacneaLevelUpLearnset",
+      "before_body": "static const u16 sCacneaLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_POISON_STING),\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(5, MOVE_ABSORB),\n    LEVEL_UP_MOVE(9, MOVE_GROWTH),\n    LEVEL_UP_MOVE(13, MOVE_LEECH_SEED),\n    LEVEL_UP_MOVE(17, MOVE_SAND_ATTACK),\n    LEVEL_UP_MOVE(21, MOVE_PIN_MISSILE),\n    LEVEL_UP_MOVE(25, MOVE_INGRAIN),\n    LEVEL_UP_MOVE(29, MOVE_FAINT_ATTACK),\n    LEVEL_UP_MOVE(33, MOVE_SPIKES),\n    LEVEL_UP_MOVE(37, MOVE_NEEDLE_ARM),\n    LEVEL_UP_MOVE(41, MOVE_COTTON_SPORE),\n    LEVEL_UP_MOVE(45, MOVE_SANDSTORM),\n    LEVEL_UP_MOVE(49, MOVE_DESTINY_BOND),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sCacneaLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_POISON_STING),\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(5, MOVE_ABSORB),\n    LEVEL_UP_MOVE(9, MOVE_GROWTH),\n    LEVEL_UP_MOVE(13, MOVE_LEECH_SEED),\n    LEVEL_UP_MOVE(17, MOVE_SAND_ATTACK),\n    LEVEL_UP_MOVE(21, MOVE_PIN_MISSILE),\n    LEVEL_UP_MOVE(22, MOVE_NEEDLE_ARM),\n    LEVEL_UP_MOVE(25, MOVE_INGRAIN),\n    LEVEL_UP_MOVE(29, MOVE_FAINT_ATTACK),\n    LEVEL_UP_MOVE(33, MOVE_SPIKES),\n    LEVEL_UP_MOVE(41, MOVE_COTTON_SPORE),\n    LEVEL_UP_MOVE(45, MOVE_SANDSTORM),\n    LEVEL_UP_MOVE(49, MOVE_DESTINY_BOND),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 228,
+      "species": "CRAWDAUNT",
+      "pointer": "sCrawdauntLevelUpLearnset",
+      "before_body": "static const u16 sCrawdauntLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_BUBBLE),\n    LEVEL_UP_MOVE(1, MOVE_HARDEN),\n    LEVEL_UP_MOVE(1, MOVE_VICE_GRIP),\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(7, MOVE_HARDEN),\n    LEVEL_UP_MOVE(10, MOVE_VICE_GRIP),\n    LEVEL_UP_MOVE(13, MOVE_LEER),\n    LEVEL_UP_MOVE(19, MOVE_BUBBLE_BEAM),\n    LEVEL_UP_MOVE(22, MOVE_PROTECT),\n    LEVEL_UP_MOVE(25, MOVE_KNOCK_OFF),\n    LEVEL_UP_MOVE(33, MOVE_TAUNT),\n    LEVEL_UP_MOVE(38, MOVE_CRABHAMMER),\n    LEVEL_UP_MOVE(43, MOVE_SWORDS_DANCE),\n    LEVEL_UP_MOVE(51, MOVE_CRUNCH),\n    LEVEL_UP_MOVE(56, MOVE_GUILLOTINE),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sCrawdauntLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_BUBBLE),\n    LEVEL_UP_MOVE(1, MOVE_HARDEN),\n    LEVEL_UP_MOVE(1, MOVE_VICE_GRIP),\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(7, MOVE_HARDEN),\n    LEVEL_UP_MOVE(10, MOVE_VICE_GRIP),\n    LEVEL_UP_MOVE(13, MOVE_LEER),\n    LEVEL_UP_MOVE(19, MOVE_BUBBLE_BEAM),\n    LEVEL_UP_MOVE(22, MOVE_PROTECT),\n    LEVEL_UP_MOVE(25, MOVE_KNOCK_OFF),\n    LEVEL_UP_MOVE(33, MOVE_TAUNT),\n    LEVEL_UP_MOVE(36, MOVE_CRABHAMMER),\n    LEVEL_UP_MOVE(43, MOVE_SWORDS_DANCE),\n    LEVEL_UP_MOVE(47, MOVE_CRUNCH),\n    LEVEL_UP_MOVE(56, MOVE_GUILLOTINE),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 230,
+      "species": "ARMALDO",
+      "pointer": "sArmaldoLevelUpLearnset",
+      "before_body": "static const u16 sArmaldoLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_SCRATCH),\n    LEVEL_UP_MOVE(1, MOVE_HARDEN),\n    LEVEL_UP_MOVE(1, MOVE_MUD_SPORT),\n    LEVEL_UP_MOVE(1, MOVE_WATER_GUN),\n    LEVEL_UP_MOVE(7, MOVE_HARDEN),\n    LEVEL_UP_MOVE(13, MOVE_MUD_SPORT),\n    LEVEL_UP_MOVE(19, MOVE_WATER_GUN),\n    LEVEL_UP_MOVE(25, MOVE_METAL_CLAW),\n    LEVEL_UP_MOVE(31, MOVE_PROTECT),\n    LEVEL_UP_MOVE(37, MOVE_ANCIENT_POWER),\n    LEVEL_UP_MOVE(46, MOVE_FURY_CUTTER),\n    LEVEL_UP_MOVE(55, MOVE_SLASH),\n    LEVEL_UP_MOVE(64, MOVE_ROCK_BLAST),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sArmaldoLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_SCRATCH),\n    LEVEL_UP_MOVE(1, MOVE_HARDEN),\n    LEVEL_UP_MOVE(1, MOVE_MUD_SPORT),\n    LEVEL_UP_MOVE(1, MOVE_WATER_GUN),\n    LEVEL_UP_MOVE(7, MOVE_HARDEN),\n    LEVEL_UP_MOVE(13, MOVE_MUD_SPORT),\n    LEVEL_UP_MOVE(19, MOVE_WATER_GUN),\n    LEVEL_UP_MOVE(25, MOVE_METAL_CLAW),\n    LEVEL_UP_MOVE(31, MOVE_PROTECT),\n    LEVEL_UP_MOVE(37, MOVE_ANCIENT_POWER),\n    LEVEL_UP_MOVE(46, MOVE_FURY_CUTTER),\n    LEVEL_UP_MOVE(52, MOVE_ROCK_SLIDE),\n    LEVEL_UP_MOVE(55, MOVE_SLASH),\n    LEVEL_UP_MOVE(64, MOVE_ROCK_BLAST),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 231,
+      "species": "FEEBAS",
+      "pointer": "sFeebasLevelUpLearnset",
+      "before_body": "static const u16 sFeebasLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_SPLASH),\n    LEVEL_UP_MOVE(15, MOVE_TACKLE),\n    LEVEL_UP_MOVE(30, MOVE_FLAIL),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sFeebasLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_SPLASH),\n    LEVEL_UP_MOVE(15, MOVE_TACKLE),\n    LEVEL_UP_MOVE(19, MOVE_WATER_PULSE),\n    LEVEL_UP_MOVE(30, MOVE_FLAIL),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 233,
+      "species": "CASTFORM",
+      "pointer": "sCastformLevelUpLearnset",
+      "before_body": "static const u16 sCastformLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(10, MOVE_WATER_GUN),\n    LEVEL_UP_MOVE(10, MOVE_EMBER),\n    LEVEL_UP_MOVE(10, MOVE_POWDER_SNOW),\n    LEVEL_UP_MOVE(20, MOVE_RAIN_DANCE),\n    LEVEL_UP_MOVE(20, MOVE_SUNNY_DAY),\n    LEVEL_UP_MOVE(20, MOVE_HAIL),\n    LEVEL_UP_MOVE(30, MOVE_WEATHER_BALL),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sCastformLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_TACKLE),\n    LEVEL_UP_MOVE(10, MOVE_WATER_GUN),\n    LEVEL_UP_MOVE(10, MOVE_EMBER),\n    LEVEL_UP_MOVE(10, MOVE_POWDER_SNOW),\n    LEVEL_UP_MOVE(20, MOVE_RAIN_DANCE),\n    LEVEL_UP_MOVE(20, MOVE_SUNNY_DAY),\n    LEVEL_UP_MOVE(20, MOVE_HAIL),\n    LEVEL_UP_MOVE(24, MOVE_WATER_PULSE),\n    LEVEL_UP_MOVE(30, MOVE_WEATHER_BALL),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 234,
+      "species": "KECLEON",
+      "pointer": "sKecleonLevelUpLearnset",
+      "before_body": "static const u16 sKecleonLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_THIEF),\n    LEVEL_UP_MOVE(1, MOVE_TAIL_WHIP),\n    LEVEL_UP_MOVE(1, MOVE_ASTONISH),\n    LEVEL_UP_MOVE(1, MOVE_LICK),\n    LEVEL_UP_MOVE(1, MOVE_SCRATCH),\n    LEVEL_UP_MOVE(4, MOVE_BIND),\n    LEVEL_UP_MOVE(7, MOVE_FAINT_ATTACK),\n    LEVEL_UP_MOVE(12, MOVE_FURY_SWIPES),\n    LEVEL_UP_MOVE(17, MOVE_PSYBEAM),\n    LEVEL_UP_MOVE(24, MOVE_SCREECH),\n    LEVEL_UP_MOVE(31, MOVE_SLASH),\n    LEVEL_UP_MOVE(40, MOVE_SUBSTITUTE),\n    LEVEL_UP_MOVE(49, MOVE_ANCIENT_POWER),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sKecleonLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_THIEF),\n    LEVEL_UP_MOVE(1, MOVE_TAIL_WHIP),\n    LEVEL_UP_MOVE(1, MOVE_ASTONISH),\n    LEVEL_UP_MOVE(1, MOVE_LICK),\n    LEVEL_UP_MOVE(1, MOVE_SCRATCH),\n    LEVEL_UP_MOVE(4, MOVE_BIND),\n    LEVEL_UP_MOVE(7, MOVE_FAINT_ATTACK),\n    LEVEL_UP_MOVE(12, MOVE_FURY_SWIPES),\n    LEVEL_UP_MOVE(17, MOVE_PSYBEAM),\n    LEVEL_UP_MOVE(24, MOVE_SCREECH),\n    LEVEL_UP_MOVE(28, MOVE_SLASH),\n    LEVEL_UP_MOVE(40, MOVE_SUBSTITUTE),\n    LEVEL_UP_MOVE(41, MOVE_SHADOW_BALL),\n    LEVEL_UP_MOVE(49, MOVE_ANCIENT_POWER),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 236,
+      "species": "BANETTE",
+      "pointer": "sBanetteLevelUpLearnset",
+      "before_body": "static const u16 sBanetteLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_KNOCK_OFF),\n    LEVEL_UP_MOVE(1, MOVE_SCREECH),\n    LEVEL_UP_MOVE(1, MOVE_NIGHT_SHADE),\n    LEVEL_UP_MOVE(1, MOVE_CURSE),\n    LEVEL_UP_MOVE(8, MOVE_SCREECH),\n    LEVEL_UP_MOVE(13, MOVE_NIGHT_SHADE),\n    LEVEL_UP_MOVE(20, MOVE_CURSE),\n    LEVEL_UP_MOVE(25, MOVE_SPITE),\n    LEVEL_UP_MOVE(32, MOVE_WILL_O_WISP),\n    LEVEL_UP_MOVE(39, MOVE_FAINT_ATTACK),\n    LEVEL_UP_MOVE(48, MOVE_SHADOW_BALL),\n    LEVEL_UP_MOVE(55, MOVE_SNATCH),\n    LEVEL_UP_MOVE(64, MOVE_GRUDGE),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sBanetteLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_KNOCK_OFF),\n    LEVEL_UP_MOVE(1, MOVE_SCREECH),\n    LEVEL_UP_MOVE(1, MOVE_NIGHT_SHADE),\n    LEVEL_UP_MOVE(1, MOVE_CURSE),\n    LEVEL_UP_MOVE(8, MOVE_SCREECH),\n    LEVEL_UP_MOVE(13, MOVE_NIGHT_SHADE),\n    LEVEL_UP_MOVE(20, MOVE_CURSE),\n    LEVEL_UP_MOVE(25, MOVE_SPITE),\n    LEVEL_UP_MOVE(32, MOVE_WILL_O_WISP),\n    LEVEL_UP_MOVE(37, MOVE_SHADOW_BALL),\n    LEVEL_UP_MOVE(39, MOVE_FAINT_ATTACK),\n    LEVEL_UP_MOVE(55, MOVE_SNATCH),\n    LEVEL_UP_MOVE(64, MOVE_GRUDGE),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 239,
+      "species": "ABSOL",
+      "pointer": "sAbsolLevelUpLearnset",
+      "before_body": "static const u16 sAbsolLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_SCRATCH),\n    LEVEL_UP_MOVE(5, MOVE_LEER),\n    LEVEL_UP_MOVE(9, MOVE_TAUNT),\n    LEVEL_UP_MOVE(13, MOVE_QUICK_ATTACK),\n    LEVEL_UP_MOVE(17, MOVE_RAZOR_WIND),\n    LEVEL_UP_MOVE(21, MOVE_BITE),\n    LEVEL_UP_MOVE(26, MOVE_SWORDS_DANCE),\n    LEVEL_UP_MOVE(31, MOVE_DOUBLE_TEAM),\n    LEVEL_UP_MOVE(36, MOVE_SLASH),\n    LEVEL_UP_MOVE(41, MOVE_FUTURE_SIGHT),\n    LEVEL_UP_MOVE(46, MOVE_PERISH_SONG),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sAbsolLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_SCRATCH),\n    LEVEL_UP_MOVE(5, MOVE_LEER),\n    LEVEL_UP_MOVE(9, MOVE_TAUNT),\n    LEVEL_UP_MOVE(13, MOVE_QUICK_ATTACK),\n    LEVEL_UP_MOVE(17, MOVE_RAZOR_WIND),\n    LEVEL_UP_MOVE(21, MOVE_BITE),\n    LEVEL_UP_MOVE(26, MOVE_SWORDS_DANCE),\n    LEVEL_UP_MOVE(31, MOVE_DOUBLE_TEAM),\n    LEVEL_UP_MOVE(34, MOVE_SLASH),\n    LEVEL_UP_MOVE(41, MOVE_FUTURE_SIGHT),\n    LEVEL_UP_MOVE(46, MOVE_PERISH_SONG),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 242,
+      "species": "SPHEAL",
+      "pointer": "sSphealLevelUpLearnset",
+      "before_body": "static const u16 sSphealLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_POWDER_SNOW),\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(1, MOVE_DEFENSE_CURL),\n    LEVEL_UP_MOVE(1, MOVE_WATER_GUN),\n    LEVEL_UP_MOVE(7, MOVE_ENCORE),\n    LEVEL_UP_MOVE(13, MOVE_ICE_BALL),\n    LEVEL_UP_MOVE(19, MOVE_BODY_SLAM),\n    LEVEL_UP_MOVE(25, MOVE_AURORA_BEAM),\n    LEVEL_UP_MOVE(31, MOVE_HAIL),\n    LEVEL_UP_MOVE(37, MOVE_REST),\n    LEVEL_UP_MOVE(37, MOVE_SNORE),\n    LEVEL_UP_MOVE(43, MOVE_BLIZZARD),\n    LEVEL_UP_MOVE(49, MOVE_SHEER_COLD),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sSphealLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_POWDER_SNOW),\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(1, MOVE_DEFENSE_CURL),\n    LEVEL_UP_MOVE(1, MOVE_WATER_GUN),\n    LEVEL_UP_MOVE(7, MOVE_ENCORE),\n    LEVEL_UP_MOVE(13, MOVE_ICE_BALL),\n    LEVEL_UP_MOVE(19, MOVE_BODY_SLAM),\n    LEVEL_UP_MOVE(23, MOVE_AURORA_BEAM),\n    LEVEL_UP_MOVE(31, MOVE_HAIL),\n    LEVEL_UP_MOVE(37, MOVE_REST),\n    LEVEL_UP_MOVE(37, MOVE_SNORE),\n    LEVEL_UP_MOVE(43, MOVE_BLIZZARD),\n    LEVEL_UP_MOVE(49, MOVE_SHEER_COLD),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 243,
+      "species": "SEALEO",
+      "pointer": "sSealeoLevelUpLearnset",
+      "before_body": "static const u16 sSealeoLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_POWDER_SNOW),\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(1, MOVE_DEFENSE_CURL),\n    LEVEL_UP_MOVE(1, MOVE_WATER_GUN),\n    LEVEL_UP_MOVE(7, MOVE_ENCORE),\n    LEVEL_UP_MOVE(13, MOVE_ICE_BALL),\n    LEVEL_UP_MOVE(19, MOVE_BODY_SLAM),\n    LEVEL_UP_MOVE(25, MOVE_AURORA_BEAM),\n    LEVEL_UP_MOVE(31, MOVE_HAIL),\n    LEVEL_UP_MOVE(39, MOVE_REST),\n    LEVEL_UP_MOVE(39, MOVE_SNORE),\n    LEVEL_UP_MOVE(47, MOVE_BLIZZARD),\n    LEVEL_UP_MOVE(55, MOVE_SHEER_COLD),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sSealeoLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_POWDER_SNOW),\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(1, MOVE_DEFENSE_CURL),\n    LEVEL_UP_MOVE(1, MOVE_WATER_GUN),\n    LEVEL_UP_MOVE(7, MOVE_ENCORE),\n    LEVEL_UP_MOVE(13, MOVE_ICE_BALL),\n    LEVEL_UP_MOVE(19, MOVE_BODY_SLAM),\n    LEVEL_UP_MOVE(25, MOVE_AURORA_BEAM),\n    LEVEL_UP_MOVE(31, MOVE_HAIL),\n    LEVEL_UP_MOVE(36, MOVE_ICE_BEAM),\n    LEVEL_UP_MOVE(39, MOVE_REST),\n    LEVEL_UP_MOVE(39, MOVE_SNORE),\n    LEVEL_UP_MOVE(47, MOVE_BLIZZARD),\n    LEVEL_UP_MOVE(55, MOVE_SHEER_COLD),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 244,
+      "species": "WALREIN",
+      "pointer": "sWalreinLevelUpLearnset",
+      "before_body": "static const u16 sWalreinLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_POWDER_SNOW),\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(1, MOVE_DEFENSE_CURL),\n    LEVEL_UP_MOVE(1, MOVE_WATER_GUN),\n    LEVEL_UP_MOVE(7, MOVE_ENCORE),\n    LEVEL_UP_MOVE(13, MOVE_ICE_BALL),\n    LEVEL_UP_MOVE(19, MOVE_BODY_SLAM),\n    LEVEL_UP_MOVE(25, MOVE_AURORA_BEAM),\n    LEVEL_UP_MOVE(31, MOVE_HAIL),\n    LEVEL_UP_MOVE(39, MOVE_REST),\n    LEVEL_UP_MOVE(39, MOVE_SNORE),\n    LEVEL_UP_MOVE(50, MOVE_BLIZZARD),\n    LEVEL_UP_MOVE(61, MOVE_SHEER_COLD),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sWalreinLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_POWDER_SNOW),\n    LEVEL_UP_MOVE(1, MOVE_GROWL),\n    LEVEL_UP_MOVE(1, MOVE_DEFENSE_CURL),\n    LEVEL_UP_MOVE(1, MOVE_WATER_GUN),\n    LEVEL_UP_MOVE(7, MOVE_ENCORE),\n    LEVEL_UP_MOVE(13, MOVE_ICE_BALL),\n    LEVEL_UP_MOVE(19, MOVE_BODY_SLAM),\n    LEVEL_UP_MOVE(25, MOVE_AURORA_BEAM),\n    LEVEL_UP_MOVE(31, MOVE_HAIL),\n    LEVEL_UP_MOVE(39, MOVE_REST),\n    LEVEL_UP_MOVE(39, MOVE_SNORE),\n    LEVEL_UP_MOVE(47, MOVE_ICE_BEAM),\n    LEVEL_UP_MOVE(50, MOVE_BLIZZARD),\n    LEVEL_UP_MOVE(56, MOVE_SURF),\n    LEVEL_UP_MOVE(61, MOVE_SHEER_COLD),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 246,
+      "species": "ZAPDOS",
+      "pointer": "sZapdosLevelUpLearnset",
+      "before_body": "static const u16 sZapdosLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_PECK),\n    LEVEL_UP_MOVE(1, MOVE_THUNDER_SHOCK),\n    LEVEL_UP_MOVE(13, MOVE_THUNDER_WAVE),\n    LEVEL_UP_MOVE(25, MOVE_AGILITY),\n    LEVEL_UP_MOVE(37, MOVE_DETECT),\n    LEVEL_UP_MOVE(49, MOVE_DRILL_PECK),\n    LEVEL_UP_MOVE(61, MOVE_CHARGE),\n    LEVEL_UP_MOVE(73, MOVE_LIGHT_SCREEN),\n    LEVEL_UP_MOVE(85, MOVE_THUNDER),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sZapdosLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_PECK),\n    LEVEL_UP_MOVE(1, MOVE_THUNDER_SHOCK),\n    LEVEL_UP_MOVE(13, MOVE_THUNDER_WAVE),\n    LEVEL_UP_MOVE(25, MOVE_AGILITY),\n    LEVEL_UP_MOVE(37, MOVE_DETECT),\n    LEVEL_UP_MOVE(49, MOVE_DRILL_PECK),\n    LEVEL_UP_MOVE(58, MOVE_THUNDERBOLT),\n    LEVEL_UP_MOVE(61, MOVE_CHARGE),\n    LEVEL_UP_MOVE(73, MOVE_LIGHT_SCREEN),\n    LEVEL_UP_MOVE(85, MOVE_THUNDER),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 248,
+      "species": "RAIKOU",
+      "pointer": "sRaikouLevelUpLearnset",
+      "before_body": "static const u16 sRaikouLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_BITE),\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(11, MOVE_THUNDER_SHOCK),\n    LEVEL_UP_MOVE(21, MOVE_ROAR),\n    LEVEL_UP_MOVE(31, MOVE_QUICK_ATTACK),\n    LEVEL_UP_MOVE(41, MOVE_SPARK),\n    LEVEL_UP_MOVE(51, MOVE_REFLECT),\n    LEVEL_UP_MOVE(61, MOVE_CRUNCH),\n    LEVEL_UP_MOVE(71, MOVE_THUNDER),\n    LEVEL_UP_MOVE(81, MOVE_CALM_MIND),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sRaikouLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_BITE),\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(11, MOVE_THUNDER_SHOCK),\n    LEVEL_UP_MOVE(21, MOVE_ROAR),\n    LEVEL_UP_MOVE(31, MOVE_QUICK_ATTACK),\n    LEVEL_UP_MOVE(41, MOVE_SPARK),\n    LEVEL_UP_MOVE(51, MOVE_REFLECT),\n    LEVEL_UP_MOVE(58, MOVE_THUNDERBOLT),\n    LEVEL_UP_MOVE(61, MOVE_CRUNCH),\n    LEVEL_UP_MOVE(71, MOVE_THUNDER),\n    LEVEL_UP_MOVE(81, MOVE_CALM_MIND),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 250,
+      "species": "SUICUNE",
+      "pointer": "sSuicuneLevelUpLearnset",
+      "before_body": "static const u16 sSuicuneLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_BITE),\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(11, MOVE_BUBBLE_BEAM),\n    LEVEL_UP_MOVE(21, MOVE_RAIN_DANCE),\n    LEVEL_UP_MOVE(31, MOVE_GUST),\n    LEVEL_UP_MOVE(41, MOVE_AURORA_BEAM),\n    LEVEL_UP_MOVE(51, MOVE_MIST),\n    LEVEL_UP_MOVE(61, MOVE_MIRROR_COAT),\n    LEVEL_UP_MOVE(71, MOVE_HYDRO_PUMP),\n    LEVEL_UP_MOVE(81, MOVE_CALM_MIND),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sSuicuneLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_BITE),\n    LEVEL_UP_MOVE(1, MOVE_LEER),\n    LEVEL_UP_MOVE(11, MOVE_BUBBLE_BEAM),\n    LEVEL_UP_MOVE(21, MOVE_RAIN_DANCE),\n    LEVEL_UP_MOVE(31, MOVE_GUST),\n    LEVEL_UP_MOVE(41, MOVE_AURORA_BEAM),\n    LEVEL_UP_MOVE(51, MOVE_MIST),\n    LEVEL_UP_MOVE(58, MOVE_SURF),\n    LEVEL_UP_MOVE(61, MOVE_MIRROR_COAT),\n    LEVEL_UP_MOVE(71, MOVE_HYDRO_PUMP),\n    LEVEL_UP_MOVE(81, MOVE_CALM_MIND),\n    LEVEL_UP_END\n};"
+    },
+    {
+      "dex": 251,
+      "species": "MEWTWO",
+      "pointer": "sMewtwoLevelUpLearnset",
+      "before_body": "static const u16 sMewtwoLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_CONFUSION),\n    LEVEL_UP_MOVE(1, MOVE_DISABLE),\n    LEVEL_UP_MOVE(11, MOVE_BARRIER),\n    LEVEL_UP_MOVE(22, MOVE_MIST),\n    LEVEL_UP_MOVE(33, MOVE_SWIFT),\n    LEVEL_UP_MOVE(44, MOVE_RECOVER),\n    LEVEL_UP_MOVE(55, MOVE_SAFEGUARD),\n    LEVEL_UP_MOVE(66, MOVE_PSYCHIC),\n    LEVEL_UP_MOVE(77, MOVE_PSYCH_UP),\n    LEVEL_UP_MOVE(88, MOVE_FUTURE_SIGHT),\n    LEVEL_UP_MOVE(99, MOVE_AMNESIA),\n    LEVEL_UP_END\n};",
+      "after_body": "static const u16 sMewtwoLevelUpLearnset[] = {\n    LEVEL_UP_MOVE(1, MOVE_CONFUSION),\n    LEVEL_UP_MOVE(1, MOVE_DISABLE),\n    LEVEL_UP_MOVE(11, MOVE_BARRIER),\n    LEVEL_UP_MOVE(22, MOVE_MIST),\n    LEVEL_UP_MOVE(33, MOVE_SWIFT),\n    LEVEL_UP_MOVE(44, MOVE_RECOVER),\n    LEVEL_UP_MOVE(55, MOVE_SAFEGUARD),\n    LEVEL_UP_MOVE(58, MOVE_PSYCHIC),\n    LEVEL_UP_MOVE(77, MOVE_PSYCH_UP),\n    LEVEL_UP_MOVE(88, MOVE_FUTURE_SIGHT),\n    LEVEL_UP_MOVE(99, MOVE_AMNESIA),\n    LEVEL_UP_END\n};"
+    }
+  ],
+  "after_sha256": "5218c2c3d82984bd86c7f2943fda57d6066f56dbe10ed492fbf2c7a0aefa281f"
+}

@@ -1,0 +1,296 @@
+{
+  "base_main": "b45e6c6e9cebb24ce8b7c36599f388375243c31b",
+  "scope": "Approved WRL010 current-main integration; no old expected manifest/hash edits",
+  "files": {
+    "Makefile": {
+      "before_sha256": "51960ea72311e53c272ebcc5b481021efba52fcc7db7f0ded4bfcebaf8bbdf47",
+      "after_sha256": "3a77e5de1486cc76688f3518fdab9f2f5722247bfa58225989f862f02b118b27",
+      "hunks": [
+        {
+          "before": "\n# Default make rule\nall: rom\n\n# Toolchain selection\nTOOLCHAIN := $(DEVKITARM)\n",
+          "after": "\n# Default make rule\nall: rom\n\n# Explicit, local-only private follower-art build. Normal 'make' remains source-only.\n# This target cannot silently compile the zero-entry follower registry.\n# Owner permission confirmation is recorded; artist/source notice is a separate\n# local record and must not be committed with copyrighted graphics or a ROM.\n.PHONY: private-followers-rom\nprivate-followers-rom:\n\t@test \"$(FOLLOWER_ART_PERMISSION_CONFIRMED)\" = \"1\" || (echo \"Set FOLLOWER_ART_PERMISSION_CONFIRMED=1 only when the pinned source is cleared for this FireRed/AI-assisted use\"; exit 1)\n\t@test -n \"$(FOLLOWER_ATTRIBUTION_FILE)\" || (echo \"Set FOLLOWER_ATTRIBUTION_FILE to the local grant-scope/credit notice\"; exit 1)\n\t@test -s \"$(FOLLOWER_ATTRIBUTION_FILE)\" || (echo \"Missing or empty local attribution/permission record; refusing asset download\"; exit 1)\n\tFOLLOWER_CACHE_ONLY=\"$(FOLLOWER_CACHE_ONLY)\" python3 scripts/build-follower-assets.py --confirmed-scope\n\tpython3 scripts/check-follower-build-readiness.py --attribution \"$(FOLLOWER_ATTRIBUTION_FILE)\"\n\t$(MAKE) rom\n\n# Toolchain selection\nTOOLCHAIN := $(DEVKITARM)\n"
+        },
+        {
+          "before": "\t@echo \"rm -f <AUTO_GEN_TARGETS>\"\n\nifeq ($(MODERN),0)\n$(C_BUILDDIR)/agb_flash.o: CFLAGS := -O -mthumb-interwork\n$(C_BUILDDIR)/agb_flash_1m.o: CFLAGS := -O -mthumb-interwork\n$(C_BUILDDIR)/agb_flash_mx.o: CFLAGS := -O -mthumb-interwork\n",
+          "after": "\t@echo \"rm -f <AUTO_GEN_TARGETS>\"\n\nifeq ($(MODERN),0)\n# The locally generated 252-species graphics registry is a real C dependency.\n# Without this edge an incremental private build may reuse a zero-art object.\n$(C_BUILDDIR)/follower_assets.o: src/follower_assets_generated.inc\n\n$(C_BUILDDIR)/agb_flash.o: CFLAGS := -O -mthumb-interwork\n$(C_BUILDDIR)/agb_flash_1m.o: CFLAGS := -O -mthumb-interwork\n$(C_BUILDDIR)/agb_flash_mx.o: CFLAGS := -O -mthumb-interwork\n"
+        }
+      ]
+    },
+    "data/event_scripts.s": {
+      "before_sha256": "f60559043bc497cc0ec97974c0a8d58a594ee4c56370a3ebaabe24bddd214bee",
+      "after_sha256": "9e72ea14c7b8452149421f21a203b52134a098a1d46ba3a09d1238e14821006c",
+      "hunks": [
+        {
+          "before": "\t.include \"data/text/pokedude.inc\"\n\n\t.include \"data/scripts/mystery_vendor.inc\"\n\n\t.include \"data/scripts/special_weather.inc\"\n",
+          "after": "\t.include \"data/text/pokedude.inc\"\n\n\t.include \"data/scripts/mystery_vendor.inc\"\n\t.include \"data/scripts/follower.inc\"\n\n\t.include \"data/scripts/special_weather.inc\"\n"
+        }
+      ]
+    },
+    "data/maps/PalletTown_ProfessorOaksLab/scripts.inc": {
+      "before_sha256": "7268a39634a044b7b0b48f4d004d232a727084068f4eb6bbf7aabb76516f8b2e",
+      "after_sha256": "87afd427255c98a1a489b48a0bf050deb6c0a95b1f36ab33322f858057c84d0f",
+      "hunks": [
+        {
+          "before": "\twaitmessage\n\tplayfanfare MUS_OBTAIN_KEY_ITEM\n\twaitfanfare\n\tgoto EventScript_GiveNicknameToStarter\n\tend\n\n",
+          "after": "\twaitmessage\n\tplayfanfare MUS_OBTAIN_KEY_ITEM\n\twaitfanfare\n\tcall PalletTown_ProfessorOaksLab_EventScript_StarterFollowerEmergence\n\tgoto EventScript_GiveNicknameToStarter\n\tend\n\n"
+        },
+        {
+          "before": "PalletTown_ProfessorOaksLab_EventScript_NestBallsFull::\n    msgbox Text_TooBadBagFull\n    return\n",
+          "after": "PalletTown_ProfessorOaksLab_EventScript_NestBallsFull::\n    msgbox Text_TooBadBagFull\n    return\n\n@ One-time gift call only. Failed resource acquisition never blocks the story.\nPalletTown_ProfessorOaksLab_EventScript_StarterFollowerEmergence::\n\tspecial ScriptSelectStarterPikachuFollower\n\tspecialvar VAR_RESULT, ScriptStartStarterFollowerEmergence\n\tgoto_if_eq VAR_RESULT, FALSE, PalletTown_ProfessorOaksLab_EventScript_StarterFollowerEmergenceEnd\n\twaitstate\nPalletTown_ProfessorOaksLab_EventScript_StarterFollowerEmergenceEnd::\n\treturn\n"
+        }
+      ]
+    },
+    "data/specials.inc": {
+      "before_sha256": "7d1147ad68f48cc19cc7aa7652d4b2ff8934254a31020be5ebf30c7c6f31f5b7",
+      "after_sha256": "19df8fb414f83566ee597e1a8094209c7041ac03a9ceddb5121a72b51433e675",
+      "hunks": [
+        {
+          "before": "\tdef_special RocketRescueStatus\n\tdef_special RocketRescueGive\n\tdef_special RocketRescueReturn\ngSpecialsEnd::\n",
+          "after": "\tdef_special RocketRescueStatus\n\tdef_special RocketRescueGive\n\tdef_special RocketRescueReturn\n\tdef_special ScriptSelectStarterPikachuFollower\n\tdef_special ScriptStartStarterFollowerEmergence\ngSpecialsEnd::\n"
+        }
+      ]
+    },
+    "include/event_scripts.h": {
+      "before_sha256": "55fa6a59cc1c69b861f8d9baddf4d736d4ee8c89e4a52b495f4ab20cacffaf6d",
+      "after_sha256": "fc0e92761bb981104118258ce03ab9d8adcc01a9e0e6b06dd0d89d29b27bbe73",
+      "hunks": [
+        {
+          "before": "\n#ifndef GUARD_EVENT_SCRIPTS_H\n#define GUARD_EVENT_SCRIPTS_H\n\n#include \"global.h\"\n\n",
+          "after": "\n#ifndef GUARD_EVENT_SCRIPTS_H\n#define GUARD_EVENT_SCRIPTS_H\n\n// WRL-010: dynamic follower visual interaction script.\nextern const u8 EventScript_FollowerInteraction[];\n\n#include \"global.h\"\n\n"
+        }
+      ]
+    },
+    "src/data/party_menu.h": {
+      "before_sha256": "cfd30a7b5fdc0026da999a62d3ff72159cad88d9a921730c179d804ee026a9f7",
+      "after_sha256": "79105ba369f06665e3c53a65def3a58b6080f11210ab178c96c01efed5f58066",
+      "hunks": [
+        {
+          "before": "    CURSOR_OPTION_REGISTER,\n    CURSOR_OPTION_TRADE1,\n    CURSOR_OPTION_TRADE2,\n    CURSOR_OPTION_FIELD_MOVES,\n};\n\n",
+          "after": "    CURSOR_OPTION_REGISTER,\n    CURSOR_OPTION_TRADE1,\n    CURSOR_OPTION_TRADE2,\n    CURSOR_OPTION_SET_FOLLOWER,\n    CURSOR_OPTION_STOP_FOLLOWING,\n    CURSOR_OPTION_FIELD_MOVES,\n};\n\n"
+        },
+        {
+          "before": "    [CURSOR_OPTION_REGISTER]                             = {gText_Register,               CursorCB_Register },\n    [CURSOR_OPTION_TRADE1]                               = {gText_Trade4,                 CursorCB_Trade1   },\n    [CURSOR_OPTION_TRADE2]                               = {gText_Trade4,                 CursorCB_Trade2   },\n    [CURSOR_OPTION_FIELD_MOVES + FIELD_MOVE_FLASH]       = {gMoveNames[MOVE_FLASH],       CursorCB_FieldMove},\n    [CURSOR_OPTION_FIELD_MOVES + FIELD_MOVE_CUT]         = {gMoveNames[MOVE_CUT],         CursorCB_FieldMove},\n    [CURSOR_OPTION_FIELD_MOVES + FIELD_MOVE_FLY]         = {gMoveNames[MOVE_FLY],         CursorCB_FieldMove},\n",
+          "after": "    [CURSOR_OPTION_REGISTER]                             = {gText_Register,               CursorCB_Register },\n    [CURSOR_OPTION_TRADE1]                               = {gText_Trade4,                 CursorCB_Trade1   },\n    [CURSOR_OPTION_TRADE2]                               = {gText_Trade4,                 CursorCB_Trade2   },\n    [CURSOR_OPTION_SET_FOLLOWER]                          = {sText_SetFollower,             CursorCB_SetFollower},\n    [CURSOR_OPTION_STOP_FOLLOWING]                        = {sText_StopFollowing,           CursorCB_StopFollowing},\n    [CURSOR_OPTION_FIELD_MOVES + FIELD_MOVE_FLASH]       = {gMoveNames[MOVE_FLASH],       CursorCB_FieldMove},\n    [CURSOR_OPTION_FIELD_MOVES + FIELD_MOVE_CUT]         = {gMoveNames[MOVE_CUT],         CursorCB_FieldMove},\n    [CURSOR_OPTION_FIELD_MOVES + FIELD_MOVE_FLY]         = {gMoveNames[MOVE_FLY],         CursorCB_FieldMove},\n"
+        }
+      ]
+    },
+    "src/daycare.c": {
+      "before_sha256": "0e440145aa8ba9f7b7bcfaf5417d997d9c3c0fdba202235c8a94412f8c2d03b1",
+      "after_sha256": "3d77f47ff14c71e8779543dfa5720c6ff0257b79d4b00faa45b3c562814e90d7",
+      "hunks": [
+        {
+          "before": "#include \"global.h\"\n#include \"route5_daycare.h\"\n#include \"gflib.h\"\n#include \"data.h\"\n#include \"battle.h\"\n",
+          "after": "#include \"global.h\"\n#include \"route5_daycare.h\"\n#include \"follower_state.h\"\n#include \"gflib.h\"\n#include \"data.h\"\n#include \"battle.h\"\n"
+        },
+        {
+          "before": "    daycareMon->mon = mon->box;\n    BoxMonRestorePP(&daycareMon->mon);\n    daycareMon->steps = 0;\n    ZeroMonData(mon);\n    CompactPartySlots();\n    CalculatePlayerPartyCount();\n",
+          "after": "    daycareMon->mon = mon->box;\n    BoxMonRestorePP(&daycareMon->mon);\n    daycareMon->steps = 0;\n    // Clear only after a real parent deposit has committed its saved data.\n    FollowerState_BeforeBoxDeposit(mon);\n    ZeroMonData(mon);\n    CompactPartySlots();\n    CalculatePlayerPartyCount();\n"
+        }
+      ]
+    },
+    "src/event_object_movement.c": {
+      "before_sha256": "5cb265d1672be35a186298710283f226794ffe10c04f60b0ab41c192120ff667",
+      "after_sha256": "d29ef44d67d2b3f2d0c27ed0c4dc00db1385ccdf00a51b3cd8847deac89fa76d",
+      "hunks": [
+        {
+          "before": "#include \"global.h\"\n#include \"gflib.h\"\n#include \"event_data.h\"\n#include \"event_object_movement.h\"\n",
+          "after": "#include \"global.h\"\n#include \"follower_graphics.h\"\n#include \"follower_controller.h\"\n#include \"follower_state.h\"\n#include \"gflib.h\"\n#include \"event_data.h\"\n#include \"event_object_movement.h\"\n"
+        },
+        {
+          "before": "\nstatic void RemoveObjectEvent(struct ObjectEvent *objectEvent)\n{\n    objectEvent->active = FALSE;\n    RemoveObjectEventInternal(objectEvent);\n}\n",
+          "after": "\nstatic void RemoveObjectEvent(struct ObjectEvent *objectEvent)\n{\n    u8 followerId = FollowerGraphics_GetObjectEventId();\n\n    // Dynamic follower sheets own their allocation, not the placeholder\n    // Snorlax/Seagallop descriptor used by ordinary map-object teardown.\n    if (followerId < OBJECT_EVENTS_COUNT && objectEvent == &gObjectEvents[followerId])\n    {\n        FollowerController_RequestRefresh();\n        FollowerGraphics_Release();\n        return;\n    }\n    objectEvent->active = FALSE;\n    RemoveObjectEventInternal(objectEvent);\n}\n"
+        },
+        {
+          "before": "    u8 objectEventId;\n    if (!TryGetObjectEventIdByLocalIdAndMap(localId, mapNum, mapGroup, &objectEventId))\n    {\n        FlagSet(GetObjectEventFlagIdByObjectEventId(objectEventId));\n        RemoveObjectEvent(&gObjectEvents[objectEventId]);\n    }\n}\n",
+          "after": "    u8 objectEventId;\n    if (!TryGetObjectEventIdByLocalIdAndMap(localId, mapNum, mapGroup, &objectEventId))\n    {\n        // No map-template flag exists for the owned dynamic follower.\n        if (objectEventId != FollowerGraphics_GetObjectEventId())\n            FlagSet(GetObjectEventFlagIdByObjectEventId(objectEventId));\n        RemoveObjectEvent(&gObjectEvents[objectEventId]);\n    }\n}\n"
+        },
+        {
+          "before": "    RemoveObjectEvent(objectEvent);\n}\n\nvoid SpawnObjectEventsOnReturnToField(s16 x, s16 y)\n{\n    u8 i;\n\n    ClearPlayerAvatarInfo();\n    for (i = 0; i < OBJECT_EVENTS_COUNT; i++)\n    {\n",
+          "after": "    RemoveObjectEvent(objectEvent);\n}\n\n// Private follower builds serialized their dynamic placeholder ObjectEvent.\n// Do not treat a restored copy as an authored Snorlax/Seagallop map NPC.\n// This historical identifier is deliberately not a generic local-ID exemption.\n#define LEGACY_FOLLOWER_LOCAL_ID 126\nstatic void DiscardLegacyFollowerObjectOnReturnToField(void)\n{\n    u8 i;\n    struct ObjectEvent *objectEvent;\n\n    // A real, checksum-valid selected party instance is required. Invalid or\n    // absent records never authorize removing an object from an older save.\n    if (FollowerState_ResolvePartySlot() < 0)\n        return;\n    for (i = 0; i < OBJECT_EVENTS_COUNT; i++)\n    {\n        objectEvent = &gObjectEvents[i];\n        if (objectEvent->active && !objectEvent->isPlayer\n         && objectEvent->localId == LEGACY_FOLLOWER_LOCAL_ID\n         && objectEvent->mapNum == gSaveBlock1Ptr->location.mapNum\n         && objectEvent->mapGroup == gSaveBlock1Ptr->location.mapGroup\n         && (objectEvent->graphicsId == OBJ_EVENT_GFX_SNORLAX\n          || objectEvent->graphicsId == OBJ_EVENT_GFX_SEAGALLOP)\n         && objectEvent->movementType == MOVEMENT_TYPE_FACE_DOWN\n         && objectEvent->trainerType == TRAINER_TYPE_NONE\n         && GetObjectEventTemplateByLocalIdAndMap(objectEvent->localId,\n                                                 objectEvent->mapNum,\n                                                 objectEvent->mapGroup) == NULL)\n        {\n            // Sprite data has been reset; do not free an old sprite ID.\n            // Selection survives and the controller supplies the new object.\n            objectEvent->active = FALSE;\n        }\n    }\n}\n#undef LEGACY_FOLLOWER_LOCAL_ID\n\nvoid SpawnObjectEventsOnReturnToField(s16 x, s16 y)\n{\n    u8 i;\n\n    DiscardLegacyFollowerObjectOnReturnToField();\n    ClearPlayerAvatarInfo();\n    for (i = 0; i < OBJECT_EVENTS_COUNT; i++)\n    {\n"
+        },
+        {
+          "before": "    for (i = 0; i < OBJECT_EVENTS_COUNT; i++)\n    {\n        curObject = &gObjectEvents[i];\n        if (curObject->active && curObject != objectEvent)\n        {\n            if ((curObject->currentCoords.x == x && curObject->currentCoords.y == y) || (curObject->previousCoords.x == x && curObject->previousCoords.y == y))\n",
+          "after": "    for (i = 0; i < OBJECT_EVENTS_COUNT; i++)\n    {\n        curObject = &gObjectEvents[i];\n        // The follower owns a real ObjectEvent slot only for sprite lifetime.\n        // It is visual and must never become an impassable NPC for the player,\n        // NPCs, doors or forced movements. Compare the owned slot, not local ID:\n        // an unrelated object using that identifier is not exempt.\n        if (i == FollowerGraphics_GetObjectEventId())\n            continue;\n        if (curObject->active && curObject != objectEvent)\n        {\n            if ((curObject->currentCoords.x == x && curObject->currentCoords.y == y) || (curObject->previousCoords.x == x && curObject->previousCoords.y == y))\n"
+        }
+      ]
+    },
+    "src/field_control_avatar.c": {
+      "before_sha256": "305daa295f88ce682b2b1868700d2f76012c659cb0df2905e6177a51ee4e9b8d",
+      "after_sha256": "841d6f4341d373ede9e2ab7ccc2a52960eed2569b488405c3186fa977d92e671",
+      "hunks": [
+        {
+          "before": "#include \"event_data.h\"\n#include \"event_object_movement.h\"\n#include \"event_scripts.h\"\n#include \"fieldmap.h\"\n#include \"field_control_avatar.h\"\n#include \"field_fadetransition.h\"\n",
+          "after": "#include \"event_data.h\"\n#include \"event_object_movement.h\"\n#include \"event_scripts.h\"\n#include \"follower_graphics.h\"\n#include \"follower_controller.h\"\n#include \"fieldmap.h\"\n#include \"field_control_avatar.h\"\n#include \"field_fadetransition.h\"\n"
+        },
+        {
+          "before": "static const u8 *GetInteractedObjectEventScript(struct MapPosition *position, u8 metatileBehavior, u8 direction)\n{\n    u8 objectEventId;\n    const u8 *script;\n\n    objectEventId = GetObjectEventIdByPosition(position->x, position->y, position->elevation);\n",
+          "after": "static const u8 *GetInteractedObjectEventScript(struct MapPosition *position, u8 metatileBehavior, u8 direction)\n{\n    u8 objectEventId;\n    u8 i;\n    const u8 *script;\n\n    objectEventId = GetObjectEventIdByPosition(position->x, position->y, position->elevation);\n"
+        },
+        {
+          "before": "        objectEventId = GetObjectEventIdByPosition(position->x + gDirectionToVectors[direction].x, position->y + gDirectionToVectors[direction].y, position->elevation);\n        if (objectEventId == OBJECT_EVENTS_COUNT || gObjectEvents[objectEventId].localId == LOCALID_PLAYER)\n            return NULL;\n    }\n\n    if (InUnionRoom() == TRUE && !ObjectEventCheckHeldMovementStatus(&gObjectEvents[objectEventId]))\n",
+          "after": "        objectEventId = GetObjectEventIdByPosition(position->x + gDirectionToVectors[direction].x, position->y + gDirectionToVectors[direction].y, position->elevation);\n        if (objectEventId == OBJECT_EVENTS_COUNT || gObjectEvents[objectEventId].localId == LOCALID_PLAYER)\n            return NULL;\n    }\n\n    // Dynamic follower is a visual ObjectEvent, not a map-template NPC.\n    // Never call GetObjectEventScriptPointerByObjectEventId on its local ID.\n    // If an NPC shares the follower tile, the actual NPC gets precedence.\n    if (objectEventId == FollowerGraphics_GetObjectEventId())\n    {\n        for (i = 0; i < OBJECT_EVENTS_COUNT; i++)\n        {\n            if (i != objectEventId && gObjectEvents[i].active\n             && gObjectEvents[i].localId != LOCALID_PLAYER\n             && gObjectEvents[i].currentCoords.x == gObjectEvents[objectEventId].currentCoords.x\n             && gObjectEvents[i].currentCoords.y == gObjectEvents[objectEventId].currentCoords.y\n             && (gObjectEvents[i].currentElevation == 0 || position->elevation == 0\n              || gObjectEvents[i].currentElevation == position->elevation))\n            {\n                objectEventId = i;\n                break;\n            }\n        }\n        if (objectEventId == FollowerGraphics_GetObjectEventId())\n        {\n            if (gObjectEvents[objectEventId].spriteId >= MAX_SPRITES\n             || !gSprites[gObjectEvents[objectEventId].spriteId].inUse\n             || gSprites[gObjectEvents[objectEventId].spriteId].invisible)\n                return NULL;\n            // lock/release require a valid selected object, just like an NPC.\n            gSelectedObjectEvent = objectEventId;\n            gSpecialVar_LastTalked = gObjectEvents[objectEventId].localId;\n            gSpecialVar_Facing = direction;\n            FollowerSpecial_PlayCry();\n            return EventScript_FollowerInteraction;\n        }\n    }\n\n    if (InUnionRoom() == TRUE && !ObjectEventCheckHeldMovementStatus(&gObjectEvents[objectEventId]))\n"
+        }
+      ]
+    },
+    "src/load_save.c": {
+      "before_sha256": "b6a07136288f9330cf2b56f3a101fb62fd99fb23d76c9ab8de81e8cba458c012",
+      "after_sha256": "028d6c4744124ff7abc843e687cc9ed0b5d3ac379a2b1d6b63c63ac02b9c74bc",
+      "hunks": [
+        {
+          "before": "#include \"gflib.h\"\n#include \"gba/flash_internal.h\"\n#include \"load_save.h\"\n#include \"pokemon.h\"\n#include \"pokemon_storage_system.h\"\n#include \"random.h\"\n",
+          "after": "#include \"gflib.h\"\n#include \"gba/flash_internal.h\"\n#include \"load_save.h\"\n#include \"follower_graphics.h\"\n#include \"pokemon.h\"\n#include \"pokemon_storage_system.h\"\n#include \"random.h\"\n"
+        },
+        {
+          "before": "void SaveObjectEvents(void)\n{\n    int i;\n\n    for (i = 0; i < OBJECT_EVENTS_COUNT; i++)\n        gSaveBlock1Ptr->objectEvents[i] = gObjectEvents[i];\n}\n\nvoid LoadObjectEvents(void)\n",
+          "after": "void SaveObjectEvents(void)\n{\n    int i;\n    u8 followerId = FollowerGraphics_GetObjectEventId();\n\n    for (i = 0; i < OBJECT_EVENTS_COUNT; i++)\n    {\n        gSaveBlock1Ptr->objectEvents[i] = gObjectEvents[i];\n        // Only selection persists. An active dynamic object cannot be\n        // restored as a map-template NPC after sprite ownership is reset.\n        if (i == followerId)\n            gSaveBlock1Ptr->objectEvents[i].active = FALSE;\n    }\n}\n\nvoid LoadObjectEvents(void)\n"
+        }
+      ]
+    },
+    "src/overworld.c": {
+      "before_sha256": "12e3c527b7b649706b4ee02dba4a9fca9c2212e33c3acc990cf78bca8f5397eb",
+      "after_sha256": "0a352ce1f895d0613c2293994d38d2d951c4793f2ece14f0c2fb4b5179114b89",
+      "hunks": [
+        {
+          "before": "#include \"global.h\"\n#include \"dynamic_weather.h\"\n#include \"gflib.h\"\n#include \"bg_regs.h\"\n",
+          "after": "#include \"global.h\"\n#include \"follower_graphics.h\"\n#include \"follower_controller.h\"\n#include \"dynamic_weather.h\"\n#include \"gflib.h\"\n#include \"bg_regs.h\"\n"
+        },
+        {
+          "before": "    LightingPreviewUpdateAppearance();\n#endif\n    CameraUpdate();\n    SetQuestLogEvent_Arrived();\n    UpdateCameraPanning();\n    BuildOamBuffer();\n",
+          "after": "    LightingPreviewUpdateAppearance();\n#endif\n    CameraUpdate();\n    FollowerController_Tick();\n    SetQuestLogEvent_Arrived();\n    UpdateCameraPanning();\n    BuildOamBuffer();\n"
+        },
+        {
+          "before": "\nstatic void VBlankCB_Field(void)\n{\n    LoadOam();\n    ProcessSpriteCopyRequests();\n    ScanlineEffect_InitHBlankDmaTransfer();\n",
+          "after": "\nstatic void VBlankCB_Field(void)\n{\n    FollowerController_VBlank();\n    LoadOam();\n    ProcessSpriteCopyRequests();\n    ScanlineEffect_InitHBlankDmaTransfer();\n"
+        },
+        {
+          "before": "static void ResumeMap(bool32 inLink)\n{\n    ResetTasks();\n    ResetSpriteData();\n    ResetPaletteFade();\n    ScanlineEffect_Clear();\n    ResetAllPicSprites();\n",
+          "after": "static void ResumeMap(bool32 inLink)\n{\n    ResetTasks();\n    FollowerController_RequestRefresh();\n    FollowerGraphics_DetachForMapTransition();\n    ResetSpriteData();\n    FollowerGraphics_InvalidateAfterSpriteReset();\n    ResetPaletteFade();\n    ScanlineEffect_Clear();\n    ResetAllPicSprites();\n"
+        }
+      ]
+    },
+    "src/party_menu.c": {
+      "before_sha256": "c54852914e8b6512e8982dea8edb7deb3314cbf911bf91f8fdaa959b0ed2b62c",
+      "after_sha256": "9f14fce16c8a422ac80f4f49259f48367ec2641f4ab3986b5263304d752cce23",
+      "hunks": [
+        {
+          "before": "#include \"player_pc.h\"\n#include \"pokedex.h\"\n#include \"pokemon.h\"\n#include \"pokemon_icon.h\"\n#include \"pokemon_jump.h\"\n#include \"pokemon_special_anim.h\"\n",
+          "after": "#include \"player_pc.h\"\n#include \"pokedex.h\"\n#include \"pokemon.h\"\n#include \"follower_state.h\"\n#include \"follower_controller.h\"\n#include \"pokemon_icon.h\"\n#include \"pokemon_jump.h\"\n#include \"pokemon_special_anim.h\"\n"
+        },
+        {
+          "before": "    u32 spriteIdCancelPokeball:7;\n    u32 messageId:14;\n    u8 windowId[3];\n    u8 actions[8];\n    u8 numActions;\n    u16 palBuffer[BG_PLTT_SIZE / sizeof(u16)];\n    s16 data[16];\n",
+          "after": "    u32 spriteIdCancelPokeball:7;\n    u32 messageId:14;\n    u8 windowId[3];\n    u8 actions[10];\n    u8 numActions;\n    u16 palBuffer[BG_PLTT_SIZE / sizeof(u16)];\n    s16 data[16];\n"
+        },
+        {
+          "before": "static void BlitBitmapToPartyWindow_LeftColumn(u8 windowId, u8 x, u8 y, u8 width, u8 height, bool8 hideHP);\nstatic void BlitBitmapToPartyWindow_RightColumn(u8 windowId, u8 x, u8 y, u8 width, u8 height, bool8 hideHP);\nstatic void CursorCB_Summary(u8 taskId);\nstatic void CursorCB_Switch(u8 taskId);\nstatic void CursorCB_Cancel1(u8 taskId);\nstatic void CursorCB_Item(u8 taskId);\n",
+          "after": "static void BlitBitmapToPartyWindow_LeftColumn(u8 windowId, u8 x, u8 y, u8 width, u8 height, bool8 hideHP);\nstatic void BlitBitmapToPartyWindow_RightColumn(u8 windowId, u8 x, u8 y, u8 width, u8 height, bool8 hideHP);\nstatic void CursorCB_Summary(u8 taskId);\nstatic void CursorCB_SetFollower(u8 taskId);\nstatic void CursorCB_StopFollowing(u8 taskId);\nstatic void CursorCB_Switch(u8 taskId);\nstatic void CursorCB_Cancel1(u8 taskId);\nstatic void CursorCB_Item(u8 taskId);\n"
+        },
+        {
+          "before": "COMMON_DATA void (*gItemUseCB)(u8, TaskFunc) = NULL;\n\n#include \"data/pokemon/tutor_learnsets.h\"\n#include \"data/party_menu.h\"\n\nvoid InitPartyMenu(u8 menuType, u8 layout, u8 partyAction, bool8 keepCursorPos, u8 messageId, TaskFunc task, MainCallback callback)\n",
+          "after": "COMMON_DATA void (*gItemUseCB)(u8, TaskFunc) = NULL;\n\n#include \"data/pokemon/tutor_learnsets.h\"\nstatic const u8 sText_SetFollower[] = _(\"Set as Follower\");\nstatic const u8 sText_StopFollowing[] = _(\"Stop Following\");\n#include \"data/party_menu.h\"\n\nvoid InitPartyMenu(u8 menuType, u8 layout, u8 partyAction, bool8 keepCursorPos, u8 messageId, TaskFunc task, MainCallback callback)\n"
+        },
+        {
+          "before": "    u8 cursorDimension;\n    u8 fontAttribute;\n    u8 i;\n\n    switch (windowType)\n    {\n    case SELECTWINDOW_ACTIONS:\n        window = SetWindowTemplateFields(2, 19, 19 - (sPartyMenuInternal->numActions * 2), 10, sPartyMenuInternal->numActions * 2, 14, 0x2BF);\n        break;\n    case SELECTWINDOW_ITEM:\n        window = sItemGiveTakeWindowTemplate;\n",
+          "after": "    u8 cursorDimension;\n    u8 fontAttribute;\n    u8 i;\n    u8 actionWidth = 10;\n    u32 textWidth;\n\n    cursorDimension = GetMenuCursorDimensionByFont(FONT_NORMAL, 0);\n    fontAttribute = GetFontAttribute(FONT_NORMAL, FONTATTR_LETTER_SPACING);\n    switch (windowType)\n    {\n    case SELECTWINDOW_ACTIONS:\n        // Keep the original right edge/minimum while fitting explicit follower\n        // labels using the same native font/cursor metrics used for printing.\n        for (i = 0; i < sPartyMenuInternal->numActions; i++)\n        {\n            textWidth = (GetStringWidth(FONT_NORMAL,\n                sCursorOptions[sPartyMenuInternal->actions[i]].text, fontAttribute)\n                + cursorDimension + 7) / 8;\n            if (textWidth > actionWidth)\n                actionWidth = textWidth;\n        }\n        window = SetWindowTemplateFields(2, 29 - actionWidth, 19 - (sPartyMenuInternal->numActions * 2), actionWidth, sPartyMenuInternal->numActions * 2, 14, 0x2BF);\n        break;\n    case SELECTWINDOW_ITEM:\n        window = sItemGiveTakeWindowTemplate;\n"
+        },
+        {
+          "before": "    DrawStdFrameWithCustomTileAndPalette(sPartyMenuInternal->windowId[0], FALSE, 0x4F, 13);\n    if (windowType == SELECTWINDOW_MOVES)\n        return sPartyMenuInternal->windowId[0];\n    cursorDimension = GetMenuCursorDimensionByFont(FONT_NORMAL, 0);\n    fontAttribute = GetFontAttribute(FONT_NORMAL, FONTATTR_LETTER_SPACING);\n    for (i = 0; i < sPartyMenuInternal->numActions; ++i)\n    {\n        u8 fontColorsId = (sPartyMenuInternal->actions[i] >= CURSOR_OPTION_FIELD_MOVES) ? 4 : 3;\n",
+          "after": "    DrawStdFrameWithCustomTileAndPalette(sPartyMenuInternal->windowId[0], FALSE, 0x4F, 13);\n    if (windowType == SELECTWINDOW_MOVES)\n        return sPartyMenuInternal->windowId[0];\n    for (i = 0; i < sPartyMenuInternal->numActions; ++i)\n    {\n        u8 fontColorsId = (sPartyMenuInternal->actions[i] >= CURSOR_OPTION_FIELD_MOVES) ? 4 : 3;\n"
+        },
+        {
+          "before": "        AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, CURSOR_OPTION_MAIL);\n    else\n        AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, CURSOR_OPTION_ITEM);\n    AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, CURSOR_OPTION_CANCEL1);\n}\n\n",
+          "after": "        AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, CURSOR_OPTION_MAIL);\n    else\n        AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, CURSOR_OPTION_ITEM);\n    // Exactly one explicit follower action, always before Cancel. Does not\n    // mutate party order, battle lead, or the selected instance until chosen.\n    if (FollowerState_IsSelectedPartySlot(slotId))\n        AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, CURSOR_OPTION_STOP_FOLLOWING);\n    else if (FollowerState_CanSelectPartySlot(slotId))\n        AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, CURSOR_OPTION_SET_FOLLOWER);\n    AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, CURSOR_OPTION_CANCEL1);\n}\n\n"
+        },
+        {
+          "before": "#undef tSlot2Offset\n#undef tSlot1SlideDir\n#undef tSlot2SlideDir\n\nstatic void CursorCB_Cancel1(u8 taskId)\n{\n",
+          "after": "#undef tSlot2Offset\n#undef tSlot1SlideDir\n#undef tSlot2SlideDir\n\nstatic void CursorCB_SetFollower(u8 taskId)\n{\n    PlaySE(SE_SELECT);\n    if (FollowerState_SelectPartySlot(gPartyMenu.slotId))\n        FollowerController_RequestRefresh();\n    CursorCB_Cancel1(taskId);\n}\n\nstatic void CursorCB_StopFollowing(u8 taskId)\n{\n    PlaySE(SE_SELECT);\n    FollowerState_Clear();\n    FollowerController_RequestRefresh();\n    CursorCB_Cancel1(taskId);\n}\n\nstatic void CursorCB_Cancel1(u8 taskId)\n{\n"
+        }
+      ]
+    },
+    "src/pokemon_storage_system_data.c": {
+      "before_sha256": "08dea49153f98ecec05e8ad52d9673da0d6f8fe4ffb472e50f5f6bc157adef83",
+      "after_sha256": "0acd0e655c33d7e2f43ccb1eff62829bbf369beb1a909e04304a8b8eb06338b8",
+      "hunks": [
+        {
+          "before": "#include \"global.h\"\n#include \"gflib.h\"\n#include \"data.h\"\n#include \"item.h\"\n",
+          "after": "#include \"global.h\"\n#include \"follower_state.h\"\n#include \"gflib.h\"\n#include \"data.h\"\n#include \"item.h\"\n"
+        },
+        {
+          "before": "        gPlayerParty[position] = gStorage->movingMon;\n    else\n    {\n        BoxMonRestorePP(&gStorage->movingMon.box);\n        SetBoxMonAt(boxId, position, &gStorage->movingMon.box);\n    }\n",
+          "after": "        gPlayerParty[position] = gStorage->movingMon;\n    else\n    {\n        // Clear only on real box placement, not on cursor pickup/reorder.\n        if (sMovingMonOrigBoxId == TOTAL_BOXES_COUNT)\n            FollowerState_BeforeBoxDeposit(&gStorage->movingMon);\n        BoxMonRestorePP(&gStorage->movingMon.box);\n        SetBoxMonAt(boxId, position, &gStorage->movingMon.box);\n    }\n"
+        },
+        {
+          "before": "{\n    u8 boxId;\n\n    DestroyReleaseMonIcon();\n    if (sIsMonBeingMoved)\n        sIsMonBeingMoved = FALSE;\n",
+          "after": "{\n    u8 boxId;\n\n    if (sIsMonBeingMoved)\n    {\n        if (sMovingMonOrigBoxId == TOTAL_BOXES_COUNT)\n            FollowerState_BeforeBoxDeposit(&gStorage->movingMon);\n    }\n    else if (sCursorArea == CURSOR_AREA_IN_PARTY)\n        FollowerState_BeforePartyRemoval(sCursorPosition);\n    DestroyReleaseMonIcon();\n    if (sIsMonBeingMoved)\n        sIsMonBeingMoved = FALSE;\n"
+        }
+      ]
+    },
+    "src/rocket_rescue.c": {
+      "before_sha256": "a27cb99085a51afeafd63bc1b51eb7c5862d7dab11437a13454556d0d069300f",
+      "after_sha256": "c54d8373795f5424f2c7d7b6bb4b0966642963b2e4102e902a4f0152972d7a3f",
+      "hunks": [
+        {
+          "before": "#include \"global.h\"\n#include \"gflib.h\"\n#include \"event_data.h\"\n#include \"item.h\"\n#include \"pokemon.h\"\n#include \"pokemon_storage_system.h\"\n",
+          "after": "#include \"global.h\"\n#include \"gflib.h\"\n#include \"event_data.h\"\n#include \"follower_state.h\"\n#include \"item.h\"\n#include \"pokemon.h\"\n#include \"pokemon_storage_system.h\"\n"
+        },
+        {
+          "before": "        return 2;\n    if (inParty)\n    {\n        for (i = slot; i + 1 < gPlayerPartyCount; i++)\n            gPlayerParty[i] = gPlayerParty[i + 1];\n        ZeroMonData(&gPlayerParty[gPlayerPartyCount - 1]);\n",
+          "after": "        return 2;\n    if (inParty)\n    {\n        FollowerState_BeforePartyRemoval(slot);\n        for (i = slot; i + 1 < gPlayerPartyCount; i++)\n            gPlayerParty[i] = gPlayerParty[i + 1];\n        ZeroMonData(&gPlayerParty[gPlayerPartyCount - 1]);\n"
+        }
+      ]
+    },
+    "src/trade_scene.c": {
+      "before_sha256": "529eb344f332cb9339206769eb758520677b36e5763305261fd3295a51ae2c14",
+      "after_sha256": "9c8dbf447d1fb515eb30bbae13bf922d1d410414fb4eb6e17dc0fb20461a45fd",
+      "hunks": [
+        {
+          "before": "#include \"global.h\"\n#include \"gflib.h\"\n#include \"task.h\"\n#include \"util.h\"\n",
+          "after": "#include \"global.h\"\n#include \"follower_state.h\"\n#include \"gflib.h\"\n#include \"task.h\"\n#include \"util.h\"\n"
+        },
+        {
+          "before": "    if (playerMail != MAIL_NONE)\n        ClearMailStruct(&gSaveBlock1Ptr->mail[playerMail]);\n\n    SWAP(*playerMon, *partnerMon, sTradeAnim->tempMon);\n\n    // By default, a Pokemon received from a trade will have 70 Friendship.\n",
+          "after": "    if (playerMail != MAIL_NONE)\n        ClearMailStruct(&gSaveBlock1Ptr->mail[playerMail]);\n\n    // Clear before the actual exchange, including a same-identity incoming mon.\n    // Trade cancellation never reaches this committed replacement path.\n    FollowerState_BeforePartyRemoval(playerPartyIdx);\n    SWAP(*playerMon, *partnerMon, sTradeAnim->tempMon);\n\n    // By default, a Pokemon received from a trade will have 70 Friendship.\n"
+        }
+      ]
+    },
+    "tests/emulator/run.py": {
+      "before_sha256": "02b6cc60a47a59ec3e274ee1c8d9c0a9f413ca2301c2d6076e2fb16e47eae255",
+      "after_sha256": "bfd04ace6eb62f8c6ba634d4b3da309c5a136d7aaf43b81019ded4d575b1f039",
+      "hunks": [
+        {
+          "before": " 'BMON_MAX_HP':'offsetof(struct BattlePokemon,maxHP)',\n 'BOX_SECURE':'offsetof(struct BoxPokemon,secure)',\n 'SAVE1_PARTY':'offsetof(struct SaveBlock1,playerParty)',\n 'R5_VERSION':'offsetof(struct Route5DaycareSave,version)',\n 'SECTOR_SIZE':'SECTOR_SIZE',\n 'SECTOR_SIGNATURE':'offsetof(struct SaveSector,signature)',\n",
+          "after": " 'BMON_MAX_HP':'offsetof(struct BattlePokemon,maxHP)',\n 'BOX_SECURE':'offsetof(struct BoxPokemon,secure)',\n 'SAVE1_PARTY':'offsetof(struct SaveBlock1,playerParty)',\n 'SAVE1_FOLLOWER_RECORD':'offsetof(struct SaveBlock1,unused_3A94)',\n 'POKEMON_SIZE':'sizeof(struct Pokemon)',\n 'FOLLOWER_ASSET_SIZE':'sizeof(struct FollowerGraphicsAsset)',\n 'FOLLOW_SPRITE_SIZE':'sizeof(struct Sprite)',\n 'FOLLOW_SPRITE_OAM':'offsetof(struct Sprite,oam)',\n 'R5_VERSION':'offsetof(struct Route5DaycareSave,version)',\n 'SECTOR_SIZE':'SECTOR_SIZE',\n 'SECTOR_SIGNATURE':'offsetof(struct SaveSector,signature)',\n"
+        },
+        {
+          "before": " 'TEMPLATE_SIZE':'sizeof(struct ObjectEventTemplate)',\n 'TEMPLATE_GRAPHICS':'offsetof(struct ObjectEventTemplate,graphicsId)',\n 'OBJECT_COUNT':'OBJECT_EVENTS_COUNT',\n 'CARE_SIZE':'sizeof(struct DayCare)',\n 'CARE_MON_SIZE':'sizeof(struct DaycareMon)',\n 'BOX_SIZE':'sizeof(struct BoxPokemon)',\n",
+          "after": " 'TEMPLATE_SIZE':'sizeof(struct ObjectEventTemplate)',\n 'TEMPLATE_GRAPHICS':'offsetof(struct ObjectEventTemplate,graphicsId)',\n 'OBJECT_COUNT':'OBJECT_EVENTS_COUNT',\n 'OBJECT_EVENT_SIZE':'sizeof(struct ObjectEvent)',\n 'OBJECT_EVENT_COORDS':'offsetof(struct ObjectEvent,currentCoords)',\n 'AVATAR_EVENT_ID':'offsetof(struct PlayerAvatar,objectEventId)',\n 'CARE_SIZE':'sizeof(struct DayCare)',\n 'CARE_MON_SIZE':'sizeof(struct DaycareMon)',\n 'BOX_SIZE':'sizeof(struct BoxPokemon)',\n"
+        },
+        {
+          "before": "             'ViridianForest_Text_SowWarning','ViridianForest_Text_SowThanks',\n             'gObjectEvents','gSprites','gMonIcon_Heracross','sPicTable_SowHeracross']\nrequired += ['ScriptGiveSueEevee', 'ScriptGiveMon', 'EventScript_ChangePokemonNickname']\nsymbols={}\nend_ewram=0\nfor line in subprocess.check_output(['arm-none-eabi-nm','-S','pokefirered.elf'],text=True).splitlines():\n",
+          "after": "             'ViridianForest_Text_SowWarning','ViridianForest_Text_SowThanks',\n             'gObjectEvents','gSprites','gMonIcon_Heracross','sPicTable_SowHeracross']\nrequired += ['ScriptGiveSueEevee', 'ScriptGiveMon', 'EventScript_ChangePokemonNickname']\nrequired += ['ScriptSelectStarterPikachuFollower','ScriptStartStarterFollowerEmergence','gObjectEvents','gPlayerAvatar']\nrequired += ['FollowerGraphics_GetSize','FollowerController_RequestRefresh','FollowerGraphics_Swap','FollowerGraphics_SetFrame','FollowerGraphics_Release','FollowerGraphics_GetPaletteSlot','gSprites','gPlttBufferUnfaded']\nrequired += ['FollowerGraphics_GetSpriteId','FollowerGraphics_GetObjectEventId','FollowerSpecial_PlayCry','FollowerState_ResolvePartySlot','FollowerState_SelectPartySlot','FollowerState_CanDisplay','FollowerState_BeforePartyRemoval','FollowerState_Clear','FollowerAssets_Count','FollowerAssets_Resolve','CustomPokedexNumToSpecies','gStringVar4','CB2_PartyMenuFromStartMenu']\nsymbols={}\nend_ewram=0\nfor line in subprocess.check_output(['arm-none-eabi-nm','-S','pokefirered.elf'],text=True).splitlines():\n"
+        },
+        {
+          "before": "    temp=Path(temp)\n    source='#include \"save.h\"\\n#include \"field_weather.h\"\\n#include <stddef.h>\\n#include \"global.h\"\\n#include \"pokemon.h\"\\n#include \"main.h\"\\n#include \"task.h\"\\n'\n    source+='#include \"sprite.h\"\\n'\n    source+='#include \"text.h\"\\n#include \"pokedex.h\"\\n#include \"battle_controllers.h\"\\n#include \"item_menu.h\"\\n#include \"wild_encounter.h\"\\n#include \"battle.h\"\\n#include \"list_menu.h\"\\n#include \"party_menu.h\"\\n#include \"script.h\"\\n#include \"field_player_avatar.h\"\\n'+screen_struct+'\\n'+summary_struct+'\\n'\n    learn=Path('src/learn_move.c').read_text();learn=learn[learn.index('struct LearnMoveGfxResources\\n'):];learn=learn[:learn.index('\\n};')+3]\n    source+='#include \"battle_message.h\"\\n#include \"pokemon_special_anim_internal.h\"\\n'+learn+'\\n'\n",
+          "after": "    temp=Path(temp)\n    source='#include \"save.h\"\\n#include \"field_weather.h\"\\n#include <stddef.h>\\n#include \"global.h\"\\n#include \"pokemon.h\"\\n#include \"main.h\"\\n#include \"task.h\"\\n'\n    source+='#include \"sprite.h\"\\n'\n    source+='#include \"follower_graphics.h\"\\n#include \"sprite.h\"\\n'\n    source+='#include \"text.h\"\\n#include \"pokedex.h\"\\n#include \"battle_controllers.h\"\\n#include \"item_menu.h\"\\n#include \"wild_encounter.h\"\\n#include \"battle.h\"\\n#include \"list_menu.h\"\\n#include \"party_menu.h\"\\n#include \"script.h\"\\n#include \"field_player_avatar.h\"\\n'+screen_struct+'\\n'+summary_struct+'\\n'\n    learn=Path('src/learn_move.c').read_text();learn=learn[learn.index('struct LearnMoveGfxResources\\n'):];learn=learn[:learn.index('\\n};')+3]\n    source+='#include \"battle_message.h\"\\n#include \"pokemon_special_anim_internal.h\"\\n'+learn+'\\n'\n"
+        }
+      ]
+    },
+    "tests/emulator/runner.c": {
+      "before_sha256": "3e921c5158758df5eea1ff618214298795b8eea4d402609ebc9ecd2e4045968a",
+      "after_sha256": "0653bae8b7e6f808e72a1b04ee5b66c9a033e41977999c84178d72e11ba6d32e",
+      "hunks": [
+        {
+          "before": "#include \"move_long_name_ui.c\"\n#include \"original_move_data.c\"\n#include \"move_pp_compatibility.c\"\n#include \"roar.c\"\n#include \"weather_moves.c\"\n#include \"weather_species.c\"\n",
+          "after": "#include \"move_long_name_ui.c\"\n#include \"original_move_data.c\"\n#include \"move_pp_compatibility.c\"\n#include \"follower.c\"\n#include \"roar.c\"\n#include \"weather_moves.c\"\n#include \"weather_species.c\"\n"
+        },
+        {
+          "before": "        CHECK(strcmp(getenv(\"LIGHTNING_SOW002_ONLY\"),\"1\")==0);\n        sow002Tests();\n        printf(\"PASS: %u focused SOW-002 assertions\\n\",checks);\n        core->deinit(core);free(pixels);free(bootState);return 0;\n    }\n    if(getenv(\"LIGHTNING_BALL_WEATHER_ONLY\")){captureWeatherTests();printf(\"PASS: %u focused weather assertions\\n\",checks);core->deinit(core);free(pixels);free(bootState);return 0;}\n",
+          "after": "        CHECK(strcmp(getenv(\"LIGHTNING_SOW002_ONLY\"),\"1\")==0);\n        sow002Tests();\n        printf(\"PASS: %u focused SOW-002 assertions\\n\",checks);\n        core->deinit(core);free(pixels);free(bootState);return 0;\n    }\n    if(getenv(\"LIGHTNING_IMPORT_OLD_SAVE\")) {\n        followerHistoricalFlashNativeTests();\n        printf(\"PASS: %u genuine historical-save native assertions\\n\",checks);\n        core->deinit(core);free(pixels);free(bootState);return 0;\n    }\n    if(getenv(\"LIGHTNING_FOLLOWER_ONLY\")) {\n        CHECK(CALL(FollowerAssets_Count) == 255);\n        followerNativeTests();\n        followerAllSpeciesGraphicsNativeTests();\n        followerFieldNativeTests();\n        followerGiftNativeTests();\n        followerPartyMenuNativeTests();\n        printf(\"PASS: %u native WRL-010 follower assertions\\n\", checks);\n        core->deinit(core);free(pixels);free(bootState);return 0;\n    }\n    if(getenv(\"LIGHTNING_BALL_WEATHER_ONLY\")){captureWeatherTests();printf(\"PASS: %u focused weather assertions\\n\",checks);core->deinit(core);free(pixels);free(bootState);return 0;}\n"
+        },
+        {
+          "before": "        levelScene(SPECIES_TYROGUE,15,choices[i],i,0,stats==0?200:10,stats==2?200:10);\n    levelScene(SPECIES_TYROGUE,15,SPECIES_HITMONCHAN,0,1,100,100);\n    levelScene(SPECIES_TYROGUE,16,SPECIES_HITMONTOP,2,2,100,100);\n    dexTests();\n    categoryTests();\n    trainerAiCategoryAcceptance();\n",
+          "after": "        levelScene(SPECIES_TYROGUE,15,choices[i],i,0,stats==0?200:10,stats==2?200:10);\n    levelScene(SPECIES_TYROGUE,15,SPECIES_HITMONCHAN,0,1,100,100);\n    levelScene(SPECIES_TYROGUE,16,SPECIES_HITMONTOP,2,2,100,100);\n    followerNativeTests();\n    followerAllSpeciesGraphicsNativeTests();\n    followerFieldNativeTests();\n    followerGiftNativeTests();\n    followerPartyMenuNativeTests();\n    dexTests();\n    categoryTests();\n    trainerAiCategoryAcceptance();\n"
+        }
+      ]
+    }
+  }
+}

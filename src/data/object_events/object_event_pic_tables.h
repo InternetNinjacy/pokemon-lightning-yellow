@@ -1770,3 +1770,16 @@ static const struct SpriteFrameImage sPicTable_SowTyranitar[] = {
     {gMonIcon_Tyranitar, 512}, {gMonIcon_Tyranitar, 512}, {gMonIcon_Tyranitar + 512, 512},
     {gMonIcon_Tyranitar, 512}, {gMonIcon_Tyranitar + 512, 512}, {gMonIcon_Tyranitar, 512},
 };
+
+// SOW-002 is motionless: every direction/step uses the same existing icon frame.
+static const struct SpriteFrameImage sPicTable_SowHeracross[] = {
+    {gMonIcon_Heracross, 512},
+    {gMonIcon_Heracross, 512},
+    {gMonIcon_Heracross, 512},
+    {gMonIcon_Heracross, 512},
+    {gMonIcon_Heracross, 512},
+    {gMonIcon_Heracross, 512},
+    {gMonIcon_Heracross, 512},
+    {gMonIcon_Heracross, 512},
+    {gMonIcon_Heracross, 512},
+};

@@ -30,7 +30,7 @@ typedef u8 bool8;
 #define FALSE 0
 #define PARTY_SIZE 6
 #define STATIC_ASSERT(x, name) typedef char name[(x) ? 1 : -1]
-struct Pokemon { u16 species; u16 hp; u8 egg; u8 pad; u32 personality; u32 otId; };
+struct Pokemon { u16 species; u16 hp; u8 egg; u8 badEgg; u32 personality; u32 otId; };
 struct SaveBlock1 { u8 unused_3A94[64]; };
 extern struct SaveBlock1 *gSaveBlock1Ptr;
 extern struct Pokemon gPlayerParty[PARTY_SIZE];
@@ -39,9 +39,10 @@ extern u8 gPlayerPartyCount;
 ''')
     (d / "pokemon.h").write_text(r'''
 #include "global.h"
-enum { MON_DATA_SPECIES, MON_DATA_IS_EGG, MON_DATA_PERSONALITY, MON_DATA_OT_ID, MON_DATA_HP };
+enum { MON_DATA_SPECIES, MON_DATA_IS_EGG, MON_DATA_PERSONALITY, MON_DATA_OT_ID, MON_DATA_HP, MON_DATA_SANITY_IS_BAD_EGG };
 u32 GetMonData(struct Pokemon *mon, int field);
 ''')
+    (d / "custom_pokedex.h").write_text("#include \"global.h\"\nbool8 IsSpeciesInCustomPokedex(u16 species);\n")
     (d / "constants/species.h").write_text("#define SPECIES_NONE 0\n")
     (d / "test.c").write_text(r'''
 #include "global.h"
@@ -57,11 +58,16 @@ u32 GetMonData(struct Pokemon *mon, int field)
     switch (field) {
     case MON_DATA_SPECIES: return mon->species;
     case MON_DATA_HP: return mon->hp;
+    case MON_DATA_SANITY_IS_BAD_EGG: return mon->badEgg;
     case MON_DATA_IS_EGG: return mon->egg;
     case MON_DATA_PERSONALITY: return mon->personality;
     case MON_DATA_OT_ID: return mon->otId;
     }
     return 0;
+}
+bool8 IsSpeciesInCustomPokedex(u16 species)
+{
+    return species == 25 || species == 26 || species == 133;
 }
 int main(void)
 {

@@ -351,7 +351,7 @@ static void followerPartyMenuNativeTests(void)
     CALL(ZeroPlayerPartyMons);
     CALL(CreateMon, player(0), SPECIES_PIKACHU, 5, 31, 1, 34567, 0, 0);
     core->busWrite8(core, SYM_gPlayerPartyCount, 1);
-    CALL(ScriptNameSocketStarterPikachu);
+    CALL(ScriptSelectStarterPikachuFollower);
     CHECK(CALL(ScriptGiveSueEevee) == 0);
     CHECK(core->busRead8(core, SYM_gPlayerPartyCount) == 2);
     const unsigned socketPid = monget(player(0), ABI_DATA_PERSONALITY);
@@ -394,7 +394,7 @@ static void followerPartyMenuNativeTests(void)
     CHECK((int8_t)CALL(FollowerState_ResolvePartySlot) == -1);
     CHECK(monget(player(0), ABI_DATA_PERSONALITY) == socketPid);
     CHECK(monget(player(1), ABI_DATA_PERSONALITY) == suePid);
-    printf("PASS: actual party-menu A/D-pad Set/Stop actions, SOCKET-to-SUE identity and flash deselection\\n");
+    printf("PASS: actual party-menu A/D-pad Set/Stop actions, Pikachu-to-SUE identity and flash deselection\\n");
     daycareFixture(1);
 }
 
@@ -405,11 +405,11 @@ static void followerGiftNativeTests(void)
     CALL(CreateMon, SYM_gPlayerParty, SPECIES_PIKACHU, 5, 31, 1, 34567, 0, 0);
     core->busWrite8(core, SYM_gPlayerPartyCount, 1);
     CHECK((int8_t)CALL(FollowerState_ResolvePartySlot) == -1);
-    CALL(ScriptNameSocketStarterPikachu);
+    CALL(ScriptSelectStarterPikachuFollower);
     CHECK(CALL(FollowerState_ResolvePartySlot) == 0);
     CHECK(CALL(FollowerState_CanDisplay) == 1);
     CALL(GetMonData3, SYM_gPlayerParty, ABI_DATA_NICKNAME, scratch);
-    textEquals(scratch, "SOCKET");
+    textEquals(scratch, "PIKACHU");
     unsigned pid = get(ABI_DATA_PERSONALITY);
     unsigned result = CALL(ScriptGiveSueEevee);
     CHECK(result == 0);
@@ -454,7 +454,7 @@ static void followerGiftNativeTests(void)
     flashRoundTrip();
     CHECK((int8_t)CALL(FollowerState_ResolvePartySlot) == -1);
     CHECK(core->busRead8(core, SYM_gPlayerPartyCount) == 2);
-    printf("PASS: native SOCKET auto-assignment, manual SUE selection and cleared state across flash saves\n");
+    printf("PASS: native Pikachu auto-assignment, manual SUE selection and cleared state across flash saves\n");
     // Native compatibility of saves made before the 16-byte follower record
     // existed. Exercise the exact SaveBlock1 field from the ARM-derived ABI,
     // without touching Pokemon, storage or unrelated save regions.

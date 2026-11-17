@@ -211,6 +211,57 @@ int main(void)
         history.usedMoves[0].moves[0] = MOVE_SHADOW_BALL;
         sAIScriptPtr = hasSpecial; Cmd_has_move_category(); CHECK(thinking.funcResult);
     }
+    // Avalanche selects its actual damage source, even after another foe hits.
+    Reset();
+    {
+        s32 normal, boosted;
+        gBattleMons[0].attack = 200;gBattleMons[0].level = 50;gBattleMons[1].defense = 100;
+        normal = CalculateBaseDamage(&gBattleMons[0], &gBattleMons[1], MOVE_ICE_PUNCH, 0, 60, 0, 0, 1);
+        boosted = CalculateBaseDamage(&gBattleMons[0], &gBattleMons[1], MOVE_ICE_PUNCH, 0, 120, 0, 0, 1);
+        CHECK(boosted > normal);
+        for (int mask = 0; mask < 16; mask++)
+        {
+            gBattleStruct->damagedByBattlers[0] = mask;
+            CHECK(CalculateBaseDamage(&gBattleMons[0], &gBattleMons[1], MOVE_AVALANCHE, 0, 0, 0, 0, 1) == ((mask & 2) ? boosted : normal));
+            gCurrentMove = MOVE_AVALANCHE;
+            AI_CalcDmg(0, 1);
+            CHECK(gBattleMoveDamage == ((mask & 2) ? boosted : normal));
+        }
+        CHECK(!BattlerWasDamagedBy(4, 0));CHECK(!BattlerWasDamagedBy(0, 4));
+        CHECK(!BattlerWasDamagedBy(255, 255));
+    }
+    Reset();
+    {
+        s32 normal, boosted;
+        gBattleMons[0].attack = 200;gBattleMons[0].level = 50;gBattleMons[1].defense = 100;
+        normal = CalculateBaseDamage(&gBattleMons[0], &gBattleMons[1], MOVE_ICE_PUNCH, 0, 50, 0, 0, 1);
+        boosted = CalculateBaseDamage(&gBattleMons[0], &gBattleMons[1], MOVE_ICE_PUNCH, 0, 100, 0, 0, 1);
+        CHECK(boosted > normal);
+        for (int mask = 0; mask < 16; mask++)
+        {
+            gBattleStruct->actedThisTurn = mask;
+            CHECK(CalculateBaseDamage(&gBattleMons[0], &gBattleMons[1], MOVE_PAYBACK, 0, 0, 0, 0, 1) == ((mask & 2) ? boosted : normal));
+            gCurrentMove = MOVE_PAYBACK;AI_CalcDmg(0, 1);
+            CHECK(gBattleMoveDamage == ((mask & 2) ? boosted : normal));
+        }
+        CHECK(!BattlerHasActedThisTurn(4));CHECK(!BattlerHasActedThisTurn(255));
+    }
+    // Authoritative385–410 powers/types/categories; compare actual production
+    // live/AI routines to existing same-category moves, never a copied formula.
+    {
+        const int power[] = {55,30,80,70,65,90,80,90,120,80,120,75,80,65,80,40,75,110,120,110,40,55,80,70,80,120};
+        const int type[] = {TYPE_WATER,TYPE_WATER,TYPE_ELECTRIC,TYPE_ELECTRIC,TYPE_ELECTRIC,TYPE_ELECTRIC,TYPE_GRASS,TYPE_GRASS,TYPE_GRASS,TYPE_FIGHTING,TYPE_FIGHTING,TYPE_FIGHTING,TYPE_STEEL,TYPE_STEEL,TYPE_STEEL,TYPE_STEEL,TYPE_FLYING,TYPE_FLYING,TYPE_FLYING,TYPE_FLYING,TYPE_FLYING,TYPE_PSYCHIC,TYPE_PSYCHIC,TYPE_POISON,TYPE_POISON,TYPE_POISON};
+        for (int i=0;i<26;i++)
+        {
+            int special = i==2||i==3||i==9||i==10||i==12||i==13||i==16||i==17;
+            Reset();gBattleMons[0].attack=200;gBattleMons[0].spAttack=25;gBattleMons[0].level=50;gBattleMons[1].defense=100;gBattleMons[1].spDefense=200;
+            gCurrentMove=special?MOVE_FLAMETHROWER:MOVE_ICE_PUNCH;
+            s32 ref=CalculateBaseDamage(&gBattleMons[0],&gBattleMons[1],gCurrentMove,0,power[i],type[i],0,1);
+            gCurrentMove=385+i;
+            CHECK(CalculateBaseDamage(&gBattleMons[0],&gBattleMons[1],gCurrentMove,0,0,0,0,1)==ref);
+            AI_CalcDmg(0,1);CHECK(gBattleMoveDamage==ref);
+        }
+    }
     printf("PASS: %u numeric/category/UI-helper assertions (production routines, stubbed environment)\n", checks);
     return 0;
 }

@@ -1,4 +1,5 @@
 #include "global.h"
+#include "field_weather.h"
 #include "follower_graphics.h"
 #include "sprite.h"
 #include "event_object_movement.h"
@@ -29,6 +30,30 @@ static u8 sFollowerActive;
 static bool8 sFollowerHasActive;
 static bool8 sFollowerEventBound;
 static u8 sFollowerEventId;
+static u8 sFollowerEventMapGroup;
+static u8 sFollowerEventMapNum;
+
+static bool8 FollowerGraphics_OwnsSprite(const struct FollowerGraphicsSlot *slot)
+{
+    return slot->owned && slot->spriteId < MAX_SPRITES
+        && gSprites[slot->spriteId].inUse
+        && gSprites[slot->spriteId].template == &slot->template
+        && gSprites[slot->spriteId].images == &slot->image;
+}
+
+static bool8 FollowerGraphics_OwnsEvent(void)
+{
+    const struct ObjectEvent *event;
+
+    if (!sFollowerEventBound || !sFollowerHasActive
+     || sFollowerEventId >= OBJECT_EVENTS_COUNT)
+        return FALSE;
+    event = &gObjectEvents[sFollowerEventId];
+    return event->active && event->localId == FOLLOWER_GFX_LOCAL_ID
+        && event->mapGroup == sFollowerEventMapGroup
+        && event->mapNum == sFollowerEventMapNum
+        && event->spriteId == sFollowerSlots[sFollowerActive].spriteId;
+}
 
 // The graphics-only loader has no animation callback or auto-follow movement.
 // Six frame changes are explicit and may only copy during graphics-safe VBlank.
@@ -65,7 +90,7 @@ static void FollowerGraphics_DisposeSlot(u8 slotIndex)
 
     if (!slot->owned)
         return;
-    if (slot->spriteId < MAX_SPRITES && gSprites[slot->spriteId].inUse)
+    if (FollowerGraphics_OwnsSprite(slot))
         DestroySprite(&gSprites[slot->spriteId]);
     if (slot->paletteTag != 0 && GetSpritePaletteTagByPaletteNum(slot->paletteSlot) == slot->paletteTag)
         FreeSpritePaletteByTag(slot->paletteTag);
@@ -93,6 +118,12 @@ enum FollowerGraphicsResult FollowerGraphics_Swap(const struct FollowerGraphicsA
     if (!FollowerGraphics_AssetValid(asset))
         return FOLLOWER_GFX_INVALID;
 
+    // Menus/map callbacks can reset sprite IDs before the field resumes.
+    // Revoke only our stale metadata, never an unrelated replacement sprite.
+    if ((sFollowerHasActive && !FollowerGraphics_OwnsSprite(&sFollowerSlots[sFollowerActive]))
+     || (sFollowerEventBound && !FollowerGraphics_OwnsEvent()))
+        FollowerGraphics_Release();
+
     stage = sFollowerHasActive && sFollowerActive == 0 ? 1 : 0;
     if (sFollowerSlots[stage].owned)
         return FOLLOWER_GFX_INVALID; // Never discard another staged owner.
@@ -115,6 +146,10 @@ enum FollowerGraphicsResult FollowerGraphics_Swap(const struct FollowerGraphicsA
         FollowerGraphics_ClearSlot(stage);
         return FOLLOWER_GFX_NO_PALETTE;
     }
+
+    // New owned OBJ palettes use the same existing field-weather transform
+    // as other dynamic field effects; no new colors or weather rules.
+    UpdateSpritePaletteWithWeather(pal);
 
     candidate->paletteSlot = pal;
     candidate->owned = TRUE;
@@ -162,7 +197,7 @@ enum FollowerGraphicsResult FollowerGraphics_Swap(const struct FollowerGraphicsA
     {
         struct ObjectEvent *event = &gObjectEvents[sFollowerEventId];
 
-        if (!event->active || event->localId != FOLLOWER_GFX_LOCAL_ID)
+        if (!FollowerGraphics_OwnsEvent())
         {
             DestroySprite(&gSprites[id]);
             FreeSpritePaletteByTag(candidate->paletteTag);
@@ -194,8 +229,7 @@ bool8 FollowerGraphics_SetFrame(u8 frame)
     if (frame >= 6 || !sFollowerHasActive)
         return FALSE;
     slot = &sFollowerSlots[sFollowerActive];
-    if (!slot->owned || slot->spriteId >= MAX_SPRITES
-     || !gSprites[slot->spriteId].inUse)
+    if (!FollowerGraphics_OwnsSprite(slot))
         return FALSE;
 
     bytes = slot->size == 64 ? 2048 : 512;
@@ -213,7 +247,7 @@ void FollowerGraphics_Release(void)
     if (sFollowerEventBound)
     {
         struct ObjectEvent *event = &gObjectEvents[sFollowerEventId];
-        if (event->active && event->localId == FOLLOWER_GFX_LOCAL_ID)
+        if (FollowerGraphics_OwnsEvent())
         {
             event->active = FALSE;
             event->spriteId = MAX_SPRITES;
@@ -244,7 +278,7 @@ void FollowerGraphics_InvalidateAfterSpriteReset(void)
 
 u8 FollowerGraphics_GetObjectEventId(void)
 {
-    if (!sFollowerEventBound)
+    if (!FollowerGraphics_OwnsEvent())
         return OBJECT_EVENTS_COUNT;
     return sFollowerEventId;
 }
@@ -255,8 +289,13 @@ bool8 FollowerGraphics_BindObjectEvent(u8 mapGroup, u8 mapNum,
     u8 i;
     struct ObjectEvent *event;
 
-    if (!sFollowerHasActive)
+    if (!sFollowerHasActive || !FollowerGraphics_OwnsSprite(&sFollowerSlots[sFollowerActive]))
         return FALSE;
+    if (sFollowerEventBound && !FollowerGraphics_OwnsEvent())
+    {
+        FollowerGraphics_Release();
+        return FALSE;
+    }
 
     // One owned graphics object per map. Do not overwrite an NPC or a
     // preexisting special event with the same reserved local identifier.
@@ -278,6 +317,8 @@ bool8 FollowerGraphics_BindObjectEvent(u8 mapGroup, u8 mapNum,
             return FALSE;
         }
         sFollowerEventId = i;
+        sFollowerEventMapGroup = mapGroup;
+        sFollowerEventMapNum = mapNum;
         event = &gObjectEvents[i];
         memset(event, 0, sizeof(*event));
         event->localId = FOLLOWER_GFX_LOCAL_ID;
@@ -307,7 +348,7 @@ bool8 FollowerGraphics_BindObjectEvent(u8 mapGroup, u8 mapNum,
 
 u8 FollowerGraphics_GetSpriteId(void)
 {
-    if (!sFollowerHasActive)
+    if (!sFollowerHasActive || !FollowerGraphics_OwnsSprite(&sFollowerSlots[sFollowerActive]))
         return MAX_SPRITES;
     return sFollowerSlots[sFollowerActive].spriteId;
 }

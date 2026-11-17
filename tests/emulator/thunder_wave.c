@@ -39,7 +39,15 @@ static void thunderWaveTests(void){
   if(scenario==5||scenario==6||scenario==7){unsigned move=scenario==5?MOVE_PROTECT:scenario==6?MOVE_MAGIC_COAT:MOVE_FOLLOW_ME;for(unsigned m=0;m<4;m++){CALL(SetMonMoveSlot,enemy(0),move,m);core->busWrite16(core,bmon(1)+ABI_BMON_MOVES+2*m,move);core->busWrite8(core,bmon(1)+ABI_BMON_PP+m,core->busRead8(core,SYM_gBattleMoves+ABI_BMOVE_SIZE*move+ABI_BMOVE_PP));}}
   if(scenario==1)core->busWrite8(core,bmon(3)+ABI_BMON_ABILITY,ABILITY_LIGHTNING_ROD);
   chooseMove(0,0,1);if(two)chooseMove(2,0,1);
+  // Read-only diagnostic for full-suite Thunder Wave Doubles scenario stalls.
+  // Preserve the original native controller inputs and finite watchdogs.
+  fprintf(stderr,"TW_SCENARIO_BEGIN scenario=%u two=%u user=%u ctrl0=%08x ctrl2=%08x script=%08x exec=%08x\\n",
+   scenario,two,user,controller(0),controller(2),
+   core->busRead32(core,SYM_gBattlescriptCurrInstr),core->busRead32(core,SYM_gBattleControllerExecFlags));
   waitThunderWaveTurn();
+  fprintf(stderr,"TW_SCENARIO_RETURN scenario=%u ctrl0=%08x ctrl2=%08x script=%08x exec=%08x\\n",
+   scenario,controller(0),controller(2),
+   core->busRead32(core,SYM_gBattlescriptCurrInstr),core->busRead32(core,SYM_gBattleControllerExecFlags));
   for(unsigned b=0;b<(two?4:2);b++){
    unsigned expected=b!=user;
    if((scenario==2||scenario==5||scenario==6)&&b==1)expected=0;

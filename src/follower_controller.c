@@ -10,6 +10,11 @@
 #include "sprite.h"
 #include "sound.h"
 #include "string_util.h"
+#include "script.h"
+#include "palette.h"
+#include "quest_log.h"
+#include "fieldmap.h"
+#include "overworld.h"
 #include "constants/event_objects.h"
 #include "constants/event_object_movement.h"
 
@@ -37,11 +42,16 @@ static u8 sLastCopiedFrame;
 static bool8 sHasCopiedFrame;
 static bool8 sFrameMirrored;
 static u8 sWalkFrameCounter;
+static u8 sFollowerDirection;
+static bool8 sIntroDisplay;
+static bool8 sIntroVisible;
 
 static void ResetTrail(void)
 {
     sHasTrailAnchor = FALSE;
     sLastPlayerObjectId = OBJECT_EVENTS_COUNT;
+    sWalkFrameCounter = 0;
+    sFollowerDirection = DIR_SOUTH;
 }
 
 void FollowerController_RequestRefresh(void)
@@ -50,13 +60,29 @@ void FollowerController_RequestRefresh(void)
     // can run after the field has torn down sprite IDs.
     sPendingAsset = FALSE;
     sBoundAsset = FALSE;
+    sSuppressed = TRUE;
+    sIntroDisplay = FALSE;
+    sIntroVisible = FALSE;
     sHasCopiedFrame = FALSE;
     ResetTrail();
 }
 
+void FollowerController_SetIntroDisplay(bool8 enabled)
+{
+    sIntroDisplay = enabled;
+    sIntroVisible = FALSE;
+}
+
+void FollowerController_SetIntroVisible(bool8 visible)
+{
+    sIntroVisible = sIntroDisplay && visible;
+}
+
 static bool8 IsSuppressed(void)
 {
-    return TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_MACH_BIKE
+    return (!sIntroDisplay && ArePlayerFieldControlsLocked())
+        || gPaletteFade.active || QL_IS_PLAYBACK_STATE
+        || TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_MACH_BIKE
                               | PLAYER_AVATAR_FLAG_ACRO_BIKE
                               | PLAYER_AVATAR_FLAG_SURFING
                               | PLAYER_AVATAR_FLAG_FORCED);
@@ -80,7 +106,8 @@ bool8 FollowerController_BindAsset(const struct FollowerGraphicsAsset *asset)
     playerSprite = &gSprites[player->spriteId];
     result = FollowerGraphics_Swap(asset, playerSprite->x,
                                     playerSprite->y + 16,
-                                    playerSprite->subpriority + 1);
+                                    playerSprite->subpriority == 0xFF ? 0xFF
+                                                                    : playerSprite->subpriority + 1);
     if (result != FOLLOWER_GFX_OK)
         return FALSE;
 
@@ -137,6 +164,9 @@ static void PrepareAssetForSlot(s8 slot)
         sBoundAsset = FALSE;
         return;
     }
+    // VBlank must not see a partially copied descriptor after a selection or
+    // evolution changes while an older request was still pending.
+    sPendingAsset = FALSE;
     sPendingGraphics = asset;
     sDesiredSpecies = species;
     sDesiredShiny = shiny;
@@ -159,8 +189,8 @@ void FollowerController_Tick(void)
     {
         sPendingAsset = FALSE;
         sBoundAsset = FALSE;
-        if (spriteId < MAX_SPRITES)
-            FollowerGraphics_Release();
+        sSuppressed = TRUE;
+        FollowerGraphics_Release();
         ResetTrail();
         return;
     }
@@ -184,8 +214,9 @@ void FollowerController_Tick(void)
          || follower->mapGroup != gSaveBlock1Ptr->location.mapGroup
          || follower->mapNum != gSaveBlock1Ptr->location.mapNum)
         {
-            FollowerGraphics_Release();
+            sPendingAsset = FALSE;
             sBoundAsset = FALSE;
+            FollowerGraphics_Release();
             spriteId = MAX_SPRITES;
             eventId = OBJECT_EVENTS_COUNT;
             ResetTrail();
@@ -229,6 +260,17 @@ void FollowerController_Tick(void)
     {
         sLastPlayerTile = player->currentCoords;
         sTrailTile = player->previousCoords;
+        // A newly selected idle party member should appear behind the player,
+        // not directly on top of them. Never introduce it into a blocked tile.
+        if (sTrailTile.x == player->currentCoords.x
+         && sTrailTile.y == player->currentCoords.y)
+        {
+            direction = GetPlayerFacingDirection();
+            sTrailTile.x -= gDirectionToVectors[direction].x;
+            sTrailTile.y -= gDirectionToVectors[direction].y;
+            if (MapGridGetCollisionAt(sTrailTile.x, sTrailTile.y))
+                sTrailTile = player->currentCoords;
+        }
         sLastPlayerObjectId = playerId;
         sLastMapGroup = follower->mapGroup;
         sLastMapNum = follower->mapNum;
@@ -247,12 +289,18 @@ void FollowerController_Tick(void)
     follower->previousElevation = player->previousElevation;
     dx = sTrailTile.x - player->currentCoords.x;
     dy = sTrailTile.y - player->currentCoords.y;
+    followerSprite->coordOffsetEnabled = playerSprite->coordOffsetEnabled;
     followerSprite->x = playerSprite->x + dx * 16;
-    followerSprite->y = playerSprite->y + dy * 16;
+    // Ground-align native 64x64 Steelix with the player's feet rather than
+    // placing its larger sprite centre on the player's 32px centre.
+    followerSprite->y = playerSprite->y + dy * 16
+                      + followerSprite->centerToCornerVecY - playerSprite->centerToCornerVecY;
     followerSprite->x2 = playerSprite->x2;
     followerSprite->y2 = playerSprite->y2;
     followerSprite->oam.priority = playerSprite->oam.priority;
-    followerSprite->invisible = FALSE;
+    followerSprite->invisible = playerSprite->invisible
+                            || (dx == 0 && dy == 0)
+                            || (sIntroDisplay && !sIntroVisible);
 
     // Follow the direction of the follower's own completed tile step, not
     // the player's current facing: after a corner those are often different.
@@ -260,16 +308,27 @@ void FollowerController_Tick(void)
     // Six-cell art contract: south 0/1, north 2/3, west 4/5,
     // east mirrored west. Frame bytes copy in VBlank only.
     if (follower->currentCoords.x > follower->previousCoords.x)
-        direction = DIR_EAST;
+        sFollowerDirection = DIR_EAST;
     else if (follower->currentCoords.x < follower->previousCoords.x)
-        direction = DIR_WEST;
+        sFollowerDirection = DIR_WEST;
     else if (follower->currentCoords.y > follower->previousCoords.y)
-        direction = DIR_SOUTH;
+        sFollowerDirection = DIR_SOUTH;
     else if (follower->currentCoords.y < follower->previousCoords.y)
-        direction = DIR_NORTH;
-    else
-        direction = GetPlayerFacingDirection();
+        sFollowerDirection = DIR_NORTH;
+    else if (player->currentCoords.x == player->previousCoords.x
+          && player->currentCoords.y == player->previousCoords.y)
+        sFollowerDirection = GetPlayerFacingDirection();
+    // Keep the follower's travel direction throughout the player's entire
+    // in-progress step, especially while rounding corners.
+    direction = sFollowerDirection;
+    follower->facingDirection = direction;
+    follower->movementDirection = direction;
     sFrameMirrored = (direction == DIR_EAST);
+    // Dummy animation ends after frame zero; changing Sprite.hFlip alone
+    // does not refresh non-affine hardware OAM flip bits after that point.
+    followerSprite->hFlip = sFrameMirrored;
+    followerSprite->oam.matrixNum = (followerSprite->oam.matrixNum & 0x7)
+                                 | (sFrameMirrored ? 8 : 0);
     if (direction == DIR_NORTH)
         sFrameToCopy = 2;
     else if (direction == DIR_WEST || direction == DIR_EAST)
@@ -316,6 +375,8 @@ void FollowerController_VBlank(void)
         }
     }
     gSprites[id].hFlip = sFrameMirrored;
+    gSprites[id].oam.matrixNum = (gSprites[id].oam.matrixNum & 0x7)
+                             | (sFrameMirrored ? 8 : 0);
 }
 
 // Called only by WRL-010's interaction script. Does not touch happiness,

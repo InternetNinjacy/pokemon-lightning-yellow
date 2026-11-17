@@ -458,8 +458,10 @@ static const u8 *GetInteractedObjectEventScript(struct MapPosition *position, u8
         {
             if (i != objectEventId && gObjectEvents[i].active
              && gObjectEvents[i].localId != LOCALID_PLAYER
-             && gObjectEvents[i].currentCoords.x == position->x
-             && gObjectEvents[i].currentCoords.y == position->y)
+             && gObjectEvents[i].currentCoords.x == gObjectEvents[objectEventId].currentCoords.x
+             && gObjectEvents[i].currentCoords.y == gObjectEvents[objectEventId].currentCoords.y
+             && (gObjectEvents[i].currentElevation == 0 || position->elevation == 0
+              || gObjectEvents[i].currentElevation == position->elevation))
             {
                 objectEventId = i;
                 break;
@@ -467,6 +469,14 @@ static const u8 *GetInteractedObjectEventScript(struct MapPosition *position, u8
         }
         if (objectEventId == FollowerGraphics_GetObjectEventId())
         {
+            if (gObjectEvents[objectEventId].spriteId >= MAX_SPRITES
+             || !gSprites[gObjectEvents[objectEventId].spriteId].inUse
+             || gSprites[gObjectEvents[objectEventId].spriteId].invisible)
+                return NULL;
+            // lock/release require a valid selected object, just like an NPC.
+            gSelectedObjectEvent = objectEventId;
+            gSpecialVar_LastTalked = gObjectEvents[objectEventId].localId;
+            gSpecialVar_Facing = direction;
             FollowerSpecial_PlayCry();
             return EventScript_FollowerInteraction;
         }

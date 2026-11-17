@@ -1,27 +1,27 @@
 {
   "sources": {
     "register": {
-      "file": "Pokémon Lightning Yellow — Complete TM & Move Register — v1 (2026-10-29).txt",
+      "file": "Pok\u00e9mon Lightning Yellow \u2014 Complete TM & Move Register \u2014 v1 (2026-10-29).txt",
       "sha256": "bdd2990c1cd35523d90120844eba36794fdc369e4e014d7eced908958f681597",
       "lines": 852
     },
     "tracker": {
-      "file": "Pokémon Lightning Yellow — Physical Special Status Split — All-Type Design Tracker & Handoff — 2026-10-29.txt",
+      "file": "Pok\u00e9mon Lightning Yellow \u2014 Physical Special Status Split \u2014 All-Type Design Tracker & Handoff \u2014 2026-10-29.txt",
       "sha256": "c6d0a3df0a26445219de302677895764dcf874331bb8e4fa08368700229922e3",
       "lines": 311
     },
     "ledger": {
-      "file": "Pokémon Lightning Yellow — Approved Move Change Ledger — Source Verbatim v0.1.txt",
+      "file": "Pok\u00e9mon Lightning Yellow \u2014 Approved Move Change Ledger \u2014 Source Verbatim v0.1.txt",
       "sha256": "ece3a23869f088c7f65dea0a43375e22b31a8e306320d5c1bd7df9fbbc690b21",
       "lines": 182
     },
     "handoff": {
-      "file": "Pokémon Lightning Yellow — Pre-Codex Move & Animation Handoff — Draft v0.1.txt",
+      "file": "Pok\u00e9mon Lightning Yellow \u2014 Pre-Codex Move & Animation Handoff \u2014 Draft v0.1.txt",
       "sha256": "c192729ab16145ee2e00c46a6f9797e4a25aeb00b0dc4c99fca41573970b4b94",
       "lines": 128
     },
     "closeout": {
-      "file": "Pokémon Lightning Yellow — Move System Design Completion & Main Thread Handoff — 2026-10-31.txt",
+      "file": "Pok\u00e9mon Lightning Yellow \u2014 Move System Design Completion & Main Thread Handoff \u2014 2026-10-31.txt",
       "sha256": "059f858ed638125a0951a6b9d1823a5792727da42c7ae72dc4145beadf56595a",
       "lines": 74
     }
@@ -35,11 +35,11 @@
       "scripts": [
         {
           "label": "Move_CRUNCH",
-          "line": 5418
+          "line": 5457
         },
         {
           "label": "Move_EMBER",
-          "line": 953
+          "line": 992
         }
       ],
       "evidence": {
@@ -57,11 +57,11 @@
       "scripts": [
         {
           "label": "Move_QUICK_ATTACK",
-          "line": 2807
+          "line": 2846
         },
         {
           "label": "Move_EMBER",
-          "line": 953
+          "line": 992
         }
       ],
       "evidence": {
@@ -79,11 +79,11 @@
       "scripts": [
         {
           "label": "Move_HI_JUMP_KICK",
-          "line": 6633
+          "line": 6672
         },
         {
           "label": "Move_EMBER",
-          "line": 953
+          "line": 992
         }
       ],
       "evidence": {
@@ -101,7 +101,7 @@
       "scripts": [
         {
           "label": "Move_GRUDGE",
-          "line": 3948
+          "line": 3987
         }
       ],
       "evidence": {
@@ -119,7 +119,7 @@
       "scripts": [
         {
           "label": "Move_SPITE",
-          "line": 3195
+          "line": 3234
         }
       ],
       "evidence": {
@@ -137,7 +137,7 @@
       "scripts": [
         {
           "label": "Move_LICK",
-          "line": 7507
+          "line": 7546
         }
       ],
       "evidence": {
@@ -155,7 +155,7 @@
       "scripts": [
         {
           "label": "Move_ASTONISH",
-          "line": 9589
+          "line": 9628
         }
       ],
       "evidence": {
@@ -173,11 +173,11 @@
       "scripts": [
         {
           "label": "Move_LICK",
-          "line": 7507
+          "line": 7546
         },
         {
           "label": "Move_MEGA_DRAIN",
-          "line": 5878
+          "line": 5917
         }
       ],
       "evidence": {
@@ -197,11 +197,11 @@
       "scripts": [
         {
           "label": "Move_LICK",
-          "line": 7507
+          "line": 7546
         },
         {
           "label": "Move_HYPNOSIS",
-          "line": 7295
+          "line": 7334
         }
       ],
       "evidence": {
@@ -221,11 +221,11 @@
       "scripts": [
         {
           "label": "Move_NIGHT_SHADE",
-          "line": 7448
+          "line": 7487
         },
         {
           "label": "Move_DREAM_EATER",
-          "line": 7145
+          "line": 7184
         }
       ],
       "evidence": {
@@ -245,7 +245,7 @@
       "scripts": [
         {
           "label": "Move_FURY_CUTTER",
-          "line": 1470
+          "line": 1509
         }
       ],
       "evidence": {
@@ -265,11 +265,11 @@
       "scripts": [
         {
           "label": "Move_BIND",
-          "line": 7247
+          "line": 7286
         },
         {
           "label": "Move_POISON_POWDER",
-          "line": 486
+          "line": 525
         }
       ],
       "evidence": {
@@ -289,7 +289,7 @@
       "scripts": [
         {
           "label": "Move_BITE",
-          "line": 5401
+          "line": 5440
         }
       ],
       "evidence": {
@@ -309,11 +309,11 @@
       "scripts": [
         {
           "label": "Move_VICE_GRIP",
-          "line": 1909
+          "line": 1948
         },
         {
           "label": "Move_ROCK_SMASH",
-          "line": 6796
+          "line": 6835
         }
       ],
       "evidence": {
@@ -333,7 +333,7 @@
       "scripts": [
         {
           "label": "Move_GROWL",
-          "line": 5101
+          "line": 5140
         }
       ],
       "evidence": {
@@ -353,11 +353,11 @@
       "scripts": [
         {
           "label": "Move_SILVER_WIND",
-          "line": 9335
+          "line": 9374
         },
         {
           "label": "Move_POISON_POWDER",
-          "line": 486
+          "line": 525
         }
       ],
       "evidence": {
@@ -375,7 +375,7 @@
       "scripts": [
         {
           "label": "Move_LEECH_LIFE",
-          "line": 6008
+          "line": 6047
         }
       ],
       "evidence": {
@@ -393,7 +393,7 @@
       "scripts": [
         {
           "label": "Move_UPROAR",
-          "line": 3522
+          "line": 3561
         }
       ],
       "evidence": {
@@ -413,7 +413,7 @@
       "scripts": [
         {
           "label": "Move_ROAR",
-          "line": 5073
+          "line": 5112
         }
       ],
       "evidence": {
@@ -431,7 +431,7 @@
       "scripts": [
         {
           "label": "Move_ANCIENT_POWER",
-          "line": 7006
+          "line": 7045
         }
       ],
       "evidence": {
@@ -451,7 +451,7 @@
       "scripts": [
         {
           "label": "Move_ROCK_SLIDE",
-          "line": 2189
+          "line": 2228
         }
       ],
       "evidence": {
@@ -471,7 +471,7 @@
       "scripts": [
         {
           "label": "Move_ROCK_TOMB",
-          "line": 9303
+          "line": 9342
         }
       ],
       "evidence": {
@@ -489,11 +489,11 @@
       "scripts": [
         {
           "label": "Move_SANDSTORM",
-          "line": 6473
+          "line": 6512
         },
         {
           "label": "Move_EMBER",
-          "line": 953
+          "line": 992
         }
       ],
       "evidence": {
@@ -513,7 +513,7 @@
       "scripts": [
         {
           "label": "Move_EARTHQUAKE",
-          "line": 2672
+          "line": 2711
         }
       ],
       "evidence": {
@@ -533,7 +533,7 @@
       "scripts": [
         {
           "label": "Move_SANDSTORM",
-          "line": 6473
+          "line": 6512
         }
       ],
       "evidence": {
@@ -551,11 +551,11 @@
       "scripts": [
         {
           "label": "Move_BITE",
-          "line": 5401
+          "line": 5440
         },
         {
           "label": "Move_ICE_PUNCH",
-          "line": 4758
+          "line": 4797
         }
       ],
       "evidence": {
@@ -575,11 +575,11 @@
       "scripts": [
         {
           "label": "Move_ROCK_SLIDE",
-          "line": 2189
+          "line": 2228
         },
         {
           "label": "Move_ICE_BEAM",
-          "line": 5463
+          "line": 5502
         }
       ],
       "evidence": {
@@ -599,7 +599,7 @@
       "scripts": [
         {
           "label": "Move_ICICLE_SPEAR",
-          "line": 762
+          "line": 801
         }
       ],
       "evidence": {
@@ -619,7 +619,7 @@
       "scripts": [
         {
           "label": "Move_ICICLE_SPEAR",
-          "line": 762
+          "line": 801
         }
       ],
       "evidence": {
@@ -637,7 +637,7 @@
       "scripts": [
         {
           "label": "Move_DRAGON_BREATH",
-          "line": 5039
+          "line": 5078
         }
       ],
       "evidence": {
@@ -657,11 +657,11 @@
       "scripts": [
         {
           "label": "Move_TAKE_DOWN",
-          "line": 791
+          "line": 830
         },
         {
           "label": "Move_DRAGON_CLAW",
-          "line": 8790
+          "line": 8829
         }
       ],
       "evidence": {
@@ -681,7 +681,7 @@
       "scripts": [
         {
           "label": "Move_DRAGON_RAGE",
-          "line": 5355
+          "line": 5394
         }
       ],
       "evidence": {
@@ -699,7 +699,7 @@
       "scripts": [
         {
           "label": "Move_OUTRAGE",
-          "line": 1968
+          "line": 2007
         }
       ],
       "evidence": {
@@ -717,7 +717,7 @@
       "scripts": [
         {
           "label": "Move_UPROAR",
-          "line": 3522
+          "line": 3561
         }
       ],
       "evidence": {
@@ -737,7 +737,7 @@
       "scripts": [
         {
           "label": "Move_NIGHT_SHADE",
-          "line": 7448
+          "line": 7487
         }
       ],
       "evidence": {
@@ -757,7 +757,7 @@
       "scripts": [
         {
           "label": "Move_FAINT_ATTACK",
-          "line": 5266
+          "line": 5305
         }
       ],
       "evidence": {
@@ -777,7 +777,7 @@
       "scripts": [
         {
           "label": "Move_SLASH",
-          "line": 3117
+          "line": 3156
         }
       ],
       "evidence": {
@@ -797,7 +797,7 @@
       "scripts": [
         {
           "label": "Move_REVENGE",
-          "line": 8910
+          "line": 8949
         }
       ],
       "evidence": {
@@ -817,7 +817,7 @@
       "scripts": [
         {
           "label": "Move_THIEF",
-          "line": 2240
+          "line": 2279
         }
       ],
       "evidence": {
@@ -837,11 +837,11 @@
       "scripts": [
         {
           "label": "Move_QUICK_ATTACK",
-          "line": 2807
+          "line": 2846
         },
         {
           "label": "Move_WATER_GUN",
-          "line": 6371
+          "line": 6410
         }
       ],
       "evidence": {
@@ -861,7 +861,7 @@
       "scripts": [
         {
           "label": "Move_WATERFALL",
-          "line": 1601
+          "line": 1640
         }
       ],
       "evidence": {
@@ -881,7 +881,7 @@
       "scripts": [
         {
           "label": "Move_WHIRLPOOL",
-          "line": 6493
+          "line": 6532
         }
       ],
       "evidence": {
@@ -899,7 +899,7 @@
       "scripts": [
         {
           "label": "Move_SURF",
-          "line": 6432
+          "line": 6471
         }
       ],
       "evidence": {
@@ -917,7 +917,7 @@
       "scripts": [
         {
           "label": "Move_THUNDERBOLT",
-          "line": 1118
+          "line": 1157
         }
       ],
       "evidence": {
@@ -937,11 +937,11 @@
       "scripts": [
         {
           "label": "Move_SPARK",
-          "line": 2014
+          "line": 2053
         },
         {
           "label": "Move_TELEPORT",
-          "line": 2845
+          "line": 2884
         }
       ],
       "evidence": {
@@ -961,11 +961,11 @@
       "scripts": [
         {
           "label": "Move_BITE",
-          "line": 5401
+          "line": 5440
         },
         {
           "label": "Move_THUNDER_PUNCH",
-          "line": 4936
+          "line": 4975
         }
       ],
       "evidence": {
@@ -985,7 +985,7 @@
       "scripts": [
         {
           "label": "Move_VOLT_TACKLE",
-          "line": 4506
+          "line": 4545
         }
       ],
       "evidence": {
@@ -1005,7 +1005,7 @@
       "scripts": [
         {
           "label": "Move_BULLET_SEED",
-          "line": 8765
+          "line": 8804
         }
       ],
       "evidence": {
@@ -1025,7 +1025,7 @@
       "scripts": [
         {
           "label": "Move_PETAL_DANCE",
-          "line": 6925
+          "line": 6964
         }
       ],
       "evidence": {
@@ -1045,11 +1045,11 @@
       "scripts": [
         {
           "label": "Move_BODY_SLAM",
-          "line": 626
+          "line": 665
         },
         {
           "label": "Move_RAZOR_LEAF",
-          "line": 6963
+          "line": 7002
         }
       ],
       "evidence": {
@@ -1069,7 +1069,7 @@
       "scripts": [
         {
           "label": "Move_PSYCHIC",
-          "line": 4823
+          "line": 4862
         }
       ],
       "evidence": {
@@ -1089,7 +1089,7 @@
       "scripts": [
         {
           "label": "Move_HYPER_BEAM",
-          "line": 8516
+          "line": 8555
         }
       ],
       "evidence": {
@@ -1109,11 +1109,11 @@
       "scripts": [
         {
           "label": "Move_MEGA_PUNCH",
-          "line": 973
+          "line": 1012
         },
         {
           "label": "Move_MEGA_DRAIN",
-          "line": 5878
+          "line": 5917
         }
       ],
       "evidence": {
@@ -1133,11 +1133,11 @@
       "scripts": [
         {
           "label": "Move_HYPER_BEAM",
-          "line": 8516
+          "line": 8555
         },
         {
           "label": "Move_METAL_CLAW",
-          "line": 7427
+          "line": 7466
         }
       ],
       "evidence": {
@@ -1157,7 +1157,7 @@
       "scripts": [
         {
           "label": "Move_SWIFT",
-          "line": 559
+          "line": 598
         }
       ],
       "evidence": {
@@ -1177,7 +1177,7 @@
       "scripts": [
         {
           "label": "Move_HEADBUTT",
-          "line": 2479
+          "line": 2518
         }
       ],
       "evidence": {
@@ -1197,11 +1197,11 @@
       "scripts": [
         {
           "label": "Move_MACH_PUNCH",
-          "line": 3209
+          "line": 3248
         },
         {
           "label": "Move_METAL_CLAW",
-          "line": 7427
+          "line": 7466
         }
       ],
       "evidence": {
@@ -1221,7 +1221,7 @@
       "scripts": [
         {
           "label": "Move_AIR_CUTTER",
-          "line": 4288
+          "line": 4327
         }
       ],
       "evidence": {
@@ -1241,11 +1241,11 @@
       "scripts": [
         {
           "label": "Move_GUST",
-          "line": 6279
+          "line": 6318
         },
         {
           "label": "Move_TWISTER",
-          "line": 9872
+          "line": 9911
         }
       ],
       "evidence": {
@@ -1265,7 +1265,7 @@
       "scripts": [
         {
           "label": "Move_SKY_ATTACK",
-          "line": 2997
+          "line": 3036
         }
       ],
       "evidence": {
@@ -1285,7 +1285,7 @@
       "scripts": [
         {
           "label": "Move_AERIAL_ACE",
-          "line": 4439
+          "line": 4478
         }
       ],
       "evidence": {
@@ -1305,7 +1305,7 @@
       "scripts": [
         {
           "label": "Move_WING_ATTACK",
-          "line": 6297
+          "line": 6336
         }
       ],
       "evidence": {
@@ -1325,11 +1325,11 @@
       "scripts": [
         {
           "label": "Move_STOMP",
-          "line": 1225
+          "line": 1264
         },
         {
           "label": "Move_CONFUSION",
-          "line": 4806
+          "line": 4845
         }
       ],
       "evidence": {
@@ -1349,11 +1349,11 @@
       "scripts": [
         {
           "label": "Move_HEADBUTT",
-          "line": 2479
+          "line": 2518
         },
         {
           "label": "Move_CONFUSION",
-          "line": 4806
+          "line": 4845
         }
       ],
       "evidence": {
@@ -1373,7 +1373,7 @@
       "scripts": [
         {
           "label": "Move_POISON_TAIL",
-          "line": 7406
+          "line": 7445
         }
       ],
       "evidence": {
@@ -1393,7 +1393,7 @@
       "scripts": [
         {
           "label": "Move_POISON_STING",
-          "line": 848
+          "line": 887
         }
       ],
       "evidence": {
@@ -1413,7 +1413,7 @@
       "scripts": [
         {
           "label": "Move_SLUDGE_BOMB",
-          "line": 6086
+          "line": 6125
         }
       ],
       "evidence": {

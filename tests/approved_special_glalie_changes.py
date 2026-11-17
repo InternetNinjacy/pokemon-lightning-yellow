@@ -8,8 +8,8 @@ def prior_special_glalie_source(path, text=None):
         text = Path(path).read_text()
     from approved_special_corphish_changes import prior_special_corphish_source
     text = prior_special_corphish_source(path, text)
-    from approved_weather_species_evolution_changes import prior_weather_species_evolution_source
-    text = prior_weather_species_evolution_source(path, text)
+    from approved_btl_weather_integration import without_btl
+    text = without_btl(path, text)
     for h in json.loads(Path('tests/specifications/special_glalie_delta.json').read_text())['files'].get(str(path), {}).get('hunks', []):
         assert text.count(h['after']) == 1, 'Unreviewed special Glalie delta: ' + str(path)
         text = text.replace(h['after'], h['before'], 1)

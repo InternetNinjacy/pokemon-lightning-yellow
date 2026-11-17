@@ -43,11 +43,6 @@ class MoveCatalogTests(unittest.TestCase):
         for path in self.paths[:5]:
             p = self.root / path
             p.write_text(prior_new_fire_move_source(path, p.read_text()))
-        animation = json.loads((self.root / self.paths[-1]).read_text())
-        for row in animation['entries']:
-            for script in row['scripts']:
-                script['line'] -= int(re.search(r'#define MOVES_COUNT (\d+)', (ROOT / self.paths[0]).read_text())[1]) - 355
-        (self.root / self.paths[-1]).write_text(json.dumps(animation))
         self.change(self.paths[0], '#define MOVES_COUNT 355',
                     '#define MOVE_FLAME_FANG 355\n#define MOVES_COUNT 356')
         body = '''    [MOVE_FLAME_FANG] =
@@ -72,9 +67,12 @@ class MoveCatalogTests(unittest.TestCase):
         with (self.root / self.paths[4]).open('a') as out:
             out.write('\nMove_FLAME_FANG:\n\tend\n')
         animation = json.loads((self.root / self.paths[-1]).read_text())
+        asm = (self.root / self.paths[4]).read_text()
+        labels = {m[1]: asm[:m.start()].count('\n') + 1
+                  for m in re.finditer(r'^(Move_\w+)::?', asm, re.M)}
         for row in animation['entries']:
             for script in row['scripts']:
-                script['line'] += 1
+                script['line'] = labels[script['label']]
         (self.root / self.paths[-1]).write_text(json.dumps(animation))
         r = self.design['new_moves'][0]
         r['engine_translation'] = {'target': 'MOVE_TARGET_SELECTED', 'effect': 'EFFECT_FLINCH_HIT', 'flags': 'FLAG_MAKES_CONTACT'}
@@ -84,7 +82,10 @@ class MoveCatalogTests(unittest.TestCase):
         generated = reconcile.render(ROOT)
         for name, text in generated.items():
             self.assertEqual((ROOT / 'docs/moves' / name).read_bytes(), text.encode())
-        self.assertEqual(validate(ROOT, self.design['new_moves']), int(re.search(r'#define MOVES_COUNT (\d+)', (ROOT / self.paths[0]).read_text())[1]))
+        # Production now contains all 410 approved moves plus MOVE_NONE.
+        # Historical Batch A's staged count387 is verified by its own guard.
+        self.assertEqual(len(self.design['new_moves']), 56)
+        self.assertEqual(validate(ROOT, self.design['new_moves']), 411)
 
     def test_complete_fixture_is_source_only_not_runtime_accepted(self):
         self.add_fixture()
@@ -124,6 +125,21 @@ class MoveCatalogTests(unittest.TestCase):
                 self.change(self.paths[index], before, after)
                 with self.assertRaises(AssertionError):
                     validate(self.root, self.design['new_moves'])
+
+    def test_stale_or_missing_animation_provenance_rejected(self):
+        self.add_fixture()
+        path = self.root / self.paths[-1]
+        original = json.loads(path.read_text())
+        for missing in (False, True):
+            animation = json.loads(json.dumps(original))
+            script = animation['entries'][0]['scripts'][0]
+            if missing:
+                script['label'] = 'Move_MISSING_FIXTURE'
+            else:
+                script['line'] += 1
+            path.write_text(json.dumps(animation))
+            with self.assertRaises((AssertionError, KeyError)):
+                reconcile.render(self.root)
 
     def test_duplicate_rows_rejected(self):
         self.change(self.paths[2], '\n};', '\n    [MOVE_POUND] = _("duplicate"),\n};')

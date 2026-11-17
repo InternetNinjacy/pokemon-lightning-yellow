@@ -2203,8 +2203,8 @@ static void InitOverworldGraphicsRegisters(void)
 static void ResumeMap(bool32 inLink)
 {
     ResetTasks();
-    FollowerGraphics_DetachForMapTransition();
     FollowerController_RequestRefresh();
+    FollowerGraphics_DetachForMapTransition();
     ResetSpriteData();
     FollowerGraphics_InvalidateAfterSpriteReset();
     ResetPaletteFade();

@@ -5,6 +5,7 @@
 
 // Save-backed assignment only. Visual suppression (faint, bike, Surf,
 // battle and resource pressure) must never mutate this selection.
+bool8 FollowerState_CanSelectPartySlot(u8 partySlot);
 bool8 FollowerState_SelectPartySlot(u8 partySlot);
 void FollowerState_Clear(void);
 s8 FollowerState_ResolvePartySlot(void);

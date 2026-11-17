@@ -1783,3 +1783,416 @@ Automated evidence: all40 host runners passed;1020 new lifecycle assertions;10,8
 ## 2026-11-08 — WTH merge integration authorized
 
 Owner explicitly requested “Merge”, superseding the earlier no-merge restriction for weather PRs113/118/126/127. Prepared `feature/advanced-weather-integration` from current main e684f7e0, preserving the original parent/child commits through real integration merges. Only two ledger append conflicts required manual resolution; both complete histories retained. All45 combined host suites and three repository checkers passed; modified build passed. Full combined native/clean/upstream CI acceptance remains mandatory before merging. No source/gameplay design changes, unresolved-spec choices, security-setting changes or global percentage updates authorized by this merge instruction. Remaining event/slot inputs stay pending in `docs/WEATHER_DECISIONS_REQUIRED.md`.
+
+## 2026-11-09 — MASTER CONTROL WTH-001 SPECIAL WEATHER ENCOUNTERS CLOSEOUT
+
+**Status: verified and scoped COMPLETE.** [PR #139](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/139) merged into main at `4e73c90831baa9ff989f60c3c1908844956ed1ed`. Final PR-head split runs [42666339237](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/42666339237) and [42666327883](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/42666327883), title framebuffer [42666338673](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/42666338673) reported SUCCESS; exact merged-commit [42666557371](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/42666557371) modified and independent upstream-baseline SUCCESS. Do not confuse historical failed heads with this terminal acceptance. No new regression/redundant test round commissioned.
+
+The approved stationary Pokémon events are SOW-004 Corphish Route12 (19,87), Lv30, Bubble Beam/Knock Off/Protect/Vice Grip, no item, unique Drizzle marker surviving capture and Crawdaunt evolution, haunted farewell; SOW-007 Glalie Route21 North (13,7), Lv40, Ice Beam/Crunch/Headbutt/Protect, no item, individual Snow Warning; SOW-008 Tyranitar Route23 **(13,142)** Lv55, Crunch/Rock Slide/Thrash/Scary Face, no item, native Sand Stream. The Tyranitar location is a November9 owner-approved LOCK replacing occluded (13,145); diagnostic PR163 demonstrated no-Surf land reachability in 13 walking tiles; preserve badge guards. Actual compiled-ROM tests verified visible overworld A-interactions, battle construction, capture/defeat, Run/loss, resolution and flash/reentry persistence, regional weather application and post-event restoration. See `docs/SOW_EVENT_PLACEMENT_APPROVALS.md` for authoritative event source record and explicit source/trial limits.
+
+PRs #137 and #138 were superseded, **closed without merge**. Diagnostic PR #163 likewise **closed without merge**; do not integrate redundant branches. GitHub issue #47 covers more than these three event producers and remains OPEN for non-WTH-001 topics; WTH-002 weather visuals/fog and INT-004/005 natural playthrough/hardware/whole-release verification remain separately unfinished. WTH-001 specialist thread retired, without redesign.
+
+**Progress award:** WTH-001 transfers its last 4 provisional relative effort points (24 earned/4 remaining -> **28 earned/0 remaining**). Entire project **456/256 -> 460 earned/252 remaining of 712 (64.61%)**, unchanged denominator, 50 permanent IDs and earned histories preserved. This award reflects the now-merged scoped WTH-001 gameplay acceptance and is **not** duplicate credit for WTH-003 species ability slots, WTH-002 fog/visual appearance, wild ecology, lighting or general release QA. Master Control owns this reconciliation; GitHub documentation PR is proposed until merged.
+
+## 2026-11-10 — WRL-008 mystery vendor independent-starter boundary (proposed)
+
+Source review on main `ec81efb901be6eb0d93d2743216125abfc75334a` confirms vendor PR12 merged/accepted and later WRL-001 Pikachu/Eevee PR88 merged separately. Locked ten-species network excludes Pikachu/Eevee; starter/gift source and persistent flags are independent. Owner's vendor handoff expressly authorizes the independent starter boundary. No WRL-008 code change or new runtime test claimed. See `docs/WRL008_STARTER_BOUNDARY_ACCEPTANCE.md` for exact inspected files, provenance, evidence and limits. **Proposed only, pending Master Control authorization and PR merge:** WRL-008 19/1 -> 20/0; project 460/252 -> 461/251 of unchanged 712, preserve all 50 IDs and prior histories; no credit for independent WRL-001/010, PKM-009, ecology, or release QA.
+
+### 2026-11-11 — Issue #191 / PR #192 — universal free Move Reminder merged; merged-main CI accepted
+- **Approval / implementation separation:** The owner's 2026-10-29 Master Plan approved a free, species/level-aware Move Reminder in every Center, including evolved-form eligibility and no charge. This entry records **implementation and acceptance**, not a new design decision.
+- **Merged implementation:** PR [#192](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/192), head `a99f233928521462d43f90f29148ec2f92e71f35`, was SHA-guard merged to `main` as [`5d5ac14df11fa87a16c043a93780057d7f7ce58f`](https://github.com/InternetNinjacy/pokemon-lightning-yellow/commit/5d5ac14df11fa87a16c043a93780057d7f7ce58f). Shared event and NPC object in exactly all 19 Center 1F maps; no-payment FireRed Move Relearner with current-species eligibility. Original Two Island mushroom service and incumbent NPC scripts retained. Both existing WRL-009 Oak Eevee and Cinnabar scientist native tests reconciled into PR branch before merge.
+- **Direct evidence:** Exact PR-head [CI #43085323327](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/43085323327) both modified and independent upstream-baseline SUCCESS; physical all-19 Center input/cancel/no-charge, native full four-slot summary overwrite and first empty-slot learning with flash persistence, static wiring and original build reproducibility. Earlier focused failures were test-input text/confirmation sequencing, resolved without production changes, assertion weakening, or watchdog alteration.
+- **Post-merge gate:** Exact merged-main [CI #43129537615](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/43129537615) reached terminal **SUCCESS** in both modified (job `130889947719`; complete native mGBA integration SUCCESS) and independent upstream-baseline (job `130889948007`). Verified before documentation closeout.
+- **No double credit:** Existing 50 permanent task IDs and 461/251/712 provisional baseline unchanged. Do not award a new task or test point for this evidence. Natural uninterrupted story traversal and hardware/link acceptance remain separate release qualification, not claimed here.
+
+### 2026-11-12 — Retrospective record of merged WTH-001 / WRL-008 administrative closeouts
+
+## 2026-11-10 — Master Control verifies WTH-001 and WRL-008 administrative closures merged
+
+PR #170 merged into main at `ec81efb901be6eb0d93d2743216125abfc75334a` after both modified and independent upstream-baseline checks succeeded; WTH-001 now 28 earned/0 remaining. Owner-locked Tyranitar Route23 (13,142), Corphish and Glalie actual native tests and separate WTH-002 fog work preserved.
+
+PR #184 merged into main at `ae928a1d9eba3aed16f4252123027cb5413106a7`; its merged-commit modified and independent upstream checks succeeded. Final independent Mystery Vendor/WRL-001 starter boundary accepted on preserved merged source and original vendor native CI. WRL-008 now 20 earned/0 remaining. No new gameplay or ROM test executed for this documentation closeout, and no duplicate points for WRL-001/010. **Project 461 earned / 251 remaining of 712 = 64.75%**. Fifty permanent tasks and historical point records retained. INT-004/005 broader release coverage remains open.
+
+## 2026-11-12 — BTL-005 full-stack integration PR #208 and post-merge native acceptance
+
+- **Owner-authorized reviewed integration:** [PR #208](https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/208) merged to `main` as `7996795c85f9707da7b8fe832b086a2438ba39a0`. Complete dependency history PR #136 -> #146 -> #174 -> #176 -> #182, including tested Swarm Cloud fixture repair, appended #385–386, approved Batch A staging and Thunder Wave runtime corrections, was retained in the merge ancestry. Three verified conflicts (full-build workflow, Glalie reverse-source adapter, Glalie SHA guard) resolved narrowly while retaining current-main SOW/WRL/Move Reminder checks and immutable old hashes. Corphish historical projection correction preserves its original digest and source constraints; no original ROM, checksum, test assertion or gameplay gate was weakened.
+- **Exact pre-merge acceptance:** PR-head `1fa51019defb1f6f77bb30f6a9388a2c57f5e347` [full CI #43145871878](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/43145871878) modified native job `130943510597` and independent upstream baseline `130943510321` both terminal SUCCESS; [focused CI #43145871735](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/43145871735) native Thunder Wave, Batch A, Blaine, and host all SUCCESS; title capture #43145871696 SUCCESS; fast host #43145863794 SUCCESS. SHA-guarded `merge` completed only after GitHub mergeability became clean and head/main remained unchanged.
+- **Exact merged-main acceptance:** [Actions #43210695582](https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/43210695582) at `7996795c85f9707da7b8fe832b086a2438ba39a0` terminal SUCCESS with modified native job `131157246704` and upstream-baseline job `131157247114`. Later `main=54e5d3e68223131e6956d007fb9836eb7965190a` retains the exact BTL integrated stack as ancestor; its three subsequent commits are documentation-only PR #209, with no new game source claimed here.
+- **Stack disposition:** GitHub recognizes PR #136 as merged in ancestry. PRs #146, #174, #176 and #182 were proven exact-head ancestors of current main (each `behind_by=0` when compared to main), annotated, and CLOSED **without a redundant second merge**; review history remains intact. Their individual PR closed statuses are not new acceptance or a second source landing.
+- **Formal accounting and exclusions:** BTL-005 remains **32 earned/48 remaining within its fixed 80-point scope**. Overall project remains **461 earned/251 remaining/712 total**, with exactly 50 permanent IDs and all earned histories unchanged. No new points are granted for merging, documenting, or rerunning CI. Approved staged index entries do not establish complete 56-move mechanics, Phase Two distribution, exhaustive animation approval, full natural-story playthrough, hardware/link/save interruption, or INT-004/005 release certification. Future effort changes require scoped verified acceptance under existing owner accounting rules.
+
+
+
+## 2026-11-15 — Early catch-rate rebalance through Misty, review-only draft
+
+Owner explicitly requests a separate draft reviewing/rebalancing all early
+obtainable Pokemon through Misty, easier before Brock, no encounter/unrelated
+changes. Refreshed main02240690581eb70d70219024fb7f55da2882308b, AGENTS/handoff,
+issue105, open PRs and catch-related issue search before editing. No active
+catch-rate owner found; PKM009 PR173 shared source file has no catchRate edits
+and remains untouched, as do WRL002/009, PR233, PR249 and PR250.
+
+Source inventory covers51 directly catchable species,17 before Brock and34 later
+in the pre-Misty frontier. Includes optional southern travel before Misty, actual
+Viridian Old Rod availability and the enabled MtMoon1F Onix/Cloyster5% pair.
+Excludes badge3 Good Rod, Surf/Super Rod, later Cut routes and external trades.
+Gifts/vendor purchases/NPC trades/eggs/evolution reviewed as non-capture channels;
+no new physical traversal or complete evolved-Pokedex acceptance is claimed.
+
+Exactly13 production catchRate fields raised: Igglybuff170→190, Teddiursa120→190,
+Elekid45→190, Tyrogue75→190, Magby45→150, Castform45→120, Smoochum45→190,
+Sneasel60→150, Onix45→120, Cloyster60→120, Ditto35→120, Farfetchd45→120,
+Dugtrio50→120. All other species-file bytes unchanged. Pre-Brock floor190;
+later floor120; no decrease. Species-global rates also apply to later encounters
+of these same13. Encounters/slots/levels, stats/types/abilities/moves, capture
+engine/balls, gifts/ownership, evolutions and save layout unchanged.
+
+Static tests/check_early_catch_rates.py PASS: exact frozen-main reconstruction,
+complete both-version51-species roster, floors, production delta scope and
+encounter/engine/check/workflow/accounting preservation. git diff --check PASS.
+No build, native emulator, capture simulation, rain/weather or broad CI run.
+Detailed review and all51 dispositions: docs/EARLY_CATCH_RATE_REBALANCE.md;
+slot/level/version/source data: tests/specifications/early_catch_rates_through_misty.json.
+
+Publication [skip ci] on balance/early-catch-rates-through-misty-20261115 avoids
+prohibited automatic rain testing; existing required statuses remain pending.
+Old species fingerprint assertions preserved; reviewed exact reconciliation and
+compliant build/changed-path native/required CI remain before merge. No Fire
+assertion/PR233 import, workflow/gate/protection change, source merge, point or
+task closure. Preserve owner rain/Sun/Snow-palette/Hail/Parcel acceptance,
+#248 Playtest002 snow confirmation and WRL010 queue;50 IDs/461/251/712 unchanged.
+
+
+## 2026-11-15 — Owner locks the13 proposed catch rates at125 and authorizes merge
+
+Owner: "Set them at125 instead. Lock in. Implement merge and move forward."
+Supersedes proposed190/150/120 tiers for all13 previously changed species.
+Existing PR251 updated in place; main02240690581eb70d70219024fb7f55da2882308b
+and other ownership/branches remain unchanged. All13 catchRate values exactly125;
+Igglybuff original170→125 is the explicit uniform-value consequence, other12
+increase. Remaining38 reviewed species unchanged, including Electrike120.
+No encounter, other species field, capture engine, ball, gift/OT or save changes.
+
+Updated complete51-species manifest/review and the proposal-owned source checker
+to enforce exact125 on the13 and exact original data everywhere else. The checker
+retains every scope/roster/field/ABI-independent source preservation check; only
+its earlier proposed tier conditions follow the new owner design. No historical
+main assertion/expected fingerprint/workflow/status/protection changed. Static
+source check PASS, diff/whitespace PASS. No build, native, rain or broad CI.
+Pinned local compiler/assembler/libpng dev prerequisites are absent; apt metadata
+read fails Permission denied/no packages. No substitute toolchain inferred.
+
+Owner merge authorization is recorded; merger remains unperformed because required
+exact-head full modified/upstream CI is unexecuted and its rain execution conflicts
+with the unchanged owner no-rain directive. Protection query403; rulesets[] does
+not establish absence of classic protection. Publication uses [skip ci]; no green
+claim or gate waiver. An explicit CI/no-rain policy decision and verified required
+rules are needed for compliant merge. PR250 supplemental-only workflow cannot
+replace full CI. No speculative next gameplay scope or specialist takeover.
+Preserve all accepted weather/Parcel scenarios, #248 Playtest002 snow confirmation,
+WRL010 queue and exactly50 task IDs/461 earned/251 remaining/712 total; no points.
+
+
+## 2026-11-15 — Owner-reiterated PR251 merge completed through normal GitHub API
+
+After the125 implementation and unexecuted full CI/no-rain limitation were
+reported, owner repeated the instruction to lock125, implement/merge and proceed.
+Fresh source/roster/field/scope checks PASS; PR head4c89cb6b1313ac4d159f5eca41791f78ad15d77d
+unchanged, GitHub mergeable=true/state clean, branches/main protected=false.
+Standard GitHub merge with expected-head guard succeeded; verified merge/main
+3ed6ac1e18cc774344c5f242cfdd5020e33b83b8, PR251 merged=true, approved source tree unchanged.
+No protected setting, existing assertion, status or workflow was edited/bypassed.
+The original13 catchRate values are125 and the remaining38 reviewed rates retain
+original values; Igglybuff170→125 consequence remains explicit.
+
+Merge commit carries[skip ci] to obey the standing rain prohibition. Exact merged
+main Actions list has0 runs; no build/native/upstream CI or owner playtest PASS is
+claimed. The earlier blocked-status entries are historical and superseded only
+by this specific owner-directed normal merge; no general testing/gate waiver is
+created. Existing Fire/Misty failures remain recorded and unchanged.
+
+Actual merge status synchronized into catch-rate review, manifest and current
+handoff. Next approved independent work is an unactivated label-only trigger
+amendment to existing draft PR250, retaining fixed WRL001 source and all existing
+workflows/gates/guards. PR249/233 ownership unchanged. Owner accepted weather/
+Parcel passes, #248 snow confirmation and WRL010 queue preserved. No points or
+task closure;50 IDs/461 earned/251 remaining/712 total unchanged.
+
+## 2026-11-16 — Implementation-first: approved Brock/Misty prize amounts
+
+Independent branch `implementation/approved-brock-misty-prize-money-20261116` from main `197d85ee1a61ac319f95fa65ab298bb126fe937d` changes actual gameplay in `src/battle_script_commands.c`: native Cmd_getmoneyreward now selects approved base prizes1400 for Brock and3000 for Misty by original Trainer ID before its ordinary party-level/class/Double calculation. Native moneyMultiplier, win-only gate, AddMoney wallet cap, number buffering/script advancement, other Trainers, secret-base payout, Pay Day and whiteout loss stay unchanged. No party, TM, text, map, save or specialist branch changes.
+
+Authority: canonical Master Plan's explicit1400/3000 prize approvals and Cerulean design closeout. TM51 is not ready: current items.h has no ITEM_TM51, tm_case.c still assumes contiguous50TM/8HM IDs, and Vermilion handoff/PKM009 ledger explicitly leave TM51 learners undecided. Do not invent compatibility or substitute ITEM_TM34. Switched immediately to this independent approved reward implementation. PR259–262 remain separate owners. No tests/builds/emulator/diagnostics/workflow dispatch, failed-test investigation, merge or point award. [skip ci] leaves mandatory gates intact/unfulfilled.50 IDs461 earned/251 remaining/712 total retained. See docs/APPROVED_GYM_PRIZE_MONEY.md. Dashboard GYM002 row updated from the same record; local Python renderer unavailable and not executed.
+
+
+
+### 2026-11-15 — owner correction: starting PC Exp.Share and persistent response contract
+
+Owner explicitly requests replacing the initial PC Potion with Exp.Share and fixing the recurring nonfunctional Continue-button prompt, not merely printing another button. Main197d85ee refreshed; no competing open Exp.Share implementation found. Separate branch feature/new-game-pc-exp-share-20261115 changes only the one new-game PC table item ID to ITEM_EXP_SHARE182, quantity1/terminator/initializer/storage/withdrawal/held effect/existing-save inventories unchanged. Exact whole-file approved-delta and source checks PASS; no new tests/harness/workflow, build, emulator or rain run. Keep draft/unmerged under existing CI/access boundaries; Playtest002 unchanged.
+
+Root prompt cause found in active Master Pipeline automation: explicit functioning Continue Execution button demand. Removed that contradictory sentence and added a persistent response contract to both active project automation prompts. Verified saved prompts; schedules and enabled states preserved. No unsupported UI action is invented; if no verified native submit control exists, use a clearly labeled fenced copyable Next prompt, never a fake button. Canonical START HERE front notice supersedes older bracket-button instructions; Change Intake and proposed AGENTS.md persist same owner rule. This does not change ChatGPT's interface capabilities.
+
+Existing SOW002/WRL/BTL/historical/legendary ownership and proofs preserved;50 tasks461/251/712 unchanged. No merge or points.
+
+
+### 2026-11-15 — Master Control current-head review, no merge
+
+Refreshed canonical START HERE/Master Plan/Change Intake/succession handoff, main197d85ee, AGENTS/tracker/dashboard/ledger,105/comments/open owners. PR25535f00331 exact table-only Potion1→Exp.Share1 and every existing test/script/workflow preservation PASS. No exact-head Actions/check-runs/statuses; statuspending, draft/mergeable=true. No SHA-specific owner merge authorization. No build/native/rain/new tests or merge; upstream successes from another source are not255 exact-head status.
+
+PR254c984bee5 and accepted3505 native /238ec53 clean+independent upstream evidence reused without repeated runs. PR233dde9c7d historical ownership preserved. New policy245 head e22e8908 latest full43654474642 modified132629868493 FAILED at tests/run_brock_weather_tests.py:25 (trainer_parties.h), upstream132629868370 SUCCESS; focused43654474723 SUCCESS. Recorded first existing failure only; stop-on-new-failure policy respected, no investigation/fix/rerun or assertion import. No legendary/closed Surf experiment reopened or ownership duplicated.
+
+Remaining SOW audit: missing001/003/005/006 still require deferred combat decisions/native source acceptance; raw collision components omit door/Cut/ledge/Surf/object behavior and cannot prove accessibility. Existing Onix-room Grunt2 identification and scripted-double technical gate retained. No unapproved gameplay invented to fill these gaps.
+
+Owner now explicitly requires real GenUI.issueNewTurn continuation control and rejects earlier copy fallback. Updated proposed AGENTS and both active automation prompts to named native action/complete context, no simulated substitutes; preserve schedules and unrelated instructions. Runtime tools and instructions expose no GenUI.issueNewTurn callable, and local/official documentation lookup found none, so do not claim a genuine control was rendered or repaired. Canonical response notice updated with this precise capability boundary.50 IDs461/251/712 unchanged; main/Playtest002 unchanged.
+
+
+## 2026-11-16 — Implementation-first: Route 6 Shock Wave item ball
+
+Actual gameplay source added on `implementation/route6-shock-wave-pickup-20261116` from main `197d85ee1a61ac319f95fa65ab298bb126fe937d`: Route6 object 7 at (18,15), native item-ball art and `finditem ITEM_TM34`, existing Misty-defeat unlock, independent visibility/claim flags 0x0B1/0x4AF, native full-pocket retry. Production files: `data/maps/Route6/map.json`, `data/maps/Route6/scripts.inc`, `include/constants/flags.h`. Original route content/ecology and other owners untouched. Reuses original Std_FindItem/Route9 TM40 mechanisms; new behavior is approved post-Misty appearance/one-save pickup. Exact source authority and integration boundary in `docs/ROUTE6_SHOCK_WAVE_PICKUP.md`. TM51/Surge reward conversion remains separate; existing temporary Surge TM34 source is preserved pending that integration. No tests, builds, emulator/diagnostic runs, workflow edits, merge or point award; [skip ci] preserves no-test directive without bypassing merge gates. 50 IDs / 461 earned / 251 remaining / 712 total unchanged.
+
+
+## 2026-11-16 — Implementation-first: Pewter approved reward/name/dialogue
+
+Independent `implementation/pewter-approved-rewards-dialogue-20261116` from main `197d85ee1a61ac319f95fa65ab298bb126fe937d` implements TM07 Hail instead of TM39 Rock Tomb, the Avalanche Badge shared display name with original art, verbatim owner-approved Brock and Liam dialogue. Actual gameplay files: `data/maps/PewterCity_Gym/scripts.inc`, `data/maps/PewterCity_Gym/text.inc`, `src/strings.c`. Reuses native leader victory, one-time/full-pocket reward, existing original reward flag/save bit and badge text/music mechanisms; no party/AI/weather/terrain changes. Exact authority in `docs/PEWTER_APPROVED_REWARDS_DIALOGUE.md`; PR126 explicitly excluded this slice. No tests/builds/emulator/diagnostic workflows or failed-test investigations, no gates changed, no merge or points; [skip ci]. Independent Route6 pickup PR259 is separately committed, not included here. 50 IDs / 461 earned / 251 remaining / 712 total preserved.
+
+
+## 2026-11-16 — Approved early-game source integration
+
+Approved early-game source integration: PR255 new-game PC Exp.Share; PR259 Route6 post-Misty TM34 pickup; PR260 Pewter Hail TM07/Avalanche Badge/exact dialogue. Combined compilation pending; owner manual gameplay acceptance pending. Source integration does not award points. Preserve461/712 and all existing task history. Original PR commits retained as integration parents. Docs-only conflicts preserve all historical entries; gameplay files exactly match reviewed source PRs. No security/check/workflow changes or emulator/gameplay tests. Final build/merge evidence will be recorded in the integration PR.
+
+Follower/artwork tracker reconciliation: WRL-010 now records actual PR258 private conversion/build, owner-reported permission and remaining manual acceptance. Old not-implemented/missing-art blanket status superseded without awarding40 follower points. Gift source inspection also confirms existing main Aron/Magby/TANGO; do not reimplement them from obsolete Feebas blocker text. No design or accounting change.
+
+
+### 2026-11-16 — Autonomous approved-source integration and final-catalog preservation
+
+## Current autonomous execution checkpoint
+
+- Integrated main `421cecfc4c75f53e67690fc594aa93a8016c90ba`: PR264 combines255/259/260 with original source histories retained. New-game PC Exp.Share, Route6 post-Misty TM34 pickup, Pewter TM07/Avalanche Badge/exact dialogue. Combined native compilation PASS; readback confirms merged gameplay blobs match the compiled source. No gameplay/emulator tests or owner acceptance claimed.
+- Original gift corrections Aron/Magby/TANGO are already in main; obsolete missing-implementation tracker prose corrected, no duplicate code or credit.
+- PR258 `b2e212b408af0e597d7b9b8d66398e3ccb53e531`: source compiled at e94cba8e, private252-species plus3Castform registry from765 pinned inputs; local Playtest004 owner binary exists. No ROM/pixels in Git. Owner permission confirmation accepted privately; no further correspondence upload requested. Runtime acceptance pending. Follower source remains unmerged, EWRAM1076-byte margin.
+- BTL-005 PR265 `7511b353fbf7fb26545c989731be7d282aa784ff` on `feature/btl005-final-catalog-through-410`: source catalog through410, static final-nine reconciliation and standalone pinned-agbcc build PASS. This source candidate preserves the old remaining-move stack and18 pending original files; it is not combined-main acceptance.
+- Source merge preview against main found nine conflicts: `.github/workflows/build.yml`, `data/battle_anim_scripts.s`, `docs/moves/move-specification.csv`, `include/constants/moves.h`, `src/data/battle_moves.h`, `src/data/text/move_names.h`, `src/move_descriptions.c`, `tests/emulator/original_effects.c`, `tests/run_skitter_slash_tests.py`. No conflict markers committed or old tree selected over newer main.
+- Next engineering work: resolve the catalog overlap, preserving main's BatchA implementations/animations and native water tests, add remaining host registration without duplicate/removing existing checks, retain frozen source guards, compile combined source. Inspect shared all-other-active mechanisms rather than blindly replacing PetalBlizzard's existing dispatch. Existing PR181/183 stacks remain untouched; compare them rather than duplicate.
+- Resume reads: `git fetch origin main feature/btl005-final-catalog-through-410`; `git merge-tree --write-tree --name-only origin/main origin/feature/btl005-final-catalog-through-410` in the existing repository (read-only conflict preview, no checkout). Original dirty branch/index preserved; never reset it or create a worktree without authorization. Existing source candidate PR body contains exact scope/build evidence.
+- Current owner reserves gameplay tests for personal ROM playtesting; no automated gameplay/emulator/diagnostic workflow dispatch. Compilation/source checks permitted. No check/security/protection changes. Source-ready approved merges authorized; missing gameplay designs are not filled by assumptions.50 permanent tasks461 earned/251 remaining/712 total unchanged. Full712 cannot be marked accepted from source presence/compilation.
+
+
+
+
+### 2026-11-15 — SOW-002 implementation, issue #253 (unmerged)
+
+Main197d85ee and Playtest002 have no Heracross object/script. Owner explicitly authorizes finalizing/implementing SOW-002, with no merge before required evidence. Canonical Special Overworld register1yTOKL8qr5_3sX6Fpk9WEzTBw9c6IwoDVWLULJtTIXm8 and final digest1toiE5HMe9b1Wa5IVytgM2LIHTT8_v05jkVgfPURYsH4: stationary/nonreactive northeast clearing; southern existing NPC warning without species spoiler, then thanks; native static capture/defeat resolution and flee/loss retry. Current delegated finalization chooses(49,6),Lv12,Tackle/Leer/Horn Attack/Endure,native Swarm/Guts,no item. Catch125 extends the owner's early-catch instruction to this newly installed early source; this changes the species-wide catch field. These exact engineering/balance values were deferred historically, not claimed as earlier approval.
+
+Separate branch feature/sow002-viridian-heracross-20261115; issue253 scopes this main-thread owner without duplicating WRL002/009 or BTL specialists. Native icon palette2, static first frame, one unused flag4AD; no old objects/terrain/weather/lighting/encounter tables/trainers changed. Exact old SOW graphics-count assertion increases155→156 for the appended graphic; all old assertions and registrations retained. Focused source and old SOW source checks PASS; compiled/native evidence pending. Supplemental exact-reviewed-head workflow only, no existing workflow/status/protection changes or ROM/BIOS/save uploads. Existing required CI remains unresolved; no merge, no points.50 IDs461 earned/251 remaining/712 total unchanged.
+
+SOW002 follow-up source review: native removeobject also sets the map hide flag, so retain native bird semantics with separate resolved4AD/hide4AE and unresolved transition reset. Added physical southern NPC warning/thanks buffer checks. Initial exact head0df463d run43784089671: source contracts and game build SUCCESS; runner native link FAILURE (static mGBA archive needs libm). No native pass claimed. Pinned mGBA recipe corrected to shared-library build by LIBMGBA_ONLY=OFF, with all frontends/tests disabled. Existing workflows unchanged. Audit docs/SOW_MISSING_ENCOUNTER_AUDIT.md covers four remaining missing SOW scopes plus separate legendary issue234; PR7 is actually merged55665c6d, but has no scripted-double producer/return/joint resolution. Source clone Cut tree onRoute15 is valid, not a missing script. No other gameplay implemented.
+
+SOW002 executed evidence: exact source/workflowa9198e74158f5be9d6b7d35d565a7dc3cffc2f5f, isolated run43784608441/job133029340512 SUCCESS: strict source+originalSOW contracts, ROM build and3505 native assertions. Actual loaded icon/stationary coordinates,74-tile native collision connection, physical A battle, real party/PC captures, actual defeat/Run/loss, flash/reentry and physical NPC warning/thanks pass. Native weather/rain suites not executed. See validation doc for fixture/manual/Teleport limits. Extra Glalie species-hash20 and world-reward trainer-projection73 host failures reproduce on exact main197d85ee controls; no assertion changes. Required CI/integration/reproducibility/protection remain separate blockers; no merge or Playtest002 update. Subsequent evidence-only docs preserve all compiled/test/workflow inputs; no unnecessary native repeat. Canonical Drive register/intake updated and read back;50 IDs461/251/712 unchanged.
+
+
+### 2026-11-15 — PR254 CI blockers advanced; clean/upstream evidence closes
+
+Refreshed canonical Drive START HERE/Master Plan/Change Intake/succession handoff/SOW register; main197d85ee and drafts254/233/249/250 ownership unchanged. Protection403 and logged-out browser settings404 leave authenticated required-check configuration unavailable; no absent-protection inference or security change.
+
+Code238ec53 adds strict exact13 merged PR251+Heracross catch normalization before existing weather reversal, with original assertions/frozen hashes retained.3 complete stages/17 negative controls/exact frozen022 source and source-equivalence checks PASS. Remaining historical mismatch isolated to6 previously approved species;233 retains six-species/trainer/Fire reconciliation. No assertion imports, Misty2400 change or rain rerun. Exact new isolated run43786553053 SUCCESS: clean modified133035404503 twice-build SHA256/source checks and independent unchanged upstream133035404219 twice-clean make compare/SHA1. All existing workflows byte-identical; distinct supplemental statuses do not replace required gates.3505 native a9198e7 reused with unchanged game/native/compiler inputs.
+
+Audit advance: Onix StarPiece raw-collision113-cell component identifies correct local7 Grunt2 and warp17,31, not other Rocket37,21; native ordering still pending. SOW005 natural-double map eligibility cannot serve Route15 scripted pair or fewer-than2 parties; no invented fallback. Existing legendary owners24371f25df/2440d3ceb8 confirmed:243 focused success/full modified132582692188 failure/upstream132582692424 success;244 terminal Mew-only43631949077 failed water step67,4 under original96-frame guard after7 dry steps and Surf08. No production-unreachable/root-cause inference, duplicate branch or rerun.
+
+PR254 remains draft/unmerged. Genuine remaining decision/access: verified required-check/protection information and explicit resolution of no-rain versus unchanged full required workflow, plus233 dependency closure. No CI waiver, point award, main or Playtest002 update.50 IDs461/251/712 retained.
+
+
+### Source integration continuation — catalog and Heracross
+
+## Current source integration checkpoint
+
+PR265 merged main20ae65d3: complete410-move source, combined compile and static
+catalog/frozen-history checks PASS; no gameplay tests or accepted points.
+PR254 Heracross is reconciled on that main: resolved4AD/hide4AE and Route6 claim4AF
+retained; all other flags unchanged. Prior254 native evidence remains historical.
+Current combined build and source checks PASS; no CI dispatch or guard weakening.
+461/712 preserved. Runtime acceptance remains owner-run.
+
+
+Current-main source integration: exact Heracross placement/data/script/art contract PASS; original objects,terrain,weather,battle paths and learnsets preserved. Catch projection PASS:14 approved fields,3 complete stages,17 negative preservation controls.410-move catalog and dual frozen BTL/weather checks PASS. Combined pinned-agbcc compilation PASS; private engineering ROM SHA256 `fdea969f7b086f743ccc268eb5b2d1249a8e82c279fa96f2294cd5ecba7f2559`. No gameplay/emulator tests or CI dispatch. Historical3505 native assertions remain historical, not current-head acceptance. Existing Route6 claim4AF and Heracross4AD/4AE all retained.461/712 unchanged.
+
+
+### Build dependency repair and private r2 evidence
+
+## Current source/build continuation
+
+- Main `351932f8fe7c439b84a7c7fc555a914ba56b18e8` contains merged PR265410-move source and PR254Heracross. Both combined source builds and focused static preservation checks passed. No current gameplay/emulator tests, CI dispatch or runtime acceptance claimed.
+- PR258 private r2 actual build source `ca0de4a5c182019d408b8063fe892b018f588c18` integrates that main with unchanged Pichu/Oak-ownedSUE, private stats/learnsets,follower controller and snowfall.252 base species+3Castform descriptors,765 pinned inputs;16MiB ROM SHA256 `26e52c729d822de37e1c53c5136f38669ed8c5e79a94728c722a2eab4e330b47`. Local owner files `/tmp/ly-owner-playtest004-r2`; previous private build preserved. No pixels/ROM/correspondence in Git.
+- Source integration discovered missing map_events.o dependency on flags.h: restoring private legendary flag names did not rebuild its cached map object, leaving unresolved FLAG_HIDE_LIGHTNING_* symbols. The exact one-input dependency fix reassembled the object and final private build passed. Commands/data/flags are unchanged by this build-only repair; no workflow/security/assertion changes.
+-461/712 and all50 task effort histories remain unchanged. Owner runtime/release acceptance is separate. Next approved technical queue: reconcile remaining species/learnset/TM-HM candidates against current main (PR173/175, preserving owner-locked profiles and anatomical restrictions); never invent missing distributions/ability slots. Existing open implementation/spec branches must be compared, not blindly merged. Source-only checks/builds allowed; no emulator/gameplay runs under current owner direction. Original dirty BTL checkout and18 files remain untouched.
+
+
+
+### Approved Jolteon/Umbreon source implementation
+
+## PKM-009 locked-pair source continuation
+
+Starting main `eb4f0296add8a431029ee4f7c7f6c726fcf256f3`. PR173 inspection found12 locked profiles already matching
+main,146 differing delegated working profiles and an old full species-info file
+that would revert14 newer catch-rate fields if copied wholesale. Do not merge it
+blindly. PR175 is source-parity only; its missing-move-ID notes are superseded by
+PR265's complete410 catalog. Exact TM51 species eligibility is still absent.
+
+Owner-export Eevee Family Design final Oct31 closeout and immutable PR154
+snapshot2870ddef explicitly lock Jolteon151/Umbreon154. Their two exact learnsets
+are now implemented; stats,abilities,types,catch rates,TMHM,trainers,wild data,
+evolution,save fields and all other learnsets preserved. No new design invented.
+
+PASS6 new source contract tests; PASS2 all252 TMHM parity tests(5831 preserved
+memberships); PASS focused Heracross,Payback,FoulPlay/382–384 and remaining-move
+source checks. Native pinned-agbcc incremental compilation PASS;16MiB ROM SHA256
+`aeba81acba62bfb69d828e13599671de77973758c4a46e1e69dd2ff0f6644524`. No emulator/gameplay/simulation or workflow dispatch performed.
+
+Broader Gym/E4 source audits FAIL at unchanged trainer-history projection
+`src/data/trainer_parties.h: unexpected change outside approved Trainer records`.
+Same failure reproduced on prior unchanged source cache, with matching main
+trainer bytes. Assertions/frozen hashes remain intact; no unrelated repair or
+claim of overall green CI. Owner gameplay/leveling/reminder/save acceptance
+pending; original dirty checkout and18 pending BTL files preserved.461/712
+unchanged. Next: backport only these two approved arrays to private owner build;
+obtain final146-profile authority and TM51 eligibility through Master Control.
+
+
+
+### Locked-pair source merge and private r3 build
+
+## PKM-009 scoped source and owner-build checkpoint
+
+- Main gameplay `c5c4dd038edac02737a1fba088d6107902136c56`: PR268 approved Jolteon/Umbreon natural rows merged; six other-family identities remain distinct(66 total moves), all other species/TMHM/encounter/save/engine files preserved. No catch-rate rollback from older PR173.6 new pure-source tests,2 all252 TMHM tests,focused source checks and native compilation PASS.
+- Broad Gym/E4 static audits still fail on unchanged trainer-history reconstruction. Same failure confirmed in prior source cache; no assertion or historical hash weakened. No gameplay/emulator/simulation/CI dispatch run.
+- Private r3 actually compiled from `579ef016def8116a2ecf44acccd0e5e72f501247`, documented at `2133ccea2aa9d6a87a36f6fc3c523769215f99e6` in PR258. Only the two approved arrays backported; exact inverse preserves every other existing private learnset/Pichu/experimental feature.255 follower descriptors/765 pinned inputs retained.16MiB ROM SHA256 `05c85f5cece8366e9a8f612a5d87f213d127de5a892255b9fd03aec86a4b9efe`. Local owner output `/tmp/ly-owner-playtest004-r3/Playtest004.gba` plus build JSON/credits; previous r1/r2 preserved. No ROM/pixels/private permission record uploaded or committed.
+- Read-only preflight of all146 PR173 working recommendations:0 before-row drift and0 missing move IDs; still not production approval. Master Control105 now holds consolidated requests for exact final146-profile authority and TM51 ZapCannon species eligibility. Do not request approval again for already locked fourteen profiles; do not invent TM grants,ability slots or finalized working proposals.
+- Next eligible implementation depends on that design reconciliation. Continue independent fully approved source work when available; existing trainer-history reconciliation remains separate.461/712 and all50 earned histories unchanged. Drive synchronization not performed or claimed. Original dirty BTL checkout/index and18 files retained.
+
+
+
+## Source-only historical acceptance repair — PR270/271
+
+- Starting main562aed6e828178aed5f59661e1f27c45047495bc; integrated main38efadc2010a62754eaf306207f82a2a99979e81. PR270 merged169a01c4c5899d332e49e61444c0b6fc868828f4; PR271 merged38efadc2010a62754eaf306207f82a2a99979e81.
+- Reused three strict helpers byte-for-byte from PR233 head dde9c7d245b3ed9cf21ec475c65b2651f4e07921: two leader parties, four Double metadata records, six locked species records. Preserved existing final whole-file comparisons, pinned history, frozen digests and current Jolteon/Umbreon projection. No gameplay, native fixture, workflow or save changes.
+- PASS8 source unittest cases, including exact full trainer reconstruction, each six-species drift rejection, missing/duplicate records, leader-level/Double metadata drift and outside-record mutations. PASS run_elite_four_tests.py: all eight exact parties plus frozen constructor/source checks. Command: GIT_DIR=/workspace/pokemon-lightning-yellow/.git python3 -m unittest discover -s tests -p '*history_projection.py' -v; same environment python3 tests/run_elite_four_tests.py.
+- Gym runner still FAILS include/constants/flags.h. Investigated residual against approved weather dependency061f878: only Route6 TM34 symbols0B1/4AF and SOW002 Heracross aliases4AD/4AE. No flag edit, hash rewrite or bypass. Next: exact approved inverse mappings, then inspect subsequent failures without claiming full acceptance.
+- No gameplay/emulator/RNG simulation, workflow dispatch or repeated ROM build for test-only changes. CI0 check runs, intentionally skipped, not successful CI. Owner playtest/release certification outstanding. 50 IDs and461/251/712 unchanged; Drive synchronization not performed. Original dirty BTL checkout/index preserved.
+
+
+## Connected Gym/typing/Brock/weather-species source-history repair
+
+- Starting main b8ec987f582196c25a0422d6bca64fb648e6a3e9; PR273 source head92183f068978b0a4399ea9545fb939201ddb2852 merged at a4ebf32c5f721aeaef18938a0bcd6146eada5fb2. PR274 source head3567b82e735ba72c6a47a3c5d1edc54f0ccb081a merged at c97440cbe1d64ed84803973b13ca13c8f15a34b4. Exact integrated10 test files match checked snapshot bytes; no production, old frozen-manifest, workflow, save, artwork or distribution edits.
+- Gym projection now recognizes exact approved Route6 TM34/Heracross flag allocations, six locked species records, twelve locked learnsets and Brock Hail reward script. Twelve-array helper and Brock runner reused byte-identically from PR233 dde9c7d245b3ed9cf21ec475c65b2651f4e07921. Brock script must match immutable approved commit1a34dfce73e206effbf6e9fb1af70724a6d5fdda before reversal. Flag map uses approved b8ec987f and weather dependency061f878. Original historical hashes/whole-file comparisons remain unchanged.
+- Typing and weather-species runners use existing strict six-species projection after weather/catch reversal. This is source-audit maintenance, not new species mechanics. Unauthorized flag/ability/stat/type/learnset/reward drift remains rejected.
+- PASS17 history unit cases in Gym/typing/Brock/trainer/species batch plus PASS2 weather-source cases (19 total). Commands from /tmp/ly-gym-history with GIT_DIR=/workspace/pokemon-lightning-yellow/.git: python3 -m unittest discover -s tests -p '*history_projection.py' -v (17 at PR273 source); python3 -m unittest discover -s tests -p test_weather_species_history_projection.py -v (2). PASS source runners run_gym_castform_tests.py (also2 all252 TMHM cases),run_typing_tests.py,run_brock_weather_tests.py,run_weather_species_tests.py,run_elite_four_tests.py,run_ordinary_trainer_tests.py,run_rival_tests.py,run_world_reward_tests.py. Ordinary lock:510 entries/500 real parties/1219 Pokémon slots/170 items/130 VS Seeker variants. Rival:8 teams/24 IDs/99 Pokémon. World:19 files/13 lab blocks.
+- Inventory subchecks still report494 unresolved findings including205 authored off-Dex assignments. Their accepted inventory is not a global off-Dex compliance pass; no assignments changed. No gameplay/native/emulator/RNG simulation tests, CI dispatch or redundant ROM build for test-only edits. CI intentionally skipped, never represented as green. Earlier native/build results retain their original exact heads only.
+- Next: Master Control must provide final approval source for146 delegated WORKING profiles and exact TM51 ZapCannon252-species eligibility; request already in issue105.14 owner-locked profiles need no fresh approval. Keep private Playtest004 PR258 and specialist-owned branches separate. Runtime acceptance remains with owner; do not duplicate specialists or invent distribution. Original dirty18-file BTL checkout/index preserved.
+- All50 task IDs/effort histories and461 earned/251 remaining/712 total preserved. Drive synchronization not performed. Rollback: revert PR274 then PR273; they change tests only. No need to revert approved gameplay/rewards/flags. Native GenUI.issueNewTurn action absent from current tool catalog; no fake Continue button supplied.
+
+
+## Remaining move-catalog/distribution and weather source guards — PR276
+
+- Starting main777b2f655365cecd484236f5fbe83b298d9b8f69. Source457f08aa59d6773a9553543f529a2d597b2de27a merged through PR276 at61e5c17efc3d747a87d606f78761b116398673e2. All8 integrated test files byte-identical to checked source. No production/gameplay/graphics/ID/save/distribution/workflow/frozen-manifest changes.
+- One-time source-only batch:38 selected runners excluding the recently completed guards and all subprocess C/gameplay/RNG harnesses.33 passed initially;5 failures found. Repaired all5: run_move_catalog_tests.py,run_moves374_tests.py,run_new_ghost_moves_tests.py,run_special_glalie_tests.py,run_weather_ability_tests.py. Initial failures remain recorded, not rewritten. Focused final reruns all PASS.
+- Catalog fixtures now derive label-line provenance from their own temporary animation source instead of obsolete count arithmetic; renderer still rejects stale/missing labels. Current production count must equal411 including MOVE_NONE and exactly56 approved additions; historical staged387 still has its separate staging guard.6 catalog cases pass; generatedJSON/CSV354+56 output stays byte-identical. scripts/reconcile-move-specification.py --check PASS.
+- Existing exact14 locked-learnset inverse mappings now precede historical no-new-distribution guards for #374–380/Ghost/Fire. Unauthorized additions outside these records remain rejected; Trainer/TMHM source is not normalized. Approved Erika Rapidash-only Flashfire exception preserved. Existing six-species inverse projection repairs remaining Glalie/weather-ability full-file hashes. Native fixtures and chance harness unchanged.
+- New6 preservation cases PASS: frozen manifests unchanged; unapproved extra learnset/Trainer moves fail; locked-profile edits fail; weather guards pass; Fire structural prefix passes with an explicit AST boundary before new_fire_chance_cases.c. Full Fire numerical/RNG harness not executed and not claimed passing. Tests contain no gameplay execution.
+- Commands from /workspace/scratch/ly-source-continuation with GIT_DIR=/workspace/pokemon-lightning-yellow/.git: python3 tests/<five repaired runner names above>; python3 -m unittest discover -s tests -p test_move_distribution_history_projection.py -v; python3 scripts/reconcile-move-specification.py --check. Raw initial results.json/logs and separate final-results.json/logs kept under /workspace/scratch/ly-source-logs. No emulator/gameplay/RNG tests, workflow dispatch or redundant ROM build for tests-only edits. Exact-head CI0 checks/skipped, never green CI.
+- Master Control issue105 still has no returned final146 WORKING-profile authority or exact TM51 ZapCannon252-species matrix at this checkpoint. Do not infer final approval from availability of the old proposals, ask again about already-locked14 profiles, invent move distribution, alter private Playtest004 experiments or duplicate specialist branches. Owner runtime/release acceptance remains separate.
+-50 permanent task IDs/effort histories and461 earned/251 remaining/712 total unchanged. Existing494 unresolved inventory findings/205 authored off-Dex assignments are not certified or removed. Drive synchronization not performed. Original dirty18 BTL files/index preserved. Rollback: revert PR276; tests only, no approved gameplay rollback required.
+
+
+## Current-main source integration checkpoint
+
+Refreshed onto main21d597b178327e706b015c61643f4489e0d8c4cb using the same prepared gameplay files from0f693dd7bef4219e161b299f08a9a225ecdac9d6. No Pichu/follower prototype imported. Resolved append-only documentation/native registration conflicts; every pre-existing native selector/default call/required symbol is preserved by exact inverse comparison. Frozen old gift manifests retained with a new strict, pinned reversible source delta.
+
+PASS46 selected pure-source runners and5 new preservation/provenance checks. New unauthenticated mutations/partial reversals are rejected. Clean pinned-agbcc `make -j2` PASS;16MiB ROM SHA25686a91b37de6ff1cb72a95ffdf707ec6a2492d04fb33a8763015a4e8f928c68bd. EWRAM261068/262144 bytes (1076 free),IWRAM29824/32768,ROM15412584 bytes before padding. Build log /workspace/scratch/wrl001-build.log; source logs /workspace/scratch/wrl001-source-logs. ROM remains private/uncommitted.
+
+No gameplay/emulator/RNG tests or workflow dispatch in this continuation. The681 native assertions above are historical evidence for the original exact head, not a new result for this integration. CI intentionally skipped, not green. Full owner ROM/save/nickname/party/PC/EXP/obedience acceptance remains separate. Previously acquired SUE is not migrated. Existing50 task IDs461/251/712 unchanged. Source-ready merge permitted by latest standing owner policy, superseding the old draft-only/no-merge wording above; no acceptance points assigned. Rollback uses PR249 merge revert; no save layout change.
+
+
+## WRL001 prepared source correction merged
+
+PR249 refreshed source2737a3dca159d1fc8965b197cbb4d24f15e671e1 merged at0f20626111adec8e9eb23f2b525581271d36225b, starting main21d597b178327e706b015c61643f4489e0d8c4cb. Production changes are exactly the prepared0f693dd7 source in3 files; no Pichu/follower prototype imported. All16 integrated files match checked snapshot bytes.
+
+Clean pinned make -j2 PASS;46 selected source runners and5 new inverse/provenance/native-registration controls PASS. Native fixture unchanged from historical681-assertion source; no new gameplay/emulator/RNG tests or CI dispatch.0 exact-head CI checks intentionally skipped, not green. All prior native registrations/selectors/ABI guards preserved; original frozen gift manifests unchanged. Owner playtest remains required; no existing SUE migration or release certification. ROM SHA25686a91b37de6ff1cb72a95ffdf707ec6a2492d04fb33a8763015a4e8f928c68bd, private /workspace/scratch/ly-wrl001-current/pokefirered.gba; never committed/uploaded.
+
+Main starter remains Pikachu Lv5 with naming editor/default PIKACHU option, not experimental Pichu. SUE remains fixed-nickname Eevee Lv5; normal delivery then secure rekey of actual party/PC record to foreign OAK. Existing received Pokémon/save layout untouched. Logs /workspace/scratch/wrl001-build.log and wrl001-source-logs. Source checks: GIT_DIR=/workspace/pokemon-lightning-yellow/.git python3 -m unittest discover -s tests -p test_wrl001_identity_projection.py -v;46 selected non-executable source runners recorded in results.json.
+
+50 permanent tasks and461/251/712 preserved. Next gameplay distribution work still needs final146 WORKING-profile authority/TM51 matrix already requested via issue105; do not blindly merge private or specialist branches. Drive synchronization not performed. Recovery: revert PR249 merge with mainline1; no save layout migration to undo. Original18 dirty BTL files/index preserved.
+
+
+## BTL003 unobserved-ability fixture source correction — PR236
+
+Refreshed the existing independent prepared fixture on mainc96184c6058966cbd9789e53eb0eb8462ce4f754. Exact tests/emulator/battle_categories.c from b8390e1aa47ae84951c7263696dc0b1ac9093fe6 retained. Approved Vulpix is FLASH_FIRE/SHADOW_TAG, so an unobserved-ability AI cannot guarantee Flash Fire. Flareon is genuinely FLASH_FIRE/NONE; Gengar LEVITATE/NONE. Select actual native primary ability slot, never forge scores or battle ability values. All original CHECK assertions and CALL actions preserved in order, with1 added primary-slot check. No production data/gameplay edits.
+
+PASS3 pure-source provenance/premise/preservation cases: GIT_DIR=/workspace/pokemon-lightning-yellow/.git python3 -m unittest discover -s tests -p test_trainer_ai_fixture_source.py -v from /workspace/scratch/ly-ai-fixture-current. Historical focused native run43545221386 SUCCESS verified through GitHub API on exact b8390e1; it is not current-head gameplay acceptance. No emulator/gameplay/RNG tests, workflow dispatch or redundant ROM rebuild for this test-only change. Dedicated diagnostic workflow remains only in old PR history, not added to main; existing shared workflows/protections untouched. Current CI skipped, not green.
+
+50 permanent IDs/effort histories461/251/712 unchanged. Final146-profile authority/TM51 matrix remain unanswered in issue105. Private Playtest004 and other specialist branches unchanged. Rollback: revert PR236 merge; tests/docs only. Source-ready integration follows latest standing owner merge policy without implying native/release acceptance. Original dirty18 BTL files/index preserved; Drive synchronization not performed.
+
+
+## Prepared AI/Center Reminder native fixture source maintenance
+
+PR236 source da5113db0eae2ba11e54711df18bc7c8f3042552 merged9bb5cc7eecba911f19d7e8839463edebf25b06d4. Current abilities/provenance and original assertion/action sequence checks PASS3. Historical run43545221386 SUCCESS is pinned to oldb8390e1 only, not a new runtime result. No production change.
+
+PR239 refreshed on9bb5cc7e with exact prepared tests/emulator/center_move_reminder_learning.c from d9f90011d83e35868126f7e2a8ea3d67a6705d7e. Fixture Vaporeon7/8 boundary reflects current WaterGun8, Bubble+HelpingHand1; current Eevee1 Tackle/TailWhip and Espeon8 Confusion/exclusions retained. Physical Reminder fixture knows HelpingHand, leaving Bubble then WaterGun as its two choices. No game learnsets, distribution or reminder implementation changed.
+
+PASS4 source cases: exact pinned fixture, approved table premises, all original CHECK assertions preserved after only documented move-name changes, all press/frames/noncreation CALL sequences unchanged. Command: GIT_DIR=/workspace/pokemon-lightning-yellow/.git python3 -m unittest discover -s tests -p test_center_reminder_fixture_source.py -v from /workspace/scratch/ly-reminder-fixture-current. Together7 source cases across the two repairs; this is structural evidence, not real eligible-move execution or menu/save acceptance. No gameplay/emulator/RNG tests, workflow dispatch or redundant ROM build for test-only edits. Both diagnostic workflows remain in historical PR commits and are not added to main; shared CI/protections untouched. Current CI skipped, never claimed green.
+
+PKM009 tracker corrected: old trainer-history static blockers are resolved by PR270–276. Final146 WORKING-profile authority/TM51 species matrix and current gameplay acceptance remain genuinely unresolved. No new gameplay decisions, acceptance points or additional permanent tasks.50 IDs461/251/712 unchanged. Original dirty18 BTL files/index and private/specialist branches retained. Drive sync not performed. Rollback: revert PR239 and/or PR236 merge, tests/docs only.
+
+
+## WTH002 approved shared snowflake restart clock
+
+Starting main28cf138cfcd19ee8f742fdd12b4bec1793b39cf4. Reused exact owner-authorized experimental fix b9af0975c4ba9a1b5d486c324928148686d14aa6, production file SHA2565a5521def200e2eb0c9c4279729aba7bd1e3210a5134521050910581c353931f. Snow_Main advances existing snowflakeTimer once per update before init guard; obsolete comment corrected. No reset/saturation/per-flake redesign, new state, particle count, palette, map policy, Rain/Sun or battle Hail changes. Broader private579ef016 per-flake change intentionally excluded.
+
+PASS4 source controls: exact approved file and inverse to main; manager/clock wiring; unchanged other Snow/Wait/finish behavior; unchanged shared weather/battle/save sources. Command GIT_DIR=/workspace/pokemon-lightning-yellow/.git python3 -m unittest discover -s tests -p test_snow_persistence_source.py -v. Pinned incremental make -j2 on matching current-main production cache plus only Snow change PASS;16MiB ROM SHA256f3a68991dcaf066ee74384e69d63c9c95bb8bc30b06da52ea5c7a2e39956fb8a. EWRAM1076 bytes free unchanged. Build log /workspace/scratch/snow-build.log. ROM private/uncommitted.
+
+No gameplay/emulator/RNG tests, Rain retests or CI dispatch; skipped CI is not green. Issue248 stays open for owner sustained-snow/post-battle confirmation. No new points:50 IDs461/251/712 unchanged. Owner separately approved exact146 natural learnsets through issue105 comment6951068928; those proceed independently and do not grant TM51, stats, abilities, catch rates or10laterproposals. Original dirty18 files/index preserved. Rollback: revert Snow PR merge; no save migration.
+
+
+## PKM009 exact146 owner-adopted natural learnsets
+
+New explicit owner decision approves only PR173's74+72 natural-learnset recommendations at86f4f73a, recorded in issue105 comment6951068928. This supersedes the WORKING hold for those146 rows only. Existing14 locked profiles and10 separate later proposals are excluded; TM51 matrix remains an independent hold.
+
+Refreshed existing PR173 on main93cc930335b6941fed3c0ab6e7d567288b5fccc0; never copied its old full species_info or full stale learnset file. Production changes only146 exact arrays in src/data/pokemon/level_up_learnsets.h (225 inserted/96 removed lines). Before SHA256273851e1c4e6d5f9ed08efa6f42621cb7bdccbb0f2013c081bed9c0576c0edc6; after5218c2c3d82984bd86c7f2943fda57d6066f56dbe10ed492fbf2c7a0aefa281f. Exact inverse reconstructs whole baseline file; all other arrays/types/stats/abilities/catch rates/TMHM/evolution/Trainer/save fields untouched. Max profile19 versus native20 capacity; no EWRAM/buffer expansion.
+
+New pinned approval contract/inverse rejects altered/missing/duplicate/mixed rows and leaves unrelated bytes visible to unchanged frozen whole-file guards. Older source guards now reverse approved146 before their pre-existing14-profile/history checks. No old hashes/manifests rewritten. CI adds only python3 tests/test_pkm009_approved146_source.py adjacent to unchanged locked-pair check; all previous steps/checks/protections remain. Both parent histories retained so pinned source manifests remain Git-reachable.
+
+Actual PASS:5 new approved146 source cases,6 locked-pair cases,25 history cases,4 Snow source controls, SOW002 source contract and46 selected pure-source runners. Commands from /workspace/scratch/ly-approved146-current with GIT_DIR=/workspace/pokemon-lightning-yellow/.git: python3 tests/test_pkm009_approved146_source.py; python3 tests/test_pkm009_jolteon_umbreon.py; python3 -m unittest discover -s tests -p '*history_projection.py' -q; python3 -m unittest discover -s tests -p test_snow_persistence_source.py -q; python3 tests/check_sow002.py.46-runner logs/results.json at /workspace/scratch/approved146-source-logs; executable C/gameplay/RNG harnesses deliberately excluded.
+
+Clean object-free pinned-agbcc make -j2 PASS with approved Snow correction/current main production.16MiB ROM SHA256774a0437a919b00e57862fd41f21a863153bf7c3c3de3555fabbf200ab6d377d, private/uncommitted. Build log /workspace/scratch/approved146-build.log. EWRAM261068/262144 (1076 free), IWRAM29824/32768 unchanged. No gameplay/emulator/RNG tests or workflow dispatch; skipped CI is not green. Existing owned moves are not migrated; normal future leveling/Reminder paths use the new tables. Native/menu/save/peer/hardware/release acceptance remains owner work.
+
+50 permanent task IDs/effort histories461/251/712 preserved; no points for code/build. Snow PR279 already merged93cc9303; issue248 remains open for sustained particle confirmation. Followers are a feasible independent next workstream: reusePR54 runtime+PR257 private765-pin asset tooling, retain main's Pikachu naming/OAK-SUE, exclude privatePichu/experimental146 prototypes. Cached art is absent and must be refetched privately; no new permission letter required. Original dirty18 BTL files/index retained. No Drive sync. Rollback: revert this PR's merge, no save schema change; learned moves already acquired are not automatically removed.
+
+
+Preserved prepared acceptance coverage: restored four unchanged owner-locked family source-test files from86f4f73a (Eevee/Vaporeon/Flareon3 cases, Oddish2, Ponyta3, Vulpix3),11 cases PASS. No unique native146 fixture existed in old PR171/173 history. Older74/72 WORKING-label tests are superseded by current owner-approved pinned146 contract, not blindly restored. CI now adds5 pure-source invocations (new146 plus these4 family suites) alongside the unchanged pair check; every previous line/required step remains. No extra ROM build is needed for these test-only follow-ups.
+
+
+## Final verified integration checkpoint — exact146 and Snow
+
+- PR279 source5a61f34cc0342d5657f79ef6d14ee169f7016f13 merged93cc930335b6941fed3c0ab6e7d567288b5fccc0: exact approved b9af0975 shared snow timer correction. Issue248 remains OPEN for owner sustained-Snow/post-battle particle confirmation; no Rain/Sun/palette/Hail changes or retests.
+- PR173 source538ba2862ac099556a395f02c995e3f898de75b3 retargeted from old integration parent to main and mergedf223bf8b6bd31ff18cc93318c38877ca421c7036. Only146 exact newly adopted natural arrays change in production.22 integrated files byte-identical to checked source; removing the5 added pure-source CI lines reconstructs the old workflow byte-for-byte. No protection/status/test weakened. Both histories reachable for pinned source evidence; no unique native146 fixtures discarded.
+-46 source runners,5 new146 cases,6 pair cases,11 preserved family cases,25 history cases,4 Snow controls and SOW002 static contract PASS. Clean combined modified-ROM build PASS; SHA256774a0437a919b00e57862fd41f21a863153bf7c3c3de3555fabbf200ab6d377d; EWRAM1076 bytes free. No gameplay/emulator/RNG test or workflow dispatch;0 exact-head check-runs/skipped is not green CI. Owner level-up/Reminder/evolution/save/held-slot/playthrough and sustained-snow acceptance remain unrun.
+-146 design hold resolved by explicit owner decision6951068928, not inferred from old proposals. TM51 exact species matrix and separate10 later proposals remain excluded; no request to reapprove14 locked profiles. Existing owned moves/Pokémon/save fields not migrated.50 permanent IDs461/251/712 untouched; no awarded credit from code/build/approval.
+- Next independent technical task is approved follower source integration: PR54 ed250d6c runtime+PR257 e7d38881 private asset gate. Main optional Pikachu and secure OAK-SUE must win over stale PR54 gifts. Do not import private Pichu/stats or old experimental146 versions. Save16-byte claim uses unused_3A94[64], with no current claimant found; verify combined hooks/offsets again at integration. Source registry defaults zero-art; full visible252 follower build requires765 pinned private inputs and255 descriptors. Cache/art restoration is underway in persistent /workspace/scratch; generated art/ROM must never be committed/uploaded. No permission-letter re-request; owner claim already accepted.
+- Original dirty18 BTL files/index retained; no worktree created. Drive synchronization not performed. Rollback approved source by reverting PR173 then PR279; acquired moves are not retroactively unlearned. Source/build readiness is not owner/release acceptance.
+
+
+## Follower private asset prerequisite restored (no gameplay integration)
+
+All765 expected inputs at Kasenn pin cbe04a7a2ef645bee19d159876da074154ccf1f2 fetched into persistent /workspace/scratch/follower-private-cache and checked against exact Git blobs/byte counts. Existing PR257 converter produced252 base+3 Castform-form descriptors (255), registry SHA256196a74da8a37623c7178d9e976b585e8b592038ccbba2ea22af86654d061d0e3. Existing check-follower-build-readiness.py --attribution /workspace/scratch/follower-private-records/OWNER_PERMISSION_AND_ATTRIBUTION.md PASS in /workspace/scratch/ly-follower-assets-prep. Private metadata/credits/cache logs retained; local notice honestly records the owner's permission statement, not a fabricated license/letter. No artwork/cache/generatedregistry/permission record/ROM uploaded or committed. Source hashes establish identity, not a new independent rights certification.
+
+Follower source remains UNMERGED, no new follower ROM or runtime test. Next integration can reuse PR54/257 directly rather than reconstruct asset sourcing: preserve current optional Pikachu naming and secure OAK-SUE, add separate once-only initial follower selection hook instead of restoring obsolete SOCKET helper, retain approved146 and Snow. Local merge preview found4 conflicts: .github/workflows/build.yml,src/approved_gifts.c,tests/emulator/run.py,tests/emulator/runner.c. Preserve all current source/native registrations/ABI assertions and avoid importing branch-only diagnostic/automatic graphics behavior blindly. A public zero-art registry is not proof of visible252 feature completion. Source/build/owner runtime acceptance must remain distinct.
+
+50 IDs461/251/712 unchanged. Next session may proceed with this source integration without a new permission-letter request or generic coding approval; only genuine missing gameplay decisions or external permissions need owner input. Current GenUI.issueNewTurn is unavailable; no fake Continue control.
+
+
+## CURRENT — Follower steps1/2 source integration candidate, NOT MERGED — 2026-11-17
+
+- Current-main base `b45e6c6e9cebb24ce8b7c36599f388375243c31b`; existing branch `feature/selectable-following-pokemon`, draft PR54. Reuses PR54 runtime and PR257 private asset gate/tooling rather than starting another follower implementation. This entry supersedes older pending-conflict/source-feasibility notes for the CURRENT candidate only; historical entries, original branches and private Playtest004 records remain history. Publication/exact head remains the publisher's next step, not a completed merge.
+-252 approved selectable species;252 base+3 Castform-form private descriptors (255), with765 pinned inputs. No arbitrary species-index assumption or253rd roster entry. Public source's default registry remains zero-art; full visible252 builds require the validated private inputs. No generated artwork/cache/ROM/private correspondence committed or publicly uploaded. Owner permission statement remains accepted without a letter upload or invented independent license certification.
+- Source integration corrects persistent party-instance selection, party-menu set/stop, controller/graphics ownership and suppression, PC/deposit/trade/other party-removal handling, save serialization and conservative old private-placeholder recovery, NPC/counter/elevation interaction and lifecycle cleanup, and initial scripted Pikachu follower hook. Assignment/graphics remain separate: no fallback on faint/invalid selection; source checks do not prove runtime behavior. Existing authored NPCs, native registrations/ABI guards, save layout and unrelated systems are retained. Optional Pikachu naming/player ownership, secure foreign OAK-SUE, exact approved146 learnsets and the approved shared Snow timer remain intact. Private Pichu/stat and other stale experiments are excluded.
+- Checked snapshot evidence supplied by integration lead:48 selected pure-source runners PASS;9 integration cases,5 lifecycle cases,15 PNG-tooling cases,25 historical-projection cases,5 approved146 cases and5 WRL source cases PASS. Both zero-art stub and full255-descriptor variants compiled/linked16MiB. EWRAM1076 and IWRAM2736 bytes free. Final artifact hash intentionally omitted until final daycare hook is included; publisher records final exact-head evidence. No clean/reproducibility claim yet.
+- No gameplay/native emulator/RNG/C-model execution or CI/workflow dispatch. No green-CI or full252 visual/runtime acceptance inferred from source/build checks. Owner ROM testing remains required for opening emergence, set/stop/reorder/duplicates, faint/heal, deposit/withdraw/trade, evolution, map/menu/battle transitions, save/load, interactions, all252 artwork and resource-pressure behavior. Pipeline preparation remains IN PROGRESS.
+- Existing50 permanent IDs, ALL earned/remaining effort records and their history arrays remain byte-for-byte equivalent as JSON data:461 earned/251 remaining/712 denominator. No provisional credit or new task ID. Dashboard regenerated from the same canonical tracker. Drive synchronization not performed. Source integration is NOT MERGED and is not release certification.

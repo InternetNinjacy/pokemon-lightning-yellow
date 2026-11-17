@@ -6,3 +6,13 @@
 4. Begin move-engine foundations under standing implementation authority, on reviewable branches without merging or auto-merge.
 
 These are explicit owner replies in this conversation, superseding earlier proposed animation labels and unresolved Curse/version notes. They do not authorize invented learner matrices or claim implemented mechanics.
+
+## Later owner decisions — November8,2026
+
+- Owner explicitly approved normal priority0 for both Vortex Spin385 and Tidal
+  Crash386, resolving the two PROPOSED_NATIVE_NORMAL_PRIORITY fields.
+- Owner authorizes completing and merging verified BTL-005 work. Do not enable
+  auto-merge, invent distributions, or treat passing CI as release certification.
+- Bundle compatible move mechanisms; run focused development checks and one full
+  integration path per candidate. Preserve all assertions, ABI/source-history
+  guards, clean builds and independent upstream comparison.

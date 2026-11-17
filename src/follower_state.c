@@ -1,12 +1,13 @@
 #include "global.h"
 #include "pokemon.h"
+#include "custom_pokedex.h"
 #include "follower_state.h"
 #include "constants/species.h"
 
 // Versioned record uses only 16 of SaveBlock1's existing 64-byte unused
 // region; serialized Pokemon, boxes, day care and all save offsets stay intact.
-// This allocation MUST be reconciled with every other outstanding feature
-// before integration into main. Until then this module is isolated on WRL-010.
+// Audited against current main: unused_3A94 has no other source claimant.
+// The remaining48 bytes are untouched; this does not relocate any save field.
 #define FOLLOWER_STATE_MAGIC 0x46574C59 // 'FWLY'
 #define FOLLOWER_STATE_VERSION 1
 
@@ -25,6 +26,8 @@ STATIC_ASSERT(sizeof(((struct SaveBlock1 *)0)->unused_3A94) >= sizeof(struct Fol
 
 static struct FollowerSavedSelection *FollowerState_Record(void)
 {
+    if (gSaveBlock1Ptr == NULL)
+        return NULL;
     return (struct FollowerSavedSelection *)gSaveBlock1Ptr->unused_3A94;
 }
 
@@ -37,7 +40,8 @@ static u16 FollowerState_Integrity(const struct FollowerSavedSelection *record)
 
 static bool8 FollowerState_IsValid(const struct FollowerSavedSelection *record)
 {
-    return record->magic == FOLLOWER_STATE_MAGIC
+    return record != NULL
+        && record->magic == FOLLOWER_STATE_MAGIC
         && record->version == FOLLOWER_STATE_VERSION
         && record->selected == 1
         && record->integrity == FollowerState_Integrity(record);
@@ -47,7 +51,42 @@ void FollowerState_Clear(void)
 {
     struct FollowerSavedSelection *record = FollowerState_Record();
     // A zeroed/unknown record is unassigned; never convert it to lead.
-    memset(record, 0, sizeof(*record));
+    if (record != NULL)
+        memset(record, 0, sizeof(*record));
+}
+
+static bool8 FollowerState_IsEligibleMon(struct Pokemon *mon)
+{
+    return !GetMonData(mon, MON_DATA_SANITY_IS_BAD_EGG)
+        && !GetMonData(mon, MON_DATA_IS_EGG)
+        && IsSpeciesInCustomPokedex(GetMonData(mon, MON_DATA_SPECIES));
+}
+
+bool8 FollowerState_CanSelectPartySlot(u8 partySlot)
+{
+    struct Pokemon *mon;
+    u32 personality, otId;
+    u8 i, matches = 0;
+
+    if (FollowerState_Record() == NULL
+     || partySlot >= PARTY_SIZE || partySlot >= gPlayerPartyCount)
+        return FALSE;
+    mon = &gPlayerParty[partySlot];
+    if (!FollowerState_IsEligibleMon(mon))
+        return FALSE;
+
+    personality = GetMonData(mon, MON_DATA_PERSONALITY);
+    otId = GetMonData(mon, MON_DATA_OT_ID);
+    // PID/OT pairs distinguish native instances and survive party reordering,
+    // nicknames and evolution. Exact cloned pairs are deliberately ambiguous.
+    for (i = 0; i < gPlayerPartyCount && i < PARTY_SIZE; i++)
+    {
+        if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES) != SPECIES_NONE
+         && GetMonData(&gPlayerParty[i], MON_DATA_PERSONALITY) == personality
+         && GetMonData(&gPlayerParty[i], MON_DATA_OT_ID) == otId)
+            matches++;
+    }
+    return matches == 1;
 }
 
 bool8 FollowerState_SelectPartySlot(u8 partySlot)
@@ -55,28 +94,12 @@ bool8 FollowerState_SelectPartySlot(u8 partySlot)
     struct FollowerSavedSelection *record;
     struct Pokemon *mon;
     u32 personality, otId;
-    u8 i, matches = 0;
 
-    if (partySlot >= PARTY_SIZE || partySlot >= gPlayerPartyCount)
+    if (!FollowerState_CanSelectPartySlot(partySlot))
         return FALSE;
     mon = &gPlayerParty[partySlot];
-    if (GetMonData(mon, MON_DATA_SPECIES) == SPECIES_NONE
-     || GetMonData(mon, MON_DATA_IS_EGG))
-        return FALSE;
-
     personality = GetMonData(mon, MON_DATA_PERSONALITY);
     otId = GetMonData(mon, MON_DATA_OT_ID);
-    // PID/OT pairs are not guaranteed unique (e.g. cloned Pokemon).
-    // Never claim to track one member of an ambiguous pair.
-    for (i = 0; i < PARTY_SIZE; i++)
-    {
-        if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES) != SPECIES_NONE
-         && GetMonData(&gPlayerParty[i], MON_DATA_PERSONALITY) == personality
-         && GetMonData(&gPlayerParty[i], MON_DATA_OT_ID) == otId)
-            matches++;
-    }
-    if (matches != 1)
-        return FALSE;
 
     record = FollowerState_Record();
     record->magic = FOLLOWER_STATE_MAGIC;
@@ -96,7 +119,7 @@ s8 FollowerState_ResolvePartySlot(void)
     if (!FollowerState_IsValid(record))
         return -1;
 
-    for (i = 0; i < PARTY_SIZE; i++)
+    for (i = 0; i < gPlayerPartyCount && i < PARTY_SIZE; i++)
     {
         struct Pokemon *mon = &gPlayerParty[i];
         if (GetMonData(mon, MON_DATA_SPECIES) != SPECIES_NONE
@@ -113,8 +136,11 @@ s8 FollowerState_ResolvePartySlot(void)
         }
     }
     // Missing means deposited/traded/released, not temporarily fainted.
-    if (result == -1)
+    if (result == -1 || !FollowerState_IsEligibleMon(&gPlayerParty[result]))
+    {
         FollowerState_Clear();
+        return -1;
+    }
     return result;
 }
 

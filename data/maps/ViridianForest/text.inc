@@ -103,3 +103,15 @@ ViridianForest_Text_LeavingViridianForest::
     .string "LEAVING VIRIDIAN FOREST\n"
     .string "PEWTER CITY AHEAD$"
 
+
+ViridianForest_Text_SowWarning::
+    .string "Be careful! An unusually strong\n"
+    .string "POKéMON is attacking travelers.\p"
+    .string "It's in the clearing to the\n"
+    .string "northeast. Stay alert!$"
+
+ViridianForest_Text_SowThanks::
+    .string "You dealt with that strong\n"
+    .string "POKéMON? Thank you!\p"
+    .string "Travelers can pass through the\n"
+    .string "forest safely again.$"
