@@ -37,6 +37,7 @@ def run_numeric_tests():
     parts.append(extract_function(Path('src/battle_util.c').read_text(), 'BattlerHasActedThisTurn'))
     parts.append(extract_function(pokemon, 'CalculateBaseDamage'))
     commands = Path('src/battle_script_commands.c').read_text()
+    parts.append(extract_function(commands, 'RecordSwitchHit'))
     for name in ['AI_CalcDmg', 'Cmd_dmgtolevel', 'Cmd_damagetohalftargethp', 'Cmd_psywavedamageeffect',
                  'Cmd_counterdamagecalculator', 'Cmd_mirrorcoatdamagecalculator', 'Cmd_datahpupdate']:
         parts.append(extract_function(commands, name))

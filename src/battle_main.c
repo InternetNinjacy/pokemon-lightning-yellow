@@ -4017,6 +4017,7 @@ static void HandleAction_UseMove(void)
     gBattleScripting.dmgMultiplier = 1;
     gBattleStruct->atkCancellerTracker = 0;
     gBattleStruct->thunderWaveActive = FALSE;
+    gBattleStruct->switchAfterHit = FALSE;
     gMoveResultFlags = 0;
     gMultiHitCounter = 0;
     gBattleCommunication[MISS_TYPE] = 0;
