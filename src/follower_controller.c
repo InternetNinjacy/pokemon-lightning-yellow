@@ -86,7 +86,8 @@ bool8 FollowerController_BindAsset(const struct FollowerGraphicsAsset *asset)
     playerSprite = &gSprites[player->spriteId];
     result = FollowerGraphics_Swap(asset, playerSprite->x,
                                     playerSprite->y + 16,
-                                    playerSprite->subpriority + 1);
+                                    playerSprite->subpriority == 255
+                                        ? 255 : playerSprite->subpriority + 1);
     if (result != FOLLOWER_GFX_OK)
         return FALSE;
 
@@ -231,6 +232,10 @@ void FollowerController_Tick(void)
     if (playerId >= OBJECT_EVENTS_COUNT || !gObjectEvents[playerId].active
      || !gSprites[spriteId].inUse || !gObjectEvents[eventId].active)
     {
+        // Never leave a previous follower visible while its player or
+        // map object is unavailable. Preserve the party selection.
+        if (spriteId < MAX_SPRITES && gSprites[spriteId].inUse)
+            gSprites[spriteId].invisible = TRUE;
         ResetTrail();
         return;
     }
