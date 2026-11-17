@@ -323,6 +323,8 @@ required += ['LightingPreviewGetAppearance', 'LightingPreviewIsActive']  # previ
 required += ['Task_StartMenuHandleInput','sStartMenuCursorPos','sStartMenuOrder','Task_BagMenu_HandleInput','Task_HandleChooseMonInput','Task_EvolutionScene']
 required += ['PalletTown_ProfessorOaksLab_EventScript_RetryParcelGifts','SilphCo_7F_EventScript_LaprasGuy']
 required += ['CeladonCity_GameCorner_PrizeRoom_EventScript_PrizeClerkMons','GetCoins','SetCoins']
+required += ['Route10_EventScript_LightningRaikou','MtEmber_SummitPath_1F_EventScript_LightningEntei',
+             'SeafoamIslands_B4F_EventScript_LightningSuicune','SevenIsland_TanobyRuins_EventScript_LightningMew']
 required += ['Route12_EventScript_SowCorphish','Route21_North_EventScript_SowGlalie','Route23_EventScript_SowTyranitar',
              'GetObjectEventIdByXY','CreateScriptedWildMon','SowPrepareScriptedEncounter','SpecialWeatherActivateScript','SpecialWeatherActivate','SpecialWeatherFinishAftermath','SpecialWeatherRestorationReady',
              'SpecialWeather_EventScript_FinishAftermath','Alloc']

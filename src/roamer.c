@@ -117,10 +117,11 @@ void CreateInitialRoamerMon(void)
     sRoamerLocation[MAP_NUM] = sRoamerLocations[Random() % NUM_LOCATION_SETS][0];
 }
 
+// The four approved post-League legendaries are independent stationary events.
+// Do not instantiate the old one-of-three starter-dependent roamer on new saves.
 void InitRoamer(void)
 {
     ClearRoamerData();
-    CreateInitialRoamerMon();
 }
 
 void UpdateLocationHistoryForRoamer(void)
@@ -195,8 +196,18 @@ void RoamerMove(void)
     }
 }
 
+// StaticBeastsSupersedeRoamer: old-save roamers must not duplicate the new statics.
+static bool8 StaticBeastsSupersedeRoamer(void)
+{
+    return ROAMER->species == SPECIES_RAIKOU
+        || ROAMER->species == SPECIES_ENTEI
+        || ROAMER->species == SPECIES_SUICUNE;
+}
+
 bool8 IsRoamerAt(u8 mapGroup, u8 mapNum)
 {
+    if (StaticBeastsSupersedeRoamer())
+        return FALSE;
     if (ROAMER->active && mapGroup == sRoamerLocation[MAP_GRP] && mapNum == sRoamerLocation[MAP_NUM])
         return TRUE;
     else
@@ -258,7 +269,7 @@ void GetRoamerLocation(u8 *mapGroup, u8 *mapNum)
 
 u16 GetRoamerLocationMapSectionId(void)
 {
-    if (!ROAMER->active)
+    if (!ROAMER->active || StaticBeastsSupersedeRoamer())
         return MAPSEC_NONE;
     return Overworld_GetMapHeaderByGroupAndId(sRoamerLocation[MAP_GRP], sRoamerLocation[MAP_NUM])->regionMapSectionId;
 }
