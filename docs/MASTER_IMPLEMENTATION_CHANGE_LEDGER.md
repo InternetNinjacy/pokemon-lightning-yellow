@@ -2025,3 +2025,34 @@ Current-main source integration: exact Heracross placement/data/script/art contr
 - Source integration discovered missing map_events.o dependency on flags.h: restoring private legendary flag names did not rebuild its cached map object, leaving unresolved FLAG_HIDE_LIGHTNING_* symbols. The exact one-input dependency fix reassembled the object and final private build passed. Commands/data/flags are unchanged by this build-only repair; no workflow/security/assertion changes.
 -461/712 and all50 task effort histories remain unchanged. Owner runtime/release acceptance is separate. Next approved technical queue: reconcile remaining species/learnset/TM-HM candidates against current main (PR173/175, preserving owner-locked profiles and anatomical restrictions); never invent missing distributions/ability slots. Existing open implementation/spec branches must be compared, not blindly merged. Source-only checks/builds allowed; no emulator/gameplay runs under current owner direction. Original dirty BTL checkout and18 files remain untouched.
 
+
+
+### Approved Jolteon/Umbreon source implementation
+
+## PKM-009 locked-pair source continuation
+
+Starting main `eb4f0296add8a431029ee4f7c7f6c726fcf256f3`. PR173 inspection found12 locked profiles already matching
+main,146 differing delegated working profiles and an old full species-info file
+that would revert14 newer catch-rate fields if copied wholesale. Do not merge it
+blindly. PR175 is source-parity only; its missing-move-ID notes are superseded by
+PR265's complete410 catalog. Exact TM51 species eligibility is still absent.
+
+Owner-export Eevee Family Design final Oct31 closeout and immutable PR154
+snapshot2870ddef explicitly lock Jolteon151/Umbreon154. Their two exact learnsets
+are now implemented; stats,abilities,types,catch rates,TMHM,trainers,wild data,
+evolution,save fields and all other learnsets preserved. No new design invented.
+
+PASS6 new source contract tests; PASS2 all252 TMHM parity tests(5831 preserved
+memberships); PASS focused Heracross,Payback,FoulPlay/382–384 and remaining-move
+source checks. Native pinned-agbcc incremental compilation PASS;16MiB ROM SHA256
+`aeba81acba62bfb69d828e13599671de77973758c4a46e1e69dd2ff0f6644524`. No emulator/gameplay/simulation or workflow dispatch performed.
+
+Broader Gym/E4 source audits FAIL at unchanged trainer-history projection
+`src/data/trainer_parties.h: unexpected change outside approved Trainer records`.
+Same failure reproduced on prior unchanged source cache, with matching main
+trainer bytes. Assertions/frozen hashes remain intact; no unrelated repair or
+claim of overall green CI. Owner gameplay/leveling/reminder/save acceptance
+pending; original dirty checkout and18 pending BTL files preserved.461/712
+unchanged. Next: backport only these two approved arrays to private owner build;
+obtain final146-profile authority and TM51 eligibility through Master Control.
+
