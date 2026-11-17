@@ -3,7 +3,7 @@
   "build_id": "LY-playtest-004-STAGED-20261115",
   "status": "PRIVATE_R2_BUILT_OWNER_PLAYTEST_PENDING",
   "source_branch": "integration/playtest004-pichu-sue-follower-private-build-20261116",
-  "source_commit": "e94cba8e9257e9e9c41bb0ee797c66d25f556b16",
+  "source_commit": "ca0de4a5c182019d408b8063fe892b018f588c18",
   "base_playtest_branch": "experimental/playtest-2026-11-15",
   "base_playtest_commit": "0e1b2f584ab3961d15e0080cec4e596f0aa862c5",
   "base_playtest_gameplay_commit": "1a8b36de9d8689e98fcccdec38fbff98c617f1d0",
@@ -45,7 +45,8 @@
     "main_integrated": "351932f8fe7c439b84a7c7fc555a914ba56b18e8",
     "previous_private_source": "b2e212b408af0e597d7b9b8d66398e3ccb53e531",
     "source_record": "docs/playtest/PLAYTEST004_PRIVATE_BUILD.md",
-    "no_rom_or_proprietary_artifact_in_git": true
+    "no_rom_or_proprietary_artifact_in_git": true,
+    "source_head": "ca0de4a5c182019d408b8063fe892b018f588c18"
   },
   "owner_testing": {
     "responsible": "owner",
@@ -91,5 +92,6 @@
       "no_rom_or_proprietary_artifact_in_git": true,
       "blocker": null
     }
-  ]
+  ],
+  "source_reference_kind": "last actually compiled source commit; later documentation-only commits do not imply a new ROM"
 }
