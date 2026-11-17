@@ -1,3 +1,12 @@
+## Current source integration checkpoint
+
+PR265 merged main20ae65d3: complete410-move source, combined compile and static
+catalog/frozen-history checks PASS; no gameplay tests or accepted points.
+PR254 Heracross is reconciled on that main: resolved4AD/hide4AE and Route6 claim4AF
+retained; all other flags unchanged. Prior254 native evidence remains historical.
+Current combined build and source checks PASS; no CI dispatch or guard weakening.
+461/712 preserved. Runtime acceptance remains owner-run.
+
 # SOW-002: Viridian Forest Heracross
 
 Status: implemented on draft PR254; exact source a9198e74158f5be9d6b7d35d565a7dc3cffc2f5f built and passed3505 focused native assertions. Required CI/integration/protection evidence remains unresolved. No merge, release, task closure or points claimed.
@@ -62,3 +71,5 @@ These are actual build/reproducibility/upstream evidence, not aliases for the re
 **Remaining gate 1 — historical owners:** PR233dde9c7d owns six-species/trainer/Fire historical reconciliation. Catch-only normalization does not resolve those independent deltas. Existing old host assertions remain failing, not waived. Preserve PR249 Fire48 failure43754474983/132935433549, upstream132935433210 SUCCESS; PR233 unchanged Misty2400 failure132895732192/upstream132895732475 SUCCESS and diagnostic6899437328. No tests/assertions imported from233, no timeout/gameplay/rain change.
 
 **Remaining gate 2 — owner/access decision:** confirm the actual required-check configuration with authenticated protection/settings evidence. Connector protection403 and logged-out browser settings404 cannot supply it. Then resolve the explicit conflict between the standing no-rain/full-native restriction and the existing required full modified workflow. Either explicitly authorize that unchanged required execution, or separately review a CI policy using verified protection information while preserving the required gates. This branch does not select a waiver, relabel statuses, change protection or start prohibited tests. Source/build supplementals cannot settle this decision. PR254 remains draft/unmerged, main/Playtest002 unchanged, no points.
+
+Current-main source integration: exact Heracross placement/data/script/art contract PASS; original objects,terrain,weather,battle paths and learnsets preserved. Catch projection PASS:14 approved fields,3 complete stages,17 negative preservation controls.410-move catalog and dual frozen BTL/weather checks PASS. Combined pinned-agbcc compilation PASS; private engineering ROM SHA256 `fdea969f7b086f743ccc268eb5b2d1249a8e82c279fa96f2294cd5ecba7f2559`. No gameplay/emulator tests or CI dispatch. Historical3505 native assertions remain historical, not current-head acceptance. Existing Route6 claim4AF and Heracross4AD/4AE all retained.461/712 unchanged.

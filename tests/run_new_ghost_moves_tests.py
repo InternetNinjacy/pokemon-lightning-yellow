@@ -18,6 +18,8 @@ for key,id,category,power,effect,chance in expected:
  assert r['effect_rules']
 assert sum(r['id'] is not None and r['id'] <= 360 for r in rows)==360 and len(rows)==410
 scripts=Path('data/battle_scripts_1.s').read_text()
+from approved_remaining_moves import prior_remaining_source
+scripts=prior_remaining_source("data/battle_scripts_1.s",scripts)
 table=scripts.split('gBattleScriptsForMoveEffects::',1)[1].split('\nBattleScript_EffectHit::',1)[0]
 assert len(re.findall(r'\.4byte BattleScript_',table))==217  # #372 adds a new reviewed effect; older 216 unchanged
 assert re.findall(r'\.4byte (BattleScript_\w+)',table)[216]=='BattleScript_EffectIceFang'
