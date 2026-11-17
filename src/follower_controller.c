@@ -37,11 +37,22 @@ static u8 sLastCopiedFrame;
 static bool8 sHasCopiedFrame;
 static bool8 sFrameMirrored;
 static u8 sWalkFrameCounter;
+static u8 sLastFollowerDirection;
+static bool8 sHasFollowerDirection;
 
 static void ResetTrail(void)
 {
     sHasTrailAnchor = FALSE;
     sLastPlayerObjectId = OBJECT_EVENTS_COUNT;
+    // An old direction cannot carry across a map load, follower change,
+    // or a period when the selected Pokémon is not visible.
+    sHasFollowerDirection = FALSE;
+    sWalkFrameCounter = 0;
+    // A newly bound asset must not inherit the old follower's walking cell
+    // or mirrored direction before its own trail is established.
+    sFrameToCopy = 0;
+    sFrameMirrored = FALSE;
+    sHasCopiedFrame = FALSE;
 }
 
 void FollowerController_RequestRefresh(void)
@@ -80,7 +91,8 @@ bool8 FollowerController_BindAsset(const struct FollowerGraphicsAsset *asset)
     playerSprite = &gSprites[player->spriteId];
     result = FollowerGraphics_Swap(asset, playerSprite->x,
                                     playerSprite->y + 16,
-                                    playerSprite->subpriority + 1);
+                                    playerSprite->subpriority == 255
+                                        ? 255 : playerSprite->subpriority + 1);
     if (result != FOLLOWER_GFX_OK)
         return FALSE;
 
@@ -112,18 +124,31 @@ static void PrepareAssetForSlot(s8 slot)
     // The approved roster is authoritative; do not load off-roster data.
     if (SpeciesToCustomPokedexNum(species) == 0)
     {
+        // An unsupported species cannot use the last Pokémon's image.
+        // Keep the player's choice, but free the old follower's resources.
         sPendingAsset = FALSE;
         sBoundAsset = FALSE;
+        if (FollowerGraphics_GetSpriteId() < MAX_SPRITES)
+            FollowerGraphics_Release();
+        ResetTrail();
         return;
     }
     shiny = IsMonShiny(mon);
     // Castform's battle-only forms are not persisted on the party Pokémon;
     // base field artwork is correct outside battle. Its sunny/rainy/snowy
     // descriptors are registered for explicitly validated form resolution.
+    if (sPendingAsset
+     && (species != sDesiredSpecies || shiny != sDesiredShiny || form != sDesiredForm))
+    {
+        // The player changed the selected Pokémon before the pending graphic
+        // was attached. Never display that previous choice after the switch.
+        sPendingAsset = FALSE;
+    }
     if (sBoundAsset && species == sBoundSpecies
      && shiny == sBoundShiny && form == sBoundForm
      && FollowerGraphics_GetSpriteId() < MAX_SPRITES
-     && FollowerGraphics_GetObjectEventId() < OBJECT_EVENTS_COUNT)
+     && gSprites[FollowerGraphics_GetSpriteId()].inUse
+     && FollowerGraphics_HasValidObjectEvent())
         return;
     if (sPendingAsset && species == sDesiredSpecies
      && shiny == sDesiredShiny && form == sDesiredForm)
@@ -131,10 +156,15 @@ static void PrepareAssetForSlot(s8 slot)
 
     if (!FollowerAssets_Resolve(species, form, shiny, &asset))
     {
-        // No imported artwork, out-of-capacity sheet or invalid resolver:
-        // suppress graphics, retain the exact selected Pokémon.
+        // No usable artwork for this selected Pokémon. Release any previous
+        // follower's sprite and palette rather than leaving a hidden old
+        // species occupying the very resources a later selection needs.
+        // The saved party selection is intentionally not changed.
         sPendingAsset = FALSE;
         sBoundAsset = FALSE;
+        if (FollowerGraphics_GetSpriteId() < MAX_SPRITES)
+            FollowerGraphics_Release();
+        ResetTrail();
         return;
     }
     sPendingGraphics = asset;
@@ -154,6 +184,7 @@ void FollowerController_Tick(void)
     s8 slot = FollowerState_ResolvePartySlot();
     s16 dx, dy;
     u8 direction;
+    bool8 followerStepped;
 
     if (slot < 0)
     {
@@ -180,7 +211,7 @@ void FollowerController_Tick(void)
         // Seamless map connections can change map identity without the usual
         // sprite reset. Do not let the follower remain in the old map.
         follower = &gObjectEvents[eventId];
-        if (!follower->active
+        if (!FollowerGraphics_HasValidObjectEvent()
          || follower->mapGroup != gSaveBlock1Ptr->location.mapGroup
          || follower->mapNum != gSaveBlock1Ptr->location.mapNum)
         {
@@ -192,6 +223,10 @@ void FollowerController_Tick(void)
         }
     }
     PrepareAssetForSlot(slot);
+    // Preparing artwork can release an outdated follower. Never continue
+    // using sprite/event numbers captured before that release.
+    spriteId = FollowerGraphics_GetSpriteId();
+    eventId = FollowerGraphics_GetObjectEventId();
     if (spriteId >= MAX_SPRITES || eventId >= OBJECT_EVENTS_COUNT)
     {
         sBoundAsset = FALSE;
@@ -201,6 +236,10 @@ void FollowerController_Tick(void)
     if (playerId >= OBJECT_EVENTS_COUNT || !gObjectEvents[playerId].active
      || !gSprites[spriteId].inUse || !gObjectEvents[eventId].active)
     {
+        // Never leave a previous follower visible while its player or
+        // map object is unavailable. Preserve the party selection.
+        if (spriteId < MAX_SPRITES && gSprites[spriteId].inUse)
+            gSprites[spriteId].invisible = TRUE;
         ResetTrail();
         return;
     }
@@ -243,20 +282,34 @@ void FollowerController_Tick(void)
 
     follower->previousCoords = follower->currentCoords;
     follower->currentCoords = sTrailTile;
+    // Count real follower tile changes, not how many field callbacks
+    // happened while the player was partway through one tile.
+    followerStepped = follower->currentCoords.x != follower->previousCoords.x
+                   || follower->currentCoords.y != follower->previousCoords.y;
     follower->currentElevation = player->previousElevation;
     follower->previousElevation = player->previousElevation;
     dx = sTrailTile.x - player->currentCoords.x;
     dy = sTrailTile.y - player->currentCoords.y;
     followerSprite->x = playerSprite->x + dx * 16;
-    followerSprite->y = playerSprite->y + dy * 16;
+    // Align ground contact, not sprite centers: the approved 64px Steelix
+    // canvas would otherwise put its feet16px below a32px player/follower.
+    followerSprite->y = playerSprite->y + dy * 16
+                      + followerSprite->centerToCornerVecY
+                      - playerSprite->centerToCornerVecY;
     followerSprite->x2 = playerSprite->x2;
     followerSprite->y2 = playerSprite->y2;
     followerSprite->oam.priority = playerSprite->oam.priority;
+    // The player's depth can change while walking behind trees, terrain,
+    // or bridges. Keep the follower just behind the player rather than
+    // retaining its initial draw order for the entire map.
+    followerSprite->subpriority = playerSprite->subpriority == 255
+                               ? 255 : playerSprite->subpriority + 1;
     followerSprite->invisible = FALSE;
 
-    // Follow the direction of the follower's own completed tile step, not
-    // the player's current facing: after a corner those are often different.
-    // While stationary, retain the existing player-facing fallback.
+    // Face the direction the follower actually walked. Turning the player
+    // in place must not rotate a stationary Pokémon or make it look as though
+    // it took the player's next turn before moving around the corner.
+    // On a fresh map/follower, use the player-facing direction once.
     // Six-cell art contract: south 0/1, north 2/3, west 4/5,
     // east mirrored west. Frame bytes copy in VBlank only.
     if (follower->currentCoords.x > follower->previousCoords.x)
@@ -267,8 +320,17 @@ void FollowerController_Tick(void)
         direction = DIR_SOUTH;
     else if (follower->currentCoords.y < follower->previousCoords.y)
         direction = DIR_NORTH;
+    else if (sHasFollowerDirection)
+        direction = sLastFollowerDirection;
     else
         direction = GetPlayerFacingDirection();
+    sLastFollowerDirection = direction;
+    sHasFollowerDirection = TRUE;
+    // The engine also consults an object's logical facing when determining
+    // which way it looks during interactions. Keep that in step with the
+    // actual follower image, including mirrored east-facing artwork.
+    follower->facingDirection = direction;
+    follower->movementDirection = direction;
     sFrameMirrored = (direction == DIR_EAST);
     if (direction == DIR_NORTH)
         sFrameToCopy = 2;
@@ -276,13 +338,12 @@ void FollowerController_Tick(void)
         sFrameToCopy = 4;
     else
         sFrameToCopy = 0;
-    // Animate at one native walking frame per alternating tile; no large
-    // per-frame DMA copy is performed from the field callback.
-    if (player->currentCoords.x != player->previousCoords.x
-     || player->currentCoords.y != player->previousCoords.y)
-        sFrameToCopy += (++sWalkFrameCounter >> 3) & 1;
-    else
-        sWalkFrameCounter = 0;
+    // Alternate the two native walking poses when the follower actually
+    // reaches its next tile. This does not depend on the number of callbacks
+    // between tiles; copying the selected frame still happens in VBlank.
+    if (followerStepped)
+        sWalkFrameCounter ^= 1;
+    sFrameToCopy += sWalkFrameCounter;
 }
 
 void FollowerController_VBlank(void)

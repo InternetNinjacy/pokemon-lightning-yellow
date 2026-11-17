@@ -162,7 +162,10 @@ enum FollowerGraphicsResult FollowerGraphics_Swap(const struct FollowerGraphicsA
     {
         struct ObjectEvent *event = &gObjectEvents[sFollowerEventId];
 
-        if (!event->active || event->localId != FOLLOWER_GFX_LOCAL_ID)
+        // The map may have reused this object slot since the last field tick.
+        // Only replace the sprite if it still belongs to our active follower;
+        // never overwrite an unrelated NPC that happens to share the local ID.
+        if (!FollowerGraphics_HasValidObjectEvent())
         {
             DestroySprite(&gSprites[id]);
             FreeSpritePaletteByTag(candidate->paletteTag);
@@ -247,6 +250,27 @@ u8 FollowerGraphics_GetObjectEventId(void)
     if (!sFollowerEventBound)
         return OBJECT_EVENTS_COUNT;
     return sFollowerEventId;
+}
+
+// A map load or another system may reuse an old object-event slot. Its
+// "active" bit alone does not prove that it is still our Pokémon. In
+// particular, never let the controller reposition an unrelated NPC.
+bool8 FollowerGraphics_HasValidObjectEvent(void)
+{
+    const struct FollowerGraphicsSlot *slot;
+    const struct ObjectEvent *event;
+
+    if (!sFollowerEventBound || !sFollowerHasActive
+     || sFollowerEventId >= OBJECT_EVENTS_COUNT)
+        return FALSE;
+    slot = &sFollowerSlots[sFollowerActive];
+    if (!slot->owned || slot->spriteId >= MAX_SPRITES
+     || !gSprites[slot->spriteId].inUse)
+        return FALSE;
+    event = &gObjectEvents[sFollowerEventId];
+    return event->active
+        && event->localId == FOLLOWER_GFX_LOCAL_ID
+        && event->spriteId == slot->spriteId;
 }
 
 bool8 FollowerGraphics_BindObjectEvent(u8 mapGroup, u8 mapNum,

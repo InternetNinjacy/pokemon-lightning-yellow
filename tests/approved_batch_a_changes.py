@@ -61,6 +61,9 @@ def prior_batch_a_source(path, text=None):
     path=str(path)
     if text is None:
         text=Path(path).read_text()
+    from approved_remaining_moves import prior_remaining_source
+    text=prior_remaining_source(path,text)
+
     if path not in HUNKS:
         return text
     def digest(t):

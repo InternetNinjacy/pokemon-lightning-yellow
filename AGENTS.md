@@ -338,6 +338,39 @@ special-case acceptance (including WRL-002/009 actual Cut/grass, event/save, ABI
 real gameplay and licensing) and do not claim green results for untested heads.
 
 
-## Owner experimental playtest direction — 2026-11-15
+## Continuation response contract — owner correction 2026-11-15
 
-On experimental/playtest-2026-11-15 only, the owner directs a separate integration and compilation workflow driven by manual playtesting, without automated gameplay tests as a prerequisite. Read docs/EXPERIMENTAL_PLAYTEST.md for the exact recovery commit and inclusion/build manifest requirements. This scoped instruction supersedes earlier routine test-before-integration requirements on this experimental branch only. Preserve tests/assertions, existing repository protections, design and asset-license holds, original PR branches and main. Do not promote experimental work to main or award acceptance points without the applicable main acceptance process. Never describe compilation or unexecuted tests as runtime validation. Do not modify recovery/pre-playtest-2026-11-15.
+The owner requires a genuine clickable Continue control invoking
+GenUI.issueNewTurn with a complete, current, context-specific continuation
+instruction. Never substitute bracketed text, a Markdown link or a copy-paste
+prompt. First verify the current runtime exposes the documented native action.
+If unavailable, report that concrete capability blocker and leave the requested
+control unfulfilled; do not invent a control or claim it works. Include exact
+current refs, CI evidence, ownership, constraints and next action in the
+continuation instruction. Continue routine authorized work autonomously. This
+supersedes the earlier copyable-prompt fallback on every future turn/run.
+
+Owner also explicitly approves replacing the new-game player PC's one Potion
+with one Exp. Share. Change only the starting item table; preserve quantity1,
+its terminator, existing-save inventories, ordinary withdrawal and held-item
+behavior, and unrelated rewards. Keep this independently reviewable from SOW002
+and the historical CI/policy/legendary specialists.
+
+
+## Current standing owner execution direction
+
+Continue the fully approved, unblocked backlog autonomously on reviewable branches.
+The owner permits merging source-ready approved changes under existing GitHub
+permissions/protections. This supersedes older routine owner-merge permission
+requirements, not gameplay design holds or asset attribution requirements.
+Current owner direction reserves gameplay testing for their real ROM playtest:
+do not run emulator/gameplay tests or dispatch diagnostic workflows. Source and
+build checks are permitted; never claim compilation proves gameplay acceptance.
+Do not disable assertions, checks, protection or security settings. Do not commit
+or publicly upload ROMs, generated artwork, BIOS, saves or credentials. Preserve
+461/712 accounting until accepted; missing designs are blockers, not inventions.
+
+
+## Private Playtest004 integration
+
+Retain the existing experimental owner-playtest direction from docs/EXPERIMENTAL_PLAYTEST.md. This private integration includes current main410-move source and Heracross while preserving Pichu/Oak-owned SUE, owner-approved private learnsets/stats, follower runtime and snowfall fix. No pixels/ROM/BIOS/save in Git, no gameplay/emulator tests, no acceptance points from compilation. Do not merge this experimental integration wholesale into main without reviewing its separate owner-playtest content.

@@ -77,3 +77,11 @@ compile_commands.json
 # Host regression-test caches
 __pycache__/
 *.pyc
+
+# Private follower build metadata and local permission records (not tracked art).
+/docs/followers/local-build-metadata.json
+/docs/followers/local-permission-*.txt
+
+# Local generated follower pixels; never commit or upload.
+/src/follower_assets_private.inc
+/src/.follower-registry-*.tmp

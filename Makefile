@@ -3,6 +3,27 @@ include config.mk
 # Default make rule
 all: rom
 
+# Explicit, local-only private follower-art build. Normal 'make' remains source-only.
+# This target cannot silently compile the zero-entry follower registry.
+# Owner permission confirmation is recorded; artist/source notice is a separate
+# local record and must not be committed with copyrighted graphics or a ROM.
+.PHONY: private-followers-rom
+private-followers-rom:
+	@test "$(FOLLOWER_ART_PERMISSION_CONFIRMED)" = "1" || (echo "Set FOLLOWER_ART_PERMISSION_CONFIRMED=1 only when the pinned source is cleared for this FireRed/AI-assisted use"; exit 1)
+	@test -n "$(FOLLOWER_ATTRIBUTION_FILE)" || (echo "Set FOLLOWER_ATTRIBUTION_FILE to the local grant-scope/credit notice"; exit 1)
+	@test -s "$(FOLLOWER_ATTRIBUTION_FILE)" || (echo "Missing or empty local attribution/permission record; refusing asset download"; exit 1)
+	@command -v $(AS) >/dev/null 2>&1 || (echo "Missing GBA assembler $(AS); refusing asset download"; exit 1)
+	@command -v $(LD) >/dev/null 2>&1 || (echo "Missing GBA linker $(LD); refusing asset download"; exit 1)
+	@command -v $(OBJCOPY) >/dev/null 2>&1 || (echo "Missing GBA ROM converter $(OBJCOPY); refusing asset download"; exit 1)
+ifeq ($(MODERN),0)
+	@test -x tools/agbcc/bin/agbcc$(EXE) || (echo "Missing pinned agbcc compiler; run the approved private toolchain preparation before importing art"; exit 1)
+else
+	@command -v $(PREFIX)gcc >/dev/null 2>&1 || (echo "Missing modern GBA C compiler $(PREFIX)gcc; refusing asset download"; exit 1)
+endif
+	FOLLOWER_CACHE_ONLY="$(FOLLOWER_CACHE_ONLY)" python3 scripts/build-follower-assets.py --confirmed-scope
+	python3 scripts/check-follower-build-readiness.py --attribution "$(FOLLOWER_ATTRIBUTION_FILE)"
+	$(MAKE) rom PRIVATE_FOLLOWER_ART=1
+
 # Toolchain selection
 TOOLCHAIN := $(DEVKITARM)
 # don't use dkP's base_tools anymore
@@ -271,7 +292,22 @@ clean-generated:
 	@rm -f $(AUTO_GEN_TARGETS)
 	@echo "rm -f <AUTO_GEN_TARGETS>"
 
+# Always rebuild this single object: switching between public and private
+# registry modes must never reuse an object compiled with the other mode.
+# These edges apply to both agbcc and modern builds. The scanner cannot
+# discover a macro-selected include, so declare its actual input explicitly.
+.PHONY: follower-registry-mode
+follower-registry-mode:
+$(C_BUILDDIR)/follower_assets.o: follower-registry-mode
+ifeq ($(PRIVATE_FOLLOWER_ART),1)
+$(C_BUILDDIR)/follower_assets.o: CPPFLAGS += -DFOLLOWER_ART_REGISTRY='"follower_assets_private.inc"'
+$(C_BUILDDIR)/follower_assets.o: src/follower_assets_private.inc
+else
+$(C_BUILDDIR)/follower_assets.o: src/follower_assets_generated.inc
+endif
+
 ifeq ($(MODERN),0)
+
 $(C_BUILDDIR)/agb_flash.o: CFLAGS := -O -mthumb-interwork
 $(C_BUILDDIR)/agb_flash_1m.o: CFLAGS := -O -mthumb-interwork
 $(C_BUILDDIR)/agb_flash_mx.o: CFLAGS := -O -mthumb-interwork

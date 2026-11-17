@@ -905,14 +905,16 @@ static void InitSnowflakeSpriteMovement(struct Sprite *sprite)
 
 static void WaitSnowflakeSprite(struct Sprite *sprite)
 {
-    // Snow_Main advances the shared restart timer.
-    if (gWeatherPtr->snowflakeTimer > 18)
+    // Each snowflake needs its own short restart delay. The shared weather
+    // timer was reset by whichever flake restarted first, leaving other
+    // waiting flakes invisible far longer than intended.
+    if (++sprite->tFallCounter > 18)
     {
         sprite->invisible = FALSE;
         sprite->callback = UpdateSnowflakeSprite;
         sprite->y = 250 - (gSpriteCoordOffsetY + sprite->centerToCornerVecY);
         sprite->tPosY = sprite->y * 128;
-        gWeatherPtr->snowflakeTimer = 0;
+        sprite->tFallCounter = 0;
     }
 }
 

@@ -853,8 +853,7 @@ static void Cmd_attackcanceler(void)
         gBattlescriptCurrInstr = BattleScript_MoveEnd;
         return;
     }
-    if ((gCurrentMove == MOVE_THUNDER_WAVE || gCurrentMove == MOVE_DISCHARGE || gCurrentMove == MOVE_PETAL_BLIZZARD)
-     && !gBattleStruct->thunderWaveActive)
+    if (gCurrentMove == MOVE_THUNDER_WAVE && !gBattleStruct->thunderWaveActive)
     {
         u8 nextTarget;
 
@@ -879,7 +878,7 @@ static void Cmd_attackcanceler(void)
     {
         gBattlescriptCurrInstr = BattleScript_NoPPForMove;
         gMoveResultFlags |= MOVE_RESULT_MISSED;
-        if (gCurrentMove == MOVE_THUNDER_WAVE || gCurrentMove == MOVE_DISCHARGE || gCurrentMove == MOVE_PETAL_BLIZZARD)
+        if (gCurrentMove == MOVE_THUNDER_WAVE)
             gBattleStruct->thunderWaveActive = FALSE;
         return;
     }
@@ -1032,7 +1031,7 @@ static bool8 AccuracyCalcHelper(u16 move)
     gHitMarker &= ~HITMARKER_IGNORE_UNDERWATER;
 
     if ((WEATHER_HAS_EFFECT && (gBattleWeather & B_WEATHER_RAIN)
-         && (gBattleMoves[move].effect == EFFECT_THUNDER || move == MOVE_ZAP_CANNON))
+         && (gBattleMoves[move].effect == EFFECT_THUNDER || move == MOVE_ZAP_CANNON || move == MOVE_HURRICANE))
      || (gBattleMoves[move].effect == EFFECT_ALWAYS_HIT || gBattleMoves[move].effect == EFFECT_VITAL_THROW))
     {
         JumpIfMoveFailed(7, move);
@@ -1100,7 +1099,7 @@ static void Cmd_accuracycheck(void)
 
         moveAcc = gBattleMoves[move].accuracy;
         // check Thunder on sunny weather
-        if (WEATHER_HAS_EFFECT && gBattleWeather & B_WEATHER_SUN && gBattleMoves[move].effect == EFFECT_THUNDER)
+        if (WEATHER_HAS_EFFECT && gBattleWeather & B_WEATHER_SUN && (gBattleMoves[move].effect == EFFECT_THUNDER || move == MOVE_HURRICANE))
             moveAcc = 50;
 
         calc = sAccuracyStageRatios[buff].dividend * moveAcc;
@@ -1781,6 +1780,16 @@ static void Cmd_healthbarupdate(void)
     gBattlescriptCurrInstr += 2;
 }
 
+// Record actual move damage before healing/contact callbacks can overwrite it.
+// Substitute damage qualifies; absorbed/immune/missed/passive/self damage does not.
+static void RecordSwitchHit(void)
+{
+    if (gHpDealt > 0 && gBattlescriptCurrInstr[1] == BS_TARGET
+     && gBattlerAttacker != gActiveBattler && !(gHitMarker & HITMARKER_PASSIVE_DAMAGE)
+     && gBattleMoves[gCurrentMove].effect == EFFECT_SWITCH_HIT)
+        gBattleStruct->switchAfterHit = TRUE;
+}
+
 static void Cmd_datahpupdate(void)
 {
     if (gBattleControllerExecFlags)
@@ -1805,6 +1814,7 @@ static void Cmd_datahpupdate(void)
                 gHpDealt = gDisableStructs[gActiveBattler].substituteHP;
                 gDisableStructs[gActiveBattler].substituteHP = 0;
             }
+            RecordSwitchHit();
             // check substitute fading
             if (gDisableStructs[gActiveBattler].substituteHP == 0)
             {
@@ -1850,6 +1860,7 @@ static void Cmd_datahpupdate(void)
                     gBattleMons[gActiveBattler].hp = 0;
                 }
 
+                RecordSwitchHit();
                 // Track only real direct move HP loss, never Substitute, healing,
                 // recoil/confusion on the user, status effects or passive damage.
                 if (gHpDealt > 0 && gBattlescriptCurrInstr[1] == BS_TARGET
@@ -4353,7 +4364,7 @@ static void Cmd_moveend(void)
         case MOVEEND_NEXT_TARGET: // For moves hitting two opposing Pokemon.
             if (gBattleStruct->thunderWaveActive)
             {
-                if (gCurrentMove == MOVE_THUNDER_WAVE || gCurrentMove == MOVE_DISCHARGE || gCurrentMove == MOVE_PETAL_BLIZZARD)
+                if (gCurrentMove == MOVE_THUNDER_WAVE)
                 {
                     u8 nextTarget;
 
@@ -4398,12 +4409,10 @@ static void Cmd_moveend(void)
             // A move targeting every other battler must visit the second foe
             // and then the user's ally. Retain MOVE_TARGET_BOTH's original
             // two-opponent handling and its normal 50% damage behavior.
-            // These three moves already consumed their recipients above. The
+            // Thunder Wave already consumed its three recipients above. The
             // ordinary spread-move loop would otherwise replay the ally after
             // the final foe, extending battle text and applying the effect twice.
             if (gCurrentMove != MOVE_THUNDER_WAVE
-                && gCurrentMove != MOVE_DISCHARGE
-                && gCurrentMove != MOVE_PETAL_BLIZZARD
                 && !(gHitMarker & HITMARKER_UNABLE_TO_USE_MOVE)
                 && (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
                 && !gProtectStructs[gBattlerAttacker].chargingTurn
@@ -5442,6 +5451,16 @@ static void Cmd_getmoneyreward(void)
         {
             moneyReward = gBattleResources->secretBase->party.levels[0] * 20 * gBattleStruct->moneyMultiplier;
         }
+        else if (gTrainerBattleOpponent_A == TRAINER_LEADER_BROCK)
+        {
+            // Approved prize, independent of the revised party's final level.
+            moneyReward = 1400 * gBattleStruct->moneyMultiplier;
+        }
+        else if (gTrainerBattleOpponent_A == TRAINER_LEADER_MISTY)
+        {
+            // Approved total for this battle; do not double it for Doubles.
+            moneyReward = 3000 * gBattleStruct->moneyMultiplier;
+        }
         else
         {
             switch (gTrainers[gTrainerBattleOpponent_A].partyFlags)
@@ -6318,6 +6337,24 @@ static void Cmd_various(void)
             gBattleCommunication[5] = 1;
         }
         break;
+    case VARIOUS_PREPARE_HIT_SWITCH:
+    {
+        struct Pokemon *opponents = GetBattlerSide(gBattlerAttacker) == B_SIDE_PLAYER ? gEnemyParty : gPlayerParty;
+        bool8 opponentsRemain = FALSE;
+        u8 i;
+        for (i = 0; i < PARTY_SIZE; i++)
+        {
+            if (GetMonData(&opponents[i], MON_DATA_SPECIES) != SPECIES_NONE
+             && !GetMonData(&opponents[i], MON_DATA_IS_EGG)
+             && GetMonData(&opponents[i], MON_DATA_HP) != 0)
+                opponentsRemain = TRUE;
+        }
+        gBattleCommunication[0] = gBattleStruct->switchAfterHit
+            && gBattleMons[gBattlerAttacker].hp != 0 && opponentsRemain;
+        // Consume once, before switching can re-enter move-end callbacks.
+        gBattleStruct->switchAfterHit = FALSE;
+        break;
+    }
     case VARIOUS_WAIT_FANFARE:
         if (!IsFanfareTaskInactive())
             return;
