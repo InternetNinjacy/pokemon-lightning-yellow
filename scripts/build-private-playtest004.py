@@ -95,7 +95,7 @@ def main():
     subprocess.run(["make", "private-followers-rom"], cwd=ROOT, env=env, check=True)
 
     rom = ROOT / ROM_NAME
-    generated = ROOT / "src/follower_assets_generated.inc"
+    generated = ROOT / "src/follower_assets_private.inc"
     art_meta = ROOT / "docs/followers/local-build-metadata.json"
     if not rom.is_file() or not generated.is_file() or not art_meta.is_file():
         raise RuntimeError("ROM, generated follower artwork registry or local metadata absent")

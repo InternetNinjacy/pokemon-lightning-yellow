@@ -14,7 +14,7 @@ from pathlib import Path
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--registry", type=Path, default=Path("src/follower_assets_generated.inc"))
+    parser.add_argument("--registry", type=Path, default=Path("src/follower_assets_private.inc"))
     parser.add_argument("--metadata", type=Path, default=Path("docs/followers/local-build-metadata.json"))
     parser.add_argument("--attribution", type=Path, required=True,
                         help="Local nonempty source/artist attribution and permission-scope record; never committed")

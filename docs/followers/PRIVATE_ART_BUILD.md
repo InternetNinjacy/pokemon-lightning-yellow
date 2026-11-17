@@ -116,3 +116,26 @@ compares the bytes of every fetched or locally cached source file against
 its expected Git blob SHA-1 and expected byte length, including palettes.
 These checks verify file identity **only**; they do not grant permission,
 prove artist ownership, validate gameplay, or guarantee a ROM build.
+
+## Private output isolation — current pipeline
+
+The converter now writes `src/follower_assets_private.inc`, an explicitly ignored
+local-only pixel registry. It no longer overwrites the tracked zero-art
+`src/follower_assets_generated.inc`. The checker and Playtest004 wrapper use the
+private filename. `make private-followers-rom` selects it only for its recursive
+`make rom PRIVATE_FOLLOWER_ART=1` compilation.
+
+Ordinary `make` uses the tracked zero-art include even if private pixels remain
+locally. The follower-assets object is rebuilt on each invocation, in both agbcc
+and modern configurations, so changing modes cannot reuse the other mode's
+compiled registry. This intentionally costs one C-object compilation per build.
+Generated pixels and metadata stay ignored, allowing a subsequent private build
+to pass the clean-tracked-source gate without manually restoring source files.
+The earlier tracked-file restoration instructions above describe the superseded
+pipeline. Existing old art-filled tracked includes must still be restored before
+using this new pipeline; no automatic reset is performed.
+
+This source change does not import sprites, supply missing permission references,
+produce a ROM, or execute gameplay tests. Exact 765-input pins, 255-descriptor
+checks and local permission/credit requirements remain intact. `gitignore` reduces
+accidental staging; it is not a security boundary against force-adding assets.

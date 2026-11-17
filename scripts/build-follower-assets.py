@@ -29,7 +29,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--confirmed-scope", action="store_true",
                         help="The owner confirmed that selected pinned art may be converted locally for this noncommercial project; verify contributor permissions independently")
-    parser.add_argument("--output", type=Path, default=ROOT/"src/follower_assets_generated.inc")
+    parser.add_argument("--output", type=Path, default=ROOT/"src/follower_assets_private.inc")
     parser.add_argument("--report", type=Path, default=ROOT/"docs/followers/local-build-metadata.json")
     args = parser.parse_args()
     if not args.confirmed_scope:
@@ -128,8 +128,8 @@ def main():
     ]
     content="\n".join(generated)+"\n"
     # Validate the complete approved source inventory BEFORE replacing the
-    # tracked zero-art fallback. A failed conversion must not leave a partial
-    # follower registry that could be compiled by the next ordinary build.
+    # ignored private registry. A failed conversion must not leave a partial
+    # follower registry that could be compiled by the next private build.
     if len(records) != 255 or len(input_files) != 765 or len({item["path"] for item in input_files}) != 765:
         raise ValueError("expected 255 descriptors and 765 distinct pinned source files")
     if [item["path"] for item in input_files] != [item["path"] for item in expected_entries]:
@@ -146,7 +146,7 @@ def main():
     args.report.parent.mkdir(parents=True,exist_ok=True)
     args.report.write_text(json.dumps(report,indent=2)+"\n")
     args.output.parent.mkdir(parents=True,exist_ok=True)
-    # Atomic replacement avoids leaving a partially written tracked include
+    # Atomic replacement avoids leaving a partially written private include
     # if the file system fails partway through a large private art write.
     temporary = None
     try:

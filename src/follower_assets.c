@@ -3,10 +3,12 @@
 #include "constants/species.h"
 #include <string.h>
 
-// Generated source is deliberately text-only in version control. The build-time
-// converter may replace it locally from pinned permission-cleared source sheets.
-// Do not commit its generated art data or publish a ROM build artifact.
-#include "follower_assets_generated.inc"
+// Ordinary builds retain the tracked zero-art registry. Private builds select
+// an ignored generated include explicitly; no tracked file receives pixels.
+#ifndef FOLLOWER_ART_REGISTRY
+#define FOLLOWER_ART_REGISTRY "follower_assets_generated.inc"
+#endif
+#include FOLLOWER_ART_REGISTRY
 
 bool8 FollowerAssets_Resolve(u16 species, u8 form, bool8 shiny,
                              struct FollowerGraphicsAsset *out)
