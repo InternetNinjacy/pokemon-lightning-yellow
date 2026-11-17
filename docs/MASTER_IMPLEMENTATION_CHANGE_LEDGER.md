@@ -1917,3 +1917,9 @@ amendment to existing draft PR250, retaining fixed WRL001 source and all existin
 workflows/gates/guards. PR249/233 ownership unchanged. Owner accepted weather/
 Parcel passes, #248 snow confirmation and WRL010 queue preserved. No points or
 task closure;50 IDs/461 earned/251 remaining/712 total unchanged.
+
+## 2026-11-16 — Implementation-first: approved Brock/Misty prize amounts
+
+Independent branch `implementation/approved-brock-misty-prize-money-20261116` from main `197d85ee1a61ac319f95fa65ab298bb126fe937d` changes actual gameplay in `src/battle_script_commands.c`: native Cmd_getmoneyreward now selects approved base prizes1400 for Brock and3000 for Misty by original Trainer ID before its ordinary party-level/class/Double calculation. Native moneyMultiplier, win-only gate, AddMoney wallet cap, number buffering/script advancement, other Trainers, secret-base payout, Pay Day and whiteout loss stay unchanged. No party, TM, text, map, save or specialist branch changes.
+
+Authority: canonical Master Plan's explicit1400/3000 prize approvals and Cerulean design closeout. TM51 is not ready: current items.h has no ITEM_TM51, tm_case.c still assumes contiguous50TM/8HM IDs, and Vermilion handoff/PKM009 ledger explicitly leave TM51 learners undecided. Do not invent compatibility or substitute ITEM_TM34. Switched immediately to this independent approved reward implementation. PR259–262 remain separate owners. No tests/builds/emulator/diagnostics/workflow dispatch, failed-test investigation, merge or point award. [skip ci] leaves mandatory gates intact/unfulfilled.50 IDs461 earned/251 remaining/712 total retained. See docs/APPROVED_GYM_PRIZE_MONEY.md. Dashboard GYM002 row updated from the same record; local Python renderer unavailable and not executed.
