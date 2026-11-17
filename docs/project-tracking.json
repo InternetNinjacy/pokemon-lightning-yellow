@@ -3,8 +3,8 @@
   "updated": "2026-11-16",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "WRL001 prepared correction PR249 merged on current main: Oak-owned SUE delivery and Pikachu naming restored; no Pichu/follower experiment imported. Clean pinned build,46 selected source runners and5 integration controls PASS. No current-head gameplay or CI run;461/712 unchanged. Final146-profile authority and TM51 matrix still pending with Master Control.",
-  "main_sha": "0f20626111adec8e9eb23f2b525581271d36225b",
+  "current_focus": "Independent BTL003 AI fixture correction from PR236 retained: genuine single-ability Flareon replaces unsuitable dual-ability Vulpix; all original native assertions/actions preserved. Three source premise/provenance checks pass. No gameplay code, runtime tests, new workflow or acceptance credit;461/712 unchanged. PKM009146-profile/TM51 authority remains pending.",
+  "main_sha": "c96184c6058966cbd9789e53eb0eb8462ce4f754",
   "drive_sync": {
     "status": "2026-11-10 WTH-001 and WRL-008 closeout PRs #170/#184 merged and verified; corresponding existing Google Drive Progress, START HERE and vendor register synchronized with definitive completion evidence.",
     "folder": "https://drive.google.com/drive/folders/1N_n0Ke48jBbdhUWSZWzwR6rpPFqpDUpl"
@@ -3207,6 +3207,16 @@
     "build": "Clean pinned-agbcc make -j2 PASS,16MiB ROM SHA25686a91b37de6ff1cb72a95ffdf707ec6a2492d04fb33a8763015a4e8f928c68bd; EWRAM1076 bytes free",
     "acceptance": "No gameplay/emulator/RNG tests or workflow dispatch;0 current-head CI checks/skipped; historical681 native assertions not reused as current-head result",
     "save_limit": "Previously acquired SUE not migrated; unchanged save layout and existing Pokémon",
+    "accounting": "50 IDs461/251/712 unchanged"
+  },
+  "ai_fixture_source_checkpoint": {
+    "pr": 236,
+    "starting_main": "c96184c6058966cbd9789e53eb0eb8462ce4f754",
+    "prepared_head": "b8390e1aa47ae84951c7263696dc0b1ac9093fe6",
+    "scope": "Exact prepared battle_categories.c only; diagnostic workflow not added to main",
+    "checks": "3 pure-source cases PASS: pinned file identity, current ability premises, original CHECK/CALL sequence preserved plus1 added ability-slot assertion",
+    "prior_native": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/43545221386 SUCCESS on b8390e1; historical only",
+    "current_runtime": "Not run; owner gameplay playtest reserved, no workflow dispatch",
     "accounting": "50 IDs461/251/712 unchanged"
   }
 }

@@ -1,10 +1,10 @@
 # Pokémon Lightning Yellow — Project Dashboard
 
-Canonical branch: `main`. Updated 2026-11-16. Audited gameplay revision: `0f20626111adec8e9eb23f2b525581271d36225b`.
+Canonical branch: `main`. Updated 2026-11-16. Audited gameplay revision: `c96184c6058966cbd9789e53eb0eb8462ce4f754`.
 
 Overall: `[######----]` **64.75% complete /35.25% remaining** (461 earned +251 remaining;712 provisional effort points).
 
-WRL001 prepared correction PR249 merged on current main: Oak-owned SUE delivery and Pikachu naming restored; no Pichu/follower experiment imported. Clean pinned build,46 selected source runners and5 integration controls PASS. No current-head gameplay or CI run;461/712 unchanged. Final146-profile authority and TM51 matrix still pending with Master Control.
+Independent BTL003 AI fixture correction from PR236 retained: genuine single-ability Flareon replaces unsuitable dual-ability Vulpix; all original native assertions/actions preserved. Three source premise/provenance checks pass. No gameplay code, runtime tests, new workflow or acceptance credit;461/712 unchanged. PKM009146-profile/TM51 authority remains pending.
 
 These are estimates of tracked work, not elapsed hours or release certification. Every permanent ID and earned-history entry is retained. Approved Ponyta and Ranger work expanded the scope; the denominator is the sum of the current task effort estimates. Adding scope changes it without erasing completed work. Repeated regression is not duplicate implementation credit.
 
