@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Exact approved Ghost source/effect/animation coverage; native execution separate."""
 from pathlib import Path
+from approved_locked_learnset_distribution import prior_locked_distribution_source
 import hashlib,json,re
 from approved_new_ghost_move_changes import prior_new_ghost_move_source
 from approved_skitter_slash_changes import prior_skitter_slash_source
@@ -32,5 +33,5 @@ for key,parts in zip(['SOUL_DRAIN','WEARY_TOUCH','DREAM_HAUNT'],[['LICK','MEGA_D
  actual=re.search(r'Move_'+key+r':\n(.*?)\tend',asm,re.S)[1]
  assert actual==expected_body,key
 for path in ['src/data/pokemon/level_up_learnsets.h','src/data/pokemon/tmhm_learnsets.h','src/data/trainer_parties.h']:
- assert not any('MOVE_'+k in Path(path).read_text() for k,*_ in expected),path
-print('PASS: exact three approved Ghost designs, complete appended sleep-hit dispatch, original bodies composed inline, exact old-source reversal and no distribution (static, not runtime proof).')
+ assert not any('MOVE_'+k in prior_locked_distribution_source(path) for k,*_ in expected),path
+print('PASS: exact three approved Ghost designs, complete appended sleep-hit dispatch, original bodies composed inline, exact old-source reversal and no additional distribution beyond exact locked profiles (static, not runtime proof).')

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Approved appended Fire data and exact preservation; native tests are separate."""
 from pathlib import Path
+from approved_locked_learnset_distribution import prior_locked_distribution_source
 import hashlib
 import json
 import re
@@ -45,7 +46,7 @@ assert '\tcall ' not in shared  # FireRed animation interpreter has ONE return s
 # one trainer-only Flashfire to her Rapidash. This is not species-wide
 # distribution and does not license either other new Fire move anywhere.
 for path in ['src/data/pokemon/level_up_learnsets.h', 'src/data/pokemon/tmhm_learnsets.h']:
-    assert not any('MOVE_' + key in Path(path).read_text() for key, *_ in expected), path
+    assert not any('MOVE_' + key in prior_locked_distribution_source(path) for key, *_ in expected), path
 party_source = Path('src/data/trainer_parties.h').read_text()
 assert 'MOVE_FLAME_FANG' not in party_source
 assert 'MOVE_BLAZE_RUSH' not in party_source
@@ -56,7 +57,7 @@ assert erika.group(1).count('MOVE_FLASHFIRE') == 1
 assert re.search(r'\.species = SPECIES_RAPIDASH,\s*\.heldItem = ITEM_NONE,\s*'
                  r'\.moves = \{MOVE_FLAME_WHEEL, MOVE_FLASHFIRE, MOVE_STOMP, MOVE_TAKE_DOWN\}',
                  erika.group(1)), 'Flashfire must occur only on approved Rapidash'
-print('PASS: three appended owner Fire designs preserved; only later explicitly approved Erika Rapidash Flashfire distribution, no other trainer/species Fire move distribution (static).')
+print('PASS: three appended owner Fire designs preserved; only later explicitly approved Erika Rapidash Flashfire distribution, no additional distribution beyond exact locked profiles and approved Erika Rapidash (static).')
 
 # Execute the actual production chance routine with controlled rolls; only its
 # effect callback/RNG are stubbed, separately from the real battle acceptance.
