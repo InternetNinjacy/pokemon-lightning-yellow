@@ -61,9 +61,12 @@ the unchanged rival Dratini. The staged Playtest004 manifest is
    This document does not claim compilation, UI, graphic visibility
    or 252 follow-behavior acceptance.
 
-**Open blockers:** accessible records describe owner-reported permission
-but do not contain the underlying per-contributor grant and attribution;
-a native GBA build environment containing the permission-cleared assets
-is unavailable here. The current Playtest003 ROM and Playtest004 staging
-remain unchanged; no gameplay testing, merge or points awarded. Preserve
-50 IDs and 461 earned / 251 remaining / 712 total.
+**Current checkpoint:** Owner has reconfirmed permission from Nintendo and the
+relevant fan creators, with correspondence held privately. The pipeline has now
+converted all765 pinned inputs into255 descriptors and compiled a private ROM.
+See `docs/playtest/PLAYTEST004_PRIVATE_BUILD.md` for exact source/hash/evidence.
+No further permission-document upload is requested. Owner-reported permission is
+not described as independently verified. The historical unavailable-toolchain
+and zero-art private-build blockers above are superseded by this actual build.
+The tracked fallback intentionally remains empty; private pixels are ignored.
+Runtime follower acceptance remains pending, and461/712 is unchanged.

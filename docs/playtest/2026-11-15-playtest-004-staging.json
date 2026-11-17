@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "build_id": "LY-playtest-004-STAGED-20261115",
-  "status": "SOURCE_STAGED_NOT_BUILT",
-  "source_branch": "feature/playtest003-pichu-starter-balance-20261115",
-  "source_commit": "b1035a3a1496c1a0796b6449a55ce8115b301a3f",
+  "status": "PRIVATE_ROM_BUILT_OWNER_PLAYTEST_PENDING",
+  "source_branch": "integration/playtest004-pichu-sue-follower-private-build-20261116",
+  "source_commit": "e94cba8e9257e9e9c41bb0ee797c66d25f556b16",
   "base_playtest_branch": "experimental/playtest-2026-11-15",
   "base_playtest_commit": "0e1b2f584ab3961d15e0080cec4e596f0aa862c5",
   "base_playtest_gameplay_commit": "1a8b36de9d8689e98fcccdec38fbff98c617f1d0",
@@ -35,15 +35,16 @@
     ]
   },
   "build": {
-    "status": "NOT_BUILT",
-    "rom_filename": null,
-    "rom_sha256": null,
-    "commands_from_prior_manifest": [
-      "scripts/prepare-baseline.sh",
-      "make -j2"
-    ],
-    "blocker": "Current assistant container cannot resolve github.com to retrieve the repository and lacks installed arm-none-eabi compiler; connected GitHub API supports source changes but cannot invoke native builds.",
-    "no_rom_or_proprietary_artifact_in_git": true
+    "status": "PASS_PRIVATE_COMPILATION",
+    "rom_filename": "Playtest004.gba",
+    "rom_bytes": 16777216,
+    "rom_sha256": "efb4aadb2c2d32eefc0033998454489c012d7f295d509dd6413e8f188afbf010",
+    "follower_graphics_descriptors": 255,
+    "pinned_art_inputs": 765,
+    "registry_sha256": "196a74da8a37623c7178d9e976b585e8b592038ccbba2ea22af86654d061d0e3",
+    "source_record": "docs/playtest/PLAYTEST004_PRIVATE_BUILD.md",
+    "no_rom_or_proprietary_artifact_in_git": true,
+    "blocker": null
   },
   "owner_testing": {
     "responsible": "owner",
@@ -58,5 +59,22 @@
     "remaining": 251,
     "total": 712
   },
-  "note": "This is a proposed next-playtest source manifest, NOT a completed, downloadable, gameplay-validated ROM."
+  "note": "Private ROM compiled; asset conversion and compiled presence verified. No gameplay/emulator acceptance. Original Playtest003 unchanged. Owner-reported permissions retained privately; no public distribution.",
+  "previous_staging_checkpoint": {
+    "status": "SOURCE_STAGED_NOT_BUILT",
+    "source_branch": "feature/playtest003-pichu-starter-balance-20261115",
+    "source_commit": "b1035a3a1496c1a0796b6449a55ce8115b301a3f",
+    "build": {
+      "status": "NOT_BUILT",
+      "rom_filename": null,
+      "rom_sha256": null,
+      "commands_from_prior_manifest": [
+        "scripts/prepare-baseline.sh",
+        "make -j2"
+      ],
+      "blocker": "Current assistant container cannot resolve github.com to retrieve the repository and lacks installed arm-none-eabi compiler; connected GitHub API supports source changes but cannot invoke native builds.",
+      "no_rom_or_proprietary_artifact_in_git": true
+    },
+    "note": "This is a proposed next-playtest source manifest, NOT a completed, downloadable, gameplay-validated ROM."
+  }
 }

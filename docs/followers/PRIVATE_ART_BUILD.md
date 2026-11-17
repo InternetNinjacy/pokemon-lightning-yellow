@@ -139,3 +139,13 @@ This source change does not import sprites, supply missing permission references
 produce a ROM, or execute gameplay tests. Exact 765-input pins, 255-descriptor
 checks and local permission/credit requirements remain intact. `gitignore` reduces
 accidental staging; it is not a security boundary against force-adding assets.
+
+## Permission/build status update
+
+Owner reconfirmed the relevant creator permissions and requested private
+correspondence remain private. A local owner-reported scope/credit record was
+used, without claiming independent certification or requiring a letter upload.
+All765 pinned inputs were converted and a private255-descriptor ROM compiled.
+The earlier permission-evidence/toolchain absence is historical, not the current
+blocker. Actual build evidence and remaining owner-playtest scope are recorded
+in `docs/playtest/PLAYTEST004_PRIVATE_BUILD.md`. No pixel/ROM files are in Git.
