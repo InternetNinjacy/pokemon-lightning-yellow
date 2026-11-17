@@ -81,6 +81,10 @@ jobs:
           python3 tests/run_btl_weather_integration_tests.py
           python3 tests/run_remaining_moves_tests.py
           python3 tests/test_pkm009_approved146_source.py
+          python3 tests/test_pkm009_eevee_water_fire.py
+          python3 tests/test_pkm009_oddish_family.py
+          python3 tests/test_pkm009_ponyta_family.py
+          python3 tests/test_pkm009_vulpix_family.py
           python3 tests/test_pkm009_jolteon_umbreon.py
 
           python3 tests/run_title_screen_tests.py

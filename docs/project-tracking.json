@@ -3243,8 +3243,8 @@
     "after_sha256": "5218c2c3d82984bd86c7f2943fda57d6066f56dbe10ed492fbf2c7a0aefa281f",
     "capacity": "MAX_LEVEL_UP_MOVES20; max adopted19 (Medicham); no buffer changes",
     "build": "Clean make -j2 PASS;16MiB ROM SHA256774a0437a919b00e57862fd41f21a863153bf7c3c3de3555fabbf200ab6d377d; EWRAM1076 free",
-    "source_checks": "46 runners,5 approved146,6 locked-pair,25 history,4 Snow cases and SOW002 contract PASS",
-    "ci": "Only adds pure-source146 check; retains all old workflow steps/check names; not dispatched, skipped not green",
+    "source_checks": "46 runners,5 approved146,6 locked-pair,25 history,4 Snow cases and SOW002 contract PASS;11 preserved locked-family cases PASS",
+    "ci": "Adds5 pure-source checks (146 plus4 preserved locked-family suites); retains every old workflow step/check; not dispatched, skipped not green",
     "runtime": "No gameplay/emulator/RNG runs; owner acceptance pending",
     "accounting": "50 IDs461/251/712 unchanged"
   }

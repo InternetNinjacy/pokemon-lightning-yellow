@@ -50,7 +50,7 @@ The inverse helper `tests/approved_146_learnset_changes.py` accepts an entirely 
 - [x]46 shared source runners,25 history cases,6 locked-pair cases and4 Snow source controls pass; clean pinned-toolchain build passes on combined current-main production inputs.
 - [ ]Owner ROM playtest for representative level-up, evolution, Move Reminder and save behavior.
 
-Command: `GIT_DIR=/workspace/pokemon-lightning-yellow/.git python3 -m unittest discover -s tests -p test_pkm009_approved146_source.py -v` from the isolated source snapshot. Five source cases pass. Current-source CI registers this check alongside the unchanged locked-pair check. Clean `make -j2` from an object-free snapshot passes;16MiB ROM SHA256 `774a0437a919b00e57862fd41f21a863153bf7c3c3de3555fabbf200ab6d377d`, EWRAM1076 bytes free. No gameplay/emulator/RNG execution or CI dispatch occurred; skipped CI is not a passing run.
+Command: `GIT_DIR=/workspace/pokemon-lightning-yellow/.git python3 -m unittest discover -s tests -p test_pkm009_approved146_source.py -v` from the isolated source snapshot. Five source cases pass. Current-source CI registers this check and four preserved locked-family source suites (11 cases PASS) alongside the unchanged locked-pair check. Clean `make -j2` from an object-free snapshot passes;16MiB ROM SHA256 `774a0437a919b00e57862fd41f21a863153bf7c3c3de3555fabbf200ab6d377d`, EWRAM1076 bytes free. No gameplay/emulator/RNG execution or CI dispatch occurred; skipped CI is not a passing run.
 
 ## 7. Open questions and blockers
 
