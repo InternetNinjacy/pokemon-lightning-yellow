@@ -146,6 +146,32 @@ class FollowerIntegrationSourceTests(unittest.TestCase):
         self.assertIn('sIntroDisplay = FALSE;', refresh)
         self.assertIn('sIntroVisible = FALSE;', refresh)
 
+    def test_ci_preserves_existing_steps_and_requires_art_in_the_linked_rom(self):
+        workflow = Path('.github/workflows/build.yml').read_text()
+        baseline = old('.github/workflows/build.yml')
+        step_names = lambda text: re.findall(r'^      - name: (.+)$', text, re.M)
+        original = step_names(baseline)
+        current = step_names(workflow)
+        self.assertEqual([name for name in current if name in original], original)
+        upstream = '      - name: Verify original upstream SHA-1 twice from clean'
+        self.assertEqual(workflow[workflow.index(upstream):], baseline[baseline.index(upstream):])
+        prepare = workflow.split('      - name: Prepare pinned ephemeral follower build inputs', 1)[1].split('      - name:', 1)[0]
+        self.assertIn("if: matrix.target == 'modified'", prepare)
+        self.assertIn('build-follower-assets.py --confirmed-scope', prepare)
+        for credit in ('README.md', 'docs/README.md', 'src/data/credits.h', 'src/credits.c'):
+            self.assertIn("'" + credit + "':", prepare)
+        build = workflow.split('      - name: Build modified game and verify clean reproducibility', 1)[1].split('      - name:', 1)[0]
+        self.assertEqual(build.count('          make -j2\n'), 2)
+        self.assertIn('          make clean\n', build)
+        self.assertIn("int(table[0][1], 16) == 255 * 16", build)
+        restore = build.index('cp "$RUNNER_TEMP/follower-art/checkout-stub.inc" src/follower_assets_generated.inc')
+        self.assertLess(build.index('check-follower-build-readiness.py'), restore)
+        self.assertLess(build.index("int(table[0][1], 16) == 255 * 16"), restore)
+        self.assertIn('sha256sum -c /tmp/modified.sha256', build[restore:])
+        self.assertLess(restore, build.index('git diff --exit-code'))
+        self.assertNotIn('make -j2', build[restore:])
+        self.assertEqual(workflow.count('uses: actions/upload-artifact@'), baseline.count('uses: actions/upload-artifact@'))
+
     def test_other_approved_gameplay_data_untouched(self):
         for path in ['src/data/pokemon/level_up_learnsets.h', 'src/data/pokemon/species_info.h',
                      'src/data/pokemon/tmhm_learnsets.h', 'src/data/pokemon/evolution.h',

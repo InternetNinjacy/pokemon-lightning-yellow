@@ -200,10 +200,23 @@
     "unproven": [
       "production installed into main and automatic lifecycle hooks",
       "runtime complete 252-species converted sprite data mapping",
-      "selected party Pokémon instance and saved assignment",
+      "selected party Pok\u00e9mon instance and saved assignment",
       "actual following movement and reflection/cutscene suppression",
       "all-world maps and extreme mixed sprite-palette crowding"
     ],
     "asset_gate": "BLOCKED overall follower readiness despite scoped graphics loader native PASS"
+  },
+  "current_main_integration_2026_11_17": {
+    "base_main": "b45e6c6e9cebb24ce8b7c36599f388375243c31b",
+    "source_commit": "539a8f34fd053321cff9d3259763aabb922b04db",
+    "pr": 54,
+    "source": "All252 selected-roster support and lifecycle integration published; not merged",
+    "art": "765 exact pinned inputs;252 base plus3 Castform descriptors; private readiness gatePASS",
+    "build": "Pinned agbcc16MiB full-art clean/incremental equalityPASS",
+    "rom_sha256": "add0b0151c0a69a82b1061146b9c73ef05a4d005469c012465505f36ebc11b30",
+    "runtime": "NOT RUN this checkpoint; owner playtest outstanding. Historical probe evidence above remains historical.",
+    "ci": "Workflow source prepared; not dispatched/not green",
+    "permissions": "Owner statement accepted; no new private correspondence request or independent legal certification",
+    "accounting": "50 IDs461/251/712 unchanged"
   }
 }

@@ -72,7 +72,7 @@ The following checks have actually run in the isolated source snapshot:
 
 - 48 selected pure-source regression runners: PASS. Executable C/gameplay/RNG
   models were deliberately excluded under the current owner playtesting policy.
-- New current-main follower integration contract: 9 source cases PASS.
+- New current-main follower integration/pipeline contract: 10 source cases PASS.
 - New lifecycle contract: 5 source cases PASS.
 - PNG/palette/converter validation: 15 tooling cases PASS.
 - Graphics allocation/source ownership checks: PASS.
@@ -87,7 +87,12 @@ The following checks have actually run in the isolated source snapshot:
   and link to 16 MiB. EWRAM: 261068/262144 bytes (1076 free); IWRAM:
   30032/32768 bytes (2736 free). This is a tight EWRAM budget, not an overflow.
 
-Final incremental build SHA256 values (including daycare and Rocket removal
+Final code source commit: `539a8f34fd053321cff9d3259763aabb922b04db` (PR54). The full-art
+`make clean` then `make -j2` rebuild produced exactly the same SHA256 as the
+incremental build. This is one clean-versus-incremental equality check, not
+multiple clean repetitions or upstream comparison.
+
+Final build SHA256 values (including daycare and Rocket removal
 hooks): source-only stub `6733fb2cf0b9fe4734b9b2c39e9df42bd0162ef17c6d5aad9d746e754b646693`;
 full255-art `add0b0151c0a69a82b1061146b9c73ef05a4d005469c012465505f36ebc11b30`.
 These identify local, uncommitted ROMs; they are not a commercial-ROM baseline.
@@ -110,6 +115,30 @@ make -j2
 No gameplay/emulator/RNG test, link peer, hardware session or CI workflow dispatch
 has been performed for this checkpoint. Skipped/pending CI is not green CI. A
 successful ROM link is not completion of the follower acceptance criteria.
+
+## Owner playtest checklist (not executed)
+
+Use a copy of a personal save; keep the original before loading this candidate.
+Record the candidate hash and the last successful action for any failure.
+
+- [ ] New game: both avatars, Pikachu gifted once, ball emergence, optional
+  nickname, rival continuation; Oak Parcel gift still delivers OAK-owned SUE
+  without changing the selected follower.
+- [ ] Set/stop from each party slot, retain battle lead, reorder and rename;
+  duplicate species with different identities; no fallback after Stop.
+- [ ] Faint the selected member, save/reload and change maps while fainted;
+  Revive/Center healing restores the same follower. Evolution updates its art.
+- [ ] Deposit/withdraw selected and unrelated members in PC and both daycares;
+  cancel deposits/trades; complete a trade and a Rocket rescue return. Withdrawing
+  a removed selection must not reassign it.
+- [ ] Save/reload selected, fainted and cleared states; inspect party, PC,
+  daycare eggs, RTC, vendors and existing quest progression for regressions.
+- [ ] Walk/corner/ledge/door/warp/map-connection/stair behavior; bike, Surf,
+  forced movements, scripted scenes, battle/menu returns and normal NPC/counter
+  interactions. No duplicates, blocked paths or softlocks.
+- [ ] Inspect small/large/flying/water/baby/evolved species, Steelix64x64,
+  normal/Shiny palettes, Castform base appearance, Rain/Snow and crowded NPC
+  maps. Complete visual review of all252 remains outstanding.
 
 ## Next gates and rollback
 

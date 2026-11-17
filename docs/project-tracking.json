@@ -3,7 +3,7 @@
   "updated": "2026-11-17",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "WRL-010 current-main source integration candidate prepared on b45e6c6e in existing draft PR54, reusing PR54/257 runtime/art tooling:252 eligible species/255 private descriptors. State/menu/controller/PC/trade/save/opening hooks corrected; optional Pikachu/OAK-SUE/approved146/Snow preserved, private Pichu/stat experiments excluded. Source checks and both zero-art/full-art compilation pass on checked snapshots; no merge, owner runtime acceptance, CI success or new points claimed. Pipeline preparation remains in progress.",
+  "current_focus": "Follower source integration and build pipeline published to draft PR54 on current main; private full255 clean build/equality/source checks PASS. Owner runtime and current-head CI remain unrun; main unchanged.50 IDs461/251/712 unchanged.",
   "main_sha": "b45e6c6e9cebb24ce8b7c36599f388375243c31b",
   "drive_sync": {
     "status": "2026-11-10 WTH-001 and WRL-008 closeout PRs #170/#184 merged and verified; corresponding existing Google Drive Progress, START HERE and vendor register synchronized with definitive completion evidence.",
@@ -2835,20 +2835,20 @@
       "dependencies": [],
       "status": {
         "design": "Owner approved Nov5; specification PR52 merged and owner explicitly requested implementation Nov6",
-        "implementation": "Integrated current-main SOURCE CANDIDATE on b45e6c6e for existing draft PR54; persistent identity/menu/controller/graphics/PC/trade/save/opening hooks corrected. No merge or all252 gameplay acceptance claimed.",
-        "automated": "Checked snapshots:48 selected pure-source runners PASS;9 integration,5 lifecycle,15 PNG-tooling,25 historical-projection,5 approved146 and5 WRL source cases PASS. Both zero-art stub/full255-descriptor variants compiled and linked16MiB; EWRAM1076/IWRAM2736 bytes free. Final code including daycare/Rocket removal hooks: full-art SHA256 add0b0151c0a69a82b1061146b9c73ef05a4d005469c012465505f36ebc11b30; no clean/reproducibility claim yet.",
+        "implementation": "Published current-main follower SOURCE IMPLEMENTATION on PR54 at539a8f34, with reused PR54/257 history and corrected state/menu/controller/PC/trade/daycare/Rocket/save/opening hooks. Not merged or runtime-accepted.",
+        "automated": "PASS48 selected pure-source runners;10 integration/pipeline,5 lifecycle,15 PNG-tooling,25 history,5 approved146,5 WRL source cases. Zero-art and full255 variants compile/link16MiB; make clean + make -j2 full-art rebuild matches incremental SHA256 add0b0151c0a69a82b1061146b9c73ef05a4d005469c012465505f36ebc11b30. EWRAM1076/IWRAM2736 free. Exact64-path publication readback PASS; mandatory upstream workflow preserved, not rerun.",
         "emulator": "No new gameplay/native emulator/RNG/C-model execution; owner runtime acceptance outstanding for selection, emergence, movement, maps, faint/heal, deposit/trade, evolution/save and all252 visual coverage.",
-        "pull_request": "Existing gameplay PR54 draft refreshed from current main with reused PR54/257 source/tooling; source publication in progress, not merged.",
+        "pull_request": "Published to existing draft PR54, branch feature/selectable-following-pokemon; source539a8f34 plus evidence checkpoint. No merge/auto-merge.",
         "merge": "NOT MERGED. Source integration/build readiness is distinct from owner runtime acceptance and earned credit."
       },
       "branch": "feature/selectable-following-pokemon",
-      "commit": null,
+      "commit": "539a8f34fd053321cff9d3259763aabb922b04db",
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/54",
       "ci_url": null,
-      "blocker": "Owner runtime acceptance and current-head CI remain outstanding. The pinned-art modified-build workflow is prepared, not run. Public source registry remains zero-art; private full255 build compiled successfully. No merge/release acceptance.",
+      "blocker": "Owner gameplay acceptance and current-head CI remain outstanding. Modified pinned-art pipeline source is prepared and structurally checked, but not dispatched. Public registry is zero-art; private full255 build and clean equality verified.",
       "design_authority": "Lightning Yellow canonical Drive specialist registers and November 5 change intake",
-      "next_action": "Publish PR54 candidate and verify exact remote tree; perform one clean full-art rebuild and prepare owner playtest checklist. Existing CI/workflow assertions preserved, but do not dispatch gameplay tests under current owner policy. No points or merge until remaining acceptance boundary is addressed.",
-      "checkpoint": "CURRENT source candidate b45e6c6e+PR54/257:252 selectable roster species,252 base+3 Castform descriptors; state/menu/controller/removal/PC/trade/save/lab lifecycle corrections and source-preservation checks recorded. Zero-art and full255 variants compile/link16MiB, EWRAM1076/IWRAM2736 free; final digest omitted pending last hook. No gameplay/native/RNG/model run, workflow dispatch, green CI, clean/reproducibility or release claim. Modified-only ephemeral pinned-art CI preparation now source-validated, not dispatched; source guards rerun48/48 after final removal hooks.",
+      "next_action": "Owner playtest full-art candidate using docs/followers/CURRENT_MAIN_INTEGRATION.md checklist; record actual selection/emergence/movement/save/faint/removal/evolution/all252 visual results. Current policy excludes Codex gameplay tests and CI dispatch; do not claim green CI or merge/release acceptance.",
+      "checkpoint": "PR54 source539a8f34 on mainb45e6c6e; full252 source implementation and255 descriptors/765 input pins. Full-art clean/incremental ROM equality PASS SHA256 add0b0151c0a69a82b1061146b9c73ef05a4d005469c012465505f36ebc11b30.48 source runners/10 integration+pipeline/5 lifecycle PASS; owner runtime and current-head CI NOT RUN. No earned credit or merge.",
       "spec_pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/52",
       "specification": "implementation/selectable-following-pokemon.md",
       "historical_source_checkpoints": [
@@ -3269,7 +3269,7 @@
     "scope": "Exact b9af0975 shared timer only; no private per-flake redesign",
     "owner_runtime": "Issue248 OPEN; sustained snow/post-battle playtest pending"
   },
-  "next_independent_source_work": "Publish PR54 candidate and verify exact remote tree; perform one clean full-art rebuild and prepare owner playtest checklist. Existing CI/workflow assertions preserved, but do not dispatch gameplay tests under current owner policy. No points or merge until remaining acceptance boundary is addressed.",
+  "next_independent_source_work": "Owner playtest full-art candidate using docs/followers/CURRENT_MAIN_INTEGRATION.md checklist; record actual selection/emergence/movement/save/faint/removal/evolution/all252 visual results. Current policy excludes Codex gameplay tests and CI dispatch; do not claim green CI or merge/release acceptance.",
   "follower_asset_preparation": {
     "source_commit": "e7d388810de0b0964a46afaaf3d012f7e666aad5",
     "upstream_art_pin": "cbe04a7a2ef645bee19d159876da074154ccf1f2",
@@ -3283,7 +3283,7 @@
     "generated_sha256": "196a74da8a37623c7178d9e976b585e8b592038ccbba2ea22af86654d061d0e3",
     "gate": "BUILD INPUT READY; no runtime PASS",
     "permission": "Owner-provided permission statement accepted; no private correspondence requested or committed",
-    "runtime_merge": "Reused in current-main PR54 SOURCE CANDIDATE; not merged or gameplay-accepted. Both zero-art/full255 build variants compiled/linked.",
+    "runtime_merge": "Published PR54 source539a8f34; full255 art compiled and clean equality PASS. Not merged or gameplay accepted.",
     "next_conflicts": [],
     "historical_integration_checkpoint": {
       "runtime_merge": "Not integrated; no new follower ROM, gameplay test or merge",
@@ -3302,7 +3302,7 @@
     ]
   },
   "follower_source_integration_candidate": {
-    "status": "CURRENT MAIN SOURCE CANDIDATE; NOT MERGED",
+    "status": "PUBLISHED SOURCE IMPLEMENTATION / CLEAN BUILD VERIFIED; NOT MERGED",
     "base_main": "b45e6c6e9cebb24ce8b7c36599f388375243c31b",
     "branch": "feature/selectable-following-pokemon",
     "pr": 54,
@@ -3317,24 +3317,26 @@
     "excluded": "Private Pichu starter/stat and other stale experimental changes; no generated art/ROM/private permission data in Git",
     "source_checks": {
       "selected_runners": 48,
-      "integration_cases": 9,
+      "integration_cases": 10,
       "lifecycle_cases": 5,
       "png_tooling_cases": 15,
       "history_cases": 25,
       "approved146_cases": 5,
       "wrl_source_cases": 5,
-      "result": "PASS on checked snapshots; publisher records final exact-head evidence"
+      "result": "PASS; same production/tooling sources as published539a8f34, plus one source-only pipeline contract"
     },
     "builds": {
       "zero_art_stub": "COMPILED/LINKED16MiB",
       "full255_art": "COMPILED/LINKED16MiB",
       "ewram_free_bytes": 1076,
       "iwram_free_bytes": 2736,
-      "clean_reproducibility": "Not claimed",
-      "final_hash": "Publisher fills after final daycare hook"
+      "clean_reproducibility": "PASS make clean + make -j2 equals prior incremental full255 ROM",
+      "final_hash": "add0b0151c0a69a82b1061146b9c73ef05a4d005469c012465505f36ebc11b30"
     },
     "runtime_ci": "No gameplay/emulator/RNG/C-model execution or CI/workflow dispatch; skipped/pending CI is not green; owner acceptance outstanding",
-    "pipeline": "Preparation in progress",
-    "accounting": "50 IDs461earned251remaining712total unchanged"
+    "pipeline": "Modified-only765-pin ephemeral art/4-credit preparation and255-entry ELF assertion source-validated; literal stub restored before existing source-diff guard; no CI dispatch",
+    "accounting": "50 IDs461earned251remaining712total unchanged",
+    "source_commit": "539a8f34fd053321cff9d3259763aabb922b04db",
+    "remote_readback": "PASS64 reviewed Git blobs match published539a8f34; original dirty18 BTL files/index preserved"
   }
 }
