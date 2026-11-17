@@ -8,6 +8,8 @@ import json
 from pathlib import Path
 
 def prior_opening_source(path, text):
+    from approved_jolteon_umbreon_changes import prior_locked_pair_source
+    text=prior_locked_pair_source(path,text)
     hunks = json.loads(Path('tests/specifications/wrl001_opening_delta.json').read_text())['files'].get(str(path), [])
     for hunk in reversed(hunks):
         if text.count(hunk['after']) == 1:

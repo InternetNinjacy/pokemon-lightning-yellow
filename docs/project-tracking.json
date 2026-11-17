@@ -3,8 +3,8 @@
   "updated": "2026-11-16",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "PR265410-move source and PR254Heracross merged after combined builds/static preservation checks. Private PR258 r2 compiled with current main and252 follower artwork; owner gameplay acceptance pending. Build-only map flag dependency repair follows actual incremental linker failure. No emulator/CI dispatch or accepted points:461/712.",
-  "main_sha": "351932f8fe7c439b84a7c7fc555a914ba56b18e8",
+  "current_focus": "PKM-009 approved Jolteon/Umbreon learnsets implemented after410-move dependency landed. Exact-source tests/build PASS; unchanged trainer-history guard still fails on base and candidate.146 working proposals and TM51 eligibility are not final approval.461/712 unchanged; owner gameplay acceptance pending.",
+  "main_sha": "eb4f0296add8a431029ee4f7c7f6c726fcf256f3",
   "drive_sync": {
     "status": "2026-11-10 WTH-001 and WRL-008 closeout PRs #170/#184 merged and verified; corresponding existing Google Drive Progress, START HERE and vendor register synchronized with definitive completion evidence.",
     "folder": "https://drive.google.com/drive/folders/1N_n0Ke48jBbdhUWSZWzwR6rpPFqpDUpl"
@@ -2662,7 +2662,7 @@
       "dependencies": [],
       "status": {
         "design": "owner-approved or delegated design recorded in Drive",
-        "implementation": "not implemented on main; any specs/PRs noted in next action",
+        "implementation": "Twelve owner-locked profiles already match main. Approved Jolteon/Umbreon natural learnsets now implemented in this scoped source increment, without stat,ability,catch,TM-HM or save changes.146 working-design recommendations remain distinct from finalized approval.",
         "automated": "not verified as full feature",
         "emulator": "not verified as complete feature",
         "pull_request": "not merged gameplay",
@@ -2672,10 +2672,21 @@
       "commit": null,
       "pr_url": null,
       "ci_url": null,
-      "blocker": "Source-relative 252-species design/audit exists, but bulk source implementation and TM legality closure are not verified; does not duplicate base Pokédex and typing work in PKM-001/007.",
+      "blocker": "TM51 eligibility matrix not supplied;146 delegated recommendations explicitly remain working designs in inspected PR171/173/154 authority. Existing trainer-history reconstruction failure independently blocks broader static Gym/E4 audits; do not weaken assertions.",
       "design_authority": "Lightning Yellow canonical Drive specialist registers and November 5 change intake",
-      "next_action": "Source-relative 252-species design/audit exists, but bulk source implementation and TM legality closure are not verified; does not duplicate base Pokédex and typing work in PKM-001/007.",
-      "checkpoint": "2026-11-06 fixed-scope intake; no gameplay implementation credit"
+      "next_action": "Review scoped locked-pair source/build evidence. Design Coordinator must identify final approved replacement/subset for146 working profiles and supply exact TM51 ZapCannon species eligibility. All410 move IDs now exist; do not repeat obsolete missing-ID blockers. Owner leveling/reminder/save acceptance pending.",
+      "checkpoint": "2026-11-06 fixed-scope intake; no gameplay implementation credit",
+      "implementation_increments": [
+        {
+          "feature": "Owner-locked Jolteon and Umbreon natural learnsets",
+          "base_sha": "eb4f0296add8a431029ee4f7c7f6c726fcf256f3",
+          "status": "source implemented,6 new source tests +2 TMHM tests +focused source checks and compilation PASS; owner gameplay pending; no accepted credit",
+          "authority": "Eevee Family Design final Oct31 closeout; export SHA256 82e9ed31e38ed30b1daa811158b9d9d4b28d009804ea10457ab5e4c95d18ec8c",
+          "source_files": [
+            "src/data/pokemon/level_up_learnsets.h"
+          ]
+        }
+      ]
     },
     {
       "id": "GYM-008",
