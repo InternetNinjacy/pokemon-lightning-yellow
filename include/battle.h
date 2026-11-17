@@ -477,7 +477,8 @@ struct BattleStruct
     u8 damagedByBattlers[MAX_BATTLERS_COUNT];
     // Completed action slots, including switches (Generation IV Payback).
     u8 actedThisTurn;
-    u8 padding_1ED[0x13];
+    bool8 switchAfterHit;
+    u8 padding_1EE[0x12];
 }; // size == 0x200 bytes
 
 extern struct BattleStruct *gBattleStruct;

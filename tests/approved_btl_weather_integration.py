@@ -7,6 +7,8 @@ from pathlib import Path
 import hashlib,json
 SHARED=('include/battle_util.h','src/battle_util.c','src/battle_main.c','src/battle_script_commands.c','src/pokemon.c','data/battle_scripts_1.s')
 def before_species_evolution(path,text):
+    from approved_remaining_moves import prior_remaining_source
+    text=prior_remaining_source(path,text)
     # Main52b06554's exact two-family fallback is orthogonal to BTL. Retain its
     # frozen reversal rather than changing the earlier integrated file hashes.
     from approved_weather_species_evolution_changes import AFTER, prior_weather_species_evolution_source
@@ -15,6 +17,8 @@ def before_species_evolution(path,text):
     return text
 
 def project(path,text,view):
+    from approved_remaining_moves import prior_remaining_source
+    text=prior_remaining_source(path,text)
     # Source views predating the separately approved water move append must be
     # byte-exact, even when a guard invokes without_weather() directly.
     # Reversal of a present append is strict; absent append is left untouched.

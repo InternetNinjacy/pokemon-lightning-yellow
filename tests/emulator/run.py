@@ -11,9 +11,17 @@ import shutil
 
 # Generate ABI constants with the game's ARM compiler, never host offsetof.
 expressions = {
+ 'SOW002_OBJ_SIZE':'sizeof(struct ObjectEvent)',
+ 'SOW002_OBJ_COORDS':'offsetof(struct ObjectEvent,currentCoords)',
+ 'SOW002_OBJ_SPRITE':'offsetof(struct ObjectEvent,spriteId)',
+ 'SOW002_SPR_SIZE':'sizeof(struct Sprite)',
+ 'SOW002_SPR_IMAGES':'offsetof(struct Sprite,images)',
+ 'SOW002_SPR_OAM':'offsetof(struct Sprite,oam)',
  'ACTION_NOTHING_FAINTED':'B_ACTION_NOTHING_FAINTED',
  'ACTION_SWITCH':'B_ACTION_SWITCH',
  'ACTION_MOVE':'B_ACTION_USE_MOVE',
+ 'PREPARE_HIT_SWITCH':'VARIOUS_PREPARE_HIT_SWITCH',
+ 'BATTLESTRUCT_SWITCH_PENDING':'offsetof(struct BattleStruct,switchAfterHit)',
  'BATTLESTRUCT_ACTED':'offsetof(struct BattleStruct,actedThisTurn)',
  'BATTLESTRUCT_SWITCH_IN':'offsetof(struct BattleStruct,monToSwitchIntoId)',
  'BATTLESTRUCT_DAMAGE_SOURCES':'offsetof(struct BattleStruct,damagedByBattlers)',
@@ -301,7 +309,7 @@ required = [
 ]
 required += ['NextThunderWaveTarget','gAbsentBattlerFlags']
 required += ['Cmd_accuracycheck']
-required += ['BattlerHasActedThisTurn','RunTurnActionsFunctions','SetActionsAndBattlersTurnOrder','gBattleMainFunc','gCurrentActionFuncId','gChosenActionByBattler','gEnemyPartyCount','gBattlerPartyIndexes','gActionsByTurnOrder', 'BattlerWasDamagedBy','TurnValuesCleanUp','SwitchInClearSetData','gBattleMovePower','Cmd_datahpupdate']
+required += ['Cmd_various','BattlerHasActedThisTurn','RunTurnActionsFunctions','SetActionsAndBattlersTurnOrder','gBattleMainFunc','gCurrentActionFuncId','gChosenActionByBattler','gEnemyPartyCount','gBattlerPartyIndexes','gActionsByTurnOrder', 'BattlerWasDamagedBy','TurnValuesCleanUp','SwitchInClearSetData','gBattleMovePower','Cmd_datahpupdate']
 required += ['Cmd_seteffectwithchance','gBattleCommunication','gCurrentTurnActionNumber','gBattlerByTurnOrder','gSideTimers']
 required += ['Cmd_rolloutdamagecalculation','gDisableStructs','gLockedMoves','gLastMoves']
 required += ['BattleAI_SetupAIData','BattleAI_ChooseMoveOrAction','RecordAbilityBattle']
@@ -326,6 +334,10 @@ required += ['CeladonCity_GameCorner_PrizeRoom_EventScript_PrizeClerkMons','GetC
 required += ['Route12_EventScript_SowCorphish','Route21_North_EventScript_SowGlalie','Route23_EventScript_SowTyranitar',
              'GetObjectEventIdByXY','CreateScriptedWildMon','SowPrepareScriptedEncounter','SpecialWeatherActivateScript','SpecialWeatherActivate','SpecialWeatherFinishAftermath','SpecialWeatherRestorationReady',
              'SpecialWeather_EventScript_FinishAftermath','Alloc']
+required += ['ViridianForest_EventScript_SowHeracross', 'ViridianForest_EventScript_Youngster',
+             'ViridianForest_Text_SowWarning','ViridianForest_Text_SowThanks',
+             'gObjectEvents','gSprites','gMonIcon_Heracross','sPicTable_SowHeracross']
+required += ['ScriptGiveSueEevee', 'ScriptGiveMon', 'EventScript_ChangePokemonNickname']
 symbols={}
 end_ewram=0
 for line in subprocess.check_output(['arm-none-eabi-nm','-S','pokefirered.elf'],text=True).splitlines():
@@ -363,6 +375,7 @@ for name in ['HandleInputChooseAction','HandleInputChooseMove','HandleInputChoos
 with tempfile.TemporaryDirectory(prefix='lightning-emulator-') as temp:
     temp=Path(temp)
     source='#include "save.h"\n#include "field_weather.h"\n#include <stddef.h>\n#include "global.h"\n#include "pokemon.h"\n#include "main.h"\n#include "task.h"\n'
+    source+='#include "sprite.h"\n'
     source+='#include "text.h"\n#include "pokedex.h"\n#include "battle_controllers.h"\n#include "item_menu.h"\n#include "wild_encounter.h"\n#include "battle.h"\n#include "list_menu.h"\n#include "party_menu.h"\n#include "script.h"\n#include "field_player_avatar.h"\n'+screen_struct+'\n'+summary_struct+'\n'
     learn=Path('src/learn_move.c').read_text();learn=learn[learn.index('struct LearnMoveGfxResources\n'):];learn=learn[:learn.index('\n};')+3]
     source+='#include "battle_message.h"\n#include "pokemon_special_anim_internal.h"\n'+learn+'\n'

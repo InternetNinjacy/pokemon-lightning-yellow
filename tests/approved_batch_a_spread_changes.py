@@ -26,6 +26,9 @@ def prior_batch_a_spread_source(path, text=None):
     path = str(path)
     if text is None:
         text = Path(path).read_text()
+    from approved_remaining_moves import prior_remaining_source
+    text=prior_remaining_source(path,text)
+
     if path != PATH:
         return text
     # Reverse only the exact separately approved current-main Corphish source delta.
