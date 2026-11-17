@@ -3,8 +3,8 @@
   "updated": "2026-11-16",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "Independent BTL003 AI fixture correction from PR236 retained: genuine single-ability Flareon replaces unsuitable dual-ability Vulpix; all original native assertions/actions preserved. Three source premise/provenance checks pass. No gameplay code, runtime tests, new workflow or acceptance credit;461/712 unchanged. PKM009146-profile/TM51 authority remains pending.",
-  "main_sha": "c96184c6058966cbd9789e53eb0eb8462ce4f754",
+  "current_focus": "Prepared native fixture source maintenance: PR236 single-ability AI fixture merged9bb5cc7e; PR239 Reminder fixture aligned with approved Lv7/Lv8 Vaporeon, Eevee and Espeon data. Seven source checks across both repairs pass; no game data, native/gameplay execution, workflow or points changed. Missing146-profile/TM51 authority remains with Master Control.",
+  "main_sha": "9bb5cc7eecba911f19d7e8839463edebf25b06d4",
   "drive_sync": {
     "status": "2026-11-10 WTH-001 and WRL-008 closeout PRs #170/#184 merged and verified; corresponding existing Google Drive Progress, START HERE and vendor register synchronized with definitive completion evidence.",
     "folder": "https://drive.google.com/drive/folders/1N_n0Ke48jBbdhUWSZWzwR6rpPFqpDUpl"
@@ -458,7 +458,7 @@
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41376878452",
       "blocker": null,
       "design_authority": "Supplied owner requests and October 28 handoff transcription; exact versions in ledger. Supplied authority exports are available; direct live Drive synchronization remains pending.",
-      "next_action": "Complete trainer-AI strategy/gameplay coverage remains unverified; selected ROM damage/AI/UI tests pass.",
+      "next_action": "PR236 exact prepared natural-Flareon AI fixture integrated; all original score/action assertions retained. Three source premise/provenance checks pass; historical focused native43545221386 is not current-head acceptance. Owner gameplay/AI-category coverage remains outstanding.",
       "checkpoint": "2026-11-02 final stabilization: commit6ff574dc205a007a93a4724fd6eda867eeff8fdf; local8715; Actions41376878452 SUCCESS",
       "coverage_gap": "Complete trainer-AI strategy/gameplay coverage remains unverified; selected ROM damage/AI/UI tests pass.",
       "implementation_ref": {
@@ -2672,9 +2672,9 @@
       "commit": null,
       "pr_url": null,
       "ci_url": null,
-      "blocker": "TM51 eligibility matrix not supplied;146 delegated recommendations explicitly remain working designs in inspected PR171/173/154 authority. Existing trainer-history reconstruction failure independently blocks broader static Gym/E4 audits; do not weaken assertions.",
+      "blocker": "Final TM51 ZapCannon species eligibility matrix and later final approval for146 delegated WORKING recommendations remain missing. Trainer-history source failures are repaired through PR270–276; they are no longer a static blocker. Owner/current-head runtime acceptance remains separate.",
       "design_authority": "Lightning Yellow canonical Drive specialist registers and November 5 change intake",
-      "next_action": "Review scoped locked-pair source/build evidence. Design Coordinator must identify final approved replacement/subset for146 working profiles and supply exact TM51 ZapCannon species eligibility. All410 move IDs now exist; do not repeat obsolete missing-ID blockers. Owner leveling/reminder/save acceptance pending.",
+      "next_action": "Use already-implemented14 locked profiles; obtain final146-profile authority and exact TM51 matrix from Master Control. Reminder fixture source now matches approved Vaporeon7/8, Eevee1 and Espeon8 data in PR239; native menu/save execution remains unrun. Do not invent distribution or request the locked14 approval again.",
       "checkpoint": "PR268 new6 source tests,2 original TMHM tests,focused preservation checks and pinned-agbcc build PASS. Broad Gym/E4 static trainer-history failure reproduced on prior source.146 candidate profiles:0 source drift/missing IDs in read-only preflight. No runtime or points.",
       "implementation_increments": [
         {
@@ -3217,6 +3217,15 @@
     "checks": "3 pure-source cases PASS: pinned file identity, current ability premises, original CHECK/CALL sequence preserved plus1 added ability-slot assertion",
     "prior_native": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/43545221386 SUCCESS on b8390e1; historical only",
     "current_runtime": "Not run; owner gameplay playtest reserved, no workflow dispatch",
+    "accounting": "50 IDs461/251/712 unchanged"
+  },
+  "reminder_fixture_source_checkpoint": {
+    "pr": 239,
+    "starting_main": "9bb5cc7eecba911f19d7e8839463edebf25b06d4",
+    "prepared_head": "d9f90011d83e35868126f7e2a8ea3d67a6705d7e",
+    "scope": "Exact prepared center_move_reminder_learning.c only; no diagnostic workflow added",
+    "checks": "4 pure-source cases PASS: pinned file identity, approved level/move premises, all CHECK assertions preserved with documented data-name substitutions, all native press/frames/noncreation CALL sequences unchanged",
+    "current_runtime": "Not run; source eligibility inspection is not native gameplay or UI proof",
     "accounting": "50 IDs461/251/712 unchanged"
   }
 }
