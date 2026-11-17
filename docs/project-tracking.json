@@ -3,8 +3,8 @@
   "updated": "2026-11-16",
   "repository": "https://github.com/InternetNinjacy/pokemon-lightning-yellow",
   "canonical_branch": "main",
-  "current_focus": "Owner-approved exact146 natural learnsets implemented on refreshed PR173, preserving14 locked profiles/current stats/abilities/catch rates/TMHM. Clean pinned build,46 source runners,5 new146 cases,6 locked-pair,25 history and4 Snow controls PASS. Snow fix already merged PR279. No runtime/CI acceptance or points;461/712 unchanged. TM51 and10 separate proposals excluded.",
-  "main_sha": "93cc930335b6941fed3c0ab6e7d567288b5fccc0",
+  "current_focus": "Merged PR173 exact146 newly owner-adopted natural learnsets at f223bf8b and PR279 approved Snow restart timer at93cc9303. Source/build gates passed; actual owner gameplay acceptance and TM51 design matrix remain separate. Preparing persistent private765-input follower cache for next independent integration; exclude Pichu/old private stats.50 tasks461/251/712 unchanged.",
+  "main_sha": "f223bf8b6bd31ff18cc93318c38877ca421c7036",
   "drive_sync": {
     "status": "2026-11-10 WTH-001 and WRL-008 closeout PRs #170/#184 merged and verified; corresponding existing Google Drive Progress, START HERE and vendor register synchronized with definitive completion evidence.",
     "folder": "https://drive.google.com/drive/folders/1N_n0Ke48jBbdhUWSZWzwR6rpPFqpDUpl"
@@ -2666,7 +2666,7 @@
         "automated": "Source/build only:146 exact contracts,46 source runners,5 new cases,6 locked-pair and25 history cases pass; no native/gameplay run",
         "emulator": "not verified as complete feature",
         "pull_request": "Scoped locked-pair PR268 merged; earlier146-working candidates remain separate",
-        "merge": "Approved pair source merged PR268/c5c4dd03; full252-species work and owner acceptance incomplete"
+        "merge": "PR173 exact146 source merged f223bf8b;14 locked profiles retained; remaining scope/runtime separate"
       },
       "branch": null,
       "commit": null,
@@ -3246,6 +3246,16 @@
     "source_checks": "46 runners,5 approved146,6 locked-pair,25 history,4 Snow cases and SOW002 contract PASS;11 preserved locked-family cases PASS",
     "ci": "Adds5 pure-source checks (146 plus4 preserved locked-family suites); retains every old workflow step/check; not dispatched, skipped not green",
     "runtime": "No gameplay/emulator/RNG runs; owner acceptance pending",
-    "accounting": "50 IDs461/251/712 unchanged"
-  }
+    "accounting": "50 IDs461/251/712 unchanged",
+    "source_head": "538ba2862ac099556a395f02c995e3f898de75b3",
+    "merged_main": "f223bf8b6bd31ff18cc93318c38877ca421c7036"
+  },
+  "snow_persistence_merge": {
+    "pr": 279,
+    "source_head": "5a61f34cc0342d5657f79ef6d14ee169f7016f13",
+    "merged_main": "93cc930335b6941fed3c0ab6e7d567288b5fccc0",
+    "scope": "Exact b9af0975 shared timer only; no private per-flake redesign",
+    "owner_runtime": "Issue248 OPEN; sustained snow/post-battle playtest pending"
+  },
+  "next_independent_source_work": "Followers: PR54 runtime+PR257 private765-pin tooling, preserve current main Pikachu naming/OAK-SUE and146 rows. Refill persistent private cache, verify255 descriptors, integrate on own branch, source/build audit; no artwork/ROM commit or gameplay test. No fresh permission letter needed."
 }
