@@ -162,7 +162,10 @@ enum FollowerGraphicsResult FollowerGraphics_Swap(const struct FollowerGraphicsA
     {
         struct ObjectEvent *event = &gObjectEvents[sFollowerEventId];
 
-        if (!event->active || event->localId != FOLLOWER_GFX_LOCAL_ID)
+        // The map may have reused this object slot since the last field tick.
+        // Only replace the sprite if it still belongs to our active follower;
+        // never overwrite an unrelated NPC that happens to share the local ID.
+        if (!FollowerGraphics_HasValidObjectEvent())
         {
             DestroySprite(&gSprites[id]);
             FreeSpritePaletteByTag(candidate->paletteTag);
