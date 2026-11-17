@@ -210,13 +210,15 @@
     "base_main": "b45e6c6e9cebb24ce8b7c36599f388375243c31b",
     "source_commit": "539a8f34fd053321cff9d3259763aabb922b04db",
     "pr": 54,
-    "source": "All252 selected-roster support and lifecycle integration published; not merged",
+    "source": "All252 selected-roster support and lifecycle integration engineering-merged normally viaPR54",
     "art": "765 exact pinned inputs;252 base plus3 Castform descriptors; private readiness gatePASS",
     "build": "Pinned agbcc16MiB full-art clean/incremental equalityPASS",
     "rom_sha256": "add0b0151c0a69a82b1061146b9c73ef05a4d005469c012465505f36ebc11b30",
     "runtime": "NOT RUN this checkpoint; owner playtest outstanding. Historical probe evidence above remains historical.",
     "ci": "Workflow source prepared; not dispatched/not green",
     "permissions": "Owner statement accepted; no new private correspondence request or independent legal certification",
-    "accounting": "50 IDs461/251/712 unchanged"
+    "accounting": "50 IDs461/251/712 unchanged",
+    "merge_commit": "28dd82b5d9a684455a36f6458ac88a3e7e45d4ed",
+    "owner_delegation": "Pending testing alone nonblocking underNovember17ownerphysical-device policy; runtimeunaccepted/no newpoints"
   }
 }
