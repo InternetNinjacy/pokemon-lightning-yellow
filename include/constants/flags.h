@@ -841,8 +841,8 @@
 #define FLAG_HIDE_LIGHTNING_ENTEI 0x32A
 #define FLAG_HIDE_LIGHTNING_SUICUNE 0x32B
 #define FLAG_HIDE_LIGHTNING_MEW 0x32C
-#define FLAG_0x32D               0x32D
-#define FLAG_0x32E               0x32E
+#define FLAG_HIDE_SOW_NOCTOWL 0x32D
+#define FLAG_FOUGHT_SOW_NOCTOWL 0x32E
 #define FLAG_0x32F               0x32F
 #define FLAG_0x330               0x330
 #define FLAG_0x331               0x331

@@ -1772,6 +1772,13 @@ static const struct SpriteFrameImage sPicTable_SowTyranitar[] = {
 };
 
 // SOW-002 is motionless: every direction/step uses the same existing icon frame.
+// SOW-006: reuse the existing Noctowl icon, motionless in every direction.
+static const struct SpriteFrameImage sPicTable_SowNoctowl[] = {
+    {gMonIcon_Noctowl, 512}, {gMonIcon_Noctowl, 512}, {gMonIcon_Noctowl, 512},
+    {gMonIcon_Noctowl, 512}, {gMonIcon_Noctowl, 512}, {gMonIcon_Noctowl, 512},
+    {gMonIcon_Noctowl, 512}, {gMonIcon_Noctowl, 512}, {gMonIcon_Noctowl, 512},
+};
+
 static const struct SpriteFrameImage sPicTable_SowHeracross[] = {
     {gMonIcon_Heracross, 512},
     {gMonIcon_Heracross, 512},

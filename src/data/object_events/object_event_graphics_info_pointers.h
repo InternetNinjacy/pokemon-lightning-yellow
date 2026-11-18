@@ -1,4 +1,5 @@
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SowHeracross;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SowNoctowl;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SowCorphish;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SowGlalie;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SowTyranitar;
@@ -313,4 +314,5 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_SOW_CORPHISH]              = &gObjectEventGraphicsInfo_SowCorphish,
     [OBJ_EVENT_GFX_SOW_GLALIE]                = &gObjectEventGraphicsInfo_SowGlalie,
     [OBJ_EVENT_GFX_SOW_TYRANITAR]            = &gObjectEventGraphicsInfo_SowTyranitar,
+    [OBJ_EVENT_GFX_SOW_NOCTOWL]              = &gObjectEventGraphicsInfo_SowNoctowl,
 };

@@ -61,7 +61,8 @@ assert "SetSpecialEncounterAbility(&gEnemyParty[0], ABILITY_SNOW_WARNING)" in c
 assert "GetMonAbility(&gEnemyParty[0]) != ABILITY_SAND_STREAM" in c
 assert "MON_DATA_HELD_ITEM) != ITEM_NONE" in c
 gfx=Path("include/constants/event_objects.h").read_text()
-assert "NUM_OBJ_EVENT_GFX     156" in gfx
+assert "#define OBJ_EVENT_GFX_SOW_NOCTOWL 156" in gfx
+assert "NUM_OBJ_EVENT_GFX     157" in gfx
 sprite=Path("src/data/object_events/object_event_pic_tables.h").read_text()
 for key in ["Corphish","Glalie","Tyranitar"]:
  assert "sPicTable_Sow"+key in sprite
