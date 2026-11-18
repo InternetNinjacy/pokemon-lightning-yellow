@@ -193,7 +193,7 @@
 #define FLAG_PEWTER_MUSEUM_TRIVIA_WON                   0x0AF
 #define FLAG_PEWTER_MUSEUM_SHINY_EGG_RECEIVED          0x0B0
 #define FLAG_HIDE_ROUTE6_TM34                         0x0B1
-#define FLAG_0x0B2               0x0B2
+#define FLAG_HIDE_VIRIDIAN_SCHOOL_TM52 0x0B2
 #define FLAG_0x0B3               0x0B3
 #define FLAG_0x0B4               0x0B4
 #define FLAG_0x0B5               0x0B5
