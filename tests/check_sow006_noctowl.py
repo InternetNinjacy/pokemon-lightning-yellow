@@ -30,9 +30,9 @@ assert "setflag FLAG_FOUGHT_SOW_NOCTOWL" in event
 assert "removeobject VAR_LAST_TALKED" in event
 assert "Route16_EventScript_Snorlax::" in scripts
 
-util = (root / "src/script_pokemon_util.c").read_text()
+util = (root / "src/battle_setup.c").read_text()
 helper = util.split("void SowPrepareNoctowlEncounter(void)", 1)[1].split(
-    "void ScriptSetMonMoveSlot", 1)[0]
+    "void StartScriptedWildBattle", 1)[0]
 for term in ("SPECIES_NOCTOWL", "MON_DATA_LEVEL) != 36",
              "MON_DATA_HELD_ITEM) != ITEM_NONE",
              "MOVE_HYPNOSIS, MOVE_PSYBEAM, MOVE_TAKE_DOWN, MOVE_REFLECT",
