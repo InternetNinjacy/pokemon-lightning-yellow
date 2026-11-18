@@ -5,6 +5,24 @@ CeruleanCity_MapScripts::
 CeruleanCity_OnTransition::
 	setworldmapflag FLAG_WORLD_MAP_CERULEAN_CITY
 	call_if_unset FLAG_GOT_SS_TICKET, CeruleanCity_EventScript_BlockExits
+	@ Badge unlocks the optional stone; collection never gates Celadon sales.
+	goto_if_unset FLAG_BADGE02_GET, CeruleanCity_HideThunderStone
+	goto_if_set FLAG_GOT_CERULEAN_THUNDER_STONE, CeruleanCity_HideThunderStone
+	clearflag FLAG_HIDE_CERULEAN_THUNDER_STONE
+	end
+
+CeruleanCity_HideThunderStone::
+	setflag FLAG_HIDE_CERULEAN_THUNDER_STONE
+	end
+
+CeruleanCity_EventScript_ThunderStone::
+	goto_if_unset FLAG_BADGE02_GET, CeruleanCity_EndThunderStone
+	goto_if_set FLAG_GOT_CERULEAN_THUNDER_STONE, CeruleanCity_EndThunderStone
+	finditem ITEM_THUNDER_STONE
+	@ The successful native pickup sets VAR_0x8007; a full Bag does not.
+	goto_if_eq VAR_0x8007, FALSE, CeruleanCity_EndThunderStone
+	setflag FLAG_GOT_CERULEAN_THUNDER_STONE
+CeruleanCity_EndThunderStone::
 	end
 
 CeruleanCity_EventScript_BlockExits::
