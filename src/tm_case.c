@@ -1630,7 +1630,7 @@ static u8 CreateDiscSprite(u16 itemId)
     }
     else
     {
-        tmIdx = itemId - ITEM_TM01;
+        tmIdx = itemId == ITEM_TM52 ? NUM_TECHNICAL_MACHINES + NUM_HIDDEN_MACHINES + 1 : itemId - ITEM_TM01;
         SetDiscSpriteAnim(&gSprites[spriteId], tmIdx);
         TintDiscpriteByType(gBattleMoves[ItemIdToBattleMoveId(itemId)].type);
         SetDiscSpritePosition(&gSprites[spriteId], tmIdx);
@@ -1700,7 +1700,7 @@ static void SpriteCB_SwapDisc(struct Sprite *sprite)
             {
                 sprite->sState++;
                 TintDiscpriteByType(gBattleMoves[ItemIdToBattleMoveId(sprite->sItemId)].type);
-                sprite->sItemId -= ITEM_TM01;
+                sprite->sItemId = sprite->sItemId == ITEM_TM52 ? NUM_TECHNICAL_MACHINES + NUM_HIDDEN_MACHINES + 1 : sprite->sItemId - ITEM_TM01;
                 SetDiscSpriteAnim(sprite, sprite->sItemId);
                 SetDiscSpritePosition(sprite, sprite->sItemId);
             }
