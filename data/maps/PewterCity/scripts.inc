@@ -5,6 +5,24 @@ PewterCity_MapScripts::
 PewterCity_OnTransition::
 	setworldmapflag FLAG_WORLD_MAP_PEWTER_CITY
 	setvar VAR_MAP_SCENE_PEWTER_CITY_MUSEUM_1F, 0
+	@ Badge unlocks the optional stone; its claim flag survives later visits.
+	goto_if_unset FLAG_BADGE01_GET, PewterCity_HideWaterStone
+	goto_if_set FLAG_GOT_PEWTER_WATER_STONE, PewterCity_HideWaterStone
+	clearflag FLAG_HIDE_PEWTER_WATER_STONE
+	end
+
+PewterCity_HideWaterStone::
+	setflag FLAG_HIDE_PEWTER_WATER_STONE
+	end
+
+PewterCity_EventScript_WaterStone::
+	goto_if_unset FLAG_BADGE01_GET, PewterCity_EndWaterStone
+	goto_if_set FLAG_GOT_PEWTER_WATER_STONE, PewterCity_EndWaterStone
+	finditem ITEM_WATER_STONE
+	@ Like Route 6 TM34: the item ball remains claimable if the Bag is full.
+	goto_if_eq VAR_0x8007, FALSE, PewterCity_EndWaterStone
+	setflag FLAG_GOT_PEWTER_WATER_STONE
+PewterCity_EndWaterStone::
 	end
 
 @ Impossible to speak to this NPC from a facing dir != DIR_EAST normally, so they arent checked
