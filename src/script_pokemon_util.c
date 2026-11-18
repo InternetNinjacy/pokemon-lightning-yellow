@@ -200,26 +200,6 @@ void SowPrepareScriptedEncounter(void)
     gSpecialVar_Result = TRUE;
 }
 
-// SOW-006: preserve the one wild Noctowl's native personality, ability, IVs and
-// capture identity; only replace the four moves with the owner's approved set.
-void SowPrepareNoctowlEncounter(void)
-{
-    static const u16 moves[MAX_MON_MOVES] = {
-        MOVE_HYPNOSIS, MOVE_PSYBEAM, MOVE_TAKE_DOWN, MOVE_REFLECT
-    };
-    u8 slot;
-
-    gSpecialVar_Result = FALSE;
-    if (GetMonData(&gEnemyParty[0], MON_DATA_SPECIES) != SPECIES_NOCTOWL
-     || GetMonData(&gEnemyParty[0], MON_DATA_LEVEL) != 36
-     || GetMonData(&gEnemyParty[0], MON_DATA_HELD_ITEM) != ITEM_NONE)
-        return;
-
-    for (slot = 0; slot < MAX_MON_MOVES; slot++)
-        SetMonMoveSlot(&gEnemyParty[0], moves[slot], slot);
-    gSpecialVar_Result = TRUE;
-}
-
 void ScriptSetMonMoveSlot(u8 monIndex, u16 move, u8 slot)
 {
     if (monIndex > PARTY_SIZE)
