@@ -1,6 +1,14 @@
 ViridianCity_School_MapScripts::
 	.byte 0
 
+@ Permanent pickup: only hide the ball after the TM Case accepts TM52.
+ViridianCity_School_EventScript_ItemTM52::
+	finditem ITEM_TM52
+	goto_if_eq VAR_0x8007, FALSE, ViridianCity_School_EndTM52
+	setflag FLAG_HIDE_VIRIDIAN_SCHOOL_TM52
+ViridianCity_School_EndTM52::
+	end
+
 ViridianCity_School_EventScript_Lass::
 	lock
 	faceplayer
