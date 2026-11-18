@@ -678,7 +678,7 @@ static void InitTMCaseListMenuItems(void)
 static void GetTMNumberAndMoveString(u8 * dest, u16 itemId)
 {
     StringCopy(gStringVar4, gText_FontSmall);
-    if (itemId >= ITEM_HM01)
+    if (itemId >= ITEM_HM01 && itemId <= ITEM_HM08)
     {
         StringAppend(gStringVar4, sText_ClearTo18);
         StringAppend(gStringVar4, gText_NumberClear01);
@@ -688,7 +688,7 @@ static void GetTMNumberAndMoveString(u8 * dest, u16 itemId)
     else
     {
         StringAppend(gStringVar4, gText_NumberClear01);
-        ConvertIntToDecimalStringN(gStringVar1, itemId - ITEM_TM01 + 1, STR_CONV_MODE_LEADING_ZEROS, 2);
+        ConvertIntToDecimalStringN(gStringVar1, itemId == ITEM_TM52 ? 52 : itemId - ITEM_TM01 + 1, STR_CONV_MODE_LEADING_ZEROS, 2);
         StringAppend(gStringVar4, gStringVar1);
     }
     StringAppend(gStringVar4, sText_SingleSpace);
@@ -1640,7 +1640,7 @@ static u8 CreateDiscSprite(u16 itemId)
 
 static void SetDiscSpriteAnim(struct Sprite *sprite, u8 tmIdx)
 {
-    if (tmIdx >= NUM_TECHNICAL_MACHINES)
+    if (tmIdx >= NUM_TECHNICAL_MACHINES && tmIdx < NUM_TECHNICAL_MACHINES + NUM_HIDDEN_MACHINES)
         StartSpriteAnim(sprite, ANIM_HM);
     else
         StartSpriteAnim(sprite, ANIM_TM);
@@ -1665,7 +1665,7 @@ static void SetDiscSpritePosition(struct Sprite *sprite, u8 tmIdx)
     }
     else
     {
-        if (tmIdx >= NUM_TECHNICAL_MACHINES)
+        if (tmIdx >= NUM_TECHNICAL_MACHINES && tmIdx < NUM_TECHNICAL_MACHINES + NUM_HIDDEN_MACHINES)
             tmIdx -= NUM_TECHNICAL_MACHINES;
         else
             tmIdx += NUM_HIDDEN_MACHINES;
