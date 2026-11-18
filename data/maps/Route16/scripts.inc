@@ -14,6 +14,12 @@ Route16_EventScript_RemoveSnorlax::
 
 Route16_OnTransition::
 	call_if_eq VAR_MAP_SCENE_ROUTE16, 1, Route16_OnTransitionCyclingRoad
+	goto_if_set FLAG_FOUGHT_SOW_NOCTOWL, Route16_HideSowNoctowl
+	clearflag FLAG_HIDE_SOW_NOCTOWL
+	end
+
+Route16_HideSowNoctowl::
+	setflag FLAG_HIDE_SOW_NOCTOWL
 	end
 
 Route16_OnTransitionCyclingRoad::
@@ -73,4 +79,29 @@ Route16_EventScript_CyclingRoadSign::
 
 Route16_EventScript_RouteSign::
 	msgbox Route16_Text_RouteSign, MSGBOX_SIGN
+	end
+
+// SOW-006: optional, challenging wild Noctowl outside the original Fly house.
+// Neither house NPCs/HM02 nor the original Snorlax script are altered.
+Route16_EventScript_SowNoctowl::
+	goto_if_questlog EventScript_ReleaseEnd
+	lock
+	faceplayer
+	goto_if_set FLAG_FOUGHT_SOW_NOCTOWL, Route16_SowNoctowlExit
+	setwildbattle SPECIES_NOCTOWL, 36
+	callnative SowPrepareNoctowlEncounter
+	goto_if_eq VAR_RESULT, FALSE, Route16_SowNoctowlExit
+	dowildbattle
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, Route16_SowNoctowlResolved
+	goto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, Route16_SowNoctowlResolved
+Route16_SowNoctowlExit::
+	release
+	end
+
+Route16_SowNoctowlResolved::
+	setflag FLAG_FOUGHT_SOW_NOCTOWL
+	setflag FLAG_HIDE_SOW_NOCTOWL
+	removeobject VAR_LAST_TALKED
+	release
 	end
