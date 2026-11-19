@@ -81,3 +81,6 @@ __pycache__/
 # Private follower build metadata and local permission records (not tracked art).
 /docs/followers/local-build-metadata.json
 /docs/followers/local-permission-*.txt
+
+# Owner-only generated Playtest005 art registry (never publish source-art bytes).
+/src/follower_assets_private.inc
