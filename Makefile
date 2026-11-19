@@ -85,6 +85,14 @@ SONG_SUBDIR = sound/songs
 MID_SUBDIR = sound/songs/midi
 
 C_BUILDDIR = $(OBJ_DIR)/$(C_SUBDIR)
+
+# Expand object target only after OBJ_DIR/C_BUILDDIR are defined.
+ifeq ($(FOLLOWER_PLAYTEST005),1)
+$(C_BUILDDIR)/follower_assets.o: CPPFLAGS += -DFOLLOWER_ART_REGISTRY='"follower_assets_private.inc"'
+$(C_BUILDDIR)/follower_assets.o: src/follower_assets_private.inc
+endif
+$(C_BUILDDIR)/follower_assets.o: src/follower_assets_generated.inc
+
 ASM_BUILDDIR = $(OBJ_DIR)/$(ASM_SUBDIR)
 DATA_ASM_BUILDDIR = $(OBJ_DIR)/$(DATA_ASM_SUBDIR)
 SONG_BUILDDIR = $(OBJ_DIR)/$(SONG_SUBDIR)
@@ -295,11 +303,6 @@ clean-generated:
 	@rm -f $(AUTO_GEN_TARGETS)
 	@echo "rm -f <AUTO_GEN_TARGETS>"
 
-ifeq ($(FOLLOWER_PLAYTEST005),1)
-$(C_BUILDDIR)/follower_assets.o: CPPFLAGS += -DFOLLOWER_ART_REGISTRY='"follower_assets_private.inc"'
-$(C_BUILDDIR)/follower_assets.o: src/follower_assets_private.inc
-endif
-$(C_BUILDDIR)/follower_assets.o: src/follower_assets_generated.inc
 
 ifeq ($(MODERN),0)
 # The locally generated 252-species graphics registry is a real C dependency.
