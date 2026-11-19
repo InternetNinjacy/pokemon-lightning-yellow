@@ -1,5 +1,6 @@
 """Byte-exact approved Vermilion Tucker source projection for frozen historical tests."""
 from pathlib import Path
+from approved_historical_reconstruction import reverse_pinned_records
 REVIEWED = [
   {
     "path": "src/data/trainer_parties.h",
@@ -20,7 +21,21 @@ def prior_gym001_tucker_source(path, text=None):
             continue
         before, after = record["before"], record["after"]
         if text.count(after) == 1:
-            text = text.replace(after,before,1)
+            # Preserve the original accepted/current-or-historical contract,
+            # while enforcing pinned, entire-record equivalence for new data.
+            identity, kind = (
+                ("sParty_GentlemanTucker", "trainer_party")
+                if str(path) == "src/data/trainer_parties.h"
+                else ("GENTLEMAN_TUCKER", "trainer_metadata")
+            )
+            text = reverse_pinned_records(
+                text,
+                path=str(path),
+                approved_commit="02240690581eb70d70219024fb7f55da2882308b",
+                historical_commit="21a3630b3d51481ab10a1af9637fa1ced73722cc",
+                identities=(identity,),
+                kind=kind,
+            )
         else:
             assert text.count(before) == 1, "Unreviewed Tucker source modification: " + str(path)
     return text
