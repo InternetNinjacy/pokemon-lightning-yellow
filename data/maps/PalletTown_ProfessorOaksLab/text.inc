@@ -363,17 +363,17 @@ PalletTown_ProfessorOaksLab_Text_OakPikachuIntroduction::
     .string "OAK: {RIVAL}?\n"
     .string "Oh, that's right! You came, too.\p"
     .string "Now, {PLAYER}, I've set aside a\n"
-    .string "PIKACHU for you.\p"
+    .string "PICHU for you.\p"
     .string "It's in the middle POKé BALL.\p"
     .string "{RIVAL}, be patient. Your turn\n"
     .string "will come!$"
 
 PalletTown_ProfessorOaksLab_Text_OakPikachuWaiting::
-    .string "OAK: {PLAYER}, the PIKACHU is\n"
+    .string "OAK: {PLAYER}, the PICHU is\n"
     .string "waiting in the middle ball.$"
 
 PalletTown_ProfessorOaksLab_Text_OakChoosingPikachu::
-    .string "OAK: So, you'll take PIKACHU?\n"
+    .string "OAK: So, you'll take PICHU?\n"
     .string "It's full of energy!$"
 
 PalletTown_ProfessorOaksLab_Text_ReservedPokeBall::
