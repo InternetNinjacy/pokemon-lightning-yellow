@@ -37,3 +37,11 @@ Accounting remains 50 task IDs, 461 earned / 251 remaining / 712 total; no accep
 - Main's tracked `src/follower_assets_generated.inc` is the zero-art registry; it does not embed 255 descriptors. The private 255-descriptor registry must be regenerated locally from the 765 pinned private inputs. Neither the descriptors nor artwork are present as compiled private bytes in GitHub.
 - Main follower controller and graphics implement additional object ownership/lifecycle logic absent in the older private copies. Retain main and merge only specific private behavior after examining each delta.
 - No tests, builds, emulator, CI, merges, or public binary uploads performed. No gameplay acceptance claimed.
+
+## Pichu opening source commits (2026-11-18)
+- `ff981236e749bfdc433f315fa02b5c98ec397bf4`: change only the Oak lab starter species assignment to `SPECIES_PICHU`, keeping main's newer starter follower-emergence sequence and SUE gift.
+- `13e9b6172957cadaa6393ff3a8a81b4e4be243b8`: change follower-starter selection guard and emergence cry from Pikachu to Pichu. Existing special name remains `ScriptSelectStarterPikachuFollower` for compatibility with registered scripts; naming cleanup is deferred.
+- Main controller includes `SetIntroDisplay` and `SetIntroVisible` required by main's opening; private controller lacks these APIs. Main graphics adds ownership checks (`FollowerGraphics_OwnsSprite` / `FollowerGraphics_OwnsEvent`). Do not wholesale overwrite these newer production safety behaviors.
+- Private controller has extra follower-direction reset / event validity logic; it is NOT yet ported. Functional reconciliation requires a targeted merge, not replacing main. No runtime validation has been performed.
+- Main SUE gift is already implemented; no replacement needed. The 255-descriptor art table is still absent and must be generated privately.
+- Environment checked: `/workspace/lightning-toolchain/root` and `/tmp/ly-owner-playtest004-r3` do not exist, and `arm-none-eabi-gcc` is unavailable. Only Playtest003 ROM was found under `/mnt/data`; it is not a substitute for Playtest004 artwork inputs.
