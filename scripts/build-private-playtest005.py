@@ -91,9 +91,8 @@ def main():
     if args.offline:
         env["FOLLOWER_CACHE_ONLY"] = "1"
 
-    # Force fresh object selection; never reuse a production zero-art object.
-    # This runs only inside the owner's isolated checkout.
-    subprocess.run(["make", "tidy"], cwd=ROOT, env=env, check=True)
+    # The private Makefile target clears old ROMs/objects before converting art.
+    # The driver intentionally does not clean twice.
     started = time.time()
     print("Building private Playtest005 from source commit", source, flush=True)
     subprocess.run(["make", "private-playtest005-rom"], cwd=ROOT, env=env, check=True)
@@ -109,6 +108,10 @@ def main():
     registry_digest = sha256_file(generated)
     if meta.get("generated_sha256") != registry_digest or meta.get("graphics_records") != 255:
         raise RuntimeError("generated follower registry does not match the build input metadata")
+    if meta.get("upstream_git_tree") != "cbe04a7a2ef645bee19d159876da074154ccf1f2":
+        raise RuntimeError("private art metadata has the wrong pinned source revision")
+    if meta.get("base_species_count") != 252 or meta.get("castform_form_count") != 3:
+        raise RuntimeError("private art metadata has the wrong approved roster")
     if meta.get("source_file_count") != 765 or "sFollowerArtCount = 0" in generated.read_text():
         raise RuntimeError("private ROM appears to use the zero-art fallback")
     if not (2 * 1024 * 1024 <= rom.stat().st_size <= 32 * 1024 * 1024):
