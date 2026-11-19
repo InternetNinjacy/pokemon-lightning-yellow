@@ -4,6 +4,11 @@ Canonical branch: `main`. Updated 2026-11-17. Audited gameplay revision: `28dd82
 
 Overall: `[######----]` **64.75% complete /35.25% remaining** (461 earned +251 remaining;712 provisional effort points).
 
+### Master Control GYM-001/002 source/ownership checkpoint — 2026-11-17
+
+At live `main` `b209617cd0c6b9c1a8fe5d8ad7a883b533931395` (compared against the prior checkpoint; identical), **do not interpret the historical `not started` implementation labels for GYM-001/002 as evidence that the Gym code is absent**. The current tracker records already implemented Viridian eight-Trainer/bag content, Pewter TM07/Hail reward, and independently staged Gym source increments; the open PR inventory also contains stacked approved Viridian, Vermilion, Celadon, Fuchsia, Cerulean and leader changes. These are ownership/history facts, **not** authorization to reapply old PR branches or claim the full Gym task is accepted. Before a new Gym edit, compare the exact approved trainer/leader source-ID mapping and remaining party/dialogue delta against live `src/data/trainers.h`, map scripts, and open PR heads. Only implement a complete owner-approved, nonoverlapping residual. Missing individual levels/moves and unmapped source IDs remain design/reconciliation blockers; no guessed parties. No new production behavior, test, build, CI, merge, or effort credit is claimed by this documentation checkpoint. Preserve 50 IDs and 461 earned / 251 remaining / 712 total.
+
+
 PR54followers and PR235fourpostLeaguelegends engineering-merged normally; full merged source tree equals checked/built source. Ownerphysicaltesting remainsdeferred/unaccepted. ViridianeightTrainer/baggroup isALREADYIMPLEMENTEDexactly, notduplicated.461/251/712 unchanged.
 
 These are estimates of tracked work, not elapsed hours or release certification. Every permanent ID and earned-history entry is retained. Approved Ponyta and Ranger work expanded the scope; the denominator is the sum of the current task effort estimates. Adding scope changes it without erasing completed work. Repeated regression is not duplicate implementation credit.
