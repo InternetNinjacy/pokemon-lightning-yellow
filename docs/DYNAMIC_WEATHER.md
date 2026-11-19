@@ -51,8 +51,11 @@ FireRed's drought loader is stubbed and can stall. Mechanical WEATHER_DROUGHT no
 uses existing clear/Sunny callbacks and a normal fade endpoint. No new tint/color,
 art, particles, palette table or imported project code is added. Sun therefore
 has clear daytime field appearance, with real sunlight mechanics in battles.
-Custom Sun visuals, final day/night tinting, covered periods, Lavender lighting
-and Mansion fog remain separate WTH-002/TIM-003 work requiring their own evidence.
+Custom Sun visuals and remaining final day/night tinting, covered periods, and
+Lavender lighting remain separate WTH-002/TIM-003 acceptance work requiring their
+own evidence. Mansion fog is not an unimplemented future feature: its approved
+scoped implementation was merged in TIM-003 PR #90. This document does not certify
+complete visual acceptance or additional unapproved weather effects.
 Neutral forest weather retains the native shade header. Other existing weather
 renderers/assets and licensing notices are preserved.
 
