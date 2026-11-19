@@ -72,3 +72,12 @@ Accounting remains 50 task IDs, 461 earned / 251 remaining / 712 total; no accep
 - The pinned manifest permits a **future owner-side exact reconstruction**, but does not itself contain the artwork bytes or grant permission. No compilation or gameplay acceptance is claimed. Preserve 50 task IDs and 461/251/712.
 
 - `1a4d36a0cb8982f96267b38053e30b67e71452ec`: recovered the exact agbcc **source revision** `da598c1d918402c42c0c0d7128ba14567f3175e9` from repository `docs/UPSTREAM.md` and added it to the owner-side recovery procedure. This is a source pin, not a recovered executable or a completed build.
+
+## Playtest005 source hardening and dependency inventory (2026-11-18)
+- `4378c21aac7801bd6bbfe41902997cab5fc8dfa2`: tighten private ROM output location and overwrite safeguards, and record the expected agbcc revision as **not independently verified** rather than claiming installed binary provenance.
+- `5b7d6fb3bba9d0f798817239e50133ba388ca1d3`: correct compiler recovery instructions formatting.
+- `f6d49c686c5ac30fd4e242d98c0bf4f8863c4a10`: make direct `private-playtest005-rom` invocations clear stale compiled objects/ROMs before private art conversion.
+- `6026e20c6bf02c43248c416d448fa246383e1227`: avoid duplicate cleanup in the driver and check the exact pinned artwork revision and 252+3 roster after the private target.
+- `0880a00746830e1ce2ba59c646e7f5fb11f14a6f`: add a read-only owner-side inventory script for 765 cached file hashes, attribution record, native tools and optional exact agbcc source checkout; not run here.
+- `786a1ce2ab8a278af513a911ff5f0f2be67af3a5`: document owner-only invocation and limitations of the dependency inventory.
+- The exact art source revision and agbcc source revision are known; original private art bytes and installed ARM/agbcc executables remain unavailable in this assistant runtime. The private builder and inventory script have not been executed, compiled or tested. No ROM, art, CI, emulator, or main merge; accounting unchanged at 50 task IDs and 461/251/712.
