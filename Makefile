@@ -23,7 +23,7 @@ private-playtest005-rom:
 	@test "$(FOLLOWER_ART_PERMISSION_CONFIRMED)" = "1" || (echo "Private art scope confirmation required"; exit 1)
 	@test -s "$(FOLLOWER_ATTRIBUTION_FILE)" || (echo "Private art attribution/permission record missing"; exit 1)
 	FOLLOWER_CACHE_ONLY="$(FOLLOWER_CACHE_ONLY)" python3 scripts/build-follower-assets-private-playtest005.py --confirmed-scope
-	python3 scripts/check-follower-build-readiness.py --attribution "$(FOLLOWER_ATTRIBUTION_FILE)"
+	python3 scripts/check-follower-build-readiness.py --registry src/follower_assets_private.inc --attribution "$(FOLLOWER_ATTRIBUTION_FILE)"
 	$(MAKE) rom FOLLOWER_PLAYTEST005=1
 
 # Toolchain selection
