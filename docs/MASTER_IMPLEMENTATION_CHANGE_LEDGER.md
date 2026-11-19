@@ -2252,3 +2252,17 @@ Outstanding physical tests: followeropening/selection/movement/maps/faint/remova
 
 
 Bounded Viridian source reconciliation avoids duplicate work: actualmain7ccecca7 already contains all8exact approved party arrays fromPR197/199/200/201/202/204/205/206, matchingallmetadata exceptlaterapprovedPR210healingbags. All8bagsoneSuperPotion+oneFullHeal, allSingles; Giovanni'sseparatebagunchanged. This was existingcode, notnewimplementation/testacceptance. Pinnedheads/trainers recordedunderGYM001source_reconciliations incanonicalJSON. Do notmerge stale fullbranches orredo theseparties. Follow-upboundedLuis/Misty/Erika/Koga/Giovanni sourceparity checkselectsactualremainingdelta; unapproved TM51speciesmatrixstillheld. Accountingunchanged.
+
+
+## 2026-11-18 — Master Control merged-source / acceptance reconciliation (documentation only)
+
+This entry records observed GitHub integration separately from owner acceptance; it does **not** modify gameplay, retroactively approve a failed check, or award points. The canonical tracker/dashboard still carry historical audited SHA `28dd82b5d9a684455a36f6458ac88a3e7e45d4ed`, not the observed live main tip `4fd313fe4dfed0412f2e91ed7e876a9bf0b717fc`.
+
+| Workstream | Source integration evidence | Existing acceptance evidence / unresolved limitation |
+|---|---|---|
+| WRL-003 stone pickups and Celadon supplier, PR #283 | Merged source head `b430fdc5c9efa167d0eacd7fc4b5b3384c5513b3` as main commit `c46d13ed93246b272225700e5880dec3ba869759` | Exact-head PR-triggered workflow lookup returned no runs; required modified and independent-baseline SUCCESS not established by this lookup. |
+| SOW-006 Route 16 Noctowl, PR #284 | Merged source head `4320aabb12bcca29c0d462c86de3376a9d74edd3` as `10ef9740c5053ca9fd073227cfa9294ea5527044` | Mandatory Battle Split workflow #44319187690 FAILURE; focused #44319187700 SUCCESS. Source merged, acceptance not established. |
+| Viridian school TM52, PR #285 | Merged source head `404beadb00bb5806990daa0d8735c7a028ed68eb` as `df043f7f98df9cd46a78943e432ffb57847878d4` | Exact-head workflow #44429183584 FAILURE; #44429183633 IN_PROGRESS at prior checkpoint. Do not infer a terminal result without a new read. |
+| Misty approved four-member Double, PR #286 | Merged source head `0dc95a4b062fe664b0b662a9d96d37a4f9ae86da` as `4fd313fe4dfed0412f2e91ed7e876a9bf0b717fc` | Exact-head #44429206055 FAILURE, #44429205864 SUCCESS, #44429205833 FAILURE, #44429205944 SUCCESS. Owner-closed Misty gameplay/controller discussion remains closed; no new gameplay defect inferred. |
+
+The PR merges above are historical facts, **not** authorization to merge future branches with failed mandatory checks. Current policy PR #245 remains open/nonmergeable at `e22e8908a2bd69e2b6ea5f2a828aa1ebe5a8c509`. Existing WRL-002/009 hourly specialist and private Playtest004 ownership are protected. No test expansion, build, emulator, CI dispatch, merge, or gameplay edit was performed for this reconciliation. Preserve all 50 permanent IDs and **461 earned / 251 remaining / 712 total**. Source of the prior checkpoints: [Master Control issue #105](https://github.com/InternetNinjacy/pokemon-lightning-yellow/issues/105), comments 6995118267, 6995746425, 6996090170. Follow-up: isolate a genuinely unowned, fully approved production delta rather than reimplementing these merged features; separately review merge-gate compliance with the owner.
