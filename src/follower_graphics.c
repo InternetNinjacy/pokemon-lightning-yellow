@@ -276,6 +276,11 @@ void FollowerGraphics_InvalidateAfterSpriteReset(void)
     sFollowerEventBound = FALSE;
 }
 
+bool8 FollowerGraphics_HasValidObjectEvent(void)
+{
+    return FollowerGraphics_OwnsEvent();
+}
+
 u8 FollowerGraphics_GetObjectEventId(void)
 {
     if (!FollowerGraphics_OwnsEvent())
