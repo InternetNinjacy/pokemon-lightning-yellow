@@ -34,22 +34,28 @@ def main():
         or manifest.get("tree_truncated") is not False or manifest.get("entries_count") != 765
         or len(entries) != 765 or len({e.get("path") for e in entries}) != 765):
         failures.append("pinned artwork manifest is incomplete or unexpected")
-    missing, mismatched = 0, 0
+    missing, mismatched, invalid = 0, 0, 0
     cache = args.cache.resolve()
     for entry in entries:
         rel = entry.get("path")
-        if not isinstance(rel, str) or not rel.startswith("graphics/pokemon/") or ".." in Path(rel).parts:
-            failures.append("invalid pinned artwork path")
+        if (not isinstance(rel, str) or not rel.startswith("graphics/pokemon/")
+            or Path(rel).is_absolute() or ".." in Path(rel).parts):
+            invalid += 1
             continue
         asset = cache / rel
+        # Reject symlinked files/directories escaping the private cache root.
+        if cache not in asset.resolve().parents:
+            invalid += 1
+            continue
         if not asset.is_file():
             missing += 1
             continue
         data = asset.read_bytes()
         if len(data) != entry.get("bytes") or blob_sha(data) != entry.get("git_blob_sha1"):
             mismatched += 1
-    print(f"Pinned art cache: {len(entries) - missing - mismatched}/{len(entries)} files hash-matched; missing={missing}; mismatched={mismatched}")
-    if missing or mismatched:
+    matched = len(entries) - missing - mismatched - invalid
+    print(f"Pinned art cache: {matched}/{len(entries)} files hash-matched; missing={missing}; mismatched={mismatched}; invalid={invalid}")
+    if missing or mismatched or invalid:
         failures.append("private artwork cache incomplete or mismatched")
     if not args.attribution or not args.attribution.is_file() or len(args.attribution.read_text(encoding="utf-8").strip()) < 40:
         failures.append("local permission/attribution record not supplied or incomplete")
