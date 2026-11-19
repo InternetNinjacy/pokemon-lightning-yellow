@@ -19,7 +19,7 @@
 void ScriptSelectStarterPikachuFollower(void)
 {
     if (!QL_IS_PLAYBACK_STATE && gPlayerPartyCount != 0
-     && GetMonData(&gPlayerParty[0], MON_DATA_SPECIES) == SPECIES_PIKACHU
+     && GetMonData(&gPlayerParty[0], MON_DATA_SPECIES) == SPECIES_PICHU
      && FollowerState_SelectPartySlot(0))
         FollowerController_RequestRefresh();
 }
@@ -143,7 +143,7 @@ static void Task_StarterFollowerEmergence(u8 taskId)
         StartSpriteAnim(&gSprites[ball], 1);
         PlaySE(SE_BALL_OPEN);
         FollowerController_SetIntroVisible(TRUE);
-        PlayCry_Normal(SPECIES_PIKACHU, 0);
+        PlayCry_Normal(SPECIES_PICHU, 0);
         task->tTimer = 0;
         task->tState = 2;
     }
