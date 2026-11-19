@@ -61,7 +61,8 @@ def main():
         failures.append("local permission/attribution record not supplied or incomplete")
     devkitarm = os.environ.get("DEVKITARM")
     path = os.pathsep.join(([str(Path(devkitarm) / "bin")] if devkitarm else []) + [os.environ.get("PATH", "")])
-    tools = ("make", "arm-none-eabi-as", "arm-none-eabi-ld", "arm-none-eabi-objcopy")
+    tools = ("make", "git", "python3", "arm-none-eabi-as", "arm-none-eabi-ld",
+             "arm-none-eabi-objcopy", "arm-none-eabi-objdump", "arm-none-eabi-cpp")
     missing_tools = [name for name in tools if shutil.which(name, path=path) is None]
     if missing_tools:
         failures.append("missing host tools: " + ", ".join(missing_tools))
