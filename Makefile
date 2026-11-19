@@ -16,6 +16,16 @@ private-followers-rom:
 	python3 scripts/check-follower-build-readiness.py --attribution "$(FOLLOWER_ATTRIBUTION_FILE)"
 	$(MAKE) rom
 
+
+# Isolated owner-only Playtest005 build; do not replace the tracked zero-art registry.
+.PHONY: private-playtest005-rom
+private-playtest005-rom:
+	@test "$(FOLLOWER_ART_PERMISSION_CONFIRMED)" = "1" || (echo "Private art scope confirmation required"; exit 1)
+	@test -s "$(FOLLOWER_ATTRIBUTION_FILE)" || (echo "Private art attribution/permission record missing"; exit 1)
+	FOLLOWER_CACHE_ONLY="$(FOLLOWER_CACHE_ONLY)" python3 scripts/build-follower-assets-private-playtest005.py --confirmed-scope
+	python3 scripts/check-follower-build-readiness.py --attribution "$(FOLLOWER_ATTRIBUTION_FILE)"
+	$(MAKE) rom FOLLOWER_PLAYTEST005=1
+
 # Toolchain selection
 TOOLCHAIN := $(DEVKITARM)
 # don't use dkP's base_tools anymore
@@ -287,6 +297,10 @@ clean-generated:
 ifeq ($(MODERN),0)
 # The locally generated 252-species graphics registry is a real C dependency.
 # Without this edge an incremental private build may reuse a zero-art object.
+ifeq ($(FOLLOWER_PLAYTEST005),1)
+$(C_BUILDDIR)/follower_assets.o: CPPFLAGS += -DFOLLOWER_ART_REGISTRY='"follower_assets_private.inc"'
+$(C_BUILDDIR)/follower_assets.o: src/follower_assets_private.inc
+endif
 $(C_BUILDDIR)/follower_assets.o: src/follower_assets_generated.inc
 
 $(C_BUILDDIR)/agb_flash.o: CFLAGS := -O -mthumb-interwork
