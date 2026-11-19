@@ -15,7 +15,7 @@ import time
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-PR256_ANCHOR = "4fd313fe4dfed0412f2e91ed7e876a9bf0b717fc"
+PRODUCTION_MAIN_ANCHOR = "4fd313fe4dfed0412f2e91ed7e876a9bf0b717fc"
 ROM_NAME = "pokefirered.gba"
 
 
@@ -42,8 +42,8 @@ def main():
     args = parser.parse_args()
 
     # Do not mislabel an ordinary or obsolete game build as Playtest005.
-    # The exact approved Pichu/Sue commit must be an ancestor of this checkout.
-    subprocess.run(["git", "merge-base", "--is-ancestor", PR256_ANCHOR, "HEAD"],
+    # The pinned production-main snapshot must be an ancestor of this checkout.
+    subprocess.run(["git", "merge-base", "--is-ancestor", PRODUCTION_MAIN_ANCHOR, "HEAD"],
                    cwd=ROOT, check=True)
     source = command("git", "rev-parse", "HEAD")
     dirty = command("git", "status", "--porcelain", "--untracked-files=no")
@@ -86,10 +86,14 @@ def main():
     if tool_dirs:
         env["PATH"] = tool_path
     env["FOLLOWER_ART_PERMISSION_CONFIRMED"] = "1"
+    env["FOLLOWER_PLAYTEST005"] = "1"
     env["FOLLOWER_ATTRIBUTION_FILE"] = str(notice)
     if args.offline:
         env["FOLLOWER_CACHE_ONLY"] = "1"
 
+    # Force fresh object selection; never reuse a production zero-art object.
+    # This runs only inside the owner's isolated checkout.
+    subprocess.run(["make", "clean"], cwd=ROOT, env=env, check=True)
     started = time.time()
     print("Building private Playtest005 from source commit", source, flush=True)
     subprocess.run(["make", "private-playtest005-rom"], cwd=ROOT, env=env, check=True)
@@ -117,7 +121,7 @@ def main():
         details = {
             "build": "Playtest005",
             "source_head": source,
-            "source_includes_production_main_anchor": PR256_ANCHOR,
+            "source_includes_production_main_anchor": PRODUCTION_MAIN_ANCHOR,
             "artwork_source_tree": meta.get("upstream_git_tree"),
             "artwork_source_count": meta["source_file_count"],
             "follower_graphics_descriptors": meta["graphics_records"],
