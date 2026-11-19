@@ -68,8 +68,10 @@ def main():
     devkitarm = os.environ.get("DEVKITARM")
     tool_dirs = [str(Path(devkitarm) / "bin")] if devkitarm else []
     tool_path = os.pathsep.join(tool_dirs + [os.environ.get("PATH", "")])
-    missing = [name for name in ("make", "arm-none-eabi-as", "arm-none-eabi-ld",
-                                "arm-none-eabi-objcopy") if shutil.which(name, path=tool_path) is None]
+    missing = [name for name in ("make", "git", "python3", "arm-none-eabi-as",
+                                "arm-none-eabi-ld", "arm-none-eabi-objcopy",
+                                "arm-none-eabi-objdump", "arm-none-eabi-cpp")
+               if shutil.which(name, path=tool_path) is None]
     if missing:
         parser.error("missing required native GBA tools: " + ", ".join(missing))
     # The project defaults to the pinned non-modern compiler, not host gcc.
