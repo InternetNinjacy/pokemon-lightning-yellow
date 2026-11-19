@@ -52,13 +52,14 @@ After confirming the permission/credit record and recovering toolchain and cache
 ```sh
 cd /private/path/to/pokemon-lightning-yellow
 export FOLLOWER_CACHE=/private/path/to/lightning-follower-assets
-python3 scripts/build-private-playtest005.py \\
+python3 scripts/build-private-playtest005.py \
+  --expected-head "$(git rev-parse HEAD)" \\
   --attribution /private/path/to/artist-permissions-and-credits.txt \\
   --output-dir /private/path/to/playtest005-output \\
   --offline
 ```
 
-Omit `--offline` **only** if pinned upstream fetching is authorized and necessary. The resulting outputs, if successful, are `Playtest005.gba` and `Playtest005.build.json`. No runtime/gameplay claim follows from their existence. Do not run this command under the current source-only instruction.
+Independently confirm the full SHA supplied to `--expected-head` against the approved staging head **before** invoking the command. The driver now refuses unexpected source commits, modified or untracked source files, and permission records stored inside the checkout. The native tool preflight also checks `arm-none-eabi-cpp` and `arm-none-eabi-objdump`.\n\nOmit `--offline` **only** if pinned upstream fetching is authorized and necessary. The resulting outputs, if successful, are `Playtest005.gba` and `Playtest005.build.json`. No runtime/gameplay claim follows from their existence. Do not run this command under the current source-only instruction.
 
 ## E. Fail-closed handoff checks
 
