@@ -43,6 +43,7 @@ static bool8 sHasCopiedFrame;
 static bool8 sFrameMirrored;
 static u8 sWalkFrameCounter;
 static u8 sFollowerDirection;
+static bool8 sHasFollowerDirection;
 static bool8 sIntroDisplay;
 static bool8 sIntroVisible;
 
@@ -52,6 +53,7 @@ static void ResetTrail(void)
     sLastPlayerObjectId = OBJECT_EVENTS_COUNT;
     sWalkFrameCounter = 0;
     sFollowerDirection = DIR_SOUTH;
+    sHasFollowerDirection = FALSE;
 }
 
 void FollowerController_RequestRefresh(void)
@@ -315,9 +317,10 @@ void FollowerController_Tick(void)
         sFollowerDirection = DIR_SOUTH;
     else if (follower->currentCoords.y < follower->previousCoords.y)
         sFollowerDirection = DIR_NORTH;
-    else if (player->currentCoords.x == player->previousCoords.x
-          && player->currentCoords.y == player->previousCoords.y)
+    else if (!sHasFollowerDirection)
         sFollowerDirection = GetPlayerFacingDirection();
+    // ResetTrail clears this when the map, follower or binding changes.
+    sHasFollowerDirection = TRUE;
     // Keep the follower's travel direction throughout the player's entire
     // in-progress step, especially while rounding corners.
     direction = sFollowerDirection;
