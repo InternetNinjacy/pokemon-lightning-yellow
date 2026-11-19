@@ -54,3 +54,11 @@ Accounting remains 50 task IDs, 461 earned / 251 remaining / 712 total; no accep
 - `7b5122979e775f191a48043b2901f5b94afa78bf`: ensure the readiness gate checks `src/follower_assets_private.inc`, not the production zero-art include.
 - The build driver and make target are source-only and **unverified**. They require an isolated checkout, permission-cleared cache, attribution record, agbcc/ARM toolchain, and a later authorized private compile. Do not claim build success or runtime acceptance.
 - No tests, builds, emulators, broad CI, or merges performed. Project accounting remains 50 IDs, 461/251/712.
+
+## Playtest005 dialogue/build source audit (2026-11-18)
+- `9a7944c576d04e7a6dfa55c29e5c0f54cf03e21a`: update the three visible Oak lab starter dialogue strings from PIKACHU to PICHU, preserving existing script labels and production scene flow.
+- `4e8bb7c3dfdd09f6c026b7cf5190dd42017f75db`: move private follower-registry compile dependency outside the legacy-only `MODERN=0` conditional, retaining the production zero-art dependency.
+- `faf3b4728050ba4207419230653092bf8a2fb98e`: clarify the Playtest005 build driver's pinned production-main ancestry, export the private registry mode, and require fresh object selection.
+- `c9c62e9df62612190a975feba4ec481391660d84`: use `make tidy` instead of `make clean` in the isolated private build driver, avoiding unnecessary deletion of local tool artifacts.
+- Connected Drive keyword searches for `Playtest004`, `Playtest005`, `follower_assets_private`, `devkitARM`, `agbcc`, and `765` returned documentation matches only, no recovered 765-file private cache or executable ARM toolchain. Historical paths `/workspace/lightning-toolchain/root` and `/tmp/ly-owner-playtest004-r3` are absent in this runtime; `/mnt/data` contains Playtest003, not Playtest004 assets.
+- All changes remain source-only. The Playtest005 builder, artwork import, native compilation, emulator, gameplay tests, broad CI, and merges have NOT been run. No ROM exists and no gameplay acceptance is claimed.
