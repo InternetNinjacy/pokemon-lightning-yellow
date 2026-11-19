@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build a PRIVATE owner-playtested ROM from the approved Pichu/Sue + follower sources.
+"""Prepare a PRIVATE owner-playtest ROM from the approved Pichu/Sue + follower sources.
 
 No gameplay tests, no auto-publishing, no ROM or source artwork committed to Git.
 This script must run in an isolated, permission-cleared, GBA build-capable checkout.
@@ -74,12 +74,12 @@ def main():
         parser.error("MODERN=1 requires arm-none-eabi-gcc")
 
     output = args.output_dir.resolve()
-    if os.path.commonpath([str(ROOT), str(output)]) == str(ROOT):
+    if output == ROOT or ROOT in output.parents:
         parser.error("private game output must be OUTSIDE the repository")
     output.mkdir(parents=True, exist_ok=True)
     target = output / "Playtest005.gba"
     manifest_file = output / "Playtest005.build.json"
-    if target.exists() or manifest_file.exists():
+    if target.exists() or target.is_symlink() or manifest_file.exists() or manifest_file.is_symlink():
         parser.error("refusing to overwrite an existing owner's Playtest005 ROM/manifest")
 
     env = os.environ.copy()
@@ -121,6 +121,8 @@ def main():
         details = {
             "build": "Playtest005",
             "source_head": source,
+            "expected_agbcc_source_revision": "da598c1d918402c42c0c0d7128ba14567f3175e9",
+            "agbcc_revision_independently_verified": False,
             "source_includes_production_main_anchor": PRODUCTION_MAIN_ANCHOR,
             "artwork_source_tree": meta.get("upstream_git_tree"),
             "artwork_source_count": meta["source_file_count"],
