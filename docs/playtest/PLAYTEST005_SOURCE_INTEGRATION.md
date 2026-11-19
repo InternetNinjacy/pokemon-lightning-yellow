@@ -81,3 +81,11 @@ Accounting remains 50 task IDs, 461 earned / 251 remaining / 712 total; no accep
 - `0880a00746830e1ce2ba59c646e7f5fb11f14a6f`: add a read-only owner-side inventory script for 765 cached file hashes, attribution record, native tools and optional exact agbcc source checkout; not run here.
 - `786a1ce2ab8a278af513a911ff5f0f2be67af3a5`: document owner-only invocation and limitations of the dependency inventory.
 - The exact art source revision and agbcc source revision are known; original private art bytes and installed ARM/agbcc executables remain unavailable in this assistant runtime. The private builder and inventory script have not been executed, compiled or tested. No ROM, art, CI, emulator, or main merge; accounting unchanged at 50 task IDs and 461/251/712.
+
+## Playtest005 private build safeguards (source-only, 2026-11-18)
+- `bfc90b5493cd0b44b35a9928df6dd91a1a6aafaa`: move private follower object-specific Makefile rule below the `C_BUILDDIR` assignment so its target path is expanded with a defined build directory; prevents a rule silently targeting the wrong object path.
+- `c6a2e5834f13078722a232eaaa3d09f6cb261e15`: harden the read-only 765-file inventory against invalid or escaping cache paths, and count invalid/missing/mismatched entries separately.
+- `4632d5523be12bd3c972563ff60f5128027ef24a`: require an exact owner-approved full source commit SHA, reject untracked source modifications, and keep the private permission record outside the checkout.
+- `d44f1bf3b186596ae2b8659c83fcffc4d9bbbb07` and `c111fb8d2001605ff1ab9bf88dc764124f5d9f42`: check Git, Python and the native ARM preprocessor/objdump tools in the private driver and inventory preflight.
+- `266849f349a89e675b3fcccf410d94fcf0239b57`: update owner recovery instructions for the SHA guard and expanded tool requirements.
+- **Not executed:** builds, tests, emulator, CI, runtime validation, merges, or private asset publication. The original 765 artwork files and pinned compiler executable are still missing from this assistant runtime. Source-level inspection is not evidence of build success. Preserve 50 IDs and 461/251/712.
