@@ -37,6 +37,8 @@ def main():
                         help="Existing local artist/source permissions-and-credits file")
     parser.add_argument("--output-dir", type=Path, required=True,
                         help="Private output folder outside the Git working tree")
+    parser.add_argument("--expected-head", required=True,
+                        help="Exact 40-character staging source commit approved for this private build")
     parser.add_argument("--offline", action="store_true",
                         help="Use only already cached, pinned and permission-cleared art")
     args = parser.parse_args()
@@ -46,7 +48,11 @@ def main():
     subprocess.run(["git", "merge-base", "--is-ancestor", PRODUCTION_MAIN_ANCHOR, "HEAD"],
                    cwd=ROOT, check=True)
     source = command("git", "rev-parse", "HEAD")
-    dirty = command("git", "status", "--porcelain", "--untracked-files=no")
+    if len(args.expected_head) != 40 or any(c not in "0123456789abcdef" for c in args.expected_head.lower()):
+        parser.error("--expected-head must be a full 40-character Git commit SHA")
+    if source != args.expected_head.lower():
+        parser.error("source HEAD differs from the exact owner-approved Playtest005 commit")
+    dirty = command("git", "status", "--porcelain", "--untracked-files=normal")
     if dirty:
         parser.error("working source is modified; use a clean private checkout to protect the Pichu/Sue build")
     if not (ROOT / "docs/followers/expected-source-blobs.json").is_file():
@@ -55,6 +61,8 @@ def main():
         parser.error("Playtest005 Pichu/Sue staging record missing")
 
     notice = args.attribution.resolve()
+    if notice == ROOT or ROOT in notice.parents:
+        parser.error("private attribution/permission record must be stored outside Git checkout")
     if not notice.is_file() or len(notice.read_text(encoding="utf-8").strip()) < 40:
         parser.error("a complete local artist permission/attribution record is required")
     devkitarm = os.environ.get("DEVKITARM")
@@ -76,6 +84,8 @@ def main():
     output = args.output_dir.resolve()
     if output == ROOT or ROOT in output.parents:
         parser.error("private game output must be OUTSIDE the repository")
+    if output == notice or output in notice.parents:
+        parser.error("ROM output must not be an ancestor of the private attribution record")
     output.mkdir(parents=True, exist_ok=True)
     target = output / "Playtest005.gba"
     manifest_file = output / "Playtest005.build.json"
