@@ -93,7 +93,7 @@ def main():
 
     # Force fresh object selection; never reuse a production zero-art object.
     # This runs only inside the owner's isolated checkout.
-    subprocess.run(["make", "clean"], cwd=ROOT, env=env, check=True)
+    subprocess.run(["make", "tidy"], cwd=ROOT, env=env, check=True)
     started = time.time()
     print("Building private Playtest005 from source commit", source, flush=True)
     subprocess.run(["make", "private-playtest005-rom"], cwd=ROOT, env=env, check=True)
