@@ -1,0 +1,44 @@
+name: Legendary roamer supersession and wild-double native regression
+on:
+  push:
+    branches: ['validation/legendary-roamer-supersession-native-20261114']
+  pull_request:
+    paths:
+      - tests/emulator/wild_double.c
+      - .github/workflows/legendary-roamer-regression.yml
+permissions:
+  contents: read
+jobs:
+  focused:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 65
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}
+      - name: Check exact head and preserved battle assertion
+        run: |
+          expected="${{ github.event_name == 'pull_request' && github.event.pull_request.head.sha || github.sha }}"
+          test "$(git rev-parse HEAD)" = "$expected"
+          python3 - <<'PY'
+          from pathlib import Path
+          s=Path("tests/emulator/wild_double.c").read_text()
+          assert "CHECK(core->busRead32(core,SYM_gBattleTypeFlags)&BATTLE_TYPE_DOUBLE)" in s
+          assert "CHECK(!(core->busRead32(core,SYM_gBattleTypeFlags)&BATTLE_TYPE_ROAMER))" in s
+          assert "CALL(SweetScentWildEncounter)" in s
+          r=Path("src/roamer.c").read_text()
+          assert "StaticBeastsSupersedeRoamer()" in r
+          print("PASS original double-battle assertions plus real stationary-beast supremacy gate")
+          PY
+      - name: Install native mGBA and GBA compiler
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends build-essential binutils-arm-none-eabi libpng-dev python3 libmgba-dev
+      - name: Compile real ROM
+        run: |
+          scripts/prepare-baseline.sh
+          make -j2
+      - name: Exercise real wild captures, Double cave entry, and no obsolete roamer
+        timeout-minutes: 15
+        run: LIGHTNING_WILD_ONLY=1 python3 tests/emulator/run.py
