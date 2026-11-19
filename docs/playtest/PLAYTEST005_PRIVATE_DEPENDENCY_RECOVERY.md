@@ -31,6 +31,20 @@ Do not use another upstream commit, approximate sprites, AI-redrawn sprites, or 
 
 3. Before authorizing a build, check the presence of `make`, `arm-none-eabi-as`, `arm-none-eabi-ld`, `arm-none-eabi-objcopy`, and `tools/agbcc/bin/agbcc`. `MODERN=1` instead requires `arm-none-eabi-gcc`; do not switch compiler modes just to bypass a missing pinned compiler.
 
+## C2. Owner-side read-only dependency inventory — NOT executed here
+
+The new `scripts/inventory-playtest005-dependencies.py` is a read-only preparation utility. It checks the exact 765 expected source paths against pinned Git blob SHA-1 and byte lengths, reports only counts (not artwork bytes), checks the local attribution record exists, and inventories the native tools and installed agbcc executable. Supplying `--agbcc-source` also verifies the separate source checkout is at the exact pinned commit. It does **not** download, convert, compile, emulate, or certify artwork rights.
+
+```sh
+cd /private/path/to/pokemon-lightning-yellow
+python3 scripts/inventory-playtest005-dependencies.py \
+  --cache /private/path/to/lightning-follower-assets \
+  --attribution /private/path/to/artist-permissions-and-credits.txt \
+  --agbcc-source /private/path/to/agbcc
+```
+
+A successful inventory alone does not verify the installed compiler executable came from that source checkout; retain provenance from the installation step. This command is documented for later owner use, **not executed** in this source-only batch.
+
 ## D. Owner-only future build command — NOT executed
 
 After confirming the permission/credit record and recovering toolchain and cache, use a **separate private checkout**, never the public source staging checkout. Replace placeholders with real local paths. The driver checks source ancestry, cleanliness, input counts, metadata, registry digest and ROM output; it calls `make tidy` in the isolated checkout and generates private ROM/manifest outside Git.
