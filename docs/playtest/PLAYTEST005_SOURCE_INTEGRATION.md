@@ -29,3 +29,11 @@ Main contains `src/follower_starter.c`; it is absent on the private PR #258 bran
 - No Playtest005 ROM or manifest exists.
 
 Accounting remains 50 task IDs, 461 earned / 251 remaining / 712 total; no acceptance claimed.
+
+## Source-only integration batch (2026-11-18)
+- Commit `2644188011d4d26108a9b69f42ddf8bd730c0c26`: production follower resolver now accepts an opt-in `FOLLOWER_ART_REGISTRY` include override, defaulting to the existing tracked zero-art include. This is a source switch only; it does not create artwork or activate private art by itself.
+- Commit `d7041ad7fabc0971db196df29eb46d98fea062a6`: preserve PR #258 private pinned-art converter at `scripts/build-follower-assets-private-playtest005.py`, without overwriting main's production converter. It still requires private cached assets and permission records. It has not been executed or wired into a Playtest005-specific make target.
+- Confirmed main already defines `ScriptGiveSueEevee` with the SUE nickname and a follower starter implementation. Main's Oak lab and follower-starter logic still select `SPECIES_PIKACHU`, whereas the owner requires private Pichu behavior. Do not blindly replace main's lab or starter files; a coordinated private source overlay and updated opening flow is needed.
+- Main's tracked `src/follower_assets_generated.inc` is the zero-art registry; it does not embed 255 descriptors. The private 255-descriptor registry must be regenerated locally from the 765 pinned private inputs. Neither the descriptors nor artwork are present as compiled private bytes in GitHub.
+- Main follower controller and graphics implement additional object ownership/lifecycle logic absent in the older private copies. Retain main and merge only specific private behavior after examining each delta.
+- No tests, builds, emulator, CI, merges, or public binary uploads performed. No gameplay acceptance claimed.
