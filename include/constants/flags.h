@@ -193,11 +193,11 @@
 #define FLAG_PEWTER_MUSEUM_TRIVIA_WON                   0x0AF
 #define FLAG_PEWTER_MUSEUM_SHINY_EGG_RECEIVED          0x0B0
 #define FLAG_HIDE_ROUTE6_TM34                         0x0B1
-#define FLAG_HIDE_VIRIDIAN_SCHOOL_TM52 0x0B2
-#define FLAG_0x0B3               0x0B3
-#define FLAG_0x0B4               0x0B4
-#define FLAG_0x0B5               0x0B5
-#define FLAG_0x0B6               0x0B6
+#define FLAG_HIDE_PEWTER_WATER_STONE                  0x0B2
+#define FLAG_HIDE_CERULEAN_THUNDER_STONE              0x0B3
+#define FLAG_GOT_PEWTER_WATER_STONE                   0x0B4
+#define FLAG_GOT_CERULEAN_THUNDER_STONE               0x0B5
+#define FLAG_HIDE_VIRIDIAN_SCHOOL_TM52                0x0B6
 #define FLAG_0x0B7               0x0B7
 #define FLAG_0x0B8               0x0B8
 #define FLAG_0x0B9               0x0B9
@@ -841,8 +841,8 @@
 #define FLAG_HIDE_LIGHTNING_ENTEI 0x32A
 #define FLAG_HIDE_LIGHTNING_SUICUNE 0x32B
 #define FLAG_HIDE_LIGHTNING_MEW 0x32C
-#define FLAG_0x32D               0x32D
-#define FLAG_0x32E               0x32E
+#define FLAG_HIDE_SOW_NOCTOWL 0x32D
+#define FLAG_FOUGHT_SOW_NOCTOWL 0x32E
 #define FLAG_0x32F               0x32F
 #define FLAG_0x330               0x330
 #define FLAG_0x331               0x331

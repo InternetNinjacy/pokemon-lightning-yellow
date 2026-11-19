@@ -31,6 +31,7 @@
 #include "constants/battle_setup.h"
 #include "constants/event_objects.h"
 #include "constants/items.h"
+#include "constants/moves.h"
 #include "constants/maps.h"
 #include "constants/songs.h"
 #include "constants/pokemon.h"
@@ -314,6 +315,26 @@ void StartOldManTutorialBattle(void)
     gMain.savedCallback = CB2_ReturnToFieldContinueScriptPlayMapMusic;
     gBattleTypeFlags = BATTLE_TYPE_OLD_MAN_TUTORIAL;
     CreateBattleStartTask(B_TRANSITION_SLICE, 0);
+}
+
+// SOW-006: preserve the one wild Noctowl's native personality, ability, IVs and
+// capture identity; only replace the four moves with the owner's approved set.
+void SowPrepareNoctowlEncounter(void)
+{
+    static const u16 moves[MAX_MON_MOVES] = {
+        MOVE_HYPNOSIS, MOVE_PSYBEAM, MOVE_TAKE_DOWN, MOVE_REFLECT
+    };
+    u8 slot;
+
+    gSpecialVar_Result = FALSE;
+    if (GetMonData(&gEnemyParty[0], MON_DATA_SPECIES) != SPECIES_NOCTOWL
+     || GetMonData(&gEnemyParty[0], MON_DATA_LEVEL) != 36
+     || GetMonData(&gEnemyParty[0], MON_DATA_HELD_ITEM) != ITEM_NONE)
+        return;
+
+    for (slot = 0; slot < MAX_MON_MOVES; slot++)
+        SetMonMoveSlot(&gEnemyParty[0], moves[slot], slot);
+    gSpecialVar_Result = TRUE;
 }
 
 void StartScriptedWildBattle(void)
