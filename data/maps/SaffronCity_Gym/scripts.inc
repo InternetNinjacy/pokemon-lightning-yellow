@@ -35,7 +35,7 @@ SaffronCity_Gym_EventScript_NoRoomForTM04::
 	end
 
 SaffronCity_Gym_EventScript_Johan::
-	trainerbattle_single TRAINER_PSYCHIC_JOHAN, SaffronCity_Gym_Text_JohanIntro, SaffronCity_Gym_Text_JohanDefeat
+	trainerbattle_double TRAINER_PSYCHIC_JOHAN, SaffronCity_Gym_Text_JohanIntro, SaffronCity_Gym_Text_JohanDefeat, SaffronCity_Dojo_Text_NeedTwo
 	msgbox SaffronCity_Gym_Text_JohanPostBattle, MSGBOX_AUTOCLOSE
 	end
 
@@ -46,12 +46,12 @@ SaffronCity_Gym_EventScript_Tyron::
 	end
 
 SaffronCity_Gym_EventScript_Cameron::
-	trainerbattle_single TRAINER_PSYCHIC_CAMERON, SaffronCity_Gym_Text_CameronIntro, SaffronCity_Gym_Text_CameronDefeat
+	trainerbattle_double TRAINER_PSYCHIC_CAMERON, SaffronCity_Gym_Text_CameronIntro, SaffronCity_Gym_Text_CameronDefeat, SaffronCity_Dojo_Text_NeedTwo
 	msgbox SaffronCity_Gym_Text_CameronPostBattle, MSGBOX_AUTOCLOSE
 	end
 
 SaffronCity_Gym_EventScript_Preston::
-	trainerbattle_single TRAINER_PSYCHIC_PRESTON, SaffronCity_Gym_Text_PrestonIntro, SaffronCity_Gym_Text_PrestonDefeat
+	trainerbattle_double TRAINER_PSYCHIC_PRESTON, SaffronCity_Gym_Text_PrestonIntro, SaffronCity_Gym_Text_PrestonDefeat, SaffronCity_Dojo_Text_NeedTwo
 	msgbox SaffronCity_Gym_Text_PrestonPostBattle, MSGBOX_AUTOCLOSE
 	end
 
@@ -61,12 +61,12 @@ SaffronCity_Gym_EventScript_Amanda::
 	end
 
 SaffronCity_Gym_EventScript_Stacy::
-	trainerbattle_single TRAINER_CHANNELER_STACY, SaffronCity_Gym_Text_StacyIntro, SaffronCity_Gym_Text_StacyDefeat
+	trainerbattle_double TRAINER_CHANNELER_STACY, SaffronCity_Gym_Text_StacyIntro, SaffronCity_Gym_Text_StacyDefeat, SaffronCity_Dojo_Text_NeedTwo
 	msgbox SaffronCity_Gym_Text_StacyPostBattle, MSGBOX_AUTOCLOSE
 	end
 
 SaffronCity_Gym_EventScript_Tasha::
-	trainerbattle_single TRAINER_CHANNELER_TASHA, SaffronCity_Gym_Text_TashaIntro, SaffronCity_Gym_Text_TashaDefeat
+	trainerbattle_double TRAINER_CHANNELER_TASHA, SaffronCity_Gym_Text_TashaIntro, SaffronCity_Gym_Text_TashaDefeat, SaffronCity_Dojo_Text_NeedTwo
 	msgbox SaffronCity_Gym_Text_TashaPostBattle, MSGBOX_AUTOCLOSE
 	end
 
