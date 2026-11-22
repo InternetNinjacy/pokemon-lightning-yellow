@@ -1180,6 +1180,26 @@ void StartSpecialBattle(void)
     }
 }
 
+// Read-only result classification for the future Seven Island challenge script.
+// 0 = victory, 1 = defeat/draw, 2 = interrupted or unrecognized.
+// This deliberately does not advance streaks, save, or modify the party.
+void GetBattleTowerBattleResult(void)
+{
+    switch (gBattleOutcome)
+    {
+    case B_OUTCOME_WON:
+        gSpecialVar_Result = 0;
+        break;
+    case B_OUTCOME_LOST:
+    case B_OUTCOME_DREW:
+        gSpecialVar_Result = 1;
+        break;
+    default:
+        gSpecialVar_Result = 2;
+        break;
+    }
+}
+
 void SetBattleTowerProperty(void)
 {
     s32 i;
