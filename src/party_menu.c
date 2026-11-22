@@ -5967,6 +5967,14 @@ static bool8 TrySwitchInPokemon(void)
     u8 newSlot;
     u8 i;
 
+    // Dormant until the Seven Island adapter explicitly activates its context.
+    // Check the actual full-party slot before battle-order remapping.
+    if (!IsSevenIslandBattleTowerEligiblePartySlot(slot))
+    {
+        StringExpandPlaceholders(gStringVar4, gText_PkmnCantSwitchOut);
+        return FALSE;
+    }
+
     // In a multi battle, slots 1, 4, and 5 are the partner's pokemon
     if (IsMultiBattle() == TRUE && (slot == 1 || slot == 4 || slot == 5))
     {
