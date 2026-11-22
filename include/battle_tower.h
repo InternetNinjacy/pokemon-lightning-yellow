@@ -42,5 +42,6 @@ u8 GetSevenIslandBattleTowerBattlePartyCount(void);
 u8 GetSevenIslandBattleTowerOriginalPartySlot(u8 battleSlot);
 bool8 IsSevenIslandBattleTowerBattleContextActive(void);
 bool8 IsSevenIslandBattleTowerEligiblePartySlot(u8 slot);
+bool8 IsSevenIslandBattleTowerEligibleBattleSlot(u8 battleSlot);
 
 #endif //GUARD_BATTLE_TOWER_H
