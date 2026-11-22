@@ -1508,6 +1508,29 @@ bool8 IsSevenIslandBattleTowerEligiblePartySlot(u8 slot)
     return FALSE;
 }
 
+// Battle menus temporarily rearrange gPlayerParty into battle order.
+// Resolve that displayed slot through the existing packed party-order map
+// before applying the selected original-slot restriction.
+bool8 IsSevenIslandBattleTowerEligibleBattleSlot(u8 battleSlot)
+{
+    u8 originalSlot;
+
+    if (!sSevenIslandBattleTowerBattleContextActive)
+        return TRUE;
+    if (battleSlot >= PARTY_SIZE)
+        return FALSE;
+
+    originalSlot = gBattlePartyCurrentOrder[battleSlot / 2];
+    if (battleSlot & 1)
+        originalSlot &= 0xF;
+    else
+        originalSlot >>= 4;
+
+    if (originalSlot >= PARTY_SIZE)
+        return FALSE;
+    return IsSevenIslandBattleTowerEligiblePartySlot(originalSlot);
+}
+
 void ClearSevenIslandBattleTowerBattleParty(void)
 {
     sSevenIslandBattleTowerBattlePartyPrepared = FALSE;
