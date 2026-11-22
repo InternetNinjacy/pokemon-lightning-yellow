@@ -1,6 +1,6 @@
 # Battle Tower replacement move decisions — owner-delegated PKM-006
 
-Source-only conservative eligibility: preserved moves present in replacement species' approved level-up or TM/HM source tables. For unsupported original moves, selected a distinct legal move, prioritizing the same type or strategic role and explicit signature equivalents. Egg/tutor-only compatibility was not inferred. **Selection is heuristic, not proof of battle-role parity; 285 swaps need further owner gameplay role review.** No build/test/emulator/CI/merge.
+Source-only conservative eligibility: preserved moves present in replacement species' approved level-up or TM/HM source tables. For unsupported original moves, selected a distinct legal move, prioritizing the same type or strategic role and explicit signature equivalents. Egg/tutor-only compatibility was not inferred. **Selection is heuristic, not proof of battle-role parity; 273 swaps need further owner gameplay role review after 12 focused corrections.** No build/test/emulator/CI/merge.
 
 | Pool | Template index | Species replacement | Original move | New move | Rationale |
 |---|---:|---|---|---|---|
@@ -23,7 +23,7 @@ Source-only conservative eligibility: preserved moves present in replacement spe
 | 50 | 18 | NINJASK → YANMA | SAND_ATTACK | QUICK_ATTACK | nearest available approved level-up/TM/HM move; role review needed |
 | 50 | 18 | NINJASK → YANMA | FURY_CUTTER | PROTECT | nearest available approved level-up/TM/HM move; role review needed |
 | 50 | 18 | NINJASK → YANMA | AGILITY | DOUBLE_TEAM | nearest available approved level-up/TM/HM move; role review needed |
-| 50 | 18 | NINJASK → YANMA | HARDEN | TOXIC | nearest available approved level-up/TM/HM move; role review needed |
+| 50 | 18 | NINJASK → YANMA | HARDEN | ANCIENT_POWER | source-legal tactical correction: adds offensive Rock coverage |
 | 50 | 21 | SPINDA → DELCATTY | TEETER_DANCE | SING | same move role/type |
 | 50 | 21 | SPINDA → DELCATTY | FLAIL | PROTECT | nearest available approved level-up/TM/HM move; role review needed |
 | 50 | 21 | SPINDA → DELCATTY | PSYCH_UP | TOXIC | nearest available approved level-up/TM/HM move; role review needed |
@@ -43,7 +43,7 @@ Source-only conservative eligibility: preserved moves present in replacement spe
 | 50 | 34 | GIRAFARIG → HYPNO | AGILITY | DOUBLE_TEAM | nearest available approved level-up/TM/HM move; role review needed |
 | 50 | 34 | GIRAFARIG → HYPNO | EARTHQUAKE | PROTECT | nearest available approved level-up/TM/HM move; role review needed |
 | 50 | 35 | PELIPPER → SWELLOW | MIST | PROTECT | nearest available approved level-up/TM/HM move; role review needed |
-| 50 | 35 | PELIPPER → SWELLOW | STOCKPILE | TOXIC | nearest available approved level-up/TM/HM move; role review needed |
+| 50 | 35 | PELIPPER → SWELLOW | STOCKPILE | WING_ATTACK | source-legal tactical correction: adds Flying STAB offense |
 | 50 | 35 | PELIPPER → SWELLOW | SWALLOW | REST | same move role/type |
 | 50 | 35 | PELIPPER → SWELLOW | SPIT_UP | AERIAL_ACE | nearest available approved level-up/TM/HM move; role review needed |
 | 50 | 36 | SABLEYE → BANETTE | FAKE_OUT | PROTECT | nearest available approved level-up/TM/HM move; role review needed |
@@ -66,7 +66,7 @@ Source-only conservative eligibility: preserved moves present in replacement spe
 | 50 | 61 | SKARMORY → STEELIX | SWIFT | DOUBLE_EDGE | same move role/type |
 | 50 | 61 | SKARMORY → STEELIX | AGILITY | DOUBLE_TEAM | nearest available approved level-up/TM/HM move; role review needed |
 | 50 | 62 | TORKOAL → MAGCARGO | IRON_DEFENSE | TOXIC | nearest available approved level-up/TM/HM move; role review needed |
-| 50 | 66 | WOBBUFFET → BLISSEY | COUNTER | BRICK_BREAK | same move role/type |
+| 50 | 66 | WOBBUFFET → BLISSEY | COUNTER | SOFT_BOILED | source-legal tactical correction: restores defensive endurance |
 | 50 | 66 | WOBBUFFET → BLISSEY | MIRROR_COAT | PROTECT | nearest available approved level-up/TM/HM move; role review needed |
 | 50 | 66 | WOBBUFFET → BLISSEY | DESTINY_BOND | TOXIC | nearest available approved level-up/TM/HM move; role review needed |
 | 50 | 68 | TROPIUS → TANGELA | SYNTHESIS | ABSORB | same move role/type |
@@ -101,10 +101,10 @@ Source-only conservative eligibility: preserved moves present in replacement spe
 | 50 | 101 | WHISCASH → KINGLER | EARTHQUAKE | DIG | same move role/type |
 | 50 | 101 | WHISCASH → KINGLER | AMNESIA | HARDEN | same move role/type |
 | 50 | 102 | SOLROCK → MAGCARGO | CONFUSION | PROTECT | nearest available approved level-up/TM/HM move; role review needed |
-| 50 | 109 | METANG → MAGNETON | EARTHQUAKE | PROTECT | nearest available approved level-up/TM/HM move; role review needed |
-| 50 | 109 | METANG → MAGNETON | SHADOW_BALL | TOXIC | nearest available approved level-up/TM/HM move; role review needed |
-| 50 | 109 | METANG → MAGNETON | PSYCHIC | DOUBLE_TEAM | nearest available approved level-up/TM/HM move; role review needed |
-| 50 | 109 | METANG → MAGNETON | METEOR_MASH | FACADE | nearest available approved level-up/TM/HM move; role review needed |
+| 50 | 109 | METANG → MAGNETON | EARTHQUAKE | THUNDERBOLT | source-legal tactical correction: adds strong special offense |
+| 50 | 109 | METANG → MAGNETON | SHADOW_BALL | TRI_ATTACK | source-legal tactical correction: adds secondary special attack |
+| 50 | 109 | METANG → MAGNETON | PSYCHIC | METAL_SOUND | source-legal tactical correction: adds special-defense pressure |
+| 50 | 109 | METANG → MAGNETON | METEOR_MASH | THUNDER_WAVE | source-legal tactical correction: adds tempo disruption |
 | 50 | 111 | MASQUERAIN → VENOMOTH | ICE_BEAM | SOLAR_BEAM | nearest available approved level-up/TM/HM move; role review needed |
 | 50 | 112 | RELICANTH → OMASTAR | DOUBLE_EDGE | RETURN | same move role/type |
 | 50 | 112 | RELICANTH → OMASTAR | EARTHQUAKE | MUD_SHOT | same move role/type |
@@ -117,13 +117,13 @@ Source-only conservative eligibility: preserved moves present in replacement spe
 | 50 | 117 | TROPIUS → TANGELA | RAZOR_LEAF | BULLET_SEED | same move role/type |
 | 50 | 118 | NINJASK → YANMA | SLASH | FACADE | same move role/type |
 | 50 | 118 | NINJASK → YANMA | SWORDS_DANCE | PROTECT | nearest available approved level-up/TM/HM move; role review needed |
-| 50 | 118 | NINJASK → YANMA | LEECH_LIFE | TOXIC | nearest available approved level-up/TM/HM move; role review needed |
+| 50 | 118 | NINJASK → YANMA | LEECH_LIFE | WING_ATTACK | source-legal tactical correction: adds Flying STAB offense |
 | 50 | 122 | SEVIPER → ARBOK | CRUNCH | BITE | same move role/type |
 | 50 | 122 | SEVIPER → ARBOK | FLAMETHROWER | SUNNY_DAY | same move role/type |
 | 50 | 123 | CRADILY → ARMALDO | CONFUSE_RAY | PROTECT | nearest available approved level-up/TM/HM move; role review needed |
 | 50 | 123 | CRADILY → ARMALDO | INGRAIN | TOXIC | nearest available approved level-up/TM/HM move; role review needed |
 | 50 | 126 | LANTURN → AMPHAROS | SURF | PROTECT | nearest available approved level-up/TM/HM move; role review needed |
-| 50 | 126 | LANTURN → AMPHAROS | ICE_BEAM | TOXIC | nearest available approved level-up/TM/HM move; role review needed |
+| 50 | 126 | LANTURN → AMPHAROS | ICE_BEAM | LIGHT_SCREEN | source-legal tactical correction: adds defensive utility |
 | 50 | 127 | SWALOT → MUK | SNATCH | TAUNT | same move role/type |
 | 50 | 127 | SWALOT → MUK | ENCORE | DISABLE | same move role/type |
 | 50 | 127 | SWALOT → MUK | BODY_SLAM | FACADE | same move role/type |
@@ -133,7 +133,7 @@ Source-only conservative eligibility: preserved moves present in replacement spe
 | 50 | 134 | GRUMPIG → HYPNO | CONFUSE_RAY | SHADOW_BALL | same move role/type |
 | 50 | 138 | TORKOAL → MAGCARGO | IRON_TAIL | PROTECT | nearest available approved level-up/TM/HM move; role review needed |
 | 50 | 151 | SLAKING → URSARING | CURSE | PROTECT | nearest available approved level-up/TM/HM move; role review needed |
-| 50 | 151 | SLAKING → URSARING | AMNESIA | TOXIC | nearest available approved level-up/TM/HM move; role review needed |
+| 50 | 151 | SLAKING → URSARING | AMNESIA | BULK_UP | source-legal tactical correction: restores stat-boosting setup |
 | 50 | 151 | SLAKING → URSARING | YAWN | AERIAL_ACE | nearest available approved level-up/TM/HM move; role review needed |
 | 50 | 153 | HARIYAMA → MACHAMP | BELLY_DRUM | PROTECT | nearest available approved level-up/TM/HM move; role review needed |
 | 50 | 153 | HARIYAMA → MACHAMP | ENDURE | TOXIC | nearest available approved level-up/TM/HM move; role review needed |
@@ -166,7 +166,7 @@ Source-only conservative eligibility: preserved moves present in replacement spe
 | 50 | 194 | WAILORD → LAPRAS | EARTHQUAKE | PROTECT | nearest available approved level-up/TM/HM move; role review needed |
 | 50 | 194 | WAILORD → LAPRAS | FISSURE | TOXIC | nearest available approved level-up/TM/HM move; role review needed |
 | 50 | 197 | WOBBUFFET → BLISSEY | ENCORE | PROTECT | nearest available approved level-up/TM/HM move; role review needed |
-| 50 | 197 | WOBBUFFET → BLISSEY | COUNTER | BRICK_BREAK | same move role/type |
+| 50 | 197 | WOBBUFFET → BLISSEY | COUNTER | SOFT_BOILED | source-legal tactical correction: restores defensive endurance |
 | 50 | 197 | WOBBUFFET → BLISSEY | MIRROR_COAT | TOXIC | nearest available approved level-up/TM/HM move; role review needed |
 | 50 | 197 | WOBBUFFET → BLISSEY | DESTINY_BOND | ATTRACT | nearest available approved level-up/TM/HM move; role review needed |
 | 50 | 200 | SCEPTILE → VENUSAUR | LEAF_BLADE | GIGA_DRAIN | same move role/type |
@@ -181,7 +181,7 @@ Source-only conservative eligibility: preserved moves present in replacement spe
 | 50 | 221 | SALAMENCE → DRAGONITE | CRUNCH | PROTECT | nearest available approved level-up/TM/HM move; role review needed |
 | 50 | 222 | METAGROSS → TYRANITAR | METEOR_MASH | IRON_TAIL | same move role/type |
 | 50 | 222 | METAGROSS → TYRANITAR | PSYCHIC | PROTECT | nearest available approved level-up/TM/HM move; role review needed |
-| 50 | 222 | METAGROSS → TYRANITAR | LIGHT_SCREEN | TOXIC | nearest available approved level-up/TM/HM move; role review needed |
+| 50 | 222 | METAGROSS → TYRANITAR | LIGHT_SCREEN | CRUNCH | source-legal tactical correction: adds strong Dark offense |
 | 50 | 223 | REGIROCK → GOLEM | ANCIENT_POWER | ROCK_SLIDE | same move role/type |
 | 50 | 224 | REGICE → ARTICUNO | THUNDERBOLT | PROTECT | nearest available approved level-up/TM/HM move; role review needed |
 | 50 | 225 | REGISTEEL → FORRETRESS | METAL_CLAW | IRON_DEFENSE | same move role/type |
@@ -586,3 +586,8 @@ Source-only conservative eligibility: preserved moves present in replacement spe
 | 100 | 297 | LATIOS → ALAKAZAM | THUNDERBOLT | SHOCK_WAVE | same move role/type |
 | 100 | 297 | LATIOS → ALAKAZAM | ICE_BEAM | PROTECT | nearest available approved level-up/TM/HM move; role review needed |
 | 100 | 297 | LATIOS → ALAKAZAM | DRAGON_CLAW | TOXIC | nearest available approved level-up/TM/HM move; role review needed |
+
+
+### Focused source-only role refinements
+
+Twelve earlier move choices were improved using replacement species' level-up/TM/HM move tables. The level-50 Magneton at index 109 now has Thunderbolt / Tri Attack / Metal Sound / Thunder Wave instead of four generic support moves. Two Blissey entries replace Brick Break with Soft-Boiled for endurance, although this cannot reproduce Wobbuffet's Counter/Mirror Coat mechanics. The remaining 273 initial heuristic choices need tactical review. No builds/tests/emulators/CI/merges.
