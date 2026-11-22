@@ -3081,22 +3081,12 @@ static const struct TrainerMonNoItemDefaultMoves sParty_BeautyBridget[] = {
     {
         .iv = 0,
         .lvl = 21,
-        .species = SPECIES_ODDISH,
+        .species = SPECIES_TANGELA,
     },
     {
         .iv = 0,
         .lvl = 21,
-        .species = SPECIES_BELLSPROUT,
-    },
-    {
-        .iv = 0,
-        .lvl = 21,
-        .species = SPECIES_ODDISH,
-    },
-    {
-        .iv = 0,
-        .lvl = 21,
-        .species = SPECIES_BELLSPROUT,
+        .species = SPECIES_HOUNDOUR,
     },
 };
 
@@ -3117,7 +3107,12 @@ static const struct TrainerMonNoItemDefaultMoves sParty_BeautyLori[] = {
     {
         .iv = 0,
         .lvl = 24,
-        .species = SPECIES_EXEGGCUTE,
+        .species = SPECIES_WEEPINBELL,
+    },
+    {
+        .iv = 0,
+        .lvl = 24,
+        .species = SPECIES_NUMEL,
     },
 };
 
