@@ -33,6 +33,8 @@ static EWRAM_DATA bool8 sSevenIslandBattleTowerPartyBackedUp = FALSE;
 static EWRAM_DATA struct Pokemon sSevenIslandBattleTowerBattleParty[3];
 static EWRAM_DATA u8 sSevenIslandBattleTowerOriginalSlots[3];
 static EWRAM_DATA bool8 sSevenIslandBattleTowerBattlePartyPrepared = FALSE;
+// Never activated by reception or the legacy Tower launcher.
+static EWRAM_DATA bool8 sSevenIslandBattleTowerBattleContextActive = FALSE;
 
 // Runtime-only preservation for the new Seven Island reception. Do not
 // substitute SavePlayerParty/LoadPlayerParty: those operate on serialized
@@ -72,6 +74,7 @@ void RestoreSevenIslandBattleTowerParty(void)
     sSevenIslandBattleTowerPartyBackedUp = FALSE;
     // The staged trio may contain copies from before restoration.
     sSevenIslandBattleTowerBattlePartyPrepared = FALSE;
+    sSevenIslandBattleTowerBattleContextActive = FALSE;
     gSpecialVar_Result = TRUE;
 }
 
@@ -1479,9 +1482,31 @@ u8 GetSevenIslandBattleTowerOriginalPartySlot(u8 battleSlot)
     return sSevenIslandBattleTowerOriginalSlots[battleSlot];
 }
 
+// Only the future Seven Island battle adapter may enable this context.
+// For now it remains inactive, so ordinary battles and Trainer Tower retain
+// their original six-slot participation rules.
+bool8 IsSevenIslandBattleTowerBattleContextActive(void)
+{
+    return sSevenIslandBattleTowerBattleContextActive
+        && IsSevenIslandBattleTowerBattlePartyCurrent();
+}
+
+bool8 IsSevenIslandBattleTowerEligiblePartySlot(u8 slot)
+{
+    u8 i;
+
+    if (!IsSevenIslandBattleTowerBattleContextActive())
+        return TRUE;
+    for (i = 0; i < 3; i++)
+        if (sSevenIslandBattleTowerOriginalSlots[i] == slot)
+            return TRUE;
+    return FALSE;
+}
+
 void ClearSevenIslandBattleTowerBattleParty(void)
 {
     sSevenIslandBattleTowerBattlePartyPrepared = FALSE;
+    sSevenIslandBattleTowerBattleContextActive = FALSE;
     gSpecialVar_Result = TRUE;
 }
 
