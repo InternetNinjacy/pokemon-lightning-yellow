@@ -1487,16 +1487,21 @@ u8 GetSevenIslandBattleTowerOriginalPartySlot(u8 battleSlot)
 // their original six-slot participation rules.
 bool8 IsSevenIslandBattleTowerBattleContextActive(void)
 {
-    return sSevenIslandBattleTowerBattleContextActive
-        && IsSevenIslandBattleTowerBattlePartyCurrent();
+    return sSevenIslandBattleTowerBattleContextActive;
 }
 
 bool8 IsSevenIslandBattleTowerEligiblePartySlot(u8 slot)
 {
     u8 i;
 
-    if (!IsSevenIslandBattleTowerBattleContextActive())
+    if (!sSevenIslandBattleTowerBattleContextActive)
         return TRUE;
+
+    // Fail closed if the selected team becomes stale mid-battle. Falling
+    // back to the unrestricted six-mon party would expose extra Pokemon.
+    if (!IsSevenIslandBattleTowerBattlePartyCurrent())
+        return FALSE;
+
     for (i = 0; i < 3; i++)
         if (sSevenIslandBattleTowerOriginalSlots[i] == slot)
             return TRUE;
