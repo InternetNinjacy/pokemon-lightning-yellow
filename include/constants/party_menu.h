@@ -30,6 +30,8 @@
 #define TUTOR_MOVE_FRENZY_PLANT    15
 #define TUTOR_MOVE_BLAST_BURN      16
 #define TUTOR_MOVE_HYDRO_CANNON    17
+// Additional tutor uses current species level-up compatibility, not the 16-bit tutor mask.
+#define TUTOR_MOVE_WATER_GUN      18
 
 #define FIELD_MOVE_FLASH        0
 #define FIELD_MOVE_CUT          1
