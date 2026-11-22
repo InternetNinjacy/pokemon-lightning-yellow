@@ -299,3 +299,12 @@ Existing user delegation covered 54 *Trainer Tower* entries, not these separate 
 | 100 | 298 | SALAMENCE | 0x1D | SHELL_BELL | ? | ? | DRAGON_CLAW, FLAMETHROWER, EARTHQUAKE, AERIAL_ACE | DRAGONITE (staged) |
 
 279 entries inventoried and staged under owner approval; battle-role/selection viability remains unverified.
+
+
+### 2026-11-21 — Battle Tower tactical source refinement and trainer configuration blocker
+
+Focused source-only review revised 12 weak level-50 move selections in `src/data/battle_tower/level_50_mons.h` using actual replacement-species level-up/TM/HM availability. Examples: Magneton template index 109 was four generic support moves (Protect/Toxic/Double Team/Facade), now Thunderbolt/Tri Attack/Metal Sound/Thunder Wave; two Wobbuffet→Blissey templates gained Soft-Boiled rather than Brick Break to improve defensive endurance; Yanma, Swellow, Ampharos, Ursaring and Tyranitar received more purposeful source-legal moves. Full per-index corrections and rationales recorded in `docs/PKM006_BATTLE_TOWER_279_MOVE_REPLACEMENTS_20261121.md`. These do **not** demonstrate gameplay parity. Keep original 285 flagged heuristic swaps as conservative acceptance-review scope.
+
+**Structural blocker discovered in `src/battle_tower.c`:** `static const struct BattleTowerTrainer sBattleTowerTrainers[] = { }; ` is empty, but `FillBattleTowerTrainerParty` indexes `sBattleTowerTrainers[battleTowerTrainerId].teamFlags` for normal opponents. Its selection loop requires three distinct species and nonduplicated held items from a tier-specific 60-slot window (or 100-slot final window) matching that trainer's flag mask. Source-only template inspection found four distinct moves in every 300-entry pool template, but the missing trainer definitions prevent a grounded per-trainer flag/window viability conclusion. No trainer definitions were invented, no battle generation or map access was altered. This blocker predates the 279 substitutions and requires owner decision/approved trainer roster restoration or explicit retirement of the feature.
+
+No tests, builds, emulators, diagnostics, CI or merges. 148 WRL-protected wild slots and 3 SOW/story legendary event scripts unchanged. No acceptance points; 50 IDs and 461/251/712 retained.
