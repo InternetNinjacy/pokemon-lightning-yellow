@@ -36,3 +36,10 @@ SevenIsland_UnusedHouse_Text_SelectionSaved::
 
 SevenIsland_UnusedHouse_Text_SelectionCancelled::
     .string "No POKéMON were registered.$"
+
+SevenIsland_UnusedHouse_Text_OfferHealing::
+    .string "Would you like us to heal your\n"
+    .string "POKéMON before you leave?$"
+
+SevenIsland_UnusedHouse_Text_Healed::
+    .string "Your POKéMON are fully healed!$"
