@@ -10,6 +10,42 @@
 #include "constants/moves.h"
 
 static void Task_ChoosePartyMon(u8 taskId);
+static void Task_OpenBattleTowerPartyMenu(u8 taskId);
+static void CB2_BattleTowerPartyMenuReturn(void);
+
+// The registered Battle Tower special needs a field-script callback, not
+// the normal field party-menu callback. No party members are removed here.
+void ChooseBattleTowerPlayerParty(void)
+{
+    u8 taskId;
+
+    LockPlayerFieldControls();
+    gSpecialVar_Result = FALSE;
+    gMain.savedCallback = CB2_BattleTowerPartyMenuReturn;
+    taskId = CreateTask(Task_OpenBattleTowerPartyMenu, 10);
+    BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 0x10, RGB_BLACK);
+}
+
+static void Task_OpenBattleTowerPartyMenu(u8 taskId)
+{
+    if (!gPaletteFade.active)
+    {
+        gPaletteFade.bufferTransferDisabled = TRUE;
+        InitChooseMonsForBattle(CHOOSE_MONS_FOR_BATTLE_TOWER);
+        DestroyTask(taskId);
+    }
+}
+
+static void CB2_BattleTowerPartyMenuReturn(void)
+{
+    // Cancellation clears the selected order. Only three confirmed slots
+    // count as success; the receptionist persists them after this callback.
+    gSpecialVar_Result = (gSelectedOrderFromParty[0] != 0
+                       && gSelectedOrderFromParty[1] != 0
+                       && gSelectedOrderFromParty[2] != 0);
+    CB2_ReturnToFieldContinueScriptPlayMapMusic();
+}
+
 
 void ChoosePartyMon(void)
 {
