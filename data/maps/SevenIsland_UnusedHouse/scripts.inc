@@ -1,2 +1,6 @@
 SevenIsland_UnusedHouse_MapScripts::
 	.byte 0
+
+SevenIsland_UnusedHouse_EventScript_BattleTowerReceptionist::
+	msgbox SevenIsland_UnusedHouse_Text_BattleTowerReceptionist, MSGBOX_NPC
+	end
