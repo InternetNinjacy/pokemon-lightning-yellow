@@ -4724,6 +4724,11 @@ static void Cmd_jumpifcantswitch(void)
 
         for (i = 0; i < PARTY_SIZE; i++)
         {
+            // Switching and fainted replacements use this battle-script
+            // branch. Never expose an unselected Seven Island party member.
+            if (GetBattlerSide(gActiveBattler) == B_SIDE_PLAYER
+             && !IsSevenIslandBattleTowerEligiblePartySlot(i))
+                continue;
             if (GetMonData(&party[i], MON_DATA_HP) != 0
              && GetMonData(&party[i], MON_DATA_SPECIES) != SPECIES_NONE
              && !GetMonData(&party[i], MON_DATA_IS_EGG)
