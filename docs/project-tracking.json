@@ -2301,7 +2301,7 @@
       ],
       "status": {
         "design": "Global252-only assignment policy supplied; no off-Dex exceptions",
-        "implementation": "2026-11-21 PR288: owner-approved newly authored 100-normal-trainer Battle Tower roster implemented in src/battle_tower.c (IDs0-99), existing facility classes and Easy Chat greeting vocabulary, teamFlags 0x01/0x02/0x40. Normal trainer ID boundaries and original 8 difficulty-tier IV/template windows preserved; 279 previously staged Battle Tower species substitutions intact. Source-only 200 trainer/pool eligibility combinations have a distinct-species/item 3-mon solution; minimum eligible 7 templates. No runtime acceptance, tests/builds/emulators/diagnostics/CI/merges.",
+        "implementation": "2026-11-21 PR288: newly authored 100 Battle Tower trainer records staged, prior 279 template substitutions preserved. Source-only presentation integration populated empty male/female facility class arrays (previously modulo divisors), and mapped normal/record-mixing/e-Reader trainer IDs to existing overworld graphics where available. Three-byte names and six-word greetings use existing charmap/Easy Chat source. Recursive map path inventory found only legacy RS_BattleTower layout, no Battle Tower map/scripts/entrance; separate Trainer Tower left untouched. No tests/builds/emulators/diagnostics/CI/merges.",
         "automated": "seven host suites/static audits PASS; identical clean rebuild; final Actions SUCCESS",
         "emulator": "full local libmGBA0.10.5 PASS:114706 assertions; native rewards/menus/restoration/flash scenes",
         "pull_request": "PR#11 merged; historical branch evidence retained",
@@ -2311,9 +2311,9 @@
       "commit": "b0bd3b86f4e03dd3f540f0776a5de87f207e84e4",
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/11",
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41529505085",
-      "blocker": "New roster is source-staged, but compilation, in-game facility access, trainer sprite diversity, randomized selection behavior, battle balance and 285 original heuristic move substitutions remain unaccepted. 148 WRL-protected wild and 3 SOW/story legendary off-Dex slots held.",
+      "blocker": "Battle Tower lacks dedicated game-world map/warp/entrance and explicit progression policy. Need owner-approved placement and gating before implementing accessible facility; roster/graphics are source-staged but uncompiled/unplaytested. Remaining heuristic move review and WRL 148 wild/SOW 3 legendary holds remain.",
       "design_authority": "Owner supplied November2 Wild Encounters, Gym Roster, Fossils and Pokedex Compliance update; historical direct Drive401 did not prevent reading the supplied exports; latest concurrent PR15 requires version reconciliation.",
-      "next_action": "Continue approved source-only Battle Tower improvements if unowned, including original fixed Youngster trainer gfx and game-world access policy; leave owner playtest acceptance open. Review remaining move-role heuristics. Keep protected WRL wild and SOW events untouched.",
+      "next_action": "Obtain owner decision on Battle Tower world location, entry point, gating and map design (legacy RS_BattleTower layout alone is insufficient); then implement smallest nonoverlapping approved access scripts. Continue remaining Battle Tower move-role review source-only. No build/test/merge.",
       "checkpoint": "2026-11-04 supplied-export reconciliation; old unavailable-document claims superseded; no implementation/test credit from availability.",
       "source_exports": [
         "04_SPECIES_EVOLUTION_WORLD/Pokémon Lightning Yellow — All 252 Species Typing & 67 Move Source Matrix — 2026-11-02.txt",
