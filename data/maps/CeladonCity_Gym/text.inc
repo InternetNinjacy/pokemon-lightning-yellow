@@ -94,15 +94,15 @@ CeladonCity_Gym_Text_TamiaDefeat::
     .string "No!$"
 
 CeladonCity_Gym_Text_TamiaPostBattle::
-    .string "We only use GRASS-type POKéMON at\n"
-    .string "our GYM.\p"
-    .string "Why? We also use them for making\n"
-    .string "flower arrangements!$"
+    .string "Our GYM welcomes GRASS and FIRE\n"
+    .string "POKéMON alike!\p"
+    .string "The GRASS types also help us\n"
+    .string "make flower arrangements!$"
 
 CeladonCity_Gym_Text_LisaIntro::
     .string "Oh, hey!\p"
-    .string "We don't like BUG- or FIRE-type\n"
-    .string "POKéMON in here!$"
+    .string "Our GRASS and FIRE POKéMON\n"
+    .string "both love the sunlight here!$"
 
 CeladonCity_Gym_Text_LisaDefeat::
     .string "Oh!\n"
