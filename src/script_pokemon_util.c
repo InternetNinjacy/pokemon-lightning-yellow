@@ -11,6 +11,7 @@
 #include "constants/items.h"
 #include "constants/pokemon.h"
 #include "pokemon.h"
+#include "pokemon_storage_system.h"
 #include "constants/moves.h"
 #include "constants/abilities.h"
 #include "constants/special_weather.h"
@@ -74,6 +75,31 @@ u8 ScriptGiveMon(u16 species, u8 level, u16 item, u32 unused1, u32 unused2, u8 u
 
     Free(mon);
     return sentToPc;
+}
+
+// Apply the owner-selected name only to the Lapras just delivered by
+// Silph Co. 7F's native givemon command. The command already handled party
+// versus PC delivery, Pokédex flags and full-storage rejection.
+// Leave VAR_RESULT unchanged for the native script's existing branches.
+void ScriptSetSilphLaprasDefaultNickname(void)
+{
+    static const u8 sJulioName[] = _("JULIO");
+
+    if (gSpecialVar_Result == MON_GIVEN_TO_PARTY)
+    {
+        if (gPlayerPartyCount != 0
+         && GetMonData(&gPlayerParty[gPlayerPartyCount - 1], MON_DATA_SPECIES) == SPECIES_LAPRAS
+         && GetMonData(&gPlayerParty[gPlayerPartyCount - 1], MON_DATA_LEVEL) == 25)
+            SetMonData(&gPlayerParty[gPlayerPartyCount - 1], MON_DATA_NICKNAME, sJulioName);
+    }
+    else if (gSpecialVar_Result == MON_GIVEN_TO_PC)
+    {
+        if (gSpecialVar_MonBoxId < TOTAL_BOXES_COUNT
+         && gSpecialVar_MonBoxPos < IN_BOX_COUNT
+         && GetBoxMonDataAt(gSpecialVar_MonBoxId, gSpecialVar_MonBoxPos, MON_DATA_SPECIES) == SPECIES_LAPRAS
+         && GetBoxMonDataAt(gSpecialVar_MonBoxId, gSpecialVar_MonBoxPos, MON_DATA_LEVEL) == 25)
+            SetBoxMonNickAt(gSpecialVar_MonBoxId, gSpecialVar_MonBoxPos, sJulioName);
+    }
 }
 
 u8 ScriptGiveEgg(u16 species)
