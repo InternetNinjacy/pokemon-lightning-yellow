@@ -954,16 +954,18 @@ static const struct TrainerMonNoItemCustomMoves sParty_SailorPhillip[] = {
     },
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_SailorDwayne[] = {
+static const struct TrainerMonNoItemCustomMoves sParty_SailorDwayne[] = {
     {
         .iv = 0,
-        .lvl = 21,
-        .species = SPECIES_PIKACHU,
+        .lvl = 5,
+        .species = SPECIES_MAGIKARP,
+        .moves = {MOVE_SPLASH, MOVE_NONE, MOVE_NONE, MOVE_NONE},
     },
     {
         .iv = 0,
-        .lvl = 21,
-        .species = SPECIES_PIKACHU,
+        .lvl = 22,
+        .species = SPECIES_ELECTRIKE,
+        .moves = {MOVE_ZAP_CANNON, MOVE_SPARK, MOVE_QUICK_ATTACK, MOVE_THUNDER_WAVE},
     },
 };
 
