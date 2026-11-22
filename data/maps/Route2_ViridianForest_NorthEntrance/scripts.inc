@@ -6,7 +6,28 @@ Route2_ViridianForest_NorthEntrance_EventScript_Youngster::
 	end
 
 Route2_ViridianForest_NorthEntrance_EventScript_OldMan::
-	msgbox Route2_ViridianForest_NorthEntrance_Text_CanCutSkinnyTrees, MSGBOX_NPC
+	lock
+	faceplayer
+	goto_if_set FLAG_TUTOR_ROUTE2_WATER_GUN, Route2_ViridianForest_NorthEntrance_EventScript_WaterGunAlreadyTaught
+	msgbox Route2_ViridianForest_NorthEntrance_Text_WaterGunOffer, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, Route2_ViridianForest_NorthEntrance_EventScript_WaterGunDeclined
+	msgbox Route2_ViridianForest_NorthEntrance_Text_WaterGunWhichMon
+	setvar VAR_0x8005, MOVETUTOR_WATER_GUN
+	call EventScript_ChooseMoveTutorMon
+	goto_if_eq VAR_RESULT, FALSE, Route2_ViridianForest_NorthEntrance_EventScript_WaterGunDeclined
+	setflag FLAG_TUTOR_ROUTE2_WATER_GUN
+	msgbox Route2_ViridianForest_NorthEntrance_Text_WaterGunBrock
+	release
+	end
+
+Route2_ViridianForest_NorthEntrance_EventScript_WaterGunDeclined::
+	msgbox Route2_ViridianForest_NorthEntrance_Text_WaterGunDeclined
+	release
+	end
+
+Route2_ViridianForest_NorthEntrance_EventScript_WaterGunAlreadyTaught::
+	msgbox Route2_ViridianForest_NorthEntrance_Text_WaterGunAlreadyTaught
+	release
 	end
 
 Route2_ViridianForest_NorthEntrance_EventScript_CooltrainerF::
