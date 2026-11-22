@@ -1152,6 +1152,9 @@ static void CB2_FinishEReaderBattle(void)
     switch (sSpecialVar_0x8004_Copy)
     {
     case 0:
+        // A staged Seven Island trio must not survive a Battle Tower return.
+        // This does not alter the active party or legacy Tower result handling.
+        sSevenIslandBattleTowerBattlePartyPrepared = FALSE;
         break;
     case 1:
         for (i = 0; i < PARTY_SIZE; i++)
