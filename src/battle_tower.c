@@ -327,14 +327,24 @@ static const u16 sBattleTowerHeldItems[] = {
 #include "data/battle_tower/level_50_mons.h"
 #include "data/battle_tower/level_100_mons.h"
 
+// Reuse existing facility-class mappings for player records and e-Reader records.
+// Empty arrays in the upstream source made the modulo selection undefined.
 static const u8 sMaleTrainerClasses[] =
 {
-
+    FACILITY_CLASS_RS_CAMPER,
+    FACILITY_CLASS_RS_YOUNGSTER,
+    FACILITY_CLASS_RS_COOLTRAINER_M,
+    FACILITY_CLASS_RS_BLACK_BELT,
+    FACILITY_CLASS_RS_GENTLEMAN,
 };
 
 static const u8 sFemaleTrainerClasses[] =
 {
-
+    FACILITY_CLASS_RS_PICNICKER,
+    FACILITY_CLASS_RS_COOLTRAINER_F,
+    FACILITY_CLASS_RS_BEAUTY,
+    FACILITY_CLASS_RS_PSYCHIC_F,
+    FACILITY_CLASS_BATTLE_GIRL,
 };
 
 static const u8 sMaleTrainerGfx[] =
@@ -592,9 +602,35 @@ void ChooseNextBattleTowerTrainer(void)
         gSaveBlock2Ptr->battleTower.battledTrainerIds[gSaveBlock2Ptr->battleTower.curChallengeBattleNum[levelType] - 1] = gSaveBlock2Ptr->battleTower.battleTowerTrainerId;
 }
 
-static void SetBattleTowerTrainerGfxId(u8 trainerClass)
+// The argument is a Battle Tower trainer ID, not a facility class.
+// Normal IDs index the newly authored roster; record-mixing and e-Reader IDs
+// use the facility class already stored in their respective records.
+static void SetBattleTowerTrainerGfxId(u8 trainerId)
 {
-    VarSet(VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_YOUNGSTER);
+    u8 facilityClass;
+    u16 gfxId = OBJ_EVENT_GFX_YOUNGSTER;
+
+    if (trainerId == BATTLE_TOWER_EREADER_TRAINER_ID)
+        facilityClass = gSaveBlock2Ptr->battleTower.ereaderTrainer.trainerClass;
+    else if (trainerId < BATTLE_TOWER_RECORD_MIXING_TRAINER_BASE_ID)
+        facilityClass = sBattleTowerTrainers[trainerId].trainerClass;
+    else if (trainerId < BATTLE_TOWER_RECORD_MIXING_TRAINER_BASE_ID + 5)
+        facilityClass = gSaveBlock2Ptr->battleTower.records[trainerId - BATTLE_TOWER_RECORD_MIXING_TRAINER_BASE_ID].trainerClass;
+    else
+        facilityClass = FACILITY_CLASS_RS_YOUNGSTER;
+
+    switch (facilityClass)
+    {
+    case FACILITY_CLASS_RS_CAMPER: gfxId = OBJ_EVENT_GFX_CAMPER; break;
+    case FACILITY_CLASS_RS_PICNICKER: gfxId = OBJ_EVENT_GFX_PICNICKER; break;
+    case FACILITY_CLASS_RS_COOLTRAINER_M: gfxId = OBJ_EVENT_GFX_COOLTRAINER_M; break;
+    case FACILITY_CLASS_RS_COOLTRAINER_F: gfxId = OBJ_EVENT_GFX_COOLTRAINER_F; break;
+    case FACILITY_CLASS_RS_BEAUTY: gfxId = OBJ_EVENT_GFX_BEAUTY; break;
+    case FACILITY_CLASS_RS_BLACK_BELT: gfxId = OBJ_EVENT_GFX_BLACK_BELT; break;
+    case FACILITY_CLASS_RS_GENTLEMAN: gfxId = OBJ_EVENT_GFX_GENTLEMAN; break;
+    default: break;
+    }
+    VarSet(VAR_OBJ_GFX_ID_0, gfxId);
 }
 
 void SetEReaderTrainerGfxId(void)
