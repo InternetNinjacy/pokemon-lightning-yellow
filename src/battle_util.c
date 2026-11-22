@@ -1638,7 +1638,7 @@ bool8 HasNoMonsToSwitch(u8 battler, u8 partyIdBattlerOn1, u8 partyIdBattlerOn2)
         for (i = 0; i < PARTY_SIZE; i++)
         {
             if (GetBattlerSide(battler) == B_SIDE_PLAYER
-             && !IsSevenIslandBattleTowerEligiblePartySlot(i))
+             && !IsSevenIslandBattleTowerEligibleBattleSlot(i))
                 continue;
             if (GetMonData(&party[i], MON_DATA_HP) != 0
              && GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG) != SPECIES_NONE
