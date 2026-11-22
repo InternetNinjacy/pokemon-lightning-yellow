@@ -27,58 +27,36 @@
 #include "constants/easy_chat.h"
 
 static EWRAM_DATA u16 sSpecialVar_0x8004_Copy = 0;
-static EWRAM_DATA struct Pokemon sSevenIslandBattleTowerOriginalParty[PARTY_SIZE];
-static EWRAM_DATA u8 sSevenIslandBattleTowerOriginalPartyCount;
-static EWRAM_DATA bool8 sSevenIslandBattleTowerPartyBackedUp = FALSE;
 static EWRAM_DATA struct Pokemon sSevenIslandBattleTowerBattleParty[3];
 static EWRAM_DATA u8 sSevenIslandBattleTowerOriginalSlots[3];
 static EWRAM_DATA bool8 sSevenIslandBattleTowerBattlePartyPrepared = FALSE;
 // Never activated by reception or the legacy Tower launcher.
 static EWRAM_DATA bool8 sSevenIslandBattleTowerBattleContextActive = FALSE;
 
-// Runtime-only preservation for the new Seven Island reception. Do not
-// substitute SavePlayerParty/LoadPlayerParty: those operate on serialized
-// save data and can overwrite the normal player's saved party.
+// The Seven Island adapter never reduces or substitutes the six-mon party.
+// Retain the script specials for compatibility, but never snapshot or replay
+// old Pokemon data: stale RAM copies would overwrite legitimate changes and
+// cannot provide recovery after a reset.
 void BackupSevenIslandBattleTowerParty(void)
 {
-    u8 i;
-
-    // Do not overwrite an outstanding snapshot.
-    if (sSevenIslandBattleTowerPartyBackedUp)
-    {
-        gSpecialVar_Result = FALSE;
-        return;
-    }
-
-    sSevenIslandBattleTowerOriginalPartyCount = gPlayerPartyCount;
-    for (i = 0; i < PARTY_SIZE; i++)
-        sSevenIslandBattleTowerOriginalParty[i] = gPlayerParty[i];
-
-    sSevenIslandBattleTowerPartyBackedUp = TRUE;
     gSpecialVar_Result = TRUE;
 }
 
 void RestoreSevenIslandBattleTowerParty(void)
 {
-    u8 i;
-
-    if (!sSevenIslandBattleTowerPartyBackedUp)
-    {
-        gSpecialVar_Result = FALSE;
-        return;
-    }
-
-    for (i = 0; i < PARTY_SIZE; i++)
-        gPlayerParty[i] = sSevenIslandBattleTowerOriginalParty[i];
-    gPlayerPartyCount = sSevenIslandBattleTowerOriginalPartyCount;
-    sSevenIslandBattleTowerPartyBackedUp = FALSE;
-    // The staged trio may contain copies from before restoration.
     sSevenIslandBattleTowerBattlePartyPrepared = FALSE;
     sSevenIslandBattleTowerBattleContextActive = FALSE;
     gSpecialVar_Result = TRUE;
 }
 
-
+// Reserved for the future isolated battle return. Do not wire this into
+// the legacy E-Reader callback or enable Seven Island battle launching.
+void CB2_FinishSevenIslandBattleTowerBattle(void)
+{
+    sSevenIslandBattleTowerBattlePartyPrepared = FALSE;
+    sSevenIslandBattleTowerBattleContextActive = FALSE;
+    SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
+}
 
 #define TakeBravoTrainerBattleTowerOffTheAir()
 #define ewram160FB (*((u8 *)&gBattleStruct->field_DA))
