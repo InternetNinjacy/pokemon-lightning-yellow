@@ -2301,7 +2301,7 @@
       ],
       "status": {
         "design": "Global252-only assignment policy supplied; no off-Dex exceptions",
-        "implementation": "2026-11-21 draft PR288 implements delegated equivalent replacements for all 54 off-Dex Trainer Tower source entries, preserving levels/items/EVs/IVs/personality/team slots and matching nicknames; Octillery signature move Octazooka replaced by Water Pulse for two Seadra slots. Previous source comparison: 148 wild off-Dex, zero ordinary Trainer, 3 legendary direct events. No tests/builds/emulators; runtime acceptance pending.",
+        "implementation": "2026-11-21 source-only PR288: historical 24 ordinary Trainer and 54 Trainer Tower off-Dex occurrences replaced; 148 wild off-Dex slots remain on 12 special/protected maps (84 Tanoby Unown, 48 Altering Cave, 12 Three Island Port, 4 Five/Seven Island coast). Three native legendary event assignments remain (Deoxys/Lugia/Ho-Oh). Crucial correction: 279 off-Dex Battle Tower level 50/100 template entries are actually selected by src/battle_tower.c, not harmless reference-only data; challenge accessibility unverified. No tests/builds/emulators/merges.",
         "automated": "seven host suites/static audits PASS; identical clean rebuild; final Actions SUCCESS",
         "emulator": "full local libmGBA0.10.5 PASS:114706 assertions; native rewards/menus/restoration/flash scenes",
         "pull_request": "PR#11 merged; historical branch evidence retained",
@@ -2311,9 +2311,9 @@
       "commit": "b0bd3b86f4e03dd3f540f0776a5de87f207e84e4",
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/11",
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41529505085",
-      "blocker": "Remaining demonstrated authored off-Dex: 148 wild WRL ecology-owned plus 3 direct legendary events under SOW ownership/policy. 279 legacy Battle Tower and 12 script/C references still require role classification. No gameplay acceptance.",
+      "blocker": "Wild 148 all in WRL-002/009 handoff-protected maps with native event safeguards and no verified exact approved replacement table; avoid blind edits. Legendary 3 native event scripts require SOW/story decision. Battle Tower 279 active source pool entries need separate owner-approved roster equivalence and ownership/reachability decision. Script 8 and C 4 references classified separately.",
       "design_authority": "Owner supplied November2 Wild Encounters, Gym Roster, Fossils and Pokedex Compliance update; historical direct Drive401 did not prevent reading the supplied exports; latest concurrent PR15 requires version reconciliation.",
-      "next_action": "Reconcile 148 WRL-owned wild slots and three SOW-owned direct legendary scripts; classify legacy Battle Tower and script/C references. Owner playtest Trainer Tower substitutions. Do not duplicate owned ecology or stationary work.",
+      "next_action": "Do not alter protected Tanoby glyphs, Altering Cave event variants or Three Island Port without WRL map-specific approval. Seek Battle Tower replacement policy/ownership and classify reachability; handle three native legendary scripts with SOW owner. Source reference cleanup not automatically necessary.",
       "checkpoint": "2026-11-04 supplied-export reconciliation; old unavailable-document claims superseded; no implementation/test credit from availability.",
       "source_exports": [
         "04_SPECIES_EVOLUTION_WORLD/Pokémon Lightning Yellow — All 252 Species Typing & 67 Move Source Matrix — 2026-11-02.txt",
