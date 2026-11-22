@@ -5953,6 +5953,11 @@ void EnterPartyFromItemMenuInBattle(void)
 
 static u8 GetPartyMenuActionsTypeInBattle(struct Pokemon *mon)
 {
+    // The same battle-order mapping used by TrySwitchInPokemon applies to
+    // the forced-replacement menu. Keep non-selected mons inspectable but
+    // never offer them the Send Out / Shift action.
+    if (!IsSevenIslandBattleTowerEligibleBattleSlot(mon - gPlayerParty))
+        return ACTIONS_SUMMARY_ONLY;
     if (GetMonData(&gPlayerParty[1], MON_DATA_SPECIES) == SPECIES_NONE || GetMonData(mon, MON_DATA_IS_EGG))
         return ACTIONS_SUMMARY_ONLY;
     else if (gPartyMenu.action == PARTY_ACTION_SEND_OUT)
