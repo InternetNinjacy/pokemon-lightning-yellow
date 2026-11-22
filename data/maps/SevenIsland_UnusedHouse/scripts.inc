@@ -43,6 +43,12 @@ SevenIsland_UnusedHouse_EventScript_Ineligible::
 	goto SevenIsland_UnusedHouse_EventScript_OfferReturn
 
 SevenIsland_UnusedHouse_EventScript_OfferReturn::
+	msgbox SevenIsland_UnusedHouse_Text_OfferHealing, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, SevenIsland_UnusedHouse_EventScript_ReturnPrompt
+	special HealPlayerParty
+	msgbox SevenIsland_UnusedHouse_Text_Healed
+
+SevenIsland_UnusedHouse_EventScript_ReturnPrompt::
 	msgbox SevenIsland_UnusedHouse_Text_ReturnToSevenIsland, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, SevenIsland_UnusedHouse_EventScript_Stay
 	closemessage
