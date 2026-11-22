@@ -1410,7 +1410,7 @@ const struct Trainer gTrainers[] = {
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
-        .party = NO_ITEM_DEFAULT_MOVES(sParty_SailorDwayne),
+        .party = NO_ITEM_CUSTOM_MOVES(sParty_SailorDwayne),
     },
     [TRAINER_CAMPER_LIAM] = {
         .trainerClass = TRAINER_CLASS_CAMPER,
