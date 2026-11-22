@@ -87,3 +87,34 @@ Route12_FishingHouse_Text_BlankChartOfSomeSort::
     .string "It has spaces for writing in\n"
     .string "records of some kind.$"
 
+@ Approved one-time sailor legend: no state check against haunted Corphish.
+@ After SUPER ROD acquisition all original Magikarp record dialogue is reused.
+Route12_FishingHouse_Text_SailorLegendStart::
+    .string "Ever hear the old sailor's tale?\p"
+    .string "A sailor went out to sea one day\n"
+    .string "and never came back.\p"
+    .string "They say he died out there,\n"
+    .string "but his spirit couldn't rest.$"
+
+Route12_FishingHouse_Text_SailorLegendPossession::
+    .string "He tried to enter the bodies\n"
+    .string "of living people, but failed.\p"
+    .string "Then he learned he could take\n"
+    .string "possession of POKéMON.\p"
+    .string "He went from one POKéMON to\n"
+    .string "another, battling for power.$"
+
+Route12_FishingHouse_Text_SailorLegendRelease::
+    .string "He dreams of becoming strong\n"
+    .string "enough to possess a human.\p"
+    .string "But if his POKéMON is overcome\n"
+    .string "in battle, the legend says\p"
+    .string "his tormented soul may finally\n"
+    .string "leave this world and rest.$"
+
+Route12_FishingHouse_Text_SailorLegendThanks::
+    .string "Oh! Forgive me for talking\n"
+    .string "your ear off!\p"
+    .string "Thank you for listening to\n"
+    .string "an old fisherman's tale.\p"
+    .string "Please, take this SUPER ROD.$"
