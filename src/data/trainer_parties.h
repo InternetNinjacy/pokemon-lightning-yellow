@@ -3347,22 +3347,12 @@ static const struct TrainerMonNoItemDefaultMoves sParty_PsychicJohan[] = {
     {
         .iv = 50,
         .lvl = 31,
-        .species = SPECIES_KADABRA,
+        .species = SPECIES_GASTLY,
     },
     {
         .iv = 50,
         .lvl = 31,
-        .species = SPECIES_SLOWPOKE,
-    },
-    {
-        .iv = 50,
-        .lvl = 31,
-        .species = SPECIES_MR_MIME,
-    },
-    {
-        .iv = 50,
-        .lvl = 31,
-        .species = SPECIES_KADABRA,
+        .species = SPECIES_MACHOP,
     },
 };
 
@@ -3370,12 +3360,12 @@ static const struct TrainerMonNoItemDefaultMoves sParty_PsychicTyron[] = {
     {
         .iv = 50,
         .lvl = 34,
-        .species = SPECIES_MR_MIME,
+        .species = SPECIES_SHUPPET,
     },
     {
         .iv = 50,
         .lvl = 34,
-        .species = SPECIES_KADABRA,
+        .species = SPECIES_MANKEY,
     },
 };
 
@@ -3383,17 +3373,12 @@ static const struct TrainerMonNoItemDefaultMoves sParty_PsychicCameron[] = {
     {
         .iv = 50,
         .lvl = 33,
-        .species = SPECIES_SLOWPOKE,
+        .species = SPECIES_DUSKULL,
     },
     {
         .iv = 50,
         .lvl = 33,
-        .species = SPECIES_SLOWPOKE,
-    },
-    {
-        .iv = 50,
-        .lvl = 33,
-        .species = SPECIES_SLOWBRO,
+        .species = SPECIES_MEDITITE,
     },
 };
 
@@ -3401,7 +3386,12 @@ static const struct TrainerMonNoItemDefaultMoves sParty_PsychicPreston[] = {
     {
         .iv = 50,
         .lvl = 38,
-        .species = SPECIES_SLOWBRO,
+        .species = SPECIES_HAUNTER,
+    },
+    {
+        .iv = 50,
+        .lvl = 38,
+        .species = SPECIES_PRIMEAPE,
     },
 };
 
@@ -7139,12 +7129,12 @@ static const struct TrainerMonNoItemDefaultMoves sParty_ChannelerAmanda[] = {
     {
         .iv = 0,
         .lvl = 34,
-        .species = SPECIES_GASTLY,
+        .species = SPECIES_MISDREAVUS,
     },
     {
         .iv = 0,
         .lvl = 34,
-        .species = SPECIES_HAUNTER,
+        .species = SPECIES_BRELOOM,
     },
 };
 
@@ -7152,7 +7142,12 @@ static const struct TrainerMonNoItemDefaultMoves sParty_ChannelerStacy[] = {
     {
         .iv = 0,
         .lvl = 38,
-        .species = SPECIES_HAUNTER,
+        .species = SPECIES_BANETTE,
+    },
+    {
+        .iv = 0,
+        .lvl = 38,
+        .species = SPECIES_HITMONCHAN,
     },
 };
 
@@ -7160,17 +7155,12 @@ static const struct TrainerMonNoItemDefaultMoves sParty_ChannelerTasha[] = {
     {
         .iv = 0,
         .lvl = 33,
-        .species = SPECIES_GASTLY,
+        .species = SPECIES_LICKITUNG,
     },
     {
         .iv = 0,
         .lvl = 33,
-        .species = SPECIES_GASTLY,
-    },
-    {
-        .iv = 0,
-        .lvl = 33,
-        .species = SPECIES_HAUNTER,
+        .species = SPECIES_MEDICHAM,
     },
 };
 
