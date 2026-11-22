@@ -1481,13 +1481,25 @@ u8 GetSevenIslandBattleTowerBattlePartyCount(void)
     return IsSevenIslandBattleTowerBattlePartyCurrent() ? 3 : 0;
 }
 
-// Map an isolated battle slot back to its original full-party slot.
-// PARTY_SIZE is an invalid-slot sentinel. No global battle index changes.
+// Resolve a staged trio member to its current full-party position. Battle
+// switching can move that Pokemon away from its originally selected slot.
+// PARTY_SIZE remains the invalid-slot sentinel.
 u8 GetSevenIslandBattleTowerOriginalPartySlot(u8 battleSlot)
 {
+    u8 i;
+
     if (!IsSevenIslandBattleTowerBattlePartyCurrent() || battleSlot >= 3)
         return PARTY_SIZE;
-    return sSevenIslandBattleTowerOriginalSlots[battleSlot];
+
+    for (i = 0; i < gPlayerPartyCount && i < PARTY_SIZE; i++)
+    {
+        if (GetMonData(&gPlayerParty[i], MON_DATA_PERSONALITY)
+         == GetMonData(&sSevenIslandBattleTowerBattleParty[battleSlot], MON_DATA_PERSONALITY)
+         && GetMonData(&gPlayerParty[i], MON_DATA_OT_ID)
+         == GetMonData(&sSevenIslandBattleTowerBattleParty[battleSlot], MON_DATA_OT_ID))
+            return i;
+    }
+    return PARTY_SIZE;
 }
 
 // Only the future Seven Island battle adapter may enable this context.
