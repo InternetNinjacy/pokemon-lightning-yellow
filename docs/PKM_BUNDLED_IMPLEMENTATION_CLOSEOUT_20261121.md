@@ -39,3 +39,12 @@ Compared the committed historical 572-finding snapshot against source at the PR2
 * Direct event scripts: current Water Labyrinth egg uses MAGBY, superseding historical TOGEPI. Birth Island DEOXYS, Navel Rock LUGIA and HO_OH remain; defer to stationary encounter owner and approved special policy. Legacy Battle Tower 279 and 12 script/C reference candidates require separate runtime-role classification, not automatic species substitution.
 
 This source comparison reduces demonstrated current authored off-Dex assignments from historical 281 to 205 (148 wild + 54 Trainer Tower + 3 direct events), within inspected categories. It does not certify global eligibility, external/dynamic dataflow, or hardware. PKM-006 remains implementation-open for approved replacements; the historical audit snapshot is intentionally unchanged for reproducibility. Existing 461/251/712 accounting is unchanged.
+
+
+### 2026-11-21 owner-approved delegated Trainer Tower replacements
+
+Owner approved equivalent 252-species roster substitutions preserving battle role and difficulty. Draft PR288 source changes in src/trainer_tower_sets.c replace all 54 previously off-Dex Trainer Tower species slots, with corresponding nickname changes. Levels, team positions, held items, EVs, IVs, personalities and friendship were left untouched. Two OCTILLERY→SEADRA entries had signature OCTAZOOKA replaced with WATER_PULSE. No build/test/emulator/merge or gameplay claim.
+
+Exact source replacement map (original → approved roster substitute): TOGETIC→CLEFABLE; FURRET→RATICATE; GIRAFARIG→HYPNO; TOGEPI→CLEFAIRY; SNUBBULL→JIGGLYPUFF; SHUCKLE→ONIX; GLIGAR→AERODACTYL; QUAGSIRE→SLOWBRO; SKARMORY→STEELIX; MANTINE→LAPRAS; JUMPLUFF→BELLOSSOM; LEDIAN→BUTTERFREE; MEGANIUM→VENUSAUR; DUNSPARCE→KANGASKHAN; FERALIGATR→BLASTOISE; GRANBULL→TAUROS; CORSOLA→STARMIE; AZUMARILL→POLIWRATH; CHINCHOU→STARYU; WOOPER→SLOWPOKE; TOTODILE→SQUIRTLE; LANTURN→VAPOREON; OCTILLERY→SEADRA; QWILFISH→TENTACRUEL; REMORAID→HORSEA.
+
+Read-only source inventory after this change: 148 wild ecology slots and three direct legendary event assignments remain demonstrated authored off-Dex occurrences in inspected categories (151 total); ordinary Trainer and Trainer Tower parsed source assignments now zero. The historical snapshot remains immutable. Runtime and move legality/competitive balance of replacement parties require owner review. 279 legacy Battle Tower references and 12 script/C candidates still require role classification. Preserve 50 IDs and 461/251/712 until evidence-based acceptance.
