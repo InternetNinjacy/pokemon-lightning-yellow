@@ -5969,7 +5969,7 @@ static bool8 TrySwitchInPokemon(void)
 
     // Dormant until the Seven Island adapter explicitly activates its context.
     // Check the actual full-party slot before battle-order remapping.
-    if (!IsSevenIslandBattleTowerEligiblePartySlot(slot))
+    if (!IsSevenIslandBattleTowerEligibleBattleSlot(slot))
     {
         StringExpandPlaceholders(gStringVar4, gText_PkmnCantSwitchOut);
         return FALSE;
