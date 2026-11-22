@@ -242,7 +242,7 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 			MOVE_QUICK_ATTACK,
 			MOVE_PROTECT,
 			MOVE_DOUBLE_TEAM,
-			MOVE_TOXIC
+			MOVE_ANCIENT_POWER
 		},
 		.evSpread = F_EV_SPREAD_SP_DEFENSE | F_EV_SPREAD_SPEED | F_EV_SPREAD_DEFENSE | F_EV_SPREAD_HP,
 		.nature = NATURE_QUIET,
@@ -461,7 +461,7 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.teamFlags = 0x0B,
 		.moves = {
 			MOVE_PROTECT,
-			MOVE_TOXIC,
+			MOVE_WING_ATTACK,
 			MOVE_REST,
 			MOVE_AERIAL_ACE
 		},
@@ -863,7 +863,7 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.heldItem = BATTLE_TOWER_ITEM_SALAC_BERRY,
 		.teamFlags = 0x0B,
 		.moves = {
-			MOVE_BRICK_BREAK,
+			MOVE_SOFT_BOILED,
 			MOVE_PROTECT,
 			MOVE_SAFEGUARD,
 			MOVE_TOXIC
@@ -1422,10 +1422,10 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.heldItem = BATTLE_TOWER_ITEM_METAL_COAT,
 		.teamFlags = 0x05,
 		.moves = {
-			MOVE_PROTECT,
-			MOVE_TOXIC,
-			MOVE_DOUBLE_TEAM,
-			MOVE_FACADE
+			MOVE_THUNDERBOLT,
+			MOVE_TRI_ATTACK,
+			MOVE_METAL_SOUND,
+			MOVE_THUNDER_WAVE
 		},
 		.evSpread = F_EV_SPREAD_SP_DEFENSE | F_EV_SPREAD_DEFENSE | F_EV_SPREAD_ATTACK,
 		.nature = NATURE_IMPISH,
@@ -1542,7 +1542,7 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 			MOVE_DOUBLE_TEAM,
 			MOVE_FACADE,
 			MOVE_PROTECT,
-			MOVE_TOXIC
+			MOVE_WING_ATTACK
 		},
 		.evSpread = F_EV_SPREAD_SP_DEFENSE | F_EV_SPREAD_ATTACK | F_EV_SPREAD_HP,
 		.nature = NATURE_LAX,
@@ -1645,7 +1645,7 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.moves = {
 			MOVE_THUNDER,
 			MOVE_PROTECT,
-			MOVE_TOXIC,
+			MOVE_LIGHT_SCREEN,
 			MOVE_RAIN_DANCE
 		},
 		.evSpread = F_EV_SPREAD_SP_ATTACK | F_EV_SPREAD_DEFENSE,
@@ -1969,7 +1969,7 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.teamFlags = 0x03,
 		.moves = {
 			MOVE_PROTECT,
-			MOVE_TOXIC,
+			MOVE_BULK_UP,
 			MOVE_AERIAL_ACE,
 			MOVE_FOCUS_PUNCH
 		},
@@ -2567,7 +2567,7 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.teamFlags = 0x23,
 		.moves = {
 			MOVE_PROTECT,
-			MOVE_BRICK_BREAK,
+			MOVE_SOFT_BOILED,
 			MOVE_TOXIC,
 			MOVE_ATTRACT
 		},
@@ -2894,7 +2894,7 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 			MOVE_IRON_TAIL,
 			MOVE_PROTECT,
 			MOVE_EARTHQUAKE,
-			MOVE_TOXIC
+			MOVE_CRUNCH
 		},
 		.evSpread = F_EV_SPREAD_SP_DEFENSE | F_EV_SPREAD_ATTACK | F_EV_SPREAD_HP,
 		.nature = NATURE_HARDY,
