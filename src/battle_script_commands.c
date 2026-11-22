@@ -1,4 +1,5 @@
 #include "global.h"
+#include "battle_tower.h"
 #include "capture_rules.h"
 #include "wild_double_battle.h"
 #include "gflib.h"
@@ -3448,6 +3449,10 @@ static void Cmd_checkteamslost(void)
 
     for (i = 0; i < PARTY_SIZE; i++)
     {
+        // Only the selected trio contributes to defeat in the isolated
+        // Seven Island battle context; the full party remains untouched.
+        if (!IsSevenIslandBattleTowerEligiblePartySlot(i))
+            continue;
         if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES) && !GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG))
         {
             HP_count += GetMonData(&gPlayerParty[i], MON_DATA_HP);
