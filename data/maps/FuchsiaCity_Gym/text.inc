@@ -6,10 +6,10 @@ FuchsiaCity_Gym_Text_KogaIntro::
     .string "with mirth!\p"
     .string "Very well, I shall show you true\n"
     .string "terror as a ninja master.\p"
-    .string "Poison brings steady doom.\n"
-    .string "Sleep renders foes helpless.\p"
-    .string "Despair to the creeping horror of\n"
-    .string "POISON-type POKéMON!{PLAY_BGM}{MUS_ENCOUNTER_GYM_LEADER}$"
+    .string "A precise strike can end a battle\n"
+    .string "in an instant!\p"
+    .string "Beware the critical strikes of\n"
+    .string "BUG and POISON POKéMON!{PLAY_BGM}{MUS_ENCOUNTER_GYM_LEADER}$"
 
 FuchsiaCity_Gym_Text_KogaDefeat::
     .string "Humph!\n"
