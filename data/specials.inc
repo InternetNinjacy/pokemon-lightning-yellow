@@ -465,4 +465,5 @@ gSpecials::
 	def_special RocketRescueReturn
 	def_special ScriptSelectStarterPikachuFollower
 	def_special ScriptStartStarterFollowerEmergence
+	def_special GetBattleTowerBattleResult
 gSpecialsEnd::
