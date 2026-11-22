@@ -40,5 +40,7 @@ u8 GetBattleTowerTrainerClassNameId(void);
 const struct Pokemon *GetSevenIslandBattleTowerBattleParty(void);
 u8 GetSevenIslandBattleTowerBattlePartyCount(void);
 u8 GetSevenIslandBattleTowerOriginalPartySlot(u8 battleSlot);
+bool8 IsSevenIslandBattleTowerBattleContextActive(void);
+bool8 IsSevenIslandBattleTowerEligiblePartySlot(u8 slot);
 
 #endif //GUARD_BATTLE_TOWER_H
