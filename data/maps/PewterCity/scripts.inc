@@ -633,17 +633,8 @@ PewterCity_EventScript_FatMan::
 	end
 
 PewterCity_EventScript_BugCatcher::
-	lock
-	faceplayer
-	msgbox PewterCity_Text_DoYouKnowWhatImDoing, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, YES, PewterCity_EventScript_KnowWhatTheyreDoing
-	msgbox PewterCity_Text_SprayingRepelToKeepWildMonsOut
-	release
-	end
-
-PewterCity_EventScript_KnowWhatTheyreDoing::
-	msgbox PewterCity_Text_ThatsRightItsHardWork
-	release
+	trainerbattle_single TRAINER_BUG_CATCHER_PEWTER_LOCAL, PewterCity_Text_OwenIntro, PewterCity_Text_OwenDefeat
+	msgbox PewterCity_Text_OwenAfterBattle, MSGBOX_AUTOCLOSE
 	end
 
 PewterCity_EventScript_TrainerTips::
