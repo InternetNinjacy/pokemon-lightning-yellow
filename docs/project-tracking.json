@@ -2301,7 +2301,7 @@
       ],
       "status": {
         "design": "Global252-only assignment policy supplied; no off-Dex exceptions",
-        "implementation": "2026-11-21 PR288: Owner approved distinct Seven Island Battle Tower location. Source inspection confirms SevenIsland 24x20 has four occupied warps (house, mart, center, harbor), existing north Trainer Tower connection, separate Trainer Tower exterior entrance, unconnected unused Seven Island house and legacy RS_BattleTower layout without map/scripts. Detailed placement handoff docs/PKM006_SEVEN_ISLAND_BATTLE_TOWER_PLACEMENT_20261121.md committed. No arbitrary exterior warp/map edit; 100 trainers and 279 substitutions preserved. No tests/builds/emulators/diagnostics/CI/merges.",
+        "implementation": "2026-11-21 PR288: Owner approved repurposing unconnected SevenIsland_UnusedHouse as separate Battle Tower reception. Source-staged informational receptionist object at interior (5,3), script and newly authored level50/100 introductory text. No exterior town door/paired warp or challenge activation because occupied town warps and unverified door tile geometry. Existing Trainer Tower, 100 Battle Tower trainer records and 279 species substitutions preserved. No tests/builds/emulators/diagnostics/CI/merges.",
         "automated": "seven host suites/static audits PASS; identical clean rebuild; final Actions SUCCESS",
         "emulator": "full local libmGBA0.10.5 PASS:114706 assertions; native rewards/menus/restoration/flash scenes",
         "pull_request": "PR#11 merged; historical branch evidence retained",
@@ -2311,9 +2311,9 @@
       "commit": "b0bd3b86f4e03dd3f540f0776a5de87f207e84e4",
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/11",
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41529505085",
-      "blocker": "Exact Seven Island exterior doorway/building placement and lobby art/warp layout not established; all four existing town warps are occupied. Need owner-approved new exterior door/map edit (or specific existing structure reuse) and challenge entry/gating before safe integration. WRL 148 wild and SOW 3 legendary holds remain.",
+      "blocker": "New reception interior remains unreachable: no verified free exterior Seven Island door tile or corresponding door metatile/collision edit, so no safe paired warps; Battle Tower challenge API wiring not yet grounded. WRL wild and SOW legendary protected.",
       "design_authority": "Owner supplied November2 Wild Encounters, Gym Roster, Fossils and Pokedex Compliance update; historical direct Drive401 did not prevent reading the supplied exports; latest concurrent PR15 requires version reconciliation.",
-      "next_action": "Owner choose a specific new Seven Island exterior doorway/building site or explicitly approve adapting the unconnected SevenIsland_UnusedHouse as an annex. Then stage dedicated lobby map, paired warps and grounded Battle Tower receptionist/challenge scripts, preserving Trainer Tower and progression.",
+      "next_action": "Determine exact Seven Island exterior building door coordinate from map metatile/collision data and select a nonoverlapping location; then implement paired warps and receptionist challenge logic only after grounded source API inspection. Keep Trainer Tower and all four existing town warps unchanged.",
       "checkpoint": "2026-11-04 supplied-export reconciliation; old unavailable-document claims superseded; no implementation/test credit from availability.",
       "source_exports": [
         "04_SPECIES_EVOLUTION_WORLD/Pokémon Lightning Yellow — All 252 Species Typing & 67 Move Source Matrix — 2026-11-02.txt",
