@@ -25,3 +25,14 @@ SevenIsland_UnusedHouse_Text_NeedThreeEligible::
 SevenIsland_UnusedHouse_Text_ReturnToSevenIsland::
     .string "Would you like an escort back\n"
     .string "to SEVEN ISLAND?$"
+
+SevenIsland_UnusedHouse_Text_ChooseThree::
+    .string "Your party qualifies!\p"
+    .string "Choose three POKéMON now?$"
+
+SevenIsland_UnusedHouse_Text_SelectionSaved::
+    .string "Your three POKéMON are selected!\p"
+    .string "Battles aren't open just yet.$"
+
+SevenIsland_UnusedHouse_Text_SelectionCancelled::
+    .string "No POKéMON were registered.$"
