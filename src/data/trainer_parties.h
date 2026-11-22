@@ -12187,3 +12187,9 @@ static const struct TrainerMonNoItemCustomMoves sParty_RangerCampPark[] = {
         .moves = {MOVE_FLAME_WHEEL, MOVE_TAKE_DOWN, MOVE_HELPING_HAND, MOVE_PROTECT},
     },
 };
+
+// Pewter City resident who has lost twice to Brock.
+static const struct TrainerMonNoItemDefaultMoves sParty_PewterLocal[] = {
+    { .iv = 0, .lvl = 8, .species = SPECIES_PIDGEY },
+    { .iv = 0, .lvl = 10, .species = SPECIES_SPEAROW },
+};
