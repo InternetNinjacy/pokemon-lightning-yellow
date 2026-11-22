@@ -66,11 +66,15 @@ VermilionCity_Gym_Text_BailyDefeat::
 VermilionCity_Gym_Text_BailyPostBattle::
     .string "Okay, I'll talk!\p"
     .string "LT. SURGE said he hid door\n"
-    .string "switches inside somethingVermilionCity_Gym_Text_DwayneIntro::
+    .string "switches inside something.$"
+
+VermilionCity_Gym_Text_DwayneIntro::
     .string "Hope you know how to battle in\n"
-    .string "the rain!$"upVermilionCity_Gym_Text_DwayneDefeat::
+    .string "the rain!$"
+
+VermilionCity_Gym_Text_DwayneDefeat::
     .string "Guess my strategy was all washed\n"
-    .string "up!$"st!$"
+    .string "up!$"
 
 VermilionCity_Gym_Text_DwaynePostBattle::
     .string "LT. SURGE installed the traps in\n"
