@@ -3487,22 +3487,12 @@ static const struct TrainerMonNoItemDefaultMoves sParty_JugglerKirk[] = {
     {
         .iv = 0,
         .lvl = 31,
-        .species = SPECIES_DROWZEE,
+        .species = SPECIES_PARASECT,
     },
     {
         .iv = 0,
         .lvl = 31,
-        .species = SPECIES_DROWZEE,
-    },
-    {
-        .iv = 0,
-        .lvl = 31,
-        .species = SPECIES_KADABRA,
-    },
-    {
-        .iv = 0,
-        .lvl = 31,
-        .species = SPECIES_DROWZEE,
+        .species = SPECIES_NIDORINA,
     },
 };
 
@@ -3559,7 +3549,12 @@ static const struct TrainerMonNoItemDefaultMoves sParty_JugglerKayden[] = {
     {
         .iv = 0,
         .lvl = 38,
-        .species = SPECIES_HYPNO,
+        .species = SPECIES_BEEDRILL,
+    },
+    {
+        .iv = 0,
+        .lvl = 38,
+        .species = SPECIES_GOLBAT,
     },
 };
 
@@ -3593,17 +3588,12 @@ static const struct TrainerMonNoItemDefaultMoves sParty_TamerEdgar[] = {
     {
         .iv = 40,
         .lvl = 33,
-        .species = SPECIES_ARBOK,
+        .species = SPECIES_SPINARAK,
     },
     {
         .iv = 40,
         .lvl = 33,
-        .species = SPECIES_SANDSLASH,
-    },
-    {
-        .iv = 40,
-        .lvl = 33,
-        .species = SPECIES_ARBOK,
+        .species = SPECIES_KOFFING,
     },
 };
 
