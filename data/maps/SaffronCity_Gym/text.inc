@@ -134,12 +134,12 @@ SaffronCity_Gym_Text_PrestonPostBattle::
 SaffronCity_Gym_Text_GymGuyAdvice::
     .string "Yo!\n"
     .string "Champ in the making!\p"
-    .string "SABRINA's POKéMON use psychic\n"
-    .string "power instead of force.\p"
-    .string "FIGHTING POKéMON are especially\n"
-    .string "weak against PSYCHIC POKéMON.\p"
-    .string "They'll get destroyed before they\n"
-    .string "can even aim a punch!$"
+    .string "SABRINA's GHOST and FIGHTING\n"
+    .string "POKéMON battle in pairs!\p"
+    .string "GHOST tricks make openings while\n"
+    .string "FIGHTING power hits hard.\p"
+    .string "Bring two POKéMON ready for a\n"
+    .string "DOUBLE BATTLE!$"
 
 SaffronCity_Gym_Text_GymGuyPostVictory::
     .string "Psychic power, huh?\p"
