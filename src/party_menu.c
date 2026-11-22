@@ -4327,7 +4327,7 @@ static void CB2_UseItem(void)
     {
         GiveMoveToMon(&gPlayerParty[gPartyMenu.slotId], ItemIdToBattleMoveId(gSpecialVar_ItemId));
         AdjustFriendship(&gPlayerParty[gPartyMenu.slotId], FRIENDSHIP_EVENT_LEARN_TMHM);
-        if (gSpecialVar_ItemId < ITEM_HM01 || gSpecialVar_ItemId == ITEM_TM52)
+        if (gSpecialVar_ItemId < ITEM_HM01 || (gSpecialVar_ItemId == ITEM_TM51 || gSpecialVar_ItemId == ITEM_TM52))
             RemoveBagItem(gSpecialVar_ItemId, 1);
         SetMainCallback2(gPartyMenu.exitCallback);
     }
@@ -4347,7 +4347,7 @@ static void CB2_UseTMHMAfterForgettingMove(void)
         SetMonMoveSlot(mon, ItemIdToBattleMoveId(gSpecialVar_ItemId), moveIdx);
         AdjustFriendship(mon, FRIENDSHIP_EVENT_LEARN_TMHM);
         ItemUse_SetQuestLogEvent(QL_EVENT_USED_ITEM, mon, gSpecialVar_ItemId, move);
-        if (gSpecialVar_ItemId < ITEM_HM01 || gSpecialVar_ItemId == ITEM_TM52)
+        if (gSpecialVar_ItemId < ITEM_HM01 || (gSpecialVar_ItemId == ITEM_TM51 || gSpecialVar_ItemId == ITEM_TM52))
             RemoveBagItem(gSpecialVar_ItemId, 1);
         SetMainCallback2(gPartyMenu.exitCallback);
     }
@@ -4758,9 +4758,11 @@ void ItemUseCB_PPUp(u8 taskId, TaskFunc func)
 
 u16 ItemIdToBattleMoveId(u16 item)
 {
-    // Existing TM/HM indices are fixed for save compatibility. TM52 is at 59.
+    // Existing TM/HM indices are fixed for save compatibility. TM51 and TM52 occupy slots 58 and 59.
     u16 tmNumber = item - ITEM_TM01_FOCUS_PUNCH;
 
+    if (item == ITEM_TM51)
+        return MOVE_ZAP_CANNON;
     if (item == ITEM_TM52)
         return MOVE_WILL_O_WISP;
     if (item < ITEM_TM01_FOCUS_PUNCH || (item > ITEM_HM08 && item != ITEM_TM52))
@@ -4856,7 +4858,7 @@ static void Task_LearnedMove(u8 taskId)
     if (learnMoveMethod == LEARN_VIA_TMHM)
     {
         AdjustFriendship(mon, FRIENDSHIP_EVENT_LEARN_TMHM);
-        if (item < ITEM_HM01 || item == ITEM_TM52)
+        if (item < ITEM_HM01 || (item == ITEM_TM51 || item == ITEM_TM52))
             RemoveBagItem(item, 1);
     }
     GetMonNickname(mon, gStringVar1);
