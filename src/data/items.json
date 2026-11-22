@@ -5611,20 +5611,21 @@
       "moveId": "Dive"
     },
     {
-      "english": "????????",
-      "itemId": "ITEM_NONE",
-      "price": 0,
+      "english": "TM51",
+      "itemId": "ITEM_TM51",
+      "price": 3000,
       "holdEffect": "HOLD_EFFECT_NONE",
       "holdEffectParam": 0,
-      "description_english": "?????",
+      "description_english": "A powerful electric blast that\\nparalyzes the foe if it hits.",
       "importance": 0,
       "registrability": 0,
-      "pocket": "POCKET_ITEMS",
-      "type": "ITEM_TYPE_BAG_MENU",
-      "fieldUseFunc": "FieldUseFunc_OakStopsYou",
+      "pocket": "POCKET_TM_CASE",
+      "type": "ITEM_TYPE_PARTY_MENU",
+      "fieldUseFunc": "NULL",
       "battleUsage": 0,
       "battleUseFunc": "NULL",
-      "secondaryId": 0
+      "secondaryId": 0,
+      "moveId": "ZapCannon"
     },
     {
       "english": "TM52",
