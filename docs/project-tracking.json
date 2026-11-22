@@ -2301,7 +2301,7 @@
       ],
       "status": {
         "design": "Global252-only assignment policy supplied; no off-Dex exceptions",
-        "implementation": "2026-11-21 PR288: 279 approved Battle Tower substitutions (131 level50/148 level100) and 12 targeted move refinements remain staged. Authorized original-source investigation confirmed upstream pret/pokefirered src/battle_tower.c also declares empty sBattleTowerTrainers[]. No authenticated trainer roster was found in inspected related FireRed sources. No fabricated trainer records or production roster edits. Source-only documentation updated; no tests/builds/emulators/diagnostics/CI/merges.",
+        "implementation": "2026-11-21 PR288: owner-approved newly authored 100-normal-trainer Battle Tower roster implemented in src/battle_tower.c (IDs0-99), existing facility classes and Easy Chat greeting vocabulary, teamFlags 0x01/0x02/0x40. Normal trainer ID boundaries and original 8 difficulty-tier IV/template windows preserved; 279 previously staged Battle Tower species substitutions intact. Source-only 200 trainer/pool eligibility combinations have a distinct-species/item 3-mon solution; minimum eligible 7 templates. No runtime acceptance, tests/builds/emulators/diagnostics/CI/merges.",
         "automated": "seven host suites/static audits PASS; identical clean rebuild; final Actions SUCCESS",
         "emulator": "full local libmGBA0.10.5 PASS:114706 assertions; native rewards/menus/restoration/flash scenes",
         "pull_request": "PR#11 merged; historical branch evidence retained",
@@ -2311,9 +2311,9 @@
       "commit": "b0bd3b86f4e03dd3f540f0776a5de87f207e84e4",
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/11",
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41529505085",
-      "blocker": "Upstream-original empty sBattleTowerTrainers[] means no authenticated 100-entry normal Battle Tower trainer roster or per-trainer teamFlags; cannot establish tier selection viability. Need owner-supplied authorized roster dataset or explicit new trainer-design approval. 148 WRL wild and 3 SOW/story legendary event slots protected.",
+      "blocker": "New roster is source-staged, but compilation, in-game facility access, trainer sprite diversity, randomized selection behavior, battle balance and 285 original heuristic move substitutions remain unaccepted. 148 WRL-protected wild and 3 SOW/story legendary off-Dex slots held.",
       "design_authority": "Owner supplied November2 Wild Encounters, Gym Roster, Fossils and Pokedex Compliance update; historical direct Drive401 did not prevent reading the supplied exports; latest concurrent PR15 requires version reconciliation.",
-      "next_action": "Owner supply/authorize exact Battle Tower trainer records (trainerClass, 3-byte name, teamFlags, 6-word greeting) from legitimate compatible source, or approve separate new authored trainer roster. Until then preserve empty array, continue other approved unowned implementation. Maintain 285 original move-role review population.",
+      "next_action": "Continue approved source-only Battle Tower improvements if unowned, including original fixed Youngster trainer gfx and game-world access policy; leave owner playtest acceptance open. Review remaining move-role heuristics. Keep protected WRL wild and SOW events untouched.",
       "checkpoint": "2026-11-04 supplied-export reconciliation; old unavailable-document claims superseded; no implementation/test credit from availability.",
       "source_exports": [
         "04_SPECIES_EVOLUTION_WORLD/Pokémon Lightning Yellow — All 252 Species Typing & 67 Move Source Matrix — 2026-11-02.txt",
