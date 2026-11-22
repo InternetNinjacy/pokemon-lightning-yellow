@@ -861,7 +861,7 @@ static bool8 DisplayPartyPokemonDataForMoveTutorOrEvolutionItem(u8 slot)
     if (gPartyMenu.action == PARTY_ACTION_MOVE_TUTOR)
     {
         gSpecialVar_Result = FALSE;
-        if (gSpecialVar_0x8005 >= TUTOR_MOVE_COUNT)
+        if (gSpecialVar_0x8005 >= TUTOR_MOVE_COUNT && gSpecialVar_0x8005 != TUTOR_MOVE_WATER_GUN)
             return FALSE;
         DisplayPartyPokemonDataToTeachMove(slot, 0, gSpecialVar_0x8005);
     }
@@ -1907,6 +1907,8 @@ static u16 GetTutorMove(u8 tutor)
         return MOVE_BLAST_BURN;
     case TUTOR_MOVE_HYDRO_CANNON:
         return MOVE_HYDRO_CANNON;
+    case TUTOR_MOVE_WATER_GUN:
+        return MOVE_WATER_GUN;
     default:
         return sTutorMoves[tutor];
     }
@@ -1914,6 +1916,8 @@ static u16 GetTutorMove(u8 tutor)
 
 static bool8 CanLearnTutorMove(u16 species, u8 tutor)
 {
+    u16 i;
+
     switch (tutor)
     {
     case TUTOR_MOVE_FRENZY_PLANT:
@@ -1931,6 +1935,16 @@ static bool8 CanLearnTutorMove(u16 species, u8 tutor)
             return TRUE;
         else
             return FALSE;
+    case TUTOR_MOVE_WATER_GUN:
+        // Only species with Water Gun in their current natural level-up moves.
+        if (gLevelUpLearnsets[species] == NULL)
+            return FALSE;
+        for (i = 0; gLevelUpLearnsets[species][i] != LEVEL_UP_END; i++)
+        {
+            if ((gLevelUpLearnsets[species][i] & LEVEL_UP_MOVE_ID) == MOVE_WATER_GUN)
+                return TRUE;
+        }
+        return FALSE;
     default:
         if (sTutorLearnsets[species] & (1 << tutor))
             return TRUE;
@@ -5838,7 +5852,7 @@ void ChooseMonForTradingBoard(u8 menuType, MainCallback callback)
 
 void ChooseMonForMoveTutor(void)
 {
-    if (gSpecialVar_0x8005 < TUTOR_MOVE_COUNT)
+    if (gSpecialVar_0x8005 < TUTOR_MOVE_COUNT || gSpecialVar_0x8005 == TUTOR_MOVE_WATER_GUN)
     {
         InitPartyMenu(PARTY_MENU_TYPE_FIELD,
                       PARTY_LAYOUT_SINGLE,
