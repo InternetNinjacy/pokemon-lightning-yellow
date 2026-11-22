@@ -80,8 +80,8 @@ CinnabarIsland_Gym_Text_AveryPostBattle::
     .string "for you to understand.$"
 
 CinnabarIsland_Gym_Text_RamonIntro::
-    .string "I like using FIRE-type POKéMON.\n"
-    .string "I just do.$"
+    .string "I like POKéMON that soar or\n"
+    .string "shake the ground. I just do.$"
 
 CinnabarIsland_Gym_Text_RamonDefeat::
     .string "Too hot to handle!$"
@@ -132,11 +132,12 @@ CinnabarIsland_Gym_Text_ZacPostBattle::
 CinnabarIsland_Gym_Text_GymGuyAdvice::
     .string "Yo!\n"
     .string "Champ in the making!\p"
-    .string "The hotheaded BLAINE is a FIRE\n"
-    .string "POKéMON pro.\p"
-    .string "Douse his spirits with water!\p"
-    .string "You'd better take some\n"
-    .string "BURN HEALS, too.$"
+    .string "BLAINE's FLYING and GROUND\n"
+    .string "POKéMON fight two-on-two!\p"
+    .string "GROUND attacks can't hit a\n"
+    .string "FLYING partner, so beware!\p"
+    .string "Bring two POKéMON and be ready\n"
+    .string "for an EARTHQUAKE!$"
 
 CinnabarIsland_Gym_Text_GymGuyPostVictory::
     .string "{PLAYER}!\n"
