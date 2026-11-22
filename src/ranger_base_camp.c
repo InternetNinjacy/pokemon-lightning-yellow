@@ -42,6 +42,16 @@ void ApplyRangerTrainerData(struct Pokemon *mon, u16 trainerId, u8 slot)
 }
 
 static const u16 sRangerGiftSpecies[] = {SPECIES_ARCANINE, SPECIES_NOCTOWL, SPECIES_GOLDUCK};
+// Owner-selected defaults for Park's three rewards; the existing player
+// nickname choice after delivery remains available unchanged.
+static const u8 sRangerGiftNameArcanine[] = _("SNIFF");
+static const u8 sRangerGiftNameNoctowl[] = _("SEARCH");
+static const u8 sRangerGiftNameGolduck[] = _("SWIM");
+static const u8 *const sRangerGiftNicknames[] = {
+    sRangerGiftNameArcanine,
+    sRangerGiftNameNoctowl,
+    sRangerGiftNameGolduck,
+};
 static const u16 sRangerGiftMoves[][MAX_MON_MOVES] = {
     {MOVE_BLAZE_KICK, MOVE_BITE, MOVE_TAKE_DOWN, MOVE_ODOR_SLEUTH},
     {MOVE_EXTRASENSORY, MOVE_HYPNOSIS, MOVE_REFLECT, MOVE_AERIAL_ACE},
@@ -76,6 +86,7 @@ u16 RangerGiveGift(void)
         | ((u32)gSaveBlock2Ptr->playerTrainerId[2] << 16)
         | ((u32)gSaveBlock2Ptr->playerTrainerId[3] << 24));
     CreateMon(mon, species, 30, USE_RANDOM_IVS, FALSE, 0, OT_ID_PRESET, ot);
+    SetMonData(mon, MON_DATA_NICKNAME, sRangerGiftNicknames[choice]);
     SetMonData(mon, MON_DATA_OT_NAME, sParkName);
     SetMonData(mon, MON_DATA_OT_GENDER, &gender);
     for (move = 0; move < MAX_MON_MOVES; move++)
