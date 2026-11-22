@@ -469,4 +469,6 @@ gSpecials::
 	def_special BackupSevenIslandBattleTowerParty
 	def_special RestoreSevenIslandBattleTowerParty
 	def_special CheckSevenIslandBattleTowerSelection
+	def_special PrepareSevenIslandBattleTowerBattleParty
+	def_special ClearSevenIslandBattleTowerBattleParty
 gSpecialsEnd::
