@@ -4,7 +4,26 @@ Route12_FishingHouse_MapScripts::
 Route12_FishingHouse_EventScript_FishingGuruBrother::
 	lock
 	faceplayer
-	goto Route12_FishingHouse_EventScript_CheckMagikarpRecord
+	goto_if_set FLAG_GOT_SUPER_ROD, Route12_FishingHouse_EventScript_CheckMagikarpRecord
+	goto_if_questlog EventScript_ReleaseEnd
+	special QuestLog_CutRecording
+	@ One-time pre-gift story, intentionally independent of SOW-004 outcome.
+	msgbox Route12_FishingHouse_Text_SailorLegendStart
+	msgbox Route12_FishingHouse_Text_SailorLegendPossession
+	msgbox Route12_FishingHouse_Text_SailorLegendRelease
+	msgbox Route12_FishingHouse_Text_SailorLegendThanks
+	checkitemspace ITEM_SUPER_ROD
+	goto_if_eq VAR_RESULT, FALSE, Route12_FishingHouse_EventScript_NoRoomForSuperRod
+	giveitem_msg Route12_FishingHouse_Text_ReceivedSuperRod, ITEM_SUPER_ROD
+	setflag FLAG_GOT_SUPER_ROD
+	msgbox Route12_FishingHouse_Text_IfYouCatchBigMagikarpShowMe
+	release
+	end
+
+Route12_FishingHouse_EventScript_NoRoomForSuperRod::
+	msgbox Route12_FishingHouse_Text_NoRoomForGift
+	release
+	end
 
 Route12_FishingHouse_EventScript_CheckMagikarpRecord::
 	goto_if_questlog EventScript_ReleaseEnd
