@@ -1,6 +1,7 @@
 #define IS_POKEMON_C
 
 #include "global.h"
+#include "battle_tower.h"
 #include "move_pp_compatibility.h"
 #include "wild_double_battle.h"
 #include "time_of_day.h"
@@ -3861,6 +3862,11 @@ u8 GetMonsStateToDoubles(void)
     {
         // FRLG changed the order of these checks, but there's no point to doing that
         // because of the requirement of all 3 of these checks.
+        // When the isolated Seven Island context is eventually enabled,
+        // only its selected three count as usable battle participants.
+        if (IsSevenIslandBattleTowerBattleContextActive()
+         && !IsSevenIslandBattleTowerEligiblePartySlot(i))
+            continue;
         if (GetMonData(&gPlayerParty[i], MON_DATA_HP, NULL) != 0
          && GetMonData(&gPlayerParty[i], MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_NONE
          && GetMonData(&gPlayerParty[i], MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_EGG)
