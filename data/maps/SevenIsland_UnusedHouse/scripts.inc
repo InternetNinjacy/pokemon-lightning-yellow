@@ -5,6 +5,32 @@ SevenIsland_UnusedHouse_EventScript_BattleTowerReceptionist::
 	lock
 	faceplayer
 	msgbox SevenIsland_UnusedHouse_Text_BattleTowerReceptionist
+	msgbox SevenIsland_UnusedHouse_Text_ChooseLevel50, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, YES, SevenIsland_UnusedHouse_EventScript_Level50
+	msgbox SevenIsland_UnusedHouse_Text_ChooseLevel100, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, YES, SevenIsland_UnusedHouse_EventScript_Level100
+	goto SevenIsland_UnusedHouse_EventScript_OfferReturn
+
+SevenIsland_UnusedHouse_EventScript_Level50::
+	setvar VAR_RESULT, 0
+	special CheckPartyBattleTowerBanlist
+	goto SevenIsland_UnusedHouse_EventScript_CheckEligibility
+
+SevenIsland_UnusedHouse_EventScript_Level100::
+	setvar VAR_RESULT, 1
+	special CheckPartyBattleTowerBanlist
+	goto SevenIsland_UnusedHouse_EventScript_CheckEligibility
+
+SevenIsland_UnusedHouse_EventScript_CheckEligibility::
+	goto_if_eq VAR_0x8004, 1, SevenIsland_UnusedHouse_EventScript_Ineligible
+	msgbox SevenIsland_UnusedHouse_Text_EligibleButNotOpen
+	goto SevenIsland_UnusedHouse_EventScript_OfferReturn
+
+SevenIsland_UnusedHouse_EventScript_Ineligible::
+	msgbox SevenIsland_UnusedHouse_Text_NeedThreeEligible
+	goto SevenIsland_UnusedHouse_EventScript_OfferReturn
+
+SevenIsland_UnusedHouse_EventScript_OfferReturn::
 	msgbox SevenIsland_UnusedHouse_Text_ReturnToSevenIsland, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, SevenIsland_UnusedHouse_EventScript_Stay
 	closemessage
