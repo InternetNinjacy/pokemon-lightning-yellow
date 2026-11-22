@@ -4,6 +4,9 @@ SevenIsland_UnusedHouse_MapScripts::
 SevenIsland_UnusedHouse_EventScript_BattleTowerReceptionist::
 	lock
 	faceplayer
+	// Recover an outstanding in-memory party snapshot before reception actions.
+	// A fresh visit without a snapshot leaves the party untouched.
+	special RestoreSevenIslandBattleTowerParty
 	msgbox SevenIsland_UnusedHouse_Text_BattleTowerReceptionist
 	msgbox SevenIsland_UnusedHouse_Text_ChooseLevel50, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, YES, SevenIsland_UnusedHouse_EventScript_Level50
@@ -52,6 +55,8 @@ SevenIsland_UnusedHouse_EventScript_ReturnPrompt::
 	msgbox SevenIsland_UnusedHouse_Text_ReturnToSevenIsland, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, SevenIsland_UnusedHouse_EventScript_Stay
 	closemessage
+	// Never escort a player away while a runtime party snapshot remains.
+	special RestoreSevenIslandBattleTowerParty
 	warp MAP_SEVEN_ISLAND, 15, 6
 	waitstate
 	release
