@@ -199,7 +199,7 @@
 #define FLAG_GOT_CERULEAN_THUNDER_STONE               0x0B5
 #define FLAG_HIDE_VIRIDIAN_SCHOOL_TM52                0x0B6
 #define FLAG_0x0B7               0x0B7
-#define FLAG_0x0B8               0x0B8
+#define FLAG_TUTOR_ROUTE2_WATER_GUN                    0x0B8
 #define FLAG_0x0B9               0x0B9
 #define FLAG_0x0BA               0x0BA
 #define FLAG_0x0BB               0x0BB
