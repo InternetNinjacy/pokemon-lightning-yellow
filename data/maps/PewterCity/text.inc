@@ -152,3 +152,18 @@ PewterCity_Text_RunningShoesLetterFromMom::
     .string "you! Don't ever give up!\p"
     .string "From Mom$"
 
+
+PewterCity_Text_OwenIntro::
+    .string "I live right here in PEWTER CITY!\\p"
+    .string "I've challenged BROCK twice, and\\n"
+    .string "lost both times!\\p"
+    .string "I've been training hard, though!\\n"
+    .string "How about a battle?$"
+
+PewterCity_Text_OwenDefeat::
+    .string "Aw, man! Not again!$"
+
+PewterCity_Text_OwenAfterBattle::
+    .string "I still need to train more before\\n"
+    .string "I challenge BROCK again.\\p"
+    .string "Third time's the charm, right?$"

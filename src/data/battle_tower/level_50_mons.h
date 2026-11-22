@@ -14,11 +14,11 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_HARDY,
 	},
 	{
-		.species = SPECIES_BEAUTIFLY,
+		.species = SPECIES_BUTTERFREE,
 		.heldItem = BATTLE_TOWER_ITEM_MIRACLE_SEED,
 		.teamFlags = 0x41,
 		.moves = {
-			MOVE_ABSORB,
+			MOVE_GIGA_DRAIN,
 			MOVE_STUN_SPORE,
 			MOVE_GUST,
 			MOVE_SAFEGUARD
@@ -66,39 +66,39 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_HASTY,
 	},
 	{
-		.species = SPECIES_TORCHIC,
+		.species = SPECIES_CHARMANDER,
 		.heldItem = BATTLE_TOWER_ITEM_KINGS_ROCK,
 		.teamFlags = 0x42,
 		.moves = {
 			MOVE_FIRE_SPIN,
 			MOVE_PROTECT,
-			MOVE_SAND_ATTACK,
+			MOVE_SMOKESCREEN,
 			MOVE_SLASH
 		},
 		.evSpread = F_EV_SPREAD_SP_DEFENSE | F_EV_SPREAD_SP_ATTACK,
 		.nature = NATURE_RELAXED,
 	},
 	{
-		.species = SPECIES_MASQUERAIN,
+		.species = SPECIES_VENOMOTH,
 		.heldItem = BATTLE_TOWER_ITEM_WHITE_HERB,
 		.teamFlags = 0x41,
 		.moves = {
 			MOVE_STUN_SPORE,
-			MOVE_WATER_SPORT,
-			MOVE_QUICK_ATTACK,
+			MOVE_PROTECT,
+			MOVE_FACADE,
 			MOVE_GUST
 		},
 		.evSpread = F_EV_SPREAD_SP_DEFENSE | F_EV_SPREAD_HP,
 		.nature = NATURE_IMPISH,
 	},
 	{
-		.species = SPECIES_ILLUMISE,
+		.species = SPECIES_BUTTERFREE,
 		.heldItem = BATTLE_TOWER_ITEM_NONE,
 		.teamFlags = 0x41,
 		.moves = {
-			MOVE_FLATTER,
-			MOVE_COVET,
-			MOVE_WISH,
+			MOVE_PROTECT,
+			MOVE_TOXIC,
+			MOVE_REST,
 			MOVE_FACADE
 		},
 		.evSpread = F_EV_SPREAD_SPEED | F_EV_SPREAD_DEFENSE,
@@ -131,12 +131,12 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_BRAVE,
 	},
 	{
-		.species = SPECIES_MIGHTYENA,
+		.species = SPECIES_HOUNDOOM,
 		.heldItem = BATTLE_TOWER_ITEM_PECHA_BERRY,
 		.teamFlags = 0x05,
 		.moves = {
 			MOVE_BITE,
-			MOVE_TAKE_DOWN,
+			MOVE_FACADE,
 			MOVE_ROAR,
 			MOVE_HOWL
 		},
@@ -144,12 +144,12 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_DOCILE,
 	},
 	{
-		.species = SPECIES_SLAKING,
+		.species = SPECIES_URSARING,
 		.heldItem = BATTLE_TOWER_ITEM_BLACK_GLASSES,
 		.teamFlags = 0x05,
 		.moves = {
 			MOVE_FAINT_ATTACK,
-			MOVE_COUNTER,
+			MOVE_BRICK_BREAK,
 			MOVE_SCRATCH,
 			MOVE_TAUNT
 		},
@@ -196,14 +196,14 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_HARDY,
 	},
 	{
-		.species = SPECIES_ZIGZAGOON,
+		.species = SPECIES_RATTATA,
 		.heldItem = BATTLE_TOWER_ITEM_KINGS_ROCK,
 		.teamFlags = 0x0A,
 		.moves = {
-			MOVE_FLAIL,
-			MOVE_SAND_ATTACK,
+			MOVE_PROTECT,
+			MOVE_DIG,
 			MOVE_REST,
-			MOVE_SURF
+			MOVE_RAIN_DANCE
 		},
 		.evSpread = F_EV_SPREAD_SPEED | F_EV_SPREAD_ATTACK,
 		.nature = NATURE_SASSY,
@@ -222,27 +222,27 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_SERIOUS,
 	},
 	{
-		.species = SPECIES_WHISCASH,
+		.species = SPECIES_KINGLER,
 		.heldItem = BATTLE_TOWER_ITEM_QUICK_CLAW,
 		.teamFlags = 0x0B,
 		.moves = {
-			MOVE_WATER_GUN,
-			MOVE_AMNESIA,
-			MOVE_MAGNITUDE,
-			MOVE_MUD_SLAP
+			MOVE_WATER_PULSE,
+			MOVE_HARDEN,
+			MOVE_DIG,
+			MOVE_MUD_SHOT
 		},
 		.evSpread = F_EV_SPREAD_DEFENSE | F_EV_SPREAD_ATTACK,
 		.nature = NATURE_LAX,
 	},
 	{
-		.species = SPECIES_NINJASK,
+		.species = SPECIES_YANMA,
 		.heldItem = BATTLE_TOWER_ITEM_SILVER_POWDER,
 		.teamFlags = 0x41,
 		.moves = {
-			MOVE_SAND_ATTACK,
-			MOVE_FURY_CUTTER,
-			MOVE_AGILITY,
-			MOVE_HARDEN
+			MOVE_QUICK_ATTACK,
+			MOVE_PROTECT,
+			MOVE_DOUBLE_TEAM,
+			MOVE_ANCIENT_POWER
 		},
 		.evSpread = F_EV_SPREAD_SP_DEFENSE | F_EV_SPREAD_SPEED | F_EV_SPREAD_DEFENSE | F_EV_SPREAD_HP,
 		.nature = NATURE_QUIET,
@@ -274,27 +274,27 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_BOLD,
 	},
 	{
-		.species = SPECIES_SPINDA,
+		.species = SPECIES_DELCATTY,
 		.heldItem = BATTLE_TOWER_ITEM_CHERI_BERRY,
 		.teamFlags = 0x4A,
 		.moves = {
-			MOVE_TEETER_DANCE,
-			MOVE_FLAIL,
-			MOVE_PSYCH_UP,
-			MOVE_DOUBLE_EDGE
+			MOVE_SING,
+			MOVE_PROTECT,
+			MOVE_TOXIC,
+			MOVE_RETURN
 		},
 		.evSpread = F_EV_SPREAD_SPEED | F_EV_SPREAD_HP,
 		.nature = NATURE_CALM,
 	},
 	{
-		.species = SPECIES_SEVIPER,
+		.species = SPECIES_ARBOK,
 		.heldItem = BATTLE_TOWER_ITEM_POISON_BARB,
 		.teamFlags = 0x09,
 		.moves = {
 			MOVE_SCREECH,
 			MOVE_GLARE,
 			MOVE_DIG,
-			MOVE_POISON_FANG
+			MOVE_POISON_STING
 		},
 		.evSpread = F_EV_SPREAD_SPEED | F_EV_SPREAD_DEFENSE,
 		.nature = NATURE_HARDY,
@@ -313,27 +313,27 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_HARDY,
 	},
 	{
-		.species = SPECIES_AZUMARILL,
+		.species = SPECIES_POLIWRATH,
 		.heldItem = BATTLE_TOWER_ITEM_WHITE_HERB,
 		.teamFlags = 0x42,
 		.moves = {
-			MOVE_BUBBLE_BEAM,
-			MOVE_TAIL_WHIP,
+			MOVE_DIVE,
+			MOVE_PROTECT,
 			MOVE_RAIN_DANCE,
-			MOVE_ROLLOUT
+			MOVE_ROCK_TOMB
 		},
 		.evSpread = F_EV_SPREAD_DEFENSE | F_EV_SPREAD_ATTACK,
 		.nature = NATURE_HARDY,
 	},
 	{
-		.species = SPECIES_ZANGOOSE,
+		.species = SPECIES_PERSIAN,
 		.heldItem = BATTLE_TOWER_ITEM_MENTAL_HERB,
 		.teamFlags = 0x07,
 		.moves = {
-			MOVE_STRENGTH,
+			MOVE_FACADE,
 			MOVE_TAUNT,
-			MOVE_CRUSH_CLAW,
-			MOVE_DETECT
+			MOVE_SLASH,
+			MOVE_PROTECT
 		},
 		.evSpread = F_EV_SPREAD_ATTACK | F_EV_SPREAD_HP,
 		.nature = NATURE_HARDY,
@@ -352,11 +352,11 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_HASTY,
 	},
 	{
-		.species = SPECIES_ROSELIA,
+		.species = SPECIES_VILEPLUME,
 		.heldItem = BATTLE_TOWER_ITEM_MIRACLE_SEED,
 		.teamFlags = 0x0A,
 		.moves = {
-			MOVE_GROWTH,
+			MOVE_ABSORB,
 			MOVE_MEGA_DRAIN,
 			MOVE_TOXIC,
 			MOVE_CUT
@@ -365,12 +365,12 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_NAUGHTY,
 	},
 	{
-		.species = SPECIES_SWALOT,
+		.species = SPECIES_MUK,
 		.heldItem = BATTLE_TOWER_ITEM_LUM_BERRY,
 		.teamFlags = 0x0B,
 		.moves = {
-			MOVE_STOCKPILE,
-			MOVE_SPIT_UP,
+			MOVE_DISABLE,
+			MOVE_SLUDGE_BOMB,
 			MOVE_SLUDGE,
 			MOVE_POISON_GAS
 		},
@@ -404,14 +404,14 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_BOLD,
 	},
 	{
-		.species = SPECIES_RELICANTH,
+		.species = SPECIES_OMASTAR,
 		.heldItem = BATTLE_TOWER_ITEM_MYSTIC_WATER,
 		.teamFlags = 0x01,
 		.moves = {
 			MOVE_SURF,
 			MOVE_ANCIENT_POWER,
 			MOVE_ROCK_TOMB,
-			MOVE_HARDEN
+			MOVE_PROTECT
 		},
 		.evSpread = F_EV_SPREAD_SP_ATTACK | F_EV_SPREAD_DEFENSE,
 		.nature = NATURE_TIMID,
@@ -443,64 +443,64 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_RELAXED,
 	},
 	{
-		.species = SPECIES_GIRAFARIG,
+		.species = SPECIES_HYPNO,
 		.heldItem = BATTLE_TOWER_ITEM_KINGS_ROCK,
 		.teamFlags = 0x03,
 		.moves = {
-			MOVE_STRENGTH,
+			MOVE_FACADE,
 			MOVE_PSYBEAM,
-			MOVE_AGILITY,
-			MOVE_EARTHQUAKE
+			MOVE_DOUBLE_TEAM,
+			MOVE_PROTECT
 		},
 		.evSpread = F_EV_SPREAD_ATTACK | F_EV_SPREAD_HP,
 		.nature = NATURE_IMPISH,
 	},
 	{
-		.species = SPECIES_PELIPPER,
+		.species = SPECIES_SWELLOW,
 		.heldItem = BATTLE_TOWER_ITEM_SITRUS_BERRY,
 		.teamFlags = 0x0B,
 		.moves = {
-			MOVE_MIST,
-			MOVE_STOCKPILE,
-			MOVE_SWALLOW,
-			MOVE_SPIT_UP
+			MOVE_PROTECT,
+			MOVE_WING_ATTACK,
+			MOVE_REST,
+			MOVE_AERIAL_ACE
 		},
 		.evSpread = F_EV_SPREAD_DEFENSE,
 		.nature = NATURE_QUIRKY,
 	},
 	{
-		.species = SPECIES_SABLEYE,
+		.species = SPECIES_BANETTE,
 		.heldItem = BATTLE_TOWER_ITEM_CHERI_BERRY,
 		.teamFlags = 0x09,
 		.moves = {
 			MOVE_SHADOW_BALL,
 			MOVE_NIGHT_SHADE,
 			MOVE_SNATCH,
-			MOVE_FAKE_OUT
+			MOVE_PROTECT
 		},
 		.evSpread = F_EV_SPREAD_SP_ATTACK | F_EV_SPREAD_ATTACK,
 		.nature = NATURE_HARDY,
 	},
 	{
-		.species = SPECIES_LUNATONE,
+		.species = SPECIES_XATU,
 		.heldItem = BATTLE_TOWER_ITEM_HARD_STONE,
 		.teamFlags = 0x0B,
 		.moves = {
-			MOVE_COSMIC_POWER,
-			MOVE_SANDSTORM,
+			MOVE_CALM_MIND,
+			MOVE_PROTECT,
 			MOVE_PSYCHIC,
-			MOVE_ROCK_THROW
+			MOVE_TOXIC
 		},
 		.evSpread = F_EV_SPREAD_SPEED | F_EV_SPREAD_DEFENSE,
 		.nature = NATURE_GENTLE,
 	},
 	{
-		.species = SPECIES_LUDICOLO,
+		.species = SPECIES_POLITOED,
 		.heldItem = BATTLE_TOWER_ITEM_NONE,
 		.teamFlags = 0x0B,
 		.moves = {
 			MOVE_THIEF,
-			MOVE_FAKE_OUT,
+			MOVE_PROTECT,
 			MOVE_SURF,
 			MOVE_RAIN_DANCE
 		},
@@ -508,13 +508,13 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_HARDY,
 	},
 	{
-		.species = SPECIES_GRUMPIG,
+		.species = SPECIES_HYPNO,
 		.heldItem = BATTLE_TOWER_ITEM_SALAC_BERRY,
 		.teamFlags = 0x0B,
 		.moves = {
-			MOVE_ODOR_SLEUTH,
-			MOVE_CONFUSE_RAY,
-			MOVE_MAGIC_COAT,
+			MOVE_DISABLE,
+			MOVE_SHADOW_BALL,
+			MOVE_PROTECT,
 			MOVE_PSYCHIC
 		},
 		.evSpread = F_EV_SPREAD_SPEED | F_EV_SPREAD_DEFENSE,
@@ -534,12 +534,12 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_SASSY,
 	},
 	{
-		.species = SPECIES_WAILORD,
+		.species = SPECIES_LAPRAS,
 		.heldItem = BATTLE_TOWER_ITEM_MYSTIC_WATER,
 		.teamFlags = 0x03,
 		.moves = {
-			MOVE_WATER_SPOUT,
-			MOVE_ROLLOUT,
+			MOVE_HYDRO_PUMP,
+			MOVE_PROTECT,
 			MOVE_MIST,
 			MOVE_RAIN_DANCE
 		},
@@ -612,11 +612,11 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_HARDY,
 	},
 	{
-		.species = SPECIES_LOUDRED,
+		.species = SPECIES_LICKITUNG,
 		.heldItem = BATTLE_TOWER_ITEM_SITRUS_BERRY,
 		.teamFlags = 0x05,
 		.moves = {
-			MOVE_UPROAR,
+			MOVE_FACADE,
 			MOVE_STOMP,
 			MOVE_SCREECH,
 			MOVE_EARTHQUAKE
@@ -625,25 +625,25 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_MODEST,
 	},
 	{
-		.species = SPECIES_SOLROCK,
+		.species = SPECIES_MAGCARGO,
 		.heldItem = BATTLE_TOWER_ITEM_LEFTOVERS,
 		.teamFlags = 0x03,
 		.moves = {
 			MOVE_ROCK_THROW,
 			MOVE_SUNNY_DAY,
-			MOVE_SOLAR_BEAM,
+			MOVE_PROTECT,
 			MOVE_SANDSTORM
 		},
 		.evSpread = F_EV_SPREAD_SPEED | F_EV_SPREAD_DEFENSE,
 		.nature = NATURE_MILD,
 	},
 	{
-		.species = SPECIES_CLAYDOL,
+		.species = SPECIES_GOLEM,
 		.heldItem = BATTLE_TOWER_ITEM_BRIGHT_POWDER,
 		.teamFlags = 0x03,
 		.moves = {
 			MOVE_SANDSTORM,
-			MOVE_REFLECT,
+			MOVE_PROTECT,
 			MOVE_ROCK_TOMB,
 			MOVE_STRENGTH
 		},
@@ -703,14 +703,14 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_IMPISH,
 	},
 	{
-		.species = SPECIES_NOSEPASS,
+		.species = SPECIES_SUDOWOODO,
 		.heldItem = BATTLE_TOWER_ITEM_PERSIM_BERRY,
 		.teamFlags = 0x0B,
 		.moves = {
 			MOVE_SANDSTORM,
 			MOVE_ROCK_SLIDE,
 			MOVE_BLOCK,
-			MOVE_THUNDER_WAVE
+			MOVE_PROTECT
 		},
 		.evSpread = F_EV_SPREAD_SP_DEFENSE | F_EV_SPREAD_SPEED | F_EV_SPREAD_DEFENSE,
 		.nature = NATURE_JOLLY,
@@ -755,14 +755,14 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_NAIVE,
 	},
 	{
-		.species = SPECIES_DUSTOX,
+		.species = SPECIES_VENOMOTH,
 		.heldItem = BATTLE_TOWER_ITEM_SILVER_POWDER,
 		.teamFlags = 0x01,
 		.moves = {
 			MOVE_CONFUSION,
 			MOVE_SILVER_WIND,
 			MOVE_PSYBEAM,
-			MOVE_WHIRLWIND
+			MOVE_DISABLE
 		},
 		.evSpread = F_EV_SPREAD_SPEED,
 		.nature = NATURE_SERIOUS,
@@ -794,25 +794,25 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_LONELY,
 	},
 	{
-		.species = SPECIES_SKARMORY,
+		.species = SPECIES_STEELIX,
 		.heldItem = BATTLE_TOWER_ITEM_SITRUS_BERRY,
 		.teamFlags = 0x07,
 		.moves = {
-			MOVE_STEEL_WING,
-			MOVE_SAND_ATTACK,
-			MOVE_SWIFT,
-			MOVE_AGILITY
+			MOVE_IRON_TAIL,
+			MOVE_DIG,
+			MOVE_DOUBLE_EDGE,
+			MOVE_DOUBLE_TEAM
 		},
 		.evSpread = F_EV_SPREAD_SPEED | F_EV_SPREAD_DEFENSE,
 		.nature = NATURE_RELAXED,
 	},
 	{
-		.species = SPECIES_TORKOAL,
+		.species = SPECIES_MAGCARGO,
 		.heldItem = BATTLE_TOWER_ITEM_FOCUS_BAND,
 		.teamFlags = 0x43,
 		.moves = {
 			MOVE_FLAMETHROWER,
-			MOVE_IRON_DEFENSE,
+			MOVE_TOXIC,
 			MOVE_BODY_SLAM,
 			MOVE_PROTECT
 		},
@@ -859,14 +859,14 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_ADAMANT,
 	},
 	{
-		.species = SPECIES_WOBBUFFET,
+		.species = SPECIES_BLISSEY,
 		.heldItem = BATTLE_TOWER_ITEM_SALAC_BERRY,
 		.teamFlags = 0x0B,
 		.moves = {
-			MOVE_COUNTER,
-			MOVE_MIRROR_COAT,
+			MOVE_SOFT_BOILED,
+			MOVE_PROTECT,
 			MOVE_SAFEGUARD,
-			MOVE_DESTINY_BOND
+			MOVE_TOXIC
 		},
 		.evSpread = F_EV_SPREAD_DEFENSE | F_EV_SPREAD_HP,
 		.nature = NATURE_CALM,
@@ -885,26 +885,26 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_IMPISH,
 	},
 	{
-		.species = SPECIES_TROPIUS,
+		.species = SPECIES_TANGELA,
 		.heldItem = BATTLE_TOWER_ITEM_LEFTOVERS,
 		.teamFlags = 0x05,
 		.moves = {
 			MOVE_SUNNY_DAY,
 			MOVE_SOLAR_BEAM,
-			MOVE_SYNTHESIS,
-			MOVE_RAZOR_LEAF
+			MOVE_ABSORB,
+			MOVE_BULLET_SEED
 		},
 		.evSpread = F_EV_SPREAD_SP_ATTACK | F_EV_SPREAD_DEFENSE,
 		.nature = NATURE_DOCILE,
 	},
 	{
-		.species = SPECIES_MAWILE,
+		.species = SPECIES_SCIZOR,
 		.heldItem = BATTLE_TOWER_ITEM_METAL_COAT,
 		.teamFlags = 0x43,
 		.moves = {
 			MOVE_IRON_DEFENSE,
-			MOVE_SLUDGE_BOMB,
-			MOVE_CRUNCH,
+			MOVE_TOXIC,
+			MOVE_PURSUIT,
 			MOVE_STRENGTH
 		},
 		.evSpread = F_EV_SPREAD_ATTACK,
@@ -937,13 +937,13 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_NAUGHTY,
 	},
 	{
-		.species = SPECIES_LINOONE,
+		.species = SPECIES_RATICATE,
 		.heldItem = BATTLE_TOWER_ITEM_PECHA_BERRY,
 		.teamFlags = 0x07,
 		.moves = {
-			MOVE_HEADBUTT,
+			MOVE_FACADE,
 			MOVE_TAIL_WHIP,
-			MOVE_SURF,
+			MOVE_RAIN_DANCE,
 			MOVE_DIG
 		},
 		.evSpread = F_EV_SPREAD_SP_DEFENSE | F_EV_SPREAD_DEFENSE | F_EV_SPREAD_ATTACK,
@@ -1002,12 +1002,12 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_TIMID,
 	},
 	{
-		.species = SPECIES_CORSOLA,
+		.species = SPECIES_STARMIE,
 		.heldItem = BATTLE_TOWER_ITEM_SCOPE_LENS,
 		.teamFlags = 0x0A,
 		.moves = {
 			MOVE_RECOVER,
-			MOVE_MIRROR_COAT,
+			MOVE_RAPID_SPIN,
 			MOVE_HAIL,
 			MOVE_SURF
 		},
@@ -1028,13 +1028,13 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_HARDY,
 	},
 	{
-		.species = SPECIES_EXPLOUD,
+		.species = SPECIES_SNORLAX,
 		.heldItem = BATTLE_TOWER_ITEM_LEFTOVERS,
 		.teamFlags = 0x41,
 		.moves = {
 			MOVE_HYPER_BEAM,
-			MOVE_HOWL,
-			MOVE_UPROAR,
+			MOVE_AMNESIA,
+			MOVE_BODY_SLAM,
 			MOVE_EARTHQUAKE
 		},
 		.evSpread = F_EV_SPREAD_ATTACK | F_EV_SPREAD_HP,
@@ -1080,13 +1080,13 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_LAX,
 	},
 	{
-		.species = SPECIES_VIGOROTH,
+		.species = SPECIES_PRIMEAPE,
 		.heldItem = BATTLE_TOWER_ITEM_FOCUS_BAND,
 		.teamFlags = 0x05,
 		.moves = {
 			MOVE_FOCUS_PUNCH,
-			MOVE_REVERSAL,
-			MOVE_COUNTER,
+			MOVE_BRICK_BREAK,
+			MOVE_BULK_UP,
 			MOVE_TAUNT
 		},
 		.evSpread = F_EV_SPREAD_SPEED | F_EV_SPREAD_ATTACK | F_EV_SPREAD_HP,
@@ -1106,27 +1106,27 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_HARDY,
 	},
 	{
-		.species = SPECIES_LANTURN,
+		.species = SPECIES_AMPHAROS,
 		.heldItem = BATTLE_TOWER_ITEM_QUICK_CLAW,
 		.teamFlags = 0x07,
 		.moves = {
-			MOVE_FLAIL,
-			MOVE_SURF,
-			MOVE_SPARK,
-			MOVE_TAKE_DOWN
+			MOVE_PROTECT,
+			MOVE_RAIN_DANCE,
+			MOVE_SHOCK_WAVE,
+			MOVE_FACADE
 		},
 		.evSpread = F_EV_SPREAD_SPEED,
 		.nature = NATURE_SASSY,
 	},
 	{
-		.species = SPECIES_HARIYAMA,
+		.species = SPECIES_MACHAMP,
 		.heldItem = BATTLE_TOWER_ITEM_KINGS_ROCK,
 		.teamFlags = 0x05,
 		.moves = {
 			MOVE_STRENGTH,
-			MOVE_FAKE_OUT,
+			MOVE_PROTECT,
 			MOVE_FACADE,
-			MOVE_SAND_ATTACK
+			MOVE_DIG
 		},
 		.evSpread = F_EV_SPREAD_SPEED,
 		.nature = NATURE_HARDY,
@@ -1210,7 +1210,7 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_HASTY,
 	},
 	{
-		.species = SPECIES_SWAMPERT,
+		.species = SPECIES_BLASTOISE,
 		.heldItem = BATTLE_TOWER_ITEM_NEVER_MELT_ICE,
 		.teamFlags = 0x41,
 		.moves = {
@@ -1223,25 +1223,25 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_DOCILE,
 	},
 	{
-		.species = SPECIES_SCEPTILE,
+		.species = SPECIES_VENUSAUR,
 		.heldItem = BATTLE_TOWER_ITEM_MIRACLE_SEED,
 		.teamFlags = 0x41,
 		.moves = {
-			MOVE_LEAF_BLADE,
-			MOVE_DRAGON_CLAW,
-			MOVE_AGILITY,
+			MOVE_GIGA_DRAIN,
+			MOVE_TOXIC,
+			MOVE_DOUBLE_TEAM,
 			MOVE_PROTECT
 		},
 		.evSpread = F_EV_SPREAD_SP_DEFENSE | F_EV_SPREAD_SP_ATTACK | F_EV_SPREAD_SPEED | F_EV_SPREAD_DEFENSE | F_EV_SPREAD_ATTACK | F_EV_SPREAD_HP,
 		.nature = NATURE_DOCILE,
 	},
 	{
-		.species = SPECIES_BLAZIKEN,
+		.species = SPECIES_CHARIZARD,
 		.heldItem = BATTLE_TOWER_ITEM_CHARCOAL,
 		.teamFlags = 0x41,
 		.moves = {
-			MOVE_BLAZE_KICK,
-			MOVE_MIRROR_MOVE,
+			MOVE_FLAMETHROWER,
+			MOVE_TOXIC,
 			MOVE_EARTHQUAKE,
 			MOVE_PROTECT
 		},
@@ -1249,12 +1249,12 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_DOCILE,
 	},
 	{
-		.species = SPECIES_ALTARIA,
+		.species = SPECIES_DRAGONITE,
 		.heldItem = BATTLE_TOWER_ITEM_DRAGON_FANG,
 		.teamFlags = 0x43,
 		.moves = {
 			MOVE_DRAGON_CLAW,
-			MOVE_DRAGON_DANCE,
+			MOVE_DRAGON_BREATH,
 			MOVE_TOXIC,
 			MOVE_DOUBLE_TEAM
 		},
@@ -1262,7 +1262,7 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_DOCILE,
 	},
 	{
-		.species = SPECIES_LUDICOLO,
+		.species = SPECIES_POLITOED,
 		.heldItem = BATTLE_TOWER_ITEM_BLACK_BELT,
 		.teamFlags = 0x43,
 		.moves = {
@@ -1275,38 +1275,38 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_HASTY,
 	},
 	{
-		.species = SPECIES_SABLEYE,
+		.species = SPECIES_BANETTE,
 		.heldItem = BATTLE_TOWER_ITEM_SPELL_TAG,
 		.teamFlags = 0x49,
 		.moves = {
 			MOVE_SHADOW_BALL,
 			MOVE_SNATCH,
-			MOVE_DIG,
-			MOVE_CONFUSE_RAY
+			MOVE_PROTECT,
+			MOVE_GRUDGE
 		},
 		.evSpread = F_EV_SPREAD_SPEED | F_EV_SPREAD_DEFENSE,
 		.nature = NATURE_HARDY,
 	},
 	{
-		.species = SPECIES_ZANGOOSE,
+		.species = SPECIES_PERSIAN,
 		.heldItem = BATTLE_TOWER_ITEM_BLACK_GLASSES,
 		.teamFlags = 0x0F,
 		.moves = {
 			MOVE_FACADE,
 			MOVE_THUNDERBOLT,
-			MOVE_CRUSH_CLAW,
-			MOVE_DETECT
+			MOVE_SLASH,
+			MOVE_PROTECT
 		},
 		.evSpread = F_EV_SPREAD_SPEED | F_EV_SPREAD_HP,
 		.nature = NATURE_CALM,
 	},
 	{
-		.species = SPECIES_LINOONE,
+		.species = SPECIES_RATICATE,
 		.heldItem = BATTLE_TOWER_ITEM_CHESTO_BERRY,
 		.teamFlags = 0x0F,
 		.moves = {
 			MOVE_IRON_TAIL,
-			MOVE_HEADBUTT,
+			MOVE_FACADE,
 			MOVE_ATTRACT,
 			MOVE_ICE_BEAM
 		},
@@ -1314,27 +1314,27 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_HARDY,
 	},
 	{
-		.species = SPECIES_WHISCASH,
+		.species = SPECIES_KINGLER,
 		.heldItem = BATTLE_TOWER_ITEM_SOFT_SAND,
 		.teamFlags = 0x07,
 		.moves = {
-			MOVE_MUD_SLAP,
-			MOVE_EARTHQUAKE,
+			MOVE_MUD_SHOT,
+			MOVE_DIG,
 			MOVE_SURF,
-			MOVE_AMNESIA
+			MOVE_HARDEN
 		},
 		.evSpread = F_EV_SPREAD_SP_DEFENSE | F_EV_SPREAD_SPEED | F_EV_SPREAD_HP,
 		.nature = NATURE_BOLD,
 	},
 	{
-		.species = SPECIES_SOLROCK,
+		.species = SPECIES_MAGCARGO,
 		.heldItem = BATTLE_TOWER_ITEM_HARD_STONE,
 		.teamFlags = 0x43,
 		.moves = {
 			MOVE_EARTHQUAKE,
 			MOVE_LIGHT_SCREEN,
 			MOVE_ROCK_SLIDE,
-			MOVE_CONFUSION
+			MOVE_PROTECT
 		},
 		.evSpread = F_EV_SPREAD_SP_DEFENSE | F_EV_SPREAD_ATTACK | F_EV_SPREAD_HP,
 		.nature = NATURE_BASHFUL,
@@ -1418,20 +1418,20 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_HARDY,
 	},
 	{
-		.species = SPECIES_METANG,
+		.species = SPECIES_MAGNETON,
 		.heldItem = BATTLE_TOWER_ITEM_METAL_COAT,
 		.teamFlags = 0x05,
 		.moves = {
-			MOVE_EARTHQUAKE,
-			MOVE_SHADOW_BALL,
-			MOVE_PSYCHIC,
-			MOVE_METEOR_MASH
+			MOVE_THUNDERBOLT,
+			MOVE_TRI_ATTACK,
+			MOVE_METAL_SOUND,
+			MOVE_THUNDER_WAVE
 		},
 		.evSpread = F_EV_SPREAD_SP_DEFENSE | F_EV_SPREAD_DEFENSE | F_EV_SPREAD_ATTACK,
 		.nature = NATURE_IMPISH,
 	},
 	{
-		.species = SPECIES_CLAYDOL,
+		.species = SPECIES_GOLEM,
 		.heldItem = BATTLE_TOWER_ITEM_PECHA_BERRY,
 		.teamFlags = 0x43,
 		.moves = {
@@ -1444,27 +1444,27 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_LAX,
 	},
 	{
-		.species = SPECIES_MASQUERAIN,
+		.species = SPECIES_VENOMOTH,
 		.heldItem = BATTLE_TOWER_ITEM_PERSIM_BERRY,
 		.teamFlags = 0x0A,
 		.moves = {
 			MOVE_TOXIC,
 			MOVE_SILVER_WIND,
 			MOVE_ATTRACT,
-			MOVE_ICE_BEAM
+			MOVE_SOLAR_BEAM
 		},
 		.evSpread = F_EV_SPREAD_SP_DEFENSE | F_EV_SPREAD_SP_ATTACK,
 		.nature = NATURE_QUIET,
 	},
 	{
-		.species = SPECIES_RELICANTH,
+		.species = SPECIES_OMASTAR,
 		.heldItem = BATTLE_TOWER_ITEM_LIECHI_BERRY,
 		.teamFlags = 0xC5,
 		.moves = {
 			MOVE_ROCK_TOMB,
-			MOVE_DOUBLE_EDGE,
+			MOVE_RETURN,
 			MOVE_SURF,
-			MOVE_EARTHQUAKE
+			MOVE_MUD_SHOT
 		},
 		.evSpread = F_EV_SPREAD_SP_ATTACK | F_EV_SPREAD_ATTACK,
 		.nature = NATURE_HARDY,
@@ -1483,27 +1483,27 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_HARDY,
 	},
 	{
-		.species = SPECIES_WAILORD,
+		.species = SPECIES_LAPRAS,
 		.heldItem = BATTLE_TOWER_ITEM_APICOT_BERRY,
 		.teamFlags = 0x0B,
 		.moves = {
-			MOVE_WATER_SPOUT,
+			MOVE_HYDRO_PUMP,
 			MOVE_REST,
-			MOVE_AMNESIA,
+			MOVE_PROTECT,
 			MOVE_HAIL
 		},
 		.evSpread = F_EV_SPREAD_SP_DEFENSE | F_EV_SPREAD_DEFENSE,
 		.nature = NATURE_HASTY,
 	},
 	{
-		.species = SPECIES_GIRAFARIG,
+		.species = SPECIES_HYPNO,
 		.heldItem = BATTLE_TOWER_ITEM_GANLON_BERRY,
 		.teamFlags = 0x4F,
 		.moves = {
 			MOVE_DOUBLE_TEAM,
-			MOVE_CRUNCH,
+			MOVE_SNATCH,
 			MOVE_PSYCHIC,
-			MOVE_EARTHQUAKE
+			MOVE_PROTECT
 		},
 		.evSpread = F_EV_SPREAD_SPEED | F_EV_SPREAD_DEFENSE | F_EV_SPREAD_ATTACK,
 		.nature = NATURE_HARDY,
@@ -1522,27 +1522,27 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_RELAXED,
 	},
 	{
-		.species = SPECIES_TROPIUS,
+		.species = SPECIES_TANGELA,
 		.heldItem = BATTLE_TOWER_ITEM_MENTAL_HERB,
 		.teamFlags = 0xC7,
 		.moves = {
-			MOVE_EARTHQUAKE,
-			MOVE_SYNTHESIS,
-			MOVE_RAZOR_LEAF,
+			MOVE_PROTECT,
+			MOVE_ABSORB,
+			MOVE_BULLET_SEED,
 			MOVE_HYPER_BEAM
 		},
 		.evSpread = F_EV_SPREAD_SP_DEFENSE | F_EV_SPREAD_SPEED | F_EV_SPREAD_ATTACK,
 		.nature = NATURE_BOLD,
 	},
 	{
-		.species = SPECIES_NINJASK,
+		.species = SPECIES_YANMA,
 		.heldItem = BATTLE_TOWER_ITEM_SCOPE_LENS,
 		.teamFlags = 0x05,
 		.moves = {
 			MOVE_DOUBLE_TEAM,
-			MOVE_SLASH,
-			MOVE_SWORDS_DANCE,
-			MOVE_LEECH_LIFE
+			MOVE_FACADE,
+			MOVE_PROTECT,
+			MOVE_WING_ATTACK
 		},
 		.evSpread = F_EV_SPREAD_SP_DEFENSE | F_EV_SPREAD_ATTACK | F_EV_SPREAD_HP,
 		.nature = NATURE_LAX,
@@ -1587,26 +1587,26 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_LAX,
 	},
 	{
-		.species = SPECIES_SEVIPER,
+		.species = SPECIES_ARBOK,
 		.heldItem = BATTLE_TOWER_ITEM_POISON_BARB,
 		.teamFlags = 0x05,
 		.moves = {
 			MOVE_SLUDGE_BOMB,
 			MOVE_HAZE,
-			MOVE_CRUNCH,
-			MOVE_FLAMETHROWER
+			MOVE_BITE,
+			MOVE_SUNNY_DAY
 		},
 		.evSpread = F_EV_SPREAD_SP_ATTACK | F_EV_SPREAD_ATTACK,
 		.nature = NATURE_NAIVE,
 	},
 	{
-		.species = SPECIES_CRADILY,
+		.species = SPECIES_ARMALDO,
 		.heldItem = BATTLE_TOWER_ITEM_LEFTOVERS,
 		.teamFlags = 0xC1,
 		.moves = {
 			MOVE_ROCK_TOMB,
-			MOVE_CONFUSE_RAY,
-			MOVE_INGRAIN,
+			MOVE_PROTECT,
+			MOVE_TOXIC,
 			MOVE_EARTHQUAKE
 		},
 		.evSpread = F_EV_SPREAD_ATTACK | F_EV_SPREAD_HP,
@@ -1639,38 +1639,38 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_ADAMANT,
 	},
 	{
-		.species = SPECIES_LANTURN,
+		.species = SPECIES_AMPHAROS,
 		.heldItem = BATTLE_TOWER_ITEM_QUICK_CLAW,
 		.teamFlags = 0x06,
 		.moves = {
 			MOVE_THUNDER,
-			MOVE_SURF,
-			MOVE_ICE_BEAM,
+			MOVE_PROTECT,
+			MOVE_LIGHT_SCREEN,
 			MOVE_RAIN_DANCE
 		},
 		.evSpread = F_EV_SPREAD_SP_ATTACK | F_EV_SPREAD_DEFENSE,
 		.nature = NATURE_ADAMANT,
 	},
 	{
-		.species = SPECIES_SWALOT,
+		.species = SPECIES_MUK,
 		.heldItem = BATTLE_TOWER_ITEM_CHERI_BERRY,
 		.teamFlags = 0x8B,
 		.moves = {
 			MOVE_SLUDGE_BOMB,
-			MOVE_SNATCH,
-			MOVE_ENCORE,
-			MOVE_BODY_SLAM
+			MOVE_TAUNT,
+			MOVE_DISABLE,
+			MOVE_FACADE
 		},
 		.evSpread = F_EV_SPREAD_SPEED | F_EV_SPREAD_ATTACK,
 		.nature = NATURE_HARDY,
 	},
 	{
-		.species = SPECIES_SKARMORY,
+		.species = SPECIES_STEELIX,
 		.heldItem = BATTLE_TOWER_ITEM_METAL_COAT,
 		.teamFlags = 0x81,
 		.moves = {
-			MOVE_STEEL_WING,
-			MOVE_AGILITY,
+			MOVE_IRON_TAIL,
+			MOVE_DOUBLE_TEAM,
 			MOVE_TORMENT,
 			MOVE_FACADE
 		},
@@ -1743,14 +1743,14 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_DOCILE,
 	},
 	{
-		.species = SPECIES_GRUMPIG,
+		.species = SPECIES_HYPNO,
 		.heldItem = BATTLE_TOWER_ITEM_TWISTED_SPOON,
 		.teamFlags = 0x8B,
 		.moves = {
-			MOVE_MAGIC_COAT,
+			MOVE_PROTECT,
 			MOVE_PSYCHIC,
 			MOVE_REFLECT,
-			MOVE_CONFUSE_RAY
+			MOVE_SHADOW_BALL
 		},
 		.evSpread = F_EV_SPREAD_SP_ATTACK | F_EV_SPREAD_HP,
 		.nature = NATURE_LONELY,
@@ -1795,13 +1795,13 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_CAREFUL,
 	},
 	{
-		.species = SPECIES_TORKOAL,
+		.species = SPECIES_MAGCARGO,
 		.heldItem = BATTLE_TOWER_ITEM_LEFTOVERS,
 		.teamFlags = 0x09,
 		.moves = {
 			MOVE_FLAMETHROWER,
 			MOVE_AMNESIA,
-			MOVE_IRON_TAIL,
+			MOVE_PROTECT,
 			MOVE_REST
 		},
 		.evSpread = F_EV_SPREAD_SP_DEFENSE | F_EV_SPREAD_SP_ATTACK,
@@ -1886,7 +1886,7 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_BOLD,
 	},
 	{
-		.species = SPECIES_EXPLOUD,
+		.species = SPECIES_SNORLAX,
 		.heldItem = BATTLE_TOWER_ITEM_CHOICE_BAND,
 		.teamFlags = 0x05,
 		.moves = {
@@ -1964,13 +1964,13 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_ADAMANT,
 	},
 	{
-		.species = SPECIES_SLAKING,
+		.species = SPECIES_URSARING,
 		.heldItem = BATTLE_TOWER_ITEM_LEFTOVERS,
 		.teamFlags = 0x03,
 		.moves = {
-			MOVE_CURSE,
-			MOVE_AMNESIA,
-			MOVE_YAWN,
+			MOVE_PROTECT,
+			MOVE_BULK_UP,
+			MOVE_AERIAL_ACE,
 			MOVE_FOCUS_PUNCH
 		},
 		.evSpread = F_EV_SPREAD_SP_DEFENSE | F_EV_SPREAD_DEFENSE,
@@ -1990,14 +1990,14 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_NAUGHTY,
 	},
 	{
-		.species = SPECIES_HARIYAMA,
+		.species = SPECIES_MACHAMP,
 		.heldItem = BATTLE_TOWER_ITEM_SALAC_BERRY,
 		.teamFlags = 0x21,
 		.moves = {
-			MOVE_BELLY_DRUM,
-			MOVE_ENDURE,
+			MOVE_PROTECT,
+			MOVE_TOXIC,
 			MOVE_EARTHQUAKE,
-			MOVE_REVERSAL
+			MOVE_BRICK_BREAK
 		},
 		.evSpread = F_EV_SPREAD_SP_DEFENSE | F_EV_SPREAD_SPEED,
 		.nature = NATURE_SASSY,
@@ -2016,12 +2016,12 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_RELAXED,
 	},
 	{
-		.species = SPECIES_ALTARIA,
+		.species = SPECIES_DRAGONITE,
 		.heldItem = BATTLE_TOWER_ITEM_SITRUS_BERRY,
 		.teamFlags = 0x83,
 		.moves = {
-			MOVE_DRAGON_DANCE,
-			MOVE_MIRROR_MOVE,
+			MOVE_DRAGON_BREATH,
+			MOVE_PROTECT,
 			MOVE_DRAGON_CLAW,
 			MOVE_EARTHQUAKE
 		},
@@ -2055,12 +2055,12 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_NAIVE,
 	},
 	{
-		.species = SPECIES_BLAZIKEN,
+		.species = SPECIES_CHARIZARD,
 		.heldItem = BATTLE_TOWER_ITEM_PETAYA_BERRY,
 		.teamFlags = 0x33,
 		.moves = {
-			MOVE_COUNTER,
-			MOVE_ROCK_SLIDE,
+			MOVE_BRICK_BREAK,
+			MOVE_ROCK_SMASH,
 			MOVE_FOCUS_PUNCH,
 			MOVE_FLAMETHROWER
 		},
@@ -2081,12 +2081,12 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_JOLLY,
 	},
 	{
-		.species = SPECIES_HUNTAIL,
+		.species = SPECIES_SHARPEDO,
 		.heldItem = BATTLE_TOWER_ITEM_MYSTIC_WATER,
 		.teamFlags = 0xA1,
 		.moves = {
 			MOVE_RAIN_DANCE,
-			MOVE_HYDRO_PUMP,
+			MOVE_DIVE,
 			MOVE_CRUNCH,
 			MOVE_BLIZZARD
 		},
@@ -2107,39 +2107,39 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_HASTY,
 	},
 	{
-		.species = SPECIES_GOREBYSS,
+		.species = SPECIES_MILOTIC,
 		.heldItem = BATTLE_TOWER_ITEM_PECHA_BERRY,
 		.teamFlags = 0x83,
 		.moves = {
-			MOVE_PSYCHIC,
+			MOVE_PROTECT,
 			MOVE_SURF,
 			MOVE_BLIZZARD,
-			MOVE_SHADOW_BALL
+			MOVE_TOXIC
 		},
 		.evSpread = F_EV_SPREAD_SP_DEFENSE | F_EV_SPREAD_HP,
 		.nature = NATURE_ADAMANT,
 	},
 	{
-		.species = SPECIES_SCEPTILE,
+		.species = SPECIES_VENUSAUR,
 		.heldItem = BATTLE_TOWER_ITEM_SCOPE_LENS,
 		.teamFlags = 0x53,
 		.moves = {
-			MOVE_LEAF_BLADE,
-			MOVE_ENDEAVOR,
+			MOVE_GIGA_DRAIN,
+			MOVE_PROTECT,
 			MOVE_EARTHQUAKE,
-			MOVE_ROCK_TOMB
+			MOVE_ROCK_SMASH
 		},
 		.evSpread = F_EV_SPREAD_SP_DEFENSE | F_EV_SPREAD_SPEED,
 		.nature = NATURE_BASHFUL,
 	},
 	{
-		.species = SPECIES_SWAMPERT,
+		.species = SPECIES_BLASTOISE,
 		.heldItem = BATTLE_TOWER_ITEM_LEFTOVERS,
 		.teamFlags = 0x53,
 		.moves = {
 			MOVE_EARTHQUAKE,
 			MOVE_SURF,
-			MOVE_MUD_SHOT,
+			MOVE_DIG,
 			MOVE_BLIZZARD
 		},
 		.evSpread = F_EV_SPREAD_SP_DEFENSE | F_EV_SPREAD_HP,
@@ -2159,13 +2159,13 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_BOLD,
 	},
 	{
-		.species = SPECIES_CRADILY,
+		.species = SPECIES_ARMALDO,
 		.heldItem = BATTLE_TOWER_ITEM_BRIGHT_POWDER,
 		.teamFlags = 0xE1,
 		.moves = {
-			MOVE_STOCKPILE,
-			MOVE_SPIT_UP,
-			MOVE_SWALLOW,
+			MOVE_PROTECT,
+			MOVE_TOXIC,
+			MOVE_REST,
 			MOVE_DOUBLE_TEAM
 		},
 		.evSpread = F_EV_SPREAD_SP_DEFENSE | F_EV_SPREAD_HP,
@@ -2198,7 +2198,7 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_LAX,
 	},
 	{
-		.species = SPECIES_LUDICOLO,
+		.species = SPECIES_POLITOED,
 		.heldItem = BATTLE_TOWER_ITEM_PETAYA_BERRY,
 		.teamFlags = 0x83,
 		.moves = {
@@ -2224,24 +2224,24 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_NAIVE,
 	},
 	{
-		.species = SPECIES_TROPIUS,
+		.species = SPECIES_TANGELA,
 		.heldItem = BATTLE_TOWER_ITEM_APICOT_BERRY,
 		.teamFlags = 0xC3,
 		.moves = {
 			MOVE_SUNNY_DAY,
-			MOVE_SYNTHESIS,
+			MOVE_ABSORB,
 			MOVE_SOLAR_BEAM,
-			MOVE_LEECH_SEED
+			MOVE_BULLET_SEED
 		},
 		.evSpread = F_EV_SPREAD_SP_DEFENSE | F_EV_SPREAD_DEFENSE,
 		.nature = NATURE_QUIET,
 	},
 	{
-		.species = SPECIES_GRUMPIG,
+		.species = SPECIES_HYPNO,
 		.heldItem = BATTLE_TOWER_ITEM_MACHO_BRACE,
 		.teamFlags = 0x23,
 		.moves = {
-			MOVE_TRICK,
+			MOVE_PROTECT,
 			MOVE_SKILL_SWAP,
 			MOVE_PSYCHIC,
 			MOVE_REST
@@ -2250,11 +2250,11 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_HARDY,
 	},
 	{
-		.species = SPECIES_TORKOAL,
+		.species = SPECIES_MAGCARGO,
 		.heldItem = BATTLE_TOWER_ITEM_LUM_BERRY,
 		.teamFlags = 0x81,
 		.moves = {
-			MOVE_IRON_DEFENSE,
+			MOVE_PROTECT,
 			MOVE_TOXIC,
 			MOVE_REST,
 			MOVE_FLAMETHROWER
@@ -2354,39 +2354,39 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_QUIET,
 	},
 	{
-		.species = SPECIES_REGICE,
+		.species = SPECIES_ARTICUNO,
 		.heldItem = BATTLE_TOWER_ITEM_CHESTO_BERRY,
 		.teamFlags = 0x11,
 		.moves = {
 			MOVE_REST,
-			MOVE_CURSE,
+			MOVE_AGILITY,
 			MOVE_BLIZZARD,
-			MOVE_EARTHQUAKE
+			MOVE_PROTECT
 		},
 		.evSpread = F_EV_SPREAD_DEFENSE | F_EV_SPREAD_HP,
 		.nature = NATURE_MILD,
 	},
 	{
-		.species = SPECIES_REGISTEEL,
+		.species = SPECIES_FORRETRESS,
 		.heldItem = BATTLE_TOWER_ITEM_LUM_BERRY,
 		.teamFlags = 0x11,
 		.moves = {
 			MOVE_REST,
 			MOVE_IRON_DEFENSE,
-			MOVE_THUNDERBOLT,
+			MOVE_ZAP_CANNON,
 			MOVE_EARTHQUAKE
 		},
 		.evSpread = F_EV_SPREAD_SP_ATTACK | F_EV_SPREAD_ATTACK,
 		.nature = NATURE_MILD,
 	},
 	{
-		.species = SPECIES_REGIROCK,
+		.species = SPECIES_GOLEM,
 		.heldItem = BATTLE_TOWER_ITEM_QUICK_CLAW,
 		.teamFlags = 0x91,
 		.moves = {
 			MOVE_ROCK_TOMB,
 			MOVE_EARTHQUAKE,
-			MOVE_THUNDERBOLT,
+			MOVE_PROTECT,
 			MOVE_EXPLOSION
 		},
 		.evSpread = F_EV_SPREAD_SPEED | F_EV_SPREAD_HP,
@@ -2432,14 +2432,14 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_NAIVE,
 	},
 	{
-		.species = SPECIES_LANTURN,
+		.species = SPECIES_AMPHAROS,
 		.heldItem = BATTLE_TOWER_ITEM_SALAC_BERRY,
 		.teamFlags = 0x82,
 		.moves = {
 			MOVE_THUNDERBOLT,
-			MOVE_SURF,
+			MOVE_RAIN_DANCE,
 			MOVE_THUNDER_WAVE,
-			MOVE_BLIZZARD
+			MOVE_PROTECT
 		},
 		.evSpread = F_EV_SPREAD_SP_ATTACK | F_EV_SPREAD_SPEED | F_EV_SPREAD_HP,
 		.nature = NATURE_BRAVE,
@@ -2458,11 +2458,11 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_SERIOUS,
 	},
 	{
-		.species = SPECIES_WHISCASH,
+		.species = SPECIES_KINGLER,
 		.heldItem = BATTLE_TOWER_ITEM_PETAYA_BERRY,
 		.teamFlags = 0x41,
 		.moves = {
-			MOVE_EARTHQUAKE,
+			MOVE_DIG,
 			MOVE_SURF,
 			MOVE_ROCK_TOMB,
 			MOVE_ATTRACT
@@ -2523,14 +2523,14 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_HARDY,
 	},
 	{
-		.species = SPECIES_WAILORD,
+		.species = SPECIES_LAPRAS,
 		.heldItem = BATTLE_TOWER_ITEM_LEPPA_BERRY,
 		.teamFlags = 0x23,
 		.moves = {
 			MOVE_HYDRO_PUMP,
-			MOVE_EARTHQUAKE,
+			MOVE_PROTECT,
 			MOVE_ATTRACT,
-			MOVE_FISSURE
+			MOVE_TOXIC
 		},
 		.evSpread = F_EV_SPREAD_SPEED | F_EV_SPREAD_HP,
 		.nature = NATURE_TIMID,
@@ -2549,7 +2549,7 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_RASH,
 	},
 	{
-		.species = SPECIES_LUDICOLO,
+		.species = SPECIES_POLITOED,
 		.heldItem = BATTLE_TOWER_ITEM_LEFTOVERS,
 		.teamFlags = 0xA2,
 		.moves = {
@@ -2562,14 +2562,14 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_HARDY,
 	},
 	{
-		.species = SPECIES_WOBBUFFET,
+		.species = SPECIES_BLISSEY,
 		.heldItem = BATTLE_TOWER_ITEM_LEFTOVERS,
 		.teamFlags = 0x23,
 		.moves = {
-			MOVE_ENCORE,
-			MOVE_COUNTER,
-			MOVE_MIRROR_COAT,
-			MOVE_DESTINY_BOND
+			MOVE_PROTECT,
+			MOVE_SOFT_BOILED,
+			MOVE_TOXIC,
+			MOVE_ATTRACT
 		},
 		.evSpread = F_EV_SPREAD_SPEED | F_EV_SPREAD_HP,
 		.nature = NATURE_SERIOUS,
@@ -2601,39 +2601,39 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_SERIOUS,
 	},
 	{
-		.species = SPECIES_SCEPTILE,
+		.species = SPECIES_VENUSAUR,
 		.heldItem = BATTLE_TOWER_ITEM_SCOPE_LENS,
 		.teamFlags = 0x13,
 		.moves = {
-			MOVE_LEAF_BLADE,
+			MOVE_GIGA_DRAIN,
 			MOVE_EARTHQUAKE,
-			MOVE_DRAGON_CLAW,
-			MOVE_CRUNCH
+			MOVE_PROTECT,
+			MOVE_TOXIC
 		},
 		.evSpread = F_EV_SPREAD_SP_DEFENSE | F_EV_SPREAD_SPEED,
 		.nature = NATURE_BRAVE,
 	},
 	{
-		.species = SPECIES_BLAZIKEN,
+		.species = SPECIES_CHARIZARD,
 		.heldItem = BATTLE_TOWER_ITEM_LIECHI_BERRY,
 		.teamFlags = 0x17,
 		.moves = {
-			MOVE_BLAZE_KICK,
-			MOVE_ROCK_TOMB,
-			MOVE_ENDURE,
-			MOVE_REVERSAL
+			MOVE_FLAMETHROWER,
+			MOVE_ROCK_SMASH,
+			MOVE_PROTECT,
+			MOVE_BRICK_BREAK
 		},
 		.evSpread = F_EV_SPREAD_SPEED | F_EV_SPREAD_HP,
 		.nature = NATURE_RASH,
 	},
 	{
-		.species = SPECIES_SWAMPERT,
+		.species = SPECIES_BLASTOISE,
 		.heldItem = BATTLE_TOWER_ITEM_SHELL_BELL,
 		.teamFlags = 0x17,
 		.moves = {
 			MOVE_SURF,
 			MOVE_EARTHQUAKE,
-			MOVE_MUD_SHOT,
+			MOVE_DIG,
 			MOVE_BLIZZARD
 		},
 		.evSpread = F_EV_SPREAD_SPEED | F_EV_SPREAD_ATTACK,
@@ -2692,14 +2692,14 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_SERIOUS,
 	},
 	{
-		.species = SPECIES_HARIYAMA,
+		.species = SPECIES_MACHAMP,
 		.heldItem = BATTLE_TOWER_ITEM_SCOPE_LENS,
 		.teamFlags = 0x85,
 		.moves = {
 			MOVE_CROSS_CHOP,
 			MOVE_EARTHQUAKE,
 			MOVE_FACADE,
-			MOVE_FAKE_OUT
+			MOVE_PROTECT
 		},
 		.evSpread = F_EV_SPREAD_ATTACK | F_EV_SPREAD_HP,
 		.nature = NATURE_GENTLE,
@@ -2874,38 +2874,38 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_ADAMANT,
 	},
 	{
-		.species = SPECIES_SALAMENCE,
+		.species = SPECIES_DRAGONITE,
 		.heldItem = BATTLE_TOWER_ITEM_LUM_BERRY,
 		.teamFlags = 0x9C,
 		.moves = {
 			MOVE_DRAGON_CLAW,
 			MOVE_EARTHQUAKE,
-			MOVE_CRUNCH,
+			MOVE_PROTECT,
 			MOVE_REST
 		},
 		.evSpread = F_EV_SPREAD_SP_DEFENSE | F_EV_SPREAD_HP,
 		.nature = NATURE_ADAMANT,
 	},
 	{
-		.species = SPECIES_METAGROSS,
+		.species = SPECIES_TYRANITAR,
 		.heldItem = BATTLE_TOWER_ITEM_SHELL_BELL,
 		.teamFlags = 0x15,
 		.moves = {
-			MOVE_METEOR_MASH,
-			MOVE_PSYCHIC,
+			MOVE_IRON_TAIL,
+			MOVE_PROTECT,
 			MOVE_EARTHQUAKE,
-			MOVE_LIGHT_SCREEN
+			MOVE_CRUNCH
 		},
 		.evSpread = F_EV_SPREAD_SP_DEFENSE | F_EV_SPREAD_ATTACK | F_EV_SPREAD_HP,
 		.nature = NATURE_HARDY,
 	},
 	{
-		.species = SPECIES_REGIROCK,
+		.species = SPECIES_GOLEM,
 		.heldItem = BATTLE_TOWER_ITEM_BRIGHT_POWDER,
 		.teamFlags = 0xB5,
 		.moves = {
 			MOVE_EARTHQUAKE,
-			MOVE_ANCIENT_POWER,
+			MOVE_ROCK_SLIDE,
 			MOVE_FOCUS_PUNCH,
 			MOVE_EXPLOSION
 		},
@@ -2913,12 +2913,12 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_GENTLE,
 	},
 	{
-		.species = SPECIES_REGICE,
+		.species = SPECIES_ARTICUNO,
 		.heldItem = BATTLE_TOWER_ITEM_CHESTO_BERRY,
 		.teamFlags = 0x96,
 		.moves = {
 			MOVE_ICE_BEAM,
-			MOVE_THUNDERBOLT,
+			MOVE_PROTECT,
 			MOVE_DOUBLE_TEAM,
 			MOVE_REST
 		},
@@ -2926,40 +2926,40 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_HASTY,
 	},
 	{
-		.species = SPECIES_REGISTEEL,
+		.species = SPECIES_FORRETRESS,
 		.heldItem = BATTLE_TOWER_ITEM_QUICK_CLAW,
 		.teamFlags = 0x94,
 		.moves = {
-			MOVE_METAL_CLAW,
+			MOVE_IRON_DEFENSE,
 			MOVE_EARTHQUAKE,
-			MOVE_THUNDERBOLT,
+			MOVE_ZAP_CANNON,
 			MOVE_EXPLOSION
 		},
 		.evSpread = F_EV_SPREAD_SP_DEFENSE | F_EV_SPREAD_ATTACK,
 		.nature = NATURE_GENTLE,
 	},
 	{
-		.species = SPECIES_LATIAS,
+		.species = SPECIES_ESPEON,
 		.heldItem = BATTLE_TOWER_ITEM_LUM_BERRY,
 		.teamFlags = 0x96,
 		.moves = {
-			MOVE_MIST_BALL,
-			MOVE_THUNDERBOLT,
+			MOVE_PSYCHIC,
+			MOVE_PROTECT,
 			MOVE_REST,
-			MOVE_DRAGON_CLAW
+			MOVE_TOXIC
 		},
 		.evSpread = F_EV_SPREAD_DEFENSE | F_EV_SPREAD_HP,
 		.nature = NATURE_MILD,
 	},
 	{
-		.species = SPECIES_LATIOS,
+		.species = SPECIES_ALAKAZAM,
 		.heldItem = BATTLE_TOWER_ITEM_APICOT_BERRY,
 		.teamFlags = 0x95,
 		.moves = {
-			MOVE_LUSTER_PURGE,
+			MOVE_PSYCHIC,
 			MOVE_REFLECT,
 			MOVE_RECOVER,
-			MOVE_DRAGON_CLAW
+			MOVE_PROTECT
 		},
 		.evSpread = F_EV_SPREAD_SP_ATTACK | F_EV_SPREAD_SPEED,
 		.nature = NATURE_BRAVE,
@@ -2978,20 +2978,20 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_BRAVE,
 	},
 	{
-		.species = SPECIES_SLAKING,
+		.species = SPECIES_URSARING,
 		.heldItem = BATTLE_TOWER_ITEM_CHOICE_BAND,
 		.teamFlags = 0x05,
 		.moves = {
 			MOVE_HYPER_BEAM,
 			MOVE_EARTHQUAKE,
-			MOVE_NONE,
-			MOVE_NONE
+			MOVE_PROTECT,
+			MOVE_TOXIC
 		},
 		.evSpread = F_EV_SPREAD_SPEED | F_EV_SPREAD_ATTACK,
 		.nature = NATURE_SERIOUS,
 	},
 	{
-		.species = SPECIES_SCEPTILE,
+		.species = SPECIES_VENUSAUR,
 		.heldItem = BATTLE_TOWER_ITEM_LEFTOVERS,
 		.teamFlags = 0x1F,
 		.moves = {
@@ -3004,26 +3004,26 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_QUIET,
 	},
 	{
-		.species = SPECIES_BLAZIKEN,
+		.species = SPECIES_CHARIZARD,
 		.heldItem = BATTLE_TOWER_ITEM_CHESTO_BERRY,
 		.teamFlags = 0x17,
 		.moves = {
-			MOVE_BLAZE_KICK,
+			MOVE_FLAMETHROWER,
 			MOVE_EARTHQUAKE,
-			MOVE_ROCK_SLIDE,
+			MOVE_ROCK_SMASH,
 			MOVE_REST
 		},
 		.evSpread = F_EV_SPREAD_SP_ATTACK | F_EV_SPREAD_SPEED,
 		.nature = NATURE_BRAVE,
 	},
 	{
-		.species = SPECIES_SWAMPERT,
+		.species = SPECIES_BLASTOISE,
 		.heldItem = BATTLE_TOWER_ITEM_SHELL_BELL,
 		.teamFlags = 0x17,
 		.moves = {
-			MOVE_MUDDY_WATER,
-			MOVE_MUD_SHOT,
-			MOVE_MIRROR_COAT,
+			MOVE_SURF,
+			MOVE_EARTHQUAKE,
+			MOVE_RAPID_SPIN,
 			MOVE_ICE_BEAM
 		},
 		.evSpread = F_EV_SPREAD_SP_ATTACK | F_EV_SPREAD_HP,
@@ -3069,14 +3069,14 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_HASTY,
 	},
 	{
-		.species = SPECIES_HARIYAMA,
+		.species = SPECIES_MACHAMP,
 		.heldItem = BATTLE_TOWER_ITEM_FOCUS_BAND,
 		.teamFlags = 0x05,
 		.moves = {
 			MOVE_CROSS_CHOP,
 			MOVE_ROCK_TOMB,
-			MOVE_ENDURE,
-			MOVE_REVERSAL
+			MOVE_PROTECT,
+			MOVE_BRICK_BREAK
 		},
 		.evSpread = F_EV_SPREAD_SP_DEFENSE | F_EV_SPREAD_DEFENSE | F_EV_SPREAD_HP,
 		.nature = NATURE_SASSY,
@@ -3264,7 +3264,7 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_ADAMANT,
 	},
 	{
-		.species = SPECIES_SALAMENCE,
+		.species = SPECIES_DRAGONITE,
 		.heldItem = BATTLE_TOWER_ITEM_KINGS_ROCK,
 		.teamFlags = 0x9D,
 		.moves = {
@@ -3277,12 +3277,12 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_SERIOUS,
 	},
 	{
-		.species = SPECIES_METAGROSS,
+		.species = SPECIES_TYRANITAR,
 		.heldItem = BATTLE_TOWER_ITEM_QUICK_CLAW,
 		.teamFlags = 0x15,
 		.moves = {
-			MOVE_METEOR_MASH,
-			MOVE_PSYCHIC,
+			MOVE_IRON_TAIL,
+			MOVE_PROTECT,
 			MOVE_EARTHQUAKE,
 			MOVE_HYPER_BEAM
 		},
@@ -3290,7 +3290,7 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_HARDY,
 	},
 	{
-		.species = SPECIES_REGIROCK,
+		.species = SPECIES_GOLEM,
 		.heldItem = BATTLE_TOWER_ITEM_QUICK_CLAW,
 		.teamFlags = 0x95,
 		.moves = {
@@ -3303,53 +3303,53 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_GENTLE,
 	},
 	{
-		.species = SPECIES_REGICE,
+		.species = SPECIES_ARTICUNO,
 		.heldItem = BATTLE_TOWER_ITEM_SHELL_BELL,
 		.teamFlags = 0x96,
 		.moves = {
 			MOVE_BLIZZARD,
-			MOVE_THUNDERBOLT,
+			MOVE_PROTECT,
 			MOVE_HAIL,
-			MOVE_EXPLOSION
+			MOVE_TOXIC
 		},
 		.evSpread = F_EV_SPREAD_SP_ATTACK | F_EV_SPREAD_DEFENSE,
 		.nature = NATURE_CAREFUL,
 	},
 	{
-		.species = SPECIES_REGISTEEL,
+		.species = SPECIES_FORRETRESS,
 		.heldItem = BATTLE_TOWER_ITEM_QUICK_CLAW,
 		.teamFlags = 0x94,
 		.moves = {
-			MOVE_METAL_CLAW,
+			MOVE_IRON_DEFENSE,
 			MOVE_EARTHQUAKE,
-			MOVE_ANCIENT_POWER,
+			MOVE_SANDSTORM,
 			MOVE_EXPLOSION
 		},
 		.evSpread = F_EV_SPREAD_SP_DEFENSE | F_EV_SPREAD_ATTACK,
 		.nature = NATURE_GENTLE,
 	},
 	{
-		.species = SPECIES_LATIAS,
+		.species = SPECIES_ESPEON,
 		.heldItem = BATTLE_TOWER_ITEM_APICOT_BERRY,
 		.teamFlags = 0x96,
 		.moves = {
-			MOVE_MIST_BALL,
+			MOVE_PSYCHIC,
 			MOVE_REFLECT,
-			MOVE_RECOVER,
-			MOVE_DRAGON_CLAW
+			MOVE_MORNING_SUN,
+			MOVE_PROTECT
 		},
 		.evSpread = F_EV_SPREAD_SPEED | F_EV_SPREAD_HP,
 		.nature = NATURE_BRAVE,
 	},
 	{
-		.species = SPECIES_LATIOS,
+		.species = SPECIES_ALAKAZAM,
 		.heldItem = BATTLE_TOWER_ITEM_SHELL_BELL,
 		.teamFlags = 0x95,
 		.moves = {
-			MOVE_LUSTER_PURGE,
-			MOVE_ICE_BEAM,
+			MOVE_PSYCHIC,
+			MOVE_PROTECT,
 			MOVE_RECOVER,
-			MOVE_DRAGON_CLAW
+			MOVE_TOXIC
 		},
 		.evSpread = F_EV_SPREAD_SP_ATTACK | F_EV_SPREAD_SPEED,
 		.nature = NATURE_QUIET,
@@ -3381,38 +3381,38 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_QUIRKY,
 	},
 	{
-		.species = SPECIES_SCEPTILE,
+		.species = SPECIES_VENUSAUR,
 		.heldItem = BATTLE_TOWER_ITEM_CHESTO_BERRY,
 		.teamFlags = 0x5F,
 		.moves = {
-			MOVE_LEAF_BLADE,
+			MOVE_GIGA_DRAIN,
 			MOVE_EARTHQUAKE,
 			MOVE_REST,
-			MOVE_CRUNCH
+			MOVE_PROTECT
 		},
 		.evSpread = F_EV_SPREAD_SP_DEFENSE | F_EV_SPREAD_SPEED | F_EV_SPREAD_DEFENSE,
 		.nature = NATURE_BRAVE,
 	},
 	{
-		.species = SPECIES_BLAZIKEN,
+		.species = SPECIES_CHARIZARD,
 		.heldItem = BATTLE_TOWER_ITEM_LUM_BERRY,
 		.teamFlags = 0x7F,
 		.moves = {
 			MOVE_FOCUS_PUNCH,
-			MOVE_COUNTER,
-			MOVE_SWAGGER,
-			MOVE_ROCK_TOMB
+			MOVE_BRICK_BREAK,
+			MOVE_WILL_O_WISP,
+			MOVE_ROCK_SMASH
 		},
 		.evSpread = F_EV_SPREAD_SPEED | F_EV_SPREAD_HP,
 		.nature = NATURE_SASSY,
 	},
 	{
-		.species = SPECIES_SWAMPERT,
+		.species = SPECIES_BLASTOISE,
 		.heldItem = BATTLE_TOWER_ITEM_LUM_BERRY,
 		.teamFlags = 0x57,
 		.moves = {
 			MOVE_IRON_TAIL,
-			MOVE_CURSE,
+			MOVE_PROTECT,
 			MOVE_DOUBLE_TEAM,
 			MOVE_REST
 		},
@@ -3459,20 +3459,20 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_HASTY,
 	},
 	{
-		.species = SPECIES_HARIYAMA,
+		.species = SPECIES_MACHAMP,
 		.heldItem = BATTLE_TOWER_ITEM_SALAC_BERRY,
 		.teamFlags = 0x65,
 		.moves = {
 			MOVE_REVENGE,
-			MOVE_COUNTER,
+			MOVE_BRICK_BREAK,
 			MOVE_FOCUS_PUNCH,
-			MOVE_REVERSAL
+			MOVE_BULK_UP
 		},
 		.evSpread = F_EV_SPREAD_SPEED | F_EV_SPREAD_HP,
 		.nature = NATURE_SASSY,
 	},
 	{
-		.species = SPECIES_LUDICOLO,
+		.species = SPECIES_POLITOED,
 		.heldItem = BATTLE_TOWER_ITEM_LEFTOVERS,
 		.teamFlags = 0x54,
 		.moves = {
@@ -3576,12 +3576,12 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_BRAVE,
 	},
 	{
-		.species = SPECIES_LUDICOLO,
+		.species = SPECIES_POLITOED,
 		.heldItem = BATTLE_TOWER_ITEM_LEFTOVERS,
 		.teamFlags = 0x1A,
 		.moves = {
 			MOVE_RAIN_DANCE,
-			MOVE_LEECH_SEED,
+			MOVE_TOXIC,
 			MOVE_DIVE,
 			MOVE_PROTECT
 		},
@@ -3654,64 +3654,64 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_QUIET,
 	},
 	{
-		.species = SPECIES_SALAMENCE,
+		.species = SPECIES_DRAGONITE,
 		.heldItem = BATTLE_TOWER_ITEM_PETAYA_BERRY,
 		.teamFlags = 0x9C,
 		.moves = {
 			MOVE_DRAGON_CLAW,
 			MOVE_EARTHQUAKE,
 			MOVE_FIRE_BLAST,
-			MOVE_HYDRO_PUMP
+			MOVE_DIVE
 		},
 		.evSpread = F_EV_SPREAD_SP_ATTACK | F_EV_SPREAD_SPEED,
 		.nature = NATURE_NAUGHTY,
 	},
 	{
-		.species = SPECIES_METAGROSS,
+		.species = SPECIES_TYRANITAR,
 		.heldItem = BATTLE_TOWER_ITEM_LIECHI_BERRY,
 		.teamFlags = 0xB5,
 		.moves = {
-			MOVE_METEOR_MASH,
-			MOVE_PSYCHIC,
-			MOVE_PURSUIT,
+			MOVE_IRON_TAIL,
+			MOVE_PROTECT,
+			MOVE_BITE,
 			MOVE_ROCK_TOMB
 		},
 		.evSpread = F_EV_SPREAD_SP_DEFENSE | F_EV_SPREAD_SPEED,
 		.nature = NATURE_BRAVE,
 	},
 	{
-		.species = SPECIES_REGIROCK,
+		.species = SPECIES_GOLEM,
 		.heldItem = BATTLE_TOWER_ITEM_APICOT_BERRY,
 		.teamFlags = 0x95,
 		.moves = {
 			MOVE_EARTHQUAKE,
 			MOVE_TOXIC,
-			MOVE_SUPERPOWER,
+			MOVE_PROTECT,
 			MOVE_REST
 		},
 		.evSpread = F_EV_SPREAD_SPEED | F_EV_SPREAD_HP,
 		.nature = NATURE_SERIOUS,
 	},
 	{
-		.species = SPECIES_REGICE,
+		.species = SPECIES_ARTICUNO,
 		.heldItem = BATTLE_TOWER_ITEM_LAX_INCENSE,
 		.teamFlags = 0x96,
 		.moves = {
 			MOVE_ICE_BEAM,
-			MOVE_THUNDERBOLT,
-			MOVE_ANCIENT_POWER,
-			MOVE_EXPLOSION
+			MOVE_PROTECT,
+			MOVE_SANDSTORM,
+			MOVE_TOXIC
 		},
 		.evSpread = F_EV_SPREAD_SPEED | F_EV_SPREAD_DEFENSE,
 		.nature = NATURE_RASH,
 	},
 	{
-		.species = SPECIES_REGISTEEL,
+		.species = SPECIES_FORRETRESS,
 		.heldItem = BATTLE_TOWER_ITEM_LEFTOVERS,
 		.teamFlags = 0xB4,
 		.moves = {
-			MOVE_CURSE,
-			MOVE_AMNESIA,
+			MOVE_PROTECT,
+			MOVE_TOXIC,
 			MOVE_RETURN,
 			MOVE_REST
 		},
@@ -3719,27 +3719,27 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_LAX,
 	},
 	{
-		.species = SPECIES_LATIAS,
+		.species = SPECIES_ESPEON,
 		.heldItem = BATTLE_TOWER_ITEM_SHELL_BELL,
 		.teamFlags = 0x92,
 		.moves = {
-			MOVE_MIST_BALL,
-			MOVE_THUNDERBOLT,
-			MOVE_EARTHQUAKE,
-			MOVE_ICE_BEAM
+			MOVE_PSYCHIC,
+			MOVE_PROTECT,
+			MOVE_DIG,
+			MOVE_SIGNAL_BEAM
 		},
 		.evSpread = F_EV_SPREAD_SP_ATTACK | F_EV_SPREAD_SPEED,
 		.nature = NATURE_QUIET,
 	},
 	{
-		.species = SPECIES_LATIOS,
+		.species = SPECIES_ALAKAZAM,
 		.heldItem = BATTLE_TOWER_ITEM_SHELL_BELL,
 		.teamFlags = 0x91,
 		.moves = {
-			MOVE_LUSTER_PURGE,
-			MOVE_THUNDERBOLT,
-			MOVE_EARTHQUAKE,
-			MOVE_SURF
+			MOVE_PSYCHIC,
+			MOVE_SHOCK_WAVE,
+			MOVE_PROTECT,
+			MOVE_RAIN_DANCE
 		},
 		.evSpread = F_EV_SPREAD_SP_ATTACK | F_EV_SPREAD_SPEED,
 		.nature = NATURE_QUIET,
@@ -3758,118 +3758,118 @@ const struct BattleTowerPokemonTemplate gBattleTowerLevel50Mons[] =
 		.nature = NATURE_BRAVE,
 	},
 	{
-		.species = SPECIES_SLAKING,
+		.species = SPECIES_URSARING,
 		.heldItem = BATTLE_TOWER_ITEM_SALAC_BERRY,
 		.teamFlags = 0x65,
 		.moves = {
-			MOVE_YAWN,
+			MOVE_PROTECT,
 			MOVE_SLASH,
-			MOVE_COUNTER,
+			MOVE_BRICK_BREAK,
 			MOVE_HYPER_BEAM
 		},
 		.evSpread = F_EV_SPREAD_ATTACK | F_EV_SPREAD_HP,
 		.nature = NATURE_DOCILE,
 	},
 	{
-		.species = SPECIES_SCEPTILE,
+		.species = SPECIES_VENUSAUR,
 		.heldItem = BATTLE_TOWER_ITEM_SHELL_BELL,
 		.teamFlags = 0xDF,
 		.moves = {
-			MOVE_LEAF_BLADE,
-			MOVE_DETECT,
-			MOVE_DRAGON_CLAW,
-			MOVE_CRUNCH
+			MOVE_GIGA_DRAIN,
+			MOVE_PROTECT,
+			MOVE_TOXIC,
+			MOVE_ATTRACT
 		},
 		.evSpread = F_EV_SPREAD_SP_ATTACK | F_EV_SPREAD_SPEED,
 		.nature = NATURE_HARDY,
 	},
 	{
-		.species = SPECIES_BLAZIKEN,
+		.species = SPECIES_CHARIZARD,
 		.heldItem = BATTLE_TOWER_ITEM_SALAC_BERRY,
 		.teamFlags = 0xD7,
 		.moves = {
-			MOVE_BLAZE_KICK,
-			MOVE_SKY_UPPERCUT,
+			MOVE_FLAMETHROWER,
+			MOVE_BRICK_BREAK,
 			MOVE_EARTHQUAKE,
-			MOVE_ROCK_SLIDE
+			MOVE_ROCK_SMASH
 		},
 		.evSpread = F_EV_SPREAD_SP_ATTACK | F_EV_SPREAD_ATTACK,
 		.nature = NATURE_DOCILE,
 	},
 	{
-		.species = SPECIES_SWAMPERT,
+		.species = SPECIES_BLASTOISE,
 		.heldItem = BATTLE_TOWER_ITEM_PETAYA_BERRY,
 		.teamFlags = 0x5F,
 		.moves = {
 			MOVE_SURF,
 			MOVE_EARTHQUAKE,
 			MOVE_ICE_BEAM,
-			MOVE_ROCK_TOMB
+			MOVE_ROCK_SMASH
 		},
 		.evSpread = F_EV_SPREAD_SP_ATTACK | F_EV_SPREAD_SPEED | F_EV_SPREAD_HP,
 		.nature = NATURE_SASSY,
 	},
 	{
-		.species = SPECIES_SHEDINJA,
+		.species = SPECIES_MISDREAVUS,
 		.heldItem = BATTLE_TOWER_ITEM_BRIGHT_POWDER,
 		.teamFlags = 0xDB,
 		.moves = {
 			MOVE_CONFUSE_RAY,
 			MOVE_SHADOW_BALL,
 			MOVE_TOXIC,
-			MOVE_HYPER_BEAM
+			MOVE_FACADE
 		},
 		.evSpread = F_EV_SPREAD_SPEED | F_EV_SPREAD_ATTACK,
 		.nature = NATURE_HARDY,
 	},
 	{
-		.species = SPECIES_METAGROSS,
+		.species = SPECIES_TYRANITAR,
 		.heldItem = BATTLE_TOWER_ITEM_QUICK_CLAW,
 		.teamFlags = 0x94,
 		.moves = {
-			MOVE_METEOR_MASH,
-			MOVE_PSYCHIC,
-			MOVE_SHADOW_BALL,
+			MOVE_IRON_TAIL,
+			MOVE_PROTECT,
+			MOVE_TOXIC,
 			MOVE_EARTHQUAKE
 		},
 		.evSpread = F_EV_SPREAD_SP_DEFENSE | F_EV_SPREAD_ATTACK,
 		.nature = NATURE_HARDY,
 	},
 	{
-		.species = SPECIES_GRUMPIG,
+		.species = SPECIES_HYPNO,
 		.heldItem = BATTLE_TOWER_ITEM_MACHO_BRACE,
 		.teamFlags = 0x4B,
 		.moves = {
 			MOVE_PSYCHIC,
-			MOVE_CONFUSE_RAY,
-			MOVE_TRICK,
+			MOVE_SHADOW_BALL,
+			MOVE_PROTECT,
 			MOVE_REFLECT
 		},
 		.evSpread = F_EV_SPREAD_SP_ATTACK | F_EV_SPREAD_HP,
 		.nature = NATURE_QUIET,
 	},
 	{
-		.species = SPECIES_LATIAS,
+		.species = SPECIES_ESPEON,
 		.heldItem = BATTLE_TOWER_ITEM_LUM_BERRY,
 		.teamFlags = 0x92,
 		.moves = {
-			MOVE_MIST_BALL,
-			MOVE_RECOVER,
+			MOVE_PSYCHIC,
+			MOVE_MORNING_SUN,
 			MOVE_ATTRACT,
-			MOVE_DRAGON_CLAW
+			MOVE_PROTECT
 		},
 		.evSpread = F_EV_SPREAD_SP_DEFENSE | F_EV_SPREAD_DEFENSE | F_EV_SPREAD_HP,
 		.nature = NATURE_ADAMANT,
 	},
 	{
-		.species = SPECIES_LATIOS,
+		.species = SPECIES_ALAKAZAM,
 		.heldItem = BATTLE_TOWER_ITEM_KINGS_ROCK,
 		.teamFlags = 0x91,
 		.moves = {
-			MOVE_LUSTER_PURGE,
-			MOVE_THUNDERBOLT,
-			MOVE_ICE_BEAM,
-			MOVE_DRAGON_CLAW
+			MOVE_PSYCHIC,
+			MOVE_SHOCK_WAVE,
+			MOVE_PROTECT,
+			MOVE_TOXIC
 		},
 		.evSpread = F_EV_SPREAD_SP_ATTACK | F_EV_SPREAD_SPEED,
 		.nature = NATURE_HARDY,

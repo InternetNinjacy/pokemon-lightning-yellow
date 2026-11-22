@@ -11,6 +11,7 @@
 #include "field_weather.h"
 #include "event_data.h"
 #include "battle.h"
+#include "battle_tower.h"
 #include "battle_anim.h"
 #include "battle_scripts.h"
 #include "battle_message.h"
@@ -1594,7 +1595,26 @@ bool8 HasNoMonsToSwitch(u8 battler, u8 partyIdBattlerOn1, u8 partyIdBattlerOn2)
     s32 i;
 
     if (!(gBattleTypeFlags & BATTLE_TYPE_DOUBLE))
-        return FALSE;
+    {
+        // Normal single battles retain their original behavior. For the
+        // isolated Seven Island challenge, only surviving selected members
+        // other than the current battler can replace a fainted Pokemon.
+        if (!IsSevenIslandBattleTowerBattleContextActive()
+         || GetBattlerSide(battler) != B_SIDE_PLAYER)
+            return FALSE;
+
+        for (i = 0; i < PARTY_SIZE; i++)
+        {
+            if (i == gBattlerPartyIndexes[battler]
+             || !IsSevenIslandBattleTowerEligiblePartySlot(i))
+                continue;
+            if (GetMonData(&gPlayerParty[i], MON_DATA_HP) != 0
+             && GetMonData(&gPlayerParty[i], MON_DATA_SPECIES_OR_EGG) != SPECIES_NONE
+             && GetMonData(&gPlayerParty[i], MON_DATA_SPECIES_OR_EGG) != SPECIES_EGG)
+                return FALSE;
+        }
+        return TRUE;
+    }
 
     if (gBattleTypeFlags & BATTLE_TYPE_MULTI)
     {
@@ -1636,6 +1656,9 @@ bool8 HasNoMonsToSwitch(u8 battler, u8 partyIdBattlerOn1, u8 partyIdBattlerOn2)
 
         for (i = 0; i < PARTY_SIZE; i++)
         {
+            if (GetBattlerSide(battler) == B_SIDE_PLAYER
+             && !IsSevenIslandBattleTowerEligibleBattleSlot(i))
+                continue;
             if (GetMonData(&party[i], MON_DATA_HP) != 0
              && GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG) != SPECIES_NONE
              && GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG) != SPECIES_EGG

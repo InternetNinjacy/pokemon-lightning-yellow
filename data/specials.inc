@@ -465,4 +465,10 @@ gSpecials::
 	def_special RocketRescueReturn
 	def_special ScriptSelectStarterPikachuFollower
 	def_special ScriptStartStarterFollowerEmergence
+	def_special GetBattleTowerBattleResult
+	def_special BackupSevenIslandBattleTowerParty
+	def_special RestoreSevenIslandBattleTowerParty
+	def_special CheckSevenIslandBattleTowerSelection
+	def_special PrepareSevenIslandBattleTowerBattleParty
+	def_special ClearSevenIslandBattleTowerBattleParty
 gSpecialsEnd::

@@ -2544,7 +2544,7 @@ static const u16 sLanturnLevelUpLearnset[] = {
 };
 
 static const u16 sPichuLevelUpLearnset[] = {
-    LEVEL_UP_MOVE(1, MOVE_THUNDER_SHOCK),
+    LEVEL_UP_MOVE(9, MOVE_THUNDER_SHOCK),
     LEVEL_UP_MOVE(1, MOVE_CHARM),
     LEVEL_UP_MOVE(6, MOVE_TAIL_WHIP),
     LEVEL_UP_MOVE(8, MOVE_THUNDER_WAVE),

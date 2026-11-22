@@ -36,4 +36,13 @@ void GetBattleTowerTrainerName(u8 *text);
 u8 GetEreaderTrainerClassId(void);
 u8 GetBattleTowerTrainerClassNameId(void);
 
+// Separate Seven Island trio; never aliases the normal six-mon player party.
+const struct Pokemon *GetSevenIslandBattleTowerBattleParty(void);
+u8 GetSevenIslandBattleTowerBattlePartyCount(void);
+u8 GetSevenIslandBattleTowerOriginalPartySlot(u8 battleSlot);
+bool8 IsSevenIslandBattleTowerBattleContextActive(void);
+bool8 IsSevenIslandBattleTowerEligiblePartySlot(u8 slot);
+bool8 IsSevenIslandBattleTowerEligibleBattleSlot(u8 battleSlot);
+void CB2_FinishSevenIslandBattleTowerBattle(void);
+
 #endif //GUARD_BATTLE_TOWER_H

@@ -15,5 +15,17 @@ SevenIsland_EventScript_OldWoman::
 	end
 
 SevenIsland_EventScript_Scientist::
-	msgbox SevenIsland_Text_IslandVirtuallyUntouched, MSGBOX_NPC
+	lock
+	faceplayer
+	msgbox SevenIsland_Text_IslandVirtuallyUntouched
+	msgbox SevenIsland_Text_BattleTowerEscort, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, SevenIsland_EventScript_DeclineBattleTower
+	closemessage
+	warp MAP_SEVEN_ISLAND_UNUSED_HOUSE, 4, 6
+	waitstate
+	release
+	end
+
+SevenIsland_EventScript_DeclineBattleTower::
+	release
 	end

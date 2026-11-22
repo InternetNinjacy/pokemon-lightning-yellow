@@ -767,7 +767,7 @@
 #define FLAG_FOUGHT_DEOXYS                               0x2E4
 #define FLAG_GOT_UNCHOSEN_MT_MOON_FOSSIL                  0x2E5
 #define FLAG_REVIVED_CLAW                                0x2E6
-#define FLAG_0x2E7                                       0x2E7
+#define FLAG_GOT_TM51_FROM_SURGE                         0x2E7
 #define FLAG_0x2E8                                       0x2E8
 #define FLAG_0x2E9                                       0x2E9
 #define FLAG_0x2EA                                       0x2EA

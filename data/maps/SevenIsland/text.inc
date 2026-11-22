@@ -36,3 +36,8 @@ SevenIsland_Text_IslandVirtuallyUntouched::
     .string "It could be a little difficult to\n"
     .string "hike around because of that.$"
 
+SevenIsland_Text_BattleTowerEscort::
+    .string "I'm helping visitors reach the\n"
+    .string "BATTLE TOWER reception.\p"
+    .string "Would you like me to take you?$"
+

@@ -23,8 +23,40 @@
 #include "constants/moves.h"
 #include "constants/pokemon.h"
 #include "constants/event_objects.h"
+#include "constants/trainers.h"
+#include "constants/easy_chat.h"
 
 static EWRAM_DATA u16 sSpecialVar_0x8004_Copy = 0;
+static EWRAM_DATA struct Pokemon sSevenIslandBattleTowerBattleParty[3];
+static EWRAM_DATA u8 sSevenIslandBattleTowerOriginalSlots[3];
+static EWRAM_DATA bool8 sSevenIslandBattleTowerBattlePartyPrepared = FALSE;
+// Never activated by reception or the legacy Tower launcher.
+static EWRAM_DATA bool8 sSevenIslandBattleTowerBattleContextActive = FALSE;
+
+// The Seven Island adapter never reduces or substitutes the six-mon party.
+// Retain the script specials for compatibility, but never snapshot or replay
+// old Pokemon data: stale RAM copies would overwrite legitimate changes and
+// cannot provide recovery after a reset.
+void BackupSevenIslandBattleTowerParty(void)
+{
+    gSpecialVar_Result = TRUE;
+}
+
+void RestoreSevenIslandBattleTowerParty(void)
+{
+    sSevenIslandBattleTowerBattlePartyPrepared = FALSE;
+    sSevenIslandBattleTowerBattleContextActive = FALSE;
+    gSpecialVar_Result = TRUE;
+}
+
+// Reserved for the future isolated battle return. Do not wire this into
+// the legacy E-Reader callback or enable Seven Island battle launching.
+void CB2_FinishSevenIslandBattleTowerBattle(void)
+{
+    sSevenIslandBattleTowerBattlePartyPrepared = FALSE;
+    sSevenIslandBattleTowerBattleContextActive = FALSE;
+    SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
+}
 
 #define TakeBravoTrainerBattleTowerOffTheAir()
 #define ewram160FB (*((u8 *)&gBattleStruct->field_DA))
@@ -50,9 +82,210 @@ static const u8 sUnused[] = {
 
 static const u8 sText_100[] = _("100");
 
+// Newly authored Lightning Yellow roster. IDs 0-99 are normal trainers;
+// 100-199 are reserved for record mixing, and 200 for e-Reader.
 static const struct BattleTowerTrainer sBattleTowerTrainers[] =
 {
-
+    // Normal opponent 0; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_CAMPER, .name = _("ACE"), .teamFlags = 0x01, .greeting = { EC_WORD_HELLO, EC_WORD_I, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_READY, EC_WORD_GO } },
+    // Normal opponent 1; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_PICNICKER, .name = _("ADA"), .teamFlags = 0x02, .greeting = { EC_WORD_HELLO, EC_WORD_I, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_READY, EC_WORD_GO } },
+    // Normal opponent 2; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_CAMPER, .name = _("AMY"), .teamFlags = 0x01, .greeting = { EC_WORD_HELLO, EC_WORD_I, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_READY, EC_WORD_GO } },
+    // Normal opponent 3; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_PICNICKER, .name = _("ANN"), .teamFlags = 0x02, .greeting = { EC_WORD_HELLO, EC_WORD_I, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_READY, EC_WORD_GO } },
+    // Normal opponent 4; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_CAMPER, .name = _("ASH"), .teamFlags = 0x01, .greeting = { EC_WORD_HELLO, EC_WORD_I, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_READY, EC_WORD_GO } },
+    // Normal opponent 5; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_PICNICKER, .name = _("BEN"), .teamFlags = 0x02, .greeting = { EC_WORD_HELLO, EC_WORD_I, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_READY, EC_WORD_GO } },
+    // Normal opponent 6; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_CAMPER, .name = _("BOB"), .teamFlags = 0x01, .greeting = { EC_WORD_HELLO, EC_WORD_I, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_READY, EC_WORD_GO } },
+    // Normal opponent 7; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_YOUNGSTER, .name = _("CAL"), .teamFlags = 0x02, .greeting = { EC_WORD_HELLO, EC_WORD_I, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_READY, EC_WORD_GO } },
+    // Normal opponent 8; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_PICNICKER, .name = _("CAM"), .teamFlags = 0x01, .greeting = { EC_WORD_HELLO, EC_WORD_I, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_READY, EC_WORD_GO } },
+    // Normal opponent 9; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_YOUNGSTER, .name = _("DAN"), .teamFlags = 0x02, .greeting = { EC_WORD_HELLO, EC_WORD_I, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_READY, EC_WORD_GO } },
+    // Normal opponent 10; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_PICNICKER, .name = _("DEB"), .teamFlags = 0x01, .greeting = { EC_WORD_HELLO, EC_WORD_I, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_READY, EC_WORD_GO } },
+    // Normal opponent 11; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_YOUNGSTER, .name = _("DEE"), .teamFlags = 0x02, .greeting = { EC_WORD_HELLO, EC_WORD_I, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_READY, EC_WORD_GO } },
+    // Normal opponent 12; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_PICNICKER, .name = _("DON"), .teamFlags = 0x01, .greeting = { EC_WORD_HELLO, EC_WORD_I, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_READY, EC_WORD_GO } },
+    // Normal opponent 13; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_YOUNGSTER, .name = _("ELI"), .teamFlags = 0x02, .greeting = { EC_WORD_HELLO, EC_WORD_I, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_READY, EC_WORD_GO } },
+    // Normal opponent 14; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_YOUNGSTER, .name = _("EVA"), .teamFlags = 0x01, .greeting = { EC_WORD_HELLO, EC_WORD_I, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_READY, EC_WORD_GO } },
+    // Normal opponent 15; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_BIRD_KEEPER, .name = _("FAY"), .teamFlags = 0x02, .greeting = { EC_WORD_HELLO, EC_WORD_I, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_READY, EC_WORD_GO } },
+    // Normal opponent 16; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_YOUNGSTER, .name = _("FIN"), .teamFlags = 0x01, .greeting = { EC_WORD_HELLO, EC_WORD_I, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_READY, EC_WORD_GO } },
+    // Normal opponent 17; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_BIRD_KEEPER, .name = _("GAB"), .teamFlags = 0x02, .greeting = { EC_WORD_HELLO, EC_WORD_I, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_READY, EC_WORD_GO } },
+    // Normal opponent 18; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_YOUNGSTER, .name = _("GIA"), .teamFlags = 0x01, .greeting = { EC_WORD_HELLO, EC_WORD_I, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_READY, EC_WORD_GO } },
+    // Normal opponent 19; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_BIRD_KEEPER, .name = _("GUS"), .teamFlags = 0x02, .greeting = { EC_WORD_HELLO, EC_WORD_I, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_READY, EC_WORD_GO } },
+    // Normal opponent 20; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_YOUNGSTER, .name = _("HAL"), .teamFlags = 0x40, .greeting = { EC_WORD_HELLO, EC_WORD_I, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_READY, EC_WORD_GO } },
+    // Normal opponent 21; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_COOLTRAINER_M, .name = _("IAN"), .teamFlags = 0x01, .greeting = { EC_WORD_HELLO, EC_WORD_I, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_READY, EC_WORD_GO } },
+    // Normal opponent 22; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_BIRD_KEEPER, .name = _("IDA"), .teamFlags = 0x02, .greeting = { EC_WORD_HELLO, EC_WORD_I, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_READY, EC_WORD_GO } },
+    // Normal opponent 23; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_COOLTRAINER_M, .name = _("IKE"), .teamFlags = 0x40, .greeting = { EC_WORD_HELLO, EC_WORD_I, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_READY, EC_WORD_GO } },
+    // Normal opponent 24; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_BIRD_KEEPER, .name = _("IVY"), .teamFlags = 0x01, .greeting = { EC_WORD_HELLO, EC_WORD_I, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_READY, EC_WORD_GO } },
+    // Normal opponent 25; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_COOLTRAINER_M, .name = _("JAY"), .teamFlags = 0x02, .greeting = { EC_WORD_HELLO, EC_WORD_I, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_READY, EC_WORD_GO } },
+    // Normal opponent 26; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_BIRD_KEEPER, .name = _("JEN"), .teamFlags = 0x40, .greeting = { EC_WORD_HELLO, EC_WORD_I, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_READY, EC_WORD_GO } },
+    // Normal opponent 27; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_COOLTRAINER_M, .name = _("JIM"), .teamFlags = 0x01, .greeting = { EC_WORD_HELLO, EC_WORD_I, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_READY, EC_WORD_GO } },
+    // Normal opponent 28; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_COOLTRAINER_M, .name = _("JOE"), .teamFlags = 0x02, .greeting = { EC_WORD_HELLO, EC_WORD_I, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_READY, EC_WORD_GO } },
+    // Normal opponent 29; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_COOLTRAINER_F, .name = _("JOY"), .teamFlags = 0x40, .greeting = { EC_WORD_HELLO, EC_WORD_I, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_READY, EC_WORD_GO } },
+    // Normal opponent 30; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_COOLTRAINER_M, .name = _("KAI"), .teamFlags = 0x01, .greeting = { EC_WORD_READY, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_I, EC_WORD_GO, EC_WORD_BATTLE } },
+    // Normal opponent 31; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_COOLTRAINER_F, .name = _("KEN"), .teamFlags = 0x02, .greeting = { EC_WORD_READY, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_I, EC_WORD_GO, EC_WORD_BATTLE } },
+    // Normal opponent 32; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_COOLTRAINER_M, .name = _("KIM"), .teamFlags = 0x40, .greeting = { EC_WORD_READY, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_I, EC_WORD_GO, EC_WORD_BATTLE } },
+    // Normal opponent 33; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_COOLTRAINER_F, .name = _("KIT"), .teamFlags = 0x01, .greeting = { EC_WORD_READY, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_I, EC_WORD_GO, EC_WORD_BATTLE } },
+    // Normal opponent 34; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_COOLTRAINER_M, .name = _("LEO"), .teamFlags = 0x02, .greeting = { EC_WORD_READY, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_I, EC_WORD_GO, EC_WORD_BATTLE } },
+    // Normal opponent 35; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_PSYCHIC_M, .name = _("LIA"), .teamFlags = 0x40, .greeting = { EC_WORD_READY, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_I, EC_WORD_GO, EC_WORD_BATTLE } },
+    // Normal opponent 36; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_COOLTRAINER_F, .name = _("LIZ"), .teamFlags = 0x01, .greeting = { EC_WORD_READY, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_I, EC_WORD_GO, EC_WORD_BATTLE } },
+    // Normal opponent 37; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_PSYCHIC_M, .name = _("LOU"), .teamFlags = 0x02, .greeting = { EC_WORD_READY, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_I, EC_WORD_GO, EC_WORD_BATTLE } },
+    // Normal opponent 38; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_COOLTRAINER_F, .name = _("LUC"), .teamFlags = 0x40, .greeting = { EC_WORD_READY, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_I, EC_WORD_GO, EC_WORD_BATTLE } },
+    // Normal opponent 39; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_PSYCHIC_M, .name = _("LYN"), .teamFlags = 0x01, .greeting = { EC_WORD_READY, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_I, EC_WORD_GO, EC_WORD_BATTLE } },
+    // Normal opponent 40; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_COOLTRAINER_F, .name = _("MAC"), .teamFlags = 0x02, .greeting = { EC_WORD_READY, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_I, EC_WORD_GO, EC_WORD_BATTLE } },
+    // Normal opponent 41; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_PSYCHIC_M, .name = _("MAX"), .teamFlags = 0x40, .greeting = { EC_WORD_READY, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_I, EC_WORD_GO, EC_WORD_BATTLE } },
+    // Normal opponent 42; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_PSYCHIC_M, .name = _("MAY"), .teamFlags = 0x01, .greeting = { EC_WORD_READY, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_I, EC_WORD_GO, EC_WORD_BATTLE } },
+    // Normal opponent 43; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_PSYCHIC_F, .name = _("MEG"), .teamFlags = 0x02, .greeting = { EC_WORD_READY, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_I, EC_WORD_GO, EC_WORD_BATTLE } },
+    // Normal opponent 44; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_PSYCHIC_M, .name = _("MIA"), .teamFlags = 0x40, .greeting = { EC_WORD_READY, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_I, EC_WORD_GO, EC_WORD_BATTLE } },
+    // Normal opponent 45; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_PSYCHIC_F, .name = _("MIK"), .teamFlags = 0x01, .greeting = { EC_WORD_READY, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_I, EC_WORD_GO, EC_WORD_BATTLE } },
+    // Normal opponent 46; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_PSYCHIC_M, .name = _("MOE"), .teamFlags = 0x02, .greeting = { EC_WORD_READY, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_I, EC_WORD_GO, EC_WORD_BATTLE } },
+    // Normal opponent 47; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_PSYCHIC_F, .name = _("NAT"), .teamFlags = 0x40, .greeting = { EC_WORD_READY, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_I, EC_WORD_GO, EC_WORD_BATTLE } },
+    // Normal opponent 48; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_PSYCHIC_M, .name = _("NED"), .teamFlags = 0x01, .greeting = { EC_WORD_READY, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_I, EC_WORD_GO, EC_WORD_BATTLE } },
+    // Normal opponent 49; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_BLACK_BELT, .name = _("NIA"), .teamFlags = 0x02, .greeting = { EC_WORD_READY, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_I, EC_WORD_GO, EC_WORD_BATTLE } },
+    // Normal opponent 50; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_PSYCHIC_F, .name = _("NIK"), .teamFlags = 0x40, .greeting = { EC_WORD_READY, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_I, EC_WORD_GO, EC_WORD_BATTLE } },
+    // Normal opponent 51; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_BLACK_BELT, .name = _("NOA"), .teamFlags = 0x01, .greeting = { EC_WORD_READY, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_I, EC_WORD_GO, EC_WORD_BATTLE } },
+    // Normal opponent 52; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_PSYCHIC_F, .name = _("OLI"), .teamFlags = 0x02, .greeting = { EC_WORD_READY, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_I, EC_WORD_GO, EC_WORD_BATTLE } },
+    // Normal opponent 53; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_BLACK_BELT, .name = _("ORA"), .teamFlags = 0x40, .greeting = { EC_WORD_READY, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_I, EC_WORD_GO, EC_WORD_BATTLE } },
+    // Normal opponent 54; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_PSYCHIC_F, .name = _("PAM"), .teamFlags = 0x01, .greeting = { EC_WORD_READY, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_I, EC_WORD_GO, EC_WORD_BATTLE } },
+    // Normal opponent 55; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_BLACK_BELT, .name = _("PAT"), .teamFlags = 0x02, .greeting = { EC_WORD_READY, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_I, EC_WORD_GO, EC_WORD_BATTLE } },
+    // Normal opponent 56; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_BLACK_BELT, .name = _("PAZ"), .teamFlags = 0x40, .greeting = { EC_WORD_READY, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_I, EC_WORD_GO, EC_WORD_BATTLE } },
+    // Normal opponent 57; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_BATTLE_GIRL, .name = _("PEG"), .teamFlags = 0x01, .greeting = { EC_WORD_READY, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_I, EC_WORD_GO, EC_WORD_BATTLE } },
+    // Normal opponent 58; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_BLACK_BELT, .name = _("PET"), .teamFlags = 0x02, .greeting = { EC_WORD_READY, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_I, EC_WORD_GO, EC_WORD_BATTLE } },
+    // Normal opponent 59; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_BATTLE_GIRL, .name = _("PIA"), .teamFlags = 0x40, .greeting = { EC_WORD_READY, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_I, EC_WORD_GO, EC_WORD_BATTLE } },
+    // Normal opponent 60; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_BLACK_BELT, .name = _("RAE"), .teamFlags = 0x01, .greeting = { EC_WORD_READY, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_I, EC_WORD_GO, EC_WORD_BATTLE } },
+    // Normal opponent 61; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_BATTLE_GIRL, .name = _("RAY"), .teamFlags = 0x02, .greeting = { EC_WORD_READY, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_I, EC_WORD_GO, EC_WORD_BATTLE } },
+    // Normal opponent 62; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_BLACK_BELT, .name = _("REX"), .teamFlags = 0x40, .greeting = { EC_WORD_READY, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_I, EC_WORD_GO, EC_WORD_BATTLE } },
+    // Normal opponent 63; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_GENTLEMAN, .name = _("RIA"), .teamFlags = 0x01, .greeting = { EC_WORD_READY, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_I, EC_WORD_GO, EC_WORD_BATTLE } },
+    // Normal opponent 64; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_BATTLE_GIRL, .name = _("RIC"), .teamFlags = 0x02, .greeting = { EC_WORD_READY, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_I, EC_WORD_GO, EC_WORD_BATTLE } },
+    // Normal opponent 65; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_GENTLEMAN, .name = _("RIO"), .teamFlags = 0x40, .greeting = { EC_WORD_READY, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_I, EC_WORD_GO, EC_WORD_BATTLE } },
+    // Normal opponent 66; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_BATTLE_GIRL, .name = _("ROB"), .teamFlags = 0x01, .greeting = { EC_WORD_READY, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_I, EC_WORD_GO, EC_WORD_BATTLE } },
+    // Normal opponent 67; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_GENTLEMAN, .name = _("RON"), .teamFlags = 0x02, .greeting = { EC_WORD_READY, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_I, EC_WORD_GO, EC_WORD_BATTLE } },
+    // Normal opponent 68; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_BATTLE_GIRL, .name = _("ROY"), .teamFlags = 0x40, .greeting = { EC_WORD_READY, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_I, EC_WORD_GO, EC_WORD_BATTLE } },
+    // Normal opponent 69; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_GENTLEMAN, .name = _("RUE"), .teamFlags = 0x01, .greeting = { EC_WORD_READY, EC_WORD_BATTLE, EC_WORD_YOU, EC_WORD_I, EC_WORD_GO, EC_WORD_BATTLE } },
+    // Normal opponent 70; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_GENTLEMAN, .name = _("SAM"), .teamFlags = 0x02, .greeting = { EC_WORD_BATTLE, EC_WORD_READY, EC_WORD_I, EC_WORD_GO, EC_WORD_YOU, EC_WORD_BATTLE } },
+    // Normal opponent 71; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_BEAUTY, .name = _("SID"), .teamFlags = 0x40, .greeting = { EC_WORD_BATTLE, EC_WORD_READY, EC_WORD_I, EC_WORD_GO, EC_WORD_YOU, EC_WORD_BATTLE } },
+    // Normal opponent 72; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_GENTLEMAN, .name = _("SKY"), .teamFlags = 0x01, .greeting = { EC_WORD_BATTLE, EC_WORD_READY, EC_WORD_I, EC_WORD_GO, EC_WORD_YOU, EC_WORD_BATTLE } },
+    // Normal opponent 73; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_BEAUTY, .name = _("SOL"), .teamFlags = 0x02, .greeting = { EC_WORD_BATTLE, EC_WORD_READY, EC_WORD_I, EC_WORD_GO, EC_WORD_YOU, EC_WORD_BATTLE } },
+    // Normal opponent 74; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_GENTLEMAN, .name = _("SUE"), .teamFlags = 0x40, .greeting = { EC_WORD_BATTLE, EC_WORD_READY, EC_WORD_I, EC_WORD_GO, EC_WORD_YOU, EC_WORD_BATTLE } },
+    // Normal opponent 75; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_BEAUTY, .name = _("TAJ"), .teamFlags = 0x01, .greeting = { EC_WORD_BATTLE, EC_WORD_READY, EC_WORD_I, EC_WORD_GO, EC_WORD_YOU, EC_WORD_BATTLE } },
+    // Normal opponent 76; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_GENTLEMAN, .name = _("TAM"), .teamFlags = 0x02, .greeting = { EC_WORD_BATTLE, EC_WORD_READY, EC_WORD_I, EC_WORD_GO, EC_WORD_YOU, EC_WORD_BATTLE } },
+    // Normal opponent 77; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_RUIN_MANIAC, .name = _("TED"), .teamFlags = 0x40, .greeting = { EC_WORD_BATTLE, EC_WORD_READY, EC_WORD_I, EC_WORD_GO, EC_WORD_YOU, EC_WORD_BATTLE } },
+    // Normal opponent 78; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_BEAUTY, .name = _("TIA"), .teamFlags = 0x01, .greeting = { EC_WORD_BATTLE, EC_WORD_READY, EC_WORD_I, EC_WORD_GO, EC_WORD_YOU, EC_WORD_BATTLE } },
+    // Normal opponent 79; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_RUIN_MANIAC, .name = _("TIM"), .teamFlags = 0x02, .greeting = { EC_WORD_BATTLE, EC_WORD_READY, EC_WORD_I, EC_WORD_GO, EC_WORD_YOU, EC_WORD_BATTLE } },
+    // Normal opponent 80; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_BEAUTY, .name = _("TOM"), .teamFlags = 0x40, .greeting = { EC_WORD_BATTLE, EC_WORD_READY, EC_WORD_I, EC_WORD_GO, EC_WORD_YOU, EC_WORD_BATTLE } },
+    // Normal opponent 81; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_RUIN_MANIAC, .name = _("TOS"), .teamFlags = 0x01, .greeting = { EC_WORD_BATTLE, EC_WORD_READY, EC_WORD_I, EC_WORD_GO, EC_WORD_YOU, EC_WORD_BATTLE } },
+    // Normal opponent 82; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_BEAUTY, .name = _("UMA"), .teamFlags = 0x02, .greeting = { EC_WORD_BATTLE, EC_WORD_READY, EC_WORD_I, EC_WORD_GO, EC_WORD_YOU, EC_WORD_BATTLE } },
+    // Normal opponent 83; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_RUIN_MANIAC, .name = _("VAL"), .teamFlags = 0x40, .greeting = { EC_WORD_BATTLE, EC_WORD_READY, EC_WORD_I, EC_WORD_GO, EC_WORD_YOU, EC_WORD_BATTLE } },
+    // Normal opponent 84; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_RUIN_MANIAC, .name = _("VAN"), .teamFlags = 0x01, .greeting = { EC_WORD_BATTLE, EC_WORD_READY, EC_WORD_I, EC_WORD_GO, EC_WORD_YOU, EC_WORD_BATTLE } },
+    // Normal opponent 85; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_DRAGON_TAMER, .name = _("VIC"), .teamFlags = 0x02, .greeting = { EC_WORD_BATTLE, EC_WORD_READY, EC_WORD_I, EC_WORD_GO, EC_WORD_YOU, EC_WORD_BATTLE } },
+    // Normal opponent 86; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_RUIN_MANIAC, .name = _("VIN"), .teamFlags = 0x40, .greeting = { EC_WORD_BATTLE, EC_WORD_READY, EC_WORD_I, EC_WORD_GO, EC_WORD_YOU, EC_WORD_BATTLE } },
+    // Normal opponent 87; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_DRAGON_TAMER, .name = _("WES"), .teamFlags = 0x01, .greeting = { EC_WORD_BATTLE, EC_WORD_READY, EC_WORD_I, EC_WORD_GO, EC_WORD_YOU, EC_WORD_BATTLE } },
+    // Normal opponent 88; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_RUIN_MANIAC, .name = _("WIL"), .teamFlags = 0x02, .greeting = { EC_WORD_BATTLE, EC_WORD_READY, EC_WORD_I, EC_WORD_GO, EC_WORD_YOU, EC_WORD_BATTLE } },
+    // Normal opponent 89; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_DRAGON_TAMER, .name = _("WIN"), .teamFlags = 0x40, .greeting = { EC_WORD_BATTLE, EC_WORD_READY, EC_WORD_I, EC_WORD_GO, EC_WORD_YOU, EC_WORD_BATTLE } },
+    // Normal opponent 90; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_RS_RUIN_MANIAC, .name = _("YAN"), .teamFlags = 0x01, .greeting = { EC_WORD_BATTLE, EC_WORD_READY, EC_WORD_I, EC_WORD_GO, EC_WORD_YOU, EC_WORD_BATTLE } },
+    // Normal opponent 91; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_EXPERT_M, .name = _("YUI"), .teamFlags = 0x02, .greeting = { EC_WORD_BATTLE, EC_WORD_READY, EC_WORD_I, EC_WORD_GO, EC_WORD_YOU, EC_WORD_BATTLE } },
+    // Normal opponent 92; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_DRAGON_TAMER, .name = _("ZAC"), .teamFlags = 0x40, .greeting = { EC_WORD_BATTLE, EC_WORD_READY, EC_WORD_I, EC_WORD_GO, EC_WORD_YOU, EC_WORD_BATTLE } },
+    // Normal opponent 93; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_EXPERT_M, .name = _("ZED"), .teamFlags = 0x01, .greeting = { EC_WORD_BATTLE, EC_WORD_READY, EC_WORD_I, EC_WORD_GO, EC_WORD_YOU, EC_WORD_BATTLE } },
+    // Normal opponent 94; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_DRAGON_TAMER, .name = _("ZEN"), .teamFlags = 0x02, .greeting = { EC_WORD_BATTLE, EC_WORD_READY, EC_WORD_I, EC_WORD_GO, EC_WORD_YOU, EC_WORD_BATTLE } },
+    // Normal opponent 95; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_EXPERT_M, .name = _("ZIA"), .teamFlags = 0x40, .greeting = { EC_WORD_BATTLE, EC_WORD_READY, EC_WORD_I, EC_WORD_GO, EC_WORD_YOU, EC_WORD_BATTLE } },
+    // Normal opponent 96; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_DRAGON_TAMER, .name = _("ZOE"), .teamFlags = 0x01, .greeting = { EC_WORD_BATTLE, EC_WORD_READY, EC_WORD_I, EC_WORD_GO, EC_WORD_YOU, EC_WORD_BATTLE } },
+    // Normal opponent 97; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_EXPERT_M, .name = _("ZOR"), .teamFlags = 0x02, .greeting = { EC_WORD_BATTLE, EC_WORD_READY, EC_WORD_I, EC_WORD_GO, EC_WORD_YOU, EC_WORD_BATTLE } },
+    // Normal opponent 98; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_EXPERT_M, .name = _("ARI"), .teamFlags = 0x40, .greeting = { EC_WORD_BATTLE, EC_WORD_READY, EC_WORD_I, EC_WORD_GO, EC_WORD_YOU, EC_WORD_BATTLE } },
+    // Normal opponent 99; original FireRed trainer table was empty.
+    { .trainerClass = FACILITY_CLASS_EXPERT_F, .name = _("BEA"), .teamFlags = 0x01, .greeting = { EC_WORD_BATTLE, EC_WORD_READY, EC_WORD_I, EC_WORD_GO, EC_WORD_YOU, EC_WORD_BATTLE } },
 };
 
 static const u16 sBattleTowerHeldItems[] = {
@@ -124,14 +357,24 @@ static const u16 sBattleTowerHeldItems[] = {
 #include "data/battle_tower/level_50_mons.h"
 #include "data/battle_tower/level_100_mons.h"
 
+// Reuse existing facility-class mappings for player records and e-Reader records.
+// Empty arrays in the upstream source made the modulo selection undefined.
 static const u8 sMaleTrainerClasses[] =
 {
-
+    FACILITY_CLASS_RS_CAMPER,
+    FACILITY_CLASS_RS_YOUNGSTER,
+    FACILITY_CLASS_RS_COOLTRAINER_M,
+    FACILITY_CLASS_RS_BLACK_BELT,
+    FACILITY_CLASS_RS_GENTLEMAN,
 };
 
 static const u8 sFemaleTrainerClasses[] =
 {
-
+    FACILITY_CLASS_RS_PICNICKER,
+    FACILITY_CLASS_RS_COOLTRAINER_F,
+    FACILITY_CLASS_RS_BEAUTY,
+    FACILITY_CLASS_RS_PSYCHIC_F,
+    FACILITY_CLASS_BATTLE_GIRL,
 };
 
 static const u8 sMaleTrainerGfx[] =
@@ -389,9 +632,35 @@ void ChooseNextBattleTowerTrainer(void)
         gSaveBlock2Ptr->battleTower.battledTrainerIds[gSaveBlock2Ptr->battleTower.curChallengeBattleNum[levelType] - 1] = gSaveBlock2Ptr->battleTower.battleTowerTrainerId;
 }
 
-static void SetBattleTowerTrainerGfxId(u8 trainerClass)
+// The argument is a Battle Tower trainer ID, not a facility class.
+// Normal IDs index the newly authored roster; record-mixing and e-Reader IDs
+// use the facility class already stored in their respective records.
+static void SetBattleTowerTrainerGfxId(u8 trainerId)
 {
-    VarSet(VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_YOUNGSTER);
+    u8 facilityClass;
+    u16 gfxId = OBJ_EVENT_GFX_YOUNGSTER;
+
+    if (trainerId == BATTLE_TOWER_EREADER_TRAINER_ID)
+        facilityClass = gSaveBlock2Ptr->battleTower.ereaderTrainer.trainerClass;
+    else if (trainerId < BATTLE_TOWER_RECORD_MIXING_TRAINER_BASE_ID)
+        facilityClass = sBattleTowerTrainers[trainerId].trainerClass;
+    else if (trainerId < BATTLE_TOWER_RECORD_MIXING_TRAINER_BASE_ID + 5)
+        facilityClass = gSaveBlock2Ptr->battleTower.records[trainerId - BATTLE_TOWER_RECORD_MIXING_TRAINER_BASE_ID].trainerClass;
+    else
+        facilityClass = FACILITY_CLASS_RS_YOUNGSTER;
+
+    switch (facilityClass)
+    {
+    case FACILITY_CLASS_RS_CAMPER: gfxId = OBJ_EVENT_GFX_CAMPER; break;
+    case FACILITY_CLASS_RS_PICNICKER: gfxId = OBJ_EVENT_GFX_PICNICKER; break;
+    case FACILITY_CLASS_RS_COOLTRAINER_M: gfxId = OBJ_EVENT_GFX_COOLTRAINER_M; break;
+    case FACILITY_CLASS_RS_COOLTRAINER_F: gfxId = OBJ_EVENT_GFX_COOLTRAINER_F; break;
+    case FACILITY_CLASS_RS_BEAUTY: gfxId = OBJ_EVENT_GFX_BEAUTY; break;
+    case FACILITY_CLASS_RS_BLACK_BELT: gfxId = OBJ_EVENT_GFX_BLACK_BELT; break;
+    case FACILITY_CLASS_RS_GENTLEMAN: gfxId = OBJ_EVENT_GFX_GENTLEMAN; break;
+    default: break;
+    }
+    VarSet(VAR_OBJ_GFX_ID_0, gfxId);
 }
 
 void SetEReaderTrainerGfxId(void)
@@ -864,6 +1133,9 @@ static void CB2_FinishEReaderBattle(void)
     switch (sSpecialVar_0x8004_Copy)
     {
     case 0:
+        // A staged Seven Island trio must not survive a Battle Tower return.
+        // This does not alter the active party or legacy Tower result handling.
+        sSevenIslandBattleTowerBattlePartyPrepared = FALSE;
         break;
     case 1:
         for (i = 0; i < PARTY_SIZE; i++)
@@ -937,6 +1209,26 @@ void StartSpecialBattle(void)
         PlayMapChosenOrBattleBGM(0);
         transition = BattleSetup_GetBattleTowerBattleTransition();
         BattleTransition_StartOnField(transition);
+        break;
+    }
+}
+
+// Read-only result classification for the future Seven Island challenge script.
+// 0 = victory, 1 = defeat/draw, 2 = interrupted or unrecognized.
+// This deliberately does not advance streaks, save, or modify the party.
+void GetBattleTowerBattleResult(void)
+{
+    switch (gBattleOutcome)
+    {
+    case B_OUTCOME_WON:
+        gSpecialVar_Result = 0;
+        break;
+    case B_OUTCOME_LOST:
+    case B_OUTCOME_DREW:
+        gSpecialVar_Result = 1;
+        break;
+    default:
+        gSpecialVar_Result = 2;
         break;
     }
 }
@@ -1056,6 +1348,181 @@ void BattleTowerUtil(void)
         gSaveBlock2Ptr->battleTower.lastStreakLevelType = gSaveBlock2Ptr->battleTower.battleTowerLevelType;
         break;
     }
+}
+
+// Preflight for a future three-mon challenge. Keep all six party slots
+// available in the field; do not mistake battle-party order for a banlist.
+void CheckSevenIslandBattleTowerSelection(void)
+{
+    u8 i, j;
+    u8 slot;
+    u16 species[3];
+    u16 heldItems[3];
+
+    gSpecialVar_Result = FALSE;
+    for (i = 0; i < 3; i++)
+    {
+        slot = gSaveBlock2Ptr->battleTower.selectedPartyMons[i];
+        if (slot == 0 || slot > gPlayerPartyCount || slot > PARTY_SIZE)
+            return;
+        for (j = 0; j < i; j++)
+            if (slot == gSaveBlock2Ptr->battleTower.selectedPartyMons[j])
+                return;
+
+        species[i] = GetMonData(&gPlayerParty[slot - 1], MON_DATA_SPECIES);
+        heldItems[i] = GetMonData(&gPlayerParty[slot - 1], MON_DATA_HELD_ITEM);
+        if (GetMonData(&gPlayerParty[slot - 1], MON_DATA_IS_EGG)
+         || GetMonData(&gPlayerParty[slot - 1], MON_DATA_HP) == 0)
+            return;
+        if (gSaveBlock2Ptr->battleTower.battleTowerLevelType == 0
+         && GetMonData(&gPlayerParty[slot - 1], MON_DATA_LEVEL) > 50)
+            return;
+        for (j = 0; gBattleTowerBannedSpecies[j] != 0xFFFF; j++)
+            if (species[i] == gBattleTowerBannedSpecies[j])
+                return;
+        for (j = 0; j < i; j++)
+            if (species[i] == species[j]
+             || (heldItems[i] != ITEM_NONE && heldItems[i] == heldItems[j]))
+                return;
+    }
+    gSpecialVar_Result = TRUE;
+}
+
+// Stage a separate battle-only trio without replacing gPlayerParty.
+// The battle engine is not connected to this buffer yet. Its normal switch
+// menu still sees all six slots, so do not launch a battle from this special.
+void PrepareSevenIslandBattleTowerBattleParty(void)
+{
+    u8 i;
+    u8 slot;
+
+    sSevenIslandBattleTowerBattlePartyPrepared = FALSE;
+    CheckSevenIslandBattleTowerSelection();
+    if (gSpecialVar_Result != TRUE)
+        return;
+
+    for (i = 0; i < 3; i++)
+    {
+        slot = gSaveBlock2Ptr->battleTower.selectedPartyMons[i] - 1;
+        sSevenIslandBattleTowerBattleParty[i] = gPlayerParty[slot];
+        sSevenIslandBattleTowerOriginalSlots[i] = slot;
+    }
+
+    sSevenIslandBattleTowerBattlePartyPrepared = TRUE;
+    gSpecialVar_Result = TRUE;
+}
+
+// Explicit read-only interface for a future isolated battle controller.
+// No battle engine code uses this yet; NULL means staging is unavailable.
+// A staged trio must still correspond to the current full party before
+// any future battle adapter may consume it. In particular, never use copies
+// after the player changes their party at the PC or a trade.
+static bool8 IsSevenIslandBattleTowerBattlePartyCurrent(void)
+{
+    u8 i;
+    if (!sSevenIslandBattleTowerBattlePartyPrepared)
+        return FALSE;
+
+    // Battle switching may reorder gPlayerParty. Match each selected
+    // Pokemon by identity instead of assuming its original slot is fixed.
+    for (i = 0; i < 3; i++)
+    {
+        u8 j;
+        bool8 found = FALSE;
+
+        for (j = 0; j < gPlayerPartyCount && j < PARTY_SIZE; j++)
+        {
+            if (GetMonData(&gPlayerParty[j], MON_DATA_PERSONALITY)
+             == GetMonData(&sSevenIslandBattleTowerBattleParty[i], MON_DATA_PERSONALITY)
+             && GetMonData(&gPlayerParty[j], MON_DATA_OT_ID)
+             == GetMonData(&sSevenIslandBattleTowerBattleParty[i], MON_DATA_OT_ID))
+            {
+                found = TRUE;
+                break;
+            }
+        }
+        if (!found)
+            return FALSE;
+    }
+    return TRUE;
+}
+
+const struct Pokemon *GetSevenIslandBattleTowerBattleParty(void)
+{
+    if (!IsSevenIslandBattleTowerBattlePartyCurrent())
+        return NULL;
+    return sSevenIslandBattleTowerBattleParty;
+}
+
+u8 GetSevenIslandBattleTowerBattlePartyCount(void)
+{
+    return IsSevenIslandBattleTowerBattlePartyCurrent() ? 3 : 0;
+}
+
+// Resolve a staged trio member to its current full-party position. Battle
+// switching can move that Pokemon away from its originally selected slot.
+// PARTY_SIZE remains the invalid-slot sentinel.
+u8 GetSevenIslandBattleTowerOriginalPartySlot(u8 battleSlot)
+{
+    u8 i;
+
+    if (!IsSevenIslandBattleTowerBattlePartyCurrent() || battleSlot >= 3)
+        return PARTY_SIZE;
+
+    for (i = 0; i < gPlayerPartyCount && i < PARTY_SIZE; i++)
+    {
+        if (GetMonData(&gPlayerParty[i], MON_DATA_PERSONALITY)
+         == GetMonData(&sSevenIslandBattleTowerBattleParty[battleSlot], MON_DATA_PERSONALITY)
+         && GetMonData(&gPlayerParty[i], MON_DATA_OT_ID)
+         == GetMonData(&sSevenIslandBattleTowerBattleParty[battleSlot], MON_DATA_OT_ID))
+            return i;
+    }
+    return PARTY_SIZE;
+}
+
+// Only the future Seven Island battle adapter may enable this context.
+// For now it remains inactive, so ordinary battles and Trainer Tower retain
+// their original six-slot participation rules.
+bool8 IsSevenIslandBattleTowerBattleContextActive(void)
+{
+    return sSevenIslandBattleTowerBattleContextActive;
+}
+
+bool8 IsSevenIslandBattleTowerEligiblePartySlot(u8 slot)
+{
+    u8 i;
+
+    if (!sSevenIslandBattleTowerBattleContextActive)
+        return TRUE;
+    if (slot >= PARTY_SIZE || slot >= gPlayerPartyCount)
+        return FALSE;
+    if (!IsSevenIslandBattleTowerBattlePartyCurrent())
+        return FALSE;
+
+    // Follow the Pokemon's identity when battle switching moves its slot.
+    for (i = 0; i < 3; i++)
+    {
+        if (GetMonData(&gPlayerParty[slot], MON_DATA_PERSONALITY)
+         == GetMonData(&sSevenIslandBattleTowerBattleParty[i], MON_DATA_PERSONALITY)
+         && GetMonData(&gPlayerParty[slot], MON_DATA_OT_ID)
+         == GetMonData(&sSevenIslandBattleTowerBattleParty[i], MON_DATA_OT_ID))
+            return TRUE;
+    }
+    return FALSE;
+}
+
+// Party menus present gPlayerParty in battle order after their conversion.
+// Eligibility follows the Pokemon currently occupying that displayed slot.
+bool8 IsSevenIslandBattleTowerEligibleBattleSlot(u8 battleSlot)
+{
+    return IsSevenIslandBattleTowerEligiblePartySlot(battleSlot);
+}
+
+void ClearSevenIslandBattleTowerBattleParty(void)
+{
+    sSevenIslandBattleTowerBattlePartyPrepared = FALSE;
+    sSevenIslandBattleTowerBattleContextActive = FALSE;
+    gSpecialVar_Result = TRUE;
 }
 
 void SetBattleTowerParty(void)

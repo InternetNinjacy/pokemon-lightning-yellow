@@ -1,4 +1,5 @@
 #include "global.h"
+#include "battle_tower.h"
 #include "capture_rules.h"
 #include "wild_double_battle.h"
 #include "gflib.h"
@@ -3448,6 +3449,10 @@ static void Cmd_checkteamslost(void)
 
     for (i = 0; i < PARTY_SIZE; i++)
     {
+        // Only the selected trio contributes to defeat in the isolated
+        // Seven Island battle context; the full party remains untouched.
+        if (!IsSevenIslandBattleTowerEligiblePartySlot(i))
+            continue;
         if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES) && !GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG))
         {
             HP_count += GetMonData(&gPlayerParty[i], MON_DATA_HP);
@@ -4719,6 +4724,11 @@ static void Cmd_jumpifcantswitch(void)
 
         for (i = 0; i < PARTY_SIZE; i++)
         {
+            // Switching and fainted replacements use this battle-script
+            // branch. Never expose an unselected Seven Island party member.
+            if (GetBattlerSide(gActiveBattler) == B_SIDE_PLAYER
+             && !IsSevenIslandBattleTowerEligiblePartySlot(i))
+                continue;
             if (GetMonData(&party[i], MON_DATA_HP) != 0
              && GetMonData(&party[i], MON_DATA_SPECIES) != SPECIES_NONE
              && !GetMonData(&party[i], MON_DATA_IS_EGG)

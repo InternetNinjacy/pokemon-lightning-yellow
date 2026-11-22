@@ -1027,7 +1027,7 @@ static const u16 sTMHMMoves_Duplicate[] =
     MOVE_ROCK_SMASH,
     MOVE_WATERFALL,
     MOVE_DIVE,
-    MOVE_NONE, // Item slot 347 is reserved for TM51 Zap Cannon.
+    MOVE_ZAP_CANNON, // TM51 occupies item slot 347; original TM/HM indices preserved.
     MOVE_WILL_O_WISP, // TM52 occupies item slot 348; preserve the original TM/HM indices.
 };
 
