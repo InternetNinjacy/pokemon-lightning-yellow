@@ -2301,7 +2301,7 @@
       ],
       "status": {
         "design": "Global252-only assignment policy supplied; no off-Dex exceptions",
-        "implementation": "2026-11-21 PR288: 54 off-Dex Trainer Tower templates replaced under explicit delegated approval; distinct Battle Tower 279 (131 level50, 148 level100) inspected and exact per-index source inventory committed at docs/PKM006_BATTLE_TOWER_279_SOURCE_INVENTORY_20261121.md. Battle Tower templates are consumed by src/battle_tower.c with teamFlags, difficulty-tier index windows, direct move assignment, item and duplicate filtering; no owner-approved replacement mapping for this distinct facility found. No Battle Tower production edits. Wild 148 and native legendary events 3 remain held under WRL/SOW.",
+        "implementation": "2026-11-21 PR288: owner explicitly approved all 279 Battle Tower 252-Dex substitutions. Source-only edits completed: level50 131 and level100 148; preserved 300-entry pools, exact indices, teamFlags, heldItem, EV spread and nature. 582 original moves unsupported by replacement species' level-up/TM/HM source were substituted with available moves; all recorded in docs/PKM006_BATTLE_TOWER_279_MOVE_REPLACEMENTS_20261121.md. 285 substitutions are heuristics requiring battle-role review. Source compatibility is not proof of strategic parity or challenge selection viability. No tests/builds/emulators/CI/merges.",
         "automated": "seven host suites/static audits PASS; identical clean rebuild; final Actions SUCCESS",
         "emulator": "full local libmGBA0.10.5 PASS:114706 assertions; native rewards/menus/restoration/flash scenes",
         "pull_request": "PR#11 merged; historical branch evidence retained",
@@ -2311,9 +2311,9 @@
       "commit": "b0bd3b86f4e03dd3f540f0776a5de87f207e84e4",
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/11",
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41529505085",
-      "blocker": "279 Battle Tower entries are active code templates; separate explicit replacement authority/role mapping and facility accessibility decision pending. 148 WRL protected wild slots and 3 SOW/story legendary events still off-Dex. No runtime acceptance.",
+      "blocker": "Battle Tower 279 species substitutions source-staged, but 285 move role substitutions and duplicate-species/item selection windows need careful review; facility reachability not established. 148 WRL-protected wild and three SOW/story legendary event off-Dex slots remain held.",
       "design_authority": "Owner supplied November2 Wild Encounters, Gym Roster, Fossils and Pokedex Compliance update; historical direct Drive401 did not prevent reading the supplied exports; latest concurrent PR15 requires version reconciliation.",
-      "next_action": "Owner decide whether to extend equivalent 252-Dex replacement delegation to Battle Tower level50/100 template pools and whether facility is intended accessible. If approved, preserve 300-entry ordering, teamFlags, IV tier, item/EV/nature, review move legality and duplicate selection per tier. Do not change WRL/SOW owned sources.",
+      "next_action": "Review 285 flagged Battle Tower move swaps against battle role, refine poor equivalents, review every trainer tier/teamFlags eligibility window for at least three distinct species/items; then owner playtests. Keep 148 protected wild and three legendary event scripts untouched.",
       "checkpoint": "2026-11-04 supplied-export reconciliation; old unavailable-document claims superseded; no implementation/test credit from availability.",
       "source_exports": [
         "04_SPECIES_EVOLUTION_WORLD/Pokémon Lightning Yellow — All 252 Species Typing & 67 Move Source Matrix — 2026-11-02.txt",
