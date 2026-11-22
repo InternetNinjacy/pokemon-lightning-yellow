@@ -23,7 +23,19 @@ SevenIsland_UnusedHouse_EventScript_Level100::
 
 SevenIsland_UnusedHouse_EventScript_CheckEligibility::
 	goto_if_eq VAR_0x8004, 1, SevenIsland_UnusedHouse_EventScript_Ineligible
-	msgbox SevenIsland_UnusedHouse_Text_EligibleButNotOpen
+	msgbox SevenIsland_UnusedHouse_Text_ChooseThree, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, SevenIsland_UnusedHouse_EventScript_OfferReturn
+	closemessage
+	special ChooseBattleTowerPlayerParty
+	waitstate
+	goto_if_eq VAR_RESULT, 0, SevenIsland_UnusedHouse_EventScript_SelectionCancelled
+	setvar VAR_0x8004, 5
+	special SetBattleTowerProperty
+	msgbox SevenIsland_UnusedHouse_Text_SelectionSaved
+	goto SevenIsland_UnusedHouse_EventScript_OfferReturn
+
+SevenIsland_UnusedHouse_EventScript_SelectionCancelled::
+	msgbox SevenIsland_UnusedHouse_Text_SelectionCancelled
 	goto SevenIsland_UnusedHouse_EventScript_OfferReturn
 
 SevenIsland_UnusedHouse_EventScript_Ineligible::
