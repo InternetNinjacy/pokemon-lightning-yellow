@@ -2301,7 +2301,7 @@
       ],
       "status": {
         "design": "Global252-only assignment policy supplied; no off-Dex exceptions",
-        "implementation": "Existing no-new-findings guard merged; historical 281 authored off-Dex findings are NOT a current live count. 2026-11-21 source review confirms Water Labyrinth Togepi finding superseded by Magby, while Birth Island Deoxys and Navel Rock Lugia remain in scripts. Role/ownership reconciliation open.",
+        "implementation": "Historical source audit guard merged. Read-only current source reconciliation 2026-11-21: 148/199 historical off-Dex wild slots still live, 51 already replaced; all 24 historical ordinary Trainer off-Dex occurrences replaced (0 current in parsed trainer party blocks); 54 Trainer Tower off-Dex entries remain; direct event Deoxys/Lugia/Ho-Oh remain, Water Labyrinth Togepi egg superseded by Magby. Reference-only 279 Battle Tower plus 12 script/C candidates require role review. Not globally complete.",
         "automated": "seven host suites/static audits PASS; identical clean rebuild; final Actions SUCCESS",
         "emulator": "full local libmGBA0.10.5 PASS:114706 assertions; native rewards/menus/restoration/flash scenes",
         "pull_request": "PR#11 merged; historical branch evidence retained",
@@ -2311,9 +2311,9 @@
       "commit": "b0bd3b86f4e03dd3f540f0776a5de87f207e84e4",
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/11",
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41529505085",
-      "blocker": "Strict audit retains281 authored off-Dex occurrences plus reference-role review. Exact approved replacements/balancing need reconciliation; stationary specifications are available but explicitly held.",
+      "blocker": "148 live wild off-Dex slots are WRL-002/009-owned; 54 Trainer Tower off-Dex entries require approved replacements; three direct legendary event assignments require SOW ownership/design reconciliation. Reference-only categories are not automatically live encounters. Do not invent replacements.",
       "design_authority": "Owner supplied November2 Wild Encounters, Gym Roster, Fossils and Pokedex Compliance update; historical direct Drive401 did not prevent reading the supplied exports; latest concurrent PR15 requires version reconciliation.",
-      "next_action": "Reconcile old 199 wild/24 ordinary Trainer/54 Trainer Tower/4 direct event findings against latest source and approved replacements, avoiding WRL/GYM overlap. Reference-only findings separately classified.",
+      "next_action": "Route 148 wild slots to WRL ecology owner; 54 Trainer Tower to approved roster replacement policy; reconcile 3 legendary events with stationary owner. Ordinary trainer historical 24 are already source-corrected. Do not launch tests.",
       "checkpoint": "2026-11-04 supplied-export reconciliation; old unavailable-document claims superseded; no implementation/test credit from availability.",
       "source_exports": [
         "04_SPECIES_EVOLUTION_WORLD/Pokémon Lightning Yellow — All 252 Species Typing & 67 Move Source Matrix — 2026-11-02.txt",
@@ -2844,7 +2844,7 @@
       "dependencies": [],
       "status": {
         "design": "owner-approved or delegated design recorded in Drive",
-        "implementation": "Previously merged 146 adopted natural arrays and 14 locked profiles; 2026-11-21 draft PR288 stages approved Pichu ThunderShock Lv9, Pichu evolution Lv15, and exact 22 TM51 compatibility bits plus reserved item ID 347. TM51 runtime/Surge reward not complete; no new tests/builds.",
+        "implementation": "Source rollout previously 146 natural arrays plus 14 locked profiles; PR288 now stages Pichu ThunderShock Lv9/evolution Lv15 and complete TM51 item 347, icon, move mapping, TM Case, consumable use, 22 approved compatibility entries and separate Surge TM51 reward flag/dialogue. TM34 Route 6 and TM52 item 348 preserved. Source-only, no build/runtime acceptance.",
         "automated": "Source/build only:146 exact contracts,46 source runners,5 new cases,6 locked-pair and25 history cases pass; no native/gameplay run",
         "emulator": "not verified as complete feature",
         "pull_request": "Scoped locked-pair PR268 merged; earlier146-working candidates remain separate",
@@ -2856,7 +2856,7 @@
       "ci_url": null,
       "blocker": "TM51 ZapCannon eligibility matrix remains missing; separate10 later proposals are excluded. Exact146 natural rows now explicitly approved and source-implemented, no longer a WORKING hold. Owner gameplay/native/release acceptance remains outstanding.",
       "design_authority": "Lightning Yellow canonical Drive specialist registers and November 5 change intake",
-      "next_action": "Finish TM51 item data, TM Case/move mapping and Surge reward from approved design, reconcile separate private implementation before merging. Keep TM52 ID348 intact; owner runtime acceptance deferred.",
+      "next_action": "Owner playtest TM51 acquisition, TM Case display/teaching/consumption, 22 eligible species, old-save Surge revisit and TM34 Route6, plus Pichu evolution/learnset. Do not assert gameplay acceptance. Compare private commit before merging.",
       "checkpoint": "PR268 new6 source tests,2 original TMHM tests,focused preservation checks and pinned-agbcc build PASS. Broad Gym/E4 static trainer-history failure reproduced on prior source.146 candidate profiles:0 source drift/missing IDs in read-only preflight. No runtime or points.",
       "implementation_increments": [
         {
