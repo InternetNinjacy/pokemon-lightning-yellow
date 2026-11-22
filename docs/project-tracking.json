@@ -2301,7 +2301,7 @@
       ],
       "status": {
         "design": "Global252-only assignment policy supplied; no off-Dex exceptions",
-        "implementation": "Historical source audit guard merged. Read-only current source reconciliation 2026-11-21: 148/199 historical off-Dex wild slots still live, 51 already replaced; all 24 historical ordinary Trainer off-Dex occurrences replaced (0 current in parsed trainer party blocks); 54 Trainer Tower off-Dex entries remain; direct event Deoxys/Lugia/Ho-Oh remain, Water Labyrinth Togepi egg superseded by Magby. Reference-only 279 Battle Tower plus 12 script/C candidates require role review. Not globally complete.",
+        "implementation": "2026-11-21 draft PR288 implements delegated equivalent replacements for all 54 off-Dex Trainer Tower source entries, preserving levels/items/EVs/IVs/personality/team slots and matching nicknames; Octillery signature move Octazooka replaced by Water Pulse for two Seadra slots. Previous source comparison: 148 wild off-Dex, zero ordinary Trainer, 3 legendary direct events. No tests/builds/emulators; runtime acceptance pending.",
         "automated": "seven host suites/static audits PASS; identical clean rebuild; final Actions SUCCESS",
         "emulator": "full local libmGBA0.10.5 PASS:114706 assertions; native rewards/menus/restoration/flash scenes",
         "pull_request": "PR#11 merged; historical branch evidence retained",
@@ -2311,9 +2311,9 @@
       "commit": "b0bd3b86f4e03dd3f540f0776a5de87f207e84e4",
       "pr_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/pull/11",
       "ci_url": "https://github.com/InternetNinjacy/pokemon-lightning-yellow/actions/runs/41529505085",
-      "blocker": "148 live wild off-Dex slots are WRL-002/009-owned; 54 Trainer Tower off-Dex entries require approved replacements; three direct legendary event assignments require SOW ownership/design reconciliation. Reference-only categories are not automatically live encounters. Do not invent replacements.",
+      "blocker": "Remaining demonstrated authored off-Dex: 148 wild WRL ecology-owned plus 3 direct legendary events under SOW ownership/policy. 279 legacy Battle Tower and 12 script/C references still require role classification. No gameplay acceptance.",
       "design_authority": "Owner supplied November2 Wild Encounters, Gym Roster, Fossils and Pokedex Compliance update; historical direct Drive401 did not prevent reading the supplied exports; latest concurrent PR15 requires version reconciliation.",
-      "next_action": "Route 148 wild slots to WRL ecology owner; 54 Trainer Tower to approved roster replacement policy; reconcile 3 legendary events with stationary owner. Ordinary trainer historical 24 are already source-corrected. Do not launch tests.",
+      "next_action": "Reconcile 148 WRL-owned wild slots and three SOW-owned direct legendary scripts; classify legacy Battle Tower and script/C references. Owner playtest Trainer Tower substitutions. Do not duplicate owned ecology or stationary work.",
       "checkpoint": "2026-11-04 supplied-export reconciliation; old unavailable-document claims superseded; no implementation/test credit from availability.",
       "source_exports": [
         "04_SPECIES_EVOLUTION_WORLD/Pokémon Lightning Yellow — All 252 Species Typing & 67 Move Source Matrix — 2026-11-02.txt",
