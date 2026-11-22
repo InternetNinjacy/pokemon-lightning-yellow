@@ -31,6 +31,7 @@ static EWRAM_DATA struct Pokemon sSevenIslandBattleTowerOriginalParty[PARTY_SIZE
 static EWRAM_DATA u8 sSevenIslandBattleTowerOriginalPartyCount;
 static EWRAM_DATA bool8 sSevenIslandBattleTowerPartyBackedUp = FALSE;
 static EWRAM_DATA struct Pokemon sSevenIslandBattleTowerBattleParty[3];
+static EWRAM_DATA u8 sSevenIslandBattleTowerOriginalSlots[3];
 static EWRAM_DATA bool8 sSevenIslandBattleTowerBattlePartyPrepared = FALSE;
 
 // Runtime-only preservation for the new Seven Island reception. Do not
@@ -1418,6 +1419,7 @@ void PrepareSevenIslandBattleTowerBattleParty(void)
     {
         slot = gSaveBlock2Ptr->battleTower.selectedPartyMons[i] - 1;
         sSevenIslandBattleTowerBattleParty[i] = gPlayerParty[slot];
+        sSevenIslandBattleTowerOriginalSlots[i] = slot;
     }
 
     sSevenIslandBattleTowerBattlePartyPrepared = TRUE;
@@ -1436,6 +1438,15 @@ const struct Pokemon *GetSevenIslandBattleTowerBattleParty(void)
 u8 GetSevenIslandBattleTowerBattlePartyCount(void)
 {
     return sSevenIslandBattleTowerBattlePartyPrepared ? 3 : 0;
+}
+
+// Map an isolated battle slot back to its original full-party slot.
+// PARTY_SIZE is an invalid-slot sentinel. No global battle index changes.
+u8 GetSevenIslandBattleTowerOriginalPartySlot(u8 battleSlot)
+{
+    if (!sSevenIslandBattleTowerBattlePartyPrepared || battleSlot >= 3)
+        return PARTY_SIZE;
+    return sSevenIslandBattleTowerOriginalSlots[battleSlot];
 }
 
 void ClearSevenIslandBattleTowerBattleParty(void)
