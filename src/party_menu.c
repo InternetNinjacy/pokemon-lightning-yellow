@@ -1936,7 +1936,12 @@ static bool8 CanLearnTutorMove(u16 species, u8 tutor)
         else
             return FALSE;
     case TUTOR_MOVE_WATER_GUN:
-        // Only species with Water Gun in their current natural level-up moves.
+        // All Water-type species qualify, including dual-types and those
+        // without Water Gun in their natural level-up learnset.
+        // Preserve other species already able to learn Water Gun naturally.
+        if (gSpeciesInfo[species].types[0] == TYPE_WATER
+         || gSpeciesInfo[species].types[1] == TYPE_WATER)
+            return TRUE;
         if (gLevelUpLearnsets[species] == NULL)
             return FALSE;
         for (i = 0; gLevelUpLearnsets[species][i] != LEVEL_UP_END; i++)
