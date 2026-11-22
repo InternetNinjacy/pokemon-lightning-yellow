@@ -1442,20 +1442,28 @@ void PrepareSevenIslandBattleTowerBattleParty(void)
 static bool8 IsSevenIslandBattleTowerBattlePartyCurrent(void)
 {
     u8 i;
-    u8 slot;
-
     if (!sSevenIslandBattleTowerBattlePartyPrepared)
         return FALSE;
 
+    // Battle switching may reorder gPlayerParty. Match each selected
+    // Pokemon by identity instead of assuming its original slot is fixed.
     for (i = 0; i < 3; i++)
     {
-        slot = sSevenIslandBattleTowerOriginalSlots[i];
-        if (slot >= gPlayerPartyCount || slot >= PARTY_SIZE)
-            return FALSE;
-        if (GetMonData(&gPlayerParty[slot], MON_DATA_PERSONALITY)
-         != GetMonData(&sSevenIslandBattleTowerBattleParty[i], MON_DATA_PERSONALITY)
-         || GetMonData(&gPlayerParty[slot], MON_DATA_OT_ID)
-         != GetMonData(&sSevenIslandBattleTowerBattleParty[i], MON_DATA_OT_ID))
+        u8 j;
+        bool8 found = FALSE;
+
+        for (j = 0; j < gPlayerPartyCount && j < PARTY_SIZE; j++)
+        {
+            if (GetMonData(&gPlayerParty[j], MON_DATA_PERSONALITY)
+             == GetMonData(&sSevenIslandBattleTowerBattleParty[i], MON_DATA_PERSONALITY)
+             && GetMonData(&gPlayerParty[j], MON_DATA_OT_ID)
+             == GetMonData(&sSevenIslandBattleTowerBattleParty[i], MON_DATA_OT_ID))
+            {
+                found = TRUE;
+                break;
+            }
+        }
+        if (!found)
             return FALSE;
     }
     return TRUE;
@@ -1496,39 +1504,28 @@ bool8 IsSevenIslandBattleTowerEligiblePartySlot(u8 slot)
 
     if (!sSevenIslandBattleTowerBattleContextActive)
         return TRUE;
-
-    // Fail closed if the selected team becomes stale mid-battle. Falling
-    // back to the unrestricted six-mon party would expose extra Pokemon.
+    if (slot >= PARTY_SIZE || slot >= gPlayerPartyCount)
+        return FALSE;
     if (!IsSevenIslandBattleTowerBattlePartyCurrent())
         return FALSE;
 
+    // Follow the Pokemon's identity when battle switching moves its slot.
     for (i = 0; i < 3; i++)
-        if (sSevenIslandBattleTowerOriginalSlots[i] == slot)
+    {
+        if (GetMonData(&gPlayerParty[slot], MON_DATA_PERSONALITY)
+         == GetMonData(&sSevenIslandBattleTowerBattleParty[i], MON_DATA_PERSONALITY)
+         && GetMonData(&gPlayerParty[slot], MON_DATA_OT_ID)
+         == GetMonData(&sSevenIslandBattleTowerBattleParty[i], MON_DATA_OT_ID))
             return TRUE;
+    }
     return FALSE;
 }
 
-// Battle menus temporarily rearrange gPlayerParty into battle order.
-// Resolve that displayed slot through the existing packed party-order map
-// before applying the selected original-slot restriction.
+// Party menus present gPlayerParty in battle order after their conversion.
+// Eligibility follows the Pokemon currently occupying that displayed slot.
 bool8 IsSevenIslandBattleTowerEligibleBattleSlot(u8 battleSlot)
 {
-    u8 originalSlot;
-
-    if (!sSevenIslandBattleTowerBattleContextActive)
-        return TRUE;
-    if (battleSlot >= PARTY_SIZE)
-        return FALSE;
-
-    originalSlot = gBattlePartyCurrentOrder[battleSlot / 2];
-    if (battleSlot & 1)
-        originalSlot &= 0xF;
-    else
-        originalSlot >>= 4;
-
-    if (originalSlot >= PARTY_SIZE)
-        return FALSE;
-    return IsSevenIslandBattleTowerEligiblePartySlot(originalSlot);
+    return IsSevenIslandBattleTowerEligiblePartySlot(battleSlot);
 }
 
 void ClearSevenIslandBattleTowerBattleParty(void)
