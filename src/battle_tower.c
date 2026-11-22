@@ -70,6 +70,8 @@ void RestoreSevenIslandBattleTowerParty(void)
         gPlayerParty[i] = sSevenIslandBattleTowerOriginalParty[i];
     gPlayerPartyCount = sSevenIslandBattleTowerOriginalPartyCount;
     sSevenIslandBattleTowerPartyBackedUp = FALSE;
+    // The staged trio may contain copies from before restoration.
+    sSevenIslandBattleTowerBattlePartyPrepared = FALSE;
     gSpecialVar_Result = TRUE;
 }
 
@@ -1428,23 +1430,48 @@ void PrepareSevenIslandBattleTowerBattleParty(void)
 
 // Explicit read-only interface for a future isolated battle controller.
 // No battle engine code uses this yet; NULL means staging is unavailable.
+// A staged trio must still correspond to the current full party before
+// any future battle adapter may consume it. In particular, never use copies
+// after the player changes their party at the PC or a trade.
+static bool8 IsSevenIslandBattleTowerBattlePartyCurrent(void)
+{
+    u8 i;
+    u8 slot;
+
+    if (!sSevenIslandBattleTowerBattlePartyPrepared)
+        return FALSE;
+
+    for (i = 0; i < 3; i++)
+    {
+        slot = sSevenIslandBattleTowerOriginalSlots[i];
+        if (slot >= gPlayerPartyCount || slot >= PARTY_SIZE)
+            return FALSE;
+        if (GetMonData(&gPlayerParty[slot], MON_DATA_PERSONALITY)
+         != GetMonData(&sSevenIslandBattleTowerBattleParty[i], MON_DATA_PERSONALITY)
+         || GetMonData(&gPlayerParty[slot], MON_DATA_OT_ID)
+         != GetMonData(&sSevenIslandBattleTowerBattleParty[i], MON_DATA_OT_ID))
+            return FALSE;
+    }
+    return TRUE;
+}
+
 const struct Pokemon *GetSevenIslandBattleTowerBattleParty(void)
 {
-    if (!sSevenIslandBattleTowerBattlePartyPrepared)
+    if (!IsSevenIslandBattleTowerBattlePartyCurrent())
         return NULL;
     return sSevenIslandBattleTowerBattleParty;
 }
 
 u8 GetSevenIslandBattleTowerBattlePartyCount(void)
 {
-    return sSevenIslandBattleTowerBattlePartyPrepared ? 3 : 0;
+    return IsSevenIslandBattleTowerBattlePartyCurrent() ? 3 : 0;
 }
 
 // Map an isolated battle slot back to its original full-party slot.
 // PARTY_SIZE is an invalid-slot sentinel. No global battle index changes.
 u8 GetSevenIslandBattleTowerOriginalPartySlot(u8 battleSlot)
 {
-    if (!sSevenIslandBattleTowerBattlePartyPrepared || battleSlot >= 3)
+    if (!IsSevenIslandBattleTowerBattlePartyCurrent() || battleSlot >= 3)
         return PARTY_SIZE;
     return sSevenIslandBattleTowerOriginalSlots[battleSlot];
 }
