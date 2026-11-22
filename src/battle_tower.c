@@ -1424,6 +1424,20 @@ void PrepareSevenIslandBattleTowerBattleParty(void)
     gSpecialVar_Result = TRUE;
 }
 
+// Explicit read-only interface for a future isolated battle controller.
+// No battle engine code uses this yet; NULL means staging is unavailable.
+const struct Pokemon *GetSevenIslandBattleTowerBattleParty(void)
+{
+    if (!sSevenIslandBattleTowerBattlePartyPrepared)
+        return NULL;
+    return sSevenIslandBattleTowerBattleParty;
+}
+
+u8 GetSevenIslandBattleTowerBattlePartyCount(void)
+{
+    return sSevenIslandBattleTowerBattlePartyPrepared ? 3 : 0;
+}
+
 void ClearSevenIslandBattleTowerBattleParty(void)
 {
     sSevenIslandBattleTowerBattlePartyPrepared = FALSE;
