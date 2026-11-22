@@ -205,6 +205,7 @@ CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_GiveOmanyte::
 	bufferspeciesname STR_VAR_1, SPECIES_OMANYTE
 	msgbox CinnabarIsland_PokemonLab_ExperimentRoom_Text_FossilMonBackToLife
 	givemon SPECIES_OMANYTE, 5
+	callnative ScriptSetFossilDefaultNickname
 	goto_if_eq VAR_RESULT, 2, EventScript_NoMoreRoomForPokemon
 	setflag FLAG_REVIVED_HELIX
 	goto_if_eq VAR_RESULT, 0, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_NicknameMonParty
@@ -216,6 +217,7 @@ CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_GiveKabuto::
 	bufferspeciesname STR_VAR_1, SPECIES_KABUTO
 	msgbox CinnabarIsland_PokemonLab_ExperimentRoom_Text_FossilMonBackToLife
 	givemon SPECIES_KABUTO, 5
+	callnative ScriptSetFossilDefaultNickname
 	goto_if_eq VAR_RESULT, 2, EventScript_NoMoreRoomForPokemon
 	setflag FLAG_REVIVED_DOME
 	goto_if_eq VAR_RESULT, 0, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_NicknameMonParty
@@ -227,6 +229,7 @@ CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_GiveAerodactyl::
 	bufferspeciesname STR_VAR_1, SPECIES_AERODACTYL
 	msgbox CinnabarIsland_PokemonLab_ExperimentRoom_Text_FossilMonBackToLife
 	givemon SPECIES_AERODACTYL, 5
+	callnative ScriptSetFossilDefaultNickname
 	goto_if_eq VAR_RESULT, 2, EventScript_NoMoreRoomForPokemon
 	setflag FLAG_REVIVED_AMBER
 	goto_if_eq VAR_RESULT, 0, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_NicknameMonParty
@@ -238,6 +241,7 @@ CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_GiveAnorith::
 	bufferspeciesname STR_VAR_1, SPECIES_ANORITH
 	msgbox CinnabarIsland_PokemonLab_ExperimentRoom_Text_FossilMonBackToLife
 	givemon SPECIES_ANORITH, 5
+	callnative ScriptSetFossilDefaultNickname
 	goto_if_eq VAR_RESULT, 2, EventScript_NoMoreRoomForPokemon
 	setflag FLAG_REVIVED_CLAW
 	goto_if_eq VAR_RESULT, 0, CinnabarIsland_PokemonLab_ExperimentRoom_EventScript_NicknameMonParty
