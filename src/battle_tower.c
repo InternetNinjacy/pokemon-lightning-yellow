@@ -1361,6 +1361,44 @@ void BattleTowerUtil(void)
     }
 }
 
+// Preflight for a future three-mon challenge. Keep all six party slots
+// available in the field; do not mistake battle-party order for a banlist.
+void CheckSevenIslandBattleTowerSelection(void)
+{
+    u8 i, j;
+    u8 slot;
+    u16 species[3];
+    u16 heldItems[3];
+
+    gSpecialVar_Result = FALSE;
+    for (i = 0; i < 3; i++)
+    {
+        slot = gSaveBlock2Ptr->battleTower.selectedPartyMons[i];
+        if (slot == 0 || slot > gPlayerPartyCount || slot > PARTY_SIZE)
+            return;
+        for (j = 0; j < i; j++)
+            if (slot == gSaveBlock2Ptr->battleTower.selectedPartyMons[j])
+                return;
+
+        species[i] = GetMonData(&gPlayerParty[slot - 1], MON_DATA_SPECIES);
+        heldItems[i] = GetMonData(&gPlayerParty[slot - 1], MON_DATA_HELD_ITEM);
+        if (GetMonData(&gPlayerParty[slot - 1], MON_DATA_IS_EGG)
+         || GetMonData(&gPlayerParty[slot - 1], MON_DATA_HP) == 0)
+            return;
+        if (gSaveBlock2Ptr->battleTower.battleTowerLevelType == 0
+         && GetMonData(&gPlayerParty[slot - 1], MON_DATA_LEVEL) > 50)
+            return;
+        for (j = 0; gBattleTowerBannedSpecies[j] != 0xFFFF; j++)
+            if (species[i] == gBattleTowerBannedSpecies[j])
+                return;
+        for (j = 0; j < i; j++)
+            if (species[i] == species[j]
+             || (heldItems[i] != ITEM_NONE && heldItems[i] == heldItems[j]))
+                return;
+    }
+    gSpecialVar_Result = TRUE;
+}
+
 void SetBattleTowerParty(void)
 {
     s32 i;
