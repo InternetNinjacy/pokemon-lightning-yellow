@@ -30,6 +30,8 @@ static EWRAM_DATA u16 sSpecialVar_0x8004_Copy = 0;
 static EWRAM_DATA struct Pokemon sSevenIslandBattleTowerOriginalParty[PARTY_SIZE];
 static EWRAM_DATA u8 sSevenIslandBattleTowerOriginalPartyCount;
 static EWRAM_DATA bool8 sSevenIslandBattleTowerPartyBackedUp = FALSE;
+static EWRAM_DATA struct Pokemon sSevenIslandBattleTowerBattleParty[3];
+static EWRAM_DATA bool8 sSevenIslandBattleTowerBattlePartyPrepared = FALSE;
 
 // Runtime-only preservation for the new Seven Island reception. Do not
 // substitute SavePlayerParty/LoadPlayerParty: those operate on serialized
@@ -1396,6 +1398,35 @@ void CheckSevenIslandBattleTowerSelection(void)
              || (heldItems[i] != ITEM_NONE && heldItems[i] == heldItems[j]))
                 return;
     }
+    gSpecialVar_Result = TRUE;
+}
+
+// Stage a separate battle-only trio without replacing gPlayerParty.
+// The battle engine is not connected to this buffer yet. Its normal switch
+// menu still sees all six slots, so do not launch a battle from this special.
+void PrepareSevenIslandBattleTowerBattleParty(void)
+{
+    u8 i;
+    u8 slot;
+
+    sSevenIslandBattleTowerBattlePartyPrepared = FALSE;
+    CheckSevenIslandBattleTowerSelection();
+    if (gSpecialVar_Result != TRUE)
+        return;
+
+    for (i = 0; i < 3; i++)
+    {
+        slot = gSaveBlock2Ptr->battleTower.selectedPartyMons[i] - 1;
+        sSevenIslandBattleTowerBattleParty[i] = gPlayerParty[slot];
+    }
+
+    sSevenIslandBattleTowerBattlePartyPrepared = TRUE;
+    gSpecialVar_Result = TRUE;
+}
+
+void ClearSevenIslandBattleTowerBattleParty(void)
+{
+    sSevenIslandBattleTowerBattlePartyPrepared = FALSE;
     gSpecialVar_Result = TRUE;
 }
 
