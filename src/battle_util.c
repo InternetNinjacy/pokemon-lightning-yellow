@@ -58,6 +58,9 @@ u8 GetBattlerInitialAbility(u8 battler)
      && !(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_EREADER_TRAINER | BATTLE_TYPE_TRAINER_TOWER))
      && GetBattlerSide(battler) == B_SIDE_OPPONENT)
     {
+        // Rain tactic for Dwayne's approved Magikarp, without global ability edits.
+        if (gTrainerBattleOpponent_A == TRAINER_SAILOR_DWAYNE && species == SPECIES_MAGIKARP)
+            return ABILITY_DRIZZLE;
         if (gTrainerBattleOpponent_A == TRAINER_LEADER_BROCK)
         {
             if (species == SPECIES_SNORUNT)
