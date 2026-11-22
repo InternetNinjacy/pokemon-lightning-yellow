@@ -2,11 +2,12 @@ CinnabarIsland_Gym_Text_BlaineIntro::
     .string "Hah!\p"
     .string "I am BLAINE, the red-hot LEADER\n"
     .string "of CINNABAR GYM!\p"
-    .string "My fiery POKéMON are all rough\n"
-    .string "and ready with intense heat!\p"
-    .string "They incinerate all challengers!\p"
+    .string "My FLYING and GROUND POKéMON\n"
+    .string "fight together as one!\p"
+    .string "Watch for EARTHQUAKE below\n"
+    .string "and strikes from above!\p"
     .string "Hah!\n"
-    .string "You better have BURN HEAL!{PLAY_BGM}{MUS_ENCOUNTER_GYM_LEADER}$"
+    .string "Come at me with two POKéMON!{PLAY_BGM}{MUS_ENCOUNTER_GYM_LEADER}$"
 
 CinnabarIsland_Gym_Text_BlaineNeedTwoPokemon::
     .string "Hah! You need two POKéMON ready\n"
