@@ -3855,7 +3855,7 @@ u8 GetMonsStateToDoubles(void)
     s32 i;
     CalculatePlayerPartyCount();
 
-    if (gPlayerPartyCount == 1)
+    if (gPlayerPartyCount == 1 && !IsSevenIslandBattleTowerBattleContextActive())
         return gPlayerPartyCount; // PLAYER_HAS_ONE_MON
 
     for (i = 0; i < gPlayerPartyCount; i++)
