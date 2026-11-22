@@ -758,7 +758,9 @@
 //       only space for 20 additional trainers before trainer flag space overflows.
 //       MAX_TRAINERS_COUNT can be increased but will take up additional saveblock space
 
-#define NUM_TRAINERS                             748
+#define TRAINER_BUG_CATCHER_PEWTER_LOCAL          748
+
+#define NUM_TRAINERS                             749
 #define MAX_TRAINERS_COUNT                       768
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_H
