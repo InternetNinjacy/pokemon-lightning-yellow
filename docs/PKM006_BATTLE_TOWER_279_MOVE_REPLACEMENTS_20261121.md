@@ -1,6 +1,6 @@
 # Battle Tower replacement move decisions — owner-delegated PKM-006
 
-Source-only conservative eligibility: preserved moves present in replacement species' approved level-up or TM/HM source tables. For unsupported original moves, selected a distinct legal move, prioritizing the same type or strategic role and explicit signature equivalents. Egg/tutor-only compatibility was not inferred. **Selection is heuristic, not proof of battle-role parity; 273 swaps need further owner gameplay role review after 12 focused corrections.** No build/test/emulator/CI/merge.
+Source-only conservative eligibility: preserved moves present in replacement species' approved level-up or TM/HM source tables. For unsupported original moves, selected a distinct legal move, prioritizing the same type or strategic role and explicit signature equivalents. Egg/tutor-only compatibility was not inferred. **Selection is heuristic, not proof of battle-role parity; The original 285 heuristic swaps remain a conservative review population; 12 selected entries were refined but not gameplay-accepted.** No build/test/emulator/CI/merge.
 
 | Pool | Template index | Species replacement | Original move | New move | Rationale |
 |---|---:|---|---|---|---|
@@ -590,4 +590,4 @@ Source-only conservative eligibility: preserved moves present in replacement spe
 
 ### Focused source-only role refinements
 
-Twelve earlier move choices were improved using replacement species' level-up/TM/HM move tables. The level-50 Magneton at index 109 now has Thunderbolt / Tri Attack / Metal Sound / Thunder Wave instead of four generic support moves. Two Blissey entries replace Brick Break with Soft-Boiled for endurance, although this cannot reproduce Wobbuffet's Counter/Mirror Coat mechanics. The remaining 273 initial heuristic choices need tactical review. No builds/tests/emulators/CI/merges.
+Twelve earlier move choices were improved using replacement species' level-up/TM/HM move tables. The level-50 Magneton at index 109 now has Thunderbolt / Tri Attack / Metal Sound / Thunder Wave instead of four generic support moves. Two Blissey entries replace Brick Break with Soft-Boiled for endurance, although this cannot reproduce Wobbuffet's Counter/Mirror Coat mechanics. The initial 285 flagged swaps remain the conservative gameplay-review population until source-level and owner acceptance criteria are satisfied; 12 selected entries have improved source-level rationale. No builds/tests/emulators/CI/merges.
